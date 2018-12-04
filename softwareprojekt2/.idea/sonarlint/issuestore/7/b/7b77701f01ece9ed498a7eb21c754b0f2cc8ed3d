@@ -1,0 +1,8 @@
+
+Ysquid:S1197"8Move the array designator from the variable to the type.(¡şÏÖøÿÿÿÿ8°ÍòË÷,
+zsquid:S1488"YImmediately return this expression instead of assigning it to the temporary variable "g".(ôÃû‰ùÿÿÿÿ8°ÍòË÷,
+Gsquid:S1481"&Remove this unused "g" local variable.(ôÃû‰ùÿÿÿÿ8°ÍòË÷,
+Vsquid:S1854"5Remove this useless assignment to local variable "g".(ôÃû‰ùÿÿÿÿ8°ÍòË÷,
+xsquid:UselessImportCheck"ORemove this unused import 'edu.uci.ics.jung.visualization.VisualizationServer'.(îÇÕ8°ÍòË÷,
+xsquid:UselessImportCheck"ORemove this unused import 'edu.uci.ics.jung.visualization.VisualizationViewer'.(†İ¦8°ÍòË÷,
+rsquid:UselessImportCheck"IRemove this unused import 'edu.uci.ics.jung.algorithms.layout.FRLayout2'.(ëß´ì8°ÍòË÷,
