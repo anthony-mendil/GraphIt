@@ -1,4 +1,3 @@
-
 edu.uci.ics.jung.algorithms.blockmodel
 edu.uci.ics.jung.algorithms.cluster
 edu.uci.ics.jung.algorithms.filters
@@ -21,7 +20,6 @@ edu.uci.ics.jung.graph.util
 edu.uci.ics.jung.io
 edu.uci.ics.jung.io.graphml
 edu.uci.ics.jung.io.graphml.parser
-edu.uci.ics.jung.samples
 edu.uci.ics.jung.visualization
 edu.uci.ics.jung.visualization.annotations
 edu.uci.ics.jung.visualization.control
@@ -33,6 +31,7 @@ edu.uci.ics.jung.visualization.subLayout
 edu.uci.ics.jung.visualization.transform
 edu.uci.ics.jung.visualization.transform.shape
 edu.uci.ics.jung.visualization.util
+graph.graph
 org.apache.log4j
 org.apache.log4j.chainsaw
 org.apache.log4j.config
@@ -59,8 +58,6 @@ org.freehep.graphicsio.exportchooser
 org.freehep.graphicsio.font
 org.freehep.graphicsio.font.truetype
 org.freehep.graphicsio.gif
-org.freehep.graphicsio.pdf
 org.freehep.graphicsio.png
 org.freehep.graphicsio.ppm
 org.freehep.graphicsio.raw
-org.freehep.graphicsio.svg

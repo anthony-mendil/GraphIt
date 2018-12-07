@@ -26,22 +26,13 @@
                         <id>bundle-sources</id>
                         <phase>package</phase>
                         <goals>
-                            <!-- produce source artifact for main project sources -->
-                            <goal>jar-no-fork</goal>
-
-                            <!-- produce source artifact for project test sources -->
-                            <goal>test-jar-no-fork</goal>
+                            <goal>javadoc</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- switch on dependency-driven aggregation -->
+                    <show>private</show>
                     <includeDependencySources>true</includeDependencySources>
-
-                    <dependencySourceExcludes>
-                        <!-- exclude ONLY commons-cli artifacts -->
-                        <dependencySourceExclude>commons-cli:*</dependencySourceExclude>
-                    </dependencySourceExcludes>
                 </configuration>
             </plugin>
         </plugins>
@@ -59,14 +50,6 @@
             <artifactId>jung-api</artifactId>
             <version>2.0.1</version>
 
-        </dependency>
-
-
-        <dependency>
-            <groupId>net.sf.jung</groupId>
-            <artifactId>jung-jai-samples</artifactId>
-            <version>2.0.1</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -100,18 +83,6 @@
         <dependency>
             <groupId>org.freehep</groupId>
             <artifactId>freehep-graphicsio</artifactId>
-            <version>2.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.freehep</groupId>
-            <artifactId>freehep-graphicsio-pdf</artifactId>
-            <version>2.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.freehep</groupId>
-            <artifactId>freehep-graphicsio-svg</artifactId>
             <version>2.4</version>
         </dependency>
 
