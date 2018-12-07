@@ -1,4 +1,5 @@
 graph\visualization\SyndromPickSupport.class
+graph\JavaDocSampleClass.class
 graph\graph\Sphaere.class
 graph\visualization\control\PickingGraphMouseAnalyseSyndromPlugin.class
 graph\visualization\SyndromArrowFactory.class
