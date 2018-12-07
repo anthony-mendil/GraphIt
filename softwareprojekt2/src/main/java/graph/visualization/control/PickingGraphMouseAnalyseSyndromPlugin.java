@@ -27,6 +27,9 @@ public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMou
 
     /**
      * TODO
+     *
+     * @param selectionModifiers TODO
+     * @param addToSelectionModifiers TODO
      */
     private PickingGraphMouseAnalyseSyndromPlugin(int selectionModifiers, int addToSelectionModifiers) {
         super(selectionModifiers, addToSelectionModifiers);
@@ -35,6 +38,8 @@ public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMou
 
     /**
      * TODO
+     *
+     * @param e TODO
      */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -43,6 +48,8 @@ public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMou
 
     /**
      * TODO
+     *
+     * @param e TODO
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -51,6 +58,8 @@ public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMou
 
     /**
      * TODO
+     *
+     * @param e TODO
      */
     @Override
     public void mouseDragged(MouseEvent e) {

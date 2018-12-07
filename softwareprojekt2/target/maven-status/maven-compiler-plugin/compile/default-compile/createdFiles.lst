@@ -1,10 +1,10 @@
 graph\visualization\SyndromPickSupport.class
 graph\JavaDocSampleClass.class
-graph\graph\Sphaere.class
 graph\visualization\control\PickingGraphMouseAnalyseSyndromPlugin.class
 graph\visualization\SyndromArrowFactory.class
 graph\graph\SyndromGraph.class
 graph\visualization\control\AnimatedPickingGraphMouseEditSyndromPlugin.class
 graph\visualization\control\PickingGraphMouseEditSyndromPlugin.class
 graph\visualization\transformer\SyndromEdgeArrowTransformer.class
+graph\graph\Sphere.class
 graph\visualization\control\AnimatedPickingGraphMouseAnalyseSyndromPlugin.class

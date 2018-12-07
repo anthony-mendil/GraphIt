@@ -11,6 +11,11 @@ public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.Arr
 
     /**
      * TODO
+     *
+     * @param base TODO
+     * @param height TODO
+     * @param notchHeight TODO
+     * @return TODO
      */
     public static GeneralPath getReinforcingEdgeArrow(float base, float height, float notchHeight) {
         return getNotchedArrow(base, height, notchHeight);
@@ -18,6 +23,9 @@ public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.Arr
 
     /**
      * TODO
+     *
+     * @param r TODO
+     * @return TODO
      */
     public static GeneralPath getExtenuatingEdgeArrow(int r) {
         GeneralPath arrow = new GeneralPath();
@@ -37,6 +45,8 @@ public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.Arr
 
     /**
      * TODO
+     *
+     * @return TODO
      */
     public static GeneralPath getNeutralEdgeArrow() {
         Shape shape = new GeneralPath();

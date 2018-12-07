@@ -11,8 +11,6 @@ import java.util.NoSuchElementException;
 
 /**
  * TODO
- * @param <V>
- * @param <E>
  */
 public class SyndromEdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, E>, E>, Shape> {
     private Shape reinforcedArrow;
@@ -21,10 +19,11 @@ public class SyndromEdgeArrowTransformer<V, E> implements Transformer<Context<Gr
 
     /**
      * TODO
-     * @param radius
-     * @param width
-     * @param length
-     * @param notchDepth
+     *
+     * @param radius TODO
+     * @param width TODO
+     * @param length TODO
+     * @param notchDepth TODO
      */
     public SyndromEdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
         throw new UnsupportedOperationException();
@@ -32,7 +31,8 @@ public class SyndromEdgeArrowTransformer<V, E> implements Transformer<Context<Gr
 
     /**
      * TODO
-     * @param context
+     *
+     * @param context TODO
      * @return Shape
      */
     public Shape transform(Context<Graph<V, E>, E> context) {

@@ -19,7 +19,7 @@ import java.util.*;
  * TODO
  */
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
-    private transient Map<Sphaere, ArrayList<V>> sphaeren;
+    private transient Map<Sphere, ArrayList<V>> sphaeren;
 
     /**
      * TODO
@@ -30,41 +30,55 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
 
     /**
      * TODO
+     *
+     * @return TODO
      */
-    public Set<Sphaere> getSphaeren() {
+    public Set<Sphere> getSphaeren() { throw new UnsupportedOperationException(); }
+
+    /**
+     * TODO
+     *
+     * @param pSphere TODO
+     * @return TODO
+     */
+    public List getSphaereWithVertices(Sphere pSphere) {
         throw new UnsupportedOperationException();
     }
 
     /**
      * TODO
+     *
+     * @param pSphere TODO
+     * @param pVertex TODO
      */
-    public List getSphaereWithVertices(Sphaere s) {
+    public void addVertexToSphaere(Sphere pSphere, V pVertex) {
         throw new UnsupportedOperationException();
     }
 
     /**
      * TODO
+     *
+     * @param pSphere TODO
+     * @param pVertex TODO
      */
-    public void addVertexToSphaere(Sphaere s, V vertex) {
+    public void removeVertexFromSphaere(Sphere pSphere, V pVertex) {
         throw new UnsupportedOperationException();
     }
 
     /**
      * TODO
+     *
+     * @param pVertex TODO
+     * @param pSphere TODO
+     * @return TODO
      */
-    public void removeVertexFromSphaere(Sphaere s, V vertex) {
+    public boolean addVertex(V pVertex, Sphere pSphere) {
         throw new UnsupportedOperationException();
     }
 
     /**
      * TODO
-     */
-    public boolean addVertex(V vertex, Sphaere s) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * TODO
+     *
      */
     public void addSphaere() {
         throw new UnsupportedOperationException();
@@ -72,6 +86,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
 
     /**
      * TODO
+     *
      */
     public void removeSphaere() {
         throw new UnsupportedOperationException();
