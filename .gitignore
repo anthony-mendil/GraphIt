@@ -1,5 +1,5 @@
 softwareprojekt2/.idea/
-softwareprojekt2/target/site/
+softwareprojekt2/target/
 *.aux
 *.log
 *.pdf
