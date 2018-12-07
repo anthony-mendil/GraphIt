@@ -1,2 +1,7 @@
 softwareprojekt2/.idea/
 softwareprojekt2/target/site/
+*.aux
+*.log
+*.pdf
+*.gz
+*.toc
