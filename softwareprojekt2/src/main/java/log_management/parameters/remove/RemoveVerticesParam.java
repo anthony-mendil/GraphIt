@@ -16,5 +16,6 @@ public class RemoveVerticesParam extends Param implements Serializable {
         this.vertices = vertices;
         this.sphereIds = sphereIds;
         this.sphereAnnotations = sphereAnnotations;
+        //hi
     }
 }
