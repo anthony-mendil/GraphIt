@@ -16,9 +16,6 @@ public class Edge {
     private Stroke stroke;
     @NonNull
     private final int id;
-    private Map<ScopePoint, Point2D>  vertixArrowReinforced = null;
-    private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
-    private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
 
     public Edge(int id) {
         this(Constants.getDefaultColorEdge(), Constants.getDefaultStrokeEdge(), id);

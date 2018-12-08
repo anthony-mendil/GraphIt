@@ -6,7 +6,8 @@ import java.io.Serializable;
 
 public class EditEdgeSizeParam extends Param implements Serializable {
 
-    // later add other attributes
+    
+
     public EditEdgeSizeParam() {
     }
 

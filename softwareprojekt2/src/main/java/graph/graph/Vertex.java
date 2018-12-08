@@ -26,7 +26,7 @@ public class Vertex {
     private String name;
     @NonNull
     private Color fill;
-    private Map<ScopePoint, Point2D>  vertixArrowReinforced = null;
+    private Map<ScopePoint, Point2D> vertixArrowReinforced = null;
     private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
     private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
 
