@@ -1,8 +1,6 @@
 package log_management.parameters.edit;
 
 import LogManagement.Parameters.Param;
-import graph.graph.Edge;
-import graph.graph.Vertex;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -10,17 +8,21 @@ import java.util.List;
 
 public class EditEdgesFormParam extends Param implements Serializable {
 
-    private List<Edge> edge;
-    private List<Vertex> sourceVertex;
-    private List<Vertex> targetVertex;
-    private List<Stroke> oldStroke;
-    private List<Stroke> newStroke;
+    private List<Integer> edgesId;
+    private List<Integer> sourceVerticesId;
+    private List<String> sourceVerticesAnnotation;
+    private List<Integer> targetVerticesId;
+    private List<String> targetVerticesAnnotation;
+    private List<Stroke> oldStrokes;
+    private Stroke newStroke;
 
-    public EditEdgesFormParam(List<Edge> edge, List<Vertex> sourceVertex, List<Vertex> targetVertex, List<Stroke> oldStroke, List<Stroke> newStroke) {
-        this.edge = edge;
-        this.sourceVertex = sourceVertex;
-        this.targetVertex = targetVertex;
-        this.oldStroke = oldStroke;
+    public EditEdgesFormParam(List<Integer> edgesId, List<Integer> sourceVerticesId, List<String> sourceVerticesAnnotation, List<Integer> targetVerticesId, List<String> targetVerticesAnnotation, List<Stroke> oldStrokes, Stroke newStroke) {
+        this.edgesId = edgesId;
+        this.sourceVerticesId = sourceVerticesId;
+        this.sourceVerticesAnnotation = sourceVerticesAnnotation;
+        this.targetVerticesId = targetVerticesId;
+        this.targetVerticesAnnotation = targetVerticesAnnotation;
+        this.oldStrokes = oldStrokes;
         this.newStroke = newStroke;
     }
 }

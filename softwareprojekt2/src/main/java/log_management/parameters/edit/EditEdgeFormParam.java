@@ -1,24 +1,26 @@
 package log_management.parameters.edit;
 
 import LogManagement.Parameters.Param;
-import graph.graph.Edge;
-import graph.graph.Vertex;
 
 import java.awt.*;
 import java.io.Serializable;
 
 public class EditEdgeFormParam extends Param implements Serializable {
 
-    private Edge edge;
-    private Vertex sourceVertex;
-    private Vertex targetVertex;
+    private int edgeId;
+    private int sourceVertexId;
+    private String sourceVertexAnnotation;
+    private int targetVertexId;
+    private String targetVertexAnnotation;
     private Stroke oldStroke;
     private Stroke newStroke;
 
-    public EditEdgeFormParam(Edge edge, Vertex sourceVertex, Vertex targetVertex, Stroke oldStroke, Stroke newStroke) {
-        this.edge = edge;
-        this.sourceVertex = sourceVertex;
-        this.targetVertex = targetVertex;
+    public EditEdgeFormParam(int edgeId, int sourceVertexId, String sourceVertexAnnotation, int targetVertexId, String targetVertexAnnotation, Stroke oldStroke, Stroke newStroke) {
+        this.edgeId = edgeId;
+        this.sourceVertexId = sourceVertexId;
+        this.sourceVertexAnnotation = sourceVertexAnnotation;
+        this.targetVertexId = targetVertexId;
+        this.targetVertexAnnotation = targetVertexAnnotation;
         this.oldStroke = oldStroke;
         this.newStroke = newStroke;
     }

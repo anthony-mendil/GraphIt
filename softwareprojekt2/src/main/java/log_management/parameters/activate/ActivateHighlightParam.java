@@ -1,20 +1,17 @@
 package log_management.parameters.activate;
 
 import LogManagement.Parameters.Param;
-import graph.graph.Edge;
-import graph.graph.Vertex;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class ActivateHighlightParam extends Param implements Serializable {
 
-    private List<Vertex> vertexList;
-    private List<Edge> edgeList;
+    private List<Integer> vertexIdList;
+    private List<Integer> edgeIdList;
 
-    public ActivateHighlightParam(List<Vertex> vertexList, List<Edge> edgeList) {
-        this.vertexList = vertexList;
-        this.edgeList = edgeList;
+    public ActivateHighlightParam(List<Integer> vertexIdList, List<Integer> edgeIdList) {
+        this.vertexIdList = vertexIdList;
+        this.edgeIdList = edgeIdList;
     }
-
 }

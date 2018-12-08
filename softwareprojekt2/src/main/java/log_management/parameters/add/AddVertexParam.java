@@ -1,7 +1,6 @@
 package log_management.parameters.add;
 
 import LogManagement.Parameters.Param;
-import graph.graph.Sphere;
 import graph.graph.Vertex;
 
 import java.io.Serializable;
@@ -9,10 +8,12 @@ import java.io.Serializable;
 public class AddVertexParam extends Param implements Serializable {
 
     private Vertex vertex;
-    private Sphere sphere;
+    private int sphereId;
+    private String sphereAnnotation;
 
-    public AddVertexParam(Vertex vertex, Sphere sphere) {
+    public AddVertexParam(Vertex vertex, int sphereId, String sphereAnnotation) {
         this.vertex = vertex;
-        this.sphere = sphere;
+        this.sphereId = sphereId;
+        this.sphereAnnotation = sphereAnnotation;
     }
 }

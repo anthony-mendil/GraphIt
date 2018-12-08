@@ -1,24 +1,26 @@
 package log_management.parameters.edit;
 
 import LogManagement.Parameters.Param;
-import graph.graph.Edge;
-import graph.graph.Vertex;
 
 import java.awt.*;
 import java.io.Serializable;
 
 public class EditEdgeColorParam extends Param implements Serializable {
 
-    private Edge edge;
-    private Vertex sourceVertex;
-    private Vertex targetVertex;
+    private int edgeId;
+    private int sourceVertexId;
+    private String sourceVertexAnnotation;
+    private int targetVertexId;
+    private String targetVertexAnnotation;
     private Color oldColor;
     private Color newColor;
 
-    public EditEdgeColorParam(Edge edge, Vertex sourceVertex, Vertex targetVertex, Color oldColor, Color newColor) {
-        this.edge = edge;
-        this.sourceVertex = sourceVertex;
-        this.targetVertex = targetVertex;
+    public EditEdgeColorParam(int edgeId, int sourceVertexId, String sourceVertexAnnotation, int targetVertexId, String targetVertexAnnotation, Color oldColor, Color newColor) {
+        this.edgeId = edgeId;
+        this.sourceVertexId = sourceVertexId;
+        this.sourceVertexAnnotation = sourceVertexAnnotation;
+        this.targetVertexId = targetVertexId;
+        this.targetVertexAnnotation = targetVertexAnnotation;
         this.oldColor = oldColor;
         this.newColor = newColor;
     }
