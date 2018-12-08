@@ -2,12 +2,9 @@ package graph.visualization.transformer;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
-import graph.visualization.SyndromArrowFactory;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
-import java.util.Map;
-import java.util.NoSuchElementException;
 
 /**
  * TODO

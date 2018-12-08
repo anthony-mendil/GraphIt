@@ -1,0 +1,175 @@
+Logging Provider: org.jboss.logging.Log4jLoggerProvider
+Located and parsed 1 persistence units; checking each
+Checking persistence-unit [name=NewPersistenceUnit, explicit-provider=org.hibernate.jpa.HibernatePersistenceProvider] against incoming persistence unit name [NewPersistenceUnit]
+Persistence-unit [NewPersistenceUnit] requested PersistenceProvider [org.hibernate.jpa.HibernatePersistenceProvider]
+PersistenceUnitInfo [
+	name: NewPersistenceUnit
+	persistence provider classname: org.hibernate.jpa.HibernatePersistenceProvider
+	classloader: null
+	excludeUnlistedClasses: false
+	JTA datasource: null
+	Non JTA datasource: null
+	Transaction type: RESOURCE_LOCAL
+	PU root URL: file:/C:/Users/user/Documents/swp_2/softwareprojekt2/target/classes/
+	Shared Cache Mode: null
+	Validation Mode: null
+	Jar files URLs []
+	Managed classes names [
+		LogManagement.Tables.Log
+		LogManagement.Tables.Graph]
+	Mapping files names []
+	Properties [
+		hibernate.connection.username: 
+		hibernate.connection.password: 
+		hbm2ddl.auto: update
+		hibernate.connection.url: jdbc:h2:~/test
+		hibernate.archive.autodetection: class
+		hibernate.show_sql: true
+		hibernate.connection.driver_class: org.h2.Driver
+		hibernate.format_sql: true]
+Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+HHH000412: Hibernate Core {5.3.7.Final}
+HHH000206: hibernate.properties not found
+Overriding existing service binding [org.hibernate.secure.spi.JaccService]
+Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
+HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+Adding type registration boolean -> org.hibernate.type.BooleanType@419631
+Adding type registration boolean -> org.hibernate.type.BooleanType@419631
+Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@419631
+Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@130745
+Adding type registration true_false -> org.hibernate.type.TrueFalseType@10f1802
+Adding type registration yes_no -> org.hibernate.type.YesNoType@92efc3
+Adding type registration byte -> org.hibernate.type.ByteType@1046283
+Adding type registration byte -> org.hibernate.type.ByteType@1046283
+Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@1046283
+Adding type registration character -> org.hibernate.type.CharacterType@b7ac2f
+Adding type registration char -> org.hibernate.type.CharacterType@b7ac2f
+Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@b7ac2f
+Adding type registration short -> org.hibernate.type.ShortType@13d0772
+Adding type registration short -> org.hibernate.type.ShortType@13d0772
+Adding type registration java.lang.Short -> org.hibernate.type.ShortType@13d0772
+Adding type registration integer -> org.hibernate.type.IntegerType@1e39c73
+Adding type registration int -> org.hibernate.type.IntegerType@1e39c73
+Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@1e39c73
+Adding type registration long -> org.hibernate.type.LongType@180cfdd
+Adding type registration long -> org.hibernate.type.LongType@180cfdd
+Adding type registration java.lang.Long -> org.hibernate.type.LongType@180cfdd
+Adding type registration float -> org.hibernate.type.FloatType@ae9b55
+Adding type registration float -> org.hibernate.type.FloatType@ae9b55
+Adding type registration java.lang.Float -> org.hibernate.type.FloatType@ae9b55
+Adding type registration double -> org.hibernate.type.DoubleType@1d7b7bf
+Adding type registration double -> org.hibernate.type.DoubleType@1d7b7bf
+Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@1d7b7bf
+Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@1a69b07
+Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@1a69b07
+Adding type registration big_integer -> org.hibernate.type.BigIntegerType@17d444
+Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@17d444
+Adding type registration string -> org.hibernate.type.StringType@111c2a7
+Adding type registration java.lang.String -> org.hibernate.type.StringType@111c2a7
+Adding type registration nstring -> org.hibernate.type.StringNVarcharType@508ed1
+Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@174bf60
+Adding type registration url -> org.hibernate.type.UrlType@f926e6
+Adding type registration java.net.URL -> org.hibernate.type.UrlType@f926e6
+Adding type registration Duration -> org.hibernate.type.DurationType@1a996b
+Adding type registration java.time.Duration -> org.hibernate.type.DurationType@1a996b
+Adding type registration Instant -> org.hibernate.type.InstantType@1835c46
+Adding type registration java.time.Instant -> org.hibernate.type.InstantType@1835c46
+Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@620197
+Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@620197
+Adding type registration LocalDate -> org.hibernate.type.LocalDateType@57ecf
+Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@57ecf
+Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@13291e3
+Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@13291e3
+Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2bba4f
+Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2bba4f
+Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@1bf57b3
+Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@1bf57b3
+Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@eff876
+Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@eff876
+Adding type registration date -> org.hibernate.type.DateType@e52303
+Adding type registration java.sql.Date -> org.hibernate.type.DateType@e52303
+Adding type registration time -> org.hibernate.type.TimeType@f3afd9
+Adding type registration java.sql.Time -> org.hibernate.type.TimeType@f3afd9
+Adding type registration timestamp -> org.hibernate.type.TimestampType@167f35d
+Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@167f35d
+Adding type registration java.util.Date -> org.hibernate.type.TimestampType@167f35d
+Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@118837a
+Adding type registration calendar -> org.hibernate.type.CalendarType@514af7
+Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@514af7
+Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@514af7
+Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@1b61f4a
+Adding type registration locale -> org.hibernate.type.LocaleType@c451f2
+Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@c451f2
+Adding type registration currency -> org.hibernate.type.CurrencyType@468a38
+Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@468a38
+Adding type registration timezone -> org.hibernate.type.TimeZoneType@1239d7d
+Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@1239d7d
+Adding type registration class -> org.hibernate.type.ClassType@bf72b5
+Adding type registration java.lang.Class -> org.hibernate.type.ClassType@bf72b5
+Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@64cb25
+Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@64cb25
+Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@5eefef
+Adding type registration binary -> org.hibernate.type.BinaryType@17275fc
+Adding type registration byte[] -> org.hibernate.type.BinaryType@17275fc
+Adding type registration [B -> org.hibernate.type.BinaryType@17275fc
+Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@93b025
+Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@93b025
+Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@93b025
+Adding type registration row_version -> org.hibernate.type.RowVersionType@4fabc8
+Adding type registration image -> org.hibernate.type.ImageType@12adfbe
+Adding type registration characters -> org.hibernate.type.CharArrayType@fe5c40
+Adding type registration char[] -> org.hibernate.type.CharArrayType@fe5c40
+Adding type registration [C -> org.hibernate.type.CharArrayType@fe5c40
+Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@1847718
+Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@1847718
+Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@1847718
+Adding type registration text -> org.hibernate.type.TextType@1662a77
+Adding type registration ntext -> org.hibernate.type.NTextType@23b78d
+Adding type registration blob -> org.hibernate.type.BlobType@1597028
+Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@1597028
+Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@17cc17c
+Adding type registration clob -> org.hibernate.type.ClobType@19f7dcf
+Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@19f7dcf
+Adding type registration nclob -> org.hibernate.type.NClobType@1d8995e
+Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@1d8995e
+Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@13a5bf6
+Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@f0ea28
+Adding type registration serializable -> org.hibernate.type.SerializableType@11d00c0
+Adding type registration object -> org.hibernate.type.ObjectType@1304f14
+Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@1304f14
+Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@6648b0
+Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@11de4c7
+Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@19e9125
+Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@8d2484
+Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@c0cdad
+Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@7b252e
+Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@15d943d
+Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@8f2016
+Injecting ScanEnvironment [org.hibernate.jpa.boot.internal.StandardJpaScanEnvironmentImpl@17caf28] into BootstrapContext; was [null]
+Injecting ScanOptions [org.hibernate.boot.archive.scan.internal.StandardScanOptions@8d971b] into BootstrapContext; was [org.hibernate.boot.archive.scan.internal.StandardScanOptions@6cb480]
+Injecting JPA temp ClassLoader [null] into BootstrapContext; was [null]
+ClassLoaderAccessImpl#injectTempClassLoader(null) [was null]
+Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
+Registering IdentifierGenerator strategy [guid] -> [org.hibernate.id.GUIDGenerator]
+Registering IdentifierGenerator strategy [uuid] -> [org.hibernate.id.UUIDHexGenerator]
+Registering IdentifierGenerator strategy [uuid.hex] -> [org.hibernate.id.UUIDHexGenerator]
+Registering IdentifierGenerator strategy [assigned] -> [org.hibernate.id.Assigned]
+Registering IdentifierGenerator strategy [identity] -> [org.hibernate.id.IdentityGenerator]
+Registering IdentifierGenerator strategy [select] -> [org.hibernate.id.SelectGenerator]
+Registering IdentifierGenerator strategy [sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+Registering IdentifierGenerator strategy [seqhilo] -> [org.hibernate.id.SequenceHiLoGenerator]
+Registering IdentifierGenerator strategy [increment] -> [org.hibernate.id.IncrementGenerator]
+Registering IdentifierGenerator strategy [foreign] -> [org.hibernate.id.ForeignGenerator]
+Registering IdentifierGenerator strategy [sequence-identity] -> [org.hibernate.id.SequenceIdentityGenerator]
+Registering IdentifierGenerator strategy [enhanced-sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+Registering IdentifierGenerator strategy [enhanced-table] -> [org.hibernate.id.enhanced.TableGenerator]
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:~/test]
+HHH10001001: Connection properties: {user=, password=}
+HHH10001003: Autocommit mode: false
+Initializing Connection pool with 1 Connections
+HHH000115: Hibernate connection pool size: 20 (min=1)
+HHH000342: Could not obtain connection to query metadata : null

@@ -7,6 +7,7 @@ import org.apache.commons.collections15.map.HashedMap;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Point2D;
 import java.util.Map;
 
 @Data
@@ -25,13 +26,13 @@ public class Vertex {
     private String name;
     @NonNull
     private Color fill;
-    private static ScopeVertexEdge vertixArrowReinforced = null;
-    private static ScopeVertexEdge vertixArrowNeutral = null;
-    private static ScopeVertexEdge vertixArrowExtenuating = null;
+    private Map<ScopePoint, Point2D>  vertixArrowReinforced = null;
+    private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
+    private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
 
     public Vertex(double xCoor, double yCoor, int id) {
         this(xCoor, yCoor, id, Constants.getDefaultColorSphere(), Constants.getDefaultShapeVertex(),
-                Constants.getDefaultFillColorSphere(), Constants.getDefaultNameSphere());
+                Constants.getDefaultFillColorVertex(), Constants.getDefaultNameVertex());
     }
 
     public Vertex(double xCoor, double yCoor, int id, Color color, Shape shape, Color fill, String name) {

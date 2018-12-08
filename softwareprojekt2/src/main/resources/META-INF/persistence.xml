@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0">
+    <persistence-unit name="NewPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>log_management.tables.Log</class>
+        <class>log_management.tables.Graph</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:h2:~/test"/>
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
+            <property name="hibernate.connection.username" value=""/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
