@@ -1,6 +1,4 @@
 package graph.graph;
-
-import com.sun.istack.internal.Nullable;
 import config.Constants;
 import lombok.Data;
 import lombok.NonNull;
@@ -24,9 +22,7 @@ public class Vertex {
     private Map<ScopePoint, Point2D> vertixArrowReinforced = null;
     private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
     private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
-    @Nullable
     private int size;
-    @Nullable
     private float radio;
 
     public Vertex(int id) {

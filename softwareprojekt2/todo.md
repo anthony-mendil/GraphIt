@@ -1,7 +1,7 @@
 ## ToDo 
 ### Graph
 - GraphMouse for 'Vorlage bearbeiten' benötigt?
-- Transformer die benötigt werden
+- constants und syndrom
 - Layout
 - picking
 - Renderer (Edge, Vertex, Sphere, Basic)
