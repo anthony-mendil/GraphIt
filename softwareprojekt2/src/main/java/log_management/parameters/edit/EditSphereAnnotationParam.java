@@ -6,8 +6,13 @@ import java.io.Serializable;
 
 public class EditSphereAnnotationParam extends Param implements Serializable {
 
-    // later add other attributes
-    public EditSphereAnnotationParam() {
-    }
+    private int sphereId;
+    private String oldAnnotation;
+    private String newAnnotation;
 
+    public EditSphereAnnotationParam(int sphereId, String oldAnnotation, String newAnnotation) {
+        this.sphereId = sphereId;
+        this.oldAnnotation = oldAnnotation;
+        this.newAnnotation = newAnnotation;
+    }
 }

@@ -6,8 +6,19 @@ import java.io.Serializable;
 
 public class MoveSphereParam extends Param implements Serializable {
 
-    // later add other attributes
-    public MoveSphereParam() {
-    }
+    private int sphereId;
+    private String sphereAnnotation;
+    private double oldXCoor;
+    private double newXCoor;
+    private double oldYCoor;
+    private double newYCoor;
 
+    public MoveSphereParam(int sphereId, String sphereAnnotation, double oldXCoor, double newXCoor, double oldYCoor, double newYCoor) {
+        this.sphereId = sphereId;
+        this.sphereAnnotation = sphereAnnotation;
+        this.oldXCoor = oldXCoor;
+        this.newXCoor = newXCoor;
+        this.oldYCoor = oldYCoor;
+        this.newYCoor = newYCoor;
+    }
 }

@@ -1,13 +1,15 @@
 package log_management.parameters.remove;
 
 import LogManagement.Parameters.Param;
+import graph.graph.Sphere;
 
 import java.io.Serializable;
 
 public class RemoveSphereParam extends Param implements Serializable {
 
-    // later add other attributes
-    public RemoveSphereParam() {
-    }
+    private Sphere sphere;
 
+    public RemoveSphereParam(Sphere sphere) {
+        this.sphere = sphere;
+    }
 }

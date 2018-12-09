@@ -6,8 +6,13 @@ import java.io.Serializable;
 
 public class EditVertexAnnotationParam extends Param implements Serializable {
 
-    // later add other attributes
-    public EditVertexAnnotationParam() {
-    }
+    private int vertexId;
+    private String oldAnnotation;
+    private String newAnnotation;
 
+    public EditVertexAnnotationParam(int vertexId, String oldAnnotation, String newAnnotation) {
+        this.vertexId = vertexId;
+        this.oldAnnotation = oldAnnotation;
+        this.newAnnotation = newAnnotation;
+    }
 }
