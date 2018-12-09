@@ -1,7 +1,7 @@
 package log_management;
 
-import actions.Action;
-import actions.remove.RemoveSphereAction;
+import actions.LogAction;
+import actions.remove.RemoveSphereLogAction;
 import log_management.parameters.remove.RemoveSphereParam;
 import log_management.tables.Graph;
 import log_management.tables.Log;
@@ -20,13 +20,13 @@ public class LogDatabaseManager {
         // this should only be done once, when starting the program
         setup();
 
-        RemoveSphereAction a = new RemoveSphereAction(new RemoveSphereParam());
+        RemoveSphereLogAction a = new RemoveSphereLogAction(new RemoveSphereParam());
         a.action();
 
-        RemoveSphereAction b = new RemoveSphereAction(new RemoveSphereParam());
+        RemoveSphereLogAction b = new RemoveSphereLogAction(new RemoveSphereParam());
         b.action();
 
-        RemoveSphereAction c = new RemoveSphereAction(new RemoveSphereParam());
+        RemoveSphereLogAction c = new RemoveSphereLogAction(new RemoveSphereParam());
         c.action();
 
         printLogs();
@@ -34,13 +34,13 @@ public class LogDatabaseManager {
         System.exit(0);
     }
 
-    public static void addLogEntryToDatabase(Action action) {
+    public static void addLogEntryToDatabase(LogAction logAction) {
         Log log = new Log();
         log.setId(personalLogIncrementor());
         log.setGraphId(getGraphId());
-        log.setLogEntryName(action.getLogEntryName());
-        log.setParameters(action.getParameters());
-        log.setTime(action.getTime());
+        log.setLogEntryName(logAction.getLogEntryName());
+        log.setParameters(logAction.getParameters());
+        log.setTime(logAction.getTime());
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
         EntityManager entityManager = entityManagerFactory.createEntityManager();

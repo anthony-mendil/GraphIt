@@ -30,14 +30,12 @@ public class Vertex {
     private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
     private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
 
-    public Vertex(double xCoor, double yCoor, int id) {
-        this(xCoor, yCoor, id, Constants.getDefaultColorSphere(), Constants.getDefaultShapeVertex(),
+    public Vertex(int id) {
+        this(id, Constants.getDefaultColorSphere(), Constants.getDefaultShapeVertex(),
                 Constants.getDefaultFillColorVertex(), Constants.getDefaultNameVertex());
     }
 
-    public Vertex(double xCoor, double yCoor, int id, Color color, Shape shape, Color fill, String name) {
-        this.xCoor = xCoor;
-        this.yCoor = yCoor;
+    public Vertex(int id, Color color, Shape shape, Color fill, String name) {
         this.id = id;
         this.color = color;
         this.shape = shape;

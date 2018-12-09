@@ -16,17 +16,18 @@ public class Edge {
     private Stroke stroke;
     @NonNull
     private final int id;
-    private Map<ScopePoint, Point2D>  vertixArrowReinforced = null;
-    private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
-    private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
+    private EdgeArrowType arrowType;
+    private boolean hasAnchor;
+    private double anchorAngle;
 
-    public Edge(int id) {
-        this(Constants.getDefaultColorEdge(), Constants.getDefaultStrokeEdge(), id);
+    public Edge(int id, EdgeArrowType arrowType) {
+        this(Constants.getDefaultColorEdge(), Constants.getDefaultStrokeEdge(), id, arrowType);
     }
 
-    public Edge(Color color, Stroke stroke, int id) {
+    public Edge(Color color, Stroke stroke, int id, EdgeArrowType arrowType) {
         this.id = id;
         this.color = color;
         this.stroke = stroke;
+        this.arrowType = arrowType;
     }
 }
