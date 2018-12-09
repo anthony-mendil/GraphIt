@@ -13,6 +13,7 @@ package graph.graph;/*
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import org.apache.commons.collections15.Factory;
 
 import java.util.*;
@@ -25,11 +26,14 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     private transient Map<Sphere, ArrayList<V>> sphaeren;
     @Getter @NonNull
     private EdgeArrowType arrowType;
+    @Getter @Setter
+    private String name;
+    private int i;
 
     /**
      * TODO
      */
-    SyndromGraph() {
+    public SyndromGraph() {
         super();
     }
 
@@ -99,11 +103,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
 
     // TODO: anchor points
 
-    class VertexFactory implements Factory<Vertex> {
-
-        int i = 0;
-        public Vertex create(){
-            return new Vertex(i++);
-        }
+    public Vertex create(){
+        return new Vertex(i++);
     }
+
 }

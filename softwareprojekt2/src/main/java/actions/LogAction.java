@@ -1,6 +1,7 @@
 package actions;
 
 import LogManagement.Parameters.Param;
+import edu.uci.ics.jung.algorithms.layout.Layout;
 import jdk.nashorn.internal.objects.annotations.Setter;
 import log_management.LogEntryName;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Value;
 import java.time.LocalDateTime;
 
 
-public abstract class LogAction extends Action{
+public abstract class LogAction extends GraphAction{
 
     @Getter
     @lombok.Setter
@@ -20,9 +21,8 @@ public abstract class LogAction extends Action{
     @Getter
     private LocalDateTime time;
 
-    public LogAction(LogEntryName nLogEntryName, Param nParameters) {
+    public LogAction(LogEntryName nLogEntryName) {
         logEntryName = nLogEntryName;
-        parameters = nParameters;
         time = LocalDateTime.now();
     }
 }

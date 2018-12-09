@@ -1,5 +1,6 @@
 package graph.graph;
 
+import com.sun.istack.internal.Nullable;
 import config.Constants;
 import lombok.Data;
 import lombok.NonNull;
@@ -14,26 +15,25 @@ import java.util.Map;
 public class Vertex {
     @NonNull
     private final int id;
-    @NonNull
     private Color color;
-    @NonNull
     private double xCoor;
-    @NonNull
     private double yCoor;
-    @NonNull
     private Shape shape;
-    @NonNull
     private String name;
-    @NonNull
     private Color fill;
     private Map<ScopePoint, Point2D> vertixArrowReinforced = null;
     private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
     private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
+    @Nullable
+    private int size;
+    @Nullable
+    private float radio;
 
     public Vertex(int id) {
-        this(id, Constants.getDefaultColorSphere(), Constants.getDefaultShapeVertex(),
-                Constants.getDefaultFillColorVertex(), Constants.getDefaultNameVertex());
+        this.id = id;
     }
+
+    // TODO mehr Constructor
 
     public Vertex(int id, Color color, Shape shape, Color fill, String name) {
         this.id = id;

@@ -13,7 +13,6 @@ public class DeactivateHighlightLogAction extends LogAction {
     @Override
     public void action() {
         // other stuff that is done when actions is performed
-
         LogDatabaseManager.addLogEntryToDatabase(this);
     }
 
@@ -22,6 +21,7 @@ public class DeactivateHighlightLogAction extends LogAction {
         // stuff that is done when undoing
         // and adding the according actions to the database
         // (opposite actions)
+
     }
 
     @Override

@@ -19,15 +19,17 @@ public class Edge {
     private EdgeArrowType arrowType;
     private boolean hasAnchor;
     private double anchorAngle;
+    private int weight;
 
     public Edge(int id, EdgeArrowType arrowType) {
-        this(Constants.getDefaultColorEdge(), Constants.getDefaultStrokeEdge(), id, arrowType);
+        this(Constants.getDefaultColorEdge(), Constants.getDefaultStrokeEdge(), id, arrowType, Constants.getDefaultEdgeWeight());
     }
 
-    public Edge(Color color, Stroke stroke, int id, EdgeArrowType arrowType) {
+    public Edge(Color color, Stroke stroke, int id, EdgeArrowType arrowType, int weight) {
         this.id = id;
         this.color = color;
         this.stroke = stroke;
         this.arrowType = arrowType;
+        this.weight = weight;
     }
 }
