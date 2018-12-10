@@ -25,13 +25,6 @@ public class EditVertexAnnotationLogAction extends LogAction {
         // (opposite actions)
     }
 
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
-
     public static class EditSphereAnnotationLogAction extends LogAction {
         public EditSphereAnnotationLogAction(EditSphereAnnotationParam parameters) {
             super(LogEntryName.EDIT_SPHERE_ANNOTATION, parameters);
@@ -47,13 +40,6 @@ public class EditVertexAnnotationLogAction extends LogAction {
         @Override
         public void undo() {
             // stuff that is done when undoing
-            // and adding the according actions to the database
-            // (opposite actions)
-        }
-
-        @Override
-        public void redo() {
-            // stuff that is done when redoing
             // and adding the according actions to the database
             // (opposite actions)
         }

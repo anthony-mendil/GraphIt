@@ -23,11 +23,4 @@ public class EditSphereAnnotationLogAction extends LogAction {
         // and adding the according actions to the database
         // (opposite actions)
     }
-
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
 }

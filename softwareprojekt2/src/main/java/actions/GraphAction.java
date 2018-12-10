@@ -2,7 +2,10 @@ package actions;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import graph.graph.Edge;
 import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.picking.SyndromPickSupport;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -20,7 +23,20 @@ public abstract class GraphAction extends Action {
     private Layout layout;
 
     /**
-     * sets layout to the current layout of the visualisation viewer
+     * the internal state of the graph, at the time the action was initialized
+     */
+    @NonNull
+    private SyndromGraph<Vertex, Edge> graph;
+
+    /**
+     *
+     */
+    @NonNull
+    private SyndromPickSupport<Integer, String> pickSupport;
+
+
+    /**
+     * sets layout, graph, pickSupport from the current syndrom presentation
      */
     public GraphAction() {
         throw new NotImplementedException();

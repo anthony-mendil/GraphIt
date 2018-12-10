@@ -1,24 +1,26 @@
 package log_management.parameters.move;
 
 import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
 
+import java.awt.geom.Point2D;
 import java.io.Serializable;
 
 public class MoveSphereParam extends Param implements Serializable {
 
     private int sphereId;
     private String sphereAnnotation;
-    private double oldXCoor;
-    private double newXCoor;
-    private double oldYCoor;
-    private double newYCoor;
+    private Point2D oldPosition;
+    private Point2D newPosition;
 
-    public MoveSphereParam(int sphereId, String sphereAnnotation, double oldXCoor, double newXCoor, double oldYCoor, double newYCoor) {
+    public MoveSphereParam(int sphereId, String sphereAnnotation, Point2D oldPosition, Point2D newPosition) {
         this.sphereId = sphereId;
         this.sphereAnnotation = sphereAnnotation;
-        this.oldXCoor = oldXCoor;
-        this.newXCoor = newXCoor;
-        this.oldYCoor = oldYCoor;
-        this.newYCoor = newYCoor;
+        this.oldPosition = oldPosition;
+    }
+
+    @Override
+    public String convertToJson() {
+        return null;
     }
 }

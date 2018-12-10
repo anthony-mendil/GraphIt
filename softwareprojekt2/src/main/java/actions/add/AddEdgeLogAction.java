@@ -3,10 +3,10 @@ package actions.add;
 import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
-import log_management.parameters.add.AddEdgeParam;
+import log_management.parameters.add.AddEdgesParam;
 
 public class AddEdgeLogAction extends LogAction {
-    public AddEdgeLogAction(AddEdgeParam parameters) {
+    public AddEdgeLogAction(AddEdgesParam parameters) {
         super(LogEntryName.ADD_EDGE, parameters);
     }
 
@@ -24,10 +24,4 @@ public class AddEdgeLogAction extends LogAction {
         // (opposite actions)
     }
 
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
 }

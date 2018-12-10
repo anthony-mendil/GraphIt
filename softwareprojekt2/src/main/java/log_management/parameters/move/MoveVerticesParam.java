@@ -1,6 +1,7 @@
 package log_management.parameters.move;
 
 import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +19,7 @@ public class MoveVerticesParam extends Param implements Serializable {
     private List<Double> oldYCoors;
     private List<Double> newYCoors;
 
-    public MoveVerticesParam(List<Integer> verticesId, List<String> verticesAnnotation, int oldSphereId, String oldSphereAnnotation, int newSphereId, String newSphereAnnotation, List<Double> oldXCoors, List<Double> newXCoors, List<Double> oldYCoors, List<Double> newYCoors) {
+    public MoveVerticesParam(List<Integer> verticesId, List<String> verticesAnnotation, int oldSphereId, String oldSphereAnnotation, int newSphereId, String newSphereAnnotation) {
         this.verticesId = verticesId;
         this.verticesAnnotation = verticesAnnotation;
         this.oldSphereId = oldSphereId;
@@ -29,5 +30,10 @@ public class MoveVerticesParam extends Param implements Serializable {
         this.newXCoors = newXCoors;
         this.oldYCoors = oldYCoors;
         this.newYCoors = newYCoors;
+    }
+
+    @Override
+    public String convertToJson() {
+        return null;
     }
 }

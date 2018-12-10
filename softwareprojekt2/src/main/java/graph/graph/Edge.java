@@ -13,7 +13,7 @@ public class Edge {
     @NonNull
     private Color color;
     @NonNull
-    private Stroke stroke;
+    private StrokeType stroke;
     @NonNull
     private final int id;
     private EdgeArrowType arrowType;

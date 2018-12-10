@@ -6,9 +6,15 @@
 - Layout
 - picking
 - Renderer (Edge, Vertex, Sphere, Basic)
+- exceptions
+
 
 ### Commands 
 - all
+
+- done: remove, move
+
+- morgen: protocol, other, export
 
 ### Export, Import
 - GXL

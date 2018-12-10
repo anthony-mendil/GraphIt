@@ -1,33 +1,64 @@
 package actions.remove;
 
 import actions.LogAction;
-import log_management.LogDatabaseManager;
+import graph.graph.Sphere;
 import log_management.LogEntryName;
+import log_management.parameters.add.AddSphereParam;
 import log_management.parameters.remove.RemoveSphereParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+/**
+ * Removes a sphere from the syndrom-graph.
+ */
 public class RemoveSphereLogAction extends LogAction {
-    public RemoveSphereLogAction(RemoveSphereParam parameters) {
-        super(LogEntryName.REMOVE_SPHERE, parameters);
+    /**
+     * the sphere which should be removed
+     */
+    private Sphere sphere;
+
+
+    /**
+     * Removes the sphere which is defined in pParam.
+     *
+     * @param pParam the RemoveSphereParam, containing the sphere to remove
+     */
+    public RemoveSphereLogAction(RemoveSphereParam pParam) {
+        super(LogEntryName.REMOVE_SPHERE);
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Removes the sphere which is defined in pParam.
+     *
+     * @param pParam the AddSphereParam, containing the sphere to remove
+     */
+    public RemoveSphereLogAction(AddSphereParam pParam) {
+        super(LogEntryName.REMOVE_SPHERE);
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Removes the passed sphere from the graph.
+     *
+     * @param pSphere the sphere to remove
+     */
+    public RemoveSphereLogAction(Sphere pSphere) {
+        super(LogEntryName.REMOVE_SPHERE);
+        throw new NotImplementedException();
     }
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
     }
 
     @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }
