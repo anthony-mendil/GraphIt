@@ -49,4 +49,9 @@ public class AddAnchorPoints extends LogAction {
     public void undo() {
         throw new NotImplementedException();
     }
+
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
+    }
 }

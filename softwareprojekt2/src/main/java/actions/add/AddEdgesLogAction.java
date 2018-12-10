@@ -5,8 +5,8 @@ import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
-import log_management.parameters.add.AddEdgeParam;
 import log_management.parameters.add.AddEdgesParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
@@ -16,13 +16,16 @@ import java.util.Collection;
 public class AddEdgesLogAction extends LogAction {
     /**
      * Constructor in case when several edges shall be added.
+     *
      * @param pCollectionPair
      */
-    public AddEdgesLogAction(Collection<Pair<Vertex,Vertex>> pCollectionPair) {
+    public AddEdgesLogAction(Collection<Pair<Vertex, Vertex>> pCollectionPair) {
         super(LogEntryName.ADD_EDGES);
     }
+
     /**
      * This constructor will be used to realize the undo-method of the method RemoveEdgesLogAction.
+     *
      * @param pAddEdgesParam
      */
     public AddEdgesLogAction(AddEdgesParam pAddEdgesParam) {
@@ -50,4 +53,8 @@ public class AddEdgesLogAction extends LogAction {
     }
 
 
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
+    }
 }
