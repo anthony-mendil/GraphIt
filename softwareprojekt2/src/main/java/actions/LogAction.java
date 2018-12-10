@@ -3,6 +3,7 @@ package actions;
 import log_management.LogEntryName;
 import log_management.parameters.Param;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +14,7 @@ public abstract class LogAction extends GraphAction {
     @lombok.Setter
     private LogEntryName logEntryName;
     @Getter
-    @lombok.Setter
+    @Setter
     private Param parameters;
     @Getter
     private LocalDateTime time;
@@ -22,4 +23,9 @@ public abstract class LogAction extends GraphAction {
         logEntryName = nLogEntryName;
         time = LocalDateTime.now();
     }
+
+    /**
+     * creates the parameters object
+     */
+    public abstract void createParameter();
 }

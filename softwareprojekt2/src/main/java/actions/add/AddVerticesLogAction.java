@@ -1,33 +1,48 @@
 package actions.add;
 
 import actions.LogAction;
-import log_management.LogDatabaseManager;
+import graph.graph.Vertex;
+import javafx.util.Pair;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddVerticesParam;
+import log_management.parameters.remove.RemoveVerticesParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.Map;
+
+/**
+ * Adds a collection of vertices to the graph. AddVerticesLogAction reverts the RemoveVerticesLogAction.
+ */
 public class AddVerticesLogAction extends LogAction {
-    public AddVerticesLogAction(AddVerticesParam parameters) {
-        super(LogEntryName.ADD_VERTICES, parameters);
+    /**
+     * map with vertices and corresponding pair, containing the sphere id and sphere annotation.
+     */
+    Map<Vertex, Pair<Integer, String>> vertexPairMap;
+
+    /**
+     *
+     * @param pParam
+     */
+    public AddVerticesLogAction(AddVerticesParam pParam) {
+        super(LogEntryName.ADD_VERTICES);
+    }
+
+    public AddVerticesLogAction(RemoveVerticesParam pParam) {
+        super(LogEntryName.REMOVE_VERTICES);
     }
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
     }
 
     @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

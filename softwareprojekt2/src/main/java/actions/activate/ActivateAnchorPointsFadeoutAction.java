@@ -1,8 +1,8 @@
 package actions.activate;
 
-import LogManagement.Parameters.Param;
 import actions.LogAction;
 import log_management.LogEntryName;
+import log_management.parameters.Param;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -10,8 +10,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 public class ActivateAnchorPointsFadeoutAction extends LogAction {
 
-   public ActivateAnchorPointsFadeoutAction(Param nParameters) {
-        super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT, nParameters);
+    public ActivateAnchorPointsFadeoutAction() {
+        super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
     }
 
     /**
@@ -19,14 +19,6 @@ public class ActivateAnchorPointsFadeoutAction extends LogAction {
      */
     @Override
     public void action() {
-        throw new NotImplementedException();
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void redo() {
         throw new NotImplementedException();
     }
 
