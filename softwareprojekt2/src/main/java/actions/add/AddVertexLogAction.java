@@ -6,6 +6,7 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import log_management.LogEntryName;
+import log_management.parameters.add.AddVertexParam;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
@@ -36,4 +37,5 @@ public class AddVertexLogAction extends LogAction {
     public void undo() {
         throw new NotImplementedException();
     }
+
 }

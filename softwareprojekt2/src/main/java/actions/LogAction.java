@@ -1,16 +1,13 @@
 package actions;
 
-import LogManagement.Parameters.Param;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import log_management.LogEntryName;
+import log_management.parameters.Param;
 import lombok.Getter;
-import lombok.Value;
 
 import java.time.LocalDateTime;
 
 
-public abstract class LogAction extends GraphAction{
+public abstract class LogAction extends GraphAction {
 
     @Getter
     @lombok.Setter

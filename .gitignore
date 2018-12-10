@@ -8,6 +8,5 @@
 *workspace.xml
 *usage.statistics.xml
 *tasks.xml
-*.iml
 *.idea/modules.xml
 *.idea/libraries/*

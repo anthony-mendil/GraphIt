@@ -1,7 +1,7 @@
 package log_management.parameters.remove;
 
-import LogManagement.Parameters.Param;
 import graph.graph.Vertex;
+import log_management.parameters.Param;
 
 import java.io.Serializable;
 

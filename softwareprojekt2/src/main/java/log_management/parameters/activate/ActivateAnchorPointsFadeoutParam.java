@@ -1,6 +1,6 @@
 package log_management.parameters.activate;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
 
 import java.io.Serializable;
 
@@ -10,4 +10,8 @@ public class ActivateAnchorPointsFadeoutParam extends Param implements Serializa
     public ActivateAnchorPointsFadeoutParam() {
     }
 
+    @Override
+    public String convertToJson() {
+        return null;
+    }
 }
