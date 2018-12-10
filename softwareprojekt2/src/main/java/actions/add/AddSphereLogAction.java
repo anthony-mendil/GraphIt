@@ -5,9 +5,22 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddSphereParam;
 
+import java.awt.geom.Point2D;
+
+/**
+ * Adds a sphere to the graph.
+ */
 public class AddSphereLogAction extends LogAction {
-    public AddSphereLogAction(AddSphereParam parameters) {
-        super(LogEntryName.ADD_SPHERE, parameters);
+    public AddSphereLogAction(AddSphereParam pAddSphereParam) {
+        super(LogEntryName.ADD_SPHERE);
+    }
+
+    /**
+     * Constructor in case the user
+     * @param pPoint2D
+     */
+    public AddSphereLogAction(Point2D pPoint2D){
+        super(LogEntryName.ADD_SPHERE);
     }
 
     @Override
