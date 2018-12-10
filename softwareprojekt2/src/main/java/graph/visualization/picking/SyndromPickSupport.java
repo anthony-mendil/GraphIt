@@ -1,4 +1,4 @@
-package graph.visualization;
+package graph.visualization.picking;
 
 import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.picking.ShapePickSupport;

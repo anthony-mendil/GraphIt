@@ -1,18 +1,21 @@
-package graph.visualization.transformer;
+package graph.visualization.transformer.edge;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
-import graph.visualization.SyndromArrowFactory;
+import graph.graph.EdgeArrowType;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
-import java.util.Map;
-import java.util.NoSuchElementException;
 
 /**
  * TODO
  */
-public class SyndromEdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, E>, E>, Shape> {
+public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, E>, E>, Shape> {
+    @Setter
+    @Getter
+    private static EdgeArrowType edgeArrowType;
     private Shape reinforcedArrow;
     private Shape extenuatingArrow;
     private Shape neutralArrow;
@@ -20,12 +23,12 @@ public class SyndromEdgeArrowTransformer<V, E> implements Transformer<Context<Gr
     /**
      * TODO
      *
-     * @param radius TODO
-     * @param width TODO
-     * @param length TODO
+     * @param radius     TODO
+     * @param width      TODO
+     * @param length     TODO
      * @param notchDepth TODO
      */
-    public SyndromEdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
+    public EdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
         throw new UnsupportedOperationException();
     }
 

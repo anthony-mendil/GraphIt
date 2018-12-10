@@ -1,4 +1,4 @@
-package graph.visualization;
+package graph.visualization.util;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
