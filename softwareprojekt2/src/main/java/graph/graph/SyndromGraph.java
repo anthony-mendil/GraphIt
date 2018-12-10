@@ -20,7 +20,7 @@ import java.util.*;
 
 
 /**
- * TODO
+ * Die Klas
  */
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     private transient Map<Sphere, ArrayList<V>> sphaeren;

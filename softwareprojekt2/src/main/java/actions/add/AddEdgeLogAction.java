@@ -6,8 +6,8 @@ import log_management.LogEntryName;
 import log_management.parameters.add.AddEdgesParam;
 
 public class AddEdgeLogAction extends LogAction {
-    public AddEdgeLogAction(AddEdgesParam parameters) {
-        super(LogEntryName.ADD_EDGE, parameters);
+    public AddEdgeLogAction() {
+        super(LogEntryName.ADD_EDGE);
     }
 
     @Override
