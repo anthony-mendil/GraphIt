@@ -6,8 +6,12 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-/**
- *
+import log_management.parameters.edit.EditEdgesSizeParam;
+
+/*
+    ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI-Button Kantendicke
+    ([shift+]linksclick, bereich markieren) Kanten markieren -> rechtsclick auf Kante -> Drop-Down-Menü -> Kantendicke
+        -> neuer Drop-Down-Menü
  */
 public class EditEdgesStrokeLogAction extends LogAction {
     /**

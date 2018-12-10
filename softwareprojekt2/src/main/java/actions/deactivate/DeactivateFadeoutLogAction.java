@@ -5,6 +5,11 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.deactivate.DeactivateFadeoutParam;
 
+/*
+    (GUI Button FadeOut deaktivieren)
+    rechtsclick auf Arbeitsfläche -> FadeOut deaktivieren
+ */
+
 public class DeactivateFadeoutLogAction extends LogAction {
     public DeactivateFadeoutLogAction(DeactivateFadeoutParam parameters) {
         super(LogEntryName.DEACTIVATE_FADEOUT, parameters);

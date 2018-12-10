@@ -5,6 +5,11 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVertexAnnotationParam;
 
+/*
+    rechtclick auf Sphäre -> Drop-Down-Menü -> Umbenennen
+    *Wenn möglich, doppelclick auf Sphäre -> Umbenennen
+    *Wenn möglich, doppelclick auf Sphäre in Übersicht -> Umbenennen
+ */
 public class EditSphereAnnotationLogAction extends LogAction {
     public EditSphereAnnotationLogAction(EditVertexAnnotationParam parameters) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION, parameters);

@@ -5,6 +5,11 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVerticesColorParam;
 
+/*
+    ([shift+]linksclick, bereich markieren) Sphäre markieren -> GUI Button Farbe
+    ([shift+]linksclick, bereich markieren) Sphäre markieren -> rechtsclick auf Sphäre ->
+     neuer Drop-Down-Menü -> Standard-Farben
+ */
 public class EditVerticesColorLogAction extends LogAction {
     public EditVerticesColorLogAction(EditVerticesColorParam parameters) {
         super(LogEntryName.EDIT_VERTICES_COLOR, parameters);

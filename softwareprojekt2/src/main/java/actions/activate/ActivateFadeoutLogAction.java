@@ -14,6 +14,10 @@ import java.util.Collection;
  * The chosen vertices and all edges attached to them fadeout and will no longer be visible.
  */
 
+    /*
+    linksclick Elemente markieren -> GUI Button FadeOut
+    linksclick Elemente markieren -> rechtsclick irgendwo -> Drop-Down-Menü -> FadeOut
+     */
 public class ActivateFadeoutLogAction extends LogAction {
     /**
      * Constructor in the case only one vertex shall fadeout.

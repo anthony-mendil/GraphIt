@@ -5,6 +5,11 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddSphereParam;
 
+/*
+    GUI Button Sphäre hinzufügen
+    rechtsclick auf Arbeitsfläche -> Drop-Down-Menu -> Sphäre hinzufügen
+ */
+
 import java.awt.geom.Point2D;
 
 /**

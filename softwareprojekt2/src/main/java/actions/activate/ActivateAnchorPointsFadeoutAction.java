@@ -9,6 +9,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 
+/*
+    linksclick Elemente markieren -> GUI Button Ankerpunkte FadeOut
+    linksclick Elemente markieren -> rechtsclick irgendwo -> Drop-Down-Menü -> Ankerpunkte FadeOut
+ */
 /**
  * All existing anchor-points fadeout and are no longer visible for the user.
  */

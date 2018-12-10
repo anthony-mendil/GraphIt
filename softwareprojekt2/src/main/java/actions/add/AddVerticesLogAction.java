@@ -11,6 +11,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.awt.geom.Point2D;
 import java.util.Map;
 
+/*
+    Nutzung bei Undo von deleteVertices
+ */
+
 /**
  * Adds a collection of vertices to the graph. AddVerticesLogAction reverts the RemoveVerticesLogAction. The different
  * constructors depict different application scenarios.
