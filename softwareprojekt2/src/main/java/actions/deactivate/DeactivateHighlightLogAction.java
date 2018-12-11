@@ -5,6 +5,7 @@ import graph.graph.Vertex;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.deactivate.DeactivateHighlightParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 import java.util.Collection;
@@ -32,15 +33,16 @@ public class DeactivateHighlightLogAction extends LogAction {
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
+    }
 
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

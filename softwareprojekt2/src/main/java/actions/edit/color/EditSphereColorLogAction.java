@@ -4,14 +4,15 @@ import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditSphereColorParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-<<<<<<< HEAD
+
 /*
     GUI Button Farbe -> linksclick auf Sphäre
     linksclick auf Sphäre -> GUI Button Farbe
     linksclick auf Sphäre -> Drop-Down-Menü -> Farbe -> neuer Drop-Down-Menü -> Standard-Farbe
  *
- **
+ *
  * Changes the color of the selected sphere and also the vertices which belongs to it.
  */
 
@@ -34,22 +35,16 @@ public class EditSphereColorLogAction extends LogAction {
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
     }
 
     @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

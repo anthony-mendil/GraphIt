@@ -3,10 +3,9 @@ package actions.add;
 import actions.LogAction;
 import graph.graph.Vertex;
 import javafx.util.Pair;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
-import log_management.parameters.add.AddEdgeParam;
 import log_management.parameters.add.AddEdgesParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
@@ -16,18 +15,22 @@ import java.util.Collection;
 public class AddEdgesLogAction extends LogAction {
     /**
      * Constructor in case several edges shall be added.
+     *
      * @param pCollectionPair
      */
-    public AddEdgesLogAction(Collection<Pair<Vertex,Vertex>> pCollectionPair) {
+    public AddEdgesLogAction(Collection<Pair<Vertex, Vertex>> pCollectionPair) {
         super(LogEntryName.ADD_EDGES);
+        throw new NotImplementedException();
     }
+
     /**
      * This constructor will be used to realize the undo-method of the method RemoveEdgesLogAction.
-     * @param pAddEdgesParam
      *
+     * @param pAddEdgesParam
      */
     public AddEdgesLogAction(AddEdgesParam pAddEdgesParam) {
         super(LogEntryName.ADD_EDGES);
+        throw new NotImplementedException();
     }
 
     /**
@@ -35,9 +38,7 @@ public class AddEdgesLogAction extends LogAction {
      */
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     /**
@@ -45,10 +46,12 @@ public class AddEdgesLogAction extends LogAction {
      */
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
     }
 
 
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
+    }
 }

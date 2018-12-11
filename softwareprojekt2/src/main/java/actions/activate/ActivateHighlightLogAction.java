@@ -1,18 +1,11 @@
 package actions.activate;
 
 import actions.LogAction;
-import graph.graph.Vertex;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateHighlightParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
-import java.util.Collection;
-
-/*
-    linksclick Elemente markieren -> GUI Button Highlight
-    linksclick Elemente markieren -> rechtsclick irgendwo -> Drop-Down-Menü -> Highlight
- */
 
 /**
  * Highlights the chosen vertices and the attached edges.
@@ -20,25 +13,30 @@ import java.util.Collection;
 public class ActivateHighlightLogAction extends LogAction {
     /**
      * Constructor in case only one vertex shall be highlighted.
-     * @param pPoint2D
-     * The position of the vertex.
+     *
+     * @param pPoint2D The position of the vertex.
      */
-    public ActivateHighlightLogAction(Point2D pPoint2D){
+    public ActivateHighlightLogAction(Point2D pPoint2D) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
+        throw new NotImplementedException();
     }
+
     /**
      * Constructor in case several/all vertices shall be highlighted.
      */
-    public ActivateHighlightLogAction(){
+    public ActivateHighlightLogAction() {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
+        throw new NotImplementedException();
     }
+
     /**
      * Constructor which will be used to realize the undo-method of DeactivateHighlightLogAction.
-     * @param pActivateHighlightParam
-     * The used parameters.
+     *
+     * @param pActivateHighlightParam The used parameters.
      */
     public ActivateHighlightLogAction(ActivateHighlightParam pActivateHighlightParam) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
+        throw new NotImplementedException();
     }
 
     /**
@@ -46,9 +44,7 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     /**
@@ -56,8 +52,11 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

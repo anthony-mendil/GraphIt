@@ -1,47 +1,43 @@
 package actions.activate;
 
 import actions.LogAction;
-import graph.graph.Vertex;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateFadeoutParam;
-import log_management.tables.Log;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
-import java.util.Collection;
 
 /**
  * The chosen vertices and all edges attached to them fadeout and will no longer be visible.
  */
 
-    /*
-    linksclick Elemente markieren -> GUI Button FadeOut
-    linksclick Elemente markieren -> rechtsclick irgendwo -> Drop-Down-Menü -> FadeOut
-     */
 public class ActivateFadeoutLogAction extends LogAction {
     /**
      * Constructor in the case only one vertex shall fadeout.
-     * @param pPoint2D
-     * The position of the Vertex.
+     *
+     * @param pPoint2D The position of the Vertex.
      */
-    public ActivateFadeoutLogAction(Point2D pPoint2D){
+    public ActivateFadeoutLogAction(Point2D pPoint2D) {
         super(LogEntryName.ACTIVATE_FADEOUT);
+        throw new NotImplementedException();
     }
 
     /**
      * Constructor in case several/all vertices shall fadeout.
      */
-    public ActivateFadeoutLogAction(){
+    public ActivateFadeoutLogAction() {
         super(LogEntryName.ACTIVATE_FADEOUT);
+        throw new NotImplementedException();
     }
 
     /**
      * Constructor which will be used to realize the undo-method of DeactivateFadeoutLogAction.
-     * @param pActivateFadeoutParam
-     * The used parameters.
+     *
+     * @param pActivateFadeoutParam The used parameters.
      */
-    public ActivateFadeoutLogAction(ActivateFadeoutParam pActivateFadeoutParam){
+    public ActivateFadeoutLogAction(ActivateFadeoutParam pActivateFadeoutParam) {
         super(LogEntryName.ACTIVATE_FADEOUT);
+        throw new NotImplementedException();
     }
 
     /**
@@ -49,9 +45,7 @@ public class ActivateFadeoutLogAction extends LogAction {
      */
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     /**
@@ -59,8 +53,11 @@ public class ActivateFadeoutLogAction extends LogAction {
      */
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

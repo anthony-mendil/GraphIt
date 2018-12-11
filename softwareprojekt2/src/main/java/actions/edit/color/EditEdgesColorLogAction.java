@@ -5,16 +5,14 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgeColorParam;
 import log_management.parameters.edit.EditEdgesColorParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI Button Farbe
     ([shift+]linksclick, bereich markieren) Kanten markieren -> rechtsclick auf Kante ->
      neuer Drop-Down-Menü -> Standard-Farben
-=======
 
-/**
  * Changes the color of the selected edges.
->>>>>>> developCleme
  */
 public class EditEdgesColorLogAction extends LogAction {
     /**
@@ -35,15 +33,16 @@ public class EditEdgesColorLogAction extends LogAction {
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

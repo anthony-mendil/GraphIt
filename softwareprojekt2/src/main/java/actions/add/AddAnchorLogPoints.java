@@ -18,6 +18,7 @@ public class AddAnchorLogPoints extends LogAction {
      */
     public AddAnchorLogPoints(Point2D pPoint2D){
         super(LogEntryName.ADD_ANCHOR_POINTS);
+        throw new NotImplementedException();
     }
 
     /**
@@ -25,6 +26,7 @@ public class AddAnchorLogPoints extends LogAction {
      */
     public AddAnchorLogPoints(){
         super(LogEntryName.ADD_ANCHOR_POINTS);
+        throw new NotImplementedException();
     }
 
     /**
@@ -34,6 +36,7 @@ public class AddAnchorLogPoints extends LogAction {
      */
     public AddAnchorLogPoints(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam){
         super(LogEntryName.ADD_ANCHOR_POINTS);
+        throw new NotImplementedException();
     }
     /**
      * Single/several anchor-points will be added.

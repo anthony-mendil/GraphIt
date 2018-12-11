@@ -1,33 +1,29 @@
 package actions.edit.annotation;
 
 import actions.LogAction;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditSphereAnnotationParam;
-import log_management.parameters.edit.EditVertexAnnotationParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     rechtclick auf Sphäre -> Drop-Down-Menü -> Umbenennen
     *Wenn möglich, doppelclick auf Sphäre -> Umbenennen
     *Wenn möglich, doppelclick auf Sphäre in Übersicht -> Umbenennen
-=======
-import java.awt.geom.Point2D;
 
-/**
  * Changes the annotation of a selected sphere.
->>>>>>> developCleme
  */
 public class EditSphereAnnotationLogAction extends LogAction {
     /**
      * Constructor in case the user changes the annotation of a sphere.
      */
-    public EditSphereAnnotationLogAction(String pText){
+    public EditSphereAnnotationLogAction(String pText) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
     }
+
     /**
      * Constructor which will be used to realize the undo-method of itself.
-     * @param pEditSphereAnnotationParam
-     * The
+     *
+     * @param pEditSphereAnnotationParam The
      */
     public EditSphereAnnotationLogAction(EditSphereAnnotationParam pEditSphereAnnotationParam) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
@@ -35,15 +31,16 @@ public class EditSphereAnnotationLogAction extends LogAction {
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

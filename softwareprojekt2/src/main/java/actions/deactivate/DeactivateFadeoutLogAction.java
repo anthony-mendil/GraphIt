@@ -4,6 +4,7 @@ import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.deactivate.DeactivateFadeoutParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Makes the vertices and attached edges, which used to be invisible, visible again.
@@ -27,16 +28,16 @@ public class DeactivateFadeoutLogAction extends LogAction {
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
     }
 
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
+    }
 }
