@@ -30,6 +30,7 @@ public class MoveSphereLogAction extends LogAction {
      */
     public MoveSphereLogAction(Sphere sphere, Point2D newPos) {
         super(LogEntryName.MOVE_SPHERE);
+        throw new NotImplementedException();
     }
 
     @Override

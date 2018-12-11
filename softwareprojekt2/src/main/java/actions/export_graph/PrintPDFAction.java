@@ -1,6 +1,7 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     Aktionsleiste -> Datei.. -> PDF drucken
@@ -19,7 +20,7 @@ public class PrintPDFAction extends GraphAction {
      */
     @Override
     public void action() {
-
+        throw new NotImplementedException();
     }
 
     /**
@@ -27,6 +28,6 @@ public class PrintPDFAction extends GraphAction {
      */
     @Override
     public void undo() {
-
+        throw new NotImplementedException();
     }
 }

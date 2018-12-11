@@ -2,6 +2,7 @@ package actions.other;
 
 
 import actions.Action;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     Aktionsleiste -> Optionen -> Sprache ändern -> Englisch
@@ -14,7 +15,7 @@ import actions.Action;
  */
 public class ChangeLanguageAction extends Action{
     /**
-     * Constructot in case the user changes the language.
+     * Constructor in case the user changes the language.
      * @param pLanguage
      * The new Language.
      */
@@ -23,11 +24,16 @@ public class ChangeLanguageAction extends Action{
     }
      @Override
     public void action() {
-
+         throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
+        throw new NotImplementedException();
+    }
 
+    @Override
+    public void redo() {
+        throw new NotImplementedException();
     }
 }

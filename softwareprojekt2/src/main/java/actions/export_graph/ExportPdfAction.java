@@ -1,7 +1,7 @@
 package actions.export_graph;
 
-<<<<<<< HEAD
 import actions.GraphAction;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     Aktionsleiste -> Datei.. -> Exportieren als.. -> PDF
@@ -20,7 +20,7 @@ public class ExportPdfAction extends GraphAction {
      */
     @Override
     public void action() {
-
+        throw new NotImplementedException();
     }
 
     /**
@@ -28,6 +28,6 @@ public class ExportPdfAction extends GraphAction {
      */
     @Override
     public void undo() {
+        throw new NotImplementedException();
     }
-
 }

@@ -1,6 +1,7 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ImportOofAction extends GraphAction {
 
@@ -16,7 +17,7 @@ public class ImportOofAction extends GraphAction {
      */
     @Override
     public void action() {
-
+        throw new NotImplementedException();
     }
 
     /**
@@ -24,6 +25,6 @@ public class ImportOofAction extends GraphAction {
      */
     @Override
     public void undo() {
-
+        throw new NotImplementedException();
     }
 }

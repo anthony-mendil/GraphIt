@@ -2,6 +2,7 @@ package actions.other;
 
 import actions.GraphAction;
 import graph.graph.SyndromGraph;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
  *  Aktionsleiste -> Datei.. -> Neuer/Neue Graph/Datei...
@@ -22,11 +23,11 @@ public class CreateGraphAction extends GraphAction {
     @Override
     @SuppressWarnings("unchecked")
     public void action() {
-
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        //
+        throw new NotImplementedException();
     }
 }
