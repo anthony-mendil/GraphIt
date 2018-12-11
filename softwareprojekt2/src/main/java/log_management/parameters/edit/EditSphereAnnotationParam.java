@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
@@ -14,5 +15,10 @@ public class EditSphereAnnotationParam extends Param implements Serializable {
         this.sphereId = sphereId;
         this.oldAnnotation = oldAnnotation;
         this.newAnnotation = newAnnotation;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }

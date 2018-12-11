@@ -3,7 +3,6 @@ package actions.edit.color;
 import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
-import log_management.parameters.edit.EditVertexColorParam;
 
 public class EditVertexColorLogAction extends LogAction {
     public EditVertexColorLogAction(EditVertexColorParam parameters) {

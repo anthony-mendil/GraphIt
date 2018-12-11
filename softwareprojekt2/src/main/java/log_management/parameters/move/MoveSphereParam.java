@@ -1,6 +1,4 @@
 package log_management.parameters.move;
-
-import LogManagement.Parameters.Param;
 import log_management.parameters.Param;
 
 import java.awt.geom.Point2D;

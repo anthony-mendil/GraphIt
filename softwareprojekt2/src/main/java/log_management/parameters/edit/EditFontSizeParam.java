@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
@@ -14,4 +15,10 @@ public class EditFontSizeParam extends Param implements Serializable {
         this.oldFontSize = oldFontSize;
         this.newFontSize = newFontSize;
     }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
+    }
+
 }

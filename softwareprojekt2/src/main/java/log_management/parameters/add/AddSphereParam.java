@@ -1,8 +1,8 @@
 package log_management.parameters.add;
 
-import LogManagement.Parameters.Param;
 import graph.graph.Sphere;
 import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
@@ -16,6 +16,6 @@ public class AddSphereParam extends Param implements Serializable {
 
     @Override
     public String convertToJson() {
-        return null;
+        throw new NotImplementedException();
     }
 }

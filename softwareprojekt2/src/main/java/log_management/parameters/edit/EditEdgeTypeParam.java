@@ -1,9 +1,9 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class EditEdgeTypeParam extends Param implements Serializable {
 
@@ -21,5 +21,10 @@ public class EditEdgeTypeParam extends Param implements Serializable {
         this.sourceVertexAnnotation = sourceVertexAnnotation;
         this.targetVertexId = targetVertexId;
         this.targetVertexAnnotation = targetVertexAnnotation;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }

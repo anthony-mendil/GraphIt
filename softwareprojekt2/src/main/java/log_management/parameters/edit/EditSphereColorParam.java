@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -17,5 +18,10 @@ public class EditSphereColorParam extends Param implements Serializable {
         this.sphereAnnotation = sphereAnnotation;
         this.oldColor = oldColor;
         this.newColor = newColor;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }

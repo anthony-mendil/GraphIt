@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -18,5 +19,10 @@ public class EditVerticesFormParam extends Param implements Serializable {
         this.verticesAnnotations = verticesAnnotations;
         this.oldShape = oldShape;
         this.newShape = newShape;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }

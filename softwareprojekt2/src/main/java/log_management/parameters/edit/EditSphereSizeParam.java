@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
@@ -20,5 +21,10 @@ public class EditSphereSizeParam extends Param implements Serializable {
         this.newWidth = newWidth;
         this.oldHeight = oldHeight;
         this.newHeight = newHeight;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }

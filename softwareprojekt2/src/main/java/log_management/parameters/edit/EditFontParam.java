@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
@@ -13,5 +14,10 @@ public class EditFontParam extends Param implements Serializable {
     public EditFontParam(String oldFont, String newFont) {
         this.oldFont = oldFont;
         this.newFont = newFont;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }

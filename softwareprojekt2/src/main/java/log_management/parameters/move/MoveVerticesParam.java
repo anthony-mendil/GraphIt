@@ -1,6 +1,5 @@
 package log_management.parameters.move;
 
-import LogManagement.Parameters.Param;
 import log_management.parameters.Param;
 
 import java.io.Serializable;

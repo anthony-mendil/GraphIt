@@ -1,7 +1,8 @@
 package log_management.parameters.remove;
 
-import LogManagement.Parameters.Param;
 import graph.graph.Sphere;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
@@ -11,5 +12,10 @@ public class RemoveSphereParam extends Param implements Serializable {
 
     public RemoveSphereParam(Sphere sphere) {
         this.sphere = sphere;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }

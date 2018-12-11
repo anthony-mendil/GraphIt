@@ -1,8 +1,8 @@
 package log_management.tables;
 
-import LogManagement.Parameters.Param;
 import log_management.GraphAndLogId;
 import log_management.LogEntryName;
+import log_management.parameters.Param;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

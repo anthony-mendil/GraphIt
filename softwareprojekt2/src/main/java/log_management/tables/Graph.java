@@ -1,6 +1,7 @@
 package log_management.tables;
 
 import log_management.LogDatabaseManager;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.*;
 
@@ -17,7 +18,6 @@ public class Graph {
     }
 
     public void setId(int id) {
-        this.id = id;
-        LogDatabaseManager.setGraphId(id);
+        throw new NotImplementedException();
     }
 }
