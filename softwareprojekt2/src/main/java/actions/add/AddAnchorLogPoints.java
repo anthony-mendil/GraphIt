@@ -10,28 +10,29 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 
-public class AddAnchorPoints extends LogAction {
+public class AddAnchorLogPoints extends LogAction {
     /**
      * Constructor in the case only one anchor-point shall be added.
      * @param pPoint2D
      * The position of the vertex which hosts the anchor-point.
      */
-    public AddAnchorPoints(Point2D pPoint2D){
+    public AddAnchorLogPoints(Point2D pPoint2D){
         super(LogEntryName.ADD_ANCHOR_POINTS);
     }
 
     /**
      * Constructor in case several anchor-points shall be added.
      */
-    public AddAnchorPoints(){
+    public AddAnchorLogPoints(){
         super(LogEntryName.ADD_ANCHOR_POINTS);
     }
 
     /**
      * Constructor which will be used to realize the undo-method of RemoveAnchorPointAction.
      * @param pActivateAnchorPointsFadeoutParam
+     * The used parameters.
      */
-    public AddAnchorPoints(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam){
+    public AddAnchorLogPoints(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam){
         super(LogEntryName.ADD_ANCHOR_POINTS);
     }
     /**

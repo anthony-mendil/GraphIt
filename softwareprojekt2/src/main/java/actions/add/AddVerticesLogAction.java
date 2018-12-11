@@ -1,70 +1,36 @@
 package actions.add;
 
 import actions.LogAction;
-import graph.graph.Vertex;
-import javafx.util.Pair;
+import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddVerticesParam;
-import log_management.parameters.remove.RemoveVerticesParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.awt.geom.Point2D;
-import java.util.Map;
-
-/*
-    Nutzung bei Undo von deleteVertices
- */
 
 /**
- * Adds a collection of vertices to the graph. AddVerticesLogAction reverts the RemoveVerticesLogAction. The different
- * constructors depict different application scenarios.
+ * Undoes the method RemoveVerticesLogAction by adding the missing vertices.
  */
 public class AddVerticesLogAction extends LogAction {
-    /**
-     * map with vertices and corresponding pair, containing the sphere id and sphere annotation.
-     */
-    Map<Vertex, Pair<Integer, String>> vertexPairMap;
 
     /**
-     * Adds all vertices that are defined in pParam.
-     *
-     * @param pParam the AddVerticesParameters, containing all vertices to add.
+     * Constructor which will be used to realize the undo-method of RemoveVerticesLogAction.
+     * @param parameters
+     * The used parameters.
      */
-    public AddVerticesLogAction(AddVerticesParam pParam) {
+    public AddVerticesLogAction(AddVerticesParam parameters) {
         super(LogEntryName.ADD_VERTICES);
-    }
-
-    /**
-     * Adds all vertices that are defined in RemoveVerticesParameters.
-     *
-     * @param pParam the RemoveVerticesParameters, containing all vertices to add.
-     */
-    public AddVerticesLogAction(RemoveVerticesParam pParam) {
-        super(LogEntryName.REMOVE_VERTICES);
-    }
-
-    /**
-     * Adds a vertex at point
-     *
-     * @param point point of the mouse event where the vertex should be added
-     */
-    public AddVerticesLogAction(Point2D point) {
-        super(LogEntryName.ADD_VERTEX);
-        throw new NotImplementedException();
     }
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        // other stuff that is done when actions is performed
+
+        LogDatabaseManager.addLogEntryToDatabase(this);
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        // stuff that is done when undoing
+        // and adding the according actions to the database
+        // (opposite actions)
     }
 
-    @Override
-    public void createParameter() {
-        throw new NotImplementedException();
-    }
 }

@@ -1,15 +1,13 @@
-package actions.edit.form;
+package actions.edit;
 
 import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
+import log_management.parameters.edit.EditEdgeFormParam;
 
-/**
- *
- */
-public class EditVertexFormLogAction extends LogAction {
-    public EditVertexFormLogAction(EditVertexFormParam parameters) {
-        super(LogEntryName.EDIT_VERTEX_FORM);
+public class EditEdgeStrokeLogAction extends LogAction {
+    public EditEdgeStrokeLogAction(EditEdgeFormParam parameters) {
+        super(LogEntryName.EDIT_EDGE_FORM);
     }
 
     @Override
@@ -22,6 +20,13 @@ public class EditVertexFormLogAction extends LogAction {
     @Override
     public void undo() {
         // stuff that is done when undoing
+        // and adding the according actions to the database
+        // (opposite actions)
+    }
+
+    @Override
+    public void redo() {
+        // stuff that is done when redoing
         // and adding the according actions to the database
         // (opposite actions)
     }

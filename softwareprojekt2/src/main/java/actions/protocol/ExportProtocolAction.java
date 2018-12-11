@@ -3,7 +3,9 @@ package actions.protocol;
 import actions.Action;
 
 /*
-        Aktionsleiste -> Datei.. -> Exportieren als.. -> NewDatatype(GXL+JSON)
+ *       Aktionsleiste -> Datei.. -> Exportieren als.. -> NewDatatype(GXL+JSON)
+ *
+ * Exports the data(database/logs) to a new datatype.
  */
 
 public class ExportProtocolAction extends Action {

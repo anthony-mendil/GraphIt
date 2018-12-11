@@ -5,14 +5,24 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.deactivate.DeactivateFadeoutParam;
 
-/*
-    (GUI Button FadeOut deaktivieren)
-    rechtsclick auf Arbeitsfläche -> FadeOut deaktivieren
+/**
+ * Makes the vertices and attached edges, which used to be invisible, visible again.
  */
-
 public class DeactivateFadeoutLogAction extends LogAction {
-    public DeactivateFadeoutLogAction(DeactivateFadeoutParam parameters) {
-        super(LogEntryName.DEACTIVATE_FADEOUT, parameters);
+    /**
+     * Constructor in case the user wants to make every vertex and edge visible again.
+     */
+    public DeactivateFadeoutLogAction(){
+        super(LogEntryName.DEACTIVATE_FADEOUT);
+    }
+
+    /**
+     * Constructor which will be used to realize the undo-method of ActivateFadeoutLogAction.
+     * @param pDeactivateFadeoutParam
+     * The used parameters.
+     */
+    public DeactivateFadeoutLogAction(DeactivateFadeoutParam pDeactivateFadeoutParam) {
+        super(LogEntryName.DEACTIVATE_FADEOUT);
     }
 
     @Override
@@ -29,10 +39,4 @@ public class DeactivateFadeoutLogAction extends LogAction {
         // (opposite actions)
     }
 
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
 }

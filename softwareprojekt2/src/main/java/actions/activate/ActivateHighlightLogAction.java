@@ -35,6 +35,7 @@ public class ActivateHighlightLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of DeactivateHighlightLogAction.
      * @param pActivateHighlightParam
+     * The used parameters.
      */
     public ActivateHighlightLogAction(ActivateHighlightParam pActivateHighlightParam) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);

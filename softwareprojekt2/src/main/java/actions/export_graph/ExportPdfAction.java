@@ -1,5 +1,6 @@
 package actions.export_graph;
 
+<<<<<<< HEAD
 import actions.GraphAction;
 
 /*
@@ -27,6 +28,6 @@ public class ExportPdfAction extends GraphAction {
      */
     @Override
     public void undo() {
-
     }
+
 }

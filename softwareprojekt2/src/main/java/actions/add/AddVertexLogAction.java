@@ -24,12 +24,23 @@ public class AddVertexLogAction extends LogAction {
     private Sphere sphere;
 
     /**
+     * Constructor in case the user clicks on a blank space to create a vertex.
      * @param point the coordinates where the vertex should be added
      */
     public AddVertexLogAction(Point2D point) {
         super(LogEntryName.ADD_VERTEX);
         throw new NotImplementedException();
     }
+    /**
+     * Constructor which will be used to realize the undo-method of RemoveVertexLogAction.
+     * @param pAddVertxParam
+     * The used parameters.
+     */
+    public AddVertexLogAction(AddVertexParam pAddVertxParam) {
+        super(LogEntryName.ADD_VERTEX);
+        throw new NotImplementedException();
+    }
+
 
     @Override
     @SuppressWarnings("unchecked")

@@ -13,6 +13,7 @@
 - Json
 - neuer Datentyp 
 - nach jeder action muss die gxl in die db
+- seralizable aus param
 
 ### GUI
 - javafx

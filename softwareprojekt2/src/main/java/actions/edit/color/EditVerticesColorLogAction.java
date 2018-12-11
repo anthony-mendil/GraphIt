@@ -9,10 +9,24 @@ import log_management.parameters.edit.EditVerticesColorParam;
     ([shift+]linksclick, bereich markieren) Sphäre markieren -> GUI Button Farbe
     ([shift+]linksclick, bereich markieren) Sphäre markieren -> rechtsclick auf Sphäre ->
      neuer Drop-Down-Menü -> Standard-Farben
+ *
+ * Changes the color of a single/several vertices.
  */
 public class EditVerticesColorLogAction extends LogAction {
-    public EditVerticesColorLogAction(EditVerticesColorParam parameters) {
-        super(LogEntryName.EDIT_VERTICES_COLOR, parameters);
+    /**
+     * Constructor in case the user changes the color of a single/multiple vertex.
+     */
+    public EditVerticesColorLogAction(){
+        super(LogEntryName.EDIT_VERTICES_COLOR);
+    }
+
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     * @param pEditVerticesColorParam
+     * The used parameters.
+     */
+    public EditVerticesColorLogAction(EditVerticesColorParam pEditVerticesColorParam) {
+        super(LogEntryName.EDIT_VERTICES_COLOR);
     }
 
     @Override
@@ -25,13 +39,6 @@ public class EditVerticesColorLogAction extends LogAction {
     @Override
     public void undo() {
         // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
-
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
         // and adding the according actions to the database
         // (opposite actions)
     }
