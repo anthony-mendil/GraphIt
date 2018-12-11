@@ -5,11 +5,13 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 
+/**
+ * Defines a functor that transform a edge into its stroke type. The input edge left unchanged. Its
+ * extracting the stroke type of an edge.
+ * @param <E> the edge type
+ */
 public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
-    /**
-     * Defines a functor that transform a edge into its stroke type. The input edge left unchanged. Its
-     * extracting the stroke type of an edge.
-     */
+
     @Override
     public Stroke transform(E e) {
         throw new NotImplementedException();

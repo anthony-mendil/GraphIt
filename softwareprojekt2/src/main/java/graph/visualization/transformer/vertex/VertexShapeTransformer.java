@@ -8,6 +8,7 @@ import java.awt.*;
 /**
  * Defines a functor that transform a vertex into its shape. The input vertex left unchanged. Its
  * extracting the shape of a vertex.
+ * @param <V> the vertex type
  */
 public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V> implements Transformer<V, Shape> {
     /**

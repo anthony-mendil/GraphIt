@@ -8,6 +8,7 @@ import java.awt.*;
 /**
  * Defines a functor that transform a edge into its edge arrow fill color. The input edge left unchanged. Its extracting
  * the arrow fill color of an edge.
+ * @param <E> the edge type
  */
 public class EdgeArrowFillPaintTransformer<E> implements Transformer<E, Paint> {
     @Override

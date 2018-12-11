@@ -56,6 +56,11 @@ public class Sphere {
      */
     @NonNull
     private String annotation;
+    /**
+     * defines whether a edge is visible or not
+     */
+    @NonNull
+    private boolean isVisible;
 
 
     /**

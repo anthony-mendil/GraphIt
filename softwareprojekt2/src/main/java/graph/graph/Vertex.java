@@ -75,10 +75,10 @@ public class Vertex {
     private int size;
 
     /**
-     * the radio of the vertex
+     * defines whether a edge is visible or not
      */
     @NonNull
-    private float radio;
+    private boolean isVisible;
 
     /**
      * Creates a vertex with a unique id and a coordinate where its placed.

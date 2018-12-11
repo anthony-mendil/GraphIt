@@ -24,7 +24,23 @@ public class Template {
      */
     private int maxEdgeCounter;
 
+    /**
+     * a list with all object ids where the name is not changeable
+     */
     private List<Integer> nameLockedObjects;
+
+    /**
+     * a list with all object ids where the color is not changeable
+     */
     private List<Integer> colorLockedObjects;
+
+    /**
+     * a list with all object ids where all attributes are not changeable
+     */
     private List<Integer> isLockedObjects;
+
+    /**
+     * all edge types that are allowed to use
+     */
+    private List<EdgeArrowType> allowedEdgeTypes;
 }

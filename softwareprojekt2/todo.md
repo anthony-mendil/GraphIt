@@ -1,30 +1,18 @@
 ## ToDo 
 ### Graph
-- GraphMouse for 'Vorlage bearbeiten' benötigt?
-- constants und syndrom
-- vorlage is_locked
 - Layout
-- picking
-- Renderer (Edge, Vertex, Sphere, Basic)
-- exceptions
-- filter predicates
+- filter predicates/ predicatefilter tags?
+- filter option jgraphT 
 - wo sollen die funktionsmodi hin?
 - command show protolkoll/ filter protokoll/ animate protokoll
 - j graph t handler
+- action gxl
+- log filter 
 
-
-### Commands 
-- all
-
-- done: remove, move
-
-- morgen: protocol, other, export
 
 ### Export, Import
-- GXL
 - Json
-- neuer Datentyp
-- Pdf 
+- neuer Datentyp 
 
 ### GUI
 - javafx

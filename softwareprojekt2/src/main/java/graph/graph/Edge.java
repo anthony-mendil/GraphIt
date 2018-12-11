@@ -22,12 +22,7 @@ public class Edge {
      * the fill color of the edge/ arrow
      */
     @NonNull
-    private Paint fillPaint;
-    /**
-     * the draw color of the edge/ arrow
-     */
-    @NonNull
-    private Paint drawPaint;
+    private Paint paint;
     /**
      * the stroke type of the edge
      */
@@ -48,6 +43,11 @@ public class Edge {
      */
     @NonNull
     private double anchorAngle;
+    /**
+     * defines whether a edge is visible or not
+     */
+    @NonNull
+    private boolean isVisible;
 
 
     /**

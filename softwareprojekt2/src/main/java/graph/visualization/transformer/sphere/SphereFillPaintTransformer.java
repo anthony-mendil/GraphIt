@@ -8,6 +8,7 @@ import java.awt.*;
 /**
  * Defines a functor that transform a sphere into its fill color. The input sphere left unchanged. Its extracting the
  * fill color of a sphere.
+ * @param <S> the sphere type
  */
 public class SphereFillPaintTransformer<S> implements Transformer<S, Paint> {
     @Override

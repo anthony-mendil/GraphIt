@@ -2,14 +2,14 @@ package graph.graph;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import graph.visualization.predicate.EdgeArrowPredicate;
-import graph.visualization.predicate.VertexSpherePredicate;
+import graph.algorithmen.predicates.*;
+import graph.visualization.renderers.EdgeRenderer;
+import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
 import lombok.Setter;
 
 /**
@@ -20,10 +20,6 @@ import lombok.Setter;
  */
 @Data
 public class Syndrom {
-    /**
-     * the name of the graph
-     */
-    private String graphName;
     /**
      * template rules for the graph/ layout
      */
@@ -47,16 +43,39 @@ public class Syndrom {
     private SyndromGraph<Vertex, Edge> graph;
 
     /**
-     * Defines a functor that performs a predicate test on edges for filtering the edge types of the edges.
+     * Defines a functor that performs a predicates test on edges for filtering the edge types of the edges.
      */
     private EdgeArrowPredicate<Vertex, Edge> filterArrow;
 
     /**
-     * Defines a functor that performs a predicate test on vertices for filtering the vertices.
-     * // TODO auf was wollen wir alles filtern?
+     * Defines a functor that performs a predicates test on vertices for filtering the vertices annotation.
      */
-    private VertexSpherePredicate<Vertex, Edge> filterVertex;
+    private VertexAnnotationPredicate<Vertex, Edge> vertexAnnotationPredicate;
 
+    /**
+     * Defines a functor that performs a predicates test on vertices for filtering the vertex for edge types.
+     */
+    private VertexEdgePredicate<Vertex, Edge> vertexEdgePredicate;
+
+    /**
+     * Defines a functor that performs a predicates test on vertices for filtering the vertices for a sphere.
+     */
+    private VertexSpherePredicate<Vertex, Edge> vertexSpherePredicate;
+
+    /**
+     * Defines a functor that performs a predicates test on vertices for filtering the vertex for visibility.
+     */
+    private VertexIsVisiblePredicate<Vertex, Edge> vertexIsVisiblePredicate;
+
+    /**
+     * Defines a functor that performs a predicates test on edges for filtering the edge for visibility.
+     */
+    private EdgeIsVisiblePredicate<Vertex, Edge> edgeIsVisiblePredicate;
+
+    /**
+     * Defines a functor that performs a predicates test on spheres for filtering the sphere for visibility.
+     */
+    private SphereIsVisiblePredicate<Sphere> sphereIsVisiblePredicate;
     /**
      * Defines a functor that transform a edge into its arrow draw color. The input edge left unchanged. Its extracting
      * the arrow draw color of an edge.
@@ -180,13 +199,18 @@ public class Syndrom {
     /**
      * a syndrom instance.
      */
-    private Syndrom syndrom = null;
+    private static Syndrom syndrom = null;
+
+    /**
+     * the renderer of the syndrom graph
+     */
+    private SyndromRenderer syndromRenderer;
 
     /**
      * Syndrom is supposed to be an singleton instance.
      * @return the syndrom instance
      */
-    public Syndrom getInstance(){
+    public static Syndrom getInstance(){
         if (syndrom == null){
             syndrom = new Syndrom();
         }

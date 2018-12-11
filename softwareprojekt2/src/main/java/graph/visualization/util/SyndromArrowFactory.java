@@ -5,27 +5,27 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 
 /**
- * TODO
+ * Creates different Shapes for arrows
  */
 public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.ArrowFactory {
 
     /**
-     * TODO
+     * Creates a reinforced arrow shape.
      *
-     * @param base TODO
-     * @param height TODO
-     * @param notchHeight TODO
-     * @return TODO
+     * @param base        the base dimension for the arrow
+     * @param height      the height of the arrow
+     * @param notchHeight the notch height of the arrow
+     * @return a general path
      */
     public static GeneralPath getReinforcingEdgeArrow(float base, float height, float notchHeight) {
         return getNotchedArrow(base, height, notchHeight);
     }
 
     /**
-     * TODO
+     * Creates a extenuating arrow shape.
      *
-     * @param r TODO
-     * @return TODO
+     * @param r the radius of the arrow
+     * @return a general path
      */
     public static GeneralPath getExtenuatingEdgeArrow(int r) {
         GeneralPath arrow = new GeneralPath();
@@ -44,9 +44,9 @@ public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.Arr
     }
 
     /**
-     * TODO
+     * Creates a neutral arrow shape
      *
-     * @return TODO
+     * @return a general path
      */
     public static GeneralPath getNeutralEdgeArrow() {
         Shape shape = new GeneralPath();
