@@ -207,6 +207,11 @@ public class Syndrom {
     private SyndromRenderer syndromRenderer;
 
     /**
+     * the current function mode
+     */
+    private FunctionMode mode;
+
+    /**
      * Syndrom is supposed to be an singleton instance.
      * @return the syndrom instance
      */
