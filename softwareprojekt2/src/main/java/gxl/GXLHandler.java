@@ -1,4 +1,4 @@
-package actions.export_graph;
+package gxl;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.Edge;
