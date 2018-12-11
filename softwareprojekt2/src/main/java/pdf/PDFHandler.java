@@ -21,7 +21,7 @@ public class PDFHandler {
      * @param pVv The VisualizationViewer of the current graph
      * @param pName The name of the syndrom becoming the filename
      *
-     * @return The PDF of the current graph
+     * @return A FileInputStream of the PDF of the current graph
      */
     private FileInputStream createPDF(VisualizationViewer pVv, String pName){
         throw new UnsupportedOperationException();
@@ -31,7 +31,6 @@ public class PDFHandler {
      * Starts the dialog to export the current graph visualization as PDF
      * @param pVv The VisualizationViewer of the current graph
      * @param pName The name of the syndrom becoming the filename
-     * TODO: JUST AS PDF?
      */
     public void exportPDF(VisualizationViewer pVv, String pName){
         ExportDialog export = new ExportDialog();

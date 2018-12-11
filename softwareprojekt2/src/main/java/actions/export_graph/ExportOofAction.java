@@ -2,15 +2,12 @@ package actions.export_graph;
 
 import actions.GraphAction;
 
-/*
-   Aktionsleiste -> Datei.. -> Exportieren als.. -> GXL
- */
-public class ExportGxlAction extends GraphAction {
+public class ExportOofAction extends GraphAction {
 
     /**
-     * Constructs actionhandling for exporting the graph as GXL
+     * Constructs Actionhandling for exporting the graph as Oof
      */
-    public ExportGxlAction(){
+    public ExportOofAction(){
 
     }
 
