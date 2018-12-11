@@ -6,11 +6,13 @@
 - j graph t handler
 - action gxl
 - log filter 
-
+-  FILTER animation
+- ab wann protokoll? 
 
 ### Export, Import
 - Json
 - neuer Datentyp 
+- nach jeder action muss die gxl in die db
 
 ### GUI
 - javafx
