@@ -1768,6 +1768,40 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Wir entscheiden und für \cb{S61}, da wir sowieso dauerhaft mit der GXL-Repräsentation interagieren. S2 bringt uns keinen Vorteil und es entsteht nur eine Datei mehr, mit der interagiert werden muss. 
 \end{onehalfspace}
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage
+\hspace{-0.65cm}
+\begin{tabular} {|p{8cm} p{8cm}|}
+\hline
+\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{25: Im- und Export von Parameter-Objekten als JSON }}} \\ \hline\hline 
+\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Ptokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen dartellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objkete.}}\rule{0pt}{1ex}\\ [1ex] \hline
+\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
+\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
+\\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
+\hyperlink {h}{Hohe Qualität}&
+\hyperlink {i}{Command} \\
+\hyperlink {bb}{Protokoll von Nutzerinteraktionen} &
+\hyperlink {mm}{Protokoll JSON} \\
+\hyperlink {ww}{Softwarelizenzbudget} 
+\\ \hline
+\multicolumn{2}{|l|}{Lösungen} \\
+\multicolumn{2}{|l|}{\parbox{16cm}{
+\textbf{\cb{S63 - Jackson}}: \\
+Mit Jackson können Objekte gelesen und deren Informationen ins json.Format überführt werden. Dies erlaubt die Überführung von Objekten in einen strukturierten String, der zu einem späteren Zeitpunkt leicht gelesen werdn kann.\\
+\textbf{S64 - GSON}: \\
+Mit GSON können Informationen aus Objekten gelesen werden und ins json.Format geparst werden.\\
+\textbf{S65 - JSONP}: \\
+Mit JSONP können Objekte geparst und deren Informationen ins json-Format geschrieben werden.
+} }\\ [6ex] \hline
+\end{tabular}\\ \\ \\
+\begin{onehalfspace}
+Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit gröter Geschwindigkeit ins json-Format überführt werrden können.
+\end{onehalfspace}
+
+
 \newpage
 
 \section{Konzeptionelle Sicht}
@@ -1891,19 +1925,7 @@ Der Schüler öffnet die Applikation und importiert die GXL-Datei. Zu sehen sind
 \newpage
 \section{Evolution}
 \label{sec:evolution}
-\emph{Autoren: Bastian Rexhäuser}\\ \\
-
-\noindent\hspace*{0mm}%
-Allgemein haben wir darauf geachtet die Architektur so aufzubauen, dass sie leicht erweiter- und wartbar ist, weswegen wir stark modularisiert haben und auf Redundanzvermeidung geachtet haben (siehe \hyperlink{Strategie 28}{Strategie 28} \& \hyperlink{Strategie 29}{Strategie 29}).
-In diesem Abschnitt beschreiben wir die Maßnahmen, die wir getroffen haben, damit unsere Anwendung an sich ändernde Anforderungen angepasst werden kann. Dazu betrachten wir die entsprechenden Komponenten der Architektur und erklären, inwiefern sie jeweils zur Anpassbarkeit beiträgt.\\ \newline
-Um eine möglichst hohe Persistenz unserer Daten gewährleisten zu können, haben wir verschiedene Persistenzklassen angelegt, die alle ein (Persistenz-)Interface implementieren. Dadurch haben die verschiedenen Klassen die Basisfunktionen, die ihnen durch dieses Interface (OperationPersistence) vorgeschrieben werden. Einige Klassen haben dann individuell noch zusätzliche Methoden, mit denen sie auf den Datenbestand der Datenbank zugreifen können. Dieser strukturelle Aufbau zur Sicherstellung kontrollierter Datenbankzugriffe, der einer langfristig zweckdienlichen Speicherung der Daten dient, ist insofern förderlich für die Evolution der Anwendung, als dass es leicht möglich ist, weitere Persistenzklassen (mit denen für sie nötigen Methoden) hinzuzufügen. Dies ist dann erforderlich, wenn weitere Komponenten durch hinzukommende Anforderungen in der Architektur benötigt werden. Vorstellbar wäre zum Beispiel, dass es in einer ILV einen Chat zwischen allen Teilnehmern und Prüfern in Form eines Forums geben soll. Der dafür nötigen Komponente müsste eine Persistenzklasse zugeordnet werden - vorausgesetzt, die Nachrichten des Chats sollen nicht nach sehr kurzer Zeit aus dem Speicher verschwinden und dürfen nicht komplett unstrukturiert hinterlegt werden. \\
-Des Weiteren dient die Hinzunahme der Persistenz-Klassen als Ganzes dazu, später bei Bedarf leichter die Datenbank selbst wechseln zu können. \\ \newline
-Das Rollenkonzept ist auch leicht erweiter- und änderbar. Wir haben es mittels einer eigenen Klasse (RoleModel) umgesetzt. Diese Klasse enthält alle Rollen, die aktuell in unserer Anwendung benötigt werden als Attribute vom Typ der Klasse. Man kann bei Bedarf einfach Rollen ergänzen, verändern und auch entfernen. In jedem Fall bleibt es möglich, dass ein Nutzer unseres Systems mehrere Rollen haben kann. Dies haben wir durch eine Liste von Rollen sichergestellt, die Teil jedes Profils ist. \\ \newline
-Wir haben uns überlegt, alle Aspekte, die einen Nutzer unserer Anwendung betreffen mit den drei Model-Klassen ProfilModel, UserModel und RoleModel umzusetzen. Letztere ist wie eben beschrieben lediglich dafür da, dass weitere Rollen in das Rollenkonzept möglichst unkompliziert hinzugefügt werden oder bestehende Rollen angepasst und entfernt werden können. Während dem UserModel lediglich eine E-Mail und ein Passwort (in Form von Attributen) zugeordnet sind, realisiert das ProfileModel alle verbleibenden Aspekte, die einen Nutzer betreffen.\\ \newline
-Durch die zentrale Position des ILVControllers in der Architektur in Zusammenhang damit, dass viele Aspekte als Klassen realisiert sind, die dann mit dem ILVController assoziiert sind, ergibt sich eine hohe Erweiterbarkeit von Aspekten/Funktionen, die im Zusammenhang mit der ILV stehen. Es können so recht leicht weitere Klassen (Controller-Klassen) ergänzt werden, die dann die benötigten Aspekte realisieren. Hierfür ist dann je nach sich ändernden hinzukommendem Aspekt nur in recht wenig Controller einzugreifen. \\ \newline
-Durch die Verknüpfung von RegistrationUserController mit ProfileController und mit UserController ist ein relativ kleiner (Controller-)Klassen-Umfang gegeben, der die Aspekte der Registration von Nutzern realisiert. \\
-Durch die Verbindung der LoggingController-Klasse mit der UserController-Klasse, die ihrerseits wieder mit der ProfileController-Klasse in Verbindung steht sind ebenfalls in einem kleinen Klassenumfang die Aspekte des Logins und Lougouts realisiert. \\
-Dadurch können Änderungen im Bezug auf das Registrieren sowie das Login und Logout bei Bedarf geändert werden, ohne dass eine Vielzahl von Klassen geändert werden müssen.
+\emph{Autoren: }\\ \\
 
 \end{document}
 
