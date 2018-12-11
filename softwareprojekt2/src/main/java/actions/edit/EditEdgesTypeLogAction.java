@@ -8,10 +8,14 @@ import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgesTypeParam;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+<<<<<<< HEAD
 import java.util.Collection;
 
 /**
  * Changes the EdgeType from a collection of edges.
+ *  ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI-Button Pfeiltyp
+    ([shift+]linksclick, bereich markieren) Kanten markieren -> rechtsclick auf Kante -> Drop-Down-Menü -> Pfeiltyp
+        -> neuer Drop-Down-Menü   
  */
 public class EditEdgesTypeLogAction extends LogAction {
     /**

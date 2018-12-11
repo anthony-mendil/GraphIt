@@ -7,6 +7,12 @@ import log_management.parameters.add.AddSphereParam;
 import log_management.parameters.remove.RemoveSphereParam;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+/*
+    linksclick Sphäre auswählen (markieren auch über Übersicht) -> GUI Button Delete(Sphäre)
+    GUI Button Delete(Sphäre) -> Sphäre auswählen (markieren auch über Übersicht)
+    Rechtsclick auf Sphäre -> Drop-Down-Menü -> Löschen
+ */
+
 /**
  * Removes a sphere from the syndrom-graph.
  */

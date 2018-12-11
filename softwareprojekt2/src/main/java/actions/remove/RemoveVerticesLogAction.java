@@ -9,6 +9,11 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
+/*
+    ([shift+]linksclick, bereich markieren) alle Knoten markieren (markieren auch über Übersicht) -> GUI-Button Delete(Symptom)
+    ([shift+]linksclick, bereich markieren) alle Knoten markieren "" -> Rechtsclick auf Knoten -> Drop-Down-Menü -> Löschen
+ */
+
 /**
  * Removes vertices from the syndrom-graph.
  */

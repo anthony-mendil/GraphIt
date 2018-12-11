@@ -5,6 +5,10 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditFontParam;
 
+/*
+    ([shift+]linksclick, bereich markieren) Sphäre/Symptom -> GUI Button Schriftart
+ */
+
 public class EditFontLogAction extends LogAction {
     public EditFontLogAction(EditFontParam parameters) {
         super(LogEntryName.EDIT_FONT, parameters);

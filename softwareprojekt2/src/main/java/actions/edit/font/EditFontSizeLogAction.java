@@ -5,6 +5,9 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditFontSizeParam;
 
+/*
+    ([shift+]linksclick, bereich markieren) Sphäre/Symptom -> GUI Button Größe
+ */
 public class EditFontSizeLogAction extends LogAction {
     public EditFontSizeLogAction(EditFontSizeParam parameters) {
         super(LogEntryName.EDIT_FONT_SIZE, parameters);

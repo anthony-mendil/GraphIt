@@ -8,6 +8,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
+/*
+    ([shift+]linksclick, bereich markieren) Knoten markieren (markieren auch über Übersicht) -> Maustaste halten über Knoten -> Ziehen
+ */
+
 /**
  * Moves vertices from one to another position. A vertex can not be positioned where another vertex is already located
  * and it must me positioned within a sphere.

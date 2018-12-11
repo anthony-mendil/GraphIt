@@ -7,10 +7,14 @@ import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgesStrokeParam;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+<<<<<<< HEAD
 import java.util.Collection;
 
 /**
  * Changes the StrokeType from a collection of edges.
+ * ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI-Button Kantendicke
+ *  ([shift+]linksclick, bereich markieren) Kanten markieren -> rechtsclick auf Kante -> Drop-Down-Menü -> Kantendicke
+ *       -> neuer Drop-Down-Menü
  */
 public class EditEdgesStrokeLogAction extends LogAction {
     /**

@@ -9,6 +9,11 @@ import log_management.parameters.activate.ActivateHighlightParam;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 
+/*
+    linksclick Elemente markieren -> GUI Button Highlight
+    linksclick Elemente markieren -> rechtsclick irgendwo -> Drop-Down-Menü -> Highlight
+ */
+
 /**
  * Highlights the chosen vertices and the attached edges.
  */

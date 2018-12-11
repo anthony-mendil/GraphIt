@@ -4,7 +4,10 @@ import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVerticesFormParam;
-
+/*
+    ([shift+]linksclick, bereich markieren) Sphäre markieren -> GUI Button Form
+    ([shift+]linksclick, bereich markieren) Sphäre markieren -> rechtsclick auf Sphäre -> Form -> neuer Drop-Down-Menü
+ */
 public class EditVerticesFormLogAction extends LogAction {
     public EditVerticesFormLogAction(EditVerticesFormParam parameters) {
         super(LogEntryName.EDIT_VERTICES_FORM, parameters);
