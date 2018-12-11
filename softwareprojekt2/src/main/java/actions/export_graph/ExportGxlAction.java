@@ -1,11 +1,32 @@
 package actions.export_graph;
 
-import net.sourceforge.gxl;
+import actions.GraphAction;
 
 /*
    Aktionsleiste -> Datei.. -> Exportieren als.. -> GXL
  */
-public class ExportGxlAction {
+public class ExportGxlAction extends GraphAction {
 
+    /**
+     * Actionhandling for exporting the graph as GXL
+     */
+    public ExportGxlAction(){
 
+    }
+
+    /**
+     * Executes the defined behavior of the action.
+     */
+    @Override
+    public void action() {
+
+    }
+
+    /**
+     * Reverts the action. The internal state of the graph is the same as before the action was executed.
+     */
+    @Override
+    public void undo() {
+
+    }
 }
