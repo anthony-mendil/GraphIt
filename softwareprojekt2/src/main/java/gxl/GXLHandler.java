@@ -1,44 +1,37 @@
 package gxl;
 
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import graph.graph.Edge;
-import graph.graph.Vertex;
-
 public class GXLHandler {
-
-
-    /**
-     * Constructs a new GXLHandler
-     */
-    public GXLHandler(){
-    }
 
     /**
      * Creates a GXL instance of the current existing Graph as String
      *
-     * @param pLayout The layout representation of the current graph
-     *
      * @return The current GXL instance as String
      */
-    public String createGXLString(Layout<Vertex,Edge> pLayout){
+    public static String createGXLString(){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Opens a dialog to save the the GXL representation to a specific location
-     *
-     * @param pName The name of the Syndrom and the default filename
      */
-    public void exportGXL(Layout<Vertex,Edge> pLayout, String pName){
-        //createGXL(pLayout) to File with pName as default filename
+    public static void exportGXL(){
+        //createGXLString to File
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Opens a dialog to import a GXL file from a specific location to a layout representation of the current graph
-     *
-     * @return The layout representation of the graph
      */
-    public Layout<Vertex, Edge> importGXL(){
+    public static void importGXL(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Writes the GXL representation into the Database
+     *
+     * @param pGXL The graph as GXL that gets written into the Database
+     */
+    public static void GXLToDB(String pGXL){
         throw new UnsupportedOperationException();
     }
 
