@@ -3,6 +3,8 @@ package pdf;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import org.freehep.graphicsbase.util.export.ExportDialog;
 
+import java.io.FileInputStream;
+
 public class PDFHandler {
 
     /**
@@ -18,10 +20,11 @@ public class PDFHandler {
      *
      * @param pVv The VisualizationViewer of the current graph
      * @param pName The name of the syndrom becoming the filename
-     * TODO: PDF AS RETURN VALUE?
+     *
+     * @return The PDF of the current graph
      */
-    private void createPDF(VisualizationViewer pVv, String pName){
-
+    private FileInputStream createPDF(VisualizationViewer pVv, String pName){
+        throw new UnsupportedOperationException();
     }
 
     /**
