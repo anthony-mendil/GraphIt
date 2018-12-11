@@ -2,8 +2,11 @@ package graph.visualization.transformer.vertex;
 
 import org.apache.commons.collections15.Transformer;
 
+/**
+ * Defines a functor that transform a vertex into its annotation. The input vertex left unchanged. Its
+ * extracting the annotation of a vertex.
+ */
 public class VertexLabelTransformer<V> implements Transformer<V, String> {
-    private String defaultLabelVertex;
 
     @Override
     public String transform(V v) {

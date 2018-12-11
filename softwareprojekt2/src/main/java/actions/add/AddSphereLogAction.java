@@ -4,6 +4,7 @@ import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddSphereParam;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     GUI Button Sphäre hinzufügen
@@ -40,5 +41,10 @@ public class AddSphereLogAction extends LogAction {
         // stuff that is done when undoing
         // and adding the according actions to the database
         // (opposite actions)
+    }
+
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

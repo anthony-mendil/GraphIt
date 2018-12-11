@@ -1,24 +1,33 @@
 package graph.visualization.control;
 
 import edu.uci.ics.jung.visualization.control.PickingGraphMousePlugin;
+import graph.graph.Vertex;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
+import java.util.Map;
 
 /**
- * TODO
+ * A graph mouse plugin that supports the visualisation of picking if the user selected
+ * the analyse function mode.
  */
 public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMousePlugin implements MouseListener, MouseMotionListener {
-
+    /**
+     * the coordinate where the user pressed the mouse
+     */
     private Point2D source;
-    private Point2D[] points;
+
+    /**
+     * the coordinates of the picked vertices in relation to their vertices
+     */
+    private Map<Vertex, Point2D> points;
 
 
     /**
-     * TODO
+     * Creates a new picking graph mouse analyse syndrom plugin.
      */
     PickingGraphMouseAnalyseSyndromPlugin() {
         this(InputEvent.BUTTON3_MASK, InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK | InputEvent.SHIFT_MASK | InputEvent.CTRL_MASK);
@@ -26,41 +35,26 @@ public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMou
     }
 
     /**
-     * TODO
-     *
-     * @param selectionModifiers TODO
-     * @param addToSelectionModifiers TODO
+     * Creates a new picking graph mouse analyse syndrom plugin with a defined button mask.
+     * @param selectionModifiers the selection modifiers defines the button mask
+     * @param addToSelectionModifiers the add to selection modifiers defines the button mask for adding items to a
+     *                                selection
      */
     private PickingGraphMouseAnalyseSyndromPlugin(int selectionModifiers, int addToSelectionModifiers) {
         super(selectionModifiers, addToSelectionModifiers);
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * TODO
-     *
-     * @param e TODO
-     */
     @Override
     public void mousePressed(MouseEvent e) {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * TODO
-     *
-     * @param e TODO
-     */
     @Override
     public void mouseReleased(MouseEvent e) {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * TODO
-     *
-     * @param e TODO
-     */
     @Override
     public void mouseDragged(MouseEvent e) {
         throw new UnsupportedOperationException();

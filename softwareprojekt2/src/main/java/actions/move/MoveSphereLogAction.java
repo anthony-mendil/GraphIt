@@ -8,14 +8,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 
-/*
-     linksclick Sphäre markieren (markieren auch über Übersicht) -> Maustaste halten -> Ziehen
-
- */
-
 /**
  * Moves a sphere from one to another position. A sphere can not be positioned where another sphere is
- * already located. If that's the case the sphere stays at its old position.
+ * already located. If that's the case the sphere stays at its old position. All vertices assigned to this sphere
+ * move with the sphere.
  */
 public class MoveSphereLogAction extends LogAction {
 

@@ -4,8 +4,11 @@ import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
 
+/**
+ * Defines a functor that transform a vertex into highlight color. The input vertex left unchanged. Its
+ * extracting the highlight color of a vertex.
+ */
 public class VertexPaintHighlightTransformer<V> implements Transformer<V, Paint> {
-    private Paint defaultHighlightPaintVertex;
     @Override
     public Paint transform(V v) {
         return null;

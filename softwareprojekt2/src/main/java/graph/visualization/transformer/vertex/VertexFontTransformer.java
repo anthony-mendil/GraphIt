@@ -4,8 +4,11 @@ import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
 
+/**
+ * Defines a functor that transform a vertex into its annotation font. The input vertex left unchanged. Its
+ * extracting the annotation font of a vertex.
+ */
 public class VertexFontTransformer<V> implements Transformer<V, Font> {
-    private Font defaultFontVertex;
     @Override
     public Font transform(V v) {
         return null;

@@ -1,15 +1,17 @@
 package graph.visualization.transformer.edge;
 
-import config.Constants;
 import org.apache.commons.collections15.Transformer;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 
+/**
+ * Defines a functor that transform a edge into its arrow draw color. The input edge left unchanged. Its extracting the
+ * arrow draw color of an edge.
+ */
 public class EdgeArrowDrawPaintTransformer<E> implements Transformer<E, Paint> {
-    private Paint defaultEdgeArrowDrawPaint;
-
     @Override
     public Paint transform(E e) {
-        return null;
+        throw new NotImplementedException();
     }
 }

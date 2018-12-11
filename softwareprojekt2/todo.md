@@ -7,6 +7,10 @@
 - picking
 - Renderer (Edge, Vertex, Sphere, Basic)
 - exceptions
+- filter predicates
+- wo sollen die funktionsmodi hin?
+- command show protolkoll/ filter protokoll/ animate protokoll
+- j graph t handler
 
 
 ### Commands 

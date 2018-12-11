@@ -3,19 +3,14 @@ package actions.edit;
 import actions.LogAction;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgesTypeParam;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-<<<<<<< HEAD
 import java.util.Collection;
 
 /**
  * Changes the EdgeType from a collection of edges.
- *  ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI-Button Pfeiltyp
-    ([shift+]linksclick, bereich markieren) Kanten markieren -> rechtsclick auf Kante -> Drop-Down-Menü -> Pfeiltyp
-        -> neuer Drop-Down-Menü   
  */
 public class EditEdgesTypeLogAction extends LogAction {
     /**
@@ -30,6 +25,7 @@ public class EditEdgesTypeLogAction extends LogAction {
 
     /**
      * Changes the edge type from all defined edges in pParam.
+     *
      * @param pParam the EditEdgesTypeParam, containing all edges where to change the edge type
      */
     public EditEdgesTypeLogAction(EditEdgesTypeParam pParam) {
@@ -39,17 +35,18 @@ public class EditEdgesTypeLogAction extends LogAction {
 
     /**
      * Changes the edge type from all passed edges
-     * @param edges the collection of edges where to change the edge type
+     *
+     * @param edges    the collection of edges where to change the edge type
      * @param edgeType the new edge type
      */
-    public EditEdgesTypeLogAction(Collection<Edge> edges, EdgeArrowType edgeType){
+    public EditEdgesTypeLogAction(Collection<Edge> edges, EdgeArrowType edgeType) {
         super(LogEntryName.EDIT_EDGES_TYPE);
         throw new NotImplementedException();
     }
 
     @Override
     public void action() {
-       throw new NotImplementedException();
+        throw new NotImplementedException();
     }
 
     @Override

@@ -12,99 +12,116 @@ package graph.graph;/*
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
-import org.apache.commons.collections15.Factory;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.*;
+import java.util.List;
 
 
 /**
- * Die Klas
+ * The syndrom graph. Its extending the directed sparse graph with spheres and anchor points.
  */
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
-    private transient Map<Sphere, ArrayList<V>> sphaeren;
-    @Getter @NonNull
-    private EdgeArrowType arrowType;
-    @Getter @Setter
-    private String name;
-    private int i;
+    /**
+     * List of spheres
+     */
+    private List<Sphere> spheren;
 
     /**
-     * TODO
+     * a counter for all objects
+     */
+    private int counterObject;
+
+    /**
+     * Creates a new syndrom graph.
      */
     public SyndromGraph() {
         super();
     }
 
     /**
-     * TODO
+     * Returns a list of all spheres from the syndrom graph.
      *
-     * @return TODO
+     * @return a list of all spheres
      */
-    public Set<Sphere> getSphaeren() { throw new UnsupportedOperationException(); }
+    public List<Sphere> getSpheres() {
+        throw new UnsupportedOperationException();
+    }
+
 
     /**
-     * TODO
+     * Assigns a vertex to a sphere.
      *
-     * @param pSphere TODO
-     * @return TODO
+     * @param pSphere the sphere to assign to
+     * @param pVertex the vertex
      */
-    public List getSphaereWithVertices(Sphere pSphere) {
+    public void addVertexToSphere(Sphere pSphere, V pVertex) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * TODO
+     * Removes a vertex from a sphere.
      *
-     * @param pSphere TODO
-     * @param pVertex TODO
-     */
-    public void addVertexToSphaere(Sphere pSphere, V pVertex) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * TODO
-     *
-     * @param pSphere TODO
-     * @param pVertex TODO
+     * @param pSphere the sphere
+     * @param pVertex the vertex to remove from the sphere
      */
     public void removeVertexFromSphaere(Sphere pSphere, V pVertex) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * TODO
+     * Adds a vertex to the syndrom graphs and assigns it to a sphere.
      *
-     * @param pVertex TODO
-     * @param pSphere TODO
-     * @return TODO
+     * @param pVertex the vertex to add
+     * @param pSphere the sphere to assign to
+     * @return true if the vertex was added to the graph, false if not
      */
     public boolean addVertex(V pVertex, Sphere pSphere) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * TODO
+     * Adds a new sphere to the graph.
      *
+     * @return true if the sphere was added to the graph, false if not
      */
-    public void addSphaere() {
+    public boolean addSphere() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * TODO
+     * Removes a sphere from the graph.
      *
+     * @param pSphere the sphere to remove
      */
-    public void removeSphaere() {
+    public void removeSphaere(Sphere pSphere) {
         throw new UnsupportedOperationException();
     }
 
-    // TODO: anchor points
-
-    public Vertex create(){
-        return new Vertex(i++);
+    /**
+     * Creates a new vertex.
+     *
+     * @return the new created vertex
+     */
+    public Vertex createVertex() {
+        throw new NotImplementedException();
     }
 
+    /**
+     * Creates a new sphere.
+     *
+     * @return the new created sphere
+     */
+    public Sphere createSphere() {
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Creates a new edge.
+     *
+     * @return the new created edge
+     */
+    public Edge createEdge() {
+        throw new NotImplementedException();
+    }
 }
