@@ -1,25 +1,27 @@
 package log_management.parameters.edit;
 
-import LogManagement.Parameters.Param;
+import graph.graph.EdgeArrowType;
+import javafx.util.Pair;
+import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public class EditEdgesTypeParam extends Param implements Serializable {
 
-    private List<Integer> edgesId;
-    private List<Integer> sourceVerticesId;
-    private List<String> sourceVerticesAnnotation;
-    private List<Integer> targetVerticesId;
-    private List<String> targetVerticesAnnotation;
-    // later add edge type attribute
+    private Map<Integer, List<Pair<Integer, String>>> edges;
+    private EdgeArrowType edgeType;
 
 
-    public EditEdgesTypeParam(List<Integer> edgesId, List<Integer> sourceVerticesId, List<String> sourceVerticesAnnotation, List<Integer> targetVerticesId, List<String> targetVerticesAnnotation) {
-        this.edgesId = edgesId;
-        this.sourceVerticesId = sourceVerticesId;
-        this.sourceVerticesAnnotation = sourceVerticesAnnotation;
-        this.targetVerticesId = targetVerticesId;
-        this.targetVerticesAnnotation = targetVerticesAnnotation;
+    public EditEdgesTypeParam(Map<Integer, List<Pair<Integer, String>>> edges, EdgeArrowType edgeType) {
+        this.edges = edges;
+        this.edgeType = edgeType;
+    }
+
+    @Override
+    public String convertToJson() {
+        throw new NotImplementedException();
     }
 }
