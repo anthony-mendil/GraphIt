@@ -5,9 +5,18 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddVerticesParam;
 
+/**
+ * Undoes the method RemoveVerticesLogAction by adding the missing vertices.
+ */
 public class AddVerticesLogAction extends LogAction {
+
+    /**
+     * Constructor which will be used to realize the undo-method of RemoveVerticesLogAction.
+     * @param parameters
+     * The used parameters.
+     */
     public AddVerticesLogAction(AddVerticesParam parameters) {
-        super(LogEntryName.ADD_VERTICES, parameters);
+        super(LogEntryName.ADD_VERTICES);
     }
 
     @Override
@@ -24,10 +33,4 @@ public class AddVerticesLogAction extends LogAction {
         // (opposite actions)
     }
 
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
 }

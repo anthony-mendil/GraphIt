@@ -5,9 +5,12 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVertexFormParam;
 
+/**
+ *
+ */
 public class EditVertexFormLogAction extends LogAction {
     public EditVertexFormLogAction(EditVertexFormParam parameters) {
-        super(LogEntryName.EDIT_VERTEX_FORM, parameters);
+        super(LogEntryName.EDIT_VERTEX_FORM);
     }
 
     @Override

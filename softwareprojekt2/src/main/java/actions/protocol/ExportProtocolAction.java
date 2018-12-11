@@ -2,6 +2,9 @@ package actions.protocol;
 
 import actions.Action;
 
+/**
+ * Exports the data(database/logs) to a new datatype.
+ */
 public class ExportProtocolAction extends Action {
     @Override
     public void action() {

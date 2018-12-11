@@ -11,15 +11,20 @@ import java.awt.geom.Point2D;
  * Adds a sphere to the graph.
  */
 public class AddSphereLogAction extends LogAction {
-    public AddSphereLogAction(AddSphereParam pAddSphereParam) {
-        super(LogEntryName.ADD_SPHERE);
-    }
 
     /**
-     * Constructor in case the user
+     * Constructor in case the user clicks on somewhere blank space to create a sphere.
      * @param pPoint2D
      */
     public AddSphereLogAction(Point2D pPoint2D){
+        super(LogEntryName.ADD_SPHERE);
+    }
+    /**
+     * Constructor which will be used to realize the undo-method of RemoveSphereLogAction.
+     * @param pAddSphereParam
+     * The used parameters.
+     */
+    public AddSphereLogAction(AddSphereParam pAddSphereParam) {
         super(LogEntryName.ADD_SPHERE);
     }
 

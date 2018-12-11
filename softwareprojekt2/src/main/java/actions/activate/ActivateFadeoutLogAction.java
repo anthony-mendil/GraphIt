@@ -34,6 +34,7 @@ public class ActivateFadeoutLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of DeactivateFadeoutLogAction.
      * @param pActivateFadeoutParam
+     * The used parameters.
      */
     public ActivateFadeoutLogAction(ActivateFadeoutParam pActivateFadeoutParam){
         super(LogEntryName.ACTIVATE_FADEOUT);

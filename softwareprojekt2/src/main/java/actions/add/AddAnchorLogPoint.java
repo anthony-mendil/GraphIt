@@ -9,13 +9,13 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
-public class AddAnchorPoint extends LogAction {
+public class AddAnchorLogPoint extends LogAction {
     /**
      * Constructor for the action in the case only one anchor-point shall be added.
      * @param pVertex
      * The vertex which hosts the anchor-point.
      */
-    public AddAnchorPoint(Vertex pVertex){
+    public AddAnchorLogPoint(Vertex pVertex){
         super(LogEntryName.ADD_ANCHOR_POINT);
     }
 
@@ -24,15 +24,16 @@ public class AddAnchorPoint extends LogAction {
      * @param pVertices
      * The vertices which hosts the anchor-points.
      */
-    public AddAnchorPoint(Collection<Vertex> pVertices){
+    public AddAnchorLogPoint(Collection<Vertex> pVertices){
         super(LogEntryName.ADD_ANCHOR_POINT);
     }
 
     /**
      * Constructor which will be used to realize the undo-method of RemoveAnchorPointAction.
      * @param pActivateAnchorPointsFadeoutParam
+     * The used parameters.
      */
-    public AddAnchorPoint(AddAnchorPointParam pActivateAnchorPointsFadeoutParam){
+    public AddAnchorLogPoint(AddAnchorPointParam pActivateAnchorPointsFadeoutParam){
         super(LogEntryName.ADD_ANCHOR_POINT);
     }
     /**

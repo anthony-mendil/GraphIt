@@ -1,4 +1,8 @@
 package log_management.parameters.add;
 
-public class AddEdgesParam {
-}
+import LogManagement.Parameters.Param;
+import graph.graph.Edge;
+
+import java.io.Serializable;
+
+public class AddEdgesParam extends Param implements Serializable {}

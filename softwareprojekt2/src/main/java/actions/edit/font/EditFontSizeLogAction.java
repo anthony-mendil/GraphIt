@@ -5,9 +5,25 @@ import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditFontSizeParam;
 
+/**
+ * Changes the font-size of annotations.
+ */
 public class EditFontSizeLogAction extends LogAction {
-    public EditFontSizeLogAction(EditFontSizeParam parameters) {
-        super(LogEntryName.EDIT_FONT_SIZE, parameters);
+    /**
+     * Constructor in case the user changes the font-size of the annotation.
+     * @param pSize
+     * The size of the font.
+     */
+    public EditFontSizeLogAction(int pSize) {
+        super(LogEntryName.EDIT_FONT_SIZE);
+    }
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     * @param pEditFontSizeParam
+     * The used parameters.
+     */
+    public EditFontSizeLogAction(EditFontSizeParam pEditFontSizeParam) {
+        super(LogEntryName.EDIT_FONT_SIZE);
     }
 
     @Override
@@ -20,13 +36,6 @@ public class EditFontSizeLogAction extends LogAction {
     @Override
     public void undo() {
         // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
-
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
         // and adding the according actions to the database
         // (opposite actions)
     }

@@ -7,7 +7,7 @@ import log_management.parameters.edit.EditEdgeFormParam;
 
 public class EditEdgeStrokeLogAction extends LogAction {
     public EditEdgeStrokeLogAction(EditEdgeFormParam parameters) {
-        super(LogEntryName.EDIT_EDGE_FORM, parameters);
+        super(LogEntryName.EDIT_EDGE_FORM);
     }
 
     @Override

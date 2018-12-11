@@ -7,7 +7,7 @@ import log_management.parameters.edit.EditEdgeTypeParam;
 
 public class EditEdgeTypeLogAction extends LogAction {
     public EditEdgeTypeLogAction(EditEdgeTypeParam parameters) {
-        super(LogEntryName.EDIT_EDGE_TYPE, parameters);
+        super(LogEntryName.EDIT_EDGE_TYPE);
     }
 
     @Override

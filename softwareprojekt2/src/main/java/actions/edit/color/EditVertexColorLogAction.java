@@ -7,7 +7,7 @@ import log_management.parameters.edit.EditVertexColorParam;
 
 public class EditVertexColorLogAction extends LogAction {
     public EditVertexColorLogAction(EditVertexColorParam parameters) {
-        super(LogEntryName.EDIT_VERTEX_COLOR, parameters);
+        super(LogEntryName.EDIT_VERTEX_COLOR);
     }
 
     @Override

@@ -33,6 +33,7 @@ public class ActivateAnchorPointsFadeoutAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of DeactivateAnchorFadeout.
      * @param pActivateAnchorPointsFadeoutParam
+     * The used parameters.
      */
     public ActivateAnchorPointsFadeoutAction(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam){
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);

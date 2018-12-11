@@ -1,4 +1,7 @@
 package log_management.parameters.add;
 
-public class AddAnchorPointParam {
+import java.io.Serializable;
+import LogManagement.Parameters.Param;
+
+public class AddAnchorPointParam extends Param implements Serializable {
 }

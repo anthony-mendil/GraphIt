@@ -1,13 +1,30 @@
 package actions.edit;
 
 import actions.LogAction;
+import graph.graph.EdgeArrowType;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgesTypeParam;
 
+/**
+ * Changes the edge-type of the selected edges.
+ */
 public class EditEdgesTypeLogAction extends LogAction {
-    public EditEdgesTypeLogAction(EditEdgesTypeParam parameters) {
-        super(LogEntryName.EDIT_EDGES_TYPE, parameters);
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     * @param pEdgeArrowType
+     * The used parameters.
+     */
+    public EditEdgesTypeLogAction(EdgeArrowType pEdgeArrowType) {
+        super(LogEntryName.EDIT_EDGES_TYPE);
+    }
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     * @param pEditEdgesTypeParam
+     * The used parameters.
+     */
+    public EditEdgesTypeLogAction(EditEdgesTypeParam pEditEdgesTypeParam) {
+        super(LogEntryName.EDIT_EDGES_TYPE);
     }
 
     @Override
@@ -20,13 +37,6 @@ public class EditEdgesTypeLogAction extends LogAction {
     @Override
     public void undo() {
         // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
-    }
-
-    @Override
-    public void redo() {
-        // stuff that is done when redoing
         // and adding the according actions to the database
         // (opposite actions)
     }
