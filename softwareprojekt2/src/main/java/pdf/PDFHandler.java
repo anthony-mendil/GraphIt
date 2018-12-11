@@ -33,8 +33,9 @@ public class PDFHandler {
      * @param pName The name of the syndrom becoming the filename
      */
     public void exportPDF(VisualizationViewer pVv, String pName){
-        ExportDialog export = new ExportDialog();
-        export.showExportDialog(pVv, "Export view as ...", pVv, "export");
+        throw new UnsupportedOperationException();
+        //ExportDialog export = new ExportDialog();
+        //export.showExportDialog(pVv, "Export view as ...", pVv, "export");
     }
 
     /**
@@ -44,6 +45,7 @@ public class PDFHandler {
      * @param pName The name of the syndrom becoming the filename
      */
     public void printPDF(VisualizationViewer pVv, String pName){
+        throw new UnsupportedOperationException();
         //createPDF(pVv, pName);
 
     }
