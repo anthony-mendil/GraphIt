@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
 import LogManagement.Parameters.Param;
+import log_management.parameters.Param;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -24,5 +25,10 @@ public class EditEdgesColorParam extends Param implements Serializable {
         this.targetVerticesAnnotation = targetVerticesAnnotation;
         this.oldColors = oldColors;
         this.newColor = newColor;
+    }
+
+    @Override
+    public String convertToJson() {
+        return null;
     }
 }
