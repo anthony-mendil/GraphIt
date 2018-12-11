@@ -1,4 +1,4 @@
-package actions.other;
+package actions.export_graph;
 
 /*
     Aktionsleiste -> Datei.. -> PDF drucken
