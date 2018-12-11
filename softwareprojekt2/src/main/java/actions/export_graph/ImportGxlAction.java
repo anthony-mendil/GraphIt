@@ -1,4 +1,4 @@
-package actions.gxl;
+package actions.export_graph;
 
 /*
     Aktionsleiste -> Datei.. -> Import GXL
