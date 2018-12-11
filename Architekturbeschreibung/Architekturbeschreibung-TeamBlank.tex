@@ -891,7 +891,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S1 - GXL}}: \\
+			\textbf{\cb{\hypertarget{yy}{S1 - GXL}}}: \\
 			Speichern des Graphen als GXL- Repräsentation, gespeichert als text/plain in einer Embedded Database (was dem Datentypen varchar entsprechend zu realisieren wäre). \\
 			\textbf{S2 - BLOB NEO4J}: \\
 			Speichern einer Neo4J-Database, die den Graphen beinhaltet. Der Graph selbst wird als BLOB (Binary Large Object) in einer Embedded Database gespeichert. \\
@@ -924,7 +924,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S4 - Command}}: \\
+			\textbf{\cb{\hypertarget{zz}{S4 - Command}}}: \\
 			Persistierung des Graphen nach jedem Command. Das hieße, dass der Graph nach jeder Aktion, die ein Nutzer ausführt, gespeichert werden würde. \\
 			\textbf{S5 - Benutzer}: \\
 			Persistierung des Graphen nach Aufruf des Speicherbefehls durch den Benutzer. Bei Entscheidung für diese Strategie würde keine automatische Speicherung des Graphen stattfinden.
@@ -968,7 +968,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S6 - CSV}: \\
 			Schreiben und Speichern der Nutzerinteraktionen in eine CSV Datei. \\
-			\textbf{\cb{S7 - Datenmodell}}: \\
+			\textbf{\cb{\hypertarget{aaa}{S7 - Datenmodell}}}: \\
 			Speichern der Nutzerinteraktionen in der Embedded Database mit eigenem Datenmodell auf der Grundlage des Entwurfsmusters Command.}}\\ [6ex]
 	\hline
 \end{tabular}\\ \\ \\
@@ -998,7 +998,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S8 - MVC}}: \\
+			\textbf{\cb{\hypertarget{bbb}{S8 - MVC}}}: \\
 			Dieses Design-Pattern sieht die Aufteilung des Systems in die drei grundlegenden Bestandteile Model, View und Controller vor. \\
 			\textbf{\cb{S9 - Command}}: \\
 			Die Verwendung vom Command Designpattern sieht den Aufbau der Architektur derart vor, dass verschiedene Aktionen, die ein Nutzer ausführen kann, als Command-Objekte realisiert werden.. \\
@@ -1029,7 +1029,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S11 - (System) Biblotheken}}: \\
+			\textbf{\cb{\hypertarget{ccc}{S11 - (System) Biblotheken}}}: \\
 			\textbf{\cb{S12 - Dokumentierte Bibliotheken}}: \\
 			\textbf{\cb{S13 - MVC}}: \\
 			Verwendung Model- View- Controller Designpattern
@@ -1058,7 +1058,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S16 - Dokumentierte Bibliotheken}}\\
+			\textbf{\cb{\hypertarget{ddd}{S16 - Dokumentierte Bibliotheken}}}\\
 			Bei der Wahl von Bibliotheken ist darauf zu achten, dass man deren Dokumentation in gut verständlicher Form erhalten kann. \\
 			\textbf{\cb{S17 - Dokumentierung von geschriebenem Code}}\\
 			Parallel zur Erstellung von Quell-Code wird deren Dokumentation geschrieben.\\
@@ -1113,7 +1113,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S19 - JUNG}}: \\
+			\textbf{\cb{\hypertarget{eee}{S19 - JUNG}}}: \\
 			JUNG (Java Universal Network Graph Framework) ist eine open-source Softwarebibliothek, die eine Schnittstelle für die Modellierung, Analyse und Visualisierung von Daten bietet, die als Graph dargestellt werden können. \\
 			\textbf{S20 - JGraphX, JGraphT}: \\
 			JGraphT ist eine Java-Bibliothek mit graphentheoretischen Datenstrukturen und Algorithmen. JGraphX ist ein auf Swing- basierendes Framework zur Graphvisualisierung. \\
@@ -1162,13 +1162,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{22 - JUNG}}: \\
+			\textbf{\cb{\hypertarget{fff}{S22 - JUNG}}}: \\
 			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
-			\textbf{23 - NEO4J}: \\
+			\textbf{S23 - NEO4J}: \\
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
-			\textbf{\cb{24 - eigene Implementierung}}: \\
+			\textbf{\cb{S24 - eigene Implementierung}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.
-			\textbf{\cb{25 - JGraphT}}
+			\textbf{\cb{S25 - JGraphT}}
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1196,7 +1196,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S25: Framework}: \\
 			Eine open- source Bibliothek für den Druck einbinden.\\
-			\textbf{\cb{S26: Java API}}: \\
+			\textbf{\cb{\hypertarget{ggg}{S26: Java API}}}: \\
 			Benutzung der Java API for Print Jobs. \\
 			\textbf{S27 - Extern }: \\
 			PDF des Graphen in einem System- externen PDFReader öffnen und ausdrucken.
@@ -1243,7 +1243,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S28 - JUNG}: \\
 			JUNG bietet eine Möglichkeit den VisualisationViewer, welcher den Graphen visualisiert, als JPG zu speichern. Dieses Bild kann dann unter Verwendung eines Frameworks zur PDF Erstellung in eine PDF eingebettet werden. \\
-			\textbf{\cb{S29 - java.awt.Graphics2D}}: \\
+			\textbf{\cb{\hypertarget{hhh}{S29 - java.awt.Graphics2D}}}: \\
 			Verwendung einer Bibliothek, die es Java- Programmen, ausgehen von java.awt.Graphics2D, ermöglicht diese als PDF zu exportieren. \\
 	} }\\ [4ex] \hline
 \end{tabular}\\ \\ \\
@@ -1267,7 +1267,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S30 - Freeheb Vectorgraphics}}: \\
+			\textbf{\cb{\hypertarget{iii}{S30 - Freeheb Vectorgraphics}}}: \\
 			Freeheb Vectorgraphics bietet eine umfangreiche Lösung um java.awt.Graphics2D als zahlreiche Formate (SVG, PDF) zu exportieren und eine einfache Schnittstelle für den Benutzer. \\
 			\textbf{31 - iText}: \\
 			Das Framework iText erlaubt es Swing Komponenten als PDF zu speichern. \\
@@ -1296,13 +1296,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S32 - CSV} \\
 			Die Nutzerinteraktionen könnten aus der Datenbank abgefragt und die aus der Datenbank erhaltenen Objekte könnten dann in je eine Zeile der Character-seperated-Value (CSV) -Datei geschrieben werden. Die Informationen / Werte der einzelnen Objekte würden dann entsprechend durch ein festzulegendes Zeichen voneinander getrennt werden. \\
-			\textbf{S33 - JavaScript Object Notation (.json)} \\
+			\textbf{\cb{\hypertarget{jjj}{S33 - JavaScript Object Notation (.json)}}} \\
 			JSON ist eine Notation, die sowohl von Menschen gelesen als auch von Maschinen interpretiert werden kann. Dabei kann die Information (die in JavaScript Object Notation enthalten ist) von der Programmiersprche unseres Systems (Java) unabhängig gewonnen werden. Es ist also möglich eine JSON-Datei später beispielsweise über ein Python-Script einzulesen.
 	} }\\ \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir entscheiden uns für \cb{S33}. Da wir in unserem Datenmodell für die Nutzerinteraktionen .json einbinden, um die Parameterwerte der Logs abzuspeichern, eignet es sich das gesamte Protokoll auch als .json zu importieren/ exportieren. \\
-	\cb{Sx} würde vom Prinzip auch funktionieren. Da das Datenmodell bereits .json einbindet und so wenig wie möglich verschiedene Dateiformate in unserem System eingebunden sein sollen, um Fehler zu vermeiden, entschieden wir uns gegen \cb{S32}.
+	\cb{S32} würde vom Prinzip auch funktionieren. Da das Datenmodell bereits .json einbindet und so wenig wie möglich verschiedene Dateiformate in unserem System eingebunden sein sollen, um Fehler zu vermeiden, entschieden wir uns gegen \cb{S32}.
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newpage
