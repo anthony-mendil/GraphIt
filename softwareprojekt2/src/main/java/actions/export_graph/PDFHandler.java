@@ -6,15 +6,17 @@ import org.freehep.graphicsbase.util.export.ExportDialog;
 public class PDFHandler {
 
     private VisualizationViewer vv;
+    private String name;
 
     /**
      * Constructs a new PDFHandler of the the current graph visualization.
      *
      * @param pVv The VisualizationViewer of the current graph
-     * @param pName The name of the Syndrom, that will become the filename
+     * @param pName The name of the syndrom becoming the filename
      */
     public PDFHandler(VisualizationViewer pVv, String pName){
         vv=pVv;
+        name=pName;
     }
 
     /**
@@ -38,6 +40,7 @@ public class PDFHandler {
      * Starts the dialog to export the current graph visualization as PDF
      */
     public void printPDF(){
+        //createPDF();
 
     }
 }
