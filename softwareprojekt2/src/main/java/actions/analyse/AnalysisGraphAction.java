@@ -1,5 +1,7 @@
 package actions.analyse;
 
+import actions.GraphAction;
+import edu.uci.ics.jung.graph.util.EdgeType;
 import graph.algorithmen.AnalyseTypeSeveral;
 import graph.algorithmen.AnalyseTypeSingle;
 
@@ -14,7 +16,7 @@ import java.util.List;
  * </p>
  *
  */
-public class AnalysisGraphAction {
+public class AnalysisGraphAction extends GraphAction{
     /**
      * the list of analyse types, several types can be passed
      */
@@ -33,8 +35,12 @@ public class AnalysisGraphAction {
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
      *
      * @param pAnalyseTypeSeveral a list of AnalyseTypeSeveral
+     * @param counterEdges the number of incoming / outgoing edges to analyse
+     * @param counterVertex the number of adjacent vertices to analyse
+     * @param edgeType the edge type to analyse
      */
-    public AnalysisGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral) {
+    public AnalysisGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, int counterVertex, int counterEdges,
+                               EdgeType edgeType) {
         throw new UnsupportedOperationException();
     }
 
@@ -47,6 +53,16 @@ public class AnalysisGraphAction {
      * @param pAnalyseTypeSingle the analyse type
      */
     public AnalysisGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void action() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void undo() {
         throw new UnsupportedOperationException();
     }
 }

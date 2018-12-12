@@ -1,21 +1,33 @@
 package actions.analyse;
 
+import actions.GraphAction;
 import graph.algorithmen.SelectionType;
 
 /**
- * Analyses only a selected section on the whole graph.
- * <p>
- * edit mode
- * <p>
- * abhängig von dem selectionstyp werden die dinge angezeigt nur sichbar, bis die selection aufgehoben wird - nur color
- * change JUNG oder JGraphT?
+ * Analyses only a selected section on the whole graph for
+ * 1. all nodes and edges that can be reached by the selection are appropriately visually highlighted
+ * (with and without consideration of the edge direction)
+ * 2. all nodes and edges on all paths between the selected elements are appropriately visually highlighted
+ * (with and without consideration of the edge directions)
+ *
  */
-public class SelectionAnalysisGraphAction {
+public class SelectionAnalysisGraphAction extends GraphAction {
     /**
      * Constructor in case the user wants to analyse a section of the graph.
+     * All picked vertices/ edges are analysed.
      * @param selectionType the selection type
      */
     public SelectionAnalysisGraphAction(SelectionType selectionType) {
+        throw new UnsupportedOperationException();
+    }
 
+    @Override
+    public void action() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void undo() {
+        throw new UnsupportedOperationException();
     }
 }
