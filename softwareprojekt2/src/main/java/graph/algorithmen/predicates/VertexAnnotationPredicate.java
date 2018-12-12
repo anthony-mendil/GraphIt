@@ -1,8 +1,8 @@
 package graph.algorithmen.predicates;
 
-import com.sun.istack.internal.NotNull;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
+import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -19,7 +19,7 @@ public class VertexAnnotationPredicate<V, E> implements Predicate<Context<Graph<
      * Defines the regular expression after the vertex annotation is filtered.
      */
     @Setter
-    @NotNull
+    @NonNull
     private String regularExpression;
 
     /**

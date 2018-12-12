@@ -1,4 +1,4 @@
-package pdf;
+package handler;
 
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import org.freehep.graphicsbase.util.export.ExportDialog;

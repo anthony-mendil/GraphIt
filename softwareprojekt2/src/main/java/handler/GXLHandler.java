@@ -1,4 +1,4 @@
-package gxl;
+package handler;
 
 public class GXLHandler {
 
