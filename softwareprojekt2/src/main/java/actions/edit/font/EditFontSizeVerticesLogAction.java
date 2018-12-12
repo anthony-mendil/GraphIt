@@ -12,21 +12,19 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * Changes the font-size of annotations.
  *
  */
-public class EditFontSizeLogAction extends LogAction {
+public class EditFontSizeVerticesLogAction extends LogAction {
     /**
      * Constructor in case the user changes the font-size of the annotation.
-     * @param pSize
-     * The size of the font.
+     * @param pSize the size of the font
      */
-    public EditFontSizeLogAction(int pSize) {
+    public EditFontSizeVerticesLogAction(int pSize) {
         super(LogEntryName.EDIT_FONT_SIZE);
     }
     /**
      * Constructor which will be used to realize the undo-method of itself.
-     * @param pEditFontSizeParam
-     * The used parameters.
+     * @param pEditFontSizeParam The EditFontSizeParam containing the new font size and the vertices
      */
-    public EditFontSizeLogAction(EditFontSizeParam pEditFontSizeParam) {
+    public EditFontSizeVerticesLogAction(EditFontSizeParam pEditFontSizeParam) {
         super(LogEntryName.EDIT_FONT_SIZE);
     }
 

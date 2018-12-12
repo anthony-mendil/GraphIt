@@ -40,6 +40,7 @@ public class MoveVerticesLogAction extends LogAction {
      *           where the user released the mouse
      * @param dy the difference between the y-coordinate from the point where the user pressed the mouse and the point
      *           where the user released the mouse
+     * @param vertices the collection of vertices to move
      */
     public MoveVerticesLogAction(double dx, double dy, Collection<Vertex> vertices) {
         super(LogEntryName.MOVE_VERTICES);

@@ -1,13 +1,20 @@
 package log_management.parameters.activate;
 
 import log_management.parameters.Param;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
-public class ActivateAnchorPointsFadeoutParam extends Param implements Serializable {
+/**
+ *
+ */
+public class ActivateAnchorPointsFadeoutParam extends Param {
 
-    // later add other attributes
+    /**
+     *
+     */
     public ActivateAnchorPointsFadeoutParam() {
+        throw new NotImplementedException();
     }
 
     @Override

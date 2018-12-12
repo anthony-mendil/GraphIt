@@ -16,8 +16,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class ChangeLanguageAction extends Action{
     /**
      * Constructor in case the user changes the language.
-     * @param pLanguage
-     * The new Language.
+     * @param pLanguage the new Language
      */
     public ChangeLanguageAction(String pLanguage){
 

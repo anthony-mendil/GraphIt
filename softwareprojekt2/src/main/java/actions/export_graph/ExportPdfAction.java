@@ -12,7 +12,7 @@ public class ExportPdfAction extends GraphAction {
      * Actionhandling for exporting the graph as PDF
      */
     public ExportPdfAction(){
-
+        throw new NotImplementedException();
     }
 
     /**

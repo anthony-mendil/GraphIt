@@ -15,6 +15,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class EditSphereAnnotationLogAction extends LogAction {
     /**
      * Constructor in case the user changes the annotation of a sphere.
+     *
+     * @param pText the new sphere annotation
      */
     public EditSphereAnnotationLogAction(String pText) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);

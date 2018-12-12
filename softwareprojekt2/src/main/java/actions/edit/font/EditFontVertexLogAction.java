@@ -1,7 +1,6 @@
 package actions.edit.font;
 
 import actions.LogAction;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditFontParam;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -12,20 +11,19 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *
  * Changes the font of annotations.
  */
-public class EditFontLogAction extends LogAction {
+public class EditFontVertexLogAction extends LogAction {
     /**
      * Constructor in case the user wants to change the font.
-     * @param pFont
-     * The font-name.
+     * @param pFont the font-name.
      */
-    public EditFontLogAction(String pFont){
+    public EditFontVertexLogAction(String pFont){
         super(LogEntryName.EDIT_FONT);
     }
     /**
      * Constructor which will be used to realize the undo-method of itself.
-     * @param parameters
+     * @param parameters the EditFontParam containing the new font and a collection of vertices
      */
-    public EditFontLogAction(EditFontParam parameters) {
+    public EditFontVertexLogAction(EditFontParam parameters) {
         super(LogEntryName.EDIT_FONT);
     }
 

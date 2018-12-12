@@ -4,7 +4,10 @@ import actions.LogAction;
 import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVerticesFormParam;
-<<<<<<< HEAD
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.awt.*;
+
 /*
  *  ([shift+]linksclick, bereich markieren) Sphäre markieren -> GUI Button Form
  *   ([shift+]linksclick, bereich markieren) Sphäre markieren -> rechtsclick auf Sphäre -> Form -> neuer Drop-Down-Menü
@@ -31,15 +34,16 @@ public class EditVerticesFormLogAction extends LogAction {
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }

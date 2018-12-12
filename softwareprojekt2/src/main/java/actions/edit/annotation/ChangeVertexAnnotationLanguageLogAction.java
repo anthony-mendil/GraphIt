@@ -10,6 +10,8 @@ import log_management.parameters.edit.EditVertexAnnotationParam;
 public class ChangeVertexAnnotationLanguageLogAction{
     /**
      * Constructor in case the user clicks on a vertex to change the annotation.
+     *
+     * @param pLanguage the language to change to
      */
     public ChangeVertexAnnotationLanguageLogAction(int pLanguage){
     }

@@ -16,7 +16,7 @@ public class AddEdgesLogAction extends LogAction {
     /**
      * Constructor in case several edges shall be added.
      *
-     * @param pCollectionPair
+     * @param pCollectionPair the collection includes pairs of vertices between which one edge should be added
      */
     public AddEdgesLogAction(Collection<Pair<Vertex, Vertex>> pCollectionPair) {
         super(LogEntryName.ADD_EDGES);
@@ -26,7 +26,7 @@ public class AddEdgesLogAction extends LogAction {
     /**
      * This constructor will be used to realize the undo-method of the method RemoveEdgesLogAction.
      *
-     * @param pAddEdgesParam
+     * @param pAddEdgesParam the AddEdgesParam, containing all edges to add.
      */
     public AddEdgesLogAction(AddEdgesParam pAddEdgesParam) {
         super(LogEntryName.ADD_EDGES);

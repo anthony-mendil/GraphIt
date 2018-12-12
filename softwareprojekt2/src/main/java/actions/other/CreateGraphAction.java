@@ -8,14 +8,14 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *  Aktionsleiste -> Datei.. -> Neuer/Neue Graph/Datei...
  *
  * Creates a new graph.
- * developCleme
+ *
  */
 public class CreateGraphAction extends GraphAction {
     private String graphName;
 
     /**
      * Constructor in case the user creates a new graph.
-     * @param pGraphName
+     * @param pGraphName the name of the graph
      */
     public CreateGraphAction(String pGraphName){
     }

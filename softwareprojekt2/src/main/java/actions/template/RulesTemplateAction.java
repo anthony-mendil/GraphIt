@@ -1,4 +1,4 @@
-package actions.vorlage;
+package actions.template;
 
 import actions.GraphAction;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;

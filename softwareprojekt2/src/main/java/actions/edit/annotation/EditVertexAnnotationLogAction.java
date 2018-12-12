@@ -16,6 +16,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class EditVertexAnnotationLogAction extends LogAction {
     /**
      * Constructor in case the user wants to change the annotation of vertex.
+     *
+     * @param pText the new vertex annotation
      */
     public EditVertexAnnotationLogAction(String pText) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);
@@ -24,7 +26,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditVertexAnnotationParam
+     * @param pEditVertexAnnotationParam the EditVertexAnnotationParam containing the new vertex annotation
      */
     public EditVertexAnnotationLogAction(EditVertexAnnotationParam pEditVertexAnnotationParam) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);

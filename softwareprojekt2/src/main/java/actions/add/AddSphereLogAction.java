@@ -20,7 +20,7 @@ public class AddSphereLogAction extends LogAction {
     /**
      * Constructor in case the user clicks on somewhere blank space to create a sphere.
      *
-     * @param pPoint2D
+     * @param pPoint2D The point where to add the sphere and it refers to the upper left corner of the sphere.
      */
     public AddSphereLogAction(Point2D pPoint2D) {
         super(LogEntryName.ADD_SPHERE);

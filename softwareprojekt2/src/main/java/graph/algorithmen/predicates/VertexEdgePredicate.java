@@ -10,8 +10,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the vertex for specific edge type.
- * @param <V>
- * @param <E>
+ * @param <V> the vertex type
+ * @param <E> the edge type
  */
 public class VertexEdgePredicate<V,E> implements Predicate<Context<Graph<V, E>, V>> {
     /**

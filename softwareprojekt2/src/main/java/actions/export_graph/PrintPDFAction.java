@@ -12,7 +12,7 @@ public class PrintPDFAction extends GraphAction {
      * Actionhandling for printing the graph as PDF
      */
     PrintPDFAction(){
-
+        throw new NotImplementedException();
     }
 
     /**

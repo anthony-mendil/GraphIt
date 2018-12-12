@@ -12,7 +12,7 @@ public class ExportGxlAction extends GraphAction {
      * Constructs actionhandling for exporting the graph as GXL
      */
     public ExportGxlAction(){
-
+        throw new NotImplementedException();
     }
 
     /**

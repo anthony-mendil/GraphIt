@@ -2,6 +2,7 @@ package graph.visualization.transformer.vertex;
 
 import edu.uci.ics.jung.visualization.decorators.AbstractVertexShapeTransformer;
 import org.apache.commons.collections15.Transformer;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 
@@ -12,12 +13,13 @@ import java.awt.*;
  */
 public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V> implements Transformer<V, Shape> {
     /**
+     * creates a vertex shape transformer with with the specified
+     * vertex size
      *
-     * @param vsf
-     * @param varf
+     * @param pSizeTransformer the size transformer
      */
-    public VertexShapeTransformer(Transformer<V, Integer> vsf, Transformer<V, Float> varf) {
-        super(vsf, varf);
+    public VertexShapeTransformer(Transformer<V, Integer> pSizeTransformer) {
+        throw new NotImplementedException();
     }
 
     @Override

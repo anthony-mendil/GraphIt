@@ -27,8 +27,9 @@ public class MoveSphereLogAction extends LogAction {
     /**
      * Moves the sphere from its old to the new position
      * @param newPos the new position to put the sphere
+     * @param pSphere the sphere to move
      */
-    public MoveSphereLogAction(Sphere sphere, Point2D newPos) {
+    public MoveSphereLogAction(Sphere pSphere, Point2D newPos) {
         super(LogEntryName.MOVE_SPHERE);
         throw new NotImplementedException();
     }
