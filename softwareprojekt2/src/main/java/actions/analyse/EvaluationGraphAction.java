@@ -25,7 +25,7 @@ public class EvaluationGraphAction extends GraphAction{
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked and statistics
      * are shown in the gui.
      *
-     * @param pAnalyseTypeSeveral a list of AnalyseTypeSeveral
+     * @param pAnalyseTypeSeveral a list of AnalyseTypeSeveral, several types can be analysed at once
      * @param edgeType the edge type
      */
     public EvaluationGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, EdgeType edgeType) {
@@ -39,7 +39,7 @@ public class EvaluationGraphAction extends GraphAction{
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked and statistics
      * are shown in the gui.
-     * @param pAnalyseTypeSingle the analyse type
+     * @param pAnalyseTypeSingle the analyse type, one type can be analysed at once
      */
     public EvaluationGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {
         throw new UnsupportedOperationException();

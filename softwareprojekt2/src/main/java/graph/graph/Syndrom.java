@@ -179,10 +179,6 @@ public class Syndrom {
      */
     private FunctionMode mode;
 
-    /**
-     *
-     */
-
 
     /**
      * Syndrom is supposed to be an singleton instance.

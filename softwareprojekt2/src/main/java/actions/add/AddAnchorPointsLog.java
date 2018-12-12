@@ -3,24 +3,28 @@ package actions.add;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateAnchorPointsFadeoutParam;
+import log_management.parameters.add.AddAnchorPointsParam;
+import log_management.parameters.remove.RemoveAnchorPointsParam;
 
 import java.awt.geom.Point2D;
 
-public class AddAnchorLogPoints extends LogAction {
+public class AddAnchorPointsLog extends LogAction {
     /**
      * Constructor in the case only one anchor-point shall be added.
      *
      * @param pPoint2D The position of the vertex which hosts the anchor-point.
      */
-    public AddAnchorLogPoints(Point2D pPoint2D) {
+    public AddAnchorPointsLog(Point2D pPoint2D) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Constructor in case several anchor-points shall be added.
+     * Constructor which will be used to realize the undo-method of RemoveAnchorPointsAction.
+     *
+     * @param pRemoveAnchorPointsParam The parameters containing all anchor points to add
      */
-    public AddAnchorLogPoints() {
+    public AddAnchorPointsLog(RemoveAnchorPointsParam pRemoveAnchorPointsParam) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }
@@ -28,9 +32,9 @@ public class AddAnchorLogPoints extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of RemoveAnchorPointAction.
      *
-     * @param pActivateAnchorPointsFadeoutParam The used parameters.
+     * @param pAddAnchorPointsParam The parameters containing all anchor points to add
      */
-    public AddAnchorLogPoints(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
+    public AddAnchorPointsLog(AddAnchorPointsParam pAddAnchorPointsParam) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }

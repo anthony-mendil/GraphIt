@@ -3,6 +3,7 @@ package actions.activate;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateHighlightParam;
+import log_management.parameters.deactivate.DeactivateHighlightParam;
 
 import java.awt.geom.Point2D;
 
@@ -29,11 +30,21 @@ public class ActivateHighlightLogAction extends LogAction {
     }
 
     /**
-     * Constructor which will be used to realize the undo-method of DeactivateHighlightLogAction.
+     * Highlight all vertices passed by ActivateHighlightParam
      *
-     * @param pActivateHighlightParam The used parameters.
+     * @param pActivateHighlightParam The parameters containing all vertices to highlight
      */
     public ActivateHighlightLogAction(ActivateHighlightParam pActivateHighlightParam) {
+        super(LogEntryName.ACTIVATE_HIGHLIGHT);
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Constructor which will be used to realize the undo-method of DeactivateHighlightLogAction.
+     *
+     * @param pDeactivateHighlightParam The parameters containing all vertices to highlight
+     */
+    public ActivateHighlightLogAction(DeactivateHighlightParam pDeactivateHighlightParam) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
         throw new UnsupportedOperationException();
     }

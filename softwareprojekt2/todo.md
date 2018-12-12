@@ -19,7 +19,11 @@
 - phillip gui
 - observer
 - umfang, veretzungsindex, strukturindex
-- 
+- hab addAnchorpoints() rausgenimmen, wird nie aufgerufen
+- actions UNDO kann raus und nur die redo rein
+
+- oberserver ... nach jeder action die das model geändert hat, gui notify und nicht bei model 
+
 
 ### GUI
 - javafx
