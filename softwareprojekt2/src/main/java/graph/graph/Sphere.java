@@ -2,7 +2,6 @@ package graph.graph;
 
 import lombok.Data;
 import lombok.NonNull;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -71,8 +70,8 @@ public class Sphere {
 
 
     /**
-     * Creates a sphere with a specific id on a certain point.
-     * All other attributes get the default value defined in Values.
+     * Creates a sphere with a specific id on a certain point. All other attributes get the default value defined in
+     * Values.
      *
      * @param coordinates the point where to put the sphere
      * @param id          the id of the sphere
@@ -80,6 +79,6 @@ public class Sphere {
     public Sphere(Point2D coordinates, int id) {
         this.id = id;
         this.coordinates = coordinates;
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

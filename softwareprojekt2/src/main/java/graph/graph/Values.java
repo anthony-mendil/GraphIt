@@ -5,8 +5,8 @@ import lombok.*;
 import java.awt.*;
 
 /**
- * Defines values for the syndrom. This are default values.
- * The values represent the currently selected values from the GUI.
+ * Defines values for the syndrom. This are default values. The values represent the currently selected values from the
+ * GUI.
  */
 @Data
 public class Values {
@@ -147,8 +147,8 @@ public class Values {
     /**
      * @return singleton instance of constants
      */
-    public static Values getInstance(){
-        if (instance == null){
+    public static Values getInstance() {
+        if (instance == null) {
             return new Values();
         }
         return instance;

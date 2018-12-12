@@ -1,16 +1,15 @@
 package actions.template;
 
 import actions.GraphAction;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class RulesTemplateAction extends GraphAction{
+public class RulesTemplateAction extends GraphAction {
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

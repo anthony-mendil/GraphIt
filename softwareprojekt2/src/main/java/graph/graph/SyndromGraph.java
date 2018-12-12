@@ -11,9 +11,6 @@ package graph.graph;/*
  */
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
-import lombok.Getter;
-import lombok.Setter;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -108,7 +105,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @return the new created vertex
      */
     public Vertex createVertex() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -117,7 +114,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @return the new created sphere
      */
     public Sphere createSphere() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -126,6 +123,6 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @return the new created edge
      */
     public Edge createEdge() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

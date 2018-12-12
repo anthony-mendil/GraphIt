@@ -4,7 +4,6 @@ import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -20,6 +19,6 @@ public class AddVerticesParam extends Param implements Serializable {
 
     @Override
     public String convertToJson() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

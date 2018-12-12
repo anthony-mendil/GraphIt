@@ -2,9 +2,6 @@ package log_management.parameters.add;
 
 import graph.graph.Vertex;
 import log_management.parameters.Param;
-import lombok.Getter;
-import lombok.NonNull;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 
@@ -23,6 +20,6 @@ public class AddVertexParam extends Param implements Serializable {
 
     @Override
     public String convertToJson() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

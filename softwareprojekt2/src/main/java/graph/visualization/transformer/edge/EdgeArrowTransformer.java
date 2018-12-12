@@ -3,15 +3,14 @@ package graph.visualization.transformer.edge;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import graph.graph.EdgeArrowType;
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
 
 /**
- * Defines a functor that transform a edge into its edge arrow type. The input edge left unchanged. Its
- * extracting the edge arrow type.
+ * Defines a functor that transform a edge into its edge arrow type. The input edge left unchanged. Its extracting the
+ * edge arrow type.
+ *
  * @param <E> the edge type
  */
 public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, E>, E>, Shape> {

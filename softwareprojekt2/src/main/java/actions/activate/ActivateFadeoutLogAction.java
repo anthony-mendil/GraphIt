@@ -3,7 +3,6 @@ package actions.activate;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateFadeoutParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 
@@ -19,7 +18,7 @@ public class ActivateFadeoutLogAction extends LogAction {
      */
     public ActivateFadeoutLogAction(Point2D pPoint2D) {
         super(LogEntryName.ACTIVATE_FADEOUT);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -27,7 +26,7 @@ public class ActivateFadeoutLogAction extends LogAction {
      */
     public ActivateFadeoutLogAction() {
         super(LogEntryName.ACTIVATE_FADEOUT);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -37,7 +36,7 @@ public class ActivateFadeoutLogAction extends LogAction {
      */
     public ActivateFadeoutLogAction(ActivateFadeoutParam pActivateFadeoutParam) {
         super(LogEntryName.ACTIVATE_FADEOUT);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -45,7 +44,7 @@ public class ActivateFadeoutLogAction extends LogAction {
      */
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -53,11 +52,11 @@ public class ActivateFadeoutLogAction extends LogAction {
      */
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

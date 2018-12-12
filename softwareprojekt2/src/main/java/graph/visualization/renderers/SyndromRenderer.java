@@ -9,7 +9,6 @@ package graph.visualization.renderers;/*
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 /**
@@ -21,6 +20,6 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
 
     @Override
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

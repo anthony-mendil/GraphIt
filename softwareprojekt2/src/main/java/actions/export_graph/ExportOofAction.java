@@ -7,7 +7,7 @@ public class ExportOofAction extends GraphAction {
     /**
      * Constructs Actionhandling for exporting the graph as Oof
      */
-    public ExportOofAction(){
+    public ExportOofAction() {
 
     }
 

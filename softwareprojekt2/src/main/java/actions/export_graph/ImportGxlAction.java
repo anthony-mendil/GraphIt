@@ -1,7 +1,6 @@
 package actions.export_graph;
 
 import actions.GraphAction;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     Aktionsleiste -> Datei.. -> Import GXL
@@ -11,7 +10,7 @@ public class ImportGxlAction extends GraphAction {
     /**
      * Actionhandling for importing the graph as GXL
      */
-    ImportGxlAction(){
+    ImportGxlAction() {
 
     }
 
@@ -20,7 +19,7 @@ public class ImportGxlAction extends GraphAction {
      */
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -28,6 +27,6 @@ public class ImportGxlAction extends GraphAction {
      */
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

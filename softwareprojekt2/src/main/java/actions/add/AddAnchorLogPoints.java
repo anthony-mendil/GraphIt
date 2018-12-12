@@ -1,49 +1,46 @@
 package actions.add;
 
 import actions.LogAction;
-import graph.graph.Vertex;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateAnchorPointsFadeoutParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
-import java.util.Collection;
 
 public class AddAnchorLogPoints extends LogAction {
     /**
      * Constructor in the case only one anchor-point shall be added.
-     * @param pPoint2D
-     * The position of the vertex which hosts the anchor-point.
+     *
+     * @param pPoint2D The position of the vertex which hosts the anchor-point.
      */
-    public AddAnchorLogPoints(Point2D pPoint2D){
+    public AddAnchorLogPoints(Point2D pPoint2D) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Constructor in case several anchor-points shall be added.
      */
-    public AddAnchorLogPoints(){
+    public AddAnchorLogPoints() {
         super(LogEntryName.ADD_ANCHOR_POINTS);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Constructor which will be used to realize the undo-method of RemoveAnchorPointAction.
-     * @param pActivateAnchorPointsFadeoutParam
-     * The used parameters.
+     *
+     * @param pActivateAnchorPointsFadeoutParam The used parameters.
      */
-    public AddAnchorLogPoints(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam){
+    public AddAnchorLogPoints(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
+
     /**
      * Single/several anchor-points will be added.
      */
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -51,11 +48,11 @@ public class AddAnchorLogPoints extends LogAction {
      */
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

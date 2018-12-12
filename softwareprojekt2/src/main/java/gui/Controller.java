@@ -1,333 +1,333 @@
 package gui;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Controller {
 
     /* ----------------ACTIVATE---------------------- */
 
     /**
-     *  Executes the activateAnchorPointsFadeout-Action
+     * Executes the activateAnchorPointsFadeout-Action
      */
-    public void activateAnchorPointsFadeOut(){
-        throw new NotImplementedException();
+    public void activateAnchorPointsFadeOut() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the activateFadeoutLog-Action
+     * Executes the activateFadeoutLog-Action
      */
-    public void activateFadeout(){
-        throw new NotImplementedException();
+    public void activateFadeout() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the highlightLog-Action
+     * Executes the highlightLog-Action
      */
-    public void activateHighlight(){
-        throw new NotImplementedException();
+    public void activateHighlight() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------ADD---------------------- */
 
     /**
-     *  Executes the addSphereLog-Action
+     * Executes the addSphereLog-Action
      */
-    public void addSphere(){
-        throw new NotImplementedException();
+    public void addSphere() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the addVertexLog-Action
+     * Executes the addVertexLog-Action
      */
-    public void addVertex(){
-        throw new NotImplementedException();
+    public void addVertex() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------ANALYSE---------------------- */
 
     /**
-     *  Executes the analysisGraph-Action
+     * Executes the analysisGraph-Action
      */
-    public void analysisGraph(){
-        throw new NotImplementedException();
+    public void analysisGraph() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the evaluationGraph-Action
+     * Executes the evaluationGraph-Action
      */
-    public void evaluationGraph(){
-        throw new NotImplementedException();
+    public void evaluationGraph() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the filterGraph-Action
+     * Executes the filterGraph-Action
      */
-    public void filterGraph(){
-        throw new NotImplementedException();
+    public void filterGraph() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the graphDimension-Action
+     * Executes the graphDimension-Action
      */
-    public void graphDimension(){
-        throw new NotImplementedException();
+    public void graphDimension() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the selectionAnalysisGraph-Action
+     * Executes the selectionAnalysisGraph-Action
      */
-    public void selectionAnalysisGraph(){
-        throw new NotImplementedException();
+    public void selectionAnalysisGraph() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------DEACTIVATE---------------------- */
 
     /**
-     *  Executes the deactivateAnchorPointsFadeout-Action
+     * Executes the deactivateAnchorPointsFadeout-Action
      */
-    public void deactivateAnchorPointsFadeout(){
-        throw new NotImplementedException();
+    public void deactivateAnchorPointsFadeout() {
+        throw new UnsupportedOperationException();
     }
 
     /* nur über Drop-Down-Menü */
+
     /**
-     *  Executes the deactivateFadeout-Action
+     * Executes the deactivateFadeout-Action
      */
-    public void deactivateFadeout(){
-        throw new NotImplementedException();
+    public void deactivateFadeout() {
+        throw new UnsupportedOperationException();
     }
 
     /* nur über Drop-Down-Menü */
+
     /**
-     *  Executes the deactivateHighlight-Action
+     * Executes the deactivateHighlight-Action
      */
-    public void deactivateHighlight(){
-        throw new NotImplementedException();
+    public void deactivateHighlight() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------EDIT---------------------- */
 
     /**
-     *  Executes the editEdgesStroke-Action
+     * Executes the editEdgesStroke-Action
      */
-    public void editEdgesStroke(){
-        throw new NotImplementedException();
+    public void editEdgesStroke() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editEdgesType-Action
+     * Executes the editEdgesType-Action
      */
-    public void editEdgesType(){
-        throw new NotImplementedException();
+    public void editEdgesType() {
+        throw new UnsupportedOperationException();
     }
 
     /* ......annotation..... */
 
     /**
-     *  Executes the editSphereAnnotation-Action
+     * Executes the editSphereAnnotation-Action
      */
-    public void editSphereAnnotation(){
-        throw new NotImplementedException();
+    public void editSphereAnnotation() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editVertexAnnotation-Action
+     * Executes the editVertexAnnotation-Action
      */
-    public void editVertexAnnotation(){
-        throw new NotImplementedException();
+    public void editVertexAnnotation() {
+        throw new UnsupportedOperationException();
     }
 
     /* ......color..... */
 
     /**
-     *  Execute the editEdgeColor-Action
+     * Execute the editEdgeColor-Action
      */
-    public void editEdgeColor(){
-        throw new NotImplementedException();
+    public void editEdgeColor() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Execute the editEdgesColor-Action
+     * Execute the editEdgesColor-Action
      */
-    public void editEdgesColor(){
-        throw new NotImplementedException();
+    public void editEdgesColor() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editSphereColor-Action
+     * Executes the editSphereColor-Action
      */
-    public void editSphereColor(){
-        throw new NotImplementedException();
+    public void editSphereColor() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editVertexColor-Action
+     * Executes the editVertexColor-Action
      */
-    public void editVertexColor(){
-        throw new NotImplementedException();
+    public void editVertexColor() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editVerticesColor-Action
+     * Executes the editVerticesColor-Action
      */
-    public void editVerticesColor(){
-        throw new NotImplementedException();
+    public void editVerticesColor() {
+        throw new UnsupportedOperationException();
     }
 
     /* ......font..... */
 
     /**
-     *  Executes the editFont-Action
+     * Executes the editFont-Action
      */
-    public void editFont(){
-        throw new NotImplementedException();
+    public void editFont() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editFontSize-Action
+     * Executes the editFontSize-Action
      */
-    public void editFontSize(){
-        throw new NotImplementedException();
+    public void editFontSize() {
+        throw new UnsupportedOperationException();
     }
 
     /* ......form..... */
 
     /**
-     *  Executes the editVertexForm-Action
+     * Executes the editVertexForm-Action
      */
-    public void editVertexForm(){
-        throw new NotImplementedException();
+    public void editVertexForm() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editVerticesForm-Action
+     * Executes the editVerticesForm-Action
      */
-    public void editVerticesForm(){
-        throw new NotImplementedException();
+    public void editVerticesForm() {
+        throw new UnsupportedOperationException();
     }
 
     /* ......size..... */
 
     /**
-     *  Executes the editSphereSize-Action
+     * Executes the editSphereSize-Action
      */
-    public void editSphereSize(){
-        throw new NotImplementedException();
+    public void editSphereSize() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the editVertexSize-Action
+     * Executes the editVertexSize-Action
      */
-    public void editVertexSize(){
-        throw new NotImplementedException();
+    public void editVertexSize() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------EXPORT---------------------- */
 
     /**
-     *  Executes the exportGXL-Action
+     * Executes the exportGXL-Action
      */
-    public void exportGXL(){
-        throw new NotImplementedException();
+    public void exportGXL() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the exportPDF-Action
+     * Executes the exportPDF-Action
      */
-    public void exportPDF(){
-        throw new NotImplementedException();
+    public void exportPDF() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the exportOOF-Action
+     * Executes the exportOOF-Action
      */
-    public void exportOOF(){
-        throw new NotImplementedException();
+    public void exportOOF() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the importOOF-Action
+     * Executes the importOOF-Action
      */
-    public void importOOF(){
-        throw new NotImplementedException();
+    public void importOOF() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the importGXL-Action
+     * Executes the importGXL-Action
      */
-    public void importGXL(){
-        throw new NotImplementedException();
+    public void importGXL() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the printPDF-Action
+     * Executes the printPDF-Action
      */
-    public void printPDF(){
-        throw new NotImplementedException();
+    public void printPDF() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the exportTemplate-Action
+     * Executes the exportTemplate-Action
      */
-    public void exportTemplate(){
-        throw new NotImplementedException();
+    public void exportTemplate() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------LAYOUT---------------------- */
 
     /**
-     *  Executes the layoutGraph-Action
+     * Executes the layoutGraph-Action
      */
-    public void layoutGraph(){
-        throw new NotImplementedException();
+    public void layoutGraph() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------OTHER---------------------- */
 
     /**
-     *  Executes the changeLanguage-Action
+     * Executes the changeLanguage-Action
      */
-    public void changeLanguage(){
-        throw new NotImplementedException();
+    public void changeLanguage() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the switchModiEditor-Action
+     * Executes the switchModiEditor-Action
      */
-    public void switchModiEditor(){
-        throw new NotImplementedException();
+    public void switchModiEditor() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------REMOVE---------------------- */
 
     /**
-     *  Executes the removeEdges-Action
+     * Executes the removeEdges-Action
      */
-    public void removeEdges(){
-        throw new NotImplementedException();
+    public void removeEdges() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the removeSphere-Action
+     * Executes the removeSphere-Action
      */
-    public void removeSphere(){
-        throw new NotImplementedException();
+    public void removeSphere() {
+        throw new UnsupportedOperationException();
     }
 
     /**
-     *  Executes the removeVertices-Action
+     * Executes the removeVertices-Action
      */
-    public void removeVertices(){
-        throw new NotImplementedException();
+    public void removeVertices() {
+        throw new UnsupportedOperationException();
     }
 
     /* ----------------TEMPLATE---------------------- */
 
     /**
-     *  Executes the rulesTemplate-Action
+     * Executes the rulesTemplate-Action
      */
-    public void rulesTemplate(){
-        throw new NotImplementedException();
+    public void rulesTemplate() {
+        throw new UnsupportedOperationException();
     }
 
 }

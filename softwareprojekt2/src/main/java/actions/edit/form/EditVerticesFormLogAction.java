@@ -1,10 +1,8 @@
 package actions.edit.form;
 
 import actions.LogAction;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVerticesFormParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 
@@ -17,16 +15,17 @@ import java.awt.*;
 public class EditVerticesFormLogAction extends LogAction {
     /**
      * Constructor in case the user changes the form of the selected vertices.
-     * @param pShape
-     * The new shape.
+     *
+     * @param pShape The new shape.
      */
     public EditVerticesFormLogAction(Shape pShape) {
         super(LogEntryName.EDIT_VERTICES_FORM);
     }
+
     /**
      * Constructor which will be used to realize the undo-method of itself.
-     * @param parameters
-     * The used parameters.
+     *
+     * @param parameters The used parameters.
      */
     public EditVerticesFormLogAction(EditVerticesFormParam parameters) {
         super(LogEntryName.EDIT_VERTICES_FORM);
@@ -34,16 +33,16 @@ public class EditVerticesFormLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

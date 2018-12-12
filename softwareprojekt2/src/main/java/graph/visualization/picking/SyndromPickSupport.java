@@ -5,7 +5,6 @@ import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.picking.ShapePickSupport;
 import graph.graph.Edge;
 import graph.graph.Sphere;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * SyndromPickSupport extends the ShapePickSupport with the option to pick spheres and arrows from edges.
@@ -43,8 +42,8 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      * @param y      the y- coordinate
      * @return the associated edge to the arrow
      */
-    public Edge getEdgeArrow(Layout<V, E> layout, double x, double y){
-        throw new NotImplementedException();
+    public Edge getEdgeArrow(Layout<V, E> layout, double x, double y) {
+        throw new UnsupportedOperationException();
     }
 
 }

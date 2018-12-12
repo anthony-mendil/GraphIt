@@ -1,8 +1,6 @@
 package actions.other;
 
 import actions.GraphAction;
-import graph.graph.SyndromGraph;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
  *  Aktionsleiste -> Datei.. -> Neuer/Neue Graph/Datei...
@@ -15,19 +13,20 @@ public class CreateGraphAction extends GraphAction {
 
     /**
      * Constructor in case the user creates a new graph.
+     *
      * @param pGraphName the name of the graph
      */
-    public CreateGraphAction(String pGraphName){
+    public CreateGraphAction(String pGraphName) {
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

@@ -5,19 +5,19 @@ import edu.uci.ics.jung.visualization.control.AnimatedPickingGraphMousePlugin;
 import java.awt.event.MouseEvent;
 
 /**
- * A graph mouse plugin that supports the visualisation of picking if the user selected
- * the template function mode.
+ * A graph mouse plugin that supports the visualisation of picking if the user selected the template function mode.
  */
-public class AnimatedPickingGraphMouseTemplateSyndromPlugin extends AnimatedPickingGraphMousePlugin{
+public class AnimatedPickingGraphMouseTemplateSyndromPlugin extends AnimatedPickingGraphMousePlugin {
     /**
      * Creates a new animated picking graph mouse template syndrom plugin.
      */
-    public AnimatedPickingGraphMouseTemplateSyndromPlugin(){
+    public AnimatedPickingGraphMouseTemplateSyndromPlugin() {
         throw new UnsupportedOperationException();
     }
 
     /**
      * Creates a new animated picking graph mouse template syndrom plugin with a defined button mask.
+     *
      * @param selectionModifiers the selection modifiers define the button mask
      */
     public AnimatedPickingGraphMouseTemplateSyndromPlugin(int selectionModifiers) {

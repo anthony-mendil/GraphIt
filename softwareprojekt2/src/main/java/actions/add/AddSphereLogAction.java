@@ -3,7 +3,6 @@ package actions.add;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddSphereParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 
@@ -24,7 +23,7 @@ public class AddSphereLogAction extends LogAction {
      */
     public AddSphereLogAction(Point2D pPoint2D) {
         super(LogEntryName.ADD_SPHERE);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -34,21 +33,21 @@ public class AddSphereLogAction extends LogAction {
      */
     public AddSphereLogAction(AddSphereParam pAddSphereParam) {
         super(LogEntryName.ADD_SPHERE);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,15 +1,11 @@
 package actions;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.picking.SyndromPickSupport;
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * superclass of all actions that need access to the internal state of the graph, the visualisation viewer and the
@@ -39,11 +35,11 @@ public abstract class GraphAction extends Action {
      * sets layout, graph, pickSupport from the current syndrom presentation
      */
     public GraphAction() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void redo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

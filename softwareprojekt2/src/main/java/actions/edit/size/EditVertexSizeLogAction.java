@@ -28,4 +28,9 @@ public class EditVertexSizeLogAction extends LogAction {
         // and adding the according actions to the database
         // (opposite actions)
     }
+
+    @Override
+    public void createParameter() {
+
+    }
 }

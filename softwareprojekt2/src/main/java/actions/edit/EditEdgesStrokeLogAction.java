@@ -3,7 +3,6 @@ package actions.edit;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgesStrokeParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Changes the stroke of the selected edges.
@@ -16,7 +15,7 @@ public class EditEdgesStrokeLogAction extends LogAction {
      */
     public EditEdgesStrokeLogAction(String pStroke) {
         super(LogEntryName.EDIT_EDGES_SIZE);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -26,21 +25,21 @@ public class EditEdgesStrokeLogAction extends LogAction {
      */
     public EditEdgesStrokeLogAction(EditEdgesStrokeParam pEdgesSizeParam) {
         super(LogEntryName.EDIT_EDGES_SIZE);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

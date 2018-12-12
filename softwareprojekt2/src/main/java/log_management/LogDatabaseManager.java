@@ -2,7 +2,6 @@ package log_management;
 
 import actions.LogAction;
 import lombok.Data;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.SQLException;
 
@@ -13,26 +12,26 @@ public class LogDatabaseManager {
     private static int logCounter;
 
     public static void main(String[] args) throws SQLException {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public static void addLogEntryToDatabase(LogAction logAction) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public static void addGraphEntryToDatabase() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public static int personalLogIncrementor() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public static void setup() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public static void printLogs() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

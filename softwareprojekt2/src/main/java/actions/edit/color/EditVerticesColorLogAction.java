@@ -1,10 +1,8 @@
 package actions.edit.color;
 
 import actions.LogAction;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVerticesColorParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     ([shift+]linksclick, bereich markieren) Sphäre markieren -> GUI Button Farbe
@@ -17,14 +15,14 @@ public class EditVerticesColorLogAction extends LogAction {
     /**
      * Constructor in case the user changes the color of a single/multiple vertex.
      */
-    public EditVerticesColorLogAction(){
+    public EditVerticesColorLogAction() {
         super(LogEntryName.EDIT_VERTICES_COLOR);
     }
 
     /**
      * Constructor which will be used to realize the undo-method of itself.
-     * @param pEditVerticesColorParam
-     * The used parameters.
+     *
+     * @param pEditVerticesColorParam The used parameters.
      */
     public EditVerticesColorLogAction(EditVerticesColorParam pEditVerticesColorParam) {
         super(LogEntryName.EDIT_VERTICES_COLOR);
@@ -32,16 +30,16 @@ public class EditVerticesColorLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

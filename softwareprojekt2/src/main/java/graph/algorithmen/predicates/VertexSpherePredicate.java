@@ -6,7 +6,6 @@ import graph.graph.Sphere;
 import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the vertex for a assigned sphere
@@ -14,7 +13,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * @param <V> the vertex type
  * @param <E> the edge type
  */
-public class VertexSpherePredicate<V,E> implements Predicate<Context<Graph<V,E>,V>> {
+public class VertexSpherePredicate<V, E> implements Predicate<Context<Graph<V, E>, V>> {
     /**
      * the sphere to filter for
      */
@@ -24,10 +23,11 @@ public class VertexSpherePredicate<V,E> implements Predicate<Context<Graph<V,E>,
 
     /**
      * created a new VertexSpherePredicate with a specific sphere
+     *
      * @param sphere the sphere to filter the vertices for
      */
-    public VertexSpherePredicate(Sphere sphere){
-        throw new NotImplementedException();
+    public VertexSpherePredicate(Sphere sphere) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

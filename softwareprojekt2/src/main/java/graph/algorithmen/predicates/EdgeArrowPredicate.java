@@ -6,7 +6,6 @@ import graph.graph.EdgeArrowType;
 import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the edge arrow types of the edges.
@@ -28,7 +27,7 @@ public class EdgeArrowPredicate<V, E> implements Predicate<Context<Graph<V, E>, 
      * @param edgeArrowType the edge arrow type to filter for
      */
     public EdgeArrowPredicate(EdgeArrowType edgeArrowType) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override

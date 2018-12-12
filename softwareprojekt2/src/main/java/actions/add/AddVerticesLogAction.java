@@ -6,7 +6,6 @@ import javafx.util.Pair;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddVerticesParam;
 import log_management.parameters.remove.RemoveVerticesParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 import java.util.Map;
@@ -46,12 +45,11 @@ public class AddVerticesLogAction extends LogAction {
      */
     public AddVerticesLogAction(Point2D point) {
         super(LogEntryName.ADD_VERTEX);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
      * Adds all vertices that are picked.
-     *
      */
     public AddVerticesLogAction() {
         super(LogEntryName.ADD_VERTICES);
@@ -59,16 +57,16 @@ public class AddVerticesLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

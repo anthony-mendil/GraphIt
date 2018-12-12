@@ -1,7 +1,6 @@
 package actions.other;
 
 import actions.GraphAction;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
  *   GUI-Button Auswerter-Modus
@@ -10,21 +9,21 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *
  * Changes the mode either to "Ersteller"/"Betrachter"
  */
-public class SwitchModiEditorAction extends GraphAction{
+public class SwitchModiEditorAction extends GraphAction {
     /**
      * Constructor in case the user changes the mode.
      */
-    public SwitchModiEditorAction(){
+    public SwitchModiEditorAction() {
 
     }
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

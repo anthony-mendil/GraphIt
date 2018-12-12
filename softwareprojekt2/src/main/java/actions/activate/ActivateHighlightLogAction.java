@@ -3,7 +3,6 @@ package actions.activate;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateHighlightParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 
@@ -18,7 +17,7 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     public ActivateHighlightLogAction(Point2D pPoint2D) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -26,7 +25,7 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     public ActivateHighlightLogAction() {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -36,7 +35,7 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     public ActivateHighlightLogAction(ActivateHighlightParam pActivateHighlightParam) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -44,7 +43,7 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -52,11 +51,11 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

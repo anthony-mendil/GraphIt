@@ -2,7 +2,6 @@ package actions.other;
 
 
 import actions.Action;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     Aktionsleiste -> Optionen -> Sprache ändern -> Englisch
@@ -13,26 +12,28 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 /**
  * Changes the language of the whole GUI of the program.
  */
-public class ChangeLanguageAction extends Action{
+public class ChangeLanguageAction extends Action {
     /**
      * Constructor in case the user changes the language.
+     *
      * @param pLanguage the new Language
      */
-    public ChangeLanguageAction(String pLanguage){
+    public ChangeLanguageAction(String pLanguage) {
 
     }
-     @Override
+
+    @Override
     public void action() {
-         throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void redo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,7 +1,5 @@
 package actions;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * a bounded history of actions
  */
@@ -23,23 +21,24 @@ public class ActionHistory {
 
     /**
      * adds a actions to the history and executes it
+     *
      * @param action the action to execute
      */
-    public void execute(Action action){
-        throw new NotImplementedException();
+    public void execute(Action action) {
+        throw new UnsupportedOperationException();
     }
 
     /**
      * undo for a current action
      */
-    public void undo(){
-        throw new NotImplementedException();
+    public void undo() {
+        throw new UnsupportedOperationException();
     }
 
     /**
      * redo for a current action
      */
-    public void redo(){
-        throw new NotImplementedException();
+    public void redo() {
+        throw new UnsupportedOperationException();
     }
 }

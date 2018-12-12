@@ -3,7 +3,6 @@ package actions.activate;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.activate.ActivateAnchorPointsFadeoutParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.geom.Point2D;
 
@@ -39,16 +38,16 @@ public class ActivateAnchorPointsFadeoutAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

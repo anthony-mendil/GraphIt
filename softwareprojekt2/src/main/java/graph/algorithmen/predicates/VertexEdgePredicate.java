@@ -6,14 +6,14 @@ import graph.graph.EdgeArrowType;
 import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the vertex for specific edge type.
+ *
  * @param <V> the vertex type
  * @param <E> the edge type
  */
-public class VertexEdgePredicate<V,E> implements Predicate<Context<Graph<V, E>, V>> {
+public class VertexEdgePredicate<V, E> implements Predicate<Context<Graph<V, E>, V>> {
     /**
      * the arrow type to filter for
      */
@@ -26,11 +26,12 @@ public class VertexEdgePredicate<V,E> implements Predicate<Context<Graph<V, E>, 
      *
      * @param edgeArrowType the edge arrow type to filter for
      */
-    public VertexEdgePredicate(EdgeArrowType edgeArrowType){
-        throw new NotImplementedException();
+    public VertexEdgePredicate(EdgeArrowType edgeArrowType) {
+        throw new UnsupportedOperationException();
     }
+
     @Override
     public boolean evaluate(Context<Graph<V, E>, V> graphVContext) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

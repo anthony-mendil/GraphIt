@@ -5,7 +5,6 @@ import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgesTypeParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
@@ -30,7 +29,7 @@ public class EditEdgesTypeLogAction extends LogAction {
      */
     public EditEdgesTypeLogAction(EditEdgesTypeParam pParam) {
         super(LogEntryName.EDIT_EDGES_TYPE);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -41,21 +40,21 @@ public class EditEdgesTypeLogAction extends LogAction {
      */
     public EditEdgesTypeLogAction(Collection<Edge> edges, EdgeArrowType edgeType) {
         super(LogEntryName.EDIT_EDGES_TYPE);
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

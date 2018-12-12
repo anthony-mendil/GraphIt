@@ -3,7 +3,6 @@ package log_management.parameters.edit;
 import graph.graph.StrokeType;
 import javafx.util.Pair;
 import log_management.parameters.Param;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +23,6 @@ public class EditEdgesStrokeParam extends Param implements Serializable {
 
     @Override
     public String convertToJson() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

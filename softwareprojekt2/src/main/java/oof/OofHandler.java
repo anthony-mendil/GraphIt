@@ -6,14 +6,14 @@ public class OofHandler {
     /**
      * Starts the dialog to export the current graph and protocol as Oof file
      */
-    public static void exportOof(){
+    public static void exportOof() {
         throw new UnsupportedOperationException();
     }
 
     /**
      * Starts the dialog to import the graph and protocol from an Oof file
      */
-    public static void importOof(){
+    public static void importOof() {
         throw new UnsupportedOperationException();
         //GXLStringFromOof
         //JSONStringFromOof
@@ -27,7 +27,7 @@ public class OofHandler {
      * @param pOof The Oof containing an GXL String
      * @return The GXL String
      */
-    public static String GXLStringFromOof(String pOof){
+    public static String GXLStringFromOof(String pOof) {
         throw new UnsupportedOperationException();
     }
 
@@ -37,7 +37,7 @@ public class OofHandler {
      * @param pJSON The Oof containing an JSON String
      * @return The JSON String
      */
-    public static String JSONStringFromOof(String pJSON){
+    public static String JSONStringFromOof(String pJSON) {
         throw new UnsupportedOperationException();
     }
 
@@ -45,11 +45,10 @@ public class OofHandler {
     /**
      * Writes the JSON representation into the Database
      */
-    public static void JSONToDB(){
+    public static void JSONToDB() {
         throw new UnsupportedOperationException();
 
     }
-
 
 
 }

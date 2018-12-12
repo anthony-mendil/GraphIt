@@ -7,14 +7,14 @@ public class GXLHandler {
      *
      * @return The current GXL instance as String
      */
-    public static String createGXLString(){
+    public static String createGXLString() {
         throw new UnsupportedOperationException();
     }
 
     /**
      * Opens a dialog to save the the GXL representation to a specific location
      */
-    public static void exportGXL(){
+    public static void exportGXL() {
         //createGXLString to File
         throw new UnsupportedOperationException();
     }
@@ -22,7 +22,7 @@ public class GXLHandler {
     /**
      * Opens a dialog to import a GXL file from a specific location to a layout representation of the current graph
      */
-    public static void importGXL(){
+    public static void importGXL() {
         throw new UnsupportedOperationException();
     }
 
@@ -31,7 +31,7 @@ public class GXLHandler {
      *
      * @param pGXL The graph as GXL that gets written into the Database
      */
-    public static void GXLToDB(String pGXL){
+    public static void GXLToDB(String pGXL) {
         throw new UnsupportedOperationException();
     }
 

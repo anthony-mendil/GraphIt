@@ -3,7 +3,6 @@ package actions.edit.annotation;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVertexAnnotationParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     rechtclick auf Sphäre -> Drop-Down-Menü -> Umbenennen
@@ -34,17 +33,17 @@ public class EditVertexAnnotationLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }
 

@@ -2,7 +2,6 @@ package graph.graph;
 
 import lombok.Data;
 import lombok.NonNull;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -41,7 +40,7 @@ public class Vertex {
     /**
      * the annotation of a vertex
      */
-     @NonNull
+    @NonNull
     private String annotation;
 
     /**
@@ -81,8 +80,8 @@ public class Vertex {
     private boolean isVisible;
 
     /**
-     * Creates a vertex with a unique id and a coordinate where its placed.
-     * All other attributes get the default value defined in Values.
+     * Creates a vertex with a unique id and a coordinate where its placed. All other attributes get the default value
+     * defined in Values.
      *
      * @param id         the id of the vertex
      * @param coordinate the coordinate where the vertex is placed
@@ -90,6 +89,6 @@ public class Vertex {
     public Vertex(int id, Point2D coordinate) {
         this.id = id;
         this.coordinate = coordinate;
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

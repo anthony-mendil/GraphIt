@@ -5,7 +5,6 @@ import graph.graph.Vertex;
 import log_management.LogEntryName;
 import log_management.parameters.add.AddVerticesParam;
 import log_management.parameters.remove.RemoveVerticesParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
@@ -53,16 +52,16 @@ public class RemoveVerticesLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

@@ -6,9 +6,10 @@ import log_management.parameters.Param;
 import java.util.List;
 
 public class RemoveAnchorPointsParam extends Param {
-    public RemoveAnchorPointsParam(List<Edge> edges){
+    public RemoveAnchorPointsParam(List<Edge> edges) {
 
     }
+
     @Override
     public String convertToJson() {
         return null;

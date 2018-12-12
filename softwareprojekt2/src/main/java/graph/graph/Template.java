@@ -1,7 +1,5 @@
 package graph.graph;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.List;
 
 public class Template {
@@ -49,7 +47,7 @@ public class Template {
     /**
      * creates a new Template
      */
-    Template(){
-        throw new NotImplementedException();
+    Template() {
+        throw new UnsupportedOperationException();
     }
 }

@@ -2,14 +2,13 @@ package graph.graph;
 
 import lombok.Data;
 import lombok.NonNull;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 
 /**
  * An edge of the syndrom-graph. There are 3 type of edges, defined by the three types of relations: extenuating,
- * neutral, reinforcing. These are typified by the arrowhead.
- * All attributes of the edge can be changed, only the id is final.
+ * neutral, reinforcing. These are typified by the arrowhead. All attributes of the edge can be changed, only the id is
+ * final.
  */
 @Data
 public class Edge {
@@ -51,8 +50,8 @@ public class Edge {
 
 
     /**
-     * Creates an edge with a set id and a specific edge type.
-     * All other attributes get the default value defined in Values.
+     * Creates an edge with a set id and a specific edge type. All other attributes get the default value defined in
+     * Values.
      *
      * @param id        the id of the edge
      * @param arrowType the arrow type of the edge
@@ -60,6 +59,6 @@ public class Edge {
     public Edge(int id, EdgeArrowType arrowType) {
         this.id = id;
         this.arrowType = arrowType;
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

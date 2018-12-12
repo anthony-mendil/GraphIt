@@ -1,10 +1,8 @@
 package actions.edit.font;
 
 import actions.LogAction;
-import graph.graph.Vertex;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditFontSizeParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
  *   ([shift+]linksclick, bereich markieren) Sphäre/Symptom -> GUI Button Größe
@@ -15,13 +13,16 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class EditFontSizeSphereLogAction extends LogAction {
     /**
      * Constructor in case the user changes the font-size of a sphere annotation.
+     *
      * @param pSize the size of the font.
      */
     public EditFontSizeSphereLogAction(int pSize) {
         super(LogEntryName.EDIT_FONT_SIZE);
     }
+
     /**
      * Constructor which will be used to realize the undo-method of itself.
+     *
      * @param pEditFontSizeParam The EditFontSizeParam containing the font size and the sphere
      */
     public EditFontSizeSphereLogAction(EditFontSizeParam pEditFontSizeParam) {
@@ -30,16 +31,16 @@ public class EditFontSizeSphereLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

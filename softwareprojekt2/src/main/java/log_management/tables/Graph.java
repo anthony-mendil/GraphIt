@@ -1,8 +1,5 @@
 package log_management.tables;
 
-import log_management.LogDatabaseManager;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +15,6 @@ public class Graph {
     }
 
     public void setId(int id) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

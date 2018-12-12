@@ -1,7 +1,6 @@
 package actions.export_graph;
 
 import actions.GraphAction;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
    Aktionsleiste -> Datei.. -> Exportieren als.. -> GXL
@@ -11,8 +10,8 @@ public class ExportGxlAction extends GraphAction {
     /**
      * Constructs actionhandling for exporting the graph as GXL
      */
-    public ExportGxlAction(){
-        throw new NotImplementedException();
+    public ExportGxlAction() {
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -20,7 +19,7 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -28,6 +27,6 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

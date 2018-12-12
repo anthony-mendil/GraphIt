@@ -14,9 +14,17 @@
 - neuer Datentyp 
 - nach jeder action muss die gxl in die db
 - seralizable aus param
+- zoom
+- auswertuer
+- phillip gui
+- observer
+- umfang, veretzungsindex, strukturindex
+- 
 
 ### GUI
 - javafx
 
 - jackson problemkarte
 - funktionsmodi marcel fragen
+- sequenzdiagramm
+- auh ok, wenn sphären nicht ausblendbar sind?

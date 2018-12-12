@@ -1,11 +1,10 @@
 package graph.algorithmen.predicates;
 
-import com.sun.istack.internal.NotNull;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
+import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the vertex annotations for a regular
@@ -19,15 +18,16 @@ public class VertexAnnotationPredicate<V, E> implements Predicate<Context<Graph<
      * Defines the regular expression after the vertex annotation is filtered.
      */
     @Setter
-    @NotNull
+    @NonNull
     private String regularExpression;
 
     /**
      * creates a new VertexAnnotationPredicate with a regular expression
+     *
      * @param pRegularExpression the regular expression to filter for
      */
-    public VertexAnnotationPredicate(String pRegularExpression){
-        throw new NotImplementedException();
+    public VertexAnnotationPredicate(String pRegularExpression) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
