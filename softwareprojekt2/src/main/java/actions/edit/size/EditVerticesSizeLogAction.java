@@ -34,8 +34,4 @@ public class EditVerticesSizeLogAction extends LogAction {
         throw new NotImplementedException();
     }
 
-    @Override
-    public void createParameter() {
-
-    }
 }
