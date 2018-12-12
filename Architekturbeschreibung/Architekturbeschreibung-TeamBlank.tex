@@ -1835,7 +1835,71 @@ Die Logger-Komponente ist in unserer Applikation eingebaut um uns bei der Entwic
 \label{sec:datensicht}
 \emph{Autoren: Anthony Mendil, Clement Phung}\\ \\
 
+Im folgenden beschreiben wir unsere Datensicht. Bei Erläuterungen zu dieser beziehen wir uns auf folgende Strategien: \hyperlink{Strategie S1: GXL}{Strategie S1: GXL}, \hyperlink{Strategie S7: Datenmodell}{Strategie S7: Datenmodell}, \hyperlink{Strategie S15: JUNG}{Strategie S15: JUNG}, \hyperlink{Strategie 33: .json}{Strategie 33: .json} und \hyperlink{Strategie S43: eigener Datentyp}{Strategie S43: eigener Datentyp} sowie auf die \hyperlink{Strategie S45: H2}{Strategie S45: H2}. Außerdem werden wir Bezug zu den Strategien \hyperlink{Strategie S.50: Hibernate}{Strategie S.50: Hibernate}, \hyperlink{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)}{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)} und \hyperlink{Strategie S61: Regeln in der GXL-Datei}{Strategie S61: Regeln in der GXL-Datei} nehmen.\\
 
+Es sei an der dieser Stelle explizit angemerkt, dass wir für die Repräsentation des Graphen kein komplett eigenes Datenmodell erstellen. Stattdessen verwenden wir das vom Framework \texttt{JUNG} vorgegebene Datenmodell mit unseren eigenes Datenklassen Vertex (für Knoten) und Edge (für Kanten). Da in unserem Fall Sphären benötigt werden, erstellen wir eine Klasse Sphere (für Sphären) und erweitern mit ihr das vorgegebene Datenmodell (genauer gesagt erweitert unsere Klasse SydromGraph die Klasse DirectedSparseGraph von \texttt{JUNG}).
+Eine Sphere hat die Attribute id vom Typ int (zur eindeutigen Identifikation), drawPaint vom Typ Paint (für die Farbe der Umrandung), coordinates vom Typ Point2D (für die Position), width vom Typ double (für die Breite), height vom Typ double (für die Höhe), annotations vom Typ String (für den Namen der Sphäre), fillPaint vom Typ Paint (für die Füllfarbe) sowie vertices vom Typ LinkedList<Vertex> (in der alle Knoten, die zu dieser Sphäre zugeordnet sind, enthalten sind).
+Ein Vertex hat die Attribute id vom Typ int (zur eindeutigen Identifikation), drawPaint vom Typ Paint (für die Farbe der Umrandung), coordinates vom Typ Point2D (für die Position), shape vom Typ VertexShapeType (für die Bestimmung der Knotenform), annotation vom Typ String (für die Beschriftung des Knotens), fillPaint vom Typ Paint (für die Füllfarbe), size vom Typ int (für die Größe des Knotens), isVisible vom Typ boolean (um anzugeben ob der Knoten sichtbar ist), sowie drei Attribute vom Typ Map<ScopePoint, Point2D>. Einer davon vertexArrowReinforced (verstärkende Kanten), einer vertexArrowNeutral (von uns für die unbekannten Kanten genutzt) und einer vertexArrowExtenuating (abschwächende Kanten). Diese drei Maps werden für das Zusammenfassen der Pfeilspitzen gleicher Relationsarten am Knoten beim Rendern gebraucht.
+Eine Edge hat die Attribute paint vom Typ Paint (für die Farbe), stroke vom Typ StrokeType (für die Kantenart: gestrichelt, gepunktet oder durchgezogen), id vom Typ int (zur eindeutigen Identifikation), arrowType vom Typ EdgeArrowType (für die Art der Pfeilspitze), hasAnchor vom Typ boolean (um anzugeben ob sie Kante einen Ankerpunkt hat), anchorAngle vom Typ double (beschreibt in welchem Winkel die Kante an dem Knoten ansetzten soll), sowie isVisible vom Typ boolean (um anzugeben ob die Kante sichtbar ist).\\
+
+Für die Speicherung des Graphen sowie allen nötigen Informationen gibt es die Klasse Syndrom. Sie hat die Attribute template vom Typ Template (für eine mögliche Vorlage), layout vom Typ Layout<Vertex, Edge> (für das Layout des Graphen) und graph vom Typ SyndromGraph<Vertex, Edge> (die von uns erweiterte Repräsentation des Graphen). Des weiteren hat sie auch Attribute die Überprüfungen bestimmter Eigenschaften definieren und zum Filtern verwendet werden: filterArrow vom Typ EdgeArrowPredicate<Vertex, Edge>, filterVertex vom Typ VertexSpherePredicate<Vertex, Edge>, vertexAnnotationPredicate vom Typ VertexAnnotationPredicate<Vertex, Edge>, vertexEdgePredicate vom Typ VertexEdgePredicate<Vertex, Edge>, vertexSpherePredicate vom Typ VertexSpherePredicate<Vertex, Edge>, vertexIsVisiblePredicate vom Typ VertexIsVisiblePredicate<Vertex, Edge>, edgeIsVisiblePredicate von Typ EdgeIsVisiblePredicate<Vertex, Edge>, sphereIsVisiblePredicate vom Typ SphereIsVisiblePredicate<Sphere>, sowie Attribute für die diversen Transformer: arrowDrawPaint vom Typ EdgeArrowDrawPaintTransformer, arrowFillPaint vom Typ EdgeArrowFillPaintTransformer, edgeArrow vom Typ EdgeArrowTransformer, edgeDrawPaint vom Typ EdgeDrawPaintTransformer, edgeFillPaint vom Typ EdgeFillPaintTransformer, edgeStroke vom Typ EdgeStrokeTransformer, sphereDrawPaint vom Typ SphereDrawPaintTransformer, sphereFillPaint vom Typ SphereFillPaintTransformer, sphereFont vom Typ SphereFontTransformer, sphereLabel vom Typ SphereLabelTransformer, sphereShape vom Typ SphereShapeTransformer, vertexDrawPaint vom Typ VertexDrawPaintTransformer, vertexFillPaint vom Typ VertexFillPaintTransformer, vertexFont vom Typ VertexFontTransformer, vertexLabel vom Typ VertexLabelTransformer, vertexPaintHighlight vom Typ VertexPaintHighlightTransformer, vertexStrokeHighlight vom Typ VertexStrokeHighlightTransformer, vertexShape vom Typ VertexShapeTransformer, vertexStroke vom Typ VertexStrokeTransformer, vertexTooltip vom Typ VertexToolTipTransformer, syndrom vom Typ Syndrom (das Singleton) und syndromRenderer vom Typ SyndromRenderer. \\
+
+Das oben erwähnte Template ermöglicht es eine Vorlage zu erstellen, in der man ein Maximum an Sphären (maxSphereCounter vom Typ int), der Knoten (maxVertexCount vom Typ int), der Knoten in einer Sphäre (maxVertexInSphereCounter vom Typ int) und der Kanten (maxEdgeCounter vom Typ int) festlegen kann. Ebenso kann man Objekte des Graphen bestimmen deren Beschriftung (nameLockedObjects vom Typ List<Integer>), Farbe (colorLockedObjects vom Typ List<Integer>) oder alle Eigenschaften des Objektes (isLockedObjects vom Typ List<Integer>) nicht verändert werden dürfen. Zu guter Letzt ist es auch möglich die Arten der erlaubten Kannten einzuschränken (allowedEdgeTypes vom Typ List<EdgeArrowType>).\\
+
+Um die Persistenz von Daten zu gewährleisten, verwenden wir die embedded Datenbank H2 Database in unserem Programm (\hyperlink{Strategie S45: H2}{Strategie S45: H2}). Bei der Kommunikation mit der Datenbank nutzen wir das Framework Hibernate, welches es unter Verwendung von JPA ermöglicht, Objekte (als Instanzen von Klassen) unseres Systems in eine relationale Datenbank zu persistieren (\hyperlink{Strategie S.50: Hibernate}{Strategie S.50: Hibernate}). Hierbei findet ORM (Object-Relational Mapping) Anwendung. \\ 
+
+Um den Graphen zu speichern bietet sich die GXL-Repräsentation (aus den in der Entscheidung für Strategie 1 genannten Gründen) an. Ein Graph wird dabei als Text (also vom Typ String) mit einer eindeutigen Graph-Id vom Typ int  versehen und diese beiden Bestandteile werden in einer gemeinsamen Tabelle unserer Datenbank persistiert. Die Realisierung der genannten Konstruktion lässt sich in der zugehörigen Mapping-Klasse \texttt{Graph} wiederfinden.  Die Übersetzung unseres Graphen in das GXL-Format erfolgt unter der Nutzung des bei Sourceforge gehosteten GXL-Frameworks (\hyperlink{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)}{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)}). Falls der Benutzer eine Vorlage erstellt, werden auch die darin für die Diagramm-Erstellung im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} gesetzten Einschränkungen in selbiger GXL festgehalten (\hyperlink{Strategie S61: Regeln in der GXL-Datei}{Strategie S61: Regeln in der GXL-Datei}).\\ 
+
+Die Nutzerinteraktionen mit dem Graphen werden wie auch der Graph selbst in der embedded H2 Datenbank gespeichert. Für die Nutzerinteraktionen existiert eine eigene Tabelle in der Datenbank sowie eine zugehörige Mapping-Klasse \texttt{Log}, welche für jeden Eintrag folgende Informationen enthält: eine Identifikationsnummer für den Eintrag (id) vom Typ int, den zugehörigen Graphen vom Typ Graph, den Namen des Eintrags (logEntryName vom Typ LogEntryName) und einem String (parameters), welcher aus einem konkreten Unterklasse der abstrakten Param-Klasse die jeweils für die Aktion benötigten Informationen enthält, sowie die genaue Uhrzeit der Ausführung (time vom Typ LocalDateTime) der Aktion. Das Parameterobjekt wird hierbei als Text im JSON-Format gespeichert (\hyperlink{Strategie 33: .json}{Strategie 33: .json}). Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch nichts vom Log weiß und von diesem auch keine Informationen lesen kann. Dies wird durch das X am ende der Assoziation deutlich gemacht.\\
+
+Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse Param und implementieren alle eine Methode, die den zugehörigen String im JSON-Format erzeugt. Jede dieser Parameter-Klassen gehört speziell zu einer Aktion, für die sie die nötigen Informationen enthalten. Es ist hierbei anzumerken, dass die Parameter-Klassen im Diagramm individuell Assoziationen  (manche auch keine) zu den Klassen Vertex, Edge und Sphere hätten, je nachdem was für Attribute sie besitzen. Um Übersichtlichkeit zu bewahren haben wir im Diagramm nicht alle Parameter-Klassen mit ihren zugehörigen Attributen dargestellt, werden diese jedoch im folgenden nennen: \\ \\
+
+Parameter-Klassen für aktivierende Kommandos:\\ 
+\texttt{ActivateFadeoutParam, ActivateHighlightParam, ActivateAnkerPointsFadeoutParam}\\ 
+
+Parameter-Klassen für hinzufügende Kommandos:\\
+\texttt{AddEdgesParam, AddSphereParam, AddVerticesParam, AddAnkerPointsParam}\\ 
+
+Parameter-Klassen für deaktivierende Kommandos:\\
+\texttt{DeactivateFadeoutParam, DeactivateHighlightParam, DeactivateAnkerPointsFadeoutParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Farbe):\\ 
+\texttt{EditEdgesColorParam, EditSphereColorParam, EditVerticesColorParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Beschriftung:\\ 
+\texttt{ChangeVertexAnnotationLanguageParam, EditSphereAnnotationParam, EditVertexAnnotationParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Font):\\ 
+\texttt{EditFontSizeSphereParam, EditFontSizeVerticesParam, EditFontSphereParam, EditFontVertexParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Form):\\ 
+\texttt{EditVerticesFormParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Größe):\\
+\texttt{EditSphereSizeParam, EditVertexSizeParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Sonstiges):\\  
+\texttt{EditEdgesStrokeParam, EditEdgesTypeParam}\\
+
+Parameter-Klassen für bewegende Kommandos:\\
+\texttt{MoveSphereParam, MoveVerticesParam}\\
+
+Parameter-Klassen für entfernende Kommandos:\\
+\texttt{RemoveEdgesParam, RemoveSphereParam, RemoveVerticesParam, RemoveAnkerPointsParam}\\
+
+Parameter-Klasse für das Layout verändernde Kommando:\\
+\texttt{LayoutGraphParam}\\
+
+In unserem Programm ist ebenfalls das Exportieren einzelner Graphen und den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (.Oof für \glqq out of frameworks \grqq). (\hyperlink{}{Strategie S43: eigener Datentyp})\\
+
+über das Diagramm: alle Attribute sind private, es existieren aber getter und setter (außer bei ids  von vertex, edge und sphere, da nur getter? im code noch nicht..), weshalb sie als public markiert werden. 
+
+\newpage
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\textwidth]{Datenmodell_SWP2019.jpg}
+	\caption{Datensicht}
+\end{figure}
 
 \newpage
 \section{Modulsicht}
