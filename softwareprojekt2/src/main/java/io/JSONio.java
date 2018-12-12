@@ -11,7 +11,7 @@ public class JSONio {
      *
      * @return The current JSON instance as String
      */
-    public String createJSONString(){
+    public String createJSONFromDB(){
         throw new UnsupportedOperationException();
     }
 

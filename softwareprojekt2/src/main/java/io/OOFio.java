@@ -1,6 +1,8 @@
 package io;
 
 
+import graph.graph.Syndrom;
+
 public class OOFio {
 
     public OOFio(){
@@ -8,12 +10,20 @@ public class OOFio {
     }
 
     /**
-     * @param pGXL The GXL graph representation as String
-     * @param pJSON The JSON protocol representation as String
-     *
+     * Creates an OOF
+     * @param pGXL TODO
+     * @param pJSON TODO
      * @return The OOF file as String
      */
-    private String createOOFString(String pGXL, String pJSON){
+    private String createOOF(String pGXL, String pJSON){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * TODO
+     * @param pSyndrom The syndrom the GXL of the OOF gets written into
+     */
+    public void OOFToSystem(Syndrom pSyndrom){
         throw new UnsupportedOperationException();
     }
 
@@ -23,7 +33,7 @@ public class OOFio {
      * @param pOOF The OOF containing an GXL String
      * @return The GXL String
      */
-    private String GXLStringFromOOF(String pOOF){
+    private String GXLFromOOF(String pOOF){
         throw new UnsupportedOperationException();
     }
 
@@ -33,26 +43,26 @@ public class OOFio {
      * @param pOOF The OOF containing an JSON String
      * @return The JSON String
      */
-    private String JSONStringFromOOF(String pOOF){
+    private String JSONFromOOF(String pOOF){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Starts the dialog to export the current graph and protocol as OOF file
      *
-     * @param pGXL The GXL graph representation as String
-     * @param pJSON The JSON protocol representation as String
+     * @param pOOF The OOF String to export as file
      */
-    public void exportAsOOF(String pGXL, String pJSON){
+    public void exportAsOOF(String pOOF){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Starts the dialog to import the graph and protocol from an OOF file
      *
+     * @param pSyndrom The syndrom the GXL of the OOF gets written into
      * @return The imported Oof file as String
      */
-    public String importOOF(){
+    public String importOOF(Syndrom pSyndrom){
         throw new UnsupportedOperationException();
         //GXLStringFromOof
         //JSONStringFromOof
