@@ -1,4 +1,4 @@
-\documentclass[enabledeprecatedfontcommands,fontsize=12pt,paper=a4,twoside]{scrartcl}
+\documentclass[enabledeprecatedfontcommands,fontsize=11pt,paper=a4,twoside]{scrartcl}
 
 
 \newcommand{\grad}{\ensuremath{^{\circ}} }
@@ -305,8 +305,6 @@ Abschließend gibt es in Kapitel 8 eine Evolution, die eine Zusammenfassung wich
 Dieses Kapitel beginnt mit einer Auflistung von Einflussfaktoren, der sich eine Reihe von Problemkarten mit Strategien zur Beseitigung dieser Probleme anschließt.
 \subsection{Einflussfaktoren}
 \label{sec:einflussfaktoren}
-
-\subsection{Einflussfaktoren}
 
 Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflussfaktoren habe wir eine Skalierung mit fünf verschiedenen Abstufungen gewählt, die der folgenden Tabelle entnommen werden kann. Mit Flexibilität ist dabei das Ausmaß, zu dem wir den jeweiligen Faktor zum jetzigen Zeitpunkt beeinflussen können, gemeint. Veränderlichkeit hingegen beschreibt die prognostizierte Wahrscheinlichkeit einer Änderung des jeweiligen Einflussfaktors als solchen. Es geht also bei Veränderlichkeit nicht darum, dass zu einem späteren Zeitpunkt konkrete Vorgaben zur technischen Umsetzung einer Anforderung gemacht werden könnten. \\
 
@@ -730,7 +728,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(-) Wir denken nicht, dass es zu einem späteren Zeitpunkt konkrete Wünsche des Kunden hinsichtlich der Form des Protokolls geben wird. Mit der Programmiersprachenunabhängigkeit ist außerdem auch langfristig für eine gute Auswertbarkeit der Information, die die JSON-Datei in sicht trägt, gesorgt. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {{16cm}{Das Protokoll muss so in der verwendeten relationalen Datenbank gespeichert werden, dass es möglich ist, durch Anfragen an die Datenbank an die nötigen Informationen zu gelangen, um das Protokoll in den geforderten Formen zu erstellen.} }\\ \hline
+	\multicolumn{2}{|l|} {Das Protokoll muss so in der verwendeten relationalen Datenbank gespeichert werden, dass es möglich ist, durch Anfragen an die Datenbank an die nötigen Informationen zu gelangen, um das Protokoll in den geforderten Formen zu erstellen.}\\ \hline
 \end{tabular}
 \\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -868,9 +866,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 
 
 \subsection{Probleme und Strategien}
+\label{sec:strategien}
+
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Datensicherung/Persistenz des Graphen}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{01: Datensicherung/Persistenz des Graphen}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Daten des Graphen müssen gespeichert werden. Das bezieht sich auf alle veränderlichen/unveränderlichen Eigenschaften der Knoten, Kanten und Sphären.}}\rule{0pt}{4ex}\\ [2ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -891,7 +891,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S1 - GXL}}: \\
+			\textbf{\cb{\hypertarget{yy}{S1 - GXL}}}: \\
 			Speichern des Graphen als GXL- Repräsentation, gespeichert als text/plain in einer Embedded Database (was dem Datentypen varchar entsprechend zu realisieren wäre). \\
 			\textbf{S2 - BLOB NEO4J}: \\
 			Speichern einer Neo4J-Database, die den Graphen beinhaltet. Der Graph selbst wird als BLOB (Binary Large Object) in einer Embedded Database gespeichert. \\
@@ -910,7 +910,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Persistierungsintervall des Graphen}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{02: Persistierungsintervall des Graphen}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss innerhalb eines festgelegten Zeitintervalls persistiert/ abgespeichert werden.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}&
@@ -924,7 +924,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S4 - Command}}: \\
+			\textbf{\cb{\hypertarget{zz}{S4 - Command}}}: \\
 			Persistierung des Graphen nach jedem Command. Das hieße, dass der Graph nach jeder Aktion, die ein Nutzer ausführt, gespeichert werden würde. \\
 			\textbf{S5 - Benutzer}: \\
 			Persistierung des Graphen nach Aufruf des Speicherbefehls durch den Benutzer. Bei Entscheidung für diese Strategie würde keine automatische Speicherung des Graphen stattfinden.
@@ -940,7 +940,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Datensicherung/Persistenz der Nutzerinteraktionen}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{03: Datensicherung/Persistenz der Nutzerinteraktionen}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Daten der Nutzerinteraktion des Bearbeiters müssen abgespeichert werden.}}\rule{0pt}{1ex}\\  \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & 
@@ -968,7 +968,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S6 - CSV}: \\
 			Schreiben und Speichern der Nutzerinteraktionen in eine CSV Datei. \\
-			\textbf{\cb{S7 - Datenmodell}}: \\
+			\textbf{\cb{\hypertarget{aaa}{S7 - Datenmodell}}}: \\
 			Speichern der Nutzerinteraktionen in der Embedded Database mit eigenem Datenmodell auf der Grundlage des Entwurfsmusters Command.}}\\ [6ex]
 	\hline
 \end{tabular}\\ \\ \\
@@ -981,7 +981,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Auswahl der grundlegenden Softwarearchitektur}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{04: Auswahl der grundlegenden Softwarearchitektur}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen eine Architektur für unsere Software wählen, die durch das Zusammenspiel der grundlegenden Komponenten im System die Erfüllung aller Mindestanforderungen gewährleistet.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  &
@@ -998,7 +998,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S8 - MVC}}: \\
+			\textbf{\cb{\hypertarget{bbb}{S8 - MVC}}}: \\
 			Dieses Design-Pattern sieht die Aufteilung des Systems in die drei grundlegenden Bestandteile Model, View und Controller vor. \\
 			\textbf{\cb{S9 - Command}}: \\
 			Die Verwendung vom Command Designpattern sieht den Aufbau der Architektur derart vor, dass verschiedene Aktionen, die ein Nutzer ausführen kann, als Command-Objekte realisiert werden.. \\
@@ -1017,7 +1017,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Unerfahrene Entwickler}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{05: Unerfahrene Entwickler}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Entwickler sind unerfahren in den verwendeten Technologien.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1029,7 +1029,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S11 - (System) Biblotheken}}: \\
+			\textbf{\cb{\hypertarget{ccc}{S11 - (System) Biblotheken}}}: \\
 			\textbf{\cb{S12 - Dokumentierte Bibliotheken}}: \\
 			\textbf{\cb{S13 - MVC}}: \\
 			Verwendung Model- View- Controller Designpattern
@@ -1046,7 +1046,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Ausfallende Entwickler}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{06: Ausfallende Entwickler}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Teammitglieder können im Laufe der Entwicklung ausfallen.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1058,7 +1058,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S16 - Dokumentierte Bibliotheken}}\\
+			\textbf{\cb{\hypertarget{ddd}{S16 - Dokumentierte Bibliotheken}}}\\
 			Bei der Wahl von Bibliotheken ist darauf zu achten, dass man deren Dokumentation in gut verständlicher Form erhalten kann. \\
 			\textbf{\cb{S17 - Dokumentierung von geschriebenem Code}}\\
 			Parallel zur Erstellung von Quell-Code wird deren Dokumentation geschrieben.\\
@@ -1074,7 +1074,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Visualisierung, Editierung und Interaktion mit dem Graphen}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{07: Visualisierung, Editierung und Interaktion mit dem Graphen}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Das System muss den Graphen visualisieren. Dem Benutzer muss es möglich sein mit dem System zu interagieren und den Graphen zu editiert.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1113,7 +1113,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S19 - JUNG}}: \\
+			\textbf{\cb{\hypertarget{eee}{S19 - JUNG}}}: \\
 			JUNG (Java Universal Network Graph Framework) ist eine open-source Softwarebibliothek, die eine Schnittstelle für die Modellierung, Analyse und Visualisierung von Daten bietet, die als Graph dargestellt werden können. \\
 			\textbf{S20 - JGraphX, JGraphT}: \\
 			JGraphT ist eine Java-Bibliothek mit graphentheoretischen Datenstrukturen und Algorithmen. JGraphX ist ein auf Swing- basierendes Framework zur Graphvisualisierung. \\
@@ -1133,7 +1133,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Auswertung von Grapheigenschaften}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{08: Auswertung von Grapheigenschaften}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss bezüglich seiner Eigenschaften (Graphmaße, Umfang, Knotenbeziehungen) ausgewertet werden.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1162,13 +1162,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{22 - JUNG}}: \\
+			\textbf{\cb{\hypertarget{fff}{S22 - JUNG}}}: \\
 			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
-			\textbf{23 - NEO4J}: \\
+			\textbf{S23 - NEO4J}: \\
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
-			\textbf{\cb{24 - eigene Implementierung}}: \\
+			\textbf{\cb{S24 - eigene Implementierung}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.
-			\textbf{\cb{25 - JGraphT}}
+			\textbf{\cb{S25 - JGraphT}}
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1182,7 +1182,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{PDF Druck}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{09: PDF Druck}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen originalgetreu als PDF gedruckt werden können.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1196,7 +1196,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S25: Framework}: \\
 			Eine open- source Bibliothek für den Druck einbinden.\\
-			\textbf{\cb{S26: Java API}}: \\
+			\textbf{\cb{\hypertarget{ggg}{S26: Java API}}}: \\
 			Benutzung der Java API for Print Jobs. \\
 			\textbf{S27 - Extern }: \\
 			PDF des Graphen in einem System- externen PDFReader öffnen und ausdrucken.
@@ -1212,7 +1212,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ PDF Erstellung}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{10: PDF Erstellung}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen als PDF dargestellt werden können.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &  
@@ -1243,7 +1243,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S28 - JUNG}: \\
 			JUNG bietet eine Möglichkeit den VisualisationViewer, welcher den Graphen visualisiert, als JPG zu speichern. Dieses Bild kann dann unter Verwendung eines Frameworks zur PDF Erstellung in eine PDF eingebettet werden. \\
-			\textbf{\cb{S29 - java.awt.Graphics2D}}: \\
+			\textbf{\cb{\hypertarget{hhh}{S29 - java.awt.Graphics2D}}}: \\
 			Verwendung einer Bibliothek, die es Java- Programmen, ausgehen von java.awt.Graphics2D, ermöglicht diese als PDF zu exportieren. \\
 	} }\\ [4ex] \hline
 \end{tabular}\\ \\ \\
@@ -1256,7 +1256,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Bibliothek für den PDF Export von java.awt.Graphics2D}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{11: Bibliothek für den PDF Export von java.awt.Graphics2D}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{java.awt.Graphics2D als PDF verlustfrei exportieren.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1267,7 +1267,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S30 - Freeheb Vectorgraphics}}: \\
+			\textbf{\cb{\hypertarget{iii}{S30 - Freeheb Vectorgraphics}}}: \\
 			Freeheb Vectorgraphics bietet eine umfangreiche Lösung um java.awt.Graphics2D als zahlreiche Formate (SVG, PDF) zu exportieren und eine einfache Schnittstelle für den Benutzer. \\
 			\textbf{31 - iText}: \\
 			Das Framework iText erlaubt es Swing Komponenten als PDF zu speichern. \\
@@ -1283,7 +1283,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Protokoll der Nutzerinteraktionen exportieren/ importieren}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{12: Protokoll der Nutzerinteraktionen exportieren/ importieren}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll eine Möglichkeit bieten, das Protokoll der Nutzerinteraktionen von unserem System und der von uns verwendeten Datenbank losgelöst einsehen zu können (Export). Dieses Protokoll muss sowohl von Menschen lesbar als auch von einem Computer interpretiert werden können (Import).}}\rule{0pt}{6ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1296,20 +1296,20 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S32 - CSV} \\
 			Die Nutzerinteraktionen könnten aus der Datenbank abgefragt und die aus der Datenbank erhaltenen Objekte könnten dann in je eine Zeile der Character-seperated-Value (CSV) -Datei geschrieben werden. Die Informationen / Werte der einzelnen Objekte würden dann entsprechend durch ein festzulegendes Zeichen voneinander getrennt werden. \\
-			\textbf{S33 - JavaScript Object Notation (.json)} \\
+			\textbf{\cb{\hypertarget{jjj}{S33 - JavaScript Object Notation (.json)}}} \\
 			JSON ist eine Notation, die sowohl von Menschen gelesen als auch von Maschinen interpretiert werden kann. Dabei kann die Information (die in JavaScript Object Notation enthalten ist) von der Programmiersprche unseres Systems (Java) unabhängig gewonnen werden. Es ist also möglich eine JSON-Datei später beispielsweise über ein Python-Script einzulesen.
 	} }\\ \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir entscheiden uns für \cb{S33}. Da wir in unserem Datenmodell für die Nutzerinteraktionen .json einbinden, um die Parameterwerte der Logs abzuspeichern, eignet es sich das gesamte Protokoll auch als .json zu importieren/ exportieren. \\
-	\cb{Sx} würde vom Prinzip auch funktionieren. Da das Datenmodell bereits .json einbindet und so wenig wie möglich verschiedene Dateiformate in unserem System eingebunden sein sollen, um Fehler zu vermeiden, entschieden wir uns gegen \cb{S32}.
+	\cb{S32} würde vom Prinzip auch funktionieren. Da das Datenmodell bereits .json einbindet und so wenig wie möglich verschiedene Dateiformate in unserem System eingebunden sein sollen, um Fehler zu vermeiden, entschieden wir uns gegen \cb{S32}.
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newpage
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Benutzeroberfläche}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{13: Benutzeroberfläche}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche bietet die Schnittstelle zwischen dem Benutzer und dem Graphen. Durch die GUI kann der Benutzer mit dem Graphen interagieren, diesen editieren und auswerten.}}\rule{0pt}{5ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
@@ -1358,7 +1358,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S34 - GUI Framework JavaFx}} \\
+			\textbf{\cb{\hypertarget{kkk}{S34 - GUI Framework JavaFx}}} \\
 			Es besteht die Möglichkeit für die Benutzeroberfläche JavaFx zu verwenden. 
 			\textbf{S35 - GUI- Toolkit Swing} \\
 			Die Benutzeroberfläche kann mit dem GUI-Toolkit von Swing erstellt werden.
@@ -1375,7 +1375,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Einbettung JUNG als Swing GUI- Framework in eine JavaFx Application}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFx Application}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFx Komponenten modelliert wird, muss Swing in die JavaFx Anwendung eingebunden werden.}}\rule{0pt}{5ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
@@ -1387,7 +1387,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S36 - SwingNode}}: \\
+			\textbf{\cb{\hypertarget{lll}{S36 - SwingNode}}}: \\
 			Der Graph-Editor sowie die Oberfläche der Graphauswertung werden mit JavaFx modelliert. Die Visualisierung des Graphen wird mit JUNG umgesetzt, welches sich um eine Swing- Framework handelt. JavaFx stellt Swing-Nodes zur Verfügung in die Swing Komponenten eingebettet werden können. 
 			\\
 			\textbf{S37 - Überschreibung von Klassen aus JUNG}: \\
@@ -1403,7 +1403,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Benutzeroberflächenerstellung mit JavaFx}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFx}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFx erstellt.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
@@ -1416,7 +1416,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	z  \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{38 - Scene- Builder}}: \\
+			\textbf{\cb{\hypertarget{mmm}{38 - Scene- Builder}}}: \\
 			Mit Hilfe des Sence- Builders \url{https://gluonhq.com/products/scene-builder/} kann der Entwickler JavaFx Benutzeroberflächen zusammengeklicken und diese als FXML exportieren.  \\
 			\textbf{S39 - eigens implementieren}: \\
 			Auf dem JavaFx- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
@@ -1430,7 +1430,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Begrenzter Funktionsumfang durch Bearbeitszeit}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{16: Begrenzter Funktionsumfang durch Bearbeitszeit}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Durch den begrenzten Zeitraum unseres Projektes, können auch nur begrenzt Funktionen in unsere System eingebaut werden.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {n}{Sphären} &
@@ -1466,7 +1466,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S40 - erweiterte Anforderungen}}: \\
+			\textbf{\cb{\hypertarget{nnn}{S40 - erweiterte Anforderungen}}}: \\
 			Mindestanforderungen des Projektes und zusätzliche Anforderungen (Chinese Menu) werden so umgesetzt, dass diese den Ansprüchen der Gruppe und des Tutors genügen. \\
 			\textbf{S41 - Mindestanforderungen }: \\
 			Nur die Mindestanforderungen werden umgesetzt. \\
@@ -1484,7 +1484,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Protokolldaten und Graphdaten zusammen sichern}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{17: Protokolldaten und Graphdaten zusammen sichern}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Nutzerinformationen (das Protokoll) muss genauso wie der Graph gesichert werden. Hierzu wäre es sinnvoll, die Daten nach einer geeigneten Strategie zusammen zu speichern.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1501,7 +1501,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S42 - Datenordner}: \\
 			Dateien in einem Ordner (ggf. ZIP) ablegen/packen. \\
-			\textbf{\cb{S43 - Eigener Datentyp}}: \\
+			\textbf{\cb{\hypertarget{ooo}{S43 - Eigener Datentyp}}}: \\
 			Speicherung beider Daten in einer Textdatei als ein eigener Dateityp \\
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
@@ -1516,7 +1516,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Verwendung einer Embedded Database}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{18: Verwendung einer Embedded Database}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wir benötigen eingebettete Datenbanken für das Protokoll und für den Graphen.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1535,14 +1535,14 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{S44 - SQLite}: \\
 			Verwendung von SQLite als eingebettete Datenbank \\
-			\textbf{\cb{S45 - H2 Database}}: \\
+			\textbf{\cb{\hypertarget{ppp}{S45 - H2 Database}}}: \\
 			Verwendung von H2 als eingebettete Datenbank \\
-			\textbf{\cb{S46 - Apache Derby}}: \\
+			\textbf{S46 - Apache Derby}: \\
 			Verwendung von Apache Derby als eingebettete Datenbank \\
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Wir haben uns gegen 44 entschieden, da Hibernate hierfür nicht ausgelegt ist. Hierzu wäre es nötig, einen eigenen Sequeldialekt zu entwickeln. Für uns bietet die \cb{S45} alle Funktionen, die wir benötigen. S46 dagegen hat den Nachteil, dass die Performanz (bei von uns getesteten Speicheraktionen) nicht ganz so hoch war wie bei S45.
+	Wir haben uns gegen S44 entschieden, da Hibernate hierfür nicht ausgelegt ist. Hierzu wäre es nötig, einen eigenen Sequeldialekt zu entwickeln. Für uns bietet die \cb{S45} alle Funktionen, die wir benötigen. S46 dagegen hat den Nachteil, dass die Performanz (bei von uns getesteten Speicheraktionen) nicht ganz so hoch war wie bei S45.
 \end{onehalfspace}
 
 
@@ -1552,7 +1552,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Einhaltung der Abgabetermine}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{19: Einhaltung der Abgabetermine}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Abgabetermine sind nicht verhandelbar. Da die Ressourcen begrenzt sind benötigen wir Strategien um Deadlines einzuhalten.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
@@ -1563,7 +1563,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S47 - Verwendung von (System)- Bibliotheken}}: \\
+			\textbf{\cb{\hypertarget{qqq}{S47 - Verwendung von (System)- Bibliotheken}}}: \\
 			Durch das Verwenden von Bibliotheken sparen wir Aufwand und damit Zeit, indem wir bereits bestehende Funktionen benutzen. \\
 			\textbf{\cb{S48 - Wiederverwendung von System-eigenen Komponenten}}: \\
 			Das Wiederverwenden von Systen-eigenen Komponenten ist sinnvoll, um Ressourcen zu sparen. \\
@@ -1582,7 +1582,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Kommunikation Zielplattform (Java) mit embedded DB}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{20: Kommunikation Zielplattform (Java) mit embedded DB}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es ist erforderlich die Objekte des Nutzerprotokolls, die während der Nutzung unseres System erstellt werden, in einer Datenbank zu speichern. Dazu muss aus dem Objekt im Java-Kontext ein Datenbankeintrag erstellt werden. Hierfür ist Obejct-relational-Mapping (ORM) erforderlich.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
@@ -1598,7 +1598,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S50 - Hibernate}}: \\
+			\textbf{\cb{\hypertarget{rrr}{S50 - Hibernate}}}: \\
 			Verwendung von Hibernate als Persistenz- und ORM-Framework. \\
 			\textbf{S51 - Toplink (Oracle), nun EclipseLink}: \\
 			Verwendung von EclipseLink als Persistenz- und ORM-Framework. \\
@@ -1619,7 +1619,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Übersichtlichkeit in der Sphäre und im Graphen}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{21: Übersichtlichkeit in der Sphäre und im Graphen}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Knoten/ Kanten werden in der Sphäre und in dem Graphen übersichtlich angeordnet, sodass sich möglichst wenig Kanten verschiedenen Typs überschneiden und die Knoten übersichtlich angeordnet sind.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
@@ -1642,7 +1642,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S53 - Layouts in Layouts}}: \\
+			\textbf{\cb{\hypertarget{sss}{S53 - Layouts in Layouts}}}: \\
 			Unterteilung in 2 Layouts. Eines um das Layout innerhalb der Sphären zu berechnen und ein weiteres, um die beste Anordnung der Sphären zu berechnen. \\
 			\textbf{\cb{S54 - JUNG Layouts}}: \\
 			Von JUNG zur Verfügung gestelle Layouts einbinden. \\
@@ -1661,7 +1661,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ GXL Erstellung}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{22: GXL Erstellung}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll eine Graph-Repräsentation in der Graph eXchange Language erstellt werden.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & 
@@ -1681,7 +1681,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S56 - Sourceforge Framework}}: \\
+			\textbf{\cb{\hypertarget{ttt}{S56 - Sourceforge Framework}}}: \\
 			Die Verwendung des GXL-Frameworks von Sourceforge zur Erstellung von GXL-Dateien \\
 			\textbf{S57 - Arakhne Framework}: \\
 			Die Verwendung des GXL-Frameworks von Arakhne zur Erstellung von GXL-Dateien \\
@@ -1700,7 +1700,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{Umsetzung der Funktionsmodi}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{23: Umsetzung der Funktionsmodi}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Dem Benutzer ist es freigestellt mehrere Modi in unserem System zu benutzen (Ersteller, Bearbeiter, Auswerter).}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
@@ -1721,7 +1721,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S59 - Modi als eigener Teil unserer Applikation}}: \\
+			\textbf{\cb{\hypertarget{uuu}{S59 - Modi als eigener Teil unserer Applikation}}}: \\
 			Umsetzung der Modi programmintern als eigenes Modul, je nachdem welcher Modi gesetzt ist, wird die GUI dargestellt und bestimmte Funktionen zur Verfügung gestellt \\
 			\textbf{S60 - Ein Programm pro Modus}: \\
 			Auswahl des Modus beim Start des Programms, wodurch verschiedene Anwendungen gestartet werden können
@@ -1738,7 +1738,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Vorlage}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{24: Vorlage}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es muss eine Vorlage eines Graphen erstellt werden können, welche schon Graphelement beinhaltet, sowie die Möglichkeit bietet, Regeln für die Grapherstellung festzulegen.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & 
@@ -1758,7 +1758,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S61 - Regeln in der GXL-Datei}}: \\
+			\textbf{\cb{\hypertarget{vvv}{S61 - Regeln in der GXL-Datei}}}: \\
 			Die Regelfestlegung wird in der GXL-Datei abgespeichert. \\
 			\textbf{S62 - Externe Regelabspeicherung}: \\
 			Die Regeln werden extern abgespeichert und beim Laden ausgelesen. 
@@ -1771,582 +1771,36 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 
 
 
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newpage
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
-	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Überschrift}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Beschreibung}}\rule{0pt}{1ex}\\ [1ex] \hline
-	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
-	Faktor 1 & Faktor 2  \\ \hline
-	\multicolumn{2}{|l|}{Lösungen} \\
-	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S1 - }}: \\
-			Beschreibung \\
-			\textbf{S2 - }: \\
-			Beschreibung \\
-			\textbf{S3 - }: \\
-			Beschreibung
-	} }\\ [6ex] \hline
+\hline
+\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{25: Im- und Export von Parameter-Objekten als JSON }}} \\ \hline\hline 
+\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Ptokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen dartellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objkete.}}\rule{0pt}{1ex}\\ [1ex] \hline
+\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
+\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
+\\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
+\hyperlink {h}{Hohe Qualität}&
+\hyperlink {i}{Command} \\
+\hyperlink {bb}{Protokoll von Nutzerinteraktionen} &
+\hyperlink {mm}{Protokoll JSON} \\
+\hyperlink {ww}{Softwarelizenzbudget} 
+\\ \hline
+\multicolumn{2}{|l|}{Lösungen} \\
+\multicolumn{2}{|l|}{\parbox{16cm}{
+\textbf{\cb{S63 - Jackson}}: \\
+Mit Jackson können Objekte gelesen und deren Informationen ins json.Format überführt werden. Dies erlaubt die Überführung von Objekten in einen strukturierten String, der zu einem späteren Zeitpunkt leicht gelesen werdn kann.\\
+\textbf{S64 - GSON}: \\
+Mit GSON können Informationen aus Objekten gelesen werden und ins json.Format geparst werden.\\
+\textbf{S65 - JSONP}: \\
+Mit JSONP können Objekte geparst und deren Informationen ins json-Format geschrieben werden.
+} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	begründete Entscheidung!
+Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit gröter Geschwindigkeit ins json-Format überführt werrden können.
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VORLAGE PROBLEMKARTEN
 
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\newpage
-\hspace{-0.65cm}
-\begin{tabular} {|p{8cm} p{8cm}|}
-	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{ Überschrift}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Beschreibung}}\rule{0pt}{1ex}\\ [1ex] \hline
-	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
-	Faktor 1 & Faktor 2  \\ \hline
-	\multicolumn{2}{|l|}{Lösungen} \\
-	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S1 - }}: \\
-			Beschreibung \\
-			\textbf{S2 - }: \\
-			Beschreibung \\
-			\textbf{S3 - }: \\
-			Beschreibung
-	} }\\ [11ex] \hline
-\end{tabular}\\ \\ \\
-\begin{onehalfspace}
-	begründete Entscheidung!
-\end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VORLAGE PROBLEMKARTEN
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{tabular} {|p{14cm}|}
-	\hline
-	00: Name der Problemkarte \\ \hline
-	Hier steht ein Text dessen Aufgabe es ist die Problemkarte zu beschreiben - also zu sagen, worum es sich bei dieser Karte handelt.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 8 oder höher als Implementierungssprache\\
-	\hyperlink{P01.2}{P01.2} Verwendung von Maven als Build-System\\
-	\hyperlink{P01.3}{P01.3} Benutzung einer leichtgewichtigen Datenbank\\
-	\hyperlink{P02.1}{P02.1} Betriebssystemunterstützung / Zielplattformen des Systems\\
-	\hyperlink{P02.2}{P02.2} Datenschutz\\
-	\hyperlink{P02.3}{P02.3} Datenbank-Backup\\
-	\hyperlink{P03.1}{P03.1} Funktionsmodi\\
-	\hyperlink{P03.2}{P03.2} Filter\\
-	\hyperlink{P03.3}{P03.3} Zoom \\
-	\hyperlink{P03.4}{P03.4} Zoom.Kontext\\
-	\hyperlink{P03.5}{P03.5} Sprache\\
-	\hyperlink{P03.6}{P03.6} GXL-Export und -Import\\
-	\hyperlink{P03.7}{P03.7} Tracking von Nutzerinteraktionen\\
-	\hyperlink{P03.8}{P03.8} Veränderbarkeit visueller Grapheigenschaften \\
-	\hyperlink{O 01}{O 01} Teamgröße\\
-	\hyperlink{O 02}{O 02} Abgabedatum\\
-	\hyperlink{O 03}{O 03} Teamfähigkeiten\\
-	\hyperlink{O 04}{O 04} Softwarelizenzbudget \\
-	\hyperlink{T 01}: Dokumentation\\
-	\hyperlink{T 02}: Softwaretests\\
-	\hyperlink{T 03}: Hohe Fehlertoleranz\\
-	\hyperlink{T 04}: Hohe Usability / Ansprechendes GUI-Design\\
-	\hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie -1}{Strategie -1}: Name der minus ersten Strategie} \\
-	Hier wird ein Text stehen, der die minus erste Strategie beschreibt. \\
-	\textbf{\hypertarget{Strategie 0}{Strategie 0}: Name der nullten Strategie} \\
-	Hier wird ein Text stehen, der die nullte Strategie beschreibt. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir denken, dass Strategie X die beste Option für uns ist. Dies liegt daran, dass ... hier steht die Begründung. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	01: Darstellung eines Graphen \\ \hline
-	Es soll möglich sein einen Graphen gemäß des im Kapitel Definitionen, Akronyme und Abkürzungen beschriebenen \hyperlink{Syndromansatz}{Syndromansatzes} zu erstellen. Ein Graph besteht aus Sphären, den Sphären zugeordneten Symptomen und Relationen zwischen den Symptomen. Die Grapherstellung und -darstellung ist die wesentliche Funktion des Programmes.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 8 oder höher als Implementierungssprache\\
-	\hyperlink{P01.3}{P01.3} Benutzung einer leichtgewichtigen Datenbank\\
-	\hyperlink{P02.1}{P02.1} Betriebssystemunterstützung / Zielplattformen des Systems\\
-	\hyperlink{P02.2}{P02.2} Datenschutz\\
-	\hyperlink{P03.1}{P03.1} Funktionsmodi\\
-	\hyperlink{P03.2}{P03.2} Filter\\
-	\hyperlink{P03.3}{P03.3} Zoom \\
-	\hyperlink{P03.4}{P03.4} Zoom.Kontext\\
-	\hyperlink{P03.5}{P03.5} Sprache\\
-	\hyperlink{P03.6}{P03.6} GXL-Export und -Import\\
-	\hyperlink{P03.7}{P03.7} Tracking von Nutzerinteraktionen\\
-	\hyperlink{P03.8}{P03.8} Veränderbarkeit visueller Grapheigenschaften \\
-	\hyperlink{O 01}{O 01} Teamgröße\\
-	\hyperlink{O 02}{O 02} Abgabedatum\\
-	\hyperlink{O 03}{O 03} Teamfähigkeiten\\
-	\hyperlink{O 04}{O 04} Softwarelizenzbudget \\
-	\hyperlink{T 01}: Dokumentation\\
-	\hyperlink{T 02}: Softwaretests\\
-	\hyperlink{T 03}: Hohe Fehlertoleranz\\
-	\hyperlink{T 04}: Hohe Usability / Ansprechendes GUI-Design\\
-	\hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 1}{Strategie 1}: JUNG} \\
-	JUNG (Java Universal Network/Graph Framework) ist eine Sprache zur Visualisierung, Modellierung und Analyse von Daten, die einen Graphen oder ein Netzwerk repräsentieren. JUNG ist in Java geschrieben und bietet unter anderem die Möglichkeit den Graphen mit Metadaten zu annotieren, was weitreichende Analysemöglichkeiten möglich macht. Darüber hinaus beinhaltet das Framework bereits Filter-Funktionalität und einige Layout-Algorithmen. Zu JUNG finden sich zudem viele Anwendungsbeispiele im Internet. \\
-	\textbf{\hypertarget{Strategie 2}{Strategie 2}: JGraph} \\
-	Bei JGraph handelt es sich um ein Framework welches die Grapherstellung unterstützt. Es hat den Fokus auf der Visualisierung des Graphen sofern man die im Framework bereits implementierten Methoden betrachtet. \\
-	\textbf{\hypertarget{Strategie 3}{Strategie 3}: JGraphT} \\
-	JGraphT ist eine Klassenbibliothek, die wie JGraph die Grapherstellung erleichtern soll. Der Fokus der von diesem Framework bereitgestellten Funktionen liegt jedoch eher auf der Analyse von Daten. Das Framework stellt unter anderem Algorithmen zum Finden von stark vernetzten Graphteilen und von \hyperlink{Kreislauf}{Kreisläufen} bereit.  \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir denken, dass Strategie 1 die beste Option für uns ist. Dies liegt vor allem an den umfangreichen Funktionen, die in dem Framework bereits implementiert sind und zum anderen daran, dass wir uns anhand der zahlreichen Codebeispiel im Internet gut in das Framework einarbeiten beziehungsweise mit recht hoher Wahrscheinlichkeit Lösungsansätze für möglicherweise auftretende Probleme finden werden. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	01: E-Mails verschicken können \\ \hline
-	In der Anwendung muss eine Funktion zur Verfügung gestellt werden, mit der es möglich ist, (automatisiert) E-Mails zu verschicken.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.3}{P02.3} Mandantenfähiges System \\
-	\hyperlink{P05.3}{P05.3} E-Mail-Generierung unterstützen \\
-	\hyperlink{P05.4}{P05.4} Benachrichtigungen/Erinnerungen \\
-	\hyperlink{P06.1}{P06.1} Zielplattform/Betriebssystemunterstützung \\
-	\hyperlink{P06.3}{P06.3} Client: gängige Browser \\
-	\hyperlink{P06.4}{P06.4} App-Entwicklung \\
-	\hyperlink{P08}{P08} Client-Server-Architektur erforderlich \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 1}{Strategie 1}: Nutzung der von Glassfish zur Verfügung gestellten E-Mail-Funktion} \\
-	Ein Verfahren, das wir nutzen könnten, um Nutzern unseres Systems die Möglichkeit zu geben E-Mails zu verschicken, ist die Verwendung von der E-Mail-Funktion von Glassfish. \\
-	\textbf{\hypertarget{Strategie 2}{Strategie 2}: Selbstprogrammieren} \\
-	Wir programmieren den E-Mail-Client selbst. \\
-	\textbf{\hypertarget{Strategie 3}{Strategie 3}: Verlinkung des Nutzers zu seinem E-Mail-Client} \\
-	Wir können dem Nutzer durch die Verlinkung mit seinem E-Mail-Client die Möglichkeit geben, in dem System E-Mails zu verschicken, was dann über seinen E-Mail-Account läuft. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir denken, dass Strategie 3 die beste Option für uns ist.\\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	02: Hohe Usability \\ \hline
-	Die Anwendung soll alle Kriterien einer hohen Usability möglichst gut erfüllen.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P05.2}{P05.2} Prüfungstermine verwalten / vorschlagen lassen \\
-	\hyperlink{P05.3}{P05.3} E-Mail-Generierung unterstützen \\
-	\hyperlink{P05.4}{P05.4} Benachrichtigungen/Erinnerungen\\
-	\hyperlink{P07.2}{P07.2} Wiederverwendbarkeit bestehender LV unterstützen \\
-	\hyperlink{P07.3}{P07.3} Prüfungs- / Notenhistorie \\
-	\hyperlink{O 01}{O 01} Begrenzte Zeit / Abgabedatum \\
-	\hyperlink{O 02}{O 02} Teamgröße \\
-	\hyperlink{O 03}{O 03} Fähigkeiten \\
-	\hyperlink{O 04}{O 04} Ansprechendes GUI-Design \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 4}{Strategie 4}: JSF-Framework-Verwendung} \\
-	Mit der Verwendung von Boots- oder Primefaces, gelingt es uns eine hohe Usability zu erreichen, da sie uns viele Bibliotheken zur Verfügung stellen, welche sehr benutzerfreundlich sind. \\
-	\textbf{\hypertarget{Strategie 5}{Strategie 5}: Hohe Fehlertoleranz} \\ 
-	Mit einer hohen Fehlertoleranz können wir es schaffen das System aufrecht zu erhalten, auch bei einer fehlerhaften Eingabe. Dies führt zu einer hohen Usability. \\ \hline
-	\textbf{Entscheidung} \\
-	Wir denken, dass eine Kombination aus beiden Strategien die höchste Benutzerfreundlichkeit verspricht. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	03: Notenberechnung \\ \hline
-	Wir müssen den Nutzern die Möglichkeit geben, mit den erreichten Teilleistungen Endnoten berechnen zu können.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.2}{P02.2} Datenbank-Backup \\
-	\hyperlink{P04.1}{P04.1} CSV verarbeiten \\
-	\hyperlink{P04.2}{P04.2} Kompatibilität zu PABO \\
-	\hyperlink{P06.2}{P06.2} Bearbeitung des Datenbestandes im Browser auf normalen Desktop-Rechner ermöglichen \\
-	\hyperlink{O 01}{O 01} Begrenzte Zeit / Abgabedatum \\
-	\hyperlink{O 02}{O 02} Teamgröße \\
-	\hyperlink{O 03}{O 03} Fähigkeiten \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 6}{Strategie 6}: Import/Export} \\
-	Wir können es möglich machen, sich die Teilleistungen im CSV Format zu exportieren, damit man die Endnote außerhalb des Programms berechnen kann und die Endnote dann wieder importieren kann. \\
-	\textbf{\hypertarget{Strategie 7}{Strategie 7}: Selbst programmieren} \\
-	Wir könnten selbst einige Algorithmen zur Berechnung der Noten entwickeln, so dass sie direkt im System von dem Benutzer ausgerechnet werden lassen können. \\
-	\textbf{\hypertarget{Strategie 8}{Strategie 8}: SQL} \\
-	SQL ist eine Datenbanksprache zur Veränderung und Bearbeitung von Datenbeständen, mit deren Hilfe man die Notenberechnung ermöglichen könnte, da man die Datenbestände mit Hilfe von selbstgeschriebenen Formeln bearbeiten kann. \\
-	\textbf{\hypertarget{Strategie 9}{Strategie 9}: Luaj} \\
-	Luaj ist ein Java-Binding für die Skriptsprache Lua, die man in Programme einbinden kann, um beispielsweise die Notenberechnung durch eingegebene Formeln des Prüfers zu ermöglichen. Zudem ist die Größe des Skript-Interpreters sehr gering. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für den Import/Export da dies am einfachsten zu realisieren ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	\hypertarget{04: CSV Verarbeitung}{04: CSV Verarbeitung} \\ \hline
-	Um die Notenberechnung mit der Strategie Export / Import zu lösen, benötigen wir Strategien für die Verarbeitung von CSV Formaten. \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.3}{P02.3} Mandantenfähiges System \\
-	\hyperlink{P04.1}{P04.1} CSV verarbeiten \\
-	\hyperlink{P04.2}{P04.2} Kompatibilität zu PABO \\
-	\hyperlink{P07.1}{P07.1} Hohe Usability \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 10}{Strategie 10}: Wir programmieren es selbst} \\
-	Wir programmieren selbst einen Parser, der in der Lage ist CSV Dateien zu im- und exportieren.\\
-	\textbf{\hypertarget{Strategie 11}{Strategie 11}: Open CSV } \\
-	Open CSV ist eine Parser Library, welche uns die Möglichkeit gibt CSV Dateien ein- und auszulesen. Des Weiteren läuft es schon auf Java 7 und höher.\\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für die Nutzung von Open CSV, da es die einfachste Lösung für uns ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	05: Rollenkonzept \\ \hline
-	Das System muss verschiedenen Nutzergruppen verschiedene Funktionen zur Verfügung stellen. Die unterschiedlichen Nutzer haben unterschiedliche Zugriffsrechte.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.2}{P02.2} Datenbank-Backup \\
-	\hyperlink{P02.3}{P02.3} Mandantenfähiges System \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 12}{Strategie 12}: Enums} \\
-	Wir können das Java eigene Konzept der Enumerationen verwenden. Bei dieser Datenstruktur kann man relativ einfach neue Nutzerklassen definieren, was vorteilhaft ist, wenn die Anwendung zukünftig in weiteren Fachbereichen benutzt werden soll. \\
-	\textbf{\hypertarget{Strategie 13}{Strategie 13}: Shiro und JEE - Security} \\
-	Shiro und JEE - Security sind Java Security Frameworks, welche auf Rollen und den dazugehörigen Rechten basieren. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für Strategie 13, weil es für uns die einfachste Alternative ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	06: Datenschutz \\ \hline
-	Wir müssen alle datenschutzrechtlichen Bestimmungen beachten.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.2}{P02.2} Datenbank-Backup \\
-	\hyperlink{P04.2}{P04.2} Kompatibilität zu PABO \\
-	\hyperlink{P06.2}{P06.2} Bearbeitung des Datenbestandes im Browser auf normalen Desktop-Rechner ermöglichen \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 14}{Strategie 14}: Shiro} \\
-	Shiro funktioniert mit jedem Datenmodell und bietet viele Sicherheitsoptionen, wie z.B. Authentifizierung, Autorisierung und Session-Management, zur Verstärkung des Datenschutzes.\\
-	\textbf{\hypertarget{Strategie 15}{Strategie 15}: JEE - Security} \\
-	JEE Security realisiert verschiedene Aspekte der Sicherheit die uns alle beim Realisieren des Datenschutzes helfen.\\\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für Strategie 14, da Shiro zugänglicher ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	07: Mandantenfähiges System \\ \hline
-	Das System muss mehrere Benutzer gleichzeitig bedienen, ohne dass diese gegenseitigen Einblick in ihre Daten, Benutzerverwaltung und Ähnliches haben.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.2}{P02.2} Datenbank-Backup \\
-	\hyperlink{P04.2}{P04.2} Kompatibilität zu PABO \\
-	\hyperlink{P05.2}{P05.2} Prüfungstermine verwalten / vorschlagen lassen \\
-	\hyperlink{P06.2}{P06.2} Bearbeitung des Datenbestandes im Browser auf normalen Desktop-Rechner ermöglichen \\
-	\hyperlink{P07.1}{P07.1} Hohe Usability \\
-	\hyperlink{P07.3}{P07.3} Prüfungs- / Notenhistorie \\
-	\hyperlink{P08}{P08} Client-Server-Architektur erforderlich \\ \hline
-	\textbf{Lösung} \\
-	\textbf{Strategie 14: Shiro} \\
-	Shiro implementiert von sich aus einige Session Management Features, mit denen es möglich ist verschiedene Instanzen zu generieren und diese zu verwalten. \\
-	\textbf{Strategie 15: JEE Security} \\
-	Da JEE Security von sich aus schon ein Rollenkonzept initialisiert ist es automatisch möglich verschiedene Instanzen zu generieren.
-	\\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Hier entscheiden wir uns für Shiro, da wir es schon oft benutzen (konsistent) und es gut für unser Vorhaben geeignet ist.  \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	08: Lauffähig auf allen gängigen Browsern \\ \hline
-	Das System soll auf allen gängigen Browsern (Safari, Firefox etc.) funktionieren.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{P08}{P08} Client-Server-Architektur erforderlich \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 16}{Strategie 16}: Plattformunabhängige Komponenten} \\
-	Bei Implementierung unseres Systems verwenden wir ausschließlich Komponenten, Frameworks und Features, von denen wir im Voraus sichergestellt haben, dass sie auf allen Browsern lauffähig sind. \\
-	\textbf{\hypertarget{Strategie 17}{Strategie 17}: Nutzung von JavaScript} \\
-	Durch die Nutzung von JavaScript und JSF ist es sichergestellt, dass unser System auf allen gängigen Browsern läuft, da diese kompatibel zu allen Browsern sind. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Da wir die Anforderung haben, das System in Java zu implementieren, entscheiden wir uns für  Strategie 17. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	09: Ansprechendes GUI-Design \\ \hline
-	Das Erscheinungsbild des Systems soll für den Benutzer ästhetisch sein. \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P06.1}{P06.1} Zielplattform/Betriebssystemunterstützung \\
-	\hyperlink{P06.4}{P06.4} App-Entwicklung \\
-	\hyperlink{P07.1}{P07.1} Hohe Usability \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 18}{Strategie 18}: Wir benutzen JSF Frameworks (Boots- und PrimeFaces)} \\
-	Mit Primefaces oder Bootsfaces können wir die GUI schön gestalten, da schon fertige und ansprechende Widgets existieren.\\
-	\textbf{\hypertarget{Strategie 19}{Strategie 19}: Nutzung von Ice- und RichFaces} \\
-	Mit diesen Frameworks könnten wir ebenfalls die GUI gestalten. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für die Nutzung von Boots- und PrimeFaces, da diese noch weiterhin supportet werden und zudem ansprechender wirken, was ein relevanter Aspekt für ein ansprechendes GUI Design ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	10: Kalender \\ \hline
-	Es soll ein Kalender existieren, in welchem man Termine verwalten und einsehen kann.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.2}{P02.2} Datenbank-Backup \\
-	\hyperlink{P02.3}{P02.3} Mandantenfähiges System \\
-	\hyperlink{P03.2}{P03.2}  ICS - Dateigenerierung \\
-	\hyperlink{P05.2}{P05.2} Prüfungstermine verwalten / vorschlagen lassen \\
-	\hyperlink{P05.4}{P05.4} Benachrichtigungen/Erinnerungen \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{P08}{P08} Client-Server-Architektur erforderlich \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 20}{Strategie 20}: Primefaces Schedule} \\
-	Wir benutzen den Kalender von Primefaces, welcher schon viele Funktionen und ein gutes Design mit sich bringt. \\
-	\textbf{\hypertarget{Strategie 21}{Strategie 21}: Bootsfaces Kalender} \\
-	Wir benutzen den Kalender von Bootsfaces, welcher schon viele Funktionen und ein gutes Design mit sich bringt. \\
-	\textbf{\hypertarget{Strategie 22}{Strategie 22}: Wir entwickeln selbst einen Kalender} \\
-	Wir können den Kalender selbst programmieren, um ihn direkt auf unsere Anforderungen anpassen zu können. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für den Kalender von Primefaces, da dieser ästhetischer ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	11: Passwort ändern \\ \hline
-	Es soll möglich sein, das eigene Passwort zu ändern und zurückzusetzen. \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.2}{P02.2} Datenbank-Backup \\
-	\hyperlink{P02.3}{P02.3} Mandantenfähiges System \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 23}{Strategie 23}: Nutzung von Security-Frameworks in Kombination mit der E-Mail Anwendung} \\
-	Mit unserer E-Mail Anwendung schicken wir dem Benutzer eine E-Mail mit weiteren Schritten, um sein Passwort zurückzusetzen. In Kombination mit dem Security-Framework sollte sich dies realisieren lassen. \\
-	\textbf{\hypertarget{Strategie 24}{Strategie 24}: Nachricht an den Admin} \\
-	Der Nutzer schreibt dem Admin eine Nachricht, in welcher er ihn darüber informiert, dass er sein Passwort ändern oder zurücksetzen möchte.
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für Strategie 23, da diese am sichersten und verlässlichsten erscheint.\\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	12: PDF-Generierung \\ \hline
-	Es soll für den Prüfer möglich sein, eine Quittung zu erstellen. Dabei wird ein PDF mit allen Informationen zu dem jeweiligen Prüfling, der Prüfung und dem Ergebnis (optional), generiert.\\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P04.2}{P04.2} Kompatibilität zu PABO \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 25}{Strategie 25}:  Java PDF Library Apache PDFBox} \\
-	Java PDF Library Apache PDFBox ist eine Library, die es uns nicht nur die Erstellung, sondern auch die Manipulation von PDFs ermöglicht.\\
-	\textbf{\hypertarget{Strategie 26}{Strategie 26}: PDF Library iText} \\
-	Diese Library ist weit verbreitet für die Erstellung und Bearbeitung von PDF Dokumenten, welche in Java geschrieben ist.\\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für Strategie 25, weil es noch unterstützt wird und leicht zu implementieren ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	13: Wartbarkeit \\ \hline
-	Das System muss nach der Auslieferung leicht wartbar sein, das bedeutet wir müssen es verständlich und leicht änderbar entwerfen.\\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P06.1}{P06.1} Zielplattform/Betriebssystemunterstützung \\
-	\hyperlink{P06.2}{P06.2} Bearbeitung des Datenbestandes im Browser auf normalen Desktop-Rechner ermöglichen \\
-	\hyperlink{P06.3}{P06.3} Client: gängige Browser \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 27}{Strategie 27}:  Dokumentation des Quellcodes} \\
-	Wir streben es an, den wichtigen Quellcode zu dokumentieren, damit spätere Entwickler sich leicht reinlesen und es warten können. \\
-	\textbf{\hypertarget{Strategie 28}{Strategie 28}: Modularisierung} \\
-	Eine weitere Strategie ist die Modularisierung, wodurch wir eine geringe Kopplung und hohe Kohäsion erreichen können. Durch die Zerlegung des Systems in einzelne Module, ist es für einen Entwickler, der das Sytsem warten muss einfacher einzelne Module auszutauschen oder zu bearbeiten.\\
-	\textbf{\hypertarget{Strategie 29}{Strategie 29}: Redundanzvermeidung} \\
-	Wenn wir Redundanzen vermeiden, ist es für den späteren Programmierer, der das System warten soll, einfacher Probleme zu beheben. Des Weiteren ist es übersichtlicher für jeden der sich den Code anguckt. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für eine Kombination aller Strategien, da sie alle leicht zu berücksichtigen sind und für eine hohe Wartbarkeit zusammenspielen müssen. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	14: PABO-Import\\ \hline
-	Ein Prüfer/Sekretär soll die Möglichkeit haben die teilnehmenden Prüflinge aus PABO zu importieren.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P02.2}{P02.2} Datenbank-Backup \\
-	\hyperlink{P02.3}{P02.3} Mandantenfähiges System \\
-	\hyperlink{P04.1}{P04.1} CSV verarbeiten \\
-	\hyperlink{P05.1}{P05.1} Rollenkonzept \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{Strategie 11: OpenCSV } \\
-	OpenCSV ist eine Parser Library, welche uns die Möglichkeit gibt CSV Dateien ein- und auszulesen. Des Weiteren läuft es schon auf Java 7 und höher.\\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir benutzen OpenCSV, da es sich anbietet aufgrund unserer gewählten Strategie zur Problemkarte \hyperlink{04: CSV Verarbeitung}{04: CSV Verarbeitung} \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular}  {|p{14cm}|}
-	\hline
-	15: Synchronisation mit Google-Kalender\\ \hline
-	Der Kalender unseres Systems soll mit dem Google-Kalender des Benutzers optional synchronisiert werden. \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P03.2}{P03.2} ICS - Dateigenerierung \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 30}{Strategie 30}: Google Kalender Java API} \\
-	Wir benutzen die Java API von Google, welche direkt bereitgestellt wird, da diese eine so hohe Qualität bietet, ist es die beste Option.  \\ \hline
-	\textbf{Entscheidung} \\
-	Wir denken, dass Strategie 30 die einzige und beste Option für uns ist. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	16: Terminvorschläge \\ \hline
-	Ein Prüfer hat die Möglichkeit, durch Angabe eines Zeitfensters, Prüfungsdauer und Pausendauer, Termine für seine Prüfungen vorgeschlagen zu bekommen.  \\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P01.4}{P01.4} JSF verwenden \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{P08}{P08} Client-Server-Architektur erforderlich \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 31}{Strategie 31}: Selbst programmieren} \\
-	Wir programmieren einen Algorithmus, der Termine für einen angegebenen Zeitraum und weiteren möglichen Angaben vorschlägt. \\
-	\\ \hline
-	\textbf{Entscheidung} \\
-	Wir entscheiden uns für die oben beschriebene Strategie, da es keine andere Möglichkeit gibt dies zu realisieren.\\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular}  {|p{14cm}|}
-	\hline
-	17: Krankmeldungen \\ \hline
-	Falls ein Prüfling verhindert ist, gibt es eine Funktion mit der er dem Prüfer der jeweiligen Prüfung eine vorgefertigte Email schicken kann. Der Prüfer bekommt dies sofort angezeigt und kann es im System hinterlegen.   \\
-	\textbf{Einflussfaktoren} \\
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P03.1}{P03.1} Dokument- / Dateiupload \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{T 01}{T 01} Fehlertoleranz \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 32}{Strategie 32}: Wir programmieren es selbst} \\
-	Wir programmieren die Option selber, dass der Prüfling den Prüfer über seine Krankmeldung informieren kann. Dies kann man mit unserer Email-Funktion realisieren. \\ \hline
-	\textbf{Entscheidung} \\
-	Hier entscheiden wir uns für die einzige aufgeführte Strategie, da wir für dieses Problem keine andere Strategie finden. \\ \hline
-\end{tabular}
-\\ \\ \\
-\begin{tabular} {|p{14cm}|}
-	\hline
-	18: Unregistrierte Person erstellen \\ \hline
-	Wir müssen auch unregistrierte Personen hinzufügen können, welche dann aufgefordert werden sollten, sich zu registrieren.\\
-	\textbf{Einflussfaktoren} \\ 
-	\hyperlink{P01.1}{P01.1} Java 7 oder höher als Implementierungssprache \\
-	\hyperlink{P01.2}{P01.2} Obligatorische Nutzung von GlassFish inklusive Derby \\
-	\hyperlink{P01.3}{P01.3} Maven als Build-System \\
-	\hyperlink{P02.1}{P02.1} Sicherheit / Datenschutz \\
-	\hyperlink{P05.1}{P05.1} Rollenkonzept \\
-	\hyperlink{P07.1}{P07.1} hohe Usability \\
-	\hyperlink{P08}{P08} Client-Server-Architektur erforderlich \\ \hline
-	\textbf{Lösung} \\
-	\textbf{\hypertarget{Strategie 33}{Strategie 33}: Link in E-Mail} \\
-	Falls ein Benutzer jemanden hinzufügen möchte, der noch nicht im System registriert ist, kann er dieser Person eine vorgefertigte Email schicken, in der ein Link ist, welcher den Empfänger zur Registrierung führt. \\
-	\hline
-	\textbf{Entscheidung} \\
-	Wir denken, dass die aufgeführte Strategie die beste Lösung für dieses Problem darstellt. \\ \hline
-\end{tabular}
-\\ \\ \\
 
 \newpage
 
@@ -2355,20 +1809,21 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \emph{Autoren: Jacky Philipp Mach}\\ \\
 
 In der folgenden Abbildung sind alle unsere Komponenten für unsere Applikation zusehen und wie sie unter sich zusammenhängen bzw. kommunizieren.
-Die Grundstruktur unserer Architektur ist angelehnt an das Model-View-Controller Designpattern kombiniert mit dem Command Designpattern wie erwähnt in der Problemkarte “Auswahl der grundlegenden Softwarearchitektur”. 
+Die Grundstruktur unserer Architektur ist angelehnt an das Model-View-Controller Designpattern kombiniert mit dem Command Designpattern wie erwähnt in der Problemkarte “\hyperlink{bbb}{Auswahl der grundlegenden Softwarearchitektur}”. 
 Dabei ist die GUI-Komponente unsere View, die Command-Komponente unser Controller und die Datamodel-Komponente unser Model. \\ \\
-Unsere GUI-Komponente kümmert sich hauptsächlich um das Visuelle unserer Applikation und wurde wie besprochen in “Benutzeroberfläche” umgesetzt mit JavaFx. Die GUI-Komponente arbeitet daher mit der Komponente JUNG wie in “Visualisierung, Editierung und Interaktion mit dem Graphen” erwähnt wurde. Dabei holt sich die Komponente die Visualization-Komponente von der Komponente JUNG über die control-Schnittstelle um den Graphen anzuzeigen. Das Anzeigen des Graphen in der GUI wird, wie in “Einbettung JUNG als Swing GUI-Framework in eine JavaFx Application” besprochen, über SwingNodes umgesetzt. Bei der Visualization-Komponente handelt es sich um den internen Renderer in JUNG, der sich um die Maus- und Tastatur-Interaktion kümmert, aber auch um das Aussehen des Graphen. Zum Beispiel die Formen und Farben der Knoten. Über die control-Schnittstelle kommuniziert die GUI-Komponente mit der Command-Komponente für die Interaktion mit dem Graphen. Die Komponente JUNG wurde nochmal in die Visualization- und Graph-Komponente getrennt, da JUNG mehrere Komponenten besitzt und wir aber nur diese beiden Komponenten hauptsächlich brauchen. \\
-In der Command-Komponente befindet sich die meiste Logik unserer Applikation. Für die Interaktion mit dem Graphen wird über eine control-Schnittstelle die Logik des Graphen angesprochen um die Editierung und Interaktion an den Graphen möglich zu machen. Die Logik des Graphen befindet sich dabei in der Graph-Komponente in JUNG. Zusätzlich besitzt Command auch die Undo/Redo-Funktionalität. Nach der Strategie in “Datensicherung / Persistenz des Graphen” wird über einer control- und data-Schnittstelle mit der GXL-Komponente kommuniziert. Die GXL-Komponente stammt von der Bibliothek “SourceForge” und ist zuständig für das Importieren und Exportieren der GXL-Dateien. \\ \\
-Bei der Datamodel-Komponente handelt es sich um unser eigenes Datenmodell, bestehend aus Param (Parameter für die Commands) und Logs (Protokolle der Nutzerinteraktion), das wir nutzen um Nutzerinteraktion zu speichern, umgesetzt nach der gewählten Strategie in “Datensicherung / Persistenz der Nutzerinteraktion”. Die benötigten Informationen fürs Speichern der Nutzerinteraktion bekommt die Datamodel-Komponente über eine data-Schnittstelle von der Command-Komponente.
+Unsere GUI-Komponente kümmert sich hauptsächlich um das Visuelle unserer Applikation und wurde wie besprochen in “\hyperlink{kkk}{Benutzeroberfläche}” umgesetzt mit JavaFx. Die GUI-Komponente arbeitet daher mit der Komponente JUNG wie in “\hyperlink{eee}{Visualisierung, Editierung und Interaktion mit dem Graphen}” erwähnt wurde. Dabei holt sich die Komponente die Visualization-Komponente von der Komponente JUNG über die control-Schnittstelle um den Graphen anzuzeigen. Das Anzeigen des Graphen in der GUI wird, wie in “\hyperlink{lll}{Einbettung JUNG als Swing GUI-Framework in eine JavaFx Application}” besprochen, über SwingNodes umgesetzt. Bei der Visualization-Komponente handelt es sich um den internen Renderer in JUNG, der sich um die Maus- und Tastatur-Interaktion kümmert, aber auch um das Aussehen des Graphen. Zum Beispiel die Formen und Farben der Knoten. Über die control-Schnittstelle kommuniziert die GUI-Komponente mit der Command-Komponente für die Interaktion mit dem Graphen. Die Komponente JUNG wurde nochmal in die Visualization- und Graph-Komponente getrennt, da JUNG mehrere Komponenten besitzt und wir aber nur diese beiden Komponenten hauptsächlich brauchen. \\
+In der Command-Komponente befindet sich die meiste Logik unserer Applikation. Für die Interaktion mit dem Graphen wird über eine control-Schnittstelle die Logik des Graphen angesprochen um die Editierung und Interaktion an den Graphen möglich zu machen. Die Logik des Graphen befindet sich dabei in der Graph-Komponente in JUNG. Zusätzlich besitzt Command auch die Undo/Redo-Funktionalität. Nach der Strategie in “\hyperlink{yy}{Datensicherung / Persistenz des Graphen}” wird über einer control- und data-Schnittstelle mit der GXL-Komponente kommuniziert. Die GXL-Komponente stammt von der Bibliothek “SourceForge” und ist zuständig für das Importieren und Exportieren der GXL-Dateien. \\ \\
+Bei der Datamodel-Komponente handelt es sich um unser eigenes Datenmodell, bestehend aus Param (Parameter für die Commands) und Logs (Protokolle der Nutzerinteraktion), das wir nutzen um Nutzerinteraktion zu speichern, umgesetzt nach der gewählten Strategie in “\hyperlink{aaa}{Datensicherung / Persistenz der Nutzerinteraktion}”. Die benötigten Informationen fürs Speichern der Nutzerinteraktion bekommt die Datamodel-Komponente über eine data-Schnittstelle von der Command-Komponente.
 Da es erforderlich ist die Objekte des Nutzerprotokolls in einer Datenbank zu speichern, werden die Objekte über einer data-Schnittstelle an die Persistence-Komponente weitergegeben um die Informationen weiterzuverarbeiten und anschließend in der Datenbank zu speichern. \\ \\
-Die Persistence-Komponente wurde gemäß “Kommunikation Zielplattform (Java) mit embedded DB” mit Hibernate realisiert.
-Hibernate gibt die verarbeiteten Informationen über einer data-Schnittstelle weiter an die Database, die anschließend die Informationen speichert. Die Database-Komponente wird realisiert mit einer H2 Database wie in der Problemkarte “Verwendung einer Embedded Database” beschrieben. \\ \\
-Gemäß der Strategie in ”Protokolldaten und Graphdaten zusammen sichern” wird dies umgesetzt in der Komponente NewDatatype.
-Für das Problem “PDF Erstellung” bilden wir alle Grafikkontexte auf der java.awt.Graphics2D ab und nutzen die Komponente FreeHEB Vectorgraphics um java.awt.Graphics2D als zahlreiche Formate (z.B. SVG, PDF) zu exportieren, wie erwähnt in “Bibliothek für den PDF Export von java.awt.Graphics2D”. Dafür benötigen wir von der JUNG-Komponente nur die Visualization-Komponente, die über einer data-Schnittstelle übermittelt wird. \\ \\
-Um den Graphen auswerten zu können, benutzen wir die Graph-Komponente in JUNG. Da die Komponente jedoch nicht den benötigten Funktionsumfang deckt, haben wir in unsere Applikation auch die JGraphT-Komponente eingebaut gemäß der beschriebenen Strategie in “Auswertung von Grapheigenschaften”. Dafür wird die Logik des Graphen übersetzt, so dass JGraphT die Informationen nutzen kann und anschließend über eine data-Schnittstelle an die JGraphT-Komponente übertragen. \\ \\
+Die Persistence-Komponente wurde gemäß “\hyperlink{rrr}{Kommunikation Zielplattform (Java) mit embedded DB}” mit Hibernate realisiert.
+Hibernate gibt die verarbeiteten Informationen über einer data-Schnittstelle weiter an die Database, die anschließend die Informationen speichert. Die Database-Komponente wird realisiert mit einer H2 Database wie in der Problemkarte “\hyperlink{ppp}{Verwendung einer Embedded Database}” beschrieben. \\ \\
+Gemäß der Strategie in ”\hyperlink{jjj}{Protokoll der Nutzerinteraktion exportieren/importieren}” wird dies umgesetzt in der Komponente NewDatatype.
+Für das Problem “\hyperlink{hhh}{PDF Erstellung}” bilden wir alle Grafikkontexte auf der java.awt.Graphics2D ab und nutzen die Komponente FreeHEB Vectorgraphics um java.awt.Graphics2D als zahlreiche Formate (z.B. SVG, PDF) zu exportieren, wie erwähnt in “\hyperlink{iii}{Bibliothek für den PDF Export von java.awt.Graphics2D}”. Dafür benötigen wir von der JUNG-Komponente nur die Visualization-Komponente, die über einer data-Schnittstelle übermittelt wird. \\ \\
+Um den Graphen auswerten zu können, benutzen wir die Graph-Komponente in JUNG. Da die Komponente jedoch nicht den benötigten Funktionsumfang deckt, haben wir in unsere Applikation auch die JGraphT-Komponente eingebaut gemäß der beschriebenen Strategie in “\hyperlink{fff}{Auswertung von Grapheigenschaften}”. Dafür wird die Logik des Graphen übersetzt, so dass JGraphT die Informationen nutzen kann und anschließend über eine data-Schnittstelle an die JGraphT-Komponente übertragen.
+Die Logger-Komponente ist in unserer Applikation eingebaut um uns bei der Entwicklung zu helfen, indem sie die Applikation während der Laufzeit aufzeichnet und uns zum Beispiel hilft Fehlerzustände oder das Verhalten der Applikation besser zu verstehen.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=1\textwidth]{KonzeptionelleSicht.JPG}
+	\includegraphics[width=1\textwidth]{KonzeptionelleSicht.png}
 	\caption{Konzeptionelle Sicht}
 \end{figure}
 
@@ -2380,28 +1835,75 @@ Um den Graphen auswerten zu können, benutzen wir die Graph-Komponente in JUNG. 
 \label{sec:datensicht}
 \emph{Autoren: Anthony Mendil, Clement Phung}\\ \\
 
+Im folgenden beschreiben wir unsere Datensicht. Bei Erläuterungen zu dieser beziehen wir uns auf folgende Strategien: \hyperlink{Strategie S1: GXL}{Strategie S1: GXL}, \hyperlink{Strategie S7: Datenmodell}{Strategie S7: Datenmodell}, \hyperlink{Strategie S15: JUNG}{Strategie S15: JUNG}, \hyperlink{Strategie 33: .json}{Strategie 33: .json} und \hyperlink{Strategie S43: eigener Datentyp}{Strategie S43: eigener Datentyp} sowie auf die \hyperlink{Strategie S45: H2}{Strategie S45: H2}. Außerdem werden wir Bezug zu den Strategien \hyperlink{Strategie S.50: Hibernate}{Strategie S.50: Hibernate}, \hyperlink{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)}{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)} und \hyperlink{Strategie S61: Regeln in der GXL-Datei}{Strategie S61: Regeln in der GXL-Datei} nehmen.\\
 
+Es sei an der dieser Stelle explizit angemerkt, dass wir für die Repräsentation des Graphen kein komplett eigenes Datenmodell erstellen. Stattdessen verwenden wir das vom Framework \texttt{JUNG} vorgegebene Datenmodell mit unseren eigenes Datenklassen Vertex (für Knoten) und Edge (für Kanten). Da in unserem Fall Sphären benötigt werden, erstellen wir eine Klasse Sphere (für Sphären) und erweitern mit ihr das vorgegebene Datenmodell (genauer gesagt erweitert unsere Klasse SydromGraph die Klasse DirectedSparseGraph von \texttt{JUNG}).
+Eine Sphere hat die Attribute id vom Typ int (zur eindeutigen Identifikation), drawPaint vom Typ Paint (für die Farbe der Umrandung), coordinates vom Typ Point2D (für die Position), width vom Typ double (für die Breite), height vom Typ double (für die Höhe), annotations vom Typ String (für den Namen der Sphäre), fillPaint vom Typ Paint (für die Füllfarbe) sowie vertices vom Typ LinkedList<Vertex> (in der alle Knoten, die zu dieser Sphäre zugeordnet sind, enthalten sind).
+Ein Vertex hat die Attribute id vom Typ int (zur eindeutigen Identifikation), drawPaint vom Typ Paint (für die Farbe der Umrandung), coordinates vom Typ Point2D (für die Position), shape vom Typ VertexShapeType (für die Bestimmung der Knotenform), annotation vom Typ String (für die Beschriftung des Knotens), fillPaint vom Typ Paint (für die Füllfarbe), size vom Typ int (für die Größe des Knotens), isVisible vom Typ boolean (um anzugeben ob der Knoten sichtbar ist), sowie drei Attribute vom Typ Map<ScopePoint, Point2D>. Einer davon vertexArrowReinforced (verstärkende Kanten), einer vertexArrowNeutral (von uns für die unbekannten Kanten genutzt) und einer vertexArrowExtenuating (abschwächende Kanten). Diese drei Maps werden für das Zusammenfassen der Pfeilspitzen gleicher Relationsarten am Knoten beim Rendern gebraucht.
+Eine Edge hat die Attribute paint vom Typ Paint (für die Farbe), stroke vom Typ StrokeType (für die Kantenart: gestrichelt, gepunktet oder durchgezogen), id vom Typ int (zur eindeutigen Identifikation), arrowType vom Typ EdgeArrowType (für die Art der Pfeilspitze), hasAnchor vom Typ boolean (um anzugeben ob sie Kante einen Ankerpunkt hat), anchorAngle vom Typ double (beschreibt in welchem Winkel die Kante an dem Knoten ansetzten soll), sowie isVisible vom Typ boolean (um anzugeben ob die Kante sichtbar ist).\\
+
+Für die Speicherung des Graphen sowie allen nötigen Informationen gibt es die Klasse Syndrom. Sie hat die Attribute template vom Typ Template (für eine mögliche Vorlage), layout vom Typ Layout<Vertex, Edge> (für das Layout des Graphen) und graph vom Typ SyndromGraph<Vertex, Edge> (die von uns erweiterte Repräsentation des Graphen). Des weiteren hat sie auch Attribute die Überprüfungen bestimmter Eigenschaften definieren und zum Filtern verwendet werden: filterArrow vom Typ EdgeArrowPredicate<Vertex, Edge>, filterVertex vom Typ VertexSpherePredicate<Vertex, Edge>, vertexAnnotationPredicate vom Typ VertexAnnotationPredicate<Vertex, Edge>, vertexEdgePredicate vom Typ VertexEdgePredicate<Vertex, Edge>, vertexSpherePredicate vom Typ VertexSpherePredicate<Vertex, Edge>, vertexIsVisiblePredicate vom Typ VertexIsVisiblePredicate<Vertex, Edge>, edgeIsVisiblePredicate von Typ EdgeIsVisiblePredicate<Vertex, Edge>, sphereIsVisiblePredicate vom Typ SphereIsVisiblePredicate<Sphere>, sowie Attribute für die diversen Transformer: arrowDrawPaint vom Typ EdgeArrowDrawPaintTransformer, arrowFillPaint vom Typ EdgeArrowFillPaintTransformer, edgeArrow vom Typ EdgeArrowTransformer, edgeDrawPaint vom Typ EdgeDrawPaintTransformer, edgeFillPaint vom Typ EdgeFillPaintTransformer, edgeStroke vom Typ EdgeStrokeTransformer, sphereDrawPaint vom Typ SphereDrawPaintTransformer, sphereFillPaint vom Typ SphereFillPaintTransformer, sphereFont vom Typ SphereFontTransformer, sphereLabel vom Typ SphereLabelTransformer, sphereShape vom Typ SphereShapeTransformer, vertexDrawPaint vom Typ VertexDrawPaintTransformer, vertexFillPaint vom Typ VertexFillPaintTransformer, vertexFont vom Typ VertexFontTransformer, vertexLabel vom Typ VertexLabelTransformer, vertexPaintHighlight vom Typ VertexPaintHighlightTransformer, vertexStrokeHighlight vom Typ VertexStrokeHighlightTransformer, vertexShape vom Typ VertexShapeTransformer, vertexStroke vom Typ VertexStrokeTransformer, vertexTooltip vom Typ VertexToolTipTransformer, syndrom vom Typ Syndrom (das Singleton) und syndromRenderer vom Typ SyndromRenderer. \\
+
+Das oben erwähnte Template ermöglicht es eine Vorlage zu erstellen, in der man ein Maximum an Sphären (maxSphereCounter vom Typ int), der Knoten (maxVertexCount vom Typ int), der Knoten in einer Sphäre (maxVertexInSphereCounter vom Typ int) und der Kanten (maxEdgeCounter vom Typ int) festlegen kann. Ebenso kann man Objekte des Graphen bestimmen deren Beschriftung (nameLockedObjects vom Typ List<Integer>), Farbe (colorLockedObjects vom Typ List<Integer>) oder alle Eigenschaften des Objektes (isLockedObjects vom Typ List<Integer>) nicht verändert werden dürfen. Zu guter Letzt ist es auch möglich die Arten der erlaubten Kannten einzuschränken (allowedEdgeTypes vom Typ List<EdgeArrowType>).\\
+
+Um die Persistenz von Daten zu gewährleisten, verwenden wir die embedded Datenbank H2 Database in unserem Programm (\hyperlink{Strategie S45: H2}{Strategie S45: H2}). Bei der Kommunikation mit der Datenbank nutzen wir das Framework Hibernate, welches es unter Verwendung von JPA ermöglicht, Objekte (als Instanzen von Klassen) unseres Systems in eine relationale Datenbank zu persistieren (\hyperlink{Strategie S.50: Hibernate}{Strategie S.50: Hibernate}). Hierbei findet ORM (Object-Relational Mapping) Anwendung. \\ 
+
+Um den Graphen zu speichern bietet sich die GXL-Repräsentation (aus den in der Entscheidung für Strategie 1 genannten Gründen) an. Ein Graph wird dabei als Text (also vom Typ String) mit einer eindeutigen Graph-Id vom Typ int  versehen und diese beiden Bestandteile werden in einer gemeinsamen Tabelle unserer Datenbank persistiert. Die Realisierung der genannten Konstruktion lässt sich in der zugehörigen Mapping-Klasse \texttt{Graph} wiederfinden.  Die Übersetzung unseres Graphen in das GXL-Format erfolgt unter der Nutzung des bei Sourceforge gehosteten GXL-Frameworks (\hyperlink{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)}{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)}). Falls der Benutzer eine Vorlage erstellt, werden auch die darin für die Diagramm-Erstellung im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} gesetzten Einschränkungen in selbiger GXL festgehalten (\hyperlink{Strategie S61: Regeln in der GXL-Datei}{Strategie S61: Regeln in der GXL-Datei}).\\ 
+
+Die Nutzerinteraktionen mit dem Graphen werden wie auch der Graph selbst in der embedded H2 Datenbank gespeichert. Für die Nutzerinteraktionen existiert eine eigene Tabelle in der Datenbank sowie eine zugehörige Mapping-Klasse \texttt{Log}, welche für jeden Eintrag folgende Informationen enthält: eine Identifikationsnummer für den Eintrag (id) vom Typ int, den zugehörigen Graphen vom Typ Graph, den Namen des Eintrags (logEntryName vom Typ LogEntryName) und einem String (parameters), welcher aus einem konkreten Unterklasse der abstrakten Param-Klasse die jeweils für die Aktion benötigten Informationen enthält, sowie die genaue Uhrzeit der Ausführung (time vom Typ LocalDateTime) der Aktion. Das Parameterobjekt wird hierbei als Text im JSON-Format gespeichert (\hyperlink{Strategie 33: .json}{Strategie 33: .json}). Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch nichts vom Log weiß und von diesem auch keine Informationen lesen kann. Dies wird durch das X am ende der Assoziation deutlich gemacht.\\
+
+Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse Param und implementieren alle eine Methode, die den zugehörigen String im JSON-Format erzeugt. Jede dieser Parameter-Klassen gehört speziell zu einer Aktion, für die sie die nötigen Informationen enthalten. Es ist hierbei anzumerken, dass die Parameter-Klassen im Diagramm individuell Assoziationen  (manche auch keine) zu den Klassen Vertex, Edge und Sphere hätten, je nachdem was für Attribute sie besitzen. Um Übersichtlichkeit zu bewahren haben wir im Diagramm nicht alle Parameter-Klassen mit ihren zugehörigen Attributen dargestellt, werden diese jedoch im folgenden nennen: \\ \\
+
+Parameter-Klassen für aktivierende Kommandos:\\ 
+\texttt{ActivateFadeoutParam, ActivateHighlightParam, ActivateAnkerPointsFadeoutParam}\\ 
+
+Parameter-Klassen für hinzufügende Kommandos:\\
+\texttt{AddEdgesParam, AddSphereParam, AddVerticesParam, AddAnkerPointsParam}\\ 
+
+Parameter-Klassen für deaktivierende Kommandos:\\
+\texttt{DeactivateFadeoutParam, DeactivateHighlightParam, DeactivateAnkerPointsFadeoutParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Farbe):\\ 
+\texttt{EditEdgesColorParam, EditSphereColorParam, EditVerticesColorParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Beschriftung:\\ 
+\texttt{ChangeVertexAnnotationLanguageParam, EditSphereAnnotationParam, EditVertexAnnotationParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Font):\\ 
+\texttt{EditFontSizeSphereParam, EditFontSizeVerticesParam, EditFontSphereParam, EditFontVertexParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Form):\\ 
+\texttt{EditVerticesFormParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Größe):\\
+\texttt{EditSphereSizeParam, EditVertexSizeParam}\\
+
+Parameter-Klassen für den Graphen verändernde Kommandos (Sonstiges):\\  
+\texttt{EditEdgesStrokeParam, EditEdgesTypeParam}\\
+
+Parameter-Klassen für bewegende Kommandos:\\
+\texttt{MoveSphereParam, MoveVerticesParam}\\
+
+Parameter-Klassen für entfernende Kommandos:\\
+\texttt{RemoveEdgesParam, RemoveSphereParam, RemoveVerticesParam, RemoveAnkerPointsParam}\\
+
+Parameter-Klasse für das Layout verändernde Kommando:\\
+\texttt{LayoutGraphParam}\\
+
+In unserem Programm ist ebenfalls das Exportieren einzelner Graphen und den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (.Oof für \glqq out of frameworks \grqq). (\hyperlink{}{Strategie S43: eigener Datentyp})\\
 
 \newpage
-\section{Modulsicht}
-\emph{Autoren: Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}\\ \\
-Im folgenden wird die Modulsicht abgebildet, welche den Aufbau unseres Programms darstellt. Da wir uns auf das Entwurfsmuster Model-View-Controller festgelegt haben, ist der folgende Abschnitt in die drei Sektoren aufgeteilt.
+Alle Attribute sind private, es existieren aber Getter und Setter (außer bei Ids  von Vertex, Edge und Sphere, dort nur Getter), weshalb sie als public markiert werden. \\
+
 \begin{figure}[ht]
 	\centering
-	\caption{Modulsicht}
+	\includegraphics[width=1\textwidth]{Datenmodell_SWP2019.jpg}
+	\caption{Datensicht}
 \end{figure}
 
 \newpage
-
-\subsection{View}
-
-\newpage
-
-\subsection{Controller}
-
-\newpage 
-
-\subsection{Model}
+\section{Modulsicht}
+\emph{Autoren: Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}
 
 \newpage
 \section{Ausführungssicht}
@@ -2487,19 +1989,7 @@ Der Schüler öffnet die Applikation und importiert die GXL-Datei. Zu sehen sind
 \newpage
 \section{Evolution}
 \label{sec:evolution}
-\emph{Autoren: Bastian Rexhäuser}\\ \\
-
-\noindent\hspace*{0mm}%
-Allgemein haben wir darauf geachtet die Architektur so aufzubauen, dass sie leicht erweiter- und wartbar ist, weswegen wir stark modularisiert haben und auf Redundanzvermeidung geachtet haben (siehe \hyperlink{Strategie 28}{Strategie 28} \& \hyperlink{Strategie 29}{Strategie 29}).
-In diesem Abschnitt beschreiben wir die Maßnahmen, die wir getroffen haben, damit unsere Anwendung an sich ändernde Anforderungen angepasst werden kann. Dazu betrachten wir die entsprechenden Komponenten der Architektur und erklären, inwiefern sie jeweils zur Anpassbarkeit beiträgt.\\ \newline
-Um eine möglichst hohe Persistenz unserer Daten gewährleisten zu können, haben wir verschiedene Persistenzklassen angelegt, die alle ein (Persistenz-)Interface implementieren. Dadurch haben die verschiedenen Klassen die Basisfunktionen, die ihnen durch dieses Interface (OperationPersistence) vorgeschrieben werden. Einige Klassen haben dann individuell noch zusätzliche Methoden, mit denen sie auf den Datenbestand der Datenbank zugreifen können. Dieser strukturelle Aufbau zur Sicherstellung kontrollierter Datenbankzugriffe, der einer langfristig zweckdienlichen Speicherung der Daten dient, ist insofern förderlich für die Evolution der Anwendung, als dass es leicht möglich ist, weitere Persistenzklassen (mit denen für sie nötigen Methoden) hinzuzufügen. Dies ist dann erforderlich, wenn weitere Komponenten durch hinzukommende Anforderungen in der Architektur benötigt werden. Vorstellbar wäre zum Beispiel, dass es in einer ILV einen Chat zwischen allen Teilnehmern und Prüfern in Form eines Forums geben soll. Der dafür nötigen Komponente müsste eine Persistenzklasse zugeordnet werden - vorausgesetzt, die Nachrichten des Chats sollen nicht nach sehr kurzer Zeit aus dem Speicher verschwinden und dürfen nicht komplett unstrukturiert hinterlegt werden. \\
-Des Weiteren dient die Hinzunahme der Persistenz-Klassen als Ganzes dazu, später bei Bedarf leichter die Datenbank selbst wechseln zu können. \\ \newline
-Das Rollenkonzept ist auch leicht erweiter- und änderbar. Wir haben es mittels einer eigenen Klasse (RoleModel) umgesetzt. Diese Klasse enthält alle Rollen, die aktuell in unserer Anwendung benötigt werden als Attribute vom Typ der Klasse. Man kann bei Bedarf einfach Rollen ergänzen, verändern und auch entfernen. In jedem Fall bleibt es möglich, dass ein Nutzer unseres Systems mehrere Rollen haben kann. Dies haben wir durch eine Liste von Rollen sichergestellt, die Teil jedes Profils ist. \\ \newline
-Wir haben uns überlegt, alle Aspekte, die einen Nutzer unserer Anwendung betreffen mit den drei Model-Klassen ProfilModel, UserModel und RoleModel umzusetzen. Letztere ist wie eben beschrieben lediglich dafür da, dass weitere Rollen in das Rollenkonzept möglichst unkompliziert hinzugefügt werden oder bestehende Rollen angepasst und entfernt werden können. Während dem UserModel lediglich eine E-Mail und ein Passwort (in Form von Attributen) zugeordnet sind, realisiert das ProfileModel alle verbleibenden Aspekte, die einen Nutzer betreffen.\\ \newline
-Durch die zentrale Position des ILVControllers in der Architektur in Zusammenhang damit, dass viele Aspekte als Klassen realisiert sind, die dann mit dem ILVController assoziiert sind, ergibt sich eine hohe Erweiterbarkeit von Aspekten/Funktionen, die im Zusammenhang mit der ILV stehen. Es können so recht leicht weitere Klassen (Controller-Klassen) ergänzt werden, die dann die benötigten Aspekte realisieren. Hierfür ist dann je nach sich ändernden hinzukommendem Aspekt nur in recht wenig Controller einzugreifen. \\ \newline
-Durch die Verknüpfung von RegistrationUserController mit ProfileController und mit UserController ist ein relativ kleiner (Controller-)Klassen-Umfang gegeben, der die Aspekte der Registration von Nutzern realisiert. \\
-Durch die Verbindung der LoggingController-Klasse mit der UserController-Klasse, die ihrerseits wieder mit der ProfileController-Klasse in Verbindung steht sind ebenfalls in einem kleinen Klassenumfang die Aspekte des Logins und Lougouts realisiert. \\
-Dadurch können Änderungen im Bezug auf das Registrieren sowie das Login und Logout bei Bedarf geändert werden, ohne dass eine Vielzahl von Klassen geändert werden müssen.
+\emph{Autoren: }\\ \\
 
 \end{document}
 

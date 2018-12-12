@@ -13,20 +13,25 @@ import log_management.parameters.edit.EditSphereSizeParam;
  */
 public class EditSphereSizeLogAction extends LogAction {
     public EditSphereSizeLogAction(EditSphereSizeParam parameters) {
-        super(LogEntryName.EDIT_SPHERE_SIZE, parameters);
+        super(LogEntryName.EDIT_SPHERE_SIZE);
+        throw new NotImplementedException();
     }
 
     @Override
     public void action() {
-        // other stuff that is done when actions is performed
-
-        LogDatabaseManager.addLogEntryToDatabase(this);
+        throw new NotImplementedException();
     }
 
     @Override
     public void undo() {
-        // stuff that is done when undoing
-        // and adding the according actions to the database
-        // (opposite actions)
+        throw new NotImplementedException();
+    }
+
+    /**
+     * creates the parameters object
+     */
+    @Override
+    public void createParameter() {
+        throw new NotImplementedException();
     }
 }
