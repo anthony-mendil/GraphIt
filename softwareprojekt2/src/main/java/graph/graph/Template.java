@@ -1,5 +1,7 @@
 package graph.graph;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.List;
 
 public class Template {
@@ -43,4 +45,11 @@ public class Template {
      * all edge types that are allowed to use
      */
     private List<EdgeArrowType> allowedEdgeTypes;
+
+    /**
+     * creates a new Template
+     */
+    Template(){
+        throw new NotImplementedException();
+    }
 }
