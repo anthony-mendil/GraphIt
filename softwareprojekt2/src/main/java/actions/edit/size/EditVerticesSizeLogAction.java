@@ -1,10 +1,8 @@
 package actions.edit.size;
 
 import actions.LogAction;
-import log_management.LogDatabaseManager;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditSphereSizeParam;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /*
     ([shift+]linksclick, bereich markieren) Spähre markieren -> auftauchende +/- Button
@@ -18,12 +16,12 @@ public class EditVerticesSizeLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void undo() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -31,7 +29,7 @@ public class EditVerticesSizeLogAction extends LogAction {
      */
     @Override
     public void createParameter() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
 }
