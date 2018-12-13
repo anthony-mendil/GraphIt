@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Parameterobject of the action EditFontSizeLogAction.
  */
-public class EditFontSizeParam extends Param{
+public class EditFontSizeSphereParam extends Param{
     /**
      * The target text.
      */
@@ -33,7 +33,7 @@ public class EditFontSizeParam extends Param{
      * @param pOldFontSize The old font size.
      * @param pNewFontSize The new font size.
      */
-    public EditFontSizeParam(String pText, int pOldFontSize, int pNewFontSize) {
+    public EditFontSizeSphereParam(String pText, int pOldFontSize, int pNewFontSize) {
         this.text = pText;
         this.oldFontSize = pOldFontSize;
         this.newFontSize = pNewFontSize;

@@ -9,52 +9,35 @@ public class GXLio {
     }
 
     /**
-     * Creates a GXL instance of the current existing Graph as String from the Database
+     * Writes the GXL representation into the syndrom
      *
-     * @return The current GXL instance as String
+     * @param pGXL The GXL that gets written into syndrom
      */
-    public  String createGXLFromDB() {
-        throw new UnsupportedOperationException();
-        //from DAO
-    }
-
-    /**
-     * Writes the GXL representation into the given syndrom
-     *
-     * @param pGXL The GXL that gets written into Syndrom
-     * @return The Syndrom that the GXL gets written into
-     */
-    public Syndrom GXLToSyndrom(String pGXL){
+    protected void gxlToInstance(String pGXL){
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Extracts the GXL from the Syndrom and gives it back as String
+     * Extracts the GXL from our Syndrom and gives it back as String
      *
-     * @param pSyndrom The Syndrom to create the GXL from
      * @return The extracted GXL
      */
-    public String GXLFromSyndrom(Syndrom pSyndrom){
+    protected String gxlFromInstance(){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Opens a dialog to save the the GXL representation to a specific location
-     * @param pGXL The GXL to export
      */
-    public void exportAsGXL(String pGXL){
-        //createGXLString to File
+    public void exportGXL(){
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Opens a dialog to import a GXL file from a specific location to a layout representation of the current graph
-     *
-     * @return The imported GXL as String
+     * Opens a dialog to import a GXL file from a specific location to the Syndrom
      */
 
-    public String importGXL(){
+    public void importGXL(){
         throw new UnsupportedOperationException();
-        //
     }
 }
