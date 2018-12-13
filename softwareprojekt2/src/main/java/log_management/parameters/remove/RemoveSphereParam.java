@@ -2,15 +2,26 @@ package log_management.parameters.remove;
 
 import graph.graph.Sphere;
 import log_management.parameters.Param;
+import lombok.Getter;
 
 import java.io.Serializable;
 
-public class RemoveSphereParam extends Param implements Serializable {
-
+/**
+ * Parameterobject for the action RemoveSphereLogAction.
+ */
+public class RemoveSphereParam extends Param{
+    /**
+     * The Sphere, which will be deleted.
+     */
+    @Getter
     private Sphere sphere;
 
-    public RemoveSphereParam(Sphere sphere) {
-        this.sphere = sphere;
+    /**
+     * Creates a parameterobject of its own class.
+     * @param pSphere The target sphere.
+     */
+    public RemoveSphereParam(Sphere pSphere) {
+        this.sphere = pSphere;
     }
 
     @Override

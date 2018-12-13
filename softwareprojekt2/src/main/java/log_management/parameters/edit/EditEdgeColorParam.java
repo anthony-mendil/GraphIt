@@ -1,26 +1,54 @@
 package log_management.parameters.edit;
 
+import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Getter;
 
 import java.awt.*;
 import java.io.Serializable;
 
-public class EditEdgeColorParam extends Param implements Serializable {
-
+/**
+ * Parameterobject of the action EditEdgeColor.
+ */
+public class EditEdgeColorParam extends Param{
+    /**
+     * The identity of the edge.
+     */
+    @Getter
     private int edgeId;
-    private int sourceVertexId;
-    private String sourceVertexAnnotation;
-    private int targetVertexId;
-    private String targetVertexAnnotation;
+    /**
+     * The source-vertex id and annotation.
+     */
+    @Getter
+    private Pair<Integer,String> sourceVertex;
+    /**
+     * The target-vertex id and annotation.
+     */
+    @Getter
+    private Pair<Integer,String> targetVertex;
+    /**
+     * Old color of the edge.
+     */
+    @Getter
     private Color oldColor;
+    /**
+     * New color of the edge.
+     */
+    @Getter
     private Color newColor;
 
-    public EditEdgeColorParam(int edgeId, int sourceVertexId, String sourceVertexAnnotation, int targetVertexId, String targetVertexAnnotation, Color oldColor, Color newColor) {
+    /**
+     * Creates an parameterobject of its own class.
+     * @param pEdgeId The Edge-Id.
+     * @param pSourceVertex The source-vertex Id/annotation.
+     * @param pTargetVertex The target-vertex Id/annotation.
+     * @param pOldColor The old color.
+     * @param pNewColor The new color.
+     */
+    public EditEdgeColorParam(int pEdgeId, Pair<Integer,String> pSourceVertex, Pair<Integer,String> pTargetVertex, Color pOldColor, Color pNewColor) {
         this.edgeId = edgeId;
-        this.sourceVertexId = sourceVertexId;
-        this.sourceVertexAnnotation = sourceVertexAnnotation;
-        this.targetVertexId = targetVertexId;
-        this.targetVertexAnnotation = targetVertexAnnotation;
+        this.sourceVertex = pSourceVertex;
+        this.targetVertex = pTargetVertex;
         this.oldColor = oldColor;
         this.newColor = newColor;
     }

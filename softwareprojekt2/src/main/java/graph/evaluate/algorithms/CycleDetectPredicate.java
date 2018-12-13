@@ -1,4 +1,4 @@
-package graph.evaluate_algorithms;
+package graph.evaluate.algorithms;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
@@ -7,6 +7,7 @@ import graph.graph.Vertex;
 import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
+import org.jgrapht.alg.cycle.CycleDetector;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Set;
@@ -34,7 +35,13 @@ import java.util.Set;
             throw new NotImplementedException();
         }
 
-        public Set<Vertex> evaluate(Graph pGraph) {
+    /**
+     * Evaluates the graph on the given condition.
+     * @param pGraph The given graph.
+     * @return The set of vertices matching the condition.
+     */
+    public Set<Vertex> evaluate(Graph pGraph) {
+        CycleDetector cycleDetector= new CycleDetector(null);
             throw new NotImplementedException();
         }
     }

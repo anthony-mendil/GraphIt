@@ -8,16 +8,17 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class RemoveVerticesParam extends Param implements Serializable {
+/**
+ * Parameterobject of the action RemoveVerticesLogAction.
+ */
+public class RemoveVerticesParam extends Param{
+    /**
+     * The set of vertices, their respective sphere and annotation that they belongs to.
+     */
+    private Map<Vertex, Pair<Integer,String>> vertices;
+    public RemoveVerticesParam(Map<Vertex, Pair<Integer, String>> pVertices) {
+        this.vertices = pVertices;
 
-    private List<Vertex> vertices;
-    private List<Integer> sphereIds;
-    private List<String> sphereAnnotations;
-
-    public RemoveVerticesParam(Map<Vertex, Pair<Integer, String>> map) {
-        this.vertices = vertices;
-        this.sphereIds = sphereIds;
-        this.sphereAnnotations = sphereAnnotations;
     }
 
     @Override
