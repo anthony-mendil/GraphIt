@@ -9,6 +9,14 @@ import log_management.parameters.remove.RemoveAnchorPointsParam;
 import java.awt.geom.Point2D;
 
 public class AddAnchorPointsLog extends LogAction {
+	 /**
+     * Constructor in the case few anchor-points shall be added.
+     * get all picked Edges through pick support
+     */
+    public AddAnchorPointsLog(){
+    	super(LogEntryName.ADD_ANCHOR_POINTS);
+        throw new UnsupportedOperationException();
+    }
     /**
      * Constructor in the case only one anchor-point shall be added.
      *

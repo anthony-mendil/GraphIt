@@ -4,7 +4,6 @@
 - j graph t handler
 - action gxl
 - log filter 
--  FILTER animation
 - ab wann protokoll? 
 - wie kommen die log informationen an die gui zurück?
 
@@ -19,7 +18,4 @@
 - actions UNDO kann raus und nur die redo rein
 - strings
 - undo
-
-### GUI
-- javafx
-- gui commandhistroy
+- db 
