@@ -20,10 +20,6 @@ import java.util.List;
  */
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
-     * the name of the graph
-     */
-    private String graphName;
-    /**
      * List of spheres
      */
     private List<Sphere> spheren;

@@ -200,6 +200,11 @@ public class Syndrom {
     VisualizationServer.Paintable viewGrid;
 
     /**
+     * the name of the graph
+     */
+    private String graphName;
+
+    /**
      * the constructor, initialising all attributes
      */
     private Syndrom(){
