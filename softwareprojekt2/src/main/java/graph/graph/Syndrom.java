@@ -58,10 +58,6 @@ public class Syndrom {
      */
     private VertexEdgePredicate<Vertex, Edge> vertexEdgePredicate;
     /**
-     * Defines a functor that performs a predicates test on vertices for filtering the vertices for a sphere.
-     */
-    private VertexSpherePredicate<Vertex, Edge> vertexSpherePredicate;
-    /**
      * Defines a functor that performs a predicates test on vertices for filtering the vertex for visibility.
      */
     private VertexIsVisiblePredicate<Vertex, Edge> vertexIsVisiblePredicate;
