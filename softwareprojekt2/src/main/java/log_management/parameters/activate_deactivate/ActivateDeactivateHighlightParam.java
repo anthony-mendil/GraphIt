@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Parameter object for action ActivateHighlightLogAction/DeactivateHighlightLogAction.
  */
-public class ActivateDeactivateHighlightParam extends Param {
+public class ActivateDeactivateHighlightParam extends Param{
     /**
      * List of vertices, which will highlight/stop highlight.
      */

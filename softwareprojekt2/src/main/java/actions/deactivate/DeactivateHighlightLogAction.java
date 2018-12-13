@@ -2,7 +2,8 @@ package actions.deactivate;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.deactivate.DeactivateHighlightParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
+
 
 /**
  * Cancels the highlight-option of the selected vertices.
@@ -17,11 +18,12 @@ public class DeactivateHighlightLogAction extends LogAction {
     }
 
     /**
-     * Constructor which will be used to realize the undo-method of ActivateHighlightLogAction.
+     * Cancels the highlight-option of the vertices. Also used to implement the undo-method of
+     * ActivateHighLightLogAction.
      *
-     * @param parameters The used parameters.
+     * @param pParam The used parameters.
      */
-    public DeactivateHighlightLogAction(DeactivateHighlightParam parameters) {
+    public DeactivateHighlightLogAction(ActivateDeactivateHighlightParam pParam) {
         super(LogEntryName.DEACTIVATE_HIGHLIGHT);
     }
 

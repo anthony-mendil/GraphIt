@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Parameter object of the action of AddVerticesLogAction.
  */
-public class AddRemoveVerticesParam extends Param {
+public class AddRemoveVerticesParam extends Param{
     /**
      * Set of vertices to their respective Sphere-Id and Sphere-Annotation.
      */

@@ -4,8 +4,8 @@ import actions.LogAction;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.LogEntryName;
-import log_management.parameters.add.AddVerticesParam;
-import log_management.parameters.remove.RemoveVerticesParam;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
+
 
 import java.awt.geom.Point2D;
 import java.util.Map;
@@ -21,22 +21,15 @@ public class AddVerticesLogAction extends LogAction {
     Map<Vertex, Pair<Integer, String>> vertexPairMap;
 
     /**
-     * Adds all vertices that are defined in pParam.
+     * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
+     * RemoveVerticesLogAction.
      *
      * @param pParam the AddVerticesParameters, containing all vertices to add.
      */
-    public AddVerticesLogAction(AddVerticesParam pParam) {
+    public AddVerticesLogAction(AddRemoveVerticesParam pParam) {
         super(LogEntryName.ADD_VERTICES);
     }
 
-    /**
-     * Adds all vertices that are defined in RemoveVerticesParameters.
-     *
-     * @param pParam the RemoveVerticesParameters, containing all vertices to add.
-     */
-    public AddVerticesLogAction(RemoveVerticesParam pParam) {
-        super(LogEntryName.REMOVE_VERTICES);
-    }
 
     /**
      * Adds a vertex at point

@@ -2,7 +2,7 @@ package actions.add;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.add.AddSphereParam;
+import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 import java.awt.geom.Point2D;
 
@@ -27,11 +27,12 @@ public class AddSphereLogAction extends LogAction {
     }
 
     /**
+     * Adds a sphere to the graph.
      * Constructor which will be used to realize the undo-method of RemoveSphereLogAction.
      *
-     * @param pAddSphereParam The used parameters.
+     * @param pAddRemoveSphereParam The used parameters.
      */
-    public AddSphereLogAction(AddSphereParam pAddSphereParam) {
+    public AddSphereLogAction(AddRemoveSphereParam pAddRemoveSphereParam) {
         super(LogEntryName.ADD_SPHERE);
         throw new UnsupportedOperationException();
     }

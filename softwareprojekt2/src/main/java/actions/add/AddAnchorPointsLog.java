@@ -2,9 +2,8 @@ package actions.add;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.activate.ActivateAnchorPointsFadeoutParam;
-import log_management.parameters.add.AddAnchorPointsParam;
-import log_management.parameters.remove.RemoveAnchorPointsParam;
+import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
+
 
 import java.awt.geom.Point2D;
 
@@ -28,24 +27,16 @@ public class AddAnchorPointsLog extends LogAction {
     }
 
     /**
+     * Adds an anchor-point to the edge.
      * Constructor which will be used to realize the undo-method of RemoveAnchorPointsAction.
      *
-     * @param pRemoveAnchorPointsParam The parameters containing all anchor points to add
+     * @param pAddRemoveAnchorPointsParam The parameters containing all anchor points to add.
      */
-    public AddAnchorPointsLog(RemoveAnchorPointsParam pRemoveAnchorPointsParam) {
+    public AddAnchorPointsLog(AddRemoveAnchorPointsParam pAddRemoveAnchorPointsParam) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Constructor which will be used to realize the undo-method of RemoveAnchorPointAction.
-     *
-     * @param pAddAnchorPointsParam The parameters containing all anchor points to add
-     */
-    public AddAnchorPointsLog(AddAnchorPointsParam pAddAnchorPointsParam) {
-        super(LogEntryName.ADD_ANCHOR_POINTS);
-        throw new UnsupportedOperationException();
-    }
 
     /**
      * Single/several anchor-points will be added.

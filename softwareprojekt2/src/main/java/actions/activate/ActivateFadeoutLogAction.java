@@ -2,8 +2,7 @@ package actions.activate;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.activate.ActivateFadeoutParam;
-import log_management.parameters.deactivate.DeactivateFadeoutParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
 
 import java.awt.geom.Point2D;
 
@@ -32,24 +31,17 @@ public class ActivateFadeoutLogAction extends LogAction {
     }
 
     /**
-     * Fadeout all vertices/ edges defined in ActivateFadeoutParam.
+     * Fadeout all vertices/ edges defined in ActivateFadeoutParam. Also used to implement the undo-method of
+     * DeactivateFadeoutLogAction.
      *
-     * @param pActivateFadeoutParam The parameters containing all vertices/ edges to fadeout
+     * @param pActivateDeactivateFadeoutParam parameters containing all vertices/ edges to fadeout
      */
-    public ActivateFadeoutLogAction(ActivateFadeoutParam pActivateFadeoutParam) {
+    public ActivateFadeoutLogAction(ActivateDeactivateFadeoutParam pActivateDeactivateFadeoutParam) {
         super(LogEntryName.ACTIVATE_FADEOUT);
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Fadeout all vertices/ edges defined in DeactivateFadeoutParam.
-     *
-     * @param pDeactivateFadeoutParam The parameters containing all vertices/ edges to fadeout
-     */
-    public ActivateFadeoutLogAction(DeactivateFadeoutParam pDeactivateFadeoutParam) {
-        super(LogEntryName.ACTIVATE_FADEOUT);
-        throw new UnsupportedOperationException();
-    }
+
 
     /**
      * Chosen vertices and edges fadeout and adds the log to the database.

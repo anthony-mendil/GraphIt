@@ -2,7 +2,7 @@ package actions.deactivate;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.deactivate.DeactivateAnchorPointsFadeoutParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 
 /**
  * Makes the selected anchor-points visible again.
@@ -10,11 +10,12 @@ import log_management.parameters.deactivate.DeactivateAnchorPointsFadeoutParam;
 public class DeactivateAnchorPointsFadeoutLogAction extends LogAction {
 
     /**
-     * Constructor which realizes the undo-method of ActivateAnchorPointsLogAction.
+     * Makes all selected anchor-points visible again. Also used to implement the
+     * undo-method of ActivateAnchorPointsFadeoutLogAction.
      *
-     * @param pDeactivateAnchorPointsFadeoutParam The used parameters.
+     * @param pParam The used parameters.
      */
-    public DeactivateAnchorPointsFadeoutLogAction(DeactivateAnchorPointsFadeoutParam pDeactivateAnchorPointsFadeoutParam) {
+    public DeactivateAnchorPointsFadeoutLogAction(ActivateDeactivateAnchorPointsFadeoutParam pParam) {
         super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
     }
 
