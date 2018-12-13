@@ -5,7 +5,7 @@ import log_management.parameters.Param;
 import java.awt.geom.Point2D;
 import java.io.Serializable;
 
-public class MoveSphereParam extends Param implements Serializable {
+public class MoveSphereParam extends Param {
 
     private int sphereId;
     private String sphereAnnotation;

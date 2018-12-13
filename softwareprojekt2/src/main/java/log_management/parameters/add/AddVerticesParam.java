@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.Map;
 
-public class AddVerticesParam extends Param implements Serializable {
+public class AddVerticesParam extends Param {
 
     @Getter
     private Map<Vertex, Pair<Integer, String>> parameter;

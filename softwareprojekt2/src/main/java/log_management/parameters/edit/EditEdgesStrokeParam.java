@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class EditEdgesStrokeParam extends Param implements Serializable {
+public class EditEdgesStrokeParam extends Param {
 
     Map<Integer, List<Pair<Integer, String>>> edges;
     private Map<Integer, StrokeType> oldStrokes;

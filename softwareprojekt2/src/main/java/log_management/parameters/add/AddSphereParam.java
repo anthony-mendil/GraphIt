@@ -5,7 +5,7 @@ import log_management.parameters.Param;
 
 import java.io.Serializable;
 
-public class AddSphereParam extends Param implements Serializable {
+public class AddSphereParam extends Param {
 
     private Sphere sphere;
 

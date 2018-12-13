@@ -5,7 +5,7 @@ import log_management.parameters.Param;
 import java.io.Serializable;
 import java.util.List;
 
-public class ActivateHighlightParam extends Param implements Serializable {
+public class ActivateHighlightParam extends Param {
 
     private List<Integer> vertexIdList;
     private List<Integer> edgeIdList;

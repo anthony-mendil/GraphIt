@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class EditEdgesColorParam extends Param implements Serializable {
+public class EditEdgesColorParam extends Param {
 
     private List<Integer> edgesId;
     private List<Integer> sourceVerticesId;

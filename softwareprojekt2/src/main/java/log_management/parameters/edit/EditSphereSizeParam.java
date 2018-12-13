@@ -4,7 +4,7 @@ import log_management.parameters.Param;
 
 import java.io.Serializable;
 
-public class EditSphereSizeParam extends Param implements Serializable {
+public class EditSphereSizeParam extends Param {
 
     private int sphereId;
     private String sphereAnnotation;

@@ -2,7 +2,7 @@ package actions.edit.font;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.edit.EditFontParam;
+import log_management.parameters.edit.EditFontSphereParam;
 
 /*
  *  ([shift+]linksclick, bereich markieren) Sphäre/Symptom -> GUI Button Schriftart
@@ -23,9 +23,9 @@ public class EditFontSphereLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param parameters the EditFontParam containing the new font and the sphere
+     * @param parameters the EditFontSphereParam containing the new font and the sphere
      */
-    public EditFontSphereLogAction(EditFontParam parameters) {
+    public EditFontSphereLogAction(EditFontSphereParam parameters) {
         super(LogEntryName.EDIT_FONT);
     }
 

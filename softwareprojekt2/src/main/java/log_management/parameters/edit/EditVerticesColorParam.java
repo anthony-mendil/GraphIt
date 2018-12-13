@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class EditVerticesColorParam extends Param implements Serializable {
+public class EditVerticesColorParam extends Param {
 
     private List<Integer> vertexId;
     private List<Color> oldColors;

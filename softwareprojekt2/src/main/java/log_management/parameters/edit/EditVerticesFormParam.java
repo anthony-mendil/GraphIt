@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class EditVerticesFormParam extends Param implements Serializable {
+public class EditVerticesFormParam extends Param {
 
     private List<Integer> verticesId;
     private List<String> verticesAnnotations;

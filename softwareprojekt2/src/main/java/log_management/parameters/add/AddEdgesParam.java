@@ -5,7 +5,7 @@ import log_management.parameters.Param;
 
 import java.io.Serializable;
 
-public class AddEdgesParam extends Param implements Serializable {
+public class AddEdgesParam extends Param {
 
     private int sourceVertexId;
     private int targetVertexId;

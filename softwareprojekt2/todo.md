@@ -10,8 +10,6 @@
 - ab wann protokoll? 
 
 ### Export, Import
-- Json
-- neuer Datentyp 
 - nach jeder action muss die gxl in die db
 - seralizable aus param
 - zoom
@@ -23,12 +21,13 @@
 - actions UNDO kann raus und nur die redo rein
 
 - oberserver ... nach jeder action die das model geändert hat, gui notify und nicht bei model 
-
+- zoom/ satelliteview
+- strings
+- undo
 
 ### GUI
 - javafx
 
-- jackson problemkarte
 - funktionsmodi marcel fragen
-- sequenzdiagramm
 - auh ok, wenn sphären nicht ausblendbar sind?
+- form änderbar?

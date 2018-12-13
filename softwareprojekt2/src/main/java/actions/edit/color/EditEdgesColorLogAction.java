@@ -2,7 +2,6 @@ package actions.edit.color;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.edit.EditEdgeColorParam;
 
 /*
     ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI Button Farbe

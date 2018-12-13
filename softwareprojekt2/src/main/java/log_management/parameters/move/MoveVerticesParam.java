@@ -5,7 +5,7 @@ import log_management.parameters.Param;
 import java.io.Serializable;
 import java.util.List;
 
-public class MoveVerticesParam extends Param implements Serializable {
+public class MoveVerticesParam extends Param {
 
     private List<Integer> verticesId;
     private List<String> verticesAnnotation;

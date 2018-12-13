@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class RemoveVerticesParam extends Param implements Serializable {
+public class RemoveVerticesParam extends Param{
 
     private List<Vertex> vertices;
     private List<Integer> sphereIds;

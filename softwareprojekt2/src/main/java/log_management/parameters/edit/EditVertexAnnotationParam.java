@@ -4,7 +4,7 @@ import log_management.parameters.Param;
 
 import java.io.Serializable;
 
-public class EditVertexAnnotationParam extends Param implements Serializable {
+public class EditVertexAnnotationParam extends Param {
 
     private int vertexId;
     private String oldAnnotation;

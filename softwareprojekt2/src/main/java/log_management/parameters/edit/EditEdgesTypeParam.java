@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class EditEdgesTypeParam extends Param implements Serializable {
+public class EditEdgesTypeParam extends Param {
 
     private Map<Integer, List<Pair<Integer, String>>> edges;
     private EdgeArrowType edgeType;

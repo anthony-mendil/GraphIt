@@ -5,7 +5,7 @@ import log_management.parameters.Param;
 import java.awt.*;
 import java.io.Serializable;
 
-public class EditSphereColorParam extends Param implements Serializable {
+public class EditSphereColorParam extends Param{
 
     private int sphereId;
     private String sphereAnnotation;

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class RemovesEdgesParam extends Param implements Serializable {
+public class RemovesEdgesParam extends Param {
 
     private Map<Edge, List<Pair<Integer, String>>> edges;
 

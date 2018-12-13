@@ -5,7 +5,7 @@ import log_management.parameters.Param;
 import java.io.Serializable;
 import java.util.List;
 
-public class DeactivateFadeoutParam extends Param implements Serializable {
+public class DeactivateFadeoutParam extends Param {
 
     private List<Integer> verticesId;
     private List<Integer> edgesId;
