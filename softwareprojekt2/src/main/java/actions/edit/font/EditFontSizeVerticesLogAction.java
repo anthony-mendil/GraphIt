@@ -2,7 +2,7 @@ package actions.edit.font;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.edit.EditFontSizeParam;
+import log_management.parameters.edit.EditFontSizeSphereParam;
 
 /*
  *   ([shift+]linksclick, bereich markieren) Sphäre/Symptom -> GUI Button Größe
@@ -23,9 +23,9 @@ public class EditFontSizeVerticesLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditFontSizeParam The EditFontSizeParam containing the new font size and the vertices
+     * @param pEditFontSizeSphereParam The EditFontSizeSphereParam containing the new font size and the vertices
      */
-    public EditFontSizeVerticesLogAction(EditFontSizeParam pEditFontSizeParam) {
+    public EditFontSizeVerticesLogAction(EditFontSizeSphereParam pEditFontSizeSphereParam) {
         super(LogEntryName.EDIT_FONT_SIZE);
     }
 

@@ -55,12 +55,6 @@ public class Sphere {
      */
     @NonNull
     private String annotation;
-    /**
-     * defines whether a edge is visible or not
-     */
-    @NonNull
-    private boolean isVisible;
-
 
     /**
      * a list with all vertices, that are assigned so this sphere

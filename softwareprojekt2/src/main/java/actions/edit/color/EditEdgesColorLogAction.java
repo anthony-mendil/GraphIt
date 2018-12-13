@@ -2,7 +2,7 @@ package actions.edit.color;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.edit.EditEdgeColorParam;
+import log_management.parameters.edit.EditEdgesColorParam;
 
 /*
     ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI Button Farbe
@@ -24,7 +24,7 @@ public class EditEdgesColorLogAction extends LogAction {
      *
      * @param parameters The used parameters.
      */
-    public EditEdgesColorLogAction(EditEdgeColorParam parameters) {
+    public EditEdgesColorLogAction(EditEdgesColorParam parameters) {
         super(LogEntryName.EDIT_EDGE_COLOR);
     }
 

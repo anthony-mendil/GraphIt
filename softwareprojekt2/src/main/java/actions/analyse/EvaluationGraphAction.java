@@ -23,7 +23,7 @@ public class EvaluationGraphAction extends GraphAction{
      * After analysing the graph and finding out the values the action is looking for,
      * the information is displayed or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked and statistics
-     * are shown in the gui.
+     * are shown as vertices labels.
      *
      * @param pAnalyseTypeSeveral a list of AnalyseTypeSeveral, several types can be analysed at once
      * @param edgeType the edge type
@@ -38,7 +38,7 @@ public class EvaluationGraphAction extends GraphAction{
      * After processing and finding out the values the action is looking for, the information is displayed
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked and statistics
-     * are shown in the gui.
+     * are shown shown as vertices labels.
      * @param pAnalyseTypeSingle the analyse type, one type can be analysed at once
      */
     public EvaluationGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {

@@ -1,7 +1,11 @@
 package graph.graph;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
+import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
+import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
 import graph.algorithmen.predicates.*;
 import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.transformer.edge.*;
@@ -22,7 +26,7 @@ public class Syndrom {
      * the visualisation viewer of syndrom. It contains the layout and graph.
      */
     @Setter(AccessLevel.NONE)
-    private static VisualizationViewer<Vertex, Edge> vv;
+    private final VisualizationViewer<Vertex, Edge> vv;
     /**
      * a syndrom instance.
      */
@@ -54,10 +58,6 @@ public class Syndrom {
      */
     private VertexEdgePredicate<Vertex, Edge> vertexEdgePredicate;
     /**
-     * Defines a functor that performs a predicates test on vertices for filtering the vertices for a sphere.
-     */
-    private VertexSpherePredicate<Vertex, Edge> vertexSpherePredicate;
-    /**
      * Defines a functor that performs a predicates test on vertices for filtering the vertex for visibility.
      */
     private VertexIsVisiblePredicate<Vertex, Edge> vertexIsVisiblePredicate;
@@ -66,9 +66,9 @@ public class Syndrom {
      */
     private EdgeIsVisiblePredicate<Vertex, Edge> edgeIsVisiblePredicate;
     /**
-     * Defines a functor that performs a predicates test on spheres for filtering the sphere for visibility.
+     * Defines a functor that performs a predicates test all predicates passed.
      */
-    private SphereIsVisiblePredicate<Sphere> sphereIsVisiblePredicate;
+    private CombinesPredicate<Vertex, Edge> combinesPredicate;
     /**
      * Defines a functor that transform a edge into its arrow draw color. The input edge left unchanged. Its extracting
      * the arrow draw color of an edge.
@@ -179,6 +179,37 @@ public class Syndrom {
      */
     private FunctionMode mode;
 
+    /**
+     * Satellite view for zoom context
+     */
+    final SatelliteVisualizationViewer<Vertex,Edge> vv2;
+
+    /**
+     * zoom pane, containing the vv
+     */
+    private GraphZoomScrollPane gzsp;
+
+    /**
+     * for adding/ removing graph mouse plugins
+     */
+    private PluggableGraphMouse pluggable;
+
+    /**
+     * the view grid for zoom context
+     */
+    VisualizationServer.Paintable viewGrid;
+
+    /**
+     * the name of the graph
+     */
+    private String graphName;
+
+    /**
+     * the constructor, initialising all attributes
+     */
+    private Syndrom(){
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Syndrom is supposed to be an singleton instance.

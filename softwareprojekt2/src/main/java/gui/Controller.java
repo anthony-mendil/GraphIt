@@ -1,6 +1,11 @@
 package gui;
 
-public class Controller {
+import actions.Action;
+import actions.ObserverSyndrom;
+import actions.other.CreateGraphAction;
+
+public class Controller implements ObserverSyndrom{
+
 
     /* ----------------ACTIVATE---------------------- */
 
@@ -330,4 +335,19 @@ public class Controller {
         throw new UnsupportedOperationException();
     }
 
+
+    @Override
+    public void updateGraph() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void updateFunctionMode() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void updateNewGraph() {
+        throw new UnsupportedOperationException();
+    }
 }

@@ -138,6 +138,11 @@ public class Values {
     private static final Dimension defaultLayoutSize = null;
 
     /**
+     * the default satellite layout size
+     */
+    private static final Dimension defaultSatelliteLayoutSize = null;
+
+    /**
      * the values instance
      */
     @Getter(AccessLevel.NONE)

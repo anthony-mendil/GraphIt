@@ -1,34 +1,21 @@
 ## ToDo 
 ### Graph
-- filter predicates/ predicatefilter tags?
-- filter option jgraphT 
 - command show protolkoll/ filter protokoll/ animate protokoll
 - j graph t handler
 - action gxl
 - log filter 
--  FILTER animation
 - ab wann protokoll? 
+- wie kommen die log informationen an die gui zurück?
 
 ### Export, Import
-- Json
-- neuer Datentyp 
 - nach jeder action muss die gxl in die db
-- seralizable aus param
-- zoom
+- params 
 - auswertuer
 - phillip gui
 - observer
-- umfang, veretzungsindex, strukturindex
+- umfang, veretzungsindex, strukturindex wie an gui?
 - hab addAnchorpoints() rausgenimmen, wird nie aufgerufen
 - actions UNDO kann raus und nur die redo rein
-
-- oberserver ... nach jeder action die das model geändert hat, gui notify und nicht bei model 
-
-
-### GUI
-- javafx
-
-- jackson problemkarte
-- funktionsmodi marcel fragen
-- sequenzdiagramm
-- auh ok, wenn sphären nicht ausblendbar sind?
+- strings
+- undo
+- db 
