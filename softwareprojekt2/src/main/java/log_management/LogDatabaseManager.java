@@ -10,6 +10,10 @@ public class LogDatabaseManager {
 
     private static int graphId;
     private static int logCounter;
+    /**
+     * is true if the user is in edit mode and the protocol gets recorded and stored in the database
+     */
+    private boolean shouldRecord;
 
     public static void main(String[] args) throws SQLException {
         throw new UnsupportedOperationException();

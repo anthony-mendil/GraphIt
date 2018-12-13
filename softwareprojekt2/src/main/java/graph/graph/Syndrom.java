@@ -66,9 +66,9 @@ public class Syndrom {
      */
     private EdgeIsVisiblePredicate<Vertex, Edge> edgeIsVisiblePredicate;
     /**
-     * Defines a functor that performs a predicates test on spheres for filtering the sphere for visibility.
+     * Defines a functor that performs a predicates test all predicates passed.
      */
-    private SphereIsVisiblePredicate<Sphere> sphereIsVisiblePredicate;
+    private CombinesPredicate<Vertex, Edge> combinesPredicate;
     /**
      * Defines a functor that transform a edge into its arrow draw color. The input edge left unchanged. Its extracting
      * the arrow draw color of an edge.
