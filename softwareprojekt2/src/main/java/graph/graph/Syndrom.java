@@ -1,7 +1,11 @@
 package graph.graph;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
+import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
+import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
 import graph.algorithmen.predicates.*;
 import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.transformer.edge.*;
@@ -22,7 +26,7 @@ public class Syndrom {
      * the visualisation viewer of syndrom. It contains the layout and graph.
      */
     @Setter(AccessLevel.NONE)
-    private static VisualizationViewer<Vertex, Edge> vv;
+    private final VisualizationViewer<Vertex, Edge> vv;
     /**
      * a syndrom instance.
      */
@@ -179,6 +183,32 @@ public class Syndrom {
      */
     private FunctionMode mode;
 
+    /**
+     * Satellite view for zoom context
+     */
+    final SatelliteVisualizationViewer<Vertex,Edge> vv2;
+
+    /**
+     * zoom pane, containing the vv
+     */
+    private GraphZoomScrollPane gzsp;
+
+    /**
+     * for adding/ removing graph mouse plugins
+     */
+    private PluggableGraphMouse pluggable;
+
+    /**
+     * the view grid for zoom context
+     */
+    VisualizationServer.Paintable viewGrid;
+
+    /**
+     * the constructor, initialising all attributes
+     */
+    private Syndrom(){
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Syndrom is supposed to be an singleton instance.
