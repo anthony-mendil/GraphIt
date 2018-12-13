@@ -15,6 +15,7 @@ public class GXLio {
      */
     public  String createGXLFromDB() {
         throw new UnsupportedOperationException();
+        //from DAO
     }
 
     /**
@@ -24,6 +25,16 @@ public class GXLio {
      * @return The Syndrom that the GXL gets written into
      */
     public Syndrom GXLToSyndrom(String pGXL){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Extracts the GXL from the Syndrom and gives it back as String
+     *
+     * @param pSyndrom The Syndrom to create the GXL from
+     * @return The extracted GXL
+     */
+    public String GXLFromSyndrom(Syndrom pSyndrom){
         throw new UnsupportedOperationException();
     }
 

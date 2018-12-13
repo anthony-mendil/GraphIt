@@ -13,6 +13,7 @@ public class JSONio {
      */
     public String createJSONFromDB(){
         throw new UnsupportedOperationException();
+        //with DAO
     }
 
     /**
