@@ -1,6 +1,8 @@
 package gui;
 
-public class Controller {
+import actions.ObserverSyndrom;
+
+public class Controller implements ObserverSyndrom{
 
     /* ----------------ACTIVATE---------------------- */
 
@@ -330,4 +332,8 @@ public class Controller {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException();
+    }
 }

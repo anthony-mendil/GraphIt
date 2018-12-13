@@ -1,9 +1,13 @@
 package actions;
 
+import java.util.LinkedList;
+
 /**
  * superclass of all actions
  */
 public abstract class Action {
+
+    LinkedList<ObserverSyndrom> observers;
 
     /**
      * Executes the defined behavior of the action.
@@ -19,4 +23,14 @@ public abstract class Action {
      * Executes the defined behavior of the action again.
      */
     public abstract void redo();
+
+    public void attach (ObserverSyndrom o) {
+        observers.add(o);
+    }
+
+    protected void notifyObserver(){
+        for (ObserverSyndrom o: observers) {
+            o.update();
+        }
+    }
 }

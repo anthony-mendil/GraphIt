@@ -11,7 +11,7 @@
 
 ### Export, Import
 - nach jeder action muss die gxl in die db
-- seralizable aus param
+- params 
 - zoom
 - auswertuer
 - phillip gui
