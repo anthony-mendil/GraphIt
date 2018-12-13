@@ -1777,10 +1777,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 \hline
 \rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{25: Im- und Export von Parameter-Objekten als JSON }}} \\ \hline\hline 
-\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Ptokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen dartellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objkete.}}\rule{0pt}{1ex}\\ [1ex] \hline
+\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Protokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen darstellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objekte.}}\rule{0pt}{1ex}\\ [1ex] \hline
 \multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 \hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
-\\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
+\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
 \hyperlink {h}{Hohe Qualität}&
 \hyperlink {i}{Command} \\
 \hyperlink {bb}{Protokoll von Nutzerinteraktionen} &
@@ -1799,6 +1799,43 @@ Mit JSONP können Objekte geparst und deren Informationen ins json-Format geschr
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit gröter Geschwindigkeit ins json-Format überführt werrden können.
+\end{onehalfspace}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage
+\hspace{-0.65cm}
+\begin{tabular} {|p{8cm} p{8cm}|}
+	\hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Realisierung von Auswerter-Algorithmen}}} \\ \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir brauchen ein Tool zur Auswertung von Graph-Eigenschaften und -Ausmaß. Um dies mit unserer Graph-Realisierung umzusetzen, benötigen wir entsprechende Algorithmen}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
+	
+	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen} \\
+	\hyperlink{g}{Hohe Usability} & \hyperlink{i}{Command} \\
+	\hyperlink{k}{JUNG} & \hyperlink{name}{text} \\
+	\hyperlink {n}{Sphären} & \hyperlink {o}{Linienart/-dicke Kanten flexibel}\\
+	\hyperlink {p}{Typisierte Knoten} & \hyperlink {q}{gerichtete Kanten (3 Relationstypen} \\
+	\hyperlink {r}{Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/Kanten ist flexibel} & \hyperlink {s}{Ankerpunkte zw. Knoten und Kanten} \\
+	\hyperlink {t}{Zuordnung von Sphären und Knoten} & \hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}\\
+	\hyperlink {bb}{Protokoll von Nutzerinteraktionen} & \hyperlink {hh}{Sprache.Beschriftung} \\
+	\hyperlink {mm}{Protokoll JSON} & \hyperlink {oo}{Analyse des Graphen} \\
+	\hyperlink {pp}{Auswertung des Graphen} & \hyperlink {qq}{Graph-Analyse mittels Graphmaße} \\
+	\hyperlink {rr}{Analyse über einen wählbaren Ausschnitt des Graphen} & \hyperlink {ss}{Filter von Knoten und Kanten}
+		
+	\\ \hline
+	\multicolumn{2}{|l|}{Lösungen} \\
+	\multicolumn{2}{|l|}{\parbox{16cm}{
+			\textbf{\cb{S66 - JGraphT}}: \\
+			Wir benutzen JGraphT zur Berechnung von Informationen über den Graphen, indem wir eine Schnittstelle zwischen unserer Graph-Repräsentation und der JGraphT Library definieren\\
+			\textbf{S67 - Neo4j}: \\
+			Laden des Graphen in eine Neo4j Datenbank. Diese stellt einige Algorithmen zur Auswertung, unter Anderem von Graph-Eigenschaften, zur Verfügung. \\
+			\textbf{S68 - Eigene Algorithmen}: \\
+			Wir entwickeln Funktionen und Algorithmen für unsere eigene Graph-Realisierung um seine Ausmaße und Eigenschaften zu messen und Auszuwerten.
+	} }\\ [6ex] \hline
+\end{tabular}\\ \\ \\
+\begin{onehalfspace}
+	Wir haben uns für \cb{S66} entschieden, da es uns alle benötigten Funktionen für unsere Anwendung bereitstellt. \cb{S67} bietet ebenfalls ausreichend Funktionen, jedoch muss dafür eine eigene Datenbank aufgebaut werden. Gegen \cb{S68} haben wir uns entschieden, da es zu viel Aufwand wäre.
 \end{onehalfspace}
 
 
@@ -1834,7 +1871,7 @@ Die Logger-Komponente ist in unserer Applikation eingebaut um uns bei der Entwic
 \section{Datensicht}
 \label{sec:datensicht}
 
-\author{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}
+\emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
 
 Alle Attribute sind private, es existieren aber getter und setter (außer bei ids  von vertex, edge und sphere, da nur getter? im code noch nicht..), weshalb sie als public markiert werden. 
 
