@@ -16,13 +16,6 @@ public class FilterProtocolAction extends Action{
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * filters nothing - all protocol logs
-     */
-    FilterProtocolAction(){
-        throw new UnsupportedOperationException();
-    }
-
     @Override
     public void action() {
         throw new UnsupportedOperationException();

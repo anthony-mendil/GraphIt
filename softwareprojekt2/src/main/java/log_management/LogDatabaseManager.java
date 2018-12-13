@@ -1,12 +1,13 @@
 package log_management;
 
 import actions.LogAction;
+import actions.ObserverSyndrom;
 import lombok.Data;
 
 import java.sql.SQLException;
 
 @Data
-public class LogDatabaseManager {
+public class LogDatabaseManager implements ObserverSyndrom{
 
     private static int graphId;
     private static int logCounter;
@@ -37,5 +38,10 @@ public class LogDatabaseManager {
 
     public static void printLogs() {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void update() {
+        // save gxl 
     }
 }
