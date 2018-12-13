@@ -1,4 +1,4 @@
-package log_management.parameters.add;
+package log_management.parameters.add_remove;
 
 import graph.graph.Edge;
 import javafx.util.Pair;
@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameterobject for the action AddEdgesLogAction/RemoveEdgesLogAction.
+ * Parameter object for the action AddEdgesLogAction/RemoveEdgesLogAction.
  */
-public class AddEdgesParam extends Param{
+public class AddRemoveEdgesParam extends Param{
     /**
      * The set of edges bound to their edge-type.
      */
@@ -22,12 +22,8 @@ public class AddEdgesParam extends Param{
      * Creates an parameterobject of its own class.
      * @param pListOfEdges List of edges and the edge-type.
      */
-    public AddEdgesParam(Map<Pair<Integer,Integer>,Edge> pListOfEdges){
+    public AddRemoveEdgesParam(Map<Pair<Integer,Integer>,Edge> pListOfEdges){
         this.edges = pListOfEdges;
     }
 
-    @Override
-    public String convertToJson() {
-        return null;
-    }
 }

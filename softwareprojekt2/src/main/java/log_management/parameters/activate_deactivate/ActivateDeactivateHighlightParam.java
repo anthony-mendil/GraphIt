@@ -1,15 +1,14 @@
-package log_management.parameters.activate;
+package log_management.parameters.activate_deactivate;
 
 import log_management.parameters.Param;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
- * Parameterobject for action ActivateHighlightLogAction/DeactivateHighlighLogAction.
+ * Parameter object for action ActivateHighlightLogAction/DeactivateHighlightLogAction.
  */
-public class ActivateHighlightParam extends Param{
+public class ActivateDeactivateHighlightParam extends Param {
     /**
      * List of vertices, which will highlight/stop highlight.
      */
@@ -23,16 +22,12 @@ public class ActivateHighlightParam extends Param{
 
     /**
      * Creates an parameterobject of its own class.
+     *
      * @param vertexIdList List of selected vertices.
-     * @param edgeIdList List of edges attached to the vertices.
+     * @param edgeIdList   List of edges attached to the vertices.
      */
-    public ActivateHighlightParam(List<Integer> vertexIdList, List<Integer> edgeIdList) {
+    public ActivateDeactivateHighlightParam(List<Integer> vertexIdList, List<Integer> edgeIdList) {
         this.vertexIdList = vertexIdList;
         this.edgeIdList = edgeIdList;
-    }
-
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
     }
 }

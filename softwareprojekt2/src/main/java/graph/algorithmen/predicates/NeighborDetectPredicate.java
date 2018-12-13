@@ -1,4 +1,4 @@
-package graph.evaluate.algorithms;
+package graph.algorithmen.predicates;
 
 import edu.uci.ics.jung.graph.Graph;
 import graph.graph.Vertex;

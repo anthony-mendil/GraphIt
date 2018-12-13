@@ -15,13 +15,13 @@ public class Values {
      * the draw paint color of a sphere
      */
     @NonNull
-    private static Paint drawPaintSphere = null;
+    private Paint drawPaintSphere = null;
 
     /**
      * the fill paint color
      */
     @NonNull
-    private static Paint fillPaintSphere = null;
+    private Paint fillPaintSphere = null;
 
     /**
      * the default width sphere
@@ -47,7 +47,7 @@ public class Values {
     /**
      * the font of a sphere
      */
-    private static Font fontSphere = null;
+    private Font fontSphere = null;
 
     /**
      * default shape of a sphere
@@ -59,12 +59,12 @@ public class Values {
     /**
      * the fill paint color of a vertex
      */
-    private static Paint fillPaintVertex = null;
+    private Paint fillPaintVertex = null;
 
     /**
      * the draw paint color pf a vertex
      */
-    private static Paint drawPaintVertex = null;
+    private Paint drawPaintVertex = null;
 
     /**
      * the default annotation of a vertex
@@ -76,12 +76,12 @@ public class Values {
     /**
      * the shape of a vertex
      */
-    private static Shape shapeVertex = null;
+    private Shape shapeVertex = null;
 
     /**
      * the font of a vertex
      */
-    private static Font fontVertex = null;
+    private Font fontVertex = null;
 
     /**
      * the default size of a vertex
@@ -93,11 +93,13 @@ public class Values {
     /**
      * the highlight color for vertices
      */
-    private static Paint highlightPaintVertex = null;
+    private Paint highlightPaintVertex = null;
 
     /**
      * the highlight color one for highlighting selection/ picking
      */
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private static final Paint defaultHighlightProPaintVertex = null;
 
     /**
@@ -113,57 +115,48 @@ public class Values {
     /**
      * the edge paint color of a edge
      */
-    private static Paint edgePaint = null;
+    private Paint edgePaint = null;
 
 
     /**
      * the edge weight
      */
-    private static int edgeWeight = -1;
+    private int edgeWeight = -1;
 
     /**
      * the edge stroke
      */
-    private static Stroke strokeEdge = null;
+    private Stroke strokeEdge = null;
 
 
     /**
      * the edge arrow type
      */
-    private static EdgeArrowType edgeArrowType = null;
+    private EdgeArrowType edgeArrowType = null;
 
 
     /**
      * the default layout size
      */
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private static final Dimension defaultLayoutSize = null;
 
     /**
      * the default satellite layout size
      */
-    private static final Dimension defaultSatelliteLayoutSize = null;
-
-    /**
-     * the values instance
-     */
     @Getter(AccessLevel.NONE)
-    @Setter()
-    private static Values instance;
+    @Setter(AccessLevel.NONE)
+    private static final Dimension defaultSatelliteLayoutSize = null;
 
     /**
      * the actual graph button type, pressed in the gui
      */
     private GraphButtonType graphButtonType;
 
-    /**
-     * @return singleton instance of constants
-     */
-    public static Values getInstance() {
-        if (instance == null) {
-            return new Values();
-        }
-        return instance;
-    }
+   public Values(){
+       throw new UnsupportedOperationException();
+   }
 }
 
 

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>graph</OriginalElement>
+  <nodes>
+    <node x="5102.625" y="600.0">graph.graph.Sphere</node>
+    <node x="4575.5" y="1877.5">graph.algorithmen.predicates.VertexAnnotationPredicate</node>
+    <node x="3423.5" y="1877.5">graph.algorithmen.predicates.CombinesPredicate</node>
+    <node x="5436.5" y="1900.5">graph.visualization.transformer.vertex.VertexPaintHighlightTransformer</node>
+    <node x="7278.5" y="1900.5">graph.visualization.transformer.sphere.SphereFontTransformer</node>
+    <node x="2102.0" y="711.0">graph.graph.EdgeArrowType</node>
+    <node x="6261.5" y="1900.5">graph.visualization.transformer.vertex.VertexToolTipTransformer</node>
+    <node x="1356.0" y="1251.0">graph.visualization.transformer.edge.EdgeArrowTransformer</node>
+    <node x="1464.0" y="3359.0">graph.visualization.renderers.EdgeRenderer</node>
+    <node x="3748.3242424242426" y="678.0">graph.graph.StrokeType</node>
+    <node x="1236.0" y="3359.0">graph.algorithmen.SelectionType</node>
+    <node x="435.0" y="1900.5">graph.visualization.transformer.vertex.VertexFillPaintTransformer</node>
+    <node x="6712.5" y="1900.5">graph.visualization.transformer.vertex.VertexDrawPaintTransformer</node>
+    <node x="3535.731060606061" y="1185.0">graph.graph.Edge</node>
+    <node x="3146.5" y="1889.0">graph.visualization.transformer.vertex.VertexStrokeHighlightTransformer</node>
+    <node x="0.0" y="3359.0">graph.visualization.ViewGrid</node>
+    <node x="4816.625" y="167.0">graph.graph.Vertex</node>
+    <node x="2024.0" y="1218.5">graph.graph.Template</node>
+    <node x="3102.205303030303" y="2274.0">graph.graph.Syndrom</node>
+    <node x="234.0" y="1900.5">graph.visualization.transformer.edge.EdgeFillPaintTransformer</node>
+    <node x="2494.5" y="1900.5">graph.visualization.transformer.edge.EdgeDrawPaintTransformer</node>
+    <node x="1881.3242424242424" y="1900.5">graph.visualization.transformer.sphere.SphereLabelTransformer</node>
+    <node x="4899.5" y="1778.0">graph.graph.SyndromGraph</node>
+    <node x="380.0" y="3359.0">graph.algorithmen.AnalyseTypeSingle</node>
+    <node x="6072.5" y="1900.5">graph.visualization.transformer.vertex.VertexFontTransformer</node>
+    <node x="4997.125" y="0.0">graph.graph.ScopePoint</node>
+    <node x="1861.0" y="3359.0">graph.algorithmen.predicates.SphereIsVisiblePredicate</node>
+    <node x="6931.5" y="1889.0">graph.visualization.renderers.SyndromRenderer</node>
+    <node x="835.0" y="1889.0">graph.visualization.transformer.vertex.VertexShapeTransformer</node>
+    <node x="0.0" y="1900.5">graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer</node>
+    <node x="6952.0" y="1307.0">graph.visualization.renderers.SphereRenderer</node>
+    <node x="6467.5" y="1900.5">graph.visualization.transformer.edge.EdgeArrowDrawPaintTransformer</node>
+    <node x="4105.5" y="1878.5">graph.graph.FunctionMode</node>
+    <node x="2919.5" y="1889.0">graph.visualization.transformer.vertex.VertexStrokeTransformer</node>
+    <node x="4839.125" y="11.0">graph.graph.VertexShapeType</node>
+    <node x="4251.5" y="1900.5">graph.algorithmen.predicates.VertexIsVisiblePredicate</node>
+    <node x="3747.5" y="1878.0">graph.visualization.picking.SyndromPickSupport</node>
+    <node x="5678.5" y="1900.5">graph.visualization.transformer.vertex.VertexLabelTransformer</node>
+    <node x="827.0" y="3359.0">graph.visualization.util.SyndromArrowFactory</node>
+    <node x="5213.5" y="1900.5">graph.visualization.transformer.sphere.SphereDrawPaintTransformer</node>
+    <node x="643.0" y="1900.5">graph.visualization.transformer.edge.EdgeStrokeTransformer</node>
+    <node x="2707.5" y="1900.5">graph.visualization.transformer.sphere.SphereFillPaintTransformer</node>
+    <node x="604.0" y="3359.0">graph.algorithmen.AnalyseTypeSeveral</node>
+    <node x="4965.625" y="744.0">graph.visualization.control</node>
+    <node x="5871.5" y="1900.5">graph.visualization.transformer.sphere.SphereShapeTransformer</node>
+    <node x="2332.0" y="1284.0">graph.algorithmen.predicates.VertexEdgePredicate</node>
+    <node x="1723.0" y="987.0">graph.graph.Values</node>
+    <node x="1195.0" y="1900.5">graph.algorithmen.predicates.EdgeIsVisiblePredicate</node>
+    <node x="481.0" y="1284.0">graph.algorithmen.predicates.EdgeArrowPredicate</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="graph.graph.Syndrom" target="graph.algorithmen.predicates.VertexEdgePredicate">
+      <point x="-58.5" y="-500.0" />
+      <point x="3251.705303030303" y="2144.0" />
+      <point x="2484.0" y="2144.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexStrokeHighlightTransformer">
+      <point x="6.5" y="-500.0" />
+      <point x="3316.705303030303" y="2094.0" />
+      <point x="3275.0" y="2094.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.graph.Template">
+      <point x="-71.5" y="-500.0" />
+      <point x="3238.705303030303" y="2154.0" />
+      <point x="2168.0" y="2154.0" />
+      <point x="0.0" y="114.0" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.graph.Syndrom">
+      <point x="138.66666666666663" y="500.0" />
+      <point x="3448.8719696969697" y="3314.0" />
+      <point x="3062.205303030303" y="3314.0" />
+      <point x="3062.205303030303" y="2440.666666666667" />
+      <point x="-208.0" y="-333.33333333333326" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexToolTipTransformer">
+      <point x="149.5" y="-500.0" />
+      <point x="3459.705303030303" y="2214.0" />
+      <point x="6354.5" y="2214.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.visualization.picking.SyndromPickSupport" target="graph.graph.Edge">
+      <point x="-84.5" y="-48.0" />
+      <point x="3832.0" y="1758.0" />
+      <point x="3640.731060606061" y="1758.0" />
+      <point x="0.0" y="147.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexLabelTransformer">
+      <point x="110.5" y="-500.0" />
+      <point x="3420.705303030303" y="2184.0" />
+      <point x="5765.0" y="2184.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.algorithmen.predicates.VertexEdgePredicate" target="graph.graph.EdgeArrowType">
+      <point x="76.0" y="-48.5" />
+      <point x="2560.0" y="957.0" />
+      <point x="2197.333333333333" y="957.0" />
+      <point x="29.333333333333258" y="47.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.graph.FunctionMode">
+      <point x="32.5" y="-500.0" />
+      <point x="3342.705303030303" y="2124.0" />
+      <point x="4168.5" y="2124.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="graph.graph.Vertex" target="graph.graph.ScopePoint">
+      <point x="81.5" y="-191.5" />
+      <point x="5061.125" y="142.0" />
+      <point x="5051.125" y="142.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.algorithmen.predicates.CombinesPredicate">
+      <point x="19.5" y="-500.0" />
+      <point x="3329.705303030303" y="2114.0" />
+      <point x="3575.5" y="2114.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="graph.graph.Sphere" target="graph.graph.Vertex">
+      <point x="0.0" y="-158.5" />
+      <point x="5205.625" y="580.0" />
+      <point x="5101.875" y="580.0" />
+      <point x="122.25" y="191.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer">
+      <point x="-201.5" y="-500.0" />
+      <point x="3108.705303030303" y="2254.0" />
+      <point x="106.5" y="2254.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.graph.Edge">
+      <point x="-19.5" y="-500.0" />
+      <point x="3290.705303030303" y="2114.0" />
+      <point x="2909.0" y="2114.0" />
+      <point x="2909.0" y="1758.0" />
+      <point x="3570.731060606061" y="1758.0" />
+      <point x="-70.0" y="147.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeArrowDrawPaintTransformer">
+      <point x="162.5" y="-500.0" />
+      <point x="3472.705303030303" y="2224.0" />
+      <point x="6580.0" y="2224.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeArrowTransformer">
+      <point x="-97.5" y="-500.0" />
+      <point x="3212.705303030303" y="2174.0" />
+      <point x="1509.5" y="2174.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.algorithmen.predicates.EdgeArrowPredicate">
+      <point x="-149.5" y="-500.0" />
+      <point x="3160.705303030303" y="2214.0" />
+      <point x="632.5" y="2214.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="graph.visualization.renderers.SphereRenderer" target="graph.graph.Sphere">
+      <point x="0.0" y="-25.5" />
+      <point x="7095.0" y="957.0" />
+      <point x="5282.875" y="957.0" />
+      <point x="77.25" y="158.5" />
+    </edge>
+    <edge source="graph.graph.Vertex" target="graph.graph.VertexShapeType">
+      <point x="-81.5" y="-191.5" />
+      <point x="4898.125" y="142.0" />
+      <point x="4908.125" y="142.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.sphere.SphereLabelTransformer">
+      <point x="-84.5" y="-500.0" />
+      <point x="3225.705303030303" y="2164.0" />
+      <point x="1969.8242424242424" y="2164.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.algorithmen.predicates.VertexAnnotationPredicate">
+      <point x="58.5" y="-500.0" />
+      <point x="3368.705303030303" y="2144.0" />
+      <point x="4727.5" y="2144.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="graph.visualization.picking.SyndromPickSupport" target="graph.graph.Sphere">
+      <point x="84.5" y="-48.0" />
+      <point x="4001.0" y="1758.0" />
+      <point x="4230.481060606061" y="1758.0" />
+      <point x="4230.481060606061" y="967.0" />
+      <point x="5128.375" y="967.0" />
+      <point x="-77.25" y="158.5" />
+    </edge>
+    <edge source="graph.graph.Template" target="graph.graph.EdgeArrowType">
+      <point x="0.0" y="-114.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.graph.SyndromGraph">
+      <point x="71.5" y="-500.0" />
+      <point x="3381.705303030303" y="2154.0" />
+      <point x="5046.5" y="2154.0" />
+      <point x="0.0" y="148.0" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexPaintHighlightTransformer">
+      <point x="97.5" y="-500.0" />
+      <point x="3407.705303030303" y="2174.0" />
+      <point x="5547.5" y="2174.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeStrokeTransformer">
+      <point x="-136.5" y="-500.0" />
+      <point x="3173.705303030303" y="2204.0" />
+      <point x="729.0" y="2204.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.SyndromGraph" target="graph.graph.Sphere">
+      <point x="36.75" y="-148.0" />
+      <point x="5083.25" y="1748.0" />
+      <point x="5200.125" y="1748.0" />
+      <point x="5200.125" y="967.0" />
+      <point x="5179.875" y="967.0" />
+      <point x="-25.75" y="158.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexStrokeTransformer">
+      <point x="-6.5" y="-500.0" />
+      <point x="3303.705303030303" y="2104.0" />
+      <point x="3023.0" y="2104.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="graph.graph.SyndromGraph" target="graph.graph.Edge">
+      <point x="-110.25" y="-148.0" />
+      <point x="4936.25" y="1748.0" />
+      <point x="3710.731060606061" y="1748.0" />
+      <point x="70.0" y="147.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.algorithmen.predicates.EdgeIsVisiblePredicate">
+      <point x="-110.5" y="-500.0" />
+      <point x="3199.705303030303" y="2184.0" />
+      <point x="1347.0" y="2184.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.sphere.SphereDrawPaintTransformer">
+      <point x="84.5" y="-500.0" />
+      <point x="3394.705303030303" y="2164.0" />
+      <point x="5315.0" y="2164.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.sphere.SphereFillPaintTransformer">
+      <point x="-32.5" y="-500.0" />
+      <point x="3277.705303030303" y="2124.0" />
+      <point x="2803.0" y="2124.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.sphere.SphereShapeTransformer">
+      <point x="123.5" y="-500.0" />
+      <point x="3433.705303030303" y="2194.0" />
+      <point x="5962.0" y="2194.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.algorithmen.predicates.VertexIsVisiblePredicate">
+      <point x="45.5" y="-500.0" />
+      <point x="3355.705303030303" y="2134.0" />
+      <point x="4403.5" y="2134.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.visualization.control" target="graph.graph.Vertex">
+      <point x="0.0" y="-14.5" />
+      <point x="5024.125" y="580.0" />
+      <point x="5020.375" y="580.0" />
+      <point x="40.75" y="191.5" />
+    </edge>
+    <edge source="graph.graph.SyndromGraph" target="graph.graph.Vertex">
+      <point x="-36.75" y="-148.0" />
+      <point x="5009.75" y="1738.0" />
+      <point x="3890.8242424242426" y="1738.0" />
+      <point x="3890.8242424242426" y="580.0" />
+      <point x="4938.875" y="580.0" />
+      <point x="-40.75" y="191.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexShapeTransformer">
+      <point x="-123.5" y="-500.0" />
+      <point x="3186.705303030303" y="2194.0" />
+      <point x="1005.0" y="2194.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="graph.graph.Values" target="graph.graph.Values">
+      <point x="-93.66666666666674" y="345.5" />
+      <point x="1769.8333333333333" y="1698.0" />
+      <point x="1703.0" y="1698.0" />
+      <point x="1703.0" y="1562.8333333333333" />
+      <point x="-140.5" y="230.33333333333326" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.renderers.SyndromRenderer">
+      <point x="188.5" y="-500.0" />
+      <point x="3498.705303030303" y="2244.0" />
+      <point x="7095.0" y="2244.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="graph.graph.Edge" target="graph.graph.EdgeArrowType">
+      <point x="0.0" y="-147.5" />
+      <point x="3640.731060606061" y="937.0" />
+      <point x="2226.666666666667" y="937.0" />
+      <point x="58.66666666666674" y="47.5" />
+    </edge>
+    <edge source="graph.visualization.renderers.SyndromRenderer" target="graph.visualization.renderers.SphereRenderer">
+      <point x="-81.75" y="-37.0" />
+      <point x="7013.25" y="1758.0" />
+      <point x="7023.5" y="1758.0" />
+      <point x="-71.5" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeFillPaintTransformer">
+      <point x="-175.5" y="-500.0" />
+      <point x="3134.705303030303" y="2234.0" />
+      <point x="324.5" y="2234.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeDrawPaintTransformer">
+      <point x="-45.5" y="-500.0" />
+      <point x="3264.705303030303" y="2134.0" />
+      <point x="2591.0" y="2134.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.algorithmen.predicates.EdgeArrowPredicate" target="graph.graph.EdgeArrowType">
+      <point x="75.75" y="-48.5" />
+      <point x="708.25" y="947.0" />
+      <point x="2124.0" y="947.0" />
+      <point x="-44.0" y="47.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexFontTransformer">
+      <point x="136.5" y="-500.0" />
+      <point x="3446.705303030303" y="2204.0" />
+      <point x="6157.0" y="2204.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.sphere.SphereFontTransformer">
+      <point x="201.5" y="-500.0" />
+      <point x="3511.705303030303" y="2254.0" />
+      <point x="7365.0" y="2254.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Edge" target="graph.graph.StrokeType">
+      <point x="70.0" y="-147.5" />
+      <point x="3710.731060606061" y="967.0" />
+      <point x="3814.3242424242426" y="967.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="graph.graph.Values" target="graph.graph.EdgeArrowType">
+      <point x="0.0" y="-345.5" />
+      <point x="1863.5" y="967.0" />
+      <point x="2153.333333333333" y="967.0" />
+      <point x="-14.666666666666742" y="47.5" />
+    </edge>
+    <edge source="graph.visualization.transformer.edge.EdgeArrowTransformer" target="graph.graph.EdgeArrowType">
+      <point x="0.0" y="-81.5" />
+      <point x="1509.5" y="957.0" />
+      <point x="2138.666666666667" y="957.0" />
+      <point x="-29.333333333333258" y="47.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexFillPaintTransformer">
+      <point x="-162.5" y="-500.0" />
+      <point x="3147.705303030303" y="2224.0" />
+      <point x="528.5" y="2224.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.vertex.VertexDrawPaintTransformer">
+      <point x="175.5" y="-500.0" />
+      <point x="3485.705303030303" y="2234.0" />
+      <point x="6812.0" y="2234.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="graph.graph.Syndrom" target="graph.graph.Vertex">
+      <point x="-188.5" y="-500.0" />
+      <point x="3121.705303030303" y="2244.0" />
+      <point x="223.5" y="2244.0" />
+      <point x="223.5" y="570.0" />
+      <point x="4857.375" y="570.0" />
+      <point x="-122.25" y="191.5" />
+    </edge>
+    <edge source="graph.visualization.control" target="graph.visualization.control">
+      <point x="0.0" y="14.5" />
+      <point x="5024.125" y="793.0" />
+      <point x="4945.625" y="793.0" />
+      <point x="4945.625" y="758.5" />
+      <point x="-58.5" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.1" x="4797.0" y="2056.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

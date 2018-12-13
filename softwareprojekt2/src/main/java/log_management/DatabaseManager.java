@@ -19,11 +19,7 @@ public class DatabaseManager implements ObserverSyndrom {
      */
     private GraphDao graphDap;
 
-    public static void main(String[] args) throws SQLException {
-        throw new UnsupportedOperationException();
-    }
-
-    public static void setup() {
+    public void setup() {
         throw new UnsupportedOperationException();
     }
 

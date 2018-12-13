@@ -1,6 +1,7 @@
 package actions;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
@@ -13,13 +14,13 @@ import lombok.NonNull;
  */
 public abstract class GraphAction extends Action {
     /**
-     * the internal state of the layout, at the time the action was initialized
+     * the internal state of the layout
      */
     @NonNull
     private Layout layout;
 
     /**
-     * the internal state of the graph, at the time the action was initialized
+     * the internal state of the graph
      */
     @NonNull
     private SyndromGraph<Vertex, Edge> graph;
@@ -30,6 +31,11 @@ public abstract class GraphAction extends Action {
     @NonNull
     private SyndromPickSupport<Integer, String> pickSupport;
 
+    /**
+     * the visualisation viewer
+     */
+    @NonNull
+    private VisualizationViewer<Vertex,Edge> visualizationViewer;
 
     /**
      * sets layout, graph, pickSupport from the current syndrom presentation

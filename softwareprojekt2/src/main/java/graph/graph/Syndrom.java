@@ -31,10 +31,6 @@ public class Syndrom {
     @Setter(AccessLevel.NONE)
     private final VisualizationViewer<Vertex, Edge> vv;
     /**
-     * a syndrom instance.
-     */
-    private static Syndrom syndrom = null;
-    /**
      * template rules for the graph/ layout
      */
     private Template template;
@@ -213,23 +209,14 @@ public class Syndrom {
     private int id;
 
     /**
-     * the constructor, initialising all attributes
+     * the values set by the gui
      */
-    private Syndrom(){
-        throw new UnsupportedOperationException();
-    }
-
-
+    private Values values;
 
     /**
-     * Syndrom is supposed to be an singleton instance.
-     *
-     * @return the syndrom instance
+     * the constructor, initialising all attributes
      */
-    public static Syndrom getInstance() {
-        if (syndrom == null) {
-            syndrom = new Syndrom();
-        }
-        return syndrom;
+    public Syndrom(Values values){
+        throw new UnsupportedOperationException();
     }
 }

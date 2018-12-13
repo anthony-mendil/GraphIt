@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>log_management.dao</OriginalElement>
+  <nodes>
+    <node x="9.313195219789094" y="0.0">log_management.dao.LogDao</node>
+    <node x="22.0" y="652.6053438725687">log_management.dao.GraphDao</node>
+    <node x="42.32972591302283" y="408.0131665249192">log_management.dao.Dao</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="log_management.dao.GraphDao" target="log_management.dao.Dao">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="log_management.dao.LogDao" target="log_management.dao.Dao">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Circular" zoom="1.0" x="402.0" y="324.0" />
+  <SelectedNodes>
+    <node>log_management.dao.GraphDao</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

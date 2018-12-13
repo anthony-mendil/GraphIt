@@ -1,4 +1,4 @@
-package log_management.parameters.add;
+package log_management.parameters.add_remove;
 
 import graph.graph.Vertex;
 import log_management.parameters.Param;
@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * Parameterobject for the action AddVertexLogAction.
+ * Parameter object for the action AddVertexLogAction.
  */
 public class AddVertexParam extends Param{
     /**
@@ -27,7 +27,7 @@ public class AddVertexParam extends Param{
     private String sphereAnnotation;
 
     /**
-     * Creates an parameterobject of its own class.
+     * Creates an parameter object of its own class.
      * @param pVertex The new vertex.
      * @param pSphereId The sphere-Identity
      * @param pSphereAnnotation The annotation of the sphere.
@@ -36,11 +36,5 @@ public class AddVertexParam extends Param{
         this.vertex = pVertex;
         this.sphereId = pSphereId;
         this.sphereAnnotation = pSphereAnnotation;
-    }
-
-
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
     }
 }

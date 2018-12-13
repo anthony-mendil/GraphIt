@@ -1,5 +1,6 @@
 package graph.visualization.transformer.edge;
 
+import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import graph.graph.EdgeArrowType;
@@ -14,10 +15,6 @@ import java.awt.*;
  * @param <E> the edge type
  */
 public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, E>, E>, Shape> {
-    /**
-     * the edge arrow type which is currently selected
-     */
-    private static EdgeArrowType edgeArrowType;
 
     /**
      * the shape of the reinforced arrow
@@ -42,7 +39,7 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
      * @param length     the height of the arrow
      * @param notchDepth the notch depth of the reinforced arrow
      */
-    public EdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
+    public EdgeArrowTransformer(int radius, float width, float length, float notchDepth, Layout layout) {
         throw new UnsupportedOperationException();
     }
 
