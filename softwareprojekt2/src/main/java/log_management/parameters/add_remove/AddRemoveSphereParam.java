@@ -7,11 +7,11 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * Parameterobject for the action RemoveSphereLogAction.
+ * Parameterobject for the action AddSphereLogAction/RemoveSphereLogAction.
  */
 public class RemoveSphereParam extends Param{
     /**
-     * The Sphere, which will be deleted.
+     * The Sphere, which will be added/deleted.
      */
     @Getter
     private Sphere sphere;

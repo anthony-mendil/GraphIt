@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.util.List;
 
 /**
- * Parameterobject of the action RemoveAnchorPointsLogAction.
+ * Parameterobject of the action AddAnchorPointsLogAction/RemoveAnchorPointsLogAction.
  */
 public class RemoveAnchorPointsParam extends Param {
     /**
