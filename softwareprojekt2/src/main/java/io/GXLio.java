@@ -13,16 +13,17 @@ public class GXLio {
      *
      * @return The current GXL instance as String
      */
-    public static String createGXLFromDB() {
+    public  String createGXLFromDB() {
         throw new UnsupportedOperationException();
     }
 
     /**
      * Writes the GXL representation into the given syndrom
      *
-     * @param pSyndrom The Syndrom that the GXL gets written into
+     * @param pGXL The GXL that gets written into Syndrom
+     * @return The Syndrom that the GXL gets written into
      */
-    public void GXLToSyndrom(Syndrom pSyndrom){
+    public Syndrom GXLToSyndrom(String pGXL){
         throw new UnsupportedOperationException();
     }
 
@@ -37,10 +38,12 @@ public class GXLio {
 
     /**
      * Opens a dialog to import a GXL file from a specific location to a layout representation of the current graph
-     * @param pSyndrom The Syndrom that the GXL gets loaded into
+     *
+     * @return The imported GXL as String
      */
 
-    public void importGXL(Syndrom pSyndrom){
+    public String importGXL(){
         throw new UnsupportedOperationException();
+        //
     }
 }
