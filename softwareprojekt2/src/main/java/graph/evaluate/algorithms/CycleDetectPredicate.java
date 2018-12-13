@@ -8,7 +8,6 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
 import org.jgrapht.alg.cycle.CycleDetector;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Set;
 
@@ -32,7 +31,7 @@ import java.util.Set;
          * @param pGraph The graph to detect cycles on.
          */
         public CycleDetectPredicate(Graph pGraph) {
-            throw new NotImplementedException();
+            throw new UnsupportedOperationException();
         }
 
     /**
@@ -42,6 +41,6 @@ import java.util.Set;
      */
     public Set<Vertex> evaluate(Graph pGraph) {
         CycleDetector cycleDetector= new CycleDetector(null);
-            throw new NotImplementedException();
+            throw new UnsupportedOperationException();
         }
     }

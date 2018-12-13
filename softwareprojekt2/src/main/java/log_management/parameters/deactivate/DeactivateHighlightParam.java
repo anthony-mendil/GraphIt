@@ -25,8 +25,8 @@ public class DeactivateHighlightParam extends Param{
 
     /**
      * Creates an parameterobject of its own class.
-     * @param pVerticesId
-     * @param pEdgesId
+     * @param pVerticesId TODO
+     * @param pEdgesId TODO
      */
     public DeactivateHighlightParam(List<Integer> pVerticesId, List<Integer> pEdgesId) {
         this.verticesId = pVerticesId;

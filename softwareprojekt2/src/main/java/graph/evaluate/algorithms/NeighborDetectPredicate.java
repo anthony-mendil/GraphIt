@@ -4,7 +4,6 @@ import edu.uci.ics.jung.graph.Graph;
 import graph.graph.Vertex;
 import lombok.NonNull;
 import lombok.Setter;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Set;
 
@@ -28,7 +27,7 @@ public class NeighborDetectPredicate<V, E> {
      * @param pGraph The graph to detect cycles on.
      */
     public NeighborDetectPredicate(Graph pGraph) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     /**
      * Evaluates the graph on the given condition.
@@ -36,6 +35,6 @@ public class NeighborDetectPredicate<V, E> {
      * @return The set of vertices matching the condition.
      */
     public Set<Vertex> evaluate(Graph pGraph) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }
