@@ -7,16 +7,16 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Parameterobject for action ActivateHighlightLogAction.
+ * Parameterobject for action ActivateHighlightLogAction/DeactivateHighlighLogAction.
  */
 public class ActivateHighlightParam extends Param{
     /**
-     * List of vertices, which will highlight.
+     * List of vertices, which will highlight/stop highlight.
      */
     @Getter
     private List<Integer> vertexIdList;
     /**
-     * List of edges, which will highlight.
+     * List of edges, which will highlight/stop highlight.
      */
     @Getter
     private List<Integer> edgeIdList;

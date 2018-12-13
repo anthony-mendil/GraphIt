@@ -6,16 +6,16 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.List;
 /**
- * Parameterobject of the action DeactivateFadeoutLogAction.
+ * Parameterobject of the action ActivateFadeoutLogAction andDeactivateFadeoutLogAction.
  */
-public class DeactivateFadeoutParam extends Param{
+public class ActivateDeactivateFadeoutParam extends Param{
     /**
-     * List of vertices to cancel the highlight-option.
+     * List of vertices to activate/cancel the highlight-option.
      */
     @Getter
     private List<Integer> verticesId;
     /**
-     * List of edges to cancel the highlight-option.
+     * List of edges to activate/cancel the highlight-option.
      */
     @Getter
     private List<Integer> edgesId;
@@ -25,7 +25,7 @@ public class DeactivateFadeoutParam extends Param{
      * @param pVerticesId The list of vertices to work on.
      * @param pEdgesId The list of edges to work on.
      */
-    public DeactivateFadeoutParam(List<Integer> pVerticesId, List<Integer> pEdgesId) {
+    public ActivateDeactivateFadeoutParam(List<Integer> pVerticesId, List<Integer> pEdgesId) {
         this.verticesId = verticesId;
         this.edgesId = edgesId;
     }
