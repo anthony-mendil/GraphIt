@@ -20,14 +20,6 @@ public class OOFio {
     }
 
     /**
-     * TODO
-     * @param pSyndrom The syndrom the GXL of the OOF gets written into
-     */
-    public void OOFToSystem(Syndrom pSyndrom){
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Gets the GXL String from the OOF String
      *
      * @param pOOF The OOF containing an GXL String
@@ -59,10 +51,9 @@ public class OOFio {
     /**
      * Starts the dialog to import the graph and protocol from an OOF file
      *
-     * @param pSyndrom The syndrom the GXL of the OOF gets written into
      * @return The imported Oof file as String
      */
-    public String importOOF(Syndrom pSyndrom){
+    public String importOOF(){
         throw new UnsupportedOperationException();
         //GXLStringFromOof
         //JSONStringFromOof
