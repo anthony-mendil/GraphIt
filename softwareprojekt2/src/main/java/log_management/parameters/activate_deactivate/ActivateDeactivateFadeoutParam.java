@@ -1,4 +1,4 @@
-package log_management.parameters.deactivate;
+package log_management.parameters.activate_deactivate;
 
 import log_management.parameters.Param;
 import lombok.Getter;

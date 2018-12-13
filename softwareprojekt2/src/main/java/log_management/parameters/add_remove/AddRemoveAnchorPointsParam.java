@@ -1,4 +1,4 @@
-package log_management.parameters.remove;
+package log_management.parameters.add_remove;
 
 import graph.graph.Edge;
 import log_management.parameters.Param;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Parameterobject of the action AddAnchorPointsLogAction/RemoveAnchorPointsLogAction.
  */
-public class RemoveAnchorPointsParam extends Param {
+public class AddRemoveAnchorPointsParam extends Param {
     /**
      * The selected edges.
      */
@@ -20,7 +20,7 @@ public class RemoveAnchorPointsParam extends Param {
      * Creates a parameterobject of its own class.
      * @param pEdges The selected edges.
      */
-    public RemoveAnchorPointsParam(List<Edge> pEdges) {
+    public AddRemoveAnchorPointsParam(List<Edge> pEdges) {
     this.edges = pEdges;
     }
 

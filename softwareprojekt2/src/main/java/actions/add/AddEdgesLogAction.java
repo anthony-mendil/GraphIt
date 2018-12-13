@@ -4,7 +4,7 @@ import actions.LogAction;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.LogEntryName;
-import log_management.parameters.add.AddEdgesParam;
+import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
 import java.util.Collection;
 
@@ -23,11 +23,12 @@ public class AddEdgesLogAction extends LogAction {
     }
 
     /**
+     * Adds Edges to the graph.
      * This constructor will be used to realize the undo-method of the method RemoveEdgesLogAction.
      *
-     * @param pAddEdgesParam the AddEdgesParam, containing all edges to add.
+     * @param pAddRemoveEdgesParam the AddEdgesParam, containing all edges to add.
      */
-    public AddEdgesLogAction(AddEdgesParam pAddEdgesParam) {
+    public AddEdgesLogAction(AddRemoveEdgesParam pAddRemoveEdgesParam) {
         super(LogEntryName.ADD_EDGES);
         throw new UnsupportedOperationException();
     }

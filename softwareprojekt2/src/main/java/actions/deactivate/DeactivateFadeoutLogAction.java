@@ -2,7 +2,8 @@ package actions.deactivate;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.deactivate.DeactivateFadeoutParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
+
 
 /**
  * Makes the vertices and attached edges, which used to be invisible, visible again.
@@ -16,11 +17,12 @@ public class DeactivateFadeoutLogAction extends LogAction {
     }
 
     /**
-     * Constructor which will be used to realize the undo-method of ActivateFadeoutLogAction.
+     * Makes the vertices and edges visible. Also used to implement the undo-method of
+     * ActivateFadeoutLogAction.
      *
-     * @param pDeactivateFadeoutParam The used parameters.
+     * @param pParam The used parameters.
      */
-    public DeactivateFadeoutLogAction(DeactivateFadeoutParam pDeactivateFadeoutParam) {
+    public DeactivateFadeoutLogAction(ActivateDeactivateFadeoutParam pParam) {
         super(LogEntryName.DEACTIVATE_FADEOUT);
     }
 

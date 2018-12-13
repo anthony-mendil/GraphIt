@@ -3,8 +3,7 @@ package actions.remove;
 import actions.LogAction;
 import graph.graph.Vertex;
 import log_management.LogEntryName;
-import log_management.parameters.add.AddVerticesParam;
-import log_management.parameters.remove.RemoveVerticesParam;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.util.Collection;
 
@@ -33,20 +32,12 @@ public class RemoveVerticesLogAction extends LogAction {
     }
 
     /**
-     * Removes all vertices which are defined in pParam.
+     * Removes all vertices which are defined in pParam. Also used to implement the undo-method of
+     * AddVerticesLogAction.
      *
      * @param pParam the RemoveVerticesParam, containing all vertices to remove
      */
-    public RemoveVerticesLogAction(RemoveVerticesParam pParam) {
-        super(LogEntryName.REMOVE_VERTICES);
-    }
-
-    /**
-     * Removes all vertices with are defined in pParam.
-     *
-     * @param pParam the AddVerticesParam, containing all vertices to remove
-     */
-    public RemoveVerticesLogAction(AddVerticesParam pParam) {
+    public RemoveVerticesLogAction(AddRemoveVerticesParam pParam) {
         super(LogEntryName.REMOVE_VERTICES);
     }
 

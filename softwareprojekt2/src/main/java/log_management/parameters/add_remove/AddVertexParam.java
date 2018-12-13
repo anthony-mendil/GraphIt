@@ -1,4 +1,4 @@
-package log_management.parameters.add;
+package log_management.parameters.add_remove;
 
 import graph.graph.Vertex;
 import log_management.parameters.Param;

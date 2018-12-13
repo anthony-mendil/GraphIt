@@ -2,8 +2,7 @@ package actions.activate;
 
 import actions.LogAction;
 import log_management.LogEntryName;
-import log_management.parameters.activate.ActivateAnchorPointsFadeoutParam;
-import log_management.parameters.deactivate.DeactivateAnchorPointsFadeoutParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 
 import javax.naming.ldap.UnsolicitedNotification;
 import java.awt.geom.Point2D;
@@ -33,21 +32,12 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
     }
 
     /**
-     * Constructor which will be used to realize the undo-method of DeactivateAnchorFadeout.
-     *
-     * @param pDeactivateAnchorPointsFadeoutParam The used parameters containing the anchor points to fade out.
-     */
-    public ActivateAnchorPointsFadeoutLogAction(DeactivateAnchorPointsFadeoutParam pDeactivateAnchorPointsFadeoutParam) {
-        super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Fadeout all anchor points defined in ActivateAnchorPointsFadeoutParam
+     * Fadeout all anchor points defined in ActivateAnchorPointsFadeoutParam. Also used to implement the undo-method of
+     * DeactivateAnchorPointsFadeoutLogAction.
      *
      * @param pActivateAnchorPointsFadeoutParam The used parameters containing the anchor points to fade out.
      */
-    public ActivateAnchorPointsFadeoutLogAction(ActivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
+    public ActivateAnchorPointsFadeoutLogAction(ActivateDeactivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
         throw new UnsupportedOperationException();
     }
