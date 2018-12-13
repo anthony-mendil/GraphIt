@@ -1,7 +1,6 @@
 package io;
 
 
-import graph.graph.Syndrom;
 
 public class OOFio {
 
@@ -10,9 +9,10 @@ public class OOFio {
     }
 
     /**
-     * Creates an OOF
-     * @param pGXL TODO
-     * @param pJSON TODO
+     * Creates an OOF of the GXL and the JSON
+     *
+     * @param pGXL The GXL String representation of the Graph that gets written in the OOF
+     * @param pJSON The protocol as JSON String of the user that gets written in the OOF
      * @return The OOF file as String
      */
     private String createOOF(String pGXL, String pJSON){
@@ -25,7 +25,7 @@ public class OOFio {
      * @param pOOF The OOF containing an GXL String
      * @return The GXL String
      */
-    private String GXLFromOOF(String pOOF){
+    private String gxlFromOOF(String pOOF){
         throw new UnsupportedOperationException();
     }
 
@@ -35,30 +35,22 @@ public class OOFio {
      * @param pOOF The OOF containing an JSON String
      * @return The JSON String
      */
-    private String JSONFromOOF(String pOOF){
+    private String jsonFromOOF(String pOOF){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Starts the dialog to export the current graph and protocol as OOF file
-     *
-     * @param pOOF The OOF String to export as file
      */
-    public void exportAsOOF(String pOOF){
+    public void exportAsOOF(){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Starts the dialog to import the graph and protocol from an OOF file
-     *
-     * @return The imported Oof file as String
      */
-    public String importOOF(){
+    public void importOOF(){
         throw new UnsupportedOperationException();
-        //GXLStringFromOof
-        //JSONStringFromOof
-        //GXLToDB
-        //JSONToDB
     }
 
 }
