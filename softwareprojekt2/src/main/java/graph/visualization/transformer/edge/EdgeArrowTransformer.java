@@ -39,7 +39,7 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
      * @param length     the height of the arrow
      * @param notchDepth the notch depth of the reinforced arrow
      */
-    public EdgeArrowTransformer(int radius, float width, float length, float notchDepth, Layout layout) {
+    public EdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
         throw new UnsupportedOperationException();
     }
 

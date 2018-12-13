@@ -211,10 +211,12 @@ public class Syndrom {
     /**
      * the values set by the gui
      */
+    @Setter(AccessLevel.NONE)
     private Values values;
 
     /**
      * the constructor, initialising all attributes
+     * @param values the values set by the gui
      */
     public Syndrom(Values values){
         throw new UnsupportedOperationException();

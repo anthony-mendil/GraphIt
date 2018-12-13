@@ -125,6 +125,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * methode for filter the graph on the criteria.
      * @param edgeType the edge type to filter for
+     * @return a filtered list with spheres
      */
     public List<Sphere> getFilteredEdgeType(EdgeType edgeType) {
         throw new UnsupportedOperationException();
@@ -133,6 +134,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * filters the vertices/ spheres annotation for a regular expression
      * @param regularExpression the regular expression to filter for
+     * @return a filtered list with spheres
      */
     public List<Sphere> getFilteredEdgeType(String regularExpression) {
         throw new UnsupportedOperationException();
@@ -140,6 +142,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
 
     /**
      * filters the vertices for the attribute isVisible=false
+     * @return a filtered list with spheres
      */
     public List<Sphere> getFilteredEdgeType() {
         throw new UnsupportedOperationException();
