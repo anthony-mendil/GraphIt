@@ -32,9 +32,9 @@ public class JGraphTHandler {
     public JGraphTHandler() {
     }
     /**
-     * Constrcutor in case the user wants to analyse the graph in terms of paths.
-     * @param pStart
-     * @param pEnd
+     * Constructor in case the user wants to analyse the graph in terms of paths.
+     * @param pStart TODO
+     * @param pEnd TODO
      */
     public JGraphTHandler(Vertex pStart, Vertex pEnd){
 

@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Parameterobject of the action EditFontLogAction.
  */
-public class EditFontParam extends Param{
+public class EditFontVerticesParam extends Param{
     /**
      * The text, which have to been changed.
      */
@@ -31,8 +31,9 @@ public class EditFontParam extends Param{
      * Creates a parameterobject of its own class.
      * @param pOldFont The old font-type.
      * @param pNewFont The new font-type.
+     * @param pText TODO
      */
-    public EditFontParam(String pText, String pOldFont, String pNewFont) {
+    public EditFontVerticesParam(String pText, String pOldFont, String pNewFont) {
         this.text = pText;
         this.oldFont = pOldFont;
         this.newFont = pNewFont;
