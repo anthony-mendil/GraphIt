@@ -8,11 +8,20 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.Map;
 
-public class AddVerticesParam extends Param {
-
+/**
+ * Parameterobject of the action of AddVerticesLogAction.
+ */
+public class AddVerticesParam extends Param{
+    /**
+     * Set of vertices to their respective Sphere-Id and Sphere-Annotation.
+     */
     @Getter
     private Map<Vertex, Pair<Integer, String>> parameter;
 
+    /**
+     * Creates an parameterobject of its own class.
+     * @param pParameter The set of vertices and their sphere/sphere-annoatation.
+     */
     public AddVerticesParam(Map<Vertex, Pair<Integer, String>> pParameter) {
         parameter = pParameter;
     }

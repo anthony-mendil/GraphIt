@@ -8,8 +8,8 @@ import java.util.List;
 
 /**
  * combines all predicates to filter for
- * @param <V> the vertex type
- * @param <E> the edge type
+ * @param <V> The vertex type
+ * @param <E> The edge type
  */
 public class CombinesPredicate<V, E> implements Predicate<Context<Graph<V, E>, V>> {
     /**

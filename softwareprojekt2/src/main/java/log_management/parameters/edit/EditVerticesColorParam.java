@@ -1,22 +1,36 @@
 package log_management.parameters.edit;
 
 import log_management.parameters.Param;
+import lombok.Getter;
 
 import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
-public class EditVerticesColorParam extends Param {
-
-    private List<Integer> vertexId;
-    private List<Color> oldColors;
+/**
+ * Parameterobject of the action EditVerticesColorLogAction.
+ */
+public class EditVerticesColorParam extends Param{
+    /**
+     * The set of vertices and their old colors.
+     */
+    @Getter
+    private Map<Integer, Color> oldVerticesColor;
+    /**
+     * The new color.
+     */
+    @Getter
     private Color newColor;
 
-    // maybe new parameter class for fill color
-    private List<Color> oldFillColors;
-    private Color newFillColor;
-
-    public EditVerticesColorParam() {
+    /**
+     * Creates a parameterobject of its own class.
+     * @param pVerticesColor The selected vertices and their old color.
+     * @param pNewColor The new color.
+     */
+    public EditVerticesColorParam(Map<Integer, Color> pVerticesColor, Color pNewColor) {
+        this.oldVerticesColor = pVerticesColor;
+        this.newColor = pNewColor;
     }
 
     @Override
