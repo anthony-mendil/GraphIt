@@ -3,8 +3,6 @@
 - command show protolkoll/ filter protokoll/ animate protokoll
 - j graph t handler
 - action gxl
-- log filter 
-- ab wann protokoll? 
 - wie kommen die log informationen an die gui zurück?
 
 ### Export, Import
@@ -12,7 +10,6 @@
 - params 
 - auswertuer
 - phillip gui
-- observer
 - umfang, veretzungsindex, strukturindex wie an gui?
 - hab addAnchorpoints() rausgenimmen, wird nie aufgerufen
 - actions UNDO kann raus und nur die redo rein

@@ -1,6 +1,7 @@
 package graph.graph;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
 import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -14,6 +15,8 @@ import graph.visualization.transformer.vertex.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualisation
@@ -205,11 +208,18 @@ public class Syndrom {
     private String graphName;
 
     /**
+     * the id
+     */
+    private int id;
+
+    /**
      * the constructor, initialising all attributes
      */
     private Syndrom(){
         throw new UnsupportedOperationException();
     }
+
+
 
     /**
      * Syndrom is supposed to be an singleton instance.

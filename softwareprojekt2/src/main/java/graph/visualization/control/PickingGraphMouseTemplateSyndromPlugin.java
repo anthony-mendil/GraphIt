@@ -11,7 +11,8 @@ import java.awt.geom.Point2D;
 import java.util.Map;
 
 /**
- * A graph mouse plugin that supports the visualisation of picking if the user selected the template function mode.
+ * A graph mouse plugin that supports the visualisation of picking if the user selected the template function mode
+ * and executes actions.
  */
 public class PickingGraphMouseTemplateSyndromPlugin<V, E> extends PickingGraphMousePlugin implements MouseListener, MouseMotionListener {
     /**

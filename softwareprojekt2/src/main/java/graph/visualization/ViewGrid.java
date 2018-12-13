@@ -12,22 +12,22 @@ public class ViewGrid implements VisualizationServer.Paintable {
     /**
      *
      */
-    VisualizationViewer master;
+    private VisualizationViewer master;
     /**
      *
      */
-    VisualizationViewer vv;
+    private VisualizationViewer vv;
 
     /**
-     * @param vv the visualisation view containing zoom context
-     * @param master  the visualisation view to show in zoom context
+     * @param pVv the visualisation view containing zoom context
+     * @param pMaster  the visualisation view to show in zoom context
      */
-    public ViewGrid(VisualizationViewer vv, VisualizationViewer master) {
+    public ViewGrid(VisualizationViewer pVv, VisualizationViewer pMaster) {
 
     }
     @Override
-    public void paint(Graphics g) {
-
+    public void paint(Graphics pG) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

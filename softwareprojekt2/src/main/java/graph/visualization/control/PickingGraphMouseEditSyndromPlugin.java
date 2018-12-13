@@ -9,7 +9,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 
 /**
- * A graph mouse plugin that supports the visualisation of picking if the user selected the edit function mode.
+ * A graph mouse plugin that supports the visualisation of picking if the user selected the edit function mode
+ * and executes actions.
  */
 public class PickingGraphMouseEditSyndromPlugin<V, E> extends PickingGraphMousePlugin implements MouseListener, MouseMotionListener {
 

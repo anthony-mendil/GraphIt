@@ -1,5 +1,6 @@
 package graph.graph;
 
+import gui.GraphButtonType;
 import lombok.*;
 
 import java.awt.*;
@@ -146,8 +147,13 @@ public class Values {
      * the values instance
      */
     @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
+    @Setter()
     private static Values instance;
+
+    /**
+     * the actual graph button type, pressed in the gui
+     */
+    private GraphButtonType graphButtonType;
 
     /**
      * @return singleton instance of constants
