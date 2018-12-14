@@ -40,16 +40,21 @@ public class OOFio {
     }
 
     /**
-     * Starts the dialog to export the current graph and protocol as OOF file
+     * Export the current graph and protocol as OOF file
+     *
+     * @param pPath The path to the file that gets imported
+     * @param pName The name that the file gets as it gets exported
      */
-    public void exportAsOOF(){
+    public void exportAsOOF(String pPath, String pName){
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Starts the dialog to import the graph and protocol from an OOF file
+     * Import the graph and protocol from an OOF file
+     *
+     * @param pPath The path to the file that gets imported
      */
-    public void importOOF(){
+    public void importOOF(String pPath){
         throw new UnsupportedOperationException();
     }
 
