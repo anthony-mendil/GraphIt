@@ -8,9 +8,16 @@ import actions.GraphAction;
 public class ImportGxlAction extends GraphAction {
 
     /**
-     * Actionhandling for importing the graph as GXL
+     * The path that the GXL is exported to
      */
-    ImportGxlAction() {
+    private String path;
+
+    /**
+     * Actionhandling for importing the graph as GXL
+     *
+     * @param pPath The path that the GXL is imported from
+     */
+    ImportGxlAction(String pPath) {
 
     }
 

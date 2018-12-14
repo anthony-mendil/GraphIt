@@ -5,9 +5,22 @@ import actions.GraphAction;
 public class ExportPdfAction extends GraphAction {
 
     /**
-     * Action handling for exporting the graph as PDF
+     * The path that the PDF is exported to
      */
-    public ExportPdfAction() {
+    private String path;
+
+    /**
+     * The name of the file
+     */
+    private String name;
+
+    /**
+     * Action handling for exporting the graph as PDF
+     *
+     * @param pPath The path that the PDF is exported to
+     * @param pName The name of the file
+     */
+    public ExportPdfAction(String pPath, String pName) {
         throw new UnsupportedOperationException();
     }
 

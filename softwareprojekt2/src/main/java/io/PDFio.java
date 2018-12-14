@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 
 public class PDFio {
 
+    /**
+     * The VisualizationViewer of the current graph
+     */
     private VisualizationViewer vv;
 
 

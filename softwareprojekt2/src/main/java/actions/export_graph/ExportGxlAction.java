@@ -8,9 +8,22 @@ import actions.GraphAction;
 public class ExportGxlAction extends GraphAction {
 
     /**
-     * Constructs actionhandling for exporting the graph as GXL
+     * The path that the GXL is exported to
      */
-    public ExportGxlAction() {
+    private String path;
+
+    /**
+     * The name of the file
+     */
+    private String name;
+
+    /**
+     * Constructs actionhandling for exporting the graph as GXL
+     *
+     * @param pPath The path that the GXL is exported to
+     * @param pName The name of the file
+     */
+    public ExportGxlAction(String pPath, String pName) {
         throw new UnsupportedOperationException();
     }
 
