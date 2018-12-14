@@ -1,11 +1,116 @@
 package gui;
 
-import actions.Action;
+import actions.ActionHistory;
 import actions.ObserverSyndrom;
-import actions.other.CreateGraphAction;
+import graph.graph.Syndrom;
+import javafx.embed.swing.SwingNode;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
+import log_management.dao.Dao;
+import log_management.dao.LogDao;
+
+import javax.swing.*;
 
 public class Controller implements ObserverSyndrom{
 
+    public Controller(Syndrom syndrom){
+    }
+
+    /* General Stuff */
+    private SwingNode canvas;
+    private SwingNode zoomWindow;
+    private TitledPane tiltedPane;
+    private TreeView treeView;
+    private Text actionText;
+    private Slider zoomSlider;
+
+    /* Menu Bar */
+    private MenuItem newFile;
+    private MenuItem openFile;
+    private MenuItem save;
+    private MenuItem saveLocation;
+    private MenuItem exportPDF;
+    private MenuItem exportTemplate;
+    private MenuItem exportDifferentFormats;
+    private MenuItem print;
+
+    private MenuItem languageGerman;
+    private MenuItem languageEnglisch;
+
+    private MenuItem documentation;
+
+    /* Template Options */
+
+
+
+    /* Sphere */
+    private ColorPicker sphereBackground;
+    private ColorPicker sphereBorder;
+
+    private TextField sphereFontField;
+    private MenuItem sphereFont1;
+    private MenuItem sphereFont2;
+    private MenuItem sphereFont3;
+    private MenuItem sphereFont4;
+    private MenuItem sphereFont5;
+
+    private TextField sphereSize;
+    private MenuItem sphereSize1;
+    private MenuItem sphereSize2;
+    private MenuItem sphereSize3;
+    private MenuItem sphereSize4;
+    private MenuItem sphereSize5;
+    private MenuItem sphereSize6;
+    private MenuItem sphereSize7;
+    private MenuItem sphereSize8;
+
+    /* Symptom */
+
+    private ColorPicker symptomBackground;
+    private ColorPicker symptomBorder;
+
+    private MenuItem symptomRectangle;
+    private MenuItem symptomCircle;
+    private MenuItem symptomEllipse;
+
+    private TextField symptomFontField;
+    private MenuItem symptomFont1;
+    private MenuItem symptomFont2;
+    private MenuItem symptomFont3;
+    private MenuItem symptomFont4;
+    private MenuItem symptomFont5;
+
+    private TextField symptomSizeField;
+    private MenuItem symptomSize1;
+    private MenuItem symptomSize2;
+    private MenuItem symptomSize3;
+    private MenuItem symptomSize4;
+    private MenuItem symptomSize5;
+    private MenuItem symptomSize6;
+    private MenuItem symptomSize7;
+    private MenuItem symptomSize8;
+
+    /* Edge */
+
+    private ColorPicker edgeColour;
+
+    private MenuItem edgeStrokeDashed;
+    private MenuItem edgeStrokeDashedWeight;
+    private MenuItem edgeStrokeDotted;
+    private MenuItem edgeStrokeDottedWeight;
+    private MenuItem edgeStrokeBasic;
+    private MenuItem edgeStrokeBasicWeight;
+
+    private MenuItem edgeArrowReinforced;
+    private MenuItem edgeArrowExtenuating;
+    private MenuItem edgeArrowNeutral;
+
+    /* Internal */
+    private LogDao protocol;
+    private Syndrom syndrom;
+    //private ActionHistory cmdHistory;
 
     /* ----------------ACTIVATE---------------------- */
 
@@ -335,6 +440,38 @@ public class Controller implements ObserverSyndrom{
         throw new UnsupportedOperationException();
     }
 
+    /* ----------------INTERNAL---------------------- */
+
+    public void initialize(){
+    }
+
+    private void createSwingZoomWindow(final SwingNode swingNode){
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            }
+        });
+    }
+
+    private void createSwingCanvas(final SwingNode swingNode){
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            }
+        });
+    }
+
+    private class MenuItemHandler implements EventHandler<Event>{
+        @Override
+        public void handle(Event evt){
+        }
+    }
+
+    private class ColorPickerHandler implements EventHandler<Event>{
+        @Override
+        public void handle(Event evt){
+        }
+    }
 
     @Override
     public void updateGraph() {
