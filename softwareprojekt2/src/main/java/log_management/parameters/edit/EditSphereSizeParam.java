@@ -45,9 +45,4 @@ public class EditSphereSizeParam extends Param{
         this.newSize = pNewSize;
 
     }
-
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

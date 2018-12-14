@@ -34,8 +34,4 @@ public class EditEdgesTypeParam extends Param{
         this.edgeType = edgeType;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

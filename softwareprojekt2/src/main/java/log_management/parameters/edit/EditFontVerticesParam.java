@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Parameterobject of the action EditFontLogAction.
  */
-public class EditFontVerticesParam extends Param{
+public class EditFontVerticesParam extends Param {
     /**
      * The text, which have to been changed.
      */
@@ -29,18 +29,14 @@ public class EditFontVerticesParam extends Param{
 
     /**
      * Creates a parameterobject of its own class.
+     *
      * @param pOldFont The old font-type.
      * @param pNewFont The new font-type.
-     * @param pText TODO
+     * @param pText    TODO
      */
     public EditFontVerticesParam(String pText, String pOldFont, String pNewFont) {
         this.text = pText;
         this.oldFont = pOldFont;
         this.newFont = pNewFont;
-    }
-
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
     }
 }

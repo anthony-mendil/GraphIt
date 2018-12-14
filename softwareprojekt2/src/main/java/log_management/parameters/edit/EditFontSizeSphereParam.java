@@ -39,9 +39,5 @@ public class EditFontSizeSphereParam extends Param{
         this.newFontSize = pNewFontSize;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 
 }

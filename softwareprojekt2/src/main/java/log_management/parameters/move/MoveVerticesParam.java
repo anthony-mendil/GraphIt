@@ -56,8 +56,4 @@ public class MoveVerticesParam extends Param{
 
     }
 
-    @Override
-    public String convertToJson() {
-        return null;
-    }
 }
