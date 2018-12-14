@@ -26,6 +26,7 @@
 \usepackage{ngerman}
 % Bibliographie
 \usepackage{bibgerm}
+\usepackage{svg}
 % Tabellen
 \usepackage{tabularx}
 \usepackage{supertabular}
@@ -1916,6 +1917,8 @@ In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zuge
 \section{Modulsicht}
 \emph{Autoren: Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}
 
+
+
 \newpage
 \section{Ausführungssicht}
 \label{sec:ausfuehrung}
@@ -1967,31 +1970,48 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 	\hline
 	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndromansatz}} \\\hline
 	\hline
-	Akteure: Ersteller
+	\textbf{Akteure}: Ersteller
 	\\\hline
-	Vorbedingungen: Das Programm ist geschlossen, es wurden noch kein Graph erstellt und keine Einstellungen gesetzt. \\
-	Ziel: 
+	\textbf{Vorbedingungen}: Das Programm ist geschlossen, es wurden noch kein Graph erstellt und keine Einstellungen gesetzt. \\
+	\textit{Ziel}: Eine Vorlage für einen Syndromansatz erstellen.
 	\\\hline
-	Regulärer Ablauf: Abfolge von Aktionen der Akteure und
-	Reaktionen des Systems
+		\textbf{Regulärer Ablauf}: \begin{itemize}
+		\itemsep-0.7em
+		\item der Ersteller öffnet die Application und drück auf den Menüpunkt \textit{Datei}  $\rightarrow$ \textit{Neuen Graph erstellen}
+		\item das System öffnet ein Pop-Up-Eingabefeld 
+		\item der Ersteller gibt den Namen des Graphen an und klickt ok
+		\item der Ersteller klickt auf den \textit{Sphäre hinzufügen}- Button
+		\item der Ersteller klickt in die Arbeitsfläche 
+		\item der Ersteller klickt auf den Text der Sphäre
+		\item das System öffnet ein Pop-Up-Eingabefeld 
+		\item der Ersteller gibt den Namen der Sphäre ein
+		\item der Ersteller markiert die Sphäre
+		\item der Ersteller klickt den \textit{Farbe ändern}- Button 
+		\item das System öffnet einen Color- Picker 
+		\item der Ersteller wählt eine Farbe
+		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
+		\item das System öffnet ein Menü
+		\item der Ersteller klickt \textit{Sphäre Bezeichnung blockieren}
+		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
+		\item das System öffnet ein Menü
+		\item der Ersteller klickt \textit{Sphäre Farbe blockieren}
+		\item der Ersteller macht klickt den Button \textit{undo}
+		\item der Ersteller klickt den Menü-Punkt \textit{Datei} $\rightarrow$ \textit{Exportieren als} $\rightarrow$ \textit{PDF}
+		\item das System öffnet ein Pop-up Fenster 
+		\item der Ersteller wählt ein Dateiformat, gibt einen Pfad an und drück den Button \textit{exportieren}  
+		\item der Ersteller wählt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
+		\item das System öffnet ein Pop-up Fenster 
+		\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{exportieren}
+	\end{itemize}
 	\\\hline
-	Varianten: mögliche Abweichungen vom regulären Ablauf, 
-	z.\,B.\ Auslassen oder Wiederholen von Aktionen
+	\textbf{Varianten}: Der Ersteller könnte weitere Element zur der Vorlage hinzufügen und eine maximale Anzahl für die Elemente setzen. 
 	\\\hline
-	Nachbedingung: Endzustand und dann mögliche Folgeaktionen
+	\textbf{Nachbedingung}: Der Ersteller hat eine Vorlage exportiert. Er könnte nun in den Bearbeiter- Modus wechseln und dort die Vorlage bearbeiten. 
 	\\\hline
-	Fehler-/Ausnahmefälle mit deren Nachbedingung; z.\,B.\ wie 
-	wird auf ungültige Eingaben reagiert?
+	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller vergisst die GXL zu exportieren  $\rightarrow$ beim erneuten Start kann der Ersteller sich seine letzten Projekte anzeigen lassen und sein letztes Projekt auswählen. 
 	\\\hline
-\end{tabular}\\ \\ \\
+\end{tabular}
 
-
-Der Lehrer öffnet die folgende Applikation und möchte gerne einen neuen Syndromansatz für seine Klasse erstellen.
-Willkürlich fügt der Lehrer erstmal sechs Sphären hinzu zum Graphen und drückt daher sechsmal auf dem Button “Sphäre hinzufügen”. Ihm gefiel die Positionen der Sphären nicht und ordnete deshalb die Sphären nacheinander in ein Pentagramm. Anschließend beschriftet er die Sphären (1,2,3,4,5,6). Die Schriftgröße des Titels der Sphäre 3 wird auf 16 gesetzt und die Schriftart auf Times New Roman, damit die Sphäre besser heraussticht. Sphäre 3 und 4 werden nochmal markiert und eine gemeinsame Farbe zugeordnet(?, wenn möglich). Zusätzlich werden die Formen verändert. Sphäre 3 soll ein Quadrat sein und Sphäre 4 ein Kreis. 
-Der Lehrer erstellt ein Symptom jeweils in der Sphäre 3 und 5 und bezeichnet sie mit A und B. Er wählt in der GUI, die verstärkende Relation aus und verbindet jeweils die Symptome miteinander. Zur Sicherheit speichert der Lehrer nochmal.
-Nach kurzer Überlegung fiel ihm auf, dass die Sphäre 5 unnötig ist und löscht sie deswegen indem er in der GUI auf den Knopf “Sphäre löschen” drückt und dann die Sphäre 5 wählt. Der dazu gelöschte Knoten B sollte aber in die Sphäre 4, deswegen drückt er auf undo, verschiebt den Knoten B von der Sphäre 5 in die Sphäre 4 und ändert die Relation auf eine abschwächende. Anschließend drückt der Lehrer mit seiner rechten Maustaste auf die leere Sphäre 5 und löscht sie über das Drop-Down Menü.
-Nachdem der Graph vollständig ist, entscheidet der Lehrer seinen Graphen zu exportieren über GXL. \\ \\
-\\ \\
 
 \begin{figure}[ht]
 	\centering
