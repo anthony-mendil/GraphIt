@@ -27,17 +27,22 @@ public class GXLio {
     }
 
     /**
-     * Opens a dialog to save the the GXL representation to a specific location
+     * Save the the GXL representation to a specific location
+     *
+     * @param pPath The path to the file that gets exported
+     * @param pName The name that the file gets as it gets exported
      */
-    public void exportGXL(){
+    public void exportGXL(String pPath, String pName){
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Opens a dialog to import a GXL file from a specific location to the Syndrom
+     * Import a GXL file from a specific location to the Syndrom
+     *
+     * @param pPath The path to the file that gets imported
      */
 
-    public void importGXL(){
+    public void importGXL(String pPath){
         throw new UnsupportedOperationException();
     }
 }
