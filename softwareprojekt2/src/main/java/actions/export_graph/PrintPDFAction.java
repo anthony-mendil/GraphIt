@@ -8,9 +8,16 @@ import actions.GraphAction;
 public class PrintPDFAction extends GraphAction {
 
     /**
-     * Actionhandling for printing the graph as PDF
+     * The name of the file
      */
-    PrintPDFAction() {
+    private String name;
+
+    /**
+     * Actionhandling for printing the graph as PDF
+     *
+     * @param pName The name that the file is printed as
+     */
+    PrintPDFAction(String pName) {
         throw new UnsupportedOperationException();
     }
 

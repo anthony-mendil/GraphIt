@@ -5,9 +5,17 @@ import actions.GraphAction;
 public class ImportOofAction extends GraphAction {
 
     /**
-     * Constructs Actionhandling for importing a graph as Oof
+     * The path that the OOF is exported to
      */
-    public ImportOofAction() {
+    private String path;
+
+
+    /**
+     * Constructs Actionhandling for importing a graph as Oof
+     *
+     * @param pPath The path that the OOF is imported from
+     */
+    public ImportOofAction(String pPath) {
 
     }
 

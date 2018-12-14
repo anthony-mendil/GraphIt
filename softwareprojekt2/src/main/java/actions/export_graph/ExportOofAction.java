@@ -5,9 +5,22 @@ import actions.GraphAction;
 public class ExportOofAction extends GraphAction {
 
     /**
-     * Constructs Actionhandling for exporting the graph as Oof
+     * The path that the OOF is exported to
      */
-    public ExportOofAction() {
+    private String path;
+
+    /**
+     * The name of the file
+     */
+    private String name;
+
+    /**
+     * Constructs Actionhandling for exporting the graph as Oof
+     *
+     * @param pPath The path that the OOF is exported to
+     * @param pName The name of the file
+     */
+    public ExportOofAction(String pPath, String pName) {
 
     }
 
