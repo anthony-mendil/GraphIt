@@ -2001,9 +2001,6 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 		\item das System öffnet ein Menü
 		\item der Ersteller klickt \textit{Sphäre Farbe blockieren}
 		\item der Ersteller macht klickt den Button \textit{undo}
-		\item der Ersteller klickt den Menü-Punkt \textit{Datei} $\rightarrow$ \textit{Exportieren als} $\rightarrow$ \textit{PDF}
-		\item das System öffnet ein Pop-up Fenster 
-		\item der Ersteller wählt ein Dateiformat, gibt einen Pfad an und drück den Button \textit{exportieren}  
 		\item der Ersteller wählt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
 		\item das System öffnet ein Pop-up Fenster 
 		\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{exportieren}
@@ -2029,17 +2026,38 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{Eindeutige Nummer: Eindeutiger Name}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A2: Bearbeiter modifiziert Vorlage}} \\\hline
 	\hline
-	Akteure: welche externen Instanzen interagieren mit dem 
-	System in diesem Anwendungsfall?  
+	\textbf{Akteure}:  Bearbeiter
 	\\\hline
-	Vorbedingungen: Ausgangszustand, der vor Beginn des
-	Anwendungsfalls gelten muss -- hier sollte auch das Ziel des 
-	Akteurs genannt werden
+	\textbf{Vorbedingungen}: Das Programm ist geschlossen, die Vorlage in Form einer GXL-Datei ist vom Computer aus zugreifbar. \\ 
+	\textit{Ziel}: Vorlage modifizieren und als neuen Datentyp speichern.
 	\\\hline
-	Regulärer Ablauf: Abfolge von Aktionen der Akteure und
-	Reaktionen des Systems
+	\textbf{Regulärer Ablauf}:
+\begin{itemize}
+	\itemsep-0.7em
+	\item der Bearbeiter öffnet die Applikation und drückt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{GXL importieren}
+	\item das System öffnet ein Pop-Up Fenster
+	\item der Bearbeiter gibt den Speicherpfad der GXL-Vorlage an und klickt auf \textit{ok}
+	\item das System öffnet ein Syndromansatz mit fünf Sphären mit der Beschriftung 1-5.
+	\item der Bearbeiter klickt mit einem Rechtsklick auf die Sphäre mit der Beschriftung 1.
+	\item das System öffnet ein Menü
+	\item der Bearbeiter klickt auf \textit{Knoten hinzufügen}
+	\item der Bearbeiter gibt als Text des Knoten \textit{B} ein
+	\item der Bearbeiter klickt auf den \textit{Knoten hinzufügen}-Button
+	\item der Bearbeiter klickt auf die Sphäre mit der Bezeichnung 2
+	\item der Bearbeiter gibt als Text des Knoten \textit{B} ein
+	\item der Bearbeiter markiert den Knoten \textit{B}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Form ändern} $\rightarrow$ \textit{Quadrat}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Schriftart ändern} $\rightarrow$ \textit{Calibri}
+	\item der Bearbeiter klickt auf den Knoten \textit{A} zieht die Maus über den Knoten \textit{B} und lässt dann die Maus los
+	\item der Bearbeiter markiert die Kante
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante ändern} $\rightarrow$ \textit{gestrichelt}
+	\item der Bearbeiter bewegt den knoten \textit{B} in die Sphäre 5
+	\item der Bearbeiter drückt auf den \textit{redo}-Button
+	\item der Bearbeiter drückt auf den den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Speichern}
+	\item der Bearbeiter wählt \textit{Exportieren als} $\rightarrow$ \textit{oof}
+\end{itemize}
 	\\\hline
 	Varianten: mögliche Abweichungen vom regulären Ablauf, 
 	z.\,B.\ Auslassen oder Wiederholen von Aktionen
@@ -2132,6 +2150,49 @@ Der Schüler öffnet die Applikation und importiert die GXL-Datei. Zu sehen sind
 	\centering
 	%  \includegraphics[width=1\textwidth]{seqdia.jpg}
 	\caption{Sequenzdiagram III}
+\end{figure}
+
+\newpage
+
+\subsection{Anwendungsfall: Ein Schüler arbeitet mit der Vorlage seines/seiner Lehrers/Lehrerin}
+
+\begin{tabular} {|p{16cm}|}
+	\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{Eindeutige Nummer: Eindeutiger Name}} \\\hline
+	\hline
+	Akteure: welche externen Instanzen interagieren mit dem 
+	System in diesem Anwendungsfall?  
+	\\\hline
+	Vorbedingungen: Ausgangszustand, der vor Beginn des
+	Anwendungsfalls gelten muss -- hier sollte auch das Ziel des 
+	Akteurs genannt werden
+	\\\hline
+       {Regulärer Ablauf}: \begin{itemize}
+	\itemsep-0.7em
+	\item der Ersteller klickt den Menü-Punkt \textit{Datei} $\rightarrow$ \textit{Exportieren als} $\rightarrow$ \textit{PDF}
+	\item das System öffnet ein Pop-up Fenster 
+	\item der Ersteller wählt ein Dateiformat, gibt einen Pfad an und drück den Button \textit{exportieren}  
+	\end{itemize}
+	\\\hline
+	Varianten: mögliche Abweichungen vom regulären Ablauf, 
+	z.\,B.\ Auslassen oder Wiederholen von Aktionen
+	\\\hline
+	Nachbedingung: Endzustand und dann mögliche Folgeaktionen
+	\\\hline
+	Fehler-/Ausnahmefälle mit deren Nachbedingung; z.\,B.\ wie 
+	wird auf ungültige Eingaben reagiert?
+	\\\hline
+\end{tabular}\\ \\ \\
+
+Der Schüler bekam als Hausaufgabe die Vorlage eines Graphen komplett auszufüllen. Bei der Vorlage handelt es sich um eine GXL-Datei. Der Schüler öffnet das Programm, öffnet das Drop-Down Menü von “Datei” und klickt auf die Option “GXL importieren”.  Nach einer geringen Zeit wird der Graph geladen und man sieht 5 Graphen mit den Bezeichnungen 1,2,3,4 und 5. Der Schüler öffnet mit der rechten Maustaste das Drop-Down Menü in der Sphäre 1 und fügt einen neuen Knoten hinzu. Das Symptom wird mit “A” bezeichnet und die Form wird auf ein Quadrat gesetzt. Anschließend wird auf der GUI auf den Knopf “Symptom hinzufügen” gedrückt und auf die Sphäre 2 gedrückt.. Dieser Knoten wird bezeichnet mit “B”, die Form soll ebenfalls ein Quadrat sein und die Schriftart “Calibri”. Der Schüler markiert den Knoten und ändert die Eigenschaften über die GUI. Anschließend klickt der Schüler auf den Symptom A und zieht die Maus zum Symptom B und lässt los. Der Schüler ändert die Relation nochmal (über das Drop-Down Menü mittels der rechten Maustaste / über die GUI). 
+Nachdem der Schüler fertig mit seiner Aufgabe ist, entscheidet der Schüler auf “Auto-Layout” zu drücken. Danach fügt er nochmal zwei Symptome C und D hinzu zur Sphäre 3, verbindet die beiden jeweils mit Symptom A und B. Der Schüler ist unzufrieden mit dem neuen Layout seines Graphen und benutzt redo bis es wieder das Layout hat (ca 5x).
+Am Ende speichert der Schüler den Graphen und exportiert ihn mit dem neuen Datentyp (JSON + GXL).
+\\ \\
+Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüfer eine neue Lehrveranstaltung erstellt. Hierbei ist zu beachten, dass der Nutzer (Prüfer) sich bereits angemeldet hat und die generelle Rolle \texttt{Examiner} (Prüfer) vom Administrator gesetzt wurde.\\ \\
+\begin{figure}[ht]
+	\centering
+	% \includegraphics[width=1\textwidth]{seqdia.jpg}
+	\caption{Sequenzdiagramm II}
 \end{figure}
 
 \newpage
