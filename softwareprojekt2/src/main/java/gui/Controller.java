@@ -2,7 +2,9 @@ package gui;
 
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
+import com.google.inject.Inject;
 import graph.graph.Syndrom;
+import graph.graph.Values;
 import javafx.embed.swing.SwingNode;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -14,10 +16,6 @@ import log_management.dao.LogDao;
 import javax.swing.*;
 
 public class Controller implements ObserverSyndrom{
-    @Inject
-    private Values values;
-    @Inject
-    privte Syndrom syndrom;
 
     public Controller(){
         throw new UnsupportedOperationException();
@@ -47,8 +45,54 @@ public class Controller implements ObserverSyndrom{
     private MenuItem documentation;
 
     /* Template Options */
+    private TextField maxSphereField;
+    private TextField maxSymptomField;
+    private TextField maxSymptominSphereField;
+    private TextField maxEdgesField;
 
+    private CheckBox reinforcedBox;
+    private CheckBox extenuatingBox;
+    private CheckBox neutralBox;
 
+    /* Analyse Mode */
+
+    //Information
+    private Text scope;
+    private Text networkingIndex;
+    private Text structureIndex;
+
+    //Sphere
+    private CheckBox predecessorBox;
+    private CheckBox successorBox;
+    private TextField amountSphereField;
+
+    //Edge
+    private CheckBox incomingEdgeBox;
+    private CheckBox outcomingEdgeBox;
+    private CheckBox edgeArrowTypeBox;
+    private MenuItem analysisReinforced;
+    private MenuItem analysisExtenuating;
+    private MenuItem analysisNeutral;
+    private TextField amountEdgeField;
+
+    //Filter
+    private CheckBox analysisBox;
+    private MenuItem chainOfEdges;
+    private MenuItem convergentBranches;
+    private MenuItem divergentBranches;
+    private MenuItem branches;
+    private MenuItem cycles;
+
+    //Treeview-Filter
+    private CheckBox treeViewArrowtype;
+    private MenuItem treeViewReinforced;
+    private MenuItem treeViewExtenuating;
+    private MenuItem treeViewNeutral;
+
+    private CheckBox regularExpressionBox;
+    private TextField regularExpressionField;
+
+    private CheckBox showFadedOutObjects;
 
     /* Sphere */
     private ColorPicker sphereBackground;
@@ -114,32 +158,11 @@ public class Controller implements ObserverSyndrom{
 
     /* Internal */
     private LogDao protocol;
+    @Inject
+    private Values values;
+    @Inject
     private Syndrom syndrom;
     //private ActionHistory cmdHistory;
->>>>>>> 67b0aaa95b87632404b93ad539810e9878d3bbaa
-
-    /* ----------------ACTIVATE---------------------- */
-
-    /**
-     * Executes the activateAnchorPointsFadeout-Action
-     */
-    public void activateAnchorPointsFadeOut() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Executes the activateFadeoutLog-Action
-     */
-    public void activateFadeout() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Executes the highlightLog-Action
-     */
-    public void activateHighlight() {
-        throw new UnsupportedOperationException();
-    }
 
     /* ----------------ADD---------------------- */
 
@@ -197,22 +220,11 @@ public class Controller implements ObserverSyndrom{
     /* ----------------DEACTIVATE---------------------- */
 
     /**
-     * Executes the deactivateAnchorPointsFadeout-Action
-     */
-    public void deactivateAnchorPointsFadeout() {
-        throw new UnsupportedOperationException();
-    }
-
-    /* nur über Drop-Down-Menü */
-
-    /**
      * Executes the deactivateFadeout-Action
      */
     public void deactivateFadeout() {
         throw new UnsupportedOperationException();
     }
-
-    /* nur über Drop-Down-Menü */
 
     /**
      * Executes the deactivateHighlight-Action
@@ -256,13 +268,6 @@ public class Controller implements ObserverSyndrom{
     /* ......color..... */
 
     /**
-     * Execute the editEdgeColor-Action
-     */
-    public void editEdgeColor() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Execute the editEdgesColor-Action
      */
     public void editEdgesColor() {
@@ -277,64 +282,49 @@ public class Controller implements ObserverSyndrom{
     }
 
     /**
-     * Executes the editVertexColor-Action
-     */
-    public void editVertexColor() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Executes the editVerticesColor-Action
      */
     public void editVerticesColor() {
         throw new UnsupportedOperationException();
     }
 
+    /*
+    public void editVerticesBorderColor(){ throw new UnsupportedOperationException();}
+
+    public void editSphereBorderColor(){throw new UnsupportedOperationException();} */
+
     /* ......font..... */
 
     /**
-     * Executes the editFont-Action
+     * Executes the editFontSphere-Action
      */
-    public void editFont() {
+    public void editFontSphere() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editFontSize-Action
+     * Executes the editFontVertex-Action
      */
-    public void editFontSize() {
+    public void editFontVertex() {
         throw new UnsupportedOperationException();
     }
+
+    /**
+     * Executes the editFontSizeSphere-Action
+     */
+    public void editFontSizeSphere(){ throw new UnsupportedOperationException(); }
+
+    /**
+     * Executes the editFontSizeVertices-Action
+     */
+    public void editFontSizeVertices(){ throw new UnsupportedOperationException(); }
 
     /* ......form..... */
-
-    /**
-     * Executes the editVertexForm-Action
-     */
-    public void editVertexForm() {
-        throw new UnsupportedOperationException();
-    }
 
     /**
      * Executes the editVerticesForm-Action
      */
     public void editVerticesForm() {
-        throw new UnsupportedOperationException();
-    }
-
-    /* ......size..... */
-
-    /**
-     * Executes the editSphereSize-Action
-     */
-    public void editSphereSize() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Executes the editVertexSize-Action
-     */
-    public void editVertexSize() {
         throw new UnsupportedOperationException();
     }
 
@@ -362,30 +352,30 @@ public class Controller implements ObserverSyndrom{
     }
 
     /**
-     * Executes the importOOF-Action
+     * Opens the selected File after pressing "Open File" on the File Menu
      */
+    public void openFile(){throw new UnsupportedOperationException();}
+
+    /*
+    /**
+     * Executes the importOOF-Action
+
     public void importOOF() {
         throw new UnsupportedOperationException();
     }
 
     /**
      * Executes the importGXL-Action
-     */
+
     public void importGXL() {
         throw new UnsupportedOperationException();
     }
+    */
 
     /**
      * Executes the printPDF-Action
      */
     public void printPDF() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Executes the exportTemplate-Action
-     */
-    public void exportTemplate() {
         throw new UnsupportedOperationException();
     }
 
@@ -413,6 +403,41 @@ public class Controller implements ObserverSyndrom{
     public void switchModiEditor() {
         throw new UnsupportedOperationException();
     }
+
+    /**
+     * Executes the createGraph-Action
+     */
+    public void createGraph(){throw new UnsupportedOperationException();}
+
+    /**
+     * Opens the selected Graph under the "recently-edited Graphs Menu"
+     */
+    public void loadGraph(){throw new UnsupportedOperationException();}
+
+    /**
+     * Executes the undo-Action
+     */
+    public void undoAction(){throw new UnsupportedOperationException();}
+
+    /**
+     * Executes the redo-Action
+     */
+    public void redoAction(){throw new UnsupportedOperationException();}
+
+    /**
+     * Opens the documentation about the application
+     */
+    public void openDocumentation(){throw new UnsupportedOperationException();}
+
+    /**
+     * Zooms in or out of the graph canvas while using the slider
+     */
+    public void zoomGraphCanvas(){throw new UnsupportedOperationException();}
+
+    /**
+     *  Shows the current used action
+     */
+    public void currentAction(String action){throw new UnsupportedOperationException();}
 
     /* ----------------REMOVE---------------------- */
 
@@ -443,6 +468,13 @@ public class Controller implements ObserverSyndrom{
      * Executes the rulesTemplate-Action
      */
     public void rulesTemplate() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Creates a Window that allows you to set Rules for your Template
+     */
+    public void createTemplateWindow(){
         throw new UnsupportedOperationException();
     }
 
