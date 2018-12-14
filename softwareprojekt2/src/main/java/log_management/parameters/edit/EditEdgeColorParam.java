@@ -52,9 +52,4 @@ public class EditEdgeColorParam extends Param{
         this.oldColor = oldColor;
         this.newColor = newColor;
     }
-
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

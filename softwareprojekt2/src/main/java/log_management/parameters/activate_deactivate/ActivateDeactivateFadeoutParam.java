@@ -30,8 +30,4 @@ public class ActivateDeactivateFadeoutParam extends Param{
         this.edgesId = edgesId;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

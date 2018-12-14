@@ -15,9 +15,4 @@ public class EditFontSizeVerticesParam extends Param {
         this.newFontSize = newFontSize;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
-
 }

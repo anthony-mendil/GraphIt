@@ -34,8 +34,4 @@ public class EditVerticesFormParam extends Param{
         this.newShape = pNewShape;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

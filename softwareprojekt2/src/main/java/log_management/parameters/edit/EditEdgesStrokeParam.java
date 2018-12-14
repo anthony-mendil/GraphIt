@@ -42,8 +42,4 @@ public class EditEdgesStrokeParam extends Param{
         this.newStroke = pNewStroke;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

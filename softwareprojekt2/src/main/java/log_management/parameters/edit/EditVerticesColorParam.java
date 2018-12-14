@@ -33,8 +33,4 @@ public class EditVerticesColorParam extends Param{
         this.newColor = pNewColor;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

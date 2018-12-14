@@ -37,8 +37,4 @@ public class EditVertexAnnotationParam extends Param{
         this.newAnnotation = pNewAnnotation;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

@@ -45,8 +45,4 @@ public class MoveSphereParam extends Param{
         this.newPosition = pNewPosition;
     }
 
-    @Override
-    public String convertToJson() {
-        return null;
-    }
 }

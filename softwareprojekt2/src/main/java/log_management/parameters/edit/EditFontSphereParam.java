@@ -15,8 +15,4 @@ public class EditFontSphereParam extends Param {
         this.newFont = newFont;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }

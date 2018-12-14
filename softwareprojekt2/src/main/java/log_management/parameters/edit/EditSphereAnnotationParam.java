@@ -37,8 +37,4 @@ public class EditSphereAnnotationParam extends Param{
         this.newAnnotation = pNewAnnotation;
     }
 
-    @Override
-    public String convertToJson() {
-        throw new UnsupportedOperationException();
-    }
 }
