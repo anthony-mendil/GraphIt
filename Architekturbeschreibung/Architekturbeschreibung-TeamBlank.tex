@@ -1809,36 +1809,37 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Realisierung von Auswerter-Algorithmen}}} \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Wir brauchen ein Tool zur Auswertung von Graph-Eigenschaften und -Ausmaß. Um dies mit unserer Graph-Realisierung umzusetzen, benötigen wir entsprechende Algorithmen}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Auswertung von Grapheigenschaften}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss bezüglich seiner Eigenschaften (Graphmaße, Umfang, Knotenbeziehungen) ausgewertet werden.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
-	
-	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen} \\
-	\hyperlink{g}{Hohe Usability} & \hyperlink{i}{Command} \\
-	\hyperlink{k}{JUNG} & \hyperlink{name}{text} \\
-	\hyperlink {n}{Sphären} & \hyperlink {o}{Linienart/-dicke Kanten flexibel}\\
-	\hyperlink {p}{Typisierte Knoten} & \hyperlink {q}{gerichtete Kanten (3 Relationstypen} \\
-	\hyperlink {r}{Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/Kanten ist flexibel} & \hyperlink {s}{Ankerpunkte zw. Knoten und Kanten} \\
-	\hyperlink {t}{Zuordnung von Sphären und Knoten} & \hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}\\
-	\hyperlink {bb}{Protokoll von Nutzerinteraktionen} & \hyperlink {hh}{Sprache.Beschriftung} \\
-	\hyperlink {mm}{Protokoll JSON} & \hyperlink {oo}{Analyse des Graphen} \\
-	\hyperlink {pp}{Auswertung des Graphen} & \hyperlink {qq}{Graph-Analyse mittels Graphmaße} \\
-	\hyperlink {rr}{Analyse über einen wählbaren Ausschnitt des Graphen} & \hyperlink {ss}{Filter von Knoten und Kanten}
-		
-	\\ \hline
+	Implementierungssprache &  Speicherung und Laden des Graphen \\
+	Betriebssystemunterstützung / Zielplattformen des Systems &  3 - Auswertung/ Analyse\\
+	GXL-Export und -Import & Abgabedatum\\
+	Entwickler-Fähigkeiten & Softwarelizenzbudget\\
+	Teamgröße & Hohe Usability\\
+	Hohe Qualität & Graph Visualisierung/ Interaktion/ Editierung\\
+	Unerfahrene Entwickler & typisierte Knoten\\
+	gerichtete Kanten (3 Relationstypen) & Anzahl, Größe, Position Farbgebung, Beschirftung/ Benennung der Sphären/ Knoten/ Kanten ist flexibel\\
+	Zuordnung von Sphären und Knoten & JUNG   \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{\hypertarget{yyy}{S66 - JGraphT}}}: \\
-			Wir benutzen JGraphT zur Berechnung von Informationen über den Graphen, indem wir eine Schnittstelle zwischen unserer Graph-Repräsentation und der JGraphT Library definieren\\
-			\textbf{S67 - Neo4j}: \\
-			Laden des Graphen in eine Neo4j Datenbank. Diese stellt einige Algorithmen zur Auswertung, unter Anderem von Graph-Eigenschaften, zur Verfügung. \\
-			\textbf{S68 - Eigene Algorithmen}: \\
-			Wir entwickeln Funktionen und Algorithmen für unsere eigene Graph-Realisierung um seine Ausmaße und Eigenschaften zu messen und Auszuwerten.
-	} }\\ [6ex] \hline
+			\textbf{\cb{S66 - JUNG}}: \\
+			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
+			\textbf{S67 - NEO4J}: \\
+			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
+			\textbf{\cb{S68 - eigene Implementierung}}: \\
+			Die benötigten Algorithmen werden durch das Team implementiert.\\
+			\textbf{\cb{S69 - JGraphT}}:\\
+			Bereitstellung der Algorithmen durch JGraphT
+	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Wir haben uns für \cb{S66} entschieden, da es uns alle benötigten Funktionen für unsere Anwendung bereitstellt. \cb{S67} bietet ebenfalls ausreichend Funktionen, jedoch muss dafür eine eigene Datenbank aufgebaut werden. Gegen \cb{S68} haben wir uns entschieden, da es zu viel Aufwand wäre.
+	Die Funktionalität des Systems basiert bereits teilweise auf \cb{JUNG} basiert, weswegen des sehr praktisch wäre die von \cb{JUNG} zur Verfügung gestellten Algorithmen für die Graphauswertung zu benutzen. Diese Algorithmen decken aber nicht den Funktionsumfang den wir benötigen.\\
+	Zur Graphrepräsentation verwenden wir im System GXL- Datein, die in der Embedded Database gespeichert sind und klasseninterne Strukturen. Eine \cb{NEO4J Datenbank} zeitweise zu erstellen, welche ebenfalls die Daten des Graphs beinhaltet, erhöht die Fehleranfälligkeit unseres Systems, da alle Graphrepräsenationen zu jedem Zeitpunkt konsistent sein müssen. Deswegen entscheiden wir uns gegen \cb{S67}. \\
+	\cb{JGraphT} implementiert die meisten Algorithmen, die wir für die Graphauswertung benötigen. Für die Visualisierung des Graphen haben wir uns zwar gegen JGraphT entschieden, dennoch bietet dieses Framework eine großes Potenzial in Bezug auf Graphalgorithmen. Deswegen werden wir JGraphT zur Unterstützung bei der Graphauswertung hinzuziehen. \\
+	Algorithmen, die weder JGraphT, noch JUNG zur Verfügung stehen, werden die Entwickler implementieren.
 \end{onehalfspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \newpage
