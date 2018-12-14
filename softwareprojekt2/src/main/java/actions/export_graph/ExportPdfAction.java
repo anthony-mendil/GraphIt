@@ -2,13 +2,10 @@ package actions.export_graph;
 
 import actions.GraphAction;
 
-/*
-    Aktionsleiste -> Datei.. -> Exportieren als.. -> PDF
- */
 public class ExportPdfAction extends GraphAction {
 
     /**
-     * Actionhandling for exporting the graph as PDF
+     * Action handling for exporting the graph as PDF
      */
     public ExportPdfAction() {
         throw new UnsupportedOperationException();

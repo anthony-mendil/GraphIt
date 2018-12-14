@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 public class IODialog {
 
     /**
-     * Cunstructs a new IODialog
+     * Constructs a new IODialog
      */
     public IODialog(){
 
