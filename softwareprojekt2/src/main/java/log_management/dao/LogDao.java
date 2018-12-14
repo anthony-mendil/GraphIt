@@ -15,16 +15,49 @@ public class LogDao implements Dao<Log> {
      *  EntityManager instance is associated with the persistence context
      */
     private EntityManager entityManager;
+
+    /**
+     * return a logs object, attribute parameter gets converted from string to object with jackson
+     * @param id the id of the object to get
+     * @return the log object
+     */
     @Override
     public Optional<Log> get(long id) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * return a list of log objects, attribute parameters gets converted from string to objects with jackson
+     * @return a list of log objects
+     */
     @Override
     public List<Log> getAll() {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * return a list of log objects assigned to the graphId, attribute parameters gets converted from string to objects
+     * with jackson
+     * @param graphId the graph id
+     * @return a list of log objects
+     */
+    public List<Log> getAll(int graphId) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * return a string (json) containing all logs assigned to the graphId
+     * @param graphId the graph id
+     * @return a list of log objects
+     */
+    public List<Log> getAllString(int graphId) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * converts the attribute parameters into a json string and saves the log
+     * @param log the log object to save
+     */
     @Override
     public void save(Log log) {
         throw new UnsupportedOperationException();

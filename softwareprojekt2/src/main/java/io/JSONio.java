@@ -24,7 +24,4 @@ public class JSONio {
         throw new UnsupportedOperationException();
         //with DAO
     }
-
-
-
 }
