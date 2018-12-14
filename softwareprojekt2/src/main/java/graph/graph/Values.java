@@ -1,5 +1,6 @@
 package graph.graph;
 
+import com.google.inject.Singleton;
 import gui.GraphButtonType;
 import lombok.*;
 
@@ -8,8 +9,10 @@ import java.awt.*;
 /**
  * Defines values for the syndrom. This are default values. The values represent the currently selected values from the
  * GUI.
+ * Its a Singleton Instance.
  */
 @Data
+@Singleton
 public class Values {
     /**
      * the draw paint color of a sphere

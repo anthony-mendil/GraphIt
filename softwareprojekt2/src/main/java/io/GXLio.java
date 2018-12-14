@@ -4,8 +4,11 @@ import graph.graph.Syndrom;
 
 public class GXLio {
 
+    /**
+     * creates a new GXLio
+     */
     public GXLio(){
-
+        throw new UnsupportedOperationException();
     }
 
     /**

@@ -10,6 +10,10 @@ import graph.graph.Sphere;
  * SyndromPickSupport extends the ShapePickSupport with the option to pick spheres and arrows from edges.
  */
 public class SyndromPickSupport<V, E> extends ShapePickSupport {
+    /**
+     * the visualisation server
+     */
+    private VisualizationServer<V,E> pVisualizationServer;
 
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The

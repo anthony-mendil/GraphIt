@@ -1,5 +1,6 @@
 package graph.graph;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -10,9 +11,10 @@ import java.util.Map;
 
 /**
  * A sphere of the syndrom graph. A sphere is a contiguous area in a syndrome graph. Spheres are clearly separated from
- * each other. They can contain vertices. A vertex is always assigned to exactly one sphere.
+ * each other. They can contain vertices. A vertex is always assigned to exactly one sphere. The id is unique and final.
  */
 @Data
+@AllArgsConstructor
 public class Sphere {
     /**
      * the id of the sphere
@@ -62,18 +64,4 @@ public class Sphere {
      */
     @NonNull
     private LinkedList<Vertex> vertices;
-
-
-    /**
-     * Creates a sphere with a specific id on a certain point. All other attributes get the default value defined in
-     * Values.
-     *
-     * @param coordinates the point where to put the sphere
-     * @param id          the id of the sphere
-     */
-    public Sphere(Point2D coordinates, int id) {
-        this.id = id;
-        this.coordinates = coordinates;
-        throw new UnsupportedOperationException();
-    }
 }

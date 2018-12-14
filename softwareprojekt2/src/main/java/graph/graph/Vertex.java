@@ -1,5 +1,6 @@
 package graph.graph;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * connected through edges. All attributes of a vertex can be changed, just the id is unique and final.
  */
 @Data
+@AllArgsConstructor
 public class Vertex {
     /**
      * the unique id of a vertex
@@ -78,17 +80,4 @@ public class Vertex {
      */
     @NonNull
     private boolean isVisible;
-
-    /**
-     * Creates a vertex with a unique id and a coordinate where its placed. All other attributes get the default value
-     * defined in Values.
-     *
-     * @param id         the id of the vertex
-     * @param coordinate the coordinate where the vertex is placed
-     */
-    public Vertex(int id, Point2D coordinate) {
-        this.id = id;
-        this.coordinate = coordinate;
-        throw new UnsupportedOperationException();
-    }
 }

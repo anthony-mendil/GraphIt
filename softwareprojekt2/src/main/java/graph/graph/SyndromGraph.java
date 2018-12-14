@@ -97,32 +97,6 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     }
 
     /**
-     * Creates a new vertex.
-     *
-     * @return the new created vertex
-     */
-    public Vertex createVertex() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates a new sphere.
-     *
-     * @return the new created sphere
-     */
-    public Sphere createSphere() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates a new edge.
-     *
-     * @return the new created edge
-     */
-    public Edge createEdge() {
-        throw new UnsupportedOperationException();
-    }
-    /**
      * methode for filter the graph on the criteria.
      * @param edgeType the edge type to filter for
      * @return a filtered list with spheres

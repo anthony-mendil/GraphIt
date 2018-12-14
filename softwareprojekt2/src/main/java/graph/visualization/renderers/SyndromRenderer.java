@@ -9,6 +9,7 @@ package graph.visualization.renderers;/*
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
+import graph.graph.Sphere;
 
 
 /**
@@ -20,6 +21,15 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
 
     @Override
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * renders the sphere label
+     * @param layout the layout
+     * @param sphere the sphere to render
+     */
+    public void renderSphereLabel(Layout<V,E> layout, Sphere sphere) {
         throw new UnsupportedOperationException();
     }
 }

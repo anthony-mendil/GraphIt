@@ -1,7 +1,10 @@
 package graph.graph;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class Template {
 
     /**
@@ -17,7 +20,7 @@ public class Template {
     /**
      * The maximum number of vertices in a sphere. This is defined in the template.
      */
-    private int maxVertexinSphereCounter;
+    private int maxVertexInSphereCounter;
 
     /**
      * The maximum number of edges allowed to exist in the graph. This is defined in the template.
@@ -47,7 +50,7 @@ public class Template {
     /**
      * creates a new Template
      */
-    Template() {
+    public Template() {
         throw new UnsupportedOperationException();
     }
 }

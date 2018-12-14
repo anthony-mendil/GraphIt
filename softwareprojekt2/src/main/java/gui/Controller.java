@@ -3,8 +3,13 @@ package gui;
 import actions.Action;
 import actions.ObserverSyndrom;
 import actions.other.CreateGraphAction;
+import com.google.inject.Inject;
+import graph.graph.Values;
 
 public class Controller implements ObserverSyndrom{
+
+    @Inject
+    private Values values;
 
 
     /* ----------------ACTIVATE---------------------- */
