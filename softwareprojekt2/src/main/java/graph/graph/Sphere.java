@@ -6,6 +6,7 @@ import lombok.NonNull;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * A sphere of the syndrom graph. A sphere is a contiguous area in a syndrome graph. Spheres are clearly separated from
@@ -54,7 +55,7 @@ public class Sphere {
      * the annotation of the sphere
      */
     @NonNull
-    private String annotation;
+    private Map<String, String> annotation;
 
     /**
      * a list with all vertices, that are assigned so this sphere

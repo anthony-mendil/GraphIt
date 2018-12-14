@@ -41,7 +41,7 @@ public class Vertex {
      * the annotation of a vertex
      */
     @NonNull
-    private String annotation;
+    private Map<String, String> annotation;
 
     /**
      * the draw color of a vertex
