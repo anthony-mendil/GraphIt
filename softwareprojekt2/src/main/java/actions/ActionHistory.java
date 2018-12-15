@@ -1,8 +1,11 @@
 package actions;
 
+import com.google.inject.Singleton;
+
 /**
  * a bounded history of actions
  */
+@Singleton
 public class ActionHistory {
     /**
      * upper bound of actions

@@ -69,7 +69,7 @@ public class LogDao implements Dao<Log> {
     }
 
     @Override
-    public void delete(Log log) {
+    public void delete(int id) {
         throw new UnsupportedOperationException();
     }
 

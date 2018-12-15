@@ -1,5 +1,7 @@
 package graph.visualization.control;
 
+import actions.ActionHistory;
+import com.google.inject.Inject;
 import edu.uci.ics.jung.visualization.control.PickingGraphMousePlugin;
 
 import java.awt.event.InputEvent;
@@ -24,6 +26,11 @@ public class PickingGraphMouseEditSyndromPlugin<V, E> extends PickingGraphMouseP
      */
     private Point2D[] points;
 
+    /**
+     * the action history
+     */
+    @Inject
+    ActionHistory history;
 
     /**
      * Creates a new picking graph mouse edit syndrom plugin.

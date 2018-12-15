@@ -17,6 +17,7 @@ public class CreateGraphAction extends GraphAction {
      * @param pGraphName the name of the graph
      */
     public CreateGraphAction(String pGraphName) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

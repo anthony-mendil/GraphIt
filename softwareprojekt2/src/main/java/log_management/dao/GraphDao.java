@@ -1,9 +1,12 @@
 package log_management.dao;
 
 import edu.uci.ics.jung.graph.Graph;
+import javafx.util.Pair;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -35,7 +38,15 @@ public class GraphDao implements Dao<Graph> {
     }
 
     @Override
-    public void delete(Graph graph) {
+    public void delete(int id) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * gets all graph elements with id, string, local datetime
+     * @return a map that points from the id of the graph to a pair of name and timestamp of the graph
+     */
+    public Map<Integer, Pair<String, LocalDateTime>> getAllGraphs(){
         throw new UnsupportedOperationException();
     }
 }

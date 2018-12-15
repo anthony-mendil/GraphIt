@@ -38,7 +38,7 @@ public interface Dao<T> {
 
     /**
      * deletes the object
-     * @param t the object to delete
+     * @param id the id of the object to delete
      */
-    void delete(T t);
+    void delete(int id);
 }

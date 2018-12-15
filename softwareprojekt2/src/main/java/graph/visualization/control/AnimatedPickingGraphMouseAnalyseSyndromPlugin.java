@@ -1,5 +1,7 @@
 package graph.visualization.control;
 
+import actions.ActionHistory;
+import com.google.inject.Inject;
 import edu.uci.ics.jung.visualization.control.AnimatedPickingGraphMousePlugin;
 
 import java.awt.event.MouseEvent;
@@ -8,6 +10,11 @@ import java.awt.event.MouseEvent;
  * A graph mouse plugin that supports the visualisation of picking if the user selected the analyse function mode.
  */
 public class AnimatedPickingGraphMouseAnalyseSyndromPlugin extends AnimatedPickingGraphMousePlugin {
+    /**
+     * the action history
+     */
+    @Inject
+    ActionHistory history;
     /**
      * Creates a new animated picking graph mouse analyse syndrom plugin.
      */

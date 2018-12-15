@@ -1,5 +1,7 @@
 package graph.visualization.control;
 
+import actions.ActionHistory;
+import com.google.inject.Inject;
 import edu.uci.ics.jung.visualization.control.PickingGraphMousePlugin;
 import graph.graph.Vertex;
 
@@ -25,6 +27,11 @@ public class PickingGraphMouseTemplateSyndromPlugin<V, E> extends PickingGraphMo
      */
     private Map<Vertex, Point2D> points;
 
+    /**
+     * the action history 
+     */
+    @Inject
+    ActionHistory history;
 
     /**
      * Creates a new picking graph mouse template syndrom plugin.
