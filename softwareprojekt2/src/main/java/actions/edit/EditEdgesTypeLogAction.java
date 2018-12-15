@@ -24,16 +24,6 @@ public class EditEdgesTypeLogAction extends LogAction {
     EdgeArrowType edgeType;
 
     /**
-     * Changes the edge type from all defined edges in pParam.
-     *
-     * @param pParam the EditEdgesTypeParam, containing all edges where to change the edge type
-     */
-    public EditEdgesTypeLogAction(EditEdgesTypeParam pParam) {
-        super(LogEntryName.EDIT_EDGES_TYPE);
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Changes the edge type from all passed edges
      * @param edgeArrowType the new edge type
      */

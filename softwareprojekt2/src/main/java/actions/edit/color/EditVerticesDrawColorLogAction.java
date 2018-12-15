@@ -16,15 +16,6 @@ public class EditVerticesDrawColorLogAction extends LogAction {
         super(LogEntryName.EDIT_VERTICES_DRAW_COLOR);
     }
 
-    /**
-     * Constructor which will be used to realize the undo-method of itself.
-     *
-     * @param pEditVerticesColorParam The used parameters.
-     */
-    public EditVerticesDrawColorLogAction(EditVerticesColorParam pEditVerticesColorParam) {
-        super(LogEntryName.EDIT_VERTICES_DRAW_COLOR);
-    }
-
     @Override
     public void action() {
         throw new UnsupportedOperationException();

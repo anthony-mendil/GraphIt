@@ -18,16 +18,6 @@ public class EditEdgesStrokeLogAction extends LogAction {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Constructor which will be used to realize the undo-method of itself.
-     *
-     * @param pEdgesStokeParam The used parameters.
-     */
-    public EditEdgesStrokeLogAction(EditEdgesStrokeParam pEdgesStokeParam) {
-        super(LogEntryName.EDIT_EDGES_STROKE);
-        throw new UnsupportedOperationException();
-    }
-
     @Override
     public void action() {
         throw new UnsupportedOperationException();

@@ -17,7 +17,7 @@ public class Log {
     @Id
     private int graphId;
     private LogEntryName logEntryName;
-    private Param parameters;
+    private String parameters;
     private LocalDateTime time;
 
     @Column(name = "ID")
@@ -49,11 +49,11 @@ public class Log {
     }
 
     @Column(name = "PARAMETERS")
-    public Param getParameters() {
+    public String getParameters() {
         return parameters;
     }
 
-    public void setParameters(Param parameters) {
+    public void setParameters(String parameters) {
         this.parameters = parameters;
     }
 

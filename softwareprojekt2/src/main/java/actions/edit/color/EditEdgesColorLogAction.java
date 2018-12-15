@@ -16,15 +16,6 @@ public class EditEdgesColorLogAction extends LogAction {
         super(LogEntryName.EDIT_EDGES_COLOR);
     }
 
-    /**
-     * Constructor which will be used to realize the undo-method of itself.
-     *
-     * @param parameters The used parameters.
-     */
-    public EditEdgesColorLogAction(EditEdgesColorParam parameters) {
-        super(LogEntryName.EDIT_EDGES_COLOR);
-    }
-
     @Override
     public void action() {
         throw new UnsupportedOperationException();

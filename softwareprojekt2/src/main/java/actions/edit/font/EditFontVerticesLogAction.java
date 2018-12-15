@@ -1,28 +1,18 @@
 package actions.edit.font;
 
 import actions.LogAction;
-import log_management.LogEntryName;
-import log_management.parameters.edit.EditFontVerticesParam;
+import actions.LogEntryName;
 
 /*
  * Changes the font of annotations.
  */
-public class EditFontVertexLogAction extends LogAction {
+public class EditFontVerticesLogAction extends LogAction {
     /**
      * Constructor in case the user wants to change the font.
      *
      * @param pFont the font-name.
      */
-    public EditFontVertexLogAction(String pFont) {
-        super(LogEntryName.EDIT_FONT_VERTICES);
-    }
-
-    /**
-     * Constructor which will be used to realize the undo-method of itself.
-     *
-     * @param parameters the EditFontSphereParam containing the new font and a collection of vertices
-     */
-    public EditFontVertexLogAction(EditFontVerticesParam parameters) {
+    public EditFontVerticesLogAction(String pFont) {
         super(LogEntryName.EDIT_FONT_VERTICES);
     }
 
