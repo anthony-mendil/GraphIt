@@ -1,8 +1,25 @@
 package io;
 
+import com.google.inject.Inject;
 import graph.graph.Syndrom;
+import log_management.dao.GraphDao;
+import log_management.dao.LogDao;
 
+/**
+ * the gxl importer/ exporter
+ */
 public class GXLio {
+    /**
+     * the syndrom representation
+     */
+    @Inject
+    private Syndrom syndrom;
+
+    /**
+     * the graph dao, for accessing the graph data
+     */
+    @Inject
+    private GraphDao graphDao;
 
     /**
      * creates a new GXLio

@@ -54,11 +54,6 @@ public class Syndrom {
     private SyndromRenderer syndromRenderer;
 
     /**
-     * the current function mode
-     */
-    private FunctionMode mode;
-
-    /**
      * Satellite view for zoom context
      */
     final SatelliteVisualizationViewer<Vertex,Edge> vv2;

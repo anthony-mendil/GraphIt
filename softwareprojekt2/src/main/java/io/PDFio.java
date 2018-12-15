@@ -3,6 +3,9 @@ package io;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import java.io.FileInputStream;
 
+/**
+ * the pdf exporter (export/ print)
+ */
 public class PDFio {
 
     /**

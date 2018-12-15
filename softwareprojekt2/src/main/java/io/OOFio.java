@@ -1,11 +1,29 @@
 package io;
 
+import com.google.inject.Inject;
+import log_management.dao.GraphDao;
+import log_management.dao.LogDao;
 
-
+/**
+ * the oof importer/ exporter
+ */
 public class OOFio {
+    /**
+     * the log dao, for accessing the log data
+     */
+    @Inject
+    private LogDao logDao;
+    /**
+     * the graph dao, for accessing the graph data
+     */
+    @Inject
+    private GraphDao graphDao;
 
+    /**
+     * creates a new OOFio
+     */
     public OOFio(){
-
+        throw new UnsupportedOperationException();
     }
 
     /**

@@ -28,7 +28,7 @@ public class PickingGraphMouseTemplateSyndromPlugin<V, E> extends PickingGraphMo
     private Map<Vertex, Point2D> points;
 
     /**
-     * the action history 
+     * the action history
      */
     @Inject
     ActionHistory history;
