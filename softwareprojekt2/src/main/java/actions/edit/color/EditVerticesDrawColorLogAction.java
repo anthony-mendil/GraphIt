@@ -1,10 +1,8 @@
 package actions.edit.color;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.edit.EditVerticesColorParam;
-
-import java.awt.*;
 
 /*
  * Changes the color of a single/several vertices.

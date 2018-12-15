@@ -1,7 +1,8 @@
 package actions.edit;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
+import graph.graph.StrokeType;
 import log_management.parameters.edit.EditEdgesStrokeParam;
 
 /**
@@ -10,8 +11,9 @@ import log_management.parameters.edit.EditEdgesStrokeParam;
 public class EditEdgesStrokeLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
+     * @param strokeType the new stroke type
      */
-    public EditEdgesStrokeLogAction() {
+    public EditEdgesStrokeLogAction(StrokeType strokeType) {
         super(LogEntryName.EDIT_EDGES_STROKE);
         throw new UnsupportedOperationException();
     }
@@ -19,9 +21,9 @@ public class EditEdgesStrokeLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEdgesSizeParam The used parameters.
+     * @param pEdgesStokeParam The used parameters.
      */
-    public EditEdgesStrokeLogAction(EditEdgesStrokeParam pEdgesSizeParam) {
+    public EditEdgesStrokeLogAction(EditEdgesStrokeParam pEdgesStokeParam) {
         super(LogEntryName.EDIT_EDGES_STROKE);
         throw new UnsupportedOperationException();
     }

@@ -1,8 +1,7 @@
 package actions.layout;
 
 import actions.LogAction;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.move.LayoutParam;
 
 /**

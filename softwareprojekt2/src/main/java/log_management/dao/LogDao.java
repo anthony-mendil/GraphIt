@@ -1,6 +1,6 @@
 package log_management.dao;
 
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.tables.Log;
 
 import javax.persistence.EntityManager;

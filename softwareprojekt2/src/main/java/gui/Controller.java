@@ -519,6 +519,11 @@ public class Controller implements ObserverSyndrom{
     }
 
     @Override
+    public void updateEditMode() {
+
+    }
+
+    @Override
     public void updateNewGraph() {
         throw new UnsupportedOperationException();
     }

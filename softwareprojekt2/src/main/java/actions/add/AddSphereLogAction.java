@@ -1,7 +1,7 @@
 package actions.add;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 import java.awt.geom.Point2D;

@@ -1,7 +1,7 @@
 package log_management.tables;
 
 import log_management.GraphAndLogId;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.Param;
 
 import javax.persistence.*;

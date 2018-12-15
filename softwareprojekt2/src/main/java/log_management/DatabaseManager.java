@@ -1,9 +1,8 @@
 package log_management;
 
+import actions.Action;
 import actions.ObserverSyndrom;
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import gui.Values;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
 import lombok.Data;
@@ -14,11 +13,6 @@ import lombok.Data;
 @Data
 @Singleton
 public class DatabaseManager implements ObserverSyndrom {
-    /**
-     * the current Values
-      */
-   @Inject
-   private Values values;
 
     /**
      * the log_management.dao for graphs for accessing the database
@@ -31,10 +25,10 @@ public class DatabaseManager implements ObserverSyndrom {
     private LogDao logDao;
 
     /**
-     *
+     * adds a log to the database (though dao)
      */
-    public void addEntryDatabase(){
-
+    public static void addEntryDatabase(Action action) {
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -43,7 +37,6 @@ public class DatabaseManager implements ObserverSyndrom {
     public void setup() {
         throw new UnsupportedOperationException();
     }
-
 
     @Override
     public void updateGraph() {

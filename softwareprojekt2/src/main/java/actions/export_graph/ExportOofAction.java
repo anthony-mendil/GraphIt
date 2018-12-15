@@ -2,6 +2,9 @@ package actions.export_graph;
 
 import actions.GraphAction;
 
+/**
+ * exports an oof with the current syndrom graph
+ */
 public class ExportOofAction extends GraphAction {
 
     /**

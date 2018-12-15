@@ -2,7 +2,7 @@ package actions.remove;
 
 import actions.LogAction;
 import graph.graph.Vertex;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.util.Collection;

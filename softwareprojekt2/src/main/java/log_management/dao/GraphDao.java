@@ -1,7 +1,8 @@
 package log_management.dao;
 
-import edu.uci.ics.jung.graph.Graph;
+
 import javafx.util.Pair;
+import log_management.tables.Graph;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;

@@ -1,13 +1,8 @@
 package actions.remove;
 
 import actions.LogAction;
-import graph.graph.Edge;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
-
-
-import java.awt.geom.Point2D;
-import java.util.Collection;
 
 /**
  * Removes anchor points from the syndrom-graph.

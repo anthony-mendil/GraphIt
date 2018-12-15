@@ -1,7 +1,7 @@
 package actions.activate;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
 
 import java.awt.geom.Point2D;

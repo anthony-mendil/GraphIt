@@ -1,9 +1,10 @@
 package actions.edit;
 
 import actions.LogAction;
+import edu.uci.ics.jung.graph.util.EdgeType;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.edit.EditEdgesTypeParam;
 
 import java.util.Collection;
@@ -33,9 +34,10 @@ public class EditEdgesTypeLogAction extends LogAction {
     }
 
     /**
-     * Changes the edge type from all passed edges     *
+     * Changes the edge type from all passed edges
+     * @param edgeArrowType the new edge type
      */
-    public EditEdgesTypeLogAction() {
+    public EditEdgesTypeLogAction(EdgeArrowType edgeArrowType) {
         super(LogEntryName.EDIT_EDGES_TYPE);
         throw new UnsupportedOperationException();
     }

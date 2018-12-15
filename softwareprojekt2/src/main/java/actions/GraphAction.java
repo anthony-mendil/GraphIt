@@ -8,7 +8,6 @@ import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.picking.SyndromPickSupport;
-import gui.Values;
 import lombok.NonNull;
 
 /**
@@ -38,16 +37,13 @@ public abstract class GraphAction extends Action {
      * the visualisation viewer
      */
     @NonNull
-    private VisualizationViewer<Vertex,Edge> visualizationViewer;
+    private VisualizationViewer<Vertex, Edge> visualizationViewer;
 
     /**
      * the syndrom to work with
      */
     @Inject
     private Syndrom syndrom;
-
-    @Inject
-    private Values values;
 
     /**
      * sets layout, graph, pickSupport from the current syndrom presentation

@@ -1,10 +1,9 @@
 package actions.activate;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 
-import javax.naming.ldap.UnsolicitedNotification;
 import java.awt.geom.Point2D;
 
 /**
@@ -13,8 +12,8 @@ import java.awt.geom.Point2D;
 public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
 
     /**
-     * Constructor in case all/several anchor-points shall fadeout.
-     * The action is applied to all picked edges/ anchor points.
+     * Constructor in case all/several anchor-points shall fadeout. The action is applied to all picked edges/ anchor
+     * points.
      */
     public ActivateAnchorPointsFadeoutLogAction() {
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);

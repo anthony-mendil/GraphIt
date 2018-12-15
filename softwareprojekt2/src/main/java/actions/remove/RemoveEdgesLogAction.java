@@ -1,12 +1,8 @@
 package actions.remove;
 
 import actions.LogAction;
-import graph.graph.Edge;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
-
-
-import java.util.Collection;
 
 /**
  * Removes edges from the syndrom-graph.

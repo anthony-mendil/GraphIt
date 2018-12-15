@@ -2,6 +2,9 @@ package actions.export_graph;
 
 import actions.GraphAction;
 
+/**
+ * exports an pdf with the current graph visualisation
+ */
 public class ExportPdfAction extends GraphAction {
 
     /**

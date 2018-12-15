@@ -1,6 +1,5 @@
 package actions;
 
-import log_management.LogEntryName;
 import log_management.parameters.Param;
 import lombok.Getter;
 import lombok.Setter;

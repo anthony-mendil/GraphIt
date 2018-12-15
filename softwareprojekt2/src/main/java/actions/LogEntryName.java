@@ -1,4 +1,4 @@
-package log_management;
+package actions;
 
 public enum LogEntryName {
     /**
@@ -67,6 +67,14 @@ public enum LogEntryName {
      * the log entry will be of this type if the font size of vertices is changed in the action
      */
     EDIT_VERTICES_FONT_SIZE,
+    /**
+     * the log entry will be of this type if the size of a sphere is changed in the action
+     */
+    EDIT_SPHERE_SIZE,
+    /**
+     * the log entry will be of this type if the size of vertices is changed in the action
+     */
+    EDIT_VERTICES_SIZE,
     /**
      * the log entry will be of this type if the font of a sphere is changed in the action
      */

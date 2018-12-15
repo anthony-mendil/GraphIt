@@ -1,12 +1,10 @@
 package actions.add;
 
 import actions.LogAction;
+import actions.LogEntryName;
 import graph.graph.Vertex;
 import javafx.util.Pair;
-import log_management.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
-
-import java.util.Collection;
 
 /**
  * Adds a single/multiple edge/s to the graph.
@@ -23,8 +21,8 @@ public class AddEdgesLogAction extends LogAction {
     }
 
     /**
-     * Adds Edges to the graph.
-     * This constructor will be used to realize the undo-method of the method RemoveEdgesLogAction.
+     * Adds Edges to the graph. This constructor will be used to realize the undo-method of the method
+     * RemoveEdgesLogAction.
      *
      * @param pAddRemoveEdgesParam the AddEdgesParam, containing all edges to add.
      */

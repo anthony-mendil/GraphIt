@@ -3,10 +3,8 @@ package actions.other;
 import actions.GraphAction;
 import graph.graph.FunctionMode;
 
-import java.util.function.Function;
-
 /*
- * Changes the mode either to "Ersteller"/"Betrachter"
+ * Changes the mode either to "Ersteller"/"Betrachter"/ "Auswerter"
  */
 public class SwitchModiEditorAction extends GraphAction {
     /**
@@ -17,6 +15,7 @@ public class SwitchModiEditorAction extends GraphAction {
      * the old function mode
      */
     private FunctionMode oldMode;
+
     /**
      * Constructor in case the user changes the mode.
      */

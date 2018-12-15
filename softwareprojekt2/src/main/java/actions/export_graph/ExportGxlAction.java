@@ -3,7 +3,7 @@ package actions.export_graph;
 import actions.GraphAction;
 
 /*
-   Aktionsleiste -> Datei.. -> Exportieren als.. -> GXL
+ * exports a gxl with the current syndrim graph
  */
 public class ExportGxlAction extends GraphAction {
 
@@ -18,7 +18,7 @@ public class ExportGxlAction extends GraphAction {
     private String name;
 
     /**
-     * Constructs actionhandling for exporting the graph as GXL
+     * Constructs action handling for exporting the graph as GXL
      *
      * @param pPath The path that the GXL is exported to
      * @param pName The name of the file

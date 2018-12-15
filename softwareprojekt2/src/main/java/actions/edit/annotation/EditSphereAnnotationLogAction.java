@@ -1,7 +1,7 @@
 package actions.edit.annotation;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.edit.EditSphereAnnotationParam;
 
 /*

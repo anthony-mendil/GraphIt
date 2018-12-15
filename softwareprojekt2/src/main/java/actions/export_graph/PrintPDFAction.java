@@ -3,7 +3,7 @@ package actions.export_graph;
 import actions.GraphAction;
 
 /*
-    Aktionsleiste -> Datei.. -> PDF drucken
+ * prints the current graph visualisation as a pdf
  */
 public class PrintPDFAction extends GraphAction {
 

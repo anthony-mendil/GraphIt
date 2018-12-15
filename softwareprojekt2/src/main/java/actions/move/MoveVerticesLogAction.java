@@ -2,7 +2,7 @@ package actions.move;
 
 import actions.LogAction;
 import graph.graph.Vertex;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.move.MoveVerticesParam;
 
 import java.util.Collection;

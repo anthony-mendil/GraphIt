@@ -3,7 +3,7 @@ package actions.export_graph;
 import actions.GraphAction;
 
 /*
-    Aktionsleiste -> Datei.. -> Import GXL
+ * imports a gxl
  */
 public class ImportGxlAction extends GraphAction {
 

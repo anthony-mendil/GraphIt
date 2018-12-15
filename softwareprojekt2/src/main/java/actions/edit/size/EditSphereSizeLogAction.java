@@ -1,17 +1,19 @@
 package actions.edit.size;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.edit.EditSphereSizeParam;
 
 /*
-    ([shift+]linksclick, bereich markieren) Spähre markieren -> auftauchende +/- Button
-    ([shift+]linksclick, bereich markieren) Sphäre markieren -> strg + mittlere Maustaste
-    ([shift+]linksclick, bereich markieren) Sphäre markieren -> strg + +/- Button
-
+ * changes the sphere size
  */
 public class EditSphereSizeLogAction extends LogAction {
     public EditSphereSizeLogAction(EditSphereSizeParam parameters) {
+        super(LogEntryName.EDIT_SPHERE_SIZE);
+        throw new UnsupportedOperationException();
+    }
+
+    public EditSphereSizeLogAction(Integer size){
         super(LogEntryName.EDIT_SPHERE_SIZE);
         throw new UnsupportedOperationException();
     }

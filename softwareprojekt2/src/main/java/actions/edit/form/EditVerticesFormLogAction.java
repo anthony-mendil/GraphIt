@@ -1,10 +1,8 @@
 package actions.edit.form;
 
 import actions.LogAction;
-import log_management.LogEntryName;
+import actions.LogEntryName;
 import log_management.parameters.edit.EditVerticesFormParam;
-
-import java.awt.*;
 
 /*
  * Changes the form of the selected vertices.

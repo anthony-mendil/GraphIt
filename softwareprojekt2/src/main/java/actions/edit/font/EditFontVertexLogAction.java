@@ -1,8 +1,7 @@
 package actions.edit.font;
 
 import actions.LogAction;
-import log_management.LogEntryName;
-import log_management.parameters.edit.EditFontSphereParam;
+import actions.LogEntryName;
 import log_management.parameters.edit.EditFontVerticesParam;
 
 /*
