@@ -1,5 +1,6 @@
 package log_management.parameters.add_remove;
 
+import graph.graph.Sphere;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
@@ -12,18 +13,22 @@ import java.util.Map;
  */
 public class AddRemoveVerticesParam extends Param{
     /**
-     * Set of vertices to their respective Sphere-Id and Sphere-Annotation.
+     * Set of vertices to their sphere.
      */
     @Getter
-    private Map<Vertex, Pair<Integer, String>> parameter;
+    private Map<Vertex, Sphere> parameter;
 
     /**
      * Creates an parameter object of its own class.
      *
-     * @param pParameter The set of vertices and their sphere/sphere-annotation.
+     * @param pParameter The set of vertices and their sphere
      */
-    public AddRemoveVerticesParam(Map<Vertex, Pair<Integer, String>> pParameter) {
+    public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter) {
         parameter = pParameter;
     }
 
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

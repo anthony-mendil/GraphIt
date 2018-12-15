@@ -1,34 +1,35 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
+import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
 
-import java.io.Serializable;
+import java.util.List;
 
 /**
  * Parameter object of the action EditSphereSizeLogAction.
  */
-public class EditSphereSizeParam extends Param{
+public class EditVerticesSizeParam extends Param{
     /**
-     * The sphere-Id to change its size.
+     * The sphere containing its old size
      */
     @Getter
-    private Sphere sphere;
+    private List<Vertex>  pVertices;
     /**
      * The new size of the sphere.
      */
     @Getter
-    private Pair<Double,Double> newSize;
+    private int newSize;
 
     /**
      * Creates a parameter object of its own class.
-     * @param pSphere The sphere containing its old size
+     * @param pVertices  The sphere containing its old size
      * @param pNewSize The new size of the sphere.
      */
-    public EditSphereSizeParam(Sphere pSphere, Pair<Double,Double> pNewSize) {
-        this.sphere = pSphere;
+    public EditVerticesSizeParam(List<Vertex> pVertices, int pNewSize) {
+        this.pVertices = pVertices;
         this.newSize = pNewSize;
     }
     @Override

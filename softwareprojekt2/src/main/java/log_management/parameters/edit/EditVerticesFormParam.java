@@ -15,10 +15,10 @@ import java.util.Map;
  */
 public class EditVerticesFormParam extends Param{
     /**
-     * The set of vertices and their old shapes/ annotation.
+     * The set of vertices containing their old shapes/ annotation.
      */
     @Getter
-    Map<Vertex,Pair<String,Shape>> verticesShape;
+    List<Vertex> vertices;
     /**
      * The new shape of the vertices.
      */
@@ -27,12 +27,15 @@ public class EditVerticesFormParam extends Param{
 
     /**
      * Creates a parameter object of its own class.
-     * @param pVerticesShape The vertices and their old shape/ annotation.
+     * @param pVertices The vertices containing their old shape/ annotation.
      * @param pNewShape The new shape.
      */
-    public EditVerticesFormParam(Map<Vertex,Pair<String,Shape>> pVerticesShape, Shape pNewShape) {
-        this.verticesShape = pVerticesShape;
+    public EditVerticesFormParam( List<Vertex> pVertices, Shape pNewShape) {
+        this.vertices = pVertices;
         this.newShape = pNewShape;
     }
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

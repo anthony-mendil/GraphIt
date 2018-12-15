@@ -58,4 +58,16 @@ public class Sphere {
      */
     @NonNull
     private LinkedList<Vertex> vertices;
+
+    /**
+     * the font of the annotation
+     */
+    @NonNull
+    private String font;
+
+    /**
+     * the font size of the annotation
+     */
+    @NonNull
+    private int fontSize;
 }

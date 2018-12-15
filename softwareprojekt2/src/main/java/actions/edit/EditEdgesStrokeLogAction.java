@@ -10,7 +10,7 @@ import log_management.parameters.edit.EditEdgesStrokeParam;
  */
 public class EditEdgesStrokeLogAction extends LogAction {
     /**
-     * Constructor which will be used to realize the undo-method of itself.
+     * Constructor for the EditEdgesStrokeLogAction
      * @param strokeType the new stroke type
      */
     public EditEdgesStrokeLogAction(StrokeType strokeType) {

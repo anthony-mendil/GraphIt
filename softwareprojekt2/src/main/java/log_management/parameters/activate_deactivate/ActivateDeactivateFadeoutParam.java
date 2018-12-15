@@ -1,5 +1,7 @@
 package log_management.parameters.activate_deactivate;
 
+import graph.graph.Edge;
+import graph.graph.Vertex;
 import log_management.parameters.Param;
 import lombok.Getter;
 
@@ -13,21 +15,25 @@ public class ActivateDeactivateFadeoutParam extends Param{
      * List of vertices to activate/cancel the highlight-option.
      */
     @Getter
-    private List<Integer> verticesId;
+    private List<Vertex> vertices;
     /**
      * List of edges to activate/cancel the highlight-option.
      */
     @Getter
-    private List<Integer> edgesId;
+    private List<Edge> edges;
 
     /**
      * Creates an parameter object of its own class.
-     * @param pVerticesId The list of vertices to work on.
-     * @param pEdgesId The list of edges to work on.
+     * @param pVertices The list of vertices to work on.
+     * @param pEdges The list of edges to work on.
      */
-    public ActivateDeactivateFadeoutParam(List<Integer> pVerticesId, List<Integer> pEdgesId) {
-        this.verticesId = verticesId;
-        this.edgesId = edgesId;
+    public ActivateDeactivateFadeoutParam(List<Vertex> pVertices, List<Edge> pEdges) {
+        this.vertices = vertices;
+        this.edges = edges;
     }
 
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

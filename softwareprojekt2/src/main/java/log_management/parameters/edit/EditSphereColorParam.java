@@ -11,14 +11,14 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * Parameterobject of the action EditSphereColorLogAction.
+ * Parameter object of the action EditSphereColorLogAction.
  */
 public class EditSphereColorParam extends Param{
     /**
-     * The sphere and the old color.
+     * The sphere containing its the old color.
      */
     @Getter
-    private Pair<Sphere,Pair<String,Color>> sphereOldColor;
+    private Sphere sphere;
     /**
      * The new color it should get.
      */
@@ -26,13 +26,16 @@ public class EditSphereColorParam extends Param{
     private Color newColor;
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pSphereOldColor The sphere and the old color
+     * Creates a parameter object of its own class.
+     * @param sphere  The sphere containing its the old color.
      * @param pNewColor The new color of the sphere.
      */
-    public EditSphereColorParam(Pair<Sphere,Pair<String,Color>> pSphereOldColor, Color pNewColor) {
-        this.sphereOldColor = pSphereOldColor;
+    public EditSphereColorParam(Sphere sphere, Color pNewColor) {
+        this.sphere = sphere;
         this.newColor = pNewColor;
     }
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

@@ -13,10 +13,10 @@ import java.util.Map;
  */
 public class EditEdgesTypeParam extends Param{
     /**
-     * The set of all edges and their old edge-type.
+     * The set of all edges containing their old edge-type.
      */
     @Getter
-    Map<Edge,Pair<Pair<Vertex,Vertex>,EdgeArrowType>> edgesOldEdgeType;
+    Map<Edge,Pair<Vertex,Vertex>> edgesOldEdgeType;
     /**
      * The new edge-type.
      */
@@ -24,13 +24,16 @@ public class EditEdgesTypeParam extends Param{
     private EdgeArrowType edgeType;
 
     /**
-     * Creates a new parameterobject of its own class.
-     * @param pEdgesOldEdgeType The set of edges and their old edge-types.
+     * Creates a new parameter object of its own class.
+     * @param pEdges The set of edges containing their old edge-types.
      * @param pEdgeType The new edge-type.
      */
-    public EditEdgesTypeParam(Map<Edge,Pair<Pair<Vertex,Vertex>,EdgeArrowType>> pEdgesOldEdgeType, EdgeArrowType pEdgeType) {
-        this.edgesOldEdgeType = pEdgesOldEdgeType;
+    public EditEdgesTypeParam(Map<Edge,Pair<Vertex,Vertex>> pEdges, EdgeArrowType pEdgeType) {
+        this.edgesOldEdgeType = pEdges;
         this.edgeType = pEdgeType;
     }
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

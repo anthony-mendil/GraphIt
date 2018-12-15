@@ -1,10 +1,13 @@
 package log_management.parameters.move;
 
 
+import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
 
+import java.awt.geom.Point2D;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,28 +15,29 @@ import java.util.Map;
  */
 public class LayoutParam extends Param {
     /**
-     * the vertex ids with vertex annotation and new position
+     * the vertices containing their old position
      */
     @Getter
-    private Map<Integer, Pair<String, Integer>> vertices;
+    private List<Vertex>  vertices;
+
     /**
-     * The old annotation of the vertex.
+     * map from vertex ids to new position
      */
     @Getter
-    private String oldAnnotation;
-    /**
-     * The new annotation of the vertex.
-     */
-    @Getter
-    private String newAnnotation;
+    private Map<Integer, Point2D> newPosition;
 
     /**
      * Creates a parameter object of its own class.
      *
-     * @param vertices the vertex ids with vertex annotation and new position
+     * @param pVertices list of vertices containing their old position
+     * @param pNewPosition map from vertex ids to new position
      */
-    public LayoutParam(Map<Integer, Pair<String, Integer>> vertices) {
-        this.vertices = vertices;
+    public LayoutParam(List<Vertex> pVertices, Map<Integer, Point2D> pNewPosition) {
+        this.vertices = pVertices;
+        this.newPosition = pNewPosition;
     }
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

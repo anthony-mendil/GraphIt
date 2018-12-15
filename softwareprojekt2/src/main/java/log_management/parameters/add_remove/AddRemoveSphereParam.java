@@ -23,4 +23,8 @@ public class AddRemoveSphereParam extends Param{
         this.sphere = pSphere;
     }
 
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

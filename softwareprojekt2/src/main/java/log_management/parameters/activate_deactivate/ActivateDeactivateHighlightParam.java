@@ -1,5 +1,7 @@
 package log_management.parameters.activate_deactivate;
 
+import graph.graph.Edge;
+import graph.graph.Vertex;
 import log_management.parameters.Param;
 import lombok.Getter;
 
@@ -13,21 +15,26 @@ public class ActivateDeactivateHighlightParam extends Param{
      * List of vertices, which will highlight/stop highlight.
      */
     @Getter
-    private List<Integer> vertexIdList;
+    private List<Vertex> vertices;
     /**
      * List of edges, which will highlight/stop highlight.
      */
     @Getter
-    private List<Integer> edgeIdList;
+    private List<Edge> edges;
 
     /**
-     * Creates an parameterobject of its own class.
+     * Creates an parameter object of its own class.
      *
-     * @param vertexIdList List of selected vertices.
-     * @param edgeIdList   List of edges attached to the vertices.
+     * @param vertices List of selected vertices.
+     * @param edges   List of edges attached to the vertices.
      */
-    public ActivateDeactivateHighlightParam(List<Integer> vertexIdList, List<Integer> edgeIdList) {
-        this.vertexIdList = vertexIdList;
-        this.edgeIdList = edgeIdList;
+    public ActivateDeactivateHighlightParam(List<Vertex> vertices, List<Edge> edges) {
+        this.vertices = vertices;
+        this.edges = edges;
+    }
+
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
     }
 }

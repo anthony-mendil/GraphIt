@@ -2,16 +2,25 @@ package actions.edit.size;
 
 import actions.LogAction;
 import actions.LogEntryName;
-import log_management.parameters.edit.EditSphereSizeParam;
+import log_management.parameters.edit.EditVerticesSizeParam;
 
 /*
-    ([shift+]linksclick, bereich markieren) Spähre markieren -> auftauchende +/- Button
-    ([shift+]linksclick, bereich markieren) Sphäre markieren -> strg + mittlere Maustaste
-    ([shift+]linksclick, bereich markieren) Sphäre markieren -> strg + +/- Button
+ * changes the size of a vertex
  */
 public class EditVerticesSizeLogAction extends LogAction {
-    public EditVerticesSizeLogAction(EditSphereSizeParam parameters) {
-        super(LogEntryName.EDIT_SPHERE_SIZE);
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     *
+     * @param parameters the parameters containing the size and sphere
+     */
+    public EditVerticesSizeLogAction(EditVerticesSizeParam parameters) {
+        super(LogEntryName.EDIT_VERTICES_SIZE);
+        throw new UnsupportedOperationException();
+    }
+
+    public EditVerticesSizeLogAction() {
+        super(LogEntryName.EDIT_VERTICES_SIZE);
+        throw new UnsupportedOperationException();
     }
 
     @Override

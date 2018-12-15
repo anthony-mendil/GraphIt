@@ -1,5 +1,6 @@
 package log_management.parameters.move;
 
+import graph.graph.Sphere;
 import log_management.parameters.Param;
 import lombok.Getter;
 
@@ -11,20 +12,10 @@ import java.io.Serializable;
  */
 public class MoveSphereParam extends Param{
     /**
-     * The sphere-Id.
+     * the sphere containing its old position
      */
     @Getter
-    private int sphereId;
-    /**
-     * The annotation of the sphere.
-     */
-    @Getter
-    private String sphereAnnotation;
-    /**
-     * The old position of the sphere.
-     */
-    @Getter
-    private Point2D oldPosition;
+    private Sphere sphere;
     /**
      * The new position of the sphere.
      */
@@ -33,16 +24,15 @@ public class MoveSphereParam extends Param{
 
     /**
      * Creates a parameter object of its own class.
-     * @param pSphereId The sphere-Id.
-     * @param pSphereAnnotation The annotation of the sphere.
-     * @param pOldPosition The old position of the sphere.
+     * @param pSphere the sphere containing its old position
      * @param pNewPosition The new position of the sphere.
      */
-    public MoveSphereParam(int pSphereId, String pSphereAnnotation, Point2D pOldPosition, Point2D pNewPosition) {
-        this.sphereId = sphereId;
-        this.sphereAnnotation = sphereAnnotation;
-        this.oldPosition = oldPosition;
+    public MoveSphereParam(Sphere pSphere, Point2D pNewPosition) {
+        this.sphere = pSphere;
         this.newPosition = pNewPosition;
     }
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

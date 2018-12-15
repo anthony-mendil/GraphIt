@@ -7,33 +7,38 @@ import log_management.parameters.Param;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Parameterobject for the Action EditFontSizeVerticesLogAction.
+ * Parameter object for the Action EditFontSizeVerticesLogAction.
  */
 public class EditFontSizeVerticesParam extends Param {
     /**
-     * The set of the vertices, their annotation and their old sizes.
+     * The list of the vertices
      */
     @Getter
-    Map<Vertex,Pair<String,Integer>> verticesOldSize;
+    List<Vertex> pVertices;
     /**
-     * The new fontsize.
+     * The new font size.
      */
     @Getter
     private int newFontSize;
     //Q: Does the font size change everywhere or is for example a list of vertex id's needed?
-    //A: I think, that every fontsize of all vertices should be independent from each other.
+    //A: I think, that every font size of all vertices should be independent from each other.
     //   Therefore there must be a map or something kinda like this...
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pVerticesOldSize The vertices and their old font-size.
+     * Creates a parameter object of its own class.
+     * @param pVertices The vertices containing their old font-size.
      * @param pNewFontSize The new font-size.
      */
-    public EditFontSizeVerticesParam(Map<Vertex,Pair<String,Integer>> pVerticesOldSize, int pNewFontSize) {
-        this.verticesOldSize = pVerticesOldSize;
+    public EditFontSizeVerticesParam(List<Vertex> pVertices, int pNewFontSize) {
+        this.pVertices = pVertices;
         this.newFontSize = pNewFontSize;
+    }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
     }
 }

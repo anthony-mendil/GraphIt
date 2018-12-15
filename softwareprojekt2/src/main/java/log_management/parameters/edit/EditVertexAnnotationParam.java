@@ -8,14 +8,14 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * Parameterobject of the action EditVErtexAnnotationLogAction.
+ * Parameter object of the action EditVertexAnnotationLogAction.
  */
 public class EditVertexAnnotationParam extends Param{
     /**
-     * The old annotation of the vertex.
+     * pVertex The vertex containing its old annotation.
      */
     @Getter
-    private Pair<Vertex,String> vertexOldAnnotation;
+    private Vertex vertex;
     /**
      * The new annotation of the vertex.
      */
@@ -23,13 +23,16 @@ public class EditVertexAnnotationParam extends Param{
     private String newAnnotation;
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pVertexOldAnnotation The vertex and its annotation.
+     * Creates a parameter object of its own class.
+     * @param pVertex The vertex containing its old annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditVertexAnnotationParam(Pair<Vertex,String> pVertexOldAnnotation, String pNewAnnotation) {
-        this.vertexOldAnnotation = pVertexOldAnnotation;
+    public EditVertexAnnotationParam(Vertex pVertex, String pNewAnnotation) {
+        this.vertex = pVertex;
         this.newAnnotation = pNewAnnotation;
     }
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

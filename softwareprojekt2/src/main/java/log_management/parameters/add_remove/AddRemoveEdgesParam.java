@@ -1,6 +1,7 @@
 package log_management.parameters.add_remove;
 
 import graph.graph.Edge;
+import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
@@ -11,20 +12,20 @@ import java.util.Map;
  */
 public class AddRemoveEdgesParam extends Param{
     /**
-     * The set of edges(pair describes the repspective start-vertex and sink-vertex) bound to their edge-type.
+     * The set of edges(pair describes the respective start-vertex and sink-vertex) bound to their edge-type.
      */
     @Getter
-    private Map<Pair<Integer,Integer>,Edge> edges;
+    private Map<Pair<Vertex,Vertex>,Edge> edges;
     /**
      * Creates an parameter object of its own class.
-     * @param pListOfEdges List of edges and their start/ end vertex id
+     * @param edges List of edges and their start/ end vertex id
      */
-    public AddRemoveEdgesParam(Map<Pair<Integer,Integer>,Edge> pListOfEdges){
-        this.edges = pListOfEdges;
+    public AddRemoveEdgesParam(Map<Pair<Vertex,Vertex>,Edge> edges){
+        this.edges = edges;
     }
 
     @Override
-    public String convertToJson() {
-        return null;
+    public String toString() {
+        throw new UnsupportedOperationException();
     }
 }

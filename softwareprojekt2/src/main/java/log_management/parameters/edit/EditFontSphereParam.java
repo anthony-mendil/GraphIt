@@ -8,14 +8,14 @@ import lombok.Getter;
 
 
 /**
- * Paramterobject for the action EditFontSphereParam.
+ * Parameter object for the action EditFontSphereParam.
  */
 public class EditFontSphereParam extends Param {
     /**
-     * The sphere and its old annotation-font.
+     * The sphere containing its old annotation-font.
      */
     @Getter
-    private Pair<Sphere,Pair<String,String>> sphereOldFont;
+    private Sphere sphere;
     /**
      * The new font.
      */
@@ -23,14 +23,16 @@ public class EditFontSphereParam extends Param {
     private String newFont;
 
     /**
-     * Creates a new parameterobject of its own class.
-     * @param pSphereOldFont The sphere and its old font.
+     * Creates a new parameter object of its own class.
+     * @param sphere The sphere containing its old font.
      * @param pNewFont The new font.
      */
-    public EditFontSphereParam(Pair<Sphere,Pair<String,String>> pSphereOldFont, String pNewFont) {
-        this.sphereOldFont = pSphereOldFont;
+    public EditFontSphereParam(Sphere sphere, String pNewFont) {
+        this.sphere = sphere;
         this.newFont = pNewFont;
     }
-
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

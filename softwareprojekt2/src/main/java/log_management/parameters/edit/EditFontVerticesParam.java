@@ -5,6 +5,8 @@ import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,10 +14,10 @@ import java.util.Map;
  */
 public class EditFontVerticesParam extends Param {
     /**
-     * The set of vertices and their old font.
+     * The set of vertices containing their old font.
      */
     @Getter
-    private Map<Vertex, Pair<String,String>> verticesOldFont;
+    private List<Vertex> pVertices;
     /**
      * The new font-type.
      */
@@ -25,12 +27,16 @@ public class EditFontVerticesParam extends Param {
     // A:Unfortunately no :( . But I am not actually sure about it, just pretending.
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pVerticesOldFont The vertices and their old font.
+     * Creates a parameter object of its own class.
+     * @param pVertices The vertices containing their old font.
      * @param pNewFont The new font-type.
      */
-    public EditFontVerticesParam(Map<Vertex, Pair<String,String>> pVerticesOldFont, String pNewFont) {
-        this.verticesOldFont = pVerticesOldFont;
+    public EditFontVerticesParam(List<Vertex> pVertices, String pNewFont) {
+        this.pVertices = pVertices;
         this.newFont = pNewFont;
+    }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
     }
 }

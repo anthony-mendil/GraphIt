@@ -80,4 +80,16 @@ public class Vertex {
      */
     @NonNull
     private boolean isVisible;
+
+    /**
+     * the font of the annotation
+     */
+    @NonNull
+    private String font;
+
+    /**
+     * the font size of the annotation
+     */
+    @NonNull
+    private int fontSize;
 }

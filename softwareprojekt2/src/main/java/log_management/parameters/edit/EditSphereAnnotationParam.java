@@ -1,5 +1,6 @@
 package log_management.parameters.edit;
 
+import graph.graph.Sphere;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
@@ -9,10 +10,10 @@ import lombok.Getter;
  */
 public class EditSphereAnnotationParam extends Param{
     /**
-     * The old annotation of the sphere.
+     * The sphere containing its old annotation
      */
     @Getter
-    private Pair<Integer,String> oldAnnotation;
+    private Sphere pSphere;
     /**
      * The new annotation of the sphere.
      */
@@ -20,13 +21,16 @@ public class EditSphereAnnotationParam extends Param{
     private String newAnnotation;
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pOldAnnotation The sphere and its old annotation.
+     * Creates a parameter object of its own class.
+     * @param pSphere The sphere containing its old annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditSphereAnnotationParam(Pair<Integer,String> pOldAnnotation, String pNewAnnotation) {
-        this.oldAnnotation = pOldAnnotation;
+    public EditSphereAnnotationParam(Sphere pSphere, String pNewAnnotation) {
+        this.pSphere = pSphere;
         this.newAnnotation = pNewAnnotation;
     }
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

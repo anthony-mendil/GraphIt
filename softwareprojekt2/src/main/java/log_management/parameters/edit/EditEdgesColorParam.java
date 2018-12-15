@@ -14,10 +14,10 @@ import java.util.Map;
  */
 public class EditEdgesColorParam extends Param{
     /**
-     * The list of edges and their old color.
+     * The list of edges containing their old color.
      */
     @Getter
-    private Map<Edge,Pair<Pair<Vertex,Vertex>,Color>> edgesOldColor;
+    private Map<Edge,Pair<Vertex,Vertex>> pEdges;
     /**
      * The new color the edges should have.
      */
@@ -25,13 +25,17 @@ public class EditEdgesColorParam extends Param{
     private Color newColor;
 
     /**
-     * Creates an parameterobject of its own class.
-     * @param pEdgesOldColor The list of edges and their old color.
+     * Creates an parameter object of its own class.
+     * @param pEdges The list of edges and their old color.
      * @param pNewColor The new color.
      */
-    public EditEdgesColorParam(Map<Edge,Pair<Pair<Vertex,Vertex>,Color>> pEdgesOldColor, Color pNewColor) {
-        this.edgesOldColor = pEdgesOldColor;
+    public EditEdgesColorParam(Map<Edge,Pair<Vertex,Vertex>> pEdges, Color pNewColor) {
+        this.pEdges = pEdges;
         this.newColor = pNewColor;
     }
 
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

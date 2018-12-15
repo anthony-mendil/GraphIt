@@ -13,10 +13,10 @@ import java.util.Map;
  */
 public class EditEdgesStrokeParam extends Param{
     /**
-     * The set of edges and their old stoke-type.
+     * The set of edges containing their old stoke-type.
      */
     @Getter
-    Map<Edge,Pair<Pair<Vertex,Vertex>,StrokeType>> edgesOldStroke;
+    Map<Edge,Pair<Vertex,Vertex>> pEdges;
     /**
      * The set of all edges and their old strokes.
      */
@@ -24,14 +24,18 @@ public class EditEdgesStrokeParam extends Param{
     private StrokeType newStroke;
 
     /**
-     * Creates a new parameterobject of its own class.
-     * @param pEdgesOldStroke The map of all edges and their old stokes.
+     * Creates a new parameter object of its own class.
+     * @param pEdges The map of all edges
      * @param pNewStroke The new stroke.
      */
-    public EditEdgesStrokeParam(Map<Edge,Pair<Pair<Vertex,Vertex>, StrokeType>> pEdgesOldStroke,
+    public EditEdgesStrokeParam(Map<Edge,Pair<Vertex,Vertex>> pEdges,
                                 StrokeType pNewStroke) {
-        this.edgesOldStroke = pEdgesOldStroke;
+        this.pEdges = pEdges;
         this.newStroke = pNewStroke;
     }
 
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

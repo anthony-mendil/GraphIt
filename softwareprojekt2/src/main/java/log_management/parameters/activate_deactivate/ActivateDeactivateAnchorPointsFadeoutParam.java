@@ -25,4 +25,8 @@ public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
         this.edges = pEdges;
     }
 
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }

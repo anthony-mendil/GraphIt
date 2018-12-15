@@ -12,15 +12,10 @@ import lombok.Getter;
  */
 public class EditFontSizeSphereParam extends Param{
     /**
-     * The sphere and the annotation.
+     * The sphere containing the annotation.
      */
     @Getter
-    private Pair<Sphere,String> sphereText;
-    /**
-     * The old size of the font.
-     */
-    @Getter
-    private int oldFontSize;
+    private Sphere sphereText;
     /**
      * The new size of the font.
      */
@@ -30,16 +25,16 @@ public class EditFontSizeSphereParam extends Param{
     // A:Like I said, no!! But I am not sure about it.
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pSphereText The sphere and the annotation.
-     * @param pOldFontSize The old font size.
+     * Creates a parameter object of its own class.
+     * @param pSphere The sphere containing the old annotation.
      * @param pNewFontSize The new font size.
      */
-    public EditFontSizeSphereParam(Pair<Sphere,String> pSphereText, int pOldFontSize, int pNewFontSize) {
-        this.sphereText = pSphereText;
-        this.oldFontSize = pOldFontSize;
+    public EditFontSizeSphereParam(Sphere pSphere, int pNewFontSize) {
+        this.sphereText = pSphere;
         this.newFontSize = pNewFontSize;
     }
-
-
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException();
+    }
 }
