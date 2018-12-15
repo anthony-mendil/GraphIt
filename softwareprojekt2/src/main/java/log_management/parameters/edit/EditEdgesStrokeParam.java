@@ -1,12 +1,11 @@
 package log_management.parameters.edit;
 
+import graph.graph.Edge;
 import graph.graph.StrokeType;
+import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
-
-import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,31 +13,24 @@ import java.util.Map;
  */
 public class EditEdgesStrokeParam extends Param{
     /**
-     * The list of edges getting a new stroke
+     * The set of edges and their old stoke-type.
      */
     @Getter
-    List<Integer> edges;
+    Map<Edge,Pair<Pair<Vertex,Vertex>,StrokeType>> edgesOldStroke;
     /**
      * The set of all edges and their old strokes.
-     */
-    @Getter
-    private Map<Integer, StrokeType> oldStrokes;
-    /**
-     * The new stroke-type.
      */
     @Getter
     private StrokeType newStroke;
 
     /**
-     * Creates a new parameter object of its own class.
-     * @param pEdges The map of all edges.
-     * @param pOldStrokes The set of old strokes.
+     * Creates a new parameterobject of its own class.
+     * @param pEdgesOldStroke The map of all edges and their old stokes.
      * @param pNewStroke The new stroke.
      */
-    public EditEdgesStrokeParam(List<Integer> pEdges, Map<Integer, StrokeType> pOldStrokes,
+    public EditEdgesStrokeParam(Map<Edge,Pair<Pair<Vertex,Vertex>, StrokeType>> pEdgesOldStroke,
                                 StrokeType pNewStroke) {
-        this.edges = pEdges;
-        this.oldStrokes = pOldStrokes;
+        this.edgesOldStroke = pEdgesOldStroke;
         this.newStroke = pNewStroke;
     }
 

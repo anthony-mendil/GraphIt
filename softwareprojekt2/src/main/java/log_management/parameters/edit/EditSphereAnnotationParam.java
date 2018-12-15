@@ -1,24 +1,18 @@
 package log_management.parameters.edit;
 
+import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
-
-import java.io.Serializable;
 
 /**
  * Parameter object of the action EditSphereLogAction.
  */
 public class EditSphereAnnotationParam extends Param{
     /**
-     * The selected sphere-Id.
-     */
-    @Getter
-    private int sphereId;
-    /**
      * The old annotation of the sphere.
      */
     @Getter
-    private String oldAnnotation;
+    private Pair<Integer,String> oldAnnotation;
     /**
      * The new annotation of the sphere.
      */
@@ -26,13 +20,11 @@ public class EditSphereAnnotationParam extends Param{
     private String newAnnotation;
 
     /**
-     * Creates a parameter object of its own class.
-     * @param pSphereId The sphere-Id.
-     * @param pOldAnnotation The old annotation.
+     * Creates a parameterobject of its own class.
+     * @param pOldAnnotation The sphere and its old annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditSphereAnnotationParam(int pSphereId, String pOldAnnotation, String pNewAnnotation) {
-        this.sphereId = pSphereId;
+    public EditSphereAnnotationParam(Pair<Integer,String> pOldAnnotation, String pNewAnnotation) {
         this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }

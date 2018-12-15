@@ -4,12 +4,11 @@ import graph.graph.Vertex;
 import log_management.parameters.Param;
 import lombok.Getter;
 
-import java.io.Serializable;
 
 /**
  * Parameter object for the action AddVertexLogAction.
  */
-public class AddVertexParam extends Param{
+public class AddRemoveVertexParam extends Param{
     /**
      * The new vertex, which will be added to the graph.
      */
@@ -32,7 +31,7 @@ public class AddVertexParam extends Param{
      * @param pSphereId The sphere-Identity
      * @param pSphereAnnotation The annotation of the sphere.
      */
-    public AddVertexParam(Vertex pVertex, int pSphereId, String pSphereAnnotation) {
+    public AddRemoveVertexParam(Vertex pVertex, int pSphereId, String pSphereAnnotation) {
         this.vertex = pVertex;
         this.sphereId = pSphereId;
         this.sphereAnnotation = pSphereAnnotation;

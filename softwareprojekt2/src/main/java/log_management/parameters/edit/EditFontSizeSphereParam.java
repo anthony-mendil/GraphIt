@@ -1,19 +1,21 @@
 package log_management.parameters.edit;
 
+import graph.graph.Sphere;
+import graph.graph.Vertex;
+import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
 
-import java.io.Serializable;
 
 /**
  * Parameter object of the action EditFontSizeSphereLogAction.
  */
 public class EditFontSizeSphereParam extends Param{
     /**
-     * The target sphere id.
+     * The sphere and the annotation.
      */
     @Getter
-    private Integer id;
+    private Pair<Sphere,String> sphereText;
     /**
      * The old size of the font.
      */
@@ -28,13 +30,13 @@ public class EditFontSizeSphereParam extends Param{
     // A:Like I said, no!! But I am not sure about it.
 
     /**
-     * Creates a parameter object of its own class.
-     * @param id the id of the sphere
+     * Creates a parameterobject of its own class.
+     * @param pSphereText The sphere and the annotation.
      * @param pOldFontSize The old font size.
      * @param pNewFontSize The new font size.
      */
-    public EditFontSizeSphereParam(Integer id, int pOldFontSize, int pNewFontSize) {
-        this.id = id;
+    public EditFontSizeSphereParam(Pair<Sphere,String> pSphereText, int pOldFontSize, int pNewFontSize) {
+        this.sphereText = pSphereText;
         this.oldFontSize = pOldFontSize;
         this.newFontSize = pNewFontSize;
     }
