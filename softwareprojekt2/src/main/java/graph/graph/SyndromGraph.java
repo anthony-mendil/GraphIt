@@ -38,7 +38,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * the object factory for syndrom
      */
-    private final GraphObjectsFactory pGraphObjectsFactory;
+    private final GraphObjectsFactory graphObjectsFactory;
 
     /**
      * Creates a new syndrom graph.
