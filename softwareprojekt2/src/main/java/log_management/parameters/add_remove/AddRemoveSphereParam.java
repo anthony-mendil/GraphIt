@@ -4,7 +4,6 @@ import graph.graph.Sphere;
 import log_management.parameters.Param;
 import lombok.Getter;
 
-import java.io.Serializable;
 
 /**
  * Parameter object for the action AddSphereLogAction/RemoveSphereLogAction.

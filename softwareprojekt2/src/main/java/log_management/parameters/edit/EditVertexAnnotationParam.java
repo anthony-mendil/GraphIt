@@ -1,24 +1,21 @@
 package log_management.parameters.edit;
 
+import graph.graph.Vertex;
+import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
 
 import java.io.Serializable;
 
 /**
- * Parameter object of the action EditVertexAnnotationLogAction.
+ * Parameterobject of the action EditVErtexAnnotationLogAction.
  */
 public class EditVertexAnnotationParam extends Param{
-    /**
-     * The selected vertex-Id.
-     */
-    @Getter
-    private int vertexId;
     /**
      * The old annotation of the vertex.
      */
     @Getter
-    private String oldAnnotation;
+    private Pair<Vertex,String> vertexOldAnnotation;
     /**
      * The new annotation of the vertex.
      */
@@ -26,14 +23,12 @@ public class EditVertexAnnotationParam extends Param{
     private String newAnnotation;
 
     /**
-     * Creates a parameter object of its own class.
-     * @param pVertexId The vertex-Id.
-     * @param pOldAnnotation The old annotation of it.
+     * Creates a parameterobject of its own class.
+     * @param pVertexOldAnnotation The vertex and its annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditVertexAnnotationParam(int pVertexId, String pOldAnnotation, String pNewAnnotation) {
-        this.vertexId = pVertexId;
-        this.oldAnnotation = pOldAnnotation;
+    public EditVertexAnnotationParam(Pair<Vertex,String> pVertexOldAnnotation, String pNewAnnotation) {
+        this.vertexOldAnnotation = pVertexOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }
 

@@ -1,5 +1,6 @@
 package log_management.parameters.edit;
 
+import graph.graph.Vertex;
 import log_management.parameters.Param;
 import lombok.Getter;
 
@@ -16,7 +17,7 @@ public class EditVerticesColorParam extends Param{
      * The set of vertices and their old colors.
      */
     @Getter
-    private Map<Integer, Color> oldVerticesColor;
+    private Map<Vertex, Color> oldVerticesColor;
     /**
      * The new color.
      */
@@ -28,7 +29,7 @@ public class EditVerticesColorParam extends Param{
      * @param pVerticesColor The selected vertices and their old color.
      * @param pNewColor The new color.
      */
-    public EditVerticesColorParam(Map<Integer, Color> pVerticesColor, Color pNewColor) {
+    public EditVerticesColorParam(Map<Vertex, Color> pVerticesColor, Color pNewColor) {
         this.oldVerticesColor = pVerticesColor;
         this.newColor = pNewColor;
     }

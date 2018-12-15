@@ -1,5 +1,6 @@
 package log_management.parameters.edit;
 
+import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class EditVerticesFormParam extends Param{
      * The set of vertices and their old shapes/ annotation.
      */
     @Getter
-    Map<Integer, Pair<String,Shape>> verticesShape;
+    Map<Vertex,Pair<String,Shape>> verticesShape;
     /**
      * The new shape of the vertices.
      */
@@ -29,7 +30,7 @@ public class EditVerticesFormParam extends Param{
      * @param pVerticesShape The vertices and their old shape/ annotation.
      * @param pNewShape The new shape.
      */
-    public EditVerticesFormParam(Map<Integer, Pair<String,Shape>> pVerticesShape, Shape pNewShape) {
+    public EditVerticesFormParam(Map<Vertex,Pair<String,Shape>> pVerticesShape, Shape pNewShape) {
         this.verticesShape = pVerticesShape;
         this.newShape = pNewShape;
     }

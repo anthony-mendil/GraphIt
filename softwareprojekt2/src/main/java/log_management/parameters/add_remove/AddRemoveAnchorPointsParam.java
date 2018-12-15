@@ -3,8 +3,7 @@ package log_management.parameters.add_remove;
 import graph.graph.Edge;
 import log_management.parameters.Param;
 import lombok.Getter;
-
-import java.util.List;
+import java.util.Set;
 
 /**
  * Parameter object of the action AddAnchorPointsLogAction/RemoveAnchorPointsLogAction.
@@ -14,13 +13,13 @@ public class AddRemoveAnchorPointsParam extends Param {
      * The selected edges.
      */
     @Getter
-    private List<Edge> edges;
+    private Set<Edge> edges;
 
     /**
      * Creates a parameter object of its own class.
      * @param pEdges The selected edges.
      */
-    public AddRemoveAnchorPointsParam(List<Edge> pEdges) {
+    public AddRemoveAnchorPointsParam(Set<Edge> pEdges) {
     this.edges = pEdges;
     }
 }

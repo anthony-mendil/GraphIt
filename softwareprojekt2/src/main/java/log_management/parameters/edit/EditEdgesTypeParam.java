@@ -1,12 +1,11 @@
 package log_management.parameters.edit;
 
+import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
+import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
-
-import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,10 +13,10 @@ import java.util.Map;
  */
 public class EditEdgesTypeParam extends Param{
     /**
-     * The set of all edges which will get a new type.
+     * The set of all edges and their old edge-type.
      */
     @Getter
-    private List<Integer> edges;
+    Map<Edge,Pair<Pair<Vertex,Vertex>,EdgeArrowType>> edgesOldEdgeType;
     /**
      * The new edge-type.
      */
@@ -25,13 +24,13 @@ public class EditEdgesTypeParam extends Param{
     private EdgeArrowType edgeType;
 
     /**
-     * Creates a new parameter object of its own class.
-     * @param edges The set of edges.
-     * @param edgeType The new edges.
+     * Creates a new parameterobject of its own class.
+     * @param pEdgesOldEdgeType The set of edges and their old edge-types.
+     * @param pEdgeType The new edge-type.
      */
-    public EditEdgesTypeParam(List<Integer> edges, EdgeArrowType edgeType) {
-        this.edges = edges;
-        this.edgeType = edgeType;
+    public EditEdgesTypeParam(Map<Edge,Pair<Pair<Vertex,Vertex>,EdgeArrowType>> pEdgesOldEdgeType, EdgeArrowType pEdgeType) {
+        this.edgesOldEdgeType = pEdgesOldEdgeType;
+        this.edgeType = pEdgeType;
     }
 
 }

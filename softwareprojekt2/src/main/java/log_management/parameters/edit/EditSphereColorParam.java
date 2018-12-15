@@ -1,30 +1,24 @@
 package log_management.parameters.edit;
 
+import graph.graph.Sphere;
+import graph.graph.Vertex;
+import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.util.Map;
 
 /**
- * Parameter object of the action EditSphereColorLogAction.
+ * Parameterobject of the action EditSphereColorLogAction.
  */
 public class EditSphereColorParam extends Param{
     /**
-     * The sphere-Id to change its color.
+     * The sphere and the old color.
      */
     @Getter
-    private int sphereId;
-    /**
-     * The annotation of the sphere.
-     */
-    @Getter
-    private String sphereAnnotation;
-    /**
-     * The old color of the sphere.
-     */
-    @Getter
-    private Color oldColor;
+    private Pair<Sphere,Pair<String,Color>> sphereOldColor;
     /**
      * The new color it should get.
      */
@@ -32,16 +26,12 @@ public class EditSphereColorParam extends Param{
     private Color newColor;
 
     /**
-     * Creates a parameter object of its own class.
-     * @param pSphereId The sphere-Id to change the color of.
-     * @param pSphereAnnotation The annotation of the sphere.
-     * @param pOldColor The old color of the sphere.
+     * Creates a parameterobject of its own class.
+     * @param pSphereOldColor The sphere and the old color
      * @param pNewColor The new color of the sphere.
      */
-    public EditSphereColorParam(int pSphereId, String pSphereAnnotation, Color pOldColor, Color pNewColor) {
-        this.sphereId = pSphereId;
-        this.sphereAnnotation = pSphereAnnotation;
-        this.oldColor = pOldColor;
+    public EditSphereColorParam(Pair<Sphere,Pair<String,Color>> pSphereOldColor, Color pNewColor) {
+        this.sphereOldColor = pSphereOldColor;
         this.newColor = pNewColor;
     }
 

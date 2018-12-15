@@ -13,7 +13,10 @@ import java.util.Collection;
  * Removes anchor points from the syndrom-graph.
  */
 public class RemoveAnchorPointsLogAction extends LogAction {
-
+    /**
+     * all edge containing the anchor points which should be removed
+     */
+    Collection<Edge> edges;
     /**
      * Removes all anchor points of every (picked) edge.
      * Gets the picked edges through picksupport.

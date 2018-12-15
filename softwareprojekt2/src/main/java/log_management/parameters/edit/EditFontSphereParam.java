@@ -1,37 +1,36 @@
 package log_management.parameters.edit;
 
+import graph.graph.Sphere;
+import graph.graph.Vertex;
+import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Getter;
 
-import java.io.Serializable;
 
 /**
- * Parameter object of the action EditFontSphereLogAction.
+ * Paramterobject for the action EditFontSphereParam.
  */
 public class EditFontSphereParam extends Param {
-
     /**
-     * the old font
+     * The sphere and its old annotation-font.
      */
-    private String oldFont;
+    @Getter
+    private Pair<Sphere,Pair<String,String>> sphereOldFont;
     /**
-     * the new font
+     * The new font.
      */
+    @Getter
     private String newFont;
-    /**
-     * the sphere id
-     */
-    private int sphereId;
-    // does the font change everywhere or is for example a list of vertex id's needed?
 
     /**
-     * creates a new parameter object
-     * @param sphereId the sphere id
-     * @param oldFont the old font
-     * @param newFont the new font
+     * Creates a new parameterobject of its own class.
+     * @param pSphereOldFont The sphere and its old font.
+     * @param pNewFont The new font.
      */
-    public EditFontSphereParam(int sphereId, String oldFont, String newFont) {
-        this.oldFont = oldFont;
-        this.newFont = newFont;
+    public EditFontSphereParam(Pair<Sphere,Pair<String,String>> pSphereOldFont, String pNewFont) {
+        this.sphereOldFont = pSphereOldFont;
+        this.newFont = pNewFont;
     }
+
 
 }

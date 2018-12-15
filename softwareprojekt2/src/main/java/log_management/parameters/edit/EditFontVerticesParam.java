@@ -1,9 +1,10 @@
 package log_management.parameters.edit;
 
+
+import graph.graph.Vertex;
+import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
-
-import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -11,10 +12,10 @@ import java.util.Map;
  */
 public class EditFontVerticesParam extends Param {
     /**
-     * map of vertex ids to old fonts
+     * The set of vertices and their old font.
      */
     @Getter
-    private Map<Integer,String> vertices;
+    private Map<Vertex, Pair<String,String>> verticesOldFont;
     /**
      * The new font-type.
      */
@@ -24,13 +25,12 @@ public class EditFontVerticesParam extends Param {
     // A:Unfortunately no :( . But I am not actually sure about it, just pretending.
 
     /**
-     * Creates a parameter object of its own class.
-     *
-     * @param vertices The old font-type.
+     * Creates a parameterobject of its own class.
+     * @param pVerticesOldFont The vertices and their old font.
      * @param pNewFont The new font-type.
      */
-    public EditFontVerticesParam(Map<Integer,String> vertices, String pNewFont) {
-        this.vertices = vertices;
+    public EditFontVerticesParam(Map<Vertex, Pair<String,String>> pVerticesOldFont, String pNewFont) {
+        this.verticesOldFont = pVerticesOldFont;
         this.newFont = pNewFont;
     }
 }

@@ -4,9 +4,6 @@ import graph.graph.Edge;
 import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
-
-import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,7 +11,7 @@ import java.util.Map;
  */
 public class AddRemoveEdgesParam extends Param{
     /**
-     * The set of edges bound to their start/ end vertex id
+     * The set of edges(pair describes the repspective start-vertex and sink-vertex) bound to their edge-type.
      */
     @Getter
     private Map<Pair<Integer,Integer>,Edge> edges;
@@ -26,4 +23,8 @@ public class AddRemoveEdgesParam extends Param{
         this.edges = pListOfEdges;
     }
 
+    @Override
+    public String convertToJson() {
+        return null;
+    }
 }
