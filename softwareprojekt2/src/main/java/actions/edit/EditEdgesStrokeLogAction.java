@@ -10,11 +10,9 @@ import log_management.parameters.edit.EditEdgesStrokeParam;
 public class EditEdgesStrokeLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
-     *
-     * @param pStroke The new stroke.
      */
-    public EditEdgesStrokeLogAction(String pStroke) {
-        super(LogEntryName.EDIT_EDGES_SIZE);
+    public EditEdgesStrokeLogAction() {
+        super(LogEntryName.EDIT_EDGES_STROKE);
         throw new UnsupportedOperationException();
     }
 
@@ -24,7 +22,7 @@ public class EditEdgesStrokeLogAction extends LogAction {
      * @param pEdgesSizeParam The used parameters.
      */
     public EditEdgesStrokeLogAction(EditEdgesStrokeParam pEdgesSizeParam) {
-        super(LogEntryName.EDIT_EDGES_SIZE);
+        super(LogEntryName.EDIT_EDGES_STROKE);
         throw new UnsupportedOperationException();
     }
 

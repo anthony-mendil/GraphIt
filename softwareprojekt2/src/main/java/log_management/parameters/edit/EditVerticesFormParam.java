@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameterobject of the action EditVerticesFormLogAction.
+ * Parameter object of the action EditVerticesFormLogAction.
  */
 public class EditVerticesFormParam extends Param{
     /**
-     * The set of vertices and their old shapes.
+     * The set of vertices and their old shapes/ annotation.
      */
     @Getter
     Map<Integer, Pair<String,Shape>> verticesShape;
@@ -25,8 +25,8 @@ public class EditVerticesFormParam extends Param{
     private Shape newShape;
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pVerticesShape The vertices and their old shape.
+     * Creates a parameter object of its own class.
+     * @param pVerticesShape The vertices and their old shape/ annotation.
      * @param pNewShape The new shape.
      */
     public EditVerticesFormParam(Map<Integer, Pair<String,Shape>> pVerticesShape, Shape pNewShape) {

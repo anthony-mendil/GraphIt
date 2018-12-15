@@ -5,9 +5,6 @@ import log_management.LogEntryName;
 import log_management.parameters.edit.EditFontSphereParam;
 
 /*
- *  ([shift+]linksclick, bereich markieren) Sphäre/Symptom -> GUI Button Schriftart
- *
- *
  * Changes the font of annotations.
  */
 public class EditFontSphereLogAction extends LogAction {
@@ -17,7 +14,7 @@ public class EditFontSphereLogAction extends LogAction {
      * @param pFont the font-name.
      */
     public EditFontSphereLogAction(String pFont) {
-        super(LogEntryName.EDIT_FONT);
+        super(LogEntryName.EDIT_FONT_SPHERE);
     }
 
     /**
@@ -26,7 +23,7 @@ public class EditFontSphereLogAction extends LogAction {
      * @param parameters the EditFontSphereParam containing the new font and the sphere
      */
     public EditFontSphereLogAction(EditFontSphereParam parameters) {
-        super(LogEntryName.EDIT_FONT);
+        super(LogEntryName.EDIT_FONT_SPHERE);
     }
 
     @Override

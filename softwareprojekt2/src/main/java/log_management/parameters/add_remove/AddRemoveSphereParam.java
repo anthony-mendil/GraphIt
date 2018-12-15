@@ -17,7 +17,7 @@ public class AddRemoveSphereParam extends Param{
     private Sphere sphere;
 
     /**
-     * Creates a parameterobject of its own class.
+     * Creates a parameter object of its own class.
      * @param pSphere The target sphere.
      */
     public AddRemoveSphereParam(Sphere pSphere) {

@@ -15,6 +15,11 @@ public interface ObserverSyndrom {
     void updateFunctionMode();
 
     /**
+     * calls if the function mode changed into edit mode
+     */
+    void updateEditMode();
+
+    /**
      * calls if a new graph was created/ imported
      */
     void updateNewGraph();

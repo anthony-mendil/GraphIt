@@ -11,11 +11,6 @@ import log_management.parameters.move.LayoutParam;
 public class LayoutGraphLogAction extends LogAction {
 
     /**
-     * the old layout
-     */
-    Layout oldLayout;
-
-    /**
      * Layouts the graph (including all vertices) according to the defined layout.
      */
     public LayoutGraphLogAction() {

@@ -1,11 +1,14 @@
 package actions;
 
+import com.google.inject.Inject;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
+import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.picking.SyndromPickSupport;
+import gui.Values;
 import lombok.NonNull;
 
 /**
@@ -36,6 +39,15 @@ public abstract class GraphAction extends Action {
      */
     @NonNull
     private VisualizationViewer<Vertex,Edge> visualizationViewer;
+
+    /**
+     * the syndrom to work with
+     */
+    @Inject
+    private Syndrom syndrom;
+
+    @Inject
+    private Values values;
 
     /**
      * sets layout, graph, pickSupport from the current syndrom presentation

@@ -15,9 +15,9 @@ public class AddEdgesLogAction extends LogAction {
     /**
      * Constructor in case several edges shall be added.
      *
-     * @param pCollectionPair the collection includes pairs of vertices between which one edge should be added
+     * @param pPair a pair of vertices between which one edge should be added
      */
-    public AddEdgesLogAction(Collection<Pair<Vertex, Vertex>> pCollectionPair) {
+    public AddEdgesLogAction(Pair<Vertex, Vertex> pPair) {
         super(LogEntryName.ADD_EDGES);
         throw new UnsupportedOperationException();
     }

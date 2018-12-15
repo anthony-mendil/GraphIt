@@ -1,7 +1,5 @@
 package gui;
 
-import graph.graph.Syndrom;
-import graph.graph.Values;
 import javafx.stage.Stage;
 
 public class Main {

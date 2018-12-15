@@ -37,15 +37,8 @@ public class AddVerticesLogAction extends LogAction {
      * @param point point of the mouse event where the vertex should be added
      */
     public AddVerticesLogAction(Point2D point) {
-        super(LogEntryName.ADD_VERTEX);
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Adds all vertices that are picked.
-     */
-    public AddVerticesLogAction() {
         super(LogEntryName.ADD_VERTICES);
+        throw new UnsupportedOperationException();
     }
 
     @Override

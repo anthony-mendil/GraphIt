@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.List;
 /**
- * Parameterobject of the action ActivateFadeoutLogAction andDeactivateFadeoutLogAction.
+ * Parameter object of the action ActivateFadeoutLogAction and DeactivateFadeoutLogAction.
  */
 public class ActivateDeactivateFadeoutParam extends Param{
     /**
@@ -21,7 +21,7 @@ public class ActivateDeactivateFadeoutParam extends Param{
     private List<Integer> edgesId;
 
     /**
-     * Creates an paramterobject of its own class.
+     * Creates an parameter object of its own class.
      * @param pVerticesId The list of vertices to work on.
      * @param pEdgesId The list of edges to work on.
      */

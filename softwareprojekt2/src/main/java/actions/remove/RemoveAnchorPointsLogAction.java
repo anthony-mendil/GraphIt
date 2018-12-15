@@ -6,29 +6,17 @@ import log_management.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 
 
+import java.awt.geom.Point2D;
 import java.util.Collection;
 
 /**
  * Removes anchor points from the syndrom-graph.
  */
 public class RemoveAnchorPointsLogAction extends LogAction {
-    /**
-     * all edge containing the anchor points which should be removed
-     */
-    Collection<Edge> edges;
 
     /**
-     * Removes all anchor points of the passed edges.
-     *
-     * @param edges collection with edges, if the edge has a anchor point the anchor point will be removed
-     */
-    public RemoveAnchorPointsLogAction(Collection<Edge> edges) {
-        super(LogEntryName.REMOVE_ANCHOR_POINTS);
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Removes all anchor points of every edge.
+     * Removes all anchor points of every (picked) edge.
+     * Gets the picked edges through picksupport.
      */
     public RemoveAnchorPointsLogAction() {
         super(LogEntryName.REMOVE_ANCHOR_POINTS);

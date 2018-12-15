@@ -3,11 +3,9 @@ package actions.edit.font;
 import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditFontSphereParam;
+import log_management.parameters.edit.EditFontVerticesParam;
 
 /*
- *  ([shift+]linksclick, bereich markieren) Sphäre/Symptom -> GUI Button Schriftart
- *
- *
  * Changes the font of annotations.
  */
 public class EditFontVertexLogAction extends LogAction {
@@ -17,7 +15,7 @@ public class EditFontVertexLogAction extends LogAction {
      * @param pFont the font-name.
      */
     public EditFontVertexLogAction(String pFont) {
-        super(LogEntryName.EDIT_FONT);
+        super(LogEntryName.EDIT_FONT_VERTICES);
     }
 
     /**
@@ -25,8 +23,8 @@ public class EditFontVertexLogAction extends LogAction {
      *
      * @param parameters the EditFontSphereParam containing the new font and a collection of vertices
      */
-    public EditFontVertexLogAction(EditFontSphereParam parameters) {
-        super(LogEntryName.EDIT_FONT);
+    public EditFontVertexLogAction(EditFontVerticesParam parameters) {
+        super(LogEntryName.EDIT_FONT_VERTICES);
     }
 
     @Override

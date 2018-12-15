@@ -7,7 +7,7 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
- * Parameterobject of the action EditSphereColorLogAction.
+ * Parameter object of the action EditSphereColorLogAction.
  */
 public class EditSphereColorParam extends Param{
     /**
@@ -32,7 +32,7 @@ public class EditSphereColorParam extends Param{
     private Color newColor;
 
     /**
-     * Creates a parameterobject of its own class.
+     * Creates a parameter object of its own class.
      * @param pSphereId The sphere-Id to change the color of.
      * @param pSphereAnnotation The annotation of the sphere.
      * @param pOldColor The old color of the sphere.

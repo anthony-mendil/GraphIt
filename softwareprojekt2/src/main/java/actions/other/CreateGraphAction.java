@@ -3,8 +3,6 @@ package actions.other;
 import actions.GraphAction;
 
 /*
- *  Aktionsleiste -> Datei.. -> Neuer/Neue Graph/Datei...
- *
  * Creates a new graph.
  *
  */

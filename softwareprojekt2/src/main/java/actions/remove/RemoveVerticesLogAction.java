@@ -7,11 +7,6 @@ import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.util.Collection;
 
-/*
-    ([shift+]linksclick, bereich markieren) alle Knoten markieren (markieren auch über Übersicht) -> GUI-Button Delete(Symptom)
-    ([shift+]linksclick, bereich markieren) alle Knoten markieren "" -> Rechtsclick auf Knoten -> Drop-Down-Menü -> Löschen
- */
-
 /**
  * Removes vertices from the syndrom-graph.
  */
@@ -24,10 +19,9 @@ public class RemoveVerticesLogAction extends LogAction {
 
     /**
      * Removes all passed vertices from the graph.
-     *
-     * @param vertices collection of vertices which should be removed
+     * Gets the picked vertices through picksupport
      */
-    public RemoveVerticesLogAction(Collection<Vertex> vertices) {
+    public RemoveVerticesLogAction() {
         super(LogEntryName.REMOVE_VERTICES);
     }
 

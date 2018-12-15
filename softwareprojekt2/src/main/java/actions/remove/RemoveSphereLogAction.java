@@ -5,13 +5,6 @@ import graph.graph.Sphere;
 import log_management.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
-
-/*
-    linksclick Sphäre auswählen (markieren auch über Übersicht) -> GUI Button Delete(Sphäre)
-    GUI Button Delete(Sphäre) -> Sphäre auswählen (markieren auch über Übersicht)
-    Rechtsclick auf Sphäre -> Drop-Down-Menü -> Löschen
- */
-
 /**
  * Removes a sphere from the syndrom-graph.
  */
@@ -21,13 +14,12 @@ public class RemoveSphereLogAction extends LogAction {
      */
     private Sphere sphere;
 
-
     /**
      * Removes the passed sphere from the graph.
+     * Gets the picked sphere though picksupport
      *
-     * @param pSphere the sphere to remove
      */
-    public RemoveSphereLogAction(Sphere pSphere) {
+    public RemoveSphereLogAction() {
         super(LogEntryName.REMOVE_SPHERE);
         throw new UnsupportedOperationException();
     }

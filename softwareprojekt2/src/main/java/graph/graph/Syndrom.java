@@ -3,22 +3,16 @@ package graph.graph;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
 import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
 import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
-import graph.algorithmen.predicates.*;
 import graph.visualization.renderers.SyndromRenderer;
-import graph.visualization.transformer.edge.*;
-import graph.visualization.transformer.sphere.*;
-import graph.visualization.transformer.vertex.*;
+import gui.Values;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
-
-import java.util.List;
 
 /**
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualisation

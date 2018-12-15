@@ -49,7 +49,7 @@
     <node x="4965.625" y="744.0">graph.visualization.control</node>
     <node x="5871.5" y="1900.5">graph.visualization.transformer.sphere.SphereShapeTransformer</node>
     <node x="2332.0" y="1284.0">graph.algorithmen.predicates.VertexEdgePredicate</node>
-    <node x="1723.0" y="987.0">graph.graph.Values</node>
+    <node x="1723.0" y="987.0">gui.Values</node>
     <node x="1195.0" y="1900.5">graph.algorithmen.predicates.EdgeIsVisiblePredicate</node>
     <node x="481.0" y="1284.0">graph.algorithmen.predicates.EdgeArrowPredicate</node>
   </nodes>
@@ -284,7 +284,7 @@
       <point x="1005.0" y="2194.0" />
       <point x="0.0" y="37.0" />
     </edge>
-    <edge source="graph.graph.Values" target="graph.graph.Values">
+    <edge source="gui.Values" target="gui.Values">
       <point x="-93.66666666666674" y="345.5" />
       <point x="1769.8333333333333" y="1698.0" />
       <point x="1703.0" y="1698.0" />
@@ -345,7 +345,7 @@
       <point x="3814.3242424242426" y="967.0" />
       <point x="0.0" y="80.5" />
     </edge>
-    <edge source="graph.graph.Values" target="graph.graph.EdgeArrowType">
+    <edge source="gui.Values" target="graph.graph.EdgeArrowType">
       <point x="0.0" y="-345.5" />
       <point x="1863.5" y="967.0" />
       <point x="2153.333333333333" y="967.0" />

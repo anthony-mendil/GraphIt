@@ -12,17 +12,13 @@ import java.util.Collection;
  * Removes edges from the syndrom-graph.
  */
 public class RemoveEdgesLogAction extends LogAction {
-    /**
-     * all edge which should be removed
-     */
-    Collection<Edge> edges;
 
     /**
      * Removes all passed edges from the graph.
+     * Gets the picked edges through picksupport
      *
-     * @param edges collection of edges which should be removed
      */
-    public RemoveEdgesLogAction(Collection<Edge> edges) {
+    public RemoveEdgesLogAction() {
         super(LogEntryName.REMOVE_EDGES);
         throw new UnsupportedOperationException();
     }

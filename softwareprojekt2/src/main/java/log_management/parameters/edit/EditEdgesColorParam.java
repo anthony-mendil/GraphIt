@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameterobject of the action EditEdgesColorLogAction.
+ * Parameter object of the action EditEdgesColorLogAction.
  */
 public class EditEdgesColorParam extends Param{
     /**
@@ -39,7 +39,7 @@ public class EditEdgesColorParam extends Param{
     private Color newColor;
 
     /**
-     * Creates an parameterobject of its own class.
+     * Creates an parameter object of its own class.
      * @param pEdgesId The list of edges.
      * @param pSourceVertices The list of start-vertices and their annotation.
      * @param pTargetVertices The list of target-vertices and their annotation.

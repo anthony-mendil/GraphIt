@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameterobject of the action EditEdgesStrokeLogAction.
+ * Parameter object of the action EditEdgesStrokeLogAction.
  */
 public class EditEdgesStrokeParam extends Param{
     /**
-     * The list of edges getting a new stroke.
+     * The list of edges getting a new stroke
      */
     @Getter
-    Map<Integer, List<Pair<Integer, String>>> edges;
+    List<Integer> edges;
     /**
      * The set of all edges and their old strokes.
      */
@@ -30,12 +30,12 @@ public class EditEdgesStrokeParam extends Param{
     private StrokeType newStroke;
 
     /**
-     * Creates a new parameterobject of its own class.
+     * Creates a new parameter object of its own class.
      * @param pEdges The map of all edges.
      * @param pOldStrokes The set of old strokes.
      * @param pNewStroke The new stroke.
      */
-    public EditEdgesStrokeParam(Map<Integer, List<Pair<Integer, String>>> pEdges, Map<Integer, StrokeType> pOldStrokes,
+    public EditEdgesStrokeParam(List<Integer> pEdges, Map<Integer, StrokeType> pOldStrokes,
                                 StrokeType pNewStroke) {
         this.edges = pEdges;
         this.oldStrokes = pOldStrokes;

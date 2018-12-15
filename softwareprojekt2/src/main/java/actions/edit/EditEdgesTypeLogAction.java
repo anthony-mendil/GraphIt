@@ -33,12 +33,9 @@ public class EditEdgesTypeLogAction extends LogAction {
     }
 
     /**
-     * Changes the edge type from all passed edges
-     *
-     * @param edges    the collection of edges where to change the edge type
-     * @param edgeType the new edge type
+     * Changes the edge type from all passed edges     *
      */
-    public EditEdgesTypeLogAction(Collection<Edge> edges, EdgeArrowType edgeType) {
+    public EditEdgesTypeLogAction() {
         super(LogEntryName.EDIT_EDGES_TYPE);
         throw new UnsupportedOperationException();
     }

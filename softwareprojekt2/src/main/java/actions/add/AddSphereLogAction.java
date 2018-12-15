@@ -6,11 +6,6 @@ import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 import java.awt.geom.Point2D;
 
-/*
-    GUI Button Sphäre hinzufügen
-    rechtsclick auf Arbeitsfläche -> Drop-Down-Menu -> Sphäre hinzufügen
- */
-
 /**
  * Adds a sphere to the graph.
  */

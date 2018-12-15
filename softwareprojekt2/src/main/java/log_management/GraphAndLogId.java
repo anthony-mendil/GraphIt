@@ -7,6 +7,7 @@ public class GraphAndLogId implements Serializable {
     protected int graphId;
 
     public GraphAndLogId() {
+        throw new UnsupportedOperationException();
     }
 
     public GraphAndLogId(int id, int graphId) {

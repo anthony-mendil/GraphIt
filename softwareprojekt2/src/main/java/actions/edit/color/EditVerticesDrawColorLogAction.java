@@ -4,19 +4,18 @@ import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditVerticesColorParam;
 
+import java.awt.*;
+
 /*
-    ([shift+]linksclick, bereich markieren) Sphäre markieren -> GUI Button Farbe
-    ([shift+]linksclick, bereich markieren) Sphäre markieren -> rechtsclick auf Sphäre ->
-     neuer Drop-Down-Menü -> Standard-Farben
- *
  * Changes the color of a single/several vertices.
  */
-public class EditVerticesColorLogAction extends LogAction {
+public class EditVerticesDrawColorLogAction extends LogAction {
     /**
-     * Constructor in case the user changes the color of a single/multiple vertex.
+     * Constructor in case the user changes the color of a single/multiple vertices.
+     * Gets the vertices though picksupport.
      */
-    public EditVerticesColorLogAction() {
-        super(LogEntryName.EDIT_VERTICES_COLOR);
+    public EditVerticesDrawColorLogAction() {
+        super(LogEntryName.EDIT_VERTICES_DRAW_COLOR);
     }
 
     /**
@@ -24,8 +23,8 @@ public class EditVerticesColorLogAction extends LogAction {
      *
      * @param pEditVerticesColorParam The used parameters.
      */
-    public EditVerticesColorLogAction(EditVerticesColorParam pEditVerticesColorParam) {
-        super(LogEntryName.EDIT_VERTICES_COLOR);
+    public EditVerticesDrawColorLogAction(EditVerticesColorParam pEditVerticesColorParam) {
+        super(LogEntryName.EDIT_VERTICES_DRAW_COLOR);
     }
 
     @Override

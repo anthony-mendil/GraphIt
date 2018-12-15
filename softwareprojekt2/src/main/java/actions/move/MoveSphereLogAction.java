@@ -22,7 +22,6 @@ public class MoveSphereLogAction extends LogAction {
         super(LogEntryName.MOVE_SPHERE);
     }
 
-
     /**
      * Moves the sphere from its old to the new position
      *

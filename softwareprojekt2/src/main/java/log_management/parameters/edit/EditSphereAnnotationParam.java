@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * Parameterobject of the action EditSphereLogAction.
+ * Parameter object of the action EditSphereLogAction.
  */
 public class EditSphereAnnotationParam extends Param{
     /**
@@ -26,7 +26,7 @@ public class EditSphereAnnotationParam extends Param{
     private String newAnnotation;
 
     /**
-     * Creates a parameterobject of its own class.
+     * Creates a parameter object of its own class.
      * @param pSphereId The sphere-Id.
      * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.

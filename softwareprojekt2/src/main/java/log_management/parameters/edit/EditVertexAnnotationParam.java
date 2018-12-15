@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * Parameterobject of the action EditVErtexAnnotationLogAction.
+ * Parameter object of the action EditVertexAnnotationLogAction.
  */
 public class EditVertexAnnotationParam extends Param{
     /**
@@ -26,7 +26,7 @@ public class EditVertexAnnotationParam extends Param{
     private String newAnnotation;
 
     /**
-     * Creates a parameterobject of its own class.
+     * Creates a parameter object of its own class.
      * @param pVertexId The vertex-Id.
      * @param pOldAnnotation The old annotation of it.
      * @param pNewAnnotation The new annotation.

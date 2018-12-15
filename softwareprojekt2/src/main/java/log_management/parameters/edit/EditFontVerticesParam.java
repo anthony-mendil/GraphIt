@@ -4,21 +4,17 @@ import log_management.parameters.Param;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
- * Parameterobject of the action EditFontLogAction.
+ * Parameter object of the action EditFontLogAction.
  */
 public class EditFontVerticesParam extends Param {
     /**
-     * The text, which have to been changed.
+     * map of vertex ids to old fonts
      */
     @Getter
-    private String text;
-    /**
-     * The old font-type.
-     */
-    @Getter
-    private String oldFont;
+    private Map<Integer,String> vertices;
     /**
      * The new font-type.
      */
@@ -28,15 +24,13 @@ public class EditFontVerticesParam extends Param {
     // A:Unfortunately no :( . But I am not actually sure about it, just pretending.
 
     /**
-     * Creates a parameterobject of its own class.
+     * Creates a parameter object of its own class.
      *
-     * @param pOldFont The old font-type.
+     * @param vertices The old font-type.
      * @param pNewFont The new font-type.
-     * @param pText    TODO
      */
-    public EditFontVerticesParam(String pText, String pOldFont, String pNewFont) {
-        this.text = pText;
-        this.oldFont = pOldFont;
+    public EditFontVerticesParam(Map<Integer,String> vertices, String pNewFont) {
+        this.vertices = vertices;
         this.newFont = pNewFont;
     }
 }

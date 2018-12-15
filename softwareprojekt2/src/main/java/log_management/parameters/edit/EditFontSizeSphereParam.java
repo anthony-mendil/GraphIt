@@ -6,14 +6,14 @@ import lombok.Getter;
 import java.io.Serializable;
 
 /**
- * Parameterobject of the action EditFontSizeLogAction.
+ * Parameter object of the action EditFontSizeSphereLogAction.
  */
 public class EditFontSizeSphereParam extends Param{
     /**
-     * The target text.
+     * The target sphere id.
      */
     @Getter
-    private String text;
+    private Integer id;
     /**
      * The old size of the font.
      */
@@ -28,13 +28,13 @@ public class EditFontSizeSphereParam extends Param{
     // A:Like I said, no!! But I am not sure about it.
 
     /**
-     * Creates a parameterobject of its own class.
-     * @param pText The target text.
+     * Creates a parameter object of its own class.
+     * @param id the id of the sphere
      * @param pOldFontSize The old font size.
      * @param pNewFontSize The new font size.
      */
-    public EditFontSizeSphereParam(String pText, int pOldFontSize, int pNewFontSize) {
-        this.text = pText;
+    public EditFontSizeSphereParam(Integer id, int pOldFontSize, int pNewFontSize) {
+        this.id = id;
         this.oldFontSize = pOldFontSize;
         this.newFontSize = pNewFontSize;
     }

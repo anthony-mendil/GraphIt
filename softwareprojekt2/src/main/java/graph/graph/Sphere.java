@@ -29,12 +29,6 @@ public class Sphere {
     private Paint fillPaint;
 
     /**
-     * the draw color of the sphere
-     */
-    @NonNull
-    private Paint drawPaint;
-
-    /**
      * the coordinate where the sphere is set. The coordinate refers to the upper left corner of a sphere. A sphere can
      * not be positioned where another sphere is already located.
      */

@@ -1,6 +1,8 @@
-package graph.graph;
+package gui;
 
 import com.google.inject.Singleton;
+import graph.graph.EdgeArrowType;
+import graph.graph.FunctionMode;
 import gui.GraphButtonType;
 import lombok.*;
 
@@ -14,11 +16,6 @@ import java.awt.*;
 @Data
 @Singleton
 public class Values {
-    /**
-     * the draw paint color of a sphere
-     */
-    @NonNull
-    private Paint drawPaintSphere = null;
 
     /**
      * the fill paint color
@@ -157,7 +154,17 @@ public class Values {
      */
     private GraphButtonType graphButtonType;
 
-   public Values(){
+    /**
+     * the current application mode
+     */
+    private FunctionMode mode;
+
+    /**
+     * the current language of the objects
+     */
+    private String objectLanguage;
+
+    public Values(){
        throw new UnsupportedOperationException();
    }
 }

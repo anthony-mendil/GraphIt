@@ -18,7 +18,7 @@ public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
     private List<Edge> edges;
 
     /**
-     * Creates a parameterobject of its own class.
+     * Creates a parameter object of its own class.
      * @param pEdges The list of edges.
      */
     public ActivateDeactivateAnchorPointsFadeoutParam(List<Edge> pEdges) {

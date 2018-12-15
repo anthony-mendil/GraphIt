@@ -4,19 +4,18 @@ import actions.LogAction;
 import log_management.LogEntryName;
 import log_management.parameters.edit.EditEdgesColorParam;
 
-/*
-    ([shift+]linksclick, bereich markieren) Kanten markieren -> GUI Button Farbe
-    ([shift+]linksclick, bereich markieren) Kanten markieren -> rechtsclick auf Kante ->
-     neuer Drop-Down-Menü -> Standard-Farben
+import java.awt.*;
 
+/*
  * Changes the color of the selected edges.
  */
 public class EditEdgesColorLogAction extends LogAction {
     /**
      * Constructor in case the user changes the color of all/several edges.
+     * Gets the picked edges through picksupport
      */
     public EditEdgesColorLogAction() {
-        super(LogEntryName.EDIT_EDGE_COLOR);
+        super(LogEntryName.EDIT_EDGES_COLOR);
     }
 
     /**
@@ -25,7 +24,7 @@ public class EditEdgesColorLogAction extends LogAction {
      * @param parameters The used parameters.
      */
     public EditEdgesColorLogAction(EditEdgesColorParam parameters) {
-        super(LogEntryName.EDIT_EDGE_COLOR);
+        super(LogEntryName.EDIT_EDGES_COLOR);
     }
 
     @Override

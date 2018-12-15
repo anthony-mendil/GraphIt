@@ -14,13 +14,13 @@ import java.util.Map;
  */
 public class AddRemoveEdgesParam extends Param{
     /**
-     * The set of edges bound to their edge-type.
+     * The set of edges bound to their start/ end vertex id
      */
     @Getter
     private Map<Pair<Integer,Integer>,Edge> edges;
     /**
-     * Creates an parameterobject of its own class.
-     * @param pListOfEdges List of edges and the edge-type.
+     * Creates an parameter object of its own class.
+     * @param pListOfEdges List of edges and their start/ end vertex id
      */
     public AddRemoveEdgesParam(Map<Pair<Integer,Integer>,Edge> pListOfEdges){
         this.edges = pListOfEdges;

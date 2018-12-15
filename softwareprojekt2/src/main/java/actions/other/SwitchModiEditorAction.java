@@ -1,20 +1,27 @@
 package actions.other;
 
 import actions.GraphAction;
+import graph.graph.FunctionMode;
+
+import java.util.function.Function;
 
 /*
- *   GUI-Button Auswerter-Modus
- *   GUI-Button Ersteller-Modus
- *   GUI-Button Vorlage-Modus
- *
  * Changes the mode either to "Ersteller"/"Betrachter"
  */
 public class SwitchModiEditorAction extends GraphAction {
     /**
+     * the function mode to change to
+     */
+    private FunctionMode mode;
+    /**
+     * the old function mode
+     */
+    private FunctionMode oldMode;
+    /**
      * Constructor in case the user changes the mode.
      */
-    public SwitchModiEditorAction() {
-
+    public SwitchModiEditorAction(FunctionMode mode) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

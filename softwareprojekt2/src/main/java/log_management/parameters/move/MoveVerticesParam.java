@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameterobject for the action MoveVerticesParam.
+ * Parameter object for the action MoveVerticesParam.
  */
 public class MoveVerticesParam extends Param{
     /**
@@ -40,7 +40,7 @@ public class MoveVerticesParam extends Param{
     private Point2D newPoint;
 
     /**
-     * Creates a paramterobject of its own class.
+     * Creates a parameter object of its own class.
      * @param pVertices The selected vertices.
      * @param pOldSphere The old sphere.
      * @param pNewSphereId The new sphere.

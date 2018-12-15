@@ -1,16 +1,13 @@
 package gui;
 
-import actions.ActionHistory;
 import actions.ObserverSyndrom;
 import com.google.inject.Inject;
 import graph.graph.Syndrom;
-import graph.graph.Values;
 import javafx.embed.swing.SwingNode;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import log_management.dao.Dao;
 import log_management.dao.LogDao;
 
 import javax.swing.*;

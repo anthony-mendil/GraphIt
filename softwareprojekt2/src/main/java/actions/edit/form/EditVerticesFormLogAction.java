@@ -7,18 +7,14 @@ import log_management.parameters.edit.EditVerticesFormParam;
 import java.awt.*;
 
 /*
- *  ([shift+]linksclick, bereich markieren) Sphäre markieren -> GUI Button Form
- *   ([shift+]linksclick, bereich markieren) Sphäre markieren -> rechtsclick auf Sphäre -> Form -> neuer Drop-Down-Menü
- *
  * Changes the form of the selected vertices.
  */
 public class EditVerticesFormLogAction extends LogAction {
     /**
      * Constructor in case the user changes the form of the selected vertices.
-     *
-     * @param pShape The new shape.
+     * Gets the picked vertices though picksupport.
      */
-    public EditVerticesFormLogAction(Shape pShape) {
+    public EditVerticesFormLogAction() {
         super(LogEntryName.EDIT_VERTICES_FORM);
     }
 
