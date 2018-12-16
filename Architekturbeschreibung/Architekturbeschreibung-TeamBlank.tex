@@ -1991,7 +1991,7 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 		\item der Ersteller gibt den Namen der Sphäre ein
 		\item der Ersteller markiert die Sphäre
 		\item der Ersteller klickt den \textit{Farbe ändern}- Button 
-		\item das System öffnet einen Color- Picker 
+		\item das System öffnet einen Color-Picker 
 		\item der Ersteller wählt eine Farbe
 		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
 		\item das System öffnet ein Menü
@@ -1999,17 +1999,13 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
 		\item das System öffnet ein Menü
 		\item der Ersteller klickt \textit{Sphäre Farbe blockieren}
-		\item der Ersteller klickt den Button \textit{Undo}
-		\item der Ersteller wählt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
-		\item das System öffnet ein Pop-up-Fenster 
-		\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{Exportieren}
 	\end{itemize}
 	\\\hline
 	\textbf{Varianten}: Der Ersteller könnte weitere Element zur der Vorlage hinzufügen und eine maximale Anzahl für die Elemente setzen. 
 	\\\hline
-	\textbf{Nachbedingung}: Der Ersteller hat eine Vorlage exportiert. Er könnte nun in den Bearbeiter- Modus wechseln und dort die Vorlage bearbeiten. 
+	\textbf{Nachbedingung}: Der Ersteller hat eine Vorlage erstellt. Diese kann der Ersteller nun exportieren und als Vorlage nutzen.
 	\\\hline
-	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller vergisst die GXL zu exportieren  $\rightarrow$ beim erneuten Start kann der Ersteller sich seine letzten Projekte anzeigen lassen und sein letztes Projekt auswählen. 
+	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller vergisst am Ende Rahmenbedingungen zu setzen $\rightarrow$ Für den Fall, dass der Ersteller dies gespeichert hat, kann der Ersteller das Projekt neu importieren und dann die Regeln festlegen.
 	\\\hline
 \end{tabular}
 
@@ -2029,16 +2025,12 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 	\hline
 	\textbf{Akteure}:  Bearbeiter
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geschlossen, die Vorlage in Form einer GXL-Datei ist vom Computer aus zugreifbar. \\ 
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet, die Vorlage in Form einer GXL-Datei ist schon importiert. \\ 
 	\textit{Ziel}: Vorlage modifizieren und als neuen Datentyp speichern.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
 	\itemsep-0.7em
-	\item der Bearbeiter öffnet die Applikation und drückt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{GXL importieren}
-	\item das System öffnet ein Pop-Up Fenster
-	\item der Bearbeiter gibt den Speicherpfad der GXL-Vorlage an und klickt auf \textit{Ok}
-	\item das System öffnet ein Syndromansatz 
 	\item der Bearbeiter klickt mit einem Rechtsklick auf eine Sphäre
 	\item das System öffnet ein Menü
 	\item der Bearbeiter klickt auf \textit{Knoten hinzufügen}
@@ -2107,8 +2099,8 @@ Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüf
 	\item der Auswerter klickt auf \textit{Ausblenden}
 	\item der Auswerter klickt auf den Menüpunkt \textit{Relationtyp} $\rightarrow$ \textit{nur verstärkend}
 	\item der Auswerter klickt unter Zoom auf den \textit{Minus}-Button
-	\item der Auswerter gibt \textit{Strg-Z} in die Tastatur 
-	\item der Auswerter gibt \textit{Strg-Y} in die Tastatur 
+	\item der Auswerter klickt auf \textit{undo}
+	\item der Auswerter klickt auf \textit{redo} 
 	\item der Auswerter klickt mit einem Rechtsklick auf einen Knoten
 	\item das System öffnet ein Menü
 	\item der Auswerter klickt auf \textit{hervorheben}
@@ -2184,46 +2176,41 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 
 \newpage
 
-\subsection{Anwendungsfall: Ein Lehrer stellt das Programm ein und erstellt einen Graphen}
+\subsection{Anwendungsfall: Ein Lehrer importiert einen Graphen und exportiert diesen}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A5: Ersteller stellt Programm ein und erstellt einen Graphen}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A5: Bearbeiter importiert einen Graphen und exportiert diesen}} \\\hline
 	\hline
-	\textbf{Akteure}: Ersteller
+	\textbf{Akteure}: Bearbeiter
 	\\\hline
 	\textbf{Vorbedingungen}: Das Programm ist geöffnet.\\ 
-	\textit{Ziel}: System personalisieren und Graph ausdrucken.
+	\textit{Ziel}: Graphen importieren und exportieren.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
 	\itemsep-0.7em
-	\item der Ersteller klickt auf den Menüpunkt \textit{Optionen} $\rightarrow$ \textit{Standardwerte festlegen}
-	\item das System öffnet ein Menü
-	\item der Ersteller klickt auf den Menüpunkt \textit{Schriftart} $\rightarrow$ \textit{Arial}
-	\item der Ersteller klickt auf den Menüpunkt \textit{Erstellen: Anzahl Sphären} $\rightarrow$ \textit{6} 
-	\item der Ersteller klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Neuen Graph erstellen}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{GXL-importieren}
 	\item das System öffnet ein Pop-Up-Eingabefeld
-	\item der Ersteller gibt den Namen des Graphen an und klickt \textit{Ok} 
-	\item der Ersteller klickt auf den Menüpunkt \textit{exportieren als} $\rightarrow$ \textit{PDF}
+	\item der Bearbeiter gibt den Speicherpfad des Graphen an und klickt \textit{Ok} 
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{exportieren als} $\rightarrow$ \textit{PDF}
 	\item das System öffnet ein Pop-Up-Fenster
-	\item der Ersteller gibt einen Speicherpfad an und drückt auf Button \textit{Exportieren}
-	\item der Ersteller klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Speichern unter}
+	\item der Bearbeiter gibt einen Speicherpfad an und drückt auf Button \textit{Exportieren}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Speichern unter}
 	\item das System öffnet ein Pop-Up-Fenster
-	\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{Speichern}
-	\item der Ersteller klickt auf den Menüpunkt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
+	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{Speichern}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
 	\item das System öffnet ein Pop-Up-Fenster
-	\item der Ersteller klickt auf den Menüpunkt \textit{Maximale Knoten} $\rightarrow$ \textit{35}
-	\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{Exportieren}
-	\item der Ersteller klickt auf den Menüpunkt \textit{Hilfe}
+	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{Exportieren}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Hilfe}
 	\item das System öffnet ein Pop-Up-Fenster
 \end{itemize}
 	\\\hline
-	\textbf{Varianten}: Der Ersteller kann sehr viele verschieden Standardwerte festlege und diese auch miteinander kombinieren.
+	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter viele Exporte verschiedener Versionen hat.
 	\\\hline
-	\textbf{Nachbedingung}: Das Programm ist nun nach den Wünschen des Benutzers eingestellt. Der Graph ist im GXL-Format und auch als PDF gespeichert. Dieser könnte der Ersteller in ausgedruckter Variante vervielfältigen.
+	\textbf{Nachbedingung}: Der Graph ist nun importiert. Der Graph ist im GXL-Format und auch als PDF gespeichert. Dieser könnte der Ersteller in ausgedruckter Variante vervielfältigen.
 	\\\hline
-	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Ersteller könnte sehr ungünstige Standardwerte ausgewählt haben. Sollte dies der Fall sein, so kann der Benutzer jederzeit die Standardwerte neu setzen.
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte nun im Bearbeitermodus den Graphen modifizieren.
 	\\\hline
 \end{tabular}\\ \\ \\
 
