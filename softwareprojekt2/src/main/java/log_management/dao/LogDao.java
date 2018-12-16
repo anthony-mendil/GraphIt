@@ -14,7 +14,7 @@ public class LogDao implements Dao<Log> {
     /**
      *  EntityManager instance is associated with the persistence context
      */
-    private EntityManager entityManager;
+    private static EntityManager entityManager = PersonalEntityManager.getInstance();
 
     /**
      * return a logs object, attribute parameter gets converted from string to object with jackson
@@ -60,6 +60,8 @@ public class LogDao implements Dao<Log> {
      */
     @Override
     public void save(Log log) {
+
+        int i = GraphDao.currentId;
         throw new UnsupportedOperationException();
     }
 
