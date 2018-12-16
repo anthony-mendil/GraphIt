@@ -19,7 +19,6 @@ public class Values {
      * the default width sphere
      */
     @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     private static final double defaultWidthSphere = -1;
     /**
      * the default height of a sphere
@@ -68,7 +67,6 @@ public class Values {
     /**
      * the default layout size
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final Dimension defaultLayoutSize = null;
     /**

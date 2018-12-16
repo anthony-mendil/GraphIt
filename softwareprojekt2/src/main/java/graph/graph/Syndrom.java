@@ -3,6 +3,7 @@ package graph.graph;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
 import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -18,6 +19,8 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
+import java.awt.*;
+
 /**
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualisation
  * viewer. Visual properties of the spheres, vertices and edges are set via transformers. These are assigned to the
@@ -29,7 +32,6 @@ public class Syndrom {
     /**
      * the visualisation viewer of syndrom. It contains the layout and graph.
      */
-    @Setter(AccessLevel.NONE)
     private final VisualizationViewer<Vertex, Edge> vv;
     /**
      * template rules for the graph/ layout
@@ -38,12 +40,10 @@ public class Syndrom {
     /**
      * the layout of syndrom
      */
-    @Setter(AccessLevel.NONE)
     private Layout<Vertex, Edge> layout;
     /**
      * the internal state of the syndrom-graph
      */
-    @Setter(AccessLevel.NONE)
     private SyndromGraph<Vertex, Edge> graph;
     /**
      * Defines a functor that performs a predicates test on edges for filtering the edge types of the edges.

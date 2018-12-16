@@ -9,10 +9,6 @@ import log_management.parameters.add_remove.AddRemoveSphereParam;
  * Removes a sphere from the syndrom-graph.
  */
 public class RemoveSphereLogAction extends LogAction {
-    /**
-     * the sphere which should be removed
-     */
-    private Sphere sphere;
 
     /**
      * Removes the passed sphere from the graph.

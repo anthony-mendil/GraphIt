@@ -14,6 +14,7 @@ import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -43,7 +44,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Creates a new syndrom graph.
      */
-    public SyndromGraph(int id) {
+    public SyndromGraph() {
         super();
         throw new UnsupportedOperationException();
     }
@@ -130,6 +131,14 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @return a filtered list with spheres
      */
     public List<Sphere> getFilteredEdgeType() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * a map mapping from the dimensions to its values
+     * @return the dimensions
+     */
+    public Map<String, Integer> dimensions(){
         throw new UnsupportedOperationException();
     }
 }

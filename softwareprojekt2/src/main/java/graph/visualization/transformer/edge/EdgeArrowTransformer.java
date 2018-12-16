@@ -4,6 +4,7 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import graph.graph.EdgeArrowType;
+import graph.visualization.util.SyndromArrowFactory;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -30,6 +31,11 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
      * the shape of the neutral arrow
      */
     private Shape neutralArrow;
+
+    /**
+     * the SyndromArrowFactory to get the right arrow shapes
+     */
+    private SyndromArrowFactory factory;
 
     /**
      * Creates a edge arrow transformer. The radius, width, length and notch depth are set.

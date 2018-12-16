@@ -18,38 +18,34 @@ public abstract class GraphAction extends Action {
     /**
      * the internal state of the layout
      */
-    @NonNull
     private Layout layout;
 
     /**
      * the internal state of the graph
      */
-    @NonNull
     private SyndromGraph<Vertex, Edge> graph;
 
     /**
      * the syndrom picksupport, containing all picked spheres/ edges/ vertices
      */
-    @NonNull
     private SyndromPickSupport<Integer, String> pickSupport;
 
     /**
      * the visualisation viewer
      */
-    @NonNull
     private VisualizationViewer<Vertex, Edge> visualizationViewer;
 
     /**
      * the syndrom to work with
      */
     @Inject
-    private Syndrom syndrom;
+    protected Syndrom syndrom;
 
     /**
      * sets layout, graph, pickSupport from the current syndrom presentation
      */
-    public GraphAction() {
-        throw new UnsupportedOperationException();
+    public GraphAction(){
+
     }
 
     @Override

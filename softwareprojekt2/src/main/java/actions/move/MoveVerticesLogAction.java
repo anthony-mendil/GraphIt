@@ -13,10 +13,6 @@ import java.util.Collection;
  * and it must me positioned within a sphere.
  */
 public class MoveVerticesLogAction extends LogAction {
-    /**
-     * the vertices with should be moved.
-     */
-    Collection<Vertex> vertices;
 
     /**
      * Moves all vertices, which are defined in pParam from one to another position

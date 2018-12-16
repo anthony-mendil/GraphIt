@@ -42,7 +42,7 @@ public class GXLio {
      *
      * @return The extracted GXL
      */
-    protected String gxlFromInstance(){
+    public String gxlFromInstance(){
         throw new UnsupportedOperationException();
     }
 
