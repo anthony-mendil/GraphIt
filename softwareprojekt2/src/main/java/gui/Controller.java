@@ -831,6 +831,11 @@ public class Controller implements ObserverSyndrom{
     }
 
     /**
+     * Deletes all Rules that were set before
+     */
+    public void deleteTemplateRules(){throw new UnsupportedOperationException();}
+
+    /**
      * Creates a Window that allows you to set Rules for your Template
      */
     public void createTemplateWindow(){
