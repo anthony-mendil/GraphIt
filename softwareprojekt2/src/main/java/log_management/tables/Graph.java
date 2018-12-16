@@ -8,6 +8,8 @@ public class Graph {
 
     private int id;
 
+    private String gxl;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
@@ -16,5 +18,14 @@ public class Graph {
 
     public void setId(int id) {
         throw new UnsupportedOperationException();
+    }
+
+    @Column(name = "GXL")
+    public String getGxl() {
+        return gxl;
+    }
+
+    public void setGxl(String gxl) {
+        this.gxl = gxl;
     }
 }

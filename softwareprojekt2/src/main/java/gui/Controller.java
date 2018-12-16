@@ -831,6 +831,11 @@ public class Controller implements ObserverSyndrom{
     }
 
     /**
+     * Deletes all Rules that were set before
+     */
+    public void deleteTemplateRules(){throw new UnsupportedOperationException();}
+
+    /**
      * Creates a Window that allows you to set Rules for your Template
      */
     public void createTemplateWindow(){
@@ -870,7 +875,7 @@ public class Controller implements ObserverSyndrom{
     }
 
     /**
-     * the event handler that provides the arguments, needed to use the actions after clicking on a menuitem
+     * The event handler that provides the arguments, needed to use the actions after clicking on a menuitem
      */
     private class MenuItemHandler implements EventHandler<Event>{
         @Override
@@ -879,7 +884,7 @@ public class Controller implements ObserverSyndrom{
     }
 
     /**
-     * the event handler that provides the arguments, needed to use the actions after choosing a colour
+     * The event handler that provides the arguments, needed to use the actions after choosing a colour
      */
     private class ColorPickerHandler implements EventHandler<Event>{
         @Override

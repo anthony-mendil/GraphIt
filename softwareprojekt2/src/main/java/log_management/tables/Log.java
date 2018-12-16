@@ -1,21 +1,17 @@
 package log_management.tables;
 
-import log_management.GraphAndLogId;
 import actions.LogEntryName;
-import log_management.parameters.Param;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @SuppressWarnings("all")
 @Entity
-@IdClass(GraphAndLogId.class)
 @Table(name = "LOGS", schema = "PUBLIC", catalog = "TEST")
 public class Log {
     @Id
     private int id;
-    @Id
-    private int graphId;
+    private Graph graph;
     private LogEntryName logEntryName;
     private String parameters;
     private LocalDateTime time;
@@ -29,13 +25,14 @@ public class Log {
         this.id = id;
     }
 
-    @Column(name = "GRAPHID")
-    public int getGraphId() {
-        return graphId;
+    @ManyToOne
+    @Column(name = "GRAPH")
+    public Graph getGraph() {
+        return graph;
     }
 
-    public void setGraphId(int graphId) {
-        this.graphId = graphId;
+    public void setGraph(Graph graph) {
+        this.graph = graph;
     }
 
     @Enumerated(EnumType.ORDINAL)
@@ -69,7 +66,7 @@ public class Log {
     @Override
     public String toString() {
         return "Id: " + this.getId() +
-                " GraphId: " + this.getGraphId() +
+                " GraphId: " + this.getGraph() +
                 " LogEntryName: " + this.getLogEntryName() +
                 " parameters: " + this.getParameters() +
                 " Time: " + this.getTime();

@@ -14,10 +14,11 @@ import java.util.Optional;
  * The graph log_management.dao class. Manages the data access to the graphs.
  */
 public class GraphDao implements Dao<Graph> {
+    protected static int currentId;
     /**
      *  EntityManager instance is associated with the persistence context
      */
-    private EntityManager entityManager;
+    private static EntityManager entityManager = PersonalEntityManager.getInstance();
     @Override
     public Optional<Graph> get(long id) {
         throw new UnsupportedOperationException();
@@ -30,6 +31,7 @@ public class GraphDao implements Dao<Graph> {
 
     @Override
     public void save(Graph graph) {
+        currentId = graph.getId();
         throw new UnsupportedOperationException();
     }
 
