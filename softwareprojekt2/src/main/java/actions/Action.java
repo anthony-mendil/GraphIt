@@ -33,7 +33,7 @@ public abstract class Action {
     }
 
     /**
-     *
+     * notify the observer if the graph changes
      */
     protected void notifyObserverGraph(){
         for (ObserverSyndrom o: observers) {
@@ -41,15 +41,30 @@ public abstract class Action {
         }
     }
 
+    /**
+     * notify the observer if the application changes the mode
+     */
     protected void notifyObserverFunctionMode(){
         for (ObserverSyndrom o: observers) {
             o.updateFunctionMode();
         }
     }
 
+    /**
+     * notify the observer if a new graph gets loaded
+     */
     protected void notifyObserverNewGraph(){
         for (ObserverSyndrom o: observers) {
             o.updateNewGraph();
+        }
+    }
+
+    /**
+     * notify the observer if the application is in edit mode
+     */
+    protected void notifyObserverEditMode(){
+        for (ObserverSyndrom o: observers) {
+            o.updateEditMode();
         }
     }
 }

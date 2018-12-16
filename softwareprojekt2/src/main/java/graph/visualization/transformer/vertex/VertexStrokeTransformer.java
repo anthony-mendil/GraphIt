@@ -11,7 +11,6 @@ import java.awt.*;
  * @param <V> the vertex type
  */
 public class VertexStrokeTransformer<V> implements Transformer<V, Stroke> {
-    private Stroke defaultStrokeVertex;
 
     @Override
     public Stroke transform(V v) {

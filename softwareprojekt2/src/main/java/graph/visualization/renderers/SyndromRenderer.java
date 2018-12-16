@@ -8,7 +8,9 @@ package graph.visualization.renderers;/*
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
+import edu.uci.ics.jung.visualization.renderers.BasicEdgeRenderer;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
+import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.graph.Sphere;
 
 
@@ -18,6 +20,7 @@ import graph.graph.Sphere;
 public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
 
     private SphereRenderer sphaerenRenderer = new SphereRenderer();
+    private EdgeRenderer edgeRenderer = new EdgeRenderer();
 
     @Override
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {

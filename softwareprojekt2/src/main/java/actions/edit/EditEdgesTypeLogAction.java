@@ -14,20 +14,10 @@ import java.util.Collection;
  */
 public class EditEdgesTypeLogAction extends LogAction {
     /**
-     * all edge  which should get the new EdgeType
-     */
-    Collection<Edge> edges;
-
-    /**
-     * the new edge type
-     */
-    EdgeArrowType edgeType;
-
-    /**
      * Changes the edge type from all passed edges
-     * @param edgeArrowType the new edge type
+     * @param pEdgeArrowType the new edge type
      */
-    public EditEdgesTypeLogAction(EdgeArrowType edgeArrowType) {
+    public EditEdgesTypeLogAction(EdgeArrowType pEdgeArrowType) {
         super(LogEntryName.EDIT_EDGES_TYPE);
         throw new UnsupportedOperationException();
     }

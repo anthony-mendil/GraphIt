@@ -11,8 +11,6 @@ import java.awt.*;
  * @param <V> the vertex type
  */
 public class VertexStrokeHighlightTransformer<V> implements Transformer<V, Stroke> {
-    private Stroke defaultHighlightStrokeVertex;
-
     @Override
     public Stroke transform(V v) {
         return null;

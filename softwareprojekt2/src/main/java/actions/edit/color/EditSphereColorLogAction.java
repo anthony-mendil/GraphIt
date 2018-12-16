@@ -4,6 +4,8 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.edit.EditSphereColorParam;
 
+import java.awt.*;
+
 
 /*
  * Changes the color of the selected sphere and also the vertices which belongs to it.
@@ -13,8 +15,9 @@ public class EditSphereColorLogAction extends LogAction {
     /**
      * Constructor in case the user clicks on a Sphere to change the color.
      * Gets the sphere though picksupport.
+     * @param pColor the color to paint the sphere
      */
-    public EditSphereColorLogAction() {
+    public EditSphereColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_SPHERE_COLOR);
     }
 

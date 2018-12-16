@@ -2,6 +2,7 @@ package actions.edit.form;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import graph.graph.VertexShapeType;
 import log_management.parameters.edit.EditVerticesFormParam;
 
 /*
@@ -11,8 +12,9 @@ public class EditVerticesFormLogAction extends LogAction {
     /**
      * Constructor in case the user changes the form of the selected vertices.
      * Gets the picked vertices though picksupport.
+     * @param pVertexShapeType  the vertices shape type
      */
-    public EditVerticesFormLogAction() {
+    public EditVerticesFormLogAction(VertexShapeType pVertexShapeType) {
         super(LogEntryName.EDIT_VERTICES_FORM);
     }
 

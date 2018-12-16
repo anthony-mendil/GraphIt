@@ -11,9 +11,9 @@ import log_management.parameters.edit.EditEdgesStrokeParam;
 public class EditEdgesStrokeLogAction extends LogAction {
     /**
      * Constructor for the EditEdgesStrokeLogAction
-     * @param strokeType the new stroke type
+     * @param pStrokeType the new stroke type
      */
-    public EditEdgesStrokeLogAction(StrokeType strokeType) {
+    public EditEdgesStrokeLogAction(StrokeType pStrokeType) {
         super(LogEntryName.EDIT_EDGES_STROKE);
         throw new UnsupportedOperationException();
     }

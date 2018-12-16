@@ -10,9 +10,10 @@ import log_management.parameters.edit.EditFontSizeSphereParam;
 public class EditFontSizeSphereLogAction extends LogAction {
     /**
      * Constructor in case the user changes the font-size of a sphere annotation.
+     * @param pSize the size of the font
      *
      */
-    public EditFontSizeSphereLogAction() {
+    public EditFontSizeSphereLogAction(Integer pSize) {
         super(LogEntryName.EDIT_SPHERE_FONT_SIZE);
     }
 

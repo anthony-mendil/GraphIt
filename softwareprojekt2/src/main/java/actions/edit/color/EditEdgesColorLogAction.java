@@ -4,15 +4,19 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.edit.EditEdgesColorParam;
 
+import java.awt.*;
+
 /*
  * Changes the color of the selected edges.
  */
 public class EditEdgesColorLogAction extends LogAction {
+
     /**
      * Constructor in case the user changes the color of all/several edges.
      * Gets the picked edges through picksupport
+     * @param pColor the color to paint the edges
      */
-    public EditEdgesColorLogAction() {
+    public EditEdgesColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_EDGES_COLOR);
     }
 
