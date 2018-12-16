@@ -17,7 +17,7 @@ public class GraphDao implements Dao<Graph> {
     /**
      *  EntityManager instance is associated with the persistence context
      */
-    private EntityManager entityManager;
+    private EntityManager entityManager = PersonalEntityManager.getInstance();
     @Override
     public Optional<Graph> get(long id) {
         throw new UnsupportedOperationException();
