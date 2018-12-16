@@ -2000,10 +2000,10 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
 		\item das System öffnet ein Menü
 		\item der Ersteller klickt \textit{Sphäre Farbe blockieren}
-		\item der Ersteller macht klickt den Button \textit{undo}
+		\item der Ersteller klickt den Button \textit{Undo}
 		\item der Ersteller wählt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
-		\item das System öffnet ein Pop-up Fenster 
-		\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{exportieren}
+		\item das System öffnet ein Pop-up-Fenster 
+		\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{Exportieren}
 	\end{itemize}
 	\\\hline
 	\textbf{Varianten}: Der Ersteller könnte weitere Element zur der Vorlage hinzufügen und eine maximale Anzahl für die Elemente setzen. 
@@ -2022,7 +2022,7 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 \end{figure}
 \newpage
 
-\subsection{Anwendungsfall: Ein Schüler arbeitet mit der Vorlage seines/seiner Lehrers/Lehrerin}
+\subsection{Anwendungsfall: Ein/e Schüler/in arbeitet mit der Vorlage seines/r Lehrer/in}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
@@ -2038,41 +2038,39 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 	\itemsep-0.7em
 	\item der Bearbeiter öffnet die Applikation und drückt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{GXL importieren}
 	\item das System öffnet ein Pop-Up Fenster
-	\item der Bearbeiter gibt den Speicherpfad der GXL-Vorlage an und klickt auf \textit{ok}
-	\item das System öffnet ein Syndromansatz mit fünf Sphären mit der Beschriftung 1-5.
-	\item der Bearbeiter klickt mit einem Rechtsklick auf die Sphäre mit der Beschriftung 1.
+	\item der Bearbeiter gibt den Speicherpfad der GXL-Vorlage an und klickt auf \textit{Ok}
+	\item das System öffnet ein Syndromansatz 
+	\item der Bearbeiter klickt mit einem Rechtsklick auf eine Sphäre
 	\item das System öffnet ein Menü
 	\item der Bearbeiter klickt auf \textit{Knoten hinzufügen}
-	\item der Bearbeiter gibt als Text des Knoten \textit{B} ein
+	\item der Bearbeiter klickt auf die Arbeitsfläche 
+	\item das System öffnet ein Pop-Up-Eingabefeld
+	\item der Bearbeiter gibt einen Namen \textit{A} ein
 	\item der Bearbeiter klickt auf den \textit{Knoten hinzufügen}-Button
-	\item der Bearbeiter klickt auf die Sphäre mit der Bezeichnung 2
-	\item der Bearbeiter gibt als Text des Knoten \textit{B} ein
-	\item der Bearbeiter markiert den Knoten \textit{B}
+	\item der Bearbeiter klickt auf die Arbeitsfläche
+	\item das System öffnet ein Pop-Up-Eingabefeld
+	\item der Bearbeiter gibt einen Namen \textit{B} ein
+	\item der Bearbeiter markiert diesen Knoten
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Form ändern} $\rightarrow$ \textit{Quadrat}
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Schriftart ändern} $\rightarrow$ \textit{Calibri}
-	\item der Bearbeiter klickt auf den Knoten \textit{A} zieht die Maus über den Knoten \textit{B} und lässt dann die Maus los
+	\item der Bearbeiter klickt auf den Knoten \textit{A}, zieht die Maus über den Knoten \textit{B} und lässt dann die Maus los
 	\item der Bearbeiter markiert die Kante
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante ändern} $\rightarrow$ \textit{gestrichelt}
-	\item der Bearbeiter bewegt den knoten \textit{B} in die Sphäre 5
-	\item der Bearbeiter drückt auf den \textit{redo}-Button
-	\item der Bearbeiter drückt auf den den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Speichern}
-	\item der Bearbeiter wählt \textit{Exportieren als} $\rightarrow$ \textit{oof}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante ändern} $\rightarrow$ \textit{Gestrichelt}
+	\item der Bearbeiter klickt auf den knoten \textit{B}, zieht die Maus über eine andere Sphäre und lässt dann die Maus los
+	\item der Bearbeiter drückt auf den \textit{Redo}-Button
+	\item der Bearbeiter wählt \textit{Exportieren als} $\rightarrow$ \textit{OOF}
+	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{exportieren}
 \end{itemize}
 	\\\hline
-	Varianten: mögliche Abweichungen vom regulären Ablauf, 
-	z.\,B.\ Auslassen oder Wiederholen von Aktionen
+	\textbf{Varianten}: Der Bearbeiter könnte neben den Einschränkungen viele Elemente hinzufügen und dies am Ende auch noch als Vorlage speichern.  
 	\\\hline
-	Nachbedingung: Endzustand und dann mögliche Folgeaktionen
+	\textbf{Nachbedingung}: Die Vorlage wurde modifiziert und als \textit{oof} Datei gespeichert. Der Bearbeiter könnte nun in den Auswertermodus wechseln und dort den Graphen auswerten.
 	\\\hline
-	Fehler-/Ausnahmefälle mit deren Nachbedingung; z.\,B.\ wie 
-	wird auf ungültige Eingaben reagiert?
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter vergisst die Datei zu exportieren oder gar zu speichern $\rightarrow$ Beim erneuten Start kann er die Vorlage neu importieren und neu beginnen.
 	\\\hline
 \end{tabular}\\ \\ \\
 
-Der Schüler bekam als Hausaufgabe die Vorlage eines Graphen komplett auszufüllen. Bei der Vorlage handelt es sich um eine GXL-Datei. Der Schüler öffnet das Programm, öffnet das Drop-Down Menü von “Datei” und klickt auf die Option “GXL importieren”.  Nach einer geringen Zeit wird der Graph geladen und man sieht 5 Graphen mit den Bezeichnungen 1,2,3,4 und 5. Der Schüler öffnet mit der rechten Maustaste das Drop-Down Menü in der Sphäre 1 und fügt einen neuen Knoten hinzu. Das Symptom wird mit “A” bezeichnet und die Form wird auf ein Quadrat gesetzt. Anschließend wird auf der GUI auf den Knopf “Symptom hinzufügen” gedrückt und auf die Sphäre 2 gedrückt.. Dieser Knoten wird bezeichnet mit “B”, die Form soll ebenfalls ein Quadrat sein und die Schriftart “Calibri”. Der Schüler markiert den Knoten und ändert die Eigenschaften über die GUI. Anschließend klickt der Schüler auf den Symptom A und zieht die Maus zum Symptom B und lässt los. Der Schüler ändert die Relation nochmal (über das Drop-Down Menü mittels der rechten Maustaste / über die GUI). 
-Nachdem der Schüler fertig mit seiner Aufgabe ist, entscheidet der Schüler auf “Auto-Layout” zu drücken. Danach fügt er nochmal zwei Symptome C und D hinzu zur Sphäre 3, verbindet die beiden jeweils mit Symptom A und B. Der Schüler ist unzufrieden mit dem neuen Layout seines Graphen und benutzt redo bis es wieder das Layout hat (ca 5x).
-Am Ende speichert der Schüler den Graphen und exportiert ihn mit dem neuen Datentyp (JSON + GXL).
-\\ \\
+
 Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüfer eine neue Lehrveranstaltung erstellt. Hierbei ist zu beachten, dass der Nutzer (Prüfer) sich bereits angemeldet hat und die generelle Rolle \texttt{Examiner} (Prüfer) vom Administrator gesetzt wurde.\\ \\
 \begin{figure}[ht]
 	\centering
@@ -2085,31 +2083,48 @@ Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüf
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{Eindeutige Nummer: Eindeutiger Name}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A3: Auswerter wertet Graph und Bearbeiter aus}} \\\hline
 	\hline
-	Akteure: welche externen Instanzen interagieren mit dem 
-	System in diesem Anwendungsfall?  
+	\textbf{Akteure}:  Auswerter
 	\\\hline
-	Vorbedingungen: Ausgangszustand, der vor Beginn des
-	Anwendungsfalls gelten muss -- hier sollte auch das Ziel des 
-	Akteurs genannt werden
+	\textbf{Vorbedingungen}: Das Programm ist geschlossen, ein bearbeiteter Syndromansatz in Form einer OOF-Datei ist vom Computer aus zugreifbar. \\ 
+	\textit{Ziel}: Syndromansatz und Bearbeiter auswerten.
 	\\\hline
-	Regulärer Ablauf: Abfolge von Aktionen der Akteure und
-	Reaktionen des Systems
+	\textbf{Regulärer Ablauf}:
+\begin{itemize}
+	\itemsep-0.7em
+	\item der Auswerter öffnet die Applikation und drückt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{OOF importieren}
+	\item das System öffnet ein Pop-Up Fenster
+	\item der Auswerter gibt den Speicherpfad der OOF-Vorlage an und klickt auf \textit{Ok}
+	\item das System öffnet den Syndromansatz
+	\item der Auswerter drückt auf den Menüpunkt \textit{Option} $\rightarrow$ \textit{Sprache ändern}$\rightarrow$ \textit{Englisch}
+	\item der Auswerter klickt mit einem Rechtsklick auf eine Sphäre 
+	\item das System öffnet ein Menü
+	\item der Auswerter klickt auf \textit{Ausblenden}
+	\item der Auswerter klickt auf unter Zoom auf den \textit{Plus}-Button
+	\item der Auswerter markiert mehrere Knoten in einer Sphäre
+	\item der Auswerter klickt mit einem Rechtsklick auf die Knoten 
+	\item das System öffnet ein Menü
+	\item der Auswerter klickt auf \textit{Ausblenden}
+	\item der Auswerter klickt auf den Menüpunkt \textit{Relationtyp} $\rightarrow$ \textit{nur verstärkend}
+	\item der Auswerter klickt unter Zoom auf den \textit{Minus}-Button
+	\item der Auswerter gibt \textit{Strg-Z} in die Tastatur 
+	\item der Auswerter gibt \textit{Strg-Y} in die Tastatur 
+	\item der Auswerter klickt mit einem Rechtsklick auf einen Knoten
+	\item das System öffnet ein Menü
+	\item der Auswerter klickt auf \textit{hervorheben}
+	\item der Auswerter drückt auf \textit{Indizes berechnen}
+	\item der Auswerter klickt \textit{Bearbeiter auswerten}
+\end{itemize}
 	\\\hline
-	Varianten: mögliche Abweichungen vom regulären Ablauf, 
-	z.\,B.\ Auslassen oder Wiederholen von Aktionen
+	\textbf{Varianten}: Der Auswerter könnte nach vielen Kriterien filtern und diese auch miteinander kombinieren. Ebenfalls kann man bevor man in den Auswertermodus gelangt den Syndromansatz modifizieren.
 	\\\hline
-	Nachbedingung: Endzustand und dann mögliche Folgeaktionen
+	\textbf{Nachbedingung}: Der Auswerter hat den Graphen nun ausgewertet. Danach könnte der Auswerter in den Bearbeiter-Modus wechseln und den Syndromansatz weiter bearbeiten.
 	\\\hline
-	Fehler-/Ausnahmefälle mit deren Nachbedingung; z.\,B.\ wie 
-	wird auf ungültige Eingaben reagiert?
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Auswerter könnte unglücklicherweise wichtige Knoten ausgeblendet haben. Man kann unter dem Button \textit{alle wieder anzeigen} das Ausblenden umkehren oder einfach den \textit{undo}-Button verwenden.
 	\\\hline
 \end{tabular}\\ \\ \\
 
-Der Lehrer öffnet die Applikation, ändert die Sprache auf Englisch und wechselt über die GUI zum Auswerter-Modus.
-Anschließend importiert er die GXL/JSON-Datei des Schülers. Zu sehen sind Sphären namens 1,2 und 3. Der Lehrer blendet die Sphäre 3 aus und zoomt in die Sphäre 1 um den Kontext der Symptome innerhalb der Sphäre auszuwerten. In der Sphäre sind Knoten namens A,B,C,D und E zu sehen. Der Lehrer blendet die Knoten C,D und alle verstärkenden Relationen aus (A -> B, B -> E). Er bewertet die Anzahl der ein- und ausgehenden Kanten und zoomt anschließend raus bis er alle Sphären wieder sieht. Danach benutzt er undo bis der Graph im Originalzustand ist (wenn es so funktioniert, ca. 3-4x) und hebt die stark vernetzten Knoten hervor. Dann schaut er sich den Umfang, der Vernetzungs- und Strukturindex. Zu guter Letzt bewertet er die Nutzerinteraktion des Schülers aus.
-\\ \\
 Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Administrator einem Benutzer die Rolle Prüfer zuteilt, bzw. ihn als Prüfer deklariert. Hierbei ist zu beachten, dass sich der Administrator bereits angemeldet hat und er die Rolle Administrator inne hat. 
 \\ \\ 
 \begin{figure}[ht]
@@ -2119,33 +2134,49 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 \end{figure}
 \newpage
 
-\subsection{Anwendungsfall: Ein Schüler muss als Hausaufgabe einen Graphen mit falschen Relationen und falsch platzierten Symptomen korrigieren.}
+\subsection{Anwendungsfall: Schüler korrigiert Graph mit falschen Relationen/Symptomen.}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{Eindeutige Nummer: Eindeutiger Name}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A4: Bearbeiter korrigiert Syndromansatz}} \\\hline
 	\hline
-	Akteure: welche externen Instanzen interagieren mit dem 
-	System in diesem Anwendungsfall?  
+	\textbf{Akteure}:  Bearbeiter
 	\\\hline
-	Vorbedingungen: Ausgangszustand, der vor Beginn des
-	Anwendungsfalls gelten muss -- hier sollte auch das Ziel des 
-	Akteurs genannt werden
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Die GXL-Datei ist erfolgreich importiert.\\ 
+	\textit{Ziel}: Syndromansatz durch Modifikation korrigieren.
 	\\\hline
-	Regulärer Ablauf: Abfolge von Aktionen der Akteure und
-	Reaktionen des Systems
+	\textbf{Regulärer Ablauf}:
+\begin{itemize}
+	\itemsep-0.7em
+	\item der Bearbeiter markiert zwei Symptome in der selben Sphäre
+	\item der Bearbeiter klickt auf die Knoten, zieht die Maus über eine andere Sphäre und lässt dann die Maus los
+	\item der Bearbeiter markiert die ausgehenden Kanten der eben genannten Knoten
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Löschen}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Relationstyp ändern} $\rightarrow$ \textit{Abschwächend} 
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante hinzufügen}
+	\item der Bearbeiter klickt auf einen Knoten, zieht die Maus über eine anderen Knoten und lässt dann die Maus los
+	\item der Bearbeiter markiert drei Relationen 
+	\item das Bearbeiter klickt mit einem Rechtsklick auf die Kanten
+	\item das System öffnet ein Menü
+	\item der Bearbeiter klickt auf \textit{Relationstyp ändern} $\rightarrow$ \textit{ungewiss}
+	\item der Bearbeiter markiert mehrere Knoten
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Knotenform ändern} $\rightarrow$ \textit{Ellipse}
+	\item der Bearbeiter markiert eine Kante
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kantendicke ändern} $\rightarrow$ \textit{Mittel}
+	\item der Bearbeiter klickt auf den Color-Picker $\rightarrow$ \textit{Rot}
+	\item der Bearbeiter markiert eine andere Kante
+	\item der Bearbeiter klickt auf die \textit{Entf}-Taste der Tastatur
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Speichern}
+\end{itemize}
 	\\\hline
-	Varianten: mögliche Abweichungen vom regulären Ablauf, 
-	z.\,B.\ Auslassen oder Wiederholen von Aktionen
+	\textbf{Varianten}: Der Bearbeiter hat eine große Auswahl an Werkzeugen z.B. \textit{Sphärenfarbe ändern} oder \textit, um den Graph zu modifizieren. 
 	\\\hline
-	Nachbedingung: Endzustand und dann mögliche Folgeaktionen
+	\textbf{Nachbedingung}: Der Graph wurde durch den Bearbeiter modifiziert. Danach könnte der Bearbeiter dies nun als Vorlage speichern oder den neuen Graphen nach Kriterien auswerten.
 	\\\hline
-	Fehler-/Ausnahmefälle mit deren Nachbedingung; z.\,B.\ wie 
-	wird auf ungültige Eingaben reagiert?
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Auswerter könnte mehrere Knoten auf nicht erlaubte Positionen verschieben. Das System gibt dann eine Warnmeldung aus und untersagt die Aktion.
 	\\\hline
 \end{tabular}\\ \\ \\
 
-Der Schüler öffnet die Applikation und importiert die GXL-Datei. Zu sehen sind Sphäre 1,2,3,4 und 5. Die Sphäre 1,2,3,4 und 5 besitzt jeweils die Symptome A,B und C (z.B. 1A, 1B, 1C für jede Sphäre). Der Schüler markiert 2A und 2B und verschiebt sie in Sphäre 3. Anschließend löscht er alle ausgehenden Kanten von 2A und 2B, zieht neue abschwächende Kanten von 2A zu 3B und 3C und verstärkende Kanten von 2B zu 5A und 5C. Er bemerkt, dass die Kante zu 3C falsch ist und benutzt versehentlich zweimal undo und drückt deswegen einmal auf redo. Danach ändert er über das Drop-Down Menü die abschwächende Kante von 1A zu 3C zu eine verstärkende und die Kante von 3B zu 5A zu einer neutralen. Die Symptome 4A und 3C werden nochmal in die Sphäre 5 verschoben und ihre Form zu einem Quadrat verändert. Die Kantendicke von 3B zu 5A wird nochmal verändert (irgendeine Dicke) und die Farbe auf rot gesetzt, um sie mehr zu betonen. Zuletzt wird gespeichert und die Applikation geschlossen. \\ \\
 \begin{figure}[ht]
 	\centering
 	%  \includegraphics[width=1\textwidth]{seqdia.jpg}
@@ -2154,40 +2185,49 @@ Der Schüler öffnet die Applikation und importiert die GXL-Datei. Zu sehen sind
 
 \newpage
 
-\subsection{Anwendungsfall: Ein Schüler arbeitet mit der Vorlage seines/seiner Lehrers/Lehrerin}
+\subsection{Anwendungsfall: Ein Lehrer stellt das Programm ein und erstellt einen Graphen}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{Eindeutige Nummer: Eindeutiger Name}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A5: Ersteller stellt Programm ein und erstellt einen Graphen}} \\\hline
 	\hline
-	Akteure: welche externen Instanzen interagieren mit dem 
-	System in diesem Anwendungsfall?  
+	\textbf{Akteure}: Ersteller
 	\\\hline
-	Vorbedingungen: Ausgangszustand, der vor Beginn des
-	Anwendungsfalls gelten muss -- hier sollte auch das Ziel des 
-	Akteurs genannt werden
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet.\\ 
+	\textit{Ziel}: System personalisieren und Graph ausdrucken.
 	\\\hline
-       {Regulärer Ablauf}: \begin{itemize}
+	\textbf{Regulärer Ablauf}:
+\begin{itemize}
 	\itemsep-0.7em
-	\item der Ersteller klickt den Menü-Punkt \textit{Datei} $\rightarrow$ \textit{Exportieren als} $\rightarrow$ \textit{PDF}
-	\item das System öffnet ein Pop-up Fenster 
-	\item der Ersteller wählt ein Dateiformat, gibt einen Pfad an und drück den Button \textit{exportieren}  
-	\end{itemize}
+	\item der Ersteller klickt auf den Menüpunkt \textit{Optionen} $\rightarrow$ \textit{Standardwerte festlegen}
+	\item das System öffnet ein Menü
+	\item der Ersteller klickt auf den Menüpunkt \textit{Schriftart} $\rightarrow$ \textit{Arial}
+	\item der Ersteller klickt auf den Menüpunkt \textit{Erstellen: Anzahl Sphären} $\rightarrow$ \textit{6} 
+	\item der Ersteller klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Neuen Graph erstellen}
+	\item das System öffnet ein Pop-Up-Eingabefeld
+	\item der Ersteller gibt den Namen des Graphen an und klickt \textit{Ok} 
+	\item der Ersteller klickt auf den Menüpunkt \textit{exportieren als} $\rightarrow$ \textit{PDF}
+	\item das System öffnet ein Pop-Up-Fenster
+	\item der Ersteller gibt einen Speicherpfad an und drückt auf Button \textit{Exportieren}
+	\item der Ersteller klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Speichern unter}
+	\item das System öffnet ein Pop-Up-Fenster
+	\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{Speichern}
+	\item der Ersteller klickt auf den Menüpunkt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
+	\item das System öffnet ein Pop-Up-Fenster
+	\item der Ersteller klickt auf den Menüpunkt \textit{Maximale Knoten} $\rightarrow$ \textit{35}
+	\item der Ersteller gibt einen Speicherpfad an und drück den Button \textit{Exportieren}
+	\item der Ersteller klickt auf den Menüpunkt \textit{Hilfe}
+	\item das System öffnet ein Pop-Up-Fenster
+\end{itemize}
 	\\\hline
-	Varianten: mögliche Abweichungen vom regulären Ablauf, 
-	z.\,B.\ Auslassen oder Wiederholen von Aktionen
+	\textbf{Varianten}: Der Ersteller kann sehr viele verschieden Standardwerte festlege und diese auch miteinander kombinieren.
 	\\\hline
-	Nachbedingung: Endzustand und dann mögliche Folgeaktionen
+	\textbf{Nachbedingung}: Das Programm ist nun nach den Wünschen des Benutzers eingestellt. Der Graph ist im GXL-Format und auch als PDF gespeichert. Dieser könnte der Ersteller in ausgedruckter Variante vervielfältigen.
 	\\\hline
-	Fehler-/Ausnahmefälle mit deren Nachbedingung; z.\,B.\ wie 
-	wird auf ungültige Eingaben reagiert?
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Ersteller könnte sehr ungünstige Standardwerte ausgewählt haben. Sollte dies der Fall sein, so kann der Benutzer jederzeit die Standardwerte neu setzen.
 	\\\hline
 \end{tabular}\\ \\ \\
 
-Der Schüler bekam als Hausaufgabe die Vorlage eines Graphen komplett auszufüllen. Bei der Vorlage handelt es sich um eine GXL-Datei. Der Schüler öffnet das Programm, öffnet das Drop-Down Menü von “Datei” und klickt auf die Option “GXL importieren”.  Nach einer geringen Zeit wird der Graph geladen und man sieht 5 Graphen mit den Bezeichnungen 1,2,3,4 und 5. Der Schüler öffnet mit der rechten Maustaste das Drop-Down Menü in der Sphäre 1 und fügt einen neuen Knoten hinzu. Das Symptom wird mit “A” bezeichnet und die Form wird auf ein Quadrat gesetzt. Anschließend wird auf der GUI auf den Knopf “Symptom hinzufügen” gedrückt und auf die Sphäre 2 gedrückt.. Dieser Knoten wird bezeichnet mit “B”, die Form soll ebenfalls ein Quadrat sein und die Schriftart “Calibri”. Der Schüler markiert den Knoten und ändert die Eigenschaften über die GUI. Anschließend klickt der Schüler auf den Symptom A und zieht die Maus zum Symptom B und lässt los. Der Schüler ändert die Relation nochmal (über das Drop-Down Menü mittels der rechten Maustaste / über die GUI). 
-Nachdem der Schüler fertig mit seiner Aufgabe ist, entscheidet der Schüler auf “Auto-Layout” zu drücken. Danach fügt er nochmal zwei Symptome C und D hinzu zur Sphäre 3, verbindet die beiden jeweils mit Symptom A und B. Der Schüler ist unzufrieden mit dem neuen Layout seines Graphen und benutzt redo bis es wieder das Layout hat (ca 5x).
-Am Ende speichert der Schüler den Graphen und exportiert ihn mit dem neuen Datentyp (JSON + GXL).
-\\ \\
 Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüfer eine neue Lehrveranstaltung erstellt. Hierbei ist zu beachten, dass der Nutzer (Prüfer) sich bereits angemeldet hat und die generelle Rolle \texttt{Examiner} (Prüfer) vom Administrator gesetzt wurde.\\ \\
 \begin{figure}[ht]
 	\centering
@@ -2199,6 +2239,16 @@ Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüf
 \section{Evolution}
 \label{sec:evolution}
 \emph{Autoren: }\\ \\
+\newpage
+Der Schüler bekam als Hausaufgabe die Vorlage eines Graphen komplett auszufüllen. Bei der Vorlage handelt es sich um eine GXL-Datei. Der Schüler öffnet das Programm, öffnet das Drop-Down Menü von “Datei” und klickt auf die Option “GXL importieren”.  Nach einer geringen Zeit wird der Graph geladen und man sieht 5 Graphen mit den Bezeichnungen 1,2,3,4 und 5. Der Schüler öffnet mit der rechten Maustaste das Drop-Down Menü in der Sphäre 1 und fügt einen neuen Knoten hinzu. Das Symptom wird mit “A” bezeichnet und die Form wird auf ein Quadrat gesetzt. Anschließend wird auf der GUI auf den Knopf “Symptom hinzufügen” gedrückt und auf die Sphäre 2 gedrückt.. Dieser Knoten wird bezeichnet mit “B”, die Form soll ebenfalls ein Quadrat sein und die Schriftart “Calibri”. Der Schüler markiert den Knoten und ändert die Eigenschaften über die GUI. Anschließend klickt der Schüler auf den Symptom A und zieht die Maus zum Symptom B und lässt los. Der Schüler ändert die Relation nochmal (über das Drop-Down Menü mittels der rechten Maustaste / über die GUI). 
+Nachdem der Schüler fertig mit seiner Aufgabe ist, entscheidet der Schüler auf “Auto-Layout” zu drücken. Danach fügt er nochmal zwei Symptome C und D hinzu zur Sphäre 3, verbindet die beiden jeweils mit Symptom A und B. Der Schüler ist unzufrieden mit dem neuen Layout seines Graphen und benutzt redo bis es wieder das Layout hat (ca 5x).
+Am Ende speichert der Schüler den Graphen und exportiert ihn mit dem neuen Datentyp (JSON + GXL).
+
+Der Lehrer öffnet die Applikation, ändert die Sprache auf Englisch und wechselt über die GUI zum Auswerter-Modus.
+Anschließend importiert er die GXL/JSON-Datei des Schülers. Zu sehen sind Sphären namens 1,2 und 3. Der Lehrer blendet die Sphäre 3 aus und zoomt in die Sphäre 1 um den Kontext der Symptome innerhalb der Sphäre auszuwerten. In der Sphäre sind Knoten namens A,B,C,D und E zu sehen. Der Lehrer blendet die Knoten C,D und alle verstärkenden Relationen aus (A -> B, B -> E). Er bewertet die Anzahl der ein- und ausgehenden Kanten und zoomt anschließend raus bis er alle Sphären wieder sieht. Danach benutzt er undo bis der Graph im Originalzustand ist (wenn es so funktioniert, ca. 3-4x) und hebt die stark vernetzten Knoten hervor. Dann schaut er sich den Umfang, der Vernetzungs- und Strukturindex. Zu guter Letzt bewertet er die Nutzerinteraktion des Schülers aus.
+
+
+Der Schüler öffnet die Applikation und importiert die GXL-Datei. Zu sehen sind Sphäre 1,2,3,4 und 5. Die Sphäre 1,2,3,4 und 5 besitzt jeweils die Symptome A,B und C (z.B. 1A, 1B, 1C für jede Sphäre). Der Schüler markiert 2A und 2B und verschiebt sie in Sphäre 3. Anschließend löscht er alle ausgehenden Kanten von 2A und 2B, zieht neue abschwächende Kanten von 2A zu 3B und 3C und verstärkende Kanten von 2B zu 5A und 5C. Er bemerkt, dass die Kante zu 3C falsch ist und benutzt versehentlich zweimal undo und drückt deswegen einmal auf redo. Danach ändert er über das Drop-Down Menü die abschwächende Kante von 1A zu 3C zu eine verstärkende und die Kante von 3B zu 5A zu einer neutralen. Die Symptome 4A und 3C werden nochmal in die Sphäre 5 verschoben und ihre Form zu einem Quadrat verändert. Die Kantendicke von 3B zu 5A wird nochmal verändert (irgendeine Dicke) und die Farbe auf rot gesetzt, um sie mehr zu betonen. Zuletzt wird gespeichert und die Applikation geschlossen. 
 
 \end{document}
 
