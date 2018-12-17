@@ -3,6 +3,8 @@ package gui;
 import com.google.inject.Singleton;
 import graph.graph.EdgeArrowType;
 import graph.graph.FunctionMode;
+import graph.graph.StrokeType;
+import graph.graph.VertexShapeType;
 import lombok.*;
 
 import java.awt.*;
@@ -59,7 +61,7 @@ public class Values {
      * the highlight stroke
      */
     @Setter(AccessLevel.NONE)
-    private static final Stroke defaultHighlightStrokeVertex = null;
+    private static final StrokeType defaultHighlightStrokeVertex = null;
     /**
      * the default layout size
      */
@@ -77,7 +79,7 @@ public class Values {
     /**
      * the font of a sphere
      */
-    private Font fontSphere;
+    private String fontSphere;
     /**
      * the fill paint color of a vertex
      */
@@ -89,11 +91,11 @@ public class Values {
     /**
      * the shape of a vertex
      */
-    private Shape shapeVertex;
+    private VertexShapeType shapeVertex;
     /**
      * the font of a vertex
      */
-    private Font fontVertex;
+    private String fontVertex;
     /**
      * the highlight color for vertices
      */
@@ -109,7 +111,7 @@ public class Values {
     /**
      * the edge stroke
      */
-    private Stroke strokeEdge;
+    private StrokeType strokeEdge;
     /**
      * the edge arrow type
      */

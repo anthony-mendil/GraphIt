@@ -20,7 +20,7 @@ import javax.swing.*;
 public class Controller implements ObserverSyndrom{
 
     /**
-     * Standard constructor that is getting loaded by the fxmlloader
+     * Standard constructor that is getting loaded by the fxml loader
      */
     public Controller(){
         throw new UnsupportedOperationException();
@@ -29,17 +29,17 @@ public class Controller implements ObserverSyndrom{
     /* General Stuff */
 
     /**
-     *  The swingnode that displays the graph and allows to interact with it
+     *  The swing node that displays the graph and allows to interact with it
      */
     private SwingNode canvas;
 
     /**
-     *  The swingnode that displays the zoom window
+     *  The swing node that displays the zoom window
      */
     private SwingNode zoomWindow;
 
     /**
-     *  The tiltedpane that contains the treeview object and filter options
+     *  The tilted pane that contains the treeview object and filter options
      */
     private TitledPane tiltedPane;
 
