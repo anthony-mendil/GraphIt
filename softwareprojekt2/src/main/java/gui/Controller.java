@@ -833,6 +833,11 @@ public class Controller implements ObserverSyndrom{
      */
     private void openSearchFileChooserWindow(){throw new UnsupportedOperationException();}
 
+    /**
+     *  Opens a directory window to save the file under the desired location after pressing "saving under.."
+     */
+    private void openSaveUnderChooserWindow(){throw new UnsupportedOperationException();}
+
     /* ----------------REMOVE---------------------- */
 
     /**
