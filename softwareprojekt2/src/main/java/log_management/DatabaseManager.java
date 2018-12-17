@@ -26,6 +26,7 @@ public class DatabaseManager implements ObserverSyndrom {
 
     /**
      * adds a log to the database (through dao)
+     * @param action TODO
      */
     public void addEntryDatabase(Action action) {
         throw new UnsupportedOperationException();

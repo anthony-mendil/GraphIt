@@ -18,6 +18,7 @@ public class SwitchModiEditorAction extends GraphAction {
 
     /**
      * Constructor in case the user changes the mode.
+     * @param mode The new mode
      */
     public SwitchModiEditorAction(FunctionMode mode) {
         throw new UnsupportedOperationException();

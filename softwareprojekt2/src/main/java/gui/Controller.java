@@ -81,17 +81,17 @@ public class Controller implements ObserverSyndrom{
     private MenuItem saveLocation;
 
     /**
-     * The menuItem under the menu "File.. > Export as.." for exporting the file as pdf
+     * The menuItem under the menu "File.. &gt; Export as.." for exporting the file as pdf
      */
     private MenuItem exportPDF;
 
     /**
-     * The menuItem under the menu "File.. > Export as.." for exporting the file as template
+     * The menuItem under the menu "File.. &gt; Export as.." for exporting the file as template
      */
     private MenuItem exportTemplate;
 
     /**
-     * The menuItem under the menu "File.. > Export as.." for exporting the file as different formats (e.g. png,svg,etc.)
+     * The menuItem under the menu "File.. &gt; Export as.." for exporting the file as different formats (e.g. png,svg,etc.)
      */
     private MenuItem exportDifferentFormats;
 
@@ -101,12 +101,12 @@ public class Controller implements ObserverSyndrom{
     private MenuItem print;
 
     /**
-     * The menuItem under the menu "Options > Language" for changing the language of the gui to german
+     * The menuItem under the menu "Options &gt; Language" for changing the language of the gui to german
      */
     private MenuItem languageGerman;
 
     /**
-     * The menuItem under the menu "Options > Language" for changing the language of the gui to english
+     * The menuItem under the menu "Options &gt; Language" for changing the language of the gui to english
      */
     private MenuItem languageEnglisch;
 
@@ -813,7 +813,7 @@ public class Controller implements ObserverSyndrom{
     /**
      *  Shows the current used action
      */
-    public void currentAction(String action){throw new UnsupportedOperationException();}
+    public void currentAction(){throw new UnsupportedOperationException();}
 
     /**
      *  Opens a dialog window after pressing "open file" or "import gxl", that asks if the user wants to

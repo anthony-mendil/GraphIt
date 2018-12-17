@@ -29,14 +29,14 @@ public class CreateGraphAction extends GraphAction {
     @Override
     @SuppressWarnings("unchecked")
     public void action() {
-        SyndromGraph g = new SyndromGraph<>();
+        /*SyndromGraph g = new SyndromGraph<>();
         syndrom.setGraph(g);
         StaticLayout<Vertex, Edge> layout = new StaticLayout<>(g);
         Dimension size = syndrom.getValues().getDefaultLayoutSize();
         layout.setSize(size);
         syndrom.setLayout(layout);
         syndrom.setVisualisationViewer(syndrom.getVisualisationViewer().setLayout(layout));
-        throw new UnsupportedOperationException();
+        */throw new UnsupportedOperationException();
     }
 
     @Override

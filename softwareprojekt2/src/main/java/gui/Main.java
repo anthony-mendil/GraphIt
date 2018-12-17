@@ -12,7 +12,7 @@ public class Main {
      * and the window size
      *
      * @param primaryStage  The window of the application
-     * @throws Exception
+     * @throws Exception TODO
      */
     public void start(Stage primaryStage) throws Exception {
         throw new UnsupportedOperationException();
@@ -20,7 +20,7 @@ public class Main {
 
     /**
      * Starts the application
-     * @param args
+     * @param args TODO
      */
     public static void main(String[] args) {
        throw new UnsupportedOperationException();
