@@ -2020,12 +2020,7 @@ Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in 
 \includepdf[pages=-, landscape]{first_.pdf}
 
 
-\begin{figure}[ht]
-	\centering
-	%\includegraphics[width=1\textwidth]{seqdia.jpg}
-	\caption{Sequenzdiagramm I}
-\end{figure}
-\newpage
+
 \subsection{Anwendungsfall: Ein Lehrer fügt eine Sphäre hinzu}
 
 \begin{tabular} {|p{16cm}|}
@@ -2050,6 +2045,19 @@ Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in 
 	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte die Sphäre an eine nicht geeignete Stelle setzen $\rightarrow$ Der Ersteller kann die Sphäre mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und neu setzen. 
 	\\\hline
 \end{tabular}
+%% SINGLETON und existenz klassen
+\\ \\ \\
+Der eben beschriebene Anwendungsfall ist im dem folgenden Sequenzdiagramm dargestellt. \\
+Zu Beginn klickt der Ersteller den Button, um eine Sphäre hinzuzufügen. Die \texttt{GUI} schreibt daraufhin den \texttt{GraphButtonTyp} in \texttt{Values}, damit das \texttt{PickingGraphMouseEditSyndromPlugin} weiß, welche Aktion bei Klick in den \texttt{Visualisation Viewer} ausgeführt werden soll. \\
+Klickt der Ersteller nun in die SwingNode, also den  \texttt{Visualisation Viewer}, wird die Aktion \texttt{AddSpereLogAction} erstellt und durch die \texttt{ActionHistory} ausgeführt. \\
+Bei der Ausführung der Aktion wird das neue \texttt{Sphere} Objekt erstellt und dem Graphen hinzugefügt. \\
+Außerdem wird ein Parameter Objekt erzeugt, welche die eben erstelle \texttt{Sphere} übergeben bekommt. \\
+Folgend wird der \texttt{DatabaseManager} und die \texttt{GUI} benachrichtigt, dass sich der Graph verändert hat. 
+
+
+\includepdf[pages=-, landscape]{second.pdf}
+
+
 
 
 \begin{figure}[ht]
