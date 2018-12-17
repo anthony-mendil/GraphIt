@@ -32,11 +32,6 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     private int counterObject;
 
     /**
-     *
-     */
-    private final int id;
-
-    /**
      * the object factory for syndrom
      */
     private final GraphObjectsFactory graphObjectsFactory;
@@ -45,7 +40,6 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * Creates a new syndrom graph.
      */
     public SyndromGraph() {
-        super();
         throw new UnsupportedOperationException();
     }
 

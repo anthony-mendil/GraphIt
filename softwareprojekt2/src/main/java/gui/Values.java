@@ -18,51 +18,47 @@ public class Values {
     /**
      * the default width sphere
      */
-    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private static final double defaultWidthSphere = -1;
     /**
      * the default height of a sphere
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final double defaultHeightSphere = -1;
     /**
      * the default annotation of a sphere
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final String defaultAnnotationSphere = "";
     /**
      * default shape of a sphere
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final Shape defaultShapeSphere = null;
     /**
      * the default annotation of a vertex
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final String defaultAnnotationVertex = "";
     /**
      * the default size of a vertex
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final int defaultSizeVertex = -1;
     /**
      * the highlight color one for highlighting selection/ picking
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final Paint defaultHighlightProPaintVertex = null;
     /**
      * the highlight color two for highlighting selection/ picking
      */
+    @Setter(AccessLevel.NONE)
     private static final Paint defaultHighlightContraPaintVertex = null;
     /**
      * the highlight stroke
      */
+    @Setter(AccessLevel.NONE)
     private static final Stroke defaultHighlightStrokeVertex = null;
     /**
      * the default layout size
@@ -72,54 +68,52 @@ public class Values {
     /**
      * the default satellite layout size
      */
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private static final Dimension defaultSatelliteLayoutSize = null;
     /**
      * the fill paint color
      */
-    @NonNull
-    private Paint fillPaintSphere = null;
+    private Paint fillPaintSphere;
     /**
      * the font of a sphere
      */
-    private Font fontSphere = null;
+    private Font fontSphere;
     /**
      * the fill paint color of a vertex
      */
-    private Paint fillPaintVertex = null;
+    private Paint fillPaintVertex;
     /**
      * the draw paint color pf a vertex
      */
-    private Paint drawPaintVertex = null;
+    private Paint drawPaintVertex;
     /**
      * the shape of a vertex
      */
-    private Shape shapeVertex = null;
+    private Shape shapeVertex;
     /**
      * the font of a vertex
      */
-    private Font fontVertex = null;
+    private Font fontVertex;
     /**
      * the highlight color for vertices
      */
-    private Paint highlightPaintVertex = null;
+    private Paint highlightPaintVertex;
     /**
      * the edge paint color of a edge
      */
-    private Paint edgePaint = null;
+    private Paint edgePaint;
     /**
      * the edge weight
      */
-    private int edgeWeight = -1;
+    private int edgeWeight;
     /**
      * the edge stroke
      */
-    private Stroke strokeEdge = null;
+    private Stroke strokeEdge;
     /**
      * the edge arrow type
      */
-    private EdgeArrowType edgeArrowType = null;
+    private EdgeArrowType edgeArrowType;
     /**
      * the actual graph button type, pressed in the gui
      */

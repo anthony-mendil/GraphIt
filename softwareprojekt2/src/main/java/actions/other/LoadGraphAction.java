@@ -3,13 +3,11 @@ package actions.other;
 import actions.GraphAction;
 
 /**
- * loads a existing graph to syndrom
+ * loads the existing graph to syndrom
  */
 public class LoadGraphAction extends GraphAction {
-    /**
-     * @param id the id of the graph
-     */
-    public LoadGraphAction(Integer id) {
+
+    public LoadGraphAction() {
         throw new UnsupportedOperationException();
     }
 

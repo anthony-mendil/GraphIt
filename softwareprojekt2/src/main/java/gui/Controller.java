@@ -1,5 +1,6 @@
 package gui;
 
+import actions.ActionHistory;
 import actions.ObserverSyndrom;
 import com.google.inject.Inject;
 import graph.graph.Syndrom;
@@ -537,7 +538,12 @@ public class Controller implements ObserverSyndrom{
      */
     @Inject
     private Syndrom syndrom;
-    //private ActionHistory cmdHistory;
+
+    /**
+     * the action history
+     */
+    @Inject
+    private ActionHistory cmdHistory;
 
     /* ----------------ADD---------------------- */
 

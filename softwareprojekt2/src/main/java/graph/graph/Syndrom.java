@@ -200,11 +200,6 @@ public class Syndrom {
     private String graphName;
 
     /**
-     * the id
-     */
-    private int id;
-
-    /**
      * the values set by the gui
      */
     @Setter(AccessLevel.NONE)

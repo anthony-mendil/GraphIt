@@ -18,28 +18,31 @@ public class GraphObjectsFactory {
     int objectCounter;
 
     /**
-     *
+     * creates a new graphObjectsFactory
      */
     public GraphObjectsFactory(int currentId) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * @return
+     * creates a new edge with the values set in values
+     * @return a new edge object
      */
     public Edge createEdge() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * @return
+     * creates a new vertex with the values set in values
+     * @return a new vertex object
      */
     public Vertex createVertex() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * @return
+     * creates a new sphere with the values set in values
+     * @return a new sphere object
      */
     public Sphere createSphere() {
         throw new UnsupportedOperationException();

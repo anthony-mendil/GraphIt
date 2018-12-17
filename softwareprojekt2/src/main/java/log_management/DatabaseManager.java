@@ -17,7 +17,7 @@ public class DatabaseManager implements ObserverSyndrom {
     /**
      * the log_management.dao for graphs for accessing the database
      */
-    private GraphDao graphDap;
+    private GraphDao graphDao;
 
     /**
      * the log_management.dao for logs for accessing the database
@@ -25,9 +25,9 @@ public class DatabaseManager implements ObserverSyndrom {
     private LogDao logDao;
 
     /**
-     * adds a log to the database (though dao)
+     * adds a log to the database (through dao)
      */
-    public static void addEntryDatabase(Action action) {
+    public void addEntryDatabase(Action action) {
         throw new UnsupportedOperationException();
     }
 

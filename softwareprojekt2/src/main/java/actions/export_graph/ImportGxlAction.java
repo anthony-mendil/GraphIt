@@ -13,7 +13,7 @@ public class ImportGxlAction extends GraphAction {
     private String path;
 
     /**
-     * Actionhandling for importing the graph as GXL
+     * Action handling for importing the graph as GXL
      *
      * @param pPath The path that the GXL is imported from
      */

@@ -14,7 +14,7 @@ public class ImportOofAction extends GraphAction {
 
 
     /**
-     * Constructs Actionhandling for importing a graph as Oof
+     * Constructs Action handling for importing a graph as Oof
      *
      * @param pPath The path that the OOF is imported from
      */

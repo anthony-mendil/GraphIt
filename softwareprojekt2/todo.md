@@ -4,6 +4,8 @@
 - j graph t handler
 - action gxl
 - wie kommen die log informationen an die gui zurück?
+- problemkarte dependency injection
+- log_management
 
 ### Export, Import
 - nach jeder action muss die gxl in die db
