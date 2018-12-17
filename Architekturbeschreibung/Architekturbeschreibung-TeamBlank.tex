@@ -1975,46 +1975,33 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 \section[Zusammenhänge zwischen Anwendungsfällen und Architektur]{Zusammenhänge zwischen Anwendungsfällen und Architektur\sectionmark{Zusammenhänge AF u. Architektur}}
 \sectionmark{Zusammenhänge AF u. Architektur}
 \label{sec:anwendungsfaelle}
-\emph{Autoren: Jacky Philipp Mach, Jonah Jaeger}\\ \\
+\emph{Autoren: Jacky Philipp Mach, Jonah Jaeger, Clement Phung}\\ \\
 
-\subsection{Anwendungsfall: Ein Lehrer erstellt einen Syndromansatz}
+\subsection{Anwendungsfall: Ein Lehrer erstellt einen Syndromansatz und fügt eine Sphäre hinzu}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndromansatz}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndromansatz und fügt eine Sphäre hinzu}} \\\hline
 	\hline
 	\textbf{Akteure}: Ersteller
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geschlossen, es wurden noch kein Graph erstellt und keine Einstellungen gesetzt. \\
-	\textit{Ziel}: Eine Vorlage für einen Syndromansatz erstellen.
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet, es wurden noch kein Graph erstellt und keine Einstellungen gesetzt. \\
+	\textit{Ziel}: Einen Syndromansatz erstellen und eine Sphäre hinzufügen.
 	\\\hline
 		\textbf{Regulärer Ablauf}: \begin{itemize}
-		\itemsep-0.7em
-		\item der Ersteller öffnet die Application und drück auf den Menüpunkt \textit{Datei}  $\rightarrow$ \textit{Neuen Graph erstellen}
+		\itemsep-1.3em
+		\item der Ersteller drückt auf den Menüpunkt \textit{Datei}  $\rightarrow$ \textit{Neuen Graph erstellen}
 		\item das System öffnet ein Pop-Up-Eingabefeld 
 		\item der Ersteller gibt den Namen des Graphen an und klickt ok
 		\item der Ersteller klickt auf den \textit{Sphäre hinzufügen}- Button
 		\item der Ersteller klickt in die Arbeitsfläche 
-		\item der Ersteller klickt auf den Text der Sphäre
-		\item das System öffnet ein Pop-Up-Eingabefeld 
-		\item der Ersteller gibt den Namen der Sphäre ein
-		\item der Ersteller markiert die Sphäre
-		\item der Ersteller klickt den \textit{Farbe ändern}- Button 
-		\item das System öffnet einen Color-Picker 
-		\item der Ersteller wählt eine Farbe
-		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
-		\item das System öffnet ein Menü
-		\item der Ersteller klickt \textit{Sphäre Bezeichnung blockieren}
-		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
-		\item das System öffnet ein Menü
-		\item der Ersteller klickt \textit{Sphäre Farbe blockieren}
 	\end{itemize}
 	\\\hline
-	\textbf{Varianten}: Der Ersteller könnte weitere Element zur der Vorlage hinzufügen und eine maximale Anzahl für die Elemente setzen. 
+	\textbf{Varianten}: Der Ersteller könnte weitere Element zu dem Graphen hinzufügen und diese miteinander verknüpfen.
 	\\\hline
-	\textbf{Nachbedingung}: Der Ersteller hat eine Vorlage erstellt. Diese kann der Ersteller nun exportieren und als Vorlage nutzen.
+	\textbf{Nachbedingung}: Der Ersteller hat einen Graph erstellt. Dieser Graph kann der Ersteller nun beliebig bearbeiten und speichern/exportieren.
 	\\\hline
-	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller vergisst am Ende Rahmenbedingungen zu setzen $\rightarrow$ Für den Fall, dass der Ersteller dies gespeichert hat, kann der Ersteller das Projekt neu importieren und dann die Regeln festlegen.
+	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte die Sphäre an eine nicht geeignete Stelle setzen $\rightarrow$ Der Ersteller kann die Sphäre mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und neu setzen. 
 	\\\hline
 \end{tabular}
 
@@ -2039,30 +2026,15 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
-	\itemsep-0.7em
-	\item der Bearbeiter klickt mit einem Rechtsklick auf eine Sphäre
-	\item das System öffnet ein Menü
-	\item der Bearbeiter klickt auf \textit{Knoten hinzufügen}
+	\itemsep-1.3em
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Knoten hinzufügen}
+	\item der Bearbeiter klickt auf eine Sphäre
 	\item der Bearbeiter klickt auf die Arbeitsfläche 
-	\item das System öffnet ein Pop-Up-Eingabefeld
-	\item der Bearbeiter gibt einen Namen \textit{A} ein
-	\item der Bearbeiter klickt auf den \textit{Knoten hinzufügen}-Button
-	\item der Bearbeiter klickt auf die Arbeitsfläche
-	\item das System öffnet ein Pop-Up-Eingabefeld
-	\item der Bearbeiter gibt einen Namen \textit{B} ein
-	\item der Bearbeiter markiert diesen Knoten
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Form ändern} $\rightarrow$ \textit{Quadrat}
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Schriftart ändern} $\rightarrow$ \textit{Calibri}
-	\item der Bearbeiter klickt auf den Knoten \textit{A}, zieht die Maus über den Knoten \textit{B} und lässt dann die Maus los
-	\item der Bearbeiter markiert die Kante
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante ändern} $\rightarrow$ \textit{Gestrichelt}
-	\item der Bearbeiter klickt auf den knoten \textit{B}, zieht die Maus über eine andere Sphäre und lässt dann die Maus los
-	\item der Bearbeiter drückt auf den \textit{Redo}-Button
-	\item der Bearbeiter wählt \textit{Exportieren als} $\rightarrow$ \textit{OOF}
+	\item der Bearbeiter wählt \textit{Datei} $\rightarrow$ \textit{Exportieren als} $\rightarrow$ \textit{OOF}
 	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{exportieren}
 \end{itemize}
 	\\\hline
-	\textbf{Varianten}: Der Bearbeiter könnte neben den Einschränkungen viele Elemente hinzufügen und dies am Ende auch noch als Vorlage speichern.  
+	\textbf{Varianten}: Dem Bearbeiter kann mit vielen Werkzeugen den Graph nach seinen/ihren Wünschen bearbeiten.  
 	\\\hline
 	\textbf{Nachbedingung}: Die Vorlage wurde modifiziert und als \textit{oof} Datei gespeichert. Der Bearbeiter könnte nun in den Auswertermodus wechseln und dort den Graphen auswerten.
 	\\\hline
@@ -2083,41 +2055,23 @@ Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüf
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A3: Auswerter wertet Graph und Bearbeiter aus}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A3: Auswerter wertet Graph aus}} \\\hline
 	\hline
 	\textbf{Akteure}:  Auswerter
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geschlossen, ein bearbeiteter Syndromansatz in Form einer OOF-Datei ist vom Computer aus zugreifbar. \\ 
-	\textit{Ziel}: Syndromansatz und Bearbeiter auswerten.
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet, ein bearbeiteter Syndromansatz in Form einer OOF-Datei ist schon importiert. \\ 
+	\textit{Ziel}: Syndromansatz auswerten.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
-	\itemsep-0.7em
-	\item der Auswerter öffnet die Applikation und drückt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{OOF importieren}
-	\item das System öffnet ein Pop-Up Fenster
-	\item der Auswerter gibt den Speicherpfad der OOF-Vorlage an und klickt auf \textit{Ok}
-	\item das System öffnet den Syndromansatz
-	\item der Auswerter drückt auf den Menüpunkt \textit{Option} $\rightarrow$ \textit{Sprache ändern}$\rightarrow$ \textit{Englisch}
-	\item der Auswerter klickt mit einem Rechtsklick auf eine Sphäre 
-	\item das System öffnet ein Menü
-	\item der Auswerter klickt auf \textit{Ausblenden}
-	\item der Auswerter klickt auf unter Zoom auf den \textit{Plus}-Button
-	\item der Auswerter markiert mehrere Knoten in einer Sphäre
-	\item der Auswerter klickt mit einem Rechtsklick auf die Knoten 
-	\item das System öffnet ein Menü
-	\item der Auswerter klickt auf \textit{Ausblenden}
+	\itemsep-1.3em
+	\item der Auswerter klickt auf den Menüpunkt \textit{Auswertermodus}
 	\item der Auswerter klickt auf den Menüpunkt \textit{Relationtyp} $\rightarrow$ \textit{nur verstärkend}
-	\item der Auswerter klickt unter Zoom auf den \textit{Minus}-Button
-	\item der Auswerter klickt auf \textit{undo}
-	\item der Auswerter klickt auf \textit{redo} 
-	\item der Auswerter klickt mit einem Rechtsklick auf einen Knoten
-	\item das System öffnet ein Menü
-	\item der Auswerter klickt auf \textit{hervorheben}
 	\item der Auswerter drückt auf \textit{Indizes berechnen}
 	\item der Auswerter klickt \textit{Bearbeiter auswerten}
 \end{itemize}
 	\\\hline
-	\textbf{Varianten}: Der Auswerter könnte nach vielen Kriterien filtern und diese auch miteinander kombinieren. Ebenfalls kann man bevor man in den Auswertermodus gelangt den Syndromansatz modifizieren.
+	\textbf{Varianten}: Der Auswerter könnte nach vielen Kriterien filtern und diese auch in Kombination verschiedener Kriterien filtern. Ebenfalls kann man manche Elemente ausblenden um unnötige Aspekte zu ignorieren.
 	\\\hline
 	\textbf{Nachbedingung}: Der Auswerter hat den Graphen nun ausgewertet. Danach könnte der Auswerter in den Bearbeiter-Modus wechseln und den Syndromansatz weiter bearbeiten.
 	\\\hline
@@ -2143,30 +2097,16 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 	\textbf{Akteure}:  Bearbeiter
 	\\\hline
 	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Die GXL-Datei ist erfolgreich importiert.\\ 
-	\textit{Ziel}: Syndromansatz durch Modifikation korrigieren.
+	\textit{Ziel}: Syndromansatz modifizieren.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
-	\itemsep-0.7em
+	\itemsep-1.3em
 	\item der Bearbeiter markiert zwei Symptome in der selben Sphäre
 	\item der Bearbeiter klickt auf die Knoten, zieht die Maus über eine andere Sphäre und lässt dann die Maus los
-	\item der Bearbeiter markiert die ausgehenden Kanten der eben genannten Knoten
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Löschen}
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Relationstyp ändern} $\rightarrow$ \textit{Abschwächend} 
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante hinzufügen}
-	\item der Bearbeiter klickt auf einen Knoten, zieht die Maus über eine anderen Knoten und lässt dann die Maus los
-	\item der Bearbeiter markiert drei Relationen 
-	\item das Bearbeiter klickt mit einem Rechtsklick auf die Kanten
-	\item das System öffnet ein Menü
-	\item der Bearbeiter klickt auf \textit{Relationstyp ändern} $\rightarrow$ \textit{ungewiss}
-	\item der Bearbeiter markiert mehrere Knoten
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Knotenform ändern} $\rightarrow$ \textit{Ellipse}
 	\item der Bearbeiter markiert eine Kante
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kantendicke ändern} $\rightarrow$ \textit{Mittel}
-	\item der Bearbeiter klickt auf den Color-Picker $\rightarrow$ \textit{Rot}
-	\item der Bearbeiter markiert eine andere Kante
-	\item der Bearbeiter klickt auf die \textit{Entf}-Taste der Tastatur
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Speichern}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Reationstyp ändern} $\rightarrow$ \textit{Ungewiss}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{undo}
 \end{itemize}
 	\\\hline
 	\textbf{Varianten}: Der Bearbeiter hat eine große Auswahl an Werkzeugen z.B. \textit{Sphärenfarbe ändern} oder \textit, um den Graph zu modifizieren. 
@@ -2185,41 +2125,34 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 
 \newpage
 
-\subsection{Anwendungsfall: Ein Lehrer importiert einen Graphen und exportiert diesen}
+\subsection{Anwendungsfall: Ein Lehrer exportiert einen Graphen}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A5: Bearbeiter importiert einen Graphen und exportiert diesen}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A5: Bearbeiter exportiert einen Graphen}} \\\hline
 	\hline
 	\textbf{Akteure}: Bearbeiter
 	\\\hline
 	\textbf{Vorbedingungen}: Das Programm ist geöffnet.\\ 
-	\textit{Ziel}: Graphen importieren und exportieren.
+	\textit{Ziel}: Graphen exportieren.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
 	\itemsep-0.7em
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{GXL-importieren}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{exportieren als} $\rightarrow$ \textit{OOF}
 	\item das System öffnet ein Pop-Up-Eingabefeld
 	\item der Bearbeiter gibt den Speicherpfad des Graphen an und klickt \textit{Ok} 
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{exportieren als} $\rightarrow$ \textit{PDF}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{exportieren als} $\rightarrow$ \textit{PDF}
 	\item das System öffnet ein Pop-Up-Fenster
-	\item der Bearbeiter gibt einen Speicherpfad an und drückt auf Button \textit{Exportieren}
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Speichern unter}
-	\item das System öffnet ein Pop-Up-Fenster
-	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{Speichern}
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
-	\item das System öffnet ein Pop-Up-Fenster
-	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{Exportieren}
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Hilfe}
-	\item das System öffnet ein Pop-Up-Fenster
+	\item der Bearbeiter gibt den Speicherpfad des Graphen an und klickt \textit{Ok}
+	
 \end{itemize}
 	\\\hline
-	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter viele Exporte verschiedener Versionen hat.
+	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter Exporte verschiedener Versionen hat.
 	\\\hline
-	\textbf{Nachbedingung}: Der Graph ist nun importiert. Der Graph ist im GXL-Format und auch als PDF gespeichert. Dieser könnte der Ersteller in ausgedruckter Variante vervielfältigen.
+	\textbf{Nachbedingung}: Der Graph ist nun als PDF und als OOF-Format exportiert. Die OOF-Datei kann der Bearbeiter nun weitergeben, sodass jemand anderes den Bearbeiter auswerten kann. 
 	\\\hline
-	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte nun im Bearbeitermodus den Graphen modifizieren.
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte nun im Bearbeitermodus den Graphen modifizieren oder als eine Vorlage für spätere Verwendung exportieren.
 	\\\hline
 \end{tabular}\\ \\ \\
 
