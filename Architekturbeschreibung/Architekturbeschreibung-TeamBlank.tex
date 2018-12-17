@@ -1979,29 +1979,59 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 \label{sec:anwendungsfaelle}
 \emph{Autoren: Jacky Philipp Mach, Jonah Jaeger, Clement Phung}\\ \\
 
-\subsection{Anwendungsfall: Ein Lehrer erstellt einen Syndromansatz und fügt eine Sphäre hinzu}
+\subsection{Anwendungsfall: Ein Lehrer erstellt einen Syndromansatz}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndromansatz und fügt eine Sphäre hinzu}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndromansatz}} \\\hline
 	\hline
 	\textbf{Akteure}: Ersteller
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geöffnet, es wurden noch kein Graph erstellt und keine Einstellungen gesetzt. \\
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet, es wurde in der Sitzung noch kein Graph erstellt und keine Einstellungen gesetzt. \\
 	\textit{Ziel}: Einen Syndromansatz erstellen und eine Sphäre hinzufügen.
 	\\\hline
 		\textbf{Regulärer Ablauf}: \begin{itemize}
 		\itemsep-0.9em
 		\item der Ersteller drückt auf den Menüpunkt \textit{Datei}  $\rightarrow$ \textit{Neuen Graph erstellen}
-		\item das System öffnet ein Pop-Up-Eingabefeld 
+		\item das System öffnet zwei Pop-Up-Fenster (Abfrage für Speichern des alten Graphen und Eingabefeld des Namen des neuen Graphen) 
 		\item der Ersteller gibt den Namen des Graphen an und klickt ok
-		\item der Ersteller klickt auf den \textit{Sphäre hinzufügen}- Button
-		\item der Ersteller klickt in die Arbeitsfläche 
 	\end{itemize}
 	\\\hline
-	\textbf{Varianten}: Der Ersteller könnte weitere Element zu dem Graphen hinzufügen und diese miteinander verknüpfen.
+	\textbf{Varianten}: Der Ersteller könnte Elemente zu dem Graphen hinzufügen und diese miteinander verknüpfen.
 	\\\hline
 	\textbf{Nachbedingung}: Der Ersteller hat einen Graph erstellt. Dieser Graph kann der Ersteller nun beliebig bearbeiten und speichern/exportieren.
+	\\\hline
+	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte vergessen den alten Graphen zu speichern, sodass beim Erstellen des neuen Graphen der alte Graph überschrieben wird.
+	\\\hline
+\end{tabular}
+
+
+\begin{figure}[ht]
+	\centering
+	%\includegraphics[width=1\textwidth]{seqdia.jpg}
+	\caption{Sequenzdiagramm I}
+\end{figure}
+\newpage
+\subsection{Anwendungsfall: Ein Lehrer fügt eine Sphäre hinzu}
+
+\begin{tabular} {|p{16cm}|}
+	\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A2: Bearbeiter fügt eine Sphäre hinzu}} \\\hline
+	\hline
+	\textbf{Akteure}: Bearbeiter
+	\\\hline
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet, eine GXL-Datei wurde schon erfolgreich importiert. Die Arbeitsfläche ist leer. \\
+	\textit{Ziel}: Eine Sphäre hinzufügen.
+	\\\hline
+		\textbf{Regulärer Ablauf}: \begin{itemize}
+		\itemsep-0.9em
+		\item der Bearbeiter klickt auf den \textit{Sphäre hinzufügen}- Button
+		\item der Bearbeiter klickt in die Arbeitsfläche 
+	\end{itemize}
+	\\\hline
+	\textbf{Varianten}: Der Bearbeiter könnte der Sphäre eine Bezeichnung geben oder mehrere Sphären zu dem Graphen hinzufügen.
+	\\\hline
+	\textbf{Nachbedingung}: Der Bearbeiter hat eine Sphäre hinzugefügt. Danach kann der Bearbeiter weitere Elemente hinzufügen oder den Graphen exportieren.
 	\\\hline
 	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte die Sphäre an eine nicht geeignete Stelle setzen $\rightarrow$ Der Ersteller kann die Sphäre mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und neu setzen. 
 	\\\hline
@@ -2013,17 +2043,18 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 	%\includegraphics[width=1\textwidth]{seqdia.jpg}
 	\caption{Sequenzdiagramm I}
 \end{figure}
+
 \newpage
 
 \subsection{Anwendungsfall: Ein/e Schüler/in arbeitet mit der Vorlage seines/r Lehrer/in}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A2: Bearbeiter modifiziert Vorlage}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A3: Bearbeiter modifiziert Vorlage}} \\\hline
 	\hline
 	\textbf{Akteure}:  Bearbeiter
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geöffnet, die Vorlage in Form einer GXL-Datei ist schon importiert. Diese enthält genügend Sphären und Knoten, die miteinander verknüpft sind.\\ 
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet, die Vorlage in Form einer GXL-Datei ist schon importiert. Diese eine Sphäre.\\ 
 	\textit{Ziel}: Vorlage modifizieren und als neuen Datentyp speichern.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
@@ -2031,7 +2062,6 @@ Prozessen auf welchen Rechnern ausgeführt werden.}
 	\itemsep-0.9em
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Knoten hinzufügen}
 	\item der Bearbeiter klickt auf eine Sphäre
-	\item der Bearbeiter klickt auf die Arbeitsfläche 
 	\item der Bearbeiter wählt \textit{Datei} $\rightarrow$ \textit{Exportieren als} $\rightarrow$ \textit{OOF}
 	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{exportieren}
 \end{itemize}
@@ -2051,35 +2081,7 @@ Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüf
 	% \includegraphics[width=1\textwidth]{seqdia.jpg}
 	\caption{Sequenzdiagramm II}
 \end{figure}
-\newpage
 
-\subsection{Anwendungsfall: Ein Lehrer wertet einen Syndromansatz seiner Schüler aus}
-
-\begin{tabular} {|p{16cm}|}
-	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A3: Auswerter wertet Graph aus}} \\\hline
-	\hline
-	\textbf{Akteure}:  Auswerter
-	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geöffnet, ein bearbeiteter Syndromansatz in Form einer OOF-Datei ist schon importiert. \\ 
-	\textit{Ziel}: Syndromansatz auswerten.
-	\\\hline
-	\textbf{Regulärer Ablauf}:
-\begin{itemize}
-	\itemsep-0.9em
-	\item der Auswerter klickt auf den Menüpunkt \textit{Auswertermodus}
-	\item der Auswerter klickt auf den Menüpunkt \textit{Relationtyp} $\rightarrow$ \textit{nur verstärkend}
-	\item der Auswerter drückt auf \textit{Indizes berechnen}
-	\item der Auswerter klickt \textit{Bearbeiter auswerten}
-\end{itemize}
-	\\\hline
-	\textbf{Varianten}: Der Auswerter könnte nach vielen Kriterien filtern und diese auch in Kombination verschiedener Kriterien filtern. Ebenfalls kann man manche Elemente ausblenden um unnötige Aspekte zu ignorieren.
-	\\\hline
-	\textbf{Nachbedingung}: Der Auswerter hat den Graphen nun ausgewertet. Danach könnte der Auswerter in den Bearbeiter-Modus wechseln und den Syndromansatz weiter bearbeiten.
-	\\\hline
-	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Auswerter könnte unglücklicherweise wichtige Knoten ausgeblendet haben. Man kann unter dem Button \textit{alle wieder anzeigen} das Ausblenden umkehren oder einfach den \textit{undo}-Button verwenden.
-	\\\hline
-\end{tabular}\\ \\ \\
 
 Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Administrator einem Benutzer die Rolle Prüfer zuteilt, bzw. ihn als Prüfer deklariert. Hierbei ist zu beachten, dass sich der Administrator bereits angemeldet hat und er die Rolle Administrator inne hat. 
 \\ \\ 
@@ -2104,8 +2106,6 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
 	\itemsep-0.9em
-	\item der Bearbeiter markiert zwei Symptome in der selben Sphäre
-	\item der Bearbeiter klickt auf die Knoten, zieht die Maus über eine andere Sphäre und lässt dann die Maus los
 	\item der Bearbeiter markiert eine Kante
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Reationstyp ändern} $\rightarrow$ \textit{Ungewiss}
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{undo}
@@ -2135,15 +2135,12 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 	\hline
 	\textbf{Akteure}: Bearbeiter
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geöffnet.\\ 
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Die GXL-Datei ist schon importiert. Es existiert eine Sphäre und ein Knote in der Sphäre.\\ 
 	\textit{Ziel}: Graphen exportieren.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
 	\itemsep-0.9em
-	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{exportieren als} $\rightarrow$ \textit{OOF}
-	\item das System öffnet ein Pop-Up-Eingabefeld
-	\item der Bearbeiter gibt den Speicherpfad des Graphen an und klickt \textit{Ok} 
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{exportieren als} $\rightarrow$ \textit{PDF}
 	\item das System öffnet ein Pop-Up-Fenster
 	\item der Bearbeiter gibt den Speicherpfad des Graphen an und klickt \textit{Ok}
@@ -2152,9 +2149,9 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 	\\\hline
 	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter Exporte verschiedener Versionen hat.
 	\\\hline
-	\textbf{Nachbedingung}: Der Graph ist nun als PDF und als OOF-Format exportiert. Die OOF-Datei kann der Bearbeiter nun weitergeben, sodass jemand anderes den Bearbeiter auswerten kann. 
+	\textbf{Nachbedingung}: Der Graph ist nun als PDF exportiert. Die OOF-Datei kann der Bearbeiter nun weitergeben, sodass jemand anderes den ausdrucken kann.
 	\\\hline
-	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte nun im Bearbeitermodus den Graphen modifizieren oder als eine Vorlage für spätere Verwendung exportieren.
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte einen falschen Pfad angeben $\rightarrow$ das System warnt den Bearbeiter und der Bearbeiter kann es erneut versuchen.
 	\\\hline
 \end{tabular}\\ \\ \\
 
