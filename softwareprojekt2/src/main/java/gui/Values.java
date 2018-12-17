@@ -81,6 +81,14 @@ public class Values {
      */
     private String fontSphere;
     /**
+     *
+     */
+    private int fontSizeSphere;
+    /**
+     *
+     */
+    private int fontSizeVertex;
+    /**
      * the fill paint color of a vertex
      */
     private Paint fillPaintVertex;

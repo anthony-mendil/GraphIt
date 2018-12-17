@@ -3,6 +3,8 @@ package graph.graph;
 import com.google.inject.Inject;
 import gui.Values;
 
+import java.awt.geom.Point2D;
+
 /**
  *
  */
@@ -45,7 +47,7 @@ public class GraphObjectsFactory {
      * creates a new sphere with the values set in values
      * @return a new sphere object
      */
-    public Sphere createSphere() {
+    public Sphere createSphere(Point2D position) {
         throw new UnsupportedOperationException();
     }
 }

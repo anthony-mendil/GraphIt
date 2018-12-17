@@ -3,8 +3,10 @@ package log_management;
 import actions.Action;
 import actions.ObserverSyndrom;
 import com.google.inject.Singleton;
+import io.GXLio;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
+import log_management.tables.Graph;
 import lombok.Data;
 
 /**
@@ -25,10 +27,24 @@ public class DatabaseManager implements ObserverSyndrom {
     private LogDao logDao;
 
     /**
+     * the gxl io to get the gxl string
+     */
+    private GXLio gxlIo;
+
+    /**
+     *
+     */
+    private Graph graph;
+
+    public DatabaseManager(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * adds a log to the database (through dao)
      * @param action TODO
      */
-    public void addEntryDatabase(Action action) {
+    public static void addEntryDatabase(Action action) {
         throw new UnsupportedOperationException();
     }
 
