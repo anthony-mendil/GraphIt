@@ -66,4 +66,9 @@ public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMou
     public void mouseDragged(MouseEvent e) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException();
+    }
 }

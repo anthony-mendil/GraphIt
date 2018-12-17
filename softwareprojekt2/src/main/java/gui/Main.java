@@ -1,11 +1,18 @@
 package gui;
 
 import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * Starts the whole application
  */
 public class Main {
+
+    /**
+     * The window of the application
+     */
+    @Getter
+    private Stage primary;
 
     /**
      * Loads the gui with a fxmlloader, sets the title of the application

@@ -36,7 +36,7 @@ public class GraphDao implements Dao<Graph> {
     }
 
     @Override
-    public void update(Graph graph, String[] params) {
+    public void update(Graph graph) {
         throw new UnsupportedOperationException();
     }
 

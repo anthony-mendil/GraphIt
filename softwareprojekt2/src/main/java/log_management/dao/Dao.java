@@ -31,10 +31,9 @@ public interface Dao<T> {
 
     /**
      * Updates an object
-     * @param t the object to update
-     * @param params the params for the object
+     * @param t the updated object
      */
-    void update(T t, String[] params);
+    void update(T t);
 
     /**
      * deletes the object

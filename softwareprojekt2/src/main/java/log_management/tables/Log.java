@@ -13,7 +13,7 @@ public class Log {
     private int id;
     private Graph graph;
     private LogEntryName logEntryName;
-    private String parameters;
+    private String parameters = "";
     private LocalDateTime time;
 
     @Column(name = "ID")

@@ -88,7 +88,7 @@ public class Controller implements ObserverSyndrom{
     /**
      * The menuItem under the menu "File.. &gt; Export as.." for exporting the file as template
      */
-    private MenuItem exportTemplate;
+    private MenuItem exportGXL;
 
     /**
      * The menuItem under the menu "File.. &gt; Export as.." for exporting the file as different formats (e.g. png,svg,etc.)
@@ -527,6 +527,7 @@ public class Controller implements ObserverSyndrom{
     private MenuItem edgeArrowNeutral;
 
     /* Internal */
+
     /**
      * The logdao object that provides the treeview with the protocol
      */
@@ -816,10 +817,26 @@ public class Controller implements ObserverSyndrom{
     public void currentAction(){throw new UnsupportedOperationException();}
 
     /**
-     *  Opens a dialog window after pressing "open file" or "import gxl", that asks if the user wants to
+     *  Opens a dialog window after pressing "open file", "import gxl" or "create new graph", that asks if the user wants to
      *  export their current opened file
      */
-    public void openExportDialogWindow(){throw new UnsupportedOperationException();}
+    private void openExportConfirmationDialogWindow(){throw new UnsupportedOperationException();}
+
+    /**
+     *  Opens a dialog window after pressing "create new graph", that allows the user to name the
+     *  graph
+     */
+    private void openNewGraphTextInputDialogWindow(){throw new UnsupportedOperationException();}
+
+    /**
+     *  Opens a file search window after pressing "open file" or "import gxl"
+     */
+    private void openSearchFileChooserWindow(){throw new UnsupportedOperationException();}
+
+    /**
+     *  Opens a directory window to save the file under the desired location after pressing "saving under.."
+     */
+    private void openSaveUnderChooserWindow(){throw new UnsupportedOperationException();}
 
     /* ----------------REMOVE---------------------- */
 
