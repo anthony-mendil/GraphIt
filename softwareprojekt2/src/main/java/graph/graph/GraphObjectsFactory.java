@@ -45,6 +45,7 @@ public class GraphObjectsFactory {
 
     /**
      * creates a new sphere with the values set in values
+     * @param position The position of the new Sphere
      * @return a new sphere object
      */
     public Sphere createSphere(Point2D position) {
