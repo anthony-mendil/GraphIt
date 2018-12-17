@@ -1993,14 +1993,14 @@ Prozessen auf welchen Rechnern ausgeführt werden.}\\ \\
 	\hline
 	\textbf{Akteure}: Ersteller
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geöffnet, es wurde in der Sitzung noch kein Graph erstellt und keine Einstellungen gesetzt. \\
-	\textit{Ziel}: Einen Syndromansatz erstellen und eine Sphäre hinzufügen.
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Der Ersteller hat schon vorher mit dem Programm gearbeitet. \\
+	\textit{Ziel}: Einen neuen Syndromansatz erstellen.
 	\\\hline
 		\textbf{Regulärer Ablauf}: \begin{itemize}
-		\itemsep-0.9em
+		\itemsep-0.5em
 		\item der Ersteller drückt auf den Menüpunkt \textit{Datei}  $\rightarrow$ \textit{Neuen Graph erstellen}
 		\item das System öffnet zwei Pop-Up-Fenster (Abfrage für Speichern des alten Graphen und Eingabefeld des Namen des neuen Graphen) 
-		\item der Ersteller gibt den Namen des Graphen an und klickt ok
+		\item \textbf{der Ersteller gibt den Namen des Graphen an und klickt ok}
 	\end{itemize}
 	\\\hline
 	\textbf{Varianten}: Der Ersteller könnte Elemente zu dem Graphen hinzufügen und diese miteinander verknüpfen.
@@ -2010,6 +2010,14 @@ Prozessen auf welchen Rechnern ausgeführt werden.}\\ \\
 	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte vergessen den alten Graphen zu speichern, sodass beim Erstellen des neuen Graphen der alte Graph überschrieben wird.
 	\\\hline
 \end{tabular}
+\\ \\ \\
+Der eben beschriebene Anwendungsfall ist im dem folgenden Sequenzdiagramm dargestellt. \\
+Da als Vorbedingung angegeben war, dass der User bereits mit dem Programm gearbeitet hat, sind alle Singleton Klassen bereits initialisiert und im Projekt verfügbar. \\
+Im Laufe des Sequenzdiagramms wird eine \texttt{CreateGraphAction} erzeugt, die bei Ausführung, das im Programm aktuelle Syndrom Objekt mit einem neuen Graphen/ Layout belegt. Folgend werden die \texttt{GUI} und der \texttt{DatabaseManager} \textit{benachrichtigt}, dass ein neuer Graph erstellt wurde. \\
+Im Methodenaufruf des \texttt{DatabaseManagers} wird die Graph- Tabelle unserer Datenbank geleert, da unser Programm intern immer nur eine Graph Repräsentation speichert. \\
+Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in der Graph- Tabelle gespeichert. 
+
+\includepdf[pages=-, landscape]{first_.pdf}
 
 
 \begin{figure}[ht]
