@@ -71,6 +71,11 @@ public class Controller implements ObserverSyndrom{
     private MenuItem openFile;
 
     /**
+     * The menuItem under the menu "File.." for importing a gxl file
+     */
+    private MenuItem importGxl;
+
+    /**
      * The menuItem under the menu "File.." for saving under a specified location
      */
     private MenuItem saveLocation;
@@ -734,8 +739,14 @@ public class Controller implements ObserverSyndrom{
 
     /**
      * Opens the selected File after pressing "Open File" on the File Menu
+     * and executes the importOOF-Action
      */
     public void openFile(){throw new UnsupportedOperationException();}
+
+    /**
+     * Executes the importGXL-Action
+     */
+    public void importGXL(){throw new UnsupportedOperationException();}
 
     /**
      * Executes the printPDF-Action
@@ -803,6 +814,12 @@ public class Controller implements ObserverSyndrom{
      *  Shows the current used action
      */
     public void currentAction(String action){throw new UnsupportedOperationException();}
+
+    /**
+     *  Opens a dialog window after pressing "open file" or "import gxl", that asks if the user wants to
+     *  export their current opened file
+     */
+    public void openExportDialogWindow(){throw new UnsupportedOperationException();}
 
     /* ----------------REMOVE---------------------- */
 
