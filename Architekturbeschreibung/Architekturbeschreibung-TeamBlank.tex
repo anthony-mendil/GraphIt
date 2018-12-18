@@ -122,7 +122,7 @@
 
 % Kein Erstzeileneinzug beim Absatzanfang
 % Sieht aber nur gut aus, wenn man zwischen Absätzen viel Platz einbaut
-%\setlength{\parindent}{0ex}
+\setlength{\parindent}{0ex}
 
 % Abstand zwischen zwei Absätzen
 %\setlength{\parskip}{1ex}
@@ -1950,9 +1950,32 @@ In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zuge
 
 In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu finden. In dieser werden besonders wichtige oder für eine Gruppe von Modulen stellvertretend stehende Module unseres Systems genannt. Dabei wird auf die Funktion und Notwendigkeit dieser Module eingegangen sowie teilweise deren grundlegender Aufbau thematisiert. Außerdem wird in diesem Kapitel beschrieben wie die Module zusammenwirken, um die geforderten Anforderungen zu erfüllen. Bei Ausführungen zur Bedeutung, zum Aufbau und zum Zusammenwirken von Modulen wird bezug zu den Strategien genommen, für die wir uns im Rahmen der Problemkarten im Kapitel „Globalen Analyse“ entschieden haben. \\ \\
 
+
+\subsection{Übersicht}
+Dieser Abschnitt beschäftigt sich mit einer Übersicht über die alle Module des gesamten Projektes. \\
+Die Zusammenhänge zwischen den Modulen wurde auf der folgenden Seite als Paketdiagramm dargestellt. \\
+
+Das Package \texttt{actions} beinhaltet \texttt{Action} Klassen, die vor allem Aktionen auf dem Graphen umsetzen. Diese \texttt{Action} Klassen werden mit der Interaktion der grafischen Benutzeroberfläche verknüpft, sodass z.B. bei Klick auf einem Button eine bestimmt Aktion ausgeführt wird. \\
+
+Das Modul \texttt{gui} beinhaltet alle Klassen, die zur Erstellung/ Interaktion mit der Benutzeroberfläche benötigt werden. Die \texttt{GUI} steht in Abhängigkeit mit dem Modul \texttt{actions}, da die \texttt{Actions} mit den Interaktionen auf der \texttt{GUI} verknüpft sind. Die \texttt{GUI} bezieht sich außerdem auf das Modul \texttt{log\_management}, da diese im Modus \textit{Analyse} Informationen über das Protokoll visualisiert. Im Modus \textit{Vorlage bearbeiten} und \textit{Diagramm bearbeiten} werden Informationen über den Graphen visualisiert, weshalb hier ebenfalls eine Abhängigkeit zu dem package \textit{graph} besteht. \\
+
+Das Persistieren der Daten wird im Package \texttt{log\_management} umgesetzt. Dieses Package ist in drei weitere Packages unterteilt: \texttt{dao}, \texttt{parameters} und \texttt{tables}. \texttt{dao} ''Data Acess Object'' bildet die Benutzerschnittstelle für die anderen Module, um auf die Daten in der Datenbank zuzugreifen. Das Package \texttt{parameters} beinhaltet \texttt{Param} Klassen. Jeder \texttt{Action} Klasse ist eine \texttt{Param} Klasse zugeordnet. Diese wird bei der Persistierung der \texttt{Actions} als \texttt{Log} in einen Json-String umgewandelt und als Attribut eines \texttt{Log} Objektes abgespeichert und in die Datenbank geschrieben. \texttt{tables} beinhaltet die Klassen, welche den Aufbau eines \texttt{Graph}- und \texttt{Log} Objektes beschreiben. Diese Objekte werden mit Hibernate/ JPA persistiert und in einer embedded H2DB abgespeichert. \\ 
+
+Alle Import und Export Aktionen, werden im Package \texttt{io} implementiert. \texttt{io} benötigt die Protokoll Daten, welche durch das Package \texttt{dao} zugänglich sind. Außerdem greift \texttt{io} auf Klassen aus \texttt{graph} zu, da dort die Klassen liegen, welche die Daten zu dem aktuellen \textit{Syndromansatz} beinhalten. \\
+
+Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus unserem System in einen Graphen umzuwandeln, der vom Framework jgrapht erkannt wird. Deswegen besteht eine Abhängigkeit zwischen dem Package \texttt{jgrapht} und \texttt{graph.graph}. \\
+
+Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, sind im Package \texttt{graph} implementiert.  Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen/ Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. 
+
+\includepdf[pages=-, landscape]{package.pdf}
+
+
+
 Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
 Deswegen ist die Notwendigkeit gegeben, dass es ein Modul geben muss, welches alle Informationen des in der GUI angezeigten Graphen abfragen und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen aus einem GXL-String die \texttt{Syndrom} -Instanz, also die aktuelle Graph- Repräsentation im Programm,  zu generieren. \\
 Da das Programm außerdem die Möglichkeit bieten soll eine GXL Datei zu importieren/ exportieren gemäß Einflussfaktor \hyperlink{ii}{GXL- Export und -Import} muss auch diese Funktionalität bereit gestellt werden.\\ \\ 
+
+
 
 
 
@@ -1984,7 +2007,7 @@ Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit d
 
 Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder. \\ \\
 
-\includepdf[pages=-, landscape]{package.pdf}
+
 \includepdf[pages=-, landscape]{graph_graph.pdf}
 \includepdf[pages=-, landscape]{transformer.pdf}
 \includepdf[pages=-]{predicates.pdf}
