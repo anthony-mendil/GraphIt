@@ -289,7 +289,8 @@ Wir betrachten das vorliegende Exemplar als abgeschlossen. Dies meint nicht, das
 \newpage
 \subsection{Referenzen} 
 Die folgende Liste enthält Verweise zu Lösungen, die in diesem Dokument erwähnt werden. Bei den Lösungen handelt es sich zumeist um Frameworks. Um Recherchen zu diesen schnellstmöglich umsetzen zu können, sind neben den Namen auch Links zu den Webseiten der Lösungen angegeben. Der Vollständigkeit halben steht neben den Links das Datum des jeweils letzten Aufrufs. Außerdem finden sich in dieser Liste auch Literaturhinweise zu Werken, die aus der Domäne des Kunden stammen und auf die in diesem Dokument Bezug genommen wird. \\ \\
-Die Liste der erwähnten Tools/Frameworks: \\
+Die Liste der erwähnten Tools/Frameworks ist auf der folgenden Seite dargestellt. \\
+\newpage
 \begin{tabular}{p{3,5cm}p{9cm}p{3,5cm}}
 	Name der Lösung & Link & zuletzt aufgerufen am \\ \hline \\
 	Apache Maven & \url{http://maven.apache.org/} & 17.12.2018 \\ \\
@@ -408,7 +409,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
-	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{e}{P\tone.\two}: Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus)}} } \\ \hline\hline 
+	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{e}{P\tone.\two}: Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus)}} }\s \\ [2ex]\hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Dieser Einflussfaktor resultiert aus unserer Entscheidung für die Strategie ``GXL'' zur Problemkarte ``Datensicherung/Persistenz des Graphen''. Er besagt, dass es nötig ist, den Graphen (wie er in der GUI angezeigt wird) in ein GXL-Dokument zu schreiben dessen Inhalt dann als Text (varchar) in der embedded SQL-Datenbank gespeichert wird. Dieser Einflussfaktor thematisiert somit die Speicherung des Graphen als GXL Repräsentation in der Datenbank. Der Name dieser Einflussfaktors ist deshalb nicht entsprechend des eben beschriebenen Themas gewählt, da die Datenbank zusätzlich (wenn nicht sogar primär) der Speicherung der Nutzerinteraktionen dient.} }\rule{0pt}{11ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(++) Die Flexibilität dieses Einflussfaktors ist sehr hoch, da wir uns entschieden haben, die Anforderung des Speichern (und Laden des Graphen) auf die beschriebene Weise zu lösen. Es ist also nicht vorgegeben diesen Ansatz zu wählen. Außerdem ist selbst bei der Entscheidung für diese Herangehensweise noch Flexibilität gegeben: beispielsweise für die Wahl des Tools oder die Entscheidung zur Selbsterstellung zur GXL-Dokument-Generierung und zum Speicherintervall. (Letzteres siehe unten). & 
@@ -423,7 +424,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{f}{P\tone.\two}: Betriebssystemunterstützung / Zielplattformen des Systems} }}\\ \hline \hline
-	\multicolumn{2}{|l|}{\parbox{16cm}{Unser System muss mindestens auf den Betriebssystemen Windows 10 , Linux und MacOS lauffähig sein. (Bei der Entwicklung von Apps für mobile Geräte kämen noch Android und iOS hinzu.)}}\s\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Unser System muss mindestens auf den Betriebssystemen Windows 10 , Linux und MacOS lauffähig sein. (Bei der Entwicklung von Apps für mobile Geräte kämen noch Android und iOS hinzu.)}}\rule{0pt}{5ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\ 
 	(-) Bezüglich der Zielplattformen sind wir ziemlich unflexibel. Dies liegt daran, dass wir als Implementierungssprache Java in der Version 8 oder einer aktuelleren Variante vorgeschrieben bekommen haben und diese Programmiersprache den Aspekt der Lauffähigkeit bereits mit sich bringt. Somit bleibt uns nur noch die Wahl im Chinese Menue den Mobil-Punkt zu wählen, wodurch wir die Lauffähigkeit auf weiteren Betriebssystemen unterstützen müssten.&
 	(--) Da mit den genannten Zielplattformen (insbesondere unter Einbezug der mobilen Systeme) die relevanten (im Sinne von weit verbreiteten) Systeme unterstützt werden, denken wir nicht, dass weitere Systeme unterstützt werden müssen. Der Wegfall eines der erwähnten Betriebssysteme hätte keine Folgen für unser Programm und ist unserer Meinung nach auch unwahrscheinlich. \\ \hline
@@ -448,7 +449,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{h}{P\tone.\two}: Hohe Qualität }} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Im Rahmen der inneren Qualität streben wir eine hohe Änderbarkeit und Verständlichkeit (des Quellcodes) an. Die Änderbarkeit (und folglich auch die Verständlichkeit) soll insbesondere auch noch nach Abgabe der Software an den Kunden gegeben sein. Verständlichkeit meint in erster Linie die Eigenschaft unseres Quell-Codes samt der dazugehörigen Dokumentation, das dieser von einem anderen Entwickler mit geringem (Zeit-)Aufwand verstanden werden kann (und nicht von einem Laien im Bereich Software-Entwicklung). \\Im Rahmen der äußeren Qualität streben wir Fehlerfreiheit sowie eine hohe Bedienbarkeit an. Zu letzterer haben wir aufgrund ihrer hohen Bedeutung und ihrer Vielschichtigkeit einen eigenständigen Einflussfaktor (hohe Usability) erstellt. Aus diesem Grund wird die hohe Bedienbarkeit hier nicht weiter thematisiert. }  }\rule{0pt}{6ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Im Rahmen der inneren Qualität streben wir eine hohe Änderbarkeit und Verständlichkeit (des Quellcodes) an. Die Änderbarkeit (und folglich auch die Verständlichkeit) soll insbesondere auch noch nach Abgabe der Software an den Kunden gegeben sein. Verständlichkeit meint in erster Linie die Eigenschaft unseres Quell-Codes samt der dazugehörigen Dokumentation, das dieser von einem anderen Entwickler mit geringem (Zeit-)Aufwand verstanden werden kann (und nicht von einem Laien im Bereich Software-Entwicklung). \\Im Rahmen der äußeren Qualität streben wir Fehlerfreiheit sowie eine hohe Bedienbarkeit an. Zu letzterer haben wir aufgrund ihrer hohen Bedeutung und ihrer Vielschichtigkeit einen eigenständigen Einflussfaktor (hohe Usability) erstellt. Aus diesem Grund wird die hohe Bedienbarkeit hier nicht weiter thematisiert. }  }\rule{0pt}{6ex}\\ [14ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Wie wir für eine hohe Verständlichkeit und Änderbarkeit sorgen wollen, ist uns überlassen. Ebenso sind uns keine genauen Vorgaben bezüglich der Gewährleistung der Fehlerfreiheit gemacht worden. &
 	(-) Wir halten es für unwahrscheinlich, dass sich konkrete Vorgaben hinsichtlich Verständlichkeit und Änderbarkeit gemacht werden. Selbiges vermuten wir bezüglich der Fehlerfreiheit-Sicherstellung.   \\
@@ -463,7 +464,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{i}{P\tone.\two}: Command }} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Bei Command handelt es sich um ein Entwurfsmuster, das zum Aufbau einer Softwarestruktur genutzt werden kann, in der Commands (=Aktionen des Nutzers beziehungsweise Interaktionen des Nutzers mit dem System) als Objekte erfasst werden und somit eine zentrale Bedeutung in der Architektur besitzen. Die einzelne Commands / vom Nutzer ausgeführten Aktionen werden erfasst und können somit auch rückgängig gemacht werden (redo/ undo). Dieses Entwurfsmuster wird durch unsere Entscheidung für die Strategie Command (bei gleichzeitiger Umsetzung der Strategien Model-View-Controller und Modularisierung) bei der Problemkarte ``Auswahl der grundlegenden Softwarearchitektur'' zum Einflussfaktor. Denn es wirkt sich auf die gennante und die Problemkarte ``Persistierungsintervall des Graphen'' aus.} }\rule{0pt}{13ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Bei Command handelt es sich um ein Entwurfsmuster, das zum Aufbau einer Softwarestruktur genutzt werden kann, in der Commands (=Aktionen des Nutzers beziehungsweise Interaktionen des Nutzers mit dem System) als Objekte erfasst werden und somit eine zentrale Bedeutung in der Architektur besitzen. Die einzelne Commands / vom Nutzer ausgeführten Aktionen werden erfasst und können somit auch rückgängig gemacht werden (redo/ undo). Dieses Entwurfsmuster wird durch unsere Entscheidung für die Strategie Command (bei gleichzeitiger Umsetzung der Strategien Model-View-Controller und Modularisierung) bei der Problemkarte ``Auswahl der grundlegenden Softwarearchitektur'' zum Einflussfaktor. Denn es wirkt sich auf die gennante und die Problemkarte ``Persistierungsintervall des Graphen'' aus.} }\rule{0pt}{14.5ex}\\  \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Das Entwurfmuster selbst legt zwar eine grobe Struktur nahe, da wir uns aber selbst für die Verwendung des Command-Patterns entschiedenen haben und wir die konkrete Commands / Nutzeraktonen selbst definieren können, schätzen ir die Flexibilität als eher hoch ein. Die Flexibilität ist auch deshalb nicht sehr hoch, weil die von uns entworfenen Commands konkret vorgegebene Anforderungen abdecken müssen. & 
 	(o) Wir schätzen die Veränderlichkeit als neutral ein. Dies liegt daran, dass sich an der Verwendung des Entwurfsmusters Command und der ssonstigen groben Softwarearchitektur vermutlich kaum mehr etwas ändern wird, wenn die Software erst einmal im Betrieb ist. Allerdings könnten weitere Funktionen gefordert werden, die neue (also weitere) Commands / Nutzeraktionen erforderlich machen.\\
@@ -483,7 +484,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(--) Der Einsatz von JavaFX wird uns mit an Sicherheit grenzender Wahrscheinlichkeit nicht untersagt werden (sodass die GUI weiterhin damit umgesetzt werden kann) und Swing-Node, das die Basis für JUNG ist, wird weiterhin auf JavaFX basieren.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Teile unseres Systems - in erster Linie den Aufbau der GUI - mittels JavaFX realisieren. } }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Teile unseres Systems - in erster Linie den Aufbau der GUI - mittels JavaFX realisieren. } }\\ [2ex]\hline
 \end{tabular}
 \\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -508,7 +509,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{n}{P\tone.\ttwo.\three}: Sphären}} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Wie bei der Begriffserklärung zu \hyperlink{Sphäre}{Sphäre} beschrieben, sollen diese Flächen im Graphen als zusammenhängende, nicht-überlappende Bereiche dargestellt werden, die durch Linien voneinander abgetrennt werden.} }\rule{0pt}{4ex}\\ [2ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wie bei der Begriffserklärung zu \hyperlink{Sphäre}{Sphäre} beschrieben, sollen diese Flächen im Graphen als zusammenhängende, nicht-überlappende Bereiche dargestellt werden, die durch Linien voneinander abgetrennt werden.} }\rule{0pt}{5ex}\\ [2ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(-) Mit den möglichen visuellen Eigenschaften und Werten von Sphären halten wir diesen Einflussfaktor für eher unflexibel. & 
 	(–) Da der \hyperlink{Syndromansatz}{Syndromansatz} ein Modell darstellt (und Modelle im Allgemeinen nur dann einen weitreichenden Sinn haben, wenn sie beständig sid), gehen wir davon aus, dass sich die Anforderungen hierzu nicht ändern werden. Deshalb stufen wir die Veränderlichkeit als sehr gering ein.\\
@@ -521,7 +522,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{o}{P\tone.\ttwo.\three}: Linienart/-dicke Kanten flexibel}} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Diese Kanten, auf die sich dieser Einflussfaktor bezieht, sind die Kanten im Sinne der Relationen und nicht etwa die Linien, mit denen die Sphären voneinander abgetrennt werden (und die umgangssprachlich eventuell mit Kanten verwechselt werden könnten). Die Linienarten sowie -dicken werden vom Kunden vorgegeben und sind fest. Das ``flexibel'' im Namen dieses Einflussfaktors stammt vom Plural ``Kantenarten'' / ``Kantendicken''. Der Nutzer soll also aus einer fest definierten Vorauswahl wählen können. Die Farben der Kanten können jedoch frei von den Nutzern festgelegt werden.} }\rule{0pt}{14ex}\\ [12ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Diese Kanten, auf die sich dieser Einflussfaktor bezieht, sind die Kanten im Sinne der Relationen und nicht etwa die Linien, mit denen die Sphären voneinander abgetrennt werden (und die umgangssprachlich eventuell mit Kanten verwechselt werden könnten). Die Linienarten sowie -dicken werden vom Kunden vorgegeben und sind fest. Das ``flexibel'' im Namen dieses Einflussfaktors stammt vom Plural ``Kantenarten'' / ``Kantendicken''. Der Nutzer soll also aus einer fest definierten Vorauswahl wählen können. Die Farben der Kanten können jedoch frei von den Nutzern festgelegt werden.} }\rule{0pt}{11ex}\\ [9ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(--) Die Flexibilität dieses Einflussfaktors ist sehr gering. Dies liegt daran, dass sowohl die Linienarten als auch die Liniendicken genau vorgegeben werden. & 
 	(--) Da es sich beim Syndromansatzes um ein Modell handelt (und ein Modell unserer Meinung nach nur mit einer gewissen Beständigkeit bezüglich Inhalt und Darstellung sinnvoll ist), denken wir nicht, dass sich die Vorgaben zu den Linieneigenschaften ändern werden. Deshalb stufen wir die Veränderlichkeit dieses Einflussfaktors als sehr gering ein. \\
@@ -535,7 +536,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{p}{P\tone.\ttwo.\three}: Typisierte Knoten}} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die typisierten Kmoten des Graphen sind wie oben beschrieben die \hyperlink{Symptom}{Symptome} gemäß des \hyperlink{Syndromansatz}{Syndromansatzes}. Jedes Symptom / jeder Knoten muss eineer Sphäre zugeordnet sein.} }\rule{0pt}{5ex}\\ [2ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die typisierten Kmoten des Graphen sind wie oben beschrieben die \hyperlink{Symptom}{Symptome} gemäß des \hyperlink{Syndromansatz}{Syndromansatzes}. Jedes Symptom / jeder Knoten muss eineer Sphäre zugeordnet sein.} }\rule{0pt}{4ex}\\ [2ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(-) Mit den möglichen visuellen Eigenschaften und Werten von Sphären halten wir diesen Einflussfaktor für eher unflexibel.& 
 	(–) Da der \hyperlink{Syndromansatz}{Syndromansatz} ein Modell darstellt (und Modelle im Allgemeinen nur dann einen weitreichenden Sinn haben, wenn sie beständig sid), gehen wir davon aus, dass sich die Anforderungen hierzu nicht ändern werden. Deshalb stufen wir die Veränderlichkeit als sehr gering ein.\\
@@ -563,7 +564,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{r}{P\tone.\ttwo.\three}: Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/Kanten ist flexibel}} } \s \\ [1ex]  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Ein Nutzer kann im \hyperlink{``Vorlage bearbeiten''-Modus}{``Vorlage bearbeiten''-Modus} beliebig viele Sphären, Knoten und Kanten hinzufügen. Dabei ist für jedes eingefügte Graph-Element die Größe, die Position und die Beschriftung frei wählbar. Hiervon ausgenommen sind beispielsweise Versuche, Graph-Elemente so zu platzieren, dass sich Knoten oder Spären überschneiden oder ein Knoten größer ist als die Sphäre, in der er sich befindet. Außerdem kann der Nutzer für jedes Element im Graphen aus einer Auswahl an Farben wählen. Im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} ist selbiges auch möglich, sofern nichts anderes in der Vorlage hinterlegt wurde.} }\rule{0pt}{10ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Ein Nutzer kann im \hyperlink{``Vorlage bearbeiten''-Modus}{``Vorlage bearbeiten''-Modus} beliebig viele Sphären, Knoten und Kanten hinzufügen. Dabei ist für jedes eingefügte Graph-Element die Größe, die Position und die Beschriftung frei wählbar. Hiervon ausgenommen sind beispielsweise Versuche, Graph-Elemente so zu platzieren, dass sich Knoten oder Spären überschneiden oder ein Knoten größer ist als die Sphäre, in der er sich befindet. Außerdem kann der Nutzer für jedes Element im Graphen aus einer Auswahl an Farben wählen. Im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} ist selbiges auch möglich, sofern nichts anderes in der Vorlage hinterlegt wurde.} }\rule{0pt}{11ex}\\ [10ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Es ist keine Vorgabe zur Umsetzung dieser Anforderung gamacht und auch nicht klar definiert, wie der Nutzer diese Grapheigenschaften ändern können soll (außer, dass das System leicht benutzbar sein soll). &
 	(o) Die Möglichkeit zur Änderung visueller Eigenschaften soll sicherlich weiter bestehen. Es ist aber möglich, dass weitere Darstellungsoptionen wie zum Beispiel ein Blink-Effekt ausgewählt werden können sollen. \\ \hline 
@@ -658,7 +659,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular}{|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{z}{P\tone.\ttwo.\three}: Funktionsmodi (Ersteller, Bearbeiter, Auswerter)}} }\\ \hline \hline
-	\multicolumn{2}{|l|}{\parbox{16cm}{Das System muss eine Möglichkeit vorsehen, um die Interessen verschiedener Nutzer befriedigen zu können. Dabei sollen unterschiedlichen Nutzergruppen (Ersteller \hyperlink{``Vorlage bearbeiten''-Modus}{(``Vorlage bearbeiten''-Modus)}, Betrachter \hyperlink{``Diagramm bearbeiten''-Modus'}{(``Diagramm bearbeiten''-Modus')}, Auswerter \hyperlink{``Analyse''-Modus'}{(``Analyse''-Modus)}) unterschiedliche Handlungsspielräume im System eingeräumt werden und unterschiedliche Informationen angezeigt bekommen.}} \rule{0pt}{7ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Das System muss eine Möglichkeit vorsehen, um die Interessen verschiedener Nutzer befriedigen zu können. Dabei sollen unterschiedlichen Nutzergruppen (Ersteller \hyperlink{``Vorlage bearbeiten''-Modus}{(``Vorlage bearbeiten''-Modus)}, Betrachter \hyperlink{``Diagramm bearbeiten''-Modus'}{(``Diagramm bearbeiten''-Modus')}, Auswerter \hyperlink{``Analyse''-Modus'}{(``Analyse''-Modus)}) unterschiedliche Handlungsspielräume im System eingeräumt werden und unterschiedliche Informationen angezeigt bekommen.}} \rule{0pt}{8ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(o) Uns wurden keinerlei Vorgaben zur Umsetzung dieser Funktion gemacht, wodurch wir allenfalls durch die Notwendigkeit des Wechsels zwischen verschiedenen Operationsmodi während der Systemnutzung eingeschränkt sind. Die Verfügbarkeit der verschiedenen Modi ist nicht diskutabel.&
 	(+) Es könnte eventuell sein, dass noch eine oder mehrere verschiedene Operationsmodi benötigt werden. \\ \hline
@@ -669,7 +670,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{aa}{P\tone.\ttwo.\three}: Graph Visualisierung/ Interaktion/ Editierung}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Neben der im Einflussfaktor ``Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/ Kanten ist flexibel'' beschriebenen Erstellung von Graph-Elementen in (fast) beliebiger Menge und mit einer Vielzahl an möglichen Eigenschaftswerten (zum Beispiel Werte für Farbe, Größe, Posion, ...) soll unser System auch die Editierung und Visualisierung von Graphen unterstützen. Mit Editierung ist gemeint, dass die erstellten Graph-Elemente auch wieder gelöscht werden können sollen und die Werte der Eigenschaften von jedem Graph-Element geändert werden können sollen. Im \hyperlink{``Vorlage bearbeiten''-Modus}{``Vorlage bearbeiten''-Modus} soll diese Bearbeitung uneingeschränkt möglich sein und im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} soll die Editierung im Rahmen der in der Vorlage hinterlegten Bearbeitungsregeln ebenfalls möglich sein. Mit der Visualisierung des Graphen ist gemeint, dass der Graph graphisch so dargestellt wird, wie es vom Nutzer festgelegt wird. Die Darstellung auf dem Bilschirm soll immer aktuell sein, sodass sich das Hinzufügen / Ändern / Löschen von Graph-Elementen direkt auf dem Bildschirm bemerkbar macht. Die Interaktion bezieht sich darauf, auf welche Art der Nutzer den Graphen bearbeiten kann. Zu der Interaktion gehört beispielsweise, dass der Nutzer einen Knoten durch Bewegen seiner Computermaus verschieben kann.} }\rule{0pt}{20ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Neben der im Einflussfaktor ``Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/ Kanten ist flexibel'' beschriebenen Erstellung von Graph-Elementen in (fast) beliebiger Menge und mit einer Vielzahl an möglichen Eigenschaftswerten (zum Beispiel Werte für Farbe, Größe, Posion, ...) soll unser System auch die Editierung und Visualisierung von Graphen unterstützen. Mit Editierung ist gemeint, dass die erstellten Graph-Elemente auch wieder gelöscht werden können sollen und die Werte der Eigenschaften von jedem Graph-Element geändert werden können sollen. Im \hyperlink{``Vorlage bearbeiten''-Modus}{``Vorlage bearbeiten''-Modus} soll diese Bearbeitung uneingeschränkt möglich sein und im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} soll die Editierung im Rahmen der in der Vorlage hinterlegten Bearbeitungsregeln ebenfalls möglich sein. Mit der Visualisierung des Graphen ist gemeint, dass der Graph graphisch so dargestellt wird, wie es vom Nutzer festgelegt wird. Die Darstellung auf dem Bilschirm soll immer aktuell sein, sodass sich das Hinzufügen / Ändern / Löschen von Graph-Elementen direkt auf dem Bildschirm bemerkbar macht. Die Interaktion bezieht sich darauf, auf welche Art der Nutzer den Graphen bearbeiten kann. Zu der Interaktion gehört beispielsweise, dass der Nutzer einen Knoten durch Bewegen seiner Computermaus verschieben kann.} }\rule{0pt}{23ex}\\ [3ex] \hline
 	\textbf{Flexibilität} & \textbf{Veränderlichkeit} \\
 	(o) Durch die Vorgabe der existierenden Elemente eines Graphen (Sphären, Knoten und Kanten) und deren Eigenschaften (zum Beispiel Bennung und Farbe) sind wir nicht komplett flexibel. Durch die Freiheit bezüglich der Umsetzung dieser Eigenschaft (zum Beispiel auch die Wahl der vom Nutzer selektierbaren Farben) ist allerdings eine gewisse Flexibilität gegeben. & 
 	(-) Da der \hyperlink{Syndromansatz}{Syndromansatz} als Modell Wert auf Vollständigkeit und Richtigkeit legen sollte, denken wir, dass keine weiteren Graph-Elemente oder Eigenschaften zu Graph-Elementen hinzukommen werden. \\
@@ -683,7 +684,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{bb}{P\tone.\ttwo.\three}: Protokoll von Nutzerinteraktionen}} }\\ \hline \hline
-	\multicolumn{2}{|l|}{\parbox{16cm}{Um im \hyperlink{``Analyse-Modus''}{``Analyse-Modus''} die Interaktionen eines Nutzers mit dem System anzeigen zu können, müssen diese nachvollziehbar gemacht werden können. Hierbei geht es um die Interaktionen von Nutzern im \hyperlink{``Diagramm bearbeiten-Modus''}{``Diagramm bearbeiten-Modus''}. Bei den relevanten Aktionen handelt es sich beispielsweise um die Reihenfolge, in der ein Nutzer Symptome erstellt hat. Es sei noch einmal explizit erwähnt, dass es bei diesem Einflussfaktor ausschließlich um die Vereitstellung/Erstellung eines Protokolls der Nutzerinteraktionen geht. Die Speicherung letztgenannter und der Export/Import dieses Protokolls ist nicht Teil dieses Einflussfaktors.} }\rule{0pt}{8ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Um im \hyperlink{``Analyse-Modus''}{``Analyse-Modus''} die Interaktionen eines Nutzers mit dem System anzeigen zu können, müssen diese nachvollziehbar gemacht werden können. Hierbei geht es um die Interaktionen von Nutzern im \hyperlink{``Diagramm bearbeiten-Modus''}{``Diagramm bearbeiten-Modus''}. Bei den relevanten Aktionen handelt es sich beispielsweise um die Reihenfolge, in der ein Nutzer Symptome erstellt hat. Es sei noch einmal explizit erwähnt, dass es bei diesem Einflussfaktor ausschließlich um die Vereitstellung/Erstellung eines Protokolls der Nutzerinteraktionen geht. Die Speicherung letztgenannter und der Export/Import dieses Protokolls ist nicht Teil dieses Einflussfaktors.} }\rule{0pt}{11ex}\\ [9ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Uns ist komplett freigestellt wie wir diese Funktion realisieren. Als Einschränkung kann höchstens gesehen werden, dass diese Funktion (wie alle anderen auch) im Rahmen der hohen Usability gut verständlich genutzt werden können soll und wir somit nicht einfach den DatenbankInhalt anzeigen lassen können.&
 	(-) Da wir diese Anforderung genau mit dem Kunden ausdiskutiert wurde, entsprechen die Anforderungen an die im Protokoll angezeigten Informationen genau seinen Bedürfnissen. Dies wird dadurch bekräftigt, dass der Kunde schon Erfahrung mit der Verwendung des \hyperlink{Syndromansatz}{Syndromansatzes} im didaktischen Bereich hat und sich deshalb aller Wahrscheinlichkeit nach gründlich überlegt hat, welche Informationen für ihn relevant sind. Dementsprechend halten wir es für eher unwahrscheinlich, dass sich seine Wünsche hinsichtlich des Protokolls ändern werden. Somit stufen wir diesen Einflussfaktor als eher gering ein. \\ \hline
@@ -703,7 +704,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(–) Da sich die Anforderung (insbesondere bezüglich der Darstellung) auf eine Quelle bezieht, obwohl diese zum jetzigen Zeitpunkt bereits über 10 Jahre alt ist, scheint die Anforderung recht beständig und damit nicht veränderlich zu sein.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen eine Funktion zur Bündelung von Kanten des selben Relationstyps vorgehen. Die Architektur nserer Software muss diese Funktion unterstützen. Die Bündelung betrifft sowohl die Punkte an Knoten, an denen die Relationen ansetzen, als auch die Stellen, an denen sie an einem anderen Knoten münden.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen eine Funktion zur Bündelung von Kanten des selben Relationstyps vorgehen. Die Architektur nserer Software muss diese Funktion unterstützen. Die Bündelung betrifft sowohl die Punkte an Knoten, an denen die Relationen ansetzen, als auch die Stellen, an denen sie an einem anderen Knoten münden.} }\\[5ex] \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -805,7 +806,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{mm}{P\tone.\two}: Protokoll JSON}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} aufgezeichneten Nutzerinteraktionen sollen sowohl in für Menschen lesbarer (also textueller) als auch in von Maschinen verarbeitbarer Form exportiert werden können.} }\rule{0pt}{4ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} aufgezeichneten Nutzerinteraktionen sollen sowohl in für Menschen lesbarer (also textueller) als auch in von Maschinen verarbeitbarer Form exportiert werden können.} }\rule{0pt}{5ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Wir haben recht umfangreiche Gestaltungsmöglichkeiten, wie wir das Protokoll ausgestalten. Dies gilt insbesondere für das Layout, in dem wir die Nutzerinteraktionen darstellen. Außerdem ist JSON lediglich die von uns gewählte Sprache zur Realisierung des geforderten Im- und Exports von Nutzerinteraktionen (siehe Problemkarte ``Protokoll der Nutzerinteraktionen exporieren / importieren''). Somit ist JSON nicht vom Kunden vorgeschrieben. &
 	(-) Wir denken nicht, dass es zu einem späteren Zeitpunkt konkrete Wünsche des Kunden hinsichtlich der Form des Protokolls geben wird. Mit der Programmiersprachenunabhängigkeit ist außerdem auch langfristig für eine gute Auswertbarkeit der Information, die die JSON-Datei in sicht trägt, gesorgt. \\
@@ -840,7 +841,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(–) Wie im vorherigen Einflussfaktor erwähnt, denken wir nicht, dass weitere Analysemöglichkeiten zur Bestimmung von Wichtigkeit und Grad der Vernetzung eines Knotens hinzukommen. Ebenso denken wir nicht, dass der Kunde sich später eine konkrete Darstellung der Statistiken wünschen wird.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Es muss eine Funktion in die Architektur eingeplant und im späteren System bereitgestellt werden, die im Analyse-Modus das Einsehen von Statistiken zu den beschriebenen Knoteninformationen erlaubt.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Es muss eine Funktion in die Architektur eingeplant und im späteren System bereitgestellt werden, die im Analyse-Modus das Einsehen von Statistiken zu den beschriebenen Knoteninformationen erlaubt.} }\\[3ex] \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -848,7 +849,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{qq}{P\tone.\two}: Graph-Analyse mittels Graphmaße}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Im \hyperlink{Analyse''-Modus}{Analyse’’-Modus} soll der Auswerter Informationen zu folgenden \hyperlink{Metriken/Graphmaße}{Metriken/Graphmaßen (siehe oben)} angezeigt bekommen. (Im Chinese Menue ist dies die Anforderung O«Auswertung.Graphmaße».)} }\rule{0pt}{4ex}\\ [2ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Im \hyperlink{Analyse''-Modus}{Analyse’’-Modus} soll der Auswerter Informationen zu folgenden \hyperlink{Metriken/Graphmaße}{Metriken/Graphmaßen (siehe oben)} angezeigt bekommen. (Im Chinese Menue ist dies die Anforderung O«Auswertung.Graphmaße».)} }\rule{0pt}{4ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(–) Da der Kunde hier konkrete Maße vorgibt und bei der visuellen Darstellung nur beschränkter Spielraum gegeben ist (anders als zum Beispiel bei Statistiken), halten wir diese Anforderung für eher unflexibel.& 
 	(--) Wir denken nicht, dass der Kunde später weitere Metriken benötigt, deren Erfordernis er bisher nicht bemerkt hätte.\\
@@ -869,7 +870,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 				\vspace{-0.4cm}
 			\end{itemize}
 			Die selektierten Knoten werden graphisch besonders hervorgehoben. Ob ein Knoten vorwärts oder rückwärts bei den oben genannten Anfragen erreichbar ist, soll geeignet visuell unterschieden werden; dabei ist zu beachten, dass ein Knoten zugleich vorwärts und rückwärts erreichbar und zugleich auch noch selektiert sein kann. Dies alles soll zugleich leicht visuell erkennbar sein.
-			Sobald der Nutzer die Selektion wieder aufhebt, werden alle Knoten wieder einheitlich dargestellt. (Im Chinese Menue ist dies die Anforderung O«Ausschnitt».)} }\rule{0pt}{22ex}\\ [3ex] \hline
+			Sobald der Nutzer die Selektion wieder aufhebt, werden alle Knoten wieder einheitlich dargestellt. (Im Chinese Menue ist dies die Anforderung O«Ausschnitt».)} }\rule{0pt}{23ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(o) Die geforderte Funktionalität ist recht genau beschrieben, während zur Darstellung (bis auf die Bedingung der Eindeutigkeit) keine Vorgaben gemacht wurden. Damit schätzen wir die Flexibilität als neutral ein.&
 	(–) Wir denken nicht, dass in dieser Funktion eine Erweiterung sinnvoll einbaubar wäre, da mit der beschriebenen Funktion ein weit reichendes Analysieren der Knoten und Kanten möglich ist. Deshalb schätzen wir diesen Faktor als nicht veränderlich ein. \\
@@ -904,7 +905,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(+) Wir sind frei in der Umsetzung dieser Anforderung und sie wurde durch die Forderung einer hohen Benutzbarkeit nur implizit genannt. &
 	(-) Wir denken nicht, dass uns bezüglich der Fehlertoleranz und des maximalen Korrekturaufwandes konkretere Vorgaben gemacht werden. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|}{\parbox{16cm} {Wir werden ein System entwickeln, dass eine hohe Fehlertoleranz besitzt. Ausgeführte Aktionen sollten leicht rückgängig  gemacht werden können. Dies muss in der Architektur eingeplant werden. }}\\ \hline 
+	\multicolumn{2}{|l|}{\parbox{16cm} {Wir werden ein System entwickeln, dass eine hohe Fehlertoleranz besitzt. Ausgeführte Aktionen sollten leicht rückgängig  gemacht werden können. Dies muss in der Architektur eingeplant werden. }}\\ [3ex]\hline 
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1079,7 +1080,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{04: Auswahl der grundlegenden Softwarearchitektur}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen eine Architektur für unsere Software wählen, die durch das Zusammenspiel der grundlegenden Komponenten im System die Erfüllung aller Mindestanforderungen gewährleistet.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen eine Architektur für unsere Software wählen, die durch das Zusammenspiel der grundlegenden Komponenten im System die Erfüllung aller Mindestanforderungen gewährleistet.}}\rule{0pt}{4ex}\\ [2ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  &
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1373,7 +1374,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{12: Protokoll der Nutzerinteraktionen exportieren/ importieren}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll eine Möglichkeit bieten, das Protokoll der Nutzerinteraktionen von unserem System und der von uns verwendeten Datenbank losgelöst einsehen zu können (Export). Dieses Protokoll muss sowohl von Menschen lesbar als auch von einem Computer interpretiert werden können (Import).}}\rule{0pt}{6ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll eine Möglichkeit bieten, das Protokoll der Nutzerinteraktionen von unserem System und der von uns verwendeten Datenbank losgelöst einsehen zu können (Export). Dieses Protokoll muss sowohl von Menschen lesbar als auch von einem Computer interpretiert werden können (Import).}}\rule{0pt}{7ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1632,7 +1633,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{19: Einhaltung der Abgabetermine}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Abgabetermine sind nicht verhandelbar. Da die Ressourcen begrenzt sind benötigen wir Strategien um Deadlines einzuhalten.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Abgabetermine sind nicht verhandelbar. Da die Ressourcen begrenzt sind benötigen wir Strategien um Deadlines einzuhalten.}}\rule{0pt}{4ex}\\ [2ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {h}{Hohe Qualität}\\
@@ -1776,7 +1777,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{23: Umsetzung der Funktionsmodi}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Dem Benutzer ist es freigestellt mehrere Modi in unserem System zu benutzen (Ersteller, Bearbeiter, Auswerter).}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Dem Benutzer ist es freigestellt mehrere Modi in unserem System zu benutzen (Ersteller, Bearbeiter, Auswerter).}}\rule{0pt}{4ex}\\ [2ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {hh}{Sprache.Beschriftung} \\
@@ -1800,7 +1801,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Umsetzung der Modi programmintern als eigenes Modul, je nachdem welcher Modi gesetzt ist, wird die GUI dargestellt und bestimmte Funktionen zur Verfügung gestellt \\
 			\textbf{S60 - Ein Programm pro Modus}: \\
 			Auswahl des Modus beim Start des Programms, wodurch verschiedene Anwendungen gestartet werden können
-	} }\\ [6ex] \hline
+	} }\\ [7ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	S60 ist für unsere Anforderungen unpraktisch und sorgt für eine schlechte Usability. Durch \cb{S59} dagegen lässt sich angenehm zwischen verschiedenen Modi umschalten. 
@@ -1850,7 +1851,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 \hline
 \rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{25: Persistierung der Parameter in die DB als JSON-String}}} \\ \hline\hline 
-\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Protokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen darstellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objekte.}}\rule{0pt}{1ex}\\ [1ex] \hline
+\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Protokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen darstellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objekte.}}\rule{0pt}{9ex}\\ [7ex] \hline
 \multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 \hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
