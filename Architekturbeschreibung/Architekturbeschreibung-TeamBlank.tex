@@ -2092,8 +2092,6 @@ Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDa
 
 \includepdf[pages=-, landscape]{log_management.pdf}
 
-
-
 Die \texttt{Param}-Klassen finden sich im Package \texttt{log\_management/parameters}. 
 Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Sphere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. \\
 Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise miteinander verknüpft. \\ 
@@ -2179,12 +2177,9 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 
 \includepdf[pages=-]{predicates.pdf}
 
-\subsection{\texttt{jgrapht}}	
-
 \includepdf[pages=-, landscape]{jgrapht.pdf}
 
 
-\subsection{Zusammenhang zwischen Modulsicht und konzeptioneller Sicht}
 
 
 Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder.
