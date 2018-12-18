@@ -2204,11 +2204,11 @@ Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur
 \label{sec:ausfuehrung}
 \emph{Autoren: Jacky Philipp Mach, Jonah Jaeger}\\ \\
 
-In der folgenden Abbildung ist unsere Ausführungssicht zu erkennen. Da es sich nach den Anforderung um eine eine lokale Anwendung handelt, gibt es pro Nutzer genau eine Instanz der Anwendung. Darüber hinaus ist die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung nicht vorgesehen und könnte zu Fehlern, insbesondere bei der Kommunikation mit der eingebetteten H2-Datenbank, kommen. \\
+In der folgenden Abbildung ist unsere Ausführungssicht zu erkennen. Da es sich nach den Anforderungen um eine lokale Anwendung handelt, gibt es pro Nutzer genau eine Instanz der Anwendung. Darüber hinaus ist die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung nicht vorgesehen und könnte zu Fehlern, insbesondere bei der Kommunikation mit der eingebetteten H2-Datenbank, führen. \\
 
-Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozess des Clients ausgeführt. \\
-Für den Start der Anwendung ist dabei das Modul \texttt{gui} zuständig. \\
-\\ \\
+Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozess des \textit{Clients} ausgeführt. \\
+Zum Starten und Beenden der Anwendung ist das Modul \texttt{gui} zuständig. Es arbeitet mit dem Modul \texttt{action} zusammen, da Programmteile aus \texttt{gui} Actions aus dem Modul \texttt{actions} aufrufen. Durch den Aufruf dieser Actions kommt es zu Veränderungen des dargestellten Graphen(Package\texttt{graph.visualization}). Der geänderte Graph wird zusammen mit einem die Action beschreibenden Logeintrag in der Datenbank gespeichert. Letzteres ist nur der Fall, falls die ausgeführte Action ist, welche für die Protokollierung des Nutzerverhaltens relevant ist.
+\\ 
 
 \begin{figure}[ht]
 	\centering
