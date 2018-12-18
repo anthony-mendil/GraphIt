@@ -2,7 +2,7 @@ package actions.edit.color;
 
 import actions.LogAction;
 import actions.LogEntryName;
-import log_management.parameters.edit.EditVerticesColorParam;
+import log_management.parameters.edit.EditVerticesFillColorParam;
 
 import java.awt.*;
 
@@ -16,6 +16,14 @@ public class EditVerticesFillColorLogAction extends LogAction {
      * @param pColor the color to paint the edges
      */
     public EditVerticesFillColorLogAction(Color pColor) {
+        super(LogEntryName.EDIT_VERTICES_FILL_COLOR);
+    }
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     *
+     * @param pEditVerticesFillColorParam the EditVertexAnnotationParam containing the new vertex annotation
+     */
+    public EditVerticesFillColorLogAction(EditVerticesFillColorParam pEditVerticesFillColorParam) {
         super(LogEntryName.EDIT_VERTICES_FILL_COLOR);
     }
 

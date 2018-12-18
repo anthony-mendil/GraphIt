@@ -2,7 +2,7 @@ package actions.edit.color;
 
 import actions.LogAction;
 import actions.LogEntryName;
-import log_management.parameters.edit.EditVerticesColorParam;
+import log_management.parameters.edit.EditVerticesDrawColorParam;
 
 import java.awt.*;
 
@@ -18,7 +18,14 @@ public class EditVerticesDrawColorLogAction extends LogAction {
     public EditVerticesDrawColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_VERTICES_DRAW_COLOR);
     }
-
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     *
+     * @param pEditVerticesDrawColorParam the used parameters
+     */
+    public EditVerticesDrawColorLogAction(EditVerticesDrawColorParam pEditVerticesDrawColorParam) {
+        super(LogEntryName.EDIT_VERTICES_DRAW_COLOR);
+    }
     @Override
     public void action() {
         throw new UnsupportedOperationException();

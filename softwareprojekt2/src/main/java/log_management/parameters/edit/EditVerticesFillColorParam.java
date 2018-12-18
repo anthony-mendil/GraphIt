@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Parameter object of the action EditVerticesColorLogAction.
  */
-public class EditVerticesColorParam extends Param{
+public class EditVerticesFillColorParam extends Param{
     /**
      * The set of vertices containing their old colors.
      */
@@ -29,7 +29,7 @@ public class EditVerticesColorParam extends Param{
      * @param pVertices The selected vertices containing their old color.
      * @param pNewColor The new color.
      */
-    public EditVerticesColorParam(List<Vertex> pVertices, Color pNewColor) {
+    public EditVerticesFillColorParam(List<Vertex> pVertices, Color pNewColor) {
         this.pVertices = pVertices;
         this.newColor = pNewColor;
     }

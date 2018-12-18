@@ -6,7 +6,7 @@ import log_management.parameters.edit.EditEdgesColorParam;
 
 import java.awt.*;
 
-/*
+/**
  * Changes the color of the selected edges.
  */
 public class EditEdgesColorLogAction extends LogAction {
@@ -19,7 +19,14 @@ public class EditEdgesColorLogAction extends LogAction {
     public EditEdgesColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_EDGES_COLOR);
     }
-
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     *
+     * @param pEditEdgesColorParam the used parameters
+     */
+    public EditEdgesColorLogAction(EditEdgesColorParam pEditEdgesColorParam) {
+        super(LogEntryName.EDIT_EDGES_COLOR);
+    }
     @Override
     public void action() {
         throw new UnsupportedOperationException();
