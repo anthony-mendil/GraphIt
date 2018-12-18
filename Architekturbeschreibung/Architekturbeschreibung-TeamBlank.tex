@@ -362,8 +362,6 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \setcounter{one}{1}
 \subsubsection*{\hypertarget{a}{P\tone}: System-Architektur-Eigenschaften} 
 \begin{tabular}{|p{8cm}|p{8cm}|}
-\end{tabular}\\
-\begin{tabular}{|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} { \parbox{16cm}{\textbf{\hypertarget{b}{P\tone.\two}: Java 8 oder höher als Implementierungssprache} }} \\  
 	\hline\hline 
@@ -381,7 +379,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\ 
 	\multicolumn{2}{|l|} {\parbox{16cm}{Alle Komponenten, die wir entwickeln, müssen auf Java 8 lauffähig sein und die von uns verwendeten Frameworks und Tools müssen mit dieser Version kompatibel sein.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{c}{P\tone.\two}: Verwendung von Maven als Build-System}} }\\ \hline\hline 
@@ -392,7 +391,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Architektur unserer Software ist initial als Maven-Projekt zu entwerfen. Dies führt zu einer standardisierten Projekt-Grundstruktur. Diese beinhaltet unter anderem eine .pom-Datei, in der die Maven-Dependencies eingebunden und einige Einstellungen festgelegt werden müssen.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{d}{P\tone.\two}: Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}} }\s \\ [1ex] \hline\hline 
@@ -403,7 +404,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Im Projekt wird die Persistierung mittels einer (oder mehrerer) Datenbank(en) erfolgen.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{e}{P\tone.\two}: Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus)}} } \\ \hline\hline 
@@ -415,7 +417,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{In der von uns verwendeten embedded Datenbank wird neben den Nutzerinteraktionen (als Commands) auch eine Textrepräsentation des Graphen gespeichert.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{f}{P\tone.\two}: Betriebssystemunterstützung / Zielplattformen des Systems} }}\\ \hline \hline
@@ -426,7 +430,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir realisieren den Aspekt der Lauffähigkeit für die genannten Betriebssysteme durch Implementierung unserer Software in Java 8.} }\\[2ex] \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|}{\parbox{16cm} {\textbf{\hypertarget{g}{P\tone.\two}: Hohe Usability } }}\\ \hline\hline
@@ -437,7 +442,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Wahl der von uns verwendeten Frameworks beziehungsweise Entscheidungen hinsichtlich der Gestaltungsweise der GUI wird durch diesen Einflussfaktor mitbestimmt. }}\\ \hline 
 \end{tabular}
-\\ \\  \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{h}{P\tone.\two}: Hohe Qualität }} } \\ \hline\hline 
@@ -450,7 +457,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\parbox{16cm}{Diese Anforderung ist insofern von Relevanz, als dass die von uns verwendeten Frameworks gut verständlich oder gar selbstbeschreibend sein sollten. Sind die Frameworks nicht weitestgehend intuitiv verständlich sollten sie zumindest gut dokumentiert sein. Es liegt also eine gewisse Einschränkung bei unserer Tool-Wahl vor. Um die Verständlichkeit weiterhin sicher zu stellen, sollten wir unseren Code nicht nur dokumentieren, sondern die Architektur soweit möglich an bekannten Strukturen wie (Command, Model-View-Controller) orientiert aufbauen.
 			Außerdem müssen wir die Architektur so wählen, dass für Fehlerfreiheit gesorgt ist.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{i}{P\tone.\two}: Command }} } \\ \hline\hline 
@@ -462,7 +471,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Command-Objekte in unserer Datenbank speichern. Dies wirkt sich auf die Erstellung eines Protokolls von Nutzerinteraktionen aus und ist auch von Bedeutung für die grundlegende Softwarearchitektur.}}\\ [3ex]\hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{j}{P\tone.\two}: JavaFX }} } \\ \hline\hline 
@@ -474,7 +485,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Teile unseres Systems - in erster Linie den Aufbau der GUI - mittels JavaFX realisieren. } }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{k}{P\tone.\two}: JUNG }} } \\ \hline\hline 
@@ -486,7 +498,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponeten aufbaut. Wir werden JUNG in unsere JavaFx Anwendung integrieren. } }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \setcounter{two}{1}
@@ -503,7 +516,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{In unserem System muss es die Möglichkeit geben Sphären (wie gefordert) erstellen zu können, wobei Überlappungen automatisch vermieden werden.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{o}{P\tone.\ttwo.\three}: Linienart/-dicke Kanten flexibel}} } \\ \hline\hline 
@@ -515,7 +529,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Kanten werden die vom Kunden geforderten Eigenschaften bezüglich Linienart und -dicke besitzen.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{p}{P\tone.\ttwo.\three}: Typisierte Knoten}} } \\ \hline\hline 
@@ -527,7 +543,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{In unserem System muss die Erstellung von Knoten (unter Zuweisung des Knoten zu einer Sphäre) möglich sein.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{q}{P\tone.\ttwo.\three}: gerichtete Kanten (3 Relationstypen)}} } \\ \hline\hline 
@@ -540,7 +557,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Im System muss es die drei geforderten Relationstypen geben, die wie gefordert dargestellt werden.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{r}{P\tone.\ttwo.\three}: Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/Kanten ist flexibel}} } \s \\ [1ex]  \hline\hline 
@@ -551,7 +570,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Im System muss eine Auswahl an graphischen Darstellungsaspekten existieren, die der Nutzer auf Teile des Graphen anwenden können soll.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{s}{P\tone.\ttwo.\three}: Ankerpunkte zw. Knoten und Kanten}} }\\ \hline\hline
@@ -562,7 +582,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Im System muss eine Auswahl an graphischen Darstellungsaspekten existieren, die der Nutzer auf Teile des Graphen anwenden können soll.}}\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{t}{P\tone.\ttwo.\three}: Zuordnung von Sphären und Knoten}} }\\  \hline\hline 
@@ -574,9 +596,12 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Jedes Symptom, das vom Nutzer hinzugefügt wird ist einer Sphäre zugeordnet. Wenn diese Zuordnung verändert werden soll, muss das Symptom zwingend einer anderen Sphäre zugeordnet werden.} }\\ \hline
 \end{tabular}
-\\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{\hypertarget{u}{P\tone.\two}: Erweiterte Graph-Funktionen}
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
 \setcounter{three}{0}
+\subsubsection*{\hypertarget{u}{P\tone.\two}: Erweiterte Graph-Funktionen}
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{v}{P\tone.\ttwo.\three}: Speicherung des Graphen}} }\\ \hline \hline
@@ -587,7 +612,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Architektur wird so entworfen, dass es möglich sein wird, einen Graphen auf eine noch (in diesem Dokument) festzulegende Weise zu speichern.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{w}{P\tone.\ttwo.\three}: Laden des Graphen}} }\\ \hline \hline
@@ -598,7 +624,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Architektur des Systems muss so entworfen werden, dass es eine Möglichkeit zum Laden eines vorher gespeicherten Graphen beziehungsweise einer Graphvorlage gibt.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{x}{P\tone.\ttwo.\three}: Automatische Anordnung zur Übersichtlichkeit}} } \\  \hline\hline 
@@ -610,7 +638,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{In unserem System wird es einen Algorithmus geben, der die optimale Darstellung des Graphen - im Sinne einer größtmöglichen Übersichtlichkeit - berechnet und den Graphen entsprechend darstellt. Dies betrifft sowohl die Anordnung der Knoten in der Sphäre, der sie zugeordnet sind, als auch die Positionierung der Sphären im Graphen.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{y}{P\tone.\ttwo.\three}: Vorlage/Bearbeitsungsregeln}} } \\  \hline\hline 
@@ -623,7 +652,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen im \hyperlink{Vorlage bearbeiten''-Modus}{Vorlage bearbeiten’’-Modus} eine Vorlage-Erstellen-Funktion bereitstellen, die sich auf die Bearbeitungsmöglichkeiten des Graphen im \hyperlink{Diagramm bearbeiten''-Modus}{Diagramm bearbeiten’’-Modus} auswirkt.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular}{|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{z}{P\tone.\ttwo.\three}: Funktionsmodi (Ersteller, Bearbeiter, Auswerter)}} }\\ \hline \hline
@@ -633,8 +664,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(+) Es könnte eventuell sein, dass noch eine oder mehrere verschiedene Operationsmodi benötigt werden. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|}{\parbox{16cm} {Es wird möglich sein, verschiedene Varianten unseres Systems auswählen zu können, die jeweils eine angepasste Auswahl an Funktionen bereitstellt.} }\\ \hline
-\end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tabular}\\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{aa}{P\tone.\ttwo.\three}: Graph Visualisierung/ Interaktion/ Editierung}} } \\  \hline\hline 
@@ -646,7 +677,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Unser System muss so strukturiert werden, dass es die Erstellung von Graph-Elementen mit all ihren Eigenschaften und die Editierung und Löschung der Graph-Elemente unterstützt.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{bb}{P\tone.\ttwo.\three}: Protokoll von Nutzerinteraktionen}} }\\ \hline \hline
@@ -657,7 +690,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden eine den Kundenwünschen gemäße Funktion zur Bereitstellung eines Protokolls der Nutzerinteraktionen in unser System integrieren. Beim Entwurf der Architektur unserer Software wird dies berücksichtigt.}}\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{cc}{P\tone.\ttwo.\three}: Überlappung von Kantenenden und den Ansatzpunkten von Relationen}} } \\  \hline\hline 
@@ -670,7 +705,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen eine Funktion zur Bündelung von Kanten des selben Relationstyps vorgehen. Die Architektur nserer Software muss diese Funktion unterstützen. Die Bündelung betrifft sowohl die Punkte an Knoten, an denen die Relationen ansetzen, als auch die Stellen, an denen sie an einem anderen Knoten münden.} }\\ \hline
 \end{tabular}
-\\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
 \subsubsection*{\hypertarget{dd}{P\one}: Benutzeroberfläche}
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -683,7 +720,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|}{\parbox{16cm} {Es muss eine Zoom-Funktion geben, die die Vergrößerung von Teilen eines Graphen ermöglicht. Diese Funktion muss bei dem Entwurf der Architektur eingeplant werden. }}\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{ff}{P\tone.\two}: Zoom.Kontext}} }\\ \hline\hline
@@ -694,7 +732,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Das System muss eine Übersicht des Graphen in klein erstellen, sobald der Zoom aktiviert wird. Der Teil des Graphen, der einem Nutzer in vergrößerter Form dargestellt wird, muss identifiziert werden und ist in der Übersicht kenntlich zu machen. Dies muss beim Entwurf der System-Architektur eingeplant werden.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{gg}{P\tone.\two}: Sprache}} }\\ \hline \hline
@@ -705,7 +744,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Architektur unseres Systems muss so gewählt werden, dass die Beschriftung von Buttons und die Beschreibung von Dialogfeldern in verschiedenen Sprachen hinterlegt werden und vom Nutzer umgestellt werden kann.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{hh}{P\tone.\two}: Sprache.Beschriftung}} } \\  \hline\hline 
@@ -717,8 +758,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Durch die Architektur unseres Systems muss die Erfüllung der Anforderung gewährleistet werden. Die Beschreibung von Graph-Elementen muss dementsprechend in verschiedenen Sprachen hinterlegbar sein und die in der GUI angezeigte Beschriftung soll vom Nutzer umgestellt werden können. } }\\ \hline
 \end{tabular}
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{\hypertarget{ii}{P\one}: Dateiformate}
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
@@ -730,7 +773,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Unser System muss GXL-Dateien mit allen relevanten Informationen generieren können und darüber hinaus zu deren Ex- und Import in der Lage sein. All das muss beim Architektur.Entwurf berücksichtigt werden.}}\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{kk}{P\tone.\two}: PDF Erstellung}} } \\  \hline\hline 
@@ -742,7 +786,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen in der Architektur eine Funktion einplanen, mit der der Nutzer den aktuell im System angezeigten Graphen als PDF speichern kann. } }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{ll}{P\tone.\two}: PDF drucken}} } \\  \hline\hline 
@@ -754,7 +800,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{In unserem System kann der Nutzer den Befehl zum Druck einer lokal gespeicherten Datei geben. Die Architektur muss der Notwendigkeit dieser Anforderung Rechnung tragen.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{mm}{P\tone.\two}: Protokoll JSON}} } \\  \hline\hline 
@@ -766,7 +813,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Das Protokoll muss so in der verwendeten relationalen Datenbank gespeichert werden, dass es möglich ist, durch Anfragen an die Datenbank an die nötigen Informationen zu gelangen, um das Protokoll in den geforderten Formen zu erstellen.}}\\ \hline
 \end{tabular}
-\\ \\ \\ \\ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
 \subsubsection*{\hypertarget{nn}{P\one}: Auswertung/Analyse}
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -780,7 +829,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen die geforderten Analysefunktionen in den beschriebenen Funktionsmodi bereitstellen und diese dementsprechend bei unserem Architektur-Entwurf einplanen.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{pp}{P\tone.\two}: Auswertung des Graphen}} } \\  \hline\hline 
@@ -792,7 +842,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Es muss eine Funktion in die Architektur eingeplant und im späteren System bereitgestellt werden, die im Analyse-Modus das Einsehen von Statistiken zu den beschriebenen Knoteninformationen erlaubt.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{qq}{P\tone.\two}: Graph-Analyse mittels Graphmaße}} } \\  \hline\hline 
@@ -804,7 +856,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen dem Auswerter die Gradmaße in einer angemessenen Form zur Verfügung stellen und diese Notwendigkeit bei unserem Architektur-Entwurf einbeziehen.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{rr}{P\tone.\two}: Analyse über einen wählbaren Ausschnitt des Graphen}} } \\  \hline\hline 
@@ -824,7 +877,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Unser System muss das geforderte Selektieren mit der (Erreichbarkeits-)Analyse und die visuelle Darstellung derselben unterstützen. Alle dafür erforderlichen Systembestandteile müssen in der Architektur eingeplant werden.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|}{\parbox{16cm} {\textbf{\hypertarget{ss}{P\tone.\two}: Filter von Knoten und Kanten}} }\\ \hline \hline
@@ -835,7 +890,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Im Entwurf der Architektur unseres Systems muss berücksichtigt werden, dass das fertige System verschiedene Optionen bereitgestellen muss, nach denen ein aktuell dargestellter Graph gefiltert werden kann. Außerdem muss die visuelle Darstellung des Ergebnisses der Filterung geplant werden.} }\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
 \subsubsection{Technische Faktoren}
 \setcounter{one}{0}
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -848,7 +906,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|}{\parbox{16cm} {Wir werden ein System entwickeln, dass eine hohe Fehlertoleranz besitzt. Ausgeführte Aktionen sollten leicht rückgängig  gemacht werden können. Dies muss in der Architektur eingeplant werden. }}\\ \hline 
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
 \subsubsection{Organisatorische Faktoren}
 \setcounter{one}{0}
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -861,7 +922,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Software wird spätestens am 10.03.2019 fertig implementiert, dokumentiert und getestet sein. Zunächst werden wir die Mindestanforderungen umsetzen. Erst danach wenden wir uns der Realisation von Punkten aus dem Chinese Menu zu. }}\\ [3ex]\hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color} \multicolumn{2}{|l|}{\parbox{16cm} {\textbf{\hypertarget{vv}{O \one}: Entwickler-Fähigkeiten} }}\\ \hline \hline
@@ -872,7 +934,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|}{\parbox{16cm} {Die Möglichkeiten zur Umsetzung der Anforderungen in hoher Qualität und Quantität steigen mit der Verbesserung unserer Fähigkeiten. }}\\ \hline
 \end{tabular}
-\\ \\ \\ \\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|}{\parbox{16cm} {\textbf{\hypertarget{ww}{O \tone}: Softwarelizenzbudget} }}\\ \hline \hline
@@ -883,7 +946,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|}{\parbox{16cm} {Es dürfen ausschließlich Frameworks verwendet werden, für die weder einmalig noch in regelmäßigen Abständen Kosten anfallen. Die Frameworks wiederum beeinflussen unsere Architektur.}}\\[1ex] \hline
 \end{tabular}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\\ \\ \\ \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -896,7 +961,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir müssen die Software-Architektur so wählen und die weiteren Abgabedokumente so strukturieren, dass es möglich ist, arbeitsteilig vorzugehen und jeder klar definierte, von anderen Aufgaben deutlich abgetrennte Aufgaben hat. Außerdem müssen wir im Rahmen der Gruppe arbeiten und können uns (mit Ausnahme der Unterstützung durch unseren Tutor) keine Hilfe von außen holen. Ferner wird der Umfang der Mindestanforderungen sinken, wenn ein oder sogar mehrere Mitglieder die Gruppe verlassen. }}\\ \hline
 \end{tabular}\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
 
@@ -1037,13 +1102,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{bbb}{S8 - MVC}}}: \\
 			Dieses Design-Pattern sieht die Aufteilung des Systems in die drei grundlegenden Bestandteile Model, View und Controller vor. \\
 			\textbf{\cb{S9 - Command}}: \\
-			Die Verwendung vom Command Designpattern sieht den Aufbau der Architektur derart vor, dass verschiedene Aktionen, die ein Nutzer ausführen kann, als Command-Objekte realisiert werden.. \\
+			Die Verwendung vom Command Designpattern sieht den Aufbau der Architektur derart vor, dass verschiedene Aktionen, die ein Nutzer ausführen kann, als Command-Objekte realisiert werden.\\
 			\textbf{\cb{S10 - Modularisierung}}: \\
 			Modularisierung beschreibt die Gliederung des Systems in einzelne Module.
 	} }\\ [8ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Die Strategie \cb{S9 - Command} in das System zu integrieren erleichtert den Umgang mit den Kommandos des Benutzers an das System. Die Eingabebefehle des Benutzers, welche Auswirkung auf den Graphen und die Benutzeroberfläche haben, werden in Form von Commands strukuriert. Dies unterstützt die Implementierung von redo und undo, welche dem Benutzer für eine hohe Usability zur Verfügung gestellt werden können. \\
+	Die Strategie \cb{\hypertarget{command}{S9 - Command}} in das System zu integrieren erleichtert den Umgang mit den Kommandos des Benutzers an das System. Die Eingabebefehle des Benutzers, welche Auswirkung auf den Graphen und die Benutzeroberfläche haben, werden in Form von Commands strukuriert. Dies unterstützt die Implementierung von redo und undo, welche dem Benutzer für eine hohe Usability zur Verfügung gestellt werden können. \\
 	Durch \cb{Model- View- Controller (S8)} wird den Entwicklern ein Grundgerüst gegeben, an dem sich orientiert werden kann. Es wird zwischen dem Datenmodell, der Präsentation und der Programmsteuerung differenziert und das System so übersichtlicher strukturiert. Dieser Ansatz sorgt also für hohe Wartbarkeit und Qualität. \\\
 	\cb{S10 Modularisierung}, also die Zerlegung des Systems in kleine Grundbausteine als Module des Systems: Die Module sind weitestgehend voneinander entkoppelt, wodurch das System während der Entwicklungsphase und in den folgenden Phasen leichter erweitert und bearbeitet werden kann. \\
 	Alle diese Strategien sollten während der Umsetzung des Projektes beachtet werden, da sie alle einen entscheidenden Einfluss auf die Qualität des Systems haben und sich problemlos kombinieren lassen. \\
@@ -1853,13 +1918,13 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
    \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S66 - JUNG}}: \\
+			\textbf{\cb{\hypertarget{jung}{S66 - JUNG}}}: \\
 			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
 			\textbf{S67 - NEO4J}: \\
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
-			\textbf{\cb{S68 - eigene Implementierung}}: \\
+			\textbf{\cb{\hypertarget{eigen}{S68 - eigene Implementierung}}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.\\
-			\textbf{\cb{S69 - JGraphT}}:\\
+			\textbf{\cb{\hypertarget{xxx}{S69 - JGraphT}}}:\\
 			Bereitstellung der Algorithmen durch JGraphT
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
@@ -1950,8 +2015,9 @@ In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu 
 \newpage
 
 \subsection{Übersicht}
-Dieser Abschnitt beschäftigt sich mit einer Übersicht über die alle Module des gesamten Projektes. \\
-Die Zusammenhänge zwischen den Modulen wurde auf der folgenden Seite als Paketdiagramm dargestellt. \\
+Dieser Abschnitt beschäftigt sich mit einer Übersicht über alle Module des gesamten Projektes. \\
+Die Zusammenhänge zwischen den Modulen wurde auf der folgenden Seite als Paketdiagramm dargestellt.
+Im Allgemeinen ist die Struktur des Projektes angelehnt an das Model-View-Controller-Designpattern, gemäß der Strategie “\hyperlink{bbb}{S8 - MVC}”. Das Package \texttt{gui} setzt die View um, \texttt{log\_management} das Model und \texttt{actions} den Controller. \\
 
 Das Package \texttt{actions} beinhaltet \texttt{Action} Klassen, die vor allem Aktionen auf dem Graphen umsetzen. Diese \texttt{Action} Klassen werden mit der Interaktion der grafischen Benutzeroberfläche verknüpft, sodass z.B. bei Klick auf einem Button eine bestimmt Aktion ausgeführt wird. \\
 
@@ -1963,11 +2029,11 @@ Alle Import und Export Aktionen, werden im Package \texttt{io} implementiert. \t
 
 Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus unserem System in einen Graphen umzuwandeln, der vom Framework jgrapht erkannt wird. Deswegen besteht eine Abhängigkeit zwischen dem Package \texttt{jgrapht} und \texttt{graph.graph}. \\
 
-Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, sind im Package \texttt{graph} implementiert.  Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen/ Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. 
+Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, sind im Package \texttt{graph} implementiert.  Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen/ Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. \\
 
 \includepdf[pages=-, landscape]{package.pdf}
 
-\subsection{Package \texttt{io}}
+\subsection{\texttt{io}}
 Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
 Daher muss es ein Modul geben, welches alle Informationen des in der GUI angezeigten Graphen abfragt und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen, aus einem GXL-String die \texttt{Syndrom}-Instanz beziehungsweise Graph-Repräsentation zu generieren, die dann als aktueller Graph im Programm angezeigt wird.\\ 
 Außerdem soll das Programm die Möglichkeit bieten, eine GXL Datei zu importieren/exportieren. Diese Funktionalität muss gemäß Einflussfaktor \hyperlink{ii}{GXL- Export und -Import} bereit gestellt werden.\\ 
@@ -1990,12 +2056,26 @@ Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io-package} sind unte
 \includepdf[pages=-, landscape]{io.pdf}
 
 
+\subsection{\texttt{gui}}
+Die Benutzeroberfläche wurde mit JavaFx (siehe Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFx}) und mit Hilfe der Anwendung \textit{SceneBuilder} von Gluon, gemäß der Strategie \hyperlink{mmm}{S38 - Scene-Builder}, umgesetzt. Die erstellte \texttt{GUI} ist in der Applikation als FXML-Datei gespeichert und wird beim Starten unserer Applikation in der \texttt{Main}-Klasse geladen. Sie ist außerdem auch zuständig für das Starten der gesamten Anwendung. \\
 
-Die Benutzeroberfläche wurde mit JavaFx (siehe Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFx}) und mit Hilfe der Anwendung “SceneBuilder” von Gluon, gemäß der Strategie “\hyperlink{mmm}{S38 - Scene-Builder}”, umgesetzt. Die erstellte GUI ist in der Applikation als FXML-Datei gespeichert und wird beim Starten unserer Applikation in der \texttt{Main}-Klasse geladen. Sie ist außerdem auch zuständig für das Starten der gesamten Anwendung. \\
-Um die GUI mit der gewünschten Funktionalität der Applikation zu verbinden, existiert die Klasse \texttt{Controller}. Sie dient als Schnittstelle zwischen der GUI und den internen Modulen. Darin befinden sich die GUI-Elemente, die man nochmals mit mehr Funktionalität versehen muss, da FXML nicht ausreichend ist. Wenn beim Drücken eines Knopfes zum Beispiel mehr als das Ausführen einer Methode passieren muss, dann wäre dies nicht direkt mit FXML möglich. Auch besitzt diese Klasse alle Methoden, die von der GUI aufgerufen werden, wenn zum Beispiel auf einen Knopf gedrückt wird. Das Event-Handling wird dabei von der FXML-Datei übernommen, indem es angibt welche Methode bei welchem Event ausgeführt werden soll. \\
-Die \texttt{Controller}-Klasse besitzt auch noch die internen Klassen \texttt{ColorPickerHandler} und \texttt{MenuItemHandler}, da die GUI-Elemente \texttt{MenuItem} und \texttt{ColorPicker} zusätzlich beim Ausführen der Methoden auch jeweils das Argument mitgeben muss, welches ausgewählt wurde. Die mitgegebenen Argumente werden in der Klasse \texttt{Values} gespeichert. \\
-Um das auf Swing basierende JUNG in die GUI einbinden zu können, werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}.\\
-Das Aussehen des Graphen wird verändert über die Klasse \texttt{Syndrom} im Package \texttt{graph.graph}. Dabei holt sie sich die benötigten Argumente von der Klasse \texttt{Values}. Die Klasse \texttt{ActionHistory} im Package \texttt{actions} wird benötigt, um die Actions in den Methoden der \texttt{Controller-Klasse} auszuführen und um \texttt{redo} und \texttt{undo} nutzen zu können. Das Interface \texttt{ObserverSyndrom} aus dem Package \texttt{actions} wird benötigt, um die Veränderungen des Graphen den internen Modulen mitzuteilen. Um das Anzeigen der Nutzerinteraktion zu ermöglichen, bekommt die \texttt{Controller}-Klasse das Benutzerprotokoll über die \texttt{LogDao}-Klasse im Package dao. Die Klasse \texttt{LoadLanguage} besitzt noch weitere GUI-Elemente zusätzlich zu den referenzierten GUI-Elementen in der \texttt{Controller-Klasse}, um sie nach der gewünschten Sprache zu ändern.
+Um die GUI mit der gewünschten Funktionalität der Applikation zu verbinden, existiert die Klasse \texttt{Controller}. Sie dient als Schnittstelle zwischen der \texttt{GUI} und den internen Modulen. \\
+FXML ist sehr gut geeignet, um die Darstellung der \texttt{GUI} Elemente zu definieren, aber um die Funktionalität, d.h. den Aufruf von Methoden bei MouseEvents auf den Komponenten der \texttt{GUI}, umzusetzen, müssen diese extern in der Controller Klasse in zugehörigen Methoden zu den \texttt{GUI} Elementen beschrieben werden. Deswegen wurden in der \texttt{Controller} Klasse die zugehörigen Methoden zu den \texttt{GUI} Elementen eingefügt. \\
+
+Die \texttt{Controller}-Klasse besitzt außerdem die internen Klassen \texttt{ColorPickerHandler} und \\ \texttt{MenuItemHandler}. Diese werden benötigt, da die \texttt{GUI} Elemente \texttt{MenuItem} und \texttt{ColorPicker} zusätzlich an die aufgerufene Methode übergeben müssen, welchen Wert der User ausgewählt hat, beispielsweise die gewählte Farbe. \\
+Diese Werte werden zusätzlich in dem Singleton Objekt der Klasse \texttt{Values} den zugehörigen Attributen zugewiesen, damit die \texttt{Actions} Objekte und das \texttt{Syndrom} Objekt auf diese Werte zugreifen können. \\
+
+Zur Graph Visualisierung wird das Framework \hyperlink{eee}{JUNG} verwendet. Da dieses Framework auf Swing basiert, wird die Swing-Komponente, in die mit JavaFX erstellte GUI, durch eine Swing-Node eingebunden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}.\\
+
+Da die \texttt{GUI} den Graphen außerdem in der Seitenleisten in textueller, strukturierter Form darstellen soll, benötigt die \texttt{GUI} Informationen über die Objekte des Graphen. Die Information sind über das \texttt{Syndrom} Objekt aus dem Package \texttt{graph.graph} zugänglich. \\
+
+Das Objekt der Klasse \texttt{ActionHistory} aus dem Package \texttt{actions} wird benötigt, um die \hyperlink{command}{Actions} mit den Interaktionen des Users zu verknüpfen. Diese führt zuvor erstelle Actions aus. Außerdem kann so die benötigte \texttt{redo} und \texttt{undo} Funktionalität umgesetzt werden. \\
+
+Das Interface \texttt{ObserverSyndrom} aus dem Package \texttt{actions} wird implementiert, um die Veränderungen des Graphen auf der GUI zu updaten.\\
+
+Um das Anzeigen des Protokolls der Nutzerinteraktion zu ermöglichen, bekommt die \texttt{Controller}-Klasse das Benutzerprotokoll über ein Objekt der \texttt{LogDao}-Klasse aus dem Package \texttt{dao}. Dieses bildet die Schnittstelle zur Datenbank. \\
+
+Die Klasse \texttt{LoadLanguage} besitzt noch weitere GUI-Elemente zusätzlich zu den bereits referenzierten in der \texttt{Controller-Klasse}, um die Texte der \texttt{GUI} bei Bedarf auf eine andere \hyperlink{hh}{Sprache} umzustellen.
 	
 
 \newpage
@@ -2017,6 +2097,24 @@ Zudem haben alle \texttt{LogActions} eine Verbindung zu \texttt{LogEntryName} un
 Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \texttt{actions.other}Package bereits erahnen kann, wird das Umschalten zwischen den Fuktionsmodi ebenfalls über eine Action realisiert. Der aktuelle Funktionsmodus wird dabei in der Klasse \texttt{Syndrom} im Package \texttt{graph.graph} gespeichert. Hierfür existiert in der \texttt{Syndrom-Klasse} ein Attribut vom Typ \texttt{FunctionMode}. Die Funktionsmodi, die in unserer Anwendung existieren, sind in der Klasse \texttt{FunctionMode} im selben Package zu finden. Die beschriebene Umsetzung folgt der Strategie \hyperlink{uuu}{S59 - Modi als eigener Teil unserer Applikation}. \\ \\ 
 
 \includepdf[pages=-]{actions.pdf}
+
+Eine Übersicht über alle \texttt{Action} packages, die der Übersicht halber auf der vorherigen Abbildung nicht komplett dargestellt werden konnten, werden auf der folgenden visualisiert. 
+
+\includepdf[pages=-]{actionsOverview.pdf}
+
+
+\subsection{\texttt{log\_management}}
+
+Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{log\_management/tables} zu sehen. Im Package \texttt{log\_management} werden neben der Speicherung der Nutzerinteraktionen in Form der Logs die weiteren Aspekte der Persistierung umgesetzt. \\
+Die Daten -Persistierung setzen wir mit Hilfe von \hyperlink{rrr}{S50 - Hibernate} um. Die im Package \texttt{tables} liegende Klassen stellen die Objekte dar, die wir in der Datenbank persistieren wollen. 
+
+
+
+Dabei sind die \texttt{Log} Objekte wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während die \texttt{Graph} Objekte eine \hypertarget{yy}{Graphrepräsentation} beinhalten. \\
+
+Die \texttt{Log} Objekte besitzen unter anderem ein Attribut \texttt{parameters}. Dieses Attribut repräsentiert ein zugehöriges \texttt{Param} Objekt als String. Die \texttt{Param} Objekte beinhalten alle wichtigen Informationen zu der zugehörigen Aktion, damit diese verständlich für den Benutzer rekonstruiert werden kann. Dieser String wird durch eine Konvertierung eines \texttt{Param} Objektes zu einem \texttt{JSON} String erzeugt. Die \texttt{JSON}- Umwandlung erfolgt gemäß \hyperlink{www}{S63- Jackson} mit Jackson. \\
+
+Die \texttt{Graph} Objekte haben ein Attribute \texttt{gxl}, welches den visualisierten Graphen als GXL- Repräsentation gemäß \hyperlink{yy}{S1 - GXL} beinhaltet. Der GXL- String wird durch das \texttt{io} Package realisiert, weshalb hier auch eine Abhängigkeit besteht.\\
 
 \subsection{Log\_management}
 
@@ -2048,15 +2146,21 @@ Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit d
 
 \newpage
 
-\subsection{Package \texttt{graph.graph}}
+\subsection{\texttt{graph.graph}}
 
 Das Package \texttt{graph.graph} beinhaltet die Datenklassen des Graphen und Klassen, die sich auf die Funktionalität des Graphen beziehen. \\
+
 Die Klasse \texttt{Syndrom} führt alle Komponenten des Frameworks \hyperlink{eee}{S19 - \texttt{JUNG}} zusammen und ist ein \textit{Singleton}, da dieses Objekt global im ganzen Projekt verfügbar sein muss. \\
 Unsere Datenklassen zu dem Graphen erweitern das Datenmodell von \texttt{JUNG}. Klassen, die erweiterte Funktionalität des Graphen implementieren, erweitern meistens Klassen aus \texttt{JUNG} oder orientieren sich an dessen Klassen. \\
+
 \textit{Syndrom} enthält ein \texttt{SyndromGraph} Objekt, ein \texttt{StaticLayout} Objekt und eine \texttt{VisualisationViewer} Objekt, welche die grundlegenden Informationen über den Graphen beinhalten, beispielsweise Listen von \texttt{Vertex}/ \texttt{Edge} und \texttt{Sphere}. Die \texttt{Transformer} Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.visualization} importiert und sind vor allem für die Visualisierung von Bedeutung. Die \texttt{Predicate} Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.alogorithm} importiert und werden später für die Filterung und Umsetzung von Algorithmen auf den Graphen benötigt. \\
+
 Die Klasse  \texttt{VisualisationViewer} und \texttt{StaticLayout} haben wir komplett von Jung übernommen, wir weisen den generischen Typen der Klassen unsere \texttt{Vertex}/ \texttt{Edge} Objekte zu. Somit sind unsere eigenen Datenklassen nicht  komplett von dem JUNG-Framework unabhängig.\\
+
 Das \texttt{SatelliteVisualisationViewer} Objekt, das \texttt{ViewGrid} und das \texttt{GraphZoomScrollPane} Objekt sind \texttt{JUNG} zugehörige Klassen, die wir benötigen, um \hyperlink{dd}{Zoom} und \hyperlink{ff}{Zoom.Kontext} umzusetzen. Die Klassen \texttt{ViewGrid} werden wir selber implementieren, dies Implementierung ist aber an \texttt{JUNG} Klassen angelehnt.\\
+
 Das Attribut \texttt{pluggable} der Klasse \texttt{PluggableGraphMouse} wird ebenfalls von \texttt{JUNG} zur Verfügung gestellt. Diese Klasse besitzt Funktionalität, um \texttt{GraphMousePlugins} (im Package \texttt{visualisation}) hinzuzufügen und zu entfernen. Diese besitzen Methoden, um MouseEvents auf den \texttt{VisualisationViewer} zu erkennen und Funktionalität entsprechend umzusetzen. \\
+
 Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, welches eine Instanz der Klasse \texttt{Values} ist. Die \texttt{GUI} schreibt gesetzte Wert der \texttt{GUI} in die Klasse, z.B. den derzeit gewählten \texttt{EdgeType}. Syndrom benötigt diese Werte, damit Objekte entsprechend dieser Werte erstellt werden können. \\
 
 
@@ -2065,23 +2169,32 @@ Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, wel
 \includepdf[pages=-, landscape]{graph_graph.pdf}
 
 
-\subsection{Package \texttt{graph.visualization}}
+\subsection{\texttt{graph.visualization}}
 
 Das Package \texttt{visualization} beinhaltet alle Klassen, die auf die Visualisierung des Graphen Einfluss haben. \\
+
 Ein großes Teilpaket von \texttt{visualsation} sind die Transformer.  Alle diese Klassen implementieren ein Interface \texttt{Transformer}. Diese wandeln ein Eingabe Objekt in ein Ausgabe Objekt um. Das Eingabe Objekt bleibt dabei unverändert. Wir bzw. das Framework \texttt{JUNG} verwendet Transformer größtenteils dazu, um Daten aus Objekten zu extrahieren, beispielsweise die Farbe eines \texttt{Vertex}. \\
+
 Ein weiteres Teilpaket ist \texttt{control}. Die Klassen aus dem Package erben alle von der Klasse \\ \texttt{GraphMousePlugin} aus \texttt{JUNG}. Diese \textit{Plugins} implementieren die Funktionalität, die bestimmt, welche Anweisungen bei z.B. einem Klick auf einem \texttt{VisualisationViewer} ausgeführt werden sollen. \\
+
 \texttt{renderers} beinhaltet eine zentrale Klasse \texttt{SyndromRenderer}, die den \texttt{BasicRenderer} von \texttt{JUNG} erweitert. Diese Klasse wird aufgerufen, wenn der Graph gerendert und auf den \texttt{VisualisationViewer} gezeichnet werden soll. Zusätzlich überschreiben wir die Implementierung von \texttt{BasicEdgeRenderer} und erstellen eine weitere Klasse \texttt{SphereRenderer}, um z.B. das \hyperlink{cc}{Zusammenfassen von Pfeilspitzen} zu ermöglichen. \\
+
 Die Klasse \texttt{SyndromPickSupport} überschreibt ebenfalls eine Klasse aus \texttt{JUNG}: \texttt{ShapePicksupport}. Diese erweitern wir mit der Funktionalität ebenfalls \texttt{Sphere} Objekt picken zu können. \\ 
+
 Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klasse \texttt{SyndromArrowFactory}, welche Shape Objekt generiert, welche unsere Pfeilspitzen der Kanten bilden. \\
+
 \texttt{graph.visualization} importiert Klassen aus dem Package \texttt{graph.graph}, da die Klassen die Objekte, welche sie visualisieren sollen, benötigen. \\
 
 
 
 \includepdf[pages=-, landscape]{transformer.pdf}
 
-\subsection{Package \texttt{graph.algorithmen}}
+\subsection{\texttt{graph.algorithmen}}
+Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. \texttt{JUNG} verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{jung}{S66-Jung} implementieren wir alle Algorithmen die zur Analyse/ Auswertung des Graphen benötigt werden soweit wie möglich mit \texttt{Jung} zur Verfügung gestellte Funktionen und Algorithmen. \\
 
+Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu differenzieren welche Filterung des Graphen durchgeführt werden soll. Bei einer Filterung auf Grundlage \texttt{AnalyseTypeSeveral} - Enumerationskonstanten, können mehrere kombiniert werden, sodass eine kombinierte Filterung ausgeführt wird. Bei \texttt{AnalyseTypeSingle} - Enumerationskonstanten immer nur genau eine. \texttt{SelectionType} beschreibt die verschiedenen Selectionsarten. \\
 
+\texttt{algorithmen} importiert Klassen des Packages \texttt{graph}, da bei einer Filterung die Klasse natürlich Zugriff auf die Objekte benötigt, die gefiltert werden sollen.\\
 
 
 \includepdf[pages=-]{predicates.pdf}
