@@ -2145,11 +2145,6 @@ Das Zusammenspiel von Im- und Export beziehungsweise von der Erstellung von GXL-
 
 Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \texttt{other-package} im \texttt{actions-package} bereits erahnen kann, wird das Umschalten zwischen den Fuktionsmodi über eine Action realisiert. Der aktuelle Funktionsmodus wird dabei in der Klasse \texttt{Syndrom} im Package \texttt{graph} innerhalb des übergeordneten Packages \texttt{graph} gespeichert. Hierfür existiert in der \texttt{Syndrom-Klasse} ein Attribut vom Typ \texttt{FunctionMode}. Die Funktionsmodi, die in unserer Anwendung existieren, sind in der Klasse \texttt{FunctionMode} im selben Package zu finden. Die beschriebene Umsetzung folgt der Strategie \hyperlink{uuu}{S59 - Modi als eigener Teil unserer Applikation}. \\ \\
 
-\newpage
-In unserem Programm soll neben dem Editieren des Graphen noch das Auswerten des Graphen und des Benutzers noch von großer Bedeutung sein. Für das Auswerten des Graphen unter manchen bestimmten Kriterien müssen bestimmte Algorithmen zur Verfügung stehen. Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert. Die Nutzung der Algorithmen lassen sich in dem Package \texttt{JGraphT} wiederfinden.\\
-Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
-
-\includepdf[pages=-, landscape]{jgrapht.pdf}
 
 Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{tables} innerhalb des \texttt{log\_management-Packages} zu sehen. \\ \\
 
@@ -2217,6 +2212,10 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 
 
 \includepdf[pages=-]{predicates.pdf}
+
+\subsection{\texttt{jgrapht}}
+In unserem Programm soll neben dem Editieren des Graphen noch das Auswerten des Graphen und des Benutzers noch von großer Bedeutung sein. Für das Auswerten des Graphen unter manchen bestimmten Kriterien müssen bestimmte Algorithmen zur Verfügung stehen. Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert. Die Nutzung der Algorithmen lassen sich in dem Package \texttt{JGraphT} wiederfinden.\\
+Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
 
 \includepdf[pages=-, landscape]{jgrapht.pdf}
 
