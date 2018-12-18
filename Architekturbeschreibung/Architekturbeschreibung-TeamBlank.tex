@@ -2096,7 +2096,7 @@ Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in 
 	\textit{Ziel}: Eine Sphäre hinzufügen.
 	\\\hline
 		\textbf{Regulärer Ablauf}: \begin{itemize}
-		\itemsep-0.9em
+		\itemsep-0.5em
 		\item der Bearbeiter klickt auf den \textit{Sphäre hinzufügen}- Button
 		\item der Bearbeiter klickt in die Arbeitsfläche 
 	\end{itemize}
@@ -2145,7 +2145,7 @@ Hierzu werden dem \texttt{LogDao} das \texttt{Log} Objekt und seine Parameter ü
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
-	\itemsep-0.9em
+	\itemsep-0.5em
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Knoten hinzufügen}
 	\item der Bearbeiter klickt auf eine Sphäre
 	\item der Bearbeiter wählt \textit{Datei} $\rightarrow$ \textit{Exportieren als} $\rightarrow$ \textit{OOF}
@@ -2160,22 +2160,15 @@ Hierzu werden dem \texttt{LogDao} das \texttt{Log} Objekt und seine Parameter ü
 	\\\hline
 \end{tabular}\\ \\ \\
 
-
-Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüfer eine neue Lehrveranstaltung erstellt. Hierbei ist zu beachten, dass der Nutzer (Prüfer) sich bereits angemeldet hat und die generelle Rolle \texttt{Examiner} (Prüfer) vom Administrator gesetzt wurde.\\ \\
-\begin{figure}[ht]
-	\centering
-	% \includegraphics[width=1\textwidth]{seqdia.jpg}
-	\caption{Sequenzdiagramm II}
-\end{figure}
+Auch hier sind wie im Anwendungsfall oben alle Singleton Objekte schon initialisiert. Zu Beginn des Anwendungsfalles klickt der Bearbeiter auf den Button\texttt{Knoten hinzufügen}. Die Benutzeroberfläche reagiert darauf mit dem Schreiben des \texttt{GraphButtonTyp} in \texttt{Values}, um das \texttt{PickingGraphMouseEditSyndromPlugin} zu signalisieren, was bei einem Klick auf den \texttt{VisualisationViewer} passiert.\\
+Die Aktion \texttt{AddVerticesLogAction} wird erstellt, wie bei allen anderen Actions auch, und von der \texttt{ActionHistory} ausgeführt. Durch die \texttt{GraphObjectFactory} wird der Knoten erstellt und in den Graphen hinzugefügt. Während der Action wird das Parameterobjekt \texttt{AddVerticesParam} erstellt und an die Action abgegeben.\\  
+Da sich der Graph verändert hat, muss wie im oberen Fall auch, der \texttt{DatabaseManager} und die Benutzeroberfläche benachrichtigt werden. Nach jeder Action, also auch nach dieser, wird der Graph neu als GXL-String in die Datenbank persistiert. Auch muss für die Protokollierung des Benutzers eine neue \texttt{Log} erstellt und in die Datenbank persistiert werden. Dem \texttt{LogDao} werden wieder die Log und die Parameter übergeben. Die Parameter werden zu einem Json-String konvertiert und mit dem Log mithilfe von Hibernate in die Datenbank gespeichert.\\
+Nun besteht noch die Action, bei dem ein Benutzer den bestehenden Graphen als OOF exportiert. Bei dem Klick auf den Button \textit{Exportieren als} $\rightarrow$ \textit{OOF}, öffnet die \texttt{GUI} ein Dialogfenster, bei dem der Nutzer einen validen Pfad eingeben und mit dem Button \textit{Exportieren} dies bestätigen muss. \\
+Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Ein neues Objekt der Klasse \texttt{OOFIo} wird erstellt. Von dem Objekt wird eine neue \texttt{GXLIo} kreiert und welche den Graphen als GXL-String zurückliefert. Die Logeinträge werden von dem \texttt{LogDao} und die Parameterobjekte von dem bestehendem \texttt{ObjectMapper} in Strings umgewandelt. In der \texttt{OOFIo} werden dann alle Strings mit der Methode \texttt{createOOf()} zu dem neuen Datentyp fusioniert und abgespeichert.  
 
 
-Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Administrator einem Benutzer die Rolle Prüfer zuteilt, bzw. ihn als Prüfer deklariert. Hierbei ist zu beachten, dass sich der Administrator bereits angemeldet hat und er die Rolle Administrator inne hat. 
-\\ \\ 
-\begin{figure}[ht]
-	\centering
-	%  \includegraphics[width=1\textwidth]{seqdia.jpg}
-	\caption{Sequenzdiagram III}
-\end{figure}
+\includepdf[pages=-, landscape]{third.pdf}
+
 \newpage
 
 \subsection{Anwendungsfall: Schüler korrigiert Graph mit falschen Relationen/Symptomen.}
@@ -2191,7 +2184,7 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
-	\itemsep-0.9em
+	\itemsep-0.5em
 	\item der Bearbeiter markiert eine Kante
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Reationstyp ändern} $\rightarrow$ \textit{Ungewiss}
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{undo}
@@ -2226,11 +2219,10 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
-	\itemsep-0.9em
+	\itemsep-0.5em
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{exportieren als} $\rightarrow$ \textit{PDF}
 	\item das System öffnet ein Pop-Up-Fenster
 	\item der Bearbeiter gibt den Speicherpfad des Graphen an und klickt \textit{Ok}
-	
 \end{itemize}
 	\\\hline
 	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter Exporte verschiedener Versionen hat.
@@ -2241,12 +2233,11 @@ Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Admin
 	\\\hline
 \end{tabular}\\ \\ \\
 
-Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüfer eine neue Lehrveranstaltung erstellt. Hierbei ist zu beachten, dass der Nutzer (Prüfer) sich bereits angemeldet hat und die generelle Rolle \texttt{Examiner} (Prüfer) vom Administrator gesetzt wurde.\\ \\
-\begin{figure}[ht]
-	\centering
-	% \includegraphics[width=1\textwidth]{seqdia.jpg}
-	\caption{Sequenzdiagramm II}
-\end{figure}
+Das folgende Sequenzdiagramm stellt den Fall dar, bei dem ein Benutzer den bestehenden Graphen als PDF exportiert. Klickt also der Benutzer auf den Button \textit{Exportieren als} $\rightarrow$ \textit{PDF}, reagiert darauf \texttt{GUI} mit einem Dialogfenster, bei dem der Nutzer einen validen Pfad eingeben und mit dem Button \textit{Exportieren} dies bestätigen muss. \\
+Eine neue Action \texttt{exportPdfAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Von Syndrom wird der \texttt{VisualisationViewer} geholt und an die Action übergeben. Mithilfe dieser Information wird eine neues Objekt von der Klasse \texttt{PDFIo} erstellt und initialisiert. Weiter im Verlauf der Action wird mithilfe der Methode \texttt{exportPDF()} ein neuer \texttt{ExportDialog} erstellt und darauf die Methode ausgeführt, die die PDF erstellt.\\ \\
+
+\includepdf[pages=-, landscape]{fifth.pdf}
+
 
 \newpage
 \section{Evolution}
