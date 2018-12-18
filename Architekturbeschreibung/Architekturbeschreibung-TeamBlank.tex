@@ -122,7 +122,7 @@
 
 % Kein Erstzeileneinzug beim Absatzanfang
 % Sieht aber nur gut aus, wenn man zwischen Absätzen viel Platz einbaut
-%\setlength{\parindent}{0ex}
+\setlength{\parindent}{0ex}
 
 % Abstand zwischen zwei Absätzen
 %\setlength{\parskip}{1ex}
@@ -1950,6 +1950,26 @@ In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zuge
 \emph{Autoren: Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}\\\\
 
 In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu finden. In dieser werden besonders wichtige oder für eine Gruppe von Modulen stellvertretend stehende Module unseres Systems genannt. Dabei wird auf die Funktion und Notwendigkeit dieser Module eingegangen sowie teilweise deren grundlegender Aufbau thematisiert. Außerdem wird in diesem Kapitel beschrieben wie die Module zusammenwirken, um die geforderten Anforderungen zu erfüllen. Bei Ausführungen zur Bedeutung, zum Aufbau und zum Zusammenwirken von Modulen wird bezug zu den Strategien genommen, für die wir uns im Rahmen der Problemkarten im Kapitel „Globalen Analyse“ entschieden haben. \\ \\
+
+
+\subsection{Übersicht}
+Dieser Abschnitt beschäftigt sich mit einer Übersicht über die alle Module des gesamten Projektes. \\
+Die Zusammenhänge zwischen den Modulen wurde auf der folgenden Seite als Paketdiagramm dargestellt. \\
+
+Das Package \texttt{actions} beinhaltet \texttt{Action} Klassen, die vor allem Aktionen auf dem Graphen umsetzen. Diese \texttt{Action} Klassen werden mit der Interaktion der grafischen Benutzeroberfläche verknüpft, sodass z.B. bei Klick auf einem Button eine bestimmt Aktion ausgeführt wird. \\
+
+Das Modul \texttt{gui} beinhaltet alle Klassen, die zur Erstellung/ Interaktion mit der Benutzeroberfläche benötigt werden. Die \texttt{GUI} steht in Abhängigkeit mit dem Modul \texttt{actions}, da die \texttt{Actions} mit den Interaktionen auf der \texttt{GUI} verknüpft sind. Die \texttt{GUI} bezieht sich außerdem auf das Modul \texttt{log\_management}, da diese im Modus \textit{Analyse} Informationen über das Protokoll visualisiert. Im Modus \textit{Vorlage bearbeiten} und \textit{Diagramm bearbeiten} werden Informationen über den Graphen visualisiert, weshalb hier ebenfalls eine Abhängigkeit zu dem package \textit{graph} besteht. \\
+
+Das Persistieren der Daten wird im Package \texttt{log\_management} umgesetzt. Dieses Package ist in drei weitere Packages unterteilt: \texttt{dao}, \texttt{parameters} und \texttt{tables}. \texttt{dao} ''Data Acess Object'' bildet die Benutzerschnittstelle für die anderen Module, um auf die Daten in der Datenbank zuzugreifen. Das Package \texttt{parameters} beinhaltet \texttt{Param} Klassen. Jeder \texttt{Action} Klasse ist eine \texttt{Param} Klasse zugeordnet. Diese wird bei der Persistierung der \texttt{Actions} als \texttt{Log} in einen Json-String umgewandelt und als Attribut eines \texttt{Log} Objektes abgespeichert und in die Datenbank geschrieben. \texttt{tables} beinhaltet die Klassen, welche den Aufbau eines \texttt{Graph}- und \texttt{Log} Objektes beschreiben. Diese Objekte werden mit Hibernate/ JPA persistiert und in einer embedded H2DB abgespeichert. \\ 
+
+Alle Import und Export Aktionen, werden im Package \texttt{io} implementiert. \texttt{io} benötigt die Protokoll Daten, welche durch das Package \texttt{dao} zugänglich sind. Außerdem greift \texttt{io} auf Klassen aus \texttt{graph} zu, da dort die Klassen liegen, welche die Daten zu dem aktuellen \textit{Syndromansatz} beinhalten. \\
+
+Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus unserem System in einen Graphen umzuwandeln, der vom Framework jgrapht erkannt wird. Deswegen besteht eine Abhängigkeit zwischen dem Package \texttt{jgrapht} und \texttt{graph.graph}. \\
+
+Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, sind im Package \texttt{graph} implementiert.  Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen/ Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. 
+
+\includepdf[pages=-, landscape]{package.pdf}
+
 
 
 Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
