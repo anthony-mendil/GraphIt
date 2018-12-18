@@ -1,6 +1,7 @@
 package log_management.dao;
 
 import actions.LogEntryName;
+import log_management.parameters.Param;
 import log_management.tables.Log;
 
 import javax.persistence.EntityManager;
@@ -55,7 +56,18 @@ public class LogDao implements Dao<Log> {
     }
 
     /**
-     * converts the attribute parameters into a json string and saves the log
+     * converts the attribute parameters into a json string and calls the save method
+     * with the log object containing the parameter string (json)
+     * @param log the log object to save
+     */
+    public void save(Log log, Param parameters) {
+
+        int i = GraphDao.currentId;
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * saves the log object
      * @param log the log object to save
      */
     @Override
@@ -66,7 +78,7 @@ public class LogDao implements Dao<Log> {
     }
 
     @Override
-    public void update(Log log, String[] params) {
+    public void update(Log log) {
         throw new UnsupportedOperationException();
     }
 
