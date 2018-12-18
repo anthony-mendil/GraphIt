@@ -32,7 +32,7 @@ public class DatabaseManager implements ObserverSyndrom {
     private GXLio gxlIo;
 
     /**
-     *
+     * the current graph object
      */
     private Graph graph;
 

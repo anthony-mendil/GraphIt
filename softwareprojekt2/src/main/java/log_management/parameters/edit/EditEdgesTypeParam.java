@@ -1,9 +1,9 @@
 package log_management.parameters.edit;
 
+import edu.uci.ics.jung.graph.util.Pair;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
 import graph.graph.Vertex;
-import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
 import java.util.Map;
@@ -16,7 +16,7 @@ public class EditEdgesTypeParam extends Param{
      * The set of all edges containing their old edge-type.
      */
     @Getter
-    Map<Edge,Pair<Vertex,Vertex>> edgesOldEdgeType;
+    Map<Edge,Pair<Vertex>> edgesOldEdgeType;
     /**
      * The new edge-type.
      */
@@ -28,7 +28,7 @@ public class EditEdgesTypeParam extends Param{
      * @param pEdges The set of edges containing their old edge-types.
      * @param pEdgeType The new edge-type.
      */
-    public EditEdgesTypeParam(Map<Edge,Pair<Vertex,Vertex>> pEdges, EdgeArrowType pEdgeType) {
+    public EditEdgesTypeParam(Map<Edge,Pair<Vertex>> pEdges, EdgeArrowType pEdgeType) {
         this.edgesOldEdgeType = pEdges;
         this.edgeType = pEdgeType;
     }

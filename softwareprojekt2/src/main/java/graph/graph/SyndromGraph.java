@@ -135,4 +135,28 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     public Map<String, Integer> dimensions(){
         throw new UnsupportedOperationException();
     }
+
+    /**
+     * updates a sphere in the graph
+     * @return true if update was successful, false if not
+     */
+    public boolean updateSphere(){
+            throw new UnsupportedOperationException();
+    }
+
+    /**
+     * updates a edge in the graph
+     * @return true if update was successful, false if not
+     */
+    public boolean updateEdge(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * updates a vertex in the graph
+     * @return true if update was successful, false if not
+     */
+    public boolean updateVertex(){
+        throw new UnsupportedOperationException();
+    }
 }
