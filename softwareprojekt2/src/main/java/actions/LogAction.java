@@ -14,7 +14,7 @@ public abstract class LogAction extends GraphAction {
     private LogEntryName logEntryName;
     @Getter
     @Setter
-    private Param parameters;
+    protected Param parameters;
     @Getter
     private LocalDateTime time;
 

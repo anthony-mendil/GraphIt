@@ -26,11 +26,6 @@ public abstract class GraphAction extends Action {
     private SyndromGraph<Vertex, Edge> graph;
 
     /**
-     * the syndrom picksupport, containing all picked spheres/ edges/ vertices
-     */
-    private SyndromPickSupport<Integer, String> pickSupport;
-
-    /**
      * the visualisation viewer
      */
     private VisualizationViewer<Vertex, Edge> visualizationViewer;
