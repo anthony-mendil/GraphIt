@@ -2086,7 +2086,13 @@ Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDa
 
 \includepdf[pages=-, landscape]{log_management.pdf}
 
-Die \texttt{Parameter}-Klassen finden sich im Paket \texttt{log\_management/parameters/activate\_deactivate}, \texttt{log\_management/parameters/add\_remove}, \texttt{log\_management/parameters/edit} und \texttt{log\_management/parameters/move}. Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Shpere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise miteinander verknüpft. \\ \\
+
+
+Die \texttt{Param}-Klassen finden sich im Package \texttt{log\_management/parameters}. 
+Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Sphere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. \\
+Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise miteinander verknüpft. \\ 
+
+Die \texttt{Param} Klassen werden benötigt, um die wichtigen Informationen von einer zugehörigen Aktion zu erfassen und in der Datenbank abzuspeichern, damit diese bei Bedarf an den Benutzer übermittelt werden können. Wie genau diese persistiert werden, ist auf der vorherigen Seite beschrieben.\\
 
 \includepdf[pages=-, landscape]{parameters.pdf}
 
