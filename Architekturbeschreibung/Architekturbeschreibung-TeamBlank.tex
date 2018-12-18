@@ -2114,20 +2114,6 @@ Die \texttt{Param} Klassen werden benötigt, um die wichtigen Informationen von 
 
 
 
-\subsection{Noch zuzuordnen}
-
-
-Das Zusammenspiel von Im- und Export beziehungsweise von der Erstellung von GXL-, PDF- oder OOF-bezogenen-Aspekten und dem Entwurfsmuster Command besteht darin, dass es Klassen im \texttt{actions.export\_graph-package} gibt, die aus der \texttt{Controller-Klasse} im Package \texttt{gui} (gemäß MVC) aufgerufen werden. Die Methoden in den Klassen des \texttt{export\_graph-packages} wiederum werden später die Methoden der Klassen im package \texttt{io} aufrufen. \\
---> löschen, da nicht gut zu einer Subsection zugehörig und auch etwas redundant, oder?
-
-
-Um das auf Swing basierende JUNG in die GUI einbinden zu können werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}. Die GUI wird dabei mit dem Scene-Builder erstellt und die dabei erzeugten FXML-Dateien werden in unser System integriert werden (\hyperlink{mmm}{S38 - Scene-Builder}). \\ \\
---> zu graph.graph zuordnen?
-
-Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit durch Kombination der Strategien \hyperlink{sss}{S53 - Layouts in Layouts}, \hyperlink{xee}{S54 - JUNG Layouts} und \hyperlink{xff}{S55 - Eigenes Layout} die Übersichtlichkeit im Graphen erhöhen.
---> zu graph.visualisation zuordnen?
-
-
 
 \newpage
 
@@ -2194,8 +2180,9 @@ Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist welche JGraph
 
 
 
+Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit durch Kombination der Strategien \hyperlink{sss}{S53 - Layouts in Layouts}, \hyperlink{xee}{S54 - JUNG Layouts} und \hyperlink{xff}{S55 - Eigenes Layout} die Übersichtlichkeit im Graphen erhöhen.
 
-Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder.
+\subsection{Zusammenhang zwischen Modulsicht und konzeptioneller Sicht} Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder.
 
 
 
