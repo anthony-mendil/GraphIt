@@ -1971,7 +1971,6 @@ Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, s
 \includepdf[pages=-, landscape]{package.pdf}
 
 
-
 Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
 Deswegen ist die Notwendigkeit gegeben, dass es ein Modul geben muss, welches alle Informationen des in der GUI angezeigten Graphen abfragen und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen aus einem GXL-String die \texttt{Syndrom} -Instanz, also die aktuelle Graph- Repräsentation im Programm,  zu generieren. \\
 Da das Programm außerdem die Möglichkeit bieten soll eine GXL Datei zu importieren/ exportieren gemäß Einflussfaktor \hyperlink{ii}{GXL- Export und -Import} muss auch diese Funktionalität bereit gestellt werden.\\ \\ 
@@ -1998,7 +1997,7 @@ Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \tex
 
 Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{tables} innerhalb des \texttt{log\_management-Packages} zu sehen. \\ \\
 
-Die Strategie \hyperlink{eee}{S19 - JUNG} findet sich an mehreren Stellen wieder. Insbesondere ist hier das Package \texttt{graph} und darin die beiden Packages \texttt{graph} und \texttt{visualization} zu nennen. In erstgenanntem der beiden untergeordneten Packages haben wir eigene vom JUNG-Framework unabhängige Klassen erstellt. In diesen Klassen sind auch die Attribute keine Bestandteile des-Framework. (Beispiele hierfür sind die Klassen \texttt{Edge}, \texttt{Sphere} und \texttt{Vertex}. Dies ist bei anderen Klassen im gleichen Package (\texttt{graph} anders. Die Klassen haben wir zwar erstellt, jedoch sind diese nicht komplett vom JUNG-Framework unabhängig. So zum Beispiel die Klassen \texttt{Syndrom} neben anderen ein Attribut vom Typ \texttt{VisualizaionViewer<Vertex, Edge>} und ein Atttribut vom Typ \texttt{Layout<Vertex, Edge>}. Diese Die Typen Layout und VisualizationViewer verwenden wir von JUNG. Dabei ist anzumerken, dass initial die Generischen Typen V und E den Attributen zugeweisen werden. Um die Anforderungen erfülen zu können weisen wir den Attributen unsere eigenen Klassen \texttt{Vertex} und \texttt{Edge} zu. \\ \\
+
 
 Um das auf Swing basierende JUNG in die GUI einbinden zu können werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}. Die GUI wird dabei mit dem Scene-Builder erstellt und die dabei erzeugten FXML-Dateien werden in unser System integriert werden (\hyperlink{mmm}{S38 - Scene-Builder}). \\ \\
 
@@ -2006,12 +2005,44 @@ Wie im \texttt{persistence.xml}-File im Package \texttt{META-INF} innerhalb das 
 
 Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit durch Kombination der Strategien \hyperlink{sss}{S53 - Layouts in Layouts}, \hyperlink{xee}{S54 - JUNG Layouts} und \hyperlink{xff}{S55 - Eigenes Layout} die Übersichtlichkeit im Graphen erhöhen.
 
-Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder. \\ \\
+Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization} nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder. \\ \\
 
+\newpage
 
+\subsection{Package \texttt{graph.graph}}
+
+Das Package \texttt{graph.graph} beinhaltet die Datenklassen des Graphen und Klassen, die sich auf die Funktionalität des Graphen beziehen. \\
+Die Klasse \texttt{Syndrom} führt alle Komponenten des Frameworks \hyperlink{eee}{S19 - \texttt{JUNG}} zusammen und ist ein \textit{Singleton}, da dieses Objekt global im ganzen Projekt verfügbar sein muss. \\
+Unsere Datenklassen zu dem Graphen erweitern das Datenmodell von \texttt{JUNG}. Klassen, die erweiterte Funktionalität des Graphen implementieren, erweitern meistens Klassen aus \texttt{JUNG} oder orientieren sich an dessen Klassen. \\
+\textit{Syndrom} enthält ein \texttt{SyndromGraph} Objekt, ein \texttt{StaticLayout} Objekt und eine \texttt{VisualisationViewer} Objekt, welche die grundlegenden Informationen über den Graphen beinhalten, beispielsweise Listen von \texttt{Vertex}/ \texttt{Edge} und \texttt{Sphere}. Die \texttt{Transformer} Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.visualization} importiert und sind vor allem für die Visualisierung von Bedeutung. Die \texttt{Predicate} Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.alogorithm} importiert und werden später für die Filterung und Umsetzung von Algorithmen auf den Graphen benötigt. \\
+Die Klasse  \texttt{VisualisationViewer} und \texttt{StaticLayout} haben wir komplett von Jung übernommen, wir weisen den generischen Typen der Klassen unsere \texttt{Vertex}/ \texttt{Edge} Objekte zu. Somit sind unsere eigenen Datenklassen nicht  komplett von dem JUNG-Framework unabhängig.\\
+Das \texttt{SatelliteVisualisationViewer} Objekt, das \texttt{ViewGrid} und das \texttt{GraphZoomScrollPane} Objekt sind \texttt{JUNG} zugehörige Klassen, die wir benötigen, um \hyperlink{dd}{Zoom} und \hyperlink{ff}{Zoom.Kontext} umzusetzen. Die Klassen \texttt{ViewGrid} werden wir selber implementieren, dies Implementierung ist aber an \texttt{JUNG} Klassen angelehnt.\\
+Das Attribut \texttt{pluggable} der Klasse \texttt{PluggableGraphMouse} wird ebenfalls von \texttt{JUNG} zur Verfügung gestellt. Diese Klasse besitzt Funktionalität, um \texttt{GraphMousePlugins} (im Package \texttt{visualisation}) hinzuzufügen und zu entfernen. Diese besitzen Methoden, um MouseEvents auf den \texttt{VisualisationViewer} zu erkennen und Funktionalität entsprechend umzusetzen. \\
+Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, welches eine Instanz der Klasse \texttt{Values} ist. Die \texttt{GUI} schreibt gesetzte Wert der \texttt{GUI} in die Klasse, z.B. den derzeit gewählten \texttt{EdgeType}. Syndrom benötigt diese Werte, damit Objekte entsprechend dieser Werte erstellt werden können. \\
 \includepdf[pages=-, landscape]{graph_graph.pdf}
+
+
+\subsection{Package \texttt{graph.visualization}}
+
+Das Package \texttt{visualization} beinhaltet alle Klassen, die auf die Visualisierung des Graphen Einfluss haben. \\
+Ein großes Teilpaket von \texttt{visualsation} sind die Transformer.  Alle diese Klassen implementieren ein Interface \texttt{Transformer}. Diese wandeln ein Eingabe Objekt in ein Ausgabe Objekt um. Das Eingabe Objekt bleibt dabei unverändert. Wir bzw. das Framework \texttt{JUNG} verwendet Transformer größtenteils dazu, um Daten aus Objekten zu extrahieren, beispielsweise die Farbe eines \texttt{Vertex}. \\
+Ein weiteres Teilpaket ist \texttt{control}. Die Klassen aus dem Package erben alle von der Klasse \\ \texttt{GraphMousePlugin} aus \texttt{JUNG}. Diese \textit{Plugins} implementieren die Funktionalität, die bestimmt, welche Anweisungen bei z.B. einem Klick auf einem \texttt{VisualisationViewer} ausgeführt werden sollen. \\
+\texttt{renderers} beinhaltet eine zentrale Klasse \texttt{SyndromRenderer}, die den \texttt{BasicRenderer} von \texttt{JUNG} erweitert. Diese Klasse wird aufgerufen, wenn der Graph gerendert und auf den \texttt{VisualisationViewer} gezeichnet werden soll. Zusätzlich überschreiben wir die Implementierung von \texttt{BasicEdgeRenderer} und erstellen eine weitere Klasse \texttt{SphereRenderer}, um z.B. das \hyperlink{cc}{Zusammenfassen von Pfeilspitzen} zu ermöglichen. \\
+Die Klasse \texttt{SyndromPickSupport} überschreibt ebenfalls eine Klasse aus \texttt{JUNG}: \texttt{ShapePicksupport}. Diese erweitern wir mit der Funktionalität ebenfalls \texttt{Sphere} Objekt picken zu können. \\ 
+Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klasse \texttt{SyndromArrowFactory}, welche Shape Objekt generiert, welche unsere Pfeilspitzen der Kanten bilden. \\
+\texttt{graph.visualization} importiert Klassen aus dem Package \texttt{graph.graph}, da die Klassen die Objekte, welche sie visualisieren sollen, benötigen. \\
+
+
 \includepdf[pages=-, landscape]{transformer.pdf}
+
+\subsection{Package \texttt{graph.algorithmen}}
 \includepdf[pages=-]{predicates.pdf}
+
+
+
+
+
+
 \includepdf[pages=-, landscape]{io.pdf}
 \includepdf[pages=-, landscape]{jgrapht.pdf}
 \includepdf[pages=-]{actions.pdf}
