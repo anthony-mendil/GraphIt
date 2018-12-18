@@ -1262,7 +1262,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
 			\textbf{\cb{S24 - eigene Implementierung}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.
-			\textbf{\cb{S25 - JGraphT}}
+			\textbf{\cb{\hypertarget{xxx}{S25 - JGraphT}}}
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1722,9 +1722,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{sss}{S53 - Layouts in Layouts}}}: \\
 			Unterteilung in 2 Layouts. Eines um das Layout innerhalb der Sphären zu berechnen und ein weiteres, um die beste Anordnung der Sphären zu berechnen. \\
-			\textbf{\cb{S54 - JUNG Layouts}}: \\
+			\hypertarget{xee}{\textbf{\cb{S54 - JUNG Layouts}}}: \\
 			Von JUNG zur Verfügung gestelle Layouts einbinden. \\
-			\textbf{\cb{S55 - Eigenes Layout}}: \\
+			\hypertarget{xff}{\textbf{\cb{S55 - Eigenes Layout}}}: \\
 			Layout selber erstellen
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
@@ -1890,21 +1890,16 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
    \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{\hypertarget{jung}{S66 - JUNG}}}: \\
-			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
-			\textbf{S67 - NEO4J}: \\
-			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
-			\textbf{\cb{\hypertarget{eigen}{S68 - eigene Implementierung}}}: \\
-			Die benötigten Algorithmen werden durch das Team implementiert.\\
-			\textbf{\cb{\hypertarget{xxx}{S69 - JGraphT}}}:\\
-			Bereitstellung der Algorithmen durch JGraphT
+			\textbf{\cb{\hypertarget{}{\cb{S66 - Google Guice}}}}: \\
+	Verwendung von Google Juice für Dependency Injection-Aspekte.\\
+			\textbf{S67 - Spring}: \\
+	Wir könnten die Funktionalitäten im Bereich Dependency Injection von Spring nutzen.
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Die Funktionalität des Systems basiert bereits teilweise auf \cb{JUNG} basiert, weswegen des sehr praktisch wäre die von \cb{JUNG} zur Verfügung gestellten Algorithmen für die Graphauswertung zu benutzen. Diese Algorithmen decken aber nicht den Funktionsumfang den wir benötigen.\\
-	Zur Graphrepräsentation verwenden wir im System GXL- Datein, die in der Embedded Database gespeichert sind und klasseninterne Strukturen. Eine \cb{NEO4J Datenbank} zeitweise zu erstellen, welche ebenfalls die Daten des Graphs beinhaltet, erhöht die Fehleranfälligkeit unseres Systems, da alle Graphrepräsenationen zu jedem Zeitpunkt konsistent sein müssen. Deswegen entscheiden wir uns gegen \cb{S67}. \\
-	\cb{JGraphT} implementiert die meisten Algorithmen, die wir für die Graphauswertung benötigen. Für die Visualisierung des Graphen haben wir uns zwar gegen JGraphT entschieden, dennoch bietet dieses Framework eine großes Potenzial in Bezug auf Graphalgorithmen. Deswegen werden wir JGraphT zur Unterstützung bei der Graphauswertung hinzuziehen. \\
-	Algorithmen, die weder JGraphT, noch JUNG zur Verfügung stehen, werden die Entwickler implementieren.
+	Mit \cb{Guice} können Objekte anderer Klassen leicht in eine Klasse injiziert werden und dort Attributen zugewiesen werden. Dabei ist \cb{Guice} auch vielfältig zur Erzeugung von Objekten zur Laufzeit einsetzbar. Das Framework bietet also zahlreiche Funktionalitäten im Generischen-Bereich. Die Funktionalitäten von \cb{Guice} sind durch Annotationen leicht (mit wenig Quellcode) nutzbar. \\
+	\cb{Spring} bietet auch Möglichkeiten, die wir für das Dependency Injection in unserem System nutzen können. Allerdings sind diese Funktionen nicht so leicht nutzbar. Das liegt daran, dass Springs Dependency Injection-Funktionalitäten in einem Kontext entstanden sind, in der noch nicht einmal Java 5 fertig entwicklt worden war. \\
+	Wir entscheiden uns deshalb für Strategie \cb{S66 - Google Guice}, da die Verwendung der Annotationen für Dependency Injection einfacher ist, als der von \cb{Spring} verwendete Ansatz. Außerdem können wir bei Verwendung von \cb{Guice} von der Funktion der generischen Objekt-Erstellung profitieren.
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1934,7 +1929,7 @@ Die Handler-Komponente kümmert sich um das Importieren sowie Exportieren aller 
 Auch kümmert sich die Handler-Komponente um folgendes Problem “\hyperlink{ooo}{Protokolldaten und Graphdaten zusammen sichern}” und nutzt zur Hilfe die Jackson- und GXL-Komponente.
 Für das Problem “\hyperlink{hhh}{PDF Erstellung}” bilden wir alle Grafikkontexte auf der java.awt.Graphics2D ab und nutzen die Komponente FreeHEB Vectorgraphics um java.awt.Graphics2D als zahlreiche Formate (z.B. SVG, PDF) zu exportieren, wie erwähnt in “\hyperlink{iii}{Bibliothek für den PDF Export von java.awt.Graphics2D}”. Dafür benötigen wir von der JUNG-Komponente nur die Visualization-Komponente, die über einer data-Schnittstelle übermittelt wird. Die Grafik wird der Handler-Komponente übergeben und die kümmert sich dann um das Drucken(\hyperlink{ggg}{PDF Druck}) und Exportieren der PDF. \\ \\
 
-Um den Graphen auswerten zu können, benutzen wir die Graph-Komponente in JUNG. Da die Komponente jedoch nicht den benötigten Funktionsumfang deckt, haben wir in unsere Applikation auch die JGraphT-Komponente eingebaut gemäß der beschriebenen Strategie in “\hyperlink{fff}{Auswertung von Grapheigenschaften}”. Dafür wird die Logik des Graphen übersetzt in der JGraphT Handler-Komponente gemäß der Strategie “\hyperlink{yyy}{Schnittstelle zwischen JUNG-Graph und JGraphT}”, so dass JGraphT die Informationen nutzen kann.
+Um den Graphen auswerten zu können, benutzen wir die Graph-Komponente in JUNG. Da die Komponente jedoch nicht den benötigten Funktionsumfang deckt, haben wir in unsere Applikation auch die JGraphT-Komponente eingebaut gemäß der beschriebenen Strategie in “\hyperlink{fff}{Auswertung von Grapheigenschaften}”. Dafür wird die Struktur des Graphen in der JGraphT Handler-Komponente übersetzt, sodass JGraphT die Informationen zum Berechnen der Graph-Eigenschaften nutzen kann.
 Die Logger-Komponente ist in unserer Applikation eingebaut um uns bei der Entwicklung zu helfen, indem sie die Applikation während der Laufzeit aufzeichnet und uns zum Beispiel hilft Fehlerzustände oder das Verhalten der Applikation besser zu verstehen.\\ \\
 \newpage
 \begin{figure}[ht]
@@ -2017,7 +2012,7 @@ Um die Funktion vollständig zu realisieren sind außerdem je eine Methode zum S
 Zweitere Methode ist außerdem für die genannte GXL-Speicherung in der Datenbank nützlich, da sie genau die benötigte GXL-Variante des Graphen bereitstellt.\\ 
 
 Über die injizierten Instanzen der \texttt{Syndrom}- und \texttt{GraphDao} Klasse, erhalten die Objekte der \texttt{GXLio} Klasse alle Informationen zu dem in der \texttt{GUI} visualisierten Graphen. \\
-Um diese Informationen in das GXL-Format zu überführen, wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet (siehe Strategie \hyperlink{xaa}{S56 Sourceforge Framework}).\\
+Um diese Informationen in das GXL-Format zu überführen, wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet (siehe Strategie \hyperlink{ttt}{S56 Sourceforge Framework}).\\
 
 Durch das \texttt{Template-Attribut} in der \texttt{Syndrom} Klasse haben Methoden, welche eine GXL-Repräsentation eines Graphen erstellen, aus einem \texttt{Syndrom} Objekt auch Zugriff auf die Bearbeitungsregeln, denn diese werden in einem Objekt der \texttt{Template} Klasse hinterlegt.
 Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden, gemäß der Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei}. \\ 
@@ -2120,20 +2115,6 @@ Die \texttt{Param} Klassen werden benötigt, um die wichtigen Informationen von 
 
 
 
-\subsection{Noch zuzuordnen}
-
-
-Das Zusammenspiel von Im- und Export beziehungsweise von der Erstellung von GXL-, PDF- oder OOF-bezogenen-Aspekten und dem Entwurfsmuster Command besteht darin, dass es Klassen im \texttt{actions.export\_graph-package} gibt, die aus der \texttt{Controller-Klasse} im Package \texttt{gui} (gemäß MVC) aufgerufen werden. Die Methoden in den Klassen des \texttt{export\_graph-packages} wiederum werden später die Methoden der Klassen im package \texttt{io} aufrufen. \\
---> löschen, da nicht gut zu einer Subsection zugehörig und auch etwas redundant, oder?
-
-
-Um das auf Swing basierende JUNG in die GUI einbinden zu können werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}. Die GUI wird dabei mit dem Scene-Builder erstellt und die dabei erzeugten FXML-Dateien werden in unser System integriert werden (\hyperlink{mmm}{S38 - Scene-Builder}). \\ \\
---> zu graph.graph zuordnen?
-
-Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit durch Kombination der Strategien \hyperlink{sss}{S53 - Layouts in Layouts}, \hyperlink{xee}{S54 - JUNG Layouts} und \hyperlink{xff}{S55 - Eigenes Layout} die Übersichtlichkeit im Graphen erhöhen.
---> zu graph.visualisation zuordnen?
-
-
 
 \newpage
 
@@ -2193,15 +2174,12 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 
 
 \subsection{\texttt{jgrapht}}
-In unserem Programm soll neben dem Editieren des Graphen auch das Auswerten des Graphen von großer Bedeutung sein. Für das Auswerten des Graphen müssen bestimmte Algorithmen zur Verfügung stehen.\\ Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert, da sie nicht durch \textit{JUNG} zur Verfügung gestellt werden. Die Nutzung der Algorithmen lässt sich in dem Package \texttt{JGraphT} wiederfinden.\\
+In unserem Programm soll neben dem Editieren des Graphen auch das Auswerten des Graphen von großer Bedeutung sein. Für das Auswerten des Graphen müssen bestimmte Algorithmen zur Verfügung stehen.\\ Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S25 - JGraphT} in dem Framework JGraphT implementiert, da sie nicht durch \textit{JUNG} zur Verfügung gestellt werden. Die Nutzung der Algorithmen lässt sich in dem Package \texttt{JGraphT} wiederfinden.\\
 Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist welche JGraphT benutzt, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{jgrapht class diagram},\pagestyle{fancy}}]{jgrapht.pdf}
 
 
-
-
-
-Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder.
+\subsection{Zusammenhang zwischen Modulsicht und konzeptioneller Sicht} Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder.
 
 
 
@@ -2210,11 +2188,11 @@ Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur
 \label{sec:ausfuehrung}
 \emph{Autoren: Jacky Philipp Mach, Jonah Jaeger}\\ \\
 
-In der folgenden Abbildung ist unsere Ausführungssicht zu erkennen. Da es sich nach den Anforderung um eine eine lokale Anwendung handelt, gibt es pro Nutzer genau eine Instanz der Anwendung. Darüber hinaus ist die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung nicht vorgesehen und könnte zu Fehlern, insbesondere bei der Kommunikation mit der eingebetteten H2-Datenbank, kommen. \\
+In der folgenden Abbildung ist unsere Ausführungssicht zu erkennen. Da es sich nach den Anforderungen um eine lokale Anwendung handelt, gibt es pro Nutzer genau eine Instanz der Anwendung. Darüber hinaus ist die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung nicht vorgesehen und könnte zu Fehlern, insbesondere bei der Kommunikation mit der eingebetteten H2-Datenbank, führen. \\
 
-Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozess des Clients ausgeführt. \\
-Für den Start der Anwendung ist dabei das Modul \texttt{gui} zuständig. \\
-\\ \\
+Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozess des \textit{Clients} ausgeführt. \\
+Zum Starten und Beenden der Anwendung ist das Modul \texttt{gui} zuständig. Es arbeitet mit dem Modul \texttt{action} zusammen, da Programmteile aus \texttt{gui} Actions aus dem Modul \texttt{actions} aufrufen. Durch den Aufruf dieser Actions kommt es zu Veränderungen des dargestellten Graphen(Package\texttt{graph.visualization}). Der geänderte Graph wird zusammen mit einem die Action beschreibenden Logeintrag in der Datenbank gespeichert. Letzteres ist nur der Fall, falls die ausgeführte Action ist, welche für die Protokollierung des Nutzerverhaltens relevant ist.
+\\ 
 
 \begin{figure}[ht]
 	\centering
@@ -2377,11 +2355,15 @@ Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \tex
 	\\\hline
 \end{tabular}\\ \\ \\
 
-\begin{figure}[ht]
-	\centering
-	%  \includegraphics[width=1\textwidth]{seqdia.jpg}
-	\caption{Sequenzdiagram III}
-\end{figure}
+Das Diagramm für diesen Anwendungsfall erstreckt sich über zwei Seiten. Aus Gründen der Übersichtlichkeit wurden die Objekte die auf der zweiten Seite nicht mehr verwendet werden, nicht mehr gelistet. Während die das Klicken des Bearbeiters auf eine Kante und die Änderung seines Relationstyps auf der ersten Seite modelliert wird, wird die Aktion auf der zweiten Seite wieder rückgängig gemacht. Auch hier sind alle \texttt{Singleton} Objekte schon initialisiert. Bei der Erstellung der Parameter-Objekts durch \texttt{createParameters()} ist anzumerken, dass überprüft wird ob bereits ein Parameter-Objekt vorliegt. Ist dies der Fall, wird kein neues Parameter-Objekt erstellt und andernfalls schon. \\
+
+Durch das Klicken des Bearbeiters auf eine Kante und des anschließenden Klicken auf den Button, welcher den Relationstyp auf ungewiss setzten soll, wird zuerst in \texttt{Values} der \texttt{EdgeArrowType} auf den entsprechenden Wert gesetzt. Anschließend wird eine \texttt{EditEdgesTypeLogAction} erstellt, und von der \texttt{ActionHistory} ausgeführt. Dann wird sich von \texttt{Syndrom} der \texttt{Graph} sowie der \texttt{VisualizationViewer} und sein \texttt{PickedState} geholt. Darauf folgt die Erstellung des der Aktion. Erst bei der Ausführung wird das  zugehörige Parameter-Objekt erstellt. Danach folgt die Änderung der ausgewählten Kante, woraufhin die Benutzeroberfläche und der \texttt{SyndromGraph} aktualisiert werden. Aufgrund der Änderung des Graphen müssen der \texttt{DatabaseManager} und die \texttt{GUI} benachrichtigt werden. Einerseits wird der Graph neu als \texttt{GXL}-String in die Datenbank persistiert. Andererseits muss für die Protokollierung des Benutzers eine neue \texttt{Log} erstellt und in die Datenbank persistiert werden. Dem \texttt{LogDao} werden hierfür die Log und die Parameter übergeben. Die Parameter werden zu einem \texttt{Json}-String konvertiert und der entsprechende Log-Eintrag in der Datenbank gespeichert.  \\
+
+Nun möchte der Bearbeiter seine letzte Aktion, also die Änderung des Relationstyps einer Kante, rückgängig machen, weshalb er den entsprechenden Button in der \texttt{GUI} betätigt. In der \texttt{ActionHistory} wird dann die \texttt{EditEdgesTypeLogAction} rückgängig gemacht, indem eine neue \texttt{EditEdgesTypeLogAction} mit den Attributen der alten \texttt{EditEdgesTypeLogAction}, jedoch vertauscht, erzeugt wird. Führt man diese Aktion nun aus, so wird aufgrund der vertauschten Attribute, die rückgängig zu machende Aktion rückgängig gemacht. Bei der Ausführung dieser Aktion wird kein neues Parameter-Objekt erzeugt. Ansonsten wird wie oben beschrieben die Änderung der Kante, die Benachrichtigung von dem \texttt{DatabaseManager} und der \texttt{GUI}, die Aktualisierung des Graphen und die Speicherung des entsprechend neu erzeugten Log-Eintrages in der Datenbank. 
+
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{4. Sequenzdiagramm (Teil 1)},\pagestyle{fancy}}]{fourth.pdf}
+
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{4. Sequenzdiagramm (Teil 2)},\pagestyle{fancy}}]{fourth2.pdf}
 
 \newpage
 
