@@ -2371,11 +2371,15 @@ Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \tex
 	\\\hline
 \end{tabular}\\ \\ \\
 
-\begin{figure}[ht]
-	\centering
-	%  \includegraphics[width=1\textwidth]{seqdia.jpg}
-	\caption{Sequenzdiagram III}
-\end{figure}
+Das Diagramm für diesen Anwendungsfall erstreckt sich über zwei Seiten. Aus Gründen der Übersichtlichkeit wurden die Objekte die auf der zweiten Seite nicht mehr verwendet werden, nicht mehr gelistet. Während die das Klicken des Bearbeiters auf eine Kante und die Änderung seines Relationstyps auf der ersten Seite modelliert wird, wird die Aktion auf der zweiten Seite wieder rückgängig gemacht. Auch hier sind alle \texttt{Singleton} Objekte schon initialisiert. Bei der Erstellung der Parameter-Objekts durch \texttt{createParameters()} ist anzumerken, dass überprüft wird ob bereits ein Parameter-Objekt vorliegt. Ist dies der Fall, wird kein neues Parameter-Objekt erstellt und andernfalls schon. \\
+
+Durch das Klicken des Bearbeiters auf eine Kante und des anschließenden Klicken auf den Button, welcher den Relationstyp auf ungewiss setzten soll, wird zuerst in \texttt{Values} der \texttt{EdgeArrowType} auf den entsprechenden Wert gesetzt. Anschließend wird eine \texttt{EditEdgesTypeLogAction} erstellt, und von der \texttt{ActionHistory} ausgeführt. Dann wird sich von \texttt{Syndrom} der \texttt{Graph} sowie der \texttt{VisualizationViewer} und sein \texttt{PickedState} geholt. Darauf folgt die Erstellung des der Aktion. Erst bei der Ausführung wird das  zugehörige Parameter-Objekt erstellt. Danach folgt die Änderung der ausgewählten Kante, woraufhin die Benutzeroberfläche und der \texttt{SyndromGraph} aktualisiert werden. Aufgrund der Änderung des Graphen müssen der \texttt{DatabaseManager} und die \texttt{GUI} benachrichtigt werden. Einerseits wird der Graph neu als \texttt{GXL}-String in die Datenbank persistiert. Andererseits muss für die Protokollierung des Benutzers eine neue \texttt{Log} erstellt und in die Datenbank persistiert werden. Dem \texttt{LogDao} werden hierfür die Log und die Parameter übergeben. Die Parameter werden zu einem \texttt{Json}-String konvertiert und der entsprechende Log-Eintrag in der Datenbank gespeichert.  \\
+
+Nun möchte der Bearbeiter seine letzte Aktion, also die Änderung des Relationstyps einer Kante, rückgängig machen, weshalb er den entsprechenden Button in der \texttt{GUI} betätigt. In der \texttt{ActionHistory} wird dann die \texttt{EditEdgesTypeLogAction} rückgängig gemacht, indem eine neue \texttt{EditEdgesTypeLogAction} mit den Attributen der alten \texttt{EditEdgesTypeLogAction}, jedoch vertauscht, erzeugt wird. Führt man diese Aktion nun aus, so wird aufgrund der vertauschten Attribute, die rückgängig zu machende Aktion rückgängig gemacht. Bei der Ausführung dieser Aktion wird kein neues Parameter-Objekt erzeugt. Ansonsten wird wie oben beschrieben die Änderung der Kante, die Benachrichtigung von dem \texttt{DatabaseManager} und der \texttt{GUI}, die Aktualisierung des Graphen und die Speicherung des entsprechend neu erzeugten Log-Eintrages in der Datenbank. 
+
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{4. Sequenzdiagramm (Teil 1)},\pagestyle{fancy}}]{fourth.pdf}
+
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{4. Sequenzdiagramm (Teil 2)},\pagestyle{fancy}}]{fourth2.pdf}
 
 \newpage
 
