@@ -546,7 +546,7 @@ public class Controller implements ObserverSyndrom{
     private Syndrom syndrom;
 
     /**
-     * the action history
+     * The action history
      */
     @Inject
     private ActionHistory cmdHistory;
@@ -554,14 +554,14 @@ public class Controller implements ObserverSyndrom{
     /* ----------------ADD---------------------- */
 
     /**
-     * Executes the addSphereLog-Action
+     * Creates an AddSphereLogAction-object and executes the action with the action history
      */
     public void addSphere() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the addVertexLog-Action
+     * Creates an AddVerticesLogAction-object and executes the action with the action history
      */
     public void addVertex() {
         throw new UnsupportedOperationException();
@@ -570,35 +570,35 @@ public class Controller implements ObserverSyndrom{
     /* ----------------ANALYSE---------------------- */
 
     /**
-     * Executes the analysisGraph-Action
+     * Creates an AnalysisGraphAction-object and executes the action with the action history
      */
     public void analysisGraph() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the evaluationGraph-Action
+     * Creates an EvaluationGraphAction-object and executes the action with the action history
      */
     public void evaluationGraph() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the filterGraph-Action
+     * Creates an FilterGraphAction-object and executes the action with the action history
      */
     public void filterGraph() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the graphDimension-Action
+     * Creates an GraphDimensionAction-object and executes the action with the action history
      */
     public void graphDimension() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the selectionAnalysisGraph-Action
+     * Creates an SelectionAnalysisGraphAction-object and executes the action with the action history
      */
     public void selectionAnalysisGraph() {
         throw new UnsupportedOperationException();
@@ -607,14 +607,14 @@ public class Controller implements ObserverSyndrom{
     /* ----------------DEACTIVATE---------------------- */
 
     /**
-     * Executes the deactivateFadeout-Action
+     * Creates an DeactivateFadeoutLogAction-object and executes the action with the action history
      */
     public void deactivateFadeout() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the deactivateHighlight-Action
+     * Creates an DeactivateHighlightLogAction-object and executes the action with the action history
      */
     public void deactivateHighlight() {
         throw new UnsupportedOperationException();
@@ -623,14 +623,14 @@ public class Controller implements ObserverSyndrom{
     /* ----------------EDIT---------------------- */
 
     /**
-     * Executes the editEdgesStroke-Action
+     * Creates an EditEdgesStrokeLogAction-object and executes the action with the action history
      */
     public void editEdgesStroke() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editEdgesType-Action
+     * Creates an EditEdgesTypeLogAction-object and executes the action with the action history
      */
     public void editEdgesType() {
         throw new UnsupportedOperationException();
@@ -639,14 +639,14 @@ public class Controller implements ObserverSyndrom{
     /* ......annotation..... */
 
     /**
-     * Executes the editSphereAnnotation-Action
+     * Creates an EditSphereAnnotationLogAction-object and executes the action with the action history
      */
     public void editSphereAnnotation() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editVertexAnnotation-Action
+     * Creates an EditVertexAnnotationLogAction-object and executes the action with the action history
      */
     public void editVertexAnnotation() {
         throw new UnsupportedOperationException();
@@ -655,61 +655,61 @@ public class Controller implements ObserverSyndrom{
     /* ......color..... */
 
     /**
-     * Execute the editEdgesColor-Action
+     * Creates an EditEdgesColorLogAction-object and executes the action with the action history
      */
     public void editEdgesColor() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editSphereColor-Action
+     * Creates an EditSphereColorLogAction-object and executes the action with the action history
      */
     public void editSphereColor() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editVerticesDrawColor-Action
+     * Creates an EditVerticesDrawColorLogAction-object and executes the action with the action history
      */
     public void editVerticesDrawColor() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editVerticesFillColor-Action
+     * Creates an EditVerticesFillColorLogAction-object and executes the action with the action history
      */
     public void editVerticesFillColor(){ throw new UnsupportedOperationException();}
 
     /* ......font..... */
 
     /**
-     * Executes the editFontSphere-Action
+     * Creates an EditFontSphereLogAction-object and executes the action with the action history
      */
     public void editFontSphere() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editFontVertex-Action
+     * Creates an EditFontVerticesLogAction-object and executes the action with the action history
      */
     public void editFontVertex() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the editFontSizeSphere-Action
+     * Creates an EditFontSizeSphereLogAction-object and executes the action with the action history
      */
     public void editFontSizeSphere(){ throw new UnsupportedOperationException(); }
 
     /**
-     * Executes the editFontSizeVertices-Action
+     * Creates an EditFontVerticesLogAction-object and executes the action with the action history
      */
     public void editFontSizeVertices(){ throw new UnsupportedOperationException(); }
 
     /* ......form..... */
 
     /**
-     * Executes the editVerticesForm-Action
+     * Creates an EditVerticesFormLogAction-object and executes the action with the action history
      */
     public void editVerticesForm() {
         throw new UnsupportedOperationException();
@@ -718,39 +718,40 @@ public class Controller implements ObserverSyndrom{
     /* ----------------EXPORT---------------------- */
 
     /**
-     * Executes the exportGXL-Action
+     * Creates an ExportGxlAction-object and executes the action with the action history
      */
     public void exportGXL() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the exportPDF-Action
+     * Creates an ExportPdfAction-object and executes the action with the action history
      */
     public void exportPDF() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the exportOOF-Action
+     * Creates an ExportOofAction-object and executes the action with the action history
      */
     public void exportOOF() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Opens the selected File after pressing "Open File" on the File Menu
-     * and executes the importOOF-Action
+     * Opens the selected OOF-file after choosing it in the file chooser, creates an ImportOofAction-object
+     * and executes the action with the action history
      */
     public void openFile(){throw new UnsupportedOperationException();}
 
     /**
-     * Executes the importGXL-Action
+     * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
+     * and executes the action with the action history
      */
     public void importGXL(){throw new UnsupportedOperationException();}
 
     /**
-     * Executes the printPDF-Action
+     * Creates an PrintPDFAction-object and executes the action with the action history
      */
     public void printPDF() {
         throw new UnsupportedOperationException();
@@ -759,7 +760,7 @@ public class Controller implements ObserverSyndrom{
     /* ----------------LAYOUT---------------------- */
 
     /**
-     * Executes the layoutGraph-Action
+     * Creates an LayoutGraphLogAction-object and executes the action with the action history
      */
     public void layoutGraph() {
         throw new UnsupportedOperationException();
@@ -768,36 +769,44 @@ public class Controller implements ObserverSyndrom{
     /* ----------------OTHER---------------------- */
 
     /**
-     * Executes the changeLanguage-Action
+     *  Calls the loadLanguages-method from the LoadLanguage class to change the language
      */
     public void changeLanguage() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the switchModiEditor-Action
+     * Creates an SwitchModiEditorAction-object for changing to the editor mode
+     * and executes the action with the action history
      */
     public void switchModiEditor() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the createGraph-Action
+     * Creates an SwitchModiEditorAction-object for changing to the analyse mode
+     * and executes the action with action history
+     */
+    public void switchModiAnalysis(){throw new UnsupportedOperationException();}
+
+    /**
+     * Creates an SwitchModeEditorAction-object for changing to the interpreter mode
+     * and executes the action with action history
+     */
+    public void switchModiInterpreter(){throw new UnsupportedOperationException();}
+
+    /**
+     * Creates an CreateGraphAction-object and executes the action with the action history
      */
     public void createGraph(){throw new UnsupportedOperationException();}
 
     /**
-     * Opens the selected Graph under the "recently-edited Graphs Menu"
-     */
-    public void loadGraph(){throw new UnsupportedOperationException();}
-
-    /**
-     * Executes the undo-Action
+     *  Calls the undo-method from the action history
      */
     public void undoAction(){throw new UnsupportedOperationException();}
 
     /**
-     * Executes the redo-Action
+     *  Calls the redo-method from the action history
      */
     public void redoAction(){throw new UnsupportedOperationException();}
 
@@ -841,21 +850,21 @@ public class Controller implements ObserverSyndrom{
     /* ----------------REMOVE---------------------- */
 
     /**
-     * Executes the removeEdges-Action
+     * Creates an RemoveEdgesLogAction-object and executes the action with the action history
      */
     public void removeEdges() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the removeSphere-Action
+     * Creates an RemoveSphereLogAction-object and executes the action with the action history
      */
     public void removeSphere() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Executes the removeVertices-Action
+     * Creates an RemoveVerticesLogAction-object and executes the action with the action history
      */
     public void removeVertices() {
         throw new UnsupportedOperationException();
@@ -864,7 +873,7 @@ public class Controller implements ObserverSyndrom{
     /* ----------------TEMPLATE---------------------- */
 
     /**
-     * Executes the rulesTemplate-Action
+     * Creates an RulesTemplateAction-object and executes the action with the action history
      */
     public void rulesTemplate() {
         throw new UnsupportedOperationException();
