@@ -803,12 +803,12 @@ public class Controller implements ObserverSyndrom{
     /**
      *  Calls the undo-method from the action history
      */
-    public void undoAction(){throw new UnsupportedOperationException();}
+    public void executeUndo(){throw new UnsupportedOperationException();}
 
     /**
      *  Calls the redo-method from the action history
      */
-    public void redoAction(){throw new UnsupportedOperationException();}
+    public void executeRedo(){throw new UnsupportedOperationException();}
 
     /**
      * Opens the documentation about the application
