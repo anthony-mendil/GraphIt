@@ -2,7 +2,7 @@
 /softwareprojekt2/target/
 *.aux
 *.log
-*.pdf
+/Architekturbeschreibung/Architekturbeschreibung-TeamBlank.pdf
 *.gz
 *.toc
 *workspace.xml
