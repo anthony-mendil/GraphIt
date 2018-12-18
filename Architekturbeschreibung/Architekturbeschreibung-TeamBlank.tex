@@ -2035,7 +2035,7 @@ Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus uns
 
 Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, sind im Package \texttt{graph} implementiert.  Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen/ Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. \\
 
-\includepdf[pages=-, landscape]{package.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{package.pdf}
 
 \subsection{\texttt{io}}
 Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "'plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
@@ -2069,7 +2069,7 @@ Der Aufruf zum Drucken geschieht durch \texttt{printPDF()}, während der Export 
 \texttt{PDFio} bekommt im \texttt{constructur} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen.
 
 \newpage
-\includepdf[pages=-, landscape]{io.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{io.pdf}
 
 
 \subsection{\texttt{gui}}
@@ -2095,7 +2095,7 @@ Die Klasse \texttt{LoadLanguage} besitzt noch weitere GUI-Elemente zusätzlich z
 	
 
 \newpage
-\includepdf[pages=-]{gui.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{gui.pdf}
 
 
 \subsection{\texttt{actions}}
@@ -2110,11 +2110,11 @@ Alle \texttt{Actions} werden über die \texttt{ActionHistory} ausgeführt, sodas
 Neben den Abhängigkeiten, die alle \texttt{GraphActions} besitzen, haben \texttt{SwitchModiEditorAction} und \texttt{AnalysesGraphAction} weitere Abhängigkeiten. \texttt{SwitchModiEditorAction} steht zudem mit \texttt{FunctionMode} in Verbindung, um die Realisierung der \hyperlink{uuu}{Funktionsmodi} umsetzen zu können. \\
 \texttt{AnalysesGraphAction} steht mit \texttt{AnalyseTypeSingle} und mit \texttt{AnalyseTypeSeveral} in Abhängigkeit, um den oder die ausgewählten Filteroptionen ausmachen zu können, die von der Analyse betroffen sein sollen. \\\\
 
-\includepdf[pages=-]{actions.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{actions.pdf}
 
 Eine Übersicht über alle \texttt{Action} packages, die der Übersicht halber auf der vorherigen Abbildung nicht komplett dargestellt werden konnten, werden auf der folgenden visualisiert. 
 
-\includepdf[pages=-]{actionsOverview.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{actionsOverview.pdf}
 
 
 \subsection{\texttt{log\_management}}
@@ -2135,7 +2135,7 @@ Die Existenz des Package \texttt{parameters} sorgt dafür, dass die Nutzerintera
 In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse\\ \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. \\
 Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao} Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graph vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und in der Datenbank persistiert werden. \\ 
 
-\includepdf[pages=-, landscape]{log_management.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{log_management.pdf}
 
 Die \texttt{Param}-Klassen finden sich im Package \texttt{log\_management/parameters}. 
 Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Sphere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. \\
@@ -2143,7 +2143,7 @@ Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise m
 
 Die \texttt{Param} Klassen werden benötigt, um die wichtigen Informationen von einer zugehörigen Aktion zu erfassen und in der Datenbank abzuspeichern, damit diese bei Bedarf an den Benutzer übermittelt werden können. Wie genau diese persistiert werden, ist auf der vorherigen Seite beschrieben.\\
 
-\includepdf[pages=-, landscape]{parameters.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{parameters.pdf}
 
 
 
@@ -2161,7 +2161,7 @@ Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \tex
 In unserem Programm soll neben dem Editieren des Graphen noch das Auswerten des Graphen und des Benutzers noch von großer Bedeutung sein. Für das Auswerten des Graphen unter manchen bestimmten Kriterien müssen bestimmte Algorithmen zur Verfügung stehen. Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert. Die Nutzung der Algorithmen lassen sich in dem Package \texttt{JGraphT} wiederfinden.\\
 Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
 
-\includepdf[pages=-, landscape]{jgrapht.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{jgrapht.pdf}
 
 Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{tables} innerhalb des \texttt{log\_management-Packages} zu sehen. \\ \\
 
@@ -2197,7 +2197,7 @@ Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, wel
 
 \newpage
 
-\includepdf[pages=-, landscape]{graph_graph.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{graph_graph.pdf}
 
 
 \subsection{\texttt{graph.visualization}}
@@ -2218,7 +2218,7 @@ Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klas
 
 
 
-\includepdf[pages=-, landscape]{transformer.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{transformer.pdf}
 
 \subsection{\texttt{graph.algorithmen}}
 Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. \texttt{JUNG} verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{jung}{S66-Jung} implementieren wir alle Algorithmen die zur Analyse/ Auswertung des Graphen benötigt werden soweit wie möglich mit \texttt{Jung} zur Verfügung gestellte Funktionen und Algorithmen. \\
@@ -2228,9 +2228,9 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 \texttt{algorithmen} importiert Klassen des Packages \texttt{graph}, da bei einer Filterung die Klasse natürlich Zugriff auf die Objekte benötigt, die gefiltert werden sollen.\\
 
 
-\includepdf[pages=-]{predicates.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{predicates.pdf}
 
-\includepdf[pages=-, landscape]{jgrapht.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{jgrapht.pdf}
 
 
 
@@ -2298,7 +2298,7 @@ Im Laufe des Sequenzdiagramms wird eine \texttt{CreateGraphAction} erzeugt, die 
 Im Methodenaufruf des \texttt{DatabaseManagers} wird die Graph- Tabelle unserer Datenbank geleert, da unser Programm intern immer nur eine Graph Repräsentation speichert. \\
 Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in der Graph- Tabelle gespeichert. 
 
-\includepdf[pages=-, landscape]{first_.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{first_.pdf}
 
 
 \subsection{Anwendungsfall: Ein Lehrer fügt eine Sphäre hinzu}
@@ -2339,7 +2339,7 @@ Die \texttt{AddSpereLogAction} wird außerdem als \texttt{Log} Objekt in der Dat
 Hierzu werden dem \texttt{LogDao} das \texttt{Log} Objekt und seine Parameter übergeben. Die Parameter werden durch Jackson zu einem Json-String konvertiert und das \texttt{Log} Objekt wird in der Datenbank durch Hibernate abgespeichert.
 
 
-\includepdf[pages=-, landscape]{second.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{second.pdf}
 
 
 
@@ -2384,7 +2384,7 @@ Nun besteht noch die Action, bei dem ein Benutzer den bestehenden Graphen als OO
 Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Ein neues Objekt der Klasse \texttt{OOFIo} wird erstellt. Von dem Objekt wird eine neue \texttt{GXLIo} kreiert und welche den Graphen als GXL-String zurückliefert. Die Logeinträge werden von dem \texttt{LogDao} und die Parameterobjekte von dem bestehendem \texttt{ObjectMapper} in Strings umgewandelt. In der \texttt{OOFIo} werden dann alle Strings mit der Methode \texttt{createOOf()} zu dem neuen Datentyp fusioniert und abgespeichert.  
 
 
-\includepdf[pages=-, landscape]{third.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{third.pdf}
 
 \newpage
 
@@ -2453,7 +2453,7 @@ Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \tex
 Das folgende Sequenzdiagramm stellt den Fall dar, bei dem ein Benutzer den bestehenden Graphen als PDF exportiert. Klickt also der Benutzer auf den Button \textit{Exportieren als} $\rightarrow$ \textit{PDF}, reagiert darauf \texttt{GUI} mit einem Dialogfenster, bei dem der Nutzer einen validen Pfad eingeben und mit dem Button \textit{Exportieren} dies bestätigen muss. \\
 Eine neue Action \texttt{exportPdfAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Von Syndrom wird der \texttt{VisualisationViewer} geholt und an die Action übergeben. Mithilfe dieser Information wird eine neues Objekt von der Klasse \texttt{PDFIo} erstellt und initialisiert. Weiter im Verlauf der Action wird mithilfe der Methode \texttt{exportPDF()} ein neuer \texttt{ExportDialog} erstellt und darauf die Methode ausgeführt, die die PDF erstellt.\\ \\
 
-\includepdf[pages=-, landscape]{fifth.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{fifth.pdf}
 
 
 \newpage
