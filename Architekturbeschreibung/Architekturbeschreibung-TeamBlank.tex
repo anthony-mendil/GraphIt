@@ -1857,13 +1857,13 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 	Zuordnung von Sphären und Knoten & JUNG   \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{S66 - JUNG}}: \\
+			\textbf{\cb{\hypertarget{jung}{S66 - JUNG}}}: \\
 			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
 			\textbf{S67 - NEO4J}: \\
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
-			\textbf{\cb{S68 - eigene Implementierung}}: \\
+			\textbf{\cb{\hypertarget{eigen}{S68 - eigene Implementierung}}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.\\
-			\textbf{\cb{S69 - JGraphT}}:\\
+			\textbf{\cb{\hypertarget{jgrapht}{S69 - JGraphT}}}:\\
 			Bereitstellung der Algorithmen durch JGraphT
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
@@ -2067,8 +2067,8 @@ Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klas
 \includepdf[pages=-, landscape]{transformer.pdf}
 
 \subsection{Package \texttt{graph.algorithmen}}
-
-
+Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. \texttt{JUNG} verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{jung}{S66-Jung} implementieren wir alle Algorithmen die zur Analyse/ Auswertung des Graphen benötigt werden soweit wie möglich mit \texttt{Jung} zur Verfügung gestellte Funktionen und Algorithmen. \\
+Zusätzlich gibt es 
 
 
 \includepdf[pages=-]{predicates.pdf}
