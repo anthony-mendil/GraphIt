@@ -2,12 +2,14 @@ package graph.graph;
 
 import com.google.inject.Inject;
 import gui.Values;
+import lombok.Data;
 
 import java.awt.geom.Point2D;
 
 /**
- *
+ * factory to create spheres, edges and vertices 
  */
+@Data
 public class GraphObjectsFactory {
     /**
      * the values to use
