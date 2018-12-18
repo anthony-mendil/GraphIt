@@ -2221,8 +2221,8 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 
 
 \subsection{\texttt{jgrapht}}
-In unserem Programm soll neben dem Editieren des Graphen noch das Auswerten des Graphen und des Benutzers noch von großer Bedeutung sein. Für das Auswerten des Graphen unter manchen bestimmten Kriterien müssen bestimmte Algorithmen zur Verfügung stehen. Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert. Die Nutzung der Algorithmen lassen sich in dem Package \texttt{JGraphT} wiederfinden.\\
-Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
+In unserem Programm soll neben dem Editieren des Graphen auch das Auswerten des Graphen von großer Bedeutung sein. Für das Auswerten des Graphen müssen bestimmte Algorithmen zur Verfügung stehen.\\ Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert, da sie nicht durch \textit{JUNG} zur Verfügung gestellt werden. Die Nutzung der Algorithmen lässt sich in dem Package \texttt{JGraphT} wiederfinden.\\
+Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist welche JGraphT benutzt, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{jgrapht.pdf}
 
 
