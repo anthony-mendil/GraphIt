@@ -2002,7 +2002,7 @@ Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus uns
 
 Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, sind im Package \texttt{graph} implementiert.  Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen/ Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. \\
 
-\includepdf[pages=-, landscape]{package.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{package.pdf}
 
 \subsection{\texttt{io}}
 Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "'plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
@@ -2036,7 +2036,7 @@ Der Aufruf zum Drucken geschieht durch \texttt{printPDF()}, während der Export 
 \texttt{PDFio} bekommt im \texttt{constructur} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen.
 
 \newpage
-\includepdf[pages=-, landscape]{io.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{io.pdf}
 
 
 \subsection{\texttt{gui}}
@@ -2062,28 +2062,27 @@ Die Klasse \texttt{LoadLanguage} besitzt noch weitere GUI-Elemente zusätzlich z
 	
 
 \newpage
-\includepdf[pages=-]{gui.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{gui.pdf}
 
 
-\subsection{Actions}
 
-Eine Übersicht über alle \texttt{Actions}, die es gibt, findet sich nach Paketen gegliedert in der folgenden Abbildung, wobei die Gliederung sich an Strategie \hyperlink{xdd}{S10 - Modularisierung} anlehnt:
+\subsection{\texttt{actions}}
+Das Package \texttt{actions} repräsentiert die Controller Komponente des Model-View-Controller Patterns, welches wir gemäß \hyperlink{bbb}{S8- MVC} umsetzen. \\ 
+Diese ist nach dem \texttt{Command} Pattern nach \hyperlink{command}{S9 - Command} aufgebaut. \\
 
-\includepdf[pages=-]{actionsOverview.pdf}
+Die abstrakte Klasse \texttt{Action} stellt die Oberklasse dar. Diese implementiert zwei abstrakte Methoden \texttt{redo}/ \texttt{undo}. Eine weitere abstrakte Klasse \texttt{GraphAction} erweitert die \texttt{Action}-Klasse. Jede \texttt{GraphAction} wird ein \texttt{Syndrom} injected. Durch dieses \texttt{Syndrom} Objekt verfügt jede \texttt{GraphAction} über die benötigten Informationen zu dem visualisierten Graphen. Da \texttt{Syndrom} ein Singleton ist, verfügt nach einer Änderung des Graphen das ganze System darüber und kann es entsprechend visualisieren.  Dies ist erforderlich, damit sich die vom Nutzer durchgeführten Aktionen auch auf den gerade in Bearbeitung befindlichen Graphen auswirken.\\ 
+Eine weitere abstrakte Klasse setzt die benötigte Funktionalität für eine \texttt{LogAction}. Zudem haben alle \texttt{LogActions} eine Verbindung zu \texttt{LogEntryName} und zu \texttt{Param}. Dies ist beides für die Persistierung von Bedeutung. Die Verbindung zu \texttt{Param} bedeutet, dass zu jeder \texttt{LogAction} ein Objekt einer konkreten Unterklasse der abstrakten Oberklasse \texttt{Param} gehört. \\
+Diese Parameterobjekte werden erzeugt, wenn eine Aktion ausgeführt wird und beinhalten die Parameterdaten der Action. So ist es möglich, zu jedem Zeitpunkt die genauen Daten aller \texttt{LogActions} auszulesen (da diese ja in die Datenbank persistiert werden). Dies hilft bei der Umsetzung der \texttt{undo}- und \texttt{redo}-Funktion. Die Actions sind unsere Umsetzung der Strategie \hyperlink{xcc}{S9 - Command}  \\
 
-Dabei erweitert jede \texttt{GraphAction} die \texttt{Action}-Klasse und jede \texttt{LogAction} erweitert eine \texttt{GraphAction}. Die einzelnen konkreten \texttt{Actions} sind dann Unterklassen von \texttt{LogAction} beziehungsweise von \texttt{GraphAction}. 
-Jede \texttt{GraphAction} (und damit auch jede \texttt{LogAction} ist mit einem \texttt{SyndromPickSupport}, einem \texttt{Syndrom} und einem \texttt{SyndromGraph} verbunden. Dies ist erforderlich, damit sich die vom Nutzer durchgeführten Aktionen auch auf den gerade in Bearbeitung befindlichen Graphen auswirken.
-Neben den Verbindungen, die alle \texttt{GraphActions} besitzen, haben \texttt{SwitchModiEditorAction} und \texttt{AnalysesGraphAction} weitere Verbindungen. \texttt{SwitchModiEditorAction} steht zudem mit \texttt{FunctionMode} in Verbindung, um den Funktionsmodus einstellen zu können. \texttt{AnalysesGraphAction} steht mit \texttt{AnalyseTypeSingle} und mit \texttt{AnalyseTypeSeveral} in Verbindung, um den oder die ausgewählten Elemente ausmachen zu können, die von der Analyse betroffen sein sollen. 
-Zudem haben alle \texttt{LogActions} eine Verbindung zu \texttt{LogEntryName} und zu \texttt{Param}. Dies ist beides für die Persistierung von Bedeutung. Die Verbindung zu \texttt{Param} bedeutet, dass zu jeder \texttt{LogAction} ein Objekt einer konkreten Unterklasse der abstrakten Oberklasse \texttt{Param} gehört. \\
- Diese Parameterobjekte werden erzeugt, wenn eine Aktion ausgeführt wird und beinhalten die Parameterdaten der Action. So ist es möglich, zu jedem Zeitpunkt die genauen Daten aller \texttt{LogActions} auszulesen (da diese ja in die Datenbank persistiert werden). Dies hilft bei der Umsetzung der \texttt{undo}- und \texttt{redo}-Funktion. Die Actions sind unsere Umsetzung der Strategie \hyperlink{xcc}{S9 - Command}  \\
- 
-Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \texttt{actions.other}Package bereits erahnen kann, wird das Umschalten zwischen den Fuktionsmodi ebenfalls über eine Action realisiert. Der aktuelle Funktionsmodus wird dabei in der Klasse \texttt{Syndrom} im Package \texttt{graph.graph} gespeichert. Hierfür existiert in der \texttt{Syndrom-Klasse} ein Attribut vom Typ \texttt{FunctionMode}. Die Funktionsmodi, die in unserer Anwendung existieren, sind in der Klasse \texttt{FunctionMode} im selben Package zu finden. Die beschriebene Umsetzung folgt der Strategie \hyperlink{uuu}{S59 - Modi als eigener Teil unserer Applikation}. \\ \\ 
 
-\includepdf[pages=-]{actions.pdf}
+Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \texttt{actions.other}Package bereits erahnen kann, wird das Umschalten zwischen den Fuktionsmodi ebenfalls über eine Action realisiert. Der aktuelle Funktionsmodus wird dabei in der Klasse \texttt{Values} im Package \texttt{gui} gespeichert.  Die Funktionsmodi, die in unserer Anwendung existieren, sind in der Enum \texttt{FunctionMode} im \texttt{graph.graph} Package zu finden. Die beschriebene Umsetzung folgt der Strategie \hyperlink{uuu}{S59 - Modi als eigener Teil unserer Applikation}.
+\texttt{AnalysesGraphAction} steht mit \texttt{AnalyseTypeSingle} und mit \texttt{AnalyseTypeSeveral} aus dem Package \texttt{graph.algorithmen} in Abhängigkeit, um den oder die ausgewählten Filteroptionen ausmachen zu können, die von der Analyse betroffen sein sollen. \\\\
+
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{actions.pdf}
 
 Eine Übersicht über alle \texttt{Action} packages, die der Übersicht halber auf der vorherigen Abbildung nicht komplett dargestellt werden konnten, werden auf der folgenden visualisiert. 
 
-\includepdf[pages=-]{actionsOverview.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{actionsOverview.pdf}
 
 
 \subsection{\texttt{log\_management}}
@@ -2099,25 +2098,33 @@ Die \texttt{Log} Objekte besitzen unter anderem ein Attribut \texttt{parameters}
 
 Die \texttt{Graph} Objekte haben ein Attribute \texttt{gxl}, welches den visualisierten Graphen als GXL- Repräsentation gemäß \hyperlink{yy}{S1 - GXL} beinhaltet. Der GXL- String wird durch das \texttt{io} Package realisiert, weshalb hier auch eine Abhängigkeit besteht.\\
 
-\subsection{Log\_management}
+Die Existenz des Package \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} - wie im Klassendiagramm dargestellt. Letzterer ist im Package \texttt{actions} realisiert. \\
 
-Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{log\_management/tables} zu sehen. Im Package \texttt{log\_management} werden neben der Speicherung der Nutzerinteraktionen in Form der Logs die übrigen Aspekte der Persistierung umgesetzt. Im dazugehörigen Diagramm sind im Paket \texttt{tables} die von uns geplanten Datenbanken-Tabellen zu sehen. Dabei ist ist die \texttt{Log}-Tabelle wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während in der Tabelle \texttt{Graph} Graphen persistiert werden. Die Existenz des Pakets \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} - wie im Diagramm X.X zu sehen ist.. Letzterer ist im Paket \texttt{actions} realisiert. In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao}.Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graph vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und in der Datenbank persistiert werden. \\
-Wir verwenden eine embedded H2 Datenbank und Hibernate für die Kommunikation zwischen unserer Anwendung und der genannten Datenbank (wie im \texttt{persistence.xml}-File im Package \texttt{resources.META-INF.resources} zu sehen ist - siehe Schnittstellenbeschreibung; ist nicht im Diagramm dargestellt). Damit folgen wir den Strategien \hyperlink{ppp}{S45 - H2 Database} und \hyperlink{rrr}{S50 - Hibernate}. \\ \\
+In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse\\ \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. \\
+Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao} Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graph vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und in der Datenbank persistiert werden. \\ 
 
-\includepdf[pages=-, landscape]{log_management.pdf}
+Wir verwenden eine embedded H2 Datenbank und Hibernate für die Kommunikation zwischen unserer Anwendung und der genannten Datenbank (wie im \texttt{persistence.xml}-File im Package\\ \texttt{resources.META-INF.resources} zu sehen ist - siehe Schnittstellenbeschreibung; ist nicht im Diagramm dargestellt). Damit folgen wir den Strategien \hyperlink{ppp}{S45 - H2 Database} und \hyperlink{rrr}{S50 - Hibernate}.
 
-Die \texttt{Parameter}-Klassen finden sich im Paket \texttt{log\_management/parameters/activate\_deactivate}, \texttt{log\_management/parameters/add\_remove}, \texttt{log\_management/parameters/edit} und \texttt{log\_management/parameters/move}. (Diese Aufgliederung ist Teil der von uns angewendeten Strategie \hyperlink{xdd}{S10 - Modularisierung}.) Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Shpere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise miteinander verknüpft. \\ \\
-
-\includepdf[pages=-, landscape]{parameters.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{log_management.pdf}
 
 
+
+Die \texttt{Param}-Klassen finden sich im Package \texttt{log\_management/parameters}. 
+Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Sphere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. \\
+Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise miteinander verknüpft. \\ 
+
+Die \texttt{Param} Klassen werden benötigt, um die wichtigen Informationen von einer zugehörigen Aktion zu erfassen und in der Datenbank abzuspeichern, damit diese bei Bedarf an den Benutzer übermittelt werden können. Wie genau diese persistiert werden, ist auf der vorherigen Seite beschrieben.\\
+
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{parameters.pdf}
 
 
 
 \subsection{Noch zuzuordnen}
- 
+
+
 Das Zusammenspiel von Im- und Export beziehungsweise von der Erstellung von GXL-, PDF- oder OOF-bezogenen-Aspekten und dem Entwurfsmuster Command besteht darin, dass es Klassen im \texttt{actions.export\_graph-package} gibt, die aus der \texttt{Controller-Klasse} im Package \texttt{gui} (gemäß MVC) aufgerufen werden. Die Methoden in den Klassen des \texttt{export\_graph-packages} wiederum werden später die Methoden der Klassen im package \texttt{io} aufrufen. \\
 --> löschen, da nicht gut zu einer Subsection zugehörig und auch etwas redundant, oder?
+
 
 Um das auf Swing basierende JUNG in die GUI einbinden zu können werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}. Die GUI wird dabei mit dem Scene-Builder erstellt und die dabei erzeugten FXML-Dateien werden in unser System integriert werden (\hyperlink{mmm}{S38 - Scene-Builder}). \\ \\
 --> zu graph.graph zuordnen?
@@ -2149,7 +2156,7 @@ Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, wel
 
 \newpage
 
-\includepdf[pages=-, landscape]{graph_graph.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{graph_graph.pdf}
 
 
 \subsection{\texttt{graph.visualization}}
@@ -2170,7 +2177,7 @@ Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klas
 
 
 
-\includepdf[pages=-, landscape]{transformer.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{transformer.pdf}
 
 \subsection{\texttt{graph.algorithmen}}
 Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. \texttt{JUNG} verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{jung}{S66-Jung} implementieren wir alle Algorithmen die zur Analyse/ Auswertung des Graphen benötigt werden soweit wie möglich mit \texttt{Jung} zur Verfügung gestellte Funktionen und Algorithmen. \\
@@ -2180,9 +2187,15 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 \texttt{algorithmen} importiert Klassen des Packages \texttt{graph}, da bei einer Filterung die Klasse natürlich Zugriff auf die Objekte benötigt, die gefiltert werden sollen.\\
 
 
-\includepdf[pages=-]{predicates.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\pagestyle{fancy}}]{predicates.pdf}
 
-\includepdf[pages=-, landscape]{jgrapht.pdf}
+
+
+\subsection{\texttt{jgrapht}}
+In unserem Programm soll neben dem Editieren des Graphen noch das Auswerten des Graphen und des Benutzers noch von großer Bedeutung sein. Für das Auswerten des Graphen unter manchen bestimmten Kriterien müssen bestimmte Algorithmen zur Verfügung stehen. Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert. Die Nutzung der Algorithmen lassen sich in dem Package \texttt{JGraphT} wiederfinden.\\
+Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{jgrapht.pdf}
+
 
 
 
@@ -2246,7 +2259,7 @@ Im Laufe des Sequenzdiagramms wird eine \texttt{CreateGraphAction} erzeugt, die 
 Im Methodenaufruf des \texttt{DatabaseManagers} wird die Graph- Tabelle unserer Datenbank geleert, da unser Programm intern immer nur eine Graph Repräsentation speichert. \\
 Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in der Graph- Tabelle gespeichert. 
 
-\includepdf[pages=-, landscape]{first_.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{first_.pdf}
 
 
 \subsection{Anwendungsfall: Ein Lehrer fügt eine Sphäre hinzu}
@@ -2287,7 +2300,7 @@ Die \texttt{AddSpereLogAction} wird außerdem als \texttt{Log} Objekt in der Dat
 Hierzu werden dem \texttt{LogDao} das \texttt{Log} Objekt und seine Parameter übergeben. Die Parameter werden durch Jackson zu einem Json-String konvertiert und das \texttt{Log} Objekt wird in der Datenbank durch Hibernate abgespeichert.
 
 
-\includepdf[pages=-, landscape]{second.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{second.pdf}
 
 
 
@@ -2332,7 +2345,7 @@ Nun besteht noch die Action, bei dem ein Benutzer den bestehenden Graphen als OO
 Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Ein neues Objekt der Klasse \texttt{OOFIo} wird erstellt. Von dem Objekt wird eine neue \texttt{GXLIo} kreiert und welche den Graphen als GXL-String zurückliefert. Die Logeinträge werden von dem \texttt{LogDao} und die Parameterobjekte von dem bestehendem \texttt{ObjectMapper} in Strings umgewandelt. In der \texttt{OOFIo} werden dann alle Strings mit der Methode \texttt{createOOf()} zu dem neuen Datentyp fusioniert und abgespeichert.  
 
 
-\includepdf[pages=-, landscape]{third.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{third.pdf}
 
 \newpage
 
@@ -2401,7 +2414,7 @@ Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \tex
 Das folgende Sequenzdiagramm stellt den Fall dar, bei dem ein Benutzer den bestehenden Graphen als PDF exportiert. Klickt also der Benutzer auf den Button \textit{Exportieren als} $\rightarrow$ \textit{PDF}, reagiert darauf \texttt{GUI} mit einem Dialogfenster, bei dem der Nutzer einen validen Pfad eingeben und mit dem Button \textit{Exportieren} dies bestätigen muss. \\
 Eine neue Action \texttt{exportPdfAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Von Syndrom wird der \texttt{VisualisationViewer} geholt und an die Action übergeben. Mithilfe dieser Information wird eine neues Objekt von der Klasse \texttt{PDFIo} erstellt und initialisiert. Weiter im Verlauf der Action wird mithilfe der Methode \texttt{exportPDF()} ein neuer \texttt{ExportDialog} erstellt und darauf die Methode ausgeführt, die die PDF erstellt.\\ \\
 
-\includepdf[pages=-, landscape]{fifth.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy}}]{fifth.pdf}
 
 
 \newpage
