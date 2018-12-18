@@ -1918,21 +1918,16 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
    \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{\hypertarget{jung}{S66 - JUNG}}}: \\
-			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
-			\textbf{S67 - NEO4J}: \\
-			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
-			\textbf{\cb{\hypertarget{eigen}{S68 - eigene Implementierung}}}: \\
-			Die benötigten Algorithmen werden durch das Team implementiert.\\
-			\textbf{\cb{\hypertarget{xxx}{S69 - JGraphT}}}:\\
-			Bereitstellung der Algorithmen durch JGraphT
+			\textbf{\cb{\hypertarget{}{\cb{S66 - Google Guice}}}}: \\
+	Verwendung von Google Juice für Dependency Injection-Aspekte.\\
+			\textbf{S67 - Spring}: \\
+	Wir könnten die Funktionalitäten im Bereich Dependency Injection von Spring nutzen.
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Die Funktionalität des Systems basiert bereits teilweise auf \cb{JUNG} basiert, weswegen des sehr praktisch wäre die von \cb{JUNG} zur Verfügung gestellten Algorithmen für die Graphauswertung zu benutzen. Diese Algorithmen decken aber nicht den Funktionsumfang den wir benötigen.\\
-	Zur Graphrepräsentation verwenden wir im System GXL- Datein, die in der Embedded Database gespeichert sind und klasseninterne Strukturen. Eine \cb{NEO4J Datenbank} zeitweise zu erstellen, welche ebenfalls die Daten des Graphs beinhaltet, erhöht die Fehleranfälligkeit unseres Systems, da alle Graphrepräsenationen zu jedem Zeitpunkt konsistent sein müssen. Deswegen entscheiden wir uns gegen \cb{S67}. \\
-	\cb{JGraphT} implementiert die meisten Algorithmen, die wir für die Graphauswertung benötigen. Für die Visualisierung des Graphen haben wir uns zwar gegen JGraphT entschieden, dennoch bietet dieses Framework eine großes Potenzial in Bezug auf Graphalgorithmen. Deswegen werden wir JGraphT zur Unterstützung bei der Graphauswertung hinzuziehen. \\
-	Algorithmen, die weder JGraphT, noch JUNG zur Verfügung stehen, werden die Entwickler implementieren.
+	Mit \cb{Guice} können Objekte anderer Klassen leicht in eine Klasse injiziert werden und dort Attributen zugewiesen werden. Dabei ist \cb{Guice} auch vielfältig zur Erzeugung von Objekten zur Laufzeit einsetzbar. Das Framework bietet also zahlreiche Funktionalitäten im Generischen-Bereich. Die Funktionalitäten von \cb{Guice} sind durch Annotationen leicht (mit wenig Quellcode) nutzbar. \\
+	\cb{Spring} bietet auch Möglichkeiten, die wir für das Dependency Injection in unserem System nutzen können. Allerdings sind diese Funktionen nicht so leicht nutzbar. Das liegt daran, dass Springs Dependency Injection-Funktionalitäten in einem Kontext entstanden sind, in der noch nicht einmal Java 5 fertig entwicklt worden war. \\
+	Wir entscheiden uns deshalb für Strategie \cb{S66 - Google Guice}, da die Verwendung der Annotationen für Dependency Injection einfacher ist, als der von \cb{Spring} verwendete Ansatz. Außerdem können wir bei Verwendung von \cb{Guice} von der Funktion der generischen Objekt-Erstellung profitieren.
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2130,7 +2125,7 @@ Die \texttt{Graph} Objekte haben ein Attribute \texttt{gxl}, welches den visuali
 
 \subsection{Log\_management}
 
-Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{log\_management/tables} zu sehen. Im Package \texttt{log\_management} werden neben der Speicherung der Nutzerinteraktionen in Form der Logs die übrigen Aspekte der Persistierung umgesetzt. Im dazugehörigen Diagramm sind im Paket \texttt{tables} die von uns geplanten Datenbanken-Tabellen zu sehen. Dabei ist ist die \texttt{Log}-Tabelle wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während in der Tabelle \texttt{Graph} Graphen persistiert werden. Die Existenz des Pakets \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} - wie im Diagramm X.X zu sehen ist.. Letzterer ist im Paket \texttt{actions} realisiert. In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao}.Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graph vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und in der Datenbank persistiert werden. \\
+Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{log\_management/tables} zu sehen. Im Package \texttt{log\_management} werden neben der Speicherung der Nutzerinteraktionen in Form der Logs die übrigen Aspekte der Persistierung umgesetzt. Im dazugehörigen Diagramm sind im Paket \texttt{tables} die von uns geplanten Datenbanken-Tabellen zu sehen. Dabei ist ist die \texttt{Log}-Tabelle wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während in der Tabelle \texttt{Graph} Graphen persistiert werden. Die Existenz des Pakets \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} - wie im untenstehenden Diagramm  zu sehen ist. Letzterer ist im Paket \texttt{actions} realisiert. In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao}.Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graph vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und in der Datenbank persistiert werden. \\
 Wir verwenden eine embedded H2 Datenbank und Hibernate für die Kommunikation zwischen unserer Anwendung und der genannten Datenbank (wie im \texttt{persistence.xml}-File im Package \texttt{resources.META-INF.resources} zu sehen ist - siehe Schnittstellenbeschreibung; ist nicht im Diagramm dargestellt). Damit folgen wir den Strategien \hyperlink{ppp}{S45 - H2 Database} und \hyperlink{rrr}{S50 - Hibernate}. \\ \\
 
 \includepdf[pages=-, landscape]{log_management.pdf}
