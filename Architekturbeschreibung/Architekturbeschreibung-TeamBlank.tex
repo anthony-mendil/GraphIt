@@ -1919,7 +1919,13 @@ In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zuge
 
 In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu finden. In dieser werden besonders wichtige oder für eine Gruppe von Modulen stellvertretend stehende Module unseres Systems genannt. Dabei wird auf die Funktion und Notwendigkeit dieser Module eingegangen sowie teilweise deren grundlegender Aufbau thematisiert. Außerdem wird in diesem Kapitel beschrieben wie die Module zusammenwirken, um die geforderten Anforderungen zu erfüllen. Bei Ausführungen zur Bedeutung, zum Aufbau und zum Zusammenwirken von Modulen wird bezug zu den Strategien genommen, für die wir uns im Rahmen der Problemkarten im Kapitel „Globalen Analyse“ entschieden haben. \\ \\
 
-Da der Graph gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als Text gespeichert werden soll, in der eine GXL (Graph eXchange Language) –Repräsentation des Graphen steht, muss es ein Modul geben, das alle Informationen des in der GUI angezeigten Graphen abfragen und diese in das GXL-Format transferieren kann und analog aus einer GXL-Datei die \texttt{Syndrom} -Instanz schreiben kann. Um diese Funktion zu realisieren haben wir im \texttt{io-package} die Klasse \texttt{GXLio} implementiert. \\
+Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
+Deswegen ist die Notwendigkeit gegeben, dass es ein Modul geben muss, welches alle Informationen des in der GUI angezeigten Graphen abfragen und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen aus einem GXL-String die \texttt{Syndrom} -Instanz, also die aktuelle Graph- Repräsentation im Programm,  zu generieren. \\
+Da das Programm außerdem die Möglichkeit bieten soll eine GXL Datei zu importieren/ exportieren gemäß Einflussfaktor \hyperlink{ii}{GXL- Export und -Import} muss auch diese Funktionalität bereit gestellt werden.\\ \\ 
+
+
+
+ Um diese Funktion zu realisieren haben wir im \texttt{io-package} die Klasse \texttt{GXLio} implementiert. \\
 In dieser sind Methoden zum Ex- und Import einer GXL-Datei des Graphen zu finden (\texttt{importGXL(), exportGXL()}). Um dies zu realisieren sind außerdem eine Methode zum Schreiben der GXL-Daten in die \texttt{Syndrom} -Instanz (\texttt{gxlToInstance()}) sowie eine zur Erstellung einer GXL-Repräsentation aus der Instanz (\texttt{gxlFromInstance()}) implementiert. Zweitere Methode ist außerdem für die GXL-Speicherung in der Datenbank nützlich, da wir hier auch eine GXL-Variante des Graphen verwenden, wie in \hyperlink{yy}{S1 - GXL} festgelegt wurde.\\
 Über die injectete Instanz der \texttt{Syndrom-Klasse}, die im \texttt{graph-package} des darüber liegenden Ordners zu finden ist, erhält die \texttt{GXLio-Klasse} alle Informationen zu dem in der GUI angezeigten Graphen. 
 Diese Informationen werden dann lediglich ins GXL-Format überführt. Hierfür wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet werden (siehe Strategie \hyperlink{xaa}{S56 Sourceforge Framework}. Entsprechend der Erzeugung einer GXL-Repräsentation aus einem \texttt{Syndrom-Objekt} für das Speichern und Exportieren eines Graphen wird beim Import aus der GXL-Repräsentation das \texttt{Syndrom-Objekt} angepasst. Durch das \texttt{Template-Attribut} in der \texttt{Syndrom-Klasse} haben Methoden zum Erstellen einer GXL-Repräsentation eines Graphen aus einem \texttt{Syndrom-Objekt} auch Zugriff auf die Bearbeitungsregeln. Denn diese können in einem Objekt der \texttt{Template-Klasse} hinterlegt werden. Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden – so wie wir es in Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei} vorgesehen haben. \\ \\
@@ -2046,8 +2052,9 @@ Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in 
 	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte die Sphäre an eine nicht geeignete Stelle setzen $\rightarrow$ Der Ersteller kann die Sphäre mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und neu setzen. 
 	\\\hline
 \end{tabular}
-%% SINGLETON und existenz klassen
 \\ \\ \\
+
+Da zuvor schon Aktion ausgeführt worden sind, sind alle Singleton Objekte bereits initialisiert. \\
 Der eben beschriebene Anwendungsfall ist im dem folgenden Sequenzdiagramm dargestellt. \\
 Zu Beginn klickt der Ersteller den Button, um eine Sphäre hinzuzufügen. Die \texttt{GUI} schreibt daraufhin den \texttt{GraphButtonTyp} in \texttt{Values}, damit das \texttt{PickingGraphMouseEditSyndromPlugin} weiß, welche Aktion bei Klick in den \texttt{Visualisation Viewer} ausgeführt werden soll. \\
 Klickt der Ersteller nun in die SwingNode, also den  \texttt{Visualisation Viewer}, wird die Aktion\\ \texttt{AddSpereLogAction} erstellt und durch die \texttt{ActionHistory} ausgeführt. \\
