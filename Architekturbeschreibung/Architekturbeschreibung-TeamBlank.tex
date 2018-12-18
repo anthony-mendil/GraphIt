@@ -1261,7 +1261,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
 			\textbf{\cb{S24 - eigene Implementierung}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.
-			\textbf{\cb{S25 - JGraphT}}
+			\textbf{\cb{\hypertarget{xxx}{S25 - JGraphT}}}
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -2187,7 +2187,7 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 
 
 \subsection{\texttt{jgrapht}}
-In unserem Programm soll neben dem Editieren des Graphen auch das Auswerten des Graphen von großer Bedeutung sein. Für das Auswerten des Graphen müssen bestimmte Algorithmen zur Verfügung stehen.\\ Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S69 - JGraphT} in dem Framework JGraphT implementiert, da sie nicht durch \textit{JUNG} zur Verfügung gestellt werden. Die Nutzung der Algorithmen lässt sich in dem Package \texttt{JGraphT} wiederfinden.\\
+In unserem Programm soll neben dem Editieren des Graphen auch das Auswerten des Graphen von großer Bedeutung sein. Für das Auswerten des Graphen müssen bestimmte Algorithmen zur Verfügung stehen.\\ Manche Algorithmen (z.B. Zyklensuche im Graph) sind nach Strategie \hyperlink{xxx}{S25 - JGraphT} in dem Framework JGraphT implementiert, da sie nicht durch \textit{JUNG} zur Verfügung gestellt werden. Die Nutzung der Algorithmen lässt sich in dem Package \texttt{JGraphT} wiederfinden.\\
 Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist welche JGraphT benutzt, muss der Graph zuerst in das andere Modell übersetzt werden. Die Methode \texttt{convertGraphToJGraphT} realisiert diese Funktion. Die Ergebnismenge der Algorithmen werden als \texttt{Set<Vertex>} oder \texttt{List<Vertex>} zurückgegeben, wobei die Klasse \texttt{Vertex} der Klasse \texttt{Vertex} unseres ursprünglichen Modells entspricht. 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{jgrapht class diagram},\pagestyle{fancy}}]{jgrapht.pdf}
 
