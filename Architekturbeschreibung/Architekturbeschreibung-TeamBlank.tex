@@ -1908,18 +1908,14 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 \hspace{-0.65cm}
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Auswertung von Grapheigenschaften}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss bezüglich seiner Eigenschaften (Graphmaße, Umfang, Knotenbeziehungen) ausgewertet werden.}}\rule{0pt}{4ex}\\ [1ex] \hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Dependency Injection}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir arbeiten mit mehren Leuten parallel an einer Software, für die wir einen modularen Aufbau anstreben. Dabei wäre es vorteilhaft, wenn jeder Entwickler, die Systembestandteile/Module anderer Gruppenmitglieder nutzen könnte bevor deren Implementierung abgeschlossen ist. Um uns nicht um die Übergabe beziehungsweise Weitergabe von Objekten kümmern zu müssen, können wir Dependency Injection nutzen. Damit kann man Attribute beliebiger Klassen deklarieren und auf deren Werte und Methoden zugreifen – ohne die Herkunft derselben vorab festzulegen.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
-	Implementierungssprache &  Speicherung und Laden des Graphen \\
-	Betriebssystemunterstützung / Zielplattformen des Systems &  3 - Auswertung/ Analyse\\
-	GXL-Export und -Import & Abgabedatum\\
-	Entwickler-Fähigkeiten & Softwarelizenzbudget\\
-	Teamgröße & Hohe Usability\\
-	Hohe Qualität & Graph Visualisierung/ Interaktion/ Editierung\\
-	Unerfahrene Entwickler & typisierte Knoten\\
-	gerichtete Kanten (3 Relationstypen) & Anzahl, Größe, Position Farbgebung, Beschirftung/ Benennung der Sphären/ Knoten/ Kanten ist flexibel\\
-	Zuordnung von Sphären und Knoten & JUNG   \\ \hline
+	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &  \hyperlink {uu}{Abgabedatum} \\
+\hyperlink {vv}{Entwickler-Fähigkeiten} &
+ \hyperlink {ww}{Softwarelizenzbudget} \\
+\hyperlink {xx}{Teamgröße} 
+   \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{jung}{S66 - JUNG}}}: \\
@@ -2021,7 +2017,7 @@ In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu 
 \subsection{Übersicht}
 Dieser Abschnitt beschäftigt sich mit einer Übersicht über alle Module des gesamten Projektes. \\
 Die Zusammenhänge zwischen den Modulen wurde auf der folgenden Seite als Paketdiagramm dargestellt.
-Im Allgemeinen ist die Struktur des Projektes angelehnt an das Model-View-Controller-Designpattern, gemäß der Strategie “\hyperlink{bbb}{S8 - MVC}”. Das Package \texttt{gui} setzt die View um, \texttt{log\_management} das Model und \texttt{actions} den Controller. \\
+Im Allgemeinen ist die Struktur des Projektes angelehnt an das Model-View-Controller-Designpattern, gemäß der Strategie “\hyperlink{bbb}{S8 - MVC}”. Das Package \texttt{gui} setzt die View um, \texttt{log\_management} die Model Komponente und \texttt{actions} die Controller Komponente. \\
 
 Das Package \texttt{actions} beinhaltet \texttt{Action} Klassen, die vor allem Aktionen auf dem Graphen umsetzen. Diese \texttt{Action} Klassen werden mit der Interaktion der grafischen Benutzeroberfläche verknüpft, sodass z.B. bei Klick auf einem Button eine bestimmt Aktion ausgeführt wird. \\
 
@@ -2038,22 +2034,34 @@ Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, s
 \includepdf[pages=-, landscape]{package.pdf}
 
 \subsection{\texttt{io}}
-Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
+Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "'plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
 Daher muss es ein Modul geben, welches alle Informationen des in der GUI angezeigten Graphen abfragt und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen, aus einem GXL-String die \texttt{Syndrom}-Instanz beziehungsweise Graph-Repräsentation zu generieren, die dann als aktueller Graph im Programm angezeigt wird.\\ 
+
 Außerdem soll das Programm die Möglichkeit bieten, eine GXL Datei zu importieren/exportieren. Diese Funktionalität muss gemäß Einflussfaktor \hyperlink{ii}{GXL- Export und -Import} bereit gestellt werden.\\ 
 Für die Umsetzung dieser Funktionen haben wir im \texttt{io-package} die Klasse \texttt{GXLio} implementiert. \\
-In dieser sind io-Methoden für die GXL-Repräsentation des Graphen zu finden, welche (neben dem Dateinamen beim Import) den Pfad der zu importierenden Datei beziehungsweise den Pfad für die zu exportierende Datei übergeben bekommen (\texttt{importGXL(), exportGXL()}). Um die Funktion vollständig zu realisieren sind außerdem je eine Methode zum Schreiben der GXL-Daten in die \texttt{Syndrom}-Instanz (\texttt{gxlToInstance()}) sowie zur Erstellung einer GXL-Repräsentation aus der Instanz (\texttt{gxlFromInstance()}) vorgesehen. Zweitere Methode ist außerdem für die genannte GXL-Speicherung in der Datenbank nützlich, da sie genau die benötigte GXL-Variante des Graphen bereitstellt.\\ 
-Über die injizierten Instanzen der \texttt{Syndrom}- und \texttt{GraphDao}-Klasse, erhält die \texttt{GXLio-Klasse} alle Informationen zu dem in der GUI angezeigten Graphen. 
-Um diese Informationen dann ins GXL-Format zu überführen, wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet (siehe Strategie \hyperlink{xaa}{S56 Sourceforge Framework}).\\
-Durch das \texttt{Template-Attribut} in der \texttt{Syndrom-Klasse} haben Methoden zum Erstellen einer GXL-Repräsentation eines Graphen aus einem \texttt{Syndrom-Objekt} auch Zugriff auf die Bearbeitungsregeln, denn diese können in einem Objekt der \texttt{Template-Klasse} hinterlegt werden. Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden – so wie wir es in Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei} vorgesehen haben. \\ 
 
+In der Klasse \texttt{GXLio} sind io-Methoden für die GXL-Repräsentation des Graphen zu finden, welche (neben dem Dateinamen beim Import) den Pfad der zu importierenden Datei beziehungsweise den Pfad für die zu exportierende Datei übergeben bekommen (\texttt{importGXL(), exportGXL()}). \\
+Um die Funktion vollständig zu realisieren sind außerdem je eine Methode zum Schreiben der GXL-Daten in die \texttt{Syndrom}-Instanz (\texttt{gxlToInstance()}) sowie zur Erstellung einer GXL-Repräsentation aus der Instanz (\texttt{gxlFromInstance()}) vorgesehen. \\
+Zweitere Methode ist außerdem für die genannte GXL-Speicherung in der Datenbank nützlich, da sie genau die benötigte GXL-Variante des Graphen bereitstellt.\\ 
 
-Da wir nicht nur den Graphen isoliert als GXL-Datei exportieren, sondern ihn auch zusammen mit den Nutzerinteraktionen als OOF-Repräsentation bereitstellen wollen, haben wir die Klasse \texttt{OOFio} hinzugefügt.
-Diese ist ebenfalls im \texttt{io-package} zu finden. Mit dieser wollen wir die gemeinsame Speicherung der Nutzerinteraktionen mit einem (als GXL-Repräsentation vorliegendem) Graphen realisieren (so wie wir es in Startegie \hyperlink{ooo}{S43 - Eigener Datentyp} beschrieben haben). \\
-Um diesen gemeinsamen Datentyp zu erzeugen, gibt es die Methode \texttt{createOOF()}, die eine GXL-Repräsentation eines Graphen und Nutzerinteraktionen als JSON erhält, wobei diese beiden Parameter je als String übergeben werden. Diese Methode wird gebraucht, um die übergebenen Werte zusammenzuführen und zu exportieren. (\texttt{exportOOF(...)}) speichert die zusammengeführten Informationen als Datei eines eigenen Datentyps (im \texttt{.oof}-Format), an dem Pfad und mit dem Namen der Datei, den die Methode übergeben bekommt. Diese Datei muss jedoch auch wieder geöffnet werden können. Dies geschieht durch die Methode \texttt{importOOF()}. Diese bekommt den Pfad der zu importierenden Datei als String und schreibt die Daten in die Datenbank (Protokoll) und in die Instanz (Graph). Dabei benutzt sie die Methoden \texttt{gxlFromOOF()} und \texttt{jsonFromOOF()}, welche jeweils die OOF-Datei als String bekommen und die jeweiligen Datenteile zurückgeben. \\
-Damit die Klasse alle Methoden umsetzen kann bekommt sie das \texttt{LogDao}- und \texttt{GraphDao}-Object injiziert. Da die \texttt{OOFio}-Klasse zur Erstellung einer .oof-Datei ein GXL-String benötigt, wird ein Objekt vom Typ \texttt{GXLio} erstellt und auf diesem die Methode \texttt{gxlFromInstance()} aufgerufen.\\ 
+Über die injizierten Instanzen der \texttt{Syndrom}- und \texttt{GraphDao} Klasse, erhalten die Objekte der \texttt{GXLio} Klasse alle Informationen zu dem in der \texttt{GUI} visualisierten Graphen. \\
+Um diese Informationen in das GXL-Format zu überführen, wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet (siehe Strategie \hyperlink{xaa}{S56 Sourceforge Framework}).\\
 
-Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io-package} sind unter Einsatz der Frameworks, beziehungsweise APIs, der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. Der Aufruf zum Drucken geschieht durch \texttt{printPDF()}, während der Export als PDF in \texttt{exportPDF()} implementiert wird. Für diese Methoden ist die Methode zur PDF-Erstellung (gemäß Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} nützlich. Diese ist als \texttt{createPDF()} implementiert und gibt die PDF als Datenstrom wieder. \\
+Durch das \texttt{Template-Attribut} in der \texttt{Syndrom} Klasse haben Methoden, welche eine GXL-Repräsentation eines Graphen erstellen, aus einem \texttt{Syndrom} Objekt auch Zugriff auf die Bearbeitungsregeln, denn diese werden in einem Objekt der \texttt{Template} Klasse hinterlegt.
+Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden, gemäß der Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei}. \\ 
+
+Da wir nicht nur den Graphen isoliert als GXL-Datei exportieren, sondern ihn auch zusammen mit den Nutzerinteraktionen als OOF-Repräsentation bereitstellen wollen, haben wir die Klasse \texttt{OOFio} hinzugefügt. Diese ist ebenfalls im \texttt{io} Package zu finden. Mit dieser wollen wir die gemeinsame Speicherung der Nutzerinteraktionen mit einem (als GXL-Repräsentation vorliegendem) Graphen realisieren (Startegie \hyperlink{ooo}{S43 - Eigener Datentyp}). \\
+
+Um diesen gemeinsamen Datentyp zu erzeugen, gibt es die Methode \texttt{createOOF()}, die eine GXL-Repräsentation eines Graphen und Nutzerinteraktionen als JSON erhält, wobei diese beiden Parameter je als String übergeben werden. Diese Methode wird benötigt, um die übergebenen Werte zusammenzuführen und zu exportieren. \\
+(\texttt{exportOOF()}) speichert die zusammengeführten Informationen als Datei eines eigenen Datentyps (im \texttt{.oof}-Format), an dem Pfad und mit dem Namen der Datei, den die Methode übergeben bekommt. \\
+
+Diese Datei muss jedoch auch wieder geöffnet werden können. Dies geschieht durch die Methode \texttt{importOOF()}. Diese bekommt den Pfad der zu importierenden Datei als String und schreibt die Daten in die Datenbank (Protokoll) und in die Instanz (Graph). Dabei benutzt sie die Methoden \texttt{gxlFromOOF()} und \texttt{jsonFromOOF()}, welche jeweils die OOF-Datei als String bekommen und die jeweiligen Datenteile zurückgeben. \\
+Da die \texttt{OOFio}-Klasse zur Erstellung einer .oof-Datei ein GXL-String benötigt, wird ein Objekt vom Typ \texttt{GXLio} erstellt und auf diesem die Methode \texttt{gxlFromInstance()} aufgerufen.\\ 
+
+Damit die Klasse die genannten Funktionalitäten umsetzen kann, bekommt sie das \texttt{LogDao}- und \texttt{GraphDao}-Objekt injiziert. 
+
+Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io-package} sind unter Einsatz der Frameworks, beziehungsweise APIs, der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. \\
+Der Aufruf zum Drucken geschieht durch \texttt{printPDF()}, während der Export als PDF in \texttt{exportPDF()} implementiert wird. Für diese Methoden ist die Methode zur PDF-Erstellung (gemäß Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} nützlich. Diese ist als \texttt{createPDF()} implementiert und gibt die PDF als Datenstrom wieder. \\
 \texttt{PDFio} bekommt im \texttt{constructur} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen.
 
 \newpage
@@ -2064,7 +2072,7 @@ Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io-package} sind unte
 Die Benutzeroberfläche wurde mit JavaFx (siehe Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFx}) und mit Hilfe der Anwendung \textit{SceneBuilder} von Gluon, gemäß der Strategie \hyperlink{mmm}{S38 - Scene-Builder}, umgesetzt. Die erstellte \texttt{GUI} ist in der Applikation als FXML-Datei gespeichert und wird beim Starten unserer Applikation in der \texttt{Main}-Klasse geladen. Sie ist außerdem auch zuständig für das Starten der gesamten Anwendung. \\
 
 Um die GUI mit der gewünschten Funktionalität der Applikation zu verbinden, existiert die Klasse \texttt{Controller}. Sie dient als Schnittstelle zwischen der \texttt{GUI} und den internen Modulen. \\
-FXML ist sehr gut geeignet, um die Darstellung der \texttt{GUI} Elemente zu definieren, aber um die Funktionalität, d.h. den Aufruf von Methoden bei MouseEvents auf den Komponenten der \texttt{GUI}, umzusetzen, müssen diese extern in der Controller Klasse in zugehörigen Methoden zu den \texttt{GUI} Elementen beschrieben werden. Deswegen wurden in der \texttt{Controller} Klasse die zugehörigen Methoden zu den \texttt{GUI} Elementen eingefügt. \\
+FXML ist sehr gut geeignet, um die Darstellung der \texttt{GUI} Elemente zu definieren und die Methoden in \texttt{Controller} jeweils zu den Elementen zu zuordnen. Diese Methoden werden beim Interagieren mit den \texttt{GUI} Elementen aufgerufen und müssen in der Controller Klasse angegeben werden. Da einige \texttt{GUI} Elemente jedoch mehr Funktionalität benötigen als nur ein Methodenaufruf beim Interagieren, werden diese Element nochmals referenziert in der \texttt{Controller} Klasse um sie zu erweitern.\\
 
 Die \texttt{Controller}-Klasse besitzt außerdem die internen Klassen \texttt{ColorPickerHandler} und \\ \texttt{MenuItemHandler}. Diese werden benötigt, da die \texttt{GUI} Elemente \texttt{MenuItem} und \texttt{ColorPicker} zusätzlich an die aufgerufene Methode übergeben müssen, welchen Wert der User ausgewählt hat, beispielsweise die gewählte Farbe. \\
 Diese Werte werden zusätzlich in dem Singleton Objekt der Klasse \texttt{Values} den zugehörigen Attributen zugewiesen, damit die \texttt{Actions} Objekte und das \texttt{Syndrom} Objekt auf diese Werte zugreifen können. \\
@@ -2086,17 +2094,19 @@ Die Klasse \texttt{LoadLanguage} besitzt noch weitere GUI-Elemente zusätzlich z
 \includepdf[pages=-]{gui.pdf}
 
 
-\subsection{\texttt{actions}}
-Das Package \texttt{actions} repräsentiert die Controller Komponente des Model-View-Controller Patterns, welches wir gemäß \hyperlink{bbb}{S8- MVC} umsetzen. \\ 
-Diese ist nach dem \texttt{Command} Pattern nach \hyperlink{command}{S9 - Command} aufgebaut. \\
+\subsection{Actions}
 
-Die abstrakte Klasse \texttt{Action} stellt die Oberklasse dar. Diese implementiert zwei abstrakte Methoden \texttt{redo}/ \texttt{undo}. Eine weitere abstrakte Klasse \texttt{GraphAction} erweitert die \texttt{Action}-Klasse. Jede \texttt{GraphAction} wird ein \texttt{Syndrom} injected. Durch dieses \texttt{Syndrom} Objekt verfügt jede \texttt{GraphAction} über die benötigten Informationen zu dem visualisierten Graphen. Da \texttt{Syndrom} ein Singleton ist, verfügt nach einer Änderung des Graphen das ganze System darüber und kann es entsprechend visualisieren.\\ 
-Eine weitere abstrakte Klasse setzt die benötigte Funktionalität für eine \texttt{LogAction} um. Klassen, die eine \texttt{LogAction} erweitern, verfügen unter anderem über einen zugehörigen \texttt{LogEntryTyp}, da diese als \texttt{Logs} in der Datenbank persistiert werden für das Nutzerinteraktionsprotokoll. Die \texttt{LogEntryTypes} ermöglichen dem Benutzer später das Protokoll nach bestimmten Log Einträgen zu filtern.\\
+Eine Übersicht über alle \texttt{Actions}, die es gibt, findet sich nach Paketen gegliedert in der folgenden Abbildung, wobei die Gliederung sich an Strategie \hyperlink{xdd}{S10 - Modularisierung} anlehnt:
 
-Alle \texttt{Actions} werden über die \texttt{ActionHistory} ausgeführt, sodass wir in unserem System redo und undo realisieren können. \\ 
+\includepdf[pages=-]{actionsOverview.pdf}
 
-Neben den Abhängigkeiten, die alle \texttt{GraphActions} besitzen, haben \texttt{SwitchModiEditorAction} und \texttt{AnalysesGraphAction} weitere Abhängigkeiten. \texttt{SwitchModiEditorAction} steht zudem mit \texttt{FunctionMode} in Verbindung, um die Realisierung der \hyperlink{uuu}{Funktionsmodi} umsetzen zu können. \\
-\texttt{AnalysesGraphAction} steht mit \texttt{AnalyseTypeSingle} und mit \texttt{AnalyseTypeSeveral} in Abhängigkeit, um den oder die ausgewählten Filteroptionen ausmachen zu können, die von der Analyse betroffen sein sollen. \\\\
+Dabei erweitert jede \texttt{GraphAction} die \texttt{Action}-Klasse und jede \texttt{LogAction} erweitert eine \texttt{GraphAction}. Die einzelnen konkreten \texttt{Actions} sind dann Unterklassen von \texttt{LogAction} beziehungsweise von \texttt{GraphAction}. 
+Jede \texttt{GraphAction} (und damit auch jede \texttt{LogAction} ist mit einem \texttt{SyndromPickSupport}, einem \texttt{Syndrom} und einem \texttt{SyndromGraph} verbunden. Dies ist erforderlich, damit sich die vom Nutzer durchgeführten Aktionen auch auf den gerade in Bearbeitung befindlichen Graphen auswirken.
+Neben den Verbindungen, die alle \texttt{GraphActions} besitzen, haben \texttt{SwitchModiEditorAction} und \texttt{AnalysesGraphAction} weitere Verbindungen. \texttt{SwitchModiEditorAction} steht zudem mit \texttt{FunctionMode} in Verbindung, um den Funktionsmodus einstellen zu können. \texttt{AnalysesGraphAction} steht mit \texttt{AnalyseTypeSingle} und mit \texttt{AnalyseTypeSeveral} in Verbindung, um den oder die ausgewählten Elemente ausmachen zu können, die von der Analyse betroffen sein sollen. 
+Zudem haben alle \texttt{LogActions} eine Verbindung zu \texttt{LogEntryName} und zu \texttt{Param}. Dies ist beides für die Persistierung von Bedeutung. Die Verbindung zu \texttt{Param} bedeutet, dass zu jeder \texttt{LogAction} ein Objekt einer konkreten Unterklasse der abstrakten Oberklasse \texttt{Param} gehört. \\
+ Diese Parameterobjekte werden erzeugt, wenn eine Aktion ausgeführt wird und beinhalten die Parameterdaten der Action. So ist es möglich, zu jedem Zeitpunkt die genauen Daten aller \texttt{LogActions} auszulesen (da diese ja in die Datenbank persistiert werden). Dies hilft bei der Umsetzung der \texttt{undo}- und \texttt{redo}-Funktion. Die Actions sind unsere Umsetzung der Strategie \hyperlink{xcc}{S9 - Command}  \\
+ 
+Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \texttt{actions.other}Package bereits erahnen kann, wird das Umschalten zwischen den Fuktionsmodi ebenfalls über eine Action realisiert. Der aktuelle Funktionsmodus wird dabei in der Klasse \texttt{Syndrom} im Package \texttt{graph.graph} gespeichert. Hierfür existiert in der \texttt{Syndrom-Klasse} ein Attribut vom Typ \texttt{FunctionMode}. Die Funktionsmodi, die in unserer Anwendung existieren, sind in der Klasse \texttt{FunctionMode} im selben Package zu finden. Die beschriebene Umsetzung folgt der Strategie \hyperlink{uuu}{S59 - Modi als eigener Teil unserer Applikation}. \\ \\ 
 
 \includepdf[pages=-]{actions.pdf}
 
@@ -2118,18 +2128,14 @@ Die \texttt{Log} Objekte besitzen unter anderem ein Attribut \texttt{parameters}
 
 Die \texttt{Graph} Objekte haben ein Attribute \texttt{gxl}, welches den visualisierten Graphen als GXL- Repräsentation gemäß \hyperlink{yy}{S1 - GXL} beinhaltet. Der GXL- String wird durch das \texttt{io} Package realisiert, weshalb hier auch eine Abhängigkeit besteht.\\
 
-Die Existenz des Package \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} - wie im Klassendiagramm dargestellt. Letzterer ist im Package \texttt{actions} realisiert. \\
+\subsection{Log\_management}
 
-In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse\\ \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. \\
-Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao} Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graph vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und in der Datenbank persistiert werden. \\ 
+Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{log\_management/tables} zu sehen. Im Package \texttt{log\_management} werden neben der Speicherung der Nutzerinteraktionen in Form der Logs die übrigen Aspekte der Persistierung umgesetzt. Im dazugehörigen Diagramm sind im Paket \texttt{tables} die von uns geplanten Datenbanken-Tabellen zu sehen. Dabei ist ist die \texttt{Log}-Tabelle wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während in der Tabelle \texttt{Graph} Graphen persistiert werden. Die Existenz des Pakets \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} - wie im Diagramm X.X zu sehen ist.. Letzterer ist im Paket \texttt{actions} realisiert. In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao}.Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graph vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und in der Datenbank persistiert werden. \\
+Wir verwenden eine embedded H2 Datenbank und Hibernate für die Kommunikation zwischen unserer Anwendung und der genannten Datenbank (wie im \texttt{persistence.xml}-File im Package \texttt{resources.META-INF.resources} zu sehen ist - siehe Schnittstellenbeschreibung; ist nicht im Diagramm dargestellt). Damit folgen wir den Strategien \hyperlink{ppp}{S45 - H2 Database} und \hyperlink{rrr}{S50 - Hibernate}. \\ \\
 
 \includepdf[pages=-, landscape]{log_management.pdf}
 
-Die \texttt{Param}-Klassen finden sich im Package \texttt{log\_management/parameters}. 
-Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Sphere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. \\
-Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise miteinander verknüpft. \\ 
-
-Die \texttt{Param} Klassen werden benötigt, um die wichtigen Informationen von einer zugehörigen Aktion zu erfassen und in der Datenbank abzuspeichern, damit diese bei Bedarf an den Benutzer übermittelt werden können. Wie genau diese persistiert werden, ist auf der vorherigen Seite beschrieben.\\
+Die \texttt{Parameter}-Klassen finden sich im Paket \texttt{log\_management/parameters/activate\_deactivate}, \texttt{log\_management/parameters/add\_remove}, \texttt{log\_management/parameters/edit} und \texttt{log\_management/parameters/move}. (Diese Aufgliederung ist Teil der von uns angewendeten Strategie \hyperlink{xdd}{S10 - Modularisierung}.) Die Klassen haben individuelle Verbindungen zu Teilen des \texttt{graph/graph}-Packages. So ist beispielsweise die \texttt{EditFontSphereParam} mit \texttt{Shpere}, die \texttt{AddRemoveAnchorPointsParam} mit \texttt{Edge}, die \texttt{EditEdgesTypePram} mit \texttt{EdgeArrowType} und die \texttt{EditVerticesSizeParam} mit \texttt{Vertex} verbunden. Die Klassen innerhalb des Pakets \texttt{graph.graph} sind auf geeignete Weise miteinander verknüpft. \\ \\
 
 \includepdf[pages=-, landscape]{parameters.pdf}
 
@@ -2150,11 +2156,14 @@ Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse 
 
 Die Strategie \hyperlink{eee}{S19 - JUNG} findet sich an mehreren Stellen wieder. Insbesondere ist hier das Package \texttt{graph} und darin die beiden Packages \texttt{graph} und \texttt{visualization} zu nennen. In erstgenanntem der beiden untergeordneten Packages haben wir eigene vom JUNG-Framework unabhängige Klassen erstellt. In diesen Klassen sind auch die Attribute keine Bestandteile des Framework. (Beispiele hierfür sind die Klassen \texttt{Edge}, \texttt{Sphere} und \texttt{Vertex}. Dies ist bei anderen Klassen im gleichen Package (\texttt{graph} anders. Die Klassen haben wir zwar erstellt, jedoch sind diese nicht komplett vom JUNG-Framework unabhängig. So zum Beispiel die Klassen \texttt{Syndrom} neben anderen ein Attribut vom Typ \texttt{VisualizaionViewer<Vertex, Edge>} und ein Atttribut vom Typ \texttt{Layout<Vertex, Edge>}. Die Typen Layout und VisualizationViewer verwenden wir von JUNG. Dabei ist anzumerken, dass initial die generischen Typen V und E den Attributen zugewiesen werden. Um die Anforderungen erfüllen zu können weisen wir den Attributen unsere eigenen Klassen \texttt{Vertex} und \texttt{Edge} zu. Knoten unserer Klasse haben neben den zu erwartenden Attributen auch noch weitere Attribute, welche jeden zuführenden Pfeilspitze mit einem \texttt{ScopePoint} in eine \texttt{Map} speichert. Ein Element der Aufzählung\texttt{ScopePoint} stellt das Quartal dar, in welche eine Pfeilspitze auf ein Knoten andockt, welcher ein wichtiger Faktor für die Pfeilzusammenführung am Symptom darstellt. \\ \\
 
-Um das auf Swing basierende JUNG in die GUI einbinden zu können werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}. Die GUI wird dabei mit dem Scene-Builder erstellt und die dabei erzeugten FXML-Dateien werden in unser System integriert werden (\hyperlink{mmm}{S38 - Scene-Builder}). \\ \\
+Das Zusammenspiel von Im- und Export beziehungsweise von der Erstellung von GXL-, PDF- oder OOF-bezogenen-Aspekten und dem Entwurfsmuster Command besteht darin, dass es Klassen im \texttt{actions.export\_graph-package} gibt, die aus der \texttt{Controller-Klasse} im Package \texttt{gui} (gemäß MVC) aufgerufen werden. Die Methoden in den Klassen des \texttt{export\_graph-packages} wiederum werden später die Methoden der Klassen im package \texttt{io} aufrufen. \\
+--> löschen, da nicht gut zu einer Subsection zugehörig und auch etwas redundant, oder?
 
-Wie im \texttt{persistence.xml}-File im Package \texttt{META-INF} innerhalb das übergeordneten Packages \texttt{resources} zu sehen ist, verwenden wir eine embedded H2 Datenbank und Hibermate für die Kommunikation zwischen unserer Anwendung und der genannten Datenbank. Damit folgen wir den Strategien \hyperlink{ppp}{S45 - H2 Database} und \hyperlink{rrr}{S50 - Hibernate}. \\
+Um das auf Swing basierende JUNG in die GUI einbinden zu können werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}. Die GUI wird dabei mit dem Scene-Builder erstellt und die dabei erzeugten FXML-Dateien werden in unser System integriert werden (\hyperlink{mmm}{S38 - Scene-Builder}). \\ \\
+--> zu graph.graph zuordnen?
 
 Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit durch Kombination der Strategien \hyperlink{sss}{S53 - Layouts in Layouts}, \hyperlink{xee}{S54 - JUNG Layouts} und \hyperlink{xff}{S55 - Eigenes Layout} die Übersichtlichkeit im Graphen erhöhen.
+--> zu graph.visualisation zuordnen?
 
 
 
