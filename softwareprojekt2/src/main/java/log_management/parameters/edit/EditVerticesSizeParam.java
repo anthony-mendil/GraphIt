@@ -7,6 +7,7 @@ import log_management.parameters.Param;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Parameter object of the action EditSphereSizeLogAction.
@@ -16,21 +17,22 @@ public class EditVerticesSizeParam extends Param{
      * The sphere containing its old size
      */
     @Getter
-    private List<Vertex>  pVertices;
+    private Map<Vertex,Integer> oldVertices;
     /**
-     * The new size of the sphere.
+     * The sphere containing its new size
      */
     @Getter
-    private int newSize;
+    private Map<Vertex,Integer> newVertices;
+
 
     /**
      * Creates a parameter object of its own class.
-     * @param pVertices  The sphere containing its old size
-     * @param pNewSize The new size of the sphere.
+     * @param pOldVertices The vertices containing its old size.
+     * @param pNewVertices The vertices containing its new size.
      */
-    public EditVerticesSizeParam(List<Vertex> pVertices, int pNewSize) {
-        this.pVertices = pVertices;
-        this.newSize = pNewSize;
+    public EditVerticesSizeParam(Map<Vertex,Integer> pOldVertices, Map<Vertex,Integer> pNewVertices ) {
+        this.oldVertices = pOldVertices;
+        this.newVertices = pNewVertices;
     }
     @Override
     public String toString() {

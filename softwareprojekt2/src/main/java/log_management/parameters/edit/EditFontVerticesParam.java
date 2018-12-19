@@ -17,23 +17,24 @@ public class EditFontVerticesParam extends Param {
      * The set of vertices containing their old font.
      */
     @Getter
-    private List<Vertex> pVertices;
+    private Map<Vertex,String> oldVertices;
     /**
-     * The new font-type.
+     * The set of vertices containing their new font.
      */
     @Getter
-    private String newFont;
+    private Map<Vertex,String> newVertices;
+
     // Q:Does the font change everywhere or is for example a list of vertex id's needed?
     // A:Unfortunately no :( . But I am not actually sure about it, just pretending.
 
     /**
      * Creates a parameter object of its own class.
-     * @param pVertices The vertices containing their old font.
-     * @param pNewFont The new font-type.
+     * @param pOldVertices The vertices containing their old font.
+     * @param pNewVertices The vertices containing their new font.
      */
-    public EditFontVerticesParam(List<Vertex> pVertices, String pNewFont) {
-        this.pVertices = pVertices;
-        this.newFont = pNewFont;
+    public EditFontVerticesParam(Map<Vertex,String> pOldVertices, Map<Vertex,String> pNewVertices) {
+        this.oldVertices = pOldVertices;
+        this.newVertices = pNewVertices;
     }
     @Override
     public String toString() {

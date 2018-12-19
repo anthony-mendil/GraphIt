@@ -17,21 +17,21 @@ public class EditEdgesColorParam extends Param{
      * The list of edges containing their old color.
      */
     @Getter
-    private Map<Edge,Pair<Vertex,Vertex>> pEdges;
+    private Map<Edge,Pair<Vertex,Vertex>> edgesOld;
     /**
-     * The new color the edges should have.
+     * The list of edges containing their new color.
      */
     @Getter
-    private Color newColor;
+    private Map<Edge,Pair<Vertex,Vertex>> edgesNew;
 
     /**
      * Creates an parameter object of its own class.
-     * @param pEdges The list of edges and their old color.
-     * @param pNewColor The new color.
+     * @param pEdgesOld The list of edges and their old color.
+     * @param pEdgesNew The list of edges and their new color.
      */
-    public EditEdgesColorParam(Map<Edge,Pair<Vertex,Vertex>> pEdges, Color pNewColor) {
-        this.pEdges = pEdges;
-        this.newColor = pNewColor;
+    public EditEdgesColorParam(Map<Edge,Pair<Vertex,Vertex>> pEdgesOld, Map<Edge,Pair<Vertex,Vertex>> pEdgesNew) {
+        this.edgesOld = pEdgesOld;
+        this.edgesNew = pEdgesNew;
     }
 
     @Override

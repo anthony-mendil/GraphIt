@@ -16,22 +16,22 @@ public class EditEdgesStrokeParam extends Param{
      * The set of edges containing their old stoke-type.
      */
     @Getter
-    Map<Edge,Pair<Vertex,Vertex>> pEdges;
+    Map<Edge,Pair<Vertex,Vertex>> edgesOld;
     /**
-     * The set of all edges and their old strokes.
+     * The set of edges containing their old stoke-type.
      */
     @Getter
-    private StrokeType newStroke;
+    Map<Edge,Pair<Vertex,Vertex>> edgesNew;
 
     /**
      * Creates a new parameter object of its own class.
-     * @param pEdges The map of all edges
-     * @param pNewStroke The new stroke.
+     * @param pEdgesOld The map of all edges and their old info.
+     * @param pEdgesNew The map of all edges and their old info.
      */
-    public EditEdgesStrokeParam(Map<Edge,Pair<Vertex,Vertex>> pEdges,
-                                StrokeType pNewStroke) {
-        this.pEdges = pEdges;
-        this.newStroke = pNewStroke;
+    public EditEdgesStrokeParam(Map<Edge,Pair<Vertex,Vertex>> pEdgesOld, Map<Edge,Pair<Vertex,Vertex>> pEdgesNew
+                                ) {
+        this.edgesOld = pEdgesOld;
+        this.edgesNew = pEdgesNew;
     }
 
     @Override

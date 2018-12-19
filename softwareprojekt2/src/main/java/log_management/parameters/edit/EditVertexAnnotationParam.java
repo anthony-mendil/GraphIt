@@ -21,14 +21,22 @@ public class EditVertexAnnotationParam extends Param{
      */
     @Getter
     private String newAnnotation;
+    /**
+     * The new annotation of the vertex.
+     */
+    @Getter
+    private String oldAnnotation;
+
 
     /**
      * Creates a parameter object of its own class.
      * @param pVertex The vertex containing its old annotation.
+     * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditVertexAnnotationParam(Vertex pVertex, String pNewAnnotation) {
+    public EditVertexAnnotationParam(Vertex pVertex,String pOldAnnotation, String pNewAnnotation) {
         this.vertex = pVertex;
+        this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }
     @Override

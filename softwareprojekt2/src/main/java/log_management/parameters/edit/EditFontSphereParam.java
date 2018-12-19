@@ -17,6 +17,11 @@ public class EditFontSphereParam extends Param {
     @Getter
     private Sphere sphere;
     /**
+     * The old font.
+     */
+    @Getter
+    private String oldFont;
+    /**
      * The new font.
      */
     @Getter
@@ -25,10 +30,12 @@ public class EditFontSphereParam extends Param {
     /**
      * Creates a new parameter object of its own class.
      * @param sphere The sphere containing its old font.
+     * @param pOldFont The old font.
      * @param pNewFont The new font.
      */
-    public EditFontSphereParam(Sphere sphere, String pNewFont) {
+    public EditFontSphereParam(Sphere sphere, String pOldFont, String pNewFont) {
         this.sphere = sphere;
+        this.oldFont = pOldFont;
         this.newFont = pNewFont;
     }
     @Override

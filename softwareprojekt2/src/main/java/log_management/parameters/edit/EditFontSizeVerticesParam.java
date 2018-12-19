@@ -15,27 +15,27 @@ import java.util.Map;
  */
 public class EditFontSizeVerticesParam extends Param {
     /**
-     * The list of the vertices
+     * The set of the vertices and their old font-size.
      */
     @Getter
-    List<Vertex> pVertices;
+    Map<Vertex,Integer> oldVertices;
     /**
-     * The new font size.
+     * The set of the vertices and their new font-size.
      */
     @Getter
-    private int newFontSize;
+    Map<Vertex,Integer> newVertices;
     //Q: Does the font size change everywhere or is for example a list of vertex id's needed?
     //A: I think, that every font size of all vertices should be independent from each other.
     //   Therefore there must be a map or something kinda like this...
 
     /**
      * Creates a parameter object of its own class.
-     * @param pVertices The vertices containing their old font-size.
-     * @param pNewFontSize The new font-size.
+     * @param pOldVertices The vertices containing their old font-size.
+     * @param pNewVertices The vertices containing their new font-size.
      */
-    public EditFontSizeVerticesParam(List<Vertex> pVertices, int pNewFontSize) {
-        this.pVertices = pVertices;
-        this.newFontSize = pNewFontSize;
+    public EditFontSizeVerticesParam(Map<Vertex,Integer> pOldVertices, Map<Vertex,Integer> pNewVertices) {
+        this.oldVertices = pOldVertices;
+        this.newVertices = pNewVertices;
     }
     @Override
     public String toString() {

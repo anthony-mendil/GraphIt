@@ -10,28 +10,28 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameter object of the action EditVerticesColorLogAction.
+ * Parameter object of the action EditVerticesFillColorLogAction.
  */
 public class EditVerticesFillColorParam extends Param{
     /**
      * The set of vertices containing their old colors.
      */
     @Getter
-    private List<Vertex> pVertices;
+    private Map<Vertex,Color> oldVertices;
     /**
-     * The new color.
+     * The set of vertices containing their new colors.
      */
     @Getter
-    private Color newColor;
+    private Map<Vertex,Color> newVertices;
 
     /**
      * Creates a parameter object of its own class.
-     * @param pVertices The selected vertices containing their old color.
-     * @param pNewColor The new color.
+     * @param pOldVertices The selected vertices containing their old color.
+     * @param pNewVertices The selected vertices containing their new color.
      */
-    public EditVerticesFillColorParam(List<Vertex> pVertices, Color pNewColor) {
-        this.pVertices = pVertices;
-        this.newColor = pNewColor;
+    public EditVerticesFillColorParam(Map<Vertex,Color> pOldVertices, Map<Vertex,Color> pNewVertices) {
+        this.oldVertices = pOldVertices;
+        this.newVertices = pNewVertices;
     }
     @Override
     public String toString() {

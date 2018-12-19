@@ -18,21 +18,21 @@ public class EditVerticesFormParam extends Param{
      * The set of vertices containing their old shapes/ annotation.
      */
     @Getter
-    List<Vertex> vertices;
+    Map<Vertex,Shape> oldVertices;
     /**
-     * The new shape of the vertices.
+     * The set of vertices containing their old shapes/ annotation.
      */
     @Getter
-    private Shape newShape;
+    Map<Vertex,Shape> newVertices;
 
     /**
      * Creates a parameter object of its own class.
-     * @param pVertices The vertices containing their old shape/ annotation.
-     * @param pNewShape The new shape.
+     * @param pOldVertices The vertices containing their old shape/ annotation.
+     * @param pNewVertices The vertices containing their new shape/ annotation.
      */
-    public EditVerticesFormParam( List<Vertex> pVertices, Shape pNewShape) {
-        this.vertices = pVertices;
-        this.newShape = pNewShape;
+    public EditVerticesFormParam(Map<Vertex,Shape> pOldVertices, Map<Vertex,Shape> pNewVertices) {
+        this.oldVertices = pOldVertices;
+        this.newVertices = pNewVertices;
     }
     @Override
     public String toString() {

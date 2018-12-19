@@ -18,15 +18,23 @@ public class EditSphereAnnotationParam extends Param{
      * The new annotation of the sphere.
      */
     @Getter
+    private String oldAnnotation;
+
+    /**
+     * The new annotation of the sphere.
+     */
+    @Getter
     private String newAnnotation;
 
     /**
      * Creates a parameter object of its own class.
      * @param pSphere The sphere containing its old annotation.
+     * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditSphereAnnotationParam(Sphere pSphere, String pNewAnnotation) {
+    public EditSphereAnnotationParam(Sphere pSphere,String pOldAnnotation, String pNewAnnotation) {
         this.pSphere = pSphere;
+        this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }
     @Override
