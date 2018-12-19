@@ -191,14 +191,15 @@
   \\ ~
   \vspace{2cm}
   \\
-  \it Abgabe: 23. Dezember 2018 --- Version 1.0\\ ~
+  \it Abgabe: 23. Dezember 2018 --- Version 4.0\\ ~
   \end{center}
   \end{minipage}
 
 % Ende Titelseite
-
 % Start Leerseite
-
+\thispagestyle{empty}
+\cleardoublepage
+% Ende Leerseite
 \newpage
 
   \thispagestyle{fancy}
@@ -216,6 +217,12 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start Leerseite
+\thispagestyle{empty}
+\cleardoublepage
+% Ende Leerseite
+\fancyhead[LE,RO]{Seite \thepage\\\slshape Version und Änderungsgeschichte\\~}
+
 \section*{Version und Änderungsgeschichte}
 \emph{Autoren: Bastian Rexhäuser}\\ \\
 Im folgenden ist eine Tabelle zu finden, die Aufschluss darüber ermöglicht, mit welchen Zwischenschritten das vorliegende Dokument in seinen jetzigen Zustand gekommen ist. Dazu sind neben dem Datum eindeutige Versionsnummern angegeben. Durch die Datum-Angabe zu den einzelnen Versionen kann darüber hinaus festgestellt werden wie viel Zeit die jeweils in der Änderungsspalte beschriebenen Fortschritte benötigt haben. Dabei ist zu beachten, dass mit unter zeitgleich an mehreren Abschnitten des Dokumentes gearbeitet wurde, sodass die errechneten Angaben zur Erarbeitungsdauer vom tatsächlichen Zeitaufwand abweichen können. Am Ende der Liste steht die aktuelle Versionsnummer, die auch auf dem Deckblatt zu finden ist.  \\
@@ -223,17 +230,47 @@ Im folgenden ist eine Tabelle zu finden, die Aufschluss darüber ermöglicht, mi
 \begin{tabular}{p{1,2cm}cp{12cm}}
 Version & Datum & Änderungen \\
 \hline
-0.1 & 28.10.2018 & Aufsetzen eines LaTeX-Dokumentes  und Festlegung grundlegender Layout-Entscheidungen \\
-0.2 & 30.10.2018 & Einfügen einer vorläufigen Gliederung \\
-0.3 & 02.11.2018 & Anpassung des Layouts \\
-1.1 & 03.11.2018 & Erarbeitung der Einleitung \\
-1.2 & 15.11.2018 & Einflussfaktoren vorläufig abgeschlossen \\
-\textbf{1.3} & \textbf{27.11.2018} & \textbf{Einflussfaktoren an geänderte Anforderungen angepasst} \\
-\ldots
+0.0 & 28.10.2018 & Aufsetzen eines LaTeX-Dokuments und Festlegung grundlegender Layout-Entscheidungen \\
+0.1 & 30.10.2018 & Einfügen einer vorläufigen Gliederung \\
+0.2 & 02.11.2018 & Anpassung des Layouts \\
+1.0 & 03.11.2018 & Erarbeitung der Einleitung \\
+1.1 & 15.11.2018 & vorläufige Version der Einflussfaktoren \\
+1.2 & 27.11.2018 & Einflussfaktoren an geänderte Anforderungen angepasst \\
+1.3 & 30.11.2018 & Vorerst finale Version der Einflussfaktoren- und Problemkartenerstellung \\
+1.4 & 03.12.2018 & Erste Version der Konzeptionellen Sicht\\
+1.5 & 04.12.2018 & Beschreibung der Konzeptionellen Sicht hinzugefügt\\
+1.6 & 05.12.2018 & Finale Version der Einflussfaktoren und Problemkarten \\
+1.7 & 06.12.2018 & Erste Version der Anwendungsfälle \\
+1.8 & 07.12.2018 & Erste Version der Datensicht \\
+1.9 & 09.12.2018 & Beschreibung der Datensicht \\
+2.0 & 09.12.2018 & Komplett neu aufgesetztes Dokument \\
+2.1 & 11.12.2018 & Überarbeitete Datensicht und benötigte Problemkarte\\
+2.2 & 12.12.2018 & Überarbeitete Version der Konzeptionellen Sicht \\
+2.3 & 12.12.2018 & Erste Version der Modulsicht \\
+2.4 & 13.12.2018 & Erste Version der kompletten Klassendiagramme \\
+2.5 & 14.12.2018 & Erste Version der Evolution \\
+2.6 & 14.12.2018 & Erste Version der Ausführungssicht \\
+2.7 & 14.12.2018 & Überarbeitung, Formalisierung und Strukturierung der Anwendungsfälle \\
+2.8 & 16.12.2018 & Sequenzdiagramme zu den Anwendungsfällen \\
+2.9 & 16.12.2018 & Klassendiagramme in Modulsicht-Abschnitte eingegliedert \\
+3.0 & 17.12.2018 & Geprüfte Version der Einleitung, Datensicht, Konzeptionellen Sicht und Evolution\\
+3.1 & 19.12.2018 & Überarbeitete und geprüfte Version der Ausführungssicht und Globalen Analyse\\
+3.2 & 19.12.2018 & Geprüfte Version der Modulsicht \\
+3.3 & 20.12.2018 & Vorläufig generell überprüfte Version des Dokuments \\
+\textbf{4.0} & \textbf{21.12.2018} & \textbf{Endgültige Version der Architekturbeschreibung} \\
+
+
 \end{tabular}
-\\ \\ \\
+\\ \\ \\ \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start Leerseite
+\thispagestyle{empty}
+\cleardoublepage
+% Ende Leerseite
+
+\fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
+
 \newpage
 \section{Einführung}
 \emph{Autoren: Bastian Rexhäuser}
@@ -1952,7 +1989,9 @@ Die Logger-Komponente ist in unserer Applikation eingebaut um uns bei der Entwic
 
 \emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
 
-Alle Attribute sind private, es existieren aber Getter und Setter (außer bei sämtlichen Id's, dort nur Getter), weshalb sie als public markiert werden. Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. (Wir haben uns bezüglich der Klasse \texttt{Vertex} ... keine Ahnung...Hilfe)
+\textit{Anmerkungen zu dem Diagramm}: \\
+Alle dargestellten Attribute sind \texttt{private}, es existieren aber Getter und Setter für die Attribute (außer bei sämtlichen Id's, dort nur Getter). Deswegen sind die Attribute alle im Diagramm als \texttt{public} markiert. \\
+Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. (Wir haben uns bezüglich der Klasse \texttt{Vertex} ... keine Ahnung...Hilfe)
 
 \begin{figure}[ht]
 \centering
@@ -1983,44 +2022,44 @@ In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zuge
 \section{Modulsicht}
 \emph{Autoren: Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}\\\\
 
-In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu finden. In dieser werden besonders wichtige oder für eine Gruppe von Modulen stellvertretend stehende Module unseres Systems genannt. Dabei wird auf die Funktion und Notwendigkeit dieser Module eingegangen sowie teilweise deren grundlegender Aufbau thematisiert. Außerdem wird in diesem Kapitel beschrieben wie die Module zusammenwirken, um die geforderten Anforderungen zu erfüllen. Bei Ausführungen zur Bedeutung, zum Aufbau und zum Zusammenwirken von Modulen wird bezug zu den Strategien genommen, für die wir uns im Rahmen der Problemkarten im Kapitel „Globalen Analyse“ entschieden haben. \\ \\
+In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu finden. In dieser werden besonders wichtige oder für eine Gruppe von Modulen stellvertretend stehende Module unseres Systems genannt. Dabei wird auf die Funktion und Notwendigkeit dieser Module eingegangen sowie teilweise deren grundlegender Aufbau thematisiert. Außerdem wird in diesem Kapitel beschrieben wie die Module zusammenwirken, um die geforderten Anforderungen zu erfüllen. Bei Ausführungen zur Bedeutung, zum Aufbau und zum Zusammenwirken von Modulen wird Bezug zu den Strategien genommen, für die wir uns im Rahmen der Problemkarten im Kapitel „Globalen Analyse“ entschieden haben. \\ \\
 
 \newpage
 
 \subsection{Übersicht}
 Dieser Abschnitt beschäftigt sich mit einer Übersicht über alle Module des gesamten Projektes. \\
-Die Zusammenhänge zwischen den Modulen wurde auf der folgenden Seite als Paketdiagramm dargestellt.
-Im Allgemeinen ist die Struktur des Projektes angelehnt an das Model-View-Controller-Designpattern, gemäß der Strategie “\hyperlink{bbb}{S8 - MVC}”. Das Package \texttt{gui} setzt die View um, \texttt{log\_management} die Model Komponente und \texttt{actions} die Controller Komponente. \\
+Diese Module und deren Abhängigkeiten untereinander sind auf der folgenden Seite als Paketdiagramm dargestellt.
+Im Allgemeinen ist die Struktur des Projektes angelehnt an das Model-View-Controller-Designpattern, gemäß der Strategie \glqq\hyperlink{bbb}{S8 - MVC}\grqq. Dabei setzt das Package \texttt{gui} die View um, \texttt{log\_management} die Model-Komponente und \texttt{actions} die Controller-Komponente. \\
 
-Das Package \texttt{actions} beinhaltet \texttt{Action} Klassen, die vor allem Aktionen auf dem Graphen umsetzen. Diese \texttt{Action} Klassen werden mit der Interaktion der grafischen Benutzeroberfläche verknüpft, sodass z.B. bei Klick auf einem Button eine bestimmt Aktion ausgeführt wird. \\
+Das Package \texttt{actions} beinhaltet \texttt{Action}-Klassen, von denen die meisten Aktionen auf dem Graphen umsetzen. Die \texttt{Action}-Klassen werden dabei durch Interaktionen des Nutzers mit der grafischen Benutzeroberfläche (z.B. durch das Klicken auf einen Button) aufgerufen. Dem entsprechend mündet eine von dem Package \texttt{gui} ausgehende Verbindung in das Pakage \texttt{actions}. \\
 
-Das Modul \texttt{gui} beinhaltet alle Klassen, die zur Erstellung/ Interaktion mit der Benutzeroberfläche benötigt werden. Die \texttt{GUI} steht in Abhängigkeit mit dem Modul \texttt{actions}, da die \texttt{Actions} mit den Interaktionen auf der \texttt{GUI} verknüpft sind. Die \texttt{GUI} bezieht sich außerdem auf das Modul \texttt{log\_management}, da diese im Modus \textit{Analyse} Informationen über das Protokoll visualisiert. Im Modus \textit{Vorlage bearbeiten} und \textit{Diagramm bearbeiten} werden Informationen über den Graphen visualisiert, weshalb hier ebenfalls eine Abhängigkeit zu dem package \textit{graph} besteht. \\
+Das Modul \texttt{gui} beinhaltet alle Klassen, die zur Erstellung der und Interaktion mit der Benutzeroberfläche benötigt werden. Das \texttt{gui}-Modul ist mit dem Modul \texttt{actions} verbunden, da die GUI Nutzerinteraktionen entgegennimmt und diese zur Ausführung an das Package \texttt{actions} weiterleitet. Im Modus \glqq Vorlage bearbeiten\grqq{} und \glqq Diagramm bearbeiten\grqq sowie im \glqq Analyse\grqq{}-Modus werden Informationen über den Graphen visualisiert, weshalb ebenfalls eine Abhängigkeit zwischen \texttt{gui} und dem Package \textit{graph} besteht. Die GUI bezieht sich außerdem auf das Modul \texttt{log\_management}, da erstgenannte im \glqq Analyse\grqq{}-Modus Informationen über das Protokoll der Nutzerinteraktionen visualisiert. \\
 
-Das Persistieren der Daten wird im Package \texttt{log\_management} umgesetzt. Dieses Package ist in drei weitere Packages unterteilt: \texttt{dao}, \texttt{parameters} und \texttt{tables}. \texttt{dao} ''Data Acess Object'' bildet die Benutzerschnittstelle für die anderen Module, um auf die Daten in der Datenbank zuzugreifen. Das Package \texttt{parameters} beinhaltet \texttt{Param} Klassen. Jeder \texttt{Action} Klasse ist eine \texttt{Param} Klasse zugeordnet. Diese wird bei der Persistierung der \texttt{Actions} als \texttt{Log} in einen Json-String umgewandelt und als Attribut eines \texttt{Log} Objektes abgespeichert und in die Datenbank geschrieben. \texttt{tables} beinhaltet die Klassen, welche den Aufbau eines \texttt{Graph}- und \texttt{Log} Objektes beschreiben. Diese Objekte werden mit Hibernate/ JPA persistiert und in einer embedded H2DB abgespeichert. \\ 
+Das Persistieren der Daten wird im Package \texttt{log\_management} umgesetzt. Dieses Package ist in drei weitere Packages unterteilt: \texttt{dao}, \texttt{parameters} und \texttt{tables}. \texttt{dao} \glqq Data Acess Object\grqq{} bildet die Benutzerschnittstelle, die es anderen Modulen ermöglicht, auf die Daten in der Datenbank zuzugreifen. Das Package \texttt{prameters} beinhaltet \texttt{Param}-Klassen. Jeder \texttt{Action}-Klasse ist eine \texttt{Param}-Klasse zugeordnet. Diese wird bei der Persistierung der \texttt{Actions} als \texttt{Log} in einen Json-String umgewandelt und als Attribut eines \texttt{Log}-Objektes abgespeichert und in die Datenbank geschrieben. \texttt{tables} beinhaltet die Klassen, welche den Aufbau eines \texttt{Graph}- und den eines\texttt{Log}-Objektes beschreiben. Diese Objekte werden mit Hibernate beziehungsweise JPA persistiert und in einer embedded H2 Datenbank abgespeichert. \\ 
 
-Alle Import und Export Aktionen, werden im Package \texttt{io} implementiert. \texttt{io} benötigt die Protokoll Daten, welche durch das Package \texttt{dao} zugänglich sind. Außerdem greift \texttt{io} auf Klassen aus \texttt{graph} zu, da dort die Klassen liegen, welche die Daten zu dem aktuellen \textit{Syndromansatz} beinhalten. \\
+Alle Import und Export Aktionen, werden im Package \texttt{io} implementiert. \texttt{io} benötigt die Protokoll Daten, welche durch das Package \texttt{dao} zugänglich sind. Außerdem greift \texttt{io} auf Klassen aus \texttt{graph} zu, da dort die Klassen liegen, welche die Daten zu dem aktuellen Syndrom / Graphen beinhalten. \\
 
-Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus unserem System in einen Graphen umzuwandeln, der vom Framework jgrapht erkannt wird. Deswegen besteht eine Abhängigkeit zwischen dem Package \texttt{jgrapht} und \texttt{graph.graph}. \\
+Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus unserem System in einen Graphen umzuwandeln, der vom Framework jgrapht erkannt wird. Deswegen besteht eine Abhängigkeit zwischen den Packages \texttt{jgrapht} und \texttt{graph.graph}. \\
 
-Alle Klassen, die Funktionalität für den Programm internen Graphen umsetzen, sind im Package \texttt{graph} implementiert.  Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen/ Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. \\
+Alle Klassen, die Funktionalität für den programminternen Graphen umsetzen, sind im Package \texttt{graph} implementiert. Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen / Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. \\
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy},\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{package diagram}}]{package.pdf}
 
 \subsection{\texttt{io}}
-Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "'plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
+Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} \glqq plain\grqq{} als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
 Daher muss es ein Modul geben, welches alle Informationen des in der GUI angezeigten Graphen abfragt und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen, aus einem GXL-String die \texttt{Syndrom}-Instanz beziehungsweise Graph-Repräsentation zu generieren, die dann als aktueller Graph im Programm angezeigt wird.\\ 
 
 Außerdem soll das Programm die Möglichkeit bieten, eine GXL Datei zu importieren/exportieren. Diese Funktionalität muss gemäß Einflussfaktor \hyperlink{ii}{GXL- Export und -Import} bereit gestellt werden.\\ 
-Für die Umsetzung dieser Funktionen haben wir im \texttt{io-package} die Klasse \texttt{GXLio} implementiert. \\
+Für die Umsetzung dieser Funktionen haben wir im \texttt{io}-Package die Klasse \texttt{GXLio} implementiert. \\
 
-In der Klasse \texttt{GXLio} sind io-Methoden für die GXL-Repräsentation des Graphen zu finden, welche (neben dem Dateinamen beim Import) den Pfad der zu importierenden Datei beziehungsweise den Pfad für die zu exportierende Datei übergeben bekommen (\texttt{importGXL(), exportGXL()}). \\
+In der Klasse \texttt{GXLio} sind dementsprechend io-Methoden für die GXL-Repräsentation des Graphen zu finden, welche (neben dem Dateinamen beim Export) beide den Pfad der zu importierenden Datei beziehungsweise den Pfad für die zu exportierende Datei übergeben bekommen (\texttt{importGXL(), exportGXL()}). \\
 Um die Funktion vollständig zu realisieren sind außerdem je eine Methode zum Schreiben der GXL-Daten in die \texttt{Syndrom}-Instanz (\texttt{gxlToInstance()}) sowie zur Erstellung einer GXL-Repräsentation aus der Instanz (\texttt{gxlFromInstance()}) vorgesehen. \\
 Zweitere Methode ist außerdem für die genannte GXL-Speicherung in der Datenbank nützlich, da sie genau die benötigte GXL-Variante des Graphen bereitstellt.\\ 
 
-Über die injizierten Instanzen der \texttt{Syndrom}- und \texttt{GraphDao} Klasse, erhalten die Objekte der \texttt{GXLio} Klasse alle Informationen zu dem in der \texttt{GUI} visualisierten Graphen. \\
+Über die injizierten Instanzen der \texttt{Syndrom}- und \texttt{GraphDao}-Klasse, erhalten die Objekte der \texttt{GXLio} Klasse alle Informationen zu dem in der GUI visualisierten Graphen. \\
 Um diese Informationen in das GXL-Format zu überführen, wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet (siehe Strategie \hyperlink{ttt}{S56 Sourceforge Framework}).\\
 
-Durch das \texttt{Template-Attribut} in der \texttt{Syndrom} Klasse haben Methoden, welche eine GXL-Repräsentation eines Graphen erstellen, aus einem \texttt{Syndrom} Objekt auch Zugriff auf die Bearbeitungsregeln, denn diese werden in einem Objekt der \texttt{Template} Klasse hinterlegt.
+Durch das \texttt{Template-Attribut} in der \texttt{Syndrom}-Klasse haben Methoden, welche eine GXL-Repräsentation eines Graphen erstellen, aus einem \texttt{Syndrom}-Objekt auch Zugriff auf die Bearbeitungsregeln, denn diese werden in einem Objekt der \texttt{Template} Klasse hinterlegt.
 Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden, gemäß der Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei}. \\ 
 
 Da wir nicht nur den Graphen isoliert als GXL-Datei exportieren, sondern ihn auch zusammen mit den Nutzerinteraktionen als OOF-Repräsentation bereitstellen wollen, haben wir die Klasse \texttt{OOFio} hinzugefügt. Diese ist ebenfalls im \texttt{io} Package zu finden. Mit dieser wollen wir die gemeinsame Speicherung der Nutzerinteraktionen mit einem (als GXL-Repräsentation vorliegendem) Graphen realisieren (Startegie \hyperlink{ooo}{S43 - Eigener Datentyp}). \\
@@ -2033,9 +2072,11 @@ Da die \texttt{OOFio}-Klasse zur Erstellung einer .oof-Datei ein GXL-String ben�
 
 Damit die Klasse die genannten Funktionalitäten umsetzen kann, bekommt sie das \texttt{LogDao}- und \texttt{GraphDao}-Objekt injiziert. 
 
-Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io-package} sind unter Einsatz der Frameworks, beziehungsweise APIs, der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. \\
+Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io}-Package sind unter Einsatz der Frameworks beziehungsweise APIs der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. \\
 Der Aufruf zum Drucken geschieht durch \texttt{printPDF()}, während der Export als PDF in \texttt{exportPDF()} implementiert wird. Für diese Methoden ist die Methode zur PDF-Erstellung (gemäß Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} nützlich. Diese ist als \texttt{createPDF()} implementiert und gibt die PDF als Datenstrom wieder. \\
-\texttt{PDFio} bekommt im \texttt{constructur} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen.
+\texttt{PDFio} bekommt im \texttt{constructur} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen. \\
+
+Im folgenden ist eine Abbildung zum \texttt{io}-Package zu sehen, in dem auch seine eben beschriebenen Abhängigkeiten zu den Packages \texttt{dao} und \texttt{graph.graph} dargestellt sind. \\ Von den Funktionen des Im- und Exports, die die in gewisser Weise Schnittstellen unserer Anwendung zu außerhalb letztgenannter liegender Bereiche darstellen, kommen wir im nächsten Abschnitt zum programminternen Aussehen unserer Benutzeroberfläche. Damit ist der Übergang zu den Aspekten, die ausschließlich unser System betreffen, geschaffen.
 
 \newpage
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{io class diagram},\pagestyle{fancy}}]{io.pdf}
