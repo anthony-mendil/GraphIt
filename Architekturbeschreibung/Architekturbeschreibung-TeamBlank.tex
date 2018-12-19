@@ -2053,6 +2053,11 @@ An dieser Stelle wollen wir auf die Schnittstellenbeschreibung verweisen, da nac
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy},\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{package diagram}}]{package.pdf}
 
+\textit{Anmerkung}:
+Die folgenden Klassen Diagramme sollen das Zusammenspiel der einzelnen Klassen und Module untereinander bestmöglich darstellen. \\
+Der Übersichtlichkeit halber wurden diese in einzelne Diagramme unterteilt. Ein Diagramm eines Moduls zeigt die Beziehung der Klassen innerhalb des Moduls und die \textit{ausgehenden} Abhängigkeiten zu den anderen Packages. \\
+Die \texttt{Getter} und \texttt{Setter} werden nicht in den Diagrammen dargestellt. Wir verwenden im Projekt die Java Bibliothek Lombock. Diese erzeugt \texttt{Getter} und \texttt{Setter} während der Laufzeit, wenn die Attribute entsprechend annotiert sind. Deswegen kann bei den Attribute der Klassen im Allgemeinen davon ausgegangen werden, dass sie über eine \texttt{Getter} und \texttt{Setter} Methode verfügen.\\
+
 \subsection{\texttt{io}}
 Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} \glqq plain\grqq{} als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
 Daher muss es ein Modul geben, welches alle Informationen des in der GUI angezeigten Graphen abfragt und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen, aus einem GXL-String die \texttt{Syndrom}-Instanz beziehungsweise Graph-Repräsentation zu generieren, die dann als aktueller Graph im Programm angezeigt wird.\\ 
@@ -2158,6 +2163,7 @@ Die \texttt{Graph}-Objekte haben ein Attribut \texttt{gxl}, welches den visualis
 Die Existenz des Package \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} wie im Klassendiagramm dargestellt. Letzterer ist im Package \texttt{actions} realisiert. \\
 
 In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse\\ \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. \\
+Der DatabaseManager steht außerdem in Abhängigkeit zu dem \texttt{io} Package, da der DatabaseManager das Graph Objekt erstellt, welches den Graphen in der Datenbank repräsentieren soll. Dieser enthält die aktuelle Graph Repräsentation als String. \\
 Der DatabaseManager kommuniziert mit dem \texttt{LogDao} und dem \texttt{GraphDao}, die jeweils das \texttt{Dao}-Interface implementieren. Dabei werden dem \texttt{GrapDao} Graphen und dem \texttt{LogDao} Logs zugewiesen. Durch diesen Aufbau können die Änderungen, die ein Nutzer an einem Graphen vornimmt, als CRUD-Operationen (Create, Read, Update, Delete) erfasst und (wenn erforderlich) in der Datenbank persistiert werden. \\ 
 
 Wir verwenden eine embedded H2 Datenbank und Hibernate für die Kommunikation zwischen unserer Anwendung und der genannten Datenbank (wie im \texttt{persistence.xml}-File im Package\\ \texttt{resources.META-INF.resources} zu sehen ist - siehe Schnittstellenbeschreibung; ist nicht im Diagramm dargestellt). Damit folgen wir den Strategien \hyperlink{ppp}{S45 - H2 Database} und \hyperlink{rrr}{S50 - Hibernate}. \\
