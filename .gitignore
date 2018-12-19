@@ -6,3 +6,4 @@
 *.gz
 *.toc
 *workspace.xml
+*.iml
