@@ -540,7 +540,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(--) Da wir weder denken, dass dieses Framework zu einem beliebigem Zeitpunkt kostenpflichtig wird (was dazu führen würde, dass wir es im Rahmen des Moduls Softwareprojekt 2 nicht mehr verwenden dürften), noch glauben, dass Anforderungen hinzukommen, die den Einsatz des Frameworks auch für die bisherigen Anforderungen unmöglich macht, stufen wir die veränderlichkeit als sehr gering ein. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponeten aufbaut. Wir werden JUNG in unsere JavaFx Anwendung integrieren. } }\\ \hline
+	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponeten aufbaut. Wir werden JUNG in unsere JavaFX Anwendung integrieren. } }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1490,24 +1490,24 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{\hypertarget{kkk}{S34 - GUI Framework JavaFx}}} \\
-			Es besteht die Möglichkeit für die Benutzeroberfläche JavaFx zu verwenden. 
+			\textbf{\cb{\hypertarget{kkk}{S34 - GUI Framework JavaFX}}} \\
+			Es besteht die Möglichkeit für die Benutzeroberfläche JavaFX zu verwenden. 
 			\textbf{S35 - GUI- Toolkit Swing} \\
 			Die Benutzeroberfläche kann mit dem GUI-Toolkit von Swing erstellt werden.
 	} }\\ \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Die GUI wird mit \cb{JavaFx} umgesetzt. \\
-	\cb{JavaFx} bietet mehr Möglichkeiten zur Anpassung der einzelnen GUI-Elemente. Das Aussehen kann durch CSS einfach umgesetzt werden. \\
-	\cb{Swing} bietet auch alle Elemente, die wir benötigen, um unsere GUI zu modellieren. Allerdings kann das Aussehen der Elemente in \cb{Swing} nicht so gut beeinflusst werden wie mit \cb{JavaFx}. Ein Vorteil von \cb{Swing} wäre, dass der Graph in unserem System mit JUNG in \cb{Swing} modelliert wird und so eine einheitliches Benutzeroberfläche bilden würde. Allerdings vermitteln der Style, der durch Swing erzeugten Benutzeroberflächen den Eindruck eines veralteten Systems, da Frameworks wie \cb{JavaFx} die GUI- Oberfläche moderner wirken lassen. \\
-	Da wir auch junge Menschen mit unserer Anwendung ansprechen möchten und \cb{JavaFx} eine bessere Usability bietet, entscheiden wir uns für \cb{S34}.
+	Die GUI wird mit \cb{JavaFX} umgesetzt. \\
+	\cb{JavaFX} bietet mehr Möglichkeiten zur Anpassung der einzelnen GUI-Elemente. Das Aussehen kann durch CSS einfach umgesetzt werden. \\
+	\cb{Swing} bietet auch alle Elemente, die wir benötigen, um unsere GUI zu modellieren. Allerdings kann das Aussehen der Elemente in \cb{Swing} nicht so gut beeinflusst werden wie mit \cb{JavaFX}. Ein Vorteil von \cb{Swing} wäre, dass der Graph in unserem System mit JUNG in \cb{Swing} modelliert wird und so eine einheitliches Benutzeroberfläche bilden würde. Allerdings vermitteln der Style, der durch Swing erzeugten Benutzeroberflächen den Eindruck eines veralteten Systems, da Frameworks wie \cb{JavaFX} die GUI- Oberfläche moderner wirken lassen. \\
+	Da wir auch junge Menschen mit unserer Anwendung ansprechen möchten und \cb{JavaFX} eine bessere Usability bietet, entscheiden wir uns für \cb{S34}.
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFx Application}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFx Komponenten modelliert wird, muss Swing in die JavaFx Anwendung eingebunden werden.}}\rule{0pt}{5ex}\\ [1ex] \hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFX Application}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFX Komponenten modelliert wird, muss Swing in die JavaFX Anwendung eingebunden werden.}}\rule{0pt}{5ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {g}{Hohe Usability}\\
@@ -1519,22 +1519,22 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{lll}{S36 - SwingNode}}}: \\
-			Der Graph-Editor sowie die Oberfläche der Graphauswertung werden mit JavaFx modelliert. Die Visualisierung des Graphen wird mit JUNG umgesetzt, welches sich um eine Swing- Framework handelt. JavaFx stellt Swing-Nodes zur Verfügung in die Swing Komponenten eingebettet werden können. 
+			Der Graph-Editor sowie die Oberfläche der Graphauswertung werden mit JavaFX modelliert. Die Visualisierung des Graphen wird mit JUNG umgesetzt, welches sich um eine Swing- Framework handelt. JavaFX stellt Swing-Nodes zur Verfügung in die Swing Komponenten eingebettet werden können. 
 			\\
 			\textbf{S37 - Überschreibung von Klassen aus JUNG}: \\
-			JUNG baut auf Swing - Komponenten auf. Eine Möglichkeit ist es Klassen des Visualisierungs- Moduls von JUNG zu überschreiben, sodass die Swing- Komponenten durch JavaFx- Komponenten ersetzt werden. \\
+			JUNG baut auf Swing - Komponenten auf. Eine Möglichkeit ist es Klassen des Visualisierungs- Moduls von JUNG zu überschreiben, sodass die Swing- Komponenten durch JavaFX-Komponenten ersetzt werden. \\
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	\cb{S36} wird umgesetzt. JavaFx bietet eine fertige Lösung Swing- Komponenten zu integrieren. \cb{S37} umzusetzen ist viel aufwendiger und birgt ein hohes Fehlerpotenzial. Auch sind wir uns nicht sicher, ob \cb{S37} genauso umgesetzt werden könnte oder ob bei dem Prozess weiterer Probleme auftauchen würden. \\
+	\cb{S36} wird umgesetzt. JavaFX bietet eine fertige Lösung Swing- Komponenten zu integrieren. \cb{S37} umzusetzen ist viel aufwendiger und birgt ein hohes Fehlerpotenzial. Auch sind wir uns nicht sicher, ob \cb{S37} genauso umgesetzt werden könnte oder ob bei dem Prozess weiterer Probleme auftauchen würden. \\
 	Deswegen entscheiden wir uns über die \cb{SwingNode}.    
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFx}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFx erstellt.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFX}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFX erstellt.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {f}{Betriebssystemunterstützung / Zielplattformen des Systems}\\
@@ -1547,9 +1547,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{mmm}{38 - Scene- Builder}}}: \\
-			Mit Hilfe des Sence- Builders \url{https://gluonhq.com/products/scene-builder/} kann der Entwickler JavaFx Benutzeroberflächen zusammengeklicken und diese als FXML exportieren.  \\
+			Mit Hilfe des Sence- Builders \url{https://gluonhq.com/products/scene-builder/} kann der Entwickler JavaFX Benutzeroberflächen zusammengeklicken und diese als FXML exportieren.  \\
 			\textbf{S39 - eigens implementieren}: \\
-			Auf dem JavaFx- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
+			Auf dem JavaFX-Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1953,14 +1953,14 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 \label{sec:konzeptionell}
 \emph{Autoren: Jacky Philipp Mach}\\ \\
 
-In der folgenden Abbildung ist die konzeptionelle Sicht der Application visualisiert, mit all ihren Komponente und wie diese unter sich zusammenhängen und kommunizieren.\\
-Die Grundstruktur unserer Architektur ist angelehnt an das Model-View-Controller Designpattern kombiniert mit dem Command Designpattern, wie erwähnt in der Problemkarte “\hyperlink{bbb}{Auswahl der grundlegenden Softwarearchitektur}”. \\
-Dabei ist die GUI-Komponente die \textit{View}, die Command-Komponente die \textit{Controller} und die Datamodel-Komponente das \textit{Modell}. \\ 
+In der folgenden Abbildung ist die konzeptionelle Sicht der Applikation mit all ihren Komponenten visualisiert, wobei auch die Zusammenhänge und Kommunikationsmechanismen dieser Komponenten dargestellt werden.\\
+Die Grundstruktur unserer Architektur ist angelehnt an das Model-View-Controller-Designpattern kombiniert mit dem Command-Designpattern, wie erwähnt in der Problemkarte “\hyperlink{bbb}{Auswahl der grundlegenden Softwarearchitektur}”. \\
+Dabei ist die GUI-Komponente die \textit{View}, die Command-Komponente der \textit{Controller} und die Datamodel-Komponente das \textit{Modell}. \\ 
 
-In der \texttt{GUI}-Komponente wird hauptsächlich das Visuelle unserer Applikation festgelegt und wird wie in \hyperlink{kkk}{Benutzeroberfläche} festgelegt mit JavaFx umgesetzt. 
+In der \texttt{GUI}-Komponente wird hauptsächlich das Visuelle unserer Applikation festgelegt. Erstgenannte wird wie in \hyperlink{kkk}{Benutzeroberfläche} festgelegt mit JavaFX umgesetzt. 
 Die \texttt{GUI}-Komponente kommuniziert daher mit der Komponente \texttt{JUNG}, wie in \hyperlink{eee}{Visualisierung, Editierung und Interaktion mit dem Graphen} beschlossen wurde. 
 Dabei steht die \texttt{GUI}-Komponente mit dem Teilelement \texttt{Visualization} der Komponente \texttt{JUNG} in Beziehung über eine data-Schnittstelle. \\
-Das Anzeigen des Graphen in der \texttt{GUI} wird, wie in \hyperlink{lll}{Einbettung JUNG als Swing GUI-Framework in eine JavaFx Application} besprochen, über eine JavaFx SwingNode umgesetzt. \\
+Das Anzeigen des Graphen in der \texttt{GUI} wird, wie in \hyperlink{lll}{Einbettung JUNG als Swing GUI-Framework in eine JavaFX Application} besprochen, über eine JavaFX SwingNode umgesetzt. \\
 Die \texttt{Visualization} Komponente beinhaltet Klassen, die die Funktionalität für das Rendern des durch \texttt{JUNG} zur Verfügung stehenden Graphen implementieren. Aber auch Klassen, die die Visualisierung des Graphen bestimmten und Klassen, die die auszuführenden Aktionen bei Maus- und Tastatur-Interaktion festlegen. \\
 Über eine control-Schnittstelle kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Command}-Komponente für die Interaktion des Users mit dem Graphen. Die Commands werden also mit den GUI Interaktionen verknüpft.\\
 Außerdem kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Datamodel}-Komponente, um das Protokoll der Nutzerinteraktion in der GUI visualisieren und darstellen zu können. \\
@@ -2085,7 +2085,7 @@ Im folgenden ist eine Abbildung zum \texttt{io}-Package zu sehen, in dem auch se
 
 
 \subsection{\texttt{gui}}
-Die Benutzeroberfläche wurde mit JavaFx (siehe Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFx}) und mit Hilfe der Anwendung \textit{SceneBuilder} von Gluon, gemäß der Strategie \hyperlink{mmm}{S38 - Scene-Builder}, umgesetzt. Die erstellte \texttt{GUI} ist in der Applikation als FXML-Datei gespeichert und wird beim Starten unserer Applikation in der \texttt{Main}-Klasse geladen. Letztgenannte ist außerdem für das Starten der gesamten Anwendung zuständig. \\
+Die Benutzeroberfläche wurde mit JavaFX (siehe Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFX}) und mit Hilfe der Anwendung \textit{SceneBuilder} von Gluon, gemäß der Strategie \hyperlink{mmm}{S38 - Scene-Builder}, umgesetzt. Die erstellte \texttt{GUI} ist in der Applikation als FXML-Datei gespeichert und wird beim Starten unserer Applikation in der \texttt{Main}-Klasse geladen. Letztgenannte ist außerdem für das Starten der gesamten Anwendung zuständig. \\
 
 Um die GUI mit der gewünschten Funktionalität der Applikation zu verbinden, existiert die Klasse \texttt{Controller}. Sie dient als Schnittstelle zwischen der GUI und den internen Modulen. \\
 FXML ist sehr gut geeignet, um die Darstellung der \texttt{GUI} Elemente zu definieren und die Methoden in \texttt{Controller} jeweils zu den Elementen zuzuordnen. Diese Methoden werden beim Interagieren mit den GUI-Elementen aufgerufen und müssen in der \texttt{Controller}-Klasse angegeben werden. Da einige GUI-Elemente mehr Funktionalität benötigen als nur einen Methodenaufruf beim Interagieren, werden diese Elemente nochmals in der \texttt{Controller}-Klasse referenziert, um sie zu erweitern.\\
