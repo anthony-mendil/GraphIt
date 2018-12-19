@@ -12,8 +12,8 @@ public class PersonalEntityManager {
     private static EntityManager entityManager;
 
     /**
-     * returns the personal Entity Manager used to access the database
-     * @return the personal Entity Manager
+     * Returns the personal Entity Manager used to access the database.
+     * @return The personal Entity Manager.
      */
     public static EntityManager getInstance() {
         if (entityManager != null) {

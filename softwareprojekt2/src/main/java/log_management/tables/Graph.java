@@ -3,7 +3,7 @@ package log_management.tables;
 import javax.persistence.*;
 
 /**
- * Represents the Graph objects that are persisted into
+ * Represents the graph objects that are persisted into
  * the graphs table of the database.
  */
 @Entity
@@ -16,7 +16,7 @@ public class Graph {
     private int id;
 
     /**
-     * The GXL-Representation representation of the syndrom.
+     * The GXL representation of the syndrom.
      */
     private String gxl;
 
@@ -41,9 +41,9 @@ public class Graph {
     }
 
     /**
-     * Gets the GXL-Representation of the graph.
+     * Gets the GXL representation of the graph.
      *
-     * @return The GXL-Representation of the graph.
+     * @return The GXL representation of the graph.
      */
     @Column(name = "GXL")
     public String getGxl() {
@@ -51,9 +51,9 @@ public class Graph {
     }
 
     /**
-     * Sets the GXL-Representation of the graph.
+     * Sets the GXL representation of the graph.
      *
-     * @param gxl The GXL-Representation of the graph.
+     * @param gxl The GXL representation of the graph.
      */
     public void setGxl(String gxl) {
         this.gxl = gxl;

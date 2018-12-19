@@ -16,7 +16,7 @@ import java.util.Optional;
 public class GraphDao implements Dao<Graph> {
     protected static int currentId;
     /**
-     *  EntityManager instance is associated with the persistence context
+     *  EntityManager instance is associated with the persistence context.
      */
     private static EntityManager entityManager = PersonalEntityManager.getInstance();
     @Override

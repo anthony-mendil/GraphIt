@@ -10,29 +10,29 @@ import log_management.tables.Graph;
 import lombok.Data;
 
 /**
- * the database manager, for managing the database access
+ * The database manager, for managing the database access.
  */
 @Data
 @Singleton
 public class DatabaseManager implements ObserverSyndrom {
 
     /**
-     * the log_management.dao for graphs for accessing the database
+     * The log_management.dao GraphDao object for graphs, for accessing the database.
      */
     private GraphDao graphDao;
 
     /**
-     * the log_management.dao for logs for accessing the database
+     * The log_management.dao LogDao object for logs, for accessing the database.
      */
     private LogDao logDao;
 
     /**
-     * the gxl io to get the gxl string
+     * The GXLio object to get the GXL string.
      */
     private GXLio gxlIo;
 
     /**
-     * the current graph object
+     * The current graph object.
      */
     private Graph graph;
 
@@ -41,7 +41,7 @@ public class DatabaseManager implements ObserverSyndrom {
     }
 
     /**
-     * adds a log to the database (through dao)
+     * Adds a log to the database (through dao).
      * @param action TODO
      */
     public static void addEntryDatabase(Action action) {
@@ -49,7 +49,7 @@ public class DatabaseManager implements ObserverSyndrom {
     }
 
     /**
-     * setup for the database
+     * Setup for the database.
      */
     public void setup() {
         throw new UnsupportedOperationException();
