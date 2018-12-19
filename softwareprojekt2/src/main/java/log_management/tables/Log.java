@@ -40,7 +40,7 @@ public class Log {
     }
 
     /**
-     * Gets the Graph the action was performed on.
+     * Gets the graph which the action was performed on.
      *
      * @return The graph.
      */
@@ -51,7 +51,7 @@ public class Log {
     }
 
     /**
-     * Sets the Graph the action was performed on.
+     * Sets the graph which the action was performed on.
      *
      * @param graph The graph.
      */
@@ -82,7 +82,7 @@ public class Log {
     /**
      * Gets the parameters.
      *
-     * @return The parameters in the JSON-Format.
+     * @return The parameters in the JSON format.
      */
     @Column(name = "PARAMETERS")
     public String getParameters() {
@@ -92,16 +92,16 @@ public class Log {
     /**
      * Sets the parameters.
      *
-     * @param parameters The parameters in the JSON-Format.
+     * @param parameters The parameters in the JSON format.
      */
     public void setParameters(String parameters) {
         this.parameters = parameters;
     }
 
     /**
-     * Gets the time the corresponding action was created.
+     * Gets the time when the corresponding action was created.
      *
-     * @return The time the corresponding action was created.
+     * @return The time when the corresponding action was created.
      */
     @Column(name = "TIME")
     public LocalDateTime getTime() {
@@ -109,9 +109,9 @@ public class Log {
     }
 
     /**
-     * Sets the time the corresponding action was created.
+     * Sets the time when the corresponding action was created.
      *
-     * @param time The time the corresponding action was created.
+     * @param time The time when the corresponding action was created.
      */
     public void setTime(LocalDateTime time) {
         this.time = time;
