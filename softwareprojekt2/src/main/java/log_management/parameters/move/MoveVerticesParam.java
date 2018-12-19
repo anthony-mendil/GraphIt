@@ -18,33 +18,24 @@ import java.util.Map;
 @Data
 public class MoveVerticesParam extends Param{
     /**
-     * The set of vertices containing its old position.
+     * The set of old vertices and their position, which they were in.
      */
     @Getter
-    private List<Vertex>  vertices;
+    private Map<Vertex,Point2D> oldVertices;
     /**
-     * the difference between the x-coordinate where the user pressed the mouse and the point where the user released the mouse
+     * The set of new vertices and their position, which they will be in.
      */
     @Getter
-    private double dx;
-    /**
-     *  the difference between the y-coordinate where the user pressed the mouse and the point where the user
-     *  released the mouse
-     */
-    @Getter
-    private double dy;
+    private Map<Vertex,Point2D> newVertices;
 
     /**
      * Creates a parameter object of its own class.
-     * @param pVertices The selected vertices.
-     * @param pDx the difference between the x-coordinate where the user pressed the mouse and the point where the user released the mouse
-     * @param pDy the difference between the y-coordinate where the user pressed the mouse and the point where the user
-     *  released the mouse
+     * @param pOldVertices The set of old vertices and their position.
+     * @param pNewVertices The set of new vertices and their position.
      */
-    public MoveVerticesParam(List<Vertex> pVertices, Double pDx, Double pDy) {
-        this.vertices = pVertices;
-        this.dx = pDx;
-        this.dy = pDy;
+    public MoveVerticesParam(Map<Vertex,Point2D> pOldVertices, Map<Vertex,Point2D> pNewVertices) {
+        this.oldVertices = pOldVertices;
+        this.newVertices = pNewVertices;
     }
     @Override
     public String toString() {

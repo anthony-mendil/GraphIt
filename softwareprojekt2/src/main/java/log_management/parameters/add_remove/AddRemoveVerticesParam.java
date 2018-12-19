@@ -22,7 +22,6 @@ public class AddRemoveVerticesParam extends Param{
 
     /**
      * Creates an parameter object of its own class.
-     *
      * @param pParameter The set of vertices and their sphere
      */
     public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter) {

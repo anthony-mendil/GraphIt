@@ -14,10 +14,25 @@ import java.time.LocalDateTime;
 @Table(name = "LOGS", schema = "PUBLIC", catalog = "TEST")
 public class Log {
     @Id
+    /**
+     * The id of the logEntry.
+     */
     private int id;
+    /**
+     * The snapshot of the current graph.
+     */
     private Graph graph;
+    /**
+     * The name of the log-entry.
+     */
     private LogEntryName logEntryName;
+    /**
+     * The parameters used in the aciton.
+     */
     private String parameters = "";
+    /**
+     * The time, in which the action got called.-
+     */
     private LocalDateTime time;
 
     /**

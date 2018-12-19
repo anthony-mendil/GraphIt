@@ -6,18 +6,33 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Represents an action, which will be logged into the database.
+ */
 public abstract class LogAction extends GraphAction {
 
     @Getter
     @lombok.Setter
+    /**
+     * The name of the action.
+     */
     private LogEntryName logEntryName;
     @Getter
     @Setter
+    /**
+     * The parameters, which were used in the action.
+     */
     protected Param parameters;
     @Getter
+    /**
+     * The time, the actions got called.
+     */
     private LocalDateTime time;
 
+    /**
+     * Creates an action in the program, which will also be persisted into in the database.
+     * @param nLogEntryName
+     */
     public LogAction(LogEntryName nLogEntryName) {
         logEntryName = nLogEntryName;
         time = LocalDateTime.now();

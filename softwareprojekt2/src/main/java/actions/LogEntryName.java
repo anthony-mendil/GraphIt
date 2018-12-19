@@ -1,5 +1,7 @@
 package actions;
-
+/**
+ * Enumerates all actions, that have to be logged into the database.
+ */
 public enum LogEntryName {
     /**
      * The log entry will be of this type if vertices are added in the action.

@@ -12,16 +12,24 @@ import edu.uci.ics.jung.visualization.renderers.BasicEdgeRenderer;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.graph.Sphere;
-
-
 /**
  * The SyndromRenderer paints the syndrom graph.
  */
 public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
-
+    /**
+     * The sphere-renderer caring about the rendering of the spheres.
+     */
     private SphereRenderer sphaerenRenderer = new SphereRenderer();
+    /**
+     * The edge-renderer caring about the edges of the graph.
+     */
     private EdgeRenderer edgeRenderer = new EdgeRenderer();
 
+    /**
+     * Basic render function implemented in JUNG.
+     * @param renderContext The renderContext of the graph defined in JUNG.
+     * @param layout The given layout defined in JUNG.
+     */
     @Override
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {
         throw new UnsupportedOperationException();

@@ -139,7 +139,9 @@ public class Values {
      */
     private String objectLanguage;
 
-
+    /**
+     * Sets the current values of the GUI to remember its state.
+     */
     public Values() {
         throw new UnsupportedOperationException();
     }
