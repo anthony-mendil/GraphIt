@@ -2233,9 +2233,9 @@ Da aber unser Datenmodell des Graphen nicht mit dem kompatibel ist welche JGraph
 \newpage
 \section{Ausführungssicht}
 \label{sec:ausfuehrung}
-\emph{Autoren: Jacky Philipp Mach, Jonah Jaeger}\\ \\
+\emph{Autoren: Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger}\\ \\
 
-In der folgenden Abbildung ist unsere Ausführungssicht zu erkennen. Da es sich nach den Anforderungen um eine lokale Anwendung handelt, gibt es pro Nutzer genau eine Instanz der Anwendung. Darüber hinaus ist die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung nicht vorgesehen und könnte zu Fehlern, insbesondere bei der Kommunikation mit der eingebetteten H2-Datenbank, führen. \\
+In den folgende Abbildung ist unsere Ausführungssicht zu erkennen. Da es sich nach den Anforderungen um eine lokale Anwendung handelt, gibt es pro Nutzer genau eine Instanz der Anwendung. Darüber hinaus ist die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung nicht vorgesehen und könnte zu Fehlern, insbesondere bei der Kommunikation mit der eingebetteten H2-Datenbank, führen. \\
 
 Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozess des \textit{Clients} ausgeführt. \\
 Zum Starten und Beenden der Anwendung ist das Modul \texttt{gui} zuständig. Es arbeitet mit dem Modul \texttt{action} zusammen, da Programmteile aus \texttt{gui} Actions aus dem Modul \texttt{actions} aufrufen. Durch den Aufruf dieser Actions kommt es zu Veränderungen des dargestellten Graphen(Package\texttt{graph.visualization}). Der geänderte Graph wird zusammen mit einem die Action beschreibenden Logeintrag in der Datenbank gespeichert. Letzteres ist nur der Fall, falls die ausgeführte Action ist, welche für die Protokollierung des Nutzerverhaltens relevant ist.
@@ -2243,11 +2243,21 @@ Zum Starten und Beenden der Anwendung ist das Modul \texttt{gui} zuständig. Es 
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=1\textwidth]{ausfuehrungssicht.png}
-	\caption{Ausführungssicht}
+	\includegraphics[width=1\textwidth]{Ausfuehrungssicht_Singlethread.png}
+	\caption{Ausführungssicht der Singlethread-Version}
+\end{figure}
+\clearpage
+\newpage
+
+Bei : \\
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\textwidth]{Ausfuehrungssicht_Multithread.png}
+	\caption{Ausführungssicht der Multithread-Version}
 \end{figure}
 
-\newpage{}
+
+\newpage
 \section[Zusammenhänge zwischen Anwendungsfällen und Architektur]{Zusammenhänge zwischen Anwendungsfällen und Architektur\sectionmark{Zusammenhänge AF u. Architektur}}
 \sectionmark{Zusammenhänge AF u. Architektur}
 \label{sec:anwendungsfaelle}
