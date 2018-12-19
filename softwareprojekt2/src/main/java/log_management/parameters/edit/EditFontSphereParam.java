@@ -4,12 +4,14 @@ import graph.graph.Sphere;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 
 /**
  * Parameter object for the action EditFontSphereParam.
  */
+@Data
 public class EditFontSphereParam extends Param {
     /**
      * The sphere containing its old annotation-font.

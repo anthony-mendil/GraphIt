@@ -2,6 +2,7 @@ package log_management.parameters.activate_deactivate;
 
 import graph.graph.Edge;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Parameter object for action ActivateAnchorPointsFadeoutLogAction.
  */
+@Data
 public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
 
     /**

@@ -4,6 +4,7 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.Map;
 /**
  * Parameter object for the Action EditFontSizeVerticesLogAction.
  */
+@Data
 public class EditFontSizeVerticesParam extends Param {
     /**
      * The set of the vertices and their old font-size.

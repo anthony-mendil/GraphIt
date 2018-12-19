@@ -3,6 +3,7 @@ package log_management.parameters.activate_deactivate;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Parameter object for action ActivateHighlightLogAction/DeactivateHighlightLogAction.
  */
+@Data
 public class ActivateDeactivateHighlightParam extends Param{
     /**
      * List of vertices, which will highlight/stop highlight.

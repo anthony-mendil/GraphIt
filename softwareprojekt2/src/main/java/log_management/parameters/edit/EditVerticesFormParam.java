@@ -3,6 +3,7 @@ package log_management.parameters.edit;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.util.Map;
 /**
  * Parameter object of the action EditVerticesFormLogAction.
  */
+@Data
 public class EditVerticesFormParam extends Param{
     /**
      * The set of vertices containing their old shapes/ annotation.

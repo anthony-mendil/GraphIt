@@ -4,6 +4,7 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.util.Map;
 /**
  * Parameter object of the action EditEdgesColorLogAction.
  */
+@Data
 public class EditEdgesColorParam extends Param{
     /**
      * The list of edges containing their old color.

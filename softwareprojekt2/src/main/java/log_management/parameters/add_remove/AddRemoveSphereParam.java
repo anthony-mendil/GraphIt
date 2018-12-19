@@ -2,12 +2,14 @@ package log_management.parameters.add_remove;
 
 import graph.graph.Sphere;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 
 /**
  * Parameter object for the action AddSphereLogAction/RemoveSphereLogAction.
  */
+@Data
 public class AddRemoveSphereParam extends Param{
     /**
      * The Sphere, which will be added/deleted.

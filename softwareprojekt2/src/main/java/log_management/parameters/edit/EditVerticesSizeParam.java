@@ -4,6 +4,7 @@ import graph.graph.Sphere;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Map;
 /**
  * Parameter object of the action EditSphereSizeLogAction.
  */
+@Data
 public class EditVerticesSizeParam extends Param{
     /**
      * The sphere containing its old size

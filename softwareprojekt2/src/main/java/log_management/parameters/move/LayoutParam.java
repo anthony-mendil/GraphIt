@@ -4,6 +4,7 @@ package log_management.parameters.move;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
@@ -13,6 +14,7 @@ import java.util.Map;
 /**
  * parameter object for LayoutGraphLogAction, changes the position of the vertices
  */
+@Data
 public class LayoutParam extends Param {
     /**
      * the vertices containing their old position

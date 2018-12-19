@@ -3,13 +3,14 @@ package log_management.parameters.activate_deactivate;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import log_management.parameters.Param;
+import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.List;
 /**
  * Parameter object of the action ActivateFadeoutLogAction and DeactivateFadeoutLogAction.
  */
+@Data
 public class ActivateDeactivateFadeoutParam extends Param{
     /**
      * List of vertices to activate/cancel the highlight-option.
