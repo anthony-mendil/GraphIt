@@ -5,10 +5,10 @@ import org.apache.commons.collections15.Transformer;
 import java.awt.*;
 
 /**
- * Defines a functor that transform a vertex into its draw color. The input vertex left unchanged. Its extracting the
- * draw color of a vertex.
+ * Defines a functor that transform a vertex into its draw color. The input vertex is left unchanged.
+ * Its extracting the draw color of a vertex.
  *
- * @param <V> the vertex type
+ * @param <V> The vertex type.
  */
 public class VertexDrawPaintTransformer<V> implements Transformer<V, Paint> {
     @Override

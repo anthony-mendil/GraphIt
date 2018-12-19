@@ -11,16 +11,16 @@ import graph.graph.Sphere;
  */
 public class SyndromPickSupport<V, E> extends ShapePickSupport {
     /**
-     * the visualisation server
+     * The visualisation server.
      */
     private VisualizationServer<V,E> pVisualizationServer;
 
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
      * <code>VisualizationServer</code> is used to access properties of the current visualization (layout, renderer,
-     * coordinate transformations, vertex/edge shapes, etc.)
+     * coordinate transformations, vertex/edge shapes, etc.).
      *
-     * @param vv source of the current <code>Layout</code>.
+     * @param vv Source of the current <code>Layout</code>.
      */
     SyndromPickSupport(VisualizationServer<V, E> vv) {
         super(vv);
@@ -29,10 +29,10 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
     /**
      * Iterates over spheres, checking to see if x,y is contained in the spheres shape.
      *
-     * @param layout the current layout
-     * @param x      the x- coordinate
-     * @param y      the y- coordinate
-     * @return the picked sphere
+     * @param layout The current layout.
+     * @param x      The x- coordinate.
+     * @param y      The y- coordinate.
+     * @return The picked sphere.
      */
     public Sphere getSphaere(Layout<V, E> layout, double x, double y) {
         throw new UnsupportedOperationException();
@@ -41,10 +41,10 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
     /**
      * Iterates over edges, checking to see if x,y is contained in a edge arrow.
      *
-     * @param layout the current layout
-     * @param x      the x- coordinate
-     * @param y      the y- coordinate
-     * @return the associated edge to the arrow
+     * @param layout The current layout.
+     * @param x      The x- coordinate.
+     * @param y      The y- coordinate.
+     * @return The associated edge to the arrow.
      */
     public Edge getEdgeArrow(Layout<V, E> layout, double x, double y) {
         throw new UnsupportedOperationException();

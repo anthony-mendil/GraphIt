@@ -34,61 +34,61 @@ public class Vertex {
     private Point2D coordinate;
 
     /**
-     * the shape of a vertex.
+     * The shape of a vertex.
      */
     @NonNull
     private VertexShapeType shape;
 
     /**
-     * the annotation of a vertex
+     * The annotation of a vertex.
      */
     @NonNull
     private Map<String, String> annotation;
 
     /**
-     * the draw color of a vertex
+     * The draw color of a vertex.
      */
     @NonNull
     private Paint drawPaint;
 
     /**
-     * the edges with a reinforcing relation with its position on the vertex.
+     * The edges with a reinforcing relation with its position on the vertex.
      */
     @NonNull
     private Map<ScopePoint, Point2D> vertixArrowReinforced = null;
 
     /**
-     * the edges with a neutral relation with its position on the vertex.
+     * The edges with a neutral relation with its position on the vertex.
      */
     @NonNull
     private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
 
     /**
-     * the edges with a extenuating relation with its position on the vertex.
+     * The edges with a extenuating relation with its position on the vertex.
      */
     @NonNull
     private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
 
     /**
-     * the siz of a vertex
+     * The size of a vertex.
      */
     @NonNull
     private int size;
 
     /**
-     * defines whether a edge is visible or not
+     * Defines whether an edge is visible or not.
      */
     @NonNull
     private boolean isVisible;
 
     /**
-     * the font of the annotation
+     * The font of the annotation.
      */
     @NonNull
     private String font;
 
     /**
-     * the font size of the annotation
+     * The font size of the annotation.
      */
     @NonNull
     private int fontSize;
