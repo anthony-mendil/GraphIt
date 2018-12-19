@@ -31,6 +31,7 @@ public class EditEdgesTypeLogAction extends LogAction {
 
     /**
      * Changes the edge type from all passed edges
+     *
      * @param pEdgeArrowType The new edge type.
      */
     public EditEdgesTypeLogAction(EdgeArrowType pEdgeArrowType) {

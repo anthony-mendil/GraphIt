@@ -20,9 +20,9 @@ public class EditFontSphereLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param parameters The EditFontSphereParam object containing the new font and the sphere.
+     * @param pEditFontSphereParam The EditFontSphereParam object containing the new font and the sphere.
      */
-    public EditFontSphereLogAction(EditFontSphereParam parameters) {
+    public EditFontSphereLogAction(EditFontSphereParam pEditFontSphereParam) {
         super(LogEntryName.EDIT_FONT_SPHERE);
     }
 

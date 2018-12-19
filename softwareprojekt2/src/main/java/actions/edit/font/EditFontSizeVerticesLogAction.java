@@ -19,7 +19,8 @@ public class EditFontSizeVerticesLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditFontSizeVerticesParam The EditVertexAnnotationParam object containing the new vertex annotation.
+     * @param pEditFontSizeVerticesParam The EditFontSizeVerticesParam object containing
+     *                                   the new font sizes of the Vertices.
      */
     public EditFontSizeVerticesLogAction(EditFontSizeVerticesParam pEditFontSizeVerticesParam) {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);

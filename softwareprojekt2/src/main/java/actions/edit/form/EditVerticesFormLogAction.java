@@ -18,6 +18,14 @@ public class EditVerticesFormLogAction extends LogAction {
         super(LogEntryName.EDIT_VERTICES_FORM);
     }
 
+    /**
+     * Constructor which will be used to realize the undo-method of itself.
+     *
+     * @param pEditVerticesFormParam The parameter object that contains every parameter that is needed.
+     */
+    public EditVerticesFormLogAction(EditVerticesFormParam pEditVerticesFormParam) {
+        super(LogEntryName.EDIT_VERTICES_FORM);
+    }
 
     @Override
     public void action() {

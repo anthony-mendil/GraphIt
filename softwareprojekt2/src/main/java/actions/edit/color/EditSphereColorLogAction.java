@@ -24,9 +24,9 @@ public class EditSphereColorLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param parameters The parameter object containing the sphere and color.
+     * @param pEditSphereColorParam The parameter object containing the sphere and color.
      */
-    public EditSphereColorLogAction(EditSphereColorParam parameters) {
+    public EditSphereColorLogAction(EditSphereColorParam pEditSphereColorParam) {
         super(LogEntryName.EDIT_SPHERE_COLOR);
     }
 
