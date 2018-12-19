@@ -64,7 +64,7 @@ public class JGraphTHandler {
      * @param pGraph  The graph in JGraphT-form.
      * @param pSource The start-vertex of the path.
      * @param pSink   The end-vertex of the path.
-     * @return The List of paths between the vertices.
+     * @return The list of paths between the vertices.
      */
     public List<List<Vertex>> getAllPaths(Graph pGraph, Vertex pSource, Vertex pSink) {
         throw new UnsupportedOperationException();

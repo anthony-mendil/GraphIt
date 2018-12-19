@@ -4,36 +4,36 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import java.io.FileInputStream;
 
 /**
- * the pdf exporter (export/ print)
+ * The PDF exporter (export/print)
  */
 public class PDFio {
 
     /**
-     * The VisualizationViewer of the current graph
+     * The VisualizationViewer object of the current graph.
      */
     private VisualizationViewer vv;
 
 
     /**
-     * Constructs a new PDFio
+     * Constructs a new PDFio object.
      *
-     * @param pVv The VisualizationViewer of the current graph
+     * @param pVv The VisualizationViewer object of the current graph.
      */
     public PDFio(VisualizationViewer pVv){
         vv=pVv;
     }
 
     /**
-     * Creates a PDF of the current graph visualization
+     * Creates a PDF of the current graph visualization.
      *
-     *  @return A FileInputStream of the PDF of the current graph
+     *  @return A FileInputStream of the PDF of the current graph.
      */
     protected FileInputStream createPDF(){
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Starts the dialog to export the current graph visualization as PDF
+     * Starts the dialog to export the current graph visualization as PDF.
      */
     public void exportPDF() {
         throw new UnsupportedOperationException();
@@ -42,7 +42,7 @@ public class PDFio {
     }
 
     /**
-     * Starts the dialog to export the current graph visualization as PDF
+     * Starts the dialog to export the current graph visualization as PDF.
      */
     public void printPDF() {
         throw new UnsupportedOperationException();
