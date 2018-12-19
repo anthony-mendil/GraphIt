@@ -191,7 +191,7 @@
   \\ ~
   \vspace{2cm}
   \\
-  \it Abgabe: 23. Dezember 2018 --- Version 1.0\\ ~
+  \it Abgabe: 23. Dezember 2018 --- Version 4.0\\ ~
   \end{center}
   \end{minipage}
 
@@ -230,13 +230,36 @@ Im folgenden ist eine Tabelle zu finden, die Aufschluss darüber ermöglicht, mi
 \begin{tabular}{p{1,2cm}cp{12cm}}
 Version & Datum & Änderungen \\
 \hline
-0.1 & 28.10.2018 & Aufsetzen eines LaTeX-Dokumentes  und Festlegung grundlegender Layout-Entscheidungen \\
-0.2 & 30.10.2018 & Einfügen einer vorläufigen Gliederung \\
-0.3 & 02.11.2018 & Anpassung des Layouts \\
-1.1 & 03.11.2018 & Erarbeitung der Einleitung \\
-1.2 & 15.11.2018 & Einflussfaktoren vorläufig abgeschlossen \\
-\textbf{1.3} & \textbf{27.11.2018} & \textbf{Einflussfaktoren an geänderte Anforderungen angepasst} \\
-\ldots
+0.0 & 28.10.2018 & Aufsetzen eines LaTeX-Dokuments und Festlegung grundlegender Layout-Entscheidungen \\
+0.1 & 30.10.2018 & Einfügen einer vorläufigen Gliederung \\
+0.2 & 02.11.2018 & Anpassung des Layouts \\
+1.0 & 03.11.2018 & Erarbeitung der Einleitung \\
+1.1 & 15.11.2018 & vorläufige Version der Einflussfaktoren \\
+1.2 & 27.11.2018 & Einflussfaktoren an geänderte Anforderungen angepasst \\
+1.3 & 30.11.2018 & Vorerst finale Version der Einflussfaktoren- und Problemkartenerstellung \\
+1.4 & 03.12.2018 & Erste Version der Konzeptionellen Sicht\\
+1.5 & 04.12.2018 & Beschreibung der Konzeptionellen Sicht hinzugefügt\\
+1.6 & 05.12.2018 & Finale Version der Einflussfaktoren und Problemkarten \\
+1.7 & 06.12.2018 & Erste Version der Anwendungsfälle \\
+1.8 & 07.12.2018 & Erste Version der Datensicht \\
+1.9 & 09.12.2018 & Beschreibung der Datensicht \\
+2.0 & 09.12.2018 & Komplett neu aufgesetztes Dokument \\
+2.1 & 11.12.2018 & Überarbeitete Datensicht und benötigte Problemkarte\\
+2.2 & 12.12.2018 & Überarbeitete Version der Konzeptionellen Sicht \\
+2.3 & 12.12.2018 & Erste Version der Modulsicht \\
+2.4 & 13.12.2018 & Erste Version der kompletten Klassendiagramme \\
+2.5 & 14.12.2018 & Erste Version der Evolution \\
+2.6 & 14.12.2018 & Erste Version der Ausführungssicht \\
+2.7 & 14.12.2018 & Überarbeitung, Formalisierung und Strukturierung der Anwendungsfälle \\
+2.8 & 16.12.2018 & Sequenzdiagramme zu den Anwendungsfällen \\
+2.9 & 16.12.2018 & Klassendiagramme in Modulsicht-Abschnitte eingegliedert \\
+3.0 & 17.12.2018 & Geprüfte Version der Einleitung, Datensicht, Konzeptionellen Sicht und Evolution\\
+3.1 & 19.12.2018 & Überarbeitete und geprüfte Version der Ausführungssicht und Globalen Analyse\\
+3.2 & 19.12.2018 & Geprüfte Version der Modulsicht \\
+3.3 & 20.12.2018 & Vorläufig generell überprüfte Version des Dokuments \\
+\textbf{4.0} & \textbf{21.12.2018} & \textbf{Endgültige Version der Architekturbeschreibung} \\
+
+
 \end{tabular}
 \\ \\ \\ \newpage
 
@@ -1966,7 +1989,9 @@ Die Logger-Komponente ist in unserer Applikation eingebaut um uns bei der Entwic
 
 \emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
 
-Alle Attribute sind private, es existieren aber Getter und Setter (außer bei sämtlichen Id's, dort nur Getter), weshalb sie als public markiert werden. Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. (Wir haben uns bezüglich der Klasse \texttt{Vertex} ... keine Ahnung...Hilfe)
+\textit{Anmerkungen zu dem Diagramm}: \\
+Alle dargestellten Attribute sind \texttt{private}, es existieren aber Getter und Setter für die Attribute (außer bei sämtlichen Id's, dort nur Getter). Deswegen sind die Attribute alle im Diagramm als \texttt{public} markiert. \\
+Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. (Wir haben uns bezüglich der Klasse \texttt{Vertex} ... keine Ahnung...Hilfe)
 
 \begin{figure}[ht]
 \centering
