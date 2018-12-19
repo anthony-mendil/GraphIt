@@ -2258,9 +2258,9 @@ Nachdem wir nun auf alle Module unserer Anwendung eingegangen sind (zu dem eben 
 
 In den folgende Abbildung ist unsere Ausführungssicht zu erkennen. Da es sich nach den Anforderungen um eine lokale Anwendung handelt, gibt es pro Nutzer genau eine Instanz der Anwendung und die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung ist nicht vorgesehen. \\
 
-Zum Starten und Beenden der Anwendung ist das Modul \texttt{gui} zuständig. Es arbeitet mit dem Modul \texttt{action} zusammen indem Programmteile aus \texttt{gui} (z.B. Buttons oder Menü-Items) bestimmte Actions aus dem Modul \texttt{actions} aufrufen. Durch den Aufruf dieser Actions kommt es zu Veränderungen des dargestellten Graphen (im Modul \texttt{graph}). Der geänderte Graph wird zusammen mit einem die Action beschreibenden Log-Eintrag in der Datenbank gespeichert. Dafür arbeitet das Modul \texttt{log\_management} mit dem Subsystem \texttt{Persistence} zusammen um das zweite Subsystem \texttt{H2DB} anzusteuern. Letzteres ist nur der Fall, falls die ausgeführte Action eine \texttt{LogAction} ist, welche für die Protokollierung des Nutzerverhaltens relevant ist.\\
-Im selben Prozess werden Import und Export durch das Modul \texttt{io} geregelt. Diese werden ebenfalls durch Actions aus \texttt{actions} ausgelöst. \\
-Zum Auswerten der Graph-Eigenschaften wird das Modul \texttt{jgrapht} benötigt. Auch diese Funktionen werden von den Actions in Kraft gesetzt.\\
+Zum Starten und Beenden der Anwendung ist das Modul \texttt{gui} zuständig. Es arbeitet mit dem Modul \texttt{actions} zusammen, indem Programmteile aus \texttt{gui} (z.B. Buttons oder Menü-Items) bestimmte Actions aus dem Modul \texttt{actions} aufrufen. Durch den Aufruf dieser Actions kommt es zu Veränderungen des dargestellten Graphen (im Modul \texttt{graph}). Der geänderte Graph wird zusammen mit einem die Action beschreibenden Log-Eintrag in der Datenbank gespeichert. Dafür arbeitet das Modul \texttt{log\_management} mit dem Subsystem \texttt{Persistence} zusammen um das zweite Subsystem \texttt{H2DB} anzusteuern. Letzteres ist nur der Fall, falls die ausgeführte Action eine \texttt{LogAction} ist. Bei diesen Actions handelt es sich um für die Protokollierung des Nutzerverhaltens relevante Actions.\\
+Im selben Prozess werden Import und Export durch das Modul \texttt{io} geregelt. Diese werden ebenfalls durch Action-Objekte aus \texttt{actions} ausgelöst. \\
+Zum Auswerten der Graph-Eigenschaften wird in einigen Fällen das Modul \texttt{jgrapht} benötigt. Auch diese Funktionen werden von den Actions in Kraft gesetzt.\\
 
 Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozess des \textit{Clients} ausgeführt, wie in folgender Abbildung (Ausführungssicht der Singlethread-Version) zu sehen ist. \\
 
@@ -2272,7 +2272,7 @@ Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozes
 \clearpage
 \newpage
 
-Eine Alternative zu der bestehenden Version wäre die Realisierung der Anwendung durch mehrere Threads. Eine Möglichkeit wäre es, die GUI in einem eigenen Thread laufen zu lassen (siehe folgende Abbildung: Ausführungssicht der Multithread-Version). Dies könnte helfen, eine durchgehend ansprechbare und dadurch angenehme Benutzeroberfläche, gemäß \hyperlink{g}{Hoher Usability} und \hyperlink{h}{Hoher Qualität}, zu entwickeln. Falls unsere Architektur diese Aspekte nicht ausreichend abdeckt, was sich in Tests späterer Entwicklungsphasen zeigen wird, dann haben wir immer noch die möglich, auf dieses Modell umzusteigen. \\
+Eine Alternative zu der bestehenden Version wäre die Realisierung der Anwendung durch mehrere Threads. Eine Möglichkeit wäre es, die GUI in einem eigenen Thread laufen zu lassen (siehe folgende Abbildung: Ausführungssicht der Multithread-Version). Dies könnte helfen, eine durchgehend ansprechbare und dadurch angenehmere Benutzeroberfläche, gemäß \hyperlink{g}{Hoher Usability}, zu entwickeln. Falls unsere Architektur diese Aspekte nicht ausreichend abdeckt, was sich in Tests späterer Entwicklungsphasen zeigen wird, dann ist es immer noch möglich, auf dieses Modell umzusteigen. \\
 
 \begin{figure}[ht]
 	\centering
