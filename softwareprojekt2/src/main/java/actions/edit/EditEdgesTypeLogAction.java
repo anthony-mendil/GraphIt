@@ -22,7 +22,7 @@ public class EditEdgesTypeLogAction extends LogAction {
     /**
      * Changes the edge type from all defined edges in pParam.
      *
-     * @param pParam the EditEdgesTypeParam, containing all edges where to change the edge type
+     * @param pParam The EditEdgesTypeParam object, containing all edges where to change the edge type.
      */
     public EditEdgesTypeLogAction(EditEdgesTypeParam pParam) {
         super(LogEntryName.EDIT_EDGES_TYPE);
@@ -31,7 +31,7 @@ public class EditEdgesTypeLogAction extends LogAction {
 
     /**
      * Changes the edge type from all passed edges
-     * @param pEdgeArrowType the new edge type
+     * @param pEdgeArrowType The new edge type.
      */
     public EditEdgesTypeLogAction(EdgeArrowType pEdgeArrowType) {
         super(LogEntryName.EDIT_EDGES_TYPE);
@@ -50,7 +50,6 @@ public class EditEdgesTypeLogAction extends LogAction {
 
     @Override
     public void createParameter() {
-
         throw new UnsupportedOperationException();
     }
 }

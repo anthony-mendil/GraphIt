@@ -6,14 +6,14 @@ import log_management.parameters.edit.EditVerticesFillColorParam;
 
 import java.awt.*;
 
-/*
+/**
  * Changes the color of a single/several vertices.
  */
 public class EditVerticesFillColorLogAction extends LogAction {
     /**
      * Constructor in case the user changes the color of a single/multiple vertices.
-     * Gets the vertices though picksupport.
-     * @param pColor the color to paint the edges
+     * Gets the vertices though pick support.
+     * @param pColor The color to paint the edges.
      */
     public EditVerticesFillColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_VERTICES_FILL_COLOR);
@@ -21,7 +21,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditVerticesFillColorParam the EditVertexAnnotationParam containing the new vertex annotation
+     * @param pEditVerticesFillColorParam The EditVertexAnnotationParam object containing the new vertex annotation.
      */
     public EditVerticesFillColorLogAction(EditVerticesFillColorParam pEditVerticesFillColorParam) {
         super(LogEntryName.EDIT_VERTICES_FILL_COLOR);

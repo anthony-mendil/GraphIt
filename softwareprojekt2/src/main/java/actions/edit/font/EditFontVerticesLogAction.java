@@ -4,14 +4,14 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.edit.EditFontVerticesParam;
 
-/*
+/**
  * Changes the font of annotations.
  */
 public class EditFontVerticesLogAction extends LogAction {
     /**
      * Constructor in case the user wants to change the font.
      *
-     * @param pFont the font-name.
+     * @param pFont The font-name.
      */
     public EditFontVerticesLogAction(String pFont) {
         super(LogEntryName.EDIT_FONT_VERTICES);
@@ -19,7 +19,7 @@ public class EditFontVerticesLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditFontVerticesParam the used parameters
+     * @param pEditFontVerticesParam The parameter object that contains every parameter that is needed.
      */
     public EditFontVerticesLogAction(EditFontVerticesParam pEditFontVerticesParam) {
         super(LogEntryName.EDIT_FONT_VERTICES);

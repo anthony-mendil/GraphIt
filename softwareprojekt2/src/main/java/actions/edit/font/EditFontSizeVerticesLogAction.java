@@ -4,14 +4,14 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.edit.EditFontVerticesParam;
 
-/*
+/**
  * Changes the font-size of vertex annotations.
  */
 public class EditFontSizeVerticesLogAction extends LogAction {
     /**
      * Constructor in case the user changes the font-size of the annotation.
      *
-     * @param pSize the size of the font
+     * @param pSize The size of the font.
      */
     public EditFontSizeVerticesLogAction(int pSize) {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);
@@ -19,7 +19,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditFontVerticesParam the EditVertexAnnotationParam containing the new vertex annotation
+     * @param pEditFontVerticesParam The EditVertexAnnotationParam object containing the new vertex annotation.
      */
     public EditFontSizeVerticesLogAction(EditFontVerticesParam pEditFontVerticesParam) {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);

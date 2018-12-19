@@ -7,10 +7,13 @@ import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 
 import java.awt.geom.Point2D;
 
+/**
+ * Adds an anchor-point to the selected vertex.
+ */
 public class AddAnchorPointsLog extends LogAction {
 	 /**
      * Constructor in the case few anchor-points shall be added.
-     * Gets all picked Edges through pick support
+     * Gets all picked edges through pick support.
      */
     public AddAnchorPointsLog(){
     	super(LogEntryName.ADD_ANCHOR_POINTS);
@@ -30,7 +33,7 @@ public class AddAnchorPointsLog extends LogAction {
      * Adds an anchor-point to the edge.
      * Constructor which will be used to realize the undo-method of RemoveAnchorPointsAction.
      *
-     * @param pAddRemoveAnchorPointsParam The parameters containing all anchor points to add.
+     * @param pAddRemoveAnchorPointsParam The parameter object containing all anchor points to add.
      */
     public AddAnchorPointsLog(AddRemoveAnchorPointsParam pAddRemoveAnchorPointsParam) {
         super(LogEntryName.ADD_ANCHOR_POINTS);

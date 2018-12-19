@@ -8,7 +8,7 @@ import actions.GraphAction;
  */
 public class GraphDimensionAction extends GraphAction {
     /**
-     * computes the data needed for the current graph
+     * Computes the data needed for the current graph.
      */
     public GraphDimensionAction() {
         throw new UnsupportedOperationException();

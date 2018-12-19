@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class AddVerticesLogAction extends LogAction {
     /**
-     * map with vertices and corresponding pair, containing the sphere id and sphere annotation.
+     * Map with vertices and corresponding pairs, containing the sphere id and sphere annotation.
      */
     Map<Vertex, Pair<Integer, String>> vertexPairMap;
 
@@ -24,7 +24,7 @@ public class AddVerticesLogAction extends LogAction {
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
      * RemoveVerticesLogAction.
      *
-     * @param pParam the AddVerticesParameters, containing all vertices to add.
+     * @param pParam The parameter object, containing all vertices to add.
      */
     public AddVerticesLogAction(AddRemoveVerticesParam pParam) {
         super(LogEntryName.ADD_VERTICES);
@@ -32,9 +32,9 @@ public class AddVerticesLogAction extends LogAction {
 
 
     /**
-     * Adds a vertex at point
+     * Adds a vertex at given point.
      *
-     * @param point point of the mouse event where the vertex should be added
+     * @param point Point of the mouse event where the vertex should be added.
      */
     public AddVerticesLogAction(Point2D point) {
         super(LogEntryName.ADD_VERTICES);

@@ -3,25 +3,25 @@ package actions.export_graph;
 import actions.GraphAction;
 
 /**
- * exports an oof with the current syndrom graph
+ * Exports an OOF file with the current syndrom graph.
  */
 public class ExportOofAction extends GraphAction {
 
     /**
-     * The path that the OOF is exported to
+     * The path that the OOF file is exported to.
      */
     private String path;
 
     /**
-     * The name of the file
+     * The name of the file.
      */
     private String name;
 
     /**
-     * Constructs Actionhandling for exporting the graph as Oof
+     * Constructs action handling for exporting the graph as OOF file.
      *
-     * @param pPath The path that the OOF is exported to
-     * @param pName The name of the file
+     * @param pPath The path that the OOF file is exported to.
+     * @param pName The name of the file.
      */
     public ExportOofAction(String pPath, String pName) {
 

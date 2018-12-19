@@ -13,8 +13,8 @@ public class EditEdgesColorLogAction extends LogAction {
 
     /**
      * Constructor in case the user changes the color of all/several edges.
-     * Gets the picked edges through picksupport
-     * @param pColor the color to paint the edges
+     * Gets the picked edges through pick support.
+     * @param pColor The color to paint the edges.
      */
     public EditEdgesColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_EDGES_COLOR);
@@ -22,7 +22,7 @@ public class EditEdgesColorLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditEdgesColorParam the used parameters
+     * @param pEditEdgesColorParam The parameter object that contains every parameter that is needed.
      */
     public EditEdgesColorLogAction(EditEdgesColorParam pEditEdgesColorParam) {
         super(LogEntryName.EDIT_EDGES_COLOR);

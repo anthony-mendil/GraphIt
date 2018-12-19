@@ -4,14 +4,14 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.edit.EditFontSphereParam;
 
-/*
+/**
  * Changes the font of annotations.
  */
 public class EditFontSphereLogAction extends LogAction {
     /**
      * Constructor in case the user wants to change the font.
      *
-     * @param pFont the font-name.
+     * @param pFont The font-name.
      */
     public EditFontSphereLogAction(String pFont) {
         super(LogEntryName.EDIT_FONT_SPHERE);
@@ -20,7 +20,7 @@ public class EditFontSphereLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param parameters the EditFontSphereParam containing the new font and the sphere
+     * @param parameters The EditFontSphereParam object containing the new font and the sphere.
      */
     public EditFontSphereLogAction(EditFontSphereParam parameters) {
         super(LogEntryName.EDIT_FONT_SPHERE);

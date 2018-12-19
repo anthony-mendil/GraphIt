@@ -6,13 +6,13 @@ import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 /**
- * Removes a sphere from the syndrom-graph.
+ * Removes a sphere from the syndrom graph.
  */
 public class RemoveSphereLogAction extends LogAction {
 
     /**
      * Removes the passed sphere from the graph.
-     * Gets the picked sphere though picksupport
+     * Gets the picked sphere though pick support.
      *
      */
     public RemoveSphereLogAction() {
@@ -23,7 +23,7 @@ public class RemoveSphereLogAction extends LogAction {
      * Removes the sphere which is defined in pParam. Also used to implement the undo-method of
      * AddSphereLogAction.
      *
-     * @param pParam the RemoveSphereParam, containing the sphere to remove
+     * @param pParam The RemoveSphereParam object, containing the sphere to remove.
      */
     public RemoveSphereLogAction(AddRemoveSphereParam pParam) {
         super(LogEntryName.REMOVE_SPHERE);
