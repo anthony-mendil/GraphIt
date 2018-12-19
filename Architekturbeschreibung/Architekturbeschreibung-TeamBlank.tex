@@ -1141,14 +1141,14 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{bbb}{S8 - MVC}}}: \\
 			Dieses Design-Pattern sieht die Aufteilung des Systems in die drei grundlegenden Bestandteile Model, View und Controller vor. \\
-			\textbf{\cb{S9 - Command}}: \\
+			\textbf{\cb{\hypertarget{command}{S9 - Command}}}: \\
 			Die Verwendung vom Command Designpattern sieht den Aufbau der Architektur derart vor, dass verschiedene Aktionen, die ein Nutzer ausführen kann, als Command-Objekte realisiert werden.\\
 			\textbf{\cb{S10 - Modularisierung}}: \\
-			Modularisierung beschreibt die Gliederung des Systems in einzelne Module.
+			Die Gliederung des Systems in einzelne Module.
 	} }\\ [8ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Die Strategie \cb{\hypertarget{command}{S9 - Command}} in das System zu integrieren erleichtert den Umgang mit den Kommandos des Benutzers an das System. Die Eingabebefehle des Benutzers, welche Auswirkung auf den Graphen und die Benutzeroberfläche haben, werden in Form von Commands strukuriert. Dies unterstützt die Implementierung von redo und undo, welche dem Benutzer für eine hohe Usability zur Verfügung gestellt werden können. \\
+	Die Strategie \cb{S9 - Command} in das System zu integrieren erleichtert den Umgang mit den Kommandos des Benutzers an das System. Die Eingabebefehle des Benutzers, welche Auswirkung auf den Graphen und die Benutzeroberfläche haben, werden in Form von Commands strukuriert. Dies unterstützt die Implementierung von redo und undo, welche dem Benutzer für eine hohe Usability zur Verfügung gestellt werden können. \\
 	Durch \cb{Model- View- Controller (S8)} wird den Entwicklern ein Grundgerüst gegeben, an dem sich orientiert werden kann. Es wird zwischen dem Datenmodell, der Präsentation und der Programmsteuerung differenziert und das System so übersichtlicher strukturiert. Dieser Ansatz sorgt also für hohe Wartbarkeit und Qualität. \\\
 	\cb{S10 Modularisierung}, also die Zerlegung des Systems in kleine Grundbausteine als Module des Systems: Die Module sind weitestgehend voneinander entkoppelt, wodurch das System während der Entwicklungsphase und in den folgenden Phasen leichter erweitert und bearbeitet werden kann. \\
 	Alle diese Strategien sollten während der Umsetzung des Projektes beachtet werden, da sie alle einen entscheidenden Einfluss auf die Qualität des Systems haben und sich problemlos kombinieren lassen. \\
@@ -1170,12 +1170,15 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{ccc}{S11 - (System) Biblotheken}}}: \\
+			Das nutzen von Bibliotheken unterstützt den Entwickler, da bereits bestehende Funktionen genutzt werden können.\\
 			\textbf{\cb{S12 - Dokumentierte Bibliotheken}}: \\
-			\textbf{\cb{S13 - MVC}}: \\
-			Verwendung Model- View- Controller Designpattern
-			\textbf{\cb{S14 - Zeitmanagment}}: \\
-			\textbf{\cb{15 - Modularisierung}}: \\
-			Umsetzung eines effizienen Zeitmanagments, damit genug Zeit für die Entwicker zur Verfügung steht, sich in die benötigten Technologien einzuarbeiten.
+			Dokumentierte Bibliotheken helfen bei der Verständnis von unbekannten Methoden
+			\textbf{\cb{\hypertarget{modelviewcontroller}{S13 - MVC}}}: \\
+			Verwendung Model- View- Controller Designpattern\\
+			\textbf{\cb{\hypertarget{zeitmanagement}{S14 - Zeitmanagment}}}: \\
+			Umsetzung eines effizienen Zeitmanagments, damit genug Zeit für die Entwicker zur Verfügung steht, sich in die benötigten Technologien einzuarbeiten.\\
+			\textbf{\cb{S15 - Modularisierung}}: \\%hypertarget already exists
+			Die Gliederung des Systems in einzelne Module.
 	} }\\ [9ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1199,10 +1202,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{ddd}{S16 - Dokumentierte Bibliotheken}}}\\
 			Bei der Wahl von Bibliotheken ist darauf zu achten, dass man deren Dokumentation in gut verständlicher Form erhalten kann. \\
-			\textbf{\cb{S17 - Dokumentierung von geschriebenem Code}}\\
+			\textbf{\cb{\hyperlink{dokuvongeschriebenemcode}{S17 - Dokumentation von geschriebenem Code}}}\\
 			Parallel zur Erstellung von Quell-Code wird deren Dokumentation geschrieben.\\
 			\textbf{\cb{S18 - Modularisierung}} \\
-			Das System wird in kleine Teile gegliedert.
+			Das System wird in kleinere Teile gegliedert und die Aufgaben können besser übernommen werden.
 	}}\\ [4ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1303,9 +1306,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
 			\textbf{S23 - NEO4J}: \\
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
-			\textbf{\cb{S24 - eigene Implementierung}}: \\
-			Die benötigten Algorithmen werden durch das Team implementiert.
-			\textbf{\cb{\hypertarget{xxx}{S25 - JGraphT}}}
+			\textbf{\cb{\hypertarget{eigeneImplementierung}{S24 - eigene Implementierung}}}: \\
+			Die benötigten Algorithmen werden durch das Team implementiert.\\
+			\textbf{\cb{\hypertarget{xxx}{S25 - JGraphT}}}:\\
+			JGraphT stellt Algorithmen zur Berechnung von Grapheigenschaften bereit.
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1330,12 +1334,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{S25: Framework}: \\
-			Eine open- source Bibliothek für den Druck einbinden.\\
-			\textbf{\cb{\hypertarget{ggg}{S26: Java API}}}: \\
+			\textbf{\cb{\hypertarget{ggg}{S26 - Java API}}}: \\
 			Benutzung der Java API for Print Jobs. \\
-			\textbf{S27 - Extern }: \\
-			PDF des Graphen in einem System- externen PDFReader öffnen und ausdrucken.
+			\textbf{S27 - Framework }: \\
+			Eine open- source Bibliothek für den Druck einbinden.
 	} }\\ [7ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1533,8 +1535,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFx}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFx erstellt.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFX}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFX erstellt.}}\rule{0pt}{1ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {f}{Betriebssystemunterstützung / Zielplattformen des Systems}\\
@@ -1547,7 +1549,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{mmm}{38 - Scene- Builder}}}: \\
-			Mit Hilfe des Sence- Builders \url{https://gluonhq.com/products/scene-builder/} kann der Entwickler JavaFx Benutzeroberflächen zusammengeklicken und diese als FXML exportieren.  \\
+			Mit Hilfe des Scene-Builders kann der Entwickler JavaFX Benutzeroberflächen \glqq zusammenklicken\grqq{} und diese als FXML exportieren.  \\
 			\textbf{S39 - eigens implementieren}: \\
 			Auf dem JavaFx- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
 	} }\\ [6ex] \hline
@@ -1689,8 +1691,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{qqq}{S47 - Verwendung von (System)- Bibliotheken}}}: \\
 			Durch das Verwenden von Bibliotheken sparen wir Aufwand und damit Zeit, indem wir bereits bestehende Funktionen benutzen. \\
 			\textbf{\cb{S48 - Wiederverwendung von System-eigenen Komponenten}}: \\
-			Das Wiederverwenden von Systen-eigenen Komponenten ist sinnvoll, um Ressourcen zu sparen. \\
-			\textbf{\cb{S49 - Modularisierung des Systems}}: \\
+			Das Wiederverwenden von System-eigenen Komponenten ist sinnvoll, um Ressourcen zu sparen. \\
+			\textbf{\cb{S49 - Modularisierung}}: \\
 			Durch ein modularisiertes System lassen Arbeitspakete auf das Team so aufteilen, dass jedes Teammitglied ein bewätigbaren Workload hat. Dadurch ensteht ein geregelter und effizienter Arbeitsablauf.
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
@@ -1765,9 +1767,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{sss}{S53 - Layouts in Layouts}}}: \\
 			Unterteilung in 2 Layouts. Eines um das Layout innerhalb der Sphären zu berechnen und ein weiteres, um die beste Anordnung der Sphären zu berechnen. \\
-			\hypertarget{xee}{\textbf{\cb{S54 - JUNG Layouts}}}: \\
+			\textbf{\cb{\hypertarget{xee}{S54 - JUNG Layouts}}}: \\
 			Von JUNG zur Verfügung gestelle Layouts einbinden. \\
-			\hypertarget{xff}{\textbf{\cb{S55 - Eigenes Layout}}}: \\
+			\textbf{\cb{\hypertarget{xff}{S55 - Eigenes Layout}}}: \\
 			Layout selber erstellen
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
@@ -1906,13 +1908,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \\ \hline
 \multicolumn{2}{|l|}{Lösungen} \\
 \multicolumn{2}{|l|}{\parbox{16cm}{
-\textbf{\cb{\hypertarget{www}{S63 - Jackson}}}: \\
-Mit Jackson können Objekte gelesen und deren Informationen ins json.Format überführt werden. Dies erlaubt die Überführung von Objekten in einen strukturierten String, der zu einem späteren Zeitpunkt leicht gelesen werdn kann.\\
-\textbf{S64 - GSON}: \\
-Mit GSON können Informationen aus Objekten gelesen werden und ins json.Format geparst werden.\\
-\textbf{S65 - JSONP}: \\
-Mit JSONP können Objekte geparst und deren Informationen ins json-Format geschrieben werden.
-} }\\ [6ex] \hline
+	\textbf{\cb{\hypertarget{www}{S63 - Jackson}}}: \\
+	Mit Jackson können Objekte gelesen und deren Informationen ins json.Format überführt werden. Dies erlaubt die Überführung von Objekten in einen strukturierten String, der zu einem späteren Zeitpunkt leicht gelesen werdn kann.\\
+	\textbf{S64 - GSON}: \\
+	Mit GSON können Informationen aus Objekten gelesen werden und ins json.Format geparst werden.\\
+	\textbf{S65 - JSONP}: \\
+	Mit JSONP können Objekte geparst und deren Informationen ins json-Format geschrieben werden.
+	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit gröter Geschwindigkeit ins json-Format überführt werrden können.
@@ -1933,11 +1935,11 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
    \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{\hypertarget{}{\cb{S66 - Google Guice}}}}: \\
+			\textbf{\cb{\hypertarget{guice}{S66 - Google Guice}}}: \\
 	Verwendung von Google Juice für Dependency Injection-Aspekte.\\
 			\textbf{S67 - Spring}: \\
 	Wir könnten die Funktionalitäten im Bereich Dependency Injection von Spring nutzen.
-	} }\\ [11ex] \hline
+	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Mit \cb{Guice} können Objekte anderer Klassen leicht in eine Klasse injiziert werden und dort Attributen zugewiesen werden. Dabei ist \cb{Guice} auch vielfältig zur Erzeugung von Objekten zur Laufzeit einsetzbar. Das Framework bietet also zahlreiche Funktionalitäten im Generischen-Bereich. Die Funktionalitäten von \cb{Guice} sind durch Annotationen leicht (mit wenig Quellcode) nutzbar. \\

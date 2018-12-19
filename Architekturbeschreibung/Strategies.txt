@@ -1,0 +1,48 @@
+*=neue links
+-=mehrfachnennung
+
+\hypertarget{yy}{S1 - GXL}
+\hypertarget{zz}{S4 - Command}
+\hypertarget{aaa}{S7 - Datenmodell}
+\hypertarget{bbb}{S8 - MVC}
+\hypertarget{command}{S9 - Command}
+*\hypertarget{modularisierung}{S10 - Modularisierung}
+\hypertarget{ccc}{S11 - (System) Biblotheken}
+*\hypertarget{modelviewcontroller}{S13 - MVC}
+*\hypertarget{zeitmanagement}{S14 - Zeitmanagment}
+-*\hypertarget{modularisierung}{S15 - Modularisierung}
+\hypertarget{ddd}{S16 - Dokumentierte Bibliotheken}
+*\hyperlink{dokuvongewschriebenemcode}{S17 - Dokumentation von geschriebenem Code}
+-*\hypertarget{modularisierung}{S18 - Modularisierung}
+\hypertarget{eee}{S19 - JUNG}
+-\hypertarget{fff}{S22 - JUNG}
+*\hypertarget{eigeneImplementierung}{S24 - eigene Implementierung}
+\hypertarget{xxx}{S25 - JGraphT}
+\hypertarget{ggg}{S26: Java API}
+\hypertarget{hhh}{S29 - java.awt.Graphics2D}
+\hypertarget{iii}{S30 - Freeheb Vectorgraphics}
+\hypertarget{jjj}{S33 - JavaScript Object Notation (.json)}
+\hypertarget{kkk}{S34 - GUI Framework JavaFx}
+\hypertarget{lll}{S36 - SwingNode}
+\hypertarget{mmm}{38 - Scene- Builder}
+\hypertarget{nnn}{S40 - erweiterte Anforderungen}
+\hypertarget{ooo}{S43 - Eigener Datentyp}
+\hypertarget{ppp}{S45 - H2 Database}
+-\hypertarget{qqq}{S47 - Verwendung von (System)- Bibliotheken}
+*\hypertarget{wiederverwendungvonsystemeigenenbibliotheken}{S48 - Wiederverwendung von System-eigenen Komponenten}
+-\hypertarget{modularisierung}{S49 - Modularisierung}
+\hypertarget{rrr}{S50 - Hibernate}
+\hypertarget{sss}{S53 - Layouts in Layouts}
+\hypertarget{xee}{S54 - JUNG Layouts}
+\hypertarget{xff}{S55 - Eigenes Layout}
+\hypertarget{ttt}{S56 - Sourceforge Framework}
+\hypertarget{uuu}{S59 - Modi als eigener Teil unserer Applikation}
+\hypertarget{vvv}{S61 - Regeln in der GXL-Datei}
+\hypertarget{www}{S63 - Jackson}
+\hypertarget{guice}{S66 - Google Guice}
+
+
+
+
+
+
