@@ -16,53 +16,97 @@ public class Log {
     private String parameters = "";
     private LocalDateTime time;
 
+    /**
+     *
+     * @return
+     */
     @Column(name = "ID")
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     @ManyToOne
     @Column(name = "GRAPH")
     public Graph getGraph() {
         return graph;
     }
 
+    /**
+     *
+     * @return
+     */
     public void setGraph(Graph graph) {
         this.graph = graph;
     }
 
+    /**
+     *
+     * @return
+     */
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "LOGENTRYNAME")
     public LogEntryName getLogEntryName() {
         return logEntryName;
     }
 
+    /**
+     *
+     * @return
+     */
     public void setLogEntryName(LogEntryName logEntryName) {
         this.logEntryName = logEntryName;
     }
 
+    /**
+     *
+     * @return
+     */
     @Column(name = "PARAMETERS")
     public String getParameters() {
         return parameters;
     }
 
+    /**
+     *
+     * @return
+     */
     public void setParameters(String parameters) {
         this.parameters = parameters;
     }
 
+    /**
+     *
+     * @return
+     */
     @Column(name = "TIME")
     public LocalDateTime getTime() {
         return time;
     }
 
+    /**
+     *
+     * @return
+     */
     public void setTime(LocalDateTime time) {
         this.time = time;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Id: " + this.getId() +
