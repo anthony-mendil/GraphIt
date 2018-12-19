@@ -196,9 +196,10 @@
   \end{minipage}
 
 % Ende Titelseite
-
 % Start Leerseite
-
+\thispagestyle{empty}
+\cleardoublepage
+% Ende Leerseite
 \newpage
 
   \thispagestyle{fancy}
@@ -216,6 +217,12 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start Leerseite
+\thispagestyle{empty}
+\cleardoublepage
+% Ende Leerseite
+\fancyhead[LE,RO]{Seite \thepage\\\slshape Version und Änderungsgeschichte\\~}
+
 \section*{Version und Änderungsgeschichte}
 \emph{Autoren: Bastian Rexhäuser}\\ \\
 Im folgenden ist eine Tabelle zu finden, die Aufschluss darüber ermöglicht, mit welchen Zwischenschritten das vorliegende Dokument in seinen jetzigen Zustand gekommen ist. Dazu sind neben dem Datum eindeutige Versionsnummern angegeben. Durch die Datum-Angabe zu den einzelnen Versionen kann darüber hinaus festgestellt werden wie viel Zeit die jeweils in der Änderungsspalte beschriebenen Fortschritte benötigt haben. Dabei ist zu beachten, dass mit unter zeitgleich an mehreren Abschnitten des Dokumentes gearbeitet wurde, sodass die errechneten Angaben zur Erarbeitungsdauer vom tatsächlichen Zeitaufwand abweichen können. Am Ende der Liste steht die aktuelle Versionsnummer, die auch auf dem Deckblatt zu finden ist.  \\
@@ -231,9 +238,16 @@ Version & Datum & Änderungen \\
 \textbf{1.3} & \textbf{27.11.2018} & \textbf{Einflussfaktoren an geänderte Anforderungen angepasst} \\
 \ldots
 \end{tabular}
-\\ \\ \\
+\\ \\ \\ \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start Leerseite
+\thispagestyle{empty}
+\cleardoublepage
+% Ende Leerseite
+
+\fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
+
 \newpage
 \section{Einführung}
 \emph{Autoren: Bastian Rexhäuser}
