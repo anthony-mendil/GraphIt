@@ -23,9 +23,8 @@ public class GraphObjectsFactory {
 
     /**
      * creates a new graphObjectsFactory
-     * @param currentId The GraphID
      */
-    public GraphObjectsFactory(int currentId) {
+    public GraphObjectsFactory() {
         throw new UnsupportedOperationException();
     }
 
