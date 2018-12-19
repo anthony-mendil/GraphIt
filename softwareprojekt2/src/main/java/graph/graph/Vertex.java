@@ -16,19 +16,19 @@ import java.util.Map;
 @AllArgsConstructor
 public class Vertex {
     /**
-     * the unique id of a vertex
+     * The unique id of a vertex.
      */
     @NonNull
     private final int id;
 
     /**
-     * the fill color of a vertex
+     * The fill color of a vertex.
      */
     @NonNull
     private Paint fillPaint;
 
     /**
-     * the coordinate of a vertex. A vertex have to be placed within a sphere and where no other vertex is located.
+     * The coordinate of a vertex. A vertex have to be placed within a sphere and where no other vertex is located.
      */
     @NonNull
     private Point2D coordinate;

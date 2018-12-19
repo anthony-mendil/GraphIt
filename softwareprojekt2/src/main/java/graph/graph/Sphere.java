@@ -17,56 +17,56 @@ import java.util.Map;
 @AllArgsConstructor
 public class Sphere {
     /**
-     * the id of the sphere
+     * The id of the sphere.
      */
     @NonNull
     private final int id;
 
     /**
-     * the fill color of the sphere
+     * The fill color of the sphere.
      */
     @NonNull
     private Paint fillPaint;
 
     /**
-     * the coordinate where the sphere is set. The coordinate refers to the upper left corner of a sphere. A sphere can
-     * not be positioned where another sphere is already located.
+     * The coordinate of the sphere. The coordinate refers to the upper left corner of a sphere. A sphere can
+     * not be positioned where a different sphere is already located.
      */
     @NonNull
     private Point2D coordinates;
 
     /**
-     * the width of the sphere
+     * The width of the sphere.
      */
     @NonNull
     private double width;
 
     /**
-     * the height of the sphere
+     * The height of the sphere.
      */
     @NonNull
     private double height;
 
     /**
-     * the annotation of the sphere
+     * The annotation of the sphere.
      */
     @NonNull
     private Map<String, String> annotation;
 
     /**
-     * a list with all vertices, that are assigned so this sphere
+     * A list with all vertices, that are assigned to this sphere.
      */
     @NonNull
     private LinkedList<Vertex> vertices;
 
     /**
-     * the font of the annotation
+     * The font of the annotation.
      */
     @NonNull
     private String font;
 
     /**
-     * the font size of the annotation
+     * The font size of the annotation.
      */
     @NonNull
     private int fontSize;

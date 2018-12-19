@@ -5,6 +5,10 @@ import actions.LogEntryName;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * Represents the Log objects that are persisted into
+ * the logs table of the database.
+ */
 @SuppressWarnings("all")
 @Entity
 @Table(name = "LOGS", schema = "PUBLIC", catalog = "TEST")
@@ -17,8 +21,9 @@ public class Log {
     private LocalDateTime time;
 
     /**
+     * Gets the id of the log entry.
      *
-     * @return
+     * @return The id of the log entry.
      */
     @Column(name = "ID")
     public int getId() {
@@ -26,16 +31,18 @@ public class Log {
     }
 
     /**
+     * Sets the id of the log entry.
      *
-     * @return
+     * @param id The id of the log entry.
      */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
+     * Gets the Graph the action was performed on.
      *
-     * @return
+     * @return The graph.
      */
     @ManyToOne
     @Column(name = "GRAPH")
@@ -44,16 +51,18 @@ public class Log {
     }
 
     /**
+     * Sets the Graph the action was performed on.
      *
-     * @return
+     * @param graph The graph.
      */
     public void setGraph(Graph graph) {
         this.graph = graph;
     }
 
     /**
+     * Gets the name of the log entry.
      *
-     * @return
+     * @return The name of the log entry.
      */
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "LOGENTRYNAME")
@@ -62,16 +71,18 @@ public class Log {
     }
 
     /**
+     * Sets the name of the log entry.
      *
-     * @return
+     * @param logEntryName The name of the log entry.
      */
     public void setLogEntryName(LogEntryName logEntryName) {
         this.logEntryName = logEntryName;
     }
 
     /**
+     * Gets the parameters.
      *
-     * @return
+     * @return The parameters in the JSON-Format.
      */
     @Column(name = "PARAMETERS")
     public String getParameters() {
@@ -79,16 +90,18 @@ public class Log {
     }
 
     /**
+     * Sets the parameters.
      *
-     * @return
+     * @param parameters The parameters in the JSON-Format.
      */
     public void setParameters(String parameters) {
         this.parameters = parameters;
     }
 
     /**
+     * Gets the time the corresponding action was created.
      *
-     * @return
+     * @return The time the corresponding action was created.
      */
     @Column(name = "TIME")
     public LocalDateTime getTime() {
@@ -96,16 +109,19 @@ public class Log {
     }
 
     /**
+     * Sets the time the corresponding action was created.
      *
-     * @return
+     * @param time The time the corresponding action was created.
      */
     public void setTime(LocalDateTime time) {
         this.time = time;
     }
 
     /**
+     * Combines all informations about this log entry into one
+     * readable text.
      *
-     * @return
+     * @return The formated informations about this log entry.
      */
     @Override
     public String toString() {

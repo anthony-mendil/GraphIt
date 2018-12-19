@@ -7,8 +7,8 @@ import org.apache.commons.collections15.Predicate;
 /**
  * Defines a functor that performs a predicates test on edges for filtering the edge for visibility.
  *
- * @param <V> the vertex type
- * @param <E> the edge type
+ * @param <V> The vertex type.
+ * @param <E> The edge type.
  */
 public class EdgeIsVisiblePredicate<V, E> implements Predicate<Context<Graph<V, E>, V>> {
     @Override

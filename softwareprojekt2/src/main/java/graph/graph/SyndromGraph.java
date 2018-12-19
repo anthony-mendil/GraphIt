@@ -22,17 +22,17 @@ import java.util.Map;
  */
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
-     * List of spheres
+     * List of spheres.
      */
     private List<Sphere> spheren;
 
     /**
-     * a counter for all objects
+     * A counter for all objects.
      */
     private int counterObject;
 
     /**
-     * the object factory for syndrom
+     * The object factory for syndrom.
      */
     private final GraphObjectsFactory graphObjectsFactory;
 
@@ -46,7 +46,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Returns a list of all spheres from the syndrom graph.
      *
-     * @return a list of all spheres
+     * @return A list of all spheres.
      */
     public List<Sphere> getSpheres() {
         throw new UnsupportedOperationException();
@@ -56,8 +56,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Assigns a vertex to a sphere.
      *
-     * @param pSphere the sphere to assign to
-     * @param pVertex the vertex
+     * @param pSphere The sphere to assign to.
+     * @param pVertex The vertex.
      */
     public void addVertexToSphere(Sphere pSphere, V pVertex) {
         throw new UnsupportedOperationException();
@@ -66,8 +66,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Removes a vertex from a sphere.
      *
-     * @param pSphere the sphere
-     * @param pVertex the vertex to remove from the sphere
+     * @param pSphere The sphere.
+     * @param pVertex The vertex to remove from the sphere.
      */
     public void removeVertexFromSphaere(Sphere pSphere, V pVertex) {
         throw new UnsupportedOperationException();
@@ -76,9 +76,9 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Adds a vertex to the syndrom graphs and assigns it to a sphere.
      *
-     * @param pVertex the vertex to add
-     * @param pSphere the sphere to assign to
-     * @return true if the vertex was added to the graph, false if not
+     * @param pVertex The vertex to add.
+     * @param pSphere The sphere to assign to.
+     * @return True if the vertex was added to the graph, false if not.
      */
     public boolean addVertex(V pVertex, Sphere pSphere) {
         throw new UnsupportedOperationException();
@@ -87,7 +87,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Adds a new sphere to the graph.
      *
-     * @return true if the sphere was added to the graph, false if not
+     * @return True if the sphere was added to the graph, false if not.
      */
     public boolean addSphere() {
         throw new UnsupportedOperationException();
@@ -96,65 +96,65 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Removes a sphere from the graph.
      *
-     * @param pSphere the sphere to remove
+     * @param pSphere The sphere to remove.
      */
     public void removeSphaere(Sphere pSphere) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * methode for filter the graph on the criteria.
-     * @param edgeType the edge type to filter for
-     * @return a filtered list with spheres
+     * Method for filtering the graph on the criteria.
+     * @param edgeType The edge type to filter for.
+     * @return A filtered list with spheres.
      */
     public List<Sphere> getFilteredEdgeType(EdgeType edgeType) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * filters the vertices/ spheres annotation for a regular expression
-     * @param regularExpression the regular expression to filter for
-     * @return a filtered list with spheres
+     * Filters the vertices/spheres annotation for a regular expression.
+     * @param regularExpression The regular expression to filter for.
+     * @return A filtered list with spheres.
      */
     public List<Sphere> getFilteredEdgeType(String regularExpression) {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * filters the vertices for the attribute isVisible=false
-     * @return a filtered list with spheres
+     * Filters the vertices for the attribute isVisible=false.
+     * @return A filtered list with spheres.
      */
     public List<Sphere> getFilteredEdgeType() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * a map mapping from the dimensions to its values
-     * @return the dimensions
+     * A map mapping from the dimensions to its values.
+     * @return The dimensions.
      */
     public Map<String, Integer> dimensions(){
         throw new UnsupportedOperationException();
     }
 
     /**
-     * updates a sphere in the graph
-     * @return true if update was successful, false if not
+     * Updates a sphere in the graph.
+     * @return True if update was successful, false if not.
      */
     public boolean updateSphere(){
             throw new UnsupportedOperationException();
     }
 
     /**
-     * updates a edge in the graph
-     * @return true if update was successful, false if not
+     * Updates an edge in the graph.
+     * @return True if update was successful, false if not.
      */
     public boolean updateEdge(){
         throw new UnsupportedOperationException();
     }
 
     /**
-     * updates a vertex in the graph
-     * @return true if update was successful, false if not
+     * Updates a vertex in the graph.
+     * @return True if update was successful, false if not.
      */
     public boolean updateVertex(){
         throw new UnsupportedOperationException();

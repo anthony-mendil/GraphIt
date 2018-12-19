@@ -5,27 +5,27 @@ package graph.graph;
  */
 public enum StrokeType {
     /**
-     * dashed stroke type of the edge
+     * Dashed stroke type of the edge.
      */
     DASHED,
     /**
-     * dotted stroke type of the edge
+     * Dotted stroke type of the edge.
      */
     DOTTED,
     /**
-     * dashed stroke type in the bold of the edge
+     * Dashed stroke type in the bold of the edge.
      */
     DASHED_WEIGHT,
     /**
-     * dotted stroke type in the bold of the edge
+     * Dotted stroke type in the bold of the edge.
      */
     DOTTED_WEIGHT,
     /**
-     * basic stroke type of the edge
+     * Basic stroke type of the edge.
      */
     BASIC,
     /**
-     * basic stroke type in the bold of the edge
+     * Basic stroke type in the bold of the edge.
      */
     BASIC_WEIGHT
 }
