@@ -12,7 +12,7 @@ import java.awt.geom.Point2D;
 public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
 
     /**
-     * Constructor in case all/several anchor-points shall fadeout. The action is applied to all picked edges/ anchor
+     * Constructor in case all/several anchor-points shall fadeout. The action is applied to all picked edges/anchor
      * points.
      */
     public ActivateAnchorPointsFadeoutLogAction() {
@@ -21,7 +21,7 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
     }
 
     /**
-     * Constructor for the action in the case only one anchor-point shall fade out.
+     * Constructor for the action in case only one anchor-point shall fade out.
      *
      * @param pPoint2D The position of the vertex which hosts the anchor-point.
      */
@@ -34,7 +34,7 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
      * Fadeout all anchor points defined in ActivateAnchorPointsFadeoutParam. Also used to implement the undo-method of
      * DeactivateAnchorPointsFadeoutLogAction.
      *
-     * @param pActivateAnchorPointsFadeoutParam The used parameters containing the anchor points to fade out.
+     * @param pActivateAnchorPointsFadeoutParam The used parameter object containing the anchor points to fade out.
      */
     public ActivateAnchorPointsFadeoutLogAction(ActivateDeactivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);

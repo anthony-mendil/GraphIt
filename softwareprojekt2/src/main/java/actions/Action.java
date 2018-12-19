@@ -3,7 +3,7 @@ package actions;
 import java.util.LinkedList;
 
 /**
- * superclass of all actions
+ * Superclass of all actions.
  */
 public abstract class Action {
 
@@ -25,15 +25,15 @@ public abstract class Action {
     public abstract void redo();
 
     /**
-     * Attaches the Observer so that the observer can observe it.
-     * @param o the observer to attach
+     * Attaches the observer so that the observer can observe it.
+     * @param o The observer to attach.
      */
     public static void attach(ObserverSyndrom o) {
         observers.add(o);
     }
 
     /**
-     * notify the observer if the graph changes
+     * Notify the observer if the graph changes.
      */
     protected void notifyObserverGraph(){
         for (ObserverSyndrom o: observers) {
@@ -42,7 +42,7 @@ public abstract class Action {
     }
 
     /**
-     * notify the observer if the application changes the mode
+     * Notify the observer if the application changes the mode.
      */
     protected void notifyObserverFunctionMode(){
         for (ObserverSyndrom o: observers) {
@@ -51,7 +51,7 @@ public abstract class Action {
     }
 
     /**
-     * notify the observer if a new graph gets loaded
+     * Notify the observer if a new graph gets loaded.
      */
     protected void notifyObserverNewGraph(){
         for (ObserverSyndrom o: observers) {
@@ -60,7 +60,7 @@ public abstract class Action {
     }
 
     /**
-     * notify the observer if the application is in edit mode
+     * Notify the observer if the application is in edit mode.
      */
     protected void notifyObserverEditMode(){
         for (ObserverSyndrom o: observers) {

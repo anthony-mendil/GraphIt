@@ -15,7 +15,7 @@ import graph.graph.Sphere;
 
 
 /**
- * The SyndromRenderers paints the syndrom graph.
+ * The SyndromRenderer paints the syndrom graph.
  */
 public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
 
@@ -28,9 +28,9 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * renders the sphere label
-     * @param layout the layout
-     * @param sphere the sphere to render
+     * Renders the sphere label.
+     * @param layout The layout.
+     * @param sphere The sphere to render.
      */
     public void renderSphereLabel(Layout<V,E> layout, Sphere sphere) {
         throw new UnsupportedOperationException();

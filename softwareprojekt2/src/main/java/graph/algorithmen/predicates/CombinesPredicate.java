@@ -7,19 +7,19 @@ import org.apache.commons.collections15.Predicate;
 import java.util.List;
 
 /**
- * combines all predicates to filter for
- * @param <V> The vertex type
- * @param <E> The edge type
+ * Combines all predicates to filter for.
+ * @param <V> The vertex type.
+ * @param <E> The edge type.
  */
 public class CombinesPredicate<V, E> implements Predicate<Context<Graph<V, E>, V>> {
     /**
-     * the list of predicates to filter for
+     * The list of predicates to filter for.
      */
     private List<Predicate> predicates;
 
     /**
-     * creates the CombinesPredicate for filtering
-     * @param pPredicates the list of predicates
+     * Creates the CombinesPredicate object for filtering.
+     * @param pPredicates The list of predicates.
      */
     public CombinesPredicate(List<Predicate> pPredicates){
         throw new UnsupportedOperationException();

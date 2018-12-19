@@ -4,14 +4,14 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.edit.EditSphereAnnotationParam;
 
-/*
+/**
  * Changes the annotation of a selected sphere.
  */
 public class EditSphereAnnotationLogAction extends LogAction {
     /**
      * Constructor in case the user changes the annotation of a sphere.
      *
-     * @param pText the new sphere annotation
+     * @param pText The new sphere annotation.
      */
     public EditSphereAnnotationLogAction(String pText) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);

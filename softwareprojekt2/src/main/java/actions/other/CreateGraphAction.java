@@ -10,7 +10,7 @@ import graph.graph.Vertex;
 
 import java.awt.*;
 
-/*
+/**
  * Creates a new graph.
  *
  */
@@ -20,7 +20,7 @@ public class CreateGraphAction extends GraphAction {
     /**
      * Constructor in case the user creates a new graph.
      *
-     * @param pGraphName the name of the graph
+     * @param pGraphName The name of the graph.
      */
     public CreateGraphAction(String pGraphName) {
        super();

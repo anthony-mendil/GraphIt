@@ -5,7 +5,7 @@ import actions.LogEntryName;
 import log_management.parameters.edit.EditVerticesSizeParam;
 
 /**
- * changes the size of a vertex
+ * Changes the size of a vertex or vertices.
  */
 public class EditVerticesSizeLogAction extends LogAction {
     /**
@@ -18,7 +18,7 @@ public class EditVerticesSizeLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditVerticesSizeParam the used parameters
+     * @param pEditVerticesSizeParam The parameter object that contains every parameter that is needed.
      */
     public EditVerticesSizeLogAction(EditVerticesSizeParam pEditVerticesSizeParam) {
         super(LogEntryName.EDIT_VERTICES_SIZE);
@@ -36,7 +36,7 @@ public class EditVerticesSizeLogAction extends LogAction {
     }
 
     /**
-     * creates the parameters object
+     * Creates the parameter object.
      */
     @Override
     public void createParameter() {

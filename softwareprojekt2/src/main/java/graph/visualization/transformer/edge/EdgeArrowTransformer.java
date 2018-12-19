@@ -10,40 +10,40 @@ import org.apache.commons.collections15.Transformer;
 import java.awt.*;
 
 /**
- * Defines a functor that transform a edge into its edge arrow type. The input edge left unchanged. Its extracting the
- * edge arrow type.
+ * Defines a functor that transform an edge into its edge arrow type. The input edge is left unchanged.
+ * Its extracting the edge arrow type.
  *
- * @param <E> the edge type
+ * @param <E> The edge type.
  */
 public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, E>, E>, Shape> {
 
     /**
-     * the shape of the reinforced arrow
+     * The shape of the reinforced arrow.
      */
     private Shape reinforcedArrow;
 
     /**
-     * the shape of the extenuating arrow
+     * The shape of the extenuating arrow.
      */
     private Shape extenuatingArrow;
 
     /**
-     * the shape of the neutral arrow
+     * The shape of the neutral arrow.
      */
     private Shape neutralArrow;
 
     /**
-     * the SyndromArrowFactory to get the right arrow shapes
+     * The SyndromArrowFactory to get the right arrow shapes.
      */
     private SyndromArrowFactory factory;
 
     /**
-     * Creates a edge arrow transformer. The radius, width, length and notch depth are set.
+     * Creates an edge arrow transformer. The radius, width, length and notch depth will be set.
      *
-     * @param radius     the radius of the neutral arrow
-     * @param width      the width of the arrow
-     * @param length     the height of the arrow
-     * @param notchDepth the notch depth of the reinforced arrow
+     * @param radius     The radius of the neutral arrow.
+     * @param width      The width of the arrow.
+     * @param length     The height of the arrow.
+     * @param notchDepth The notch depth of the reinforced arrow.
      */
     public EdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
         throw new UnsupportedOperationException();

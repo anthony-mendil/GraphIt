@@ -3,10 +3,10 @@ package graph.visualization.transformer.sphere;
 import org.apache.commons.collections15.Transformer;
 
 /**
- * Defines a functor that transform a sphere into its annotation. The input sphere left unchanged. Its extracting the
- * annotation of a sphere.
+ * Defines a functor that transform a sphere into its annotation. The input sphere is left unchanged.
+ * Its extracting the annotation of a sphere.
  *
- * @param <S> the sphere type
+ * @param <S> The sphere type.
  */
 public class SphereLabelTransformer<S> implements Transformer<S, String> {
     @Override

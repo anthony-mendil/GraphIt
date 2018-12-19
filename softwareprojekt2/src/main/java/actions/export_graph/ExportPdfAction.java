@@ -3,25 +3,25 @@ package actions.export_graph;
 import actions.GraphAction;
 
 /**
- * exports an pdf with the current graph visualisation
+ * Exports an PDF file with the current graph visualization.
  */
 public class ExportPdfAction extends GraphAction {
 
     /**
-     * The path that the PDF is exported to
+     * The path that the PDF file is exported to.
      */
     private String path;
 
     /**
-     * The name of the file
+     * The name of the file.
      */
     private String name;
 
     /**
-     * Action handling for exporting the graph as PDF
+     * Action handling for exporting the graph as PDF file.
      *
-     * @param pPath The path that the PDF is exported to
-     * @param pName The name of the file
+     * @param pPath The path that the PDF is exported to.
+     * @param pName The name of the file.
      */
     public ExportPdfAction(String pPath, String pName) {
         throw new UnsupportedOperationException();

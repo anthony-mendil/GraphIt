@@ -5,17 +5,17 @@ package graph.graph;
  */
 public enum VertexShapeType {
     /**
-     * a rectangular shape type
+     * A rectangular shape type.
      */
     RECTANGLE,
     /**
      *
-     * a circle as a shape
+     * A circle as a shape.
      */
     CIRCLE,
     /**
      *
-     * a circular shape
+     * A circular shape.
      */
     ELLIPSE
 }

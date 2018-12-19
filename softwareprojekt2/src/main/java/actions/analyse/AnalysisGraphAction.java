@@ -18,26 +18,26 @@ import java.util.List;
  */
 public class AnalysisGraphAction extends GraphAction{
     /**
-     * the list of analyse types, several types can be passed and processed at once
+     * The list of analyse types, several types can be passed and processed at once.
      */
     private List<AnalyseTypeSeveral> analyseTypeSeverals;
 
     /**
-     * a single analyse type, one type can be analysed at once
+     * A single analyse type, one type can be analysed at once.
      */
     private AnalyseTypeSingle analyseTypeSingle;
 
     /**
      * Constructor in case the user chooses a AnalyseTypeSeveral - analyse option.
-     * These analyse functions are implemented by Jung functions.
+     * These analyse functions are implemented by JUNG functions.
      * After analysing the graph and finding out the values the action is looking for,
-     * the information is displayed or the found vertices/ edges get highlighted.
-     * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
+     * the information is displayed or the found vertices/edges get highlighted.
+     * The action is applied to all picked vertices/edges or to all objects if nothing is picked.
      *
-     * @param pAnalyseTypeSeveral a list of AnalyseTypeSeveral, several types can be analysed at once
-     * @param counterEdges the number of incoming / outgoing edges to analyse
-     * @param counterVertex the number of adjacent vertices to analyse
-     * @param edgeType the edge type to analyse
+     * @param pAnalyseTypeSeveral A list of AnalyseTypeSeveral, several types can be analysed at once.
+     * @param counterEdges The number of incoming/outgoing edges to analyse.
+     * @param counterVertex The number of adjacent vertices to analyse.
+     * @param edgeType The edge type to analyse.
      */
     public AnalysisGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, int counterVertex, int counterEdges,
                                EdgeType edgeType) {
@@ -50,7 +50,7 @@ public class AnalysisGraphAction extends GraphAction{
      * After processing and finding out the values the action is looking for, the information is displayed
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
-     * @param pAnalyseTypeSingle the analyse type,  one type can be analysed at once
+     * @param pAnalyseTypeSingle The analyse type, one type can be analysed at once.
      */
     public AnalysisGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {
         throw new UnsupportedOperationException();

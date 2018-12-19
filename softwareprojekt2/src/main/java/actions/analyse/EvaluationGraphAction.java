@@ -19,14 +19,14 @@ public class EvaluationGraphAction extends GraphAction{
 
     /**
      * Constructor in case the user chooses a AnalyseTypeSeveral - analyse option.
-     * These analyse functions are implemented by Jung functions.
+     * These analyse functions are implemented by JUNG functions.
      * After analysing the graph and finding out the values the action is looking for,
-     * the information is displayed or the found vertices/ edges get highlighted.
-     * The action is applied to all picked vertices/ edges or to all objects if nothing is picked and statistics
+     * the information is displayed or the found vertices/edges get highlighted.
+     * The action is applied to all picked vertices/edges or to all objects if nothing is picked and statistics
      * are shown as vertices labels.
      *
-     * @param pAnalyseTypeSeveral a list of AnalyseTypeSeveral, several types can be analysed at once
-     * @param edgeType the edge type
+     * @param pAnalyseTypeSeveral A list of AnalyseTypeSeveral, several types can be analysed at once.
+     * @param edgeType The edge type.
      */
     public EvaluationGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, EdgeType edgeType) {
         throw new UnsupportedOperationException();
@@ -36,10 +36,10 @@ public class EvaluationGraphAction extends GraphAction{
      * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
      * These analyse functions are implemented by JGraphT algorithms and will be processed through the JGraphT Handler.
      * After processing and finding out the values the action is looking for, the information is displayed
-     * or the found vertices/ edges get highlighted.
-     * The action is applied to all picked vertices/ edges or to all objects if nothing is picked and statistics
+     * or the found vertices/edges get highlighted.
+     * The action is applied to all picked vertices/edges or to all objects if nothing is picked and statistics
      * are shown shown as vertices labels.
-     * @param pAnalyseTypeSingle the analyse type, one type can be analysed at once
+     * @param pAnalyseTypeSingle The analyse type, one type can be analysed at once.
      */
     public EvaluationGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {
         throw new UnsupportedOperationException();

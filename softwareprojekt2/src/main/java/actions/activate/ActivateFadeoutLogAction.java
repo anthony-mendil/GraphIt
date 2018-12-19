@@ -31,10 +31,10 @@ public class ActivateFadeoutLogAction extends LogAction {
     }
 
     /**
-     * Fadeout all vertices/ edges defined in ActivateFadeoutParam. Also used to implement the undo-method of
+     * Fadeout all vertices/edges defined in ActivateFadeoutParam. Also used to implement the undo-method of
      * DeactivateFadeoutLogAction.
      *
-     * @param pActivateDeactivateFadeoutParam parameters containing all vertices/ edges to fadeout
+     * @param pActivateDeactivateFadeoutParam The parameter object containing all vertices/edges to fadeout
      */
     public ActivateFadeoutLogAction(ActivateDeactivateFadeoutParam pActivateDeactivateFadeoutParam) {
         super(LogEntryName.ACTIVATE_FADEOUT);

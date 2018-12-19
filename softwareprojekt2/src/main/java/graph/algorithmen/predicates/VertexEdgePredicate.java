@@ -10,21 +10,21 @@ import org.apache.commons.collections15.Predicate;
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the vertex for specific edge type.
  *
- * @param <V> the vertex type
- * @param <E> the edge type
+ * @param <V> The vertex type.
+ * @param <E> The edge type.
  */
 public class VertexEdgePredicate<V, E> implements Predicate<Context<Graph<V, E>, V>> {
     /**
-     * the arrow type to filter for
+     * The arrow type to filter for.
      */
     @Setter
     @NonNull
     private EdgeArrowType edgeArrowType;
 
     /**
-     * creates a new EdgeArrowPredicate
+     * Creates a new EdgeArrowPredicate object.
      *
-     * @param edgeArrowType the edge arrow type to filter for
+     * @param edgeArrowType The edge arrow type to filter for.
      */
     public VertexEdgePredicate(EdgeArrowType edgeArrowType) {
         throw new UnsupportedOperationException();

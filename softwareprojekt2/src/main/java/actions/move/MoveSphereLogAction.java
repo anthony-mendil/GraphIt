@@ -16,17 +16,17 @@ public class MoveSphereLogAction extends LogAction {
     /**
      * Moves the sphere which is defined in pParam.
      *
-     * @param pParam the MoveSphereParam, containing the sphere and the position data.
+     * @param pParam The MoveSphereParam object, containing the sphere and the position data.
      */
     public MoveSphereLogAction(MoveSphereParam pParam) {
         super(LogEntryName.MOVE_SPHERE);
     }
 
     /**
-     * Moves the sphere from its old to the new position
+     * Moves the sphere from its old to the new position.
      *
-     * @param newPos  the new position to put the sphere
-     * @param pSphere the sphere to move
+     * @param newPos  The new position to put the sphere.
+     * @param pSphere The sphere to move.
      */
     public MoveSphereLogAction(Sphere pSphere, Point2D newPos) {
         super(LogEntryName.MOVE_SPHERE);

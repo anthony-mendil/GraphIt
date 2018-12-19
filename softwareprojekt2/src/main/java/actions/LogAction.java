@@ -24,7 +24,7 @@ public abstract class LogAction extends GraphAction {
     }
 
     /**
-     * creates the parameters object
+     * Creates the parameter object.
      */
     public abstract void createParameter();
 }

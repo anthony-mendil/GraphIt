@@ -10,8 +10,8 @@ import org.apache.commons.collections15.Predicate;
  * Defines a functor that performs a predicates test on vertices for filtering the vertex annotations for a regular
  * expression.
  *
- * @param <V> the vertex type
- * @param <E> the edge type
+ * @param <V> The vertex type.
+ * @param <E> The edge type.
  */
 public class VertexAnnotationPredicate<V, E> implements Predicate<Context<Graph<V, E>, V>> {
     /**
@@ -22,9 +22,9 @@ public class VertexAnnotationPredicate<V, E> implements Predicate<Context<Graph<
     private String regularExpression;
 
     /**
-     * creates a new VertexAnnotationPredicate with a regular expression
+     * Creates a new VertexAnnotationPredicate object with a regular expression.
      *
-     * @param pRegularExpression the regular expression to filter for
+     * @param pRegularExpression The regular expression to filter for.
      */
     public VertexAnnotationPredicate(String pRegularExpression) {
         throw new UnsupportedOperationException();

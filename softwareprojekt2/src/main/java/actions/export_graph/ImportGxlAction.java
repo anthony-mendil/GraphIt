@@ -2,20 +2,20 @@ package actions.export_graph;
 
 import actions.GraphAction;
 
-/*
- * imports a gxl
+/**
+ * Imports a GXL file.
  */
 public class ImportGxlAction extends GraphAction {
 
     /**
-     * The path that the GXL is exported to
+     * The path that the GXL file is exported to.
      */
     private String path;
 
     /**
-     * Action handling for importing the graph as GXL
+     * Action handling for importing the graph as GXL file.
      *
-     * @param pPath The path that the GXL is imported from
+     * @param pPath The path that the GXL file is imported from.
      */
     ImportGxlAction(String pPath) {
 

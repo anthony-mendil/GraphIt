@@ -7,11 +7,11 @@ import edu.uci.ics.jung.visualization.control.AnimatedPickingGraphMousePlugin;
 import java.awt.event.MouseEvent;
 
 /**
- * A graph mouse plugin that supports the visualisation of picking if the user selected the analyse function mode.
+ * A graph mouse plugin that supports the visualization of picking if the user selected the analyse function mode.
  */
 public class AnimatedPickingGraphMouseAnalyseSyndromPlugin extends AnimatedPickingGraphMousePlugin {
     /**
-     * the action history
+     * The action history.
      */
     @Inject
     ActionHistory history;
@@ -25,7 +25,7 @@ public class AnimatedPickingGraphMouseAnalyseSyndromPlugin extends AnimatedPicki
     /**
      * Creates a new animated picking graph mouse analyse syndrom plugin with a defined button mask.
      *
-     * @param selectionModifiers the selection modifiers define the button mask
+     * @param selectionModifiers The selection modifiers define the button mask.
      */
     public AnimatedPickingGraphMouseAnalyseSyndromPlugin(int selectionModifiers) {
         super(selectionModifiers);

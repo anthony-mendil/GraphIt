@@ -1,19 +1,19 @@
 package graph.graph;
 
 /**
- * the different function modes of the application
+ * The different function modes of the application.
  */
 public enum FunctionMode {
     /**
-     * the template mode
+     * The template mode.
      */
     TEMPLATE,
     /**
-     * the edit mode
+     * The edit mode.
      */
     EDIT,
     /**
-     * the analyse mode
+     * The analyse mode.
      */
     ANALYSE
 }

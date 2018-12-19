@@ -3,7 +3,7 @@ package actions.other;
 import actions.GraphAction;
 
 /**
- * loads the existing graph to syndrom
+ * Loads the existing graph to syndrom.
  */
 public class LoadGraphAction extends GraphAction {
 

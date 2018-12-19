@@ -32,7 +32,7 @@ public class ActivateHighlightLogAction extends LogAction {
      * Highlight all vertices passed by ActivateHighlightParam. Also used to implement the undo-method of
      * DeactivateHighlightLogAction.
      *
-     * @param pActivateDeactivateHighlightParam The parameters containing all vertices to highlight
+     * @param pActivateDeactivateHighlightParam The parameter object containing all vertices to highlight
      */
     public ActivateHighlightLogAction(ActivateDeactivateHighlightParam pActivateDeactivateHighlightParam) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);

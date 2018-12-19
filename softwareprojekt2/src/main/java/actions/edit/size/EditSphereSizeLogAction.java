@@ -4,13 +4,13 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.edit.EditSphereSizeParam;
 
-/*
- * changes the sphere size
+/**
+ * Changes the sphere size.
  */
 public class EditSphereSizeLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
-     * @param parameters the parameters containing the sphere and size
+     * @param parameters The parameter object containing the sphere and size.
      */
     public EditSphereSizeLogAction(EditSphereSizeParam parameters) {
         super(LogEntryName.EDIT_SPHERE_SIZE);
@@ -18,8 +18,8 @@ public class EditSphereSizeLogAction extends LogAction {
     }
 
     /**
-     * creates a new action to change the size of a a sphere
-     * @param size the new size
+     * Creates a new action to change the size of a a sphere.
+     * @param size The new size.
      */
     public EditSphereSizeLogAction(Integer size){
         super(LogEntryName.EDIT_SPHERE_SIZE);
@@ -37,7 +37,7 @@ public class EditSphereSizeLogAction extends LogAction {
     }
 
     /**
-     * creates the parameters object
+     * Creates the parameter object.
      */
     @Override
     public void createParameter() {

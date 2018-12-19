@@ -22,27 +22,27 @@ import lombok.Setter;
 import java.awt.*;
 
 /**
- * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualisation
+ * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualization
  * viewer. Visual properties of the spheres, vertices and edges are set via transformers. These are assigned to the
- * RenderContext of the visualisation viewer here.
+ * RenderContext of the visualization viewer here.
  */
 @Data
 @Singleton
 public class Syndrom {
     /**
-     * the visualisation viewer of syndrom. It contains the layout and graph.
+     * The visualisation viewer of syndrom. It contains the layout and graph.
      */
     private final VisualizationViewer<Vertex, Edge> vv;
     /**
-     * template rules for the graph/ layout
+     * Template rules for the graph/layout.
      */
     private Template template;
     /**
-     * the layout of syndrom
+     * The layout of syndrom.
      */
     private Layout<Vertex, Edge> layout;
     /**
-     * the internal state of the syndrom-graph
+     * The internal state of the syndrom-graph.
      */
     private SyndromGraph<Vertex, Edge> graph;
     /**
@@ -66,148 +66,148 @@ public class Syndrom {
      */
     private EdgeIsVisiblePredicate<Vertex, Edge> edgeIsVisiblePredicate;
     /**
-     * Defines a functor that performs a predicates test all predicates passed.
+     * Defines a functor that performs a predicates test where all predicates need to pass.
      */
     private CombinesPredicate<Vertex, Edge> combinesPredicate;
     /**
-     * Defines a functor that transform a edge into its arrow draw color. The input edge left unchanged. Its extracting
-     * the arrow draw color of an edge.
+     * Defines a functor that transform an edge into its arrow draw color. The input edge is left unchanged.
+     * Its extracting the arrow draw color of an edge.
      */
     private EdgeArrowDrawPaintTransformer arrowDrawPaint;
     /**
-     * Defines a functor that transform a edge into its edge arrow fill color. The input edge left unchanged. Its
-     * extracting the arrow fill color of an edge.
+     * Defines a functor that transform an edge into its edge arrow fill color. The input edge is left unchanged.
+     * Its extracting the arrow fill color of an edge.
      */
     private EdgeArrowFillPaintTransformer arrowFillPaint;
     /**
-     * Defines a functor that transform a edge into its edge arrow type. The input edge left unchanged. Its extracting
-     * the edge arrow type.
+     * Defines a functor that transform an edge into its edge arrow type. The input edge is left unchanged.
+     * Its extracting the edge arrow type.
      */
     private EdgeArrowTransformer edgeArrow;
     /**
-     * Defines a functor that transform a edge into its edge draw color. The input edge left unchanged. Its extracting
-     * the draw color of an edge.
+     * Defines a functor that transform an edge into its edge draw color. The input edge is left unchanged.
+     * Its extracting the draw color of an edge.
      */
     private EdgeDrawPaintTransformer edgeDrawPaint;
     /**
-     * Defines a functor that transform a edge into its edge arrow fill color. The input edge left unchanged. Its
-     * extracting the arrow fill color of an edge.
+     * Defines a functor that transform an edge into its edge arrow fill color. The input edge is left unchanged.
+     * Its extracting the arrow fill color of an edge.
      */
     private EdgeFillPaintTransformer edgeFillPaint;
     /**
-     * Defines a functor that transform a edge into its stroke type. The input edge left unchanged. Its extracting the
-     * stroke type of an edge.
+     * Defines a functor that transform a edge into its stroke type. The input edge is left unchanged.
+     * Its extracting the stroke type of an edge.
      */
     private EdgeStrokeTransformer edgeStroke;
     /**
-     * Defines a functor that transform a sphere into its draw color. The input sphere left unchanged. Its extracting
-     * the draw color of a sphere.
+     * Defines a functor that transform a sphere into its draw color. The input sphere is left unchanged.
+     * Its extracting the draw color of a sphere.
      */
     private SphereDrawPaintTransformer sphereDrawPaint;
     /**
-     * Defines a functor that transform a sphere into its fill color. The input sphere left unchanged. Its extracting
-     * the fill color of a sphere.
+     * Defines a functor that transform a sphere into its fill color. The input sphere is left unchanged.
+     * Its extracting the fill color of a sphere.
      */
     private SphereFillPaintTransformer sphereFillPaint;
     /**
-     * Defines a functor that transform a sphere into its annotation font. The input sphere left unchanged. Its
-     * extracting the font annotation of a sphere.
+     * Defines a functor that transform a sphere into its annotation font. The input sphere is left unchanged.
+     * Its extracting the font annotation of a sphere.
      */
     private SphereFontTransformer sphereFont;
     /**
-     * Defines a functor that transform a sphere into its annotation. The input sphere left unchanged. Its extracting
-     * the annotation of a sphere.
+     * Defines a functor that transform a sphere into its annotation. The input sphere is left unchanged.
+     * Its extracting the annotation of a sphere.
      */
     private SphereLabelTransformer sphereLabel;
     /**
-     * Defines a functor that transform a sphere into its shape. The input sphere left unchanged. Its extracting the
-     * shape of a sphere.
+     * Defines a functor that transform a sphere into its shape. The input sphere is left unchanged.
+     * Its extracting the shape of a sphere.
      */
     private SphereShapeTransformer sphereShape;
     /**
-     * Defines a functor that transform a vertex into its draw color. The input vertex left unchanged. Its extracting
-     * the draw color of a vertex.
+     * Defines a functor that transform a vertex into its draw color. The input vertex is left unchanged.
+     * Its extracting the draw color of a vertex.
      */
     private VertexDrawPaintTransformer vertexDrawPaint;
     /**
-     * Defines a functor that transform a vertex into its fill color. The input vertex left unchanged. Its extracting
-     * the fill color of a vertex.
+     * Defines a functor that transform a vertex into its fill color. The input vertex is left unchanged.
+     * Its extracting the fill color of a vertex.
      */
     private VertexFillPaintTransformer vertexFillPaint;
     /**
-     * Defines a functor that transform a vertex into its annotation font. The input vertex left unchanged. Its
-     * extracting the annotation font of a vertex.
+     * Defines a functor that transform a vertex into its annotation font. The input vertex is left unchanged.
+     * Its extracting the annotation font of a vertex.
      */
     private VertexFontTransformer vertexFont;
     /**
-     * Defines a functor that transform a vertex into its annotation. The input vertex left unchanged. Its extracting
-     * the annotation of a vertex.
+     * Defines a functor that transform a vertex into its annotation. The input vertex is left unchanged.
+     * Its extracting the annotation of a vertex.
      */
     private VertexLabelTransformer vertexLabel;
     /**
-     * Defines a functor that transform a vertex into highlight color. The input vertex left unchanged. Its extracting
-     * the highlight color of a vertex.
+     * Defines a functor that transform a vertex into highlight color. The input vertex is left unchanged.
+     * Its extracting the highlight color of a vertex.
      */
     private VertexPaintHighlightTransformer vertexPaintHighlight;
     /**
-     * Defines a functor that transform a vertex into its highlight stroke. The input vertex left unchanged. Its
-     * extracting the highlight stroke of a vertex.
+     * Defines a functor that transform a vertex into its highlight stroke. The input vertex is left unchanged.
+     * Its extracting the highlight stroke of a vertex.
      */
     private VertexStrokeHighlightTransformer vertexStrokeHighlight;
     /**
-     * Defines a functor that transform a vertex into its shape. The input vertex left unchanged. Its extracting the
-     * shape of a vertex.
+     * Defines a functor that transform a vertex into its shape. The input vertex is left unchanged.
+     * Its extracting the shape of a vertex.
      */
     private VertexShapeTransformer vertexShape;
     /**
-     * Defines a functor that transform a vertex into its stroke. The input vertex left unchanged. Its extracting the
-     * stroke of a vertex.
+     * Defines a functor that transform a vertex into its stroke. The input vertex is left unchanged.
+     * Its extracting the stroke of a vertex.
      */
     private VertexStrokeTransformer vertexStroke;
     /**
-     * Defines a functor that transform a vertex into tool tip. The input vertex left unchanged. Its extracting the tool
-     * tip of a vertex.
+     * Defines a functor that transform a vertex into tooltip. The input vertex is left unchanged.
+     * Its extracting the tooltip of a vertex.
      */
     private VertexToolTipTransformer vertexTooltip;
     /**
-     * the renderer of the syndrom graph
+     * The renderer of the syndrom graph.
      */
     private SyndromRenderer syndromRenderer;
 
     /**
-     * Satellite view for zoom context
+     * Satellite view for zoom context.
      */
     final SatelliteVisualizationViewer<Vertex,Edge> vv2;
 
     /**
-     * zoom pane, containing the vv
+     * Zoom pane, containing the visualization viewer.
      */
     private GraphZoomScrollPane gzsp;
 
     /**
-     * for adding/ removing graph mouse plugins
+     * For adding/removing graph mouse plugins.
      */
     private PluggableGraphMouse pluggable;
 
     /**
-     * the view grid for zoom context
+     * The view grid for zoom context.
      */
     VisualizationServer.Paintable viewGrid;
 
     /**
-     * the name of the graph
+     * The name of the graph.
      */
     private String graphName;
 
     /**
-     * the values set by the gui
+     * The values set by the gui.
      */
     @Setter(AccessLevel.NONE)
     @Inject
     private Values values;
 
     /**
-     * the constructor, initialising all attributes
+     * The constructor, initialising all attributes.
      */
     public Syndrom(){
         throw new UnsupportedOperationException();

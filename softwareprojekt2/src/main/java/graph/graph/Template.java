@@ -28,27 +28,27 @@ public class Template {
     private int maxEdgeCounter;
 
     /**
-     * a list with all object ids where the name is not changeable
+     * A list with all object ids where the name is not changeable.
      */
     private List<Integer> nameLockedObjects;
 
     /**
-     * a list with all object ids where the color is not changeable
+     * A list with all object ids where the color is not changeable.
      */
     private List<Integer> colorLockedObjects;
 
     /**
-     * a list with all object ids where all attributes are not changeable
+     * A list with all object ids where all attributes are not changeable.
      */
     private List<Integer> isLockedObjects;
 
     /**
-     * all edge types that are allowed to use
+     * All edge types that are allowed to use.
      */
     private List<EdgeArrowType> allowedEdgeTypes;
 
     /**
-     * creates a new Template
+     * Creates a new Template object.
      */
     public Template() {
         throw new UnsupportedOperationException();

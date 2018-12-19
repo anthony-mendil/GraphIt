@@ -11,23 +11,23 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 
 /**
- * A graph mouse plugin that supports the visualisation of picking if the user selected the edit function mode
+ * A graph mouse plugin that supports the visualization of picking if the user selected the edit function mode
  * and executes actions.
  */
 public class PickingGraphMouseEditSyndromPlugin<V, E> extends PickingGraphMousePlugin implements MouseListener, MouseMotionListener {
 
     /**
-     * the coordinate where the user pressed the mouse
+     * The coordinate where the user pressed the mouse.
      */
     private Point2D source;
 
     /**
-     * the coordinates of the picked vertices in relation to their vertices
+     * The coordinates of the picked vertices in relation to their vertices.
      */
     private Point2D[] points;
 
     /**
-     * the action history
+     * The action history.
      */
     @Inject
     ActionHistory history;
@@ -43,9 +43,9 @@ public class PickingGraphMouseEditSyndromPlugin<V, E> extends PickingGraphMouseP
     /**
      * Creates a new animated picking graph mouse edit syndrom plugin with a defined button mask.
      *
-     * @param selectionModifiers      the selection modifiers defines the button mask
-     * @param addToSelectionModifiers the add to selection modifiers defines the button mask for adding items to a
-     *                                selection
+     * @param selectionModifiers      The selection modifiers defines the button mask.
+     * @param addToSelectionModifiers The add to selection modifiers defines the button mask for adding items to a
+     *                                selection.
      */
     private PickingGraphMouseEditSyndromPlugin(int selectionModifiers, int addToSelectionModifiers) {
         super(selectionModifiers, addToSelectionModifiers);

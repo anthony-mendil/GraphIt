@@ -13,21 +13,21 @@ import java.awt.geom.Point2D;
 import java.util.Map;
 
 /**
- * A graph mouse plugin that supports the visualisation of picking if the user selected the analyse function mode
+ * A graph mouse plugin that supports the visualization of picking if the user selected the analyse function mode
  * and executes actions.
  */
 public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMousePlugin implements MouseListener, MouseMotionListener {
     /**
-     * the coordinate where the user pressed the mouse
+     * The coordinate where the user pressed the mouse.
      */
     private Point2D source;
 
     /**
-     * the coordinates of the picked vertices in relation to their vertices
+     * The coordinates of the picked vertices in relation to their vertices.
      */
     private Map<Vertex, Point2D> points;
     /**
-     * the action history
+     * The action history.
      */
     @Inject
     ActionHistory history;
@@ -43,9 +43,9 @@ public class PickingGraphMouseAnalyseSyndromPlugin<V, E> extends PickingGraphMou
     /**
      * Creates a new picking graph mouse analyse syndrom plugin with a defined button mask.
      *
-     * @param selectionModifiers      the selection modifiers defines the button mask
-     * @param addToSelectionModifiers the add to selection modifiers defines the button mask for adding items to a
-     *                                selection
+     * @param selectionModifiers      The selection modifiers defines the button mask.
+     * @param addToSelectionModifiers The add to selection modifiers defines the button mask for adding items to a
+     *                                selection.
      */
     private PickingGraphMouseAnalyseSyndromPlugin(int selectionModifiers, int addToSelectionModifiers) {
         super(selectionModifiers, addToSelectionModifiers);

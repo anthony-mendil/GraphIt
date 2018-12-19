@@ -20,7 +20,7 @@ public class DeactivateFadeoutLogAction extends LogAction {
      * Makes the vertices and edges visible. Also used to implement the undo-method of
      * ActivateFadeoutLogAction.
      *
-     * @param pParam The used parameters.
+     * @param pParam The parameter object that contains every parameter that is needed.
      */
     public DeactivateFadeoutLogAction(ActivateDeactivateFadeoutParam pParam) {
         super(LogEntryName.DEACTIVATE_FADEOUT);

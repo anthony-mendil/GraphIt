@@ -3,20 +3,20 @@ package actions.export_graph;
 import actions.GraphAction;
 
 /**
- * imports an oof
+ * Imports an OOF file.
  */
 public class ImportOofAction extends GraphAction {
 
     /**
-     * The path that the OOF is exported to
+     * The path that the OOF file is exported to.
      */
     private String path;
 
 
     /**
-     * Constructs Action handling for importing a graph as Oof
+     * Constructs action handling for importing a graph as OOF file.
      *
-     * @param pPath The path that the OOF is imported from
+     * @param pPath The path that the OOF file is imported from.
      */
     public ImportOofAction(String pPath) {
 

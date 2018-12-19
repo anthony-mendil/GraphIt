@@ -4,13 +4,13 @@ import actions.GraphAction;
 import graph.graph.Template;
 
 /**
- * creates a template of a graph
+ * Creates a template of a graph.
  */
 public class RulesTemplateAction extends GraphAction {
     /**
-     * creates a new rules template action
+     * Creates a new rules template action.
      *
-     * @param template the template to use
+     * @param template The template to use.
      */
     public RulesTemplateAction(Template template) {
         throw new UnsupportedOperationException();

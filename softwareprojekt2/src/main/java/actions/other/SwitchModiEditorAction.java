@@ -3,22 +3,22 @@ package actions.other;
 import actions.GraphAction;
 import graph.graph.FunctionMode;
 
-/*
- * Changes the mode either to "Ersteller"/"Betrachter"/ "Auswerter"
+/**
+ * Changes the mode either to "Ersteller"/"Betrachter"/ "Auswerter".
  */
 public class SwitchModiEditorAction extends GraphAction {
     /**
-     * the function mode to change to
+     * The function mode to change to.
      */
     private FunctionMode mode;
     /**
-     * the old function mode
+     * The old function mode.
      */
     private FunctionMode oldMode;
 
     /**
      * Constructor in case the user changes the mode.
-     * @param mode The new mode
+     * @param mode The new mode.
      */
     public SwitchModiEditorAction(FunctionMode mode) {
         throw new UnsupportedOperationException();

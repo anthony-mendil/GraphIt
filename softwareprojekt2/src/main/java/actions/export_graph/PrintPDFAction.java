@@ -2,20 +2,20 @@ package actions.export_graph;
 
 import actions.GraphAction;
 
-/*
- * prints the current graph visualisation as a pdf
+/**
+ * Prints the current graph visualization as a PDF file.
  */
 public class PrintPDFAction extends GraphAction {
 
     /**
-     * The name of the file
+     * The name of the file.
      */
     private String name;
 
     /**
-     * Actionhandling for printing the graph as PDF
+     * Action handling for printing the graph as PDF file.
      *
-     * @param pName The name that the file is printed as
+     * @param pName The name that the file is printed as.
      */
     PrintPDFAction(String pName) {
         throw new UnsupportedOperationException();
