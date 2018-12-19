@@ -10,134 +10,135 @@ import lombok.*;
 import java.awt.*;
 
 /**
- * Defines values for the syndrom. This are default values. The values represent the currently selected values from the
- * GUI. Its a Singleton Instance.
+ * Defines values for the syndrom. These are default values. The values represent the currently selected values from the
+ * GUI. Its a singleton instance.
  */
 @Data
 @Singleton
 public class Values {
 
     /**
-     * the default width sphere
+     * The default width sphere.
      */
     @Setter(AccessLevel.NONE)
     private static final double defaultWidthSphere = -1;
     /**
-     * the default height of a sphere
+     * The default height of a sphere.
      */
     @Setter(AccessLevel.NONE)
     private static final double defaultHeightSphere = -1;
     /**
-     * the default annotation of a sphere
+     * The default annotation of a sphere.
      */
     @Setter(AccessLevel.NONE)
     private static final String defaultAnnotationSphere = "";
     /**
-     * default shape of a sphere
+     * The default shape of a sphere.
      */
     @Setter(AccessLevel.NONE)
     private static final Shape defaultShapeSphere = null;
     /**
-     * the default annotation of a vertex
+     * The default annotation of a vertex.
      */
     @Setter(AccessLevel.NONE)
     private static final String defaultAnnotationVertex = "";
     /**
-     * the default size of a vertex
+     * The default size of a vertex.
      */
     @Setter(AccessLevel.NONE)
     private static final int defaultSizeVertex = -1;
     /**
-     * the highlight color one for highlighting selection/ picking
+     * The first highlight color for highlighting selection/ picking.
      */
     @Setter(AccessLevel.NONE)
     private static final Paint defaultHighlightProPaintVertex = null;
     /**
-     * the highlight color two for highlighting selection/ picking
+     * The second highlight color for highlighting selection/ picking.
      */
     @Setter(AccessLevel.NONE)
     private static final Paint defaultHighlightContraPaintVertex = null;
     /**
-     * the highlight stroke
+     * The highlight stroke.
      */
     @Setter(AccessLevel.NONE)
     private static final StrokeType defaultHighlightStrokeVertex = null;
     /**
-     * the default layout size
+     * The default layout size.
      */
     @Setter(AccessLevel.NONE)
     private static final Dimension defaultLayoutSize = null;
     /**
-     * the default satellite layout size
+     * The default satellite layout size.
      */
     @Setter(AccessLevel.NONE)
     private static final Dimension defaultSatelliteLayoutSize = null;
     /**
-     * the fill paint color
+     * The fill paint color.
      */
     private Paint fillPaintSphere;
     /**
-     * the font of a sphere
+     * The font of a sphere.
      */
     private String fontSphere;
     /**
-     *
+     * The font size of a sphere annotation.
      */
     private int fontSizeSphere;
     /**
-     *
+     * The fonz size of a vertex annotation.
      */
     private int fontSizeVertex;
     /**
-     * the fill paint color of a vertex
+     * The fill paint color of a vertex.
      */
     private Paint fillPaintVertex;
     /**
-     * the draw paint color pf a vertex
+     * The draw paint color of a vertex.
      */
     private Paint drawPaintVertex;
     /**
-     * the shape of a vertex
+     * The shape of a vertex.
      */
     private VertexShapeType shapeVertex;
     /**
-     * the font of a vertex
+     * The font of a vertex.
      */
     private String fontVertex;
     /**
-     * the highlight color for vertices
+     * The highlight color for vertices.
      */
     private Paint highlightPaintVertex;
     /**
-     * the edge paint color of a edge
+     * The edge paint color of an edge.
      */
     private Paint edgePaint;
     /**
-     * the edge weight
+     * The edge weight.
      */
     private int edgeWeight;
     /**
-     * the edge stroke
+     * The edge stroke.
      */
     private StrokeType strokeEdge;
     /**
-     * the edge arrow type
+     * The edge arrow type.
      */
     private EdgeArrowType edgeArrowType;
     /**
-     * the actual graph button type, pressed in the gui
+     * The actual graph button type, pressed in the gui.
      */
     private GraphButtonType graphButtonType;
 
     /**
-     * the current application mode
+     * The current application mode.
      */
     private FunctionMode mode;
 
     /**
-     * the current language of the objects
+     * The current language of the objects.
      */
     private String objectLanguage;
+
 
     public Values() {
         throw new UnsupportedOperationException();

@@ -1,7 +1,7 @@
 package gui;
 
 /**
- * The visualisation viewer need to now, which button is pressed in the javafx gui
+ * The visualization viewer needs to know, which button is pressed in the javafx gui.
  */
 public enum GraphButtonType {
     ADD_VERTEX,
