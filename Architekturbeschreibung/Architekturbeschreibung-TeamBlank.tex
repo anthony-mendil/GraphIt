@@ -2139,7 +2139,7 @@ Eine Übersicht über alle \texttt{Action}-Packages, die der Übersicht halber a
 
 Um die Lücke zwischen der Übersicht über alle Actions und den Abhängigkeiten des \texttt{action}-Packages mit anderen Modulen zur (für die Auswertung der Nutzerinteraktionen erforderlichen) Persistierung zu schließen, wird im folgenden Abschnitt auf das \texttt{log\_management}-Package genauer eingegangen. Dadurch wird die genannte Lücke geschlossen und weitere Aspekte unserer Anwendung erklärt werden. 
 
-\includepdf[pages=-, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{actions overview class diagram},\pagestyle{fancy}}]{actionsOverview.pdf}
+\includepdf[pages=-, scale=0.84,landscape,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{actions overview class diagram},\pagestyle{fancy}}]{actionsOverview.pdf}
 
 
 \subsection{\texttt{log\_management}}
@@ -2176,7 +2176,7 @@ Die \texttt{Param}-Klassen werden benötigt, um die wichtigen Informationen von 
 
 Wie eben angedeutet wird im folgenden Abschnitt auf das Package \texttt{graph.graph} genauer eingegangen. Da hier die Datenklassen unseres Graphen thematisert werden, ist dieser Abschnitt an den vorangehenden angeschlossen. Schließlich wurden in diesem auch unsere in der Datenbank zu persistierenden, eigenen Datenklassen genannt. Letztere und die anderen Aspekte des Packages \texttt{log\_management} sind in folgendem Diagramm dargestellt:
 
-\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{parameters class diagram},\pagestyle{fancy}}]{parameters.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{parameters class diagram},\pagestyle{fancy}}]{param.pdf}
 
 
 
@@ -2229,7 +2229,7 @@ Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klas
 
 Die folgende Graphik ist eine Visualisierung des \texttt{graph.graph}-Packages und der im vorangehenden beschriebenen Zusammenhänge dieses Packages mit anderen Modulen. Der nächste Abschnitt beschreibt das Package \texttt{graph.algorithmen}, welches der Auswertung eines visualisierten Graphen dient.
 
-\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{graph.visualization class diagram},\pagestyle{fancy}}]{transformer.pdf}
+\includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{graph.visualization class diagram},\pagestyle{fancy}}]{visualization.pdf}
 
 \subsection{\texttt{graph.algorithmen}}
 Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. JUNG verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{jung}{S66  - JUNG} implementieren wir alle Algorithmen die zur Analyse / Auswertung des Graphen benötigt werden soweit wie möglich mit von \texttt{JUNG} zur Verfügung gestellten Funktionen und Algorithmen. \\
@@ -2240,7 +2240,7 @@ Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu di
 
 In der folgenden Abbildung ist das Package \texttt{graph.algorithmen} mit seinen Abhängigkeiten dargestellt. Da wir thematisch bei Auswertung sind, folgt im nächsten Abschnitt eine Beschreibung des Moduls \texttt{jgrapht}.
 
-\includepdf[pages=-, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{graph.algorithmen class diagram},\pagestyle{fancy}}]{predicates.pdf}
+\includepdf[pages=-, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{graph.algorithmen class diagram},\pagestyle{fancy}}]{graph_algorithmen.pdf}
 
 
 
