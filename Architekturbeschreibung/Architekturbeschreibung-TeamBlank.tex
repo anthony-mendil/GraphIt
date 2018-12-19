@@ -191,7 +191,7 @@
   \\ ~
   \vspace{2cm}
   \\
-  \it Abgabe: 23. Dezember 2018 --- Version 1.0\\ ~
+  \it Abgabe: 23. Dezember 2018 --- Version 4.0\\ ~
   \end{center}
   \end{minipage}
 
@@ -230,13 +230,36 @@ Im folgenden ist eine Tabelle zu finden, die Aufschluss darüber ermöglicht, mi
 \begin{tabular}{p{1,2cm}cp{12cm}}
 Version & Datum & Änderungen \\
 \hline
-0.1 & 28.10.2018 & Aufsetzen eines LaTeX-Dokumentes  und Festlegung grundlegender Layout-Entscheidungen \\
-0.2 & 30.10.2018 & Einfügen einer vorläufigen Gliederung \\
-0.3 & 02.11.2018 & Anpassung des Layouts \\
-1.1 & 03.11.2018 & Erarbeitung der Einleitung \\
-1.2 & 15.11.2018 & Einflussfaktoren vorläufig abgeschlossen \\
-\textbf{1.3} & \textbf{27.11.2018} & \textbf{Einflussfaktoren an geänderte Anforderungen angepasst} \\
-\ldots
+0.0 & 28.10.2018 & Aufsetzen eines LaTeX-Dokuments und Festlegung grundlegender Layout-Entscheidungen \\
+0.1 & 30.10.2018 & Einfügen einer vorläufigen Gliederung \\
+0.2 & 02.11.2018 & Anpassung des Layouts \\
+1.0 & 03.11.2018 & Erarbeitung der Einleitung \\
+1.1 & 15.11.2018 & vorläufige Version der Einflussfaktoren \\
+1.2 & 27.11.2018 & Einflussfaktoren an geänderte Anforderungen angepasst \\
+1.3 & 30.11.2018 & Vorerst finale Version der Einflussfaktoren- und Problemkartenerstellung \\
+1.4 & 03.12.2018 & Erste Version der Konzeptionellen Sicht\\
+1.5 & 04.12.2018 & Beschreibung der Konzeptionellen Sicht hinzugefügt\\
+1.6 & 05.12.2018 & Finale Version der Einflussfaktoren und Problemkarten \\
+1.7 & 06.12.2018 & Erste Version der Anwendungsfälle \\
+1.8 & 07.12.2018 & Erste Version der Datensicht \\
+1.9 & 09.12.2018 & Beschreibung der Datensicht \\
+2.0 & 09.12.2018 & Komplett neu aufgesetztes Dokument \\
+2.1 & 11.12.2018 & Überarbeitete Datensicht und benötigte Problemkarte\\
+2.2 & 12.12.2018 & Überarbeitete Version der Konzeptionellen Sicht \\
+2.3 & 12.12.2018 & Erste Version der Modulsicht \\
+2.4 & 13.12.2018 & Erste Version der kompletten Klassendiagramme \\
+2.5 & 14.12.2018 & Erste Version der Evolution \\
+2.6 & 14.12.2018 & Erste Version der Ausführungssicht \\
+2.7 & 14.12.2018 & Überarbeitung, Formalisierung und Strukturierung der Anwendungsfälle \\
+2.8 & 16.12.2018 & Sequenzdiagramme zu den Anwendungsfällen \\
+2.9 & 16.12.2018 & Klassendiagramme in Modulsicht-Abschnitte eingegliedert \\
+3.0 & 17.12.2018 & Geprüfte Version der Einleitung, Datensicht, Konzeptionellen Sicht und Evolution\\
+3.1 & 19.12.2018 & Überarbeitete und geprüfte Version der Ausführungssicht und Globalen Analyse\\
+3.2 & 19.12.2018 & Geprüfte Version der Modulsicht \\
+3.3 & 20.12.2018 & Vorläufig generell überprüfte Version des Dokuments \\
+\textbf{4.0} & \textbf{21.12.2018} & \textbf{Endgültige Version der Architekturbeschreibung} \\
+
+
 \end{tabular}
 \\ \\ \\ \newpage
 
@@ -745,7 +768,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
-	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{ff}{P\tone.\two}: Zoom-Kontext}} }\\ \hline\hline
+	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{ff}{P\tone.\two}: Zoom.Kontext}} }\\ \hline\hline
 	\multicolumn{2}{|l|}{\parbox{16cm}{Ist der Zoom aktiviert, so soll ein Übersichtsfenster des gesamten Graphen eingeblendet sein, in dem erkenntlich wird, in welchem Bereich des Graphen man sich gerade befindet.}} \s\\ [1ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Uns sind an die Darstellung dieser Funktion kaum Vorgaben gemacht und bei der technischen Realisation sind wir absolut frei. &
@@ -761,7 +784,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll die Benutzung in mindestens zwei verschiedenen Sprachen unterstützen. Dies betrifft in erster Linie die Beschriftung der Elemente der GUI (im Chinese Menue die Anforderung Sprache) und in zweiter Linie die Beschriftungen (Namen, Beschreibungen; ...) der Elemente des Graphen (im Chinese Menue die Anforderung Sprache.Beschriftung).} }\rule{0pt}{7ex}\\ [1ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Es wurden keine Vorgaben zur Umsetzung und zur konkreten Anzahl von Sprachen gemacht. Es ist nur vorgegeben, dass es mindestens zwei sein müssen. &
-	(o) Es könnte eine höhrere Anzahl an Sprachen zu einem späteren Zeitpunkt gefordert werden.Allerdings ist dies eher unwahrscheinlich, da dem Kunden bereits eine Sprache gereicht hätte. Grund hierfür ist, dass der \hyperlink{Syndromansatz}{Syndromansatz} ein bislang nur in Deutschland genutztes Konzept ist. \\ \hline
+	(o) Es könnte eine höhere Anzahl an Sprachen zu einem späteren Zeitpunkt gefordert werden. Allerdings ist dies eher unwahrscheinlich, da dem Kunden bereits eine Sprache gereicht hätte. Grund hierfür ist, dass der \hyperlink{Syndromansatz}{Syndromansatz} ein bislang nur in Deutschland genutztes Konzept ist. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Architektur unseres Systems muss so gewählt werden, dass die Beschriftung von Buttons und die Beschreibung von Dialogfeldern in verschiedenen Sprachen hinterlegt werden und vom Nutzer umgestellt werden kann.} }\\ \hline
 \end{tabular}
@@ -774,7 +797,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Beschriftungen (Namen, Beschreibungen) der Graph-Bestandteile sollen in verschiedenen (das heißt in mindestens zwei unterschiedlichen) Sprachen hinterlegt werden können (im Chinese Menu die Anforderung Sprache.Beschriftung).} }\rule{0pt}{6ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Es wurden keine Vorgaben zur Umsetzung und zur konkreten Anzahl von Sprachen gemacht. Es ist nur vorgegeben, dass es mindestens zwei sein müssen. &
-	(o) Es könnte eine höhere Anzahl an Sprachen zu einem späteren Zeitpunkt gefordert werden.Allerdings ist dies eher unwahrscheinlich, da dem Kunden bereits eine Sprache gereicht hätte. Grund hierfür ist, dass der \hyperlink{Syndromansatz}{Syndromansatz} ein bislang nur in Deutschland genutztes Konzept ist. \\
+	(o) Es könnte eine höhere Anzahl an Sprachen zu einem späteren Zeitpunkt gefordert werden. Allerdings ist dies eher unwahrscheinlich, da dem Kunden bereits eine Sprache gereicht hätte. Grund hierfür ist, dass der \hyperlink{Syndromansatz}{Syndromansatz} ein bislang nur in Deutschland genutztes Konzept ist. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Durch die Architektur unseres Systems muss die Erfüllung der Anforderung gewährleistet werden. Die Beschreibung von Graph-Elementen muss dementsprechend in verschiedenen Sprachen hinterlegbar sein und die in der GUI angezeigte Beschriftung soll vom Nutzer umgestellt werden können. } }\\ \hline
@@ -801,7 +824,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{kk}{P\tone.\two}: PDF Erstellung}} } \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Unser System bietet die Möglichkeit eine PDF zu erzeugen, deren Inhalt identisch zu dem in der GUI dargestellten Graphen ist. Die PDF ist also eine originalgetreu Abbildung des Graphen, den der Nutzer in unserem System erstellt hat.} }\rule{0pt}{6ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(o) Uns ist zwar das Datei-Format vorgegeben, das den Graphen originalgetreu abbilden soll, aber ansonsten sind wir in der Umsetzung der Anforderungen flexibel, da es mehrere Möglichkeiten gibt das geforderte PDF zu erstellen.& 
+	(o) Uns ist zwar das Dateiformat vorgegeben, dass den Graphen originalgetreu abbilden soll, aber ansonsten sind wir in der Umsetzung der Anforderungen flexibel, da es mehrere Möglichkeiten gibt das geforderte PDF zu erstellen.& 
 	(–) Da PDF (portable document format) ein weitverbreitetes Dateiformat ist, halten wir es für unwahrscheinlich, dass ein anderes Dateiformat gefordert wird, welches den Graphen darstellen soll.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
@@ -815,7 +838,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{ll}{P\tone.\two}: PDF drucken}} } \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll möglich sein, eine im PDF-Datei, die an einer beliebigen Stelle im Dateiverzeichnis im System des Nutzers gespeichert ist, aus unserem System heraus ausdrucken zu können.} }\rule{0pt}{4ex}\\ [2ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(+) Uns sind keine Vorgaben hinsichtlich der Umsetzung des Datei-Suchens im Dateisystem und des Starten des Ausdrucks gemacht worden, weshalb dieser Einflussfaktor eher flexibel ist.& 
+	(+) Uns sind keine Vorgaben hinsichtlich der Umsetzung der Dateisuche im Dateisystem und des Starten des Ausdrucks gemacht worden, weshalb dieser Einflussfaktor eher flexibel ist.& 
 	(–) Da der Graph als PDF (portable document format) gespeichert werden soll (und wir denken, dass dieses Format dauerhaft verwendet werden soll), ist es naheliegend, dass weiterhin PDF-Dateien gedruckt werden können sollen. Wir denken außerdem nicht, dass sich der Kunde später für eine konkrete Umsetzung bezüglich der Bedienung wünschen wird - können dies aber auch nicht auschließen. Deshalb stufen wir den Einflussfaktor als eher gering veränderlich ein.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
@@ -826,10 +849,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{mm}{P\tone.\two}: Protokoll JSON}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} aufgezeichneten Nutzerinteraktionen sollen sowohl in für Menschen lesbarer (also textueller) als auch in von Maschinen verarbeitbarer Form exportiert werden können.} }\rule{0pt}{5ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die im \hyperlink{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus} aufgezeichneten Nutzerinteraktionen sollen sowohl in für Menschen lesbarer (also textueller) als auch in von Maschinen verarbeitbarer Form exportiert werden können.} }\rule{0pt}{5ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(+) Wir haben recht umfangreiche Gestaltungsmöglichkeiten, wie wir das Protokoll ausgestalten. Dies gilt insbesondere für das Layout, in dem wir die Nutzerinteraktionen darstellen. Außerdem ist JSON lediglich die von uns gewählte Sprache zur Realisierung des geforderten Im- und Exports von Nutzerinteraktionen (siehe Problemkarte ``Protokoll der Nutzerinteraktionen exporieren / importieren''). Somit ist JSON nicht vom Kunden vorgeschrieben. &
-	(-) Wir denken nicht, dass es zu einem späteren Zeitpunkt konkrete Wünsche des Kunden hinsichtlich der Form des Protokolls geben wird. Mit der Programmiersprachenunabhängigkeit ist außerdem auch langfristig für eine gute Auswertbarkeit der Information, die die JSON-Datei in sicht trägt, gesorgt. \\
+	(+) Wir haben recht umfangreiche Gestaltungsmöglichkeiten, wie wir das Protokoll ausgestalten. Dies gilt insbesondere für das Layout, in dem wir die Nutzerinteraktionen darstellen. Außerdem ist JSON lediglich die von uns gewählte Notation zur Realisierung des geforderten Im- und Exports von Nutzerinteraktionen (siehe Problemkarte \glqq Protokoll der Nutzerinteraktionen exportieren / importieren\grqq). Somit ist JSON nicht vom Kunden vorgeschrieben. &
+	(-) Wir denken nicht, dass es zu einem späteren Zeitpunkt konkrete Wünsche des Kunden hinsichtlich der Form des Protokolls geben wird. Mit der Programmiersprachenunabhängigkeit ist außerdem auch langfristig für eine gute Auswertbarkeit der Information, die die JSON-Datei in sich trägt, gesorgt. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Das Protokoll muss so in der verwendeten relationalen Datenbank gespeichert werden, dass es möglich ist, durch Anfragen an die Datenbank an die nötigen Informationen zu gelangen, um das Protokoll in den geforderten Formen zu erstellen.}}\\ \hline
@@ -842,7 +865,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{oo}{P\tone.\two}: Analyse des Graphen}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Im System ist es möglich besonders wichtige und/oder stark vernetzte Knoten geeignet hervorheben zu lassen. Wichtigkeit und Grad der Vernetzung können anhand der \hyperlink{Bedeutung eines Knoten}{oben genanten} Eigenschaften bestimmt werden. Diese Funktion soll im \hyperlink{Vorlage bearbeiten''-Modus}{Vorlage bearbeiten’’-Modus} und im \hyperlink{Diagramm bearbeiten''-Modus}{Diagramm bearbeiten’’-Modus} erreichbar sein. (Im Chinese Menue ist dies die Anforderung O«Analyse».)} }\rule{0pt}{7ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Im System ist es möglich besonders wichtige und/oder stark vernetzte Knoten geeignet hervorheben zu lassen. Wichtigkeit und Grad der Vernetzung können anhand der \hyperlink{Bedeutung eines Knoten}{oben genanten} Eigenschaften bestimmt werden. Diese Funktion soll im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten \grqq-Modus} und im \hyperlink{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus} erreichbar sein. (Im Chinese Menue ist dies die Anforderung O«Analyse».)} }\rule{0pt}{7ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(o) Der Kunde hat konkret angegeben, nach welchen Bedingungen die Wichtigkeit/Vernetztheit eines Knoten ermittelt werden soll. Ihm ist es allerdings egal wie das Ergebnis der Analyse visuell dargestellt wird.&
 	(–) Wir denken, dass sich diese Anforderung nicht ändern wird, da unseres Verständnisses des Syndromansatzes nach mit den genannten Analysemöglichkeiten schon eine weitreichende Analyse der Vernetzung und Bedeutung einzelner Knoten möglich ist. \\
@@ -855,7 +878,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{pp}{P\tone.\two}: Auswertung des Graphen}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Im \hyperlink{Analyse''-Modus}{Analyse’’-Modus} soll der Auswerter Statistiken über die \hyperlink{Bedeutung eines Knoten}{oben aufgeführten Maße} zur Wichtigkeit und zum Grad der Vernetzung von Knoten erhalten. (Im Chinese Menue ist dies die Anforderung O«Auswertung».)} }\rule{0pt}{5ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Im \hyperlink{``Analyse''-Modus}{\glqq Analyse\grqq-Modus} soll der Auswerter Statistiken über die \hyperlink{Bedeutung eines Knoten}{oben aufgeführten Maße} zur Wichtigkeit und zum Grad der Vernetzung von Knoten erhalten. (Im Chinese Menue ist dies die Anforderung O«Auswertung».)} }\rule{0pt}{5ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(o) Da uns nur vorgegeben ist, zu welchen Daten wir Statistiken bereitstellen sollen, aber nicht wie die Statistiken umgesetzt/visuell dargestellt werden sollen, halten wir diese Anforderung für weder besonders flexibel noch für besonders unflexibel.& 
 	(–) Wie im vorherigen Einflussfaktor erwähnt, denken wir nicht, dass weitere Analysemöglichkeiten zur Bestimmung von Wichtigkeit und Grad der Vernetzung eines Knotens hinzukommen. Ebenso denken wir nicht, dass der Kunde sich später eine konkrete Darstellung der Statistiken wünschen wird.\\
@@ -2024,7 +2047,7 @@ Das Package \texttt{actions} beinhaltet \texttt{Action}-Klassen, von denen die m
 
 Das Modul \texttt{gui} beinhaltet alle Klassen, die zur Erstellung der und Interaktion mit der Benutzeroberfläche benötigt werden. Das \texttt{gui}-Modul ist mit dem Modul \texttt{actions} verbunden, da die GUI Nutzerinteraktionen entgegennimmt und diese zur Ausführung an das Package \texttt{actions} weiterleitet. Im Modus \glqq Vorlage bearbeiten\grqq{} und \glqq Diagramm bearbeiten\grqq sowie im \glqq Analyse\grqq{}-Modus werden Informationen über den Graphen visualisiert, weshalb ebenfalls eine Abhängigkeit zwischen \texttt{gui} und dem Package \textit{graph} besteht. Die GUI bezieht sich außerdem auf das Modul \texttt{log\_management}, da erstgenannte im \glqq Analyse\grqq{}-Modus Informationen über das Protokoll der Nutzerinteraktionen visualisiert. \\
 
-Das Persistieren der Daten wird im Package \texttt{log\_management} umgesetzt. Dieses Package ist in drei weitere Packages unterteilt: \texttt{dao}, \texttt{parameters} und \texttt{tables}. \texttt{dao} \glqq Data Acess Object\grqq{} bildet die Benutzerschnittstelle, die es anderen Modulen ermöglicht, auf die Daten in der Datenbank zuzugreifen. Das Package \texttt{prameters} beinhaltet \texttt{Param}-Klassen. Jeder \texttt{Action}-Klasse ist eine \texttt{Param}-Klasse zugeordnet. Diese wird bei der Persistierung der \texttt{Actions} als \texttt{Log} in einen Json-String umgewandelt und als Attribut eines \texttt{Log}-Objektes abgespeichert und in die Datenbank geschrieben. \texttt{tables} beinhaltet die Klassen, welche den Aufbau eines \texttt{Graph}- und \texttt{Log} Objektes beschreiben. Diese Objekte werden mit Hibernate beziehungsweise JPA persistiert und in einer embedded H2 Datenbank abgespeichert. \\ 
+Das Persistieren der Daten wird im Package \texttt{log\_management} umgesetzt. Dieses Package ist in drei weitere Packages unterteilt: \texttt{dao}, \texttt{parameters} und \texttt{tables}. \texttt{dao} \glqq Data Acess Object\grqq{} bildet die Benutzerschnittstelle, die es anderen Modulen ermöglicht, auf die Daten in der Datenbank zuzugreifen. Das Package \texttt{prameters} beinhaltet \texttt{Param}-Klassen. Jeder \texttt{Action}-Klasse ist eine \texttt{Param}-Klasse zugeordnet. Diese wird bei der Persistierung der \texttt{Actions} als \texttt{Log} in einen Json-String umgewandelt und als Attribut eines \texttt{Log}-Objektes abgespeichert und in die Datenbank geschrieben. \texttt{tables} beinhaltet die Klassen, welche den Aufbau eines \texttt{Graph}- und den eines\texttt{Log}-Objektes beschreiben. Diese Objekte werden mit Hibernate beziehungsweise JPA persistiert und in einer embedded H2 Datenbank abgespeichert. \\ 
 
 Alle Import und Export Aktionen, werden im Package \texttt{io} implementiert. \texttt{io} benötigt die Protokoll Daten, welche durch das Package \texttt{dao} zugänglich sind. Außerdem greift \texttt{io} auf Klassen aus \texttt{graph} zu, da dort die Klassen liegen, welche die Daten zu dem aktuellen Syndrom / Graphen beinhalten. \\
 
@@ -2035,20 +2058,20 @@ Alle Klassen, die Funktionalität für den programminternen Graphen umsetzen, si
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy},\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{package diagram}}]{package.pdf}
 
 \subsection{\texttt{io}}
-Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} "'plain"' als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
+Der Graph soll gemäß Strategie \hyperlink{yy}{S1 – GXL} \glqq plain\grqq{} als String in der Datenbank abgespeichert werden. Dieser String beinhaltet eine GXL (Graph eXchange Language) –Repräsentation des Graphen.\\
 Daher muss es ein Modul geben, welches alle Informationen des in der GUI angezeigten Graphen abfragt und diesen in ein GXL-Format transferiert. Analog dazu muss die Möglichkeit bestehen, aus einem GXL-String die \texttt{Syndrom}-Instanz beziehungsweise Graph-Repräsentation zu generieren, die dann als aktueller Graph im Programm angezeigt wird.\\ 
 
 Außerdem soll das Programm die Möglichkeit bieten, eine GXL Datei zu importieren/exportieren. Diese Funktionalität muss gemäß Einflussfaktor \hyperlink{ii}{GXL- Export und -Import} bereit gestellt werden.\\ 
-Für die Umsetzung dieser Funktionen haben wir im \texttt{io-package} die Klasse \texttt{GXLio} implementiert. \\
+Für die Umsetzung dieser Funktionen haben wir im \texttt{io}-Package die Klasse \texttt{GXLio} implementiert. \\
 
-In der Klasse \texttt{GXLio} sind io-Methoden für die GXL-Repräsentation des Graphen zu finden, welche (neben dem Dateinamen beim Import) den Pfad der zu importierenden Datei beziehungsweise den Pfad für die zu exportierende Datei übergeben bekommen (\texttt{importGXL(), exportGXL()}). \\
+In der Klasse \texttt{GXLio} sind dementsprechend io-Methoden für die GXL-Repräsentation des Graphen zu finden, welche (neben dem Dateinamen beim Export) beide den Pfad der zu importierenden Datei beziehungsweise den Pfad für die zu exportierende Datei übergeben bekommen (\texttt{importGXL(), exportGXL()}). \\
 Um die Funktion vollständig zu realisieren sind außerdem je eine Methode zum Schreiben der GXL-Daten in die \texttt{Syndrom}-Instanz (\texttt{gxlToInstance()}) sowie zur Erstellung einer GXL-Repräsentation aus der Instanz (\texttt{gxlFromInstance()}) vorgesehen. \\
 Zweitere Methode ist außerdem für die genannte GXL-Speicherung in der Datenbank nützlich, da sie genau die benötigte GXL-Variante des Graphen bereitstellt.\\ 
 
-Über die injizierten Instanzen der \texttt{Syndrom}- und \texttt{GraphDao} Klasse, erhalten die Objekte der \texttt{GXLio} Klasse alle Informationen zu dem in der \texttt{GUI} visualisierten Graphen. \\
+Über die injizierten Instanzen der \texttt{Syndrom}- und \texttt{GraphDao}-Klasse, erhalten die Objekte der \texttt{GXLio} Klasse alle Informationen zu dem in der GUI visualisierten Graphen. \\
 Um diese Informationen in das GXL-Format zu überführen, wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet (siehe Strategie \hyperlink{ttt}{S56 Sourceforge Framework}).\\
 
-Durch das \texttt{Template-Attribut} in der \texttt{Syndrom} Klasse haben Methoden, welche eine GXL-Repräsentation eines Graphen erstellen, aus einem \texttt{Syndrom} Objekt auch Zugriff auf die Bearbeitungsregeln, denn diese werden in einem Objekt der \texttt{Template} Klasse hinterlegt.
+Durch das \texttt{Template-Attribut} in der \texttt{Syndrom}-Klasse haben Methoden, welche eine GXL-Repräsentation eines Graphen erstellen, aus einem \texttt{Syndrom}-Objekt auch Zugriff auf die Bearbeitungsregeln, denn diese werden in einem Objekt der \texttt{Template} Klasse hinterlegt.
 Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden, gemäß der Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei}. \\ 
 
 Da wir nicht nur den Graphen isoliert als GXL-Datei exportieren, sondern ihn auch zusammen mit den Nutzerinteraktionen als OOF-Repräsentation bereitstellen wollen, haben wir die Klasse \texttt{OOFio} hinzugefügt. Diese ist ebenfalls im \texttt{io} Package zu finden. Mit dieser wollen wir die gemeinsame Speicherung der Nutzerinteraktionen mit einem (als GXL-Repräsentation vorliegendem) Graphen realisieren (Startegie \hyperlink{ooo}{S43 - Eigener Datentyp}). \\
@@ -2061,9 +2084,11 @@ Da die \texttt{OOFio}-Klasse zur Erstellung einer .oof-Datei ein GXL-String ben�
 
 Damit die Klasse die genannten Funktionalitäten umsetzen kann, bekommt sie das \texttt{LogDao}- und \texttt{GraphDao}-Objekt injiziert. 
 
-Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io-package} sind unter Einsatz der Frameworks, beziehungsweise APIs, der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. \\
+Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io}-Package sind unter Einsatz der Frameworks beziehungsweise APIs der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. \\
 Der Aufruf zum Drucken geschieht durch \texttt{printPDF()}, während der Export als PDF in \texttt{exportPDF()} implementiert wird. Für diese Methoden ist die Methode zur PDF-Erstellung (gemäß Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} nützlich. Diese ist als \texttt{createPDF()} implementiert und gibt die PDF als Datenstrom wieder. \\
-\texttt{PDFio} bekommt im \texttt{constructur} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen.
+\texttt{PDFio} bekommt im \texttt{constructur} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen. \\
+
+Im folgenden ist eine Abbildung zum \texttt{io}-Package zu sehen, in dem auch seine eben beschriebenen Abhängigkeiten zu den Packages \texttt{dao} und \texttt{graph.graph} dargestellt sind. \\ Von den Funktionen des Im- und Exports, die die in gewisser Weise Schnittstellen unserer Anwendung zu außerhalb letztgenannter liegender Bereiche darstellen, kommen wir im nächsten Abschnitt zum programminternen Aussehen unserer Benutzeroberfläche. Damit ist der Übergang zu den Aspekten, die ausschließlich unser System betreffen, geschaffen.
 
 \newpage
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{io class diagram},\pagestyle{fancy}}]{io.pdf}
