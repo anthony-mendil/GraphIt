@@ -2201,7 +2201,7 @@ Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, wel
 
 
 
-Nachdem wir nun das Package \texttt{graph.graph} erklärt haben (zudem nachfolgende Graphik gehört), gehen wir im nächsten Abschnitt auf das \texttt{graph.visualization}-Package ein, sodass der Bogen von der Benutzeroberfläche über die auf letztgenannter aufgerufenen Nutzerinteraktionen (Actions) und über die Persistierung letztgenannter sowie über die Datenklassen des Graphen sich zu einem Kreis schließt. Denn in diesem \texttt{visualization-Package werden die Aspekte der Visualisierung des Graphen umgesetzt. Ein visualisierter Graph ist wiederum zentraler Bestandteil der Benutzeroberfläche, bei der der Bogen begonnen hat.
+Nachdem wir nun das Package \texttt{graph.graph} erklärt haben (zudem nachfolgende Graphik gehört), gehen wir im nächsten Abschnitt auf das \texttt{graph.visualization}-Package ein, sodass der Bogen von der Benutzeroberfläche über die auf letztgenannter aufgerufenen Nutzerinteraktionen (Actions) und über die Persistierung letztgenannter sowie über die Datenklassen des Graphen sich zu einem Kreis schließt. Denn in diesem \texttt{visualization}-Package werden die Aspekte der Visualisierung des Graphen umgesetzt. Ein visualisierter Graph ist wiederum zentraler Bestandteil der Benutzeroberfläche, bei der der Bogen begonnen hat.
 
 
 
@@ -2231,12 +2231,13 @@ Die folgende Graphik ist eine Visualisierung des \texttt{graph.graph}-Packages u
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{graph.visualization class diagram},\pagestyle{fancy}}]{transformer.pdf}
 
 \subsection{\texttt{graph.algorithmen}}
-Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. \texttt{JUNG} verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{jung}{S66-Jung} implementieren wir alle Algorithmen die zur Analyse/ Auswertung des Graphen benötigt werden soweit wie möglich mit \texttt{Jung} zur Verfügung gestellte Funktionen und Algorithmen. \\
+Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. JUNG verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{jung}{S66  - JUNG} implementieren wir alle Algorithmen die zur Analyse / Auswertung des Graphen benötigt werden soweit wie möglich mit von \texttt{JUNG} zur Verfügung gestellten Funktionen und Algorithmen. \\
 
-Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu differenzieren welche Filterung des Graphen durchgeführt werden soll. Bei einer Filterung auf Grundlage \texttt{AnalyseTypeSeveral} - Enumerationskonstanten, können mehrere kombiniert werden, sodass eine kombinierte Filterung ausgeführt wird. Bei \texttt{AnalyseTypeSingle} - Enumerationskonstanten immer nur genau eine. \texttt{SelectionType} beschreibt die verschiedenen Selectionsarten. \\
+Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu differenzieren welche Filterung des Graphen durchgeführt werden soll. Bei einer Filterung auf Grundlage \texttt{AnalyseTypeSeveral}-Enumerationskonstanten, können mehrere kombiniert werden, sodass eine kombinierte Filterung ausgeführt wird. Bei \texttt{AnalyseTypeSingle}-Enumerationskonstanten immer nur genau eine. \texttt{SelectionType} beschreibt die verschiedenen Selektionsarten. \\
 
 \texttt{algorithmen} importiert Klassen des Packages \texttt{graph}, da bei einer Filterung die Klasse natürlich Zugriff auf die Objekte benötigt, die gefiltert werden sollen.\\
 
+In der folgenden Abbildung ist das Package \texttt{graph.algorithmen} mit seinen Abhängigkeiten dargestellt. Da wir thematisch bei Auswertung sind, folgt im nächsten Abschnitt eine Beschreibung des Moduls \texttt{jgrapht}.
 
 \includepdf[pages=-, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{graph.algorithmen class diagram},\pagestyle{fancy}}]{predicates.pdf}
 
