@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public abstract class Param {
     /**
-     * a to string methode for pretty printing
+     * a to string method for pretty printing
      * @return a string
      */
     public abstract String toString();

@@ -55,19 +55,19 @@ public class Vertex {
      * The edges with a reinforcing relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertixArrowReinforced = null;
+    private Map<ScopePoint, Point2D> vertexArrowReinforced = null;
 
     /**
      * The edges with a neutral relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertixArrowNeutral = null;
+    private Map<ScopePoint, Point2D> vertexArrowNeutral = null;
 
     /**
      * The edges with a extenuating relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertixArrowExtenuating = null;
+    private Map<ScopePoint, Point2D> vertexArrowExtenuating = null;
 
     /**
      * The size of a vertex.

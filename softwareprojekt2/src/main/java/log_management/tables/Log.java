@@ -140,10 +140,6 @@ public class Log {
      */
     @Override
     public String toString() {
-        return "Id: " + this.getId() +
-                " GraphId: " + this.getGraph() +
-                " LogEntryName: " + this.getLogEntryName() +
-                " parameters: " + this.getParameters() +
-                " Time: " + this.getTime();
+        throw new UnsupportedOperationException();
     }
 }
