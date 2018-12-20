@@ -36,6 +36,9 @@ public class DatabaseManager implements ObserverSyndrom {
      */
     private Graph graph;
 
+    /**
+     * Creates a database manager organizing the database.
+     */
     public DatabaseManager(){
         throw new UnsupportedOperationException();
     }

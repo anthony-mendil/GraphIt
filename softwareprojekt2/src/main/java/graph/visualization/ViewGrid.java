@@ -10,18 +10,18 @@ import java.awt.*;
  */
 public class ViewGrid implements VisualizationServer.Paintable {
     /**
-     * The visualization-viewer for the zoomed state.
+     * The visualization viewer for the zoomed state.
      */
     private VisualizationViewer master;
     /**
-     * The visualization-viewer in general.
+     * The visualization viewer in general.
      */
     private VisualizationViewer vv;
 
     /**
      * Makes the grid visible for the user.
-     * @param pVv the visualisation view containing zoom context
-     * @param pMaster  the visualisation view to show in zoom context
+     * @param pVv The visualization viewer containing the zoom context.
+     * @param pMaster  The visualization viewer to show in zoom context.
      */
     public ViewGrid(VisualizationViewer pVv, VisualizationViewer pMaster) {
 

@@ -9,7 +9,7 @@ import lombok.Getter;
 
 
 /**
- * Parameter object for the action EditFontSphereParam.
+ * Parameter object for the action EditFontSphereLogAction.
  */
 @Data
 public class EditFontSphereParam extends Param {

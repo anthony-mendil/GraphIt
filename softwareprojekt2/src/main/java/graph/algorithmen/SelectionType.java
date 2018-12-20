@@ -1,15 +1,15 @@
 package graph.algorithmen;
 
 /**
- * Filtertypes treating the flow of the vertices.
+ * Filter-types treating the flow of the vertices.
  */
 public enum SelectionType {
     /**
-     * Filter-type which will filter all reahcable vertices starting from the selected vertex.
+     * Filter-type which will filter all reachable vertices starting from the selected vertex.
      */
     ALL_REACHABLE_VERTICES,
     /**
-     * Filter-type which will filter all vertices inbetween two veritces.
+     * Filter-type which will filter all vertices in between two vertices.
      */
     VERTICES_INBETWEEN
 }

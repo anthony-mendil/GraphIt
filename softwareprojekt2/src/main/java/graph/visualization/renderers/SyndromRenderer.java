@@ -17,11 +17,11 @@ import graph.graph.Sphere;
  */
 public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     /**
-     * The sphere-renderer caring about the rendering of the spheres.
+     * The sphere renderer responsible for the rendering of the spheres.
      */
     private SphereRenderer sphaerenRenderer = new SphereRenderer();
     /**
-     * The edge-renderer caring about the edges of the graph.
+     * The edge renderer responsible for the edges of the graph.
      */
     private EdgeRenderer edgeRenderer = new EdgeRenderer();
 

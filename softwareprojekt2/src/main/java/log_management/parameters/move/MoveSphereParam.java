@@ -15,12 +15,12 @@ import java.util.Map;
 @Data
 public class MoveSphereParam extends Param{
     /**
-     * the sphere containing its old position
+     * The sphere containing its old position.
      */
     @Getter
     private Map<Sphere,Point2D> oldSphere;
     /**
-     * the sphere containing its new position
+     * The sphere containing its new position.
      */
     @Getter
     private Map<Sphere,Point2D> newSphere;

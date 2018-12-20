@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameter object for the action MoveVerticesParam.
+ * Parameter object for the action MoveVerticesLogAction.
  */
 @Data
 public class MoveVerticesParam extends Param{

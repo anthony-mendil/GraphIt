@@ -17,24 +17,24 @@ import java.util.Map;
 @Data
 public class EditSphereColorParam extends Param{
     /**
-     * The sphere containing its the old color.
+     * The sphere containing its old color.
      */
     @Getter
     private Sphere sphere;
     /**
-     * The new color it should get.
+     * The old color of the sphere.
      */
     @Getter
     private Color oldColor;
     /**
-     * The new color it should get.
+     * The new color the sphere should get.
      */
     @Getter
     private Color newColor;
 
     /**
      * Creates a parameter object of its own class.
-     * @param sphere  The sphere containing its the old color.
+     * @param sphere  The sphere containing its old color.
      * @param pOldColor The old color of the sphere.
      * @param pNewColor The new color of the sphere.
      */
