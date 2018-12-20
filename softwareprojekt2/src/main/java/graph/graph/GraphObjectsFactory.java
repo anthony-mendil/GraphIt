@@ -14,15 +14,17 @@ public class GraphObjectsFactory {
     /**
      * The values to use.
      */
+    /* Has to be set private or public */
     @Inject
-    Values values;
+    public Values values;
     /**
      * The global objects counter for the ids for the graph objects.
      */
-    int objectCounter;
+    /* Has to be set private or public */
+    public int objectCounter;
 
     /**
-     * creates a new graphObjectsFactory
+     * Creates a new GraphObjectsFactory object.
      */
     public GraphObjectsFactory() {
         throw new UnsupportedOperationException();

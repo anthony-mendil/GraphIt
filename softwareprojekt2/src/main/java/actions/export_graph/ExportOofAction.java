@@ -24,7 +24,7 @@ public class ExportOofAction extends GraphAction {
      * @param pName The name of the file.
      */
     public ExportOofAction(String pPath, String pName) {
-
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -32,7 +32,7 @@ public class ExportOofAction extends GraphAction {
      */
     @Override
     public void action() {
-
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -40,6 +40,6 @@ public class ExportOofAction extends GraphAction {
      */
     @Override
     public void undo() {
-
+        throw new UnsupportedOperationException();
     }
 }

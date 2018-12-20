@@ -19,7 +19,7 @@ public class ImportOofAction extends GraphAction {
      * @param pPath The path that the OOF file is imported from.
      */
     public ImportOofAction(String pPath) {
-
+        throw new UnsupportedOperationException();
     }
 
     /**

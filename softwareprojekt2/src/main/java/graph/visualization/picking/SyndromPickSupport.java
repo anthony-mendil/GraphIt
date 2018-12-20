@@ -22,7 +22,8 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      *
      * @param vv Source of the current <code>Layout</code>.
      */
-    SyndromPickSupport(VisualizationServer<V, E> vv) {
+    /* Has to be set private or public */
+    public SyndromPickSupport(VisualizationServer<V, E> vv) {
         super(vv);
     }
 

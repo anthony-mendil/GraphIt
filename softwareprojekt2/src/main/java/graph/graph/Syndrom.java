@@ -30,7 +30,7 @@ import java.awt.*;
 @Singleton
 public class Syndrom {
     /**
-     * The visualisation viewer of syndrom. It contains the layout and graph.
+     * The visualization viewer of syndrom. It contains the layout and graph.
      */
     private final VisualizationViewer<Vertex, Edge> vv;
     /**

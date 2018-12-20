@@ -13,8 +13,9 @@ public class AnimatedPickingGraphMouseEditSyndromPlugin extends AnimatedPickingG
     /**
      * The action history.
      */
+    /* Has to be set private or public */
     @Inject
-    ActionHistory history;
+    private ActionHistory history;
     /**
      * Creates a new animated picking graph mouse edit syndrom plugin.
      */

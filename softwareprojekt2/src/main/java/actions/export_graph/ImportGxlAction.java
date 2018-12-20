@@ -17,8 +17,8 @@ public class ImportGxlAction extends GraphAction {
      *
      * @param pPath The path that the GXL file is imported from.
      */
-    ImportGxlAction(String pPath) {
-
+    public ImportGxlAction(String pPath) {
+        throw new UnsupportedOperationException();
     }
 
     /**

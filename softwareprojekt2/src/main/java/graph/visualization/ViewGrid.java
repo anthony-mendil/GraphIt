@@ -24,7 +24,7 @@ public class ViewGrid implements VisualizationServer.Paintable {
      * @param pMaster  The visualization viewer to show in zoom context.
      */
     public ViewGrid(VisualizationViewer pVv, VisualizationViewer pMaster) {
-
+        throw new UnsupportedOperationException();
     }
     @Override
     public void paint(Graphics pG) {

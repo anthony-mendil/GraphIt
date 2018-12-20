@@ -13,8 +13,9 @@ public class AnimatedPickingGraphMouseTemplateSyndromPlugin extends AnimatedPick
     /**
      * The action history.
      */
+    /* Has to be set private or public */
     @Inject
-    ActionHistory history;
+    private ActionHistory history;
     /**
      * Creates a new animated picking graph mouse template syndrom plugin.
      */
