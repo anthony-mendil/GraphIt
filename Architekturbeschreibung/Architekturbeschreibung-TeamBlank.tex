@@ -541,7 +541,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(--) Da wir weder denken, dass dieses Framework zu einem beliebigem Zeitpunkt kostenpflichtig wird (was dazu führen würde, dass wir es im Rahmen des Moduls Softwareprojekt 2 nicht mehr verwenden dürften), noch glauben, dass Anforderungen hinzukommen, die den Einsatz des Frameworks auch für die bisherigen Anforderungen unmöglich macht, stufen wir die veränderlichkeit als sehr gering ein. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponeten aufbaut. Wir werden JUNG in unsere JavaFx Anwendung integrieren. } }\\ \hline
+	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponeten aufbaut. Wir werden JUNG in unsere JavaFX Anwendung integrieren. } }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1493,24 +1493,24 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
-			\textbf{\cb{\hypertarget{kkk}{S34 - GUI Framework JavaFx}}} \\
-			Es besteht die Möglichkeit für die Benutzeroberfläche JavaFx zu verwenden.  \\
+			\textbf{\cb{\hypertarget{kkk}{S34 - GUI Framework JavaFX}}} \\
+			Es besteht die Möglichkeit für die Benutzeroberfläche JavaFX zu verwenden.  \\
 			\textbf{S35 - GUI- Toolkit Swing} \\
 			Die Benutzeroberfläche kann mit dem GUI-Toolkit von Swing erstellt werden.
 	} }\\ \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	Die GUI wird mit \cb{JavaFx} umgesetzt. \\
-	\cb{JavaFx} bietet mehr Möglichkeiten zur Anpassung der einzelnen GUI-Elemente. Das Aussehen kann durch CSS einfach umgesetzt werden. \\
-	\cb{Swing} bietet auch alle Elemente, die wir benötigen, um unsere GUI zu modellieren. Allerdings kann das Aussehen der Elemente in \cb{Swing} nicht so gut beeinflusst werden wie mit \cb{JavaFx}. Ein Vorteil von \cb{Swing} wäre, dass der Graph in unserem System mit JUNG in \cb{Swing} modelliert wird und so eine einheitliches Benutzeroberfläche bilden würde. Allerdings vermitteln der Style, der durch Swing erzeugten Benutzeroberflächen den Eindruck eines veralteten Systems, da Frameworks wie \cb{JavaFx} die GUI- Oberfläche moderner wirken lassen. \\
-	Da wir auch junge Menschen mit unserer Anwendung ansprechen möchten und \cb{JavaFx} eine bessere Usability bietet, entscheiden wir uns für \cb{S34}.
+	Die GUI wird mit \cb{JavaFX} umgesetzt. \\
+	\cb{JavaFX} bietet mehr Möglichkeiten zur Anpassung der einzelnen GUI-Elemente. Das Aussehen kann durch CSS einfach umgesetzt werden. \\
+	\cb{Swing} bietet auch alle Elemente, die wir benötigen, um unsere GUI zu modellieren. Allerdings kann das Aussehen der Elemente in \cb{Swing} nicht so gut beeinflusst werden wie mit \cb{JavaFX}. Ein Vorteil von \cb{Swing} wäre, dass der Graph in unserem System mit JUNG in \cb{Swing} modelliert wird und so eine einheitliches Benutzeroberfläche bilden würde. Allerdings vermitteln der Style, der durch Swing erzeugten Benutzeroberflächen den Eindruck eines veralteten Systems, da Frameworks wie \cb{JavaFX} die GUI- Oberfläche moderner wirken lassen. \\
+	Da wir auch junge Menschen mit unserer Anwendung ansprechen möchten und \cb{JavaFX} eine bessere Usability bietet, entscheiden wir uns für \cb{S34}.
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFx Application}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFx Komponenten modelliert wird, muss Swing in die JavaFx Anwendung eingebunden werden.}}\rule{0pt}{5ex}\\ [1ex] \hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFX Application}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFX Komponenten modelliert wird, muss Swing in die JavaFX Anwendung eingebunden werden.}}\rule{0pt}{5ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {g}{Hohe Usability}\\
@@ -1522,14 +1522,14 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{lll}{S36 - SwingNode}}}: \\
-			Der Graph-Editor sowie die Oberfläche der Graphauswertung werden mit JavaFx modelliert. Die Visualisierung des Graphen wird mit JUNG umgesetzt, welches sich um eine Swing- Framework handelt. JavaFx stellt Swing-Nodes zur Verfügung in die Swing Komponenten eingebettet werden können. 
+			Der Graph-Editor sowie die Oberfläche der Graphauswertung werden mit JavaFX modelliert. Die Visualisierung des Graphen wird mit JUNG umgesetzt, welches sich um eine Swing- Framework handelt. JavaFX stellt Swing-Nodes zur Verfügung in die Swing Komponenten eingebettet werden können. 
 			\\
 			\textbf{S37 - Überschreibung von Klassen aus JUNG}: \\
-			JUNG baut auf Swing - Komponenten auf. Eine Möglichkeit ist es Klassen des Visualisierungs- Moduls von JUNG zu überschreiben, sodass die Swing- Komponenten durch JavaFx- Komponenten ersetzt werden. \\
+			JUNG baut auf Swing - Komponenten auf. Eine Möglichkeit ist es Klassen des Visualisierungs- Moduls von JUNG zu überschreiben, sodass die Swing- Komponenten durch JavaFX- Komponenten ersetzt werden. \\
 	} }\\ [11ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	\cb{S36} wird umgesetzt. JavaFx bietet eine fertige Lösung Swing- Komponenten zu integrieren. \cb{S37} umzusetzen ist viel aufwendiger und birgt ein hohes Fehlerpotenzial. Auch sind wir uns nicht sicher, ob \cb{S37} genauso umgesetzt werden könnte oder ob bei dem Prozess weiterer Probleme auftauchen würden. \\
+	\cb{S36} wird umgesetzt. JavaFX bietet eine fertige Lösung Swing- Komponenten zu integrieren. \cb{S37} umzusetzen ist viel aufwendiger und birgt ein hohes Fehlerpotenzial. Auch sind wir uns nicht sicher, ob \cb{S37} genauso umgesetzt werden könnte oder ob bei dem Prozess weiterer Probleme auftauchen würden. \\
 	Deswegen entscheiden wir uns über die \cb{SwingNode}.    
 \end{onehalfspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -1552,7 +1552,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{mmm}{S38 - Scene- Builder}}}: \\
 			Mit Hilfe des Scene-Builders kann der Entwickler JavaFX Benutzeroberflächen \glqq zusammenklicken\grqq{} und diese als FXML exportieren.  \\
 			\textbf{S39 - eigens implementieren}: \\
-			Auf dem JavaFx- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
+			Auf dem JavaFX- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1999,9 +1999,9 @@ Die \texttt{Logger}-Komponente ist in unsere Applikation eingebaut, um uns bei d
 
 \emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
 
-Im folgenden beschreiben wir die Datensicht unseres Systems. Bei Erläuterungen zu dieser beziehen wir uns auf folgende Strategien: \hyperlink{yy}{Strategie S1: GXL}, \hyperlink{aaa}{Strategie S7: Datenmodell}, \hyperlink{eee}{Strategie S19: JUNG}, \hyperlink{jjj}{Strategie 33: JavaScript Object Notation (.json)} und \hyperlink{ooo}{Strategie S43: Eigener Datentyp} sowie auf die \hyperlink{ppp}{Strategie S45: H2 Database}. Außerdem werden wir Bezug zu den Strategien \hyperlink{rrr}{Strategie S.50: Hibernate}, \hyperlink{ttt}{Strategie S56: GXL-Framework (bei Source Forge gehostet)} und \hyperlink{vvv}{Strategie S61: Regeln in der GXL-Datei} nehmen.\\
+Im folgenden beschreiben wir die Datensicht unseres Systems. Bei Erläuterungen zu dieser beziehen wir uns auf folgende Strategien: \hyperlink{yy}{Strategie S1 - GXL}, \hyperlink{aaa}{Strategie S7 - Datenmodell}, \hyperlink{eee}{Strategie S19 - JUNG}, \hyperlink{jjj}{Strategie 33 - JavaScript Object Notation (.json)} und \hyperlink{ooo}{Strategie S43 - Eigener Datentyp} sowie auf die \hyperlink{ppp}{Strategie S45 - H2 Database}. Außerdem werden wir Bezug zu den Strategien \hyperlink{rrr}{Strategie S.50 - Hibernate}, \hyperlink{ttt}{Strategie S56 - GXL-Framework (bei Source Forge gehostet)} und \hyperlink{vvv}{Strategie S61 - Regeln in der GXL-Datei} nehmen.\\
 
-Es sei an der dieser Stelle explizit angemerkt, dass wir für die Repräsentation des Graphen kein komplett eigenes Datenmodell erstellen. Stattdessen verwenden wir das vom Framework \texttt{JUNG} vorgegebene Datenmodell mit unseren eigenes Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} (für Kanten) (\hyperlink{eee}{Strategie S19: JUNG}). \\
+Es sei an der dieser Stelle explizit angemerkt, dass wir für die Repräsentation des Graphen kein komplett eigenes Datenmodell erstellen. Stattdessen verwenden wir das vom Framework \texttt{JUNG} vorgegebene Datenmodell mit unseren eigenes Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} (für Kanten) (\hyperlink{eee}{Strategie S19 - JUNG}). \\
 Die \texttt{Vertex} Klasse hat neben den zu erwartenden Attributen auch noch weitere Attribute, welche jeden zuführenden Pfeilspitze mit einem \texttt{ScopePoint} in eine \texttt{Map} speichert. Ein Element der Aufzählung\texttt{ScopePoint} stellt das Quartal eines Knoten dar, in welche eine Pfeilspitze auf ein Knoten andockt. Pfeilspitzen von Kanten, welche alle in so ein Quartal führen und den gleichen Pfeilspitzen Typ haben, werden in der Visualisierung zusammengefasst dargestellt. \\
 
 Da in unserem Fall Sphären benötigt werden, erstellen wir eine Klasse \texttt{Sphere} (für Sphären) und erweitern mit ihr das vorgegebene Datenmodell (genauer gesagt erweitert unsere Klasse SydromGraph die Klasse DirectedSparseGraph von \texttt{JUNG}). 
@@ -2011,15 +2011,15 @@ Die soeben erwähnte \texttt{Template}- Klasse ermöglicht es ein Maximum an Sph
 
 Die Klasse \texttt{Values} enthält einige Werte, die beim Erzeugen eines neuen Graph-Objekts (Vertex, Edge, Sphere) benötigt werden. \texttt{Values} ist eine Singleton Klasse, damit alle Klassen des Systems, die Werte aus Values benötigen, auf die gleichen Wertebelegungen zugreifen können. Die Nutzerinteraktion in der GUI beeinflussen die Werte, die in \texttt{Values} gesetzt sind. Setzt der Nutzer beispielsweise die Standardfarbe für neu Symptome um, so wird der entsprechende Wert in der Klasse \texttt{Values} angepasst, sodass neu erzeugte Symptome diese Farbe haben.\\
 
-Um die Persistenz von Daten zu gewährleisten, verwenden wir die eingebettete Datenbank H2 Database in unserem System (\hyperlink{ppp}{Strategie S45: H2}). Bei der Kommunikation mit der Datenbank wird das Framework Hibernate genutzt, welches es unter Verwendung von JPA ermöglicht, Objekte (als Instanzen von Klassen) unseres Systems in eine relationale Datenbank zu persistieren (\hyperlink{rrr}{Strategie S.50: Hibernate}). Hierbei findet ORM (Object-Relational Mapping) Anwendung. \\ 
+Um die Persistenz von Daten zu gewährleisten, verwenden wir die eingebettete Datenbank H2 Database in unserem System (\hyperlink{ppp}{Strategie S45 - H2}). Bei der Kommunikation mit der Datenbank wird das Framework Hibernate genutzt, welches es unter Verwendung von JPA ermöglicht, Objekte (als Instanzen von Klassen) unseres Systems in eine relationale Datenbank zu persistieren (\hyperlink{rrr}{Strategie S50 - Hibernate}). Hierbei findet ORM (Object-Relational Mapping) Anwendung. \\ 
 
 Um den Graphen zu speichern bietet sich die GXL-Repräsentation aus den in der Entscheidung für \hyperlink{yy}{S1 - GXL} genannten Gründen an. Ein als Text-Repräsentation vorliegender Graph wird dabei mit einer Identifikationsnummer versehen und in einer Tabelle unserer Datenbank persistiert. Die Realisierung der genannten Konstruktion lässt sich in der zugehörigen Mapping-Klasse \texttt{Graph} wiederfinden.  An dieser Stelle in anzumerken, dass wir uns dafür entschieden haben in der Datenbank immer höchstens einen Graphen zu speichern. Die Tabelle mit den Graphen hat dementsprechend maximal einen Eintrag. Immer wenn versucht wird einen neuen Graphen zu erstellen oder einen alten zu importieren, wird der Nutzer gefragt, ob er seinen aktuellen Graphen (inklusive festgehaltenem Nutzerverhalten) vorher exportieren möchte, da die Datenbank beim Import (oder dem Neuerstellen eines Graphen) geleert wird.\\
-Die Übersetzung unseres Graphen in das GXL-Format erfolgt unter Nutzung des bei Sourceforge gehosteten GXL-Frameworks (\hyperlink{ttt}{Strategie S56: GXL-Framework} ). Falls der Benutzer eine Vorlage erstellt, werden auch die darin für die Diagramm-Erstellung im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} gesetzten Einschränkungen in selbiger GXL festgehalten (\hyperlink{vvv}{Strategie S61: Regeln in der GXL-Datei}).\\ 
+Die Übersetzung unseres Graphen in das GXL-Format erfolgt unter Nutzung des bei Sourceforge gehosteten GXL-Frameworks (\hyperlink{ttt}{Strategie S56 - GXL-Framework}). Falls der Benutzer eine Vorlage erstellt, werden auch die darin für die Diagramm-Erstellung im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} gesetzten Einschränkungen in selbiger GXL festgehalten (\hyperlink{vvv}{Strategie S61 - Regeln in der GXL-Datei}).\\ 
 
-Die Nutzerinteraktionen mit dem Graphen werden, wie auch der Graph selbst, in der embedded H2 Database gespeichert. Für die Nutzerinteraktionen existiert eine eigene Tabelle in der Datenbank sowie eine zugehörige Mapping-Klasse \texttt{Log}, welche für jeden Eintrag die relevanten Informationen enthält (\hyperlink{aaa}{Strategie S7: Datenmodell}). Zu diesen Informationen gehört auch ein Text im JSON-Format, der aus dem jeweiligen Parameterobjekt erzeugt wird (\hyperlink{jjj}{Strategie 33: JavaScript Object Notation (.json)}). Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch nichts vom Log weiß und von diesem auch keine Informationen lesen kann (Many to One Beziehung). \\
+Die Nutzerinteraktionen mit dem Graphen werden, wie auch der Graph selbst, in der embedded H2 Database gespeichert. Für die Nutzerinteraktionen existiert eine eigene Tabelle in der Datenbank sowie eine zugehörige Mapping-Klasse \texttt{Log}, welche für jeden Eintrag die relevanten Informationen enthält (\hyperlink{aaa}{Strategie S7 - Datenmodell}). Zu diesen Informationen gehört auch ein Text im JSON-Format, der aus dem jeweiligen Parameterobjekt erzeugt wird (\hyperlink{jjj}{Strategie 33 - JavaScript Object Notation (.json)}). Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch nichts vom Log weiß und von diesem auch keine Informationen lesen kann (Many to One Beziehung). \\
 Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse \texttt{Param}. Jede dieser Parameter-Klassen gehört speziell zu einer Aktion, für die sie die nötigen Informationen enthält. Hinzufügende und entfernende Aktionen gleicher Art sowie aktivierende und deaktivierende gleicher Art benutzen die gleichen Parameter-Klassen. Beispielsweise haben demnach die Aktionen des Hinzufügens und Entfernens mehrerer Kanten beide ein \texttt{AddRemoveVerticesParam}. Je nach Aktion werden diese Informationen bei der Ausführung unterschiedlich verwendet. Es ist ebenso anzumerken, dass die einzelnen Parameter-Klassen im Diagramm individuell Assoziationen zu den Klassen \texttt{Vertex}, \texttt{Edge} und \texttt{Sphere} hätten, je nachdem welche Attribute sie besitzen. Um Übersichtlichkeit zu bewahren haben wir im Diagramm nicht alle Parameter-Klassen mit ihren zugehörigen Attributen dargestellt, sondern exemplarisch vier solcher Klassen ausgewählt. Alle Parameter-Klassen lassen sich im Package \texttt{log\_management.parameters finden}. \\
 
-In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (oof für \glqq out of frameworks\grqq). (\hyperlink{Strategie S43: eigener Datentyp}{Strategie S43: eigener Datentyp}) \\
+In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (oof für \glqq out of frameworks\grqq). (\hyperlink{Strategie S43: eigener Datentyp}{Strategie S43 - eigener Datentyp}) \\
 
 \textit{Anmerkungen zu dem Diagramm}: \\
 Alle dargestellten Attribute sind \texttt{private}, es existieren aber Getter und Setter für die Attribute. Deswegen sind die Attribute alle im Diagramm als \texttt{public} markiert. \\
@@ -2095,7 +2095,7 @@ Da die \texttt{OOFio}-Klasse zur Erstellung einer .oof-Datei ein GXL-String ben�
 
 Damit die Klasse die genannten Funktionalitäten umsetzen kann, bekommt sie das \texttt{LogDao}- und \texttt{GraphDao}-Objekt injiziert. 
 
-Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io}-Package sind unter Einsatz der Frameworks beziehungsweise APIs der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. \\
+Mit den Methoden der \texttt{PDFio}-Klasse aus dem \texttt{io}-Package sind unter Einsatz der Frameworks beziehungsweise APIs der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26 - Java API}) und der PDF-Export (gemäß Strategie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}) realisierbar. \\
 Der Aufruf zum Drucken geschieht durch \texttt{printPDF()}, während der Export als PDF in \texttt{exportPDF()} implementiert wird. Für diese Methoden ist die Methode zur PDF-Erstellung (gemäß Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} nützlich. Diese ist als \texttt{createPDF()} implementiert und gibt die PDF als Datenstrom wieder. \\
 \texttt{PDFio} bekommt im \texttt{constructor} den \texttt{VisualizationViewer} des angezeigten Graphen übergeben, um die PDF zu erstellen. \\
 
@@ -2135,7 +2135,7 @@ Die GUI (deren Aufbau und Abhängigkeiten durch das folgende UML-Diagramm visual
 
 
 \subsection{\texttt{actions}}
-Das Package \texttt{actions} repräsentiert die Controller Komponente des Model-View-Controller-Patterns, welches wir gemäß \hyperlink{bbb}{S8- MVC} beziehungsweise \hyperlink{modelviewcontroller}{S13 - MVC} umsetzen. \\ 
+Das Package \texttt{actions} repräsentiert die Controller Komponente des Model-View-Controller-Patterns, welches wir gemäß \hyperlink{bbb}{S8 - MVC} beziehungsweise \hyperlink{modelviewcontroller}{S13 - MVC} umsetzen. \\ 
 Diese ist nach dem \texttt{Command} Pattern nach \hyperlink{zz}{S4 - Command} beziehungsweise \hyperlink{command}{S9 - Command} aufgebaut. \\
 
 Die abstrakte Klasse \texttt{Action} stellt die Oberklasse dar. Diese implementiert zwei abstrakte Methoden \texttt{redo}/ \texttt{undo}. Eine weitere abstrakte Klasse \texttt{GraphAction} erweitert die \texttt{Action}-Klasse. Jeder \texttt{GraphAction} wird ein \texttt{Syndrom} injiziert. Durch dieses \texttt{Syndrom}-Objekt verfügt jede \texttt{GraphAction} über die benötigten Informationen zu dem visualisierten Graphen. Da \texttt{Syndrom} ein Singleton ist, verfügt nach einer Änderung des Graphen das ganze System darüber und kann es entsprechend visualisieren.  Dies ist erforderlich, damit sich die vom Nutzer durchgeführten Aktionen auch auf den gerade in Bearbeitung befindlichen Graphen auswirken.\\ 
@@ -2249,7 +2249,7 @@ Die folgende Graphik ist eine Visualisierung des \texttt{graph.graph}-Packages u
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{graph.visualization class diagram},\pagestyle{fancy}}]{visualization.pdf}
 
 \subsection{\texttt{graph.algorithmen}}
-Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. JUNG verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{eigeneImplementierung}{S25  - eigene Implementierung} implementieren wir alle Algorithmen die zur Analyse / Auswertung des Graphen benötigt werden selbst unter Zuhilfenahme der nach Strategie \hyperlink{fff}{S22  - JUNG} von \texttt{JUNG} zur Verfügung gestellten Funktionen und Algorithmen.\\
+Den größten Teil des Packages \texttt{algorithmen} nimmt das Teilpackage \texttt{predicates} ein. Alle Klassen in \texttt{predicates} implementieren das Interface \texttt{Predicate}. Dieses bietet eine Funktionsschnittstelle, die einen Vergleichstest für ein Objekt ausführt. Es wird entweder \texttt{true} oder \texttt{false} zurückgeben, je nachdem, ob das Objekt den Test besteht oder nicht. JUNG verwendet diese Schnittstelle zur \hyperlink{ss}{Filterung} des Graphen. Nach Strategie \hyperlink{eigeneImplementierung}{S24 - eigene Implementierung} implementieren wir alle Algorithmen die zur Analyse / Auswertung des Graphen benötigt werden selbst unter Zuhilfenahme der nach Strategie \hyperlink{fff}{S22  - JUNG} von \texttt{JUNG} zur Verfügung gestellten Funktionen und Algorithmen.\\
 
 Zusätzlich gibt es nur drei \textit{Enum} Klassen. Diese verwenden wir um zu differenzieren welche Filterung des Graphen durchgeführt werden soll. Bei einer Filterung auf Grundlage \texttt{AnalyseTypeSeveral}-Enumerationskonstanten, können mehrere kombiniert werden, sodass eine kombinierte Filterung ausgeführt wird. Bei \texttt{AnalyseTypeSingle}-Enumerationskonstanten kann immer nur genau eine ausgewählt werden. \texttt{SelectionType} beschreibt die verschiedenen Selektionsarten. \\
 
