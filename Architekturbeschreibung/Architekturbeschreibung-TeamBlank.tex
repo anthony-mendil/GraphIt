@@ -2036,10 +2036,10 @@ Die Grundstruktur unserer Architektur ist angelehnt an das Model-View-Controller
 Dabei ist die GUI-Komponente die \textit{View}, die Command-Komponente der \textit{Controller} und die Datamodel-Komponente das \textit{Model}. \\ 
 
 In der \texttt{GUI}-Komponente wird hauptsächlich das Visuelle unserer Applikation festgelegt. Erstgenannte wird wie in \hyperlink{kkk}{Benutzeroberfläche} festgelegt mit JavaFX umgesetzt. 
-Die \texttt{GUI}-Komponente kommuniziert daher mit der Komponente \texttt{JUNG}, wie in \hyperlink{eee}{Visualisierung, Editierung und Interaktion mit dem Graphen} beschlossen wurde. \\
+Die \texttt{GUI}-Komponente kommuniziert daher mit der Komponente \texttt{JUNG}, wie in \hyperlink{eee}{Visualisierung, Editierung und Interaktion mit dem Graphen} beschlossen wurde.
 Das Anzeigen des Graphen in der \texttt{GUI} wird, wie in \hyperlink{lll}{Einbettung JUNG als Swing GUI-Framework in eine JavaFX Application} besprochen, über eine JavaFX SwingNode umgesetzt. \\
 
-Über eine control-Schnittstelle kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Command}-Komponente für die Interaktion des Users mit dem Graphen. Die Commands werden also mit den GUI-Interaktionen verknüpft.\\
+Über eine control-Schnittstelle kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Command}-Komponente für die Interaktion des Users mit dem Graphen. Die Commands werden also mit den GUI-Interaktionen verknüpft.
 Außerdem kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Datamodel}-Komponente, um das Protokoll der Nutzerinteraktion in der GUI zu visualisieren und darstellen zu können. \\
 
 In der \texttt{Command}-Komponente befindet sich die meiste Logik unserer Applikation. Sie dient als Schnittstelle zwischen allen internen Modulen und ist daher mit allen Hauptkomponenten über eine control-Schnittstelle verbunden. Zusätzlich besitzt \texttt{Command} auch die Undo-/Redo-Funktionalität. Um die Editierung und Interaktion mit dem Graphen zu ermöglichen, wird über eine control-Schnittstelle die \texttt{JUNG}-Komponente angesprochen. \\
