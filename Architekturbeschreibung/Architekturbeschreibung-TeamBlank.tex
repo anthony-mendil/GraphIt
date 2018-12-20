@@ -1210,6 +1210,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{aacc}{S18 - Modularisierung}}} \\
 			Das System wird in kleinere Teile gegliedert und die Aufgaben können besser übernommen werden.
 	}}\\ [4ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{aadd}{S10 - Modularisierung}}\\
+	\textbf{\hyperlink{aabb}{S15 - Modularisierung}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Im Fall des Ausfalles eines Entwicklers kann dessen Arbeitspaket vom System entkoppelt und separat behandelt werden (nach \cb{S18}). Falls das Arbeitspaket eines Entwicklers von einem anderen übernommen werden muss, hilft die Dokumentation (nach \cb{S17}) des bisher, vom ausgefallenen Teammitglied, erstellten Codes dem einspringenden Entwickler bei der Einarbeitung in das Arbeitspaket. Der schnelleren Einarbeitung wird durch Verwendung gut dokumentierter Bibliotheken weiter Rechnung getragen.
@@ -1264,6 +1268,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S21 - Ohne Framework}: \\
 			Es wird kein Framework zur Unterstützung der Entwicklung eingesetzt. Die gesamte Funktionalität wird von den Entwicklern implementiert.
 	} }\\ [11ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{fff}{S22 - JUNG}}\\
+	\textbf{\hyperlink{xee}{S54 - JUNG Layouts}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Die Graph Visualisierung/ Editierung und Interaktion wird mit Unterstützung des Frameworks \cb{JUNG (S19)} umgesetzt. JUNG bietet viele vorgefertigte Funktionen, wie beispielsweise die automatische Anordnung von Knoten oder die Bereitstellung von Sublayouts. Die Bibliothek ist gut dokumentiert, sodass den Entwicklern den Einstieg in das Framework leicht fällt. \\
@@ -1314,6 +1322,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{xxx}{S25 - JGraphT}}}:\\
 			JGraphT stellt Algorithmen zur Berechnung von Grapheigenschaften bereit.
 	} }\\ [11ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{eee}{S19 - JUNG}}\\
+	\textbf{\hyperlink{xee}{S54 - JUNG Layouts}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Die Funktionalität des Systems basiert bereits teilweise auf \cb{JUNG} basiert, weswegen des sehr praktisch wäre die von \cb{JUNG} zur Verfügung gestellten Algorithmen für die Graphauswertung zu benutzen. Diese Algorithmen decken aber nicht den Funktionsumfang den wir benötigen.\\
@@ -1386,6 +1398,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{hhh}{S29 - java.awt.Graphics2D}}}: \\
 			Verwendung einer Bibliothek, die es Java- Programmen, ausgehen von java.awt.Graphics2D, ermöglicht diese als PDF zu exportieren. \\
 	} }\\ [4ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{iii}{S30 - Freeheb Vectorgraphics}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Die \cb{java.awt.Graphics2D} zu exportieren bietet eine höhere Qualität der Darstellung des Graphen. Die Möglichkeit, die von \cb{JUNG} zur Verfügung gestellt wird, entspricht nicht unseren qualitativen Ansprüchen, da die Qualität des Bildes nicht ausreichend ist. \\
@@ -1411,6 +1426,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S31 - iText}: \\
 			Das Framework iText erlaubt es Swing Komponenten als PDF zu speichern. \\
 	} }\\ [5ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{hhh}{S29 - java.awt.Graphics2D}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir entscheiden uns für \cb{S30}, da dieses Framework die java.awt.Graphics2D in zahlreichen Formaten exportiert. Zusätzlich bietet das Framework bereits eine gute Schnittstelle für den Benutzer. \\
@@ -1437,6 +1455,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{jjj}{S33 - JavaScript Object Notation (.json)}}} \\
 			JSON ist eine Notation, die sowohl von Menschen gelesen als auch von Maschinen interpretiert werden kann. Dabei kann die Information (die in JavaScript Object Notation enthalten ist) von der Programmiersprche unseres Systems (Java) unabhängig gewonnen werden. Es ist also möglich eine JSON-Datei später beispielsweise über ein Python-Script einzulesen.
 	} }\\ \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{www}{S63 - Jackson}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir entscheiden uns für \cb{S33}. Da wir in unserem Datenmodell für die Nutzerinteraktionen .json einbinden, um die Parameterwerte der Logs abzuspeichern, eignet es sich das gesamte Protokoll auch als .json zu importieren/ exportieren. \\
@@ -1500,10 +1521,17 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S35 - GUI- Toolkit Swing} \\
 			Die Benutzeroberfläche kann mit dem GUI-Toolkit von Swing erstellt werden.
 	} }\\ \hline
+
+\end{tabular}\\ \\ \\
+
+\begin{tabular} {|p{8cm} p{8cm}|}
+	\hline\\
+	\multicolumn{2}{|l|}{\parbox{16cm}{
+
 	Verwandte Strategien:\\
 	\textbf{\hyperlink{lll}{S36 - SwingNode}}\\
-	\textbf{\hyperlink{mmm}{S38 - Scene-Builder}}
-	\\\hline
+	\textbf{\hyperlink{mmm}{S38 - Scene-Builder}}\\
+	}}\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Die GUI wird mit \cb{JavaFX} umgesetzt. \\
@@ -1806,7 +1834,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Layout selber erstellen
 	} }\\ [6ex] \hline
 	Verwandte Strategien:\\
-	\textbf{\hyperlink{ddd}{S19 - JUNG}}\\
+	\textbf{\hyperlink{eee}{S19 - JUNG}}\\
 	\textbf{\hyperlink{fff}{S22 - JUNG}}
 	\\\hline
 \end{tabular}\\ \\ \\
@@ -1925,8 +1953,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Die Regeln werden extern abgespeichert und beim Laden ausgelesen. 
 	} }\\ [6ex] \hline
 	Verwandte Strategien:\\
-	\textbf{\hyperlink{aadd}{S1 - GXL}}\\
-	\textbf{\hyperlink{ooo}{S43- Eigener Datentyp}}\\
+	\textbf{\hyperlink{yy}{S1 - GXL}}\\
+	\textbf{\hyperlink{ooo}{S43 - Eigener Datentyp}}\\
 	\textbf{\hyperlink{ttt}{S56 - Sourceforge Framework}}
 	\\\hline
 \end{tabular}\\ \\ \\
