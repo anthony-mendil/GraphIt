@@ -25,13 +25,13 @@ public abstract class LogAction extends GraphAction {
     protected Param parameters;
     @Getter
     /**
-     * The time, the actions got called.
+     * The time, the action gets called.
      */
     private LocalDateTime time;
 
     /**
      * Creates an action in the program, which will also be persisted into in the database.
-     * @param nLogEntryName
+     * @param nLogEntryName The name of the log entry.
      */
     public LogAction(LogEntryName nLogEntryName) {
         logEntryName = nLogEntryName;

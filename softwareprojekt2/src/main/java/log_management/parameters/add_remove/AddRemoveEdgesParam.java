@@ -20,7 +20,7 @@ public class AddRemoveEdgesParam extends Param{
     private Map<Pair<Vertex,Vertex>,Edge> edges;
     /**
      * Creates an parameter object of its own class.
-     * @param edges List of edges and their start/ end vertex id
+     * @param edges List of edges and their start/end vertex id.
      */
     public AddRemoveEdgesParam(Map<Pair<Vertex,Vertex>,Edge> edges){
         this.edges = edges;

@@ -7,7 +7,7 @@ import actions.GraphAction;
  */
 public class LoadGraphAction extends GraphAction {
     /**
-     * Loads an existing graph from the source to syndrom.
+     * Loads an existing graph from a file to syndrom.
      */
     public LoadGraphAction() {
         throw new UnsupportedOperationException();

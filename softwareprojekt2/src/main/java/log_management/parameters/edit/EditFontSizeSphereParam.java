@@ -19,7 +19,7 @@ public class EditFontSizeSphereParam extends Param{
     @Getter
     private Sphere sphereText;
     /**
-     * The new size of the font.
+     * The old size of the font.
      */
     @Getter
     private int oldFontSize;

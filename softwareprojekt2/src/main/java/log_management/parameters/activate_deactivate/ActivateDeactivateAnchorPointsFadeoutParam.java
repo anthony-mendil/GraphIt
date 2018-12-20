@@ -8,13 +8,13 @@ import lombok.Getter;
 import java.util.List;
 
 /**
- * Parameter object for action ActivateAnchorPointsFadeoutLogAction.
+ * Parameter object for the action ActivateAnchorPointsFadeoutLogAction/DeactivateAnchorPointsFadeoutLogAction.
  */
 @Data
 public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
 
     /**
-     * Set of edges, which anchor-points will (cancel)fadeout.
+     * Set of edges, which anchor-points will (cancel) fadeout.
      */
     @Getter
     private List<Edge> edges;

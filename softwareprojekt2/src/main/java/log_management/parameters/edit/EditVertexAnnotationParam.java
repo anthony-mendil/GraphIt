@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 public class EditVertexAnnotationParam extends Param{
     /**
-     * pVertex The vertex containing its old annotation.
+     * The vertex containing its old annotation.
      */
     @Getter
     private Vertex vertex;
@@ -24,7 +24,7 @@ public class EditVertexAnnotationParam extends Param{
     @Getter
     private String newAnnotation;
     /**
-     * The new annotation of the vertex.
+     * The old annotation of the vertex.
      */
     @Getter
     private String oldAnnotation;

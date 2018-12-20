@@ -10,7 +10,7 @@ public class SphereRenderer {
     /**
      * Renders the given sphere.
      * @param pRc The renderContext implemented in JUNG.
-     * @param pSphere The sphere, that should be rendered.
+     * @param pSphere The sphere that should be rendered.
      */
     public void paintSphere(RenderContext pRc, Sphere pSphere) {
         throw new UnsupportedOperationException();

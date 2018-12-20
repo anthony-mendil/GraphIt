@@ -8,7 +8,7 @@ import lombok.Getter;
 
 import java.util.List;
 /**
- * Parameter object of the action ActivateFadeoutLogAction and DeactivateFadeoutLogAction.
+ * Parameter object of the action ActivateFadeoutLogAction/DeactivateFadeoutLogAction.
  */
 @Data
 public class ActivateDeactivateFadeoutParam extends Param{

@@ -12,18 +12,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * parameter object for LayoutGraphLogAction, changes the position of the vertices
+ * Parameter object for LayoutGraphLogAction, changes the position of the vertices.
  */
 @Data
 public class LayoutParam extends Param {
     /**
-     * the vertices containing their old position
+     * The vertices containing their old position.
      */
     @Getter
     private Map<Vertex, Point2D> oldVertices;
 
     /**
-     * map from vertex ids to new position
+     * The map from vertex ids to the new position.
      */
     @Getter
     private Map<Vertex, Point2D> newVertices;
@@ -31,8 +31,8 @@ public class LayoutParam extends Param {
     /**
      * Creates a parameter object of its own class.
      *
-     * @param pOldPosition map of vertices containing their old positions.
-     * @param pNewPosition map of vertices containing their new positions.
+     * @param pOldPosition Map of vertices containing their old positions.
+     * @param pNewPosition Map of vertices containing their new positions.
      */
     public LayoutParam(Map<Vertex, Point2D> pOldPosition, Map<Vertex, Point2D> pNewPosition) {
         this.oldVertices = pOldPosition;

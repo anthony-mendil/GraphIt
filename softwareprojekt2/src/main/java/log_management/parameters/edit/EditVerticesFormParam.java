@@ -17,20 +17,20 @@ import java.util.Map;
 @Data
 public class EditVerticesFormParam extends Param{
     /**
-     * The set of vertices containing their old shapes/ annotation.
+     * The set of vertices containing their old shapes/annotation.
      */
     @Getter
     Map<Vertex,Shape> oldVertices;
     /**
-     * The set of vertices containing their old shapes/ annotation.
+     * The set of vertices containing their old shapes/annotation.
      */
     @Getter
     Map<Vertex,Shape> newVertices;
 
     /**
      * Creates a parameter object of its own class.
-     * @param pOldVertices The vertices containing their old shape/ annotation.
-     * @param pNewVertices The vertices containing their new shape/ annotation.
+     * @param pOldVertices The vertices containing their old shape/annotation.
+     * @param pNewVertices The vertices containing their new shape/annotation.
      */
     public EditVerticesFormParam(Map<Vertex,Shape> pOldVertices, Map<Vertex,Shape> pNewVertices) {
         this.oldVertices = pOldVertices;

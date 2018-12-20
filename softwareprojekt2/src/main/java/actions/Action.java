@@ -7,7 +7,7 @@ import java.util.LinkedList;
  */
 public abstract class Action {
     /**
-     * List of all observers, that need to be updated, if an action is called(MVC).
+     * List of all observers that needs to be updated, if an action is called (based on Model-View-Controller pattern).
      */
     private static LinkedList<ObserverSyndrom> observers;
 

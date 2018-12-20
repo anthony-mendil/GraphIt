@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameter object of the action EditFontLogAction.
+ * Parameter object of the action EditFontVerticesLogAction.
  */
 @Data
 public class EditFontVerticesParam extends Param {
