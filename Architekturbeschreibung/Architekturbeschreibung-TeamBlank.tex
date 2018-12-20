@@ -1498,6 +1498,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S35 - GUI- Toolkit Swing} \\
 			Die Benutzeroberfläche kann mit dem GUI-Toolkit von Swing erstellt werden.
 	} }\\ \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{lll}{S36 - SwingNode}}\\
+	\textbf{\hyperlink{mmm}{S38 - Scene-Builder}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Die GUI wird mit \cb{JavaFX} umgesetzt. \\
@@ -1527,6 +1531,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S37 - Überschreibung von Klassen aus JUNG}: \\
 			JUNG baut auf Swing - Komponenten auf. Eine Möglichkeit ist es Klassen des Visualisierungs- Moduls von JUNG zu überschreiben, sodass die Swing- Komponenten durch JavaFX- Komponenten ersetzt werden. \\
 	} }\\ [11ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{kkk}{S34 - GUI Framework JavaFX}}\\
+	\textbf{\hyperlink{ccc}{S11 - (System) Bibliotheken}}\\
+	\textbf{\hyperlink{fff}{S22 - JUNG}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	\cb{S36} wird umgesetzt. JavaFX bietet eine fertige Lösung Swing- Komponenten zu integrieren. \cb{S37} umzusetzen ist viel aufwendiger und birgt ein hohes Fehlerpotenzial. Auch sind wir uns nicht sicher, ob \cb{S37} genauso umgesetzt werden könnte oder ob bei dem Prozess weiterer Probleme auftauchen würden. \\
@@ -1554,6 +1563,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S39 - eigens implementieren}: \\
 			Auf dem JavaFX- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
 	} }\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{kkk}{S34 - GUI Framework JavaFX}}\\
+	\textbf{\hyperlink{lll}{S36 - SwingNode}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	\cb{S38} wird umgesetzt. Der \cb{Scene- Builder} exportiert alle von uns geforderten Elemente/ Funktionen an die GUI als FXML, welche in das System einfach integriert werden kann. Diese Funktionalität selber zu implementieren ist viel zeitaufwendiger. Da dem Team nur ein begrenzter Zeitraum/ Ressourcen zur Verfügung stehen, entscheiden wir uns gegen \cb{S39}. 
@@ -1632,6 +1645,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{ooo}{S43 - Eigener Datentyp}}}: \\
 			Speicherung beider Daten in einer Textdatei als ein eigener Dateityp \\
 	} }\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{yy}{S1 - GXL}}\\
+	\textbf{\hyperlink{vvv}{S61 - Regeln in der GXL-Datei}}\\
+	\textbf{\hyperlink{ttt}{S56 - Sourceforge Framework}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir haben uns für \cb{S43} entschieden, da die Daten bereits in Textform vorliegen und wir unsere Daten möglichst sauber abspeichern wollen, welches bei 42 nicht gegeben ist.
@@ -1667,6 +1685,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S46 - Apache Derby}: \\
 			Verwendung von Apache Derby als eingebettete Datenbank \\
 	}}\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{aaa}{S7 - Datenmodell}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir haben uns gegen S44 entschieden, da Hibernate hierfür nicht ausgelegt ist. Hierzu wäre es nötig, einen eigenen Sequeldialekt zu entwickeln. Für uns bietet die \cb{S45} alle Funktionen, die wir benötigen. S46 dagegen hat den Nachteil, dass die Performanz (bei von uns getesteten Speicheraktionen) nicht ganz so hoch war wie bei S45.
@@ -1696,6 +1717,12 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{aaaa}{S49 - Modularisierung}}}: \\
 			Durch ein modularisiertes System lassen Arbeitspakete auf das Team so aufteilen, dass jedes Teammitglied ein bewätigbaren Workload hat. Dadurch ensteht ein geregelter und effizienter Arbeitsablauf. \\
 	} }\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{aadd}{S10 - Modularisierung}}\\
+	\textbf{\hyperlink{aaaf}{S12 - Dokumentierte Bibliotheken}}\\
+	\textbf{\hyperlink{aabb}{S15 - Modularisierung}}\\
+	\textbf{\hyperlink{ddd}{S16 - Dokumentierte Bibliotheken}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Aufgrund der Wichtigkeit dieses Problems entscheiden wir uns dafür, \cb{S47}, \cb{S48} und \cb{S49} umzusetzen. Dies sorgt dafür, dass wir Ressourcen sparen und unser Arbeitsablauf geregelt wird.
@@ -1730,6 +1757,9 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S52 - Apache OpenJPA}: \\
 			Verwendung con Apache OpenJPA als Persistenz-Framework.
 	} }\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{aaa}{S7 - Datenmodell}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Durch die Verwendung der vorgeschlagenen ORM-Framworks werden zum Beispiel mittels Annotationen im Quellcode SQL-Queries erzeugt, die direkt mit der DB kommunizieren können. Hibernate ist der Standard, wenn es um Open-Source ORM geht. Dieses Tool ist gut dokumentiert und es finden sich zahlreiche Codebeispiele.
@@ -1773,6 +1803,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{xff}{S55 - Eigenes Layout}}}: \\
 			Layout selber erstellen
 	} }\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{ddd}{S19 - JUNG}}\\
+	\textbf{\hyperlink{fff}{S22 - JUNG}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir haben uns für die Verwendung von \cb{S53}, \cb{S54} und \cb{S55} entschieden, da die Funktionen von JUNG für unseren Anwendungsfall nicht ausreichend sind, aber dennoch eine gute Ausgangslage bieten. Die (bei JUNG) fehlenden Funktionen werden durch die Strategien S53 und S55 ergänzt.
@@ -1811,6 +1845,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S58 - Eigene GXL-Erstellung}: \\
 			Die eigener Entwicklung eines Programms zur Erstellung von GXL-Dateien 
 	} }\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{yy}{S1 - GXL}}\\
+	\textbf{\hyperlink{vvv}{S61 - Regeln in der GXL-Datei}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	S58 würde viel zu viel Ressourcen kosten, welche überhaupt nicht gerechtfertigt sind, da es bereits Frameworks gibt. S57 erfordert noch weitere Entwicklung um unsere Anforderungen abzudecken. \cb{S56} deckt unsere Anforderungen ab und ist einfacher zu bedienen.
@@ -1884,6 +1922,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S62 - Externe Regelabspeicherung}: \\
 			Die Regeln werden extern abgespeichert und beim Laden ausgelesen. 
 	} }\\ [6ex] \hline
+	Verwandte Strategien:\\
+	\textbf{\hyperlink{aadd}{S1 - GXL}}\\
+	\textbf{\hyperlink{ooo}{S43- Eigener Datentyp}}\\
+	\textbf{\hyperlink{ttt}{S56 - Sourceforge Framework}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir entscheiden und für \cb{S61}, da wir sowieso dauerhaft mit der GXL-Repräsentation interagieren. S2 bringt uns keinen Vorteil und es entsteht nur eine Datei mehr, mit der interagiert werden muss. 
@@ -1916,6 +1959,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\textbf{S65 - JSONP}: \\
 	Mit JSONP können Objekte geparst und deren Informationen ins JSON-Format geschrieben werden. \\
 	} }\\ [6ex] \hline
+	\textbf{\hyperlink{jjj}{S33 - JavaScript Object Notation (.json)}}
+	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit größter Geschwindigkeit ins JSON-Format überführt werrden können.
