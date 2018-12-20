@@ -1143,7 +1143,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Dieses Design-Pattern sieht die Aufteilung des Systems in die drei grundlegenden Bestandteile Model, View und Controller vor. \\
 			\textbf{\cb{\hypertarget{command}{S9 - Command}}}: \\
 			Die Verwendung vom Command Designpattern sieht den Aufbau der Architektur derart vor, dass verschiedene Aktionen, die ein Nutzer ausführen kann, als Command-Objekte realisiert werden.\\
-			\textbf{\cb{S10 - Modularisierung}}: \\
+			\textbf{\cb{\hypertarget{aadd}{S10 - Modularisierung}}}: \\
 			Die Gliederung des Systems in einzelne Module.
 	} }\\ [8ex] \hline
 \end{tabular}\\ \\ \\
@@ -1172,12 +1172,12 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{ccc}{S11 - (System) Biblotheken}}}: \\
 			Das nutzen von Bibliotheken unterstützt den Entwickler, da bereits bestehende Funktionen genutzt werden können.\\
 			\textbf{\cb{S12 - Dokumentierte Bibliotheken}}: \\
-			Dokumentierte Bibliotheken helfen bei der Verständnis von unbekannten Methoden
+			Dokumentierte Bibliotheken helfen bei der Verständnis von unbekannten Methoden \\
 			\textbf{\cb{\hypertarget{modelviewcontroller}{S13 - MVC}}}: \\
 			Verwendung Model- View- Controller Designpattern\\
 			\textbf{\cb{\hypertarget{zeitmanagement}{S14 - Zeitmanagment}}}: \\
 			Umsetzung eines effizienen Zeitmanagments, damit genug Zeit für die Entwicker zur Verfügung steht, sich in die benötigten Technologien einzuarbeiten.\\
-			\textbf{\cb{S15 - Modularisierung}}: \\%hypertarget already exists
+			\textbf{\cb{\hypertarget{aabb}{S15 - Modularisierung}}}: \\%hypertarget already exists
 			Die Gliederung des Systems in einzelne Module.
 	} }\\ [9ex] \hline
 \end{tabular}\\ \\ \\
@@ -1204,7 +1204,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Bei der Wahl von Bibliotheken ist darauf zu achten, dass man deren Dokumentation in gut verständlicher Form erhalten kann. \\
 			\textbf{\cb{\hyperlink{dokuvongeschriebenemcode}{S17 - Dokumentation von geschriebenem Code}}}\\
 			Parallel zur Erstellung von Quell-Code wird deren Dokumentation geschrieben.\\
-			\textbf{\cb{S18 - Modularisierung}} \\
+			\textbf{\cb{\hypertarget{aacc}{S18 - Modularisierung}}} \\
 			Das System wird in kleinere Teile gegliedert und die Aufgaben können besser übernommen werden.
 	}}\\ [4ex] \hline
 \end{tabular}\\ \\ \\
@@ -1665,7 +1665,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Verwendung von H2 als eingebettete Datenbank \\
 			\textbf{S46 - Apache Derby}: \\
 			Verwendung von Apache Derby als eingebettete Datenbank \\
-	} }\\ [6ex] \hline
+	}}\\ [6ex] \hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir haben uns gegen S44 entschieden, da Hibernate hierfür nicht ausgelegt ist. Hierzu wäre es nötig, einen eigenen Sequeldialekt zu entwickeln. Für uns bietet die \cb{S45} alle Funktionen, die wir benötigen. S46 dagegen hat den Nachteil, dass die Performanz (bei von uns getesteten Speicheraktionen) nicht ganz so hoch war wie bei S45.
@@ -1692,7 +1692,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Durch das Verwenden von Bibliotheken sparen wir Aufwand und damit Zeit, indem wir bereits bestehende Funktionen benutzen. \\
 			\textbf{\cb{S48 - Wiederverwendung von System-eigenen Komponenten}}: \\
 			Das Wiederverwenden von System-eigenen Komponenten ist sinnvoll, um Ressourcen zu sparen. \\
-			\textbf{\cb{S49 - Modularisierung}}: \\
+			\textbf{\cb{\hypertarget{aaaa}{S49 - Modularisierung}}}: \\
 			Durch ein modularisiertes System lassen Arbeitspakete auf das Team so aufteilen, dass jedes Teammitglied ein bewätigbaren Workload hat. Dadurch ensteht ein geregelter und effizienter Arbeitsablauf.
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
@@ -1998,9 +1998,9 @@ Die \texttt{Logger}-Komponente ist in unsere Applikation eingebaut, um uns bei d
 
 \emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
 
-Im folgenden beschreiben wir unsere Datensicht. Bei Erläuterungen zu dieser beziehen wir uns auf folgende Strategien: \hyperlink{yy}{Strategie S1: GXL}, \hyperlink{aaa}{Strategie S7: Datenmodell}, \hyperlink{eee}{Strategie S19: JUNG}, \hyperlink{jjj}{Strategie 33: JavaScript Object Notation (.json)} und \hyperlink{ooo}{Strategie S43: Eigener Datentyp} sowie auf die \hyperlink{ppp}{Strategie S45: H2 Database}. Außerdem werden wir Bezug zu den Strategien \hyperlink{rrr}{Strategie S.50: Hibernate}, \hyperlink{ttt}{Strategie S56: GXL-Framework (bei Source Forge gehostet)} und \hyperlink{vvv}{Strategie S61: Regeln in der GXL-Datei} nehmen.\\
+Im folgenden beschreiben wir unsere Datensicht. Bei Erläuterungen zu dieser beziehen wir uns auf folgende Strategien: \hyperlink{yy}{Strategie S1: GXL}, \hyperlink{aaa}{Strategie S7: Datenmodell}, \hyperlink{eee}{Strategie S19: JUNG} beziehungsweise \hyperlink{fff}{Strategie S22: JUNG}, \hyperlink{jjj}{Strategie 33: JavaScript Object Notation (.json)} und \hyperlink{ooo}{Strategie S43: Eigener Datentyp} sowie auf die \hyperlink{ppp}{Strategie S45: H2 Database}. Außerdem werden wir Bezug zu den Strategien \hyperlink{rrr}{Strategie S.50: Hibernate}, \hyperlink{ttt}{Strategie S56: GXL-Framework (bei Source Forge gehostet)} und \hyperlink{vvv}{Strategie S61: Regeln in der GXL-Datei} nehmen.\\
 
-Es sei an der dieser Stelle explizit angemerkt, dass wir für die Repräsentation des Graphen kein komplett eigenes Datenmodell erstellen. Stattdessen verwenden wir das vom Framework \texttt{JUNG} vorgegebene Datenmodell mit unseren eigenes Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} (für Kanten) (\hyperlink{eee}{Strategie S19: JUNG}). Da in unserem Fall Sphären benötigt werden, erstellen wir eine Klasse \texttt{Sphere} (für Sphären) und erweitern mit ihr das vorgegebene Datenmodell (genauer gesagt erweitert unsere Klasse SydromGraph die Klasse DirectedSparseGraph von \texttt{JUNG}). 
+Es sei an der dieser Stelle explizit angemerkt, dass wir für die Repräsentation des Graphen kein komplett eigenes Datenmodell erstellen. Stattdessen verwenden wir das vom Framework \texttt{JUNG} vorgegebene Datenmodell mit unseren eigenes Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} (für Kanten) (\hyperlink{eee}{Strategie S19: JUNG} beziehungsweise \hyperlink{fff}{Strategie S22: JUNG}). Da in unserem Fall Sphären benötigt werden, erstellen wir eine Klasse \texttt{Sphere} (für Sphären) und erweitern mit ihr das vorgegebene Datenmodell (genauer gesagt erweitert unsere Klasse SydromGraph die Klasse DirectedSparseGraph von \texttt{JUNG}). 
 Für die Speicherung des Graphen sowie von allen nötigen Informationen gibt es die Klasse \texttt{Syndrom}. Sie fasst den Graphen, die optionalen Vorgaben/Bearbeitungsregeln (Template) sowie die zum Rendern und zur Visualisierung benötigten Komponenten von \texttt{JUNG} zusammen. \\
 
 Das soeben erwähnte Template ermöglicht es ein Maximum an Sphären, Knoten (im Graphen insgesamt), Knoten in einer Sphäre und Kanten festzulegen. Des weiteren können Objekte des Graphen bestimmt werden, von denen bestimmte Eigenschaften nicht verändert werden dürfen, sowie die Arten der erlaubten Kanten eingeschränkt werden.\\
@@ -2033,7 +2033,7 @@ In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu 
 \subsection{Übersicht}
 Dieser Abschnitt beschäftigt sich mit einer Übersicht über alle Module des gesamten Projektes. \\
 Diese Module und deren Abhängigkeiten untereinander sind auf der folgenden Seite als Paketdiagramm dargestellt.
-Im Allgemeinen ist die Struktur des Projektes angelehnt an das Model-View-Controller-Designpattern, gemäß der Strategie \glqq\hyperlink{bbb}{S8 - MVC}\grqq. Dabei setzt das Package \texttt{gui} die View um, \texttt{log\_management} die Model-Komponente und \texttt{actions} die Controller-Komponente. \\
+Im Allgemeinen ist die Struktur des Projektes angelehnt an das Model-View-Controller-Designpattern, gemäß der Strategie \glqq\hyperlink{bbb}{S8 - MVC}\grqq{} und Strategie \glqq\hyperlink{modelviewcontroller}{S13 - MVC}\grqq. Dabei setzt das Package \texttt{gui} die View um, \texttt{log\_management} die Model-Komponente und \texttt{actions} die Controller-Komponente. \\
 
 Das Package \texttt{actions} beinhaltet \texttt{Action}-Klassen, von denen die meisten Aktionen auf dem Graphen umsetzen. Die \texttt{Action}-Klassen werden dabei durch Interaktionen des Nutzers mit der grafischen Benutzeroberfläche (z.B. durch das Klicken auf einen Button) aufgerufen. Dem entsprechend mündet eine von dem Package \texttt{gui} ausgehende Verbindung in das Pakage \texttt{actions}. \\
 
@@ -2047,7 +2047,7 @@ Das Package \texttt{jgrapht} setzt die Funktionalität um, einen Graphen aus uns
 
 Alle Klassen, die Funktionalität für den programminternen Graphen umsetzen, sind im Package \texttt{graph} implementiert. Dieses Package ist in drei Packages unterteilt: \texttt{algorithm}, \texttt{graph} und \texttt{visualisation}. \texttt{algoithm} beinhaltet Klassen, die unseren Graphen nach bestimmten Bedingungen / Algorithmen filtern. \texttt{graph} beinhaltet alle Datenklassen zu dem Graphen und Funktionalitäten, die benötigt werden, um den Graphen umzusetzen. \texttt{visualization} stellt Klassen zur Verfügung, die die visuellen Eigenschaften des Graphen bestimmen und darstellen. \\
 
-Mit der eben beschriebenen Aufteilung des Systems in Module folgen wir Strategie \hypertarget{aaaa}{S49 - Modularisierung des Systems}. Außerdem haben wir dieser Strategie eher die Möglichkeit Arbeitspakete mit einem sinnvollen Arbeitsaufwand zu definieren, was der Strategie \hyperlink{zeitmanagement}{S14 - Zeitmanagement} dient. \\
+Mit der eben beschriebenen Aufteilung des Systems in Module folgen wir den Strategien \hyperlink{aadd}{S10 - Modularisierung}, \hyperlink{aabb}{S15 – Modularisierung}, \hyperlink{aacc}{S18 - Modularisierung} und \hyperlink{aaaa}{S49 - Modularisierung}. Außerdem haben wir dieser Strategie eher die Möglichkeit Arbeitspakete mit einem sinnvollen Arbeitsaufwand zu definieren, was der Strategie \hyperlink{zeitmanagement}{S14 - Zeitmanagement} dient. \\
 
 An dieser Stelle wollen wir auf die Schnittstellenbeschreibung verweisen, da nach der Erklärung der Grundstruktur unseres Systems (die in diesem Unterkapitel erfolgt ist) die Verständlichkeit der und die Einarbeitung in die Schnittstellenbeschreibung leichter fallen sollte. Bei Betrachtung unserer Schnittstellenbeschreibung ist bereits zu sehen, dass wir unsere Programmbestandtteile dokumentiert haben. Bei der Implementierung werden wir gemäß Strategie \hyperlink{aaad}{S17 - Dokumentierung von geschriebenem Code} an diesem Prinzip festhalten. \\
 
@@ -2120,8 +2120,8 @@ Die GUI (deren Aufbau und Abhängigkeiten durch das folgende UML-Diagramm visual
 
 
 \subsection{\texttt{actions}}
-Das Package \texttt{actions} repräsentiert die Controller Komponente des Model-View-Controller-Patterns, welches wir gemäß \hyperlink{bbb}{S8- MVC} umsetzen. \\ 
-Diese ist nach dem \texttt{Command} Pattern nach \hyperlink{command}{S9 - Command} aufgebaut. \\
+Das Package \texttt{actions} repräsentiert die Controller Komponente des Model-View-Controller-Patterns, welches wir gemäß \hyperlink{bbb}{S8- MVC} beziehungsweise \hyperlink{modelviewcontroller}{S13 - MVC} umsetzen. \\ 
+Diese ist nach dem \texttt{Command}-Pattern nach Strategie \hyperlink{zz}{S4 - Command} beziehungsweise \hyperlink{command}{S9 - Command} aufgebaut. \\
 
 Die abstrakte Klasse \texttt{Action} stellt die Oberklasse dar. Diese implementiert zwei abstrakte Methoden \texttt{redo}/ \texttt{undo}. Eine weitere abstrakte Klasse \texttt{GraphAction} erweitert die \texttt{Action}-Klasse. Jeder \texttt{GraphAction} wird ein \texttt{Syndrom} injiziert. Durch dieses \texttt{Syndrom}-Objekt verfügt jede \texttt{GraphAction} über die benötigten Informationen zu dem visualisierten Graphen. Da \texttt{Syndrom} ein Singleton ist, verfügt nach einer Änderung des Graphen das ganze System darüber und kann es entsprechend visualisieren.  Dies ist erforderlich, damit sich die vom Nutzer durchgeführten Aktionen auch auf den gerade in Bearbeitung befindlichen Graphen auswirken.\\ 
 Eine weitere abstrakte Klasse setzt die benötigte Funktionalität für eine \texttt{LogAction}. Zudem haben alle \texttt{LogActions} eine Verbindung zu \texttt{LogEntryName} und zu \texttt{Param}. Dies ist beides für die Persistierung von Bedeutung. Die Verbindung zu \texttt{Param} bedeutet, dass zu jeder \texttt{LogAction} ein Objekt einer konkreten Unterklasse der abstrakten Oberklasse \texttt{Param} gehört. \\
@@ -2187,7 +2187,7 @@ Wie eben angedeutet wird im folgenden Abschnitt auf das Package \texttt{graph.gr
 
 Das Package \texttt{graph.graph} beinhaltet die Datenklassen des Graphen und Klassen, die sich auf die Funktionalität des Graphen beziehen. \\
 
-Die Klasse \texttt{Syndrom} führt alle Komponenten des Frameworks \hyperlink{eee}{S19 - \texttt{JUNG}} zusammen und ist ein \textit{Singleton}, da dieses Objekt global im ganzen Projekt verfügbar sein muss. \\
+Die Klasse \texttt{Syndrom} führt alle Komponenten des Frameworks \hyperlink{eee}{S19 - \texttt{JUNG}} beziehungsweise \hyperlink{fff}{S22 - \texttt{JUNG}}zusammen und ist ein \textit{Singleton}, da dieses Objekt global im ganzen Projekt verfügbar sein muss. \\
 Unsere Datenklassen zu dem Graphen erweitern das Datenmodell von \texttt{JUNG}. Klassen, die erweiterte Funktionalität des Graphen implementieren, erweitern meistens Klassen aus \texttt{JUNG} oder orientieren sich an dessen Klassen. \\
 
 \textit{Syndrom} enthält ein \texttt{SyndromGraph}-Objekt, ein \texttt{StaticLayout}-Objekt und ein \texttt{VisualisationViewer} Objekt, welche die grundlegenden Informationen über den Graphen beinhalten, beispielsweise Listen von \texttt{Vertex} / \texttt{Edge} und \texttt{Sphere}. Die \texttt{Transformer}-Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.visualization} importiert und sind vor allem für die Visualisierung von Bedeutung. Die \texttt{Predicate}-Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.alogorithm} importiert und werden später für die Filterung und Umsetzung von Algorithmen auf den Graphen benötigt. \\
