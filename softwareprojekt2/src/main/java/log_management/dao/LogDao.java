@@ -59,6 +59,7 @@ public class LogDao implements Dao<Log> {
      * Converts the attribute parameters into a json string and calls the save method
      * with the log object containing the parameter string (json).
      * @param log The log object to save.
+     * @param parameters The parameter to convert
      */
     public void save(Log log, Param parameters) {
 
