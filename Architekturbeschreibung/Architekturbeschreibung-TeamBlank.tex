@@ -1441,6 +1441,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	} }\\ [4ex] \hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
 	\textbf{\hyperlink{iii}{S30 - Freeheb Vectorgraphics}}&
+	\textbf{\hyperlink{ggg}{S26 - Java API}} 
 	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1657,7 +1658,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hyperlink {v}{Speicherung des Graphen} \\
 	\hyperlink {w}{Laden des Graphen} &
 	\hyperlink {x}{Automatische Anordnung zur Übersichtlichkeit} \\
-	\hyperlink {y}{Vorlage/Bearbeitsungsregeln} &
+	\hyperlink {y}{Vorlage/Bearbeitungsregeln} &
 	\hyperlink {z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} \\
 	\hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}&
 	\hyperlink {bb}{Protokoll von Nutzerinteraktionen} \\
@@ -1681,16 +1682,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{nnn}{S40 - erweiterte Anforderungen}}}: \\
-			Mindestanforderungen des Projektes und zusätzliche Anforderungen (Chinese Menu) werden so umgesetzt, dass diese den Ansprüchen der Gruppe und des Tutors genügen. \\
-			\textbf{S41 - Mindestanforderungen }: \\
+			Mindestanforderungen des Projektes und zusätzliche Anforderungen (Chinese Menue) werden so umgesetzt, dass diese den Ansprüchen der Gruppe und des Tutors genügen. \\
+			\textbf{S41 - Mindestanforderungen}: \\
 			Nur die Mindestanforderungen werden umgesetzt. \\
 	} }\\ [6ex] \hline
-	\multicolumn{2}{|l|}{Verwandte Strategien} \\
-	&
-	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	\cb{S40} wird umgesetzt, da wir versuchen wollen, die uns bestmöglichste Umsetzung zu erarbeiten. Nur die Mindestanforderungen zu erfüllen, entspricht nicht den Ansprüchen des Teams.
+	\cb{S40} wird umgesetzt, da wir versuchen wollen, die uns bestmögliche Umsetzung zu erarbeiten. Nur die Mindestanforderungen zu erfüllen, entspricht nicht den Ansprüchen des Teams.
 \end{onehalfspace}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -1928,7 +1926,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hyperlink {v}{Speicherung des Graphen} &
 	\hyperlink {w}{Laden des Graphen} \\
 	\hyperlink {x}{Automatische Anordnung zur Übersichtlichkeit} &
-	\hyperlink {y}{Vorlage/Bearbeitsungsregeln} \\
+	\hyperlink {y}{Vorlage/Bearbeitungsregeln} \\
 	\hyperlink {z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} &
 	\hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}\\
 	\hyperlink {bb}{Protokoll von Nutzerinteraktionen} &
@@ -1946,9 +1944,6 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S60 - Ein Programm pro Modus}: \\
 			Auswahl des Modus beim Start des Programms, wodurch verschiedene Anwendungen gestartet werden können
 	} }\\ [7ex] \hline
-	\multicolumn{2}{|l|}{Verwandte Strategien} \\
-	&
-	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	S60 ist für unsere Anforderungen unpraktisch und sorgt für eine schlechte Usability. Durch \cb{S59} dagegen lässt sich angenehm zwischen verschiedenen Modi umschalten. 
@@ -2045,9 +2040,6 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 			\textbf{S67 - Spring}: \\
 	Wir könnten die Funktionalitäten im Bereich Dependency Injection von Spring nutzen.
 	} }\\ [6ex] \hline
-	\multicolumn{2}{|l|}{Verwandte Strategien} \\
-	&
-	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Mit \cb{Guice} können Objekte anderer Klassen leicht in eine Klasse injiziert werden und dort Attributen zugewiesen werden. Dabei ist \cb{Guice} auch vielfältig zur Erzeugung von Objekten zur Laufzeit einsetzbar. Das Framework bietet also zahlreiche Funktionalitäten im Generischen-Bereich. Die Funktionalitäten von \cb{Guice} sind durch Annotationen leicht (mit wenig Quellcode) nutzbar. \\
@@ -2078,29 +2070,22 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 \hyperlink {pp}{Auswertung des Graphen} &
 \hyperlink {qq}{Graph-Analyse mittels Graphmaße} \\ 
 \hyperlink {rr}{Analyse über einen wählbaren Ausschnitt des Graphen} &
-\hyperlink {ss}{Filter von Knoten und Kanten} \\
-\\ \hline
+\hyperlink {ss}{Filter von Knoten und Kanten}  \\
+\hline
 \multicolumn{2}{|l|}{Lösungen} \\
 \multicolumn{2}{|l|}{\parbox{16cm}{
 \textbf{\cb{\hypertarget{umwandlungskomponente}{S68 – eigene Umwandlungskomponente}}} \\
 Es wird unsererseits eine Komponente entwickelt, deren Aufgabe es ist, die Datenklassen unseres Graphen, die in JUNG vorliegen, in die Datenklassen von JGraphT umzuwandeln, sodass wir die von JGraphT zur Verfügung gestellten Funktionen zur Graph-Auswertung nutzen können.
 } }\\ \hline
-
-\end{tabular}\\ \\ \\
-
-\begin{tabular} {|p{8cm} p{8cm}|}
-\hline\\
-\multicolumn{2}{|l|}{\parbox{16cm}{
-
-Verwandte Strategien:\\
-\textbf {\hyperlink{aadd}{S10 – Modularisierung}} \\
-\textbf{\hyperlink{aabb}{S15 - Modularisierung}}\\
-\textbf{\hyperlink{aacc}{S18 - Modularisierung}} \\
+\multicolumn{2}{|l|}{Verwandte Strategien} \\
+\textbf {\hyperlink{aadd}{S10 – Modularisierung}} &
+\textbf{\hyperlink{aabb}{S15 - Modularisierung}} \\
+\textbf{\hyperlink{aacc}{S18 - Modularisierung}} &
 \textbf{\hyperlink{eee}{S19 - JUNG}} \\
-\textbf{\hyperlink{fff}{S22 - JUNG}} \\
+\textbf{\hyperlink{fff}{S22 - JUNG}} &
 \textbf{\hyperlink{eigeneImplementierung}{S24 - eigene Implementierung}} \\
-\textbf{\hyperlink{xxx}{S25 - JGraphT}}\\
-}}\\\hline
+\textbf{\hyperlink{xxx}{S25 - JGraphT}} &
+\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 Die Umwandlung der Datenklassen zwischen dem JUNG- und dem JGraphT-Format wird mit \cb{einer eigenen Komponente} umgesetzt. So muss auch nur diese Komponente ausgetauscht werden, wenn zu einem späteren Zeitpunkt anstelle von JGraphT ein anderes Framework verwendet werden soll, um die von JUNG bereitgestellten Analyse-Möglichkeiten zu erweitern.
