@@ -2260,27 +2260,27 @@ Im folgenden ist eine Abbildung zum \texttt{io}-Package zu sehen, in dem auch se
 
 
 \subsection{\texttt{gui}}
-Die Benutzeroberfläche wurde mit JavaFX (siehe Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFX}) und mit Hilfe der Anwendung \textit{SceneBuilder} von Gluon, gemäß der Strategie \hyperlink{mmm}{S38 - Scene-Builder}, umgesetzt. Die erstellte \texttt{GUI} ist in der Applikation als FXML-Datei gespeichert und wird beim Starten unserer Applikation in der \texttt{Main}-Klasse geladen. Letztgenannte ist außerdem für das Starten der gesamten Anwendung zuständig. \\
+Die Benutzeroberfläche wurde mit JavaFX (siehe Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFX}) und mit Hilfe der Anwendung SceneBuilder von Gluon (gemäß Strategie \hyperlink{mmm}{S38 - Scene-Builder}) umgesetzt. Die erstellte GUI ist in der Applikation als FXML-Datei gespeichert und wird beim Starten unserer Applikation in der \texttt{Main}-Klasse geladen. Letztgenannte ist außerdem für das Starten der gesamten Anwendung zuständig. \\
 
 Um die GUI mit der gewünschten Funktionalität der Applikation zu verbinden, existiert die Klasse \texttt{Controller}. Sie dient als Schnittstelle zwischen der GUI und den internen Modulen. \\
-FXML ist sehr gut geeignet, um die Darstellung der \texttt{GUI} Elemente zu definieren und die Methoden in \texttt{Controller} jeweils zu den Elementen zuzuordnen. Diese Methoden werden beim Interagieren mit den GUI-Elementen aufgerufen und müssen in der \texttt{Controller}-Klasse angegeben werden. Da einige GUI-Elemente mehr Funktionalität benötigen als nur einen Methodenaufruf beim Interagieren, werden diese Elemente nochmals in der \texttt{Controller}-Klasse referenziert, um sie zu erweitern.\\
+FXML ist sehr gut geeignet, um die Darstellung der GUI-Elemente zu definieren und die Methoden in \texttt{Controller} jeweils zu den Elementen zuzuordnen. Diese Methoden werden beim Interagieren mit den GUI-Elementen aufgerufen und müssen in der \texttt{Controller}-Klasse angegeben werden. Da einige GUI-Elemente mehr Funktionalität benötigen als nur einen Methodenaufruf beim Interagieren, werden diese Elemente nochmals in der \texttt{Controller}-Klasse referenziert, um sie zu erweitern.\\
 
 Die \texttt{Controller}-Klasse besitzt außerdem die internen Klassen \texttt{ColorPickerHandler} und \\ \texttt{MenuItemHandler}. Diese werden benötigt, da die \texttt{GUI}-Elemente \texttt{MenuItem} und \texttt{ColorPicker} zusätzlich an die aufgerufene Methode übergeben müssen, welchen Wert der User ausgewählt hat, beispielsweise die gewählte Farbe. \\
 Diese Werte werden zusätzlich in dem Singleton-Objekt der Klasse \texttt{Values} den zugehörigen Attributen zugewiesen, damit die \texttt{Actions}-Objekte und das \texttt{Syndrom}-Objekt auf diese Werte zugreifen können. \\
 
-Zur Graph Visualisierung wird das Framework \hyperlink{eee}{JUNG} verwendet. Da dieses Framework auf Swing basiert, wird die Swing-Komponente, in die mit JavaFX erstellte GUI, durch eine Swing-Node eingebunden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}.\\
+Zur Graph-Visualisierung wird das Framework \hyperlink{eee}{JUNG} verwendet (siehe Strategie \hyperlink{eee}{S19 - JUNG}). Da dieses Framework auf Swing basiert, wird die Swing-Komponente in die mit JavaFX erstellte GUI durch eine Swing-Node eingebunden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}.\\
 
 Da die \texttt{GUI} den Graphen außerdem in der Seitenleiste in textueller, strukturierter Form darstellen soll, benötigt die GUI Informationen über die Komponenten des Graphen. Die Information sind über das \texttt{Syndrom}-Objekt aus dem Package \texttt{graph.graph} zugänglich. \\
 
-Das Objekt der Klasse \texttt{ActionHistory} aus dem Package \texttt{actions} wird benötigt, um die \hyperlink{command}{Actions} mit den Interaktionen des Users zu verknüpfen. Diese führt zuvor erstellte Actions aus. Außerdem kann so die benötigte \texttt{redo}- und \texttt{undo}-Funktionalität umgesetzt werden. \\
+Das Objekt der Klasse \texttt{ActionHistory} aus dem Package \texttt{actions} wird benötigt, um die Actions (gemäß Strategie \hyperlink{command}{S9} dem Entwurfsmuster Command folgend} mit den Interaktionen des Nutzers zu verknüpfen. Diese führt zuvor erstellte Actions aus. Außerdem kann so die benötigte \texttt{redo}- und \texttt{undo}-Funktionalität umgesetzt werden. \\
 
-Das Interface \texttt{ObserverSyndrom} aus dem Package \texttt{actions} wird implementiert, um die Veränderungen des Graphen auf der GUI zu updaten.\\
+Das Interface \texttt{ObserverSyndrom} aus dem Package \texttt{actions} wird implementiert, um die GUI nach Veränderungen des Graphen upzudaten.\\
 
 Um das Anzeigen des Protokolls der Nutzerinteraktion zu ermöglichen, bekommt die \texttt{Controller}-Klasse das Benutzerprotokoll über ein Objekt der \texttt{LogDao}-Klasse aus dem Package \texttt{dao}. Dieses bildet die Schnittstelle zur Datenbank. \\
 
 Die Klasse \texttt{LoadLanguage} besitzt noch weitere GUI-Elemente zusätzlich zu den bereits referenzierten in der \texttt{Controller}-Klasse, um die Texte der \texttt{GUI} bei Bedarf auf eine andere \hyperlink{hh}{Sprache} umzustellen. \\
 	
-Die GUI (deren Aufbau und Abhängigkeiten durch das folgende UML-Diagramm visualisiert werden) ermöglicht es dem Benutzer, die Funktionen unseres Systems zu nutzen. Die Interaktion des Nutzers mit der GUI führt programmintern zum Aufruf bestimmter \texttt{Action}-Objekte, welche im Package \texttt{actions} eingeordnet sind. Dieses Package wird im nächsten Abschnitt genauer beschrieben.
+Die GUI (deren Aufbau und Abhängigkeiten durch das folgende UML-Diagramm visualisiert werden) ermöglicht es dem Benutzer, die Funktionen unseres Systems zu nutzen. Die Interaktion des Nutzers mit der GUI führt programmintern (wie eben beschrieben) zum Aufruf bestimmter \texttt{Action}-Objekte, welche im Package \texttt{actions} eingeordnet sind. Dieses Package wird im nächsten Abschnitt genauer beschrieben.
 
 
 \newpage
