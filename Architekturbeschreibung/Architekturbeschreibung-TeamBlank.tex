@@ -470,7 +470,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{f}{P\tone.\two}: Betriebssystemunterstützung / Zielplattformen des Systems} }}\\ \hline \hline
 	\multicolumn{2}{|l|}{\parbox{16cm}{Unser System muss mindestens auf den Betriebssystemen Windows 10, Linux und MacOS lauffähig sein. (Bei der Entwicklung von Apps für mobile Geräte kämen noch Android und iOS hinzu.)}}\rule{0pt}{5ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\ 
-	(-) Bezüglich der Zielplattformen sind wir ziemlich unflexibel. Dies liegt daran, dass wir als Implementierungssprache Java in der Version 8 oder einer aktuelleren Variante vorgeschrieben bekommen haben und diese Programmiersprache den Aspekt der Lauffähigkeit bereits mit sich bringt. Somit bleibt uns nur noch die Wahl im Chinese Menu den Mobil-Punkt zu wählen, wodurch wir die Lauffähigkeit auf weiteren Betriebssystemen unterstützen müssten.&
+	(-) Bezüglich der Zielplattformen sind wir ziemlich unflexibel. Dies liegt daran, dass wir als Implementierungssprache Java in der Version 8 oder einer aktuelleren Variante vorgeschrieben bekommen haben und diese Programmiersprache den Aspekt der Lauffähigkeit bereits mit sich bringt. Somit bleibt uns nur noch die Wahl im Chinese Menue den Mobil-Punkt zu wählen, wodurch wir die Lauffähigkeit auf weiteren Betriebssystemen unterstützen müssten.&
 	(--) Da mit den genannten Zielplattformen, insbesondere unter Einbezug der mobilen Systeme, die relevanten Systeme unterstützt werden, denken wir nicht, dass weitere Systeme unterstützt werden müssen. Der Wegfall eines der erwähnten Betriebssysteme hätte keine Folgen für unser Programm und ist unserer Meinung nach auch unwahrscheinlich. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir realisieren den Aspekt der Lauffähigkeit für die genannten Betriebssysteme durch Implementierung unserer Software in Java 8.} }\\[2ex] \hline
@@ -499,7 +499,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(-) Wir halten es für unwahrscheinlich, dass sich konkrete Vorgaben hinsichtlich Verständlichkeit und Änderbarkeit gemacht werden. Selbiges vermuten wir bezüglich der Fehlerfreiheit-Sicherstellung.   \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Diese Anforderung ist insofern von Relevanz, als dass die von uns verwendeten Frameworks gut verständlich oder gar selbstbeschreibend sein sollten. Sind die Frameworks nicht weitestgehend intuitiv verständlich sollten sie zumindest gut dokumentiert sein. Es liegt also eine gewisse Einschränkung bei unserer Tool-Wahl vor. Um die Verständlichkeit weiterhin sicher zu stellen, sollten wir unseren Code nicht nur dokumentieren, sondern die Architektur soweit möglich an bekannten Strukturen wie (Command, Model-View-Controller) orientiert aufbauen.
+	\multicolumn{2}{|l|} {\parbox{16cm}{Diese Anforderung ist insofern von Relevanz, als dass die von uns verwendeten Frameworks gut verständlich oder gar selbstbeschreibend sein sollten. Sind die Frameworks nicht weitestgehend intuitiv verständlich sollten sie zumindest gut dokumentiert sein. Es liegt also eine gewisse Einschränkung bei unserer Tool-Wahl vor. Um die Verständlichkeit weiterhin sicher zu stellen, sollten wir unseren Code nicht nur dokumentieren, sondern die Architektur soweit möglich an bekannten Strukturen wie (\hyperlink{i}{Command},\hyperlink{bbb}{Model-View-Controller}) orientiert aufbauen.
 			Außerdem müssen wir die Architektur so wählen, dass für Fehlerfreiheit gesorgt ist.} }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
@@ -508,7 +508,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{i}{P\tone.\two}: Command }} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Bei Command handelt es sich um ein Entwurfsmuster, das zum Aufbau einer Softwarestruktur genutzt werden kann, in der Commands (=Aktionen des Nutzers beziehungsweise Interaktionen des Nutzers mit dem System) als Objekte erfasst werden und somit eine zentrale Bedeutung in der Architektur besitzen. Die einzelnen Commands werden erfasst und können somit auch rückgängig gemacht werden (redo / undo). Dieses Entwurfsmuster wird durch unsere Entscheidung für die Strategie Command (bei gleichzeitiger Umsetzung der Strategien Model-View-Controller und Modularisierung) bei der Problemkarte \glqq Auswahl der grundlegenden Softwarearchitektur\grqq{} zum Einflussfaktor. Denn es wirkt sich auf die genannte und die Problemkarte \glqq Persistierungsintervall des Graphen\grqq{} aus.} }\rule{0pt}{14.5ex}\\  \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Bei Command handelt es sich um ein Entwurfsmuster, das zum Aufbau einer Softwarestruktur genutzt werden kann, in der Commands (=Aktionen des Nutzers beziehungsweise Interaktionen des Nutzers mit dem System) als Objekte erfasst werden und somit eine zentrale Bedeutung in der Architektur besitzen. Die einzelnen Commands werden erfasst und können somit auch rückgängig gemacht werden (redo / undo). Dieses Entwurfsmuster wird durch unsere Entscheidung für die Strategie \hyperlink{command}{Command} (bei gleichzeitiger Umsetzung der Strategien \hyperlink{bbb}{Model-View-Controller} und \hyperlink{aadd}{Modularisierung}) bei der Problemkarte \glqq Auswahl der grundlegenden Softwarearchitektur\grqq{} zum Einflussfaktor. Denn es wirkt sich auf die genannte und die Problemkarte \glqq Persistierungsintervall des Graphen\grqq{} aus.} }\rule{0pt}{14.5ex}\\  \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Das Entwurfsmuster selbst legt zwar eine grobe Struktur nahe, da wir uns aber selbst für die Verwendung des Command-Patterns entschiedenen haben und wir die konkrete Commands / Nutzeraktionen selbst definieren können, schätzen wir die Flexibilität als eher hoch ein. Die Flexibilität ist nicht sehr hoch, weil die von uns entworfenen Commands konkret vorgegebene Anforderungen abdecken müssen. & 
 	(o) Wir schätzen die Veränderlichkeit als neutral ein. Dies liegt daran, dass sich an der Verwendung des Entwurfsmusters Command und der sonstigen groben Softwarearchitektur vermutlich kaum etwas ändern wird, wenn die Software erst einmal im Betrieb ist. Allerdings könnten weitere Funktionen gefordert werden, die neue (also weitere) Commands / Nutzeraktionen erforderlich machen.\\
@@ -537,11 +537,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{k}{P\tone.\two}: JUNG }} } \\ \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{JUNG (Java Universal Network/Graph) ist ein Framework, das wie der Name bereits erahnen lässt, der Erstellung von Graphen und dem Umgang mit denselben dient. Hierzu bietet es Implementierungen, die Funktionalität bereitstellen, um beispielsweise einen Graphen zu erzeugen und dessen Struktur zu analysieren. Dieser Einflussfaktor resultiert aus der Strategie JUNG, für die wir uns im Rahmen der Problemkarten \glqq Visualisierung, Editierung und Interaktion mit dem Graphen\grqq{} und \glqq Auswertung von Grapheigenschaften\grqq{}  entschieden haben.} }\rule{0pt}{9ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(+) Da die Verwendung dieses Framewoks nicht vorgeschrieben ist, sondern eine Strategie von uns darstellt, um beispielsweise die geforderten Anforderungen bezüglich der Grapherstellung und Visualisierung umzusetzen, sind wir sehr flexibel, was die Verwendung dieses Frameworks angeht. Außerdem ist es uns überlassen, welche Teile des Frameworks wir einsetzen werden. Somit ist dieser Einflussfaktor sehr flexibel. & 
+	(+) Da die Verwendung dieses Frameworks nicht vorgeschrieben ist, sondern eine Strategie von uns darstellt, um beispielsweise die geforderten Anforderungen bezüglich der Grapherstellung und Visualisierung umzusetzen, sind wir sehr flexibel, was die Verwendung dieses Frameworks angeht. Außerdem ist es uns überlassen, welche Teile des Frameworks wir einsetzen werden. Somit ist dieser Einflussfaktor sehr flexibel. & 
 	(--) Da wir weder denken, dass dieses Framework zu einem beliebigem Zeitpunkt kostenpflichtig wird (was dazu führen würde, dass wir es im Rahmen des Moduls Softwareprojekt 2 nicht mehr verwenden dürften), noch glauben, dass Anforderungen hinzukommen, die den Einsatz des Frameworks auch für die bisherigen Anforderungen unmöglich macht, stufen wir die Veränderlichkeit als sehr gering ein. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponenten aufbaut. Wir werden JUNG in unsere JavaFX Anwendung integrieren. } }\\ \hline
+	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing-Komponenten aufbaut. Wir werden JUNG in unsere JavaFX Anwendung integrieren. } }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -633,13 +633,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{t}{P\tone.\ttwo.\three}: Zuordnung von Sphären und Knoten}} }\\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Jeder Knoten muss zwingend (genau) einer Sphäre zugeordnet sein. Der Knoten kann einer anderen Sphäre zugeordnet werden, sofern nichts anderes in der Vorlage hinterlegt wird. Ein Symptom wird immer genau in der Sphäre visuell dargestellt, der der Knoten zugewiesen wurde.} }\rule{0pt}{6ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Jeder Knoten muss zwingend (genau) einer Sphäre zugeordnet sein. Der Knoten kann einer anderen Sphäre zugeordnet werden, sofern nichts anderes in der Vorlage hinterlegt wird. Ein Symptom wird immer genau in der Sphäre visuell dargestellt, wo der Knoten zugewiesen wurde.} }\rule{0pt}{6ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Es ist uns überlassen wie wir die eindeutige Zuordnung von Knoten zu einer Sphäre realisieren.& 
 	(–) Wir denken nicht, dass sich diese Anforderung ändern wird, da dem Syndromansatz zufolge Symptome, die keiner Sphäre zugeordnet sind, nicht besonders sinnvoll sind.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Jedes Symptom, das vom Nutzer hinzugefügt wird ist einer Sphäre zugeordnet. Wenn diese Zuordnung verändert werden soll, muss das Symptom zwingend einer anderen Sphäre zugeordnet werden.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Jedes Symptom, das vom Nutzer hinzugefügt wird, ist einer Sphäre zugeordnet. Wenn diese Zuordnung verändert werden soll, muss das Symptom zwingend einer anderen Sphäre zugeordnet werden.} }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2297,17 +2297,17 @@ Um die Lücke zwischen der Übersicht über alle Actions und den Abhängigkeiten
 \subsection{\texttt{log\_management}}
 
 Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{log\_management.tables} zu sehen. Im Package \texttt{log\_management} werden neben der Speicherung der Nutzerinteraktionen in Form der Logs die weiteren Aspekte der Persistierung umgesetzt. \\
-Die Daten-Persistierung setzen wir mit Hilfe von \hyperlink{rrr}{S50 - Hibernate} um. Die im Package \texttt{tables} liegende Klassen stellen die Objekte dar, die wir in der Datenbank persistieren wollen. 
+Die Daten-Persistierung setzen wir mit Hilfe von \hyperlink{rrr}{S50 - Hibernate} um. Die im Package \texttt{tables} liegenden Klassen stellen die Objekte dar, die wir in der Datenbank persistieren wollen. 
 
 
 
-Dabei sind die \texttt{Log} Objekte wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während die \texttt{Graph} Objekte eine \hypertarget{yy}{Graphrepräsentation} beinhalten. \\
+Dabei sind die \texttt{Log}-Objekte wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während die \texttt{Graph}-Objekte (wie in Strategie \hyperlink{yy}{S1 - GXL} vorgesehen) eine Graphrepräsentation} beinhalten. \\
 
-Die \texttt{Log}-Objekte besitzen unter anderem ein Attribut \texttt{parameters}. Dieses Attribut repräsentiert ein zugehöriges \texttt{Param}-Objekt als String. Die \texttt{Param}-Objekte beinhalten alle wichtigen Informationen zu der zugehörigen Aktion, damit diese verständlich für den Benutzer rekonstruiert werden kann. Dieser String wird durch eine Konvertierung eines \texttt{Param} Objektes zu einem \texttt{JSON}-String erzeugt. Die \texttt{JSON}-Umwandlung erfolgt gemäß \hyperlink{www}{S63 - Jackson} mit Jackson. \\
+Die \texttt{Log}-Objekte besitzen unter anderem ein Attribut \texttt{parameters}. Dieses Attribut repräsentiert ein zugehöriges \texttt{Param}-Objekt als String. Die \texttt{Param}-Objekte beinhalten alle wichtigen Informationen zu der zugehörigen Aktion, damit diese verständlich für den Benutzer rekonstruiert werden kann. Dieser String wird durch eine Konvertierung eines \texttt{Param}-Objektes zu einem \texttt{JSON}-String erzeugt. Die \texttt{JSON}-Umwandlung erfolgt gemäß Strategie \hyperlink{www}{S63 - Jackson} mit Jackson. \\
 
 Die \texttt{Graph}-Objekte haben ein Attribut \texttt{gxl}, welches den visualisierten Graphen als GXL-Repräsentation gemäß \hyperlink{yy}{S1 - GXL} beinhaltet. Der GXL-String wird durch das \texttt{io}-Package realisiert, weshalb hier auch eine Abhängigkeit besteht.\\
 
-Die Existenz des Package \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} wie im Klassendiagramm dargestellt. Letzterer ist im Package \texttt{actions} realisiert. \\
+Die Existenz des Packages \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} wie im Klassendiagramm dargestellt. Letzterer ist im Package \texttt{actions} realisiert. \\
 
 In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse\\ \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. \\
 Der DatabaseManager steht außerdem in Abhängigkeit zu dem \texttt{io} Package, da der DatabaseManager das Graph Objekt erstellt, welches den Graphen in der Datenbank repräsentieren soll. Dieser enthält die aktuelle Graph Repräsentation als String. \\
