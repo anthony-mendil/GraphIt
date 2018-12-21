@@ -1019,7 +1019,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{01: Datensicherung/Persistenz des Graphen}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Daten des Graphen müssen gespeichert werden. Das bezieht sich auf alle veränderlichen/unveränderlichen Eigenschaften der Knoten, Kanten und Sphären.}}\rule{0pt}{4ex}\\ [2ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Daten des Graphen müssen gespeichert werden. Das bezieht sich auf alle veränderlichen/unveränderlichen Eigenschaften der Knoten, Kanten und Sphären.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus} & \hyperlink {g}{Hohe Usability}\\
@@ -1027,7 +1027,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hyperlink {n}{Sphären} \\
 	\hyperlink {o}{Linienart/-dicke Kanten flexibel}&
 	\hyperlink {p}{Typisierte Knoten} \\
-	\hyperlink {q}{gerichtete Kanten (3 Relationstypen} &
+	\hyperlink {q}{gerichtete Kanten (3 Relationstypen)} &
 	\hyperlink {r}{Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/Kanten ist flexibel} \\
 	\hyperlink {s}{Ankerpunkte zw. Knoten und Kanten} &
 	\hyperlink {t}{Zuordnung von Sphären und Knoten} \\
@@ -1040,7 +1040,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{yy}{S1 - GXL}}}: \\
-			Speichern des Graphen als GXL-Repräsentation, gespeichert als text/plain in einer Embedded Database (was dem Datentypen varchar entsprechend zu realisieren wäre). \\
+			Speichern des Graphen als GXL-Repräsentation (als text/plain) in einer Embedded Database (was dem Datentypen \texttt{varchar} entsprechend zu realisieren wäre). \\
 			\textbf{S2 - BLOB NEO4J}: \\
 			Speichern einer Neo4J-Database, die den Graphen beinhaltet. Der Graph selbst wird als BLOB (Binary Large Object) in einer Embedded Database gespeichert. \\
 			\textbf{S3 - Datenmodell}: \\
@@ -1054,8 +1054,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir haben uns für \cb{S1 - GXL} entschieden. \\ 
-	Das Speichern einer \cb{NEO4J- DB als BLOB (S2)} ist problematisch, da diese Lösung besonders fehleranfällig ist. Durch einen Bitkipper in dem BLOB könnte es sein, dass wir die Datenbank nicht wieder herstellen könnten, was mit einem Datenverlust verbunden wäre. Auch wäre dieses Dateiformat nicht von ‘außen’ einsehbar, da es große binäre Datenobjekte sind. Die Informationen zum Graphen, die als BLOB vorliegen, sind damit ausschließlich im engen System-Kontext nutzbar. Die Speicherung der Daten in einem BLOB in einer Embedded Database stellt ein Problem für uns dar, da wir keine Möglichkeit haben Eigenschaften des Graphen einzusehen ohne das BLOB wieder umzuwandeln oder ohne die NEO4J Datenbank zu laden, in der der Graph zusätzlich gespeichert werden würde. Auch die Benutzer hätten bei einem Systemfehler keine Chance den Graphen von ‘außen’ wiederherzustellen. \cb{S1 - GXL} bietet diese Möglichkeit, da wir die \cb{GXL} als text/plain in der Datenbank speichern. \\ 
-	Der Vorteil von \cb{S3 - Datenmodell} ist, dass wir die Datenbank gezielt zu Grapheigenschaften abfragen können. Dieser Vorteil wird aber dadurch aufgehoben, dass eine Graphdatenbank diese Abfragen strukturierter verarbeiten kann und das eine Graphdatenbank schon vorgefertigte Algorithmen kennt. Dies würde wiederum für \cb{S2} sprechen. Die Nachteile dieser Strategie haben wir jedoch eben dargelegt. \\
+	Das Speichern einer \cb{NEO4J- DB als BLOB (S2)} ist problematisch, da diese Lösung besonders fehleranfällig ist. Durch einen Bitkipper in dem BLOB könnte es sein, dass wir die Datenbank nicht wieder herstellen könnten, was mit einem Datenverlust verbunden wäre. Auch wäre dieses Dateiformat nicht von ‘außen’ einsehbar, da es große binäre Datenobjekte sind. Die Informationen zum Graphen, die als BLOB vorliegen, sind damit ausschließlich im engen System-Kontext nutzbar. Die Speicherung der Daten in einem BLOB in einer Embedded Database stellt ein Problem für uns dar, da wir keine Möglichkeit haben, Eigenschaften des Graphen einzusehen ohne das BLOB wieder umzuwandeln oder ohne die NEO4J Datenbank zu laden, in der der Graph zusätzlich gespeichert werden würde. Auch die Benutzer hätten bei einem Systemfehler keine Chance den Graphen von ‘außen’ wiederherzustellen. \cb{S1 - GXL} bietet diese Möglichkeit, da wir die \cb{GXL} als text/plain in der Datenbank speichern. \\ 
+	Der Vorteil von \cb{S3 - Datenmodell} ist, dass wir die Datenbank gezielt zu Grapheigenschaften abfragen können. Dieser Vorteil wird aber dadurch aufgehoben, dass eine Graphdatenbank diese Abfragen strukturierter verarbeiten kann und das eine Graphdatenbank schon vorgefertigte Algorithmen kennt. Dies würde wiederum für \cb{S2} sprechen. Diese Strategie besitzt jedoch die bereits genannten Nachteile. \\
 	Mit der Entscheidung gegen \cb{S2} ist somit \cb{S1} für uns die am besten geeignete Strategie.
 \end{onehalfspace}
 \newpage
@@ -1063,7 +1063,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{02: Persistierungsintervall des Graphen}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss innerhalb eines festgelegten Zeitintervalls persistiert/ abgespeichert werden.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss innerhalb eines festgelegten Zeitintervalls persistiert/ abgespeichert werden.}}\rule{0pt}{1ex}\\  \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}&
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus}\\
@@ -1141,7 +1141,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{04: Auswahl der grundlegenden Softwarearchitektur}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen eine Architektur für unsere Software wählen, die durch das Zusammenspiel der grundlegenden Komponenten im System die Erfüllung aller Mindestanforderungen gewährleistet.}}\rule{0pt}{4ex}\\ [2ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen eine Architektur für unsere Software wählen, die durch das Zusammenspiel der grundlegenden Komponenten im System die Erfüllung aller Mindestanforderungen gewährleistet.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus} &
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1183,7 +1183,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{05: Unerfahrene Entwickler}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Entwickler sind unerfahren in den verwendeten Technologien.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Entwickler sind unerfahren in den verwendeten Technologien.}}\rule{0pt}{1ex}\\ \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {g}{Hohe Usability}\\
@@ -1226,7 +1226,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{06: Ausfallende Entwickler}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Teammitglieder können im Laufe der Entwicklung ausfallen.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Teammitglieder können im Laufe der Entwicklung ausfallen.}}\rule{0pt}{1ex}\\ \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {g}{Hohe Usability}\\
@@ -1375,7 +1375,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{09: PDF Druck}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen originalgetreu als PDF gedruckt werden können.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen originalgetreu als PDF gedruckt werden können.}}\rule{0pt}{1ex}\\  \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {f}{Betriebssystemunterstützung / Zielplattformen des Systems}\\
@@ -1406,7 +1406,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{10: PDF Erstellung}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen als PDF dargestellt werden können.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen als PDF dargestellt werden können.}}\rule{0pt}{1ex}\\ \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &  
 	\hyperlink {g}{Hohe Usability}\\
@@ -1447,12 +1447,12 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Die \cb{java.awt.Graphics2D} zu exportieren bietet eine höhere Qualität der Darstellung des Graphen. Die Möglichkeit, die von \cb{JUNG} zur Verfügung gestellt wird, entspricht nicht unseren qualitativen Ansprüchen, da die Qualität des Bildes nicht ausreichend ist. \\
 	Um die Darstellung des Graphen von \cb{JUNG} losgelöst zu speichern, kann die \cb{java.awt.Graphics2D} exportiert werden. \cb{JUNG} bildet alle Grafikkontexte auf der \cb{java.awt.Graphics2D} ab, sodass dies machbar ist.
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{11: Bibliothek für den PDF Export von java.awt.Graphics2D}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{java.awt.Graphics2D als PDF verlustfrei exportieren.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{java.awt.Graphics2D als PDF verlustfrei exportieren.}}\rule{0pt}{1ex}\\  \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {g}{Hohe Usability}\\
@@ -1481,7 +1481,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{12: Protokoll der Nutzerinteraktionen exportieren/ importieren}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll eine Möglichkeit bieten, das Protokoll der Nutzerinteraktionen von unserem System und der von uns verwendeten Datenbank losgelöst einsehen zu können (Export). Dieses Protokoll muss sowohl von Menschen lesbar als auch von einem Computer interpretiert werden können (Import).}}\rule{0pt}{7ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll eine Möglichkeit bieten, das Protokoll der Nutzerinteraktionen von unserem System und der von uns verwendeten Datenbank losgelöst einsehen zu können (Export). Dieses Protokoll muss sowohl von Menschen lesbar als auch von einem Computer interpretiert werden können (Import).}}\rule{0pt}{7ex}\\ [4ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1509,7 +1509,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{13: Benutzeroberfläche}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche bietet die Schnittstelle zwischen dem Benutzer und dem Graphen. Durch die GUI kann der Benutzer mit dem Graphen interagieren, diesen editieren und auswerten.}}\rule{0pt}{5ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche bietet die Schnittstelle zwischen dem Benutzer und dem Graphen. Durch die GUI kann der Benutzer mit dem Graphen interagieren, diesen editieren und auswerten.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {c}{Verwendung von Maven als Build-System} \\
@@ -1583,7 +1583,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFX Application}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFX Komponenten modelliert wird, muss Swing in die JavaFX Anwendung eingebunden werden.}}\rule{0pt}{5ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFX Komponenten modelliert wird, muss Swing in die JavaFX Anwendung eingebunden werden.}}\rule{0pt}{6ex}\\ [3ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {g}{Hohe Usability}\\
@@ -1615,7 +1615,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFX}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFX erstellt.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFX erstellt.}}\rule{0pt}{1ex}\\ \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {f}{Betriebssystemunterstützung / Zielplattformen des Systems}\\
@@ -1732,7 +1732,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{18: Verwendung einer Embedded Database}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Wir benötigen eingebettete Datenbanken für das Protokoll und für den Graphen.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir benötigen eingebettete Datenbanken für das Protokoll und für den Graphen.}}\rule{0pt}{1ex}\\  \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus}&
@@ -1768,7 +1768,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{19: Einhaltung der Abgabetermine}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Abgabetermine sind nicht verhandelbar. Da die Ressourcen begrenzt sind benötigen wir Strategien um Deadlines einzuhalten.}}\rule{0pt}{4ex}\\ [2ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Abgabetermine sind nicht verhandelbar. Da die Ressourcen begrenzt sind benötigen wir Strategien um Deadlines einzuhalten.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {h}{Hohe Qualität}\\
@@ -1801,7 +1801,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{20: Kommunikation Zielplattform (Java) mit embedded DB}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Es ist erforderlich die Objekte des Nutzerprotokolls, die während der Nutzung unseres System erstellt werden, in einer Datenbank zu speichern. Dazu muss aus dem Objekt im Java-Kontext ein Datenbankeintrag erstellt werden. Hierfür ist Obejct-relational-Mapping (ORM) erforderlich.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Es ist erforderlich die Objekte des Nutzerprotokolls, die während der Nutzung unseres System erstellt werden, in einer Datenbank zu speichern. Dazu muss aus dem Objekt im Java-Kontext ein Datenbankeintrag erstellt werden. Hierfür ist Obejct-relational-Mapping (ORM) erforderlich.}}\rule{0pt}{6ex}\\ [3ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1838,7 +1838,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{21: Übersichtlichkeit in der Sphäre und im Graphen}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Die Knoten/ Kanten werden in der Sphäre und in dem Graphen übersichtlich angeordnet, sodass sich möglichst wenig Kanten verschiedenen Typs überschneiden und die Knoten übersichtlich angeordnet sind.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Knoten/ Kanten werden in der Sphäre und in dem Graphen übersichtlich angeordnet, sodass sich möglichst wenig Kanten verschiedenen Typs überschneiden und die Knoten übersichtlich angeordnet sind.}}\rule{0pt}{6ex}\\ [3ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {h}{Hohe Qualität}\\
@@ -1881,7 +1881,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{22: GXL Erstellung}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll eine Graph-Repräsentation in der Graph eXchange Language erstellt werden.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll eine Graph-Repräsentation in der Graph eXchange Language erstellt werden.}}\rule{0pt}{1ex}\\ \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & 
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus}\\ 
@@ -1921,7 +1921,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{23: Umsetzung der Funktionsmodi}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Dem Benutzer ist es freigestellt mehrere Modi in unserem System zu benutzen (Ersteller, Bearbeiter, Auswerter).}}\rule{0pt}{4ex}\\ [2ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Dem Benutzer ist es freigestellt mehrere Modi in unserem System zu benutzen (Ersteller, Bearbeiter, Auswerter).}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {hh}{Sprache.Beschriftung} \\
@@ -1959,7 +1959,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{24: Vorlage}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Es muss eine Vorlage eines Graphen erstellt werden können, welche schon Graphelement beinhaltet, sowie die Möglichkeit bietet, Regeln für die Grapherstellung festzulegen.}}\rule{0pt}{1ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Es muss eine Vorlage eines Graphen erstellt werden können, welche schon Graphelement beinhaltet, sowie die Möglichkeit bietet, Regeln für die Grapherstellung festzulegen.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & 
 	\hyperlink {n}{Sphären} \\
@@ -1998,7 +1998,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 \hline
 \rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{25: Persistierung der Parameter in die DB als JSON-String}}} \\ \hline\hline 
-\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Protokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen darstellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objekte.}}\rule{0pt}{9ex}\\ [7ex] \hline
+\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Protokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen darstellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objekte.}}\rule{0pt}{10ex}\\ [7ex] \hline
 \multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 \hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -2031,7 +2031,7 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Dependency Injection}}} \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Wir arbeiten mit mehren Leuten parallel an einer Software, für die wir einen modularen Aufbau anstreben. Dabei wäre es vorteilhaft, wenn jeder Entwickler, die Systembestandteile/Module anderer Gruppenmitglieder nutzen könnte bevor deren Implementierung abgeschlossen ist. Um uns nicht um die Übergabe beziehungsweise Weitergabe von Objekten kümmern zu müssen, können wir Dependency Injection nutzen. Damit kann man Attribute beliebiger Klassen deklarieren und auf deren Werte und Methoden zugreifen – ohne die Herkunft derselben vorab festzulegen.}}\rule{0pt}{4ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir arbeiten mit mehren Leuten parallel an einer Software, für die wir einen modularen Aufbau anstreben. Dabei wäre es vorteilhaft, wenn jeder Entwickler, die Systembestandteile/Module anderer Gruppenmitglieder nutzen könnte bevor deren Implementierung abgeschlossen ist. Um uns nicht um die Übergabe beziehungsweise Weitergabe von Objekten kümmern zu müssen, können wir Dependency Injection nutzen. Damit kann man Attribute beliebiger Klassen deklarieren und auf deren Werte und Methoden zugreifen – ohne die Herkunft derselben vorab festzulegen.}}\rule{0pt}{10ex}\\ [7ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &  \hyperlink {uu}{Abgabedatum} \\
 	\hyperlink {vv}{Entwickler-Fähigkeiten} &
@@ -2054,6 +2054,59 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 	\cb{Spring} bietet auch Möglichkeiten, die wir für das Dependency Injection in unserem System nutzen können. Allerdings sind diese Funktionen nicht so leicht nutzbar. Das liegt daran, dass Springs Dependency Injection-Funktionalitäten in einem Kontext entstanden sind, in der noch nicht einmal Java 5 fertig entwickelt worden war. \\
 	Wir entscheiden uns deshalb für Strategie \cb{S66 - Google Guice}, da die Verwendung der Annotationen für Dependency Injection einfacher ist, als der von \cb{Spring} verwendete Ansatz. Außerdem können wir bei Verwendung von \cb{Guice} von der Funktion der generischen Objekt-Erstellung profitieren.
 \end{onehalfspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage
+\begin{tabular} {|p{8cm} p{8cm}|}
+\hline
+\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{27: Umwandlung der Graphdaten zwischen dem JUNG- und JGraphT-Format}}} \\ \hline\hline 
+\multicolumn{2}{|l|}{\parbox{16cm}{Zur Auswertung des Graphen sollen zunächst die von JUNG bereitgestellten Funktionen genutzt werden. Da mit diesen nicht alle Anforderungen im Bereich der Graph-Analyse abgedeckt werden, greifen wir zur Umsetzung einiger Analyse-Funktionen auf JGraphT zurück. Das Format der Datenklassen eines Graphen, das JUNG bereitstellt, entspricht nicht dem Datenklassen-Format, das JGraphT nutzt. Aus diesem Grund ist eine Umwandlung der JUNG-Datenklassen in die von JGraphT erforderlich.}}\rule{0pt}{5ex}\\ [1ex] \hline
+\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
+\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
+\hyperlink {g}{Hohe Usability}\\
+\hyperlink {h}{Hohe Qualität}&
+\hyperlink {k}{JUNG} \\
+\hyperlink {n}{Sphären} &
+\hyperlink {p}{Typisierte Knoten} \\
+\hyperlink {q}{gerichtete Kanten (3 Relationstypen} &
+\hyperlink {r}{Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/Kanten ist flexibel} \\
+\hyperlink {t}{Zuordnung von Sphären und Knoten} &
+\hyperlink {x}{Automatische Anordnung zur Übersichtlichkeit} \\
+\hyperlink {z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} &
+\hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}\\
+\hyperlink {hh}{Sprache.Beschriftung} &
+\hyperlink {oo}{Analyse des Graphen} \\
+\hyperlink {pp}{Auswertung des Graphen} &
+\hyperlink {qq}{Graph-Analyse mittels Graphmaße} \\ 
+\hyperlink {rr}{Analyse über einen wählbaren Ausschnitt des Graphen} &
+\hyperlink {ss}{Filter von Knoten und Kanten} \\
+\\ \hline
+\multicolumn{2}{|l|}{Lösungen} \\
+\multicolumn{2}{|l|}{\parbox{16cm}{
+\textbf{\cb{\hypertarget{umwandlungskomponente}{S68 – eigene Umwandlungskomponente}}} \\
+Es wird unsererseits eine Komponente entwickelt, deren Aufgabe es ist, die Datenklassen unseres Graphen, die in JUNG vorliegen, in die Datenklassen von JGraphT umzuwandeln, sodass wir die von JGraphT zur Verfügung gestellten Funktionen zur Graph-Auswertung nutzen können.
+} }\\ \hline
+
+\end{tabular}\\ \\ \\
+
+\begin{tabular} {|p{8cm} p{8cm}|}
+\hline\\
+\multicolumn{2}{|l|}{\parbox{16cm}{
+
+Verwandte Strategien:\\
+\textbf {\hyperlink{aadd}{S10 – Modularisierung}} \\
+\textbf{\hyperlink{aabb}{S15 - Modularisierung}}\\
+\textbf{\hyperlink{aacc}{S18 - Modularisierung}} \\
+\textbf{\hyperlink{eee}{S19 - JUNG}} \\
+\textbf{\hyperlink{fff}{S22 - JUNG}} \\
+\textbf{\hyperlink{eigeneImplementierung}{S24 - eigene Implementierung}} \\
+\textbf{\hyperlink{xxx}{S25 - JGraphT}}\\
+}}\\\hline
+\end{tabular}\\ \\ \\
+\begin{onehalfspace}
+Die Umwandlung der Datenklassen zwischen dem JUNG- und dem JGraphT-Format wird mit \cb{einer eigenen Komponente} umgesetzt. So muss auch nur diese Komponente ausgetauscht werden, wenn zu einem späteren Zeitpunkt anstelle von JGraphT ein anderes Framework verwendet werden soll, um die von JUNG bereitgestellten Analyse-Möglichkeiten zu erweitern.
+\end{onehalfspace}
+
+
 
 
 \newpage
@@ -2380,31 +2433,23 @@ Nachdem wir nun auf alle Module unserer Anwendung eingegangen sind (zu dem eben 
 \label{sec:ausfuehrung}
 \emph{Autoren: Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger}\\ \\
 
-In der folgenden Abbildung ist unsere Ausführungssicht zu erkennen. Da der Aufbau unserer Software dem einer lokalen Anwendung entspricht, wird es pro Nutzer genau eine Instanz der Anwendung geben und ist die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung nicht vorgesehen. \\
+In der folgenden Abbildung ist unsere Ausführungssicht zu erkennen. Da der Aufbau unserer Software dem einer lokalen Anwendung entspricht, wird es pro Nutzer genau eine Instanz der Anwendung geben. Die zeitgleiche Ausführung mehrerer Instanzen unserer Anwendung ist nicht vorgesehen. \\
 
 Zum Starten und Beenden der Anwendung ist das Modul \texttt{gui} zuständig. Es arbeitet mit dem Modul \texttt{actions} zusammen, indem Bestandteile aus \texttt{gui} (z.B. Buttons oder Menü-Elemente der JavaFX-Oberfläche (nach \hyperlink{kkk}{Strategie S34})) bestimmte Actions aus dem Modul \texttt{actions} aufrufen. Der Aufruf der Actions über die GUI ist nach dem Entwurfsmuster Command (\hyperlink{command}{Strategie S9}) umgesetzt. Durch diese Aufrufe kommt es zu Veränderungen des dargestellten Graphen im Modul \texttt{graph}. Der geänderte Graph und der Log-Eintrag, der die Action beschreibt und mit einer eigenen Datenklasse gemäß Strategie \hyperlink{aaa}{S7 - Datenmodell} umgesetzt wird, werden in der Datenbank gespeichert. Dafür arbeitet das Modul \texttt{log\_management} mit dem Subsystem \texttt{Persistence} zusammen, um das zweite Subsystem \texttt{H2DB} (\hyperlink{ppp}{Strategie S45 - H2 Database}) anzusteuern. Letzteres ist nur der Fall, falls die ausgeführte Action eine \texttt{LogAction} ist. Bei diesen Actions handelt es sich um für die Protokollierung des Nutzerverhaltens relevante Actions.\\
 Im selben Prozess werden Import und Export durch das Modul \texttt{io} geregelt. Diese Funktionen werden ebenfalls durch Action-Objekte aus \texttt{actions} ausgelöst. \\
 Zum Auswerten der Graph-Eigenschaften wird in einigen Fällen das Modul \texttt{jgrapht} (\hyperlink{xxx}{Strategie S25 - JgraphT}) benötigt und in anderen Funktionen des Frameworks JUNG(\hyperlink{fff}{S22 - JUNG}). Auch diese Funktionen werden von Actions ausgelöst.\\
 
+Die Realisierung unserer Anwendung erfolgt durch mehrere Threads. Die GUI als auch die SwingNodes des Frameworks JUNG werden auf einem eigenen Thread laufen (siehe folgende Abbildung: Ausführungssicht). Somit wird für eine durchgehend ansprechbare und dadurch angenehmer bedienbare Benutzeroberfläche, gemäß \hyperlink{g}{Hoher Usability}, gesorgt.\\
 
-Da die Anwendung auf einem Thread läuft, werden alle Module auf dem Hauptprozess des \textit{Clients} ausgeführt, wie in folgender Abbildung (Ausführungssicht der Singlethread-Version) zu sehen ist. \\
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{Ausfuehrungssicht_Singlethread.png}
-	\caption{Ausführungssicht der Singlethread-Version}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{Ausfuehrungssicht.png}
+		\caption{Ausführungssicht}
+	\end{center}
 \end{figure}
 \clearpage
 \newpage
-
-Eine Alternative zu der bestehenden Version wäre die Realisierung der Anwendung durch mehrere Threads. Eine Möglichkeit wäre es, die GUI in einem eigenen Thread laufen zu lassen (siehe folgende Abbildung: Ausführungssicht der Multithread-Version). Dies könnte helfen, eine durchgehend ansprechbare und dadurch angenehmer bedienbare Benutzeroberfläche, gemäß \hyperlink{g}{Hoher Usability}, zu entwickeln. Falls unsere Architektur diese Aspekte nicht ausreichend abdeckt, was in Tests späterer Entwicklungsphasen auffallen würde, dann ist es immer noch möglich, auf dieses Modell umzusteigen. \\
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{Ausfuehrungssicht_Multithread.png}
-	\caption{Ausführungssicht der Multithread-Version}
-\end{figure}
-
 
 \newpage
 \section[Zusammenhänge zwischen Anwendungsfällen und Architektur]{Zusammenhänge zwischen Anwendungsfällen und Architektur\sectionmark{Zusammenhänge AF u. Architektur}}
