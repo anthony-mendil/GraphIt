@@ -610,7 +610,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{r}{P\tone.\ttwo.\three}: Anzahl, Größe, Position, Farbe, Beschriftung der Sphären / Knoten / Kanten ist flexibel}} } \s \\ [1ex]  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Ein Nutzer kann im \hyperlink{\glqq Vorlage bearbeiten''\grqq-Modus}{\glqq Vorlage bearbeiten\grqq-Modus} beliebig viele Sphären, Knoten und Kanten hinzufügen. Dabei ist für jedes eingefügte Graph-Element die Größe, die Position und die Beschriftung frei wählbar. Hiervon ausgenommen sind beispielsweise Versuche, Graph-Elemente so zu platzieren, dass sich Knoten oder Sphären überschneiden oder ein Knoten größer ist als die Sphäre, in der er sich befindet. Außerdem kann der Nutzer für jedes Element im Graphen aus einer Auswahl an Farben wählen. Im \hyperlink{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus} ist selbiges auch möglich, sofern nichts anderes in der Vorlage hinterlegt wurde.} }\rule{0pt}{11ex}\\ [10ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Ein Nutzer kann im \hyperlink{\glqq Vorlage bearbeiten\grqq-Modus}{\glqq Vorlage bearbeiten\grqq-Modus} beliebig viele Sphären, Knoten und Kanten hinzufügen. Dabei ist für jedes eingefügte Graph-Element die Größe, die Position und die Beschriftung frei wählbar. Hiervon ausgenommen sind beispielsweise Versuche, Graph-Elemente so zu platzieren, dass sich Knoten oder Sphären überschneiden oder ein Knoten größer ist als die Sphäre, in der er sich befindet. Außerdem kann der Nutzer für jedes Element im Graphen aus einer Auswahl an Farben wählen. Im \hyperlink{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus} ist selbiges auch möglich, sofern nichts anderes in der Vorlage hinterlegt wurde.} }\rule{0pt}{11ex}\\ [10ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Es ist keine Vorgabe zur Umsetzung dieser Anforderung gemacht und auch nicht klar definiert, wie der Nutzer diese Grapheigenschaften ändern können soll (außer, dass das System leicht benutzbar sein soll). &
 	(o) Die Möglichkeit zur Änderung visueller Eigenschaften soll sicherlich weiter bestehen. Es ist aber möglich, dass weitere Darstellungsoptionen wie zum Beispiel ein Blink-Effekt ausgewählt werden können sollen. \\ \hline 
@@ -624,7 +624,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{s}{P\tone.\ttwo.\three}: Ankerpunkte zw. Knoten und Kanten}} }\\ \hline\hline
 	\multicolumn{2}{|l|}{\parbox{16cm}{An einem Knoten können beliebig viele Ankerpunkte angehängt werden (mit beliebig festlegbarer Position am Knotenrand). Über diese Ankerpunkte können Knoten über Relationen verbunden werden. Beim Verschieben eines Knoten (das nur innerhalb der Sphäre, in der sich der jeweilige Knoten befindet, möglich sein soll) wandert die Kante mit, wobei sie am Ankerpunkt hängen und der Relationstyp erhalten bleiben soll.} }\rule{0pt}{8ex}\\ [6ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(o) Es handelt sich hierbei um eine recht konkrete Anforderung, die hinsichtlich der Benutzung weitgehend präzise beschrieben wurde. Dadurch sinkt unser Ausgestaltungsspielraum. &
+	(o) Es handelt sich hierbei um eine recht konkrete Anforderung, die hinsichtlich der Benutzung weitgehend präzise beschrieben wurde. Dadurch sinkt unser Gestaltungsspielraum. &
 	(o) Die Möglichkeit, dass sich diese Anforderung ändert und zum Beispiel auch Knoten über ihre Sphäre hinaus verschoben werden können, halten wir weder für besonders hoch noch für sehr niedrig. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Im System muss eine Auswahl an grafischen Darstellungsaspekten existieren, die der Nutzer auf Teile des Graphen anwenden können soll.}}\\ \hline
@@ -692,7 +692,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{y}{P\tone.\ttwo.\three}: Vorlage/Bearbeitsungsregeln}} } \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq-Modus (wie dort beschrieben)} die Möglichkeit geben eine Vorlage für ein Diagramm zu erstellen. Unter einer solchen Vorlage ist zu verstehen, dass eine Menge an Graph-Elementen (Sphären, Knoten und eventuell auch Kanten) in diesem Funktionsmodus erstellt wird und dann für jedes Attribut (zum Beispiel Position, Größe, Beschriftung, …) jedes erstellten Elements festgelegt werden kann, ob dieses Attribut im \hyperlink{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus} verändert werden darf oder nicht.} }\rule{0pt}{8ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(+) Durch die Anforderungen des Kunden (für jedes Attribut von jedem Element die Bearbeitungsmöglichkeit einzeln festlegen zu können) besitzt dieser Einflussfaktor nur eine mittelmäßig hohe Flexibilität. &
+	(+) Durch die Anforderungen des Kunden für jedes Attribut von jedem Element die Bearbeitungsmöglichkeit einzeln festlegen zu können besitzt dieser Einflussfaktor nur eine mittelmäßig hohe Flexibilität. &
 	(-) Die Veränderlichkeit schätzen wir als eher gering ein, da es uns nicht sinnvoll und als unwahrscheinlich erscheint, die Möglichkeiten die ein Ersteller hat (die jetzt als sehr hoch geplant sind), einzuschränken.
 	\\
 	\hline
@@ -705,7 +705,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular}{|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{z}{P\tone.\ttwo.\three}: Funktionsmodi (Ersteller, Bearbeiter, Auswerter)}} }\\ \hline \hline
-	\multicolumn{2}{|l|}{\parbox{16cm}{Das System muss eine Möglichkeit vorsehen, um die Interessen verschiedener Nutzer befriedigen zu können. Dabei sollen unterschiedlichen Nutzergruppen (Ersteller \hyperlink{``Vorlage bearbeiten''-Modus}{(\glqq Vorlage bearbeiten\grqq-Modus)}, Betrachter \hyperlink{``Diagramm bearbeiten''-Modus}{(\glqq Diagramm bearbeiten\grqq-Modus)}, Auswerter \hyperlink{``Analyse''-Modus}{(\glqq Analyse\grqq-Modus)}) unterschiedliche Handlungsspielräume im System eingeräumt werden und unterschiedliche Informationen angezeigt bekommen.}} \rule{0pt}{8ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Das System muss eine Möglichkeit vorsehen, um die Interessen verschiedener Nutzer befriedigen zu können. Dabei sollen für unterschiedlichen Nutzergruppen (Ersteller \hyperlink{``Vorlage bearbeiten''-Modus}{(\glqq Vorlage bearbeiten\grqq-Modus)}, Betrachter \hyperlink{``Diagramm bearbeiten''-Modus}{(\glqq Diagramm bearbeiten\grqq-Modus)}, Auswerter \hyperlink{``Analyse''-Modus}{(\glqq Analyse\grqq-Modus)}) unterschiedliche Handlungsspielräume im System eingeräumt werden und unterschiedliche Informationen angezeigt bekommen.}} \rule{0pt}{8ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(o) Uns wurden keinerlei Vorgaben zur Umsetzung dieser Funktion gemacht, wodurch wir allenfalls durch die Notwendigkeit des Wechsels zwischen verschiedenen Operationsmodi während der Systemnutzung eingeschränkt sind. Die Verfügbarkeit der verschiedenen Modi ist nicht diskutabel.&
 	(+) Es könnte eventuell sein, dass noch eine oder mehrere verschiedene Operationsmodi benötigt werden. \\ \hline
@@ -716,13 +716,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{aa}{P\tone.\ttwo.\three}: Graph Visualisierung/ Interaktion/ Editierung}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Neben der im Einflussfaktor \glqq Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/ Kanten ist flexibel\grqq{}beschriebenen Erstellung von Graph-Elementen in (fast) beliebiger Menge und mit einer Vielzahl an möglichen Eigenschaftswerten (zum Beispiel Werte für Farbe, Größe, Posion, ...) soll unser System auch die Editierung und Visualisierung von Graphen unterstützen. Mit Editierung ist gemeint, dass die erstellten Graph-Elemente auch wieder gelöscht werden können sollen und die Werte der Eigenschaften von jedem Graph-Element geändert werden können sollen. Im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq-Modus} soll diese Bearbeitung uneingeschränkt möglich sein und im \hyperlink{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus} soll die Editierung im Rahmen der in der Vorlage hinterlegten Bearbeitungsregeln ebenfalls möglich sein. Mit der Visualisierung des Graphen ist gemeint, dass der Graph graphisch so dargestellt wird, wie es vom Nutzer festgelegt wird. Die Darstellung auf dem Bilschirm soll immer aktuell sein, sodass sich das Hinzufügen / Ändern / Löschen von Graph-Elementen direkt auf dem Bildschirm bemerkbar macht. Die Interaktion bezieht sich darauf, auf welche Art der Nutzer den Graphen bearbeiten kann. Zu der Interaktion gehört beispielsweise, dass der Nutzer einen Knoten durch Bewegen seiner Computermaus verschieben kann.} }\rule{0pt}{23ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Neben der im Einflussfaktor \glqq Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/ Kanten ist flexibel\grqq{} beschriebenen Erstellung von Graph-Elementen in (fast) beliebiger Menge und mit einer Vielzahl an möglichen Eigenschaftswerten (zum Beispiel Werte für Farbe, Größe, Position, ...) soll unser System auch die Editierung und Visualisierung von Graphen unterstützen. Mit Editierung ist gemeint, dass die erstellten Graph-Elemente auch wieder gelöscht werden können sollen und die Werte der Eigenschaften von jedem Graph-Element geändert werden können sollen. Im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq-Modus} soll diese Bearbeitung uneingeschränkt möglich sein und im \hyperlink{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus} soll die Editierung im Rahmen der in der Vorlage hinterlegten Bearbeitungsregeln ebenfalls möglich sein. Mit der Visualisierung des Graphen ist gemeint, dass der Graph graphisch so dargestellt wird, wie es vom Nutzer festgelegt wird. Die Darstellung auf dem Bildschirm soll immer aktuell sein, sodass sich das Hinzufügen / Ändern / Löschen von Graph-Elementen direkt auf dem Bildschirm bemerkbar macht. Die Interaktion bezieht sich darauf, auf welche Art der Nutzer den Graphen bearbeiten kann. Zu der Interaktion gehört beispielsweise, dass der Nutzer einen Knoten durch Bewegen seiner Computermaus verschieben kann.} }\rule{0pt}{23ex}\\ [3ex] \hline
 	\textbf{Flexibilität} & \textbf{Veränderlichkeit} \\
-	(o) Durch die Vorgabe der existierenden Elemente eines Graphen (Sphären, Knoten und Kanten) und deren Eigenschaften (zum Beispiel Bennung und Farbe) sind wir nicht komplett flexibel. Durch die Freiheit bezüglich der Umsetzung dieser Eigenschaft (zum Beispiel auch die Wahl der vom Nutzer selektierbaren Farben) ist allerdings eine gewisse Flexibilität gegeben. & 
+	(o) Durch die Vorgabe der existierenden Elemente eines Graphen (Sphären, Knoten und Kanten) und deren Eigenschaften (zum Beispiel Benennung und Farbe) sind wir nicht komplett flexibel. Durch die Freiheit bezüglich der Umsetzung dieser Eigenschaft (zum Beispiel auch die Wahl der vom Nutzer selektierbaren Farben) ist allerdings eine gewisse Flexibilität gegeben. & 
 	(-) Da der \hyperlink{Syndromansatz}{Syndromansatz} als Modell Wert auf Vollständigkeit und Richtigkeit legen sollte, denken wir, dass keine weiteren Graph-Elemente oder Eigenschaften zu Graph-Elementen hinzukommen werden. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Unser System muss so strukturiert werden, dass es die Erstellung von Graph-Elementen mit all ihren Eigenschaften und die Editierung und Löschung der Graph-Elemente unterstützt.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Unser System muss so strukturiert werden, dass es die Erstellung von Graph-Elementen mit all ihren Eigenschaften und die Editierung und Löschung der Graph-Elemente unterstützt.}}\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -803,7 +803,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(o) Es könnte eine höhere Anzahl an Sprachen zu einem späteren Zeitpunkt gefordert werden. Allerdings ist dies eher unwahrscheinlich, da dem Kunden bereits eine Sprache gereicht hätte. Grund hierfür ist, dass der \hyperlink{Syndromansatz}{Syndromansatz} ein bislang nur in Deutschland genutztes Konzept ist. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Durch die Architektur unseres Systems muss die Erfüllung der Anforderung gewährleistet werden. Die Beschreibung von Graph-Elementen muss dementsprechend in verschiedenen Sprachen hinterlegbar sein und die in der GUI angezeigte Beschriftung soll vom Nutzer umgestellt werden können. } }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Durch die Architektur unseres Systems muss die Erfüllung der Anforderung gewährleistet werden. Die Beschreibung von Graph-Elementen muss dementsprechend in verschiedenen Sprachen hinterlegbar sein und die in der GUI angezeigte Beschriftung soll vom Nutzer umgestellt werden können. \\ } }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -842,7 +842,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll möglich sein, eine im PDF-Datei, die an einer beliebigen Stelle im Dateiverzeichnis im System des Nutzers gespeichert ist, aus unserem System heraus ausdrucken zu können.} }\rule{0pt}{4ex}\\ [2ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Uns sind keine Vorgaben hinsichtlich der Umsetzung der Dateisuche im Dateisystem und des Starten des Ausdrucks gemacht worden, weshalb dieser Einflussfaktor eher flexibel ist.& 
-	(–) Da der Graph als PDF (portable document format) gespeichert werden soll (und wir denken, dass dieses Format dauerhaft verwendet werden soll), ist es naheliegend, dass weiterhin PDF-Dateien gedruckt werden können sollen. Wir denken außerdem nicht, dass sich der Kunde später für eine konkrete Umsetzung bezüglich der Bedienung wünschen wird - können dies aber auch nicht auschließen. Deshalb stufen wir den Einflussfaktor als eher gering veränderlich ein.\\
+	(–) Da der Graph als PDF (portable document format) gespeichert werden soll (und wir denken, dass dieses Format dauerhaft verwendet werden soll), ist es naheliegend, dass weiterhin PDF-Dateien gedruckt werden können sollen. Wir denken außerdem nicht, dass sich der Kunde später für eine konkrete Umsetzung bezüglich der Bedienung wünschen wird - können dies aber auch nicht ausschließen. Deshalb stufen wir den Einflussfaktor als eher gering veränderlich ein.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{In unserem System kann der Nutzer den Befehl zum Druck einer lokal gespeicherten Datei geben. Die Architektur muss der Notwendigkeit dieser Anforderung Rechnung tragen.} }\\ \hline
@@ -895,7 +895,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{qq}{P\tone.\two}: Graph-Analyse mittels Graphmaße}} } \\  \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Im \hyperlink{Analyse''-Modus}{Analyse’’-Modus} soll der Auswerter Informationen zu folgenden \hyperlink{Metriken/Graphmaße}{Metriken/Graphmaßen (siehe oben)} angezeigt bekommen. (Im Chinese Menue ist dies die Anforderung O«Auswertung.Graphmaße».)} }\rule{0pt}{4ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Im \hyperlink{Analyse''-Modus}{\glqq Analyse\grqq-Modus} soll der Auswerter Informationen zu folgenden \hyperlink{Metriken/Graphmaße}{Metriken/Graphmaßen (siehe oben)} angezeigt bekommen. (Im Chinese Menue ist dies die Anforderung O«Auswertung.Graphmaße».)} }\rule{0pt}{4ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(–) Da der Kunde hier konkrete Maße vorgibt und bei der visuellen Darstellung nur beschränkter Spielraum gegeben ist (anders als zum Beispiel bei Statistiken), halten wir diese Anforderung für eher unflexibel.& 
 	(--) Wir denken nicht, dass der Kunde später weitere Metriken benötigt, deren Erfordernis er bisher nicht bemerkt hätte.\\
@@ -930,12 +930,12 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|}{\parbox{16cm} {\textbf{\hypertarget{ss}{P\tone.\two}: Filter von Knoten und Kanten}} }\\ \hline \hline
-	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll die Möglichkeit geben, einen Graphen (genauer gesagt: Knoten und Kanten) nach bestimmten Merkmalen filtern zu können. Denkbare Filter wären dabei Relationstypen, reguläre Ausdrücke über Knotenbeschriftungen und nanuelles Selektieren seitens des Betrachters. Die Auswahl wird angemessen dargestellt (z.B. durch Ausgrauen oder unsichtbar-Machen)} }\rule{0pt}{7ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll die Möglichkeit geben, einen Graphen (genauer gesagt: Knoten und Kanten) nach bestimmten Merkmalen filtern zu können. Denkbare Filter wären dabei Relationstypen, reguläre Ausdrücke über Knotenbeschriftungen und manuelles Selektieren seitens des Betrachters. Die Auswahl wird angemessen dargestellt (z.B. durch Ausgrauen oder unsichtbar-Machen)} }\rule{0pt}{7ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Der Kunde hat uns keine Vorgaben hinsichtlich der Darstellung der Auswahl der Knoten oder hinsichtlich des Filterergebnisses gemacht. Da auch keine Vorgaben zur Realisierung gemacht wurden, können wir zwischen verschiedenen Tools und einer eigenen Lösung wählen.  &
 	(+) Es ist durch aus möglich, dass der Kunde weitere Filtermöglichkeiten zur Verfügung gestellt bekommen möchte.. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Im Entwurf der Architektur unseres Systems muss berücksichtigt werden, dass das fertige System verschiedene Optionen bereitgestellen muss, nach denen ein aktuell dargestellter Graph gefiltert werden kann. Außerdem muss die visuelle Darstellung des Ergebnisses der Filterung geplant werden.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Im Entwurf der Architektur unseres Systems muss berücksichtigt werden, dass das fertige System verschiedene Optionen bereitstellen muss, nach denen ein aktuell dargestellter Graph gefiltert werden kann. Außerdem muss die visuelle Darstellung des Ergebnisses der Filterung geplant werden.} }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -951,7 +951,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(+) Wir sind frei in der Umsetzung dieser Anforderung und sie wurde durch die Forderung einer hohen Benutzbarkeit nur implizit genannt. &
 	(-) Wir denken nicht, dass uns bezüglich der Fehlertoleranz und des maximalen Korrekturaufwandes konkretere Vorgaben gemacht werden. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|}{\parbox{16cm} {Wir werden ein System entwickeln, dass eine hohe Fehlertoleranz besitzt. Ausgeführte Aktionen sollten leicht rückgängig  gemacht werden können. Dies muss in der Architektur eingeplant werden. }}\\ [3ex]\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm} {Wir werden ein System entwickeln, dass eine hohe Fehlertoleranz besitzt. Ausgeführte Aktionen sollten leicht rückgängig  gemacht werden können. Dies muss in der Architektur eingeplant werden. \\}}\\ [3ex]\hline 
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -967,7 +967,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	(-) Da es sich bei dem Abgabetermin um eine Deadline handelt, dürfen wir die Software mit den anderen Abgaben auch schon vor dem oben genannten Datum überliefern. Die Deadline selbst ist allerdings nicht verhandelbar. &
 	(--) Die Abgabetermin wird sich nicht verschieben. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Die Software wird spätestens am 10.03.2019 fertig implementiert, dokumentiert und getestet sein. Zunächst werden wir die Mindestanforderungen umsetzen. Erst danach wenden wir uns der Realisation von Punkten aus dem Chinese Menu zu. }}\\ [3ex]\hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Die Software wird spätestens am 10.03.2019 fertig implementiert, dokumentiert und getestet sein. Zunächst werden wir die Mindestanforderungen umsetzen. Erst danach wenden wir uns der Realisation von Punkten aus dem Chinese Menue zu. }}\\ [3ex]\hline
 \end{tabular}
 \\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -977,7 +977,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{Unsere Fähigkeiten sind insofern von Relevanz, als dass sie festlegen, in welcher Qualität wir die Anforderungen umsetzen werden und welchen Funktionsumfang wir realisieren können.} }\rule{0pt}{4ex}\\ [1ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Wir können uns durch Zuhilfenahme verschiedener Literatur weiterbilden und unsere Fähigkeiten ausbauen. &
-	(+) Unser Tutor kann uns Tipps geben, wie man diverse Probleme, auf die wir während des Projekts stoßen können, lösen kann. Dies erweitert unser Denkensspektrum und kann unsere Fähigkeiten ausbauen. \\ \hline
+	(+) Unser Tutor kann uns Tipps geben, wie man diverse Probleme, auf die wir während des Projekts stoßen können, lösen kann. Dies erweitert unser Denkspektrum und kann unsere Fähigkeiten ausbauen. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|}{\parbox{16cm} {Die Möglichkeiten zur Umsetzung der Anforderungen in hoher Qualität und Quantität steigen mit der Verbesserung unserer Fähigkeiten. }}\\ \hline
 \end{tabular}
