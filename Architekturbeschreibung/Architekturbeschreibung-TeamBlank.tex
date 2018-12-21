@@ -2369,15 +2369,15 @@ Nachdem wir nun das Package \texttt{graph.graph} erklärt haben (zudem nachfolge
 
 Das Package \texttt{visualization} beinhaltet alle Klassen, die auf die Visualisierung des Graphen Einfluss haben. \\
 
-Ein großes Teilpaket von \texttt{visualsation} sind die Transformer.  Alle diese Klassen implementieren ein Interface \texttt{Transformer}. Diese wandeln ein Eingabe-Objekt in ein Ausgabe-Objekt um. Das Eingabe-Objekt bleibt dabei unverändert. Wir beziehungsweise das Framework JUNG verwendet Transformer größtenteils dazu, um Daten aus Objekten zu extrahieren, beispielsweise die Farbe eines \texttt{Vertex}. \\
+Ein großes Teilpaket von \texttt{visualization} sind die Transformer.  Alle diese Klassen implementieren ein Interface \texttt{Transformer}. Die Transformer wandeln ein Eingabe-Objekt in ein Ausgabe-Objekt um. Das Eingabe-Objekt bleibt dabei unverändert. Wir beziehungsweise das Framework JUNG verwendet Transformer größtenteils dazu, um Daten aus Objekten zu extrahieren, beispielsweise die Farbe eines \texttt{Vertex}. \\
 
-Ein weiteres Teilpaket ist \texttt{control}. Die Klassen aus dem Package erben alle von der Klasse \\ \texttt{GraphMousePlugin} aus \texttt{JUNG}. Diese \textit{Plugins} implementieren die Funktionalität, die bestimmt, welche Anweisungen bei z.B. einem Klick auf einem \texttt{VisualisationViewer} ausgeführt werden sollen. \\
+Ein weiteres Teilpaket ist \texttt{control}. Die Klassen aus dem Package erben alle von der Klasse \\ \texttt{GraphMousePlugin} aus JUNG. Diese Plugins implementieren die Funktionalität, die bestimmt, welche Anweisungen bei z.B. einem Klick auf einem \texttt{VisualisationViewer} ausgeführt werden sollen. \\
 
-\texttt{renderers} beinhaltet eine zentrale Klasse \texttt{SyndromRenderer}, die den \texttt{BasicRenderer} von \texttt{JUNG} erweitert. Diese Klasse wird aufgerufen, wenn der Graph gerendert und auf den \texttt{VisualisationViewer} gezeichnet werden soll. Zusätzlich überschreiben wir die Implementierung von \texttt{BasicEdgeRenderer} und erstellen eine weitere Klasse \texttt{SphereRenderer}, um z.B. das \hyperlink{cc}{Zusammenfassen von Pfeilspitzen} zu ermöglichen. \\
+\texttt{renderers} beinhaltet eine zentrale Klasse \texttt{SyndromRenderer}, die den \texttt{BasicRenderer} von JUNG erweitert. Diese Klasse wird aufgerufen, wenn der Graph gerendert und auf den \texttt{VisualisationViewer} gezeichnet werden soll. Zusätzlich überschreiben wir die Implementierung von \texttt{BasicEdgeRenderer} und erstellen eine weitere Klasse \texttt{SphereRenderer}, um z.B. das \hyperlink{cc}{Zusammenfassen von Pfeilspitzen} zu ermöglichen. \\
 
-Die Klasse \texttt{SyndromPickSupport} überschreibt ebenfalls eine Klasse aus \texttt{JUNG}: \texttt{ShapePicksupport}. Diese erweitern wir mit der Funktionalität ebenfalls \texttt{Sphere}-Objekt picken zu können. \\ 
+Die Klasse \texttt{SyndromPickSupport} überschreibt ebenfalls eine Klasse aus JUNG: \texttt{ShapePicksupport}. Diese erweitern wir mit der Funktionalität ebenfalls \texttt{Sphere}-Objekt auswählen zu können. \\ 
 
-Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klasse \texttt{SyndromArrowFactory}, welche Shape-Objekte generiert, welche unsere Pfeilspitzen der Kanten bilden. \\
+Das Package \texttt{util} beinhaltet zur Zeit nur eine Klasse, und zwar die Klasse \texttt{SyndromArrowFactory}, welche Shape-Objekte generiert, die unsere Pfeilspitzen für Kanten bilden. \\
 
 \texttt{graph.visualization} importiert Klassen aus dem Package \texttt{graph.graph}, da die Klassen die Objekte, welche sie visualisieren sollen, benötigen. \\
 
