@@ -1015,6 +1015,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \subsection{Probleme und Strategien}
 \label{sec:strategien}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%1
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{01: Datensicherung/Persistenz des Graphen}}} \\  \hline\hline 
@@ -1058,7 +1059,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Mit der Entscheidung gegen \cb{S2} ist somit \cb{S1} für uns die am besten geeignete Strategie.
 \end{onehalfspace}
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{02: Persistierungsintervall des Graphen}}} \\  \hline\hline 
@@ -1090,7 +1091,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Da dem Kunden aber eine hohe Usability zugesagt wurde, wird diese Strategie verfolgt. Wir nehmen hier dem Benutzer die Sorge, dass Daten verloren gehen könnten. \\
 	\cb{S5 - Benutzer} wird demnach nicht verfolgt, da in diesem Fall der Benutzer selbst in der Verantwortung steht, die Speicherung regelmäßig durchzuführen. \\
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
@@ -1135,7 +1136,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Es wird \cb{S7 - Datenmodell} umgesetzt. Die Nutzerinteraktionen in der Datenbank zu speichern, ermöglicht es, diese bei Bedarf durch Datenbankabfragen zu filtern. \cb{Das Datenmodell} ist dabei an das Entwurfsmuster Command angelehnt. Command ist eine grundlegende Strategie für die Softwarearchitektur unseres Systems, durch die die vom Benutzer aufgerufenen Kommandos an das System modelliert werden. Die Commands werden nach Ausführung durch den Benutzer in geeigneter Darstellung in die Datenbank geschrieben. \\
 	Mit \cb{S6 - CSV} können wir ein ähnliches Schema für die Nutzerinteraktionen anlegen und so letztgenannte speichern. Die Datenbank aus \cb{S7} ermöglicht es (anders als \cb{S6}) aber diese geeigneter zu strukturieren und so Komplikationen zu vermeiden. Dadurch, dass eine Datenbank zur Persistierung der Nutzerinteraktionen verwendet werden muss, wäre \cb{S6} ohnehin keine legitime Option.
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%4
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
@@ -1177,7 +1178,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\cb{S10 Modularisierung}, also die Zerlegung des Systems in kleine Grundbausteine als Module des Systems: Die Module sind weitestgehend voneinander entkoppelt, wodurch das System während der Entwicklungsphase und in den folgenden Phasen leichter erweitert und bearbeitet werden kann. \\
 	Alle diese Strategien sollten während der Umsetzung des Projektes beachtet werden, da sie alle einen entscheidenden Einfluss auf die Qualität des Systems haben und sich problemlos kombinieren lassen. \\
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
@@ -1220,7 +1221,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Eine Kombination aller Strategien wird hier umgesetzt. Die Verwendung von \cb{MVC} gibt den Entwicklern ein weitverbreitetes, ihnen bekanntes Grundgerüstes vor und ermöglicht es den Entwicklern, sich beim Entwurf und der Umsetzung eines detaillierten Software-Aufbaus an diesem Grundgerüst zu orientieren. \cb{(System) - Bibliotheken/ Dokumentierte Bibliotheken} unterstützen den Entwickler zusätzlich in der Entwicklungsphase.
 	Durch \cb{Modularisierung} können geeignete Arbeitspakete auf die Entwickler verteilt werden, sodass sich ein Entwickler auf diese Teile fokussieren kann. \\ \\ \\ \\
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%6
+\newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{06: Ausfallende Entwickler}}} \\  \hline\hline 
@@ -1399,7 +1401,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Mit Unterstützung der \cb{Java API} for Print Jobs ist es möglich PDF an einen Drucker zu schicken. \\
 	Das Einsetzen einer externen Bibliothek die diese Aufgabe übernimmt ist zwar möglich, aber dadurch, dass wir die PDF \textit{nur} ausdrucken müssen und keine weitere Usablilty für den Druckvorgang zur Verfügung stehe muss, ist die Strategie \cb{S26} ausreichend.
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%10
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
@@ -1608,7 +1610,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\cb{S36} wird umgesetzt. JavaFX bietet eine fertige Lösung Swing- Komponenten zu integrieren. \cb{S37} umzusetzen ist viel aufwendiger und birgt ein hohes Fehlerpotenzial. Auch sind wir uns nicht sicher, ob \cb{S37} genauso umgesetzt werden könnte oder ob bei dem Prozess weiterer Probleme auftauchen würden. \\
 	Deswegen entscheiden wir uns über die \cb{SwingNode}.    
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%15
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
@@ -1794,7 +1796,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Aufgrund der Wichtigkeit dieses Problems entscheiden wir uns dafür, \cb{S47}, \cb{S48} und \cb{S49} umzusetzen. Dies sorgt dafür, dass wir Ressourcen sparen und unser Arbeitsablauf geregelt wird.
 \end{onehalfspace}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%20
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
@@ -1991,7 +1993,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Wir entscheiden und für \cb{S61}, da wir sowieso dauerhaft mit der GXL-Repräsentation interagieren. S2 bringt uns keinen Vorteil und es entsteht nur eine Datei mehr, mit der interagiert werden muss. 
 \end{onehalfspace}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%25
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 \hline
@@ -2004,7 +2006,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \hyperlink {i}{Command} \\
 \hyperlink {bb}{Protokoll von Nutzerinteraktionen} &
 \hyperlink {mm}{Protokoll JSON} \\
-\hyperlink {ww}{Softwarelizenzbudget} 
+\hyperlink {ww}{Softwarelizenzbudget} &
 \\ \hline
 \multicolumn{2}{|l|}{Lösungen} \\
 \multicolumn{2}{|l|}{\parbox{16cm}{
@@ -2015,10 +2017,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\textbf{S65 - JSONP}: \\
 	Mit JSONP können Objekte geparst und deren Informationen ins JSON-Format geschrieben werden. \\
 	} }\\ [6ex] \hline
-	\textbf{\hyperlink{jjj}{S33 - JavaScript Object Notation (.json)}}
-	\\\hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
-	&
+	\textbf{\hyperlink{jjj}{S33 - JavaScript Object Notation (.json)}}&
 	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -2034,9 +2034,9 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wir arbeiten mit mehren Leuten parallel an einer Software, für die wir einen modularen Aufbau anstreben. Dabei wäre es vorteilhaft, wenn jeder Entwickler, die Systembestandteile/Module anderer Gruppenmitglieder nutzen könnte bevor deren Implementierung abgeschlossen ist. Um uns nicht um die Übergabe beziehungsweise Weitergabe von Objekten kümmern zu müssen, können wir Dependency Injection nutzen. Damit kann man Attribute beliebiger Klassen deklarieren und auf deren Werte und Methoden zugreifen – ohne die Herkunft derselben vorab festzulegen.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &  \hyperlink {uu}{Abgabedatum} \\
-\hyperlink {vv}{Entwickler-Fähigkeiten} &
- \hyperlink {ww}{Softwarelizenzbudget} \\
-\hyperlink {xx}{Teamgröße} 
+	\hyperlink {vv}{Entwickler-Fähigkeiten} &
+ 	\hyperlink {ww}{Softwarelizenzbudget} \\
+	\hyperlink {xx}{Teamgröße} &
    \\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
@@ -2054,7 +2054,6 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 	\cb{Spring} bietet auch Möglichkeiten, die wir für das Dependency Injection in unserem System nutzen können. Allerdings sind diese Funktionen nicht so leicht nutzbar. Das liegt daran, dass Springs Dependency Injection-Funktionalitäten in einem Kontext entstanden sind, in der noch nicht einmal Java 5 fertig entwickelt worden war. \\
 	Wir entscheiden uns deshalb für Strategie \cb{S66 - Google Guice}, da die Verwendung der Annotationen für Dependency Injection einfacher ist, als der von \cb{Spring} verwendete Ansatz. Außerdem können wir bei Verwendung von \cb{Guice} von der Funktion der generischen Objekt-Erstellung profitieren.
 \end{onehalfspace}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \newpage
