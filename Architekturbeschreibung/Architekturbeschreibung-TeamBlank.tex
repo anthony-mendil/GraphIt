@@ -2301,7 +2301,7 @@ Die Daten-Persistierung setzen wir mit Hilfe von \hyperlink{rrr}{S50 - Hibernate
 
 
 
-Dabei sind die \texttt{Log}-Objekte wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während die \texttt{Graph}-Objekte (wie in Strategie \hyperlink{yy}{S1 - GXL} vorgesehen) eine Graphrepräsentation} beinhalten. \\
+Dabei sind die \texttt{Log}-Objekte wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während die \texttt{Graph}-Objekte (wie in Strategie \hyperlink{yy}{S1 - GXL} vorgesehen) eine Graphrepräsentation beinhalten. \\
 
 Die \texttt{Log}-Objekte besitzen unter anderem ein Attribut \texttt{parameters}. Dieses Attribut repräsentiert ein zugehöriges \texttt{Param}-Objekt als String. Die \texttt{Param}-Objekte beinhalten alle wichtigen Informationen zu der zugehörigen Aktion, damit diese verständlich für den Benutzer rekonstruiert werden kann. Dieser String wird durch eine Konvertierung eines \texttt{Param}-Objektes zu einem \texttt{JSON}-String erzeugt. Die \texttt{JSON}-Umwandlung erfolgt gemäß Strategie \hyperlink{www}{S63 - Jackson} mit Jackson. \\
 
@@ -2341,18 +2341,18 @@ Wie eben angedeutet wird im folgenden Abschnitt auf das Package \texttt{graph.gr
 
 Das Package \texttt{graph.graph} beinhaltet die Datenklassen des Graphen und Klassen, die sich auf die Funktionalität des Graphen beziehen. \\
 
-Die Klasse \texttt{Syndrom} führt alle Komponenten des Frameworks \hyperlink{eee}{S19 - \texttt{JUNG}} beziehungsweise \hyperlink{fff}{S22 - \texttt{JUNG}} zusammen und ist ein \textit{Singleton}, da dieses Objekt global im ganzen Projekt verfügbar sein muss. \\
-Unsere Datenklassen zu dem Graphen erweitern das Datenmodell von \texttt{JUNG}. Klassen, die erweiterte Funktionalität des Graphen implementieren, erweitern meistens Klassen aus \texttt{JUNG} oder orientieren sich an dessen Klassen. \\
+Die Klasse \texttt{Syndrom} führt alle Komponenten des Frameworks JUNG (Strategie \hyperlink{eee}{S19} beziehungsweise \hyperlink{fff}{S22}) zusammen und ist ein \textit{Singleton}, da dieses Objekt global im ganzen Projekt verfügbar sein muss. \\
+Unsere Datenklassen zu dem Graphen erweitern das Datenmodell von JUNG. Klassen, die erweiterte Funktionalität des Graphen implementieren, erweitern meistens Klassen aus JUNG oder orientieren sich an dessen Klassen. \\
 
-\textit{Syndrom} enthält ein \texttt{SyndromGraph}-Objekt, ein \texttt{StaticLayout}-Objekt und ein \texttt{VisualisationViewer} Objekt, welche die grundlegenden Informationen über den Graphen beinhalten, beispielsweise Listen von \texttt{Vertex} / \texttt{Edge} und \texttt{Sphere}. Die \texttt{Transformer}-Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.visualization} importiert und sind vor allem für die Visualisierung von Bedeutung. Die \texttt{Predicate}-Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.alogorithm} importiert und werden später für die Filterung und Umsetzung von Algorithmen auf den Graphen benötigt. \\
+\textit{Syndrom} enthält ein \texttt{SyndromGraph}-Objekt, ein \texttt{StaticLayout}-Objekt und ein \texttt{VisualisationViewer}-Objekt, welche die grundlegenden Informationen über den Graphen beinhalten, beispielsweise Listen von \texttt{Vertex}, \texttt{Edge} und \texttt{Sphere}. Die \texttt{Transformer}-Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.visualization} importiert und sind vor allem für die Visualisierung von Bedeutung. Die \texttt{Predicate}-Attribute von \texttt{Syndrom} werden aus dem Package \texttt{graph.alogorithmen} importiert und werden später für die Filterung und Umsetzung von Algorithmen auf den Graphen benötigt. \\
 
-Die Klassen  \texttt{VisualisationViewer} und \texttt{StaticLayout} haben wir komplett von JUNG übernommen, wir weisen den generischen Typen der Klassen unsere \texttt{Vertex}- / \texttt{Edge}-Objekte zu. Somit sind unsere eigenen Datenklassen nicht  komplett von dem JUNG-Framework unabhängig.\\
+Die Klassen \texttt{VisualisationViewer} und \texttt{StaticLayout} haben wir komplett von JUNG übernommen, wir weisen den generischen Typen der Klassen unsere \texttt{Vertex}- / \texttt{Edge}-Objekte zu. Somit sind unsere eigenen Datenklassen nicht  komplett von dem JUNG-Framework unabhängig.\\
 
-Das \texttt{SatelliteVisualisationViewer}-Objekt, das \texttt{ViewGrid}- und das \texttt{GraphZoomScrollPane}-Objekt sind \texttt{JUNG} zugehörige Klassen, die wir benötigen, um \hyperlink{dd}{Zoom} und \hyperlink{ff}{Zoom.Kontext} umzusetzen. Die Klasse \texttt{ViewGrid} werden wir selber implementieren, die Implementierung ist aber an \texttt{JUNG}-Klassen angelehnt.\\
+Das \texttt{SatelliteVisualisationViewer}-Objekt, das \texttt{ViewGrid}- und das \texttt{GraphZoomScrollPane}-Objekt sind JUNG zugehörige Klassen, die wir benötigen, um \hyperlink{dd}{Zoom} und \hyperlink{ff}{Zoom.Kontext} umzusetzen. Die Klasse \texttt{ViewGrid} werden wir selber implementieren, die Implementierung ist aber an JUNG-Klassen angelehnt.\\
 
-Das Attribut \texttt{pluggable} der Klasse \texttt{PluggableGraphMouse} wird ebenfalls von \texttt{JUNG} zur Verfügung gestellt. Diese Klasse besitzt Funktionalität, um \texttt{GraphMousePlugins} (im Package \texttt{visualisation}) hinzuzufügen und zu entfernen. Diese besitzen Methoden, um MouseEvents auf den \texttt{VisualisationViewer} zu erkennen und Funktionalität entsprechend umzusetzen. \\
+Das Attribut \texttt{pluggable} der Klasse \texttt{PluggableGraphMouse} wird ebenfalls von JUNG zur Verfügung gestellt. Diese Klasse besitzt Funktionalität, um \texttt{GraphMousePlugins} (im Package \texttt{visualization}) hinzuzufügen und zu entfernen. Diese besitzen Methoden, um MouseEvents auf dem \texttt{VisualisationViewer} zu erkennen und entsprechend Funktionalität umzusetzen. \\
 
-Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, welches eine Instanz der Klasse \texttt{Values} ist. Die \texttt{GUI} schreibt gesetzte Wert der \texttt{GUI} in die Klasse, z.B. den derzeit gewählten \texttt{EdgeType}. Syndrom benötigt diese Werte, damit Objekte entsprechend dieser Werte erstellt werden können. \\
+Die Klasse \texttt{Syndrom} enthält außerdem ein Attribut \texttt{values}, welches eine Instanz der Klasse \texttt{Values} ist. Die \texttt{GUI} schreibt gesetzte Werte der GUI in die Klasse, z.B. den derzeit gewählten \texttt{EdgeType}. Syndrom benötigt diese Werte, damit Objekte entsprechend dieser Werte erstellt werden können. \\
 
 
 
