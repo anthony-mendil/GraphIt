@@ -2297,17 +2297,17 @@ Um die Lücke zwischen der Übersicht über alle Actions und den Abhängigkeiten
 \subsection{\texttt{log\_management}}
 
 Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{log\_management.tables} zu sehen. Im Package \texttt{log\_management} werden neben der Speicherung der Nutzerinteraktionen in Form der Logs die weiteren Aspekte der Persistierung umgesetzt. \\
-Die Daten-Persistierung setzen wir mit Hilfe von \hyperlink{rrr}{S50 - Hibernate} um. Die im Package \texttt{tables} liegende Klassen stellen die Objekte dar, die wir in der Datenbank persistieren wollen. 
+Die Daten-Persistierung setzen wir mit Hilfe von \hyperlink{rrr}{S50 - Hibernate} um. Die im Package \texttt{tables} liegenden Klassen stellen die Objekte dar, die wir in der Datenbank persistieren wollen. 
 
 
 
-Dabei sind die \texttt{Log} Objekte wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während die \texttt{Graph} Objekte eine \hypertarget{yy}{Graphrepräsentation} beinhalten. \\
+Dabei sind die \texttt{Log}-Objekte wie beschrieben zur Speicherung der Nutzerinteraktionen erforderlich, während die \texttt{Graph}-Objekte (wie in Strategie \hyperlink{yy}{S1 - GXL} vorgesehen) eine Graphrepräsentation} beinhalten. \\
 
-Die \texttt{Log}-Objekte besitzen unter anderem ein Attribut \texttt{parameters}. Dieses Attribut repräsentiert ein zugehöriges \texttt{Param}-Objekt als String. Die \texttt{Param}-Objekte beinhalten alle wichtigen Informationen zu der zugehörigen Aktion, damit diese verständlich für den Benutzer rekonstruiert werden kann. Dieser String wird durch eine Konvertierung eines \texttt{Param} Objektes zu einem \texttt{JSON}-String erzeugt. Die \texttt{JSON}-Umwandlung erfolgt gemäß \hyperlink{www}{S63 - Jackson} mit Jackson. \\
+Die \texttt{Log}-Objekte besitzen unter anderem ein Attribut \texttt{parameters}. Dieses Attribut repräsentiert ein zugehöriges \texttt{Param}-Objekt als String. Die \texttt{Param}-Objekte beinhalten alle wichtigen Informationen zu der zugehörigen Aktion, damit diese verständlich für den Benutzer rekonstruiert werden kann. Dieser String wird durch eine Konvertierung eines \texttt{Param}-Objektes zu einem \texttt{JSON}-String erzeugt. Die \texttt{JSON}-Umwandlung erfolgt gemäß Strategie \hyperlink{www}{S63 - Jackson} mit Jackson. \\
 
 Die \texttt{Graph}-Objekte haben ein Attribut \texttt{gxl}, welches den visualisierten Graphen als GXL-Repräsentation gemäß \hyperlink{yy}{S1 - GXL} beinhaltet. Der GXL-String wird durch das \texttt{io}-Package realisiert, weshalb hier auch eine Abhängigkeit besteht.\\
 
-Die Existenz des Package \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} wie im Klassendiagramm dargestellt. Letzterer ist im Package \texttt{actions} realisiert. \\
+Die Existenz des Packages \texttt{parameters} sorgt dafür, dass die Nutzerinteraktionen in den Logs beschrieben werden können. Daneben gehört zu jedem \texttt{Log}-Eintrag unter anderem ein \texttt{Graph} und ein \texttt{LogEntryName} wie im Klassendiagramm dargestellt. Letzterer ist im Package \texttt{actions} realisiert. \\
 
 In selbigem Package findet sich auch das Interface \texttt{ObserverSyndrom}, das in Form der Klasse\\ \texttt{DatabaseManager} im Package \texttt{log\_management} implementiert wird. \\
 Der DatabaseManager steht außerdem in Abhängigkeit zu dem \texttt{io} Package, da der DatabaseManager das Graph Objekt erstellt, welches den Graphen in der Datenbank repräsentieren soll. Dieser enthält die aktuelle Graph Repräsentation als String. \\
