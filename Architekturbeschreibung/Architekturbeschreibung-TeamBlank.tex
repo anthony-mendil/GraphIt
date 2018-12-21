@@ -2054,6 +2054,59 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 	\cb{Spring} bietet auch Möglichkeiten, die wir für das Dependency Injection in unserem System nutzen können. Allerdings sind diese Funktionen nicht so leicht nutzbar. Das liegt daran, dass Springs Dependency Injection-Funktionalitäten in einem Kontext entstanden sind, in der noch nicht einmal Java 5 fertig entwickelt worden war. \\
 	Wir entscheiden uns deshalb für Strategie \cb{S66 - Google Guice}, da die Verwendung der Annotationen für Dependency Injection einfacher ist, als der von \cb{Spring} verwendete Ansatz. Außerdem können wir bei Verwendung von \cb{Guice} von der Funktion der generischen Objekt-Erstellung profitieren.
 \end{onehalfspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage
+\begin{tabular} {|p{8cm} p{8cm}|}
+\hline
+\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{27: Umwandlung der Graphdaten zwischen dem JUNG- und JGraphT-Format}}} \\ \hline\hline 
+\multicolumn{2}{|l|}{\parbox{16cm}{Zur Auswertung des Graphen sollen zunächst die von JUNG bereitgestellten Funktionen genutzt werden. Da mit diesen nicht alle Anforderungen im Bereich der Graph-Analyse abgedeckt werden, greifen wir zur Umsetzung einiger Analyse-Funktionen auf JGraphT zurück. Das Format der Datenklassen eines Graphen, das JUNG bereitstellt, entspricht nicht dem Datenklassen-Format, das JGraphT nutzt. Aus diesem Grund ist eine Umwandlung der JUNG-Datenklassen in die von JGraphT erforderlich.}}\rule{0pt}{5ex}\\ [1ex] \hline
+\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
+\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
+\hyperlink {g}{Hohe Usability}\\
+\hyperlink {h}{Hohe Qualität}&
+\hyperlink {k}{JUNG} \\
+\hyperlink {n}{Sphären} &
+\hyperlink {p}{Typisierte Knoten} \\
+\hyperlink {q}{gerichtete Kanten (3 Relationstypen} &
+\hyperlink {r}{Anzahl, Größe, Position, Farbe, Beschriftung der Sphären/ Knoten/Kanten ist flexibel} \\
+\hyperlink {t}{Zuordnung von Sphären und Knoten} &
+\hyperlink {x}{Automatische Anordnung zur Übersichtlichkeit} \\
+\hyperlink {z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} &
+\hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}\\
+\hyperlink {hh}{Sprache.Beschriftung} &
+\hyperlink {oo}{Analyse des Graphen} \\
+\hyperlink {pp}{Auswertung des Graphen} &
+\hyperlink {qq}{Graph-Analyse mittels Graphmaße} \\ 
+\hyperlink {rr}{Analyse über einen wählbaren Ausschnitt des Graphen} &
+\hyperlink {ss}{Filter von Knoten und Kanten} \\
+\\ \hline
+\multicolumn{2}{|l|}{Lösungen} \\
+\multicolumn{2}{|l|}{\parbox{16cm}{
+\textbf{\cb{\hypertarget{umwandlungskomponente}{S68 – eigene Umwandlungskomponente}}} \\
+Es wird unsererseits eine Komponente entwickelt, deren Aufgabe es ist, die Datenklassen unseres Graphen, die in JUNG vorliegen, in die Datenklassen von JGraphT umzuwandeln, sodass wir die von JGraphT zur Verfügung gestellten Funktionen zur Graph-Auswertung nutzen können.
+} }\\ \hline
+
+\end{tabular}\\ \\ \\
+
+\begin{tabular} {|p{8cm} p{8cm}|}
+\hline\\
+\multicolumn{2}{|l|}{\parbox{16cm}{
+
+Verwandte Strategien:\\
+\textbf {\hyperlink{aadd}{S10 – Modularisierung}} \\
+\textbf{\hyperlink{aabb}{S15 - Modularisierung}}\\
+\textbf{\hyperlink{aacc}{S18 - Modularisierung}} \\
+\textbf{\hyperlink{eee}{S19 - JUNG}} \\
+\textbf{\hyperlink{fff}{S22 - JUNG}} \\
+\textbf{\hyperlink{eigeneImplementierung}{S24 - eigene Implementierung}} \\
+\textbf{\hyperlink{xxx}{S25 - JGraphT}}\\
+}}\\\hline
+\end{tabular}\\ \\ \\
+\begin{onehalfspace}
+Die Umwandlung der Datenklassen zwischen dem JUNG- und dem JGraphT-Format wird mit \cb{einer eigenen Komponente} umgesetzt. So muss auch nur diese Komponente ausgetauscht werden, wenn zu einem späteren Zeitpunkt anstelle von JGraphT ein anderes Framework verwendet werden soll, um die von JUNG bereitgestellten Analyse-Möglichkeiten zu erweitern.
+\end{onehalfspace}
+
+
 
 
 \newpage
