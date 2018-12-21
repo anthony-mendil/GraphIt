@@ -276,9 +276,10 @@ Version & Datum & Änderungen \\
 
 \newpage
 \section{Einführung}
+\label{sec:intro}
 \emph{Autoren: Bastian Rexhäuser}
 \subsection{Zweck}
-Die vorliegende Architekturbeschreibung ist ein Dokument mit hoher Bedeutung für die Implementierung, das Testen und die Wartung der Software. Durch die Architekturbeschreibung wird eine weitreichende Übersicht über die Softwarestruktur, wichtige Einflussfaktoren und Probleme, die bei der Softwareimplementierung auftreten können, gegeben. Die Architekturbeschreibung zeigt außerdem Strategien zur Lösung dieser Probleme auf und benennt die Komponenten und Module, in die wir die Software zu gliedern planen, sowie deren Bestandteile und Funktion. Damit stellt sie dem Leser eine Grundlage zur Verfügung, um die Vollständigkeit unserer Anwendung bereits vor der Implementierung zu prüfen, die Struktur nachzuvollziehen und bestimmte Entscheidungen hinsichtlich des geplanten Softwareaufbaus verstehen zu können. Zu den Lesern des Dokumentes gehören der Auftraggeber sowie der Kunde der zu entwickelnden Anwendung sowie die Autoren, die zur Implementierung, zum Testen und zum Schreiben des Benutzerhandbuchs auf dieses Dokument zurückgreifen werden. Durch die oben angesprochene Gliederung der Software und das Benennen der vorgesehenen Komponenten, Schnittstellen und Module sowie derer Bestandteile als solche und deren Aufgabe im Kontext des gesamten Systems erhalten Tester einen Ansatzpunkt, um ein strukturiertes Testprotokoll anfertigen zu können. Besonders hilfreich wird dieses Dokument für eine gut geplante Umsetzung der Integrationstests sein. Durch die Erstellung dieses Dokumentes kann außerdem die Wahrscheinlichkeit für Fehlentwicklungen bei der Implementierung reduziert und somit einen großen Zeitverlust vorgebeugt werden, was wiederum dazu führt, dass die sich an die Implementierung anschließenden Schritte wie beispielsweise das eben erwähnte Testen früher begonnen werden können. Schlussendlich hat es damit den Zweck den Abgabetermin einhalten zu können. Letztere Behauptung kann damit gestützt werden,  dass der Auftraggeber und der Kunde Fehlentwicklungen frühzeitig erkennen und diese vermitteln können. Die verschiedenen Sichten geben verschiedene Blickwinkel auf das System und illustrieren auf diese Weise das Zusammenspiel verschiedener Komponenten besser als eine einzelne Sicht dazu in der Lage wäre. Auch dient dies der Verständlichkeit unseres Systems und hilft uns bei der Implementierung. Neben der Hilfe für die Implementierung, die aus der Aufgliederung des Gesamtsystems in dessen Bestandteile und der Darstellung verschiedener Sichten resultiert, ist dieses Vorgehen auch zur Erhöhung der Wartbarkeit unserer Software nützlich. Denn es ermöglicht eine zielgerichtete Suche nach den Bestandteilen, die von Änderungen an den Anforderungen betroffen sind. Dabei spielt die Evolution eine besonders große Rolle. Wie dargestellt ist das vorliegende Dokument auch über die (Erst-)Implementierungsphase der Software hinaus von Bedeutung.
+Die vorliegende Architekturbeschreibung ist ein Dokument mit hoher Bedeutung für die Implementierung, das Testen und die Wartung der Software. Durch die Architekturbeschreibung wird eine weitreichende Übersicht über die Softwarestruktur, wichtige Einflussfaktoren und Probleme, die bei der Softwareimplementierung auftreten können, gegeben. Die Architekturbeschreibung zeigt außerdem Strategien zur Lösung dieser Probleme auf und benennt die Komponenten und Module, in die wir die Software zu gliedern planen, sowie deren Bestandteile und Funktion. Damit stellt sie dem Leser eine Grundlage zur Verfügung, um die Vollständigkeit unserer Anwendung bereits vor der Implementierung zu prüfen, die Struktur nachzuvollziehen und bestimmte Entscheidungen hinsichtlich des geplanten Softwareaufbaus verstehen zu können. Zu den Lesern des Dokumentes gehören der Auftraggeber sowie die Autoren, die zur Implementierung, zum Testen und zum Schreiben des Benutzerhandbuchs auf dieses Dokument zurückgreifen werden. Durch die oben angesprochene Gliederung der Software und das Benennen der vorgesehenen Komponenten, Schnittstellen und Module sowie derer Bestandteile als solche und deren Aufgabe im Kontext des gesamten Systems erhalten Tester einen Ansatzpunkt, um ein strukturiertes Testprotokoll anfertigen zu können. Besonders hilfreich wird dieses Dokument für eine gut geplante Umsetzung der Integrationstests sein. Durch die Erstellung dieses Dokumentes kann außerdem die Wahrscheinlichkeit für Fehlentwicklungen bei der Implementierung reduziert und somit einen großen Zeitverlust vorgebeugt werden, was wiederum dazu führt, dass die sich an die Implementierung anschließenden Schritte wie beispielsweise das eben erwähnte Testen früher begonnen werden können. Schlussendlich hat es damit den Zweck den Abgabetermin einhalten zu können. Letztere Behauptung kann damit gestützt werden,  dass der Auftraggeber Fehlentwicklungen frühzeitig erkennen und diese vermitteln kann. Die verschiedenen Sichten geben verschiedene Blickwinkel auf das System und illustrieren auf diese Weise das Zusammenspiel verschiedener Komponenten besser als eine einzelne Sicht dazu in der Lage wäre. Auch dient dies der Verständlichkeit unseres Systems und hilft uns bei der Implementierung. Neben der Hilfe für die Implementierung, die aus der Aufgliederung des Gesamtsystems in dessen Bestandteile und der Darstellung verschiedener Sichten resultiert, ist dieses Vorgehen auch zur Erhöhung der Wartbarkeit unserer Software nützlich. Denn es ermöglicht eine zielgerichtete Suche nach den Bestandteilen, die von Änderungen an den Anforderungen betroffen sind. Dabei spielt die Evolution eine besonders große Rolle. Wie dargestellt ist das vorliegende Dokument auch über die (Erst-)Implementierungsphase der Software hinaus von Bedeutung.
 \newpage
 \subsection{Status}
 Erstentwurf eines abgeschlossenen Dokumentes. \\
@@ -295,7 +296,7 @@ Wir betrachten das vorliegende Exemplar als abgeschlossen. Dies bedeutet nicht, 
 - \textbf{GXL} (Graph eXchange Language) ist ein Dateiformat, das dem Graphenaustausch zwischen Programmen dient. \\ \\
 - \textbf{SVG} (=Scalable Vector Graphics) Hierbei handelt es sich um eine Spezifikation zur Darstellung von Vektorgrafiken im Web. Diese Spezifikation basiert auf XML.  \\ \\
 - \textbf{XML} (=eXtensible Markup Language) ist ein Dateiformat, das von Menschen und Computern geschrieben und gelesen werden kann. Es dient dem Austausch von Daten, die in hierarchisch strukturierter Form organisiert sind, zwischen verschiedenen Computern. \\ \\
-- \textbf{PDF} (Portable Document Format) ist ein plattformunabhängiges Dateiformat, das die Erstellung eines Dokuments ermöglicht, das vom ursprünglichen Anwendungsprogramm losgelöst geöffnet und gelesen werden kann. Das Format gibt dabei den Inhalt des Ursprungsprogrammes originalgetreu wieder (sowohl Inhalt als auch Darstellung). \\ \\
+- \textbf{PDF} (Portable Document Format) ist ein plattformunabhängiges Dateiformat, das die Erstellung eines Dokuments ermöglicht, das vom ursprünglichen Anwendungsprogramm losgelöst geöffnet und gelesen werden kann. Das Format gibt dabei den Inhalt des Ursprungsprogramms originalgetreu wieder (sowohl Inhalt als auch Darstellung). \\ \\
 - \textbf{CSV} (=Comma-separated values) ist ein Format zum Speichern und Laden einfach strukturierter Daten.\\ \\
 - \textbf{SQL} (Structured Query Language) ist eine Sprache zur Interaktion mit Datenbanken. \\ \\
 - \textbf{.oof} ist ein von uns entwickeltes Dateiformat, das Nutzerinteraktionen und Graphinformationen zusammenführt. \\ \\
@@ -317,8 +318,8 @@ Wir betrachten das vorliegende Exemplar als abgeschlossen. Dies bedeutet nicht, 
 - \textbf{Programmierschnittstelle} (präziser ausgedrückt Schnittstelle zur Anwendungsprogrammierung; engl. application programming interface - kurz API) ist ein Bestandteil des Programms, dessen Aufgabe es ist, anderen Programmen die Möglichkeit zur Anbindung an das eigene System zu geben.\\ \\
 - \textbf{(Nutzer-)Rolle} Wann immer im Dokument von Rollen oder Nutzerrollen die Rede sein wird, ist damit nicht ein Rechtemanagement, sondern vielmehr die Bereitstellung verschiedener Modi gemeint. Jeder Nutzer kann dabei jede Rolle einnehmen und somit das System in jedem Modus verwenden. \\ \\
 - \textbf{\hypertarget{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq -Modus}} entspricht der Rolle eines Erstellers. Dieser Modus stellt Funktionen bereit, um ein Diagramm als Vorlage zu erstellen und um bestimmte Bearbeitungsregeln für diese Vorlage festzulegen. Zur Erstellung der Vorlage kann in diesem Modus die Anzahl, Farbgebung und Beschriftung/Benennung der Sphären und Knoten eingestellt und zudem festgelegt werden, welche Kanten verwendet werden können. Optional kann darüber hinaus auch die Größe und Position aller Graph-Elemente sowie der bei der Beschriftung verwendete Zeichensatz ausgewählt werden. Der Verwender dieses Modus kann zudem für jedes Element in der Vorlage einzeln festlegen, ob es einem Verwender im \glqq Diagramm bearbeiten\grqq-Modus gestattet ist, dieses Element zu bearbeiten. Dieser Modus wird üblicherweise von Lehrern zur Erstellung einer Vorlage für ein Diagramm verwendet. \\ \\
-- \textbf{\hypertarget{''Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus}} erfüllt die Ansprüche einer Betrachter-Rolle an das System. In diesem Modus kann ein Benutzer ein Diagramm auf Basis einer Vorlage erstellen und dazu die Vorlage im Rahmen der Regeln aus der gegebenen Vorlage verändern. Ist dieser Modus aktiv, so wird ein Protokoll angelegt, welche Interaktionen des Nutzers in diesem Modus aufzeichnet. Zu den aufgezeichneten Daten gehört ein Zeitstempel sowie die Aktion (z.B. Erstellung, Bearbeitung oder Verschiebung von Sphären, Knoten und Kanten). Dieser Modus ist besonders für Kinder ab 10 Jahren geeignet, die durch ihn komplexe Zusammenhänge verstehen sollen. Um das Verständnis leichter zu machen, sollen auch in diesem Modus bereits \hyperlink{Bedeutung eines Knoten}{gewisse Analyse-Funktionen hinsichtlich der Bedeutung einzelner Knoten} verfügbar sein. (Die Analyse-Funktion bezüglich des Protokolls der Nutzerinteraktionen ist nicht verfügbar.) Ferner ist alles, was in diesem Modus möglich ist, auch im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq -Modus} möglich.\\ \\
-- \textbf{\hypertarget{``Analyse''-Modus}{\glqq Analyse\grqq -Modus}} dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der \hyperlink{Bedeutung eines Knoten}{Bedeutung einzelner Knoten}). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Möglichkeiten, mit denen man \hyperlink{Metriken}{Metriken/Graphmaße} berechnen kann, und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Knoten erstellt wurden) gewährt. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden. \\ \\
+- \textbf{\hypertarget{''Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus}} erfüllt die Ansprüche einer Betrachter-Rolle an das System. In diesem Modus kann ein Benutzer ein Diagramm auf Basis einer Vorlage erstellen und dazu die Vorlage im Rahmen der Regeln aus der gegebenen Vorlage verändern. Ist dieser Modus aktiv, so wird ein Protokoll angelegt, welche Interaktionen des Nutzers in diesem Modus aufzeichnet. Zu den aufgezeichneten Daten gehört ein Zeitstempel sowie die Aktion (z.B. Erstellung, Bearbeitung oder Verschiebung von Sphären, Knoten und Kanten). Dieser Modus ist besonders für Kinder ab 10 Jahren geeignet, die durch ihn komplexe Zusammenhänge verstehen sollen. Um das Verständnis leichter zu machen, sollen auch in diesem Modus bereits \hyperlink{Bedeutung eines Knoten}{gewisse Analyse-Funktionen hinsichtlich der Bedeutung einzelner Knoten} verfügbar sein. Die Analyse-Funktion bezüglich des Protokolls der Nutzerinteraktionen ist nicht verfügbar. Ferner ist alles, was in diesem Modus möglich ist, auch im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq -Modus} möglich.\\ \\
+- \textbf{\hypertarget{``Analyse''-Modus}{\glqq Analyse\grqq -Modus}} Dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der \hyperlink{Bedeutung eines Knoten}{Bedeutung einzelner Knoten}). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Möglichkeiten, mit denen man \hyperlink{Metriken}{Metriken/Graphmaße} berechnen kann und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Knoten erstellt wurden) gewährt. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden. \\ \\
 - \textbf{\hypertarget{Bedeutung eines Knoten}{Bedeutung eines Knoten}} Die Relevanz eines Knoten ist von der Vernetztheit des Knotens abhängig. Dabei sind mögliche Maßstäbe für Wichtigkeit und Grad der Vernetztheit folgende: Sei K ein Knoten... \\
 \begin{itemize}
 \item Anzahl der benachbarten Knoten von K (nur Vorgänger, nur Nachfolger, alle Nachbarn)
@@ -345,7 +346,7 @@ Die Liste der erwähnten Tools/Frameworks ist auf der folgenden Seite dargestell
 	EclipseLink & \url{https://www.eclipse.org/eclipselink/} & 17.12.2018 \\ \\
 	Freeheb Vectorgraphics & \url{http://java.freehep.org/vectorgraphics/} & 17.12.2018 \\ \\
 	GSON & \url{https://en.wikipedia.org/wiki/Gson} &  17.12.2018 \\ \\
-	GXL-Tool (bei SourceForge gehostet) & \url{https://sourceforge.net/projects/gxl/} & 17.12.2018 \\ \\
+	GXL-Tool (von SourceForge gehostet) & \url{https://sourceforge.net/projects/gxl/} & 17.12.2018 \\ \\
 	H2 & \url{http://www.h2database.com/html/main.html} & 17.12.2018 \\ \\
 	Hibernate & \url{http://hibernate.org/orm/} & 17.12.2018 \\ \\
 	iText & \url{https://itextpdf.com/} & 17.12.2018 \\ \\
@@ -363,7 +364,7 @@ Im folgenden ist die im Dokument erwähnte Fachliteratur gelistet: \\
 \begin{tabular}{p{11cm}p{5cm}}
 	Werk & wird hier erwähnt \\ \hline \\
 	Danny Holten (2006). Hierarchical Edge Bundles: Visualization of Adjacency Relations in Hierarchical Data. In: IEEE Transactions on Visualization and Computer Graphics, 12(5), September 2006, 741-748. ISSN 1077-2626. & \hyperlink{Überlappung von Knotenenden des selben Relationstyps}{Überlappung von Knotenenden des selben Relationstyps} \\ \\ 
-	Sommer, C. (2005). Untersuchung der Systemkompetenz von Grundschülern im Bereich Biologie. Verfügbar hier. & \hyperlink{Umfang}{Umfang} \\ \\
+	Sommer, C. (2005). Untersuchung der Systemkompetenz von Grundschülern im Bereich Biologie.& \hyperlink{Umfang}{Umfang} \\ \\
 	Ossimitz, G. (2000). Entwicklung systemischen Denkens. Theoretische Konzepte und empirische Untersuchungen. München: Profil. & \hyperlink{Vernetzungsindex}{Vernetzungsindex} \\ \\
 	Kunz, P. \& Bollmann-Zuberbühler, B. (2008): Ist systemisches Denken lehr- und lernbar? In U. Frischknecht-Tobler, U. Nagel \& H. Seybold (Hrsg.), Systemdenken. Wie Kinder und Jugendliche komplexe Systeme verstehen lernen. (S. 33-52). Zürich: Pestalozzianum. & \hyperlink{Strukturindex}{Strukturindex} \\ \\
 \end{tabular}
@@ -373,11 +374,11 @@ Im folgenden ist die im Dokument erwähnte Fachliteratur gelistet: \\
 
 \newpage
 \subsection{Übersicht über das Dokument}
-Zu Beginn dieses Dokuments befindet sich eine Einführung (Kapitel 1), in welcher auch dieser Abschnitt zu verordnen ist. Hier erläutern wir kurz den Zweck des Dokuments, nennen mögliche Leser/innen, erklären einige wichtige Begriffe und geben Referenzen an.  \\
-Im Anschluss hieran erfolgt die Globale Analyse (Kapitel 2), in welcher zuerst Einflussfaktoren (in Form von Faktortabellen) aufgelistet und anschließend mögliche struktur- und implementierungsbezogene Probleme benannt und die dazugehörigen, von uns vorgeschlagenen Strategien beschrieben werden. Im Zuge dessen erfolgt jeweils auch eine begründete Entscheidung für eine Strategie oder für eine Kombination verschiedener Strategien. In diesem Teil des Dokuments setzen wir uns mit den Möglichkeiten auseinander, wie wir unser System anforderungsgemäß und ansprechend gestalten können. \\
+Zu Beginn dieses Dokuments befindet sich eine Einführung (\hyperref[sec:intro]{Kapitel 1}), in welcher auch dieser Abschnitt zu verordnen ist. Hier erläutern wir kurz den Zweck des Dokuments, nennen mögliche Leser/innen, erklären einige wichtige Begriffe und geben Referenzen an.  \\
+Im Anschluss hieran erfolgt die globale Analyse (\hyperref[sec:globale_analyse]{Kapitel 2}), in welcher zuerst Einflussfaktoren in Form von Faktortabellen aufgelistet und anschließend mögliche struktur- und implementierungsbezogene Probleme benannt und die dazugehörigen, von uns vorgeschlagenen Strategien beschrieben werden. Im Zuge dessen erfolgt jeweils auch eine begründete Entscheidung für eine Strategie oder für eine Kombination verschiedener Strategien. In diesem Teil des Dokuments setzen wir uns mit den Möglichkeiten auseinander, wie wir unser System anforderungsgemäß und ansprechend gestalten können. \\
 Danach beschäftigen wir uns mit den Sichten nach Hofmeister - beginnend mit der konzeptionellen Sicht, mit der sich anschließenden Modulsicht und abschließend mit der Ausführungssicht. Zusätzlich zu diesen Sichten werden wir eine Datensicht beschreiben. Diese und die Sichten nach Hofmeister finden sich in Kapitel 3 bis 6. Diese gewähren weitreichende und vielseitige Blicke auf unser System. \\
-In Kapitel 7 illustrieren wir das Zusammenspiel der in unserem System vorgesehenen Module anhand von fünf Anwendungsfällen, wobei wir Sequenzdiagramme zur Hilfe nehmen. \\
-Kapitel 8 besteht in einer Evolution, die einen Blick auf die Zukunft gewährt. Hier wird für ausgewählte Anforderungen beschrieben, wie sich Veränderungen/Erweiterungen derselben auf die Architektur auswirken würden. Des Weiteren werden wir beschreiben, welche Anforderungen, deren Umsetzung die in der jetzigen Architektur nicht vorgesehen ist, hinzukommen könnten und welche Anpassungen der Architektur für deren Realisierung notwendig wären.
+In \hyperref[sec:anwendungsfaelle]{Kapitel 7} illustrieren wir das Zusammenspiel der in unserem System vorgesehenen Module anhand von fünf Anwendungsfällen, wobei wir Sequenzdiagramme zur Hilfe nehmen. \\
+\hyperref[sec:evolution]{Kapitel 8} besteht aus einer Evolution, die einen Blick auf die Zukunft gewährt. Hier wird für ausgewählte Anforderungen beschrieben, wie sich Veränderungen/Erweiterungen derselben auf die Architektur auswirken würden. Des Weiteren werden wir beschreiben, welche Anforderungen, deren Umsetzung in der jetzigen Architektur nicht vorgesehen ist, hinzukommen könnten und welche Anpassungen der Architektur für deren Realisierung notwendig wären.
 
 
 \newpage
@@ -415,11 +416,8 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{Für die Implementierung der Software ist die Verwendung von Java 8 oder einer aktuelleren Version der genannten Programmiersprache vorgeschrieben.}}\s\\ [1ex]
 	\hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\ 
-	(o) Wir haben eine gewisse Auswahlmöglichkeit bei der Java-
-	Version, da nur eine Mindest-Aktualität der Java-
-	Version gefordert ist. Uns ist sogar die Wahlmöglichkeit zwischen open-JDK und oracle-JDK überlassen. &
-	(--) Es ist keine Änderung der geforderte Program-
-	miersprache abzusehen und vorerst ist auch nicht mit
+	(o) Wir haben eine gewisse Auswahlmöglichkeit bei der Java-Version, da nur eine Mindestaktualität der Java-Version gefordert ist. Uns ist sogar die 			Wahlmöglichkeit zwischen open-JDK und oracle-JDK überlassen. &
+	(--) Es ist keine Änderung der geforderte Programmiersprache abzusehen und vorerst ist auch nicht mit
 	der Vorgabe einer aktuelleren Mindest-Java-Version
 	zu rechnen.
 	\\ \hline
@@ -444,7 +442,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{d}{P\tone.\two}: Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}} }\s \\ [1ex] \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Im Projekt ist  die Verwendung einer leichtgewichtigen (embedded) Datenbank vorgeschrieben. Diese ist zur Realisierung der Persistenz zu verwenden. Konkret sollen in der Datenbank die Nutzerinteraktionen / das Protokoll gespeichert werden.} }\rule{0pt}{6ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Im Projekt ist  die Verwendung einer leichtgewichtigen (embedded) Datenbank vorgeschrieben. Diese ist zur Realisierung der Persistenz zu verwenden. Konkret sollen in der Datenbank die Nutzerinteraktionen/das Protokoll gespeichert werden.} }\rule{0pt}{6ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Wir haben die Wahl zwischen verschiedenen relationalen Datenbanken (zum Beispiel H2, SQLite  oder Apache Derby). Ferner ist uns freigestellt ein Persistenz-Framework (JPA) zu verwenden -  wobei unter diesen Umständen die deklarative Benutzung von SQL-ähnlichen Abfragen für uns vorgeschrieben ist. &
 	(o) Die Regelungen hinsichtlich der Verwendung einer Datenbank und eines Persistenz-Frameworks werden sich nicht ändern. \\ \hline
@@ -456,13 +454,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{e}{P\tone.\two}: Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus)}} }\s \\ [2ex]\hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Dieser Einflussfaktor resultiert aus unserer Entscheidung für die Strategie \glqq GXL\grqq zur Problemkarte \glqq Datensicherung/Persistenz des Graphen\grqq. Er besagt, dass es nötig ist, den Graphen (wie er in der GUI angezeigt wird) in ein GXL-Dokument zu schreiben dessen Inhalt dann als Text (varchar) in der embedded SQL-Datenbank gespeichert wird. Dieser Einflussfaktor thematisiert somit die Speicherung des Graphen als GXL Repräsentation in der Datenbank. Der Name dieser Einflussfaktors ist deshalb nicht entsprechend des eben beschriebenen Themas gewählt, da die Datenbank zusätzlich (wenn nicht sogar primär) der Speicherung der Nutzerinteraktionen dient.} }\rule{0pt}{11ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Dieser Einflussfaktor resultiert aus unserer Entscheidung für die Strategie \glqq \hyperlink{yy}{GXL}\grqq{} zur Problemkarte \glqq Datensicherung/Persistenz des Graphen\grqq. Er besagt, dass es nötig ist, den Graphen (wie er in der GUI angezeigt wird) in ein GXL-Dokument zu schreiben dessen Inhalt dann als Text (varchar) in der embedded SQL-Datenbank gespeichert wird. Dieser Einflussfaktor thematisiert somit die Speicherung des Graphen als GXL Repräsentation in der Datenbank. Der Name dieses Einflussfaktors ist deshalb nicht entsprechend des eben beschriebenen Themas gewählt, da die Datenbank zusätzlich (wenn nicht sogar primär) der Speicherung der Nutzerinteraktionen dient.} }\rule{0pt}{11ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(++) Die Flexibilität dieses Einflussfaktors ist sehr hoch, da wir uns entschieden haben, die Anforderung des Speichern (und Laden des Graphen) auf die beschriebene Weise zu lösen. Es ist also nicht vorgegeben diesen Ansatz zu wählen. Außerdem ist selbst bei der Entscheidung für diese Herangehensweise noch Flexibilität gegeben: beispielsweise für die Wahl des Tools oder die Entscheidung zur Selbsterstellung zur GXL-Dokument-Generierung und zum Speicherintervall. (Letzteres siehe unten). & 
+	(++) Die Flexibilität dieses Einflussfaktors ist sehr hoch, da wir uns entschieden haben, die Anforderung des Speicherns und Laden des Graphen auf die beschriebene Weise zu lösen. Es ist also nicht vorgegeben diesen Ansatz zu wählen. Außerdem ist selbst bei der Entscheidung für diese Herangehensweise noch Flexibilität gegeben, beispielsweise für die Wahl des Tools oder die Entscheidung zur Selbsterstellung zur GXL-Dokument-Generierung und zum Speicherintervall. (Letzteres siehe unten). & 
 	(-) Die Veränderlichkeit ist eher gering, da dieser Einflussfaktor die von uns gewählte Möglichkeit zur Umsetzung der eben genannten Anforderung zum Speichern/Laden des Graphen ist. Da dem Kunden die technische Umsetzung dieser Anforderung gleichgültig ist und wir denken, dass sich diese Anforderung auch nicht ändern wird, kommen wir zu dem Schluss, dass die Veränderlichkeit eher gering ist.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{In der von uns verwendeten embedded Datenbank wird neben den Nutzerinteraktionen (als Commands) auch eine Textrepräsentation des Graphen gespeichert.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{In der von uns verwendeten embedded Datenbank wird neben den Nutzerinteraktionen als Commands auch eine Textrepräsentation des Graphen gespeichert.} }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -470,10 +468,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{f}{P\tone.\two}: Betriebssystemunterstützung / Zielplattformen des Systems} }}\\ \hline \hline
-	\multicolumn{2}{|l|}{\parbox{16cm}{Unser System muss mindestens auf den Betriebssystemen Windows 10 , Linux und MacOS lauffähig sein. (Bei der Entwicklung von Apps für mobile Geräte kämen noch Android und iOS hinzu.)}}\rule{0pt}{5ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Unser System muss mindestens auf den Betriebssystemen Windows 10, Linux und MacOS lauffähig sein. (Bei der Entwicklung von Apps für mobile Geräte kämen noch Android und iOS hinzu.)}}\rule{0pt}{5ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\ 
-	(-) Bezüglich der Zielplattformen sind wir ziemlich unflexibel. Dies liegt daran, dass wir als Implementierungssprache Java in der Version 8 oder einer aktuelleren Variante vorgeschrieben bekommen haben und diese Programmiersprache den Aspekt der Lauffähigkeit bereits mit sich bringt. Somit bleibt uns nur noch die Wahl im Chinese Menue den Mobil-Punkt zu wählen, wodurch wir die Lauffähigkeit auf weiteren Betriebssystemen unterstützen müssten.&
-	(--) Da mit den genannten Zielplattformen (insbesondere unter Einbezug der mobilen Systeme) die relevanten (im Sinne von weit verbreiteten) Systeme unterstützt werden, denken wir nicht, dass weitere Systeme unterstützt werden müssen. Der Wegfall eines der erwähnten Betriebssysteme hätte keine Folgen für unser Programm und ist unserer Meinung nach auch unwahrscheinlich. \\ \hline
+	(-) Bezüglich der Zielplattformen sind wir ziemlich unflexibel. Dies liegt daran, dass wir als Implementierungssprache Java in der Version 8 oder einer aktuelleren Variante vorgeschrieben bekommen haben und diese Programmiersprache den Aspekt der Lauffähigkeit bereits mit sich bringt. Somit bleibt uns nur noch die Wahl im Chinese Menu den Mobil-Punkt zu wählen, wodurch wir die Lauffähigkeit auf weiteren Betriebssystemen unterstützen müssten.&
+	(--) Da mit den genannten Zielplattformen, insbesondere unter Einbezug der mobilen Systeme, die relevanten Systeme unterstützt werden, denken wir nicht, dass weitere Systeme unterstützt werden müssen. Der Wegfall eines der erwähnten Betriebssysteme hätte keine Folgen für unser Programm und ist unserer Meinung nach auch unwahrscheinlich. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir realisieren den Aspekt der Lauffähigkeit für die genannten Betriebssysteme durch Implementierung unserer Software in Java 8.} }\\[2ex] \hline
 \end{tabular}
@@ -485,7 +483,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wir streben eine hohe Usability für unser System an. Da dieses auch von Schüler/innen ab zehn Jahren benutzt werden wird, wollen wir die Bedienung möglichst intuitiv und die Benutzeroberfläche übersichtlich gestalten.} }\rule{0pt}{5ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Es sind keine Vorgaben an das Aussehen der Benutzeroberfläche oder deren technische Realisation gemacht worden. Dadurch haben wir eine große Auswahl an Gestaltungsmöglichkeiten. &
-	(-) Die Anforderungen diesbezüglich werden sich nicht ändern. Ferner wird vermutlich keine Änderung an der GUI mehr gewünscht sein, wenn das System erst einmal im Einsatz ist oder zumindest der GUI-Prototyp mit dem Kunden abgesprochen ist. Denn sonst würde eine Umgewöhnung der Nutzer erforderlich sein beziehungsweise würde man riskieren, dass der Auftraggeber nicht mit der entwickelten GUI einverstanden ist. \\ \hline
+	(-) Die Anforderungen diesbezüglich werden sich nicht ändern. Ferner wird vermutlich keine Änderung an der GUI mehr gewünscht sein, wenn das System erst einmal im Einsatz ist oder zumindest der GUI-Prototyp mit dem Kunden abgesprochen ist. Denn sonst würde eine Umgewöhnung für die Nutzer erforderlich sein beziehungsweise würde man riskieren, dass der Auftraggeber nicht mit der entwickelten GUI einverstanden ist. \\ \hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Die Wahl der von uns verwendeten Frameworks beziehungsweise Entscheidungen hinsichtlich der Gestaltungsweise der GUI wird durch diesen Einflussfaktor mitbestimmt. }}\\ \hline 
 \end{tabular}
@@ -495,7 +493,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{h}{P\tone.\two}: Hohe Qualität }} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Im Rahmen der inneren Qualität streben wir eine hohe Änderbarkeit und Verständlichkeit (des Quellcodes) an. Die Änderbarkeit (und folglich auch die Verständlichkeit) soll insbesondere auch noch nach Abgabe der Software an den Kunden gegeben sein. Verständlichkeit meint in erster Linie die Eigenschaft unseres Quellcodes samt der dazugehörigen Dokumentation, dass dieser von einem anderen Entwickler mit geringem (Zeit-)Aufwand verstanden werden kann (und nicht von einem Laien im Bereich Software-Entwicklung). \\Im Rahmen der äußeren Qualität streben wir Fehlerfreiheit sowie eine hohe Bedienbarkeit an. Zu Letzterer haben wir aufgrund ihrer hohen Bedeutung und ihrer Vielschichtigkeit einen eigenständigen Einflussfaktor (hohe Usability) erstellt. Aus diesem Grund wird die hohe Bedienbarkeit hier nicht weiter thematisiert. }  }\rule{0pt}{6ex}\\ [14ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Im Rahmen der inneren Qualität streben wir eine hohe Änderbarkeit und Verständlichkeit des Quellcodes an. Die Änderbarkeit und folglich auch die Verständlichkeit soll insbesondere auch noch nach Abgabe der Software an den Kunden gegeben sein. Verständlichkeit meint in erster Linie die Eigenschaft unseres Quellcodes samt der dazugehörigen Dokumentation, dass dieser von einem anderen Entwickler mit geringem (Zeit-)Aufwand verstanden werden kann (und nicht von einem Laien im Bereich Software-Entwicklung). \\Im Rahmen der äußeren Qualität streben wir Fehlerfreiheit sowie eine hohe Bedienbarkeit an. Zu Letzterer haben wir aufgrund ihrer hohen Bedeutung und ihrer Vielschichtigkeit einen eigenständigen Einflussfaktor \hyperlink{g}{hohe Usability} erstellt. Aus diesem Grund wird die hohe Bedienbarkeit hier nicht weiter thematisiert. }  }\rule{0pt}{6ex}\\ [14ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Wie wir für eine hohe Verständlichkeit und Änderbarkeit sorgen wollen, ist uns überlassen. Ebenso sind uns keine genauen Vorgaben bezüglich der Gewährleistung der Fehlerfreiheit gemacht worden. &
 	(-) Wir halten es für unwahrscheinlich, dass sich konkrete Vorgaben hinsichtlich Verständlichkeit und Änderbarkeit gemacht werden. Selbiges vermuten wir bezüglich der Fehlerfreiheit-Sicherstellung.   \\
@@ -1441,6 +1439,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	} }\\ [4ex] \hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
 	\textbf{\hyperlink{iii}{S30 - Freeheb Vectorgraphics}}&
+	\textbf{\hyperlink{ggg}{S26 - Java API}} 
 	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
@@ -1657,7 +1656,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hyperlink {v}{Speicherung des Graphen} \\
 	\hyperlink {w}{Laden des Graphen} &
 	\hyperlink {x}{Automatische Anordnung zur Übersichtlichkeit} \\
-	\hyperlink {y}{Vorlage/Bearbeitsungsregeln} &
+	\hyperlink {y}{Vorlage/Bearbeitungsregeln} &
 	\hyperlink {z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} \\
 	\hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}&
 	\hyperlink {bb}{Protokoll von Nutzerinteraktionen} \\
@@ -1681,16 +1680,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{nnn}{S40 - erweiterte Anforderungen}}}: \\
-			Mindestanforderungen des Projektes und zusätzliche Anforderungen (Chinese Menu) werden so umgesetzt, dass diese den Ansprüchen der Gruppe und des Tutors genügen. \\
-			\textbf{S41 - Mindestanforderungen }: \\
+			Mindestanforderungen des Projektes und zusätzliche Anforderungen (Chinese Menue) werden so umgesetzt, dass diese den Ansprüchen der Gruppe und des Tutors genügen. \\
+			\textbf{S41 - Mindestanforderungen}: \\
 			Nur die Mindestanforderungen werden umgesetzt. \\
 	} }\\ [6ex] \hline
-	\multicolumn{2}{|l|}{Verwandte Strategien} \\
-	&
-	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-	\cb{S40} wird umgesetzt, da wir versuchen wollen, die uns bestmöglichste Umsetzung zu erarbeiten. Nur die Mindestanforderungen zu erfüllen, entspricht nicht den Ansprüchen des Teams.
+	\cb{S40} wird umgesetzt, da wir versuchen wollen, die uns bestmögliche Umsetzung zu erarbeiten. Nur die Mindestanforderungen zu erfüllen, entspricht nicht den Ansprüchen des Teams.
 \end{onehalfspace}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -1928,7 +1924,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hyperlink {v}{Speicherung des Graphen} &
 	\hyperlink {w}{Laden des Graphen} \\
 	\hyperlink {x}{Automatische Anordnung zur Übersichtlichkeit} &
-	\hyperlink {y}{Vorlage/Bearbeitsungsregeln} \\
+	\hyperlink {y}{Vorlage/Bearbeitungsregeln} \\
 	\hyperlink {z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} &
 	\hyperlink {aa}{Graph Visualisierung/ Interaktion/ Editierung}\\
 	\hyperlink {bb}{Protokoll von Nutzerinteraktionen} &
@@ -1946,9 +1942,6 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S60 - Ein Programm pro Modus}: \\
 			Auswahl des Modus beim Start des Programms, wodurch verschiedene Anwendungen gestartet werden können
 	} }\\ [7ex] \hline
-	\multicolumn{2}{|l|}{Verwandte Strategien} \\
-	&
-	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	S60 ist für unsere Anforderungen unpraktisch und sorgt für eine schlechte Usability. Durch \cb{S59} dagegen lässt sich angenehm zwischen verschiedenen Modi umschalten. 
@@ -2045,9 +2038,6 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 			\textbf{S67 - Spring}: \\
 	Wir könnten die Funktionalitäten im Bereich Dependency Injection von Spring nutzen.
 	} }\\ [6ex] \hline
-	\multicolumn{2}{|l|}{Verwandte Strategien} \\
-	&
-	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Mit \cb{Guice} können Objekte anderer Klassen leicht in eine Klasse injiziert werden und dort Attributen zugewiesen werden. Dabei ist \cb{Guice} auch vielfältig zur Erzeugung von Objekten zur Laufzeit einsetzbar. Das Framework bietet also zahlreiche Funktionalitäten im Generischen-Bereich. Die Funktionalitäten von \cb{Guice} sind durch Annotationen leicht (mit wenig Quellcode) nutzbar. \\
@@ -2078,29 +2068,22 @@ Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen ka
 \hyperlink {pp}{Auswertung des Graphen} &
 \hyperlink {qq}{Graph-Analyse mittels Graphmaße} \\ 
 \hyperlink {rr}{Analyse über einen wählbaren Ausschnitt des Graphen} &
-\hyperlink {ss}{Filter von Knoten und Kanten} \\
-\\ \hline
+\hyperlink {ss}{Filter von Knoten und Kanten}  \\
+\hline
 \multicolumn{2}{|l|}{Lösungen} \\
 \multicolumn{2}{|l|}{\parbox{16cm}{
 \textbf{\cb{\hypertarget{umwandlungskomponente}{S68 – eigene Umwandlungskomponente}}} \\
 Es wird unsererseits eine Komponente entwickelt, deren Aufgabe es ist, die Datenklassen unseres Graphen, die in JUNG vorliegen, in die Datenklassen von JGraphT umzuwandeln, sodass wir die von JGraphT zur Verfügung gestellten Funktionen zur Graph-Auswertung nutzen können.
 } }\\ \hline
-
-\end{tabular}\\ \\ \\
-
-\begin{tabular} {|p{8cm} p{8cm}|}
-\hline\\
-\multicolumn{2}{|l|}{\parbox{16cm}{
-
-Verwandte Strategien:\\
-\textbf {\hyperlink{aadd}{S10 – Modularisierung}} \\
-\textbf{\hyperlink{aabb}{S15 - Modularisierung}}\\
-\textbf{\hyperlink{aacc}{S18 - Modularisierung}} \\
+\multicolumn{2}{|l|}{Verwandte Strategien} \\
+\textbf {\hyperlink{aadd}{S10 – Modularisierung}} &
+\textbf{\hyperlink{aabb}{S15 - Modularisierung}} \\
+\textbf{\hyperlink{aacc}{S18 - Modularisierung}} &
 \textbf{\hyperlink{eee}{S19 - JUNG}} \\
-\textbf{\hyperlink{fff}{S22 - JUNG}} \\
+\textbf{\hyperlink{fff}{S22 - JUNG}} &
 \textbf{\hyperlink{eigeneImplementierung}{S24 - eigene Implementierung}} \\
-\textbf{\hyperlink{xxx}{S25 - JGraphT}}\\
-}}\\\hline
+\textbf{\hyperlink{xxx}{S25 - JGraphT}} &
+\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 Die Umwandlung der Datenklassen zwischen dem JUNG- und dem JGraphT-Format wird mit \cb{einer eigenen Komponente} umgesetzt. So muss auch nur diese Komponente ausgetauscht werden, wenn zu einem späteren Zeitpunkt anstelle von JGraphT ein anderes Framework verwendet werden soll, um die von JUNG bereitgestellten Analyse-Möglichkeiten zu erweitern.
@@ -2657,20 +2640,20 @@ Eine neue Action \texttt{exportPdfAction} wird erstellt und wieder durch die \te
 \emph{Autoren: Bastian Rexhäuser, Anthony Mendil}\\\\
 In diesem Kapitel wollen wir beschreiben wie sich ändernde Anforderungen auf unsere Architektur auswirken würden. Dabei gehen wir zunächst auf die Einflussfaktoren ein, deren Veränderlichkeit im Rahmen der globalen Analyse als eher hoch oder gar sehr hoch eingeschätzt wurde. Hierbei betrachten wir lediglich die, die Einfluss auf die Architektur haben. Allerdings haben wir keinen Einflussfaktor als sehr veränderlich eingestuft, sodass wir lediglich jene mit einer eher hohen Veränderlichkeit thematisieren werden. Bei den entsprechenden Einflussfaktoren werden wir beschreiben, welchen Einfluss eine potentielle Änderung des Einflussfaktors (beziehungsweise der Anforderung, die durch diesen Einflussfaktor repräsentiert werden) auf unsere Architektur hätte. Im Anschluss daran werden wir auf die Anforderungen aus dem Chinese Menue eingehen, deren Umsetzung in unserer Architektur aktuell nicht vorgesehen ist. Hier werden wir erklären wie sich die nachträgliche Umsetzung dieser Anforderungen unsere Architektur beeinflussen würde. \\ 
  
-Für die Filterung von Knoten und Kanten (\hyperlink{ss}{Filter von Knoten und Kanten}) könnten weitere Filteroptionen benötigt werden. Eine Erweiterung wäre zum Beispiel, dass der Benutzer als zusätzliche Filteroption die Knoten, Kanten und Sphären ausblenden kann, die in einem bestimmten Zeitraum hinzugefügt wurden. Hierfür könnte man in der GUI  ein Textfeld hinzufügen. Wird eine Zeitspanne (z.B 11:23-13:04) eingegeben, werden nur Elemente angezeigt, die in diesem Zeitraum hinzugefügt wurden. Es ist jedoch auch möglich mit relativen Zeiten zu arbeiten. Wird -00:10 eingegeben, werden nur Elemente angezeigt, die höchstens 10 Minuten vor dem letzten hinzugefügten Element hinzugefügt wurden und wird +00:10 eingegeben, werden die angezeigt, die höchstens 10 Minuten nach dem ersten hinzugefügten Element hinzugefügt wurden. Dies könnten wir Realisieren, indem wir uns aus den Log-Einträgen die Einträge heraussuchen, die hinzufügende Aktionen beschreiben und deren Erstellungszeitpunkt sich im angegebenen Zeitraum befindet. Dann müssen die Identifikationsnummern der Graph-Elemente extrahiert und ausgeblendet werden. An dieser Stelle ist zu erwähnen, dass es auf diese Weise nicht möglich ist, Elemente die bereits in der Vorlage hinzugefügt wurden, zu filtern, da im Ersteller-Modus keine Log-Einträge erstellt werden. Hierfür müsste im Package \texttt{actions.analyse} die Klasse \texttt{FilterGraphAction} angepasst werden und im Package \texttt{graph.algorithmen.predicate} eine Klasse \texttt{ElementsCreatedInTimePredicate} hinzugefügt werden. \\
+Für die Filterung von Knoten und Kanten (\hyperlink{ss}{Filter von Knoten und Kanten}) könnten weitere Filteroptionen benötigt werden. Eine Erweiterung wäre zum Beispiel, dass der Benutzer als zusätzliche Filteroption die Knoten, Kanten und Sphären hervorheben kann, die in einem bestimmten Zeitraum hinzugefügt wurden. Hierfür könnte man in der GUI  ein Textfeld hinzufügen. Wird eine Zeitspanne (z.B 11:23-13:04) eingegeben, werden nur Elemente angezeigt, die in diesem Zeitraum hinzugefügt wurden. Es ist jedoch auch möglich mit relativen Zeiten zu arbeiten. Wird -00:10 eingegeben, werden nur Elemente angezeigt, die höchstens 10 Minuten vor dem letzten hinzugefügten Element hinzugefügt wurden und wird +00:10 eingegeben, werden die angezeigt, die höchstens 10 Minuten nach dem ersten hinzugefügten Element hinzugefügt wurden. Dies könnte man realisieren, indem die Einträge aus den Log-Einträgen herausgefiltert werden, die hinzufügende Aktionen beschreiben und deren Erstellungszeitpunkt sich im angegebenen Zeitraum befinden. Dann müssen die Identifikationsnummern der Graph-Elemente extrahiert und ausgeblendet werden. An dieser Stelle ist zu erwähnen, dass es auf diese Weise nicht möglich ist, Elemente die bereits in der Vorlage hinzugefügt wurden, zu filtern, da im Ersteller-Modus keine Log-Einträge erstellt werden. Hierfür müsste im Package \texttt{actions.analyse} die Klasse \texttt{FilterGraphAction} angepasst werden und im Package \texttt{graph.algorithmen.predicate} eine Klasse \texttt{ElementsCreatedInTimePredicate} hinzugefügt werden. \\
 
 Wie in der globalen Analyse zu sehen weist der Einflussfaktor \hyperlink{z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} eine eher hohe Veränderlichkeit auf. Eine mögliche Änderung dieses Faktors wäre beispielsweise das Hinzukommen einer Rolle, mit der es möglich wäre, eine Vorlage auszuwerten oder einen erstellten Graphen zu kommentieren.
 Die Auswertung einer Vorlage könnte in einer statistischen Auswertung des Anteils der Knoten, Sphären und Kanten in einer Vorlage bestehen, die später im \hyperlink{''Diagramm bearbeiten''-Modus}{„Diagramm bearbeiten“-Modus} vollständig beziehungsweise nur eingeschränkt (nur Farbe, nur Beschriftung) bearbeitet werden können. Im folgender ist in diesem Fall vom Vorlage-Analyse-Modus die Rede.
-Das Kommentieren eines erstellten Graphen ist wie folgt zu verstehen. Ein Graph kann geöffnet werden, wobei keine Eigenschaften mehr verändert werden können. Man kann allerdings die einzelnen Sphären, Knoten und Kanten anklicken (auch mehrere gleichzeitig, wenn sich das Kommentar auf mehrere Graph-Elemente bezieht) und einen Hinweis zu diesen schreiben. Dieser Hinweise könnten dann nach Speichern / Exportieren des Graphen auch auf einem anderen Rechner gelesen werden. Voraussetzung ist die Aktivierung desselben Modus (wobei die Hinweise weiterhin verändert und auch wieder gelöscht werden könnten. Dieser Modus wird im Folgenden als Diagramm-Kommentieren-Modus bezeichnet.
+Das Kommentieren eines erstellten Graphen ist wie folgt zu verstehen. Ein Graph kann geöffnet werden, wobei keine Eigenschaften mehr verändert werden können. Man kann allerdings die einzelnen Sphären, Knoten und Kanten anklicken (auch mehrere gleichzeitig, wenn sich das Kommentar auf mehrere Graph-Elemente bezieht) und einen Hinweis zu diesen schreiben. Dieser Hinweise könnten dann nach dem Speichern / Exportieren des Graphen auch auf einem anderen Rechner gelesen werden. Voraussetzung ist die Aktivierung desselben Modus (wobei die Hinweise weiterhin verändert und auch wieder gelöscht werden könnten. Dieser Modus wird im Folgenden als Diagramm-Kommentieren-Modus bezeichnet.
 Eine solche Änderung (das Hinzukommen von neuen Funktionsmodi mit neuen Funktionen) würde sich auf die im Package \texttt{graph.graph} befindliche Klasse \texttt{FunctionMode} sowie auf die Klasse \texttt{SwitchModiEditorAction} im Package \texttt{actions.io}. Über letztgenannte würde dann auch eine Änderung der Benutzeroberfläche ausgelöst werden. Die entsprechende Benutzeroberfläche würde Änderungen am \texttt{gui}-Package erforderlich machen, um eine den Anforderungen des neuen Funktionsmodus entsprechende Benutzeroberfläche bereitstellen zu können.
 Für die Funktionalitäten des Vorlage-Analyse-Modus müsste außerdem eine Klasse (oder mehrere Klassen) im Package \texttt{actions.analyse} hinzugefügt werden, die eine entsprechende Filterung der Knoten, Kanten und Sphären vornehmen und durch Rechenoperationen den jeweiligen Anteil (entsprechend der Bearbeitungsmöglichkeiten) bestimmen würde.
-Um die Funktionen des Diagramm-Kommentieren-Modus bereitzustellen, müsste unser System neben den oben erwähnten auch noch an folgenden Stellen angepasst werden: Die Klassen \texttt{Edge}, \texttt{Vertex} und \texttt{Sphere} im \texttt{graph.graph}-Package um ein Attribut zum, Soeichern des Kommentares erweitert werden. Dazu müsste man im \texttt{actions}-Package ein Package \texttt{comment} hinzufügen, in dem Klassen zum Hinzufügen, Editieren und Löschen von Kommentaren zu Sphären, Knoten und Kanten enthalten wären. \\
+Um die Funktionen des Diagramm-Kommentieren-Modus bereitzustellen, müsste unser System neben den oben erwähnten auch noch an folgenden Stellen angepasst werden: Die Klassen \texttt{Edge}, \texttt{Vertex} und \texttt{Sphere} im \texttt{graph.graph}-Package werden um ein Attribut zum Speichern des Kommentars erweitert. Dazu müsste man im \texttt{actions}-Package ein Package \texttt{comment} hinzufügen, in dem Klassen zum Hinzufügen, Editieren und Löschen von Kommentaren zu Sphären, Knoten und Kanten enthalten wären. \\
  
-Es ließen sich zusätzlich Wegpunkte (\texttt{O«Wegpunkte»}) mit dem Framework JGraph realisieren. Dazu müssten wir den Java-spezifischen Teil (JrapX) dieses Frameworks in unser System integrieren. Da man Wegpunkte innerhalb dieses Frameworks auf Edge-Objekten hinzufügt, müssten wir in unserem System statt unserer \texttt{Edge}-Klasse diejenige von JGraphX verwenden. Da diese ihrerseits allerdings nicht alle von uns benötigten Informationen (in Form von Attributen) enthält, müssten wir weiterhin eine eigene \texttt{Edge}-Klasse in unserem System vorhalten. Diese müsste allerdings anders als bis jetzt die Edge-Klasse von JGraphX erweitern. Diese alternative beziehungsweise neue \texttt{Edge}-Klasse würde dann überall dort verwendet, wo aktuell unsere jetzige \texttt{Edge}-Klasse angewandt wird. Zu diesen Änderungen müsste auch im \texttt{actions}-Package je eine Aktion zum Hinzufügen beziehungsweise Entfernen von Wegpunkten hinzugefügt werden. \\
+Es ließen sich zusätzlich Wegpunkte (\texttt{O«Wegpunkte»}) mit dem Framework JGraph realisieren. Dazu müssten wir den Java-spezifischen Teil (JGraphX) dieses Frameworks in unser System integrieren. Da man Wegpunkte innerhalb dieses Frameworks auf Edge-Objekten hinzufügt, müssten wir in unserem System statt unserer \texttt{Edge}-Klasse diejenige von JGraphX verwenden. Da diese ihrerseits allerdings nicht alle von uns benötigten Informationen (in Form von Attributen) enthält, müssten wir weiterhin eine eigene \texttt{Edge}-Klasse in unserem System vorhalten. Diese müsste allerdings anders als bis jetzt die Edge-Klasse von JGraphX erweitern, um auch die Anforderungen zu erfüllen, welche die \texttt{Edge}-Klasse aus dem aktuellem Projekt erfüllen. Diese alternative beziehungsweise neue \texttt{Edge}-Klasse würde dann überall dort verwendet, wo aktuell unsere jetzige \texttt{Edge}-Klasse angewandt wird. Zu diesen Änderungen müsste auch im \texttt{actions}-Package je eine Aktion zum Hinzufügen beziehungsweise Entfernen von Wegpunkten hinzugefügt werden. \\
 
-Des weiteren wäre die Realisierung von Kantenbündelung (\texttt{O«Kantenbündelung»}) möglich, indem wir im Package \texttt{actions.visualization.renderers} die Klasse \texttt{EdgeRenderer} mithilfe eines selbst geschriebenen Algorithmus so anpassen, dass die Kanten entsprechend gerendert werden. Abgesehen davon hätte dies keine weiteren Auswirkungen auf die Architektur.  \\
+Des Weiteren wäre die Realisierung von Kantenbündelung (\texttt{O«Kantenbündelung»}) möglich, indem wir im Package \texttt{actions.visualization.renderers} die Klasse \texttt{EdgeRenderer} mithilfe eines selbst geschriebenen Algorithmus so anpassen, dass die Kanten entsprechend gerendert werden. Abgesehen davon hätte dies keine weiteren Auswirkungen auf die Architektur.  \\
 
-Um eine mobile Version (\texttt{O«Mobil»}) des Programms zu unterstützen müsste eine neue Applikation erstellt werden, wobei einige umfangreiche Anpassungen vorgenommen werden müssten. Dies betrifft in erster Linie die Benutzeroberfläche (Package: gui), da diese von Grund auf neu zu gestalten ist, um auf mobilen Geräten nutzerfreundlich bedienbar zu sein. Hierbei unterstützen Android sowie IOS die Umsetzung der Benutzeroberfläche mittels JavaFX. Die Nutzung von der H2 Datenbank ist lediglich unter Android möglich. Für IOS bietet sich unter anderem ein sqlite-Datenbank an. Übrige Komponenten könnten größtenteils übernommen werden. 
+Um eine mobile Version (\texttt{O«Mobil»}) des Programms zu unterstützen müsste eine neue Applikation erstellt werden, wobei einige umfangreiche Anpassungen vorgenommen werden müssten. Dies betrifft in erster Linie die Benutzeroberfläche (Package: \texttt{gui}), da diese von Grund auf neu zu gestalten ist, um auf mobilen Geräten nutzerfreundlich bedienbar zu sein. Hierbei unterstützen Android sowie IOS die Umsetzung der Benutzeroberfläche mittels JavaFX. Die Nutzung von der H2 Datenbank ist lediglich unter Android möglich. Für IOS bietet sich unter anderem ein sqlite-Datenbank an. Übrige Komponenten könnten größtenteils übernommen werden. 
 
 \end{document}
 
