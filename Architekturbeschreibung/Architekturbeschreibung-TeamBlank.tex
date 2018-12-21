@@ -510,10 +510,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{i}{P\tone.\two}: Command }} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Bei Command handelt es sich um ein Entwurfsmuster, das zum Aufbau einer Softwarestruktur genutzt werden kann, in der Commands (=Aktionen des Nutzers beziehungsweise Interaktionen des Nutzers mit dem System) als Objekte erfasst werden und somit eine zentrale Bedeutung in der Architektur besitzen. Die einzelnen Commands / vom Nutzer ausgeführten Aktionen werden erfasst und können somit auch rückgängig gemacht werden (redo / undo). Dieses Entwurfsmuster wird durch unsere Entscheidung für die Strategie Command (bei gleichzeitiger Umsetzung der Strategien Model-View-Controller und Modularisierung) bei der Problemkarte \glqq Auswahl der grundlegenden Softwarearchitektur\grqq zum Einflussfaktor. Denn es wirkt sich auf die gennante und die Problemkarte \glqq Persistierungsintervall des Graphen\grqq aus.} }\rule{0pt}{14.5ex}\\  \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Bei Command handelt es sich um ein Entwurfsmuster, das zum Aufbau einer Softwarestruktur genutzt werden kann, in der Commands (=Aktionen des Nutzers beziehungsweise Interaktionen des Nutzers mit dem System) als Objekte erfasst werden und somit eine zentrale Bedeutung in der Architektur besitzen. Die einzelnen Commands werden erfasst und können somit auch rückgängig gemacht werden (redo / undo). Dieses Entwurfsmuster wird durch unsere Entscheidung für die Strategie Command (bei gleichzeitiger Umsetzung der Strategien Model-View-Controller und Modularisierung) bei der Problemkarte \glqq Auswahl der grundlegenden Softwarearchitektur\grqq{} zum Einflussfaktor. Denn es wirkt sich auf die genannte und die Problemkarte \glqq Persistierungsintervall des Graphen\grqq{} aus.} }\rule{0pt}{14.5ex}\\  \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(+) Das Entwurfmuster selbst legt zwar eine grobe Struktur nahe, da wir uns aber selbst für die Verwendung des Command-Patterns entschiedenen haben und wir die konkrete Commands / Nutzeraktionen selbst definieren können, schätzen wir die Flexibilität als eher hoch ein. Die Flexibilität ist auch deshalb nicht sehr hoch, weil die von uns entworfenen Commands konkret vorgegebene Anforderungen abdecken müssen. & 
-	(o) Wir schätzen die Veränderlichkeit als neutral ein. Dies liegt daran, dass sich an der Verwendung des Entwurfsmusters Command und der sonstigen groben Softwarearchitektur vermutlich kaum mehr etwas ändern wird, wenn die Software erst einmal im Betrieb ist. Allerdings könnten weitere Funktionen gefordert werden, die neue (also weitere) Commands / Nutzeraktionen erforderlich machen.\\
+	(+) Das Entwurfsmuster selbst legt zwar eine grobe Struktur nahe, da wir uns aber selbst für die Verwendung des Command-Patterns entschiedenen haben und wir die konkrete Commands / Nutzeraktionen selbst definieren können, schätzen wir die Flexibilität als eher hoch ein. Die Flexibilität ist nicht sehr hoch, weil die von uns entworfenen Commands konkret vorgegebene Anforderungen abdecken müssen. & 
+	(o) Wir schätzen die Veränderlichkeit als neutral ein. Dies liegt daran, dass sich an der Verwendung des Entwurfsmusters Command und der sonstigen groben Softwarearchitektur vermutlich kaum etwas ändern wird, wenn die Software erst einmal im Betrieb ist. Allerdings könnten weitere Funktionen gefordert werden, die neue (also weitere) Commands / Nutzeraktionen erforderlich machen.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Command-Objekte in unserer Datenbank speichern. Dies wirkt sich auf die Erstellung eines Protokolls von Nutzerinteraktionen aus und ist auch von Bedeutung für die grundlegende Softwarearchitektur.}}\\ [3ex]\hline
@@ -524,10 +524,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{j}{P\tone.\two}: JavaFX }} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Bei JavaFX handelt es sich um ein Framework, das die Erstellung von graphischen Benutzeroberflächen unterstützt. Besonders im Vergleich zu anderen Oberflächengestaltungsframeworks und -sprachen ist, dass die mit JavaFX erstellten Oberflächen sehr interaktiv sein können. JavaFX stellt außerdem Swing-Nodes zur Verfügung, in welche Swing-Komponenten eingefügt werden können. Damit stellt die Verwendung dieses Frameworks die Voraussetzung für den Einsatz von dem auf Swing basierenden JUNG-Framework dar.} }\rule{0pt}{10ex}\\ [7ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Bei JavaFX handelt es sich um ein Framework, das die Erstellung von graphischen Benutzeroberflächen unterstützt. Besonders, im Vergleich zu anderen Oberflächengestaltungsframeworks und -sprachen, ist, dass die mit JavaFX erstellten Oberflächen sehr interaktiv sein können. JavaFX stellt außerdem Swing-Nodes zur Verfügung, in welche Swing-Komponenten eingefügt werden können. Damit stellt die Verwendung dieses Frameworks die Voraussetzung für den Einsatz von dem auf Swing basierenden JUNG-Framework dar.} }\rule{0pt}{10ex}\\ [7ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-	(o) Die Verwendung von JUNG ist uns zwar nicht vorgeschrieben worden, wird von uns jedoch angestrebt. Da (wie eben beschrieben) JavaFX benötigt wird, um vom JUNG-Framework Gebrauch machen zu können, und wir die GUI auch auf eine andere Weise realisieren könnten - und somit auch in diesem Punkt eher flexibel sind - kommen wir insgesamt auf eine mittlere Flexibilität. &
-	(--) Der Einsatz von JavaFX wird uns mit an Sicherheit grenzender Wahrscheinlichkeit nicht untersagt werden (sodass die GUI weiterhin damit umgesetzt werden kann) und Swing-Node, das die Basis für JUNG ist, wird weiterhin auf JavaFX basieren.\\
+	(o) Die Verwendung von JUNG ist uns zwar nicht vorgeschrieben worden, wird von uns jedoch angestrebt. Da (wie eben beschrieben) JavaFX gut geeignet ist, um vom JUNG-Framework Gebrauch zu machen, wir die GUI aber auch auf eine andere Weise realisieren könnten - und somit in diesem Punkt eher flexibel sind - kommen wir insgesamt auf eine mittlere Flexibilität. &
+	(--) Der Einsatz von JavaFX wird uns mit an Sicherheit grenzender Wahrscheinlichkeit nicht untersagt werden, sodass die GUI weiterhin damit umgesetzt werden kann. Ebenso wird Swing-Node, das die Basis für JUNG ist,  weiterhin auf JavaFX basieren.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
 	\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Teile unseres Systems - in erster Linie den Aufbau der GUI - mittels JavaFX realisieren. } }\\ [2ex]\hline
@@ -537,13 +537,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{k}{P\tone.\two}: JUNG }} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{JUNG (Java Universal Network/Graph) ist ein Framework, das wie der Name bereits erahnen lässt der Erstellung von Graphen und dem Umgang mit denselben dient. Hierzu bietet es Implementierungen, die Funktionalität bereitstellen, um beispielsweise einen Graphen zu erzeugen und dessen Struktur (wie das Ausmaß der Vernetzung von Knoten) zu analysieren. Dieser Einflussfaktor resultiert aus der Strategie JUNG, für die wir uns im Rahmen der Problemkarten „Visualisierung, Editierung und Interaktion mit dem Graphen“ und „Auswertung von Grapheigenschaften“  entschieden haben.} }\rule{0pt}{9ex}\\ [3ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{JUNG (Java Universal Network/Graph) ist ein Framework, das wie der Name bereits erahnen lässt, der Erstellung von Graphen und dem Umgang mit denselben dient. Hierzu bietet es Implementierungen, die Funktionalität bereitstellen, um beispielsweise einen Graphen zu erzeugen und dessen Struktur zu analysieren. Dieser Einflussfaktor resultiert aus der Strategie JUNG, für die wir uns im Rahmen der Problemkarten \glqq Visualisierung, Editierung und Interaktion mit dem Graphen\grqq{} und \glqq Auswertung von Grapheigenschaften\grqq{}  entschieden haben.} }\rule{0pt}{9ex}\\ [3ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(+) Da die Verwendung dieses Framewoks nicht vorgeschrieben ist, sondern eine Strategie von uns darstellt, um beispielsweise die geforderten Anforderungen bezüglich der Grapherstellung und Visualisierung umzusetzen, sind wir sehr flexibel, was die Verwendung dieses Frameworks angeht. Außerdem ist es uns überlassen, welche Teile des Frameworks wir einsetzen werden. Somit ist dieser Einflussfaktor sehr flexibel. & 
-	(--) Da wir weder denken, dass dieses Framework zu einem beliebigem Zeitpunkt kostenpflichtig wird (was dazu führen würde, dass wir es im Rahmen des Moduls Softwareprojekt 2 nicht mehr verwenden dürften), noch glauben, dass Anforderungen hinzukommen, die den Einsatz des Frameworks auch für die bisherigen Anforderungen unmöglich macht, stufen wir die veränderlichkeit als sehr gering ein. \\
+	(--) Da wir weder denken, dass dieses Framework zu einem beliebigem Zeitpunkt kostenpflichtig wird (was dazu führen würde, dass wir es im Rahmen des Moduls Softwareprojekt 2 nicht mehr verwenden dürften), noch glauben, dass Anforderungen hinzukommen, die den Einsatz des Frameworks auch für die bisherigen Anforderungen unmöglich macht, stufen wir die Veränderlichkeit als sehr gering ein. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponeten aufbaut. Wir werden JUNG in unsere JavaFX Anwendung integrieren. } }\\ \hline
+	\multicolumn {2}{|l|} {\parbox{16cm}{Wir werden wesentliche Bestandteile unserer Anwendung mit dem JUNG-Framework realisieren. JUNG ist ein Framework, welches bei der Visualisierung auf Swing- Komponenten aufbaut. Wir werden JUNG in unsere JavaFX Anwendung integrieren. } }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -558,23 +558,23 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wie bei der Begriffserklärung zu \hyperlink{Sphaere}{Sphäre} beschrieben, sollen diese Flächen im Graphen als zusammenhängende, nicht-überlappende Bereiche dargestellt werden, die durch Linien voneinander abgetrennt werden.} }\rule{0pt}{5ex}\\ [2ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(-) Mit den möglichen visuellen Eigenschaften und Werten von Sphären halten wir diesen Einflussfaktor für eher unflexibel. & 
-	(–) Da der \hyperlink{Syndromansatz}{Syndromansatz} ein Modell darstellt (und Modelle im Allgemeinen nur dann einen weitreichenden Sinn haben, wenn sie beständig sind), gehen wir davon aus, dass sich die Anforderungen hierzu nicht ändern werden. Deshalb stufen wir die Veränderlichkeit als sehr gering ein.\\
+	(–) Da der \hyperlink{Syndromansatz}{Syndromansatz} ein Modell darstellt und Modelle im Allgemeinen nur dann einen weitreichenden Sinn haben, wenn sie beständig sind, gehen wir davon aus, dass sich die Anforderungen hierzu nicht ändern werden. Deshalb stufen wir die Veränderlichkeit als sehr gering ein.\\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{In unserem System muss es die Möglichkeit geben Sphären (wie gefordert) erstellen zu können, wobei Überlappungen automatisch vermieden werden.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{In unserem System muss es die Möglichkeit geben Sphären wie gefordert erstellen zu können, wobei Überlappungen automatisch vermieden werden. \\} }\\ \hline
 \end{tabular}
 \\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{o}{P\tone.\ttwo.\three}: Linienart/-dicke Kanten flexibel}} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Diese Kanten, auf die sich dieser Einflussfaktor bezieht, sind die Kanten im Sinne der Relationen und nicht etwa die Linien, mit denen die Sphären voneinander abgetrennt werden (und die umgangssprachlich eventuell mit Kanten verwechselt werden könnten). Die Linienarten sowie -dicken werden vom Kunden vorgegeben und sind fest. Das \glqq flexibel\grqq  im Namen dieses Einflussfaktors stammt vom Plural \glqq Kantenarten\grqq / \glqq Kantendicken\grqq. Der Nutzer soll also aus einer fest definierten Vorauswahl wählen können. Die Farben der Kanten können jedoch frei von den Nutzern festgelegt werden.} }\rule{0pt}{11ex}\\ [9ex] \hline
+	\multicolumn{2}{|l|}{\parbox{16cm}{Diese Kanten, auf die sich dieser Einflussfaktor bezieht, sind die Kanten im Sinne der Relationen und nicht etwa die Linien, mit denen die Sphären voneinander abgetrennt werden. Die Linienarten sowie -dicken werden vom Kunden vorgegeben und sind fest. Das \glqq flexibel\grqq{} im Namen dieses Einflussfaktors stammt vom Plural \glqq Kantenarten\grqq / \glqq Kantendicken\grqq. Der Nutzer soll also aus einer fest definierten Vorauswahl wählen können. Die Farben der Kanten können jedoch frei von den Nutzern festgelegt werden.} }\rule{0pt}{11ex}\\ [9ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(--) Die Flexibilität dieses Einflussfaktors ist sehr gering. Dies liegt daran, dass sowohl die Linienarten als auch die Liniendicken genau vorgegeben werden. & 
 	(--) Da es sich beim Syndromansatzes um ein Modell handelt (und ein Modell unserer Meinung nach nur mit einer gewissen Beständigkeit bezüglich Inhalt und Darstellung sinnvoll ist), denken wir nicht, dass sich die Vorgaben zu den Linieneigenschaften ändern werden. Deshalb stufen wir die Veränderlichkeit dieses Einflussfaktors als sehr gering ein. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Die Kanten werden die vom Kunden geforderten Eigenschaften bezüglich Linienart und -dicke besitzen.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Die Kanten werden die vom Kunden geforderten Eigenschaften bezüglich Linienart und -dicke besitzen. \\} }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -594,15 +594,15 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
-	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{q}{P\tone.\ttwo.\three}: gerichtete Kanten (3 Relationstypen)}} } \\ \hline\hline 
-	\multicolumn{2}{|l|}{\parbox{16cm}{Relationen sind gerichtete Kanten, die nicht am selben Knoten beginnen und einmünden. Das Ende einer Kante (jenes, das im Zielknoten mündet) wird durch eine spezielle Pfeilspitze dargestellt, abhängig vom Relationstyp. Die Pfeilspitzen werden vom Kunden vorgegeben und sind fest. 
-			Man unterscheidet zwischen den drei Relationstypen (verstärkend mit einer eckigen Pfeilspitze, abschwächend mit einer runden Pfeilspitze und unbekannt mit einem Fragezeichen als Pfeilspitze).} }\rule{0pt}{10ex}\\ [7ex] \hline
+	\rowcolor{color}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\hypertarget{q}{P\tone.\ttwo.\three}: Gerichtete Kanten (3 Relationstypen)}} } \\ \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Relationen sind gerichtete Kanten, die nicht am selben Knoten beginnen und einmünden. Das Ende einer Kante (jenes, das im Zielknoten mündet) wird, abhängig vom Relationstyp, durch eine spezielle Pfeilspitze dargestellt. Die Pfeilspitzen werden vom Kunden vorgegeben und sind fest. 
+			Man unterscheidet zwischen drei Relationstypen: verstärkend mit einer eckigen Pfeilspitze, abschwächend mit einer runden Pfeilspitze und unbekannt mit einem Fragezeichen als Pfeilspitze.} }\rule{0pt}{10ex}\\ [7ex] \hline
 	\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
 	(–) Die Anzahl und das Aussehen der verschiedenen Relationstypen ist genau vorgegeben. Damit ist diese Anforderung unflexibel.&
 	(–) Wir denken nicht, dass sich die Darstellung der bestehenden Relationstypen ändern oder einer der bestehenden Relationstypen wegfallen wird. Außerdem glauben wir nicht, dass ein oder mehr neue Relationstypen erforderlich werden. \\
 	\hline
 	\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-	\multicolumn{2}{|l|} {\parbox{16cm}{Im System muss es die drei geforderten Relationstypen geben, die wie gefordert dargestellt werden.} }\\ \hline
+	\multicolumn{2}{|l|} {\parbox{16cm}{Im System muss es die drei Relationstypen geben, die wie gefordert dargestellt werden.} }\\ \hline
 \end{tabular}
 %\\ \\ \\ \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
