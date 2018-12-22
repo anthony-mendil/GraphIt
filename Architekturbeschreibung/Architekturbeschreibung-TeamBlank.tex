@@ -2458,7 +2458,7 @@ Die Realisierung unserer Anwendung erfolgt durch mehrere Threads. Sowohl die GUI
 		\item der Ersteller gibt den Namen des Graphen an und klickt \textit{Ok}
 	\end{itemize}
 	\\\hline
-	\textbf{Varianten}: Der Ersteller könnte Elemente zu dem Graphen hinzufügen und diese miteinander verknüpfen.
+	\textbf{Varianten}: Der Ersteller könnte Elemente zu dem neu erstelltem Graphen hinzufügen und diese miteinander verknüpfen.
 	\\\hline
 	\textbf{Nachbedingung}: Der Ersteller hat einen Graphen erstellt. Diesen kann der Ersteller nun beliebig bearbeiten und speichern/exportieren.
 	\\\hline
@@ -2467,7 +2467,7 @@ Die Realisierung unserer Anwendung erfolgt durch mehrere Threads. Sowohl die GUI
 \end{tabular}
 \\ \\ \\
 Der eben beschriebene Anwendungsfall ist im folgenden Sequenzdiagramm dargestellt. \\
-Da als Vorbedingung angegeben war, dass der User bereits mit dem Programm gearbeitet hat, sind alle Singleton-Klassen bereits initialisiert und im Projekt verfügbar. \\
+Da als Vorbedingung angegeben war, dass der Benutzer bereits mit dem Programm gearbeitet hat, sind alle Singleton-Klassen bereits initialisiert und im Projekt verfügbar. \\
 Im Laufe des Sequenzdiagramms wird eine \texttt{CreateGraphAction} erzeugt, die bei Ausführung das im Programm aktuelle \texttt{Syndrom}-Objekt mit einem neuen Graphen / Layout belegt. Folgend werden die \texttt{GUI} und der \texttt{DatabaseManager} \textit{benachrichtigt}, dass ein neuer Graph erstellt wurde. \\
 Im Methodenaufruf des \texttt{DatabaseManagers} wird die Graph-Tabelle unserer Datenbank geleert, da unser Programm intern immer nur eine Graph-Repräsentation speichert. \\
 Danach wird ein neuer Graph erstellt und das Syndrom-Objekt als GXL-String in der Graph-Tabelle gespeichert. 
@@ -2496,7 +2496,7 @@ Danach wird ein neuer Graph erstellt und das Syndrom-Objekt als GXL-String in de
 	\\\hline
 	\textbf{Nachbedingung}: Der Bearbeiter hat eine Sphäre hinzugefügt. Danach kann der Bearbeiter weitere Elemente hinzufügen oder den Graphen exportieren.
 	\\\hline
-	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte die Sphäre an eine nicht geeignete Stelle setzen $\rightarrow$ Der Ersteller kann mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und neu setzen. 
+	\textbf{Fehler-/Ausnahmefälle}:  Der Bearbeiter könnte die Sphäre an eine ungünstige Stelle setzen $\rightarrow$ Der Ersteller kann mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und mit dem \textit{Sphäre hinzufügen}-Button neu setzen. 
 	\\\hline
 \end{tabular}
 \\ \\ \\
@@ -2622,7 +2622,7 @@ Nun möchte der Bearbeiter seine letzte Aktion, also die Änderung des Relations
 	\\\hline
 	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter Exporte verschiedener Versionen hat.
 	\\\hline
-	\textbf{Nachbedingung}: Der Graph ist nun als PDF exportiert. Die OOF-Datei kann der Bearbeiter nun weitergeben, sodass jemand anderes den Graphen ausdrucken kann.
+	\textbf{Nachbedingung}: Der Graph ist nun als PDF exportiert. Die PDF-Datei kann der Bearbeiter nun weitergeben, sodass jemand anderes den Graphen ausdrucken kann.
 	\\\hline
 	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte einen falschen Pfad angeben $\rightarrow$ das System warnt den Bearbeiter und der Bearbeiter kann es erneut versuchen.
 	\\\hline
