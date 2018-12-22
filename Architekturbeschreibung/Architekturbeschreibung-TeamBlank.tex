@@ -1351,7 +1351,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{fff}{S22 - JUNG}}}: \\
 			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
 			\textbf{S23 - NEO4J}: \\
-			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
+			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithmen bereits zur Verfügung. \\
 			\textbf{\cb{\hypertarget{eigeneImplementierung}{S24 - eigene Implementierung}}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.\\
 			\textbf{\cb{\hypertarget{xxx}{S25 - JGraphT}}}:\\
@@ -1364,7 +1364,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Die Funktionalität des Systems basiert bereits teilweise auf \cb{JUNG} basiert, weswegen des sehr praktisch wäre die von \cb{JUNG} zur Verfügung gestellten Algorithmen für die Graphauswertung zu benutzen. Diese Algorithmen decken aber nicht den Funktionsumfang den wir benötigen.\\
-	Zur Graphrepräsentation verwenden wir im System GXL- Datein, die in der Embedded Database gespeichert sind und klasseninterne Strukturen. Eine \cb{NEO4J Datenbank} zeitweise zu erstellen, welche ebenfalls die Daten des Graphs beinhaltet, erhöht die Fehleranfälligkeit unseres Systems, da alle Graphrepräsenationen zu jedem Zeitpunkt konsistent sein müssen. Deswegen entscheiden wir uns gegen \cb{S23}. \\
+	Zur Graphrepräsentation verwenden wir im System GXL- Dateien, die in der Embedded Database gespeichert sind und klasseninterne Strukturen. Eine \cb{NEO4J Datenbank} zeitweise zu erstellen, welche ebenfalls die Daten des Graphs beinhaltet, erhöht die Fehleranfälligkeit unseres Systems, da alle Graphrepräsenationen zu jedem Zeitpunkt konsistent sein müssen. Deswegen entscheiden wir uns gegen \cb{S23}. \\
 	\cb{JGraphT} implementiert die meisten Algorithmen, die wir für die Graphauswertung benötigen. Für die Visualisierung des Graphen haben wir uns zwar gegen JGraphT entschieden, dennoch bietet dieses Framework eine großes Potenzial in Bezug auf Graphalgorithmen. Deswegen werden wir JGraphT zur Unterstützung bei der Graphauswertung hinzuziehen. \\
 	Algorithmen, die weder JGraphT, noch JUNG zur Verfügung stehen, werden die Entwickler implementieren.
 \end{onehalfspace}
@@ -1493,7 +1493,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S32 - CSV} \\
 			Die Nutzerinteraktionen könnten aus der Datenbank abgefragt und die aus der Datenbank erhaltenen Objekte könnten dann in je eine Zeile der Character-seperated-Value (CSV) -Datei geschrieben werden. Die Informationen / Werte der einzelnen Objekte würden dann entsprechend durch ein festzulegendes Zeichen voneinander getrennt werden. \\
 			\textbf{\cb{\hypertarget{jjj}{S33 - JavaScript Object Notation (.json)}}} \\
-			JSON ist eine Notation, die sowohl von Menschen gelesen als auch von Maschinen interpretiert werden kann. Dabei kann die Information (die in JavaScript Object Notation enthalten ist) von der Programmiersprche unseres Systems (Java) unabhängig gewonnen werden. Es ist also möglich eine JSON-Datei später beispielsweise über ein Python-Script einzulesen.
+			JSON ist eine Notation, die sowohl von Menschen gelesen als auch von Maschinen interpretiert werden kann. Dabei kann die Information (die in JavaScript Object Notation enthalten ist) von der Programmiersprache unseres Systems (Java) unabhängig gewonnen werden. Es ist also möglich eine JSON-Datei später beispielsweise über ein Python-Script einzulesen.
 	} }\\ \hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
 	\textbf{\hyperlink{www}{S63 - Jackson}}&
@@ -1627,7 +1627,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{mmm}{S38 - Scene- Builder}}}: \\
-			Mit Hilfe des Scene-Builders kann der Entwickler JavaFX Benutzeroberflächen \glqq zusammenklicken\grqq{} und diese als FXML exportieren.  \\
+			Mit Hilfe des Scene-Builders kann der Entwickler JavaFX Benutzeroberflächen zusammensetzen und diese als FXML exportieren.  \\
 			\textbf{S39 - eigens implementieren}: \\
 			Auf dem JavaFX- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
 	} }\\ [6ex] \hline
@@ -1643,7 +1643,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
-	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{16: Begrenzter Funktionsumfang durch Bearbeitszeit}}} \\  \hline\hline 
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{16: Begrenzter Funktionsumfang durch Bearbeitungszeit}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Durch den begrenzten Zeitraum unseres Projektes, können auch nur begrenzt Funktionen in unsere System eingebaut werden.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {n}{Sphären} &
@@ -1859,7 +1859,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{sss}{S53 - Layouts in Layouts}}}: \\
 			Unterteilung in 2 Layouts. Eines um das Layout innerhalb der Sphären zu berechnen und ein weiteres, um die beste Anordnung der Sphären zu berechnen. \\
 			\textbf{\cb{\hypertarget{xee}{S54 - JUNG Layouts}}}: \\
-			Von JUNG zur Verfügung gestelle Layouts einbinden. \\
+			Von JUNG zur Verfügung gestellte Layouts einbinden. \\
 			\textbf{\cb{\hypertarget{xff}{S55 - Eigenes Layout}}}: \\
 			Layout selber erstellen
 	} }\\ [6ex] \hline
@@ -2004,7 +2004,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \multicolumn{2}{|l|}{Lösungen} \\
 \multicolumn{2}{|l|}{\parbox{16cm}{
 	\textbf{\cb{\hypertarget{www}{S63 - Jackson}}}: \\
-	Mit Jackson können Objekte gelesen und deren Informationen ins JSON-Format überführt werden. Dies erlaubt die Überführung von Objekten in einen strukturierten String, der zu einem späteren Zeitpunkt leicht gelesen werdn kann.\\
+	Mit Jackson können Objekte gelesen und deren Informationen ins JSON-Format überführt werden. Dies erlaubt die Überführung von Objekten in einen strukturierten String, der zu einem späteren Zeitpunkt leicht gelesen werden kann.\\
 	\textbf{S64 - GSON}: \\
 	Mit GSON können Informationen aus Objekten gelesen werden und ins JSON-Format geparst werden.\\
 	\textbf{S65 - JSONP}: \\
@@ -2015,7 +2015,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\\hline
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
-Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit größter Geschwindigkeit ins JSON-Format überführt werrden können.
+Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit größter Geschwindigkeit ins JSON-Format überführt werden können.
 \end{onehalfspace}
 \newpage
 
@@ -2222,7 +2222,7 @@ Um diese Informationen in das GXL-Format zu überführen, wird im Zuge der Imple
 Durch das \texttt{Template}-Attribut in der \texttt{Syndrom}-Klasse haben Methoden, welche eine GXL-Repräsentation eines Graphen erstellen, aus einem \texttt{Syndrom}-Objekt auch Zugriff auf die Bearbeitungsregeln, denn diese werden in einem Objekt der \texttt{Template}-Klasse hinterlegt.
 Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden, gemäß der Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei}. \\ 
 
-Da wir nicht nur den Graphen isoliert als GXL-Datei exportieren, sondern ihn auch zusammen mit den Nutzerinteraktionen als OOF-Repräsentation bereitstellen wollen, haben wir die Klasse \texttt{OOFio} hinzugefügt. Diese ist ebenfalls im \texttt{io}-Package zu finden. Mit dieser wollen wir die gemeinsame Speicherung der Nutzerinteraktionen mit einem (als GXL-Repräsentation vorliegenden) Graphen realisieren (Startegie \hyperlink{ooo}{S43 - Eigener Datentyp}). \\
+Da wir nicht nur den Graphen isoliert als GXL-Datei exportieren, sondern ihn auch zusammen mit den Nutzerinteraktionen als OOF-Repräsentation bereitstellen wollen, haben wir die Klasse \texttt{OOFio} hinzugefügt. Diese ist ebenfalls im \texttt{io}-Package zu finden. Mit dieser wollen wir die gemeinsame Speicherung der Nutzerinteraktionen mit einem (als GXL-Repräsentation vorliegenden) Graphen realisieren (Strategie \hyperlink{ooo}{S43 - Eigener Datentyp}). \\
 
 Um diesen gemeinsamen Datentyp zu erzeugen, gibt es die Methode \texttt{createOOF()}, die eine GXL-Repräsentation eines Graphen und Nutzerinteraktionen als JSON erhält, wobei diese beiden Parameter je als String übergeben werden. Diese Methode wird benötigt, um die übergebenen Werte zusammenzuführen und zu exportieren. \\
 (\texttt{exportOOF()}) speichert die zusammengeführten Informationen als Datei eines eigenen Datentyps (im \texttt{.oof}-Format), an dem Pfad und mit dem Namen der Datei, den die Methode übergeben bekommt. \\
@@ -2494,7 +2494,7 @@ Danach wird ein neuer Graph erstellt und das Syndrom-Objekt als GXL-String in de
 	\\\hline
 	\textbf{Nachbedingung}: Der Bearbeiter hat eine Sphäre hinzugefügt. Danach kann der Bearbeiter weitere Elemente hinzufügen oder den Graphen exportieren.
 	\\\hline
-	\textbf{Fehler-/Ausnahmefälle}:  Der Bearbeiter könnte die Sphäre an eine ungünstige Stelle setzen $\rightarrow$ Der Ersteller kann mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und mit dem \textit{Sphäre hinzufügen}-Button neu setzen. 
+	\textbf{Fehler-/Ausnahmefälle}:  Der Bearbeiter könnte die Sphäre an eine ungünstige Stelle setzen $\rightarrow$ Der Bearbeiter kann mithilfe des \textit{Sphäre löschen}-Buttons die Sphäre löschen und mit dem \textit{Sphäre hinzufügen}-Button neu setzen. 
 	\\\hline
 \end{tabular}
 \\ \\ \\
@@ -2549,11 +2549,10 @@ Hierzu werden dem \texttt{LogDao} das \texttt{Log}-Objekt und seine Parameter ü
 	\\\hline
 \end{tabular}\\ \\ \\
 
-Auch hier sind wie im Anwendungsfall oben alle Singleton-Objekte schon initialisiert. Zu Beginn des Anwendungsfalls klickt der Bearbeiter auf den Button \texttt{Knoten hinzufügen}. Die Benutzeroberfläche reagiert darauf mit dem Schreiben des \texttt{GraphButtonTyp} in \texttt{Values}, um dem \texttt{PickingGraphMouseEditSyndromPlugin} zu signalisieren, was bei einem Klick auf den \texttt{VisualisationViewer} passiert.\\
+Auch hier sind wie im Anwendungsfall oben alle Singleton-Objekte schon initialisiert. Zu Beginn des Anwendungsfalls klickt der Bearbeiter auf den Button \texttt{Knoten hinzufügen}. Die Benutzeroberfläche reagiert darauf mit dem Schreiben des \texttt{GraphButtonTyp} in \texttt{Values}, um dem \\\texttt{PickingGraphMouseEditSyndromPlugin} zu signalisieren, was bei einem Klick auf den \\\texttt{VisualisationViewer} passiert.\\
 Die Aktion \texttt{AddVerticesLogAction} wird erstellt und, wie bei allen anderen Actions auch, von der \texttt{ActionHistory} ausgeführt. Durch die \texttt{GraphObjectFactory} wird der Knoten erstellt und dem Graphen hinzugefügt. Während der Action wird das Parameterobjekt \texttt{AddVerticesParam} erstellt und an die Action abgegeben.\\  
 Da sich der Graph verändert hat, müssen wie im oberen Fall auch der \texttt{DatabaseManager} und die Benutzeroberfläche benachrichtigt werden. Nach jeder Action, also auch nach dieser, wird der Graph neu als GXL-String in die Datenbank persistiert. Auch muss für die Protokollierung des Nutzerverhaltens eine neue \texttt{Log} erstellt und in die Datenbank persistiert werden. Dem \texttt{LogDao} werden wieder die Log und die Parameter übergeben. Die Parameter werden zu einem JSON-String konvertiert und mit dem Log mithilfe von Hibernate in die Datenbank gespeichert.\\
-Nun besteht noch die Action, bei dem ein Benutzer den bestehenden Graphen als OOF exportiert. Bei dem Klick auf den Button \textit{Exportieren als} $\rightarrow$ \textit{OOF}, öffnet die \texttt{GUI} ein Dialogfenster, bei dem der Nutzer einen validen Pfad eingeben und mit dem Button \textit{Exportieren} seine Ausführungsabsicht bestätigen muss. \\
-Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Ein neues Objekt der Klasse \texttt{OOFIo} wird erstellt. Von dem Objekt wird eine neue \texttt{GXLIo} kreiert, welche den Graphen als GXL-String zurückliefert. Die \texttt{Log}-Einträge werden von dem \texttt{LogDao} und die Parameterobjekte von dem bestehenden \texttt{ObjectMapper} in Strings umgewandelt. In der \texttt{OOFIo} werden dann alle Strings mit der Methode \texttt{createOOf()} zu dem neuen Datentyp fusioniert und abgespeichert.  
+Nun besteht noch die Action, bei dem ein Benutzer den bestehenden Graphen als OOF exportiert. Bei dem Klick auf den Button \textit{Exportieren als} $\rightarrow$ \textit{OOF}, öffnet die \texttt{GUI} ein Dialogfenster, bei dem der Nutzer einen validen Pfad eingeben und mit dem Button \textit{Exportieren} seine Ausführungsabsicht bestätigen muss. Die neue Action \texttt{exportOofAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Ein neues Objekt der Klasse \texttt{OOFIo} wird erstellt. Von dem Objekt wird eine neue \texttt{GXLIo} kreiert, welche den Graphen als GXL-String zurückliefert. Die \texttt{Log}-Einträge werden von dem \texttt{LogDao} und die Parameterobjekte von dem bestehenden \texttt{ObjectMapper} in Strings umgewandelt. In der \texttt{OOFIo} werden dann alle Strings mit der Methode \texttt{createOOf()} zu dem neuen Datentyp fusioniert und abgespeichert.  
 
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{3. Sequenzdiagramm},\pagestyle{fancy}}]{third.pdf}
