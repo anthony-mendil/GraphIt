@@ -2609,7 +2609,7 @@ Nun möchte der Bearbeiter seine letzte Aktion, also die Änderung des Relations
 	\hline
 	\textbf{Akteure}: Bearbeiter
 	\\\hline
-	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Die GXL-Datei ist schon importiert. Es existiert eine Sphäre und ein Knote in der Sphäre.\\ 
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Die GXL-Datei ist schon importiert. Es existiert eine Sphäre und ein Knoten in der Sphäre.\\ 
 	\textit{Ziel}: Graphen exportieren.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
@@ -2622,14 +2622,14 @@ Nun möchte der Bearbeiter seine letzte Aktion, also die Änderung des Relations
 	\\\hline
 	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter Exporte verschiedener Versionen hat.
 	\\\hline
-	\textbf{Nachbedingung}: Der Graph ist nun als PDF exportiert. Die OOF-Datei kann der Bearbeiter nun weitergeben, sodass jemand anderes den ausdrucken kann.
+	\textbf{Nachbedingung}: Der Graph ist nun als PDF exportiert. Die OOF-Datei kann der Bearbeiter nun weitergeben, sodass jemand anderes den Graphen ausdrucken kann.
 	\\\hline
 	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte einen falschen Pfad angeben $\rightarrow$ das System warnt den Bearbeiter und der Bearbeiter kann es erneut versuchen.
 	\\\hline
 \end{tabular}\\ \\ \\
 
 Das folgende Sequenzdiagramm stellt den Fall dar, bei dem ein Benutzer den bestehenden Graphen als PDF exportiert. Klickt also der Benutzer auf den Button \textit{Exportieren als} $\rightarrow$ \textit{PDF}, reagiert darauf \texttt{GUI} mit einem Dialogfenster, bei dem der Nutzer einen validen Pfad eingeben und mit dem Button \textit{Exportieren} dies bestätigen muss. \\
-Eine neue Action \texttt{exportPdfAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Von Syndrom wird der \texttt{VisualisationViewer} geholt und an die Action übergeben. Mithilfe dieser Information wird eine neues Objekt von der Klasse \texttt{PDFIo} erstellt und initialisiert. Weiter im Verlauf der Action wird mithilfe der Methode \texttt{exportPDF()} ein neuer \texttt{ExportDialog} erstellt und darauf die Methode ausgeführt, die die PDF erstellt.\\ \\
+Eine neue Action \texttt{exportPdfAction} wird erstellt und wieder durch die \texttt{ActionHistory} ausgeführt. Von Syndrom wird der \texttt{VisualisationViewer} geholt und an die Action übergeben. Mithilfe dieser Information wird ein neues Objekt von der Klasse \texttt{PDFIo} erstellt und initialisiert. Weiter im Verlauf der Action wird mithilfe der Methode \texttt{exportPDF()} ein neuer \texttt{ExportDialog} erstellt und darauf die Methode ausgeführt, die die PDF erstellt.\\ \\
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{5. Sequenzdiagramm},\pagestyle{fancy}}]{fifth.pdf}
 
