@@ -2438,18 +2438,18 @@ Die Realisierung unserer Anwendung erfolgt durch mehrere Threads. Sowohl die GUI
 \section[Zusammenhänge zwischen Anwendungsfällen und Architektur]{Zusammenhänge zwischen Anwendungsfällen und Architektur\sectionmark{Zusammenhänge AF u. Architektur}}
 \sectionmark{Zusammenhänge AF u. Architektur}
 \label{sec:anwendungsfaelle}
-\emph{Autoren: Jacky Philipp Mach, Jonah Jaeger, Clement Phung, Anthony Mendil, Nina Unterberg, Jonah Jaeger}\\ \\
+\emph{Autoren: Clement Phung, Anthony Mendil, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}\\ \\
 
-\subsection{Anwendungsfall: Ein Lehrer erstellt einen Syndromansatz}
+\subsection{Anwendungsfall: Ein Lehrer erstellt ein Syndrom}
 
 \begin{tabular} {|p{16cm}|}
 	\hline
-	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndromansatz}} \\\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndrom}} \\\hline
 	\hline
 	\textbf{Akteure}: Ersteller
 	\\\hline
 	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Der Ersteller hat schon vorher mit dem Programm gearbeitet. \\
-	\textit{Ziel}: Einen neuen Syndromansatz erstellen.
+	\textit{Ziel}: Ein neues Syndrom erstellen.
 	\\\hline
 		\textbf{Regulärer Ablauf}: \begin{itemize}
 		\itemsep-0.5em
@@ -2460,17 +2460,17 @@ Die Realisierung unserer Anwendung erfolgt durch mehrere Threads. Sowohl die GUI
 	\\\hline
 	\textbf{Varianten}: Der Ersteller könnte Elemente zu dem Graphen hinzufügen und diese miteinander verknüpfen.
 	\\\hline
-	\textbf{Nachbedingung}: Der Ersteller hat einen Graph erstellt. Dieser Graph kann der Ersteller nun beliebig bearbeiten und speichern/exportieren.
+	\textbf{Nachbedingung}: Der Ersteller hat einen Graphen erstellt. Diesen kann der Ersteller nun beliebig bearbeiten und speichern/exportieren.
 	\\\hline
 	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller könnte vergessen den alten Graphen zu speichern, sodass beim Erstellen des neuen Graphen der alte Graph überschrieben wird.
 	\\\hline
 \end{tabular}
 \\ \\ \\
-Der eben beschriebene Anwendungsfall ist im dem folgenden Sequenzdiagramm dargestellt. \\
-Da als Vorbedingung angegeben war, dass der User bereits mit dem Programm gearbeitet hat, sind alle Singleton Klassen bereits initialisiert und im Projekt verfügbar. \\
-Im Laufe des Sequenzdiagramms wird eine \texttt{CreateGraphAction} erzeugt, die bei Ausführung, das im Programm aktuelle Syndrom Objekt mit einem neuen Graphen/ Layout belegt. Folgend werden die \texttt{GUI} und der \texttt{DatabaseManager} \textit{benachrichtigt}, dass ein neuer Graph erstellt wurde. \\
-Im Methodenaufruf des \texttt{DatabaseManagers} wird die Graph- Tabelle unserer Datenbank geleert, da unser Programm intern immer nur eine Graph Repräsentation speichert. \\
-Danach wird ein neuer Graph erstellt und das Syndrom Objekt, als Gxl- String in der Graph- Tabelle gespeichert. 
+Der eben beschriebene Anwendungsfall ist im folgenden Sequenzdiagramm dargestellt. \\
+Da als Vorbedingung angegeben war, dass der User bereits mit dem Programm gearbeitet hat, sind alle Singleton-Klassen bereits initialisiert und im Projekt verfügbar. \\
+Im Laufe des Sequenzdiagramms wird eine \texttt{CreateGraphAction} erzeugt, die bei Ausführung das im Programm aktuelle \texttt{Syndrom}-Objekt mit einem neuen Graphen / Layout belegt. Folgend werden die \texttt{GUI} und der \texttt{DatabaseManager} \textit{benachrichtigt}, dass ein neuer Graph erstellt wurde. \\
+Im Methodenaufruf des \texttt{DatabaseManagers} wird die Graph-Tabelle unserer Datenbank geleert, da unser Programm intern immer nur eine Graph-Repräsentation speichert. \\
+Danach wird ein neuer Graph erstellt und das Syndrom-Objekt als GXL-String in der Graph-Tabelle gespeichert. 
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{1. Sequenzdiagramm},\pagestyle{fancy}}]{first_.pdf}
 
