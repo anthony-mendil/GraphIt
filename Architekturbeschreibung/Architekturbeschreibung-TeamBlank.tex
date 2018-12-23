@@ -2390,6 +2390,8 @@ Den größten Teil des Packages \texttt{algorithmen} nimmt das Package \texttt{p
 
 Zusätzlich gibt es nur drei \textit{Enum}-Klassen. Diese verwenden wir um zu differenzieren, welche Filterung des Graphen durchgeführt werden soll. Bei einer Filterung auf Grundlage \texttt{AnalyseTypeSeveral}-Enumerationskonstanten, können mehrere kombiniert werden, sodass eine kombinierte Filterung ausgeführt wird. Bei \texttt{AnalyseTypeSingle}-Enumerationskonstanten immer nur genau eine. \texttt{SelectionType} beschreibt die verschiedenen Selektionsarten. \\
 
+Außerdem haben wir das Package \texttt{graph.algorithmen} so strukturiert, dass eine übersichtliche Darstellung des Graphen gemäß der Strategien \hyperlink{sss}{S53 - Layouts in Layouts}, \hyperlink{xee}{S54 - JUNG Layouts} und \hyperlink{xff}{S55 - Eigenes Layout} bereitgestellt werden kann. \\
+
 \texttt{algorithmen} importiert Klassen des Packages \texttt{graph}, da bei einer Filterung die Klasse natürlich Zugriff auf die Objekte benötigt, die gefiltert werden sollen.\\
 
 In der folgenden Abbildung ist das Package \texttt{graph.algorithmen} mit seinen Abhängigkeiten dargestellt. Da wir thematisch bei Auswertung sind, folgt im nächsten Abschnitt eine Beschreibung des Moduls \texttt{jgrapht}.
