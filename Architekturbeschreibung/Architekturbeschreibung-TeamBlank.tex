@@ -1052,7 +1052,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Wir haben uns für \cb{S1 - GXL} entschieden. \\ 
-	Das Speichern einer \cb{NEO4J- DB als BLOB (S2)} ist problematisch, da diese Lösung besonders fehleranfällig ist. Durch einen Bitkipper in dem BLOB könnte es sein, dass wir die Datenbank nicht wieder herstellen könnten, was mit einem Datenverlust verbunden wäre. Auch wäre dieses Dateiformat nicht von ‘außen’ einsehbar, da es große binäre Datenobjekte sind. Die Informationen zum Graphen, die als BLOB vorliegen, sind damit ausschließlich im engen System-Kontext nutzbar. Die Speicherung der Daten in einem BLOB in einer Embedded Database stellt ein Problem für uns dar, da wir keine Möglichkeit haben, Eigenschaften des Graphen einzusehen ohne das BLOB wieder umzuwandeln oder ohne die NEO4J Datenbank zu laden, in der der Graph zusätzlich gespeichert werden würde. Auch die Benutzer hätten bei einem Systemfehler keine Chance den Graphen von ‘außen’ wiederherzustellen. \cb{S1 - GXL} bietet diese Möglichkeit, da wir die \cb{GXL} als text/plain in der Datenbank speichern. \\ 
+	Das Speichern einer \cb{NEO4J- DB als BLOB (S2)} ist problematisch, da diese Lösung besonders fehleranfällig ist. Durch einen Bitkipper in dem BLOB könnte es sein, dass wir die Datenbank nicht wieder herstellen könnten, was mit einem Datenverlust verbunden wäre. Auch wäre dieses Dateiformat nicht von \glqq außen\grqq{} einsehbar, da es große binäre Datenobjekte sind. Die Informationen zum Graphen, die als BLOB vorliegen, sind damit ausschließlich im engen System-Kontext nutzbar. Die Speicherung der Daten in einem BLOB in einer Embedded Database stellt ein Problem für uns dar, da wir keine Möglichkeit haben, Eigenschaften des Graphen einzusehen ohne das BLOB wieder umzuwandeln oder ohne die NEO4J Datenbank zu laden, in der der Graph zusätzlich gespeichert werden würde. Auch die Benutzer hätten bei einem Systemfehler keine Chance den Graphen von \glqq außen\grqq{} wiederherzustellen. \cb{S1 - GXL} bietet diese Möglichkeit, da wir die \cb{GXL} als text/plain in der Datenbank speichern. \\ 
 	Der Vorteil von \cb{S3 - Datenmodell} ist, dass wir die Datenbank gezielt zu Grapheigenschaften abfragen können. Dieser Vorteil wird aber dadurch aufgehoben, dass eine Graphdatenbank diese Abfragen strukturierter verarbeiten kann und das eine Graphdatenbank schon vorgefertigte Algorithmen kennt. Dies würde wiederum für \cb{S2} sprechen. Diese Strategie besitzt jedoch die bereits genannten Nachteile. \\
 	Mit der Entscheidung gegen \cb{S2} ist somit \cb{S1} für uns die am besten geeignete Strategie.
 \end{onehalfspace}
@@ -1193,7 +1193,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{ccc}{S11 - (System-) Biblotheken}}}: \\
-			Das nutzen von Bibliotheken unterstützt den Entwickler, da bereits bestehende Funktionen genutzt werden können.\\
+			Das Nutzen von Bibliotheken unterstützt den Entwickler, da bereits bestehende Funktionen genutzt werden können.\\
 			\textbf{\cb{\hypertarget{aaaf}{S12 - Dokumentierte Bibliotheken}}}: \\
 			Dokumentierte Bibliotheken helfen bei der Verständnis von unbekannten Methoden \\
 			\textbf{\cb{\hypertarget{modelviewcontroller}{S13 - MVC}}}: \\
@@ -2106,10 +2106,10 @@ In der \texttt{GUI}-Komponente wird hauptsächlich das Visuelle unserer Applikat
 Die \texttt{GUI}-Komponente kommuniziert daher mit der Komponente \texttt{JUNG}, wie in \hyperlink{eee}{S19 - JUNG} beschlossen wurde.
 Das Anzeigen des Graphen in der \texttt{GUI} wird, wie in Strategie \hyperlink{lll}{S36 - SwingNode} besprochen, umgesetzt. \\
 
-Über eine control-Schnittstelle kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Command}-Komponente für die Interaktion des Users mit dem Graphen. Die Commands werden also mit den GUI-Interaktionen verknüpft.
+Über eine Control-Schnittstelle kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Command}-Komponente für die Interaktion des Users mit dem Graphen. Die Commands werden also mit den GUI-Interaktionen verknüpft.
 Außerdem kommuniziert die \texttt{GUI}-Komponente mit der \texttt{Datamodel}-Komponente, um das Protokoll der Nutzerinteraktion in der GUI zu visualisieren und darstellen zu können. \\
 
-In der \texttt{Command}-Komponente befindet sich die meiste Logik unserer Applikation. Sie dient als Schnittstelle zwischen allen internen Modulen und ist daher mit allen Hauptkomponenten über eine control-Schnittstelle verbunden. Zusätzlich besitzt \texttt{Command} auch die Undo-/Redo-Funktionalität. Um die Editierung und Interaktion mit dem Graphen zu ermöglichen, wird über eine control-Schnittstelle die \texttt{JUNG}-Komponente angesprochen. \\
+In der \texttt{Command}-Komponente befindet sich die meiste Logik unserer Applikation. Sie dient als Schnittstelle zwischen allen internen Modulen und ist daher mit allen Hauptkomponenten über eine Control-Schnittstelle verbunden. Zusätzlich besitzt \texttt{Command} auch die Undo-/Redo-Funktionalität. Um die Editierung und Interaktion mit dem Graphen zu ermöglichen, wird über eine Control-Schnittstelle die \texttt{JUNG}-Komponente angesprochen. \\
 
 Die {JUNG}-Komponente beinhaltet alle nötigen Klassen, die für das Rendern, das Filtern und die Visualisierung des Graphen zuständig sind sowie die Funktionalität des Graphen implementieren. Da die auszuführenden Aktionen bei Maus- und Tastatur-Interaktion festgelegt werden müssen, stellt die Komponente hierfür ebenfalls Klassen bereit. Außerdem enthält sie alle Datenklassen, die für die Graph-Visualisierung benötigt werden. \\
 
