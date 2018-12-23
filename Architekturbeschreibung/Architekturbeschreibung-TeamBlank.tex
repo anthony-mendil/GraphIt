@@ -360,7 +360,7 @@ Die Liste der erwähnten Tools/Frameworks ist auf der folgenden Seite dargestell
 	Scene-Builder & \url{https://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-info-2157684.html} & 17.12.2018 \\ \\
 \end{tabular}
 \\ \\ \\
-Im folgenden ist die im Dokument erwähnte Fachliteratur gelistet: \\
+Im folgenden ist die im Dokument erwähnte Fachliteratur gelistet: \\ \\
 \begin{tabular}{p{11cm}p{5cm}}
 	Werk & wird hier erwähnt \\ \hline \\
 	Danny Holten (2006). Hierarchical Edge Bundles: Visualization of Adjacency Relations in Hierarchical Data. In: IEEE Transactions on Visualization and Computer Graphics, 12(5), September 2006, 741-748. ISSN 1077-2626. & \hyperlink{cc}{Überlappung von Knotenenden des selben Relationstyps} \\ \\ 
@@ -1428,7 +1428,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\hyperlink {oo}{Analyse des Graphen} \\
 	\hyperlink {pp}{Auswertung des Graphen} &
 	\hyperlink {rr}{Analyse über einen wählbaren Ausschnitt des Graphen} \\ 
-	\hyperlink {ss}{Filter von Knoten und Kanten} 
+	\hyperlink {ss}{Filter von Knoten und Kanten} &
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
@@ -2125,7 +2125,7 @@ Die \texttt{Handler}-Komponente legt fest, wie die Dateiformate PDF, GXL und OOF
 Die \texttt{GXL}-Komponente stammt von der Bibliothek \textit{SourceForge} und hilft beim Lesen und Erstellen der GXL-Dateien (\hyperlink{ttt}{S56 - Sourceforge Framework}). \\
 Gemäß der Strategie \hyperlink{jjj}{S33 - JavaScript Object Notation (.json)} wird der Ex- und Import von Nutzerinteraktionen in der Komponente \texttt{Handler} mit Hilfe der \texttt{Jackson}-Komponente umgesetzt. Die \texttt{Jackson}-Komponente dient als Schnittstelle für das JSON-Format und unterstützt das System dabei, die Parameter zu importieren und zu exportieren(\hyperlink{www}{S63 - Jackson}).\\
 Auch legt die \texttt{Handler}-Komponente fest, wie die Strategie \hyperlink{ooo}{S43 - Eigener Datentyp} umgesetzt wird und nimmt dabei die \texttt{Jackson}- und die \texttt{GXL}-Komponente zu Hilfe. \\
-Für die Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} besitzt das System die Komponente \texttt{FreeHEB Vectorgraphics} um java.awt.Graphics2D als zahlreiche Formate (z.B. SVG, PDF) zu exportieren, wie erwähnt in \hyperlink{iii}{S30 - Freeheb Vectorgraphics}. Dafür benötigen wir von der \texttt{JUNG}-Komponente nur die Darstellung des Graphen, welches über eine data-Schnittstelle übermittelt wird. Die Grafik wird der \texttt{Handler}-Komponente übergeben und diese setzt das Drucken(\hyperlink{ggg}{S26 - Java API}) und Exportieren der PDF um. \\ 
+Für die Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} besitzt das System die Komponente\\ \texttt{FreeHEB Vectorgraphics} um java.awt.Graphics2D als zahlreiche Formate (z.B. SVG, PDF) zu exportieren, wie erwähnt in \hyperlink{iii}{S30 - Freeheb Vectorgraphics}. Dafür benötigen wir von der \texttt{JUNG}-Komponente nur die Darstellung des Graphen, welches über eine data-Schnittstelle übermittelt wird. Die Grafik wird der \texttt{Handler}-Komponente übergeben und diese setzt das Drucken(\hyperlink{ggg}{S26 - Java API}) und Exportieren der PDF um. \\ 
 
 Um den Graphen auszuwerten, benutzt das System Algorithmen, die bereits von \texttt{JUNG} angeboten werden.(\hyperlink{fff}{S22 - JUNG}). Da diese Komponente jedoch nicht den benötigten Funktionsumfang deckt, haben wir in unsere Applikation auch die \texttt{JGraphT}-Komponente eingebaut, gemäß der beschriebenen Strategie  \hyperlink{xxx}{S25 - JGraphT}. Dafür wird die Struktur des Graphen in der \texttt{JGraphT Handler}-Komponente nach Strategie \hyperlink{umwandlungskomponente}{S68 – eigene Umwandlungskomponente} übersetzt, sodass JGraphT die Informationen zum Berechnen der Graph-Eigenschaften nutzen kann. \\ 
 
