@@ -14,6 +14,9 @@ import java.util.Optional;
  * The graph log_management.dao class. Manages the data access to the graphs.
  */
 public class GraphDao implements Dao<Graph> {
+    /**
+     * The id of the current logged action.
+     */
     protected static int currentId;
     /**
      *  EntityManager instance is associated with the persistence context.

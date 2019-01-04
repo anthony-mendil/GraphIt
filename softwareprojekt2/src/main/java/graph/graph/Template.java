@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * Represents a template, which can be created by the creator(Ersteller).
+ */
 @Data
 public class Template {
 

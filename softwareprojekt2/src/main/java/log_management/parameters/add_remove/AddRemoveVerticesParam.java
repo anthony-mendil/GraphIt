@@ -10,7 +10,7 @@ import lombok.Getter;
 import java.util.Map;
 
 /**
- * Parameter object of the action of AddVerticesLogAction.
+ * Parameter object of the action of AddVerticesLogAction/RemoveVerticesLogAction.
  */
 @Data
 public class AddRemoveVerticesParam extends Param{
@@ -22,8 +22,7 @@ public class AddRemoveVerticesParam extends Param{
 
     /**
      * Creates an parameter object of its own class.
-     *
-     * @param pParameter The set of vertices and their sphere
+     * @param pParameter The set of vertices and their sphere.
      */
     public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter) {
         parameter = pParameter;

@@ -18,7 +18,7 @@ public class LogDao implements Dao<Log> {
     private static EntityManager entityManager = PersonalEntityManager.getInstance();
 
     /**
-     * return A logs object, attribute parameter gets converted from string to object with jackson.
+     * Returns a logs object, attribute parameter gets converted from string to object with jackson.
      * @param id The id of the object to get.
      * @return The log object.
      */
@@ -28,7 +28,7 @@ public class LogDao implements Dao<Log> {
     }
 
     /**
-     * return A list of log objects, attribute parameters gets converted from string to objects with jackson.
+     * Returns a list of log objects, attribute parameters gets converted from string to objects with jackson.
      * @return A list of log objects.
      */
     @Override
@@ -37,7 +37,7 @@ public class LogDao implements Dao<Log> {
     }
 
     /**
-     * return A list of log objects assigned to the graphId, attribute parameters gets converted from string to objects
+     * Returns a list of log objects assigned to the graphId, attribute parameters gets converted from string to objects
      * with jackson.
      * @param graphId The graph id.
      * @return A list of log objects.
@@ -47,7 +47,7 @@ public class LogDao implements Dao<Log> {
     }
 
     /**
-     * return A string (json) containing all logs assigned to the graphId.
+     * Returns a string (json) containing all logs assigned to the graphId.
      * @param graphId The graph id.
      * @return A list of log objects.
      */
@@ -59,6 +59,7 @@ public class LogDao implements Dao<Log> {
      * Converts the attribute parameters into a json string and calls the save method
      * with the log object containing the parameter string (json).
      * @param log The log object to save.
+     * @param parameters The parameter to convert
      */
     public void save(Log log, Param parameters) {
 

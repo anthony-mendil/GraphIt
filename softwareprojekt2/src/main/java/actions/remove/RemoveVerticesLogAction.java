@@ -15,7 +15,8 @@ public class RemoveVerticesLogAction extends LogAction {
     /**
      * All vertices which should be removed.
      */
-    Collection<Vertex> vertices;
+    /* Must be set on private or public */
+    public Collection<Vertex> vertices;
 
     /**
      * Removes all passed vertices from the graph.

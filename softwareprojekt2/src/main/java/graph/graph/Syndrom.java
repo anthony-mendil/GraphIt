@@ -39,7 +39,7 @@ import java.util.HashMap;
 @Data
 public class Syndrom {
     /**
-     * The visualisation viewer of syndrom. It contains the layout and graph.
+     * The visualization viewer of syndrom. It contains the layout and graph.
      */
     //TODO visualisation viewer was final
     private VisualizationViewer<Vertex, Edge> vv;

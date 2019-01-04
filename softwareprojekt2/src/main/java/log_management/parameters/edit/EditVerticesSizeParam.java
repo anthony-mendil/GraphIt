@@ -11,17 +11,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Parameter object of the action EditSphereSizeLogAction.
+ * Parameter object of the action EditVerticesSizeLogAction.
  */
 @Data
 public class EditVerticesSizeParam extends Param{
     /**
-     * The sphere containing its old size
+     * The set of vertices containing their old size.
      */
     @Getter
     private Map<Vertex,Integer> oldVertices;
     /**
-     * The sphere containing its new size
+     * The set of vertices containing their new size.
      */
     @Getter
     private Map<Vertex,Integer> newVertices;
@@ -29,8 +29,8 @@ public class EditVerticesSizeParam extends Param{
 
     /**
      * Creates a parameter object of its own class.
-     * @param pOldVertices The vertices containing its old size.
-     * @param pNewVertices The vertices containing its new size.
+     * @param pOldVertices The vertices containing their old size.
+     * @param pNewVertices The vertices containing their new size.
      */
     public EditVerticesSizeParam(Map<Vertex,Integer> pOldVertices, Map<Vertex,Integer> pNewVertices ) {
         this.oldVertices = pOldVertices;

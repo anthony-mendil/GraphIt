@@ -6,7 +6,9 @@ import java.util.LinkedList;
  * Superclass of all actions.
  */
 public abstract class Action {
-
+    /**
+     * List of all observers that needs to be updated, if an action is called (based on Model-View-Controller pattern).
+     */
     private static LinkedList<ObserverSyndrom> observers;
 
     /**

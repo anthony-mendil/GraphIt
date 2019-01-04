@@ -7,17 +7,17 @@ import lombok.Data;
 import lombok.Getter;
 
 /**
- * Parameter object of the action EditSphereLogAction.
+ * Parameter object of the action EditSphereAnnotationLogAction.
  */
 @Data
 public class EditSphereAnnotationParam extends Param{
     /**
-     * The sphere containing its old annotation
+     * The sphere containing its old annotation.
      */
     @Getter
     private Sphere pSphere;
     /**
-     * The new annotation of the sphere.
+     * The old annotation of the sphere.
      */
     @Getter
     private String oldAnnotation;

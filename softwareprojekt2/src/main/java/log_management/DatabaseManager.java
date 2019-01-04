@@ -36,13 +36,16 @@ public class DatabaseManager implements ObserverSyndrom {
      */
     private Graph graph;
 
+    /**
+     * Creates a database manager organizing the database.
+     */
     public DatabaseManager(){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Adds a log to the database (through dao).
-     * @param action TODO
+     * @param action The called action, which will be logged.
      */
     public static void addEntryDatabase(Action action) {
         throw new UnsupportedOperationException();

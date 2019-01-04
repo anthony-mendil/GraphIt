@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.awt.geom.Point2D;
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * Parameter object of the action MoveSphereLogAction.
@@ -14,24 +15,24 @@ import java.io.Serializable;
 @Data
 public class MoveSphereParam extends Param{
     /**
-     * the sphere containing its old position
+     * The sphere containing its old position.
      */
     @Getter
-    private Sphere sphere;
+    private Map<Sphere,Point2D> oldSphere;
     /**
-     * The new position of the sphere.
+     * The sphere containing its new position.
      */
     @Getter
-    private Point2D newPosition;
+    private Map<Sphere,Point2D> newSphere;
 
     /**
      * Creates a parameter object of its own class.
-     * @param pSphere the sphere containing its old position
-     * @param pNewPosition The new position of the sphere.
+     * @param pOldSphere The sphere containing its old position.
+     * @param pNewSphere The sphere containing its new position.
      */
-    public MoveSphereParam(Sphere pSphere, Point2D pNewPosition) {
-        this.sphere = pSphere;
-        this.newPosition = pNewPosition;
+    public MoveSphereParam(Map<Sphere,Point2D> pOldSphere, Map<Sphere,Point2D> pNewSphere) {
+        this.oldSphere = pNewSphere;
+        this.newSphere = pOldSphere;
     }
     @Override
     public String toString() {

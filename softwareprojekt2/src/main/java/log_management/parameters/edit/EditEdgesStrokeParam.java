@@ -28,7 +28,7 @@ public class EditEdgesStrokeParam extends Param{
     /**
      * Creates a new parameter object of its own class.
      * @param pEdgesOld The map of all edges and their old info.
-     * @param pEdgesNew The map of all edges and their old info.
+     * @param pEdgesNew The map of all edges and their new info.
      */
     public EditEdgesStrokeParam(Map<Edge,Pair<Vertex,Vertex>> pEdgesOld, Map<Edge,Pair<Vertex,Vertex>> pEdgesNew
                                 ) {

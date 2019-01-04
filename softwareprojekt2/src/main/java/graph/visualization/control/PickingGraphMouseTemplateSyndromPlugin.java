@@ -30,8 +30,9 @@ public class PickingGraphMouseTemplateSyndromPlugin<V, E> extends PickingGraphMo
     /**
      * The action history.
      */
+    /* Has to be set private or public */
     @Inject
-    ActionHistory history;
+    private ActionHistory history;
 
     /**
      * Creates a new picking graph mouse template syndrom plugin.

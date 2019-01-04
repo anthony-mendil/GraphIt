@@ -140,7 +140,6 @@ public class Values {
      * The current language of the objects.
      */
     private String objectLanguage;
-
     private static Values instance;
 
     private Values() {

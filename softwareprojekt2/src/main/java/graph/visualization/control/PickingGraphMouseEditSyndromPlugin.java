@@ -29,8 +29,9 @@ public class PickingGraphMouseEditSyndromPlugin<V, E> extends PickingGraphMouseP
     /**
      * The action history.
      */
+    /* Has to be set private or public */
     @Inject
-    ActionHistory history;
+    private ActionHistory history;
 
     /**
      * Creates a new picking graph mouse edit syndrom plugin.
