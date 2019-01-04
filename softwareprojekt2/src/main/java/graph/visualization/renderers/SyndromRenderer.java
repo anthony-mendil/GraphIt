@@ -12,6 +12,10 @@ import edu.uci.ics.jung.visualization.renderers.BasicEdgeRenderer;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+
+import java.util.ConcurrentModificationException;
+
 /**
  * The SyndromRenderer paints the syndrom graph.
  */
@@ -32,7 +36,15 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
      */
     @Override
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {
+        SyndromGraph<Integer, String> g = (SyndromGraph<Integer, String>) layout.getGraph();
 
+        try {
+            for (Sphere s : g.getSpheres()) {
+                sphaerenRenderer.paintSphere(renderContext, s);
+            }
+        } catch (ConcurrentModificationException cme) {
+            renderContext.getScreenDevice().repaint();
+        }
     }
 
     /**

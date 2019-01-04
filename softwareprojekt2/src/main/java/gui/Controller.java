@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import log_management.dao.LogDao;
@@ -539,13 +540,11 @@ public class Controller implements ObserverSyndrom{
     /**
      * The values object that gets all the arguments from the gui for the actions.
      */
-    @Inject
     private Values values;
 
     /**
      * The syndrom object that is needed to change the form of spheres, symptoms and edges.
      */
-    @Inject
     private Syndrom syndrom;
 
     /**

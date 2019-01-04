@@ -1,5 +1,6 @@
 package graph.visualization.transformer.sphere;
 
+import graph.graph.Sphere;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -13,6 +14,11 @@ import java.awt.*;
 public class SphereFontTransformer<S> implements Transformer<S, Font> {
     @Override
     public Font transform(S s) {
-        throw new UnsupportedOperationException();
+        try{
+            Sphere sphere = (Sphere) s;
+            return new Font(sphere.getFont(), Font.PLAIN, sphere.getFontSize());
+        } catch (Exception e){
+            throw new IllegalArgumentException();
+        }
     }
 }

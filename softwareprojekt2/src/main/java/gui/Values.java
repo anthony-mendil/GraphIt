@@ -5,6 +5,7 @@ import graph.graph.EdgeArrowType;
 import graph.graph.FunctionMode;
 import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
+import javafx.geometry.Bounds;
 import lombok.*;
 
 import java.awt.*;
@@ -24,12 +25,12 @@ public class Values {
      * The default width sphere.
      */
     @Setter(AccessLevel.NONE)
-    private final double defaultWidthSphere = 300;
+    private final double defaultWidthSphere = 200;
     /**
      * The default height of a sphere.
      */
     @Setter(AccessLevel.NONE)
-    private final double defaultHeightSphere = 300;
+    private final double defaultHeightSphere = 200;
     /**
      * The default annotation of a sphere.
      */
@@ -141,6 +142,7 @@ public class Values {
      */
     private String objectLanguage;
     private static Values instance;
+
 
     private Values() {
         defaultAnnotationSphere = new HashMap<>();

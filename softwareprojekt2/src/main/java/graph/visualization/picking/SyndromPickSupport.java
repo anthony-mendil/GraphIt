@@ -7,13 +7,13 @@ import edu.uci.ics.jung.visualization.picking.ShapePickSupport;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
+import graph.visualization.transformer.sphere.SphereShapeTransformer;
+import gui.Values;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * SyndromPickSupport extends the ShapePickSupport with the option to pick spheres and arrows from edges.
@@ -23,6 +23,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      * The visualisation server.
      */
     private VisualizationServer<V,E> pVisualizationServer;
+    private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<Sphere>();
 
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
@@ -33,6 +34,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      */
     public SyndromPickSupport(VisualizationServer<V, E> vv) {
         super(vv);
+
     }
 
     /**
@@ -52,18 +54,14 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         try {
             SyndromGraph g = (SyndromGraph) vv.getGraphLayout().getGraph();
             List<Sphere> list = g.getSpheres();
-            if (list != null){
+            System.out.println("List: "+list);
                 for (Object aSet : list) {
                     Sphere s = (Sphere) aSet;
-                    Shape rec = new Rectangle2D.Double(s.getCoordinates().getX(), s.getCoordinates().getY(), s.getWidth(),
-                            s.getHeight());
+                    Shape rec = sphereShapeTransformer.transform(s);
                     if (rec.contains(x, y)) {
                         sphaereContains = s;
-                        break;
                     }
                 }
-            }
-            return null;
         } catch (Exception e) {
             e.printStackTrace();
         }
