@@ -13,6 +13,8 @@ package graph.graph;/*
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * List of spheres.
      */
-    private List<Sphere> spheren;
+    private List<Sphere> spheren = new ArrayList<>();
 
     /**
      * A counter for all objects.
@@ -40,7 +42,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * Creates a new syndrom graph.
      */
     public SyndromGraph() {
-        throw new UnsupportedOperationException();
+        // TODO
+        graphObjectsFactory = new GraphObjectsFactory();
     }
 
     /**
@@ -49,7 +52,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @return A list of all spheres.
      */
     public List<Sphere> getSpheres() {
-        throw new UnsupportedOperationException();
+        return spheren;
     }
 
 
@@ -89,8 +92,9 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      *
      * @return True if the sphere was added to the graph, false if not.
      */
-    public boolean addSphere() {
-        throw new UnsupportedOperationException();
+    public boolean addSphere(Point2D pos) {
+        Sphere sphere = graphObjectsFactory.createSphere(pos);
+        return spheren.add(sphere);
     }
 
     /**

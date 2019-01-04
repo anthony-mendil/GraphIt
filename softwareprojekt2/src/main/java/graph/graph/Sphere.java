@@ -3,6 +3,7 @@ package graph.graph;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -14,7 +15,6 @@ import java.util.Map;
  * each other. They can contain vertices. A vertex is always assigned to exactly one sphere. The id is unique and final.
  */
 @Data
-@AllArgsConstructor
 public class Sphere {
     /**
      * The id of the sphere.
@@ -57,7 +57,7 @@ public class Sphere {
      * A list with all vertices, that are assigned to this sphere.
      */
     @NonNull
-    private LinkedList<Vertex> vertices;
+    private LinkedList<Vertex> vertices = null;
 
     /**
      * The font of the annotation.
@@ -70,4 +70,16 @@ public class Sphere {
      */
     @NonNull
     private int fontSize;
+
+    public Sphere(int id, Paint fillPaint, Point2D coordinates, double width, double height, Map<String, String>
+            annotation, String font, int fontSize ){
+        this.id = id;
+        this.fillPaint = fillPaint;
+        this.coordinates = coordinates;
+        this.width = width;
+        this.height = height;
+        this.annotation = annotation;
+        this.font = font;
+        this.fontSize = fontSize;
+    }
 }

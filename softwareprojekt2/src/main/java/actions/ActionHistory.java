@@ -22,13 +22,22 @@ public class ActionHistory {
      */
     private int current = -1;
 
+    private static ActionHistory history;
+
     /**
      * Adds an action to the history and executes it.
      *
      * @param action The action to execute.
      */
     public void execute(Action action) {
-        throw new UnsupportedOperationException();
+        action.action();
+    }
+
+    public static ActionHistory getInstance(){
+        if (history == null){
+            history = new ActionHistory();
+        }
+        return history;
     }
 
     /**

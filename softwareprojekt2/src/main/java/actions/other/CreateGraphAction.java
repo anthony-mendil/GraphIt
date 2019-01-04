@@ -1,8 +1,13 @@
 package actions.other;
 
 import actions.GraphAction;
+import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
+import edu.uci.ics.jung.visualization.DefaultVisualizationModel;
+import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
+import edu.uci.ics.jung.visualization.VisualizationModel;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
@@ -29,14 +34,14 @@ public class CreateGraphAction extends GraphAction {
     @Override
     @SuppressWarnings("unchecked")
     public void action() {
-        /*SyndromGraph g = new SyndromGraph<>();
-        syndrom.setGraph(g);
-        StaticLayout<Vertex, Edge> layout = new StaticLayout<>(g);
-        Dimension size = syndrom.getValues().getDefaultLayoutSize();
-        layout.setSize(size);
+        SyndromGraph graph = new SyndromGraph<>();
+        syndrom.setGraph(graph);
+        Layout layout = new AggregateLayout(new StaticLayout(graph));
         syndrom.setLayout(layout);
-        syndrom.setVisualisationViewer(syndrom.getVisualisationViewer().setLayout(layout));
-        */throw new UnsupportedOperationException();
+        final VisualizationModel<Vertex, Edge> visualizationModel =
+                new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize()); // TODO im A4 Format
+        VisualizationViewer vv = new VisualizationViewer<>(visualizationModel, values.getDefaultLayoutSize());
+        syndrom.setVisualisationViewer(vv);
     }
 
     @Override

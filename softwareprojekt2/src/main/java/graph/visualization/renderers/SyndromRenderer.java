@@ -24,7 +24,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
 
     @Override
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {
-        throw new UnsupportedOperationException();
+
     }
 
     /**

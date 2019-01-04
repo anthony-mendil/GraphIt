@@ -1,12 +1,22 @@
 package gui;
 
+import actions.ActionHistory;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import graph.graph.Syndrom;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
+
+import static javafx.application.Application.launch;
 
 /**
  * Starts the whole application.
  */
-public class Main {
+public class Main extends Application{
 
     /**
      * The window of the application.
@@ -15,14 +25,20 @@ public class Main {
     private Stage primary;
 
     /**
-     * Loads the gui with a fxmlloader, sets the title of the application
+     * Loads the gui with a fxml loader, sets the title of the application
      * and the window size.
      *
      * @param primaryStage  The window of the application.
      * @throws Exception If the loading of the fxml file fails.
      */
     public void start(Stage primaryStage) throws Exception {
-        throw new UnsupportedOperationException();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"));
+        Controller controller = new Controller();
+        loader.setController(controller);
+        BorderPane borderPane = loader.load();
+        primaryStage.setTitle("Syndromansatz");
+        primaryStage.setScene(new Scene(borderPane, 1280, 720));
+        primaryStage.show();
     }
 
     /**
@@ -30,6 +46,6 @@ public class Main {
      * @param args The java command line arguments that is needed to start the application.
      */
     public static void main(String[] args) {
-       throw new UnsupportedOperationException();
+        launch(args);
     }
 }

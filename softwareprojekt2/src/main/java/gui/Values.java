@@ -8,35 +8,34 @@ import graph.graph.VertexShapeType;
 import lombok.*;
 
 import java.awt.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Defines values for the syndrom. These are default values. The values represent the currently selected values from the
  * GUI. Its a singleton instance.
  */
 @Data
-@Singleton
 public class Values {
 
     /**
      * The default width sphere.
      */
     @Setter(AccessLevel.NONE)
-    private static final double defaultWidthSphere = -1;
+    private final double defaultWidthSphere = 300;
     /**
      * The default height of a sphere.
      */
     @Setter(AccessLevel.NONE)
-    private static final double defaultHeightSphere = -1;
+    private final double defaultHeightSphere = 300;
     /**
      * The default annotation of a sphere.
      */
     @Setter(AccessLevel.NONE)
-    private static final String defaultAnnotationSphere = "";
-    /**
-     * The default shape of a sphere.
-     */
-    @Setter(AccessLevel.NONE)
-    private static final Shape defaultShapeSphere = null;
+    private final Map<String, String> defaultAnnotationSphere;
+
     /**
      * The default annotation of a vertex.
      */
@@ -66,7 +65,10 @@ public class Values {
      * The default layout size.
      */
     @Setter(AccessLevel.NONE)
-    private static final Dimension defaultLayoutSize = null;
+    private Dimension defaultLayoutSize = new Dimension(985,540);
+
+    @Setter(AccessLevel.NONE)
+    private Dimension defaultLayoutVVSize = new Dimension(2000,2000);
     /**
      * The default satellite layout size.
      */
@@ -75,15 +77,15 @@ public class Values {
     /**
      * The fill paint color.
      */
-    private Paint fillPaintSphere;
+    private Paint fillPaintSphere = new Color(174, 208, 197);
     /**
      * The font of a sphere.
      */
-    private String fontSphere;
+    private String fontSphere = "Arial";
     /**
      * The font size of a sphere annotation.
      */
-    private int fontSizeSphere;
+    private int fontSizeSphere = 12;
     /**
      * The fonz size of a vertex annotation.
      */
@@ -139,9 +141,19 @@ public class Values {
      */
     private String objectLanguage;
 
+    private static Values instance;
 
-    public Values() {
-        throw new UnsupportedOperationException();
+    private Values() {
+        defaultAnnotationSphere = new HashMap<>();
+        defaultAnnotationSphere.put("de","Sphäre Überschift");
+        defaultAnnotationSphere.put("en","Sphere Headline");
+    }
+
+    public static Values getInstance(){
+        if (instance == null){
+            instance = new Values();
+        }
+        return instance;
     }
 }
 

@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.embed.swing.SwingNode?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" >
+   <top>
+      <VBox prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+               <menus>
+                  <Menu mnemonicParsing="false" text="Datei">
+                     <items>
+                        <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="Neue Datei" />
+                        <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#buttonClicked3" text="Datei öffnen" />
+                        <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#buttonClicked4" text="Importieren als GXL-Datei" />
+                        <MenuItem mnemonicParsing="false" text="Speichern unter.." />
+                        <Menu mnemonicParsing="false" text="Exportieren als..">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="PDF" />
+                              <MenuItem mnemonicParsing="false" text="Vorlage" />
+                              <MenuItem mnemonicParsing="false" text="GXL" />
+                              <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
+                           </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" text="Drucken" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Optionen">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Sprache" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Hilfe">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Dokumentation" />
+                        <MenuItem mnemonicParsing="false" text="Über Uns" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <ToolBar prefHeight="6.0" prefWidth="1275.0">
+               <VBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" />
+               </VBox.margin>
+               <items>
+                  <HBox prefHeight="29.0" prefWidth="390.0">
+                     <children>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/006-reply.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                           <tooltip>
+                              <Tooltip text="Rückgängig" />
+                           </tooltip>
+                        </Button>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/001-share.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                           <tooltip>
+                              <Tooltip text="Wiederherstellen" />
+                           </tooltip>
+                        </Button>
+                        <Separator focusTraversable="false" orientation="VERTICAL">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding></Separator>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/024-pencil-1.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                           <tooltip>
+                              <Tooltip text="Ersteller-Modus" />
+                           </tooltip>
+                        </Button>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/027-vision.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                           <tooltip>
+                              <Tooltip text="Analyse-Modus" />
+                           </tooltip>
+                        </Button>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/027-vision.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Auswerter-Modus" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Separator focusTraversable="false" orientation="VERTICAL">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </Separator>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <tooltip>
+                              <Tooltip text="Layout" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <tooltip>
+                              <Tooltip text="Ausgeblendete Elemente einblenden" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <tooltip>
+                              <Tooltip text="Hervorgehobene Elemente " />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Separator focusTraversable="false" orientation="VERTICAL">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </Separator>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                           <tooltip>
+                              <Tooltip text="Vorlage-Regeln setzen" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </items>
+            </ToolBar>
+            <HBox prefHeight="58.0" prefWidth="621.0">
+               <children>
+                  <VBox prefHeight="68.0" prefWidth="427.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sphäre">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="356.0">
+                           <children>
+                              <Button fx:id="buttonSphere" mnemonicParsing="false" onAction="#buttonClicked" pickOnBounds="false" prefHeight="36.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/004-plus-black-symbol.png" />
+                                       </image>
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Hinzufügen" />
+                                 </tooltip>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/008-rubbish-bin.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Löschen" />
+                                 </tooltip>
+                              </Button>
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
+                              <ColorPicker fx:id="sphereBackgroundColour" prefHeight="30.0" prefWidth="42.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Hintergrundfarbe" />
+                                 </tooltip>
+                              </ColorPicker>
+                              <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
+                                 <items>
+                                    <MenuItem fx:id="newTimesRoman" mnemonicParsing="false" text="New Times Roman" />
+                                    <MenuItem fx:id="comicSansMs" mnemonicParsing="false" text="Comic Sans Ms" />
+                                 </items>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Schriftart" />
+                                 </tooltip>
+                                 <graphic>
+                                    <TextField prefHeight="25.0" prefWidth="68.0" text="Calibri">
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
+                                    </TextField>
+                                 </graphic>
+                              </SplitMenuButton>
+                              <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0">
+                                 <items>
+                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" text="13" />
+                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" text="14" />
+                                 </items>
+                                 <tooltip>
+                                    <Tooltip text="Schriftgröße" />
+                                 </tooltip>
+                                 <graphic>
+                                    <TextField prefHeight="25.0" prefWidth="28.0" text="12">
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
+                                    </TextField>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </SplitMenuButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <VBox prefHeight="55.0" prefWidth="468.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="482.0">
+                           <children>
+                              <Button mnemonicParsing="false" pickOnBounds="false" prefHeight="40.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/004-plus-black-symbol.png" />
+                                       </image>
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Hinzufügen" />
+                                 </tooltip>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/008-rubbish-bin.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Löschen" />
+                                 </tooltip>
+                              </Button>
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
+                              <ColorPicker prefHeight="43.0" prefWidth="40.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Hintergrundfarbe" />
+                                 </tooltip>
+                              </ColorPicker>
+                              <ColorPicker prefHeight="43.0" prefWidth="40.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Randfarbe" />
+                                 </tooltip>
+                              </ColorPicker>
+                              <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="50.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/022-square.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <items>
+                                    <MenuItem fx:id="circle" mnemonicParsing="false">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/015-circle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem fx:id="cube" mnemonicParsing="false">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/023-square-1.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                 </items>
+                                 <tooltip>
+                                    <Tooltip text="Form" />
+                                 </tooltip>
+                              </MenuButton>
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
+                              <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="New Times Roman" />
+                                    <MenuItem mnemonicParsing="false" text="Comic Sans Ms" />
+                                 </items>
+                                 <tooltip>
+                                    <Tooltip text="Schriftart" />
+                                 </tooltip>
+                                 <graphic>
+                                    <TextField prefHeight="25.0" prefWidth="68.0" text="Calibri">
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
+                                    </TextField>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </SplitMenuButton>
+                              <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="66.0">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="New Times Roman" />
+                                    <MenuItem mnemonicParsing="false" text="Comic Sans Ms" />
+                                 </items>
+                                 <tooltip>
+                                    <Tooltip text="Schriftgröße" />
+                                 </tooltip>
+                                 <graphic>
+                                    <TextField prefHeight="25.0" prefWidth="28.0" text="12">
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
+                                    </TextField>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </SplitMenuButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <VBox prefHeight="55.0" prefWidth="332.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/008-rubbish-bin.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Löschen" />
+                                 </tooltip>
+                              </Button>
+                              <Separator orientation="VERTICAL" prefHeight="4.0" prefWidth="4.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
+                              <ColorPicker prefHeight="43.0" prefWidth="40.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Kantenfarbe" />
+                                 </tooltip>
+                              </ColorPicker>
+                              <MenuButton mnemonicParsing="false" prefHeight="42.0" prefWidth="50.0">
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/021-line.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <items>
+                                    <MenuItem mnemonicParsing="false">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/015-circle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                 </items>
+                                 <tooltip>
+                                    <Tooltip text="Kantenart" />
+                                 </tooltip>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </MenuButton>
+                              <MenuButton mnemonicParsing="false" prefHeight="38.0" prefWidth="54.0">
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/005-right-chevron.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <items>
+                                    <MenuItem mnemonicParsing="false">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/015-circle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem mnemonicParsing="false">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/014-question.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                 </items>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Pfeilspitze" />
+                                 </tooltip>
+                              </MenuButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <ButtonBar focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" BorderPane.alignment="CENTER">
+         <buttons>
+            <HBox centerShape="false" prefHeight="27.0" prefWidth="511.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Aktuelle Aktion&gt;">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <Region />
+            <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="317.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Slider cacheShape="false" focusTraversable="false" prefHeight="14.0" prefWidth="109.0">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="2.0" top="5.0" />
+                     </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Zoom" />
+                     </tooltip>
+                  </Slider>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                     <HBox.margin>
+                        <Insets bottom="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="100%">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="8.0" top="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+         </buttons>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+   <right>
+      <TitledPane animated="false" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="722.0" prefWidth="270.0" text="Übersicht" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fillWidth="false" prefHeight="702.0" prefWidth="269.0">
+               <children>
+                  <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <MenuButton mnemonicParsing="false" text="MenuButton">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                          </items>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </MenuButton>
+                     </graphic></CheckBox>
+                  <CheckBox fx:id="extenuating" mnemonicParsing="false" prefHeight="18.0" prefWidth="131.0" text="Abschwächend">
+                     <graphic>
+                        <TextField prefHeight="25.0" prefWidth="104.0">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </TextField>
+                     </graphic></CheckBox>
+                  <CheckBox fx:id="neutral" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="17.0" prefWidth="115.0" text="Neutral">
+                     <VBox.margin>
+                        <Insets bottom="2.0" />
+                     </VBox.margin></CheckBox>
+                  <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="702.0" prefWidth="248.0" />
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+   </right>
+   <center>
+      <Pane fx:id="root" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <SwingNode fx:id="canvas" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

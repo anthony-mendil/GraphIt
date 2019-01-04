@@ -8,6 +8,7 @@ import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.picking.SyndromPickSupport;
+import gui.Values;
 import lombok.NonNull;
 
 /**
@@ -33,8 +34,9 @@ public abstract class GraphAction extends Action {
     /**
      * The syndrom to work with.
      */
-    @Inject
-    protected Syndrom syndrom;
+    protected Syndrom syndrom = Syndrom.getInstance();
+
+    protected Values values = Values.getInstance();
 
     /**
      * Sets layout, graph, pick support from the current syndrom presentation.

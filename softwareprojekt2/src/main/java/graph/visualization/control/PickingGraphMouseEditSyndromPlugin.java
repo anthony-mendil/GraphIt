@@ -35,7 +35,7 @@ public class PickingGraphMouseEditSyndromPlugin<V, E> extends PickingGraphMouseP
     /**
      * Creates a new picking graph mouse edit syndrom plugin.
      */
-    PickingGraphMouseEditSyndromPlugin() {
+    public PickingGraphMouseEditSyndromPlugin() {
         this(InputEvent.BUTTON3_MASK, InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK | InputEvent.SHIFT_MASK | InputEvent.CTRL_MASK);
         throw new UnsupportedOperationException();
     }

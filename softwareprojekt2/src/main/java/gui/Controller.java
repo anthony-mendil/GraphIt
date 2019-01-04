@@ -1,12 +1,18 @@
 package gui;
 
+import actions.Action;
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
+import actions.other.CreateGraphAction;
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import graph.graph.Syndrom;
 import javafx.embed.swing.SwingNode;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import log_management.dao.LogDao;
@@ -19,18 +25,13 @@ import javax.swing.*;
  */
 public class Controller implements ObserverSyndrom{
 
-    /**
-     * Standard constructor that is getting loaded by the fxml loader in the main class.
-     */
-    public Controller(){
-        throw new UnsupportedOperationException();
-    }
 
     /* General Stuff */
 
     /**
      *  The swing node that displays the JUNG-graph and allows to interact with it.
      */
+    @FXML
     private SwingNode canvas;
 
     /**
@@ -47,6 +48,7 @@ public class Controller implements ObserverSyndrom{
      *  The treeview displays the overview of the graph that also allows the user to edit the graph
      *  through it.
      */
+    @FXML
     private TreeView treeView;
 
     /**
@@ -63,6 +65,7 @@ public class Controller implements ObserverSyndrom{
     /**
      * The menuitem under the menu "File.." for creating a new file.
      */
+    @FXML
     private MenuItem newFile;
 
     /**
@@ -549,7 +552,11 @@ public class Controller implements ObserverSyndrom{
      * The action history.
      */
     @Inject
-    private ActionHistory cmdHistory;
+    private ActionHistory history;
+
+    public Controller(){
+
+    }
 
     /* ----------------ADD---------------------- */
 
@@ -897,6 +904,8 @@ public class Controller implements ObserverSyndrom{
      * Loads the swingnodes and sets the event handlers for menuitems and color pickers.
      */
     public void initialize(){
+        syndrom = Syndrom.getInstance();
+        history = ActionHistory.getInstance();
     }
 
     /**
@@ -921,6 +930,24 @@ public class Controller implements ObserverSyndrom{
             public void run() {
             }
         });
+    }
+
+    public void buttonClicked2(ActionEvent actionEvent) {
+        CreateGraphAction action = new CreateGraphAction("First Graph");
+        history.execute(action);
+        canvas.setContent(syndrom.getGzsp());
+    }
+
+    public void buttonClicked3(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void buttonClicked4(ActionEvent actionEvent) {
+        throw  new UnsupportedOperationException();
+    }
+
+    public void buttonClicked(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException();
     }
 
     /**

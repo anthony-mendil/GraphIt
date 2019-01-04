@@ -1,10 +1,12 @@
 package graph.graph;
 
-import com.google.inject.Inject;
 import gui.Values;
 import lombok.Data;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Factory to create spheres, edges and vertices.
@@ -14,7 +16,6 @@ public class GraphObjectsFactory {
     /**
      * The values to use.
      */
-    @Inject
     Values values;
     /**
      * The global objects counter for the ids for the graph objects.
@@ -25,7 +26,8 @@ public class GraphObjectsFactory {
      * creates a new graphObjectsFactory
      */
     public GraphObjectsFactory() {
-        throw new UnsupportedOperationException();
+        values = Values.getInstance();
+        objectCounter = 0;
     }
 
     /**
@@ -50,6 +52,13 @@ public class GraphObjectsFactory {
      * @return A new sphere object.
      */
     public Sphere createSphere(Point2D position) {
-        throw new UnsupportedOperationException();
+        int id = objectCounter++;
+        Paint fillPaint = values.getFillPaintSphere();
+        double width = values.getDefaultWidthSphere();
+        double height = values.getDefaultHeightSphere();
+        Map<String, String> annotation = values.getDefaultAnnotationSphere();
+        String font = values.getFontSphere();
+        int fontSize = values.getFontSizeSphere();
+        return new Sphere(id, fillPaint, position, width, height, annotation, font, fontSize);
     }
 }
