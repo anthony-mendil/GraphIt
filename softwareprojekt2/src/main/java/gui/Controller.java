@@ -15,10 +15,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import log_management.dao.LogDao;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -299,7 +302,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The colorpicker for changing the background color of sphere.
      */
-    private ColorPicker sphereBackground;
+    @FXML
+    private ColorPicker sphereBackgroundColour;
 
     /**
      * The textfield for changing the font of the sphere text.
@@ -671,7 +675,23 @@ public class Controller implements ObserverSyndrom{
      * Creates an EditSphereColorLogAction-object and executes the action with the action history.
      */
     public void editSphereColor() {
-        throw new UnsupportedOperationException();
+        Values.getInstance().setFillPaintSphere(convertToAWT(sphereBackgroundColour.getValue()));
+    }
+
+    private Color convertToAWT(javafx.scene.paint.Color fx){
+        return new java.awt.Color((float) fx.getRed(),
+                (float) fx.getGreen(),
+                (float) fx.getBlue(),
+                (float) fx.getOpacity());
+    }
+
+    private javafx.scene.paint.Color convertFromAWT(java.awt.Color awt){
+        int r = awt.getRed();
+        int g = awt.getGreen();
+        int b = awt.getBlue();
+        int a = awt.getAlpha();
+        double opacity = a / 255.0;
+        return javafx.scene.paint.Color.rgb(r, g, b, opacity);
     }
 
     /**
@@ -905,6 +925,7 @@ public class Controller implements ObserverSyndrom{
     public void initialize(){
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
+        sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
     }
 
     /**
@@ -935,6 +956,14 @@ public class Controller implements ObserverSyndrom{
         CreateGraphAction action = new CreateGraphAction("First Graph");
         history.execute(action);
         canvas.setContent(syndrom.getGzsp());
+    }
+
+    public void sphereEnlarge(ActionEvent actionEvent){
+
+    }
+
+    public void sphereShrink(ActionEvent actionEvent){
+
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {

@@ -12,6 +12,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 
 import java.awt.*;
 
@@ -40,7 +41,8 @@ public class CreateGraphAction extends GraphAction {
         syndrom.setLayout(layout);
         final VisualizationModel<Vertex, Edge> visualizationModel =
                 new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize()); // TODO im A4 Format
-        VisualizationViewer vv = new VisualizationViewer<>(visualizationModel, values.getDefaultLayoutSize());
+        SyndromVisualisationViewer vv = new SyndromVisualisationViewer<>(visualizationModel, values
+                .getDefaultLayoutSize());
         syndrom.setVisualisationViewer(vv);
     }
 

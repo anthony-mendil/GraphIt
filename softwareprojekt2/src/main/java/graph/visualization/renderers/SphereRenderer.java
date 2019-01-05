@@ -3,6 +3,7 @@ package graph.visualization.renderers;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
 import graph.graph.Sphere;
+import graph.graph.Syndrom;
 import graph.visualization.transformer.sphere.*;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ public class SphereRenderer {
     private SphereFontTransformer sphereFontTransformer = new SphereFontTransformer();
     private SphereLabelTransformer sphereLabelTransformer = new SphereLabelTransformer();
     private SphereShapeTransformer<Sphere> sphereShapeTransformer =  new SphereShapeTransformer<>();
+    private SphereStrokeTransformer<Sphere> sphereStrokeTransformer;
 
     /**
      * Renders the given sphere.
@@ -28,7 +30,9 @@ public class SphereRenderer {
         g2d.setPaint(sphereFillPaintTransformer.transform(pSphere));
         g2d.fill(sphereShape);
         g2d.setPaint(sphereDrawPaintTransformer.transform(pSphere));
+        sphereStrokeTransformer = new SphereStrokeTransformer<>(Syndrom
+                .getInstance().getVv());
+        g2d.setStroke(sphereStrokeTransformer.transform(pSphere));
         g2d.draw(sphereShape);
-
     }
 }

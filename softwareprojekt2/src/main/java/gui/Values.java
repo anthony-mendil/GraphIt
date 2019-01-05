@@ -78,7 +78,7 @@ public class Values {
     /**
      * The fill paint color.
      */
-    private Paint fillPaintSphere = new Color(174, 208, 197);
+    private Color fillPaintSphere = new Color(174, 208, 197);
     /**
      * The font of a sphere.
      */

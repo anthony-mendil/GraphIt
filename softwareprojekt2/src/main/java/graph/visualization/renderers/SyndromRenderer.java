@@ -41,6 +41,8 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         try {
             for (Sphere s : g.getSpheres()) {
                 sphaerenRenderer.paintSphere(renderContext, s);
+
+
             }
         } catch (ConcurrentModificationException cme) {
             renderContext.getScreenDevice().repaint();

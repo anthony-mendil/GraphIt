@@ -13,6 +13,7 @@ import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.algorithmen.predicates.*;
+import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.PickingGraphMouseEditSyndromPlugin;
 import graph.visualization.control.SpherePickingPlugin;
 import graph.visualization.picking.SyndromPickSupport;
@@ -42,7 +43,7 @@ public class Syndrom {
      * The visualization viewer of syndrom. It contains the layout and graph.
      */
     //TODO visualisation viewer was final
-    private VisualizationViewer<Vertex, Edge> vv;
+    private SyndromVisualisationViewer<Vertex, Edge> vv;
     /**
      * Template rules for the graph/layout.
      */
@@ -236,7 +237,7 @@ public class Syndrom {
         return instance;
     }
 
-    public void setVisualisationViewer(VisualizationViewer<Vertex, Edge> vv){
+    public void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv){
         pickSupport = new SyndromPickSupport(vv);
         gzsp = new GraphZoomScrollPane(vv);
         vv.setBackground(Color.WHITE);

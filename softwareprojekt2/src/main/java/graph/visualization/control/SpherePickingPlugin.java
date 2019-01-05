@@ -2,7 +2,9 @@ package graph.visualization.control;
 
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
+import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import gui.Values;
 
@@ -68,8 +70,25 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
-        //
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
+            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport)vv.getPickSupport();
+            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+            Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
+
+            if (sp != null){
+                PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
+                if (!pickedSphereState.isPicked(sp)){
+                    pickedSphereState.clear();
+                    pickedSphereState.pick(sp, true);
+                } else {
+                    pickedSphereState.pick(sp,false);
+                }
+                vv.setGraphLayout(vv.getGraphLayout());
+            }
+        }
     }
 
     @Override
