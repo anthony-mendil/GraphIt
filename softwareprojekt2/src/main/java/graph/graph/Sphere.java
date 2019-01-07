@@ -82,4 +82,11 @@ public class Sphere {
         this.font = font;
         this.fontSize = fontSize;
     }
+
+    public boolean equals(Sphere s){
+        if (this.id == s.id){
+            return true;
+        }
+        return false;
+    }
 }

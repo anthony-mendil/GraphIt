@@ -54,7 +54,6 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         try {
             SyndromGraph g = (SyndromGraph) vv.getGraphLayout().getGraph();
             List<Sphere> list = g.getSpheres();
-            System.out.println("List: "+list);
                 for (Object aSet : list) {
                     Sphere s = (Sphere) aSet;
                     Shape rec = sphereShapeTransformer.transform(s);

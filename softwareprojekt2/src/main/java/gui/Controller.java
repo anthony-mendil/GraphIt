@@ -3,10 +3,16 @@ package gui;
 import actions.Action;
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
+import actions.edit.color.EditSphereColorLogAction;
+import actions.edit.font.EditFontSizeSphereLogAction;
+import actions.edit.font.EditFontSphereLogAction;
+import actions.edit.size.EditSphereSizeLogAction;
 import actions.other.CreateGraphAction;
+import actions.remove.RemoveSphereLogAction;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import graph.graph.SphereSizeChange;
 import graph.graph.Syndrom;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
@@ -554,7 +560,6 @@ public class Controller implements ObserverSyndrom{
     /**
      * The action history.
      */
-    @Inject
     private ActionHistory history;
 
     public Controller(){
@@ -675,7 +680,11 @@ public class Controller implements ObserverSyndrom{
      * Creates an EditSphereColorLogAction-object and executes the action with the action history.
      */
     public void editSphereColor() {
-        Values.getInstance().setFillPaintSphere(convertToAWT(sphereBackgroundColour.getValue()));
+        Color color = convertToAWT(sphereBackgroundColour.getValue());
+        Values.getInstance().setFillPaintSphere(color);
+        EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
+        colorLogAction.action();
+        //history.execute(colorLogAction);
     }
 
     private Color convertToAWT(javafx.scene.paint.Color fx){
@@ -711,8 +720,18 @@ public class Controller implements ObserverSyndrom{
     /**
      * Creates an EditFontSphereLogAction-object and executes the action with the action history.
      */
-    public void editFontSphere() {
-        throw new UnsupportedOperationException();
+    public void editFontSphere(String font) {
+        values.setFontSphere(font);
+        EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
+        editFontSphereLogAction.action();
+    }
+
+    public void sphereFont1(){
+        editFontSphere("Times New Roman");
+    }
+
+    public void sphereFont2(){
+        editFontSphere("Comic Sans Ms");
     }
 
     /**
@@ -725,7 +744,20 @@ public class Controller implements ObserverSyndrom{
     /**
      * Creates an EditFontSizeSphereLogAction-object and executes the action with the action history.
      */
-    public void editFontSizeSphere(){ throw new UnsupportedOperationException(); }
+    public void editFontSizeSphere(int size){
+        values.setFontSizeSphere(size);
+        EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+        editFontSizeSphereLogAction.action();
+    }
+
+    public void fontSize2(){
+        editFontSizeSphere(14);
+    }
+
+    public void fontSize1(){
+        editFontSizeSphere(13);
+    }
+
 
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
@@ -886,7 +918,9 @@ public class Controller implements ObserverSyndrom{
      * Creates an RemoveSphereLogAction-object and executes the action with the action history.
      */
     public void removeSphere() {
-        throw new UnsupportedOperationException();
+        values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
+        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
+        removeSphereLogAction.action();
     }
 
     /**
@@ -925,6 +959,7 @@ public class Controller implements ObserverSyndrom{
     public void initialize(){
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
+        values = Values.getInstance();
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
     }
 
@@ -959,11 +994,13 @@ public class Controller implements ObserverSyndrom{
     }
 
     public void sphereEnlarge(ActionEvent actionEvent){
-
+        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.ENLARGE);
+        editSphereSizeLogAction.action();
     }
 
     public void sphereShrink(ActionEvent actionEvent){
-
+        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.SHRINK);
+        editSphereSizeLogAction.action();
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {
@@ -975,7 +1012,7 @@ public class Controller implements ObserverSyndrom{
     }
 
     public void buttonClicked(ActionEvent actionEvent) {
-        throw new UnsupportedOperationException();
+        values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
     }
 
     /**

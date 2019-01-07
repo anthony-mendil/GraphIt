@@ -229,7 +229,8 @@
                                     <Tooltip text="Hinzufügen" />
                                  </tooltip>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="30.0">
+                              <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="30.0"
+                                      onAction="#removeSphere" pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -292,8 +293,10 @@
                               </ColorPicker>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
                                  <items>
-                                    <MenuItem fx:id="newTimesRoman" mnemonicParsing="false" text="New Times Roman" />
-                                    <MenuItem fx:id="comicSansMs" mnemonicParsing="false" text="Comic Sans Ms" />
+                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" text="Times New Roman"
+                                              onAction="#sphereFont1"/>
+                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" text="Comic Sans Ms"
+                                              onAction="#sphereFont2"/>
                                  </items>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -311,8 +314,10 @@
                               </SplitMenuButton>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0">
                                  <items>
-                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" text="13" />
-                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" text="14" />
+                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" text="13"
+                                              onAction="#fontSize1"/>
+                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" text="14"
+                                              onAction="#fontSize2" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftgröße" />

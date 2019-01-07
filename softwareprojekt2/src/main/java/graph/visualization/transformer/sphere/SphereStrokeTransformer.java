@@ -17,8 +17,8 @@ public class SphereStrokeTransformer<S> implements Transformer<S, Stroke> {
     @Override
     @SuppressWarnings("unchecked")
     public Stroke transform(S s) {
-        System.out.println("syndromVisualisationViewer: "+syndromVisualisationViewer);
         PickedState<S> spherePickedState = syndromVisualisationViewer.getPickedSphereState();
+
         if (spherePickedState.isPicked(s)){
             return new BasicStroke(3);
         } else {

@@ -102,8 +102,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      *
      * @param pSphere The sphere to remove.
      */
-    public void removeSphaere(Sphere pSphere) {
-        throw new UnsupportedOperationException();
+    public void removeSphere(Sphere pSphere) {
+        spheren.remove(pSphere);
     }
 
     /**

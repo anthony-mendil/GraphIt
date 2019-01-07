@@ -146,7 +146,7 @@ public class Values {
 
     private Values() {
         defaultAnnotationSphere = new HashMap<>();
-        defaultAnnotationSphere.put("de","Sphäre Überschift");
+        defaultAnnotationSphere.put("de","Sphäre Überschrift");
         defaultAnnotationSphere.put("en","Sphere Headline");
     }
 

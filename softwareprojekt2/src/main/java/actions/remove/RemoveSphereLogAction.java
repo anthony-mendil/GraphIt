@@ -1,8 +1,10 @@
 package actions.remove;
 
 import actions.LogAction;
-import graph.graph.Sphere;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.*;
 import actions.LogEntryName;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 /**
@@ -17,7 +19,6 @@ public class RemoveSphereLogAction extends LogAction {
      */
     public RemoveSphereLogAction() {
         super(LogEntryName.REMOVE_SPHERE);
-        throw new UnsupportedOperationException();
     }
     /**
      * Removes the sphere which is defined in pParam. Also used to implement the undo-method of
@@ -32,7 +33,13 @@ public class RemoveSphereLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState = vv.getPickedSphereState();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        for (Sphere sp: pickedState.getPicked()) {
+            graph.removeSphere(sp);
+        }
+        vv.repaint();
     }
 
     @Override

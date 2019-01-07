@@ -2,12 +2,18 @@ package actions.edit.font;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.edit.EditFontSphereParam;
 
 /**
  * Changes the font of annotations.
  */
 public class EditFontSphereLogAction extends LogAction {
+    private String font;
     /**
      * Constructor in case the user wants to change the font.
      *
@@ -15,6 +21,7 @@ public class EditFontSphereLogAction extends LogAction {
      */
     public EditFontSphereLogAction(String pFont) {
         super(LogEntryName.EDIT_FONT_SPHERE);
+        font = pFont;
     }
 
     /**
@@ -28,7 +35,13 @@ public class EditFontSphereLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState = vv.getPickedSphereState();
+
+        for (Sphere sp: pickedState.getPicked()) {
+            sp.setFont(font);
+        }
+        vv.repaint();
     }
 
     @Override
