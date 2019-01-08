@@ -7,6 +7,7 @@ import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
+import actions.layout.LayoutGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.remove.RemoveSphereLogAction;
 import com.google.inject.Guice;
@@ -756,6 +757,11 @@ public class Controller implements ObserverSyndrom{
 
     public void fontSize1(){
         editFontSizeSphere(13);
+    }
+
+    public void sphereAutoLayout(){
+        LayoutGraphLogAction layoutGraphLogAction = new LayoutGraphLogAction();
+        layoutGraphLogAction.action();
     }
 
 

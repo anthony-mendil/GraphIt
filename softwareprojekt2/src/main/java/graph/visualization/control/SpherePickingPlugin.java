@@ -87,15 +87,17 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         sphere = sp;
 
         if (SwingUtilities.isLeftMouseButton(e)) {
+            PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
             if (sp != null) {
-                PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
                 if (!pickedSphereState.isPicked(sp)) {
                     pickedSphereState.clear();
                     pickedSphereState.pick(sp, true);
-                } else {
+                } /*else {
                     pickedSphereState.pick(sp, false);
-                }
+                }*/
                 vv.repaint();
+            } else {
+                pickedSphereState.clear();
             }
         }
     }

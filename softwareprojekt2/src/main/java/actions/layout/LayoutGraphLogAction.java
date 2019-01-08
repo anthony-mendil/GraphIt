@@ -2,7 +2,15 @@ package actions.layout;
 
 import actions.LogAction;
 import actions.LogEntryName;
-import log_management.parameters.move.LayoutParam;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Layouts the graph according to a previously defined layout.
@@ -14,7 +22,6 @@ public class LayoutGraphLogAction extends LogAction {
      */
     public LayoutGraphLogAction() {
         super(LogEntryName.EDIT_LAYOUT);
-        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -24,7 +31,56 @@ public class LayoutGraphLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        List<Sphere> sphereList = graph.getSpheres();
+        if (!sphereList.isEmpty()){
+            double y = 20;
+            double x = 20;
+
+            double height = sphereList.get(0).getHeight();
+            double minHeight = sphereList.get(0).getHeight();
+            for (Sphere sp: sphereList) {
+                double spHeight = sp.getHeight();
+                if (height < spHeight){
+                    height = spHeight;
+                }
+                if (minHeight > spHeight){
+                    minHeight = spHeight;
+                }
+            }
+            int maxI = (int) ((double) values.getDefaultLayoutVVSize().height / minHeight);
+            ArrayList<ArrayList<Sphere>> sphereRows = new ArrayList<>(maxI);
+            for(int i = 0; i < maxI; i++){
+                sphereRows.add(new ArrayList<>());
+            }
+            for(Sphere sp: sphereList){
+                for(int i = 0; i<maxI; i++){
+                    if (sp.getCoordinates().getY() >= y+(height*i ) - height/2 && sp.getCoordinates().getY() < y+
+                            (height*(i+1))- height/2){
+                        sphereRows.get(i).add(sp);
+                    }
+                }
+            }
+
+            int sepX = 15;
+            int sepY = 15;
+            double yCoord = y;
+
+            for (ArrayList<Sphere> sphereRow : sphereRows) {
+                double xCoord = x;
+                for (Sphere s : sphereRow) {
+                    s.setHeight(height);
+                    s.setWidth(height);
+                    s.setCoordinates(new Point2D.Double(xCoord, yCoord));
+                    xCoord = xCoord + height + sepX;
+                }
+                if (!sphereRow.isEmpty()) {
+                    yCoord = yCoord + height + sepY;
+                }
+            }
+        }
+        vv.repaint();
     }
 
     @Override

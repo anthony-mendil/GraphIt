@@ -229,6 +229,11 @@
                                     <Tooltip text="Hinzufügen" />
                                  </tooltip>
                               </Button>
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
                               <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="30.0"
                                       onAction="#removeSphere" pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
@@ -245,11 +250,6 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
-                                 <HBox.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </HBox.margin>
-                              </Separator>
                                <Button fx:id="sphereEnlarge" mnemonicParsing="false" onAction="#sphereEnlarge"
                                        pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
                                    <HBox.margin>
@@ -333,6 +333,22 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
+                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout"
+                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/magic.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Automatische Anordnung" />
+                                 </tooltip>
+                              </Button>
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
