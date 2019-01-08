@@ -26,6 +26,7 @@ public class EditSphereSizeLogAction extends LogAction {
 
     /**
      * Creates a new action to change the size of a a sphere.
+     * @param sphereSizeChange The SSC Object to change the size of the sphere
      */
     public EditSphereSizeLogAction(SphereSizeChange sphereSizeChange){
         super(LogEntryName.EDIT_SPHERE_SIZE);

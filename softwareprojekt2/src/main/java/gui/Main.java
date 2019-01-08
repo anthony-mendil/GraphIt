@@ -7,6 +7,7 @@ import graph.graph.Syndrom;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class Main extends Application{
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(new Scene(borderPane, 1280, 720));
+        //primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
     }
 

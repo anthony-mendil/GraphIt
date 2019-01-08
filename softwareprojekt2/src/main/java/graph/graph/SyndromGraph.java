@@ -91,6 +91,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * Adds a new sphere to the graph.
      *
      * @return True if the sphere was added to the graph, false if not.
+     * @param pos The point where the sphere gets placed
      */
     public boolean addSphere(Point2D pos) {
         Sphere sphere = graphObjectsFactory.createSphere(pos);
