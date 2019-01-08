@@ -719,6 +719,7 @@ public class Controller implements ObserverSyndrom{
 
     /**
      * Creates an EditFontSphereLogAction-object and executes the action with the action history.
+     * @param font The font as String that the Sphere text gets changed to
      */
     public void editFontSphere(String font) {
         values.setFontSphere(font);
@@ -743,6 +744,7 @@ public class Controller implements ObserverSyndrom{
 
     /**
      * Creates an EditFontSizeSphereLogAction-object and executes the action with the action history.
+     * @param size The new size of the sphere text
      */
     public void editFontSizeSphere(int size){
         values.setFontSizeSphere(size);
