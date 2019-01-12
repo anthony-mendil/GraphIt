@@ -1,5 +1,7 @@
 package log_management.tables;
 
+import log_management.DatabaseManager;
+
 import javax.persistence.*;
 
 /**
@@ -37,7 +39,8 @@ public class Graph {
      * @param id The graph id.
      */
     public void setId(int id) {
-        throw new UnsupportedOperationException();
+        this.id = id;
+        DatabaseManager.setGraph(this);
     }
 
     /**

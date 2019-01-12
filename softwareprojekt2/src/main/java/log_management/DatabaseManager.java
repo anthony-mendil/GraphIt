@@ -6,8 +6,11 @@ import com.google.inject.Singleton;
 import io.GXLio;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
+import log_management.dao.PersonalEntityManager;
 import log_management.tables.Graph;
 import lombok.Data;
+
+import javax.persistence.EntityManager;
 
 /**
  * The database manager, for managing the database access.
@@ -34,7 +37,7 @@ public class DatabaseManager implements ObserverSyndrom {
     /**
      * The current graph object.
      */
-    private Graph graph;
+    private static Graph graph;
 
     /**
      * Creates a database manager organizing the database.
@@ -55,7 +58,16 @@ public class DatabaseManager implements ObserverSyndrom {
      * Setup for the database.
      */
     public void setup() {
-        throw new UnsupportedOperationException();
+        Graph graph = new Graph();
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(graph);
+        entityManager.getTransaction().commit();
+    }
+
+    public static void setGraph(Graph pGraph) {
+        graph = pGraph;
     }
 
     @Override

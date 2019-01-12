@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "LOGS", schema = "PUBLIC", catalog = "TEST")
 public class Log {
-    @Id
     /**
      * The id of the logEntry.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     /**
      * The snapshot of the current graph.
