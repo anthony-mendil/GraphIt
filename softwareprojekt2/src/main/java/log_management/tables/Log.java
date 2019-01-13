@@ -1,6 +1,8 @@
 package log_management.tables;
 
 import actions.LogEntryName;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,17 +13,18 @@ import java.time.LocalDateTime;
  */
 @SuppressWarnings("all")
 @Entity
-@Table(name = "LOGS", schema = "PUBLIC", catalog = "TEST")
+@Table(name = "LOGS", schema = "PUBLIC", catalog = "GRAPHITDATABASE")
 public class Log {
     /**
      * The id of the logEntry.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     /**
      * The snapshot of the current graph.
      */
+    @ManyToOne(cascade = CascadeType.ALL)
     private Graph graph;
     /**
      * The name of the log-entry.

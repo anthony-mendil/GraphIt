@@ -10,23 +10,24 @@ PersistenceUnitInfo [
 	JTA datasource: null
 	Non JTA datasource: null
 	Transaction type: RESOURCE_LOCAL
-	PU root URL: file:/C:/Users/user/Documents/swp_2/softwareprojekt2/target/classes/
+	PU root URL: file:/C:/Users/Anthony/Documents/Informatik/3.Semester/Softwareprojekt%202/software-projekt-2/softwareprojekt2/target/classes
 	Shared Cache Mode: null
 	Validation Mode: null
 	Jar files URLs []
 	Managed classes names [
-		LogManagement.Tables.Log
-		LogManagement.Tables.Graph]
+		log_management.tables.Log
+		log_management.tables.Graph]
 	Mapping files names []
 	Properties [
-		hibernate.connection.username: 
-		hibernate.connection.password: 
-		hbm2ddl.auto: update
-		hibernate.connection.url: jdbc:h2:~/test
-		hibernate.archive.autodetection: class
-		hibernate.show_sql: true
 		hibernate.connection.driver_class: org.h2.Driver
-		hibernate.format_sql: true]
+		hbm2ddl.auto: update
+		hibernate.format_sql: true
+		hibernate.connection.username: 
+		hibernate.archive.autodetection: class
+		hibernate.connection.url: jdbc:h2:~/GraphItDatabase
+		hibernate.show_sql: true
+		hibernate.connection.password: 
+		javax.persistence.schema-generation.database.action: create]
 Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
 Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
 Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
@@ -36,120 +37,120 @@ Overriding existing service binding [org.hibernate.secure.spi.JaccService]
 Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
 Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
 HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-Adding type registration boolean -> org.hibernate.type.BooleanType@419631
-Adding type registration boolean -> org.hibernate.type.BooleanType@419631
-Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@419631
-Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@130745
-Adding type registration true_false -> org.hibernate.type.TrueFalseType@10f1802
-Adding type registration yes_no -> org.hibernate.type.YesNoType@92efc3
-Adding type registration byte -> org.hibernate.type.ByteType@1046283
-Adding type registration byte -> org.hibernate.type.ByteType@1046283
-Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@1046283
-Adding type registration character -> org.hibernate.type.CharacterType@b7ac2f
-Adding type registration char -> org.hibernate.type.CharacterType@b7ac2f
-Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@b7ac2f
-Adding type registration short -> org.hibernate.type.ShortType@13d0772
-Adding type registration short -> org.hibernate.type.ShortType@13d0772
-Adding type registration java.lang.Short -> org.hibernate.type.ShortType@13d0772
-Adding type registration integer -> org.hibernate.type.IntegerType@1e39c73
-Adding type registration int -> org.hibernate.type.IntegerType@1e39c73
-Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@1e39c73
-Adding type registration long -> org.hibernate.type.LongType@180cfdd
-Adding type registration long -> org.hibernate.type.LongType@180cfdd
-Adding type registration java.lang.Long -> org.hibernate.type.LongType@180cfdd
-Adding type registration float -> org.hibernate.type.FloatType@ae9b55
-Adding type registration float -> org.hibernate.type.FloatType@ae9b55
-Adding type registration java.lang.Float -> org.hibernate.type.FloatType@ae9b55
-Adding type registration double -> org.hibernate.type.DoubleType@1d7b7bf
-Adding type registration double -> org.hibernate.type.DoubleType@1d7b7bf
-Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@1d7b7bf
-Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@1a69b07
-Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@1a69b07
-Adding type registration big_integer -> org.hibernate.type.BigIntegerType@17d444
-Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@17d444
-Adding type registration string -> org.hibernate.type.StringType@111c2a7
-Adding type registration java.lang.String -> org.hibernate.type.StringType@111c2a7
-Adding type registration nstring -> org.hibernate.type.StringNVarcharType@508ed1
-Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@174bf60
-Adding type registration url -> org.hibernate.type.UrlType@f926e6
-Adding type registration java.net.URL -> org.hibernate.type.UrlType@f926e6
-Adding type registration Duration -> org.hibernate.type.DurationType@1a996b
-Adding type registration java.time.Duration -> org.hibernate.type.DurationType@1a996b
-Adding type registration Instant -> org.hibernate.type.InstantType@1835c46
-Adding type registration java.time.Instant -> org.hibernate.type.InstantType@1835c46
-Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@620197
-Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@620197
-Adding type registration LocalDate -> org.hibernate.type.LocalDateType@57ecf
-Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@57ecf
-Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@13291e3
-Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@13291e3
-Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2bba4f
-Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@2bba4f
-Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@1bf57b3
-Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@1bf57b3
-Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@eff876
-Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@eff876
-Adding type registration date -> org.hibernate.type.DateType@e52303
-Adding type registration java.sql.Date -> org.hibernate.type.DateType@e52303
-Adding type registration time -> org.hibernate.type.TimeType@f3afd9
-Adding type registration java.sql.Time -> org.hibernate.type.TimeType@f3afd9
-Adding type registration timestamp -> org.hibernate.type.TimestampType@167f35d
-Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@167f35d
-Adding type registration java.util.Date -> org.hibernate.type.TimestampType@167f35d
-Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@118837a
-Adding type registration calendar -> org.hibernate.type.CalendarType@514af7
-Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@514af7
-Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@514af7
-Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@1b61f4a
-Adding type registration locale -> org.hibernate.type.LocaleType@c451f2
-Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@c451f2
-Adding type registration currency -> org.hibernate.type.CurrencyType@468a38
-Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@468a38
-Adding type registration timezone -> org.hibernate.type.TimeZoneType@1239d7d
-Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@1239d7d
-Adding type registration class -> org.hibernate.type.ClassType@bf72b5
-Adding type registration java.lang.Class -> org.hibernate.type.ClassType@bf72b5
-Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@64cb25
-Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@64cb25
-Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@5eefef
-Adding type registration binary -> org.hibernate.type.BinaryType@17275fc
-Adding type registration byte[] -> org.hibernate.type.BinaryType@17275fc
-Adding type registration [B -> org.hibernate.type.BinaryType@17275fc
-Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@93b025
-Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@93b025
-Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@93b025
-Adding type registration row_version -> org.hibernate.type.RowVersionType@4fabc8
-Adding type registration image -> org.hibernate.type.ImageType@12adfbe
-Adding type registration characters -> org.hibernate.type.CharArrayType@fe5c40
-Adding type registration char[] -> org.hibernate.type.CharArrayType@fe5c40
-Adding type registration [C -> org.hibernate.type.CharArrayType@fe5c40
-Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@1847718
-Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@1847718
-Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@1847718
-Adding type registration text -> org.hibernate.type.TextType@1662a77
-Adding type registration ntext -> org.hibernate.type.NTextType@23b78d
-Adding type registration blob -> org.hibernate.type.BlobType@1597028
-Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@1597028
-Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@17cc17c
-Adding type registration clob -> org.hibernate.type.ClobType@19f7dcf
-Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@19f7dcf
-Adding type registration nclob -> org.hibernate.type.NClobType@1d8995e
-Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@1d8995e
-Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@13a5bf6
-Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@f0ea28
-Adding type registration serializable -> org.hibernate.type.SerializableType@11d00c0
-Adding type registration object -> org.hibernate.type.ObjectType@1304f14
-Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@1304f14
-Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@6648b0
-Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@11de4c7
-Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@19e9125
-Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@8d2484
-Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@c0cdad
-Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@7b252e
-Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@15d943d
-Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@8f2016
-Injecting ScanEnvironment [org.hibernate.jpa.boot.internal.StandardJpaScanEnvironmentImpl@17caf28] into BootstrapContext; was [null]
-Injecting ScanOptions [org.hibernate.boot.archive.scan.internal.StandardScanOptions@8d971b] into BootstrapContext; was [org.hibernate.boot.archive.scan.internal.StandardScanOptions@6cb480]
+Adding type registration boolean -> org.hibernate.type.BooleanType@1bbc8c9e
+Adding type registration boolean -> org.hibernate.type.BooleanType@1bbc8c9e
+Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@1bbc8c9e
+Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@17bb5fc6
+Adding type registration true_false -> org.hibernate.type.TrueFalseType@137fa97a
+Adding type registration yes_no -> org.hibernate.type.YesNoType@9cd2064
+Adding type registration byte -> org.hibernate.type.ByteType@3d681d9a
+Adding type registration byte -> org.hibernate.type.ByteType@3d681d9a
+Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@3d681d9a
+Adding type registration character -> org.hibernate.type.CharacterType@5aa81036
+Adding type registration char -> org.hibernate.type.CharacterType@5aa81036
+Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@5aa81036
+Adding type registration short -> org.hibernate.type.ShortType@514e93fc
+Adding type registration short -> org.hibernate.type.ShortType@514e93fc
+Adding type registration java.lang.Short -> org.hibernate.type.ShortType@514e93fc
+Adding type registration integer -> org.hibernate.type.IntegerType@32f15500
+Adding type registration int -> org.hibernate.type.IntegerType@32f15500
+Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@32f15500
+Adding type registration long -> org.hibernate.type.LongType@2c1a9be
+Adding type registration long -> org.hibernate.type.LongType@2c1a9be
+Adding type registration java.lang.Long -> org.hibernate.type.LongType@2c1a9be
+Adding type registration float -> org.hibernate.type.FloatType@65fdb084
+Adding type registration float -> org.hibernate.type.FloatType@65fdb084
+Adding type registration java.lang.Float -> org.hibernate.type.FloatType@65fdb084
+Adding type registration double -> org.hibernate.type.DoubleType@b2c5fa2
+Adding type registration double -> org.hibernate.type.DoubleType@b2c5fa2
+Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@b2c5fa2
+Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@74db70ba
+Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@74db70ba
+Adding type registration big_integer -> org.hibernate.type.BigIntegerType@79df4d65
+Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@79df4d65
+Adding type registration string -> org.hibernate.type.StringType@2f3247fe
+Adding type registration java.lang.String -> org.hibernate.type.StringType@2f3247fe
+Adding type registration nstring -> org.hibernate.type.StringNVarcharType@265d965
+Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@38835452
+Adding type registration url -> org.hibernate.type.UrlType@53bbbfde
+Adding type registration java.net.URL -> org.hibernate.type.UrlType@53bbbfde
+Adding type registration Duration -> org.hibernate.type.DurationType@2c5aaf8a
+Adding type registration java.time.Duration -> org.hibernate.type.DurationType@2c5aaf8a
+Adding type registration Instant -> org.hibernate.type.InstantType@67a058c5
+Adding type registration java.time.Instant -> org.hibernate.type.InstantType@67a058c5
+Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@73d4ff82
+Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@73d4ff82
+Adding type registration LocalDate -> org.hibernate.type.LocalDateType@48be5fd8
+Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@48be5fd8
+Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@a854f03
+Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@a854f03
+Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@7d736c96
+Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@7d736c96
+Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@2fc3be97
+Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@2fc3be97
+Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@209649f8
+Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@209649f8
+Adding type registration date -> org.hibernate.type.DateType@83136d5
+Adding type registration java.sql.Date -> org.hibernate.type.DateType@83136d5
+Adding type registration time -> org.hibernate.type.TimeType@1637c1ad
+Adding type registration java.sql.Time -> org.hibernate.type.TimeType@1637c1ad
+Adding type registration timestamp -> org.hibernate.type.TimestampType@65812cfc
+Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@65812cfc
+Adding type registration java.util.Date -> org.hibernate.type.TimestampType@65812cfc
+Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@5b61381e
+Adding type registration calendar -> org.hibernate.type.CalendarType@72613794
+Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@72613794
+Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@72613794
+Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@305a8a4a
+Adding type registration locale -> org.hibernate.type.LocaleType@1957ac2e
+Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@1957ac2e
+Adding type registration currency -> org.hibernate.type.CurrencyType@4433298d
+Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@4433298d
+Adding type registration timezone -> org.hibernate.type.TimeZoneType@4c4cd18a
+Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@4c4cd18a
+Adding type registration class -> org.hibernate.type.ClassType@a9dc968
+Adding type registration java.lang.Class -> org.hibernate.type.ClassType@a9dc968
+Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@631020b6
+Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@631020b6
+Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@21dbc1b3
+Adding type registration binary -> org.hibernate.type.BinaryType@5a009d9c
+Adding type registration byte[] -> org.hibernate.type.BinaryType@5a009d9c
+Adding type registration [B -> org.hibernate.type.BinaryType@5a009d9c
+Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@7c5211b4
+Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@7c5211b4
+Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@7c5211b4
+Adding type registration row_version -> org.hibernate.type.RowVersionType@6a1a04b2
+Adding type registration image -> org.hibernate.type.ImageType@354a5c5e
+Adding type registration characters -> org.hibernate.type.CharArrayType@48260cbd
+Adding type registration char[] -> org.hibernate.type.CharArrayType@48260cbd
+Adding type registration [C -> org.hibernate.type.CharArrayType@48260cbd
+Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@2f6e614
+Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@2f6e614
+Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@2f6e614
+Adding type registration text -> org.hibernate.type.TextType@6a5d5270
+Adding type registration ntext -> org.hibernate.type.NTextType@6bd2c2ad
+Adding type registration blob -> org.hibernate.type.BlobType@63547d72
+Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@63547d72
+Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@62c345a3
+Adding type registration clob -> org.hibernate.type.ClobType@57663d67
+Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@57663d67
+Adding type registration nclob -> org.hibernate.type.NClobType@36508887
+Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@36508887
+Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@44e731dc
+Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@532564a7
+Adding type registration serializable -> org.hibernate.type.SerializableType@4eb92bd9
+Adding type registration object -> org.hibernate.type.ObjectType@5a581c05
+Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@5a581c05
+Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@405712c
+Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@1e27ed9d
+Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@55e17eb9
+Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@6fd023c6
+Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@40f3a301
+Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@6199e587
+Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@3f534bbb
+Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@51f38184
+Injecting ScanEnvironment [org.hibernate.jpa.boot.internal.StandardJpaScanEnvironmentImpl@56804ec6] into BootstrapContext; was [null]
+Injecting ScanOptions [org.hibernate.boot.archive.scan.internal.StandardScanOptions@273422a0] into BootstrapContext; was [org.hibernate.boot.archive.scan.internal.StandardScanOptions@3bc13b29]
 Injecting JPA temp ClassLoader [null] into BootstrapContext; was [null]
 ClassLoaderAccessImpl#injectTempClassLoader(null) [was null]
 Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
@@ -167,9 +168,1038 @@ Registering IdentifierGenerator strategy [sequence-identity] -> [org.hibernate.i
 Registering IdentifierGenerator strategy [enhanced-sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
 Registering IdentifierGenerator strategy [enhanced-table] -> [org.hibernate.id.enhanced.TableGenerator]
 HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:~/test]
+HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:~/GraphItDatabase]
 HHH10001001: Connection properties: {user=, password=}
 HHH10001003: Autocommit mode: false
 Initializing Connection pool with 1 Connections
 HHH000115: Hibernate connection pool size: 20 (min=1)
-HHH000342: Could not obtain connection to query metadata : null
+Database ->
+       name : H2
+    version : 1.4.190 (2015-10-11)
+      major : 1
+      minor : 4
+Driver ->
+       name : H2 JDBC Driver
+    version : 1.4.190 (2015-10-11)
+      major : 1
+      minor : 4
+JDBC version : 4.0
+HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Unable to use Java 1.7 Connection#getSchema
+Unable to resolve connection default schema
+org.hibernate.HibernateException: Use of DefaultSchemaNameResolver requires Dialect to provide the proper SQL statement/command but provided Dialect [org.hibernate.dialect.H2Dialect] did not return anything from Dialect#getCurrentSchemaCommand
+	at org.hibernate.engine.jdbc.env.internal.DefaultSchemaNameResolver$SchemaNameResolverFallbackDelegate.resolveSchemaName(DefaultSchemaNameResolver.java:100)
+	at org.hibernate.engine.jdbc.env.internal.DefaultSchemaNameResolver.resolveSchemaName(DefaultSchemaNameResolver.java:76)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.determineCurrentSchemaName(JdbcEnvironmentImpl.java:298)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.<init>(JdbcEnvironmentImpl.java:232)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:114)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:94)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:152)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:179)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:119)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:904)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:935)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:56)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:79)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
+	at log_management.dao.PersonalEntityManager.getInstance(PersonalEntityManager.java:23)
+	at log_management.dao.GraphDao.<clinit>(GraphDao.java:23)
+	at log_management.DatabaseManager.<init>(DatabaseManager.java:53)
+	at log_management.DatabaseManager.getInstance(DatabaseManager.java:60)
+	at actions.other.CreateGraphAction.action(CreateGraphAction.java:51)
+	at actions.ActionHistory.execute(ActionHistory.java:33)
+	at gui.Controller.buttonClicked2(Controller.java:938)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
+Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@179aea2a] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@2747603a]
+Binding entity from annotated class: log_management.tables.Graph
+Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+Import with entity name Graph
+Created database namespace [logicalName=Name{catalog=GRAPHITDATABASE, schema=PUBLIC}, physicalName=Name{catalog=GRAPHITDATABASE, schema=PUBLIC}]
+Bind entity log_management.tables.Graph on table GRAPHS
+Binding column: Ejb3Column{table=org.hibernate.mapping.Table(GRAPHITDATABASE.PUBLIC.GRAPHS), mappingColumn=id, insertable=true, updatable=true, unique=false}
+MetadataSourceProcessor property id with lazy=false
+Attempting to locate auto-apply AttributeConverter for property [log_management.tables.Graph:id]
+building SimpleValue for id
+Building property id
+#makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, org.hibernate.id.enhanced.SequenceStyleGenerator, , ...)
+Binding column: Ejb3Column{table=org.hibernate.mapping.Table(GRAPHITDATABASE.PUBLIC.GRAPHS), mappingColumn=GXL, insertable=true, updatable=true, unique=false}
+MetadataSourceProcessor property gxl with lazy=false
+Attempting to locate auto-apply AttributeConverter for property [log_management.tables.Graph:gxl]
+building SimpleValue for gxl
+Building property gxl
+Binding entity from annotated class: log_management.tables.Log
+Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+Import with entity name Log
+Bind entity log_management.tables.Log on table LOGS
+Binding column: Ejb3Column{table=org.hibernate.mapping.Table(GRAPHITDATABASE.PUBLIC.LOGS), mappingColumn=id, insertable=true, updatable=true, unique=false}
+MetadataSourceProcessor property id with lazy=false
+Attempting to locate auto-apply AttributeConverter for property [log_management.tables.Log:id]
+building SimpleValue for id
+Building property id
+#makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, org.hibernate.id.enhanced.SequenceStyleGenerator, , ...)
+Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='null'}
+Binding column: Ejb3Column{table=org.hibernate.mapping.Table(GRAPHITDATABASE.PUBLIC.LOGS), mappingColumn=graph, insertable=true, updatable=true, unique=false}
+Building property graph
+Binding column: Ejb3Column{table=org.hibernate.mapping.Table(GRAPHITDATABASE.PUBLIC.LOGS), mappingColumn=logEntryName, insertable=true, updatable=true, unique=false}
+MetadataSourceProcessor property logEntryName with lazy=false
+Attempting to locate auto-apply AttributeConverter for property [log_management.tables.Log:logEntryName]
+building SimpleValue for logEntryName
+Building property logEntryName
+Binding column: Ejb3Column{table=org.hibernate.mapping.Table(GRAPHITDATABASE.PUBLIC.LOGS), mappingColumn=parameters, insertable=true, updatable=true, unique=false}
+MetadataSourceProcessor property parameters with lazy=false
+Attempting to locate auto-apply AttributeConverter for property [log_management.tables.Log:parameters]
+building SimpleValue for parameters
+Building property parameters
+Binding column: Ejb3Column{table=org.hibernate.mapping.Table(GRAPHITDATABASE.PUBLIC.LOGS), mappingColumn=time, insertable=true, updatable=true, unique=false}
+MetadataSourceProcessor property time with lazy=false
+Attempting to locate auto-apply AttributeConverter for property [log_management.tables.Log:time]
+building SimpleValue for time
+Building property time
+Starting fillSimpleValue for id
+Starting fillSimpleValue for gxl
+Starting fillSimpleValue for id
+Starting fillSimpleValue for logEntryName
+Starting fillSimpleValue for parameters
+Starting fillSimpleValue for time
+Forcing column [id] to be non-null as it is part of the primary key for table [graphs]
+Forcing column [id] to be non-null as it is part of the primary key for table [logs]
+Resolving reference to class: log_management.tables.Graph
+Resolving reference to class: log_management.tables.Graph
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+Building session factory
+SessionFactory name : null
+Automatic flush during beforeCompletion(): enabled
+Automatic session close at end of transaction: disabled
+Statistics: disabled
+Deleted entity synthetic identifier rollback: disabled
+Default entity-mode: pojo
+Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+Allow initialization of lazy state outside session : disabled
+Using BatchFetchStyle : LEGACY
+Default batch fetch size: -1
+Maximum outer join fetch depth: null
+Default null ordering: NONE
+Order SQL updates by primary key: disabled
+Order SQL inserts for batching: disabled
+multi-tenancy strategy : NONE
+JTA Track by Thread: enabled
+Query language substitutions: {}
+Named query checking : enabled
+Second-level cache: disabled
+Second-level query cache: disabled
+Second-level query cache factory: null
+Second-level cache region prefix: null
+Optimize second-level cache for minimal puts: disabled
+Structured second-level cache entries: disabled
+Second-level cache direct-reference entries: disabled
+Automatic eviction of collection cache: disabled
+JDBC batch size: 15
+JDBC batch updates for versioned data: enabled
+Scrollable result sets: enabled
+Wrap result sets: disabled
+JDBC3 getGeneratedKeys(): enabled
+JDBC result set fetch size: null
+Connection release mode: AFTER_TRANSACTION
+Generate SQL with comments: disabled
+JPA compliance - query : 
+JPA compliance - closed-handling : 
+JPA compliance - lists : 
+JPA compliance - transactions : 
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+Session factory constructed with filter configurations : {}
+Instantiating session factory with properties: {sun.desktop=windows, hibernate.format_sql=true, awt.toolkit=sun.awt.windows.WToolkit, file.encoding.pkg=sun.io, java.specification.version=1.8, javafx.runtime.version=8.0.191-b10, sun.cpu.isalist=amd64, sun.jnu.encoding=Cp1252, sun.awt.enableExtraMouseButtons=true, java.class.path=C:\Program Files\Java\jdk1.8.0_191\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\rt.jar;C:\Users\Anthony\Documents\Informatik\3.Semester\Softwareprojekt 2\software-projekt-2\softwareprojekt2\target\classes;C:\Users\Anthony\.m2\repository\com\h2database\h2\1.4.190\h2-1.4.190.jar;C:\Users\Anthony\.m2\repository\org\hibernate\hibernate-entitymanager\5.3.7.Final\hibernate-entitymanager-5.3.7.Final.jar;C:\Users\Anthony\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\Anthony\.m2\repository\org\hibernate\hibernate-core\5.3.7.Final\hibernate-core-5.3.7.Final.jar;C:\Users\Anthony\.m2\repository\org\javassist\javassist\3.23.1-GA\javassist-3.23.1-GA.jar;C:\Users\Anthony\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\Anthony\.m2\repository\org\jboss\jandex\2.0.5.Final\jandex-2.0.5.Final.jar;C:\Users\Anthony\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\Anthony\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\Anthony\.m2\repository\org\dom4j\dom4j\2.1.1\dom4j-2.1.1.jar;C:\Users\Anthony\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.4.Final\hibernate-commons-annotations-5.0.4.Final.jar;C:\Users\Anthony\.m2\repository\javax\persistence\javax.persistence-api\2.2\javax.persistence-api-2.2.jar;C:\Users\Anthony\.m2\repository\net\bytebuddy\byte-buddy\1.8.17\byte-buddy-1.8.17.jar;C:\Users\Anthony\.m2\repository\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.1.1.Final\jboss-transaction-api_1.2_spec-1.1.1.Final.jar;C:\Users\Anthony\.m2\repository\org\jgrapht\jgrapht-core\1.3.0\jgrapht-core-1.3.0.jar;C:\Users\Anthony\.m2\repository\org\jheaps\jheaps\0.9\jheaps-0.9.jar;C:\Users\Anthony\.m2\repository\com\google\inject\guice\3.0\guice-3.0.jar;C:\Users\Anthony\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\Anthony\.m2\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-api\2.0.1\jung-api-2.0.1.jar;C:\Users\Anthony\.m2\repository\net\sourceforge\collections\collections-generic\4.01\collections-generic-4.01.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-visualization\2.0.1\jung-visualization-2.0.1.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-graph-impl\2.0.1\jung-graph-impl-2.0.1.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-algorithms\2.0.1\jung-algorithms-2.0.1.jar;C:\Users\Anthony\.m2\repository\colt\colt\1.2.0\colt-1.2.0.jar;C:\Users\Anthony\.m2\repository\concurrent\concurrent\1.3.4\concurrent-1.3.4.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-io\2.0.1\jung-io-2.0.1.jar;C:\Users\Anthony\.m2\repository\org\codehaus\woodstox\wstx-asl\3.2.6\wstx-asl-3.2.6.jar;C:\Users\Anthony\.m2\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-graphicsio\2.4\freehep-graphicsio-2.4.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-graphics2d\2.4\freehep-graphics2d-2.4.jar;C:\Users\Anthony\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\Anthony\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-io\2.2.2\freehep-io-2.2.2.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-graphicsbase\2.4\freehep-graphicsbase-2.4.jar;C:\Users\Anthony\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.6\lib\idea_rt.jar, java.vm.vendor=Oracle Corporation, sun.arch.data.model=64, hbm2ddl.auto=update, user.variant=, java.vendor.url=http://java.oracle.com/, user.timezone=Europe/Berlin, javafx.version=8.0.191, os.name=Windows 10, java.vm.specification.version=1.8, user.country=DE, sun.java.launcher=SUN_STANDARD, sun.boot.library.path=C:\Program Files\Java\jdk1.8.0_191\jre\bin, sun.java.command=gui.Main, sun.cpu.endian=little, user.home=C:\Users\Anthony, user.language=de, java.specification.vendor=Oracle Corporation, java.home=C:\Program Files\Java\jdk1.8.0_191\jre, file.separator=\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, hibernate.transaction.coordinator_class=class org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, sun.boot.class.path=C:\Program Files\Java\jdk1.8.0_191\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_191\jre\classes, user.script=, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, java.runtime.version=1.8.0_191-b12, user.name=Anthony, path.separator=;, hibernate.connection.username=****, os.version=10.0, java.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_191\jre\lib\endorsed, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.archive.autodetection=class, hibernate.connection.url=jdbc:h2:~/GraphItDatabase, hibernate.ejb.persistenceUnitName=NewPersistenceUnit, file.encoding=UTF-8, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, hibernate.show_sql=true, hibernate.connection.driver_class=org.h2.Driver, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, java.io.tmpdir=C:\Users\Anthony\AppData\Local\Temp\, java.version=1.8.0_191, user.dir=C:\Users\Anthony\Documents\Informatik\3.Semester\Softwareprojekt 2\software-projekt-2\softwareprojekt2, os.arch=amd64, java.vm.specification.name=Java Virtual Machine Specification, hibernate.connection.password=****, java.awt.printerjob=sun.awt.windows.WPrinterJob, javax.persistence.schema-generation.database.action=create, sun.os.patch.level=, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@673369ab, java.library.path=C:\Program Files\Java\jdk1.8.0_191\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.4.3\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.4.3\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Haskell Platform\8.4.3\mingw\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\sqlite;C:\Users\Anthony\AppData\Roaming\cabal\bin;C:\Users\Anthony\AppData\Roaming\local\bin;C:\Users\Anthony\AppData\Local\Microsoft\WindowsApps;C:\Users\Anthony\AppData\Local\Microsoft\WindowsApps;C:\Users\Anthony\AppData\Local\atom\bin;C:\Users\Anthony\AppData\Local\Programs\Microsoft VS Code\bin;;., java.vm.info=mixed mode, java.vendor=Oracle Corporation, java.vm.version=25.191-b12, hibernate.bytecode.use_reflection_optimizer=false, java.ext.dirs=C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.io.unicode.encoding=UnicodeLittle, java.class.version=52.0}
+Skipping JACC integration as it was not enabled
+Instantiated session factory
+Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@179aea2a] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@5e4d2931]
+Not known whether passed class name [log_management.tables.Graph] is safe
+No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : log_management.tables.Graph
+Not known whether passed class name [log_management.tables.Graph] is safe
+No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : log_management.tables.Graph
+Not known whether passed class name [log_management.tables.Log] is safe
+No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : log_management.tables.Log
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+Not known whether passed class name [log_management.tables.Log] is safe
+No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : log_management.tables.Log
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+Static SQL for entity: log_management.tables.Graph
+ Version select: select id from GRAPHITDATABASE.PUBLIC.GRAPHS where id =?
+ Snapshot select: select graph_.id, graph_.GXL as GXL2_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph_ where graph_.id=?
+ Insert 0: insert into GRAPHITDATABASE.PUBLIC.GRAPHS (GXL, id) values (?, ?)
+ Update 0: update GRAPHITDATABASE.PUBLIC.GRAPHS set GXL=? where id=?
+ Delete 0: delete from GRAPHITDATABASE.PUBLIC.GRAPHS where id=?
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7b5155d0]
+Visiting attribute path : gxl
+Building LoadPlan...
+processing queryspace <gen:0>
+LoadPlan(entity=log_management.tables.Graph)
+    - Returns
+       - EntityReturnImpl(entity=log_management.tables.Graph, querySpaceUid=<gen:0>, path=log_management.tables.Graph)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=log_management.tables.Graph)
+          - SQL table alias mapping - graph0_
+          - alias suffix - 0_
+          - suffixed key columns - {id1_0_0_}
+
+Static select for entity log_management.tables.Graph [NONE]: select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5e77f75b]
+Visiting attribute path : gxl
+Building LoadPlan...
+processing queryspace <gen:0>
+LoadPlan(entity=log_management.tables.Graph)
+    - Returns
+       - EntityReturnImpl(entity=log_management.tables.Graph, querySpaceUid=<gen:0>, path=log_management.tables.Graph)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=log_management.tables.Graph)
+          - SQL table alias mapping - graph0_
+          - alias suffix - 0_
+          - suffixed key columns - {id1_0_0_}
+
+Static select for entity log_management.tables.Graph [READ]: select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Static select for action ACTION_MERGE on entity log_management.tables.Graph: select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Static select for action ACTION_REFRESH on entity log_management.tables.Graph: select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Static SQL for entity: log_management.tables.Log
+ Version select: select id from GRAPHITDATABASE.PUBLIC.LOGS where id =?
+ Snapshot select: select log_.id, log_.graph_id as graph_id5_1_, log_.logEntryName as logEntry2_1_, log_.parameters as paramete3_1_, log_.time as time4_1_ from GRAPHITDATABASE.PUBLIC.LOGS log_ where log_.id=?
+ Insert 0: insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, logEntryName, parameters, time, id) values (?, ?, ?, ?, ?)
+ Update 0: update GRAPHITDATABASE.PUBLIC.LOGS set graph_id=?, logEntryName=?, parameters=?, time=? where id=?
+ Delete 0: delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@459b1507]
+Visiting attribute path : graph
+Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@20fd2e25]
+Visiting attribute path : graph.gxl
+Visiting attribute path : logEntryName
+Visiting attribute path : parameters
+Visiting attribute path : time
+Building LoadPlan...
+processing queryspace <gen:0>
+LoadPlan(entity=log_management.tables.Log)
+    - Returns
+       - EntityReturnImpl(entity=log_management.tables.Log, querySpaceUid=<gen:0>, path=log_management.tables.Log)
+          - EntityAttributeFetchImpl(entity=log_management.tables.Graph, querySpaceUid=<gen:1>, path=log_management.tables.Log.graph)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=log_management.tables.Log)
+          - SQL table alias mapping - log0_
+          - alias suffix - 0_
+          - suffixed key columns - {id1_1_0_}
+          - JOIN (JoinDefinedByMetadata(graph)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=log_management.tables.Graph)
+                - SQL table alias mapping - graph1_
+                - alias suffix - 1_
+                - suffixed key columns - {id1_0_1_}
+
+Static select for entity log_management.tables.Log [NONE]: select log0_.id as id1_1_0_, log0_.graph_id as graph_id5_1_0_, log0_.logEntryName as logEntry2_1_0_, log0_.parameters as paramete3_1_0_, log0_.time as time4_1_0_, graph1_.id as id1_0_1_, graph1_.GXL as GXL2_0_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ left outer join GRAPHITDATABASE.PUBLIC.GRAPHS graph1_ on log0_.graph_id=graph1_.id where log0_.id=?
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@51d5cf4e]
+Visiting attribute path : graph
+Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@6ca3cb6e]
+Visiting attribute path : graph.gxl
+Visiting attribute path : logEntryName
+Visiting attribute path : parameters
+Visiting attribute path : time
+Building LoadPlan...
+processing queryspace <gen:0>
+LoadPlan(entity=log_management.tables.Log)
+    - Returns
+       - EntityReturnImpl(entity=log_management.tables.Log, querySpaceUid=<gen:0>, path=log_management.tables.Log)
+          - EntityAttributeFetchImpl(entity=log_management.tables.Graph, querySpaceUid=<gen:1>, path=log_management.tables.Log.graph)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=log_management.tables.Log)
+          - SQL table alias mapping - log0_
+          - alias suffix - 0_
+          - suffixed key columns - {id1_1_0_}
+          - JOIN (JoinDefinedByMetadata(graph)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=log_management.tables.Graph)
+                - SQL table alias mapping - graph1_
+                - alias suffix - 1_
+                - suffixed key columns - {id1_0_1_}
+
+Static select for entity log_management.tables.Log [READ]: select log0_.id as id1_1_0_, log0_.graph_id as graph_id5_1_0_, log0_.logEntryName as logEntry2_1_0_, log0_.parameters as paramete3_1_0_, log0_.time as time4_1_0_, graph1_.id as id1_0_1_, graph1_.GXL as GXL2_0_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ left outer join GRAPHITDATABASE.PUBLIC.GRAPHS graph1_ on log0_.graph_id=graph1_.id where log0_.id=?
+Static select for action ACTION_MERGE on entity log_management.tables.Log: select log0_.id as id1_1_1_, log0_.graph_id as graph_id5_1_1_, log0_.logEntryName as logEntry2_1_1_, log0_.parameters as paramete3_1_1_, log0_.time as time4_1_1_, graph1_.id as id1_0_0_, graph1_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ left outer join GRAPHITDATABASE.PUBLIC.GRAPHS graph1_ on log0_.graph_id=graph1_.id where log0_.id=?
+Static select for action ACTION_REFRESH on entity log_management.tables.Log: select log0_.id as id1_1_1_, log0_.graph_id as graph_id5_1_1_, log0_.logEntryName as logEntry2_1_1_, log0_.parameters as paramete3_1_1_, log0_.time as time4_1_1_, graph1_.id as id1_0_0_, graph1_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ left outer join GRAPHITDATABASE.PUBLIC.GRAPHS graph1_ on log0_.graph_id=graph1_.id where log0_.id=?
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+
+    
+    create table GRAPHITDATABASE.PUBLIC.GRAPHS (
+       id integer not null,
+        GXL varchar(255),
+        primary key (id)
+    )
+HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@106942f8] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table GRAPHITDATABASE.PUBLIC.GRAPHS (
+       id integer not null,
+        GXL varchar(255),
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table GRAPHITDATABASE.PUBLIC.GRAPHS (
+       id integer not null,
+        GXL varchar(255),
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:440)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:424)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:315)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:129)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:310)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:467)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:939)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:56)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:79)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
+	at log_management.dao.PersonalEntityManager.getInstance(PersonalEntityManager.java:23)
+	at log_management.dao.GraphDao.<clinit>(GraphDao.java:23)
+	at log_management.DatabaseManager.<init>(DatabaseManager.java:53)
+	at log_management.DatabaseManager.getInstance(DatabaseManager.java:60)
+	at actions.other.CreateGraphAction.action(CreateGraphAction.java:51)
+	at actions.ActionHistory.execute(ActionHistory.java:33)
+	at gui.Controller.buttonClicked2(Controller.java:938)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLException: Tabelle "GRAPHS" besteht bereits
+Table "GRAPHS" already exists; SQL statement:
+
+    create table GRAPHITDATABASE.PUBLIC.GRAPHS (
+       id integer not null,
+        GXL varchar(255),
+        primary key (id)
+    ) [42101-190]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:115)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:78)
+	at org.h2.command.Command.executeUpdate(Command.java:253)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 74 more
+Using ORDINAL-based conversion for Enum actions.LogEntryName
+
+    
+    create table GRAPHITDATABASE.PUBLIC.LOGS (
+       id integer not null,
+        logEntryName integer,
+        parameters varchar(255),
+        time timestamp,
+        graph_id integer,
+        primary key (id)
+    )
+GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table GRAPHITDATABASE.PUBLIC.LOGS (
+       id integer not null,
+        logEntryName integer,
+        parameters varchar(255),
+        time timestamp,
+        graph_id integer,
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table GRAPHITDATABASE.PUBLIC.LOGS (
+       id integer not null,
+        logEntryName integer,
+        parameters varchar(255),
+        time timestamp,
+        graph_id integer,
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:440)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:424)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:315)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:129)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:310)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:467)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:939)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:56)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:79)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
+	at log_management.dao.PersonalEntityManager.getInstance(PersonalEntityManager.java:23)
+	at log_management.dao.GraphDao.<clinit>(GraphDao.java:23)
+	at log_management.DatabaseManager.<init>(DatabaseManager.java:53)
+	at log_management.DatabaseManager.getInstance(DatabaseManager.java:60)
+	at actions.other.CreateGraphAction.action(CreateGraphAction.java:51)
+	at actions.ActionHistory.execute(ActionHistory.java:33)
+	at gui.Controller.buttonClicked2(Controller.java:938)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLException: Tabelle "LOGS" besteht bereits
+Table "LOGS" already exists; SQL statement:
+
+    create table GRAPHITDATABASE.PUBLIC.LOGS (
+       id integer not null,
+        logEntryName integer,
+        parameters varchar(255),
+        time timestamp,
+        graph_id integer,
+        primary key (id)
+    ) [42101-190]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:115)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:78)
+	at org.h2.command.Command.executeUpdate(Command.java:253)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 74 more
+create sequence hibernate_sequence start with 1 increment by 1
+GenerationTarget encountered exception accepting command : Error executing DDL "create sequence hibernate_sequence start with 1 increment by 1" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create sequence hibernate_sequence start with 1 increment by 1" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:440)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:424)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:290)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:129)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:310)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:467)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:939)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:56)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:79)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
+	at log_management.dao.PersonalEntityManager.getInstance(PersonalEntityManager.java:23)
+	at log_management.dao.GraphDao.<clinit>(GraphDao.java:23)
+	at log_management.DatabaseManager.<init>(DatabaseManager.java:53)
+	at log_management.DatabaseManager.getInstance(DatabaseManager.java:60)
+	at actions.other.CreateGraphAction.action(CreateGraphAction.java:51)
+	at actions.ActionHistory.execute(ActionHistory.java:33)
+	at gui.Controller.buttonClicked2(Controller.java:938)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLException: Sequenz "HIBERNATE_SEQUENCE" besteht bereits
+Sequence "HIBERNATE_SEQUENCE" already exists; SQL statement:
+create sequence hibernate_sequence start with 1 increment by 1 [90035-190]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.CreateSequence.update(CreateSequence.java:57)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:78)
+	at org.h2.command.Command.executeUpdate(Command.java:253)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 74 more
+
+    
+    alter table GRAPHITDATABASE.PUBLIC.LOGS 
+       add constraint FKpqy60tdpytcj4yucd0mfoy7xp 
+       foreign key (graph_id) 
+       references GRAPHITDATABASE.PUBLIC.GRAPHS
+GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table GRAPHITDATABASE.PUBLIC.LOGS 
+       add constraint FKpqy60tdpytcj4yucd0mfoy7xp 
+       foreign key (graph_id) 
+       references GRAPHITDATABASE.PUBLIC.GRAPHS" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table GRAPHITDATABASE.PUBLIC.LOGS 
+       add constraint FKpqy60tdpytcj4yucd0mfoy7xp 
+       foreign key (graph_id) 
+       references GRAPHITDATABASE.PUBLIC.GRAPHS" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:440)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:424)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:129)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:310)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:467)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:939)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:56)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:79)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
+	at log_management.dao.PersonalEntityManager.getInstance(PersonalEntityManager.java:23)
+	at log_management.dao.GraphDao.<clinit>(GraphDao.java:23)
+	at log_management.DatabaseManager.<init>(DatabaseManager.java:53)
+	at log_management.DatabaseManager.getInstance(DatabaseManager.java:60)
+	at actions.other.CreateGraphAction.action(CreateGraphAction.java:51)
+	at actions.ActionHistory.execute(ActionHistory.java:33)
+	at gui.Controller.buttonClicked2(Controller.java:938)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405)
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLException: Bedingung "FKPQY60TDPYTCJ4YUCD0MFOY7XP" besteht bereits
+Constraint "FKPQY60TDPYTCJ4YUCD0MFOY7XP" already exists; SQL statement:
+
+    alter table GRAPHITDATABASE.PUBLIC.LOGS 
+       add constraint FKpqy60tdpytcj4yucd0mfoy7xp 
+       foreign key (graph_id) 
+       references GRAPHITDATABASE.PUBLIC.GRAPHS [90045-190]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:98)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:72)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:78)
+	at org.h2.command.Command.executeUpdate(Command.java:253)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 74 more
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@521da06d'
+No JtaPlatform was specified, checking resolver
+No JtaPlatformResolver was specified, using default [org.hibernate.engine.transaction.jta.platform.internal.StandardJtaPlatformResolver]
+Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Checking 0 named HQL queries
+Checking 0 named SQL queries
+Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@3e257567
+Registering SessionFactory: 6a1992b0-4b67-413d-8559-e3e40a40b9ee (<unnamed>)
+Not binding SessionFactory to JNDI, no JNDI name configured
+Statistics initialized [enabled=false]
+QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@4e12d92d
+HHH000397: Using ASTQueryTranslatorFactory
+parse() - HQL: SELECT g from log_management.tables.Graph g where g.id > 0
+throwQueryException() : no errors
+--- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[IDENT] Node: 'log_management'
+    |  |     |  |  \-[IDENT] Node: 'tables'
+    |  |     |  \-[IDENT] Node: 'Graph'
+    |  |     \-[ALIAS] Node: 'g'
+    |  \-[SELECT] Node: 'SELECT'
+    |     \-[IDENT] Node: 'g'
+    \-[WHERE] Node: 'where'
+       \-[GT] Node: '>'
+          +-[DOT] Node: '.'
+          |  +-[IDENT] Node: 'g'
+          |  \-[IDENT] Node: 'id'
+          \-[NUM_INT] Node: '0'
+
+select << begin [level=1, statement=select]
+FromClause{level=1} : log_management.tables.Graph (g) -> graph0_
+Resolved : g -> graph0_.id
+Resolved : g -> graph0_.id
+getDataType() : id -> org.hibernate.type.IntegerType@32f15500
+Resolved : g.id -> graph0_.id
+select : finishing up [level=1, statement=select]
+processQuery() :  ( SELECT ( {select clause} graph0_.id ) ( FromClause{level=1} GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ ) ( where ( > ( graph0_.id graph0_.id id ) 0 ) ) )
+Using FROM fragment [GRAPHITDATABASE.PUBLIC.GRAPHS graph0_]
+select >> end [level=1, statement=select]
+--- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (GRAPHITDATABASE.PUBLIC.GRAPHS)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'graph0_.id as id1_0_' {alias=g, className=log_management.tables.Graph, tableAlias=graph0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'graph0_.GXL as GXL2_0_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[g], fromElementByTableAlias=[graph0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'GRAPHITDATABASE.PUBLIC.GRAPHS graph0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=g,role=null,tableName=GRAPHITDATABASE.PUBLIC.GRAPHS,tableAlias=graph0_,origin=null,columns={,className=log_management.tables.Graph}}
+    \-[WHERE] SqlNode: 'where'
+       \-[GT] BinaryLogicOperatorNode: '>'
+          +-[DOT] DotNode: 'graph0_.id' {propertyName=id,dereferenceType=PRIMITIVE,getPropertyPath=id,path=g.id,tableAlias=graph0_,className=log_management.tables.Graph,classAlias=g}
+          |  +-[ALIAS_REF] IdentNode: 'graph0_.id' {alias=g, className=log_management.tables.Graph, tableAlias=graph0_}
+          |  \-[IDENT] IdentNode: 'id' {originalText=id}
+          \-[NUM_INT] LiteralNode: '0'
+
+throwQueryException() : no errors
+HQL: SELECT g from log_management.tables.Graph g where g.id > 0
+SQL: select graph0_.id as id1_0_, graph0_.GXL as GXL2_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id>0
+throwQueryException() : no errors
+
+    select
+        graph0_.id as id1_0_,
+        graph0_.GXL as GXL2_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id>0
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#100]
+Resolving associations for [log_management.tables.Graph#100]
+Done materializing entity [log_management.tables.Graph#100]
+Initiating JDBC connection release from afterTransaction
+parse() - HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
+throwQueryException() : no errors
+--- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[IDENT] Node: 'log_management'
+    |  |     |  |  \-[IDENT] Node: 'tables'
+    |  |     |  \-[IDENT] Node: 'Log'
+    |  |     \-[ALIAS] Node: 'l'
+    |  \-[SELECT] Node: 'SELECT'
+    |     \-[IDENT] Node: 'l'
+    \-[WHERE] Node: 'where'
+       \-[EQ] Node: '='
+          +-[DOT] Node: '.'
+          |  +-[DOT] Node: '.'
+          |  |  +-[IDENT] Node: 'l'
+          |  |  \-[IDENT] Node: 'graph'
+          |  \-[IDENT] Node: 'id'
+          \-[COLON] Node: ':'
+             \-[IDENT] Node: 'gid'
+
+select << begin [level=1, statement=select]
+FromClause{level=1} : log_management.tables.Log (l) -> log0_
+Resolved : l -> log0_.id
+Resolved : l -> log0_.id
+getDataType() : graph -> org.hibernate.type.ManyToOneType(log_management.tables.Graph)
+dereferenceShortcut() : property id in log_management.tables.Log does not require a join.
+Unresolved property path is now 'graph.id'
+Resolved : l.graph -> log0_.graph_id
+getDataType() : graph.id -> org.hibernate.type.IntegerType@32f15500
+Resolved : l.graph.id -> log0_.graph_id
+select : finishing up [level=1, statement=select]
+processQuery() :  ( SELECT ( {select clause} log0_.id ) ( FromClause{level=1} GRAPHITDATABASE.PUBLIC.LOGS log0_ ) ( where ( = ( log0_.graph_id ( log0_.graph_id log0_.id graph ) id ) ? ) ) )
+Using FROM fragment [GRAPHITDATABASE.PUBLIC.LOGS log0_]
+select >> end [level=1, statement=select]
+--- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (GRAPHITDATABASE.PUBLIC.LOGS)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'log0_.id as id1_1_' {alias=l, className=log_management.tables.Log, tableAlias=log0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'log0_.graph_id as graph_id5_1_, log0_.logEntryName as logEntry2_1_, log0_.parameters as paramete3_1_, log0_.time as time4_1_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[l], fromElementByTableAlias=[log0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'GRAPHITDATABASE.PUBLIC.LOGS log0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=l,role=null,tableName=GRAPHITDATABASE.PUBLIC.LOGS,tableAlias=log0_,origin=null,columns={,className=log_management.tables.Log}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'log0_.graph_id' {propertyName=id,dereferenceType=PRIMITIVE,getPropertyPath=graph.id,path=l.graph.id,tableAlias=log0_,className=log_management.tables.Log,classAlias=l}
+          |  +-[DOT] DotNode: 'log0_.graph_id' {propertyName=id,dereferenceType=UNKNOWN,getPropertyPath=graph.id,path=l.graph,tableAlias=log0_,className=log_management.tables.Log,classAlias=l}
+          |  |  +-[ALIAS_REF] IdentNode: 'log0_.id' {alias=l, className=log_management.tables.Log, tableAlias=log0_}
+          |  |  \-[IDENT] IdentNode: 'graph' {originalText=graph}
+          |  \-[IDENT] IdentNode: 'id' {originalText=id}
+          \-[NAMED_PARAM] ParameterNode: '?' {name=gid, expectedType=org.hibernate.type.IntegerType@32f15500}
+
+throwQueryException() : no errors
+HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
+SQL: select log0_.id as id1_1_, log0_.graph_id as graph_id5_1_, log0_.logEntryName as logEntry2_1_, log0_.parameters as paramete3_1_, log0_.time as time4_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ where log0_.graph_id=?
+throwQueryException() : no errors
+
+    select
+        log0_.id as id1_1_,
+        log0_.graph_id as graph_id5_1_,
+        log0_.logEntryName as logEntry2_1_,
+        log0_.parameters as paramete3_1_,
+        log0_.time as time4_1_ 
+    from
+        GRAPHITDATABASE.PUBLIC.LOGS log0_ 
+    where
+        log0_.graph_id=?
+Initiating JDBC connection release from afterTransaction
+On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 101
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 101, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 1 deletions to 2 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Graph{gxl=, id=101}
+log_management.tables.Graph{gxl=, id=100}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.GRAPHS
+        (GXL, id) 
+    values
+        (?, ?)
+
+    delete 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS 
+    where
+        id=?
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+
+    select
+        graph0_.id as id1_0_,
+        graph0_.GXL as GXL2_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id>0
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#101]
+Initiating JDBC connection release from afterTransaction
+
+    select
+        log0_.id as id1_1_,
+        log0_.graph_id as graph_id5_1_,
+        log0_.logEntryName as logEntry2_1_,
+        log0_.parameters as paramete3_1_,
+        log0_.time as time4_1_ 
+    from
+        GRAPHITDATABASE.PUBLIC.LOGS log0_ 
+    where
+        log0_.graph_id=?
+Initiating JDBC connection release from afterTransaction
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 102
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 102, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 1 deletions to 2 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Graph{gxl=, id=102}
+log_management.tables.Graph{gxl=, id=101}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.GRAPHS
+        (GXL, id) 
+    values
+        (?, ?)
+
+    delete 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS 
+    where
+        id=?
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+
+    select
+        graph0_.id as id1_0_,
+        graph0_.GXL as GXL2_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id>0
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#102]
+Initiating JDBC connection release from afterTransaction
+
+    select
+        log0_.id as id1_1_,
+        log0_.graph_id as graph_id5_1_,
+        log0_.logEntryName as logEntry2_1_,
+        log0_.parameters as paramete3_1_,
+        log0_.time as time4_1_ 
+    from
+        GRAPHITDATABASE.PUBLIC.LOGS log0_ 
+    where
+        log0_.graph_id=?
+Initiating JDBC connection release from afterTransaction
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 103
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 103, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 1 deletions to 2 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Graph{gxl=, id=103}
+log_management.tables.Graph{gxl=, id=102}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.GRAPHS
+        (GXL, id) 
+    values
+        (?, ?)
+
+    delete 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS 
+    where
+        id=?
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+HHH000031: Closing
+Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@71dac704] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@5e4d2931]
+Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+HHH10001008: Cleaning up connection pool [jdbc:h2:~/GraphItDatabase]
+Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries

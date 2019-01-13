@@ -1,16 +1,21 @@
 package log_management;
 
 import actions.Action;
+import actions.LogEntryName;
 import actions.ObserverSyndrom;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.GXLio;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
 import log_management.dao.PersonalEntityManager;
+import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
 import log_management.tables.Graph;
+import log_management.tables.Log;
 import lombok.Data;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 
 /**
  * The database manager, for managing the database access.
@@ -37,13 +42,25 @@ public class DatabaseManager implements ObserverSyndrom {
     /**
      * The current graph object.
      */
-    private static Graph graph;
+    private Graph graph;
+
+    private static DatabaseManager databaseManager;
 
     /**
      * Creates a database manager organizing the database.
      */
     public DatabaseManager(){
-        throw new UnsupportedOperationException();
+        graphDao = new GraphDao();
+        logDao = new LogDao();
+        gxlIo = new GXLio();
+    }
+
+    public static DatabaseManager getInstance(){
+        if (databaseManager == null){
+            databaseManager = new DatabaseManager();
+
+        }
+        return databaseManager;
     }
 
     /**
@@ -59,15 +76,9 @@ public class DatabaseManager implements ObserverSyndrom {
      */
     public void setup() {
         Graph graph = new Graph();
-        EntityManager entityManager = PersonalEntityManager.getInstance();
-
-        entityManager.getTransaction().begin();
-        entityManager.persist(graph);
-        entityManager.getTransaction().commit();
-    }
-
-    public static void setGraph(Graph pGraph) {
-        graph = pGraph;
+        graph.setGxl(gxlIo.gxlFromInstance());
+        graphDao.save(graph);
+        setGraph(graph);
     }
 
     @Override

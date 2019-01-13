@@ -1,6 +1,7 @@
 package actions.other;
 
 import actions.GraphAction;
+import com.google.inject.Inject;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
@@ -12,6 +13,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
+import log_management.DatabaseManager;
 
 import java.awt.*;
 
@@ -21,6 +23,9 @@ import java.awt.*;
  */
 public class CreateGraphAction extends GraphAction {
     private String graphName;
+
+    //@Inject
+    //private DatabaseManager databaseManager;
 
     /**
      * Constructor in case the user creates a new graph.
@@ -42,6 +47,9 @@ public class CreateGraphAction extends GraphAction {
                 new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize()); // TODO im A4 Format
         VisualizationViewer vv = new VisualizationViewer<>(visualizationModel, values.getDefaultLayoutSize());
         syndrom.setVisualisationViewer(vv);
+
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.setup();
     }
 
     @Override

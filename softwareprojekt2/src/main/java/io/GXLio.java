@@ -25,7 +25,7 @@ public class GXLio {
      * Creates a new GXLio object.
      */
     public GXLio(){
-        throw new UnsupportedOperationException();
+
     }
 
     /**
@@ -43,7 +43,7 @@ public class GXLio {
      * @return The extracted GXL represenation.
      */
     public String gxlFromInstance(){
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     /**

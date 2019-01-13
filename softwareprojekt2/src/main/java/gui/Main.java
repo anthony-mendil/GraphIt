@@ -9,7 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import log_management.dao.PersonalEntityManager;
 import lombok.Getter;
+
+import javax.persistence.EntityManager;
 
 import static javafx.application.Application.launch;
 
@@ -47,5 +50,9 @@ public class Main extends Application{
      */
     public static void main(String[] args) {
         launch(args);
+
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+        entityManager.getEntityManagerFactory().close();
+        entityManager.close();
     }
 }

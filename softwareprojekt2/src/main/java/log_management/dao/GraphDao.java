@@ -1,13 +1,12 @@
 package log_management.dao;
 
-
-import javafx.util.Pair;
 import log_management.tables.Graph;
+import log_management.tables.Log;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -15,36 +14,62 @@ import java.util.Optional;
  */
 public class GraphDao implements Dao<Graph> {
     /**
-     * The id of the current logged action.
+     * The current graph.
      */
-    protected static int currentId;
+    protected static Graph currentGraph;
     /**
      *  EntityManager instance is associated with the persistence context.
      */
     private static EntityManager entityManager = PersonalEntityManager.getInstance();
+
     @Override
     public Optional<Graph> get(long id) {
-        throw new UnsupportedOperationException();
+        Query query = entityManager.createQuery("select g from Graph g where g.id = :gid");
+        query.setParameter("gid", id);
+        return Optional.of((Graph) query.getSingleResult());
     }
 
     @Override
     public List<Graph> getAll() {
-        throw new UnsupportedOperationException();
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        return selectAllGraphs.getResultList();
     }
 
     @Override
     public void save(Graph graph) {
-        currentId = graph.getId();
-        throw new UnsupportedOperationException();
+        delete(-1);
+        currentGraph = graph;
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(graph);
+        entityManager.getTransaction().commit();
     }
 
     @Override
     public void update(Graph graph) {
-        throw new UnsupportedOperationException();
+        entityManager.refresh(graph);
+        currentGraph = graph;
     }
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException();
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        List<Graph> graphList = selectAllGraphs.getResultList();
+
+        graphList.forEach(graph -> {
+            TypedQuery<Log> selectAllLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid", Log.class);
+            selectAllLogs.setParameter("gid", graph.getId());
+            List<Log> logList = selectAllLogs.getResultList();
+
+            logList.forEach(log -> {
+                entityManager.remove(log);
+            });
+
+            entityManager.remove(graph);
+        });
+    }
+
+    public static Graph getCurrentGraph() {
+        return currentGraph;
     }
 }

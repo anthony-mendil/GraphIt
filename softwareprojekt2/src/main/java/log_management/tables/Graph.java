@@ -8,8 +8,9 @@ import javax.persistence.*;
  * Represents the graph objects that are persisted into
  * the graphs table of the database.
  */
+@SuppressWarnings("all")
 @Entity
-@Table(name = "GRAPHS", schema = "PUBLIC", catalog = "TEST")
+@Table(name = "GRAPHS", schema = "PUBLIC", catalog = "GRAPHITDATABASE")
 public class Graph {
 
     /**
@@ -28,7 +29,7 @@ public class Graph {
      * @return The graph id.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -40,7 +41,6 @@ public class Graph {
      */
     public void setId(int id) {
         this.id = id;
-        DatabaseManager.setGraph(this);
     }
 
     /**
