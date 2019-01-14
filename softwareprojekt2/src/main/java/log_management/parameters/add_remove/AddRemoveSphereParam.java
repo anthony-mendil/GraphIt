@@ -5,6 +5,8 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
+import java.util.List;
+
 
 /**
  * Parameter object for the action AddSphereLogAction/RemoveSphereLogAction.
@@ -15,13 +17,13 @@ public class AddRemoveSphereParam extends Param{
      * The Sphere, which will be added/deleted.
      */
     @Getter
-    private Sphere sphere;
+    private List<Sphere> sphere;
 
     /**
      * Creates a parameter object of its own class.
      * @param pSphere The target sphere.
      */
-    public AddRemoveSphereParam(Sphere pSphere) {
+    public AddRemoveSphereParam(List<Sphere>pSphere) {
         this.sphere = pSphere;
     }
 

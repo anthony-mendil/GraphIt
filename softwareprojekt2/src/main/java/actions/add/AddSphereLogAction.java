@@ -2,14 +2,25 @@ package actions.add;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 import java.awt.geom.Point2D;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Adds a sphere to the graph.
  */
 public class AddSphereLogAction extends LogAction {
+
+    private Point2D point2D;
 
     /**
      * Constructor in case the user clicks somewhere on blank space to create a sphere.
@@ -18,7 +29,7 @@ public class AddSphereLogAction extends LogAction {
      */
     public AddSphereLogAction(Point2D pPoint2D) {
         super(LogEntryName.ADD_SPHERE);
-        throw new UnsupportedOperationException();
+        point2D = pPoint2D;
     }
 
     /**
@@ -29,13 +40,21 @@ public class AddSphereLogAction extends LogAction {
      */
     public AddSphereLogAction(AddRemoveSphereParam pAddRemoveSphereParam) {
         super(LogEntryName.ADD_SPHERE);
-        throw new UnsupportedOperationException();
+        parameters = pAddRemoveSphereParam;
     }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        graph.addSphere(point2D);
+        if(parameters == null) {
+            parameters = createParameter();
+        }
+        vv.repaint();
+        DatabaseManager.addEntryDatabase(this);
     }
+
 
     @Override
     public void undo() {
@@ -43,7 +62,10 @@ public class AddSphereLogAction extends LogAction {
     }
 
     @Override
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public AddRemoveSphereParam createParameter() {
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState = vv.getPickedSphereState();
+        List<Sphere> spheres = new LinkedList<>(pickedState.getPicked());
+        return new AddRemoveSphereParam(spheres);
     }
 }

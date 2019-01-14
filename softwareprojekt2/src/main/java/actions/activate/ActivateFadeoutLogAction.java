@@ -60,7 +60,7 @@ public class ActivateFadeoutLogAction extends LogAction {
     }
 
     @Override
-    public void createParameter() {
+    public ActivateDeactivateFadeoutParam createParameter() {
         throw new UnsupportedOperationException();
     }
 }

@@ -3,6 +3,7 @@ package actions.activate;
 import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
 
 import java.awt.geom.Point2D;
 
@@ -52,7 +53,7 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
     }
 
     @Override
-    public void createParameter() {
+    public ActivateDeactivateHighlightParam createParameter() {
         throw new UnsupportedOperationException();
     }
 }

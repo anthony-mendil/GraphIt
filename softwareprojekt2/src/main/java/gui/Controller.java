@@ -3,6 +3,7 @@ package gui;
 import actions.Action;
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
+import actions.add.AddSphereLogAction;
 import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
@@ -572,8 +573,7 @@ public class Controller implements ObserverSyndrom{
     /**
      * Creates an AddSphereLogAction-object and executes the action with the action history.
      */
-    public void addSphere() {
-        throw new UnsupportedOperationException();
+    public void addSphere(){
     }
 
     /**
@@ -928,7 +928,7 @@ public class Controller implements ObserverSyndrom{
     public void removeSphere() {
         values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
         RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        removeSphereLogAction.action();
+        history.execute(removeSphereLogAction);
     }
 
     /**

@@ -1,5 +1,7 @@
 package graph.visualization.control;
 
+import actions.ActionHistory;
+import actions.add.AddSphereLogAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -9,6 +11,7 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import gui.Controller;
 import gui.GraphButtonType;
 import gui.Values;
 
