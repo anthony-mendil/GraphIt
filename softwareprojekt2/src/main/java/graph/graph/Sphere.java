@@ -1,9 +1,7 @@
 package graph.graph;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -81,12 +79,10 @@ public class Sphere {
         this.annotation = annotation;
         this.font = font;
         this.fontSize = fontSize;
+        vertices = new LinkedList<>();
     }
 
     public boolean equals(Sphere s){
-        if (this.id == s.id){
-            return true;
-        }
-        return false;
+        return this.id == s.id;
     }
 }

@@ -1,15 +1,12 @@
 package actions;
 
-import com.google.inject.Inject;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.picking.SyndromPickSupport;
 import gui.Values;
-import lombok.NonNull;
 
 /**
  * Superclass of all actions that need access to the internal state of the graph, the visualization viewer and the

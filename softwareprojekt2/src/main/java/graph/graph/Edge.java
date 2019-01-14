@@ -1,6 +1,5 @@
 package graph.graph;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -12,7 +11,6 @@ import java.awt.*;
  * final.
  */
 @Data
-@AllArgsConstructor
 
 public class Edge {
     /**
@@ -50,4 +48,17 @@ public class Edge {
      */
     @NonNull
     private boolean isVisible;
+
+    public Edge(int id, Paint paint, StrokeType stroke, EdgeArrowType arrowType, boolean hasAnchor, boolean isVisible){
+        this.id = id;
+        this.paint = paint;
+        this.stroke = stroke;
+        this.arrowType = arrowType;
+        this.hasAnchor = hasAnchor;
+        this.isVisible = isVisible;
+    }
+
+    public boolean equals(Edge e){
+        return this.id == e.id;
+    }
 }

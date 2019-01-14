@@ -1,11 +1,10 @@
 package actions.add;
 
 import actions.LogAction;
+import actions.LogEntryName;
 import graph.graph.Vertex;
 import javafx.util.Pair;
-import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
-
 
 import java.awt.geom.Point2D;
 import java.util.Map;

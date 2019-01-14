@@ -1,26 +1,29 @@
 package gui;
 
-import actions.Action;
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
 import actions.edit.color.EditSphereColorLogAction;
+import actions.edit.color.EditVerticesDrawColorLogAction;
+import actions.edit.color.EditVerticesFillColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
+import actions.edit.font.EditFontSizeVerticesLogAction;
 import actions.edit.font.EditFontSphereLogAction;
+import actions.edit.font.EditFontVerticesLogAction;
+import actions.edit.form.EditVerticesFormLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
-import actions.layout.LayoutGraphLogAction;
+import actions.layout.LayoutSphereGraphLogAction;
+import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.remove.RemoveSphereLogAction;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
+import actions.remove.RemoveVerticesLogAction;
 import graph.graph.SphereSizeChange;
 import graph.graph.Syndrom;
+import graph.graph.VertexShapeType;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -312,6 +315,7 @@ public class Controller implements ObserverSyndrom{
     @FXML
     private ColorPicker sphereBackgroundColour;
 
+
     /**
      * The textfield for changing the font of the sphere text.
      */
@@ -390,13 +394,15 @@ public class Controller implements ObserverSyndrom{
     /* Symptom */
 
     /**
-     * The colorpicker for changing the background color for a symptom.
+     * The ColorPicker for changing the background color for a symptom.
      */
+    @FXML
     private ColorPicker symptomBackground;
 
     /**
-     * The colorpicker for changing the border color for a symptom.
+     * The ColorPicker for changing the border color for a symptom.
      */
+    @FXML
     private ColorPicker symptomBorder;
 
     /**
@@ -580,7 +586,7 @@ public class Controller implements ObserverSyndrom{
      * Creates an AddVerticesLogAction-object and executes the action with the action history.
      */
     public void addVertex() {
-        throw new UnsupportedOperationException();
+        values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
     }
 
     /* ----------------ANALYSE---------------------- */
@@ -708,13 +714,21 @@ public class Controller implements ObserverSyndrom{
      * Creates an EditVerticesDrawColorLogAction-object and executes the action with the action history.
      */
     public void editVerticesDrawColor() {
-        throw new UnsupportedOperationException();
+        Color color = convertToAWT(symptomBorder.getValue());
+        Values.getInstance().setDrawPaintVertex(color);
+        EditVerticesDrawColorLogAction colorLogAction = new EditVerticesDrawColorLogAction(color);
+        colorLogAction.action();
     }
 
     /**
      * Creates an EditVerticesFillColorLogAction-object and executes the action with the action history.
      */
-    public void editVerticesFillColor(){ throw new UnsupportedOperationException();}
+    public void editVerticesFillColor(){
+        Color color = convertToAWT(symptomBackground.getValue());
+        Values.getInstance().setFillPaintVertex(color);
+        EditVerticesFillColorLogAction colorLogAction = new EditVerticesFillColorLogAction(color);
+        colorLogAction.action();
+    }
 
     /* ......font..... */
 
@@ -739,10 +753,19 @@ public class Controller implements ObserverSyndrom{
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
      */
-    public void editFontVertex() {
-        throw new UnsupportedOperationException();
+    public void editFontVertex(String font) {
+        values.setFontVertex(font);
+        EditFontVerticesLogAction editFontSphereLogAction = new EditFontVerticesLogAction(font);
+        editFontSphereLogAction.action();
     }
 
+    public void vertexFont1(){
+        editFontVertex("Times New Roman");
+    }
+
+    public void vertexFont2(){
+        editFontVertex("Comic Sans Ms");
+    }
     /**
      * Creates an EditFontSizeSphereLogAction-object and executes the action with the action history.
      * @param size The new size of the sphere text
@@ -762,23 +785,50 @@ public class Controller implements ObserverSyndrom{
     }
 
     public void sphereAutoLayout(){
-        LayoutGraphLogAction layoutGraphLogAction = new LayoutGraphLogAction();
-        layoutGraphLogAction.action();
+        LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
+        layoutSphereGraphLogAction.action();
+    }
+
+    public void verticesAutoLayout(){
+        LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
+        layoutVerticesGraphLogAction.action();
     }
 
 
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
      */
-    public void editFontSizeVertices(){ throw new UnsupportedOperationException(); }
+    public void editFontSizeVertices(int size){
+        values.setFontSizeVertex(size);
+        EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
+        editFontSizeVerticesLogAction.action();
+    }
+
+    public void fontSizeVertex1(){
+        editFontSizeVertices(13);
+    }
+
+    public void fontSizeVertex2(){
+        editFontSizeVertices(14);
+    }
 
     /* ......form..... */
 
     /**
      * Creates an EditVerticesFormLogAction-object and executes the action with the action history.
      */
-    public void editVerticesForm() {
-        throw new UnsupportedOperationException();
+    public void editVerticesForm(VertexShapeType type) {
+        values.setShapeVertex(type);
+        EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(type);
+        editVerticesFormLogAction.action();
+    }
+
+    public void verticesForm1(){
+        editVerticesForm(VertexShapeType.CIRCLE);
+    }
+
+    public void verticesForm2(){
+        editVerticesForm(VertexShapeType.RECTANGLE);
     }
 
     /* ----------------EXPORT---------------------- */
@@ -826,7 +876,7 @@ public class Controller implements ObserverSyndrom{
     /* ----------------LAYOUT---------------------- */
 
     /**
-     * Creates an LayoutGraphLogAction-object and executes the action with the action history.
+     * Creates an LayoutSphereGraphLogAction-object and executes the action with the action history.
      */
     public void layoutGraph() {
         throw new UnsupportedOperationException();
@@ -935,7 +985,8 @@ public class Controller implements ObserverSyndrom{
      * Creates an RemoveVerticesLogAction-object and executes the action with the action history.
      */
     public void removeVertices() {
-        throw new UnsupportedOperationException();
+        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
+        removeVerticesLogAction.action();
     }
 
     /* ----------------TEMPLATE---------------------- */
@@ -969,6 +1020,8 @@ public class Controller implements ObserverSyndrom{
         history = ActionHistory.getInstance();
         values = Values.getInstance();
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
+        symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
+        symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
     }
 
     /**

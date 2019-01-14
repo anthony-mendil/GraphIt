@@ -8,9 +8,7 @@ package graph.visualization.renderers;/*
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
-import edu.uci.ics.jung.visualization.renderers.BasicEdgeRenderer;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
-import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 
@@ -43,6 +41,37 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
                 sphaerenRenderer.paintSphere(renderContext, s);
 
 
+            }
+        } catch (ConcurrentModificationException cme) {
+            renderContext.getScreenDevice().repaint();
+        }
+
+        try {
+            for (E e : layout.getGraph().getEdges()) {
+                renderEdge(
+                        renderContext,
+                        layout,
+                        e);
+                renderEdgeLabel(
+                        renderContext,
+                        layout,
+                        e);
+            }
+        } catch (ConcurrentModificationException cme) {
+            renderContext.getScreenDevice().repaint();
+        }
+
+        try {
+            for (V v : layout.getGraph().getVertices()) {
+
+                renderVertex(
+                        renderContext,
+                        layout,
+                        v);
+                renderVertexLabel(
+                        renderContext,
+                        layout,
+                        v);
             }
         } catch (ConcurrentModificationException cme) {
             renderContext.getScreenDevice().repaint();

@@ -1,9 +1,7 @@
 package graph.visualization.transformer.edge;
 
-import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
-import graph.graph.EdgeArrowType;
 import graph.visualization.util.SyndromArrowFactory;
 import org.apache.commons.collections15.Transformer;
 

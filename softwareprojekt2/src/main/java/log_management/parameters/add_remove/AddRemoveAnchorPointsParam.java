@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Parameter object of the action AddAnchorPointsLogAction/RemoveAnchorPointsLogAction.

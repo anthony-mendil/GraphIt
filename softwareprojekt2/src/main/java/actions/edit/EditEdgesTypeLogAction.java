@@ -1,17 +1,10 @@
 package actions.edit;
 
 import actions.LogAction;
-import edu.uci.ics.jung.graph.util.EdgeType;
-import graph.graph.Edge;
-import graph.graph.EdgeArrowType;
 import actions.LogEntryName;
-import graph.graph.Vertex;
-import javafx.util.Pair;
+import graph.graph.EdgeArrowType;
 import log_management.parameters.edit.EditEdgesTypeParam;
 import lombok.Data;
-
-import java.util.Collection;
-import java.util.Map;
 
 /**
  * Changes the EdgeType from a collection of edges.

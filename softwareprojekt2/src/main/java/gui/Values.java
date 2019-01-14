@@ -1,18 +1,16 @@
 package gui;
 
-import com.google.inject.Singleton;
 import graph.graph.EdgeArrowType;
 import graph.graph.FunctionMode;
 import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
-import javafx.geometry.Bounds;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
 
 import java.awt.*;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Defines values for the syndrom. These are default values. The values represent the currently selected values from the
@@ -41,12 +39,12 @@ public class Values {
      * The default annotation of a vertex.
      */
     @Setter(AccessLevel.NONE)
-    private static final String defaultAnnotationVertex = "";
+    private final Map<String, String> defaultAnnotationVertex;
     /**
      * The default size of a vertex.
      */
     @Setter(AccessLevel.NONE)
-    private static final int defaultSizeVertex = -1;
+    private final int defaultSizeVertex = 50;
     /**
      * The first highlight color for highlighting selection/ picking.
      */
@@ -90,23 +88,23 @@ public class Values {
     /**
      * The fonz size of a vertex annotation.
      */
-    private int fontSizeVertex;
+    private int fontSizeVertex = 12;
     /**
      * The fill paint color of a vertex.
      */
-    private Paint fillPaintVertex;
+    private Color fillPaintVertex = new Color(123,255,51);
     /**
      * The draw paint color of a vertex.
      */
-    private Paint drawPaintVertex;
+    private Color drawPaintVertex = Color.DARK_GRAY;
     /**
      * The shape of a vertex.
      */
-    private VertexShapeType shapeVertex;
+    private VertexShapeType shapeVertex = VertexShapeType.CIRCLE;
     /**
      * The font of a vertex.
      */
-    private String fontVertex;
+    private String fontVertex = "Arial";
     /**
      * The highlight color for vertices.
      */
@@ -148,6 +146,10 @@ public class Values {
         defaultAnnotationSphere = new HashMap<>();
         defaultAnnotationSphere.put("de","Sphäre Überschrift");
         defaultAnnotationSphere.put("en","Sphere Headline");
+
+        defaultAnnotationVertex = new HashMap<>();
+        defaultAnnotationVertex.put("de","Vertex");
+        defaultAnnotationVertex.put("en","vertex");
     }
 
     public static Values getInstance(){

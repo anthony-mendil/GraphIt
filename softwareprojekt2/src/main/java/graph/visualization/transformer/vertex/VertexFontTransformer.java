@@ -1,5 +1,6 @@
 package graph.visualization.transformer.vertex;
 
+import graph.graph.Vertex;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -13,6 +14,11 @@ import java.awt.*;
 public class VertexFontTransformer<V> implements Transformer<V, Font> {
     @Override
     public Font transform(V v) {
-        return null;
+        Vertex vertex = (Vertex) v;
+        try{
+            return new Font(vertex.getFont(), Font.PLAIN, vertex.getFontSize());
+        } catch (Exception e){
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -15,6 +15,7 @@ import edu.uci.ics.jung.graph.util.EdgeType;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -62,8 +63,11 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @param pSphere The sphere to assign to.
      * @param pVertex The vertex.
      */
-    public void addVertexToSphere(Sphere pSphere, V pVertex) {
-        throw new UnsupportedOperationException();
+    public boolean addVertexToSphere(Sphere pSphere, Vertex pVertex) {
+        LinkedList<graph.graph.Vertex> vertices = pSphere.getVertices();
+        boolean added = vertices.add(pVertex);
+        pSphere.setVertices(vertices);
+        return added;
     }
 
     /**
@@ -72,19 +76,27 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @param pSphere The sphere.
      * @param pVertex The vertex to remove from the sphere.
      */
-    public void removeVertexFromSphaere(Sphere pSphere, V pVertex) {
+    public void removeVertexFromSphaere(Sphere pSphere, Vertex pVertex) {
         throw new UnsupportedOperationException();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void addEdge(V v1, V v2){
+        Edge edge = graphObjectsFactory.createEdge();
+        addEdge((E)edge, v1, v2);
     }
 
     /**
      * Adds a vertex to the syndrom graphs and assigns it to a sphere.
      *
-     * @param pVertex The vertex to add.
      * @param pSphere The sphere to assign to.
      * @return True if the vertex was added to the graph, false if not.
      */
-    public boolean addVertex(V pVertex, Sphere pSphere) {
-        throw new UnsupportedOperationException();
+    public Vertex addVertex(Point2D pos, Sphere pSphere) {
+        Vertex vertex = graphObjectsFactory.createVertex(pos);
+        addVertex((V) vertex);
+        addVertexToSphere(pSphere, vertex);
+        return vertex;
     }
 
     /**

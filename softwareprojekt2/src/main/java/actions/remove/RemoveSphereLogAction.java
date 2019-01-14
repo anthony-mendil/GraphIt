@@ -1,9 +1,12 @@
 package actions.remove;
 
 import actions.LogAction;
-import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.*;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
@@ -37,6 +40,9 @@ public class RemoveSphereLogAction extends LogAction {
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         for (Sphere sp: pickedState.getPicked()) {
+            for(Vertex v: sp.getVertices()){
+                graph.removeVertex(v);
+            }
             graph.removeSphere(sp);
         }
         vv.repaint();

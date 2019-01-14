@@ -1,13 +1,10 @@
 package log_management.dao;
 
 
-import javafx.util.Pair;
 import log_management.tables.Graph;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 /**
