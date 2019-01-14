@@ -1,5 +1,6 @@
 package graph.visualization.renderers;
 
+import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
 import graph.graph.Sphere;
@@ -8,6 +9,7 @@ import graph.visualization.transformer.sphere.*;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * The SphereRenderer renders all spheres from the syndrom graph.
@@ -27,15 +29,18 @@ public class SphereRenderer {
      */
     public void paintSphere(RenderContext pRc, Sphere pSphere) {
         GraphicsDecorator g2d = pRc.getGraphicsContext();
-        Shape sphereShape = sphereShapeTransformer.transform(pSphere);
+        Point2D p = pSphere.getCoordinates();
+        p = pRc.getMultiLayerTransformer().transform(Layer.LAYOUT, p);
+        Shape sphereShape =  new Rectangle2D.Double(p.getX(), p.getY(), pSphere
+                .getWidth(), pSphere.getHeight());
         g2d.setPaint(sphereFillPaintTransformer.transform(pSphere));
         g2d.fill(sphereShape);
         g2d.setPaint(sphereDrawPaintTransformer.transform(pSphere));
         SphereStrokeTransformer<Sphere> sphereStrokeTransformer = new SphereStrokeTransformer<>(Syndrom
                 .getInstance().getVv());
         g2d.setStroke(sphereStrokeTransformer.transform(pSphere));
-        g2d.draw(sphereShape);
 
+        g2d.draw(sphereShape);
         g2d.setFont(sphereFontTransformer.transform(pSphere));
         FontMetrics fontMetrics = g2d.getFontMetrics();
         String annotation = sphereLabelTransformer.transform(pSphere);
@@ -51,7 +56,7 @@ public class SphereRenderer {
         }
         int i =1;
         for (String line : annotation.split("\n")){
-            Point2D point2D = getAnchorPoint(pSphere, fontMetrics.stringWidth(line));
+            Point2D point2D = getAnchorPoint(pSphere, p, fontMetrics.stringWidth(line));
             g2d.drawString(line, (float) point2D.getX(), (float) point2D.getY()+sphereSphereFontSizeTransformer.transform
                     (pSphere)*i++);
         }
@@ -110,9 +115,9 @@ public class SphereRenderer {
         return label.toString();
     }
 
-    private Point2D getAnchorPoint(Sphere sphere, int width){
+    private Point2D getAnchorPoint(Sphere sphere, Point2D p, int width){
         double sWidth = sphere.getWidth();
-        double x = sphere.getCoordinates().getX();
+        double x = p.getX();
         double labelX;
 
         if (width+10 < (sWidth)){
@@ -120,6 +125,6 @@ public class SphereRenderer {
         } else {
             labelX = x+5;
         }
-        return new Point2D.Double(labelX, sphere.getCoordinates().getY()+2);
+        return new Point2D.Double(labelX, p.getY()+2);
     }
 }

@@ -10,6 +10,8 @@ import graph.visualization.SyndromVisualisationViewer;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -67,6 +69,12 @@ public class LayoutGraphLogAction extends LogAction {
             int sepY = 15;
             double yCoord = y;
 
+
+
+            for(ArrayList<Sphere> sphereRow : sphereRows){
+                sphereRow.sort(sphereCompare);
+            }
+
             for (ArrayList<Sphere> sphereRow : sphereRows) {
                 double xCoord = x;
                 for (Sphere s : sphereRow) {
@@ -82,6 +90,13 @@ public class LayoutGraphLogAction extends LogAction {
         }
         vv.repaint();
     }
+
+    public static Comparator<Sphere> sphereCompare = new Comparator<Sphere>() {
+        @Override
+        public int compare(Sphere sphere1, Sphere sphere2) {
+                return Integer.compare((int)sphere1.getCoordinates().getX(), (int) sphere2.getCoordinates().getX());
+        }
+    };
 
     @Override
     public void undo() {

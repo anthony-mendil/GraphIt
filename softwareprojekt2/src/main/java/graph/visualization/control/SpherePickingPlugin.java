@@ -21,10 +21,13 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+import java.util.Set;
 
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     private Sphere sphere;
+    private Sphere lastSphere;
+    private Point2D downFirst = null;
 
     /**
      * create an instance with passed values
@@ -81,6 +84,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
         down = e.getPoint();
+        System.out.println("down "+down);
         SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
@@ -95,6 +99,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 } /*else {
                     pickedSphereState.pick(sp, false);
                 }*/
+
                 vv.repaint();
             } else {
                 pickedSphereState.clear();
@@ -104,7 +109,47 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        //
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
+            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+            PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
+            Set<Sphere> spheres = spherePickedState.getPicked();
+
+
+              /*  for (Sphere s : spheres) {
+                    double y = s.getCoordinates().getY();
+                    double height = y + s.getHeight();
+                    double x = s.getCoordinates().getX();
+                    double width = x + s.getWidth();
+
+                    for (int j = (int) y ; j < height + y; j++) {
+                        List<Sphere> sp = pickSupport.getSpheres(x+width, j);
+
+                        for (Sphere containingSphere: sp){
+                            if (!containingSphere.equals(s)){
+                                s.setCoordinates(new Point2D.Double(downFirst.getX(), downFirst.getY()));
+                                break;
+                            }
+                        }
+                    }
+
+                    for (int j = (int) y; j < width + y; j++) {
+                        List<Sphere> sp = pickSupport.getSpheres(j, y+height);
+
+                        for (Sphere containingSphere: sp){
+                            if (!containingSphere.equals(s)){
+                                s.setCoordinates(new Point2D.Double(downFirst.getX(), downFirst.getY()));
+                                break;
+                            }
+                        }
+                    }
+                }*/
+
+
+            downFirst = null;
+            vv.repaint();
+
+        }
     }
 
     @Override
@@ -130,12 +175,15 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 double dx = graphPoint.getX() - graphDown.getX();
                 double dy = graphPoint.getY() - graphDown.getY();
                 PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
+                SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
 
                 for (Sphere s : spherePickedState.getPicked()) {
+                    if (downFirst == null) {
+                        downFirst = s.getCoordinates();
+                    }
                     s.setCoordinates(new Point2D.Double(s.getCoordinates().getX() + dx, s.getCoordinates().getY() + dy));
                 }
                 down = p;
-                e.consume();
                 vv.repaint();
             }
         }

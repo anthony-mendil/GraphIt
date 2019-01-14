@@ -13,6 +13,7 @@ import gui.Values;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,13 +52,17 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         x = ip.getX();
         y = ip.getY();
 
-        try {
+            try {
             SyndromGraph g = (SyndromGraph) vv.getGraphLayout().getGraph();
             List<Sphere> list = g.getSpheres();
                 for (Object aSet : list) {
                     Sphere s = (Sphere) aSet;
-                    Shape rec = sphereShapeTransformer.transform(s);
-                    if (rec.contains(x, y)) {
+                    Point2D p = s.getCoordinates();
+                    p = vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, p);
+                    Shape rec =  new Rectangle2D.Double(p.getX(), p.getY(), s
+                            .getWidth(), s.getHeight());
+
+                    if (rec.contains(x,y)) {
                         sphaereContains = s;
                     }
                 }
