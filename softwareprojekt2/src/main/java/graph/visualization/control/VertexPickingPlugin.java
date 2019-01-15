@@ -34,9 +34,13 @@ import java.util.concurrent.CountDownLatch;
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     private Vertex source;
+
     private Values values;
-    private ActionHistory history;
     private Map<Integer, Pair<Point2D, Sphere>> points;
+
+
+
+    private ActionHistory history = ActionHistory.getInstance();
 
     /**
      * create an instance with passed values
@@ -60,6 +64,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null) {
+
                     boolean add = true;
                     for (Vertex sphereVert : sp.getVertices()) {
                         GraphObjectsFactory graphObjectsFactory = new GraphObjectsFactory();
@@ -87,8 +92,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         }
                     }
                     if (add) {
-                        AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint());
-                        addVerticesLogAction.action();
+                        AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
+                    	history.execute(addVerticesLogAction);
                     } else {
                         setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
                     }
