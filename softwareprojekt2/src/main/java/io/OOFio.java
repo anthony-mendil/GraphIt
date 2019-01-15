@@ -4,6 +4,9 @@ import com.google.inject.Inject;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
 
+import java.io.File;
+
+
 /**
  * The OOF importer/exporter.
  */
@@ -34,7 +37,7 @@ public class OOFio {
      * @return The OOF file as string.
      */
     private String createOOF(String pGXL, String pJSON){
-        throw new UnsupportedOperationException();
+        return pGXL+"\0"+pJSON;
     }
 
     /**
@@ -44,7 +47,8 @@ public class OOFio {
      * @return The GXL string.
      */
     private String gxlFromOOF(String pOOF){
-        throw new UnsupportedOperationException();
+        String[] splits = pOOF.split("\0");
+        return splits[0];
     }
 
     /**
@@ -54,25 +58,25 @@ public class OOFio {
      * @return The JSON string.
      */
     private String jsonFromOOF(String pOOF){
-        throw new UnsupportedOperationException();
+        String[] splits = pOOF.split("\0");
+        return splits[1];
     }
 
     /**
      * Export the current graph and protocol as OOF file.
      *
-     * @param pPath The path where the file will be saved/exported.
-     * @param pName The name of the exported file.
+     * @param pFile The destination file
      */
-    public void exportAsOOF(String pPath, String pName){
+    public void exportAsOOF(File pFile){
         throw new UnsupportedOperationException();
     }
 
     /**
      * Import the graph and protocol from an OOF file.
      *
-     * @param pPath The path to the file that gets imported.
+     * @param pFile The file to import
      */
-    public void importOOF(String pPath){
+    public void importOOF(File pFile){
         throw new UnsupportedOperationException();
     }
 

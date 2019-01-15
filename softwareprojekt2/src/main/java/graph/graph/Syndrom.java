@@ -30,6 +30,7 @@ import org.apache.commons.collections15.functors.MapTransformer;
 import org.apache.commons.collections15.map.LazyMap;
 
 import java.awt.*;
+import java.nio.file.Path;
 import java.util.HashMap;
 
 /**

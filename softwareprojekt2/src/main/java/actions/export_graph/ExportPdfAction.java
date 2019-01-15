@@ -1,6 +1,10 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import graph.graph.Syndrom;
+import io.PDFio;
+
+import java.io.File;
 
 /**
  * Exports an PDF file with the current graph visualization.
@@ -8,23 +12,19 @@ import actions.GraphAction;
 public class ExportPdfAction extends GraphAction {
 
     /**
-     * The path that the PDF file is exported to.
+     * The File the pdf get's written into
      */
-    private String path;
-
-    /**
-     * The name of the file.
-     */
-    private String name;
+    private File file;
 
     /**
      * Action handling for exporting the graph as PDF file.
      *
-     * @param pPath The path that the PDF is exported to.
-     * @param pName The name of the file.
+     * @param pFile The destination File
+     *
      */
-    public ExportPdfAction(String pPath, String pName) {
-        throw new UnsupportedOperationException();
+    public ExportPdfAction(File pFile) {
+        file=pFile;
+        Syndrom.getInstance().getVv().getPickedSphereState().clear();
     }
 
     /**
@@ -32,14 +32,21 @@ public class ExportPdfAction extends GraphAction {
      */
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        PDFio pdfio = new PDFio(Syndrom.getInstance().getVv(), file);
+        pdfio.exportPDF();
     }
 
     /**
-     * Reverts the action. The internal state of the graph is the same as before the action was executed.
+     * Disables the undo-funktion for the pfd export
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Disables the redo-funktion for the pfd export
+     */
+    @Override
+    public void redo() {
     }
 }

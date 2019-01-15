@@ -1,6 +1,10 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import graph.graph.Syndrom;
+import io.OOFio;
+
+import java.io.File;
 
 /**
  * Exports an OOF file with the current syndrom graph.
@@ -8,23 +12,18 @@ import actions.GraphAction;
 public class ExportOofAction extends GraphAction {
 
     /**
-     * The path that the OOF file is exported to.
+     * The File the oof get's written into
      */
-    private String path;
-
-    /**
-     * The name of the file.
-     */
-    private String name;
+    private File file;
 
     /**
      * Constructs action handling for exporting the graph as OOF file.
      *
-     * @param pPath The path that the OOF file is exported to.
-     * @param pName The name of the file.
+     * @param pFile The destination of the oof-file
      */
-    public ExportOofAction(String pPath, String pName) {
-        throw new UnsupportedOperationException();
+    public ExportOofAction(File pFile) {
+        file=pFile;
+        Syndrom.getInstance().getVv().getPickedSphereState().clear();
     }
 
     /**
@@ -32,14 +31,21 @@ public class ExportOofAction extends GraphAction {
      */
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        OOFio oofio=new OOFio();
+        oofio.exportAsOOF(file);
     }
 
     /**
-     * Reverts the action. The internal state of the graph is the same as before the action was executed.
+     * Disables the undo-funktion for the oof export
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Disables the redo-funktion for the oof export
+     */
+    @Override
+    public void redo() {
     }
 }
