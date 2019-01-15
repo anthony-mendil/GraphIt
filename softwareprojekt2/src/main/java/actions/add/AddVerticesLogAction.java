@@ -53,6 +53,7 @@ public class AddVerticesLogAction extends LogAction {
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         Sphere sp = pickSupport.getSphere(pos.getX(), pos.getY());
+        pos = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(pos);
         Vertex newVertex = graph.addVertex(pos, sp);
         vv.getGraphLayout().setLocation(newVertex, pos);
     }

@@ -11,6 +11,9 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import log_management.parameters.edit.EditSphereSizeParam;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
+
 /**
  * Changes the sphere size.
  */
@@ -50,7 +53,9 @@ public class EditSphereSizeLogAction extends LogAction {
                 double y = sp.getCoordinates().getY();
                 boolean enlarge = true;
                 for (int j = (int) y; j < newHeight + y; j++) {
-                    Sphere s = pickSupport.getSphere(x+newWidth, j);
+                    Point2D val =  vv.getRenderContext().getMultiLayerTransformer().transform( new Point2D.Double
+                            (x+newWidth, j));
+                    Sphere s = pickSupport.getSphere(val.getX(), val.getY());
                     if (s != null && !s.equals(sp)) {
                         enlarge = false;
                         break;
@@ -58,7 +63,10 @@ public class EditSphereSizeLogAction extends LogAction {
                 }
 
                 for (int j = (int) y; j < newWidth + y; j++) {
-                    Sphere s = pickSupport.getSphere( j, y+newHeight);
+                    Point2D point =  new Point2D.Double
+                            ( j, y+newHeight);
+                    point =  vv.getRenderContext().getMultiLayerTransformer().transform(point);
+                    Sphere s = pickSupport.getSphere(point.getX(), point.getY());
                     if (s != null && !s.equals(sp)) {
                         enlarge = false;
                         break;

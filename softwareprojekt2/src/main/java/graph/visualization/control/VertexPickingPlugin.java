@@ -51,25 +51,24 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
             SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
-            Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
-            Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+            Point2D point = e.getPoint();
+            Sphere sp = pickSupport.getSphere(point.getX(), point.getY());
+            Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
 
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX ) {
                 if (sp != null && vertex == null){
                     boolean add = true;
                     for (Vertex sphereVert : sp.getVertices()) {
                         GraphObjectsFactory graphObjectsFactory = new GraphObjectsFactory();
-                        Vertex test = graphObjectsFactory.createTestVertex(e.getPoint());
+                        Vertex test = graphObjectsFactory.createTestVertex(point);
                         RenderContext<Vertex, Edge> rc = vv.getRenderContext();
                         Layout<Vertex, Edge> layout = vv.getGraphLayout();
 
                         Shape shapeTest = vv.getRenderContext().getVertexShapeTransformer().transform(test);
                         Shape shapeSphereVert = rc.getVertexShapeTransformer().transform
                                 (sphereVert);
-                        Point2D p;
-                        p = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, e.getPoint());
-                        float x = (float) p.getX();
-                        float y = (float) p.getY();
+                        float x = (float) point.getX();
+                        float y = (float) point.getY();
                         AffineTransform xform = AffineTransform.getTranslateInstance(x, y);
                         shapeTest = xform.createTransformedShape(shapeTest);
 
