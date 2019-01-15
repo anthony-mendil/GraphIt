@@ -5,9 +5,7 @@ import log_management.tables.Graph;
 import log_management.tables.Log;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,10 +15,6 @@ import java.util.Optional;
  * The log log_management.dao class. Manages the data access to the logs.
  */
 public class LogDao implements Dao<Log> {
-    /**
-     *  EntityManager instance is associated with the persistence context.
-     */
-    private static EntityManager entityManager = PersonalEntityManager.getInstance();
 
     /**
      * Returns a logs object, attribute parameter gets converted from string to object with jackson.
@@ -29,6 +23,8 @@ public class LogDao implements Dao<Log> {
      */
     @Override
     public Optional<Log> get(long id) {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         Query query = entityManager.createQuery("select l from Log l where l.id = :lid");
         query.setParameter("lid", id);
         return Optional.of((Log) query.getSingleResult());
@@ -40,6 +36,8 @@ public class LogDao implements Dao<Log> {
      */
     @Override
     public List<Log> getAll() throws NoSuchElementException {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         Graph graph = GraphDao.getCurrentGraph();
         if (graph == null) {
             throw new NoSuchElementException();
@@ -56,6 +54,8 @@ public class LogDao implements Dao<Log> {
      * @return A a string (json) containing all logs.
      */
     public String getAllString() throws NoSuchElementException {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         Graph graph = GraphDao.getCurrentGraph();
         if (graph == null) {
             throw new NoSuchElementException();
@@ -81,6 +81,8 @@ public class LogDao implements Dao<Log> {
      */
     @Override
     public void save(Log log) {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         entityManager.getTransaction().begin();
         entityManager.persist(log);
         entityManager.getTransaction().commit();
@@ -88,11 +90,15 @@ public class LogDao implements Dao<Log> {
 
     @Override
     public void update(Log log) {
-        entityManager.refresh(log);
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
+        entityManager.refresh(entityManager.merge(log));
     }
 
     @Override
     public void delete(int id) {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         entityManager.remove(get(id));
     }
 
@@ -102,6 +108,8 @@ public class LogDao implements Dao<Log> {
      * @return A list with all logs of this log type.
      */
     public List<Log> getLogType(LogEntryName logEntryName) throws NoSuchElementException {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         Graph graph = GraphDao.getCurrentGraph();
         if (graph == null) {
             throw new NoSuchElementException();
@@ -120,6 +128,8 @@ public class LogDao implements Dao<Log> {
      * @return A list with all logs of this log type as strings.
      */
     public List<String> getLogTypeString(LogEntryName logEntryName) throws NoSuchElementException {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         Graph graph = GraphDao.getCurrentGraph();
         if (graph == null) {
             throw new NoSuchElementException();
@@ -143,6 +153,8 @@ public class LogDao implements Dao<Log> {
      * @return List of strings containing all log entries.
      */
     public List<String> getAllStrings() throws NoSuchElementException {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         Graph graph = GraphDao.getCurrentGraph();
         if (graph == null) {
             throw new NoSuchElementException();

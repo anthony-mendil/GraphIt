@@ -4,9 +4,7 @@ package log_management.dao;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,13 +16,11 @@ public class GraphDao implements Dao<Graph> {
      * The current graph.
      */
     protected static Graph currentGraph;
-    /**
-     *  EntityManager instance is associated with the persistence context.
-     */
-    private static EntityManager entityManager = PersonalEntityManager.getInstance();
 
     @Override
     public Optional<Graph> get(long id) {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         Query query = entityManager.createQuery("select g from Graph g where g.id = :gid");
         query.setParameter("gid", id);
         return Optional.of((Graph) query.getSingleResult());
@@ -32,12 +28,16 @@ public class GraphDao implements Dao<Graph> {
 
     @Override
     public List<Graph> getAll() {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
         return selectAllGraphs.getResultList();
     }
 
     @Override
     public void save(Graph graph) {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         delete(-1);
         currentGraph = graph;
 
@@ -48,12 +48,16 @@ public class GraphDao implements Dao<Graph> {
 
     @Override
     public void update(Graph graph) {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         entityManager.refresh(graph);
         currentGraph = graph;
     }
 
     @Override
     public void delete(int id) {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
 
