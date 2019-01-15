@@ -1,35 +1,25 @@
 package graph.graph;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.StaticLayout;
-import edu.uci.ics.jung.visualization.*;
-import edu.uci.ics.jung.visualization.control.PickingGraphMousePlugin;
+import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
+import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
 import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
-import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.algorithmen.predicates.*;
-import graph.visualization.control.PickingGraphMouseEditSyndromPlugin;
+import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.SpherePickingPlugin;
+import graph.visualization.control.VertexPickingPlugin;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
-import graph.visualization.util.SyndromArrowFactory;
 import gui.Values;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
-import org.apache.commons.collections15.functors.MapTransformer;
-import org.apache.commons.collections15.map.LazyMap;
 
 import java.awt.*;
-import java.util.HashMap;
 
 /**
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualization
@@ -42,7 +32,7 @@ public class Syndrom {
      * The visualization viewer of syndrom. It contains the layout and graph.
      */
     //TODO visualisation viewer was final
-    private VisualizationViewer<Vertex, Edge> vv;
+    private SyndromVisualisationViewer<Vertex, Edge> vv;
     /**
      * Template rules for the graph/layout.
      */
@@ -50,7 +40,7 @@ public class Syndrom {
     /**
      * The layout of syndrom.
      */
-    private Layout<Vertex, Edge> layout;
+    private AggregateLayout<Vertex, Edge> layout;
     /**
      * The internal state of the syndrom-graph.
      */
@@ -227,6 +217,7 @@ public class Syndrom {
         values = Values.getInstance();
         pluggable = new PluggableGraphMouse();
         pluggable.add(new SpherePickingPlugin());
+        pluggable.add(new VertexPickingPlugin());
     }
 
     public static Syndrom getInstance(){
@@ -236,13 +227,23 @@ public class Syndrom {
         return instance;
     }
 
-    public void setVisualisationViewer(VisualizationViewer<Vertex, Edge> vv){
+    public void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv){
         pickSupport = new SyndromPickSupport(vv);
         gzsp = new GraphZoomScrollPane(vv);
         vv.setBackground(Color.WHITE);
         vv.setRenderer(new SyndromRenderer<>());
         vv.getRenderContext().setPickSupport(pickSupport);
         vv.setGraphMouse(pluggable);
+
+        vv.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
+        vv.getRenderContext().setVertexFontTransformer(new VertexFontTransformer<>());
+        vv.getRenderContext().setVertexDrawPaintTransformer(new VertexDrawPaintTransformer<>());
+        vv.getRenderContext().setVertexStrokeTransformer(new VertexStrokeTransformer<>(vv));
+        vv.getRenderContext().setVertexLabelTransformer(new VertexLabelTransformer<>());
+        vv.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
+
+        vv.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
+        vv.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
         this.vv = vv;
     }
 }

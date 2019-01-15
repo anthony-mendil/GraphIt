@@ -30,7 +30,16 @@ public class ActionHistory {
      * @param action The action to execute.
      */
     public void execute(Action action) {
-        action.action();
+        current++;
+        if(current == maxActions) {
+            for (int i = 0; i < maxActions - 1; i++) {
+                actions[i] = actions[i + 1];
+            }
+            current = maxActions - 1;
+        }
+        actions[current] = action;
+        actions[current].action();
+
     }
 
     public static ActionHistory getInstance(){
@@ -44,13 +53,26 @@ public class ActionHistory {
      * Undo for a current action.
      */
     public void undo() {
-        throw new UnsupportedOperationException();
+        try{
+            actions[current].undo();
+            current--;
+        }catch(UnsupportedOperationException e){
+            System.err.println("Can't undo further more actions.");
+            throw new UnsupportedOperationException();
+
+        }
     }
 
     /**
      * Redo for a current action.
      */
     public void redo() {
-        throw new UnsupportedOperationException();
+        try{
+            current++;
+            actions[current].action();
+        }catch(UnsupportedOperationException e){
+            System.err.println("Can't redo the latest action.");
+            throw new UnsupportedOperationException();
+        }
     }
 }

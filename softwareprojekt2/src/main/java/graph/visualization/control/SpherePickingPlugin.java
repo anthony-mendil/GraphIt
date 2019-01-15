@@ -1,11 +1,18 @@
 package graph.visualization.control;
 
+import actions.ActionHistory;
+import actions.add.AddSphereLogAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
-import org.apache.commons.collections15.Transformer;
+import gui.GraphButtonType;
+import gui.Values;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,9 +20,15 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
+    private Sphere spherePicked;
+    private Point2D downFirst = null;
+
     /**
      * create an instance with passed values
      */
@@ -24,49 +37,173 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     }
 
+    /**
+     * The actionhistory
+     */
+    private ActionHistory history = ActionHistory.getInstance();
+
     @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
             VisualizationViewer<Vertex, Edge> vv = (VisualizationViewer) e.getSource();
-            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport)vv.getPickSupport();
+            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
             SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
-            Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(),e.getX(), e.getY());
-            if (sp == null && vertex == null){
-                graph.addSphere(e.getPoint());
-                System.out.println("added");
+            Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+            List<Sphere> list = graph.getSpheres();
+            Values values = Values.getInstance();
+            Rectangle2D newRec = new Rectangle2D.Double(e.getX(), e.getY(), values.getDefaultWidthSphere(),
+                    values.getDefaultHeightSphere());
+            boolean addSphere = true;
+            if (values.getGraphButtonType() == GraphButtonType.ADD_SPHERE && sp == null && vertex == null) {
+                for (Object s : list) {
+                    Sphere sphere = (Sphere) s;
+                    double startY = sphere.getCoordinates().getY();
+                    for (int j = (int) startY; j <= startY + sphere.getHeight(); j++) {
+                        if (newRec.contains(sphere.getCoordinates().getX(), j)) {
+                            addSphere = false;
+                        }
+                    }
+                    double startX = sphere.getCoordinates().getX();
+                    for (int i = (int) startX; i <= startX + sphere.getWidth(); i++) {
+                        if (newRec.contains(i, sphere.getCoordinates().getY())) {
+                            addSphere = false;
+                        }
+                    }
+                }
+                if (addSphere) {
+                    graph.addSphere(e.getPoint());
+                }
+            }
+            /*
+             * if (values.getGraphButtonType() == GraphButtonType.REMOVE_SPHERE && sp != null){
+             graph.removeSphere(sp);
+             }*/
+            vv.repaint();
+        }
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void mousePressed(MouseEvent e) {
+        down = e.getPoint();
+        SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+        Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
+        Vertex vert = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
+            if (sp != null && vert == null) {
+                spherePicked = sp;
+                if (!pickedSphereState.isPicked(sp)) {
+                    pickedSphereState.clear();
+                    pickedSphereState.pick(sp, true);
+                } /*else {
+                    pickedSphereState.pick(sp, false);
+                }*/
+
+                vv.repaint();
+            } else {
+                pickedSphereState.clear();
             }
         }
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
     public void mouseReleased(MouseEvent e) {
+        /* if (SwingUtilities.isLeftMouseButton(e)) {
+            SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
+            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+            PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
+            Set<Sphere> spheres = spherePickedState.getPicked();
 
+
+                for (Sphere s : spheres) {
+                    double y = s.getCoordinates().getY();
+                    double height = y + s.getHeight();
+                    double x = s.getCoordinates().getX();
+                    double width = x + s.getWidth();
+
+                    for (int j = (int) y ; j < height + y; j++) {
+                        List<Sphere> sp = pickSupport.getSpheres(x+width, j);
+
+                        for (Sphere containingSphere: sp){
+                            if (!containingSphere.equals(s)){
+                                s.setCoordinates(new Point2D.Double(downFirst.getX(), downFirst.getY()));
+                                break;
+                            }
+                        }
+                    }
+
+                    for (int j = (int) y; j < width + y; j++) {
+                        List<Sphere> sp = pickSupport.getSpheres(j, y+height);
+
+                        for (Sphere containingSphere: sp){
+                            if (!containingSphere.equals(s)){
+                                s.setCoordinates(new Point2D.Double(downFirst.getX(), downFirst.getY()));
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            spherePicked = null;
+
+            downFirst = null;
+            vv.repaint();
+
+        } */
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        //
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        //
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void mouseDragged(MouseEvent e) {
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
 
+            if (spherePicked != null) {
+                Point p = e.getPoint();
+                Point2D graphPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(p);
+                Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(down);
+                double dx = graphPoint.getX() - graphDown.getX();
+                double dy = graphPoint.getY() - graphDown.getY();
+                PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
+
+                for (Sphere s : spherePickedState.getPicked()) {
+                    if (downFirst == null) {
+                        downFirst = s.getCoordinates();
+                    }
+
+                    s.setCoordinates(new Point2D.Double(s.getCoordinates().getX() + dx, s.getCoordinates().getY() +
+                            dy));
+                    for (Vertex vertex : s.getVertices()) {
+                        Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dx, vertex.getCoordinates()
+                                .getY() + dy);
+                        vertex.setCoordinates(point);
+                        Layout layout = vv.getGraphLayout();
+                        layout.setLocation(vertex, point);
+                    }
+                }
+                down = p;
+                vv.repaint();
+            }
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        //
     }
 }

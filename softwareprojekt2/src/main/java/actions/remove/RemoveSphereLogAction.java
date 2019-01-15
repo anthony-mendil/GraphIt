@@ -1,9 +1,21 @@
 package actions.remove;
 
 import actions.LogAction;
-import graph.graph.Sphere;
+import actions.add.AddSphereLogAction;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.*;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Removes a sphere from the syndrom graph.
@@ -17,7 +29,6 @@ public class RemoveSphereLogAction extends LogAction {
      */
     public RemoveSphereLogAction() {
         super(LogEntryName.REMOVE_SPHERE);
-        throw new UnsupportedOperationException();
     }
     /**
      * Removes the sphere which is defined in pParam. Also used to implement the undo-method of
@@ -27,21 +38,33 @@ public class RemoveSphereLogAction extends LogAction {
      */
     public RemoveSphereLogAction(AddRemoveSphereParam pParam) {
         super(LogEntryName.REMOVE_SPHERE);
-        throw new UnsupportedOperationException();
+        parameters = pParam;
     }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        if(parameters == null){
+            PickedState<Sphere> pickedState = vv.getPickedSphereState();
+            for (Sphere sp : pickedState.getPicked()) {
+                graph.removeSphere(sp);
+                createParameter(sp);
+            }
+        }else{
+            graph.removeSphere(((AddRemoveSphereParam)parameters).getSphere());
+        }
+        vv.repaint();
+        DatabaseManager.addEntryDatabase(this);
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        AddSphereLogAction addSphereLogAction = new AddSphereLogAction((AddRemoveSphereParam)parameters);
+        addSphereLogAction.action();
     }
 
-    @Override
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Sphere sphere) {
+        parameters = new AddRemoveSphereParam(sphere);
     }
 }

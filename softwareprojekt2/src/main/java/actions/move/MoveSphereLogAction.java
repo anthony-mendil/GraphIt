@@ -1,8 +1,8 @@
 package actions.move;
 
 import actions.LogAction;
-import graph.graph.Sphere;
 import actions.LogEntryName;
+import graph.graph.Sphere;
 import log_management.parameters.move.MoveSphereParam;
 
 import java.awt.geom.Point2D;
@@ -43,7 +43,7 @@ public class MoveSphereLogAction extends LogAction {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

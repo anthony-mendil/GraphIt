@@ -3,7 +3,6 @@ package io;
 import com.google.inject.Inject;
 import graph.graph.Syndrom;
 import log_management.dao.GraphDao;
-import log_management.dao.LogDao;
 
 /**
  * The GXL importer/exporter.

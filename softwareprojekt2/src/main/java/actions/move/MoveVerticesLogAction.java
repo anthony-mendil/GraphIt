@@ -1,8 +1,8 @@
 package actions.move;
 
 import actions.LogAction;
-import graph.graph.Vertex;
 import actions.LogEntryName;
+import graph.graph.Vertex;
 import log_management.parameters.move.MoveVerticesParam;
 
 import java.util.Collection;
@@ -49,7 +49,6 @@ public class MoveVerticesLogAction extends LogAction {
         throw new UnsupportedOperationException();
     }
 
-    @Override
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

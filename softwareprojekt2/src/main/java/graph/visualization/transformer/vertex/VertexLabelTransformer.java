@@ -1,5 +1,6 @@
 package graph.visualization.transformer.vertex;
 
+import graph.graph.Vertex;
 import org.apache.commons.collections15.Transformer;
 
 /**
@@ -12,6 +13,11 @@ public class VertexLabelTransformer<V> implements Transformer<V, String> {
 
     @Override
     public String transform(V v) {
-        return null;
+        try{
+            Vertex vertex = (Vertex) v;
+            return vertex.getAnnotation().get("de");
+        } catch (Exception e){
+            throw new IllegalArgumentException();
+        }
     }
 }

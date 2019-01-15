@@ -2,6 +2,11 @@ package actions.edit.color;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.edit.EditSphereColorParam;
 
 import java.awt.*;
@@ -12,6 +17,7 @@ import java.awt.*;
  */
 
 public class EditSphereColorLogAction extends LogAction {
+    private Color color;
     /**
      * Constructor in case the user clicks on a sphere to change the color.
      * Gets the sphere through pick support.
@@ -19,6 +25,7 @@ public class EditSphereColorLogAction extends LogAction {
      */
     public EditSphereColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_SPHERE_COLOR);
+        color = pColor;
     }
 
     /**
@@ -32,7 +39,13 @@ public class EditSphereColorLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState = vv.getPickedSphereState();
+
+        for (Sphere sp: pickedState.getPicked()) {
+            sp.setFillPaint(color);
+        }
+        vv.repaint();
     }
 
     @Override
@@ -40,7 +53,7 @@ public class EditSphereColorLogAction extends LogAction {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

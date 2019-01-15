@@ -1,5 +1,6 @@
 package graph.visualization.transformer.sphere;
 
+import graph.graph.Sphere;
 import org.apache.commons.collections15.Transformer;
 
 /**
@@ -10,7 +11,12 @@ import org.apache.commons.collections15.Transformer;
  */
 public class SphereLabelTransformer<S> implements Transformer<S, String> {
     @Override
-    public String transform(S s) {
-        throw new UnsupportedOperationException();
+    public String transform(S s){
+        try{
+            Sphere sphere = (Sphere) s;
+            return sphere.getAnnotation().get("de");
+        } catch (Exception e){
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package log_management.dao;
 
+
 import log_management.tables.Graph;
 import log_management.tables.Log;
 

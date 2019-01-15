@@ -1,15 +1,11 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
-import graph.graph.Vertex;
-import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
-import java.io.Serializable;
-import java.util.Map;
 
 /**
  * Parameter object of the action EditSphereColorLogAction.

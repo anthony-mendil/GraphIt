@@ -6,6 +6,7 @@ import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
+
 import java.util.Map;
 
 /**

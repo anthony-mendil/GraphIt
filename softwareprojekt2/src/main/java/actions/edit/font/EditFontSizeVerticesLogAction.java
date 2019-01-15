@@ -2,12 +2,17 @@ package actions.edit.font;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.edit.EditFontSizeVerticesParam;
 
 /**
  * Changes the font-size of vertex annotations.
  */
 public class EditFontSizeVerticesLogAction extends LogAction {
+    private int size;
     /**
      * Constructor in case the user changes the font-size of the annotation.
      *
@@ -15,6 +20,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
      */
     public EditFontSizeVerticesLogAction(int pSize) {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);
+        size = pSize;
     }
     /**
      * Constructor which will be used to realize the undo-method of itself.
@@ -27,7 +33,13 @@ public class EditFontSizeVerticesLogAction extends LogAction {
     }
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+
+        for (Vertex vertex: pickedState.getPicked()) {
+            vertex.setFontSize(size);
+        }
+        vv.repaint();
     }
 
     @Override
@@ -35,7 +47,6 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         throw new UnsupportedOperationException();
     }
 
-    @Override
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

@@ -36,7 +36,6 @@ public class EditVertexAnnotationLogAction extends LogAction {
         throw new UnsupportedOperationException();
     }
 
-    @Override
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

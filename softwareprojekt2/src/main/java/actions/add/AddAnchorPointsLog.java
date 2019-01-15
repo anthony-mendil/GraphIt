@@ -4,7 +4,6 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 
-
 import java.awt.geom.Point2D;
 
 /**
@@ -57,7 +56,7 @@ public class AddAnchorPointsLog extends LogAction {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+
     public void createParameter() {
         throw new UnsupportedOperationException();
     }
