@@ -33,7 +33,7 @@ public class Log {
     /**
      * The parameters used in the aciton.
      */
-    private String parameters = "";
+    private String parameters;
     /**
      * The time, in which the action got called.-
      */

@@ -1,5 +1,6 @@
 package actions.other;
 
+import actions.Action;
 import actions.GraphAction;
 import com.google.inject.Inject;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
@@ -49,7 +50,8 @@ public class CreateGraphAction extends GraphAction {
         syndrom.setVisualisationViewer(vv);
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
-        databaseManager.setup();
+        Action.attach(databaseManager);
+        notifyObserverNewGraph();
     }
 
     @Override

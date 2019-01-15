@@ -1,5 +1,7 @@
 package actions;
 
+import graph.graph.FunctionMode;
+
 /**
  * Observer interface, for observing components.
  */
@@ -12,7 +14,7 @@ public interface ObserverSyndrom {
     /**
      * Calls if the function mode changed.
      */
-    void updateFunctionMode();
+    void updateFunctionMode(FunctionMode mode);
 
     /**
      * Calls if the function mode changed into edit mode.

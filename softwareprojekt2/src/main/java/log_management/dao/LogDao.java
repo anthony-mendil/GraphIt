@@ -3,6 +3,7 @@ package log_management.dao;
 import actions.LogEntryName;
 import log_management.tables.Graph;
 import log_management.tables.Log;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -65,7 +66,13 @@ public class LogDao implements Dao<Log> {
         selectLogs.setParameter("gid", graphId);
         List<Log> logList = selectLogs.getResultList();
 
-        return  ""; // logList to json string
+        ObjectMapper mapper = new ObjectMapper();
+        String logString = null;
+        try {
+            logString = mapper.writeValueAsString(logList);
+        } catch (Exception e) {}
+
+        return  logString;
     }
 
     /**

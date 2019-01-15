@@ -1,10 +1,13 @@
 package log_management;
 
 import actions.Action;
+import actions.LogAction;
 import actions.LogEntryName;
 import actions.ObserverSyndrom;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import graph.graph.FunctionMode;
+import graph.graph.Syndrom;
 import io.GXLio;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
@@ -13,6 +16,7 @@ import log_management.parameters.activate_deactivate.ActivateDeactivateHighlight
 import log_management.tables.Graph;
 import log_management.tables.Log;
 import lombok.Data;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
@@ -44,12 +48,17 @@ public class DatabaseManager implements ObserverSyndrom {
      */
     private Graph graph;
 
+    /**
+     * The current mode.
+     */
+    FunctionMode mode;
+
     private static DatabaseManager databaseManager;
 
     /**
      * Creates a database manager organizing the database.
      */
-    public DatabaseManager(){
+    private DatabaseManager(){
         graphDao = new GraphDao();
         logDao = new LogDao();
         gxlIo = new GXLio();
@@ -58,17 +67,31 @@ public class DatabaseManager implements ObserverSyndrom {
     public static DatabaseManager getInstance(){
         if (databaseManager == null){
             databaseManager = new DatabaseManager();
-
         }
         return databaseManager;
     }
 
     /**
      * Adds a log to the database (through dao).
-     * @param action The called action, which will be logged.
+     * @param logAction The called action, which will be logged.
      */
-    public static void addEntryDatabase(Action action) {
-        throw new UnsupportedOperationException();
+    public void addEntryDatabase(LogAction logAction) {
+        graph.setGxl(gxlIo.gxlFromInstance());
+        updateGraph();
+
+        Log log = new Log();
+        log.setGraph(graph);
+        log.setLogEntryName(logAction.getLogEntryName());
+        log.setTime(logAction.getTime());
+
+        ObjectMapper mapper = new ObjectMapper();
+        String paramString = null;
+        try {
+            paramString = mapper.writeValueAsString(logAction.getParameters());
+        } catch (Exception e) {}
+        log.setParameters(paramString);
+
+        logDao.save(log);
     }
 
     /**
@@ -83,21 +106,22 @@ public class DatabaseManager implements ObserverSyndrom {
 
     @Override
     public void updateGraph() {
-        throw new UnsupportedOperationException();
+        graph.setGxl(gxlIo.gxlFromInstance());
+        graphDao.update(graph);
     }
 
     @Override
-    public void updateFunctionMode() {
-        throw new UnsupportedOperationException();
+    public void updateFunctionMode(FunctionMode functionMode) {
+        mode = functionMode;
     }
 
     @Override
     public void updateEditMode() {
-        throw new UnsupportedOperationException();
+        mode = FunctionMode.EDIT;
     }
 
     @Override
     public void updateNewGraph() {
-        throw new UnsupportedOperationException();
+        setup();
     }
 }

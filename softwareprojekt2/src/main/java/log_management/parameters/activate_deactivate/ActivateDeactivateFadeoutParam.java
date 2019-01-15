@@ -29,8 +29,8 @@ public class ActivateDeactivateFadeoutParam extends Param{
      * @param pEdges The list of edges to work on.
      */
     public ActivateDeactivateFadeoutParam(List<Vertex> pVertices, List<Edge> pEdges) {
-        this.vertices = vertices;
-        this.edges = edges;
+        this.vertices = pVertices;
+        this.edges = pEdges;
     }
 
     @Override
