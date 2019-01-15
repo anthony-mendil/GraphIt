@@ -55,7 +55,7 @@ public class RemoveSphereLogAction extends LogAction {
             graph.removeSphere(((AddRemoveSphereParam)parameters).getSphere());
         }
         vv.repaint();
-        DatabaseManager.addEntryDatabase(this);
+        //DatabaseManager.addEntryDatabase(this);
     }
 
     @Override

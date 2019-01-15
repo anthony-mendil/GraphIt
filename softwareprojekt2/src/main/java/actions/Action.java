@@ -1,5 +1,7 @@
 package actions;
 
+import graph.graph.FunctionMode;
+
 import java.util.LinkedList;
 
 /**
@@ -9,7 +11,7 @@ public abstract class Action {
     /**
      * List of all observers that needs to be updated, if an action is called (based on Model-View-Controller pattern).
      */
-    private static LinkedList<ObserverSyndrom> observers;
+    private static LinkedList<ObserverSyndrom> observers = new LinkedList<>();
 
     /**
      * Executes the defined behavior of the action.
@@ -45,10 +47,11 @@ public abstract class Action {
 
     /**
      * Notify the observer if the application changes the mode.
+     * @param mode The new mode.
      */
-    protected void notifyObserverFunctionMode(){
+    protected void notifyObserverFunctionMode(FunctionMode mode){
         for (ObserverSyndrom o: observers) {
-            o.updateFunctionMode();
+            o.updateFunctionMode(mode);
         }
     }
 

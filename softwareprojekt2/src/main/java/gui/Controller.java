@@ -16,6 +16,7 @@ import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
+import graph.graph.FunctionMode;
 import graph.graph.SphereSizeChange;
 import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
@@ -1101,7 +1102,7 @@ public class Controller implements ObserverSyndrom{
     }
 
     @Override
-    public void updateFunctionMode() {
+    public void updateFunctionMode(FunctionMode mode) {
         throw new UnsupportedOperationException();
     }
 

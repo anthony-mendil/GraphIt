@@ -52,7 +52,8 @@ public class AddSphereLogAction extends LogAction {
             graph.getSpheres().add(((AddRemoveSphereParam)parameters).getSphere());
         }
         vv.repaint();
-        DatabaseManager.addEntryDatabase(this);
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(this);
     }
 
     @Override

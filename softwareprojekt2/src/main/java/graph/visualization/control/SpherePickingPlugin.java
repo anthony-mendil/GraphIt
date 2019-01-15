@@ -2,6 +2,7 @@ package graph.visualization.control;
 
 import actions.ActionHistory;
 import actions.add.AddSphereLogAction;
+import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -73,7 +74,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                     }
                 }
                 if (addSphere) {
-                    graph.addSphere(e.getPoint());
+                    AddSphereLogAction addSphereLogAction = new AddSphereLogAction(e.getPoint());
+                    history.execute(addSphereLogAction);
+
+                  //  graph.addSphere(e.getPoint());
                 }
             }
             /*
