@@ -4,10 +4,13 @@ import graph.graph.EdgeArrowType;
 import graph.graph.FunctionMode;
 import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
+import javafx.collections.ObservableMap;
+import javafx.scene.text.FontWeight;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
+import javax.xml.stream.events.Namespace;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -140,6 +143,22 @@ public class Values {
      */
     private String objectLanguage;
     private static Values instance;
+
+    private ObservableMap<String, Object> namespace;
+
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.text.Font actionTextInfo =  javafx.scene.text.Font.font("System Regular", FontWeight
+            .NORMAL, 12);
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.text.Font actionTextAlert =  javafx.scene.text.Font.font("System Regular", FontWeight
+            .EXTRA_BOLD, 14);
+
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.paint.Color actionTextColorAlert =  javafx.scene.paint.Color.rgb(160, 12, 12, 1);
+
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.paint.Color actionTextColorInfo =  javafx.scene.paint.Color.BLACK;
+
 
 
     private Values() {

@@ -2,7 +2,12 @@ package actions.add;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
@@ -18,6 +23,8 @@ public class AddVerticesLogAction extends LogAction {
      * Map with vertices and corresponding pairs, containing the sphere id and sphere annotation.
      */
     Map<Vertex, Pair<Integer, String>> vertexPairMap;
+
+    private Point2D pos;
 
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
@@ -37,12 +44,18 @@ public class AddVerticesLogAction extends LogAction {
      */
     public AddVerticesLogAction(Point2D point) {
         super(LogEntryName.ADD_VERTICES);
-        throw new UnsupportedOperationException();
+        pos = point;
     }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        Sphere sp = pickSupport.getSphere(pos.getX(), pos.getY());
+        pos = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(pos);
+        Vertex newVertex = graph.addVertex(pos, sp);
+        vv.getGraphLayout().setLocation(newVertex, pos);
     }
 
     @Override

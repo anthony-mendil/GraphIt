@@ -640,7 +640,7 @@
          <buttons>
             <HBox centerShape="false" prefHeight="27.0" prefWidth="511.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Aktuelle Aktion&gt;">
+                  <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Aktuelle Aktion&gt;">
                      <HBox.margin>
                         <Insets bottom="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
