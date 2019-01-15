@@ -547,6 +547,8 @@ public class Controller implements ObserverSyndrom{
      */
     private MenuItem edgeArrowNeutral;
 
+    @FXML
+    private Text currentActionText;
     /* Internal */
 
     /**
@@ -571,6 +573,10 @@ public class Controller implements ObserverSyndrom{
 
     public Controller(){
 
+    }
+
+    public Text getCurrentActionText(){
+        return currentActionText;
     }
 
     /* ----------------ADD---------------------- */
