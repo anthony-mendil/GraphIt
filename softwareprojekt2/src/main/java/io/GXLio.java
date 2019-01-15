@@ -32,13 +32,11 @@ public class GXLio {
     @Inject
     private GraphDao graphDao;
 
-    File file;
 
     /**
      * Creates a new GXLio object.
      */
-    public GXLio(File pFile){
-        file=pFile;
+    public GXLio(){;
     }
 
     /**
@@ -48,7 +46,7 @@ public class GXLio {
      */
     protected void gxlToInstance(String pGXL){
             try {
-                GXLDocument readDok = new GXLDocument(file);
+                GXLDocument readDok = new GXLDocument(new File(pGXL));
                 for(int i = 0; i<readDok.getDocumentElement().getGraphCount(); i++){
                     GXLGraph graphOfDoc = readDok.getDocumentElement().getGraphAt(i);
                     for(int j = 0; j<graphOfDoc.getGraphElementCount(); j++){
@@ -157,7 +155,7 @@ public class GXLio {
                 allNodesInTheSpere.add(singleNodeInSphere);
                 singleNodeInSphere.setAttr("id", new GXLString(idGenerator.generateID()));
                 singleNodeInSphere.setAttr("fillPaint", new GXLString("" + v.getFillPaint()));
-                singleNodeInSphere.setAttr("coordinate", new GXLString("" + v.getCoordinate()));
+                singleNodeInSphere.setAttr("coordinate", new GXLString("" + v.getCoordinates()));
                 singleNodeInSphere.setAttr("shape", new GXLString("" + v.getShape()));
                 String nodeAnnotationContent = "";
                 if(v.getAnnotation() != null){
@@ -228,10 +226,7 @@ public class GXLio {
 
         }
         doc.getDocumentElement().add(gxlGraph);
-        try {
-            doc.write(file);
-        }catch(Exception e){}
-        return null;
+        return doc.toString();
     }
 
     private String getPaintDescription(Color color){

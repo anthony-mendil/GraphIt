@@ -14,11 +14,15 @@ import actions.edit.size.EditSphereSizeLogAction;
 import actions.export_graph.ExportGxlAction;
 import actions.export_graph.ExportOofAction;
 import actions.export_graph.ExportPdfAction;
-import actions.layout.LayoutGraphLogAction;
+import actions.layout.LayoutSphereGraphLogAction;
+import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.remove.RemoveSphereLogAction;
+import actions.remove.RemoveVerticesLogAction;
+import graph.graph.FunctionMode;
 import graph.graph.SphereSizeChange;
 import graph.graph.Syndrom;
+import graph.graph.VertexShapeType;
 import io.GXLio;
 import io.OOFio;
 import javafx.embed.swing.SwingNode;
@@ -896,7 +900,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(null);
-        GXLio gxlio = new GXLio(file);
+        GXLio gxlio = new GXLio();
         gxlio.importGXL(file);
     }
 

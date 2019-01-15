@@ -31,7 +31,7 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void action() {
-        GXLio gxlio = new GXLio(file);
+        GXLio gxlio = new GXLio();
         gxlio.exportGXL(file);
     }
 

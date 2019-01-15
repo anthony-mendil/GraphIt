@@ -1,25 +1,18 @@
 package log_management;
 
-import actions.Action;
 import actions.LogAction;
-import actions.LogEntryName;
 import actions.ObserverSyndrom;
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import graph.graph.FunctionMode;
-import graph.graph.Syndrom;
 import io.GXLio;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
-import log_management.dao.PersonalEntityManager;
-import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 import lombok.Data;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
+import java.io.File;
 
 /**
  * The database manager, for managing the database access.
