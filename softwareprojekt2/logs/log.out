@@ -37,120 +37,120 @@ Overriding existing service binding [org.hibernate.secure.spi.JaccService]
 Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
 Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
 HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-Adding type registration boolean -> org.hibernate.type.BooleanType@5f5c79a9
-Adding type registration boolean -> org.hibernate.type.BooleanType@5f5c79a9
-Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@5f5c79a9
-Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@798d1492
-Adding type registration true_false -> org.hibernate.type.TrueFalseType@778672d1
-Adding type registration yes_no -> org.hibernate.type.YesNoType@722b3b4f
-Adding type registration byte -> org.hibernate.type.ByteType@5d6ec855
-Adding type registration byte -> org.hibernate.type.ByteType@5d6ec855
-Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@5d6ec855
-Adding type registration character -> org.hibernate.type.CharacterType@3855169e
-Adding type registration char -> org.hibernate.type.CharacterType@3855169e
-Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@3855169e
-Adding type registration short -> org.hibernate.type.ShortType@4b54ecb9
-Adding type registration short -> org.hibernate.type.ShortType@4b54ecb9
-Adding type registration java.lang.Short -> org.hibernate.type.ShortType@4b54ecb9
-Adding type registration integer -> org.hibernate.type.IntegerType@43f038ed
-Adding type registration int -> org.hibernate.type.IntegerType@43f038ed
-Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@43f038ed
-Adding type registration long -> org.hibernate.type.LongType@3da11de4
-Adding type registration long -> org.hibernate.type.LongType@3da11de4
-Adding type registration java.lang.Long -> org.hibernate.type.LongType@3da11de4
-Adding type registration float -> org.hibernate.type.FloatType@37fa7261
-Adding type registration float -> org.hibernate.type.FloatType@37fa7261
-Adding type registration java.lang.Float -> org.hibernate.type.FloatType@37fa7261
-Adding type registration double -> org.hibernate.type.DoubleType@67cb7e2a
-Adding type registration double -> org.hibernate.type.DoubleType@67cb7e2a
-Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@67cb7e2a
-Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@2661409c
-Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@2661409c
-Adding type registration big_integer -> org.hibernate.type.BigIntegerType@f9eab3b
-Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@f9eab3b
-Adding type registration string -> org.hibernate.type.StringType@4a912560
-Adding type registration java.lang.String -> org.hibernate.type.StringType@4a912560
-Adding type registration nstring -> org.hibernate.type.StringNVarcharType@3fcf8808
-Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@19c9f95d
-Adding type registration url -> org.hibernate.type.UrlType@29716ed8
-Adding type registration java.net.URL -> org.hibernate.type.UrlType@29716ed8
-Adding type registration Duration -> org.hibernate.type.DurationType@641b81af
-Adding type registration java.time.Duration -> org.hibernate.type.DurationType@641b81af
-Adding type registration Instant -> org.hibernate.type.InstantType@6b08fe6a
-Adding type registration java.time.Instant -> org.hibernate.type.InstantType@6b08fe6a
-Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@3bbc7fda
-Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@3bbc7fda
-Adding type registration LocalDate -> org.hibernate.type.LocalDateType@451c26ef
-Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@451c26ef
-Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@efd0083
-Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@efd0083
-Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@20958de0
-Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@20958de0
-Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@324b472
-Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@324b472
-Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@2550d5c7
-Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@2550d5c7
-Adding type registration date -> org.hibernate.type.DateType@5ab7da41
-Adding type registration java.sql.Date -> org.hibernate.type.DateType@5ab7da41
-Adding type registration time -> org.hibernate.type.TimeType@14ee5fa8
-Adding type registration java.sql.Time -> org.hibernate.type.TimeType@14ee5fa8
-Adding type registration timestamp -> org.hibernate.type.TimestampType@be5f1d6
-Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@be5f1d6
-Adding type registration java.util.Date -> org.hibernate.type.TimestampType@be5f1d6
-Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@15da1a91
-Adding type registration calendar -> org.hibernate.type.CalendarType@1cfa47d7
-Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@1cfa47d7
-Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@1cfa47d7
-Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@60298c7a
-Adding type registration locale -> org.hibernate.type.LocaleType@7d90f35b
-Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@7d90f35b
-Adding type registration currency -> org.hibernate.type.CurrencyType@44e2c028
-Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@44e2c028
-Adding type registration timezone -> org.hibernate.type.TimeZoneType@58b1eb67
-Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@58b1eb67
-Adding type registration class -> org.hibernate.type.ClassType@46ba0bb5
-Adding type registration java.lang.Class -> org.hibernate.type.ClassType@46ba0bb5
-Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@480dc19
-Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@480dc19
-Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@230d74df
-Adding type registration binary -> org.hibernate.type.BinaryType@a75983c
-Adding type registration byte[] -> org.hibernate.type.BinaryType@a75983c
-Adding type registration [B -> org.hibernate.type.BinaryType@a75983c
-Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@25a6cbe6
-Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@25a6cbe6
-Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@25a6cbe6
-Adding type registration row_version -> org.hibernate.type.RowVersionType@12320958
-Adding type registration image -> org.hibernate.type.ImageType@21c5df2b
-Adding type registration characters -> org.hibernate.type.CharArrayType@78c9cb3
-Adding type registration char[] -> org.hibernate.type.CharArrayType@78c9cb3
-Adding type registration [C -> org.hibernate.type.CharArrayType@78c9cb3
-Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@2513d4c4
-Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@2513d4c4
-Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@2513d4c4
-Adding type registration text -> org.hibernate.type.TextType@6be8a1e2
-Adding type registration ntext -> org.hibernate.type.NTextType@72aad2c
-Adding type registration blob -> org.hibernate.type.BlobType@7658b9ac
-Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@7658b9ac
-Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@7bfde5b6
-Adding type registration clob -> org.hibernate.type.ClobType@2123a28f
-Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@2123a28f
-Adding type registration nclob -> org.hibernate.type.NClobType@49dd429f
-Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@49dd429f
-Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@1bcbbd42
-Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@1780906
-Adding type registration serializable -> org.hibernate.type.SerializableType@18ac078b
-Adding type registration object -> org.hibernate.type.ObjectType@30c47fef
-Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@30c47fef
-Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@2b411bb9
-Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@38e92239
-Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@5424ceb0
-Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@76fa6e7
-Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@24d0f960
-Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@55d9ff29
-Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@27faea6c
-Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@5d5828ea
-Injecting ScanEnvironment [org.hibernate.jpa.boot.internal.StandardJpaScanEnvironmentImpl@e4ba0bf] into BootstrapContext; was [null]
-Injecting ScanOptions [org.hibernate.boot.archive.scan.internal.StandardScanOptions@24bf770c] into BootstrapContext; was [org.hibernate.boot.archive.scan.internal.StandardScanOptions@4c303f16]
+Adding type registration boolean -> org.hibernate.type.BooleanType@5ba1bc18
+Adding type registration boolean -> org.hibernate.type.BooleanType@5ba1bc18
+Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@5ba1bc18
+Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@4a6f1c9e
+Adding type registration true_false -> org.hibernate.type.TrueFalseType@3e01d70f
+Adding type registration yes_no -> org.hibernate.type.YesNoType@76414561
+Adding type registration byte -> org.hibernate.type.ByteType@66a7e00e
+Adding type registration byte -> org.hibernate.type.ByteType@66a7e00e
+Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@66a7e00e
+Adding type registration character -> org.hibernate.type.CharacterType@3814e104
+Adding type registration char -> org.hibernate.type.CharacterType@3814e104
+Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@3814e104
+Adding type registration short -> org.hibernate.type.ShortType@3013408f
+Adding type registration short -> org.hibernate.type.ShortType@3013408f
+Adding type registration java.lang.Short -> org.hibernate.type.ShortType@3013408f
+Adding type registration integer -> org.hibernate.type.IntegerType@4e1668de
+Adding type registration int -> org.hibernate.type.IntegerType@4e1668de
+Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@4e1668de
+Adding type registration long -> org.hibernate.type.LongType@49e31f72
+Adding type registration long -> org.hibernate.type.LongType@49e31f72
+Adding type registration java.lang.Long -> org.hibernate.type.LongType@49e31f72
+Adding type registration float -> org.hibernate.type.FloatType@7cf7c243
+Adding type registration float -> org.hibernate.type.FloatType@7cf7c243
+Adding type registration java.lang.Float -> org.hibernate.type.FloatType@7cf7c243
+Adding type registration double -> org.hibernate.type.DoubleType@20e7c7bc
+Adding type registration double -> org.hibernate.type.DoubleType@20e7c7bc
+Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@20e7c7bc
+Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@400a093f
+Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@400a093f
+Adding type registration big_integer -> org.hibernate.type.BigIntegerType@da28686
+Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@da28686
+Adding type registration string -> org.hibernate.type.StringType@2cb60e68
+Adding type registration java.lang.String -> org.hibernate.type.StringType@2cb60e68
+Adding type registration nstring -> org.hibernate.type.StringNVarcharType@6626d815
+Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@5d6f8efd
+Adding type registration url -> org.hibernate.type.UrlType@7d056c70
+Adding type registration java.net.URL -> org.hibernate.type.UrlType@7d056c70
+Adding type registration Duration -> org.hibernate.type.DurationType@2c3ba3e0
+Adding type registration java.time.Duration -> org.hibernate.type.DurationType@2c3ba3e0
+Adding type registration Instant -> org.hibernate.type.InstantType@6cf26d09
+Adding type registration java.time.Instant -> org.hibernate.type.InstantType@6cf26d09
+Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@4113875d
+Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@4113875d
+Adding type registration LocalDate -> org.hibernate.type.LocalDateType@1e00982
+Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@1e00982
+Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@656fbff5
+Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@656fbff5
+Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@6cc2a442
+Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@6cc2a442
+Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@7bc7f0be
+Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@7bc7f0be
+Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@59b7e75
+Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@59b7e75
+Adding type registration date -> org.hibernate.type.DateType@21abc855
+Adding type registration java.sql.Date -> org.hibernate.type.DateType@21abc855
+Adding type registration time -> org.hibernate.type.TimeType@5433699f
+Adding type registration java.sql.Time -> org.hibernate.type.TimeType@5433699f
+Adding type registration timestamp -> org.hibernate.type.TimestampType@63aac951
+Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@63aac951
+Adding type registration java.util.Date -> org.hibernate.type.TimestampType@63aac951
+Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@4704dada
+Adding type registration calendar -> org.hibernate.type.CalendarType@6435a3da
+Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@6435a3da
+Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@6435a3da
+Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@3f224c80
+Adding type registration locale -> org.hibernate.type.LocaleType@7e16518f
+Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@7e16518f
+Adding type registration currency -> org.hibernate.type.CurrencyType@3df1c31c
+Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@3df1c31c
+Adding type registration timezone -> org.hibernate.type.TimeZoneType@7f3d1dda
+Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@7f3d1dda
+Adding type registration class -> org.hibernate.type.ClassType@1e35e12f
+Adding type registration java.lang.Class -> org.hibernate.type.ClassType@1e35e12f
+Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@57d9672d
+Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@57d9672d
+Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@c502c95
+Adding type registration binary -> org.hibernate.type.BinaryType@78f75e8f
+Adding type registration byte[] -> org.hibernate.type.BinaryType@78f75e8f
+Adding type registration [B -> org.hibernate.type.BinaryType@78f75e8f
+Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@77edc808
+Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@77edc808
+Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@77edc808
+Adding type registration row_version -> org.hibernate.type.RowVersionType@3fc1c20e
+Adding type registration image -> org.hibernate.type.ImageType@64b9413
+Adding type registration characters -> org.hibernate.type.CharArrayType@606acc65
+Adding type registration char[] -> org.hibernate.type.CharArrayType@606acc65
+Adding type registration [C -> org.hibernate.type.CharArrayType@606acc65
+Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@3d6041d6
+Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@3d6041d6
+Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@3d6041d6
+Adding type registration text -> org.hibernate.type.TextType@7e3a660e
+Adding type registration ntext -> org.hibernate.type.NTextType@57b6bbb6
+Adding type registration blob -> org.hibernate.type.BlobType@6f1f9775
+Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@6f1f9775
+Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@4971b913
+Adding type registration clob -> org.hibernate.type.ClobType@26778c2d
+Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@26778c2d
+Adding type registration nclob -> org.hibernate.type.NClobType@cf42521
+Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@cf42521
+Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@1ab3cbad
+Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@4ac04dac
+Adding type registration serializable -> org.hibernate.type.SerializableType@694f91cf
+Adding type registration object -> org.hibernate.type.ObjectType@55febc17
+Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@55febc17
+Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@3ef6caac
+Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@1e48d761
+Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@4fbd308f
+Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@6be64c5c
+Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@63cd4826
+Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@3be678e1
+Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@1d790e5a
+Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@44a43505
+Injecting ScanEnvironment [org.hibernate.jpa.boot.internal.StandardJpaScanEnvironmentImpl@526eaf91] into BootstrapContext; was [null]
+Injecting ScanOptions [org.hibernate.boot.archive.scan.internal.StandardScanOptions@66f6fc4a] into BootstrapContext; was [org.hibernate.boot.archive.scan.internal.StandardScanOptions@57223e8e]
 Injecting JPA temp ClassLoader [null] into BootstrapContext; was [null]
 ClassLoaderAccessImpl#injectTempClassLoader(null) [was null]
 Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
@@ -270,7 +270,7 @@ org.hibernate.HibernateException: Use of DefaultSchemaNameResolver requires Dial
 	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
 	at java.lang.Thread.run(Thread.java:748)
 Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
-Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@5a1aa268] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@4027892f]
+Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1b8ed424] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@659a7808]
 Binding entity from annotated class: log_management.tables.Graph
 Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 Import with entity name Graph
@@ -368,10 +368,10 @@ JPA compliance - transactions :
 Using ORDINAL-based conversion for Enum actions.LogEntryName
 Session factory constructed with filter configurations : {}
 Instantiating session factory with properties: {sun.desktop=windows, hibernate.format_sql=true, awt.toolkit=sun.awt.windows.WToolkit, file.encoding.pkg=sun.io, java.specification.version=1.8, javafx.runtime.version=8.0.191-b10, sun.cpu.isalist=amd64, sun.jnu.encoding=Cp1252, sun.awt.enableExtraMouseButtons=true, java.class.path=C:\Program Files\Java\jdk1.8.0_191\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\rt.jar;C:\Users\Anthony\Documents\Informatik\3.Semester\Softwareprojekt 2\software-projekt-2\softwareprojekt2\target\classes;C:\Users\Anthony\.m2\repository\org\codehaus\jackson\jackson-mapper-asl\1.9.13\jackson-mapper-asl-1.9.13.jar;C:\Users\Anthony\.m2\repository\org\codehaus\jackson\jackson-core-asl\1.9.13\jackson-core-asl-1.9.13.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-api\2.0.1\jung-api-2.0.1.jar;C:\Users\Anthony\.m2\repository\net\sourceforge\collections\collections-generic\4.01\collections-generic-4.01.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-visualization\2.0.1\jung-visualization-2.0.1.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-graph-impl\2.0.1\jung-graph-impl-2.0.1.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-algorithms\2.0.1\jung-algorithms-2.0.1.jar;C:\Users\Anthony\.m2\repository\colt\colt\1.2.0\colt-1.2.0.jar;C:\Users\Anthony\.m2\repository\concurrent\concurrent\1.3.4\concurrent-1.3.4.jar;C:\Users\Anthony\.m2\repository\net\sf\jung\jung-io\2.0.1\jung-io-2.0.1.jar;C:\Users\Anthony\.m2\repository\org\codehaus\woodstox\wstx-asl\3.2.6\wstx-asl-3.2.6.jar;C:\Users\Anthony\.m2\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-graphicsio\2.4\freehep-graphicsio-2.4.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-graphics2d\2.4\freehep-graphics2d-2.4.jar;C:\Users\Anthony\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\Anthony\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-io\2.2.2\freehep-io-2.2.2.jar;C:\Users\Anthony\.m2\repository\org\freehep\freehep-graphicsbase\2.4\freehep-graphicsbase-2.4.jar;C:\Users\Anthony\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\Anthony\.m2\repository\com\h2database\h2\1.4.190\h2-1.4.190.jar;C:\Users\Anthony\.m2\repository\org\hibernate\hibernate-entitymanager\5.3.7.Final\hibernate-entitymanager-5.3.7.Final.jar;C:\Users\Anthony\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\Anthony\.m2\repository\org\hibernate\hibernate-core\5.3.7.Final\hibernate-core-5.3.7.Final.jar;C:\Users\Anthony\.m2\repository\org\javassist\javassist\3.23.1-GA\javassist-3.23.1-GA.jar;C:\Users\Anthony\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\Anthony\.m2\repository\org\jboss\jandex\2.0.5.Final\jandex-2.0.5.Final.jar;C:\Users\Anthony\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\Anthony\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\Anthony\.m2\repository\org\dom4j\dom4j\2.1.1\dom4j-2.1.1.jar;C:\Users\Anthony\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.4.Final\hibernate-commons-annotations-5.0.4.Final.jar;C:\Users\Anthony\.m2\repository\javax\persistence\javax.persistence-api\2.2\javax.persistence-api-2.2.jar;C:\Users\Anthony\.m2\repository\net\bytebuddy\byte-buddy\1.8.17\byte-buddy-1.8.17.jar;C:\Users\Anthony\.m2\repository\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.1.1.Final\jboss-transaction-api_1.2_spec-1.1.1.Final.jar;C:\Users\Anthony\.m2\repository\org\jgrapht\jgrapht-core\1.3.0\jgrapht-core-1.3.0.jar;C:\Users\Anthony\.m2\repository\org\jheaps\jheaps\0.9\jheaps-0.9.jar;C:\Users\Anthony\.m2\repository\com\google\inject\guice\3.0\guice-3.0.jar;C:\Users\Anthony\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\Anthony\.m2\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.6\lib\idea_rt.jar, java.vm.vendor=Oracle Corporation, sun.arch.data.model=64, hbm2ddl.auto=update, user.variant=, java.vendor.url=http://java.oracle.com/, user.timezone=Europe/Berlin, javafx.version=8.0.191, os.name=Windows 10, java.vm.specification.version=1.8, user.country=DE, sun.java.launcher=SUN_STANDARD, sun.boot.library.path=C:\Program Files\Java\jdk1.8.0_191\jre\bin, sun.java.command=gui.Main, sun.cpu.endian=little, user.home=C:\Users\Anthony, user.language=de, java.specification.vendor=Oracle Corporation, java.home=C:\Program Files\Java\jdk1.8.0_191\jre, file.separator=\, line.separator=
-, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, hibernate.transaction.coordinator_class=class org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, sun.boot.class.path=C:\Program Files\Java\jdk1.8.0_191\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_191\jre\classes, user.script=, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, java.runtime.version=1.8.0_191-b12, user.name=Anthony, path.separator=;, hibernate.connection.username=****, os.version=10.0, java.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_191\jre\lib\endorsed, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.archive.autodetection=class, hibernate.connection.url=jdbc:h2:~/GraphItDatabase, hibernate.ejb.persistenceUnitName=NewPersistenceUnit, file.encoding=UTF-8, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, hibernate.show_sql=true, hibernate.connection.driver_class=org.h2.Driver, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, java.io.tmpdir=C:\Users\Anthony\AppData\Local\Temp\, java.version=1.8.0_191, user.dir=C:\Users\Anthony\Documents\Informatik\3.Semester\Softwareprojekt 2\software-projekt-2\softwareprojekt2, os.arch=amd64, java.vm.specification.name=Java Virtual Machine Specification, hibernate.connection.password=****, java.awt.printerjob=sun.awt.windows.WPrinterJob, javax.persistence.schema-generation.database.action=create, sun.os.patch.level=, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@5100e1ca, java.library.path=C:\Program Files\Java\jdk1.8.0_191\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.4.3\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.4.3\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Haskell Platform\8.4.3\mingw\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\sqlite;C:\Users\Anthony\AppData\Roaming\cabal\bin;C:\Users\Anthony\AppData\Roaming\local\bin;C:\Users\Anthony\AppData\Local\Microsoft\WindowsApps;C:\Users\Anthony\AppData\Local\Microsoft\WindowsApps;C:\Users\Anthony\AppData\Local\atom\bin;C:\Users\Anthony\AppData\Local\Programs\Microsoft VS Code\bin;;., java.vm.info=mixed mode, java.vendor=Oracle Corporation, java.vm.version=25.191-b12, hibernate.bytecode.use_reflection_optimizer=false, java.ext.dirs=C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.io.unicode.encoding=UnicodeLittle, java.class.version=52.0}
+, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, hibernate.transaction.coordinator_class=class org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, sun.boot.class.path=C:\Program Files\Java\jdk1.8.0_191\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_191\jre\classes, user.script=, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, java.runtime.version=1.8.0_191-b12, user.name=Anthony, path.separator=;, hibernate.connection.username=****, os.version=10.0, java.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_191\jre\lib\endorsed, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.archive.autodetection=class, hibernate.connection.url=jdbc:h2:~/GraphItDatabase, hibernate.ejb.persistenceUnitName=NewPersistenceUnit, file.encoding=UTF-8, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, hibernate.show_sql=true, hibernate.connection.driver_class=org.h2.Driver, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, java.io.tmpdir=C:\Users\Anthony\AppData\Local\Temp\, java.version=1.8.0_191, user.dir=C:\Users\Anthony\Documents\Informatik\3.Semester\Softwareprojekt 2\software-projekt-2\softwareprojekt2, os.arch=amd64, java.vm.specification.name=Java Virtual Machine Specification, hibernate.connection.password=****, java.awt.printerjob=sun.awt.windows.WPrinterJob, javax.persistence.schema-generation.database.action=create, sun.os.patch.level=, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@199e7346, java.library.path=C:\Program Files\Java\jdk1.8.0_191\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.4.3\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.4.3\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Haskell Platform\8.4.3\mingw\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\sqlite;C:\Users\Anthony\AppData\Roaming\cabal\bin;C:\Users\Anthony\AppData\Roaming\local\bin;C:\Users\Anthony\AppData\Local\Microsoft\WindowsApps;C:\Users\Anthony\AppData\Local\Microsoft\WindowsApps;C:\Users\Anthony\AppData\Local\atom\bin;C:\Users\Anthony\AppData\Local\Programs\Microsoft VS Code\bin;;., java.vm.info=mixed mode, java.vendor=Oracle Corporation, java.vm.version=25.191-b12, hibernate.bytecode.use_reflection_optimizer=false, java.ext.dirs=C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.io.unicode.encoding=UnicodeLittle, java.class.version=52.0}
 Skipping JACC integration as it was not enabled
 Instantiated session factory
-Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@5a1aa268] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@730eaddd]
+Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1b8ed424] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@6bce008b]
 Not known whether passed class name [log_management.tables.Graph] is safe
 No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : log_management.tables.Graph
 Not known whether passed class name [log_management.tables.Graph] is safe
@@ -390,7 +390,7 @@ Static SQL for entity: log_management.tables.Graph
  Insert 0: insert into GRAPHITDATABASE.PUBLIC.GRAPHS (GXL, id) values (?, ?)
  Update 0: update GRAPHITDATABASE.PUBLIC.GRAPHS set GXL=? where id=?
  Delete 0: delete from GRAPHITDATABASE.PUBLIC.GRAPHS where id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7c6cd8b9]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7f656cdc]
 Visiting attribute path : gxl
 Building LoadPlan...
 processing queryspace <gen:0>
@@ -404,7 +404,7 @@ LoadPlan(entity=log_management.tables.Graph)
           - suffixed key columns - {id1_0_0_}
 
 Static select for entity log_management.tables.Graph [NONE]: select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1347f882]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@32c1d083]
 Visiting attribute path : gxl
 Building LoadPlan...
 processing queryspace <gen:0>
@@ -426,9 +426,9 @@ Static SQL for entity: log_management.tables.Log
  Insert 0: insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, logEntryName, parameters, time, id) values (?, ?, ?, ?, ?)
  Update 0: update GRAPHITDATABASE.PUBLIC.LOGS set graph_id=?, logEntryName=?, parameters=?, time=? where id=?
  Delete 0: delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3c66b994]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7d016147]
 Visiting attribute path : graph
-Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1a009ff1]
+Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1a3617d7]
 Visiting attribute path : graph.gxl
 Visiting attribute path : logEntryName
 Visiting attribute path : parameters
@@ -451,9 +451,9 @@ LoadPlan(entity=log_management.tables.Log)
                 - suffixed key columns - {id1_0_1_}
 
 Static select for entity log_management.tables.Log [NONE]: select log0_.id as id1_1_0_, log0_.graph_id as graph_id5_1_0_, log0_.logEntryName as logEntry2_1_0_, log0_.parameters as paramete3_1_0_, log0_.time as time4_1_0_, graph1_.id as id1_0_1_, graph1_.GXL as GXL2_0_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ left outer join GRAPHITDATABASE.PUBLIC.GRAPHS graph1_ on log0_.graph_id=graph1_.id where log0_.id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@34bb7995]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1e1a6993]
 Visiting attribute path : graph
-Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4a88d3ff]
+Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5b5d505e]
 Visiting attribute path : graph.gxl
 Visiting attribute path : logEntryName
 Visiting attribute path : parameters
@@ -487,7 +487,7 @@ Using ORDINAL-based conversion for Enum actions.LogEntryName
         GXL varchar(255),
         primary key (id)
     )
-HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@711720f0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6a34416e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 GenerationTarget encountered exception accepting command : Error executing DDL "
     create table GRAPHITDATABASE.PUBLIC.GRAPHS (
        id integer not null,
@@ -918,17 +918,17 @@ Constraint "FKPQY60TDPYTCJ4YUCD0MFOY7XP" already exists; SQL statement:
 	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
 	... 74 more
-HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@2c1755cc'
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@cef966c'
 No JtaPlatform was specified, checking resolver
 No JtaPlatformResolver was specified, using default [org.hibernate.engine.transaction.jta.platform.internal.StandardJtaPlatformResolver]
 Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 Checking 0 named HQL queries
 Checking 0 named SQL queries
-Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@777c8e71
-Registering SessionFactory: 965bf61f-43e9-472d-943e-52dd5d5f0f47 (<unnamed>)
+Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@51e426ae
+Registering SessionFactory: aee6df8c-d182-43ac-8512-43f80fcd7659 (<unnamed>)
 Not binding SessionFactory to JNDI, no JNDI name configured
 Statistics initialized [enabled=false]
-QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@744ea1e1
+QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@284bb466
 HHH000397: Using ASTQueryTranslatorFactory
 parse() - HQL: SELECT g from log_management.tables.Graph g where g.id > 0
 throwQueryException() : no errors
@@ -956,7 +956,7 @@ select << begin [level=1, statement=select]
 FromClause{level=1} : log_management.tables.Graph (g) -> graph0_
 Resolved : g -> graph0_.id
 Resolved : g -> graph0_.id
-getDataType() : id -> org.hibernate.type.IntegerType@43f038ed
+getDataType() : id -> org.hibernate.type.IntegerType@4e1668de
 Resolved : g.id -> graph0_.id
 select : finishing up [level=1, statement=select]
 processQuery() :  ( SELECT ( {select clause} graph0_.id ) ( FromClause{level=1} GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ ) ( where ( > ( graph0_.id graph0_.id id ) 0 ) ) )
@@ -989,9 +989,9 @@ throwQueryException() : no errors
     where
         graph0_.id>0
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#168]
-Resolving associations for [log_management.tables.Graph#168]
-Done materializing entity [log_management.tables.Graph#168]
+Result row: EntityKey[log_management.tables.Graph#201]
+Resolving associations for [log_management.tables.Graph#201]
+Done materializing entity [log_management.tables.Graph#201]
 Initiating JDBC connection release from afterTransaction
 parse() - HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
 throwQueryException() : no errors
@@ -1026,7 +1026,7 @@ getDataType() : graph -> org.hibernate.type.ManyToOneType(log_management.tables.
 dereferenceShortcut() : property id in log_management.tables.Log does not require a join.
 Unresolved property path is now 'graph.id'
 Resolved : l.graph -> log0_.graph_id
-getDataType() : graph.id -> org.hibernate.type.IntegerType@43f038ed
+getDataType() : graph.id -> org.hibernate.type.IntegerType@4e1668de
 Resolved : l.graph.id -> log0_.graph_id
 select : finishing up [level=1, statement=select]
 processQuery() :  ( SELECT ( {select clause} log0_.id ) ( FromClause{level=1} GRAPHITDATABASE.PUBLIC.LOGS log0_ ) ( where ( = ( log0_.graph_id ( log0_.graph_id log0_.id graph ) id ) ? ) ) )
@@ -1046,7 +1046,7 @@ select >> end [level=1, statement=select]
           |  |  +-[ALIAS_REF] IdentNode: 'log0_.id' {alias=l, className=log_management.tables.Log, tableAlias=log0_}
           |  |  \-[IDENT] IdentNode: 'graph' {originalText=graph}
           |  \-[IDENT] IdentNode: 'id' {originalText=id}
-          \-[NAMED_PARAM] ParameterNode: '?' {name=gid, expectedType=org.hibernate.type.IntegerType@43f038ed}
+          \-[NAMED_PARAM] ParameterNode: '?' {name=gid, expectedType=org.hibernate.type.IntegerType@4e1668de}
 
 throwQueryException() : no errors
 HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
@@ -1063,22 +1063,32 @@ throwQueryException() : no errors
         GRAPHITDATABASE.PUBLIC.LOGS log0_ 
     where
         log0_.graph_id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Log#202]
+Result set row: 1
+Result row: EntityKey[log_management.tables.Log#203]
+Resolving associations for [log_management.tables.Log#202]
+Done materializing entity [log_management.tables.Log#202]
+Resolving associations for [log_management.tables.Log#203]
+Done materializing entity [log_management.tables.Log#203]
 Initiating JDBC connection release from afterTransaction
 On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
 begin
 
     call next value for hibernate_sequence
-Sequence value obtained: 169
+Sequence value obtained: 204
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 169, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 204, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
-Flushed: 1 insertions, 0 updates, 1 deletions to 2 objects
+Flushed: 1 insertions, 1 updates, 3 deletions to 4 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Graph{gxl=, id=169}
-log_management.tables.Graph{gxl=, id=168}
+log_management.tables.Graph{gxl=, id=201}
+log_management.tables.Graph{gxl=, id=204}
+log_management.tables.Log{id=202, time=2019-01-15T15:02:34.230, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#201}
+log_management.tables.Log{id=203, time=2019-01-15T15:02:40.390, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#201}
 
     insert 
     into
@@ -1087,14 +1097,36 @@ log_management.tables.Graph{gxl=, id=168}
     values
         (?, ?)
 
+    update
+        GRAPHITDATABASE.PUBLIC.LOGS 
+    set
+        graph_id=?,
+        logEntryName=?,
+        parameters=?,
+        time=? 
+    where
+        id=?
+
+    delete 
+    from
+        GRAPHITDATABASE.PUBLIC.LOGS 
+    where
+        id=?
+
     delete 
     from
         GRAPHITDATABASE.PUBLIC.GRAPHS 
     where
         id=?
+
+    delete 
+    from
+        GRAPHITDATABASE.PUBLIC.LOGS 
+    where
+        id=?
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#169]
+Loading entity: [log_management.tables.Graph#204]
 
     select
         graph0_.id as id1_0_0_,
@@ -1104,24 +1136,24 @@ Loading entity: [log_management.tables.Graph#169]
     where
         graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#169]
-Resolving associations for [log_management.tables.Graph#169]
-Done materializing entity [log_management.tables.Graph#169]
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
 Done entity load
 begin
 
     call next value for hibernate_sequence
-Sequence value obtained: 170
+Sequence value obtained: 205
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 170, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 205, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 2 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Graph{gxl=, id=169}
-log_management.tables.Log{id=170, time=2019-01-15T13:31:02.667, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#169}
+log_management.tables.Log{id=205, time=2019-01-15T15:26:04.210, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Graph{gxl=, id=204}
 
     insert 
     into
@@ -1131,3 +1163,293 @@ log_management.tables.Log{id=170, time=2019-01-15T13:31:02.667, logEntryName=ADD
         (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 206
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 206, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 3 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=205, time=2019-01-15T15:26:04.210, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=206, time=2019-01-15T15:26:06.024, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Graph{gxl=, id=204}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.LOGS
+        (graph_id, logEntryName, parameters, time, id) 
+    values
+        (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 207
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 207, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 4 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=205, time=2019-01-15T15:26:04.210, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=206, time=2019-01-15T15:26:06.024, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=207, time=2019-01-15T15:26:08.493, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Graph{gxl=, id=204}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.LOGS
+        (graph_id, logEntryName, parameters, time, id) 
+    values
+        (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 208
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 208, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 5 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=205, time=2019-01-15T15:26:04.210, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=206, time=2019-01-15T15:26:06.024, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=207, time=2019-01-15T15:26:08.493, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=208, time=2019-01-15T15:26:16.245, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Graph{gxl=, id=204}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.LOGS
+        (graph_id, logEntryName, parameters, time, id) 
+    values
+        (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 209
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 209, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 6 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=205, time=2019-01-15T15:26:04.210, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=206, time=2019-01-15T15:26:06.024, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=207, time=2019-01-15T15:26:08.493, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=208, time=2019-01-15T15:26:16.245, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Graph{gxl=, id=204}
+log_management.tables.Log{id=209, time=2019-01-15T15:26:20.903, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.LOGS
+        (graph_id, logEntryName, parameters, time, id) 
+    values
+        (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+begin
+
+    call next value for hibernate_sequence
+Sequence value obtained: 210
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 210, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 7 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=208, time=2019-01-15T15:26:16.245, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=209, time=2019-01-15T15:26:20.903, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=210, time=2019-01-15T15:26:40.881, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=205, time=2019-01-15T15:26:04.210, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=206, time=2019-01-15T15:26:06.024, logEntryName=ADD_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Log{id=207, time=2019-01-15T15:26:08.493, logEntryName=REMOVE_SPHERE, parameters=null, graph=log_management.tables.Graph#204}
+log_management.tables.Graph{gxl=, id=204}
+
+    insert 
+    into
+        GRAPHITDATABASE.PUBLIC.LOGS
+        (graph_id, logEntryName, parameters, time, id) 
+    values
+        (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#204]
+
+    select
+        graph0_.id as id1_0_0_,
+        graph0_.GXL as GXL2_0_0_ 
+    from
+        GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ 
+    where
+        graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#204]
+Resolving associations for [log_management.tables.Graph#204]
+Done materializing entity [log_management.tables.Graph#204]
+Done entity load
+HHH000031: Closing
+Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@5aaa6d82] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@6bce008b]
+Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+HHH10001008: Cleaning up connection pool [jdbc:h2:~/GraphItDatabase]
+Connection leak detected: there are 1 unclosed connections upon shutting down pool jdbc:h2:~/GraphItDatabase
+Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries

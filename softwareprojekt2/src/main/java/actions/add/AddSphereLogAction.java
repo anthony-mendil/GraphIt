@@ -54,6 +54,7 @@ public class AddSphereLogAction extends LogAction {
         vv.repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(this);
+        notifyObserverGraph();
     }
 
     @Override
