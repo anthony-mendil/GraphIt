@@ -2,6 +2,13 @@ package actions.add;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import actions.remove.RemoveSphereLogAction;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 import java.awt.geom.Point2D;
@@ -11,6 +18,8 @@ import java.awt.geom.Point2D;
  */
 public class AddSphereLogAction extends LogAction {
 
+    private Point2D point2D;
+
     /**
      * Constructor in case the user clicks somewhere on blank space to create a sphere.
      *
@@ -18,7 +27,7 @@ public class AddSphereLogAction extends LogAction {
      */
     public AddSphereLogAction(Point2D pPoint2D) {
         super(LogEntryName.ADD_SPHERE);
-        throw new UnsupportedOperationException();
+        point2D = pPoint2D;
     }
 
     /**
@@ -29,21 +38,31 @@ public class AddSphereLogAction extends LogAction {
      */
     public AddSphereLogAction(AddRemoveSphereParam pAddRemoveSphereParam) {
         super(LogEntryName.ADD_SPHERE);
-        throw new UnsupportedOperationException();
+        parameters = pAddRemoveSphereParam;
     }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        if(parameters == null) {
+            graph.addSphere(point2D);
+            createParameter(graph.getSpheres().get(graph.getSpheres().size() - 1));
+        }else{
+            graph.getSpheres().add(((AddRemoveSphereParam)parameters).getSphere());
+        }
+        vv.repaint();
+        DatabaseManager.addEntryDatabase(this);
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction((AddRemoveSphereParam)parameters);
+        removeSphereLogAction.action();
     }
 
-    @Override
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+
+    public void createParameter(Sphere sphere) {
+        parameters = new AddRemoveSphereParam(sphere);
     }
 }

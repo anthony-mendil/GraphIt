@@ -26,7 +26,7 @@ public class LayoutGraphLogAction extends LogAction {
         super(LogEntryName.EDIT_LAYOUT);
     }
 
-    @Override
+
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

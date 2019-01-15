@@ -89,7 +89,6 @@ public class EditSphereSizeLogAction extends LogAction {
     /**
      * Creates the parameter object.
      */
-    @Override
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

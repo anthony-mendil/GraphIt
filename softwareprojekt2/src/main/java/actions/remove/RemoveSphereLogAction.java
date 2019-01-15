@@ -1,11 +1,16 @@
 package actions.remove;
 
 import actions.LogAction;
+import actions.add.AddSphereLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import actions.LogEntryName;
 import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Removes a sphere from the syndrom graph.
@@ -28,27 +33,33 @@ public class RemoveSphereLogAction extends LogAction {
      */
     public RemoveSphereLogAction(AddRemoveSphereParam pParam) {
         super(LogEntryName.REMOVE_SPHERE);
-        throw new UnsupportedOperationException();
+        parameters = pParam;
     }
 
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        PickedState<Sphere> pickedState = vv.getPickedSphereState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        for (Sphere sp: pickedState.getPicked()) {
-            graph.removeSphere(sp);
+        if(parameters == null){
+            PickedState<Sphere> pickedState = vv.getPickedSphereState();
+            for (Sphere sp : pickedState.getPicked()) {
+                graph.removeSphere(sp);
+                createParameter(sp);
+            }
+        }else{
+            graph.removeSphere(((AddRemoveSphereParam)parameters).getSphere());
         }
         vv.repaint();
+        DatabaseManager.addEntryDatabase(this);
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        AddSphereLogAction addSphereLogAction = new AddSphereLogAction((AddRemoveSphereParam)parameters);
+        addSphereLogAction.action();
     }
 
-    @Override
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Sphere sphere) {
+        parameters = new AddRemoveSphereParam(sphere);
     }
 }

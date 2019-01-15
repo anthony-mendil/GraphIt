@@ -31,7 +31,7 @@ public class RemoveEdgesLogAction extends LogAction {
     }
 
 
-    @Override
+
     public void createParameter() {
         throw new UnsupportedOperationException();
     }

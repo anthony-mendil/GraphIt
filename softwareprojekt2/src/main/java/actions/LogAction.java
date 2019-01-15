@@ -1,5 +1,6 @@
 package actions;
 
+import graph.graph.Sphere;
 import log_management.parameters.Param;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,8 +39,4 @@ public abstract class LogAction extends GraphAction {
         time = LocalDateTime.now();
     }
 
-    /**
-     * Creates the parameter object.
-     */
-    public abstract void createParameter();
 }
