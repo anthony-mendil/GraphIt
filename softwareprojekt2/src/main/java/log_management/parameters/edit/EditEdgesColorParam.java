@@ -7,7 +7,6 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
-import java.awt.*;
 import java.util.Map;
 
 /**

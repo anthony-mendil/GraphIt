@@ -2,7 +2,6 @@ package log_management.parameters.add_remove;
 
 import graph.graph.Sphere;
 import graph.graph.Vertex;
-import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;

@@ -1,11 +1,11 @@
 package graph.graph;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +13,6 @@ import java.util.Map;
  * connected through edges. All attributes of a vertex can be changed, just the id is unique and final.
  */
 @Data
-@AllArgsConstructor
 public class Vertex {
     /**
      * The unique id of a vertex.
@@ -31,7 +30,7 @@ public class Vertex {
      * The coordinate of a vertex. A vertex have to be placed within a sphere and where no other vertex is located.
      */
     @NonNull
-    private Point2D coordinate;
+    private Point2D coordinates;
 
     /**
      * The shape of a vertex.
@@ -55,19 +54,19 @@ public class Vertex {
      * The edges with a reinforcing relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowReinforced = null;
+    private Map<ScopePoint, Point2D> vertexArrowReinforced;
 
     /**
      * The edges with a neutral relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowNeutral = null;
+    private Map<ScopePoint, Point2D> vertexArrowNeutral;
 
     /**
      * The edges with a extenuating relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowExtenuating = null;
+    private Map<ScopePoint, Point2D> vertexArrowExtenuating;
 
     /**
      * The size of a vertex.
@@ -92,4 +91,25 @@ public class Vertex {
      */
     @NonNull
     private int fontSize;
+
+    public Vertex(int id, Paint fillPaint, Point2D coordinates, VertexShapeType shape, Map<String, String>
+            annotation, Paint drawPaint, int size, String font, int fontSize ){
+        this.id = id;
+        this.fillPaint = fillPaint;
+        this.coordinates = coordinates;
+        this.shape = shape;
+        this.drawPaint = drawPaint;
+        this.size = size;
+        this.annotation = annotation;
+        this.font = font;
+        this.fontSize = fontSize;
+        vertexArrowExtenuating = new LinkedHashMap<>();
+        vertexArrowNeutral = new LinkedHashMap<>();
+        vertexArrowReinforced = new LinkedHashMap<>();
+        isVisible = true;
+    }
+
+    public boolean equals(Vertex v){
+        return this.id == v.id;
+    }
 }

@@ -1,18 +1,11 @@
 package gui;
 
-import actions.ActionHistory;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import graph.graph.Syndrom;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
-
-import static javafx.application.Application.launch;
 
 /**
  * Starts the whole application.

@@ -10,19 +10,18 @@ import graph.visualization.SyndromVisualisationViewer;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 /**
  * Layouts the graph according to a previously defined layout.
  */
-public class LayoutGraphLogAction extends LogAction {
+public class LayoutSphereGraphLogAction extends LogAction {
 
     /**
      * Layouts the graph (including all vertices) according to the defined layout.
      */
-    public LayoutGraphLogAction() {
+    public LayoutSphereGraphLogAction() {
         super(LogEntryName.EDIT_LAYOUT);
     }
 
@@ -69,19 +68,26 @@ public class LayoutGraphLogAction extends LogAction {
             int sepY = 15;
             double yCoord = y;
 
-
-
             for(ArrayList<Sphere> sphereRow : sphereRows){
                 sphereRow.sort(sphereCompare);
             }
 
             for (ArrayList<Sphere> sphereRow : sphereRows) {
                 double xCoord = x;
+
                 for (Sphere s : sphereRow) {
+                    double dx = xCoord - s.getCoordinates().getX();
+                    double dy = yCoord - s.getCoordinates().getY();
                     s.setHeight(height);
                     s.setWidth(height);
                     s.setCoordinates(new Point2D.Double(xCoord, yCoord));
                     xCoord = xCoord + height + sepX;
+                    for(Vertex v : s.getVertices()){
+                        Point2D point = new Point2D.Double(v.getCoordinates().getX() + dx, v.getCoordinates()
+                                .getY() + dy);
+                        v.setCoordinates(point);
+                        vv.getGraphLayout().setLocation(v, point);
+                    }
                 }
                 if (!sphereRow.isEmpty()) {
                     yCoord = yCoord + height + sepY;

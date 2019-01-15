@@ -4,7 +4,6 @@ import actions.LogAction;
 import actions.LogEntryName;
 import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 
-
 import java.awt.geom.Point2D;
 
 /**

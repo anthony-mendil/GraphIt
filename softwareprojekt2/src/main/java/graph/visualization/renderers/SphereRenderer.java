@@ -125,6 +125,6 @@ public class SphereRenderer {
         } else {
             labelX = x+5;
         }
-        return new Point2D.Double(labelX, p.getY()+2);
+        return new Point2D.Double(labelX, p.getY()+3);
     }
 }

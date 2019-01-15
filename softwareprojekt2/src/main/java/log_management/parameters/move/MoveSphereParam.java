@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 import java.util.Map;
 
 /**

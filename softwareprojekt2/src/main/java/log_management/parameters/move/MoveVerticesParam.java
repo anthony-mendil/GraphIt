@@ -1,15 +1,11 @@
 package log_management.parameters.move;
 
 import graph.graph.Vertex;
-import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
-import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**

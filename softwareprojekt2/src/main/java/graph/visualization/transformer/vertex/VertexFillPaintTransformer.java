@@ -1,5 +1,6 @@
 package graph.visualization.transformer.vertex;
 
+import graph.graph.Vertex;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.awt.*;
 public class VertexFillPaintTransformer<V> implements Transformer<V, Paint> {
     @Override
     public Paint transform(V v) {
-        return null;
+        Vertex vertex = (Vertex) v;
+        return vertex.getFillPaint();
     }
 }

@@ -1,6 +1,5 @@
 package graph.visualization.transformer.sphere;
 
-import graph.graph.Sphere;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
