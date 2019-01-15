@@ -9,6 +9,7 @@ import graph.graph.SphereSizeChange;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import graph.visualization.transformer.sphere.SphereShapeTransformer;
 import log_management.parameters.edit.EditSphereSizeParam;
 
 import java.awt.*;
@@ -48,13 +49,13 @@ public class EditSphereSizeLogAction extends LogAction {
             if (sphereSizeChange == SphereSizeChange.ENLARGE) {
                 double newHeight = sp.getHeight() + 10;
                 double newWidth = sp.getWidth() + 10;
-                SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+                SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
                 double x = sp.getCoordinates().getX();
                 double y = sp.getCoordinates().getY();
                 boolean enlarge = true;
                 for (int j = (int) y; j < newHeight + y; j++) {
-                    Point2D val =  vv.getRenderContext().getMultiLayerTransformer().transform( new Point2D.Double
-                            (x+newWidth, j));
+                    Point2D val = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double
+                            (x + newWidth, j));
                     Sphere s = pickSupport.getSphere(val.getX(), val.getY());
                     if (s != null && !s.equals(sp)) {
                         enlarge = false;
@@ -63,9 +64,9 @@ public class EditSphereSizeLogAction extends LogAction {
                 }
 
                 for (int j = (int) y; j < newWidth + y; j++) {
-                    Point2D point =  new Point2D.Double
-                            ( j, y+newHeight);
-                    point =  vv.getRenderContext().getMultiLayerTransformer().transform(point);
+                    Point2D point = new Point2D.Double
+                            (j, y + newHeight);
+                    point = vv.getRenderContext().getMultiLayerTransformer().transform(point);
                     Sphere s = pickSupport.getSphere(point.getX(), point.getY());
                     if (s != null && !s.equals(sp)) {
                         enlarge = false;
@@ -80,7 +81,16 @@ public class EditSphereSizeLogAction extends LogAction {
 
 
             } else {
-                if (sp.getHeight() > 20 && sp.getWidth() > 20) {
+                boolean add = true;
+                SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<Sphere>();
+                Shape sphereShape = sphereShapeTransformer.transform(sp);
+                for (Vertex v : sp.getVertices()) {
+                    if (!sphereShape.contains(v.getCoordinates())) {
+                        add = false;
+                        break;
+                    }
+                }
+                if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
                     sp.setHeight(sp.getHeight() - 10);
                     sp.setWidth(sp.getWidth() - 10);
                 }

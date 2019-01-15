@@ -9,6 +9,7 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import graph.visualization.transformer.sphere.SphereShapeTransformer;
 import gui.GraphButtonType;
 import gui.Values;
 
@@ -26,7 +27,7 @@ import java.util.Set;
 
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
-    private Sphere spherePicked;
+    private Point2D spherePickedCoord = null;
     private Point2D downFirst = null;
 
     /**
@@ -93,7 +94,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
             if (sp != null && vert == null) {
-                spherePicked = sp;
+                spherePickedCoord = sp.getCoordinates();
                 if (!pickedSphereState.isPicked(sp)) {
                     pickedSphereState.clear();
                     pickedSphereState.pick(sp, true);
@@ -110,87 +111,33 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mouseReleased(MouseEvent e) {
-        /* if (SwingUtilities.isLeftMouseButton(e)){
-            SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
-            PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
-            Set<Sphere> spheres = spherePickedState.getPicked();
+         if (SwingUtilities.isLeftMouseButton(e) && spherePickedCoord != null) {
+             SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
+             PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
+             Set<Sphere> spheres = spherePickedState.getPicked();
+             SyndromGraph graph = (SyndromGraph) vv.getGraphLayout().getGraph();
+             List<Sphere> allSpheres = graph.getSpheres();
+             SphereShapeTransformer sphereShapeTransformer = new SphereShapeTransformer();
 
-
-            for (Sphere s : spheres) {
-
-            }
-
-
-
-            GraphObjectsFactory graphObjectsFactory = new GraphObjectsFactory();
-            Vertex test = graphObjectsFactory.createTestVertex(e.getPoint());
-            RenderContext<Vertex, Edge> rc = vv.getRenderContext();
-            Layout<Vertex, Edge> layout = vv.getGraphLayout();
-
-            Shape shapeTest = vv.getRenderContext().getVertexShapeTransformer().transform(test);
-            Shape shapeSphereVert = rc.getVertexShapeTransformer().transform
-                    (sphereVert);
-            Point2D p;
-            p = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, e.getPoint());
-            float x = (float) p.getX();
-            float y = (float) p.getY();
-            AffineTransform xform = AffineTransform.getTranslateInstance(x, y);
-            shapeTest = xform.createTransformedShape(shapeTest);
-
-            Point2D p2 = layout.transform(sphereVert);
-            p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, p2);
-            float x2 = (float) p2.getX();
-            float y2 = (float) p2.getY();
-            AffineTransform xform2 = AffineTransform.getTranslateInstance(x2, y2);
-            shapeSphereVert = xform2.createTransformedShape(shapeSphereVert);
-
-            if (shapeTest.intersects(shapeSphereVert.getBounds())) {
-                add = false;
-            }
-
-        }
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
-            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
-            PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
-            Set<Sphere> spheres = spherePickedState.getPicked();
-
-
-                for (Sphere s : spheres) {
-                    double y = s.getCoordinates().getY();
-                    double height = y + s.getHeight();
-                    double x = s.getCoordinates().getX();
-                    double width = x + s.getWidth();
-
-                    for (int j = (int) y ; j < height + y; j++) {
-                        List<Sphere> sp = pickSupport.getSpheres(x+width, j);
-
-                        for (Sphere containingSphere: sp){
-                            if (!containingSphere.equals(s)){
-                                s.setCoordinates(new Point2D.Double(downFirst.getX(), downFirst.getY()));
-                                break;
-                            }
-                        }
-                    }
-
-                    for (int j = (int) y; j < width + y; j++) {
-                        List<Sphere> sp = pickSupport.getSpheres(j, y+height);
-
-                        for (Sphere containingSphere: sp){
-                            if (!containingSphere.equals(s)){
-                                s.setCoordinates(new Point2D.Double(downFirst.getX(), downFirst.getY()));
-                                break;
-                            }
-                        }
-                    }
-                }
-
-            spherePicked = null;
-
-            downFirst = null;
-            vv.repaint();
-
-        } */
+             for (Sphere s : spheres) {
+                 Shape sShape = sphereShapeTransformer.transform(s);
+                 boolean move = true;
+                 for (Sphere sphere: allSpheres){
+                     if (!s.equals(sphere)){
+                         Shape sphereShape = sphereShapeTransformer.transform(sphere);
+                         if (sphereShape.intersects(sShape.getBounds())){
+                             move = false;
+                             System.out.println("move: "+move);
+                         }
+                     }
+                 }
+                 if (!move){
+                     s.setCoordinates(spherePickedCoord);
+                 }
+             }
+             spherePickedCoord = null;
+             vv.repaint();
+         }
     }
 
     @Override
@@ -209,7 +156,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
 
-            if (spherePicked != null) {
+            if (spherePickedCoord != null) {
                 Point p = e.getPoint();
                 Point2D graphPoint = vv.getRenderContext().getMultiLayerTransformer().transform(p);
                 Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().transform(down);
@@ -224,8 +171,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
                     s.setCoordinates(new Point2D.Double(s.getCoordinates().getX() + dx, s.getCoordinates().getY() +
                             dy));
-                    System.out.println("sphere: "+s);
-                    System.out.println(graphDown);
                     for (Vertex vertex : s.getVertices()) {
                         Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dx, vertex.getCoordinates()
                                 .getY() + dy);
