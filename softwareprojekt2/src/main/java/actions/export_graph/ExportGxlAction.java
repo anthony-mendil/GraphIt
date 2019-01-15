@@ -1,6 +1,10 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import graph.graph.Syndrom;
+import io.GXLio;
+
+import java.io.File;
 
 /**
  * Exports a GXL file with the current syndrom graph.
@@ -8,23 +12,18 @@ import actions.GraphAction;
 public class ExportGxlAction extends GraphAction {
 
     /**
-     * The path that the GXL file is exported to.
+     * The File the gxl get's written into
      */
-    private String path;
-
-    /**
-     * The name of the file.
-     */
-    private String name;
+    private File file;
 
     /**
      * Constructs action handling for exporting the graph as GXL file.
      *
-     * @param pPath The path that the GXL file is exported to.
-     * @param pName The name of the file.
+     * @param pFile The destination of the gxl-file
      */
-    public ExportGxlAction(String pPath, String pName) {
-        throw new UnsupportedOperationException();
+    public ExportGxlAction(File pFile) {
+        file=pFile;
+        Syndrom.getInstance().getVv().getPickedSphereState().clear();
     }
 
     /**
@@ -32,14 +31,21 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        GXLio gxlio = new GXLio(file);
+        gxlio.exportGXL(file);
     }
 
     /**
-     * Reverts the action. The internal state of the graph is the same as before the action was executed.
+     * Disables the undo-funktion for the gxl export
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Disables the redo-funktion for the gxl export
+     */
+    @Override
+    public void redo() {
     }
 }

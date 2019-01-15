@@ -18,16 +18,17 @@
                         <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="Neue Datei" />
                         <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#buttonClicked3" text="Datei öffnen" />
                         <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#buttonClicked4" text="Importieren als GXL-Datei" />
-                        <MenuItem mnemonicParsing="false" text="Speichern unter.." />
+                        <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter.." />
                         <Menu mnemonicParsing="false" text="Exportieren als..">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="PDF" />
-                              <MenuItem mnemonicParsing="false" text="Vorlage" />
-                              <MenuItem mnemonicParsing="false" text="GXL" />
-                              <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
+                               <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF" />
+                               <MenuItem mnemonicParsing="false" text="Vorlage" />
+                               <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL" />
+                               <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
+                               <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
                            </items>
                         </Menu>
-                        <MenuItem mnemonicParsing="false" text="Drucken" />
+                        <MenuItem mnemonicParsing="false" onAction="#printPDF" text="Drucken" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Optionen">

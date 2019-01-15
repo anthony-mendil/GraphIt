@@ -11,29 +11,32 @@ import actions.edit.font.EditFontSphereLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
 import actions.edit.form.EditVerticesFormLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
-import actions.layout.LayoutSphereGraphLogAction;
-import actions.layout.LayoutVerticesGraphLogAction;
+import actions.export_graph.ExportGxlAction;
+import actions.export_graph.ExportOofAction;
+import actions.export_graph.ExportPdfAction;
+import actions.layout.LayoutGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.remove.RemoveSphereLogAction;
-import actions.remove.RemoveVerticesLogAction;
-import graph.graph.FunctionMode;
 import graph.graph.SphereSizeChange;
 import graph.graph.Syndrom;
-import graph.graph.VertexShapeType;
+import io.GXLio;
+import io.OOFio;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import log_management.DatabaseManager;
+import javafx.stage.FileChooser;
 import log_management.dao.LogDao;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -396,13 +399,13 @@ public class Controller implements ObserverSyndrom{
     /* Symptom */
 
     /**
-     * The ColorPicker for changing the background color for a symptom.
+     * The colorpicker for changing the background color for a symptom.
      */
     @FXML
     private ColorPicker symptomBackground;
 
     /**
-     * The ColorPicker for changing the border color for a symptom.
+     * The colorpicker for changing the border color for a symptom.
      */
     @FXML
     private ColorPicker symptomBorder;
@@ -839,40 +842,70 @@ public class Controller implements ObserverSyndrom{
      * Creates an ExportGxlAction-object and executes the action with the action history.
      */
     public void exportGXL() {
-        throw new UnsupportedOperationException();
+        FileChooser fileChooser= new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showSaveDialog(null);
+        ExportGxlAction exportGxlAction = new ExportGxlAction(file);
+        exportGxlAction.action();
     }
 
     /**
      * Creates an ExportPdfAction-object and executes the action with the action history.
      */
     public void exportPDF() {
-        throw new UnsupportedOperationException();
+        FileChooser fileChooser= new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("PDF files (*.pdf)","*.pdf");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showSaveDialog(null);
+        ExportPdfAction exportPdfAction =new ExportPdfAction(file);
+        exportPdfAction.action();
     }
 
     /**
      * Creates an ExportOofAction-object and executes the action with the action history.
      */
     public void exportOOF() {
-        throw new UnsupportedOperationException();
+        FileChooser fileChooser= new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showSaveDialog(null);
+        ExportOofAction exportOofAction = new ExportOofAction(file);
+        exportOofAction.action();
     }
 
     /**
      * Opens the selected OOF-file after choosing it in the file chooser, creates an ImportOofAction-object
      * and executes the action with the action history.
      */
-    public void openFile(){throw new UnsupportedOperationException();}
+    public void openFile(){
+        FileChooser fileChooser= new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showOpenDialog(null);
+        OOFio oofio = new OOFio();
+        oofio.importOOF(file);
+    }
 
     /**
      * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
      * and executes the action with the action history.
      */
-    public void importGXL(){throw new UnsupportedOperationException();}
+    public void importGXL(){
+        FileChooser fileChooser= new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showOpenDialog(null);
+        GXLio gxlio = new GXLio(file);
+        gxlio.importGXL(file);
+    }
 
     /**
      * Creates an PrintPDFAction-object and executes the action with the action history.
      */
     public void printPDF() {
-        throw new UnsupportedOperationException();
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+        printerJob.showPrintDialog(null);
     }
 
     /* ----------------LAYOUT---------------------- */

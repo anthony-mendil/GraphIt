@@ -1,14 +1,20 @@
 package graph.graph;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
-import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
-import edu.uci.ics.jung.visualization.VisualizationServer;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.layout.StaticLayout;
+import edu.uci.ics.jung.visualization.*;
+import edu.uci.ics.jung.visualization.control.PickingGraphMousePlugin;
 import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
 import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.algorithmen.predicates.*;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.PickingGraphMouseEditSyndromPlugin;
 import graph.visualization.control.SpherePickingPlugin;
 import graph.visualization.control.VertexPickingPlugin;
 import graph.visualization.picking.SyndromPickSupport;
@@ -16,10 +22,17 @@ import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
+import graph.visualization.util.SyndromArrowFactory;
 import gui.Values;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
+import org.apache.commons.collections15.functors.MapTransformer;
+import org.apache.commons.collections15.map.LazyMap;
 
 import java.awt.*;
+import java.nio.file.Path;
+import java.util.HashMap;
 
 /**
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualization

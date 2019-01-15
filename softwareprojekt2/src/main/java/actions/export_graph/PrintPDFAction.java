@@ -1,6 +1,7 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import graph.graph.Syndrom;
 
 /**
  * Prints the current graph visualization as a PDF file.
@@ -18,6 +19,7 @@ public class PrintPDFAction extends GraphAction {
      * @param pName The name that the file is printed as.
      */
     PrintPDFAction(String pName) {
+        Syndrom.getInstance().getVv().getPickedSphereState().clear();
         throw new UnsupportedOperationException();
     }
 
