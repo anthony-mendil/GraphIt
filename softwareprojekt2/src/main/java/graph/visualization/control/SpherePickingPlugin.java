@@ -135,7 +135,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
-        System.out.println("point: "+e.getPoint());
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
@@ -232,7 +231,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                          Shape sphereShape = sphereShapeTransformer.transform(sphere);
                          if (sphereShape.intersects(sShape.getBounds())){
                              move = false;
-                             System.out.println("move: "+move);
                          }
                      }
                  }
