@@ -35,6 +35,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"));
         Controller controller = new Controller();
+        controller.setStage(primaryStage);
         loader.setController(controller);
         Values.getInstance().setNamespace(loader.getNamespace());
         BorderPane borderPane = loader.load();
