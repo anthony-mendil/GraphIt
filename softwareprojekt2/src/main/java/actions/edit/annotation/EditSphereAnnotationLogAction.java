@@ -2,12 +2,20 @@ package actions.edit.annotation;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.edit.EditSphereAnnotationParam;
+
+import java.util.Map;
 
 /**
  * Changes the annotation of a selected sphere.
  */
 public class EditSphereAnnotationLogAction extends LogAction {
+    private String text;
     /**
      * Constructor in case the user changes the annotation of a sphere.
      *
@@ -15,6 +23,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
      */
     public EditSphereAnnotationLogAction(String pText) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
+        text = pText;
     }
 
     /**
@@ -28,7 +37,15 @@ public class EditSphereAnnotationLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState = vv.getPickedSphereState();
+
+        for (Sphere sp: pickedState.getPicked()) {
+            Map<String, String> annotation = sp.getAnnotation();
+            annotation.put("de", text);
+            sp.setAnnotation(annotation);
+        }
+        vv.repaint();
     }
 
     @Override

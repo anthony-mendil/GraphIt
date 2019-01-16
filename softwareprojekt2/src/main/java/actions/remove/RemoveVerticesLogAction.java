@@ -58,11 +58,13 @@ public class RemoveVerticesLogAction extends LogAction {
             for (Vertex vertex : pickedState.getPicked()) {
                 graph.removeVertex(vertex);
                 Point2D posVertex = vertex.getCoordinates();
+                posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
                 Sphere sp = pickSupport.getSphere(posVertex.getX(),posVertex.getY());
+                sp.getVertices().remove(vertex);
                 params.put(vertex, sp);
             }
             createParameter(params);
-        }else{
+        } else{
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getParameter();
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
                 graph.removeVertex(entry.getKey());
