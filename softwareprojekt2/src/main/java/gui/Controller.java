@@ -147,6 +147,18 @@ public class Controller implements ObserverSyndrom{
      */
     private MenuItem documentation;
 
+    /**
+     * The button to change the gui layout to edit-mode
+     */
+    @FXML
+    private Button editButton;
+
+    /**
+     * The button to change the gui layout to analysis-mode
+     */
+    @FXML
+    private Button analysisButton;
+
     /* Template Options */
 
     /**
@@ -594,43 +606,90 @@ public class Controller implements ObserverSyndrom{
 
     //Analysis GUI
 
+    /**
+     * The vbox that contains all graph information in the analysis mode.
+     */
     @FXML
     private VBox vBoxGraphStats;
 
+    /**
+     * A separator for the vboxes in analysis mode.
+     */
     @FXML
     private Separator separator3;
 
+    /**
+     * A separator for the vboxes in analysis mode.
+     */
     @FXML
     private Separator separator4;
 
+    /**
+     * A separator for the vboxes in analysis mode.
+     */
     @FXML
     private Separator separator5;
 
+    /**
+     * The vbox that contains analysis options for symptoms.
+     */
     @FXML
     private VBox vBoxAnalysisSymptom;
 
+    /**
+     * The vbox that contains analysis options for edges.
+     */
     @FXML
     private VBox vBoxAnalysisEdge;
 
+    /**
+     * The vbox that contains analysis options for the graph.
+     */
     @FXML
     private VBox vBoxAnalysisOption;
 
     //Edit GUI
 
+    /**
+     * A separator for the vboxes in edit mode.
+     */
     @FXML
     private Separator separator1;
 
+    /**
+     * A separator for the vboxes in edit mode.
+     */
     @FXML
     private Separator separator2;
 
+    /**
+     * The vbox that contains sphere options in edit mode.
+     */
     @FXML
     private VBox vBoxEditSphere;
 
+    /**
+     * The vbox that ocntains symptom options in edit mode.
+     */
     @FXML
     private VBox vBoxEditSymptom;
 
+    /**
+     * The vbox that contains edge options in edit mode.
+     */
     @FXML
     private VBox vBoxEditEdge;
+
+
+    /**
+     * Checking if gui is in edit mode
+     */
+    private boolean editMode = true;
+
+    /**
+     * Checking if gui is in analysis mode
+     */
+    private boolean analysisMode = false;
 
 
     public Controller(){
@@ -993,14 +1052,30 @@ public class Controller implements ObserverSyndrom{
      * and executes the action with the action history.
      */
     public void switchModiEditor() {
-        throw new UnsupportedOperationException();
+        if(analysisMode){
+            hideAnalysisMode();
+            showEditMode();
+            editButton.setDisable(true);
+            analysisButton.setDisable(false);
+            editMode = true;
+            analysisMode = false;
+        }
     }
 
     /**
      * Creates an SwitchModiEditorAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
-    public void switchModiAnalysis(){throw new UnsupportedOperationException();}
+    public void switchModiAnalysis(){
+        if(editMode){
+            hideEditMode();
+            showAnalysisMode();
+            editButton.setDisable(false);
+            analysisButton.setDisable(true);
+            editMode = false;
+            analysisMode = true;
+        }
+    }
 
     /**
      * Creates an SwitchModeEditorAction-object for changing to the interpreter mode
@@ -1126,11 +1201,12 @@ public class Controller implements ObserverSyndrom{
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
-
-        hideAnalyseMode();
+        hideAnalysisMode();
+        editButton.setDisable(true);
     }
 
-    private void hideAnalyseMode(){
+    private void hideAnalysisMode(){
+
         vBoxGraphStats.setVisible(false);
         vBoxGraphStats.setManaged(false);
 
@@ -1168,6 +1244,46 @@ public class Controller implements ObserverSyndrom{
 
         vBoxEditEdge.setVisible(false);
         vBoxEditEdge.setManaged(false);
+    }
+
+    private void showAnalysisMode(){
+        vBoxGraphStats.setVisible(true);
+        vBoxGraphStats.setManaged(true);
+
+        separator3.setVisible(true);
+        separator3.setManaged(true);
+
+        separator4.setVisible(true);
+        separator4.setManaged(true);
+
+        separator5.setVisible(true);
+        separator5.setManaged(true);
+
+        vBoxAnalysisSymptom.setVisible(true);
+        vBoxAnalysisSymptom.setManaged(true);
+
+        vBoxAnalysisEdge.setVisible(true);
+        vBoxAnalysisEdge.setManaged(true);
+
+        vBoxAnalysisOption.setVisible(true);
+        vBoxAnalysisOption.setManaged(true);
+    }
+
+    private void showEditMode(){
+        separator1.setVisible(true);
+        separator1.setManaged(true);
+
+        separator2.setVisible(true);
+        separator2.setManaged(true);
+
+        vBoxEditSphere.setVisible(true);
+        vBoxEditSphere.setManaged(true);
+
+        vBoxEditSymptom.setVisible(true);
+        vBoxEditSymptom.setManaged(true);
+
+        vBoxEditEdge.setVisible(true);
+        vBoxEditEdge.setManaged(true);
     }
 
     /**
