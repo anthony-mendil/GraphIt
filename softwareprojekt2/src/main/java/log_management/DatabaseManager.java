@@ -10,9 +10,6 @@ import log_management.dao.LogDao;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 import lombok.Data;
-import org.codehaus.jackson.map.ObjectMapper;
-
-import java.io.File;
 
 /**
  * The database manager, for managing the database access.
@@ -39,12 +36,12 @@ public class DatabaseManager implements ObserverSyndrom {
     /**
      * The current graph object.
      */
-    private Graph graph;
+    private static Graph graph;
 
     /**
      * The current mode.
      */
-    FunctionMode mode;
+    private FunctionMode mode;
 
     private static DatabaseManager databaseManager;
 
@@ -66,24 +63,11 @@ public class DatabaseManager implements ObserverSyndrom {
 
     /**
      * Adds a log to the database (through dao).
-     * @param logAction The called action, which will be logged.
+     * @param log The log for the called action.
      */
-    public void addEntryDatabase(LogAction logAction) {
+    public void addEntryDatabase(Log log) {
         graph.setGxl(gxlIo.gxlFromInstance());
         updateGraph();
-
-        Log log = new Log();
-        log.setGraph(graph);
-        log.setLogEntryName(logAction.getLogEntryName());
-        log.setTime(logAction.getTime());
-
-        ObjectMapper mapper = new ObjectMapper();
-        String paramString = null;
-
-        try {
-            paramString = mapper.writeValueAsString(logAction.getParameters());
-        } catch (Exception e) {}
-        log.setParameters(paramString);
 
         logDao.save(log);
     }
@@ -117,5 +101,13 @@ public class DatabaseManager implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         setup();
+    }
+
+    public static void setGraph(Graph graph) {
+        DatabaseManager.graph = graph;
+    }
+
+    public static Graph getGraph() {
+        return graph;
     }
 }

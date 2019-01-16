@@ -59,8 +59,9 @@ public class RemoveSphereLogAction extends LogAction {
         }
         vv.repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
-      //  databaseManager.addEntryDatabase(this);
-      //  notifyObserverGraph();
+
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     @Override

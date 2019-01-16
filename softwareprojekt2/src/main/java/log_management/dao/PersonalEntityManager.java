@@ -11,18 +11,20 @@ public class PersonalEntityManager {
      */
     private static EntityManager entityManager;
 
+//    static {
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+//        entityManager = entityManagerFactory.createEntityManager();
+//    }
+
     /**
      * Returns the personal Entity Manager used to access the database.
      * @return The personal Entity Manager.
      */
     public static EntityManager getInstance() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        if (entityManager != null) {
-            return entityManager;
-        }
-        else {
-            entityManager = entityManagerFactory.createEntityManager();
-            return entityManager;
-        }
+        return entityManager;
+    }
+
+    public static void setEntityManager(EntityManager initialEntityManager) {
+        entityManager = initialEntityManager;
     }
 }
