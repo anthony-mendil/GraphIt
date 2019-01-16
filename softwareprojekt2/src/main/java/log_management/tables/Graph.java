@@ -8,7 +8,6 @@ import javax.persistence.*;
  * Represents the graph objects that are persisted into
  * the graphs table of the database.
  */
-@SuppressWarnings("all")
 @Entity
 @Table(name = "GRAPHS", schema = "PUBLIC", catalog = "GRAPHITDATABASE")
 public class Graph {

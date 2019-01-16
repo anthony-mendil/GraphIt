@@ -63,6 +63,23 @@ public class GraphObjectsFactory {
     }
 
     /**
+     * Creates a new vertex with the values set in values.
+     * @return A new vertex object.
+     */
+    public Vertex createTestVertex(Point2D position) {
+        int id = -1;
+        Paint fillPaint = values.getFillPaintVertex();
+        Paint drawPaint = values.getDrawPaintVertex();
+        Map<String, String> annotation = values.getDefaultAnnotationVertex();
+        String font = values.getFontVertex();
+        int fontSize = values.getFontSizeVertex();
+        VertexShapeType shape = values.getShapeVertex();
+        int size = values.getDefaultSizeVertex();
+        return new Vertex(id, fillPaint, position, shape,
+                annotation, drawPaint, size, font, fontSize);
+    }
+
+    /**
      * Creates a new sphere with the values set in values.
      * @param position The position of the new sphere.
      * @return A new sphere object.

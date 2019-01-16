@@ -79,6 +79,7 @@ public class DatabaseManager implements ObserverSyndrom {
 
         ObjectMapper mapper = new ObjectMapper();
         String paramString = null;
+
         try {
             paramString = mapper.writeValueAsString(logAction.getParameters());
         } catch (Exception e) {}

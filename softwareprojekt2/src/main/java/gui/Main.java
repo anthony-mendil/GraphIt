@@ -34,6 +34,7 @@ public class Main extends Application{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"));
         Controller controller = new Controller();
         loader.setController(controller);
+        Values.getInstance().setNamespace(loader.getNamespace());
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(new Scene(borderPane, 1280, 720));
