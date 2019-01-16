@@ -9,7 +9,7 @@
 <BorderPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1"
             xmlns:fx="http://javafx.com/fxml/1" >
    <top>
-      <VBox prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER" fx:id="topVb">
          <children>
             <MenuBar>
                <menus>
@@ -270,6 +270,27 @@
                                     <Tooltip text="Hintergrundfarbe" />
                                  </tooltip>
                               </ColorPicker>
+                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout"
+                                                    pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                              <HBox.margin>
+                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                              </HBox.margin>
+                              <graphic>
+                                 <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@icons2/magic.png" />
+                                    </image>
+                                 </ImageView>
+                              </graphic>
+                              <tooltip>
+                                 <Tooltip text="Automatische Anordnung" />
+                              </tooltip>
+                           </Button>
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Separator>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
                                  <items>
                                     <MenuItem fx:id="sphereFont1" mnemonicParsing="false" text="Times New Roman"
@@ -312,22 +333,6 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
-                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout"
-                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/magic.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Automatische Anordnung" />
-                                 </tooltip>
-                              </Button>
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -392,6 +397,38 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
+                              <Button fx:id="vertexEnlarge" mnemonicParsing="false" onAction="#vertexEnlarge"
+                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/enlarge.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Vergrößern" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="vertexShrink" mnemonicParsing="false" onAction="#vertexShrink"
+                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/shrink.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Verkleinern" />
+                                 </tooltip>
+                              </Button>
                               <ColorPicker fx:id="symptomBackground" prefHeight="43.0" prefWidth="40.0" onAction="#editVerticesFillColor">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -444,6 +481,22 @@
                                     <Tooltip text="Form" />
                                  </tooltip>
                               </MenuButton>
+                              <Button fx:id="verticesAutoLayout" mnemonicParsing="false" onAction="#verticesAutoLayout"
+                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/magic.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Automatische Anordnung" />
+                                 </tooltip>
+                              </Button>
                               <Separator orientation="VERTICAL" prefHeight="200.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" top="1.0" />
@@ -490,22 +543,6 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
-                              <Button fx:id="verticesAutoLayout" mnemonicParsing="false" onAction="#verticesAutoLayout"
-                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/magic.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Automatische Anordnung" />
-                                 </tooltip>
-                              </Button>
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -725,7 +762,7 @@
    <center>
       <Pane fx:id="root" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <SwingNode fx:id="canvas" />
+            <SwingNode fx:id="canvas"  />
          </children>
       </Pane>
    </center>

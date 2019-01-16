@@ -34,6 +34,7 @@ import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import log_management.dao.LogDao;
@@ -1107,6 +1108,14 @@ public class Controller implements ObserverSyndrom{
     public void sphereShrink(ActionEvent actionEvent){
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.SHRINK);
         editSphereSizeLogAction.action();
+    }
+
+    public void vertexEnlarge(){
+
+    }
+
+    public void vertexShrink(){
+
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {
