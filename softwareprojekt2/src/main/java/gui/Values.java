@@ -4,6 +4,7 @@ import graph.graph.EdgeArrowType;
 import graph.graph.FunctionMode;
 import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
+import gui.properties.Language;
 import javafx.collections.ObservableMap;
 import javafx.scene.text.FontWeight;
 import lombok.AccessLevel;
@@ -141,7 +142,13 @@ public class Values {
     /**
      * The current language of the objects.
      */
-    private String objectLanguage;
+    private Language objectLanguage;
+
+    /**
+     * The current language of the gui.
+     */
+    private Language guiLanguage;
+
     private static Values instance;
 
     private ObservableMap<String, Object> namespace;

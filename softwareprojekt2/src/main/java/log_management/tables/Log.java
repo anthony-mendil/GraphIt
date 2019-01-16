@@ -1,6 +1,7 @@
 package log_management.tables;
 
 import actions.LogEntryName;
+import log_management.LogToStringConverter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -138,6 +139,6 @@ public class Log {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        return LogToStringConverter.convert(this);
     }
 }
