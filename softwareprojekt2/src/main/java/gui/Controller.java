@@ -37,6 +37,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -591,6 +592,47 @@ public class Controller implements ObserverSyndrom{
      */
     private ActionHistory history;
 
+    //Analysis GUI
+
+    @FXML
+    private VBox vBoxGraphStats;
+
+    @FXML
+    private Separator separator3;
+
+    @FXML
+    private Separator separator4;
+
+    @FXML
+    private Separator separator5;
+
+    @FXML
+    private VBox vBoxAnalysisSymptom;
+
+    @FXML
+    private VBox vBoxAnalysisEdge;
+
+    @FXML
+    private VBox vBoxAnalysisOption;
+
+    //Edit GUI
+
+    @FXML
+    private Separator separator1;
+
+    @FXML
+    private Separator separator2;
+
+    @FXML
+    private VBox vBoxEditSphere;
+
+    @FXML
+    private VBox vBoxEditSymptom;
+
+    @FXML
+    private VBox vBoxEditEdge;
+
+
     public Controller(){
     }
 
@@ -1084,6 +1126,48 @@ public class Controller implements ObserverSyndrom{
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
+
+        hideAnalyseMode();
+    }
+
+    private void hideAnalyseMode(){
+        vBoxGraphStats.setVisible(false);
+        vBoxGraphStats.setManaged(false);
+
+        separator3.setVisible(false);
+        separator3.setManaged(false);
+
+        separator4.setVisible(false);
+        separator4.setManaged(false);
+
+        separator5.setVisible(false);
+        separator5.setManaged(false);
+
+        vBoxAnalysisSymptom.setVisible(false);
+        vBoxAnalysisSymptom.setManaged(false);
+
+        vBoxAnalysisEdge.setVisible(false);
+        vBoxAnalysisEdge.setManaged(false);
+
+        vBoxAnalysisOption.setVisible(false);
+        vBoxAnalysisOption.setManaged(false);
+    }
+
+    private void hideEditMode(){
+        separator1.setVisible(false);
+        separator1.setManaged(false);
+
+        separator2.setVisible(false);
+        separator2.setManaged(false);
+
+        vBoxEditSphere.setVisible(false);
+        vBoxEditSphere.setManaged(false);
+
+        vBoxEditSymptom.setVisible(false);
+        vBoxEditSymptom.setManaged(false);
+
+        vBoxEditEdge.setVisible(false);
+        vBoxEditEdge.setManaged(false);
     }
 
     /**

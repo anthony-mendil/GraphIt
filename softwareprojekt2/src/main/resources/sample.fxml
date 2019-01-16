@@ -202,7 +202,7 @@
             </ToolBar>
             <HBox prefHeight="58.0" prefWidth="621.0">
                <children>
-                  <VBox prefHeight="68.0" prefWidth="427.0">
+                  <VBox fx:id="vBoxEditSphere" prefHeight="68.0" prefWidth="427.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sphäre">
                            <VBox.margin>
@@ -350,12 +350,12 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                  <Separator fx:id="separator1" orientation="VERTICAL" prefHeight="200.0">
                      <HBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox prefHeight="55.0" prefWidth="468.0">
+                  <VBox fx:id="vBoxEditSymptom" prefHeight="55.0" prefWidth="468.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                            <VBox.margin>
@@ -521,12 +521,12 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                  <Separator fx:id="separator2" orientation="VERTICAL" prefHeight="200.0">
                      <HBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox prefHeight="55.0" prefWidth="332.0">
+                  <VBox fx:id="vBoxEditEdge" prefHeight="55.0" prefWidth="332.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
                            <VBox.margin>
@@ -634,6 +634,247 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
+
+                  <VBox fx:id="vBoxGraphStats" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="88.0" prefWidth="233.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Graphmaße">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="62.0" prefWidth="255.0">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Umfang" wrappingWidth="59.898826599121094">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="12.0" prefWidth="144.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="234.0" prefWidth="24.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vernetzungsindex" wrappingWidth="126.59998321533203" HBox.hgrow="NEVER">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="76.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Strukturindex" wrappingWidth="104.54531860351562">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <Region prefHeight="21.0" prefWidth="98.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator fx:id="separator3" orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <VBox fx:id="vBoxAnalysisSymptom" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="235.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <VBox prefHeight="67.0" prefWidth="247.0">
+                           <children>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="230.0">
+                                 <VBox.margin>
+                                    <Insets bottom="6.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="195.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="8.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="124.0">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator fx:id="separator4" orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <VBox fx:id="vBoxAnalysisEdge" prefHeight="87.0" prefWidth="374.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <VBox prefHeight="50.0" prefWidth="392.0">
+                           <children>
+                              <HBox minWidth="-Infinity" prefHeight="16.0" prefWidth="346.0">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="105.0" text="Vorgänger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="113.0" text="Nachfolger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" ">
+                                       <graphic>
+                                          <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="45.0">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false">
+                                                   <graphic>
+                                                      <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@icons2/014-question.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></MenuItem>
+                                                <MenuItem mnemonicParsing="false">
+                                                   <graphic>
+                                                      <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@icons2/015-circle.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></MenuItem>
+                                             </items>
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@icons2/017-arrow.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuButton>
+                                       </graphic>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="195.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.73675537109375">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="8.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="124.0">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator fx:id="separator5" orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox fx:id="vBoxAnalysisOption" prefHeight="55.0" prefWidth="332.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Analyse-Optionen">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <VBox prefHeight="50.0" prefWidth="392.0">
+                           <children>
+                              <HBox minWidth="-Infinity" prefHeight="30.0" prefWidth="330.0">
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <CheckBox fx:id="reinforced11" mnemonicParsing="false" prefHeight="30.0" prefWidth="280.0" text="Verstärkend">
+                                       <graphic>
+                                          <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="250.0" text="Pfeilketten">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" text="konvergente Verzweigungen" />
+                                                <MenuItem mnemonicParsing="false" text="divergente Verzweigungen" />
+                                                <MenuItem mnemonicParsing="false" text="Verzweigungen" />
+                                                <MenuItem mnemonicParsing="false" text="Zyklen" />
+                                             </items>
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                          </MenuButton>
+                                       </graphic>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="35.0" prefWidth="195.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
