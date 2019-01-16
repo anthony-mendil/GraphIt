@@ -11,6 +11,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: net.sourceforge:net.sourceforge.gxl:0.92-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.freehep:freehep-graphicsio-pdf:2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.freehep:freehep-graphicsio-tests:2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.freehep:freehep-graphicsio-svg:2.4" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge:net.sourceforge.gxl:0.92-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: net.sf.jung:jung-api:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.collections:collections-generic:4.01" level="project" />
     <orderEntry type="library" name="Maven: net.sf.jung:jung-visualization:2.0.1" level="project" />

@@ -1,6 +1,7 @@
 package graph.graph;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
 
 import java.awt.*;
@@ -30,6 +31,7 @@ public class Vertex {
      * The coordinate of a vertex. A vertex have to be placed within a sphere and where no other vertex is located.
      */
     @NonNull
+    @Getter
     private Point2D coordinates;
 
     /**

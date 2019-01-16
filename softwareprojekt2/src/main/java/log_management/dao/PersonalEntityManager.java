@@ -16,11 +16,11 @@ public class PersonalEntityManager {
      * @return The personal Entity Manager.
      */
     public static EntityManager getInstance() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
         if (entityManager != null) {
             return entityManager;
         }
         else {
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
             entityManager = entityManagerFactory.createEntityManager();
             return entityManager;
         }

@@ -1,8 +1,6 @@
 package log_management.tables;
 
 import actions.LogEntryName;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,27 +9,23 @@ import java.time.LocalDateTime;
  * Represents the Log objects that are persisted into
  * the logs table of the database.
  */
-@SuppressWarnings("all")
 @Entity
 @Table(name = "LOGS", schema = "PUBLIC", catalog = "GRAPHITDATABASE")
 public class Log {
     /**
      * The id of the logEntry.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     /**
      * The snapshot of the current graph.
      */
-    @ManyToOne(cascade = CascadeType.ALL)
     private Graph graph;
     /**
      * The name of the log-entry.
      */
     private LogEntryName logEntryName;
     /**
-     * The parameters used in the aciton.
+     * The parameters used in the action.
      */
     private String parameters;
     /**
@@ -44,7 +38,8 @@ public class Log {
      *
      * @return The id of the log entry.
      */
-    @Column(name = "ID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -64,7 +59,6 @@ public class Log {
      * @return The graph.
      */
     @ManyToOne
-    @Column(name = "GRAPH")
     public Graph getGraph() {
         return graph;
     }
@@ -103,7 +97,7 @@ public class Log {
      *
      * @return The parameters in the JSON format.
      */
-    @Column(name = "PARAMETERS")
+    @Column(name = "PARAMETERS", columnDefinition = "NVARCHAR(MAX)")
     public String getParameters() {
         return parameters;
     }
