@@ -280,7 +280,7 @@ public class GXLio {
      */
 
     public void importGXL(File pFile){
-        String gxl = "error on reading file";
+        String gxl = "";
         try {
             gxl = new Scanner(pFile).useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {

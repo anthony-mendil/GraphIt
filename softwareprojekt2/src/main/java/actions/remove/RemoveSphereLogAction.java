@@ -48,6 +48,9 @@ public class RemoveSphereLogAction extends LogAction {
         if(parameters == null){
             PickedState<Sphere> pickedState = vv.getPickedSphereState();
             for (Sphere sp : pickedState.getPicked()) {
+                for(Vertex v: sp.getVertices()){
+                    graph.removeVertex(v);
+                }
                 graph.removeSphere(sp);
                 createParameter(sp);
             }
@@ -56,6 +59,7 @@ public class RemoveSphereLogAction extends LogAction {
         }
         vv.repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
+
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
     }

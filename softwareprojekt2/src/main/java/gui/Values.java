@@ -11,7 +11,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import javax.xml.stream.events.Namespace;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +70,7 @@ public class Values {
     private Dimension defaultLayoutSize = new Dimension(985,540);
 
     @Setter(AccessLevel.NONE)
-    private Dimension defaultLayoutVVSize = new Dimension(2000,2000);
+    private Dimension defaultLayoutVVSize = new Dimension(2000,1500);
     /**
      * The default satellite layout size.
      */

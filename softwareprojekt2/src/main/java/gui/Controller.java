@@ -37,9 +37,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
 
@@ -166,6 +168,12 @@ public class Controller implements ObserverSyndrom{
      */
     @FXML
     private Button templateButton;
+
+    /**
+     * A separator in the menu bar
+     */
+    @FXML
+    private Separator menubarSeparator3;
 
     /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
@@ -680,7 +688,6 @@ public class Controller implements ObserverSyndrom{
     @FXML
     private VBox vBoxEditEdge;
 
-
     /**
      * Checking if gui is in edit mode
      */
@@ -691,8 +698,17 @@ public class Controller implements ObserverSyndrom{
      */
     private boolean analysisMode = false;
 
+    private Stage mainStage;
+
+    private Stage templateStage = new Stage();
 
     public Controller(){
+    }
+
+    public void setStage(Stage pStage){
+        mainStage = pStage;
+        templateStage.initOwner(mainStage);
+        templateStage.initModality(Modality.APPLICATION_MODAL);
     }
 
     public Text getCurrentActionText(){
@@ -966,7 +982,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportGxlAction exportGxlAction = new ExportGxlAction(file);
         exportGxlAction.action();
     }
@@ -978,7 +994,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("PDF files (*.pdf)","*.pdf");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportPdfAction exportPdfAction =new ExportPdfAction(file);
         exportPdfAction.action();
     }
@@ -990,7 +1006,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportOofAction exportOofAction = new ExportOofAction(file);
         exportOofAction.action();
     }
@@ -1003,7 +1019,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(mainStage);
         OOFio oofio = new OOFio();
         oofio.importOOF(file);
     }
@@ -1016,7 +1032,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(mainStage);
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file);
     }
@@ -1182,11 +1198,18 @@ public class Controller implements ObserverSyndrom{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
         fxmlLoader.setController(this);
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setScene(new Scene(fxmlLoader.load(),420,300));
-        stage.setTitle("Vorlagenregeln");
-        stage.show();
+        templateStage.setResizable(false);
+        templateStage.setScene(new Scene(fxmlLoader.load(),420,300));
+        templateStage.setTitle("Vorlagenregeln");
+        templateStage.setAlwaysOnTop(true);
+        templateStage.show();
+    }
+
+    public void closeTemplateWindow(){
+        if(templateStage.isShowing()){
+            templateStage.hide();
+            templateStage.close();
+        }
     }
 
     /* ----------------INTERNAL---------------------- */
@@ -1236,6 +1259,9 @@ public class Controller implements ObserverSyndrom{
         separator2.setVisible(false);
         separator2.setManaged(false);
 
+        menubarSeparator3.setVisible(false);
+        menubarSeparator3.setManaged(false);
+
         vBoxEditSphere.setVisible(false);
         vBoxEditSphere.setManaged(false);
 
@@ -1244,6 +1270,9 @@ public class Controller implements ObserverSyndrom{
 
         vBoxEditEdge.setVisible(false);
         vBoxEditEdge.setManaged(false);
+
+        templateButton.setVisible(false);
+        templateButton.setManaged(false);
     }
 
     private void showAnalysisMode(){
@@ -1276,6 +1305,9 @@ public class Controller implements ObserverSyndrom{
         separator2.setVisible(true);
         separator2.setManaged(true);
 
+        menubarSeparator3.setVisible(true);
+        menubarSeparator3.setManaged(true);
+
         vBoxEditSphere.setVisible(true);
         vBoxEditSphere.setManaged(true);
 
@@ -1284,6 +1316,9 @@ public class Controller implements ObserverSyndrom{
 
         vBoxEditEdge.setVisible(true);
         vBoxEditEdge.setManaged(true);
+
+        templateButton.setVisible(true);
+        templateButton.setManaged(true);
     }
 
     /**
@@ -1324,6 +1359,14 @@ public class Controller implements ObserverSyndrom{
     public void sphereShrink(ActionEvent actionEvent){
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.SHRINK);
         editSphereSizeLogAction.action();
+    }
+
+    public void vertexEnlarge(){
+
+    }
+
+    public void vertexShrink(){
+
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {
