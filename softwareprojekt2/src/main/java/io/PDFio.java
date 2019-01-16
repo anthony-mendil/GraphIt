@@ -7,6 +7,7 @@ import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.renderers.SyndromRenderer;
+import org.apache.commons.io.FileCleaningTracker;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
 import org.freehep.graphics2d.VectorGraphics;
@@ -47,8 +48,8 @@ public class PDFio {
      *
      * @param pVv The VisualizationViewer object of the current graph.
      */
-    public PDFio(VisualizationViewer pVv){
-        vv=pVv;
+    public PDFio(VisualizationViewer pVv) {
+        vv = pVv;
     }
 
     /**
@@ -56,19 +57,19 @@ public class PDFio {
      *
      * @return the dimension of the graph
      */
-    protected Dimension getGraphDimension(){
-        List<Sphere> spheres=Syndrom.getInstance().getGraph().getSpheres();
-        Dimension dimension=new Dimension(0,0);
-        for(Sphere sph : spheres){
+    protected Dimension getGraphDimension() {
+        List<Sphere> spheres = Syndrom.getInstance().getGraph().getSpheres();
+        Dimension dimension = new Dimension(0, 0);
+        for (Sphere sph : spheres) {
             //check x
-            double x=sph.getCoordinates().getX()+sph.getWidth();
-            if(x>dimension.getWidth()){
-                dimension.setSize(x,dimension.getHeight());
+            double x = sph.getCoordinates().getX() + sph.getWidth();
+            if (x > dimension.getWidth()) {
+                dimension.setSize(x, dimension.getHeight());
             }
             //check y
-            double y=sph.getCoordinates().getY()+sph.getHeight();
-            if(y>dimension.getHeight()){
-                dimension.setSize(dimension.getWidth(),y);
+            double y = sph.getCoordinates().getY() + sph.getHeight();
+            if (y > dimension.getHeight()) {
+                dimension.setSize(dimension.getWidth(), y);
             }
         }
         return dimension;
@@ -77,8 +78,8 @@ public class PDFio {
     /**
      * Starts the dialog to export the current graph visualization as PDF.
      */
-    public void exportPDF(File pFile){
-        file=pFile;
+    public void exportPDF(File pFile) {
+        file = pFile;
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<Vertex, Edge>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
         vis.setBackground(Color.WHITE);
         vis.setRenderer(new SyndromRenderer<>());
@@ -89,11 +90,10 @@ public class PDFio {
             e.printStackTrace();
         }
         Properties properties = new Properties();
-        properties.setProperty(ORIENTATION,LANDSCAPE);
-        properties.setProperty(PAGE_SIZE,A4);
+        properties.setProperty(ORIENTATION, LANDSCAPE);
+        properties.setProperty(PAGE_SIZE, A4);
         vectorGraphics.setProperties(properties);
         vectorGraphics.startExport();
-        System.out.println(vectorGraphics.getClipBounds().toString());
         vis.print(vectorGraphics);
         vectorGraphics.endExport();
     }
@@ -103,21 +103,25 @@ public class PDFio {
      */
     public void printPDF() {
         exportPDF(new File("SyndromToPrint.pdf"));
-        PDDocument pdDocument= new PDDocument();
+        PDDocument pdDocument = new PDDocument();
         try {
-            pdDocument =PDDocument.load(file);
+            pdDocument = PDDocument.load(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
         PrinterJob printerJob = PrinterJob.getPrinterJob();
         printerJob.setJobName(file.getName());
         printerJob.setPageable(new PDFPageable(pdDocument));
-        try {
-            printerJob.print();
-        } catch (PrinterException e) {
-            e.printStackTrace();
-        }finally {
-            file.delete();
+        if (printerJob.printDialog()) {
+            try {
+                printerJob.print();
+            } catch (PrinterException e) {
+                e.printStackTrace();
+            } finally {
+                FileCleaningTracker fileCleaningTracker = new FileCleaningTracker();
+                fileCleaningTracker.track(new File("SyndromToPrint.pdf"), this);
+                fileCleaningTracker.exitWhenFinished();
+            }//TODO: deleting not yet working
         }
     }
 }
