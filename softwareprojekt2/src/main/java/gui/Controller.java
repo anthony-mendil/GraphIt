@@ -37,11 +37,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-<<<<<<< HEAD
 import javafx.scene.input.MouseEvent;
-=======
 import javafx.scene.layout.VBox;
->>>>>>> 982871450290c5413b93add0fcb33c2da4727f69
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;

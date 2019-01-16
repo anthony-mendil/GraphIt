@@ -28,7 +28,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" >
    <top>
       <VBox prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER" fx:id="topVb">
          <children>
@@ -234,7 +235,8 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <Button mnemonicParsing="false" onAction="#removeSphere" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                              <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="30.0"
+                                      onAction="#removeSphere" pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -249,7 +251,8 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                               <Button fx:id="sphereEnlarge" mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                               <Button fx:id="sphereEnlarge" mnemonicParsing="false" onAction="#sphereEnlarge"
+                                       pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
                                    <HBox.margin>
                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                    </HBox.margin>
@@ -264,7 +267,8 @@
                                        <Tooltip text="Vergrößern" />
                                    </tooltip>
                                </Button>
-                               <Button fx:id="sphereShrink" mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                               <Button fx:id="sphereShrink" mnemonicParsing="false" onAction="#sphereShrink"
+                                       pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
                                    <HBox.margin>
                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                    </HBox.margin>
@@ -279,7 +283,8 @@
                                        <Tooltip text="Verkleinern" />
                                    </tooltip>
                                </Button>
-                              <ColorPicker fx:id="sphereBackgroundColour" onAction="#editSphereColor" prefHeight="30.0" prefWidth="42.0">
+                              <ColorPicker fx:id="sphereBackgroundColour" prefHeight="30.0" prefWidth="42.0"
+                                           onAction="#editSphereColor">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -287,22 +292,7 @@
                                     <Tooltip text="Hintergrundfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout"
-                                                    pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
-                              <HBox.margin>
-                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                              </HBox.margin>
-                              <graphic>
-                                 <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@icons2/magic.png" />
-                                    </image>
-                                 </ImageView>
-                              </graphic>
-                              <tooltip>
-                                 <Tooltip text="Automatische Anordnung" />
-                              </tooltip>
-                           </Button>
+
                               <Separator orientation="VERTICAL" prefHeight="200.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -310,8 +300,10 @@
                               </Separator>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
                                  <items>
-                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" onAction="#sphereFont1" text="Times New Roman" />
-                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" onAction="#sphereFont2" text="Comic Sans Ms" />
+                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" text="Times New Roman"
+                                              onAction="#sphereFont1"/>
+                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" text="Comic Sans Ms"
+                                              onAction="#sphereFont2"/>
                                  </items>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -329,8 +321,10 @@
                               </SplitMenuButton>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0">
                                  <items>
-                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" onAction="#fontSize1" text="13" />
-                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" onAction="#fontSize2" text="14" />
+                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" text="13"
+                                              onAction="#fontSize1"/>
+                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" text="14"
+                                              onAction="#fontSize2" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftgröße" />
@@ -582,14 +576,14 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditEdge" prefHeight="55.0" prefWidth="332.0">
+                  <VBox fx:id="vBoxEditEdge" prefHeight="55.0" prefWidth="250.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0">
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0">
                            <children>
                               <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="30.0">
                                  <HBox.margin>
