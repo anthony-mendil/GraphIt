@@ -32,8 +32,8 @@ public class ExportPdfAction extends GraphAction {
      */
     @Override
     public void action() {
-        PDFio pdfio = new PDFio(Syndrom.getInstance().getVv(), file);
-        pdfio.exportPDF();
+        PDFio pdfio = new PDFio(Syndrom.getInstance().getVv());
+        pdfio.exportPDF(file);
     }
 
     /**

@@ -2,6 +2,7 @@ package actions.export_graph;
 
 import actions.GraphAction;
 import graph.graph.Syndrom;
+import io.PDFio;
 
 /**
  * Prints the current graph visualization as a PDF file.
@@ -9,18 +10,10 @@ import graph.graph.Syndrom;
 public class PrintPDFAction extends GraphAction {
 
     /**
-     * The name of the file.
-     */
-    private String name;
-
-    /**
      * Action handling for printing the graph as PDF file.
-     *
-     * @param pName The name that the file is printed as.
      */
-    PrintPDFAction(String pName) {
+    public PrintPDFAction() {
         Syndrom.getInstance().getVv().getPickedSphereState().clear();
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -28,14 +21,21 @@ public class PrintPDFAction extends GraphAction {
      */
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        PDFio pdfio = new PDFio(Syndrom.getInstance().getVv());
+        pdfio.printPDF();
     }
 
     /**
-     * Reverts the action. The internal state of the graph is the same as before the action was executed.
+     * Disables the undo-funktion for the oof export
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Disables the redo-funktion for the oof export
+     */
+    @Override
+    public void redo() {
     }
 }

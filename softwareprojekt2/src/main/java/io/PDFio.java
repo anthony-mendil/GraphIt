@@ -1,14 +1,17 @@
 package io;
 
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import javafx.print.PageOrientation;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
 import org.freehep.graphics2d.VectorGraphics;
-import org.freehep.graphicsbase.util.export.ExportDialog;
 import org.freehep.graphicsio.pdf.PDFGraphics2D;
 
+import javax.print.PrintService;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Properties;
 
 import static org.freehep.graphicsio.PageConstants.*;
@@ -35,19 +38,16 @@ public class PDFio {
      * @param pVv The VisualizationViewer object of the current graph.
      * @param pFile The destination File
      */
-    public PDFio(VisualizationViewer pVv, File pFile){
+    public PDFio(VisualizationViewer pVv){
         vv=pVv;
-        file=pFile;
     }
 
     /**
-     * Creates a PDF of the current graph visualization.
-     *
-     *  @return A FileInputStream of the PDF of the current graph.
+     * Starts the dialog to export the current graph visualization as PDF.
      */
-    protected File createPDF(){
+    public void exportPDF(File pFile) {
+        file=pFile;
         try {
-
             VectorGraphics vectorGraphics = new PDFGraphics2D(file, vv);
             Properties properties = new Properties();
             properties.setProperty(ORIENTATION,LANDSCAPE);
@@ -59,20 +59,25 @@ public class PDFio {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return file;
-    }
-
-    /**
-     * Starts the dialog to export the current graph visualization as PDF.
-     */
-    public void exportPDF() {
-        createPDF();
     }
 
     /**
      * Starts the dialog to export the current graph visualization as PDF.
      */
     public void printPDF() {
-        throw new UnsupportedOperationException();
+        exportPDF(new File("/tmp.pdf"));
+        PDDocument pdDocument= new PDDocument();
+        try {
+            pdDocument =PDDocument.load(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+        printerJob.setPageable(new PDFPageable(pdDocument));
+        try {
+            printerJob.print();
+        } catch (PrinterException e) {
+            e.printStackTrace();
+        }
     }
 }

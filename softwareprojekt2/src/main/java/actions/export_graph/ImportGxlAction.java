@@ -30,10 +30,16 @@ public class ImportGxlAction extends GraphAction {
     }
 
     /**
-     * Reverts the action. The internal state of the graph is the same as before the action was executed.
+     * Disables the undo-funktion for the gxl export
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Disables the redo-funktion for the gxl export
+     */
+    @Override
+    public void redo() {
     }
 }

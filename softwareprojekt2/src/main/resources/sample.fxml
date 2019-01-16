@@ -28,7 +28,7 @@
                                <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
                            </items>
                         </Menu>
-                        <MenuItem mnemonicParsing="false" onAction="#printPDF" text="Drucken" />
+                        <MenuItem fx:id="printPDF" mnemonicParsing="false" onAction="#printPDF" text="Drucken" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Optionen">

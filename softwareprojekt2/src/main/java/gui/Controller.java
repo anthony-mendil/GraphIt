@@ -14,6 +14,7 @@ import actions.edit.size.EditSphereSizeLogAction;
 import actions.export_graph.ExportGxlAction;
 import actions.export_graph.ExportOofAction;
 import actions.export_graph.ExportPdfAction;
+import actions.export_graph.PrintPDFAction;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
@@ -30,7 +31,6 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -908,8 +908,8 @@ public class Controller implements ObserverSyndrom{
      * Creates an PrintPDFAction-object and executes the action with the action history.
      */
     public void printPDF() {
-        PrinterJob printerJob = PrinterJob.createPrinterJob();
-        printerJob.showPrintDialog(null);
+        PrintPDFAction printPDFAction=new PrintPDFAction();
+        printPDFAction.action();
     }
 
     /* ----------------LAYOUT---------------------- */
