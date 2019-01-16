@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.embed.swing.SwingNode?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<BorderPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" >
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -167,7 +188,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                         </Separator>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createTemplateWindow" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
                               <Tooltip text="Vorlage-Regeln setzen" />
                            </tooltip>
@@ -213,8 +234,7 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="30.0"
-                                      onAction="#removeSphere" pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css">
+                              <Button mnemonicParsing="false" onAction="#removeSphere" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -229,8 +249,7 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                               <Button fx:id="sphereEnlarge" mnemonicParsing="false" onAction="#sphereEnlarge"
-                                       pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                               <Button fx:id="sphereEnlarge" mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                    <HBox.margin>
                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                    </HBox.margin>
@@ -245,8 +264,7 @@
                                        <Tooltip text="Vergrößern" />
                                    </tooltip>
                                </Button>
-                               <Button fx:id="sphereShrink" mnemonicParsing="false" onAction="#sphereShrink"
-                                       pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                               <Button fx:id="sphereShrink" mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                    <HBox.margin>
                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                    </HBox.margin>
@@ -261,8 +279,7 @@
                                        <Tooltip text="Verkleinern" />
                                    </tooltip>
                                </Button>
-                              <ColorPicker fx:id="sphereBackgroundColour" prefHeight="30.0" prefWidth="42.0"
-                                           onAction="#editSphereColor">
+                              <ColorPicker fx:id="sphereBackgroundColour" onAction="#editSphereColor" prefHeight="30.0" prefWidth="42.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -272,10 +289,8 @@
                               </ColorPicker>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
                                  <items>
-                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" text="Times New Roman"
-                                              onAction="#sphereFont1"/>
-                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" text="Comic Sans Ms"
-                                              onAction="#sphereFont2"/>
+                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" onAction="#sphereFont1" text="Times New Roman" />
+                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" onAction="#sphereFont2" text="Comic Sans Ms" />
                                  </items>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -293,10 +308,8 @@
                               </SplitMenuButton>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0">
                                  <items>
-                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" text="13"
-                                              onAction="#fontSize1"/>
-                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" text="14"
-                                              onAction="#fontSize2" />
+                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" onAction="#fontSize1" text="13" />
+                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" onAction="#fontSize2" text="14" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftgröße" />
@@ -312,8 +325,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
-                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout"
-                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -352,8 +364,7 @@
                         </Text>
                         <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="482.0">
                            <children>
-                              <Button fx:id="buttoVertex"  onAction="#addVertex" mnemonicParsing="false"
-                                      pickOnBounds="false" prefHeight="40.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                              <Button fx:id="buttoVertex" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="40.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -376,8 +387,7 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <Button  onAction="#removeVertices" mnemonicParsing="false" prefHeight="42.0"
-                                       prefWidth="30.0">
+                              <Button mnemonicParsing="false" onAction="#removeVertices" prefHeight="42.0" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -392,7 +402,7 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                              <ColorPicker fx:id="symptomBackground" prefHeight="43.0" prefWidth="40.0" onAction="#editVerticesFillColor">
+                              <ColorPicker fx:id="symptomBackground" onAction="#editVerticesFillColor" prefHeight="43.0" prefWidth="40.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -400,8 +410,7 @@
                                     <Tooltip text="Hintergrundfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <ColorPicker fx:id="symptomBorder" prefHeight="43.0" prefWidth="40.0"
-                                           onAction="#editVerticesDrawColor">
+                              <ColorPicker fx:id="symptomBorder" onAction="#editVerticesDrawColor" prefHeight="43.0" prefWidth="40.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -451,9 +460,8 @@
                               </Separator>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
                                  <items>
-                                    <MenuItem fx:id="vertexFont1" onAction="#vertexFont1" mnemonicParsing="false" text="Times New Roman" />
-                                    <MenuItem fx:id="vertexFont2" onAction="#vertexFont2" mnemonicParsing="false"
-                                              text="Comic Sans Ms" />
+                                    <MenuItem fx:id="vertexFont1" mnemonicParsing="false" onAction="#vertexFont1" text="Times New Roman" />
+                                    <MenuItem fx:id="vertexFont2" mnemonicParsing="false" onAction="#vertexFont2" text="Comic Sans Ms" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftart" />
@@ -471,10 +479,8 @@
                               </SplitMenuButton>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0">
                                  <items>
-                                    <MenuItem fx:id="fontSizeVertex1" mnemonicParsing="false" text="13"
-                                              onAction="#fontSizeVertex1"/>
-                                    <MenuItem fx:id="fontSizeVertex2" mnemonicParsing="false" text="14"
-                                              onAction="#fontSizeVertex2" />
+                                    <MenuItem fx:id="fontSizeVertex1" mnemonicParsing="false" onAction="#fontSizeVertex1" text="13" />
+                                    <MenuItem fx:id="fontSizeVertex2" mnemonicParsing="false" onAction="#fontSizeVertex2" text="14" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftgröße" />
@@ -490,8 +496,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
-                              <Button fx:id="verticesAutoLayout" mnemonicParsing="false" onAction="#verticesAutoLayout"
-                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                              <Button fx:id="verticesAutoLayout" mnemonicParsing="false" onAction="#verticesAutoLayout" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>

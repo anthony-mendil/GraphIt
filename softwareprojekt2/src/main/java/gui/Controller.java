@@ -31,16 +31,21 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import log_management.dao.LogDao;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -142,6 +147,12 @@ public class Controller implements ObserverSyndrom{
     private MenuItem documentation;
 
     /* Template Options */
+
+    /**
+     * The button that opens the template window to set the rules
+     */
+    @FXML
+    private Button templateButton;
 
     /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
@@ -581,7 +592,6 @@ public class Controller implements ObserverSyndrom{
     private ActionHistory history;
 
     public Controller(){
-
     }
 
     public Text getCurrentActionText(){
@@ -1051,8 +1061,15 @@ public class Controller implements ObserverSyndrom{
     /**
      * Creates a Window that allows you to set Rules for your Template.
      */
-    public void createTemplateWindow(){
-        throw new UnsupportedOperationException();
+    public void createTemplateWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
+        fxmlLoader.setController(this);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setScene(new Scene(fxmlLoader.load(),420,300));
+        stage.setTitle("Vorlagenregeln");
+        stage.show();
     }
 
     /* ----------------INTERNAL---------------------- */
