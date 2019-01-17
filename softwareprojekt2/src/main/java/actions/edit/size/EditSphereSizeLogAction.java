@@ -5,7 +5,7 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Sphere;
-import graph.graph.SphereSizeChange;
+import graph.graph.SizeChange;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
@@ -19,7 +19,7 @@ import java.awt.geom.Point2D;
  * Changes the sphere size.
  */
 public class EditSphereSizeLogAction extends LogAction {
-    private SphereSizeChange sphereSizeChange;
+    private SizeChange sizeChange;
 
     /**
      * Constructor which will be used to realize the undo-method of itself.
@@ -34,11 +34,11 @@ public class EditSphereSizeLogAction extends LogAction {
     /**
      * Creates a new action to change the size of a a sphere.
      *
-     * @param sphereSizeChange The SSC Object to change the size of the sphere
+     * @param sizeChange The SSC Object to change the size of the sphere
      */
-    public EditSphereSizeLogAction(SphereSizeChange sphereSizeChange) {
+    public EditSphereSizeLogAction(SizeChange sizeChange) {
         super(LogEntryName.EDIT_SPHERE_SIZE);
-        this.sphereSizeChange = sphereSizeChange;
+        this.sizeChange = sizeChange;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class EditSphereSizeLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         for (Sphere sp : pickedState.getPicked()) {
-            if (sphereSizeChange == SphereSizeChange.ENLARGE) {
+            if (sizeChange == SizeChange.ENLARGE) {
                 double newHeight = sp.getHeight() + 10;
                 double newWidth = sp.getWidth() + 10;
                 SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
