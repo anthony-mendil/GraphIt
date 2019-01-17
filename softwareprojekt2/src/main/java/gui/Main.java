@@ -40,7 +40,7 @@ public class Main extends Application{
         Values.getInstance().setNamespace(loader.getNamespace());
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
-        primaryStage.setScene(new Scene(borderPane, 1280, 720));
+        primaryStage.setScene(new Scene(borderPane));
         //primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
     }
