@@ -1,6 +1,5 @@
 package log_management;
 
-import actions.LogAction;
 import actions.ObserverSyndrom;
 import com.google.inject.Singleton;
 import graph.graph.FunctionMode;
@@ -72,14 +71,8 @@ public class DatabaseManager implements ObserverSyndrom {
         logDao.save(log);
     }
 
-    public void saveOof(String gxl) {
-        updateNewGraph();
-        // oof Teil aus gxl filtern
-        saveOofLogs("");
-    }
-
-    private void saveOofLogs(String oofPartGxl) {
-        throw new UnsupportedOperationException();
+    public void saveOofLogs(String oofLogs) {
+        logDao.saveLogs(oofLogs);
     }
 
     @Override

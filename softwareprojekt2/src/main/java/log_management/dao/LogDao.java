@@ -7,6 +7,7 @@ import log_management.tables.Log;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -87,6 +88,17 @@ public class LogDao implements Dao<Log> {
         entityManager.getTransaction().begin();
         entityManager.persist(log);
         entityManager.getTransaction().commit();
+    }
+
+    public  void saveLogs(String oofLogs) {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Log> logs;
+        try {
+            logs = mapper.readValue(oofLogs, List.class);
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+        logs.forEach(log -> save(log));
     }
 
     @Override
