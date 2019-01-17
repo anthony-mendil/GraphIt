@@ -10,6 +10,7 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.awt.geom.Point2D;
@@ -71,6 +72,9 @@ public class RemoveVerticesLogAction extends LogAction {
             }
         }
         vv.repaint();
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     @Override

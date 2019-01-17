@@ -1107,7 +1107,9 @@ public class Controller implements ObserverSyndrom{
     /**
      *  Calls the undo-method from the action history.
      */
-    public void executeUndo(){throw new UnsupportedOperationException();}
+    public void executeUndo(){
+        history.undo();
+    }
 
     /**
      *  Calls the redo-method from the action history.

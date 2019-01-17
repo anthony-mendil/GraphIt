@@ -21,12 +21,12 @@ public class EditSphereColorParam extends Param{
      * The old color of the sphere.
      */
     @Getter
-    private Color oldColor;
+    private Paint oldColor;
     /**
      * The new color the sphere should get.
      */
     @Getter
-    private Color newColor;
+    private Paint newColor;
 
     /**
      * Creates a parameter object of its own class.
@@ -34,7 +34,7 @@ public class EditSphereColorParam extends Param{
      * @param pOldColor The old color of the sphere.
      * @param pNewColor The new color of the sphere.
      */
-    public EditSphereColorParam(Sphere sphere,Color pOldColor, Color pNewColor) {
+    public EditSphereColorParam(Sphere sphere,Paint pOldColor, Paint pNewColor) {
         this.sphere = sphere;
         this.oldColor = pOldColor;
         this.newColor = pNewColor;

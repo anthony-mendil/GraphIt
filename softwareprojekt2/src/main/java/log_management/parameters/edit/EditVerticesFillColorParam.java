@@ -17,19 +17,19 @@ public class EditVerticesFillColorParam extends Param{
      * The set of vertices containing their old colors.
      */
     @Getter
-    private Map<Vertex,Color> oldVertices;
+    private Map<Vertex,Paint> oldVertices;
     /**
      * The set of vertices containing their new colors.
      */
     @Getter
-    private Map<Vertex,Color> newVertices;
+    private Map<Vertex,Paint> newVertices;
 
     /**
      * Creates a parameter object of its own class.
      * @param pOldVertices The selected vertices containing their old color.
      * @param pNewVertices The selected vertices containing their new color.
      */
-    public EditVerticesFillColorParam(Map<Vertex,Color> pOldVertices, Map<Vertex,Color> pNewVertices) {
+    public EditVerticesFillColorParam(Map<Vertex,Paint> pOldVertices, Map<Vertex,Paint> pNewVertices) {
         this.oldVertices = pOldVertices;
         this.newVertices = pNewVertices;
     }

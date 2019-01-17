@@ -2,14 +2,25 @@ package actions.add;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import actions.remove.RemoveVerticesLogAction;
+import graph.graph.Edge;
+import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
+import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Adds a single/multiple edge/s to the graph.
  */
 public class AddEdgesLogAction extends LogAction {
+
+    private Pair<Vertex, Vertex> edge;
     /**
      * Constructor in case several edges shall be added.
      *
@@ -17,7 +28,7 @@ public class AddEdgesLogAction extends LogAction {
      */
     public AddEdgesLogAction(Pair<Vertex, Vertex> pPair) {
         super(LogEntryName.ADD_EDGES);
-        throw new UnsupportedOperationException();
+        edge = pPair;
     }
 
     /**
@@ -28,7 +39,7 @@ public class AddEdgesLogAction extends LogAction {
      */
     public AddEdgesLogAction(AddRemoveEdgesParam pAddRemoveEdgesParam) {
         super(LogEntryName.ADD_EDGES);
-        throw new UnsupportedOperationException();
+        parameters = pAddRemoveEdgesParam;
     }
 
     /**
@@ -36,7 +47,20 @@ public class AddEdgesLogAction extends LogAction {
      */
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        if(parameters == null) {
+            graph.addEdge(edge.getKey(),edge.getValue());
+            createParameter(edge);
+        }else{
+            for(Map.Entry<Vertex,Vertex> entry : ((AddRemoveEdgesParam)parameters).getEdges().entrySet()){
+                graph.addEdge(entry.getKey(),entry.getValue());
+            }
+        }
+        vv.repaint();
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     /**
@@ -44,12 +68,15 @@ public class AddEdgesLogAction extends LogAction {
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction((AddRemoveVerticesParam) parameters);
+        removeVerticesLogAction.action();
     }
 
 
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Pair<Vertex,Vertex> edge) {
+        Map<Vertex,Vertex> edges = new HashMap<>();
+        edges.put(edge.getKey(),edge.getValue());
+        parameters = new AddRemoveEdgesParam(edges);
     }
 }
