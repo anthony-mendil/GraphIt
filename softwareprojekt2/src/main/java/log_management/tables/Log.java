@@ -135,7 +135,7 @@ public class Log {
      * Combines all informations about this log entry into one
      * readable text.
      *
-     * @return The formated informations about this log entry.
+     * @return The formatted information about this log entry.
      */
     @Override
     public String toString() {

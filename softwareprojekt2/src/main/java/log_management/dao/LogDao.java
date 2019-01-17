@@ -39,7 +39,7 @@ public class LogDao implements Dao<Log> {
     public List<Log> getAll() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -57,7 +57,7 @@ public class LogDao implements Dao<Log> {
     public String getAllString() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -111,7 +111,7 @@ public class LogDao implements Dao<Log> {
     public List<Log> getLogType(LogEntryName logEntryName) throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -131,7 +131,7 @@ public class LogDao implements Dao<Log> {
     public List<String> getLogTypeString(LogEntryName logEntryName) throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -156,7 +156,7 @@ public class LogDao implements Dao<Log> {
     public List<String> getAllStrings() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import log_management.dao.PersonalEntityManager;
 import lombok.Getter;
@@ -43,6 +44,7 @@ public class Main extends Application{
         primaryStage.setScene(new Scene(borderPane));
         //primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
+        System.out.println(Screen.getPrimary().getDpi());
     }
 
     /**
