@@ -12,10 +12,6 @@ import java.util.Optional;
  * The graph log_management.dao class. Manages the data access to the graphs.
  */
 public class GraphDao implements Dao<Graph> {
-    /**
-     * The current graph.
-     */
-    protected static Graph currentGraph;
 
     @Override
     public Optional<Graph> get(long id) {
@@ -39,7 +35,6 @@ public class GraphDao implements Dao<Graph> {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
         delete(-1);
-        currentGraph = graph;
 
         entityManager.getTransaction().begin();
         entityManager.persist(graph);
@@ -51,7 +46,6 @@ public class GraphDao implements Dao<Graph> {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
         entityManager.refresh(graph);
-        currentGraph = graph;
     }
 
     @Override
@@ -72,9 +66,5 @@ public class GraphDao implements Dao<Graph> {
 
             entityManager.remove(graph);
         });
-    }
-
-    public static Graph getCurrentGraph() {
-        return currentGraph;
     }
 }

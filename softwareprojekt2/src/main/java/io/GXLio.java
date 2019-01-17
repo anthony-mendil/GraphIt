@@ -8,13 +8,11 @@ import net.sourceforge.gxl.*;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * The GXL importer/exporter.
@@ -282,12 +280,12 @@ public class GXLio {
      */
 
     public void importGXL(File pFile){
-       /* try {
-            BufferedReader bufferedReader = new BufferedReader(new FileWriter(pFile));
-            bufferedWriter.write(gxlFromInstance());
-            bufferedWriter.close();
-        } catch (IOException e) {
+        String gxl = "";
+        try {
+            gxl = new Scanner(pFile).useDelimiter("\\A").next();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
+        gxlToInstance(gxl);
     }
 }

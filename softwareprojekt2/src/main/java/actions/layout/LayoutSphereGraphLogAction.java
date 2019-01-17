@@ -22,7 +22,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
      * Layouts the graph (including all vertices) according to the defined layout.
      */
     public LayoutSphereGraphLogAction() {
-        super(LogEntryName.EDIT_LAYOUT);
+        super(LogEntryName.EDIT_SPHERES_LAYOUT);
     }
 
 

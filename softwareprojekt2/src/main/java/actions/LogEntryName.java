@@ -106,9 +106,13 @@ public enum LogEntryName {
      */
     EDIT_VERTEX_ANNOTATION,
     /**
-     * The log entry will be of this type if the layout of the graph is changed in the action.
+     * The log entry will be of this type if the layout of the vertices is changed in the action.
      */
-    EDIT_LAYOUT,
+    EDIT_VERTICES_LAYOUT,
+    /**
+     * The log entry will be of this type if the layout of the spheres is changed in the action.
+     */
+    EDIT_SPHERES_LAYOUT,
     /**
      * The log entry will be of this type if activate-highlight-action is executed.
      */

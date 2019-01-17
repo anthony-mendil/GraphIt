@@ -9,6 +9,8 @@ import log_management.dao.PersonalEntityManager;
 import lombok.Getter;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import static javafx.application.Application.launch;
 
@@ -33,6 +35,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"));
         Controller controller = new Controller();
+        controller.setStage(primaryStage);
         loader.setController(controller);
         Values.getInstance().setNamespace(loader.getNamespace());
         BorderPane borderPane = loader.load();
@@ -47,6 +50,10 @@ public class Main extends Application{
      * @param args The java command line arguments that is needed to start the application.
      */
     public static void main(String[] args) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+        EntityManager initialEntityManager = entityManagerFactory.createEntityManager();
+        PersonalEntityManager.setEntityManager(initialEntityManager);
+
         launch(args);
 
         EntityManager entityManager = PersonalEntityManager.getInstance();

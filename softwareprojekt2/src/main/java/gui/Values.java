@@ -4,13 +4,13 @@ import graph.graph.EdgeArrowType;
 import graph.graph.FunctionMode;
 import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
+import gui.properties.Language;
 import javafx.collections.ObservableMap;
 import javafx.scene.text.FontWeight;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import javax.xml.stream.events.Namespace;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,7 +70,7 @@ public class Values {
     private Dimension defaultLayoutSize = new Dimension(985,540);
 
     @Setter(AccessLevel.NONE)
-    private Dimension defaultLayoutVVSize = new Dimension(2000,2000);
+    private Dimension defaultLayoutVVSize = new Dimension(2000,1500);
     /**
      * The default satellite layout size.
      */
@@ -141,7 +141,13 @@ public class Values {
     /**
      * The current language of the objects.
      */
-    private String objectLanguage;
+    private Language objectLanguage;
+
+    /**
+     * The current language of the gui.
+     */
+    private Language guiLanguage;
+
     private static Values instance;
 
     private ObservableMap<String, Object> namespace;

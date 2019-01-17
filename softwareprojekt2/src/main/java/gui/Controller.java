@@ -14,6 +14,7 @@ import actions.edit.size.EditSphereSizeLogAction;
 import actions.export_graph.ExportGxlAction;
 import actions.export_graph.ExportOofAction;
 import actions.export_graph.ExportPdfAction;
+import actions.export_graph.PrintPDFAction;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
@@ -30,17 +31,24 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.print.PrinterJob;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import log_management.dao.LogDao;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -141,7 +149,31 @@ public class Controller implements ObserverSyndrom{
      */
     private MenuItem documentation;
 
+    /**
+     * The button to change the gui layout to edit-mode
+     */
+    @FXML
+    private Button editButton;
+
+    /**
+     * The button to change the gui layout to analysis-mode
+     */
+    @FXML
+    private Button analysisButton;
+
     /* Template Options */
+
+    /**
+     * The button that opens the template window to set the rules
+     */
+    @FXML
+    private Button templateButton;
+
+    /**
+     * A separator in the menu bar
+     */
+    @FXML
+    private Separator menubarSeparator3;
 
     /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
@@ -580,8 +612,103 @@ public class Controller implements ObserverSyndrom{
      */
     private ActionHistory history;
 
-    public Controller(){
+    //Analysis GUI
 
+    /**
+     * The vbox that contains all graph information in the analysis mode.
+     */
+    @FXML
+    private VBox vBoxGraphStats;
+
+    /**
+     * A separator for the vboxes in analysis mode.
+     */
+    @FXML
+    private Separator separator3;
+
+    /**
+     * A separator for the vboxes in analysis mode.
+     */
+    @FXML
+    private Separator separator4;
+
+    /**
+     * A separator for the vboxes in analysis mode.
+     */
+    @FXML
+    private Separator separator5;
+
+    /**
+     * The vbox that contains analysis options for symptoms.
+     */
+    @FXML
+    private VBox vBoxAnalysisSymptom;
+
+    /**
+     * The vbox that contains analysis options for edges.
+     */
+    @FXML
+    private VBox vBoxAnalysisEdge;
+
+    /**
+     * The vbox that contains analysis options for the graph.
+     */
+    @FXML
+    private VBox vBoxAnalysisOption;
+
+    //Edit GUI
+
+    /**
+     * A separator for the vboxes in edit mode.
+     */
+    @FXML
+    private Separator separator1;
+
+    /**
+     * A separator for the vboxes in edit mode.
+     */
+    @FXML
+    private Separator separator2;
+
+    /**
+     * The vbox that contains sphere options in edit mode.
+     */
+    @FXML
+    private VBox vBoxEditSphere;
+
+    /**
+     * The vbox that ocntains symptom options in edit mode.
+     */
+    @FXML
+    private VBox vBoxEditSymptom;
+
+    /**
+     * The vbox that contains edge options in edit mode.
+     */
+    @FXML
+    private VBox vBoxEditEdge;
+
+    /**
+     * Checking if gui is in edit mode
+     */
+    private boolean editMode = true;
+
+    /**
+     * Checking if gui is in analysis mode
+     */
+    private boolean analysisMode = false;
+
+    private Stage mainStage;
+
+    private Stage templateStage = new Stage();
+
+    public Controller(){
+    }
+
+    public void setStage(Stage pStage){
+        mainStage = pStage;
+        templateStage.initOwner(mainStage);
+        templateStage.initModality(Modality.APPLICATION_MODAL);
     }
 
     public Text getCurrentActionText(){
@@ -855,7 +982,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportGxlAction exportGxlAction = new ExportGxlAction(file);
         exportGxlAction.action();
     }
@@ -867,7 +994,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("PDF files (*.pdf)","*.pdf");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportPdfAction exportPdfAction =new ExportPdfAction(file);
         exportPdfAction.action();
     }
@@ -879,7 +1006,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportOofAction exportOofAction = new ExportOofAction(file);
         exportOofAction.action();
     }
@@ -892,7 +1019,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(mainStage);
         OOFio oofio = new OOFio();
         oofio.importOOF(file);
     }
@@ -905,7 +1032,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(mainStage);
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file);
     }
@@ -914,8 +1041,8 @@ public class Controller implements ObserverSyndrom{
      * Creates an PrintPDFAction-object and executes the action with the action history.
      */
     public void printPDF() {
-        PrinterJob printerJob = PrinterJob.createPrinterJob();
-        printerJob.showPrintDialog(null);
+        PrintPDFAction printPDFAction=new PrintPDFAction();
+        printPDFAction.action();
     }
 
     /* ----------------LAYOUT---------------------- */
@@ -941,14 +1068,30 @@ public class Controller implements ObserverSyndrom{
      * and executes the action with the action history.
      */
     public void switchModiEditor() {
-        throw new UnsupportedOperationException();
+        if(analysisMode){
+            hideAnalysisMode();
+            showEditMode();
+            editButton.setDisable(true);
+            analysisButton.setDisable(false);
+            editMode = true;
+            analysisMode = false;
+        }
     }
 
     /**
      * Creates an SwitchModiEditorAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
-    public void switchModiAnalysis(){throw new UnsupportedOperationException();}
+    public void switchModiAnalysis(){
+        if(editMode){
+            hideEditMode();
+            showAnalysisMode();
+            editButton.setDisable(false);
+            analysisButton.setDisable(true);
+            editMode = false;
+            analysisMode = true;
+        }
+    }
 
     /**
      * Creates an SwitchModeEditorAction-object for changing to the interpreter mode
@@ -1053,8 +1196,22 @@ public class Controller implements ObserverSyndrom{
     /**
      * Creates a Window that allows you to set Rules for your Template.
      */
-    public void createTemplateWindow(){
-        throw new UnsupportedOperationException();
+    public void createTemplateWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
+        fxmlLoader.setController(this);
+        templateStage.setResizable(false);
+        templateStage.setScene(new Scene(fxmlLoader.load(),420,300));
+        templateStage.setTitle("Vorlagenregeln");
+        templateStage.setAlwaysOnTop(true);
+        templateStage.show();
+    }
+
+    public void closeTemplateWindow(){
+        if(templateStage.isShowing()){
+            templateStage.hide();
+            templateStage.close();
+        }
     }
 
     /* ----------------INTERNAL---------------------- */
@@ -1069,6 +1226,101 @@ public class Controller implements ObserverSyndrom{
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
+        hideAnalysisMode();
+        editButton.setDisable(true);
+    }
+
+    private void hideAnalysisMode(){
+
+        vBoxGraphStats.setVisible(false);
+        vBoxGraphStats.setManaged(false);
+
+        separator3.setVisible(false);
+        separator3.setManaged(false);
+
+        separator4.setVisible(false);
+        separator4.setManaged(false);
+
+        separator5.setVisible(false);
+        separator5.setManaged(false);
+
+        vBoxAnalysisSymptom.setVisible(false);
+        vBoxAnalysisSymptom.setManaged(false);
+
+        vBoxAnalysisEdge.setVisible(false);
+        vBoxAnalysisEdge.setManaged(false);
+
+        vBoxAnalysisOption.setVisible(false);
+        vBoxAnalysisOption.setManaged(false);
+    }
+
+    private void hideEditMode(){
+        separator1.setVisible(false);
+        separator1.setManaged(false);
+
+        separator2.setVisible(false);
+        separator2.setManaged(false);
+
+        menubarSeparator3.setVisible(false);
+        menubarSeparator3.setManaged(false);
+
+        vBoxEditSphere.setVisible(false);
+        vBoxEditSphere.setManaged(false);
+
+        vBoxEditSymptom.setVisible(false);
+        vBoxEditSymptom.setManaged(false);
+
+        vBoxEditEdge.setVisible(false);
+        vBoxEditEdge.setManaged(false);
+
+        templateButton.setVisible(false);
+        templateButton.setManaged(false);
+    }
+
+    private void showAnalysisMode(){
+        vBoxGraphStats.setVisible(true);
+        vBoxGraphStats.setManaged(true);
+
+        separator3.setVisible(true);
+        separator3.setManaged(true);
+
+        separator4.setVisible(true);
+        separator4.setManaged(true);
+
+        separator5.setVisible(true);
+        separator5.setManaged(true);
+
+        vBoxAnalysisSymptom.setVisible(true);
+        vBoxAnalysisSymptom.setManaged(true);
+
+        vBoxAnalysisEdge.setVisible(true);
+        vBoxAnalysisEdge.setManaged(true);
+
+        vBoxAnalysisOption.setVisible(true);
+        vBoxAnalysisOption.setManaged(true);
+    }
+
+    private void showEditMode(){
+        separator1.setVisible(true);
+        separator1.setManaged(true);
+
+        separator2.setVisible(true);
+        separator2.setManaged(true);
+
+        menubarSeparator3.setVisible(true);
+        menubarSeparator3.setManaged(true);
+
+        vBoxEditSphere.setVisible(true);
+        vBoxEditSphere.setManaged(true);
+
+        vBoxEditSymptom.setVisible(true);
+        vBoxEditSymptom.setManaged(true);
+
+        vBoxEditEdge.setVisible(true);
+        vBoxEditEdge.setManaged(true);
+
+        templateButton.setVisible(true);
+        templateButton.setManaged(true);
     }
 
     /**
@@ -1109,6 +1361,14 @@ public class Controller implements ObserverSyndrom{
     public void sphereShrink(ActionEvent actionEvent){
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.SHRINK);
         editSphereSizeLogAction.action();
+    }
+
+    public void vertexEnlarge(){
+
+    }
+
+    public void vertexShrink(){
+
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {

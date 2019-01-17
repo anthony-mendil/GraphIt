@@ -1,8 +1,6 @@
 package log_management.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class PersonalEntityManager {
 
@@ -16,13 +14,10 @@ public class PersonalEntityManager {
      * @return The personal Entity Manager.
      */
     public static EntityManager getInstance() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        if (entityManager != null) {
-            return entityManager;
-        }
-        else {
-            entityManager = entityManagerFactory.createEntityManager();
-            return entityManager;
-        }
+        return entityManager;
+    }
+
+    public static void setEntityManager(EntityManager initialEntityManager) {
+        entityManager = initialEntityManager;
     }
 }

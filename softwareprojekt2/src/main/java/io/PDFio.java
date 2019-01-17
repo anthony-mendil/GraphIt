@@ -1,17 +1,31 @@
 package io;
 
+import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import javafx.print.PageOrientation;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
+import graph.visualization.renderers.SyndromRenderer;
+import org.apache.commons.io.FileCleaningTracker;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
 import org.freehep.graphics2d.VectorGraphics;
-import org.freehep.graphicsbase.util.export.ExportDialog;
 import org.freehep.graphicsio.pdf.PDFGraphics2D;
 
+import java.awt.*;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
-import static org.freehep.graphicsio.PageConstants.*;
+import static org.freehep.graphicsio.PageConstants.A4;
+import static org.freehep.graphicsio.PageConstants.LANDSCAPE;
+import static org.freehep.graphicsio.pdf.PDFGraphics2D.ORIENTATION;
+import static org.freehep.graphicsio.pdf.PDFGraphics2D.PAGE_SIZE;
 
 /**
  * The PDF exporter (export/print)
@@ -33,46 +47,81 @@ public class PDFio {
      * Constructs a new PDFio object.
      *
      * @param pVv The VisualizationViewer object of the current graph.
-     * @param pFile The destination File
      */
-    public PDFio(VisualizationViewer pVv, File pFile){
-        vv=pVv;
-        file=pFile;
+    public PDFio(VisualizationViewer pVv) {
+        vv = pVv;
     }
 
     /**
-     * Creates a PDF of the current graph visualization.
+     * Calculates the dimension of the graph spanned by the spheres
      *
-     *  @return A FileInputStream of the PDF of the current graph.
+     * @return the dimension of the graph
      */
-    protected File createPDF(){
-        try {
-
-            VectorGraphics vectorGraphics = new PDFGraphics2D(file, vv);
-            Properties properties = new Properties();
-            properties.setProperty(ORIENTATION,LANDSCAPE);
-            properties.setProperty(PAGE_SIZE,A4);
-            vectorGraphics.setProperties(properties);
-            vectorGraphics.startExport();
-            vv.print(vectorGraphics);
-            vectorGraphics.endExport();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    protected Dimension getGraphDimension() {
+        List<Sphere> spheres = Syndrom.getInstance().getGraph().getSpheres();
+        Dimension dimension = new Dimension(0, 0);
+        for (Sphere sph : spheres) {
+            //check x
+            double x = sph.getCoordinates().getX() + sph.getWidth();
+            if (x > dimension.getWidth()) {
+                dimension.setSize(x, dimension.getHeight());
+            }
+            //check y
+            double y = sph.getCoordinates().getY() + sph.getHeight();
+            if (y > dimension.getHeight()) {
+                dimension.setSize(dimension.getWidth(), y);
+            }
         }
-        return file;
+        return dimension;
     }
 
     /**
      * Starts the dialog to export the current graph visualization as PDF.
      */
-    public void exportPDF() {
-        createPDF();
+    public void exportPDF(File pFile) {
+        file = pFile;
+        VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<Vertex, Edge>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
+        vis.setBackground(Color.WHITE);
+        vis.setRenderer(new SyndromRenderer<>());
+        VectorGraphics vectorGraphics = null;
+        try {
+            vectorGraphics = new PDFGraphics2D(file, getGraphDimension());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Properties properties = new Properties();
+        properties.setProperty(ORIENTATION, LANDSCAPE);
+        properties.setProperty(PAGE_SIZE, A4);
+        vectorGraphics.setProperties(properties);
+        vectorGraphics.startExport();
+        vis.print(vectorGraphics);
+        vectorGraphics.endExport();
     }
 
     /**
      * Starts the dialog to export the current graph visualization as PDF.
      */
     public void printPDF() {
-        throw new UnsupportedOperationException();
+        exportPDF(new File("SyndromToPrint.pdf"));
+        PDDocument pdDocument = new PDDocument();
+        try {
+            pdDocument = PDDocument.load(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+        printerJob.setJobName(file.getName());
+        printerJob.setPageable(new PDFPageable(pdDocument));
+        if (printerJob.printDialog()) {
+            try {
+                printerJob.print();
+            } catch (PrinterException e) {
+                e.printStackTrace();
+            } finally {
+                FileCleaningTracker fileCleaningTracker = new FileCleaningTracker();
+                fileCleaningTracker.track(new File("SyndromToPrint.pdf"), this);
+                fileCleaningTracker.exitWhenFinished();
+            }//TODO: deleting not yet working
+        }
     }
 }

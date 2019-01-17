@@ -161,8 +161,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     addNot = true;
                 }
             }
-            System.out.println(addNot);
-
             if (addNot) {
                 for (Vertex v : pickedState.getPicked()) {
                     Point2D vp = new Point2D.Double(points.get(v.getId()).getKey().getX(), points.get(v.getId())
@@ -172,7 +170,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 }
             } else {
                 for (Vertex v : pickedState.getPicked()) {
-                    System.out.println("picked");
                     Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
                             .getCoordinates());
                     Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
@@ -181,13 +178,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         LinkedList<Vertex> list = oldSphere.getVertices();
                         list.remove(v);
                         oldSphere.setVertices(list);
-                        System.out.println("oldSphere: "+oldSphere.getVertices());
 
                         LinkedList<Vertex> newList = s.getVertices();
                         newList.add(v);
                         s.setVertices(newList);
-                        System.out.println("sphere: "+s.getVertices());
-
                     }
                 }
             }

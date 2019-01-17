@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.embed.swing.SwingNode?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<BorderPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" >
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <VBox prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar>
+            <MenuBar VBox.vgrow="NEVER">
                <menus>
                   <Menu mnemonicParsing="false" text="Datei">
                      <items>
@@ -28,7 +52,7 @@
                                <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
                            </items>
                         </Menu>
-                        <MenuItem mnemonicParsing="false" onAction="#printPDF" text="Drucken" />
+                        <MenuItem fx:id="printPDF" mnemonicParsing="false" onAction="#printPDF" text="Drucken" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Optionen">
@@ -44,12 +68,12 @@
                   </Menu>
                </menus>
             </MenuBar>
-            <ToolBar prefHeight="6.0" prefWidth="1275.0">
+            <ToolBar prefHeight="40.0" scaleShape="false" VBox.vgrow="NEVER">
                <VBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </VBox.margin>
                <items>
-                  <HBox prefHeight="29.0" prefWidth="390.0">
+                  <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="318.0">
                      <children>
                         <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
@@ -81,14 +105,14 @@
                               <Tooltip text="Wiederherstellen" />
                            </tooltip>
                         </Button>
-                        <Separator focusTraversable="false" orientation="VERTICAL">
+                        <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                            <HBox.margin>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                              <Insets />
                            </HBox.margin>
                            <padding>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding></Separator>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="editButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiEditor" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -103,7 +127,7 @@
                               <Tooltip text="Ersteller-Modus" />
                            </tooltip>
                         </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="analysisButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -133,7 +157,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Separator focusTraversable="false" orientation="VERTICAL">
+                        <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                            <padding>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
@@ -162,12 +186,12 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Separator focusTraversable="false" orientation="VERTICAL">
+                        <Separator fx:id="menubarSeparator3" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                            <padding>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                         </Separator>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createTemplateWindow" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
                               <Tooltip text="Vorlage-Regeln setzen" />
                            </tooltip>
@@ -181,14 +205,14 @@
             </ToolBar>
             <HBox prefHeight="58.0" prefWidth="621.0">
                <children>
-                  <VBox prefHeight="68.0" prefWidth="427.0">
+                  <VBox fx:id="vBoxEditSphere" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="450.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sphäre">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="356.0">
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="445.0">
                            <children>
                               <Button fx:id="buttonSphere" mnemonicParsing="false" onAction="#buttonClicked" pickOnBounds="false" prefHeight="36.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
@@ -213,8 +237,7 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="30.0"
-                                      onAction="#removeSphere" pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css">
+                              <Button mnemonicParsing="false" onAction="#removeSphere" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -229,8 +252,7 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                               <Button fx:id="sphereEnlarge" mnemonicParsing="false" onAction="#sphereEnlarge"
-                                       pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                               <Button fx:id="sphereEnlarge" mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                    <HBox.margin>
                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                    </HBox.margin>
@@ -245,8 +267,7 @@
                                        <Tooltip text="Vergrößern" />
                                    </tooltip>
                                </Button>
-                               <Button fx:id="sphereShrink" mnemonicParsing="false" onAction="#sphereShrink"
-                                       pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                               <Button fx:id="sphereShrink" mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                    <HBox.margin>
                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                    </HBox.margin>
@@ -261,8 +282,7 @@
                                        <Tooltip text="Verkleinern" />
                                    </tooltip>
                                </Button>
-                              <ColorPicker fx:id="sphereBackgroundColour" prefHeight="30.0" prefWidth="42.0"
-                                           onAction="#editSphereColor">
+                              <ColorPicker fx:id="sphereBackgroundColour" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#editSphereColor" prefHeight="31.0" prefWidth="46.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -270,12 +290,16 @@
                                     <Tooltip text="Hintergrundfarbe" />
                                  </tooltip>
                               </ColorPicker>
+
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </Separator>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
                                  <items>
-                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" text="Times New Roman"
-                                              onAction="#sphereFont1"/>
-                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" text="Comic Sans Ms"
-                                              onAction="#sphereFont2"/>
+                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" onAction="#sphereFont1" text="Times New Roman" />
+                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" onAction="#sphereFont2" text="Comic Sans Ms" />
                                  </items>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -284,25 +308,23 @@
                                     <Tooltip text="Schriftart" />
                                  </tooltip>
                                  <graphic>
-                                    <TextField prefHeight="25.0" prefWidth="68.0" text="Calibri">
+                                    <TextField maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="68.0" text="Calibri">
                                        <padding>
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
                                     </TextField>
                                  </graphic>
                               </SplitMenuButton>
-                              <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0">
+                              <SplitMenuButton maxHeight="Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="77.0">
                                  <items>
-                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" text="13"
-                                              onAction="#fontSize1"/>
-                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" text="14"
-                                              onAction="#fontSize2" />
+                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" onAction="#fontSize1" text="13" />
+                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" onAction="#fontSize2" text="14" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftgröße" />
                                  </tooltip>
                                  <graphic>
-                                    <TextField prefHeight="25.0" prefWidth="28.0" text="12">
+                                    <TextField maxHeight="Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="35.0" text="12">
                                        <padding>
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
@@ -312,8 +334,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
-                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout"
-                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
+                              <Button fx:id="sphereAutoLayout" mnemonicParsing="false" onAction="#sphereAutoLayout" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -338,22 +359,21 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                  <Separator fx:id="separator1" orientation="VERTICAL" prefHeight="200.0">
                      <HBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox prefHeight="55.0" prefWidth="468.0">
+                  <VBox fx:id="vBoxEditSymptom" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="562.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
-                           <VBox.margin>
+                           <HBox.margin>
                               <Insets />
-                           </VBox.margin>
+                           </HBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="482.0">
+                        <HBox minWidth="-Infinity" prefHeight="40.0" prefWidth="544.0">
                            <children>
-                              <Button fx:id="buttoVertex"  onAction="#addVertex" mnemonicParsing="false"
-                                      pickOnBounds="false" prefHeight="40.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                              <Button fx:id="buttoVertex" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="40.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -376,8 +396,7 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <Button  onAction="#removeVertices" mnemonicParsing="false" prefHeight="42.0"
-                                       prefWidth="30.0">
+                              <Button mnemonicParsing="false" onAction="#removeVertices" prefHeight="42.0" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -392,7 +411,38 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                              <ColorPicker fx:id="symptomBackground" prefHeight="43.0" prefWidth="40.0" onAction="#editVerticesFillColor">
+                              <Button fx:id="vertexEnlarge" mnemonicParsing="false" onAction="#vertexEnlarge" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/enlarge.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Vergrößern" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="vertexShrink" mnemonicParsing="false" onAction="#vertexShrink" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/shrink.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Verkleinern" />
+                                 </tooltip>
+                              </Button>
+                              <ColorPicker fx:id="symptomBackground" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesFillColor" prefHeight="31.0" prefWidth="46.0">
+
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -400,8 +450,7 @@
                                     <Tooltip text="Hintergrundfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <ColorPicker fx:id="symptomBorder" prefHeight="43.0" prefWidth="40.0"
-                                           onAction="#editVerticesDrawColor">
+                              <ColorPicker fx:id="symptomBorder" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesDrawColor" prefHeight="31.0" prefWidth="46.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -444,6 +493,21 @@
                                     <Tooltip text="Form" />
                                  </tooltip>
                               </MenuButton>
+                              <Button fx:id="verticesAutoLayout" mnemonicParsing="false" onAction="#verticesAutoLayout" pickOnBounds="false" prefHeight="37.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/magic.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Automatische Anordnung" />
+                                 </tooltip>
+                              </Button>
                               <Separator orientation="VERTICAL" prefHeight="200.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" top="1.0" />
@@ -451,9 +515,8 @@
                               </Separator>
                               <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0">
                                  <items>
-                                    <MenuItem fx:id="vertexFont1" onAction="#vertexFont1" mnemonicParsing="false" text="Times New Roman" />
-                                    <MenuItem fx:id="vertexFont2" onAction="#vertexFont2" mnemonicParsing="false"
-                                              text="Comic Sans Ms" />
+                                    <MenuItem fx:id="vertexFont1" mnemonicParsing="false" onAction="#vertexFont1" text="Times New Roman" />
+                                    <MenuItem fx:id="vertexFont2" mnemonicParsing="false" onAction="#vertexFont2" text="Comic Sans Ms" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftart" />
@@ -469,18 +532,16 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
-                              <SplitMenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0">
+                              <SplitMenuButton maxHeight="Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="77.0">
                                  <items>
-                                    <MenuItem fx:id="fontSizeVertex1" mnemonicParsing="false" text="13"
-                                              onAction="#fontSizeVertex1"/>
-                                    <MenuItem fx:id="fontSizeVertex2" mnemonicParsing="false" text="14"
-                                              onAction="#fontSizeVertex2" />
+                                    <MenuItem fx:id="fontSizeVertex1" mnemonicParsing="false" onAction="#fontSizeVertex1" text="13" />
+                                    <MenuItem fx:id="fontSizeVertex2" mnemonicParsing="false" onAction="#fontSizeVertex2" text="14" />
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Schriftgröße" />
                                  </tooltip>
                                  <graphic>
-                                    <TextField prefHeight="25.0" prefWidth="28.0" text="12">
+                                    <TextField maxHeight="Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="35.0" text="12">
                                        <padding>
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
@@ -490,22 +551,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </SplitMenuButton>
-                              <Button fx:id="verticesAutoLayout" mnemonicParsing="false" onAction="#verticesAutoLayout"
-                                      pickOnBounds="false" styleClass="button1" stylesheets="@gui_style.css" prefHeight="37.0" prefWidth="30.0">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="13.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/magic.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Automatische Anordnung" />
-                                 </tooltip>
-                              </Button>
+
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -516,19 +562,19 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                  <Separator fx:id="separator2" orientation="VERTICAL" prefHeight="200.0">
                      <HBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox prefHeight="55.0" prefWidth="332.0">
+                  <VBox fx:id="vBoxEditEdge" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="332.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0">
+                        <HBox minWidth="-Infinity" prefHeight="40.0" prefWidth="290.0">
                            <children>
                               <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="30.0">
                                  <HBox.margin>
@@ -550,7 +596,7 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <ColorPicker prefHeight="43.0" prefWidth="40.0">
+                              <ColorPicker maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="46.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -629,6 +675,217 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
+
+                  <VBox fx:id="vBoxGraphStats" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="180.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Graphmaße">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <GridPane prefHeight="89.0" prefWidth="132.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.39990997314453" minWidth="10.0" prefWidth="142.39990997314453" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.199951171875" minWidth="10.0" prefWidth="26.40009002685548" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Umfang" wrappingWidth="59.898826599121094" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vernetzungsindex" wrappingWidth="126.59998321533203" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Strukturindex" wrappingWidth="104.54531860351562" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator fx:id="separator3" orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <VBox fx:id="vBoxAnalysisSymptom" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="235.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <VBox prefHeight="67.0" prefWidth="247.0">
+                           <children>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="230.0">
+                                 <VBox.margin>
+                                    <Insets bottom="6.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="195.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="8.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="124.0">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator fx:id="separator4" orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <VBox fx:id="vBoxAnalysisEdge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="374.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <VBox prefHeight="50.0" prefWidth="392.0">
+                           <children>
+                              <HBox minWidth="-Infinity" prefHeight="16.0" prefWidth="346.0">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="105.0" text="Vorgänger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="113.0" text="Nachfolger">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" ">
+                                       <graphic>
+                                          <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="45.0">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false">
+                                                   <graphic>
+                                                      <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@icons2/014-question.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></MenuItem>
+                                                <MenuItem mnemonicParsing="false">
+                                                   <graphic>
+                                                      <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@icons2/015-circle.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></MenuItem>
+                                             </items>
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@icons2/005-right-chevron.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuButton>
+                                       </graphic>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="195.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.73675537109375">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="8.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="124.0">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Separator fx:id="separator5" orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox fx:id="vBoxAnalysisOption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="332.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Analyse-Optionen">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <VBox prefHeight="50.0" prefWidth="392.0">
+                           <children>
+                              <HBox minWidth="-Infinity" prefHeight="30.0" prefWidth="330.0">
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <CheckBox fx:id="reinforced11" mnemonicParsing="false" prefHeight="30.0" prefWidth="280.0" text="Verstärkend">
+                                       <graphic>
+                                          <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="250.0" text="Pfeilketten">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" text="konvergente Verzweigungen" />
+                                                <MenuItem mnemonicParsing="false" text="divergente Verzweigungen" />
+                                                <MenuItem mnemonicParsing="false" text="Verzweigungen" />
+                                                <MenuItem mnemonicParsing="false" text="Zyklen" />
+                                             </items>
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                          </MenuButton>
+                                       </graphic>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="35.0" prefWidth="195.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+
                </children>
             </HBox>
             <Separator prefWidth="200.0" />

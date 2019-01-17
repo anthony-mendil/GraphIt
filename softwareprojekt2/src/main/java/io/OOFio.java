@@ -4,7 +4,8 @@ import com.google.inject.Inject;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
 
-import java.io.File;
+import java.io.*;
+import java.util.Scanner;
 
 
 /**
@@ -68,7 +69,15 @@ public class OOFio {
      * @param pFile The destination file
      */
     public void exportAsOOF(File pFile){
-        throw new UnsupportedOperationException();
+        GXLio gxlio=new GXLio();
+        String oof=gxlio.gxlFromInstance()+"\0"+logDao.getAllString();
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile));
+            bufferedWriter.write(oof);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -77,7 +86,15 @@ public class OOFio {
      * @param pFile The file to import
      */
     public void importOOF(File pFile){
-        throw new UnsupportedOperationException();
+        String oof = "";
+        try {
+            oof = new Scanner(pFile).useDelimiter("\\A").next();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        GXLio gxlio = new GXLio();
+        gxlio.gxlToInstance(gxlFromOOF(oof));
+        //TODO saveImportLogsInDB(jsonFromOOF(oof));
     }
 
 }

@@ -2,35 +2,55 @@ package graph.visualization.control;
 
 import actions.ActionHistory;
 import actions.add.AddSphereLogAction;
+import actions.edit.annotation.EditSphereAnnotationLogAction;
+import actions.edit.color.EditSphereColorLogAction;
+import actions.edit.font.EditFontSizeSphereLogAction;
+import actions.edit.font.EditFontSphereLogAction;
+import actions.remove.RemoveSphereLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.visualization.Layer;
-import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 import gui.GraphButtonType;
 import gui.Values;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.effect.ImageInput;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     private Point2D spherePickedCoord = null;
     private Point2D downFirst = null;
+    private Map<Integer, Point2D> points = null;
+    private final Values values;
+    private ContextMenu contextMenu;
+    private final HelperFunctions helper;
+
 
     /**
      * create an instance with passed values
@@ -38,26 +58,92 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     public SpherePickingPlugin() {
         super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+        values = Values.getInstance();
+        helper = new HelperFunctions();
+    }
+    {
+        contextMenu = createContextMenu();
+
     }
 
+    private ContextMenu createContextMenu(){
+        contextMenu = new ContextMenu();
+        MenuItem remove = new MenuItem("Entfernen");
+        Image image = new Image("/icons2/008-rubbish-bin.png");
+        ImageView iconRemove = new ImageView();
+        iconRemove.setImage(image);
+        iconRemove.setFitWidth(15);
+        iconRemove.setFitHeight(15);
+        remove.setGraphic(iconRemove);
+
+        remove.setOnAction(event -> {
+            RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
+            history.execute(removeSphereLogAction);
+        });
+        MenuItem annotation = new MenuItem("Titel");
+
+        annotation.setOnAction(event -> {
+            TextInputDialog dialog = new TextInputDialog("Sphäre Titel");
+
+            dialog.setHeaderText("Titel Sphäre eingeben:");
+            dialog.setContentText("Titel:");
+            dialog.setTitle("Sphäre Titel");
+
+            Optional<String> result = dialog.showAndWait();
+
+            result.ifPresent(title -> {
+                if (title.length() > 100){
+                    title = title.substring(0, 99);
+                }
+                EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(title);
+                history.execute(editSphereAnnotationLogAction);
+            });
+
+        });
+
+        MenuItem color = new MenuItem("Farbe");
+        color.setOnAction(event ->{
+
+            EditSphereColorLogAction editSphereColorLogAction = new EditSphereColorLogAction(values.getFillPaintSphere());
+            history.execute(editSphereColorLogAction);
+                });
+
+        MenuItem text = new MenuItem("Schriftart");
+        text.setOnAction(event ->{
+            EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(values.getFontSphere());
+            history.execute(editFontSphereLogAction);
+        });
+
+        MenuItem size = new MenuItem("Schriftgröße");
+        size.setOnAction(event ->{
+            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(values.getFontSizeSphere());
+            history.execute(editFontSizeSphereLogAction);
+        });
+
+        contextMenu.getItems().addAll(remove, annotation, color, text, size);
+        contextMenu.setAutoHide(true);
+        return contextMenu;
+    }
+
+
+
     /**
-     * The actionhistory
+     * The ActionHistory
      */
     private ActionHistory history = ActionHistory.getInstance();
 
     @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
-        System.out.println("point: "+e.getPoint());
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        Point2D p = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
+        Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
+        Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+
         if (SwingUtilities.isLeftMouseButton(e)) {
-            VisualizationViewer<Vertex, Edge> vv = (VisualizationViewer) e.getSource();
-            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
-            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-            Point2D p = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
-            Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
-            Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
             List<Sphere> list = graph.getSpheres();
-            Values values = Values.getInstance();
             Rectangle2D newRec = new Rectangle2D.Double(p.getX(), p.getY(), values.getDefaultWidthSphere(),
                     values.getDefaultHeightSphere());
             boolean addSphere = true;
@@ -82,10 +168,17 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                     history.execute(addSphereLogAction);
                 }
             }
-            /*
-             * if (values.getGraphButtonType() == GraphButtonType.REMOVE_SPHERE && sp != null){
-             graph.removeSphere(sp);
-             }*/
+
+            vv.repaint();
+        }
+
+        if (SwingUtilities.isRightMouseButton(e)){
+            if (vertex == null && sp != null){
+                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                PickedState<Sphere> spheres = vv.getPickedSphereState();
+                spheres.clear();
+                spheres.pick(sp, true);
+            }
             vv.repaint();
         }
     }
@@ -93,6 +186,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
+        helper.hideMenu(contextMenu);
         SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
@@ -103,12 +197,14 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
             if (sp != null && vert == null) {
                 spherePickedCoord = sp.getCoordinates();
+                points = new LinkedHashMap<>();
+                for (Vertex v: sp.getVertices()){
+                    points.put(v.getId(), v.getCoordinates());
+                }
                 if (!pickedSphereState.isPicked(sp)) {
                     pickedSphereState.clear();
                     pickedSphereState.pick(sp, true);
-                } /*else {
-                    pickedSphereState.pick(sp, false);
-                }*/
+                }
                 vv.repaint();
             } else {
                 pickedSphereState.clear();
@@ -135,15 +231,20 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                          Shape sphereShape = sphereShapeTransformer.transform(sphere);
                          if (sphereShape.intersects(sShape.getBounds())){
                              move = false;
-                             System.out.println("move: "+move);
                          }
                      }
                  }
                  if (!move){
                      s.setCoordinates(spherePickedCoord);
+                     for (Vertex v: s.getVertices()){
+                         Point2D vp = points.get(v.getId());
+                         v.setCoordinates(vp);
+                         vv.getGraphLayout().setLocation(v, vp);
+                     }
                  }
              }
              spherePickedCoord = null;
+             points = null;
              vv.repaint();
          }
     }

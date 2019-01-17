@@ -1,6 +1,7 @@
 package log_management.dao;
 
 import actions.LogEntryName;
+import log_management.DatabaseManager;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -38,7 +39,7 @@ public class LogDao implements Dao<Log> {
     public List<Log> getAll() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = GraphDao.getCurrentGraph();
+        Graph graph = DatabaseManager.getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -56,7 +57,7 @@ public class LogDao implements Dao<Log> {
     public String getAllString() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = GraphDao.getCurrentGraph();
+        Graph graph = DatabaseManager.getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -110,7 +111,7 @@ public class LogDao implements Dao<Log> {
     public List<Log> getLogType(LogEntryName logEntryName) throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = GraphDao.getCurrentGraph();
+        Graph graph = DatabaseManager.getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -130,7 +131,7 @@ public class LogDao implements Dao<Log> {
     public List<String> getLogTypeString(LogEntryName logEntryName) throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = GraphDao.getCurrentGraph();
+        Graph graph = DatabaseManager.getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -155,7 +156,7 @@ public class LogDao implements Dao<Log> {
     public List<String> getAllStrings() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = GraphDao.getCurrentGraph();
+        Graph graph = DatabaseManager.getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
