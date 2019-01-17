@@ -12,12 +12,20 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import gui.GraphButtonType;
 import gui.Values;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.geometry.Insets;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import javafx.util.Pair;
 
 import javax.swing.*;
@@ -65,7 +73,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null) {
 
-                    boolean add = true;
+                   /* boolean add = true;
                     for (Vertex sphereVert : sp.getVertices()) {
                         GraphObjectsFactory graphObjectsFactory = new GraphObjectsFactory();
                         Vertex test = graphObjectsFactory.createTestVertex(point);
@@ -89,14 +97,14 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
                         if (shapeTest.intersects(shapeSphereVert.getBounds())) {
                             add = false;
-                        }
-                    }
-                    if (add) {
+                        }*/
+                    //}
+                   // if (add) {
                         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
                     	history.execute(addVerticesLogAction);
-                    } else {
-                        setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
-                    }
+                    //} else {
+                    //    setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
+                    //}
                 } else {
                     setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
                 }
@@ -252,14 +260,35 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         Platform.runLater(() -> {
                             try {
                                 Text text = (Text) values.getNamespace().get("currentActionText");
+                                ButtonBar hBox = (ButtonBar) values.getNamespace().get("currentActionBox");
                                 Color color;
                                 Font font;
                                 if (isAlert) {
-                                    color = values.getActionTextColorAlert();
+                                    color = Color.WHITE;
                                     font = values.getActionTextAlert();
+                                    hBox.setBackground(Background.EMPTY);
+                                    String style = "-fx-background-color: rgba(160, 12, 12, 1);";
+                                    hBox.setStyle(style);
+
+                                    final Animation animation = new Transition() {
+                                        {
+                                            setCycleDuration(Duration.millis(5000));
+                                            setInterpolator(Interpolator.EASE_OUT);
+                                        }
+
+                                        @Override
+                                        protected void interpolate(double frac) {
+                                            Color vColor = Color.rgb(16,12,12, 1 - frac);
+                                            hBox.setBackground(new Background(new BackgroundFill(vColor, CornerRadii.EMPTY, Insets.EMPTY)));
+                                        }
+                                    };
+                                    animation.play();
+
+
                                 } else {
                                     color = values.getActionTextColorInfo();
                                     font = values.getActionTextInfo();
+                                    hBox.setStyle("@gui_style.css");
                                 }
                                 text.setFill(color);
                                 text.setText(string);
