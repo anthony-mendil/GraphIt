@@ -26,12 +26,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -306,7 +305,7 @@
                                     <Tooltip text="Schriftart" />
                                  </tooltip>
                                  <graphic>
-                                    <TextField maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="68.0" text="Calibri">
+                                    <TextField focusTraversable="false" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="68.0" text="Calibri">
                                        <padding>
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
@@ -322,7 +321,7 @@
                                     <Tooltip text="Schriftgröße" />
                                  </tooltip>
                                  <graphic>
-                                    <TextField maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="35.0" text="12">
+                                    <TextField fx:id="sphereSizeTextField" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="35.0" text="12">
                                        <padding>
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
@@ -362,14 +361,14 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="562.0">
+                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="555.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="558.0">
+                        <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="550.0">
                            <children>
                               <Button fx:id="buttoVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
@@ -520,7 +519,7 @@
                                     <Tooltip text="Schriftart" />
                                  </tooltip>
                                  <graphic>
-                                    <TextField maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="68.0" text="Calibri">
+                                    <TextField focusTraversable="false" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="68.0" text="Calibri">
                                        <padding>
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
@@ -539,7 +538,7 @@
                                     <Tooltip text="Schriftgröße" />
                                  </tooltip>
                                  <graphic>
-                                    <TextField maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="35.0" text="12">
+                                    <TextField fx:id="symptomSizeTextField" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="35.0" text="12">
                                        <padding>
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
@@ -567,7 +566,7 @@
                   </Separator>
                   <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="265.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kante">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -674,7 +673,7 @@
                      </HBox.margin>
                   </VBox>
 
-                  <VBox fx:id="vBoxGraphStats" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="180.0">
+                  <VBox fx:id="vBoxGraphStats" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="180.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Graphmaße">
                            <VBox.margin>
@@ -702,7 +701,7 @@
                         </GridPane>
                      </children>
                      <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
                   <Separator fx:id="separator3" orientation="VERTICAL" prefHeight="200.0">
@@ -710,48 +709,36 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxAnalysisSymptom" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="235.0">
+                  <VBox fx:id="vBoxAnalysisSymptom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="250.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <VBox prefHeight="67.0" prefWidth="247.0">
+                        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="247.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
                            <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="230.0">
-                                 <VBox.margin>
-                                    <Insets bottom="6.0" left="2.0" right="2.0" top="2.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </CheckBox>
-                                 </children>
-                              </HBox>
-                              <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="195.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="8.0" />
-                                       </HBox.margin>
-                                    </Text>
-                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="124.0">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                 </children>
-                              </HBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger" />
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <TextField fx:id="amountSymptomTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
-                        </VBox>
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
+                        </GridPane>
                      </children>
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -762,89 +749,80 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxAnalysisEdge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="345.0">
+                  <VBox fx:id="vBoxAnalysisEdge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="345.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kanten">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kante">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <VBox prefHeight="71.0" prefWidth="346.0">
+                        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="341.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.99995880126953" minWidth="10.0" prefWidth="127.99995880126953" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.2001953125" minWidth="10.0" prefWidth="120.20004119873046" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.199951171875" minWidth="10.0" prefWidth="92.40007324218752" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <HBox minWidth="-Infinity" prefHeight="30.0" prefWidth="342.0">
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" left="2.0" right="2.0" top="2.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="105.0" text="Vorgänger">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </CheckBox>
-                                    <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="113.0" text="Nachfolger">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </CheckBox>
-                                    <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" ">
-                                       <graphic>
-                                          <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
-                                             <items>
-                                                <MenuItem mnemonicParsing="false">
-                                                   <graphic>
-                                                      <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@icons2/014-question.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic></MenuItem>
-                                                <MenuItem mnemonicParsing="false">
-                                                   <graphic>
-                                                      <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@icons2/015-circle.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic></MenuItem>
-                                             </items>
-                                             <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                             </padding>
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger" />
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <TextField fx:id="amountEdgeTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" " GridPane.columnIndex="2">
+                                 <graphic>
+                                    <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
+                                       <items>
+                                          <MenuItem mnemonicParsing="false">
                                              <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@icons2/005-right-chevron.png" />
+                                                      <Image url="@icons2/014-question.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
-                                          </MenuButton>
+                                          </MenuItem>
+                                          <MenuItem mnemonicParsing="false">
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@icons2/015-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                       </items>
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/005-right-chevron.png" />
+                                             </image>
+                                          </ImageView>
                                        </graphic>
-                                    </CheckBox>
-                                 </children>
-                              </HBox>
-                              <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="195.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.73675537109375">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="8.0" />
-                                       </HBox.margin>
-                                    </Text>
-                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="124.0">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                 </children>
-                              </HBox>
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
+                                    </MenuButton>
+                                 </graphic>
+                              </CheckBox>
                            </children>
-                        </VBox>
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
+                        </GridPane>
                      </children>
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </VBox>
                   <Separator fx:id="separator5" orientation="VERTICAL" prefHeight="200.0" />
-                  <VBox fx:id="vBoxAnalysisOption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="332.0">
+                  <VBox fx:id="vBoxAnalysisOption" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="332.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Analyse-Optionen">
                            <VBox.margin>
@@ -872,10 +850,12 @@
                                              </padding>
                                           </MenuButton>
                                        </graphic>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
                                     </CheckBox>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="35.0" prefWidth="195.0" />
                            </children>
                         </VBox>
                      </children>
@@ -893,16 +873,15 @@
    <bottom>
       <ButtonBar focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" BorderPane.alignment="CENTER">
          <buttons>
-            <HBox centerShape="false" prefHeight="27.0" prefWidth="511.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
+            <HBox centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1497.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
                <children>
-                  <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Aktuelle Aktion&gt;">
+                  <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;" wrappingWidth="436.33087462186813">
                      <HBox.margin>
                         <Insets bottom="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </Text>
                </children>
             </HBox>
-            <Region />
             <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="317.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
@@ -978,9 +957,9 @@
       </TitledPane>
    </right>
    <center>
-      <Pane fx:id="root" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneSwingNode" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <SwingNode fx:id="canvas" />
+            <SwingNode fx:id="canvas" focusTraversable="false" />
          </children>
       </Pane>
    </center>

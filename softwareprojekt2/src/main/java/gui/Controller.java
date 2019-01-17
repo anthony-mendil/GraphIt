@@ -26,22 +26,30 @@ import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
 import io.GXLio;
 import io.OOFio;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
 
@@ -243,7 +251,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield that sets the amount of predecessor/successor symptoms in the analysis/interpreter mode.
      */
-    private TextField amountSphereField;
+    @FXML
+    private TextField amountSymptomTextField;
 
     //Edge
 
@@ -280,7 +289,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield that sets the amount of originating or incoming edges.
      */
-    private TextField amountEdgeField;
+    @FXML
+    private TextField amountEdgeTextField;
 
     //Filter
     /**
@@ -360,7 +370,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield for changing the font of the sphere text.
      */
-    private TextField sphereFontField;
+    @FXML
+    private TextField sphereSizeTextField;
 
     /**
      * The menuitem for changing the font of the sphere text to a specific font.
@@ -494,7 +505,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield for changing the size of the symptom text.
      */
-    private TextField symptomSizeField;
+    @FXML
+    private TextField symptomSizeTextField;
 
     /**
      * The menuitem for changing the size of the symptom text to a specific size.
@@ -697,6 +709,12 @@ public class Controller implements ObserverSyndrom{
      * Checking if gui is in analysis mode
      */
     private boolean analysisMode = false;
+
+    @FXML
+    private Pane paneSwingNode;
+
+    @FXML
+    private BorderPane root;
 
     private Stage mainStage;
 
@@ -1201,7 +1219,7 @@ public class Controller implements ObserverSyndrom{
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
         fxmlLoader.setController(this);
         templateStage.setResizable(false);
-        templateStage.setScene(new Scene(fxmlLoader.load(),420,300));
+        templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
         templateStage.setAlwaysOnTop(true);
         templateStage.show();
@@ -1228,6 +1246,57 @@ public class Controller implements ObserverSyndrom{
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
         hideAnalysisMode();
         editButton.setDisable(true);
+
+        sphereSizeTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")){
+                    sphereSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
+                }
+            }
+        });
+
+        symptomSizeTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")){
+                    symptomSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
+                }
+            }
+        });
+
+        amountSymptomTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")){
+                    amountSymptomTextField.setText(newValue.replaceAll("[^\\d]",""));
+                }
+            }
+        });
+
+        amountEdgeTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")){
+                    amountEdgeTextField.setText(newValue.replaceAll("[^\\d]",""));
+                }
+            }
+        });
+
+        paneSwingNode.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println(paneSwingNode.getHeight());
+            }
+        });
+
+        paneSwingNode.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println(paneSwingNode.getWidth());
+            }
+        });
+
     }
 
     private void hideAnalysisMode(){
