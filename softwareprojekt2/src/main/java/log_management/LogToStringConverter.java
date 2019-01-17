@@ -12,8 +12,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
 
-//import static actions.LogEntryName.*;
-
 public class LogToStringConverter {
 
     public static String convert(Log log) {
@@ -21,13 +19,18 @@ public class LogToStringConverter {
         if (language == Language.GERMAN) {
             try {
                 return "Id: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        parametersPrint(log.getParameters(), log.getLogEntryName()) + " Zeit: " + log.getTime().toString();
+                        "Typ der Aktion: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + " Zeit: " + log.getTime().toString();
             } catch (IOException e) {
                 throw new IllegalStateException();
             }
         }
         else if (language == Language.ENGLISH) {
-            return "";
+            try {
+                return "Id: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
+                        "Type of Action: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + " Time: " + log.getTime().toString();
+            } catch (IOException e) {
+                throw new IllegalArgumentException();
+            }
         }
         else {
             throw new IllegalStateException();
@@ -37,71 +40,71 @@ public class LogToStringConverter {
     private static String convertLogEntryNameGerman(LogEntryName logEntryName) {
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
-                return "";
+                return "Hervorhebung";
             case ACTIVATE_FADEOUT:
-                return "";
+                return "Ausblenden";
             case ADD_ANCHOR_POINTS:
-                return "";
+                return "Hinzufügen von Ankerpunkten";
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "";
+                return "Ausblenden von Ankerpunkten";
             case ADD_EDGES:
-                return "";
+                return "Entfernen von Realtionen rückgängig gemacht";
             case ADD_SPHERE:
-                return "";
+                return "Hinzufügen einer Sphäre";
             case MOVE_SPHERE:
-                return "";
+                return "Bewegen einer Sphäre";
             case ADD_VERTICES:
-                return "";
+                return "Entfernen von Symptomen rüchgänig gemacht";
             case REMOVE_EDGES:
-                return "";
+                return "Entfernen von Relationen";
             case MOVE_VERTICES:
-                return "";
+                return "Bewegen von Symptomen";
             case REMOVE_SPHERE:
-                return "";
+                return "Entfernen einer Sphäre";
             case EDIT_EDGES_TYPE:
-                return "";
+                return "Änderung von Relationstypen";
             case REMOVE_VERTICES:
-                return "";
+                return "Entfernen von Symptomen";
             case EDIT_EDGES_COLOR:
-                return "";
+                return "Änderung der Farbe von Relationen";
             case EDIT_FONT_SPHERE:
-                return "";
+                return "Änderung der Schriftart einer Sphäre";
             case EDIT_SPHERE_SIZE:
-                return "";
+                return "Änderung der Größe einer Sphäre";
             case EDIT_EDGES_STROKE:
-                return "";
+                return "Änderung der Linienart von Realtionen";
             case EDIT_SPHERE_COLOR:
-                return "";
+                return "Änderung der Farbe einer Sphäre";
             case DEACTIVATE_FADEOUT:
-                return "";
+                return "Einblenden";
             case EDIT_FONT_VERTICES:
-                return "";
+                return "Änderung der Schriftart von Symptomen";
             case EDIT_VERTICES_FORM:
-                return "";
+                return "Änderung der Form von Symptomen";
             case EDIT_VERTICES_SIZE:
-                return "";
+                return "Änderung der Größe von Symptomen";
             case REMOVE_ANCHOR_POINTS:
-                return "";
+                return "Entfernen von Ankerpunkten";
             case EDIT_SPHERE_FONT_SIZE:
-                return "";
+                return "Änderung der Schriftgröße einer Sphäre";
             case EDIT_SPHERE_ANNOTATION:
-                return "";
+                return "Änderung der Beschriftung einer Sphäre";
             case EDIT_VERTEX_ANNOTATION:
-                return "";
+                return "Änderung der Beschriftung eines Symptoms";
             case EDIT_VERTICES_FONT_SIZE:
-                return "";
+                return "Änderung der Schriftgröße von Symptomen";
             case EDIT_VERTICES_DRAW_COLOR:
-                return "";
+                return "Änderung der Umrandungsfarbe von Symptomen";
             case EDIT_VERTICES_FILL_COLOR:
-                return "";
+                return "Änderung der Füllfarbe von Symptomen";
             case DEACTIVATE_HIGHLIGHT:
-                return "";
+                return "Deaktivieren der Hervorhebung";
             case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "h";
+                return "Einblenden von Ankerpunkten";
             case EDIT_SPHERES_LAYOUT:
-                return "";
+                return "Änderung des Layouts von Spären";
             case EDIT_VERTICES_LAYOUT:
-                return "";
+                return "Änderung des Layouts von Syptomen";
             default: throw new IllegalArgumentException();
 
         }
@@ -110,39 +113,39 @@ public class LogToStringConverter {
     private static String convertLogEntryNameEnglish(LogEntryName logEntryName) {
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
-                return "";
+                return "Highlighting";
             case ACTIVATE_FADEOUT:
-                return "";
+                return "Fadeout";
             case ADD_ANCHOR_POINTS:
-                return "";
+                return "Anchor points added";
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "";
+                return "Anchor points fadeout";
             case ADD_EDGES:
-                return "";
+                return "Undoing removing relations";
             case ADD_SPHERE:
-                return "";
+                return "Sphere added";
             case MOVE_SPHERE:
-                return "";
+                return "Sphere moved";
             case ADD_VERTICES:
-                return "";
+                return "Undoing adding symptoms";
             case REMOVE_EDGES:
-                return "";
+                return "Relations removed";
             case MOVE_VERTICES:
-                return "";
+                return "Symptoms moved";
             case REMOVE_SPHERE:
-                return "";
+                return "Sphere removed";
             case EDIT_EDGES_TYPE:
-                return "";
+                return "Changed the type of relations";
             case REMOVE_VERTICES:
-                return "";
+                return "Symptoms removed";
             case EDIT_EDGES_COLOR:
-                return "";
+                return "Changed the colour of relations";
             case EDIT_FONT_SPHERE:
-                return "";
+                return "Changed the font of a sphere";
             case EDIT_SPHERE_SIZE:
-                return "";
+                return "Changed the size a sphere";
             case EDIT_EDGES_STROKE:
-                return "";
+                return "Changed the ";
             case EDIT_SPHERE_COLOR:
                 return "";
             case DEACTIVATE_FADEOUT:
@@ -206,9 +209,9 @@ public class LogToStringConverter {
             case MOVE_VERTICES:
                 return objectMapper.readValue(parameters, MoveVerticesParam.class).toString();
             case REMOVE_SPHERE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, AddRemoveSphereParam.class).toString();
             case EDIT_EDGES_TYPE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditEdgesTypeParam.class).toString();
             case REMOVE_VERTICES:
                 return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
             case EDIT_EDGES_COLOR:
@@ -250,7 +253,6 @@ public class LogToStringConverter {
             case EDIT_VERTICES_LAYOUT:
                 return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
             default: throw new IllegalArgumentException();
-
         }
     }
 }
