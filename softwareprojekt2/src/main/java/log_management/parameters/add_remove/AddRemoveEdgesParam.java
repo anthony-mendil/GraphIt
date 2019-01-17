@@ -18,12 +18,12 @@ public class AddRemoveEdgesParam extends Param{
      * The set of edges(pair describes the respective start-vertex and sink-vertex) bound to their edge-type.
      */
     @Getter
-    private Map<Pair<Vertex,Vertex>,Edge> edges;
+    private Map<Vertex,Vertex> edges;
     /**
      * Creates an parameter object of its own class.
      * @param pEdges List of edges and their start/end vertex id.
      */
-    public AddRemoveEdgesParam(Map<Pair<Vertex,Vertex>,Edge> pEdges){
+    public AddRemoveEdgesParam(Map<Vertex,Vertex> pEdges){
         this.edges = pEdges;
     }
 

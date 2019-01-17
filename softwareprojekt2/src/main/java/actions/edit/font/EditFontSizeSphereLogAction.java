@@ -7,12 +7,17 @@ import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeSphereParam;
+import log_management.tables.Log;
 
 /**
  * Changes the font-size of annotations of a sphere.
  */
 public class EditFontSizeSphereLogAction extends LogAction {
+    /**
+     * Temporary size parameter.
+     */
     private int size;
     /**
      * Constructor in case the user changes the font-size of a sphere annotation.
@@ -31,17 +36,25 @@ public class EditFontSizeSphereLogAction extends LogAction {
      */
     public EditFontSizeSphereLogAction(EditFontSizeSphereParam pEditFontSizeSphereParam) {
         super(LogEntryName.EDIT_SPHERE_FONT_SIZE);
+        parameters = pEditFontSizeSphereParam;
     }
 
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
-
-        for (Sphere sp: pickedState.getPicked()) {
-            sp.setFontSize(size);
+        if(parameters == null) {
+            for (Sphere sp : pickedState.getPicked()) {
+                sp.setFontSize(size);
+            }
+        }else{
+            Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphereText();
+            int newFontSize = ((EditFontSizeSphereParam)parameters).getNewFontSize();
+            sphere.setFontSize(newFontSize);
         }
         vv.repaint();
+
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
     }
 
     @Override

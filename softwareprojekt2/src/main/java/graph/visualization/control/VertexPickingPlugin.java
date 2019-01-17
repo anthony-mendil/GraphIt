@@ -1,6 +1,7 @@
 package graph.visualization.control;
 
 import actions.ActionHistory;
+import actions.add.AddEdgesLogAction;
 import actions.add.AddVerticesLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.Layer;
@@ -40,7 +41,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
 
 
-    private ActionHistory history = ActionHistory.getInstance();
+    private ActionHistory history;
 
     /**
      * create an instance with passed values
@@ -160,8 +161,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     addNot = true;
                 }
             }
-            System.out.println(addNot);
-
             if (addNot) {
                 for (Vertex v : pickedState.getPicked()) {
                     Point2D vp = new Point2D.Double(points.get(v.getId()).getKey().getX(), points.get(v.getId())
@@ -171,7 +170,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 }
             } else {
                 for (Vertex v : pickedState.getPicked()) {
-                    System.out.println("picked");
                     Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
                             .getCoordinates());
                     Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
@@ -180,13 +178,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         LinkedList<Vertex> list = oldSphere.getVertices();
                         list.remove(v);
                         oldSphere.setVertices(list);
-                        System.out.println("oldSphere: "+oldSphere.getVertices());
 
                         LinkedList<Vertex> newList = s.getVertices();
                         newList.add(v);
                         s.setVertices(newList);
-                        System.out.println("sphere: "+s.getVertices());
-
                     }
                 }
             }
@@ -197,10 +192,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
         if (SwingUtilities.isRightMouseButton(e)) {
             if (vert != null && source != null && !source.equals(vert)) {
-                SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
-                graph.addEdge(source, vert);
+                Pair<Vertex, Vertex> edge = new Pair<>(source, vert);
+                AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
+                history.execute(addEdgesLogAction);
             }
-            vv.repaint();
         }
         source = null;
     }
