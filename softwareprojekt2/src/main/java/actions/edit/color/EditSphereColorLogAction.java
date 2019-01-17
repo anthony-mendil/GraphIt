@@ -60,7 +60,7 @@ public class EditSphereColorLogAction extends LogAction {
         }
         vv.repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
-        databaseManager.addEntryDatabase(this);
+        databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
     }
 

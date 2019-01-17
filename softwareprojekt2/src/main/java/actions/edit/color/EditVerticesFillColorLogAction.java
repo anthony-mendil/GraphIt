@@ -8,6 +8,7 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVerticesFillColorParam;
+import log_management.tables.Log;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -62,8 +63,9 @@ public class EditVerticesFillColorLogAction extends LogAction {
             }
         }
         vv.repaint();
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
-        databaseManager.addEntryDatabase(this);
+        databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
     }
 
