@@ -2,6 +2,7 @@ package actions.remove;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import graph.graph.Syndrom;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
 /**
@@ -16,7 +17,7 @@ public class RemoveEdgesLogAction extends LogAction {
      */
     public RemoveEdgesLogAction() {
         super(LogEntryName.REMOVE_EDGES);
-        throw new UnsupportedOperationException();
+
     }
 
     /**
@@ -27,7 +28,7 @@ public class RemoveEdgesLogAction extends LogAction {
      */
     public RemoveEdgesLogAction(AddRemoveEdgesParam pParam) {
         super(LogEntryName.REMOVE_EDGES);
-        throw new UnsupportedOperationException();
+        parameters = pParam;
     }
 
 

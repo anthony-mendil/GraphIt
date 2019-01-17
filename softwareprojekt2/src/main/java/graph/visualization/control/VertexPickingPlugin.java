@@ -1,6 +1,7 @@
 package graph.visualization.control;
 
 import actions.ActionHistory;
+import actions.add.AddEdgesLogAction;
 import actions.add.AddVerticesLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.Layer;
@@ -40,7 +41,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
 
 
-    private ActionHistory history = ActionHistory.getInstance();
+    private ActionHistory history;
 
     /**
      * create an instance with passed values
@@ -197,10 +198,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
         if (SwingUtilities.isRightMouseButton(e)) {
             if (vert != null && source != null && !source.equals(vert)) {
-                SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
-                graph.addEdge(source, vert);
+                Pair<Vertex, Vertex> edge = new Pair<>(source, vert);
+                AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
+                history.execute(addEdgesLogAction);
             }
-            vv.repaint();
         }
         source = null;
     }
