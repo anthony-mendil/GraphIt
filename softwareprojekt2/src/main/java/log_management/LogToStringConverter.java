@@ -18,7 +18,7 @@ public class LogToStringConverter {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.GERMAN) {
             try {
-                return "Id: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
+                return "Nummer: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
                         "Typ der Aktion: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + " Zeit: " + log.getTime().toString();
             } catch (IOException e) {
                 throw new IllegalStateException();
@@ -26,7 +26,7 @@ public class LogToStringConverter {
         }
         else if (language == Language.ENGLISH) {
             try {
-                return "Id: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
+                return "Number: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
                         "Type of Action: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + " Time: " + log.getTime().toString();
             } catch (IOException e) {
                 throw new IllegalArgumentException();
@@ -115,11 +115,11 @@ public class LogToStringConverter {
             case ACTIVATE_HIGHLIGHT:
                 return "Highlighting";
             case ACTIVATE_FADEOUT:
-                return "Fadeout";
+                return "Fade out";
             case ADD_ANCHOR_POINTS:
                 return "Anchor points added";
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "Anchor points fadeout";
+                return "Anchor points faded out";
             case ADD_EDGES:
                 return "Undoing removing relations";
             case ADD_SPHERE:
@@ -139,45 +139,45 @@ public class LogToStringConverter {
             case REMOVE_VERTICES:
                 return "Symptoms removed";
             case EDIT_EDGES_COLOR:
-                return "Changed the colour of relations";
+                return "Changed the color of relations";
             case EDIT_FONT_SPHERE:
                 return "Changed the font of a sphere";
             case EDIT_SPHERE_SIZE:
                 return "Changed the size a sphere";
             case EDIT_EDGES_STROKE:
-                return "Changed the ";
+                return "Changed the line type of relations";
             case EDIT_SPHERE_COLOR:
-                return "";
+                return "Changed the color of spheres";
             case DEACTIVATE_FADEOUT:
-                return "";
+                return "Fade in";
             case EDIT_FONT_VERTICES:
-                return "";
+                return "Changed the font of symptoms";
             case EDIT_VERTICES_FORM:
-                return "";
+                return "Changed the form of symptoms";
             case EDIT_VERTICES_SIZE:
-                return "";
+                return "Changed the size of symptoms";
             case REMOVE_ANCHOR_POINTS:
-                return "";
+                return "Anchor points removed";
             case EDIT_SPHERE_FONT_SIZE:
-                return "";
+                return "Changed font size of a sphere";
             case EDIT_SPHERE_ANNOTATION:
-                return "";
+                return "Changed annotation of a sphere";
             case EDIT_VERTEX_ANNOTATION:
-                return "";
+                return "Changed annotation of a symptom";
             case EDIT_VERTICES_FONT_SIZE:
-                return "";
+                return "Changed font size of symptoms";
             case EDIT_VERTICES_DRAW_COLOR:
-                return "";
+                return "Changed draw color of symptoms";
             case EDIT_VERTICES_FILL_COLOR:
-                return "";
+                return "Changed fill color of symptoms";
             case DEACTIVATE_HIGHLIGHT:
-                return "";
+                return "Turned of highlighting";
             case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "g";
+                return "Anchor points faded in";
             case EDIT_SPHERES_LAYOUT:
-                return "";
+                return "Changed Layout of a sphere";
             case EDIT_VERTICES_LAYOUT:
-                return "";
+                return "Changed Layout of symptoms";
             default: throw new IllegalArgumentException();
 
         }
@@ -213,45 +213,45 @@ public class LogToStringConverter {
             case EDIT_EDGES_TYPE:
                 return objectMapper.readValue(parameters, EditEdgesTypeParam.class).toString();
             case REMOVE_VERTICES:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, AddRemoveVerticesParam.class).toString();
             case EDIT_EDGES_COLOR:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditEdgesColorParam.class).toString();
             case EDIT_FONT_SPHERE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditFontSphereParam.class).toString();
             case EDIT_SPHERE_SIZE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditSphereSizeParam.class).toString();
             case EDIT_EDGES_STROKE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditEdgesStrokeParam.class).toString();
             case EDIT_SPHERE_COLOR:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditSphereColorParam.class).toString();
             case DEACTIVATE_FADEOUT:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, ActivateDeactivateFadeoutParam.class).toString();
             case EDIT_FONT_VERTICES:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditFontVerticesParam.class).toString();
             case EDIT_VERTICES_FORM:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditVerticesFormParam.class).toString();
             case EDIT_VERTICES_SIZE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditVerticesSizeParam.class).toString();
             case REMOVE_ANCHOR_POINTS:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, AddRemoveAnchorPointsParam.class).toString();
             case EDIT_SPHERE_FONT_SIZE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditFontSizeSphereParam.class).toString();
             case EDIT_SPHERE_ANNOTATION:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditSphereAnnotationParam.class).toString();
             case EDIT_VERTEX_ANNOTATION:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditVertexAnnotationParam.class).toString();
             case EDIT_VERTICES_FONT_SIZE:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditFontSizeVerticesParam.class).toString();
             case EDIT_VERTICES_DRAW_COLOR:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditVerticesDrawColorParam.class).toString();
             case EDIT_VERTICES_FILL_COLOR:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, EditVerticesFillColorParam.class).toString();
             case DEACTIVATE_HIGHLIGHT:
                 return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
             case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).toString();
             case EDIT_VERTICES_LAYOUT:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return objectMapper.readValue(parameters, LayoutVerticesParam.class).toString();
             default: throw new IllegalArgumentException();
         }
     }

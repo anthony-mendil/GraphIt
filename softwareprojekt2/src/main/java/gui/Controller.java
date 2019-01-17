@@ -11,6 +11,7 @@ import actions.edit.font.EditFontSphereLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
 import actions.edit.form.EditVerticesFormLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
+import actions.edit.size.EditVerticesSizeLogAction;
 import actions.export_graph.ExportGxlAction;
 import actions.export_graph.ExportOofAction;
 import actions.export_graph.ExportPdfAction;
@@ -21,7 +22,7 @@ import actions.other.CreateGraphAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
 import graph.graph.FunctionMode;
-import graph.graph.SphereSizeChange;
+import graph.graph.SizeChange;
 import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
 import io.GXLio;
@@ -969,7 +970,7 @@ public class Controller implements ObserverSyndrom{
     }
 
     public void fontSizeVertex2(){
-        editFontSizeVertices(14);
+        editFontSizeVertices(30);
     }
 
     /* ......form..... */
@@ -1423,21 +1424,23 @@ public class Controller implements ObserverSyndrom{
     }
 
     public void sphereEnlarge(ActionEvent actionEvent){
-        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.ENLARGE);
+        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
         editSphereSizeLogAction.action();
     }
 
     public void sphereShrink(ActionEvent actionEvent){
-        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.SHRINK);
+        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
         editSphereSizeLogAction.action();
     }
 
     public void vertexEnlarge(){
-
+        EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.ENLARGE);
+        history.execute(editVerticesSizeLogAction);
     }
 
     public void vertexShrink(){
-
+        EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.SHRINK);
+        history.execute(editVerticesSizeLogAction);
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {

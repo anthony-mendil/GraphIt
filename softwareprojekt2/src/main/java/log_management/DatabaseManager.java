@@ -1,6 +1,5 @@
 package log_management;
 
-import actions.LogAction;
 import actions.ObserverSyndrom;
 import com.google.inject.Singleton;
 import graph.graph.FunctionMode;
@@ -36,7 +35,7 @@ public class DatabaseManager implements ObserverSyndrom {
     /**
      * The current graph object.
      */
-    private static Graph graph;
+    private Graph graph;
 
     /**
      * The current mode.
@@ -72,14 +71,8 @@ public class DatabaseManager implements ObserverSyndrom {
         logDao.save(log);
     }
 
-    /**
-     * Setup for the database.
-     */
-    public void setup() {
-        Graph graph = new Graph();
-        graph.setGxl(gxlIo.gxlFromInstance());
-        graphDao.save(graph);
-        setGraph(graph);
+    public void saveOofLogs(String oofLogs) {
+        logDao.saveLogs(oofLogs);
     }
 
     @Override
@@ -100,14 +93,10 @@ public class DatabaseManager implements ObserverSyndrom {
 
     @Override
     public void updateNewGraph() {
-        setup();
+        Graph graph = new Graph();
+        graph.setGxl(gxlIo.gxlFromInstance());
+        graphDao.save(graph);
+        setGraph(graph);
     }
 
-    public static void setGraph(Graph graph) {
-        DatabaseManager.graph = graph;
-    }
-
-    public static Graph getGraph() {
-        return graph;
-    }
 }
