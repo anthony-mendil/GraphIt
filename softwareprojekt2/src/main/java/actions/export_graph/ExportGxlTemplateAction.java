@@ -1,27 +1,29 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import graph.graph.Syndrom;
 import io.GXLio;
 
 import java.io.File;
 
 /**
- * Imports a GXL file.
+ * Exports a GXL file with the current syndrom graph.
  */
-public class ImportGxlAction extends GraphAction {
+public class ExportGxlTemplateAction extends GraphAction {
 
     /**
-     * The File the gxl get's taken from
+     * The File the gxl template get's written into
      */
     private File file;
 
     /**
-     * Action handling for importing the graph as GXL file.
+     * Constructs action handling for exporting the graph as GXL template file.
      *
-     * @param pFile The File that the GXL is imported from.
+     * @param pFile The destination of the gxl-file
      */
-    public ImportGxlAction(File pFile) {
+    public ExportGxlTemplateAction(File pFile) {
         file=pFile;
+        Syndrom.getInstance().getVv().getPickedSphereState().clear();
     }
 
     /**
@@ -30,7 +32,7 @@ public class ImportGxlAction extends GraphAction {
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
-        gxlio.importGXL(file);
+        gxlio.exportGXLTemplate(file);
     }
 
     /**

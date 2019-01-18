@@ -12,10 +12,7 @@ import actions.edit.font.EditFontVerticesLogAction;
 import actions.edit.form.EditVerticesFormLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
 import actions.edit.size.EditVerticesSizeLogAction;
-import actions.export_graph.ExportGxlAction;
-import actions.export_graph.ExportOofAction;
-import actions.export_graph.ExportPdfAction;
-import actions.export_graph.PrintPDFAction;
+import actions.export_graph.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
@@ -25,8 +22,6 @@ import graph.graph.FunctionMode;
 import graph.graph.SizeChange;
 import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
-import io.GXLio;
-import io.OOFio;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingNode;
@@ -36,8 +31,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -1034,8 +1029,8 @@ public class Controller implements ObserverSyndrom{
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        OOFio oofio = new OOFio();
-        oofio.importOOF(file);
+        ImportOofAction importOofAction=new ImportOofAction(file);
+        importOofAction.action();
     }
 
     /**
@@ -1047,8 +1042,8 @@ public class Controller implements ObserverSyndrom{
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        GXLio gxlio = new GXLio();
-        gxlio.importGXL(file);
+        ImportGxlAction importGxlAction=new ImportGxlAction(file);
+        importGxlAction.action();
     }
 
     /**
