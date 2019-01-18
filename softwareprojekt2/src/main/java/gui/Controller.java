@@ -39,9 +39,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -707,7 +709,7 @@ public class Controller implements ObserverSyndrom{
     private boolean analysisMode = false;
 
     @FXML
-    private Pane paneSwingNode;
+    private StackPane paneSwingNode;
 
     @FXML
     private BorderPane root;
@@ -1257,10 +1259,20 @@ public class Controller implements ObserverSyndrom{
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             if(canvas.getContent() != null) {
-                System.out.println("Width:"+paneSwingNode.getWidth());
-                syndrom.getGzsp().setSize((int) paneSwingNode.getWidth(),(int)paneSwingNode.getHeight());
-                syndrom.getGzsp().getVisibleRect().setSize((int) paneSwingNode.getWidth(), (int)paneSwingNode.getHeight());
+                /* Update Test1 Scrollbars sind immer noch am arsch
+                syndrom.getGzsp().revalidate();
+                syndrom.getGzsp().repaint();
+                */
 
+                /* Update Test2 kp hat nichts gebracht
+                syndrom.getGzsp().updateUI();
+                */
+
+                /* Update Test3 "Schwarze Bereiche beim Scrollen"
+                canvas.setContent(syndrom.getGzsp());
+                */
+
+                /* Die Splitpane die unsere SwingNode(canvas) beinhaltet: paneSwingNode */
             }
         }
     };
@@ -1269,10 +1281,19 @@ public class Controller implements ObserverSyndrom{
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             if(canvas.getContent() != null){
-                System.out.println("Height:"+paneSwingNode.getHeight());
-                syndrom.getGzsp().setSize((int) paneSwingNode.getWidth(),(int)paneSwingNode.getHeight());
-                syndrom.getVv().setSize((int) paneSwingNode.getWidth(), (int) paneSwingNode.getHeight());
+
+                /* Update Test1 Scrollbars sind immer noch am arsch
+                syndrom.getGzsp().revalidate();
+                syndrom.getGzsp().repaint();
+                */
+
+                /* Update Test2 kp hat nichts gebracht
+                syndrom.getGzsp().updateUI();
+                */
+
+                /* Update Test3 "Schwarze Bereiche beim Scrollen"
                 canvas.setContent(syndrom.getGzsp());
+                */
             }
         }
     };
