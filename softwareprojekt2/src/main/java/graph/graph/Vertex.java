@@ -3,6 +3,7 @@ package graph.graph;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
+import org.codehaus.jackson.annotate.JsonValue;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -94,6 +95,19 @@ public class Vertex {
     @NonNull
     private int fontSize;
 
+    /**
+     * Creates a new vertex.
+     * @param id The identification of the vertex.
+     * @param fillPaint The inner colour of the vertex.
+     * @param coordinates The cooridnates of the vertex.
+     * @param shape The shape of the vertex.
+     * @param annotation The annotation of the vertex.
+     * @param drawPaint The colour of the boundary.
+     * @param size The size of the vertex.
+     * @param font The font of the annotation of the vertex.
+     * @param fontSize The font size of the annotation of the vertex.
+     */
+
     public Vertex(int id, Paint fillPaint, Point2D coordinates, VertexShapeType shape, Map<String, String>
             annotation, Paint drawPaint, int size, String font, int fontSize ){
         this.id = id;
@@ -111,7 +125,18 @@ public class Vertex {
         isVisible = true;
     }
 
+    /**
+     * Checks whether two vertices are the same.
+     * @param v the target vertex.
+     * @return judgement, whether the vertices are equal.
+     */
     public boolean equals(Vertex v){
         return this.id == v.id;
     }
+    @Override
+    @JsonValue
+    public String toString(){
+        return Integer.toString(id);
+    }
+
 }

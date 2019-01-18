@@ -1,6 +1,6 @@
 package graph.graph;
 
-public enum SphereSizeChange {
+public enum SizeChange {
     ENLARGE,
     SHRINK
 }

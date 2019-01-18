@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.codehaus.jackson.map.ObjectMapper;
 
+
 import java.time.LocalDateTime;
 
 /**
@@ -44,7 +45,7 @@ public abstract class LogAction extends GraphAction {
 
     public Log createLog() {
         Log log = new Log();
-        log.setGraph(DatabaseManager.getGraph());
+        log.setGraph(DatabaseManager.getInstance().getGraph());
         log.setLogEntryName(logEntryName);
         log.setTime(time);
 

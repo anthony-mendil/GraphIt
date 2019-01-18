@@ -52,7 +52,7 @@ public class GraphObjectsFactory {
     public Vertex createVertex(Point2D position) {
         int id = objectCounter++;
         Paint fillPaint = values.getFillPaintVertex();
-        Paint drawPaint = values.getDrawPaintVertex();
+        Color drawPaint = values.getDrawPaintVertex();
         Map<String, String> annotation = values.getDefaultAnnotationVertex();
         String font = values.getFontVertex();
         int fontSize = values.getFontSizeVertex();
@@ -69,7 +69,7 @@ public class GraphObjectsFactory {
     public Vertex createTestVertex(Point2D position) {
         int id = -1;
         Paint fillPaint = values.getFillPaintVertex();
-        Paint drawPaint = values.getDrawPaintVertex();
+        Color drawPaint = values.getDrawPaintVertex();
         Map<String, String> annotation = values.getDefaultAnnotationVertex();
         String font = values.getFontVertex();
         int fontSize = values.getFontSizeVertex();
@@ -86,7 +86,7 @@ public class GraphObjectsFactory {
      */
     public Sphere createSphere(Point2D position) {
         int id = objectCounter++;
-        Paint fillPaint = values.getFillPaintSphere();
+        Color fillPaint = values.getFillPaintSphere();
         double width = values.getDefaultWidthSphere();
         double height = values.getDefaultHeightSphere();
         Map<String, String> annotation = values.getDefaultAnnotationSphere();

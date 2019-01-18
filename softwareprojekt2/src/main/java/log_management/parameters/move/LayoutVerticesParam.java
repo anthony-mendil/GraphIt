@@ -13,7 +13,7 @@ import java.util.Map;
  * Parameter object for LayoutSphereGraphLogAction, changes the position of the vertices.
  */
 @Data
-public class LayoutParam extends Param {
+public class LayoutVerticesParam extends Param {
     /**
      * The vertices containing their old position.
      */
@@ -32,7 +32,7 @@ public class LayoutParam extends Param {
      * @param pOldPosition Map of vertices containing their old positions.
      * @param pNewPosition Map of vertices containing their new positions.
      */
-    public LayoutParam(Map<Vertex, Point2D> pOldPosition, Map<Vertex, Point2D> pNewPosition) {
+    public LayoutVerticesParam(Map<Vertex, Point2D> pOldPosition, Map<Vertex, Point2D> pNewPosition) {
         this.oldVertices = pOldPosition;
         this.newVertices = pNewPosition;
     }

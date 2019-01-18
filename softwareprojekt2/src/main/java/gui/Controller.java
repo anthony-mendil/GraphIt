@@ -11,6 +11,7 @@ import actions.edit.font.EditFontSphereLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
 import actions.edit.form.EditVerticesFormLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
+import actions.edit.size.EditVerticesSizeLogAction;
 import actions.export_graph.ExportGxlAction;
 import actions.export_graph.ExportOofAction;
 import actions.export_graph.ExportPdfAction;
@@ -21,26 +22,35 @@ import actions.other.CreateGraphAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
 import graph.graph.FunctionMode;
-import graph.graph.SphereSizeChange;
+import graph.graph.SizeChange;
 import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
 import io.GXLio;
 import io.OOFio;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
 
@@ -169,6 +179,12 @@ public class Controller implements ObserverSyndrom{
     private Button templateButton;
 
     /**
+     * A separator in the menu bar
+     */
+    @FXML
+    private Separator menubarSeparator3;
+
+    /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
      */
     private TextField maxSphereField;
@@ -236,7 +252,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield that sets the amount of predecessor/successor symptoms in the analysis/interpreter mode.
      */
-    private TextField amountSphereField;
+    @FXML
+    private TextField amountSymptomTextField;
 
     //Edge
 
@@ -273,7 +290,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield that sets the amount of originating or incoming edges.
      */
-    private TextField amountEdgeField;
+    @FXML
+    private TextField amountEdgeTextField;
 
     //Filter
     /**
@@ -353,7 +371,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield for changing the font of the sphere text.
      */
-    private TextField sphereFontField;
+    @FXML
+    private TextField sphereSizeTextField;
 
     /**
      * The menuitem for changing the font of the sphere text to a specific font.
@@ -487,7 +506,8 @@ public class Controller implements ObserverSyndrom{
     /**
      * The textfield for changing the size of the symptom text.
      */
-    private TextField symptomSizeField;
+    @FXML
+    private TextField symptomSizeTextField;
 
     /**
      * The menuitem for changing the size of the symptom text to a specific size.
@@ -681,7 +701,6 @@ public class Controller implements ObserverSyndrom{
     @FXML
     private VBox vBoxEditEdge;
 
-
     /**
      * Checking if gui is in edit mode
      */
@@ -692,8 +711,23 @@ public class Controller implements ObserverSyndrom{
      */
     private boolean analysisMode = false;
 
+    @FXML
+    private Pane paneSwingNode;
+
+    @FXML
+    private BorderPane root;
+
+    private Stage mainStage;
+
+    private Stage templateStage = new Stage();
 
     public Controller(){
+    }
+
+    public void setStage(Stage pStage){
+        mainStage = pStage;
+        templateStage.initOwner(mainStage);
+        templateStage.initModality(Modality.APPLICATION_MODAL);
     }
 
     public Text getCurrentActionText(){
@@ -936,7 +970,7 @@ public class Controller implements ObserverSyndrom{
     }
 
     public void fontSizeVertex2(){
-        editFontSizeVertices(14);
+        editFontSizeVertices(30);
     }
 
     /* ......form..... */
@@ -967,7 +1001,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportGxlAction exportGxlAction = new ExportGxlAction(file);
         exportGxlAction.action();
     }
@@ -979,7 +1013,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("PDF files (*.pdf)","*.pdf");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportPdfAction exportPdfAction =new ExportPdfAction(file);
         exportPdfAction.action();
     }
@@ -991,7 +1025,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(null);
+        File file = fileChooser.showSaveDialog(mainStage);
         ExportOofAction exportOofAction = new ExportOofAction(file);
         exportOofAction.action();
     }
@@ -1004,7 +1038,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(mainStage);
         OOFio oofio = new OOFio();
         oofio.importOOF(file);
     }
@@ -1017,7 +1051,7 @@ public class Controller implements ObserverSyndrom{
         FileChooser fileChooser= new FileChooser();
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(mainStage);
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file);
     }
@@ -1092,7 +1126,9 @@ public class Controller implements ObserverSyndrom{
     /**
      *  Calls the undo-method from the action history.
      */
-    public void executeUndo(){throw new UnsupportedOperationException();}
+    public void executeUndo(){
+        history.undo();
+    }
 
     /**
      *  Calls the redo-method from the action history.
@@ -1117,24 +1153,25 @@ public class Controller implements ObserverSyndrom{
     /**
      *  Opens a dialog window after pressing "open file", "import gxl" or "create new graph", that asks if the user wants to
      *  export their current opened file.
-     */
+
     private void openExportConfirmationDialogWindow(){throw new UnsupportedOperationException();}
 
     /**
      *  Opens a dialog window after pressing "create new graph", that allows the user to name the
      *  graph.
-     */
+
     private void openNewGraphTextInputDialogWindow(){throw new UnsupportedOperationException();}
 
     /**
      *  Opens a file search window after pressing "open file" or "import gxl".
-     */
+
     private void openSearchFileChooserWindow(){throw new UnsupportedOperationException();}
 
     /**
      *  Opens a directory window to save the file under the desired location after pressing "saving under..".
-     */
+
     private void openSaveUnderChooserWindow(){throw new UnsupportedOperationException();}
+     */
 
     /* ----------------REMOVE---------------------- */
 
@@ -1183,11 +1220,18 @@ public class Controller implements ObserverSyndrom{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
         fxmlLoader.setController(this);
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setScene(new Scene(fxmlLoader.load(),420,300));
-        stage.setTitle("Vorlagenregeln");
-        stage.show();
+        templateStage.setResizable(false);
+        templateStage.setScene(new Scene(fxmlLoader.load()));
+        templateStage.setTitle("Vorlagenregeln");
+        templateStage.setAlwaysOnTop(true);
+        templateStage.show();
+    }
+
+    public void closeTemplateWindow(){
+        if(templateStage.isShowing()){
+            templateStage.hide();
+            templateStage.close();
+        }
     }
 
     /* ----------------INTERNAL---------------------- */
@@ -1204,6 +1248,66 @@ public class Controller implements ObserverSyndrom{
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
         hideAnalysisMode();
         editButton.setDisable(true);
+
+        sphereSizeTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")){
+                    sphereSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
+                }
+            }
+        });
+
+        symptomSizeTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")){
+                    symptomSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
+                }
+            }
+        });
+
+        amountSymptomTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")){
+                    amountSymptomTextField.setText(newValue.replaceAll("[^\\d]",""));
+                }
+
+                if(amountSymptomTextField.getText().length() > 3){
+                    amountSymptomTextField.setText(amountSymptomTextField.getText(0,3));
+                }
+            }
+        });
+
+        paneSwingNode.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println(paneSwingNode.getHeight());
+            }
+        });
+
+        paneSwingNode.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println(paneSwingNode.getWidth());
+            }
+        });
+
+    }
+
+    private class TextFieldListener implements ChangeListener<String>{
+        private final TextField textField;
+        TextFieldListener(TextField ptextField){
+            this.textField = ptextField;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            if(textField.equals(amountEdgeTextField)){
+
+            }
+        }
     }
 
     private void hideAnalysisMode(){
@@ -1237,6 +1341,9 @@ public class Controller implements ObserverSyndrom{
         separator2.setVisible(false);
         separator2.setManaged(false);
 
+        menubarSeparator3.setVisible(false);
+        menubarSeparator3.setManaged(false);
+
         vBoxEditSphere.setVisible(false);
         vBoxEditSphere.setManaged(false);
 
@@ -1245,6 +1352,9 @@ public class Controller implements ObserverSyndrom{
 
         vBoxEditEdge.setVisible(false);
         vBoxEditEdge.setManaged(false);
+
+        templateButton.setVisible(false);
+        templateButton.setManaged(false);
     }
 
     private void showAnalysisMode(){
@@ -1277,6 +1387,9 @@ public class Controller implements ObserverSyndrom{
         separator2.setVisible(true);
         separator2.setManaged(true);
 
+        menubarSeparator3.setVisible(true);
+        menubarSeparator3.setManaged(true);
+
         vBoxEditSphere.setVisible(true);
         vBoxEditSphere.setManaged(true);
 
@@ -1285,6 +1398,9 @@ public class Controller implements ObserverSyndrom{
 
         vBoxEditEdge.setVisible(true);
         vBoxEditEdge.setManaged(true);
+
+        templateButton.setVisible(true);
+        templateButton.setManaged(true);
     }
 
     /**
@@ -1318,21 +1434,23 @@ public class Controller implements ObserverSyndrom{
     }
 
     public void sphereEnlarge(ActionEvent actionEvent){
-        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.ENLARGE);
+        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
         editSphereSizeLogAction.action();
     }
 
     public void sphereShrink(ActionEvent actionEvent){
-        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SphereSizeChange.SHRINK);
+        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
         editSphereSizeLogAction.action();
     }
 
     public void vertexEnlarge(){
-
+        EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.ENLARGE);
+        history.execute(editVerticesSizeLogAction);
     }
 
     public void vertexShrink(){
-
+        EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.SHRINK);
+        history.execute(editVerticesSizeLogAction);
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {

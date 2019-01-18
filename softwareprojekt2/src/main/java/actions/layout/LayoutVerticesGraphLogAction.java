@@ -27,7 +27,7 @@ public class LayoutVerticesGraphLogAction extends LogAction {
      * Layouts the graph (including all vertices) according to the defined layout.
      */
     public LayoutVerticesGraphLogAction() {
-        super(LogEntryName.EDIT_LAYOUT);
+        super(LogEntryName.EDIT_VERTICES_LAYOUT);
     }
 
     //@Override

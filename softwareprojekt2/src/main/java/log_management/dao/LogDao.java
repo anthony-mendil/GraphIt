@@ -7,6 +7,7 @@ import log_management.tables.Log;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -39,7 +40,7 @@ public class LogDao implements Dao<Log> {
     public List<Log> getAll() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -57,7 +58,7 @@ public class LogDao implements Dao<Log> {
     public String getAllString() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -89,6 +90,17 @@ public class LogDao implements Dao<Log> {
         entityManager.getTransaction().commit();
     }
 
+    public  void saveLogs(String oofLogs) {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Log> logs;
+        try {
+            logs = mapper.readValue(oofLogs, List.class);
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+        logs.forEach(log -> save(log));
+    }
+
     @Override
     public void update(Log log) {
         EntityManager entityManager = PersonalEntityManager.getInstance();
@@ -111,7 +123,7 @@ public class LogDao implements Dao<Log> {
     public List<Log> getLogType(LogEntryName logEntryName) throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -131,7 +143,7 @@ public class LogDao implements Dao<Log> {
     public List<String> getLogTypeString(LogEntryName logEntryName) throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -156,7 +168,7 @@ public class LogDao implements Dao<Log> {
     public List<String> getAllStrings() throws NoSuchElementException {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
-        Graph graph = DatabaseManager.getGraph();
+        Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
             throw new NoSuchElementException();
         }

@@ -1,6 +1,7 @@
 package log_management.tables;
 
 import actions.LogEntryName;
+import log_management.LogToStringConverter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -134,10 +135,10 @@ public class Log {
      * Combines all informations about this log entry into one
      * readable text.
      *
-     * @return The formated informations about this log entry.
+     * @return The formatted information about this log entry.
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        return LogToStringConverter.convert(this);
     }
 }

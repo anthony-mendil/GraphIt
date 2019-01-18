@@ -35,11 +35,13 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"));
         Controller controller = new Controller();
+        controller.setStage(primaryStage);
         loader.setController(controller);
         Values.getInstance().setNamespace(loader.getNamespace());
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
-        primaryStage.setScene(new Scene(borderPane, 1280, 720));
+        primaryStage.setScene(new Scene(borderPane));
+        primaryStage.setMaximized(true);
         //primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
     }
