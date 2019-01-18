@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import log_management.dao.PersonalEntityManager;
 import lombok.Getter;
@@ -12,12 +13,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import static javafx.application.Application.launch;
-
 /**
  * Starts the whole application.
  */
-public class Main extends Application{
+public class Main extends Application {
 
     /**
      * The window of the application.
@@ -25,11 +24,13 @@ public class Main extends Application{
     @Getter
     private Stage primary;
 
+    public static Font font_Roboto;
+
     /**
      * Loads the gui with a fxml loader, sets the title of the application
      * and the window size.
      *
-     * @param primaryStage  The window of the application.
+     * @param primaryStage The window of the application.
      * @throws Exception If the loading of the fxml file fails.
      */
     public void start(Stage primaryStage) throws Exception {
@@ -44,10 +45,36 @@ public class Main extends Application{
         //primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
         primaryStage.setMaximized(true);
+
+
+        //Font initialization
+
+        /*initFonts();
+
+
+        Pane root = new Pane();
+        TextArea t = new TextArea("Roboto");
+        t.setFont(font_Roboto);
+        root.getChildren().addAll(t);
+
+        Scene scene = new Scene(root, 250, 220, Color.WHITESMOKE);
+        primaryStage.setTitle("Absolute layout");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
     }
 
+    private static void initFonts(){
+        try {
+            font_Roboto = Font.loadFont("file:fonts/Roboto-Bold.ttf", 25);
+            System.out.println(font_Roboto.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/}
     /**
      * Starts the application.
+     *
      * @param args The java command line arguments that is needed to start the application.
      */
     public static void main(String[] args) {
@@ -60,5 +87,7 @@ public class Main extends Application{
         EntityManager entityManager = PersonalEntityManager.getInstance();
         entityManager.getEntityManagerFactory().close();
         entityManager.close();
+
+
     }
 }
