@@ -25,10 +25,13 @@ import graph.graph.FunctionMode;
 import graph.graph.SizeChange;
 import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
+import impl.org.controlsfx.skin.AutoCompletePopup;
 import io.GXLio;
 import io.OOFio;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -39,10 +42,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -50,6 +51,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
+import org.controlsfx.control.textfield.TextFields;
 
 import javax.swing.*;
 import java.awt.*;
@@ -718,6 +720,12 @@ public class Controller implements ObserverSyndrom{
 
     private Stage templateStage = new Stage();
 
+    @FXML
+    private ComboBox sizeSphereComboBox;
+
+    @FXML
+    private ComboBox sizeSymptomComboBox;
+
     public Controller(){
     }
 
@@ -1248,11 +1256,18 @@ public class Controller implements ObserverSyndrom{
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
-        amountSymptomTextField.textProperty().addListener(new TextFieldListener(amountSymptomTextField));
+        /*amountSymptomTextField.textProperty().addListener(new TextFieldListener(amountSymptomTextField));
         amountEdgeTextField.textProperty().addListener(new TextFieldListener(amountEdgeTextField));
         sphereSizeTextField.textProperty().addListener(new TextFieldListener(sphereSizeTextField));
         symptomSizeTextField.textProperty().addListener(new TextFieldListener(symptomSizeTextField));
+        */
 
+        loadComboBox(sizeSphereComboBox);
+        loadComboBox(sizeSymptomComboBox);
+        sizeSphereComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSphereComboBox));
+        sizeSymptomComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSymptomComboBox));
+        TextFields.bindAutoCompletion(sizeSphereComboBox.getEditor(), sizeSphereComboBox.getItems()).setPrefWidth(45);
+        TextFields.bindAutoCompletion(sizeSymptomComboBox.getEditor(), sizeSymptomComboBox.getItems()).setPrefWidth(45);
     }
 
     ChangeListener<Number> widthListener = new ChangeListener<Number>() {
@@ -1298,22 +1313,43 @@ public class Controller implements ObserverSyndrom{
         }
     };
 
-    private class TextFieldListener implements ChangeListener<String>{
-        private final TextField textField;
-        TextFieldListener(TextField pTextField){
-            this.textField = pTextField;
+    private class ComboBoxListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+        ComboBoxListener(ComboBox pComboBox){
+            this.comboBox = pComboBox;
         }
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
                 if(!newValue.matches("\\d*")){
-                    textField.setText(newValue.replaceAll("[^\\d]",""));
+                    comboBox.getEditor().setText(oldValue);
                 }
 
-                if(textField.getText().length() > 3) {
-                    textField.setText(textField.getText(0, 3));
+                if(comboBox.getEditor().getText().length() > 3) {
+                    comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
                 }
         }
+    }
+
+    private void loadComboBox(ComboBox comboBox){
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12",
+                        "14",
+                        "18",
+                        "24",
+                        "30",
+                        "36",
+                        "48",
+                        "60",
+                        "72",
+                        "96"
+                );
+        comboBox.setItems(options);
     }
 
     private void analysisMode(Boolean active){

@@ -7,13 +7,13 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToolBar?>
@@ -30,7 +30,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -293,44 +293,22 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </Separator>
-                              <SplitMenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0">
-                                 <items>
-                                    <MenuItem fx:id="sphereFont1" mnemonicParsing="false" onAction="#sphereFont1" text="Times New Roman" />
-                                    <MenuItem fx:id="sphereFont2" mnemonicParsing="false" onAction="#sphereFont2" text="Comic Sans Ms" />
-                                 </items>
+                              <ComboBox fx:id="fontSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
                                     <Tooltip text="Schriftart" />
                                  </tooltip>
-                                 <graphic>
-                                    <TextField focusTraversable="false" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="68.0" text="Calibri">
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                    </TextField>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0">
-                                 <items>
-                                    <MenuItem fx:id="fontSize1" mnemonicParsing="false" onAction="#fontSize1" text="13" />
-                                    <MenuItem fx:id="fontSize2" mnemonicParsing="false" onAction="#fontSize2" text="14" />
-                                 </items>
-                                 <tooltip>
-                                    <Tooltip text="Schriftgröße" />
-                                 </tooltip>
-                                 <graphic>
-                                    <TextField fx:id="sphereSizeTextField" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="35.0" text="12">
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                    </TextField>
-                                 </graphic>
+                              </ComboBox>
+                              <ComboBox fx:id="sizeSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="Schriftgröße">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
-                              </SplitMenuButton>
+                                 <tooltip>
+                                    <Tooltip text="Schriftgröße" />
+                                 </tooltip>
+                              </ComboBox>
                               <Button fx:id="sphereAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -510,44 +488,22 @@
                                     <Insets bottom="1.0" left="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <SplitMenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0">
-                                 <items>
-                                    <MenuItem fx:id="vertexFont1" mnemonicParsing="false" onAction="#vertexFont1" text="Times New Roman" />
-                                    <MenuItem fx:id="vertexFont2" mnemonicParsing="false" onAction="#vertexFont2" text="Comic Sans Ms" />
-                                 </items>
+                              <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
                                  <tooltip>
                                     <Tooltip text="Schriftart" />
                                  </tooltip>
-                                 <graphic>
-                                    <TextField focusTraversable="false" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="68.0" text="Calibri">
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                    </TextField>
-                                 </graphic>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
-                              </SplitMenuButton>
-                              <SplitMenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0">
-                                 <items>
-                                    <MenuItem fx:id="fontSizeVertex1" mnemonicParsing="false" onAction="#fontSizeVertex1" text="13" />
-                                    <MenuItem fx:id="fontSizeVertex2" mnemonicParsing="false" onAction="#fontSizeVertex2" text="14" />
-                                 </items>
+                              </ComboBox>
+                              <ComboBox fx:id="sizeSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="Schriftgröße">
                                  <tooltip>
                                     <Tooltip text="Schriftgröße" />
                                  </tooltip>
-                                 <graphic>
-                                    <TextField fx:id="symptomSizeTextField" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="35.0" text="12">
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                    </TextField>
-                                 </graphic>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
-                              </SplitMenuButton>
+                              </ComboBox>
 
                            </children>
                            <VBox.margin>
