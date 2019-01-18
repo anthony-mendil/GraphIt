@@ -1153,24 +1153,25 @@ public class Controller implements ObserverSyndrom{
     /**
      *  Opens a dialog window after pressing "open file", "import gxl" or "create new graph", that asks if the user wants to
      *  export their current opened file.
-     */
+
     private void openExportConfirmationDialogWindow(){throw new UnsupportedOperationException();}
 
     /**
      *  Opens a dialog window after pressing "create new graph", that allows the user to name the
      *  graph.
-     */
+
     private void openNewGraphTextInputDialogWindow(){throw new UnsupportedOperationException();}
 
     /**
      *  Opens a file search window after pressing "open file" or "import gxl".
-     */
+
     private void openSearchFileChooserWindow(){throw new UnsupportedOperationException();}
 
     /**
      *  Opens a directory window to save the file under the desired location after pressing "saving under..".
-     */
+
     private void openSaveUnderChooserWindow(){throw new UnsupportedOperationException();}
+     */
 
     /* ----------------REMOVE---------------------- */
 
@@ -1272,14 +1273,9 @@ public class Controller implements ObserverSyndrom{
                 if(!newValue.matches("\\d*")){
                     amountSymptomTextField.setText(newValue.replaceAll("[^\\d]",""));
                 }
-            }
-        });
 
-        amountEdgeTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")){
-                    amountEdgeTextField.setText(newValue.replaceAll("[^\\d]",""));
+                if(amountSymptomTextField.getText().length() > 3){
+                    amountSymptomTextField.setText(amountSymptomTextField.getText(0,3));
                 }
             }
         });
@@ -1298,6 +1294,20 @@ public class Controller implements ObserverSyndrom{
             }
         });
 
+    }
+
+    private class TextFieldListener implements ChangeListener<String>{
+        private final TextField textField;
+        TextFieldListener(TextField ptextField){
+            this.textField = ptextField;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            if(textField.equals(amountEdgeTextField)){
+
+            }
+        }
     }
 
     private void hideAnalysisMode(){
