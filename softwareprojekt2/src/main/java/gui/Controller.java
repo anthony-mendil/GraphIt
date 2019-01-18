@@ -27,8 +27,6 @@ import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
 import io.GXLio;
 import io.OOFio;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingNode;
@@ -37,20 +35,17 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
 
@@ -1088,8 +1083,8 @@ public class Controller implements ObserverSyndrom{
      */
     public void switchModiEditor() {
         if(analysisMode){
-            hideAnalysisMode();
-            showEditMode();
+            analysisMode(false);
+            editMode(true);
             editButton.setDisable(true);
             analysisButton.setDisable(false);
             editMode = true;
@@ -1103,8 +1098,8 @@ public class Controller implements ObserverSyndrom{
      */
     public void switchModiAnalysis(){
         if(editMode){
-            hideEditMode();
-            showAnalysisMode();
+            editMode(false);
+            analysisMode(true);
             editButton.setDisable(false);
             analysisButton.setDisable(true);
             editMode = false;
@@ -1246,161 +1241,105 @@ public class Controller implements ObserverSyndrom{
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
-        hideAnalysisMode();
+        analysisMode(false);
         editButton.setDisable(true);
 
-        sphereSizeTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")){
-                    sphereSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
-                }
-            }
-        });
-
-        symptomSizeTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")){
-                    symptomSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
-                }
-            }
-        });
-
-        amountSymptomTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")){
-                    amountSymptomTextField.setText(newValue.replaceAll("[^\\d]",""));
-                }
-
-                if(amountSymptomTextField.getText().length() > 3){
-                    amountSymptomTextField.setText(amountSymptomTextField.getText(0,3));
-                }
-            }
-        });
-
-        paneSwingNode.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                System.out.println(paneSwingNode.getHeight());
-            }
-        });
-
-        paneSwingNode.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                System.out.println(paneSwingNode.getWidth());
-            }
-        });
+        paneSwingNode.widthProperty().addListener(widthListener);
+        paneSwingNode.heightProperty().addListener(heightListener);
+        amountSymptomTextField.textProperty().addListener(new TextFieldListener(amountSymptomTextField));
+        amountEdgeTextField.textProperty().addListener(new TextFieldListener(amountEdgeTextField));
+        sphereSizeTextField.textProperty().addListener(new TextFieldListener(sphereSizeTextField));
+        symptomSizeTextField.textProperty().addListener(new TextFieldListener(symptomSizeTextField));
 
     }
 
+    ChangeListener<Number> widthListener = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            if(canvas.getContent() != null) {
+                System.out.println("Width:"+paneSwingNode.getWidth());
+                syndrom.getGzsp().setSize((int) paneSwingNode.getWidth(),(int)paneSwingNode.getHeight());
+                syndrom.getGzsp().getVisibleRect().setSize((int) paneSwingNode.getWidth(), (int)paneSwingNode.getHeight());
+
+            }
+        }
+    };
+
+    ChangeListener<Number> heightListener = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            if(canvas.getContent() != null){
+                System.out.println("Height:"+paneSwingNode.getHeight());
+                syndrom.getGzsp().setSize((int) paneSwingNode.getWidth(),(int)paneSwingNode.getHeight());
+                syndrom.getVv().setSize((int) paneSwingNode.getWidth(), (int) paneSwingNode.getHeight());
+                canvas.setContent(syndrom.getGzsp());
+            }
+        }
+    };
+
     private class TextFieldListener implements ChangeListener<String>{
         private final TextField textField;
-        TextFieldListener(TextField ptextField){
-            this.textField = ptextField;
+        TextFieldListener(TextField pTextField){
+            this.textField = pTextField;
         }
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-            if(textField.equals(amountEdgeTextField)){
+                if(!newValue.matches("\\d*")){
+                    textField.setText(newValue.replaceAll("[^\\d]",""));
+                }
 
-            }
+                if(textField.getText().length() > 3) {
+                    textField.setText(textField.getText(0, 3));
+                }
         }
     }
 
-    private void hideAnalysisMode(){
+    private void analysisMode(Boolean active){
 
-        vBoxGraphStats.setVisible(false);
-        vBoxGraphStats.setManaged(false);
+        vBoxGraphStats.setVisible(active);
+        vBoxGraphStats.setManaged(active);
 
-        separator3.setVisible(false);
-        separator3.setManaged(false);
+        separator3.setVisible(active);
+        separator3.setManaged(active);
 
-        separator4.setVisible(false);
-        separator4.setManaged(false);
+        separator4.setVisible(active);
+        separator4.setManaged(active);
 
-        separator5.setVisible(false);
-        separator5.setManaged(false);
+        separator5.setVisible(active);
+        separator5.setManaged(active);
 
-        vBoxAnalysisSymptom.setVisible(false);
-        vBoxAnalysisSymptom.setManaged(false);
+        vBoxAnalysisSymptom.setVisible(active);
+        vBoxAnalysisSymptom.setManaged(active);
 
-        vBoxAnalysisEdge.setVisible(false);
-        vBoxAnalysisEdge.setManaged(false);
+        vBoxAnalysisEdge.setVisible(active);
+        vBoxAnalysisEdge.setManaged(active);
 
-        vBoxAnalysisOption.setVisible(false);
-        vBoxAnalysisOption.setManaged(false);
+        vBoxAnalysisOption.setVisible(active);
+        vBoxAnalysisOption.setManaged(active);
     }
 
-    private void hideEditMode(){
-        separator1.setVisible(false);
-        separator1.setManaged(false);
+    private void editMode(Boolean active){
+        separator1.setVisible(active);
+        separator1.setManaged(active);
 
-        separator2.setVisible(false);
-        separator2.setManaged(false);
+        separator2.setVisible(active);
+        separator2.setManaged(active);
 
-        menubarSeparator3.setVisible(false);
-        menubarSeparator3.setManaged(false);
+        menubarSeparator3.setVisible(active);
+        menubarSeparator3.setManaged(active);
 
-        vBoxEditSphere.setVisible(false);
-        vBoxEditSphere.setManaged(false);
+        vBoxEditSphere.setVisible(active);
+        vBoxEditSphere.setManaged(active);
 
-        vBoxEditSymptom.setVisible(false);
-        vBoxEditSymptom.setManaged(false);
+        vBoxEditSymptom.setVisible(active);
+        vBoxEditSymptom.setManaged(active);
 
-        vBoxEditEdge.setVisible(false);
-        vBoxEditEdge.setManaged(false);
+        vBoxEditEdge.setVisible(active);
+        vBoxEditEdge.setManaged(active);
 
-        templateButton.setVisible(false);
-        templateButton.setManaged(false);
-    }
-
-    private void showAnalysisMode(){
-        vBoxGraphStats.setVisible(true);
-        vBoxGraphStats.setManaged(true);
-
-        separator3.setVisible(true);
-        separator3.setManaged(true);
-
-        separator4.setVisible(true);
-        separator4.setManaged(true);
-
-        separator5.setVisible(true);
-        separator5.setManaged(true);
-
-        vBoxAnalysisSymptom.setVisible(true);
-        vBoxAnalysisSymptom.setManaged(true);
-
-        vBoxAnalysisEdge.setVisible(true);
-        vBoxAnalysisEdge.setManaged(true);
-
-        vBoxAnalysisOption.setVisible(true);
-        vBoxAnalysisOption.setManaged(true);
-    }
-
-    private void showEditMode(){
-        separator1.setVisible(true);
-        separator1.setManaged(true);
-
-        separator2.setVisible(true);
-        separator2.setManaged(true);
-
-        menubarSeparator3.setVisible(true);
-        menubarSeparator3.setManaged(true);
-
-        vBoxEditSphere.setVisible(true);
-        vBoxEditSphere.setManaged(true);
-
-        vBoxEditSymptom.setVisible(true);
-        vBoxEditSymptom.setManaged(true);
-
-        vBoxEditEdge.setVisible(true);
-        vBoxEditEdge.setManaged(true);
-
-        templateButton.setVisible(true);
-        templateButton.setManaged(true);
+        templateButton.setVisible(active);
+        templateButton.setManaged(active);
     }
 
     /**
