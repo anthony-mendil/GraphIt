@@ -1,5 +1,6 @@
 package io;
 
+import com.sun.javafx.geom.Point2D;
 import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
@@ -7,6 +8,7 @@ import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.renderers.SyndromRenderer;
+import gui.Values;
 import org.apache.commons.io.FileCleaningTracker;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
@@ -44,6 +46,11 @@ public class PDFio {
     private File file;
 
     /**
+     * ä
+     */
+    private double BORDER=10;
+
+    /**
      * Constructs a new PDFio object.
      *
      * @param pVv The VisualizationViewer object of the current graph.
@@ -51,6 +58,27 @@ public class PDFio {
     public PDFio(VisualizationViewer pVv) {
         vv = pVv;
     }
+
+
+    protected Point2D getMinPoint() {
+        List<Sphere> spheres = Syndrom.getInstance().getGraph().getSpheres();
+        if(spheres.size()==0){
+            return new Point2D(0,0);
+        }
+        Point2D point = new Point2D((float)Values.getInstance().getDefaultLayoutVVSize().getWidth(), (float)Values.getInstance().getDefaultLayoutVVSize().getHeight());
+        for (Sphere sph:spheres) {
+            //check x
+            if (sph.getCoordinates().getX() < point.x) {
+                point.x=(float)sph.getCoordinates().getX();
+            }
+            //check y
+            if (sph.getCoordinates().getY() < point.y) {
+                point.y=(float)sph.getCoordinates().getY();
+            }
+        }
+        return point;
+    }
+
 
     /**
      * Calculates the dimension of the graph spanned by the spheres
@@ -62,12 +90,12 @@ public class PDFio {
         Dimension dimension = new Dimension(0, 0);
         for (Sphere sph : spheres) {
             //check x
-            double x = sph.getCoordinates().getX() + sph.getWidth();
+            double x = sph.getCoordinates().getX() + sph.getWidth()+BORDER;
             if (x > dimension.getWidth()) {
                 dimension.setSize(x, dimension.getHeight());
             }
             //check y
-            double y = sph.getCoordinates().getY() + sph.getHeight();
+            double y = sph.getCoordinates().getY() + sph.getHeight()+BORDER;
             if (y > dimension.getHeight()) {
                 dimension.setSize(dimension.getWidth(), y);
             }
@@ -83,6 +111,7 @@ public class PDFio {
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<Vertex, Edge>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
         vis.setBackground(Color.WHITE);
         vis.setRenderer(new SyndromRenderer<>());
+        System.out.println(getMinPoint().toString());
         VectorGraphics vectorGraphics = null;
         try {
             vectorGraphics = new PDFGraphics2D(file, getGraphDimension());
