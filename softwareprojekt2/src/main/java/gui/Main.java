@@ -41,9 +41,9 @@ public class Main extends Application{
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(new Scene(borderPane));
-        primaryStage.setMaximized(true);
         //primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
+        primaryStage.setMaximized(true);
     }
 
     /**
