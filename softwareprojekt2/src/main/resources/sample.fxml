@@ -25,12 +25,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -957,10 +957,10 @@
       </TitledPane>
    </right>
    <center>
-      <Pane fx:id="paneSwingNode" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane fx:id="paneSwingNode" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <SwingNode fx:id="canvas" focusTraversable="false" />
+            <SwingNode fx:id="canvas" />
          </children>
-      </Pane>
+      </StackPane>
    </center>
 </BorderPane>
