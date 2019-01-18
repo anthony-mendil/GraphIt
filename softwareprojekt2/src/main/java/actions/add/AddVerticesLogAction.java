@@ -12,6 +12,8 @@ import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.ser.std.MapSerializer;
 
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
@@ -39,6 +41,11 @@ public class AddVerticesLogAction extends LogAction {
      * The sphere of the Vertex.
      */
     private Sphere sphere;
+    /**
+     * Map of vertices and the sphere.
+     */
+    @JsonSerialize
+    private Map<Vertex,Sphere> vertices = new HashMap<>();
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
      * RemoveVerticesLogAction.
@@ -92,7 +99,6 @@ public class AddVerticesLogAction extends LogAction {
 
 
     public void createParameter(Vertex vertex, Sphere sphere) {
-        Map<Vertex, Sphere> vertices = new HashMap<>();
         vertices.put(vertex, sphere);
         parameters = new AddRemoveVerticesParam(vertices);
     }
