@@ -48,7 +48,7 @@ public class PDFio {
     /**
      * ä
      */
-    private double BORDER=10;
+    private double BORDER=10.0;
 
     /**
      * Constructs a new PDFio object.
@@ -113,8 +113,10 @@ public class PDFio {
         vis.setRenderer(new SyndromRenderer<>());
         System.out.println(getMinPoint().toString());
         VectorGraphics vectorGraphics = null;
+        Dimension dimensionWithBorder=new Dimension();
+        dimensionWithBorder.setSize(getGraphDimension().getWidth()+BORDER , getGraphDimension().getHeight()+BORDER);
         try {
-            vectorGraphics = new PDFGraphics2D(file, getGraphDimension());
+            vectorGraphics = new PDFGraphics2D(file, dimensionWithBorder);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
