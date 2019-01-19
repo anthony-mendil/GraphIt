@@ -9,6 +9,7 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeSphereParam;
+import log_management.parameters.edit.EditSphereColorParam;
 import log_management.tables.Log;
 
 /**
@@ -46,6 +47,7 @@ public class EditFontSizeSphereLogAction extends LogAction {
         if(parameters == null) {
             for (Sphere sp : pickedState.getPicked()) {
                 sp.setFontSize(size);
+                createParameter(sp, sp.getFontSize(), size);
             }
         }else{
             Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphereText();
@@ -55,15 +57,22 @@ public class EditFontSizeSphereLogAction extends LogAction {
         vv.repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        int oldFontSize = ((EditFontSizeSphereParam)parameters).getOldFontSize();
+        int newFontSize = ((EditFontSizeSphereParam)parameters).getNewFontSize();
+        Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphereText();
+        EditFontSizeSphereParam editFontSizeSphereParam = new EditFontSizeSphereParam(sphere, newFontSize, oldFontSize);
+        EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(editFontSizeSphereParam);
+        editFontSizeSphereLogAction.action();
     }
 
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Sphere sphere, int oldFontSize, int newFontSize) {
+        parameters = new EditFontSizeSphereParam(sphere,oldFontSize,newFontSize);
     }
 }
