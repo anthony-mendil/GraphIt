@@ -22,9 +22,6 @@ import graph.graph.FunctionMode;
 import graph.graph.SizeChange;
 import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
-import impl.org.controlsfx.skin.AutoCompletePopup;
-import io.GXLio;
-import io.OOFio;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -48,6 +45,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import javax.swing.*;
@@ -717,6 +715,8 @@ public class Controller implements ObserverSyndrom{
 
     private Stage templateStage = new Stage();
 
+    private String currentSize = "";
+
     @FXML
     private ComboBox sizeSphereComboBox;
 
@@ -937,14 +937,6 @@ public class Controller implements ObserverSyndrom{
         values.setFontSizeSphere(size);
         EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
         editFontSizeSphereLogAction.action();
-    }
-
-    public void fontSize2(){
-        editFontSizeSphere(14);
-    }
-
-    public void fontSize1(){
-        editFontSizeSphere(13);
     }
 
     public void sphereAutoLayout(){
@@ -1261,10 +1253,6 @@ public class Controller implements ObserverSyndrom{
 
         loadComboBox(sizeSphereComboBox);
         loadComboBox(sizeSymptomComboBox);
-        sizeSphereComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSphereComboBox));
-        sizeSymptomComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSymptomComboBox));
-        TextFields.bindAutoCompletion(sizeSphereComboBox.getEditor(), sizeSphereComboBox.getItems()).setPrefWidth(45);
-        TextFields.bindAutoCompletion(sizeSymptomComboBox.getEditor(), sizeSymptomComboBox.getItems()).setPrefWidth(45);
     }
 
     ChangeListener<Number> widthListener = new ChangeListener<Number>() {
@@ -1310,21 +1298,51 @@ public class Controller implements ObserverSyndrom{
         }
     };
 
+
+
     private class ComboBoxListener implements ChangeListener<String>{
         private final ComboBox comboBox;
-        ComboBoxListener(ComboBox pComboBox){
+        private ComboBoxListener(ComboBox pComboBox){
             this.comboBox = pComboBox;
         }
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-                if(!newValue.matches("\\d*")){
+                if(!newValue.matches("\\d*"))
                     comboBox.getEditor().setText(oldValue);
-                }
 
-                if(comboBox.getEditor().getText().length() > 3) {
+                if(comboBox.getEditor().getText().length() > 3)
                     comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
-                }
+        }
+    }
+
+    private class ComboBoxValueListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+        private ComboBoxValueListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            currentSize = newValue;
+            root.requestFocus();
+            if(comboBox.getId().equals("sizeSphereComboBox")){
+                editFontSizeSphere(Integer.parseInt(currentSize));
+            }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+                editFontSizeVertices(Integer.parseInt(currentSize));
+            }
+        }
+    }
+
+    private class ComboBoxFocusListener implements ChangeListener<Boolean>{
+        private final ComboBox comboBox;
+        private ComboBoxFocusListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+        {
+            if (newPropertyValue)
+                currentSize = comboBox.getEditor().getText();
+            else
+                comboBox.getEditor().setText(currentSize);
         }
     }
 
@@ -1347,6 +1365,24 @@ public class Controller implements ObserverSyndrom{
                         "96"
                 );
         comboBox.setItems(options);
+        comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
+        comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
+        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
+        AutoCompletionBinding autoComplete = TextFields.bindAutoCompletion(comboBox.getEditor(),comboBox.getItems());
+        autoComplete.setPrefWidth(45);
+
+        autoComplete.setOnAutoCompleted(new EventHandler<AutoCompletionBinding.AutoCompletionEvent<String>>(){
+            @Override
+            public void handle(AutoCompletionBinding.AutoCompletionEvent<String> event){
+                currentSize = event.getCompletion();
+                root.requestFocus();
+                if(comboBox.getId().equals("sizeSphereComboBox")){
+                    editFontSizeSphere(Integer.parseInt(currentSize));
+                }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+                    editFontSizeVertices(Integer.parseInt(currentSize));
+                }
+            }
+        });
     }
 
     private void analysisMode(Boolean active){
