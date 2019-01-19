@@ -7,12 +7,16 @@ import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSphereParam;
 
 /**
  * Changes the font of annotations.
  */
 public class EditFontSphereLogAction extends LogAction {
+    /**
+     * The new font.
+     */
     private String font;
     /**
      * Constructor in case the user wants to change the font.
@@ -31,25 +35,40 @@ public class EditFontSphereLogAction extends LogAction {
      */
     public EditFontSphereLogAction(EditFontSphereParam pEditFontSphereParam) {
         super(LogEntryName.EDIT_FONT_SPHERE);
+        parameters = pEditFontSphereParam;
     }
 
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
-
-        for (Sphere sp: pickedState.getPicked()) {
-            sp.setFont(font);
+        if(parameters == null) {
+            for (Sphere sp : pickedState.getPicked()) {
+                createParameter(sp, sp.getFont(), font);
+                sp.setFont(font);
+            }
+        }else{
+            Sphere sphere = ((EditFontSphereParam)parameters).getSphere();
+            String newFont = ((EditFontSphereParam)parameters).getNewFont();
+            sphere.setFont(newFont);
         }
         vv.repaint();
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        Sphere sphere = ((EditFontSphereParam)parameters).getSphere();
+        String oldFont = ((EditFontSphereParam)parameters).getOldFont();
+        String newFont = ((EditFontSphereParam)parameters).getNewFont();
+        EditFontSphereParam editFontSphereParam = new EditFontSphereParam(sphere, oldFont, newFont);
+        EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(editFontSphereParam);
+        editFontSphereLogAction.action();
     }
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Sphere  sphere, String oldFont, String newFont) {
+        parameters = new EditFontSphereParam(sphere, oldFont, newFont);
     }
 }
