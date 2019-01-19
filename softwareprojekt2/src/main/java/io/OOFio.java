@@ -94,7 +94,7 @@ public class OOFio {
         }
         GXLio gxlio = new GXLio();
         gxlio.gxlToInstance(gxlFromOOF(oof));
-        //TODO saveImportLogsInDB(jsonFromOOF(oof));
+        logDao.saveLogs(jsonFromOOF(oof));
     }
 
 }

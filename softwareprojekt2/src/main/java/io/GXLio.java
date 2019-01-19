@@ -227,6 +227,13 @@ public class GXLio {
         return doc.toString();
     }
 
+    /**
+     * Extracts the GXL representation from our syndrom and gives it back as string.
+     *
+     * @return The extracted GXL represenation.
+     */
+    public String gxlTemplateFromInstance(){throw new UnsupportedOperationException();}
+
     private String getPaintDescription(Color color){
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
@@ -267,6 +274,21 @@ public class GXLio {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile));
             bufferedWriter.write(gxlFromInstance());
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Save the GXL as template representation to a specific location.
+     *
+     * @param pFile The destination File
+     */
+    public void exportGXLTemplate(File pFile){
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile));
+            bufferedWriter.write(gxlTemplateFromInstance());
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();

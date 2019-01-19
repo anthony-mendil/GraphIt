@@ -1,6 +1,9 @@
 package actions.export_graph;
 
 import actions.GraphAction;
+import io.OOFio;
+
+import java.io.File;
 
 /**
  * Imports an OOF file.
@@ -8,18 +11,17 @@ import actions.GraphAction;
 public class ImportOofAction extends GraphAction {
 
     /**
-     * The path that the OOF file is exported to.
+     * The File the oof get's taken from
      */
-    private String path;
-
+    private File file;
 
     /**
-     * Constructs action handling for importing a graph as OOF file.
+     * Action handling for importing the graph as GXL file.
      *
-     * @param pPath The path that the OOF file is imported from.
+     * @param pFile The File that the oof is imported from.
      */
-    public ImportOofAction(String pPath) {
-        throw new UnsupportedOperationException();
+    public ImportOofAction(File pFile) {
+        file=pFile;
     }
 
     /**
@@ -27,7 +29,8 @@ public class ImportOofAction extends GraphAction {
      */
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        OOFio oofio = new OOFio();
+        oofio.importOOF(file);
     }
 
     /**
