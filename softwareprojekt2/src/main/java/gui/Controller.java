@@ -853,8 +853,7 @@ public class Controller implements ObserverSyndrom{
         Color color = convertToAWT(sphereBackgroundColour.getValue());
         Values.getInstance().setFillPaintSphere(color);
         EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
-        colorLogAction.action();
-        //history.execute(colorLogAction);
+        history.execute(colorLogAction);
     }
 
     private Color convertToAWT(javafx.scene.paint.Color fx){
@@ -880,7 +879,7 @@ public class Controller implements ObserverSyndrom{
         Color color = convertToAWT(symptomBorder.getValue());
         Values.getInstance().setDrawPaintVertex(color);
         EditVerticesDrawColorLogAction colorLogAction = new EditVerticesDrawColorLogAction(color);
-        colorLogAction.action();
+        history.execute(colorLogAction);
     }
 
     /**
@@ -890,7 +889,7 @@ public class Controller implements ObserverSyndrom{
         Color color = convertToAWT(symptomBackground.getValue());
         Values.getInstance().setFillPaintVertex(color);
         EditVerticesFillColorLogAction colorLogAction = new EditVerticesFillColorLogAction(color);
-        colorLogAction.action();
+        history.execute(colorLogAction);
     }
 
     /* ......font..... */
@@ -902,7 +901,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontSphere(String font) {
         values.setFontSphere(font);
         EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
-        editFontSphereLogAction.action();
+        history.execute(editFontSphereLogAction);
     }
 
     public void sphereFont1(){
@@ -919,7 +918,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontVertex(String font) {
         values.setFontVertex(font);
         EditFontVerticesLogAction editFontSphereLogAction = new EditFontVerticesLogAction(font);
-        editFontSphereLogAction.action();
+        history.execute(editFontSphereLogAction);
     }
 
     public void vertexFont1(){
@@ -936,7 +935,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontSizeSphere(int size){
         values.setFontSizeSphere(size);
         EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-        editFontSizeSphereLogAction.action();
+        history.execute(editFontSizeSphereLogAction);
     }
 
     public void sphereAutoLayout(){
@@ -956,7 +955,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontSizeVertices(int size){
         values.setFontSizeVertex(size);
         EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
-        editFontSizeVerticesLogAction.action();
+        history.execute(editFontSizeVerticesLogAction);
     }
 
     public void fontSizeVertex1(){
@@ -975,7 +974,7 @@ public class Controller implements ObserverSyndrom{
     public void editVerticesForm(VertexShapeType type) {
         values.setShapeVertex(type);
         EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(type);
-        editVerticesFormLogAction.action();
+        history.execute(editVerticesFormLogAction);
     }
 
     public void verticesForm1(){
@@ -1182,7 +1181,7 @@ public class Controller implements ObserverSyndrom{
     public void removeSphere() {
         values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
         RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        removeSphereLogAction.action();
+        history.execute(removeSphereLogAction);
     }
 
     /**

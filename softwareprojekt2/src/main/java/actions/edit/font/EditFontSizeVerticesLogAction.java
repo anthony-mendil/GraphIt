@@ -51,7 +51,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
                 newVerticesParam.put(vertex, size);
                 vertex.setFontSize(size);
             }
-            createParameter();
+            createParameter(oldVerticesParam, newVerticesParam);
         }else{
             Map<Vertex,Integer> oldVertices = ((EditFontSizeVerticesParam)parameters).getOldVertices();
             Map<Vertex,Integer> newVertices = ((EditFontSizeVerticesParam)parameters).getNewVertices();
@@ -68,10 +68,14 @@ public class EditFontSizeVerticesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        Map<Vertex, Integer> oldVertices = ((EditFontSizeVerticesParam)parameters).getOldVertices();
+        Map<Vertex, Integer> newVertices = ((EditFontSizeVerticesParam)parameters).getNewVertices();
+        EditFontSizeVerticesParam editFontSizeVerticesParam = new EditFontSizeVerticesParam(newVertices, oldVertices);
+        EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(editFontSizeVerticesParam);
+        editFontSizeVerticesLogAction.action();
     }
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices) {
+        parameters = new EditFontSizeVerticesParam(oldVertices, newVertices);
     }
 }
