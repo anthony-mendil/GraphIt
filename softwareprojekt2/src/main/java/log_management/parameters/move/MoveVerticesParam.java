@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object for the action MoveVerticesLogAction.
  */
 @Data
-public class MoveVerticesParam extends Param{
+public class MoveVerticesParam extends Param implements Serializable {
     /**
      * The set of old vertices and their position, which they were in.
      */

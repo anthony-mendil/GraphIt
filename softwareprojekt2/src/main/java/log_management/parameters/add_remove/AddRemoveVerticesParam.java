@@ -10,6 +10,7 @@ import lombok.Getter;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.ser.std.MapSerializer;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class AddRemoveVerticesParam extends Param{
      * Set of vertices to their sphere.
      */
     @Getter
-    @JsonSerialize(keyUsing = VertexSerializer.class)
+    //@JsonSerialize(keyUsing = VertexSerializer.class)
     private Map<Vertex, Sphere> parameter = new HashMap<>();
 
     /**

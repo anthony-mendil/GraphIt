@@ -6,9 +6,10 @@ import log_management.parameters.Param;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.Map;
 
-public class LayoutSpheresParam extends Param {
+public class LayoutSpheresParam extends Param implements Serializable {
     /**
      * The vertices containing their old position.
      */

@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object of the action EditVerticesDrawColorLogAction.
  */
 @Data
-public class EditVerticesDrawColorParam extends Param{
+public class EditVerticesDrawColorParam extends Param implements Serializable {
     /**
      * The set of vertices containing their old colors.
      */

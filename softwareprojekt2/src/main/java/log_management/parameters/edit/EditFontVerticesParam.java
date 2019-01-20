@@ -6,13 +6,14 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object of the action EditFontVerticesLogAction.
  */
 @Data
-public class EditFontVerticesParam extends Param {
+public class EditFontVerticesParam extends Param implements Serializable {
     /**
      * The set of vertices containing their old font.
      */
