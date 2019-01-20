@@ -7,13 +7,14 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object for LayoutSphereGraphLogAction, changes the position of the vertices.
  */
 @Data
-public class LayoutVerticesParam extends Param {
+public class LayoutVerticesParam extends Param implements Serializable {
     /**
      * The vertices containing their old position.
      */

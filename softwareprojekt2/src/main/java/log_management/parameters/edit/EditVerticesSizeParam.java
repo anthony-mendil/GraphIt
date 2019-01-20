@@ -5,13 +5,14 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object of the action EditVerticesSizeLogAction.
  */
 @Data
-public class EditVerticesSizeParam extends Param{
+public class EditVerticesSizeParam extends Param implements Serializable {
     /**
      * The set of vertices containing their old size.
      */

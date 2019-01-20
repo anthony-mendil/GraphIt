@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object of the action MoveSphereLogAction.
  */
 @Data
-public class MoveSphereParam extends Param{
+public class MoveSphereParam extends Param implements Serializable {
     /**
      * The sphere containing its old position.
      */

@@ -71,9 +71,10 @@ public class EditSphereColorLogAction extends LogAction {
         Paint oldColor = ((EditSphereColorParam)parameters).getOldColor();
         Paint newColor = ((EditSphereColorParam)parameters).getNewColor();
         Sphere sphere  = ((EditSphereColorParam)parameters).getSphere();
-        EditSphereColorParam editSphereColorParam = new EditSphereColorParam(sphere, oldColor,newColor);
+        EditSphereColorParam editSphereColorParam = new EditSphereColorParam(sphere, newColor,oldColor);
         EditSphereColorLogAction editSphereColorLogAction = new EditSphereColorLogAction(editSphereColorParam);
         editSphereColorLogAction.action();
+
     }
 
 

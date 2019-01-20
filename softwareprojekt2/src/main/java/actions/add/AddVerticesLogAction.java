@@ -46,7 +46,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Map of vertices and the sphere.
      */
-    @JsonSerialize
+    //@JsonSerialize
     private Map<Vertex,Sphere> vertices = new HashMap<>();
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of

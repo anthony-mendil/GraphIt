@@ -56,6 +56,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import javax.swing.*;
@@ -740,6 +741,8 @@ public class Controller implements ObserverSyndrom {
 
     private Stage templateStage = new Stage();
 
+    private String currentSize = "";
+
     @FXML
     private ComboBox sizeSphereComboBox;
 
@@ -880,8 +883,7 @@ public class Controller implements ObserverSyndrom {
         Color color = convertToAWT(sphereBackgroundColour.getValue());
         Values.getInstance().setFillPaintSphere(color);
         EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
-        colorLogAction.action();
-        //history.execute(colorLogAction);
+        history.execute(colorLogAction);
     }
 
     private Color convertToAWT(javafx.scene.paint.Color fx) {
@@ -907,7 +909,7 @@ public class Controller implements ObserverSyndrom {
         Color color = convertToAWT(symptomBorder.getValue());
         Values.getInstance().setDrawPaintVertex(color);
         EditVerticesDrawColorLogAction colorLogAction = new EditVerticesDrawColorLogAction(color);
-        colorLogAction.action();
+        history.execute(colorLogAction);
     }
 
     /**
@@ -917,7 +919,7 @@ public class Controller implements ObserverSyndrom {
         Color color = convertToAWT(symptomBackground.getValue());
         Values.getInstance().setFillPaintVertex(color);
         EditVerticesFillColorLogAction colorLogAction = new EditVerticesFillColorLogAction(color);
-        colorLogAction.action();
+        history.execute(colorLogAction);
     }
 
     /* ......font..... */
@@ -930,7 +932,7 @@ public class Controller implements ObserverSyndrom {
     public void editFontSphere(String font) {
         values.setFontSphere(font);
         EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
-        editFontSphereLogAction.action();
+        history.execute(editFontSphereLogAction);
     }
 
     public void sphereFont1() {
@@ -947,7 +949,7 @@ public class Controller implements ObserverSyndrom {
     public void editFontVertex(String font) {
         values.setFontVertex(font);
         EditFontVerticesLogAction editFontSphereLogAction = new EditFontVerticesLogAction(font);
-        editFontSphereLogAction.action();
+        history.execute(editFontSphereLogAction);
     }
 
     public void vertexFont1() {
@@ -966,6 +968,7 @@ public class Controller implements ObserverSyndrom {
     public void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
         EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+<<<<<<< HEAD
         editFontSizeSphereLogAction.action();
     }
 
@@ -975,6 +978,9 @@ public class Controller implements ObserverSyndrom {
 
     public void fontSize1() {
         editFontSizeSphere(13);
+=======
+        history.execute(editFontSizeSphereLogAction);
+>>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
     }
 
     public void sphereAutoLayout() {
@@ -994,7 +1000,7 @@ public class Controller implements ObserverSyndrom {
     public void editFontSizeVertices(int size) {
         values.setFontSizeVertex(size);
         EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
-        editFontSizeVerticesLogAction.action();
+        history.execute(editFontSizeVerticesLogAction);
     }
 
     public void fontSizeVertex1() {
@@ -1013,7 +1019,7 @@ public class Controller implements ObserverSyndrom {
     public void editVerticesForm(VertexShapeType type) {
         values.setShapeVertex(type);
         EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(type);
-        editVerticesFormLogAction.action();
+        history.execute(editVerticesFormLogAction);
     }
 
     public void verticesForm1() {
@@ -1232,7 +1238,7 @@ public class Controller implements ObserverSyndrom {
     public void removeSphere() {
         values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
         RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        removeSphereLogAction.action();
+        history.execute(removeSphereLogAction);
     }
 
     /**
@@ -1300,6 +1306,7 @@ public class Controller implements ObserverSyndrom {
 
         loadComboBox(sizeSphereComboBox);
         loadComboBox(sizeSymptomComboBox);
+<<<<<<< HEAD
         sizeSphereComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSphereComboBox));
         sizeSymptomComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSymptomComboBox));
         TextFields.bindAutoCompletion(sizeSphereComboBox.getEditor(), sizeSphereComboBox.getItems()).setPrefWidth(45);
@@ -1317,6 +1324,8 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.setSnapToTicks(true);
         zoomSlider.valueProperty().addListener(changeZoom);
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
+=======
+>>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
     }
 
 
@@ -1407,14 +1416,23 @@ public class Controller implements ObserverSyndrom {
         }
     };
 
+<<<<<<< HEAD
     private class ComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
 
         ComboBoxListener(ComboBox pComboBox) {
+=======
+
+
+    private class ComboBoxListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+        private ComboBoxListener(ComboBox pComboBox){
+>>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
             this.comboBox = pComboBox;
         }
 
         @Override
+<<<<<<< HEAD
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             if (!newValue.matches("\\d*")) {
                 comboBox.getEditor().setText(oldValue);
@@ -1423,6 +1441,44 @@ public class Controller implements ObserverSyndrom {
             if (comboBox.getEditor().getText().length() > 3) {
                 comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
             }
+=======
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+                if(!newValue.matches("\\d*"))
+                    comboBox.getEditor().setText(oldValue);
+
+                if(comboBox.getEditor().getText().length() > 3)
+                    comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
+        }
+    }
+
+    private class ComboBoxValueListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+        private ComboBoxValueListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            currentSize = newValue;
+            root.requestFocus();
+            if(comboBox.getId().equals("sizeSphereComboBox")){
+                editFontSizeSphere(Integer.parseInt(currentSize));
+            }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+                editFontSizeVertices(Integer.parseInt(currentSize));
+            }
+        }
+    }
+
+    private class ComboBoxFocusListener implements ChangeListener<Boolean>{
+        private final ComboBox comboBox;
+        private ComboBoxFocusListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+        {
+            if (newPropertyValue)
+                currentSize = comboBox.getEditor().getText();
+            else
+                comboBox.getEditor().setText(currentSize);
+>>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
         }
     }
 
@@ -1445,6 +1501,24 @@ public class Controller implements ObserverSyndrom {
                         "96"
                 );
         comboBox.setItems(options);
+        comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
+        comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
+        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
+        AutoCompletionBinding autoComplete = TextFields.bindAutoCompletion(comboBox.getEditor(),comboBox.getItems());
+        autoComplete.setPrefWidth(45);
+
+        autoComplete.setOnAutoCompleted(new EventHandler<AutoCompletionBinding.AutoCompletionEvent<String>>(){
+            @Override
+            public void handle(AutoCompletionBinding.AutoCompletionEvent<String> event){
+                currentSize = event.getCompletion();
+                root.requestFocus();
+                if(comboBox.getId().equals("sizeSphereComboBox")){
+                    editFontSizeSphere(Integer.parseInt(currentSize));
+                }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+                    editFontSizeVertices(Integer.parseInt(currentSize));
+                }
+            }
+        });
     }
 
     private void analysisMode(Boolean active) {
