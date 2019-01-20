@@ -6,12 +6,19 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeVerticesParam;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Changes the font-size of vertex annotations.
  */
 public class EditFontSizeVerticesLogAction extends LogAction {
+    /**
+     * The new font size of the vertices.
+     */
     private int size;
     /**
      * Constructor in case the user changes the font-size of the annotation.
@@ -30,24 +37,45 @@ public class EditFontSizeVerticesLogAction extends LogAction {
      */
     public EditFontSizeVerticesLogAction(EditFontSizeVerticesParam pEditFontSizeVerticesParam) {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);
+        parameters = pEditFontSizeVerticesParam;
     }
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-
-        for (Vertex vertex: pickedState.getPicked()) {
-            vertex.setFontSize(size);
+        Map<Vertex,Integer> oldVerticesParam = new HashMap<>();
+        Map<Vertex,Integer> newVerticesParam = new HashMap<>();
+        if(parameters == null){
+            for (Vertex vertex: pickedState.getPicked()) {
+                oldVerticesParam.put(vertex, vertex.getFontSize());
+                newVerticesParam.put(vertex, size);
+                vertex.setFontSize(size);
+            }
+            createParameter(oldVerticesParam, newVerticesParam);
+        }else{
+            Map<Vertex,Integer> oldVertices = ((EditFontSizeVerticesParam)parameters).getOldVertices();
+            Map<Vertex,Integer> newVertices = ((EditFontSizeVerticesParam)parameters).getNewVertices();
+            for(Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()){
+                Vertex vertex = entry.getKey();
+                vertex.setFontSize(newVertices.get(vertex));
+            }
         }
         vv.repaint();
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        Map<Vertex, Integer> oldVertices = ((EditFontSizeVerticesParam)parameters).getOldVertices();
+        Map<Vertex, Integer> newVertices = ((EditFontSizeVerticesParam)parameters).getNewVertices();
+        EditFontSizeVerticesParam editFontSizeVerticesParam = new EditFontSizeVerticesParam(newVertices, oldVertices);
+        EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(editFontSizeVerticesParam);
+        editFontSizeVerticesLogAction.action();
     }
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices) {
+        parameters = new EditFontSizeVerticesParam(oldVertices, newVertices);
     }
 }

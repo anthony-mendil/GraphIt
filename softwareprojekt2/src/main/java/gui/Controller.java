@@ -12,10 +12,7 @@ import actions.edit.font.EditFontVerticesLogAction;
 import actions.edit.form.EditVerticesFormLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
 import actions.edit.size.EditVerticesSizeLogAction;
-import actions.export_graph.ExportGxlAction;
-import actions.export_graph.ExportOofAction;
-import actions.export_graph.ExportPdfAction;
-import actions.export_graph.PrintPDFAction;
+import actions.export_graph.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
@@ -25,34 +22,31 @@ import graph.graph.FunctionMode;
 import graph.graph.SizeChange;
 import graph.graph.Syndrom;
 import graph.graph.VertexShapeType;
-import io.GXLio;
-import io.OOFio;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 
 import javax.swing.*;
 import java.awt.*;
@@ -712,7 +706,7 @@ public class Controller implements ObserverSyndrom{
     private boolean analysisMode = false;
 
     @FXML
-    private Pane paneSwingNode;
+    private StackPane paneSwingNode;
 
     @FXML
     private BorderPane root;
@@ -720,6 +714,14 @@ public class Controller implements ObserverSyndrom{
     private Stage mainStage;
 
     private Stage templateStage = new Stage();
+
+    private String currentSize = "";
+
+    @FXML
+    private ComboBox sizeSphereComboBox;
+
+    @FXML
+    private ComboBox sizeSymptomComboBox;
 
     public Controller(){
     }
@@ -851,8 +853,7 @@ public class Controller implements ObserverSyndrom{
         Color color = convertToAWT(sphereBackgroundColour.getValue());
         Values.getInstance().setFillPaintSphere(color);
         EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
-        colorLogAction.action();
-        //history.execute(colorLogAction);
+        history.execute(colorLogAction);
     }
 
     private Color convertToAWT(javafx.scene.paint.Color fx){
@@ -878,7 +879,7 @@ public class Controller implements ObserverSyndrom{
         Color color = convertToAWT(symptomBorder.getValue());
         Values.getInstance().setDrawPaintVertex(color);
         EditVerticesDrawColorLogAction colorLogAction = new EditVerticesDrawColorLogAction(color);
-        colorLogAction.action();
+        history.execute(colorLogAction);
     }
 
     /**
@@ -888,7 +889,7 @@ public class Controller implements ObserverSyndrom{
         Color color = convertToAWT(symptomBackground.getValue());
         Values.getInstance().setFillPaintVertex(color);
         EditVerticesFillColorLogAction colorLogAction = new EditVerticesFillColorLogAction(color);
-        colorLogAction.action();
+        history.execute(colorLogAction);
     }
 
     /* ......font..... */
@@ -900,7 +901,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontSphere(String font) {
         values.setFontSphere(font);
         EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
-        editFontSphereLogAction.action();
+        history.execute(editFontSphereLogAction);
     }
 
     public void sphereFont1(){
@@ -917,7 +918,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontVertex(String font) {
         values.setFontVertex(font);
         EditFontVerticesLogAction editFontSphereLogAction = new EditFontVerticesLogAction(font);
-        editFontSphereLogAction.action();
+        history.execute(editFontSphereLogAction);
     }
 
     public void vertexFont1(){
@@ -934,15 +935,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontSizeSphere(int size){
         values.setFontSizeSphere(size);
         EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-        editFontSizeSphereLogAction.action();
-    }
-
-    public void fontSize2(){
-        editFontSizeSphere(14);
-    }
-
-    public void fontSize1(){
-        editFontSizeSphere(13);
+        history.execute(editFontSizeSphereLogAction);
     }
 
     public void sphereAutoLayout(){
@@ -962,7 +955,7 @@ public class Controller implements ObserverSyndrom{
     public void editFontSizeVertices(int size){
         values.setFontSizeVertex(size);
         EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
-        editFontSizeVerticesLogAction.action();
+        history.execute(editFontSizeVerticesLogAction);
     }
 
     public void fontSizeVertex1(){
@@ -981,7 +974,7 @@ public class Controller implements ObserverSyndrom{
     public void editVerticesForm(VertexShapeType type) {
         values.setShapeVertex(type);
         EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(type);
-        editVerticesFormLogAction.action();
+        history.execute(editVerticesFormLogAction);
     }
 
     public void verticesForm1(){
@@ -1039,8 +1032,8 @@ public class Controller implements ObserverSyndrom{
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("OOF files (*.oof)","*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        OOFio oofio = new OOFio();
-        oofio.importOOF(file);
+        ImportOofAction importOofAction=new ImportOofAction(file);
+        importOofAction.action();
     }
 
     /**
@@ -1052,8 +1045,8 @@ public class Controller implements ObserverSyndrom{
         FileChooser.ExtensionFilter extensionFilter= new FileChooser.ExtensionFilter("GXL files (*.gxl)","*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        GXLio gxlio = new GXLio();
-        gxlio.importGXL(file);
+        ImportGxlAction importGxlAction=new ImportGxlAction(file);
+        importGxlAction.action();
     }
 
     /**
@@ -1088,8 +1081,8 @@ public class Controller implements ObserverSyndrom{
      */
     public void switchModiEditor() {
         if(analysisMode){
-            hideAnalysisMode();
-            showEditMode();
+            analysisMode(false);
+            editMode(true);
             editButton.setDisable(true);
             analysisButton.setDisable(false);
             editMode = true;
@@ -1103,8 +1096,8 @@ public class Controller implements ObserverSyndrom{
      */
     public void switchModiAnalysis(){
         if(editMode){
-            hideEditMode();
-            showAnalysisMode();
+            editMode(false);
+            analysisMode(true);
             editButton.setDisable(false);
             analysisButton.setDisable(true);
             editMode = false;
@@ -1188,7 +1181,7 @@ public class Controller implements ObserverSyndrom{
     public void removeSphere() {
         values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
         RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        removeSphereLogAction.action();
+        history.execute(removeSphereLogAction);
     }
 
     /**
@@ -1246,161 +1239,196 @@ public class Controller implements ObserverSyndrom{
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
-        hideAnalysisMode();
+        analysisMode(false);
         editButton.setDisable(true);
 
-        sphereSizeTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")){
-                    sphereSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
-                }
-            }
-        });
+        paneSwingNode.widthProperty().addListener(widthListener);
+        paneSwingNode.heightProperty().addListener(heightListener);
+        /*amountSymptomTextField.textProperty().addListener(new TextFieldListener(amountSymptomTextField));
+        amountEdgeTextField.textProperty().addListener(new TextFieldListener(amountEdgeTextField));
+        sphereSizeTextField.textProperty().addListener(new TextFieldListener(sphereSizeTextField));
+        symptomSizeTextField.textProperty().addListener(new TextFieldListener(symptomSizeTextField));
+        */
 
-        symptomSizeTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")){
-                    symptomSizeTextField.setText(newValue.replaceAll("[^\\d]",""));
-                }
-            }
-        });
-
-        amountSymptomTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")){
-                    amountSymptomTextField.setText(newValue.replaceAll("[^\\d]",""));
-                }
-
-                if(amountSymptomTextField.getText().length() > 3){
-                    amountSymptomTextField.setText(amountSymptomTextField.getText(0,3));
-                }
-            }
-        });
-
-        paneSwingNode.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                System.out.println(paneSwingNode.getHeight());
-            }
-        });
-
-        paneSwingNode.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                System.out.println(paneSwingNode.getWidth());
-            }
-        });
-
+        loadComboBox(sizeSphereComboBox);
+        loadComboBox(sizeSymptomComboBox);
     }
 
-    private class TextFieldListener implements ChangeListener<String>{
-        private final TextField textField;
-        TextFieldListener(TextField ptextField){
-            this.textField = ptextField;
+    ChangeListener<Number> widthListener = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            if(canvas.getContent() != null) {
+                /* Update Test1 Scrollbars sind immer noch am arsch
+                syndrom.getGzsp().revalidate();
+                syndrom.getGzsp().repaint();
+                */
+
+                /* Update Test2 kp hat nichts gebracht
+                syndrom.getGzsp().updateUI();
+                */
+
+                /* Update Test3 "Schwarze Bereiche beim Scrollen"
+                canvas.setContent(syndrom.getGzsp());
+                */
+
+                /* Die Splitpane die unsere SwingNode(canvas) beinhaltet: paneSwingNode */
+            }
+        }
+    };
+
+    ChangeListener<Number> heightListener = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            if(canvas.getContent() != null){
+
+                /* Update Test1 Scrollbars sind immer noch am arsch
+                syndrom.getGzsp().revalidate();
+                syndrom.getGzsp().repaint();
+                */
+
+                /* Update Test2 kp hat nichts gebracht
+                syndrom.getGzsp().updateUI();
+                */
+
+                /* Update Test3 "Schwarze Bereiche beim Scrollen"
+                canvas.setContent(syndrom.getGzsp());
+                */
+            }
+        }
+    };
+
+
+
+    private class ComboBoxListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+        private ComboBoxListener(ComboBox pComboBox){
+            this.comboBox = pComboBox;
         }
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-            if(textField.equals(amountEdgeTextField)){
+                if(!newValue.matches("\\d*"))
+                    comboBox.getEditor().setText(oldValue);
 
+                if(comboBox.getEditor().getText().length() > 3)
+                    comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
+        }
+    }
+
+    private class ComboBoxValueListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+        private ComboBoxValueListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            currentSize = newValue;
+            root.requestFocus();
+            if(comboBox.getId().equals("sizeSphereComboBox")){
+                editFontSizeSphere(Integer.parseInt(currentSize));
+            }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+                editFontSizeVertices(Integer.parseInt(currentSize));
             }
         }
     }
 
-    private void hideAnalysisMode(){
+    private class ComboBoxFocusListener implements ChangeListener<Boolean>{
+        private final ComboBox comboBox;
+        private ComboBoxFocusListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
 
-        vBoxGraphStats.setVisible(false);
-        vBoxGraphStats.setManaged(false);
-
-        separator3.setVisible(false);
-        separator3.setManaged(false);
-
-        separator4.setVisible(false);
-        separator4.setManaged(false);
-
-        separator5.setVisible(false);
-        separator5.setManaged(false);
-
-        vBoxAnalysisSymptom.setVisible(false);
-        vBoxAnalysisSymptom.setManaged(false);
-
-        vBoxAnalysisEdge.setVisible(false);
-        vBoxAnalysisEdge.setManaged(false);
-
-        vBoxAnalysisOption.setVisible(false);
-        vBoxAnalysisOption.setManaged(false);
+        @Override
+        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+        {
+            if (newPropertyValue)
+                currentSize = comboBox.getEditor().getText();
+            else
+                comboBox.getEditor().setText(currentSize);
+        }
     }
 
-    private void hideEditMode(){
-        separator1.setVisible(false);
-        separator1.setManaged(false);
+    private void loadComboBox(ComboBox comboBox){
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12",
+                        "14",
+                        "18",
+                        "24",
+                        "30",
+                        "36",
+                        "48",
+                        "60",
+                        "72",
+                        "96"
+                );
+        comboBox.setItems(options);
+        comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
+        comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
+        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
+        AutoCompletionBinding autoComplete = TextFields.bindAutoCompletion(comboBox.getEditor(),comboBox.getItems());
+        autoComplete.setPrefWidth(45);
 
-        separator2.setVisible(false);
-        separator2.setManaged(false);
-
-        menubarSeparator3.setVisible(false);
-        menubarSeparator3.setManaged(false);
-
-        vBoxEditSphere.setVisible(false);
-        vBoxEditSphere.setManaged(false);
-
-        vBoxEditSymptom.setVisible(false);
-        vBoxEditSymptom.setManaged(false);
-
-        vBoxEditEdge.setVisible(false);
-        vBoxEditEdge.setManaged(false);
-
-        templateButton.setVisible(false);
-        templateButton.setManaged(false);
+        autoComplete.setOnAutoCompleted(new EventHandler<AutoCompletionBinding.AutoCompletionEvent<String>>(){
+            @Override
+            public void handle(AutoCompletionBinding.AutoCompletionEvent<String> event){
+                currentSize = event.getCompletion();
+                root.requestFocus();
+                if(comboBox.getId().equals("sizeSphereComboBox")){
+                    editFontSizeSphere(Integer.parseInt(currentSize));
+                }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+                    editFontSizeVertices(Integer.parseInt(currentSize));
+                }
+            }
+        });
     }
 
-    private void showAnalysisMode(){
-        vBoxGraphStats.setVisible(true);
-        vBoxGraphStats.setManaged(true);
+    private void analysisMode(Boolean active){
 
-        separator3.setVisible(true);
-        separator3.setManaged(true);
+        vBoxGraphStats.setVisible(active);
+        vBoxGraphStats.setManaged(active);
 
-        separator4.setVisible(true);
-        separator4.setManaged(true);
+        separator3.setVisible(active);
+        separator3.setManaged(active);
 
-        separator5.setVisible(true);
-        separator5.setManaged(true);
+        separator4.setVisible(active);
+        separator4.setManaged(active);
 
-        vBoxAnalysisSymptom.setVisible(true);
-        vBoxAnalysisSymptom.setManaged(true);
+        separator5.setVisible(active);
+        separator5.setManaged(active);
 
-        vBoxAnalysisEdge.setVisible(true);
-        vBoxAnalysisEdge.setManaged(true);
+        vBoxAnalysisSymptom.setVisible(active);
+        vBoxAnalysisSymptom.setManaged(active);
 
-        vBoxAnalysisOption.setVisible(true);
-        vBoxAnalysisOption.setManaged(true);
+        vBoxAnalysisEdge.setVisible(active);
+        vBoxAnalysisEdge.setManaged(active);
+
+        vBoxAnalysisOption.setVisible(active);
+        vBoxAnalysisOption.setManaged(active);
     }
 
-    private void showEditMode(){
-        separator1.setVisible(true);
-        separator1.setManaged(true);
+    private void editMode(Boolean active){
+        separator1.setVisible(active);
+        separator1.setManaged(active);
 
-        separator2.setVisible(true);
-        separator2.setManaged(true);
+        separator2.setVisible(active);
+        separator2.setManaged(active);
 
-        menubarSeparator3.setVisible(true);
-        menubarSeparator3.setManaged(true);
+        menubarSeparator3.setVisible(active);
+        menubarSeparator3.setManaged(active);
 
-        vBoxEditSphere.setVisible(true);
-        vBoxEditSphere.setManaged(true);
+        vBoxEditSphere.setVisible(active);
+        vBoxEditSphere.setManaged(active);
 
-        vBoxEditSymptom.setVisible(true);
-        vBoxEditSymptom.setManaged(true);
+        vBoxEditSymptom.setVisible(active);
+        vBoxEditSymptom.setManaged(active);
 
-        vBoxEditEdge.setVisible(true);
-        vBoxEditEdge.setManaged(true);
+        vBoxEditEdge.setVisible(active);
+        vBoxEditEdge.setManaged(active);
 
-        templateButton.setVisible(true);
-        templateButton.setManaged(true);
+        templateButton.setVisible(active);
+        templateButton.setManaged(active);
     }
 
     /**
