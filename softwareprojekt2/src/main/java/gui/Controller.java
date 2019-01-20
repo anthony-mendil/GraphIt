@@ -968,8 +968,7 @@ public class Controller implements ObserverSyndrom {
     public void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
         EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-<<<<<<< HEAD
-        editFontSizeSphereLogAction.action();
+        history.execute(editFontSizeSphereLogAction);
     }
 
     public void fontSize2() {
@@ -978,9 +977,6 @@ public class Controller implements ObserverSyndrom {
 
     public void fontSize1() {
         editFontSizeSphere(13);
-=======
-        history.execute(editFontSizeSphereLogAction);
->>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
     }
 
     public void sphereAutoLayout() {
@@ -1306,7 +1302,7 @@ public class Controller implements ObserverSyndrom {
 
         loadComboBox(sizeSphereComboBox);
         loadComboBox(sizeSymptomComboBox);
-<<<<<<< HEAD
+
         sizeSphereComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSphereComboBox));
         sizeSymptomComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSymptomComboBox));
         TextFields.bindAutoCompletion(sizeSphereComboBox.getEditor(), sizeSphereComboBox.getItems()).setPrefWidth(45);
@@ -1324,8 +1320,7 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.setSnapToTicks(true);
         zoomSlider.valueProperty().addListener(changeZoom);
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
-=======
->>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
+
     }
 
 
@@ -1416,40 +1411,23 @@ public class Controller implements ObserverSyndrom {
         }
     };
 
-<<<<<<< HEAD
-    private class ComboBoxListener implements ChangeListener<String> {
-        private final ComboBox comboBox;
-
-        ComboBoxListener(ComboBox pComboBox) {
-=======
-
-
     private class ComboBoxListener implements ChangeListener<String>{
         private final ComboBox comboBox;
         private ComboBoxListener(ComboBox pComboBox){
->>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
             this.comboBox = pComboBox;
         }
 
         @Override
-<<<<<<< HEAD
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (!newValue.matches("\\d*")) {
-                comboBox.getEditor().setText(oldValue);
-            }
-
-            if (comboBox.getEditor().getText().length() > 3) {
-                comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
-            }
-=======
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-                if(!newValue.matches("\\d*"))
-                    comboBox.getEditor().setText(oldValue);
+            if(!newValue.matches("\\d*"))
+                comboBox.getEditor().setText(oldValue);
 
-                if(comboBox.getEditor().getText().length() > 3)
-                    comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
+            if(comboBox.getEditor().getText().length() > 3)
+                comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
         }
     }
+
+
 
     private class ComboBoxValueListener implements ChangeListener<String>{
         private final ComboBox comboBox;
@@ -1478,7 +1456,6 @@ public class Controller implements ObserverSyndrom {
                 currentSize = comboBox.getEditor().getText();
             else
                 comboBox.getEditor().setText(currentSize);
->>>>>>> b0fa8de64d345e101b46434436a9d2c7da42aace
         }
     }
 
