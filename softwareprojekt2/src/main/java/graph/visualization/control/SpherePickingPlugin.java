@@ -11,10 +11,7 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
@@ -170,6 +167,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             }
 
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
         }
 
         if (SwingUtilities.isRightMouseButton(e)){
@@ -180,6 +179,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 spheres.pick(sp, true);
             }
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
         }
     }
 
@@ -206,6 +207,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                     pickedSphereState.pick(sp, true);
                 }
                 vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+
             } else {
                 pickedSphereState.clear();
             }
@@ -246,6 +249,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
              spherePickedCoord = null;
              points = null;
              vv.repaint();
+
+             Syndrom.getInstance().getVv2().repaint();
          }
     }
 
@@ -290,6 +295,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 }
                 down = p;
                 vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+
             }
         }
     }

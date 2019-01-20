@@ -2,12 +2,14 @@ package graph.visualization.renderers;
 
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
+import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
 import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.visualization.transformer.sphere.*;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
@@ -22,6 +24,8 @@ public class SphereRenderer {
     private SphereShapeTransformer<Sphere> sphereShapeTransformer =  new SphereShapeTransformer<>();
     private SphereFontSizeTransformer<Sphere> sphereSphereFontSizeTransformer = new SphereFontSizeTransformer<>();
 
+    private double crossover = 1.0;
+
     /**
      * Renders the given sphere.
      * @param pRc The renderContext implemented in JUNG.
@@ -30,22 +34,24 @@ public class SphereRenderer {
     public void paintSphere(RenderContext pRc, Sphere pSphere) {
         GraphicsDecorator g2d = pRc.getGraphicsContext();
         Point2D p = pSphere.getCoordinates();
-        p = pRc.getMultiLayerTransformer().transform(Layer.LAYOUT, p);
+
+        AffineTransform transform = pRc.getMultiLayerTransformer().getTransformer(Layer.LAYOUT).getTransform();
         Shape sphereShape =  new Rectangle2D.Double(p.getX(), p.getY(), pSphere
                 .getWidth(), pSphere.getHeight());
+        sphereShape = transform.createTransformedShape(sphereShape);
+
         g2d.setPaint(sphereFillPaintTransformer.transform(pSphere));
         g2d.fill(sphereShape);
         g2d.setPaint(sphereDrawPaintTransformer.transform(pSphere));
         SphereStrokeTransformer<Sphere> sphereStrokeTransformer = new SphereStrokeTransformer<>(Syndrom
                 .getInstance().getVv());
         g2d.setStroke(sphereStrokeTransformer.transform(pSphere));
-
         g2d.draw(sphereShape);
         g2d.setFont(sphereFontTransformer.transform(pSphere));
         FontMetrics fontMetrics = g2d.getFontMetrics();
         String annotation = sphereLabelTransformer.transform(pSphere);
         int width = fontMetrics.stringWidth(annotation);
-        double sphereWidth =  pSphere.getWidth();
+        double sphereWidth =  sphereShape.getBounds().getWidth();
 
         if (width+10 > sphereWidth){
             if ((width/2)+10 > sphereWidth){
@@ -56,7 +62,7 @@ public class SphereRenderer {
         }
         int i =1;
         for (String line : annotation.split("\n")){
-            Point2D point2D = getAnchorPoint(pSphere, p, fontMetrics.stringWidth(line));
+            Point2D point2D = getAnchorPoint(sphereShape, sphereShape.getBounds().getLocation(), fontMetrics.stringWidth(line));
             g2d.drawString(line, (float) point2D.getX(), (float) point2D.getY()+sphereSphereFontSizeTransformer.transform
                     (pSphere)*i++);
         }
@@ -115,8 +121,8 @@ public class SphereRenderer {
         return label.toString();
     }
 
-    private Point2D getAnchorPoint(Sphere sphere, Point2D p, int width){
-        double sWidth = sphere.getWidth();
+    private Point2D getAnchorPoint(Shape sphereShape, Point2D p, int width){
+        double sWidth = sphereShape.getBounds().getWidth();
         double x = p.getX();
         double labelX;
 

@@ -111,6 +111,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 }
             }
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
         }
     }
 
@@ -145,6 +147,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 points.put(v.getId(), new Pair<>(v.getCoordinates(), sp));
             }
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
         } else if (SwingUtilities.isRightMouseButton(e)) {
             if (vert != null) {
                 source = vert;
@@ -196,6 +199,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             points = null;
             down = null;
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
         }
 
         if (SwingUtilities.isRightMouseButton(e)) {
@@ -241,6 +246,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
                 down = p;
                 vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+
             }
         }
     }

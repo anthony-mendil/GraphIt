@@ -63,6 +63,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
             }
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());

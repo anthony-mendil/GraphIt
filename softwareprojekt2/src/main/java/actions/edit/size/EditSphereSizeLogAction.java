@@ -97,6 +97,8 @@ public class EditSphereSizeLogAction extends LogAction {
             }
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
     }
 
     @Override

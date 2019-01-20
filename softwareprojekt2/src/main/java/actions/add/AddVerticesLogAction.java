@@ -3,6 +3,8 @@ package actions.add;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveVerticesLogAction;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.Layer;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
@@ -74,6 +76,8 @@ public class AddVerticesLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null){
+            position2D = vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.LAYOUT).inverseTransform(position2D);
+
             Vertex newVertex = graph.addVertex(position2D, sphere);
             createParameter(newVertex, sphere);
             vv.getGraphLayout().setLocation(newVertex, position2D);
@@ -86,6 +90,8 @@ public class AddVerticesLogAction extends LogAction {
             }
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

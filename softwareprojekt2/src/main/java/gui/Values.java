@@ -66,7 +66,6 @@ public class Values {
     /**
      * The default layout size.
      */
-    @Setter(AccessLevel.NONE)
     private Dimension defaultLayoutSize = new Dimension(985,540);
 
     @Setter(AccessLevel.NONE)
@@ -164,6 +163,14 @@ public class Values {
 
     @Setter(AccessLevel.NONE)
     private final javafx.scene.paint.Color actionTextColorInfo =  javafx.scene.paint.Color.BLACK;
+
+    private int scale;
+
+    @Setter(AccessLevel.NONE)
+    private final int minScale = 10;
+
+    @Setter(AccessLevel.NONE)
+    private final int maxScale = 200;
 
 
 

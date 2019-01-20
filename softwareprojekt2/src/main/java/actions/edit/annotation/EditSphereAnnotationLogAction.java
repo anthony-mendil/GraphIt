@@ -46,6 +46,8 @@ public class EditSphereAnnotationLogAction extends LogAction {
             sp.setAnnotation(annotation);
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
     }
 
     @Override

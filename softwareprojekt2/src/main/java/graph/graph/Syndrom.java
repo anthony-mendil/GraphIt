@@ -6,15 +6,14 @@ import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.*;
-import edu.uci.ics.jung.visualization.control.PickingGraphMousePlugin;
-import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
-import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
+import edu.uci.ics.jung.visualization.control.*;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.algorithmen.predicates.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.PickingGraphMouseEditSyndromPlugin;
+import graph.visualization.control.SatelliteGraphMouse;
 import graph.visualization.control.SpherePickingPlugin;
 import graph.visualization.control.VertexPickingPlugin;
 import graph.visualization.picking.SyndromPickSupport;
@@ -30,6 +29,7 @@ import lombok.Setter;
 import org.apache.commons.collections15.functors.MapTransformer;
 import org.apache.commons.collections15.map.LazyMap;
 
+import javax.swing.*;
 import java.awt.*;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -222,6 +222,10 @@ public class Syndrom {
 
     private SyndromPickSupport pickSupport;
 
+    private AbsoluteCrossoverScalingControl scalingControl;
+
+    private int scale;
+
     /**
      * The constructor, initialising all attributes.
      */
@@ -248,15 +252,35 @@ public class Syndrom {
         vv.getRenderContext().setPickSupport(pickSupport);
         vv.setGraphMouse(pluggable);
 
+        setRenderer(vv);
+
+        vv.getRenderContext().setVertexStrokeTransformer(new VertexStrokeTransformer<>(vv));
+        this.vv = vv;
+    }
+
+    public void setVisualisationViewer2(SatelliteVisualizationViewer<Vertex, Edge> vv2){
+        AbsoluteCrossoverScalingControl vv2Scaler = new AbsoluteCrossoverScalingControl();
+        scalingControl = vv2Scaler;
+        vv2.scaleToLayout(vv2Scaler);
+        setVv2(vv2);
+        vv2.setRenderer(new SyndromRenderer<>());
+        setRenderer(vv2);
+        vv2.setGraphMouse(new SatelliteGraphMouse());
+
+    }
+
+    private void setRenderer(VisualizationViewer<Vertex, Edge> vv){
         vv.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
         vv.getRenderContext().setVertexFontTransformer(new VertexFontTransformer<>());
         vv.getRenderContext().setVertexDrawPaintTransformer(new VertexDrawPaintTransformer<>());
-        vv.getRenderContext().setVertexStrokeTransformer(new VertexStrokeTransformer<>(vv));
         vv.getRenderContext().setVertexLabelTransformer(new VertexLabelTransformer<>());
         vv.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
-
         vv.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
         vv.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
-        this.vv = vv;
+    }
+
+    public void scale(int value){
+        scale = value;
+        scalingControl.scale(vv, (float) value / 100, vv.getCenter());
     }
 }

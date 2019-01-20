@@ -45,7 +45,7 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
 
         if (shapeType == VertexShapeType.RECTANGLE) {
             double height = metrics.getHeight()+5;
-            height = (1+(((Vertex) v).getSize())*0.01)*height;
+            height = (1+(vsf.transform(v)*0.01))*height;
             double width;
             if (vsf.transform(v) < metrics.getWidth() + 15) {
                 width = metrics.getWidth() + 15;

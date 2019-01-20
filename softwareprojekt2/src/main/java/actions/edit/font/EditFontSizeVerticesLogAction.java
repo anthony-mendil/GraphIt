@@ -40,6 +40,8 @@ public class EditFontSizeVerticesLogAction extends LogAction {
             vertex.setFontSize(size);
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
     }
 
     @Override

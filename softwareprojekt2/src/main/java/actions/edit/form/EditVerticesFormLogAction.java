@@ -42,6 +42,8 @@ public class EditVerticesFormLogAction extends LogAction {
             vertex.setShape(type);
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
     }
 
     @Override

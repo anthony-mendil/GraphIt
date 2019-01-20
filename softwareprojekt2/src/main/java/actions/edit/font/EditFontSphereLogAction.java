@@ -42,6 +42,8 @@ public class EditFontSphereLogAction extends LogAction {
             sp.setFont(font);
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
     }
 
     @Override

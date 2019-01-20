@@ -7,6 +7,7 @@ package graph.visualization.renderers;/*
  */
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
@@ -43,6 +44,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     @Override
     @SuppressWarnings("unchecked")
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {
+
         SyndromGraph<V, E> g = (SyndromGraph<V, E>) layout.getGraph();
         PickedState<Sphere> pickedState = Syndrom.getInstance().getVv().getPickedSphereState();
         Collection<E> renderEdges = new ArrayList<>();
@@ -155,4 +157,5 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             renderContext.getScreenDevice().repaint();
         }
     }
+
 }
