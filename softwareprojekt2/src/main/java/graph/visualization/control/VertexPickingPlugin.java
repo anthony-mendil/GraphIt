@@ -125,16 +125,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isRightMouseButton(e)){
             if (vertex != null){
                 PickedState<Vertex> vertices = vv.getPickedVertexState();
-
                 vertices.clear();
-                System.out.println("pick after: "+vertices.getPicked().toString());
-
                 vertices.pick(vertex, true);
                 helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
-
-                System.out.println("vertex: "+vertex);
-                System.out.println("pick one: "+vertices.getPicked().toString());
-
             }
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();

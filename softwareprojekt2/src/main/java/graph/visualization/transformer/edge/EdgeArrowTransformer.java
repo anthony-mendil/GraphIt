@@ -2,6 +2,8 @@ package graph.visualization.transformer.edge;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
+import graph.graph.Edge;
+import graph.graph.EdgeArrowType;
 import graph.visualization.util.SyndromArrowFactory;
 import org.apache.commons.collections15.Transformer;
 
@@ -44,11 +46,21 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
      * @param notchDepth The notch depth of the reinforced arrow.
      */
     public EdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
-        throw new UnsupportedOperationException();
+        factory = new SyndromArrowFactory();
+        this.reinforcedArrow = factory.getReinforcingEdgeArrow(width, length, notchDepth);
+        this.extenuatingArrow = factory.getExtenuatingEdgeArrow(radius);
+        this.neutralArrow = factory.getNeutralEdgeArrow();
     }
 
     @Override
     public Shape transform(Context<Graph<V, E>, E> context) {
-        throw new UnsupportedOperationException();
+        Edge edge = (Edge) context.element;
+        if (edge.getArrowType() == EdgeArrowType.EXTENUATING){
+            return extenuatingArrow;
+        } else if (edge.getArrowType() == EdgeArrowType.REINFORCED){
+            return reinforcedArrow;
+        } else {
+            return  neutralArrow;
+        }
     }
 }

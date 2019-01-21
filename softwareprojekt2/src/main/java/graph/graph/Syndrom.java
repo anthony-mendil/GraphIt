@@ -277,6 +277,11 @@ public class Syndrom {
         vv.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
         vv.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
         vv.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
+
+        vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
+        vv.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
+        vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>());
+
     }
 
     public void scale(int value){

@@ -104,19 +104,19 @@ public class Values {
     /**
      * The edge paint color of an edge.
      */
-    private Paint edgePaint;
+    private Color edgePaint = Color.BLACK;
     /**
      * The edge weight.
      */
-    private int edgeWeight;
+    private int edgeWeight = 1;
     /**
      * The edge stroke.
      */
-    private StrokeType strokeEdge;
+    private StrokeType strokeEdge = StrokeType.BASIC;
     /**
      * The edge arrow type.
      */
-    private EdgeArrowType edgeArrowType;
+    private EdgeArrowType edgeArrowType = EdgeArrowType.EXTENUATING;
     /**
      * The actual graph button type, pressed in the gui.
      */

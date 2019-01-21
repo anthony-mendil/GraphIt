@@ -2,6 +2,9 @@ package gui;
 
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
+import actions.edit.EditEdgesStrokeLogAction;
+import actions.edit.EditEdgesTypeLogAction;
+import actions.edit.color.EditEdgesColorLogAction;
 import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.color.EditVerticesDrawColorLogAction;
 import actions.edit.color.EditVerticesFillColorLogAction;
@@ -24,10 +27,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
 import edu.uci.ics.jung.visualization.control.ScalingControl;
 import edu.uci.ics.jung.visualization.transform.BidirectionalTransformer;
-import graph.graph.FunctionMode;
-import graph.graph.SizeChange;
-import graph.graph.Syndrom;
-import graph.graph.VertexShapeType;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import impl.org.controlsfx.skin.AutoCompletePopup;
 import io.GXLio;
@@ -571,11 +571,13 @@ public class Controller implements ObserverSyndrom {
     /**
      * The colorpicker for changing the color of edges.
      */
+    @FXML
     private ColorPicker edgeColour;
 
     /**
      * The menuitem for changing the stroke type of edges to dashed.
      */
+    @FXML
     private MenuItem edgeStrokeDashed;
 
     /**
@@ -586,6 +588,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * The menuitem for changing the stroke type of edges to dotted.
      */
+    @FXML
     private MenuItem edgeStrokeDotted;
 
     /**
@@ -596,6 +599,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * The menuitem for changing the stroke type of edges to basic.
      */
+    @FXML
     private MenuItem edgeStrokeBasic;
 
     /**
@@ -611,11 +615,13 @@ public class Controller implements ObserverSyndrom {
     /**
      * The menuitem for changing the arrow type of edges to extenuating.
      */
+    @FXML
     private MenuItem edgeArrowExtenuating;
 
     /**
      * The menuitem for changing the arrow type of edges to neutral.
      */
+    @FXML
     private MenuItem edgeArrowNeutral;
 
     @FXML
@@ -840,15 +846,42 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditEdgesStrokeLogAction-object and executes the action with the action history.
      */
-    public void editEdgesStroke() {
-        throw new UnsupportedOperationException();
+    public void editEdgesStroke(StrokeType stroke) {
+        EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(stroke);
+        history.execute(editEdgesStrokeLogAction);
+    }
+
+    public void edgeStrokeBasic(){
+        values.setStrokeEdge(StrokeType.BASIC);
+        editEdgesStroke(StrokeType.BASIC);
+    }
+
+    public void edgeStrokeDotted(){
+        values.setStrokeEdge(StrokeType.DOTTED_WEIGHT);
+        editEdgesStroke(StrokeType.DOTTED_WEIGHT);
+    }
+
+    public void edgeStrokeDashed(){
+        values.setStrokeEdge(StrokeType.DASHED_WEIGHT);
+        editEdgesStroke(StrokeType.DASHED_WEIGHT);
     }
 
     /**
      * Creates an EditEdgesTypeLogAction-object and executes the action with the action history.
      */
-    public void editEdgesType() {
-        throw new UnsupportedOperationException();
+    public void editEdgesType(EdgeArrowType type) {
+        EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(type);
+        history.execute(editEdgesTypeLogAction);
+    }
+
+    public void edgeExtenuating(){
+        values.setEdgeArrowType(EdgeArrowType.EXTENUATING);
+        editEdgesType(EdgeArrowType.EXTENUATING);
+    }
+
+    public void edgeNeutral(){
+        values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
+        editEdgesType(EdgeArrowType.NEUTRAL);
     }
 
     /* ......annotation..... */
@@ -873,7 +906,11 @@ public class Controller implements ObserverSyndrom {
      * Creates an EditEdgesColorLogAction-object and executes the action with the action history.
      */
     public void editEdgesColor() {
-        throw new UnsupportedOperationException();
+        Color color = convertToAWT(edgeColour.getValue());
+        Values.getInstance().setEdgePaint(color);
+        EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(color);
+        history.execute(editEdgesColorLogAction);
+        System.out.println("here: "+values.getEdgePaint());
     }
 
     /**
@@ -1321,6 +1358,7 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.valueProperty().addListener(changeZoom);
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
 
+        edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
     }
 
 
@@ -1350,7 +1388,6 @@ public class Controller implements ObserverSyndrom {
                     @Override
                     public void run() {
                         SyndromVisualisationViewer vv = syndrom.getVv();
-                        System.out.println("width changed");
                         vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
                         //canvas.setContent(syndrom.getGzsp());
                     }

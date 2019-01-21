@@ -614,10 +614,11 @@ Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.j
 Checking 0 named HQL queries
 Checking 0 named SQL queries
 Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@5202d1
-Registering SessionFactory: fc31dd7f-733c-405e-86c5-3bee47a22ede (<unnamed>)
+Registering SessionFactory: 403ab9a1-5ab6-490d-9f85-4f571eead3b8 (<unnamed>)
 Not binding SessionFactory to JNDI, no JNDI name configured
 Statistics initialized [enabled=false]
-QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@1d46c95
+Connection pool now considered primed; min-size will be maintained
+QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@1bd57b6
 HHH000397: Using ASTQueryTranslatorFactory
 parse() - HQL: SELECT g from log_management.tables.Graph g where g.id > 0
 throwQueryException() : no errors
@@ -671,9 +672,9 @@ SQL: select graph0_.id as id1_0_, graph0_.GXL as GXL2_0_ from GRAPHITDATABASE.PU
 throwQueryException() : no errors
 select graph0_.id as id1_0_, graph0_.GXL as GXL2_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id>0
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8396]
-Resolving associations for [log_management.tables.Graph#8396]
-Done materializing entity [log_management.tables.Graph#8396]
+Result row: EntityKey[log_management.tables.Graph#8838]
+Resolving associations for [log_management.tables.Graph#8838]
+Done materializing entity [log_management.tables.Graph#8838]
 Initiating JDBC connection release from afterTransaction
 parse() - HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
 throwQueryException() : no errors
@@ -736,51 +737,81 @@ SQL: select log0_.id as id1_1_, log0_.graph_id as graph_id5_1_, log0_.LOGENTRYNA
 throwQueryException() : no errors
 select log0_.id as id1_1_, log0_.graph_id as graph_id5_1_, log0_.LOGENTRYNAME as LOGENTRY2_1_, log0_.PARAMETERS as PARAMETE3_1_, log0_.TIME as TIME4_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ where log0_.graph_id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Log#8397]
+Result row: EntityKey[log_management.tables.Log#8839]
 Result set row: 1
-Result row: EntityKey[log_management.tables.Log#8398]
+Result row: EntityKey[log_management.tables.Log#8840]
 Result set row: 2
-Result row: EntityKey[log_management.tables.Log#8399]
+Result row: EntityKey[log_management.tables.Log#8841]
 Result set row: 3
-Result row: EntityKey[log_management.tables.Log#8400]
+Result row: EntityKey[log_management.tables.Log#8842]
 Result set row: 4
-Result row: EntityKey[log_management.tables.Log#8401]
+Result row: EntityKey[log_management.tables.Log#8843]
 Result set row: 5
-Result row: EntityKey[log_management.tables.Log#8402]
-Resolving associations for [log_management.tables.Log#8397]
-Done materializing entity [log_management.tables.Log#8397]
-Resolving associations for [log_management.tables.Log#8398]
-Done materializing entity [log_management.tables.Log#8398]
-Resolving associations for [log_management.tables.Log#8399]
-Done materializing entity [log_management.tables.Log#8399]
-Resolving associations for [log_management.tables.Log#8400]
-Done materializing entity [log_management.tables.Log#8400]
-Resolving associations for [log_management.tables.Log#8401]
-Done materializing entity [log_management.tables.Log#8401]
-Resolving associations for [log_management.tables.Log#8402]
-Done materializing entity [log_management.tables.Log#8402]
+Result row: EntityKey[log_management.tables.Log#8844]
+Result set row: 6
+Result row: EntityKey[log_management.tables.Log#8845]
+Result set row: 7
+Result row: EntityKey[log_management.tables.Log#8846]
+Result set row: 8
+Result row: EntityKey[log_management.tables.Log#8847]
+Result set row: 9
+Result row: EntityKey[log_management.tables.Log#8848]
+Result set row: 10
+Result row: EntityKey[log_management.tables.Log#8849]
+Resolving associations for [log_management.tables.Log#8839]
+Done materializing entity [log_management.tables.Log#8839]
+Resolving associations for [log_management.tables.Log#8840]
+Done materializing entity [log_management.tables.Log#8840]
+Resolving associations for [log_management.tables.Log#8841]
+Done materializing entity [log_management.tables.Log#8841]
+Resolving associations for [log_management.tables.Log#8842]
+Done materializing entity [log_management.tables.Log#8842]
+Resolving associations for [log_management.tables.Log#8843]
+Done materializing entity [log_management.tables.Log#8843]
+Resolving associations for [log_management.tables.Log#8844]
+Done materializing entity [log_management.tables.Log#8844]
+Resolving associations for [log_management.tables.Log#8845]
+Done materializing entity [log_management.tables.Log#8845]
+Resolving associations for [log_management.tables.Log#8846]
+Done materializing entity [log_management.tables.Log#8846]
+Resolving associations for [log_management.tables.Log#8847]
+Done materializing entity [log_management.tables.Log#8847]
+Resolving associations for [log_management.tables.Log#8848]
+Done materializing entity [log_management.tables.Log#8848]
+Resolving associations for [log_management.tables.Log#8849]
+Done materializing entity [log_management.tables.Log#8849]
 Initiating JDBC connection release from afterTransaction
 On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 8428
+Sequence value obtained: 8870
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 8428, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 8870, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
-Flushed: 1 insertions, 0 updates, 7 deletions to 8 objects
+Flushed: 1 insertions, 0 updates, 12 deletions to 13 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=8400, time=2019-01-21T11:04:18.584, logEntryName=EDIT_VERTICES_FILL_COLOR, parameters={"oldVertices":{"1":{"green":255,"blue":51,"red":123,"alpha":255,"colorSpace":{"type":5,"numComponents":3,"profile":{"matrix":[[0.43606567,0.3851471,0.1430664],[0.2224884,0.71687317,0.06060791],[0.013916016,0.097076416,0.71409607]],"mediaWhitePoint":[0.9504547,1.0,1.0890503],"data":"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","majorVersion":2,"minorVersion":16,"numComponents":3,"colorSpaceType":5,"pcstype":0,"profileClass":1},"cs_sRGB":true},"rgb":-8650957,"transparency":1}},"newVertices":{"1":{"green":102,"blue":153,"red":153,"alpha":255,"colorSpace":{"type":5,"numComponents":3,"profile":{"matrix":[[0.43606567,0.3851471,0.1430664],[0.2224884,0.71687317,0.06060791],[0.013916016,0.097076416,0.71409607]],"mediaWhitePoint":[0.9504547,1.0,1.0890503],"data":"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","majorVersion":2,"minorVersion":16,"numComponents":3,"colorSpaceType":5,"pcstype":0,"profileClass":1},"cs_sRGB":true},"rgb":-6723943,"transparency":1}}}, graph=log_management.tables.Graph#8396}
-log_management.tables.Log{id=8401, time=2019-01-21T11:04:22.209, logEntryName=EDIT_VERTICES_FILL_COLOR, parameters={"oldVertices":{},"newVertices":{}}, graph=log_management.tables.Graph#8396}
-log_management.tables.Log{id=8402, time=2019-01-21T11:04:24.590, logEntryName=EDIT_VERTICES_FILL_COLOR, parameters={"oldVertices":{"1":{"green":102,"blue":153,"red":153,"alpha":255,"colorSpace":{"type":5,"numComponents":3,"profile":{"matrix":[[0.43606567,0.3851471,0.1430664],[0.2224884,0.71687317,0.06060791],[0.013916016,0.097076416,0.71409607]],"mediaWhitePoint":[0.9504547,1.0,1.0890503],"data":"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","majorVersion":2,"minorVersion":16,"numComponents":3,"colorSpaceType":5,"pcstype":0,"profileClass":1},"cs_sRGB":true},"rgb":-6723943,"transparency":1}},"newVertices":{"1":{"green":230,"blue":153,"red":230,"alpha":255,"colorSpace":{"type":5,"numComponents":3,"profile":{"matrix":[[0.43606567,0.3851471,0.1430664],[0.2224884,0.71687317,0.06060791],[0.013916016,0.097076416,0.71409607]],"mediaWhitePoint":[0.9504547,1.0,1.0890503],"data":"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","majorVersion":2,"minorVersion":16,"numComponents":3,"colorSpaceType":5,"pcstype":0,"profileClass":1},"cs_sRGB":true},"rgb":-1644903,"transparency":1}}}, graph=log_management.tables.Graph#8396}
-log_management.tables.Log{id=8397, time=2019-01-21T10:57:57.180, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8396}
-log_management.tables.Log{id=8398, time=2019-01-21T10:59:10.861, logEntryName=ADD_VERTICES, parameters={"parameter":{"1":"0"}}, graph=log_management.tables.Graph#8396}
-log_management.tables.Log{id=8399, time=2019-01-21T10:59:12.309, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"0"}}, graph=log_management.tables.Graph#8396}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1ff01e updateLevel: 0 listeners: [] compoundEdit: null, id=8396}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@6b057b updateLevel: 0 listeners: [] compoundEdit: null, id=8428}
+log_management.tables.Log{id=8839, time=2019-01-21T13:18:43.533, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8844, time=2019-01-21T13:18:51.373, logEntryName=ADD_VERTICES, parameters={"parameter":{"5":"2"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8845, time=2019-01-21T13:18:54.913, logEntryName=ADD_EDGES, parameters={"edges":{"5":"3"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8846, time=2019-01-21T13:18:59.414, logEntryName=ADD_EDGES, parameters={"edges":{"5":"4"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8847, time=2019-01-21T13:19:03.074, logEntryName=ADD_VERTICES, parameters={"parameter":{"8":"0"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8840, time=2019-01-21T13:18:45.824, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8841, time=2019-01-21T13:18:46.587, logEntryName=ADD_SPHERE, parameters={"sphere":"2"}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8842, time=2019-01-21T13:18:50.139, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"0"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8843, time=2019-01-21T13:18:50.799, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8848, time=2019-01-21T13:19:07.233, logEntryName=ADD_EDGES, parameters={"edges":{"3":"8"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Log{id=8849, time=2019-01-21T13:19:10.632, logEntryName=ADD_VERTICES, parameters={"parameter":{"10":"0"}}, graph=log_management.tables.Graph#8838}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@37caa9 updateLevel: 0 listeners: [] compoundEdit: null, id=8838}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
 insert into GRAPHITDATABASE.PUBLIC.GRAPHS (GXL, id) values (?, ?)
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
 delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
 delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
 delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
@@ -790,129 +821,389 @@ delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
 delete from GRAPHITDATABASE.PUBLIC.GRAPHS where id=?
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 8429
+Sequence value obtained: 8871
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 8429, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 8871, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 2 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=8429, time=2019-01-21T11:11:39.671, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8428}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@6b057b updateLevel: 0 listeners: [] compoundEdit: null, id=8428}
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 8430
+Sequence value obtained: 8872
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 8430, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 8872, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 3 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=8429, time=2019-01-21T11:11:39.671, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8428}
-log_management.tables.Log{id=8430, time=2019-01-21T11:11:40.736, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8428}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@6b057b updateLevel: 0 listeners: [] compoundEdit: null, id=8428}
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 8431
+Sequence value obtained: 8873
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 8431, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 8873, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 4 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=8429, time=2019-01-21T11:11:39.671, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8428}
-log_management.tables.Log{id=8430, time=2019-01-21T11:11:40.736, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8428}
-log_management.tables.Log{id=8431, time=2019-01-21T11:11:42.555, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"0"}}, graph=log_management.tables.Graph#8428}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@6b057b updateLevel: 0 listeners: [] compoundEdit: null, id=8428}
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 8432
+Sequence value obtained: 8874
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 8432, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 8874, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 5 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=8432, time=2019-01-21T11:11:43.186, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"0"}}, graph=log_management.tables.Graph#8428}
-log_management.tables.Log{id=8429, time=2019-01-21T11:11:39.671, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8428}
-log_management.tables.Log{id=8430, time=2019-01-21T11:11:40.736, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8428}
-log_management.tables.Log{id=8431, time=2019-01-21T11:11:42.555, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"0"}}, graph=log_management.tables.Graph#8428}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@6b057b updateLevel: 0 listeners: [] compoundEdit: null, id=8428}
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#8428]
+Loading entity: [log_management.tables.Graph#8870]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#8428]
-Resolving associations for [log_management.tables.Graph#8428]
-Done materializing entity [log_management.tables.Graph#8428]
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
 Done entity load
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 8875
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 8875, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 6 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8875, time=2019-01-21T13:21:50.719, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 8876
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 8876, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 7 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8876, time=2019-01-21T13:21:51.567, logEntryName=ADD_VERTICES, parameters={"parameter":{"5":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8875, time=2019-01-21T13:21:50.719, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 8877
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 8877, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 8 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8876, time=2019-01-21T13:21:51.567, logEntryName=ADD_VERTICES, parameters={"parameter":{"5":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8877, time=2019-01-21T13:21:52.025, logEntryName=ADD_VERTICES, parameters={"parameter":{"6":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8875, time=2019-01-21T13:21:50.719, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 8878
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 8878, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 9 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8876, time=2019-01-21T13:21:51.567, logEntryName=ADD_VERTICES, parameters={"parameter":{"5":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8877, time=2019-01-21T13:21:52.025, logEntryName=ADD_VERTICES, parameters={"parameter":{"6":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8878, time=2019-01-21T13:21:52.554, logEntryName=ADD_VERTICES, parameters={"parameter":{"7":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8875, time=2019-01-21T13:21:50.719, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 8879
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 8879, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 10 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8876, time=2019-01-21T13:21:51.567, logEntryName=ADD_VERTICES, parameters={"parameter":{"5":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8877, time=2019-01-21T13:21:52.025, logEntryName=ADD_VERTICES, parameters={"parameter":{"6":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8878, time=2019-01-21T13:21:52.554, logEntryName=ADD_VERTICES, parameters={"parameter":{"7":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8879, time=2019-01-21T13:21:57.444, logEntryName=ADD_EDGES, parameters={"edges":{"2":"5"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8875, time=2019-01-21T13:21:50.719, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 8880
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 8880, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 11 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8876, time=2019-01-21T13:21:51.567, logEntryName=ADD_VERTICES, parameters={"parameter":{"5":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8877, time=2019-01-21T13:21:52.025, logEntryName=ADD_VERTICES, parameters={"parameter":{"6":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8878, time=2019-01-21T13:21:52.554, logEntryName=ADD_VERTICES, parameters={"parameter":{"7":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8879, time=2019-01-21T13:21:57.444, logEntryName=ADD_EDGES, parameters={"edges":{"2":"5"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8875, time=2019-01-21T13:21:50.719, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8880, time=2019-01-21T13:22:02.944, logEntryName=ADD_EDGES, parameters={"edges":{"3":"6"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 8881
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 8881, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 12 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=8871, time=2019-01-21T13:21:47.184, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8876, time=2019-01-21T13:21:51.567, logEntryName=ADD_VERTICES, parameters={"parameter":{"5":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8877, time=2019-01-21T13:21:52.025, logEntryName=ADD_VERTICES, parameters={"parameter":{"6":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8878, time=2019-01-21T13:21:52.554, logEntryName=ADD_VERTICES, parameters={"parameter":{"7":"0"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8879, time=2019-01-21T13:21:57.444, logEntryName=ADD_EDGES, parameters={"edges":{"2":"5"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8872, time=2019-01-21T13:21:47.874, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8873, time=2019-01-21T13:21:49.685, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8874, time=2019-01-21T13:21:50.166, logEntryName=ADD_VERTICES, parameters={"parameter":{"3":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8875, time=2019-01-21T13:21:50.719, logEntryName=ADD_VERTICES, parameters={"parameter":{"4":"1"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8880, time=2019-01-21T13:22:02.944, logEntryName=ADD_EDGES, parameters={"edges":{"3":"6"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Log{id=8881, time=2019-01-21T13:22:08.292, logEntryName=ADD_EDGES, parameters={"edges":{"4":"7"}}, graph=log_management.tables.Graph#8870}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1c2ad1e updateLevel: 0 listeners: [] compoundEdit: null, id=8870}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#8870]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#8870]
+Resolving associations for [log_management.tables.Graph#8870]
+Done materializing entity [log_management.tables.Graph#8870]
+Done entity load
+Adding 1 Connections to the pool
