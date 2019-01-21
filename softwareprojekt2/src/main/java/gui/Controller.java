@@ -29,7 +29,6 @@ import edu.uci.ics.jung.visualization.control.ScalingControl;
 import edu.uci.ics.jung.visualization.transform.BidirectionalTransformer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import impl.org.controlsfx.skin.AutoCompletePopup;
 import io.GXLio;
 import io.OOFio;
 import javafx.beans.value.ChangeListener;
@@ -56,9 +55,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Label;
@@ -1340,11 +1336,6 @@ public class Controller implements ObserverSyndrom {
         loadComboBox(sizeSphereComboBox);
         loadComboBox(sizeSymptomComboBox);
 
-        sizeSphereComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSphereComboBox));
-        sizeSymptomComboBox.getEditor().textProperty().addListener(new ComboBoxListener(sizeSymptomComboBox));
-        TextFields.bindAutoCompletion(sizeSphereComboBox.getEditor(), sizeSphereComboBox.getItems()).setPrefWidth(45);
-        TextFields.bindAutoCompletion(sizeSymptomComboBox.getEditor(), sizeSymptomComboBox.getItems()).setPrefWidth(45);
-
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
         zoomSlider.setValue(100);
@@ -1392,25 +1383,6 @@ public class Controller implements ObserverSyndrom {
                         //canvas.setContent(syndrom.getGzsp());
                     }
                 });
-
-
-                // GraphZoomScrollPane zoom = syndrom.getGzsp();
-                // zoom.setSize(newValue.intValue(), zoom.getHeight());
-
-                /* Update Test1 Scrollbars sind immer noch am arsch
-                syndrom.getGzsp().revalidate();
-                syndrom.getGzsp().repaint();
-                */
-
-                /* Update Test2 kp hat nichts gebracht
-                syndrom.getGzsp().updateUI();
-                */
-
-                /* Update Test3 "Schwarze Bereiche beim Scrollen"
-                canvas.setContent(syndrom.getGzsp());
-                */
-
-                /* Die Splitpane die unsere SwingNode(canvas) beinhaltet: paneSwingNode */
             }
         }
     };
@@ -1428,22 +1400,6 @@ public class Controller implements ObserverSyndrom {
                         vv.setPreferredSize(old);
                     }
                 });
-                //    GraphZoomScrollPane zoom = syndrom.getGzsp();
-                //   zoom.setSize(zoom.getWidth(), newValue.intValue());
-
-
-                /* Update Test1 Scrollbars sind immer noch am arsch
-                syndrom.getGzsp().revalidate();
-                syndrom.getGzsp().repaint();
-                */
-
-                /* Update Test2 kp hat nichts gebracht
-                syndrom.getGzsp().updateUI();
-                */
-
-                /* Update Test3 "Schwarze Bereiche beim Scrollen"
-                canvas.setContent(syndrom.getGzsp());
-                */
             }
         }
     };
@@ -1456,6 +1412,7 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            comboBox.show();
             if(!newValue.matches("\\d*"))
                 comboBox.getEditor().setText(oldValue);
 
@@ -1489,13 +1446,14 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
         {
-            if (newPropertyValue)
+            comboBox.show();
+            if (newPropertyValue) {
                 currentSize = comboBox.getEditor().getText();
+            }
             else
                 comboBox.getEditor().setText(currentSize);
         }
     }
-
     private void loadComboBox(ComboBox comboBox) {
         ObservableList<String> options =
                 FXCollections.observableArrayList(
@@ -1518,21 +1476,6 @@ public class Controller implements ObserverSyndrom {
         comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
-        AutoCompletionBinding autoComplete = TextFields.bindAutoCompletion(comboBox.getEditor(),comboBox.getItems());
-        autoComplete.setPrefWidth(45);
-
-        autoComplete.setOnAutoCompleted(new EventHandler<AutoCompletionBinding.AutoCompletionEvent<String>>(){
-            @Override
-            public void handle(AutoCompletionBinding.AutoCompletionEvent<String> event){
-                currentSize = event.getCompletion();
-                root.requestFocus();
-                if(comboBox.getId().equals("sizeSphereComboBox")){
-                    editFontSizeSphere(Integer.parseInt(currentSize));
-                }else if(comboBox.getId().equals("sizeSymptomComboBox")){
-                    editFontSizeVertices(Integer.parseInt(currentSize));
-                }
-            }
-        });
     }
 
     private void analysisMode(Boolean active) {
