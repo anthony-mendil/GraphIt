@@ -846,9 +846,9 @@
       </VBox>
    </top>
    <bottom>
-      <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" BorderPane.alignment="CENTER">
+      <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" >
          <buttons>
-            <HBox centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1497.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
+            <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1497.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
                <children>
                   <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;" wrappingWidth="436.33087462186813">
                      <HBox.margin>

@@ -48,7 +48,6 @@ public class EditVertexAnnotationLogAction extends LogAction {
             Map<String, String> annotation = v.getAnnotation();
             annotation.put("de", text);
             v.setAnnotation(annotation);
-            System.out.println("annotation vertex: "+v);
         }
         vv.repaint();
         syndrom.getVv2().repaint();

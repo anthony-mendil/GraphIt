@@ -141,7 +141,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
         helper.hideMenu(contextMenu);
-        setActionText("<<Action>>", false);
         down = e.getPoint();
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
@@ -289,35 +288,29 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         Platform.runLater(() -> {
                             try {
                                 Text text = (Text) values.getNamespace().get("currentActionText");
-                                ButtonBar hBox = (ButtonBar) values.getNamespace().get("currentActionBox");
-                                Color color;
-                                Font font;
+                                HBox hBox = (HBox) values.getNamespace().get("textBox");
+                                Color color = Color.WHITE;
+                                Font font = values.getActionTextAlert();
                                 if (isAlert) {
-                                    color = Color.WHITE;
-                                    font = values.getActionTextAlert();
-                                    hBox.setBackground(Background.EMPTY);
+
+
                                     String style = "-fx-background-color: rgba(160, 12, 12, 1);";
                                     hBox.setStyle(style);
 
                                     final Animation animation = new Transition() {
                                         {
-                                            setCycleDuration(Duration.millis(5000));
-                                            setInterpolator(Interpolator.EASE_OUT);
+                                            setCycleDuration(Duration.millis(3000));
+                                            setInterpolator(Interpolator.LINEAR);
                                         }
 
                                         @Override
                                         protected void interpolate(double frac) {
-                                            Color vColor = Color.rgb(16,12,12, 1 - frac);
-                                            hBox.setBackground(new Background(new BackgroundFill(vColor, CornerRadii.EMPTY, Insets.EMPTY)));
+                                            hBox.setOpacity(1-frac);
                                         }
                                     };
                                     animation.play();
 
 
-                                } else {
-                                    color = values.getActionTextColorInfo();
-                                    font = values.getActionTextInfo();
-                                    hBox.setStyle("@gui_style.css");
                                 }
                                 text.setFill(color);
                                 text.setText(string);

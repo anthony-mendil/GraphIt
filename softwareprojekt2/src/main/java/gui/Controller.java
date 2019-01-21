@@ -759,6 +759,12 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Text prozent;
 
+    @FXML
+    private HBox textBox;
+
+    @FXML
+    private ButtonBar currentActionBox;
+
 
     public Controller() {
     }
@@ -911,7 +917,6 @@ public class Controller implements ObserverSyndrom {
         Values.getInstance().setEdgePaint(color);
         EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(color);
         history.execute(editEdgesColorLogAction);
-        System.out.println("here: "+values.getEdgePaint());
     }
 
     /**
@@ -1361,6 +1366,8 @@ public class Controller implements ObserverSyndrom {
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
 
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
+
+        textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
     }
 
 

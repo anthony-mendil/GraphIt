@@ -41,7 +41,6 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
             if (edge != null) {
                 if (!edgePickedState.isPicked(edge)) {
                     edgePickedState.pick(edge, true);
-                    System.out.println("hererre");
                 }
             } else {
                 edgePickedState.clear();
