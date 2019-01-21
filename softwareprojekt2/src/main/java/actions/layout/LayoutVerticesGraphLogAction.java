@@ -12,11 +12,13 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import log_management.parameters.move.LayoutVerticesParam;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Layouts the graph according to a previously defined layout.
@@ -30,6 +32,11 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         super(LogEntryName.EDIT_VERTICES_LAYOUT);
     }
 
+    public LayoutVerticesGraphLogAction(LayoutVerticesParam pLayoutVerticesParam) {
+        super(LogEntryName.EDIT_VERTICES_LAYOUT);
+        parameters = pLayoutVerticesParam;
+    }
+
     //@Override
     //public void createParameter() {
     //    throw new UnsupportedOperationException();
@@ -40,6 +47,7 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         AggregateLayout<Vertex, Edge> layout =  syndrom.getLayout();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        if(parameters == null){
         for (Sphere s : graph.getSpheres()) {
             LinkedList<Vertex> vertices = s.getVertices();
 
@@ -91,6 +99,13 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         for (Sphere s : graph.getSpheres()) {
             for(Vertex v : s.getVertices()){
                 layout.setLocation(v,v.getCoordinates());
+            }
+        }
+        }else{
+            Map<Vertex,Point2D> oldVertices = ((LayoutVerticesParam)parameters).getOldVertices();
+            Map<Vertex,Point2D> newVertices = ((LayoutVerticesParam)parameters).getNewVertices();
+            for(Map.Entry<Vertex,Point2D> entry : oldVertices.entrySet()){
+
             }
         }
 

@@ -1210,7 +1210,7 @@ public class Controller implements ObserverSyndrom {
      * Calls the redo-method from the action history.
      */
     public void executeRedo() {
-        throw new UnsupportedOperationException();
+        history.redo();
     }
 
     /**

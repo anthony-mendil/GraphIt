@@ -15,6 +15,9 @@ import java.util.Map;
  * Changes the annotation of a selected Vertex.
  */
 public class EditVertexAnnotationLogAction extends LogAction {
+    /**
+     * The annotation of the vertex.
+     */
     private String text;
     /**
      * Constructor in case the user wants to change the annotation of vertex.
@@ -33,6 +36,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
      */
     public EditVertexAnnotationLogAction(EditVertexAnnotationParam pEditVertexAnnotationParam) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);
+        parameters = pEditVertexAnnotationParam;
     }
 
     @Override

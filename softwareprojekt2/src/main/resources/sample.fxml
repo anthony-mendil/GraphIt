@@ -87,7 +87,7 @@
                               <Tooltip text="Rückgängig" />
                            </tooltip>
                         </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
