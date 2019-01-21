@@ -59,6 +59,8 @@ public class EditSphereColorLogAction extends LogAction {
             sphere.setFillPaint(newColor);
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

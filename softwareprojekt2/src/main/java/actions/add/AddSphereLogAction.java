@@ -3,10 +3,7 @@ package actions.add;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveSphereLogAction;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
@@ -52,6 +49,8 @@ public class AddSphereLogAction extends LogAction {
             graph.getSpheres().add(((AddRemoveSphereParam)parameters).getSphere());
         }
         vv.repaint();
+        Syndrom.getInstance().getVv2().repaint();
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

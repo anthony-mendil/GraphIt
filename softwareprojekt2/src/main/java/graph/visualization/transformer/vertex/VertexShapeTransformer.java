@@ -40,18 +40,19 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
         Font font = vertexFontTransformer.transform(v);
         FontMetrics fontMetrics = Syndrom.getInstance().getVv().getFontMetrics(font);
         Graphics graphics = Syndrom.getInstance().getVv().getGraphics();
-
         Rectangle2D metrics = fontMetrics.getStringBounds(label, graphics);
+        double width;
+        if (vsf.transform(v) < metrics.getWidth() + 15) {
+            width = metrics.getWidth() + 15;
+        } else {
+            width = vsf.transform(v);
+        }
+
+        double height = metrics.getHeight()+5;
+        height = (1+(vsf.transform(v)*0.01))*height;
 
         if (shapeType == VertexShapeType.RECTANGLE) {
-            double height = metrics.getHeight()+5;
-            height = (1+(((Vertex) v).getSize())*0.01)*height;
-            double width;
-            if (vsf.transform(v) < metrics.getWidth() + 15) {
-                width = metrics.getWidth() + 15;
-            } else {
-                width = vsf.transform(v);
-            }
+
             float arc_size = (float) Math.min(height, width) / 2;
             RoundRectangle2D round = new RoundRectangle2D.Float();
             round.setRoundRect( -(width / 2), -(height / 2),
@@ -62,12 +63,10 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
         } else if (shapeType == VertexShapeType.ELLIPSE) {
             return factory.getEllipse(v);
         } else {
-            float width = vsf.transform(v);
-            float height = width * 0.7F;
 
-            float h_offset = -(width / 2);
-            float v_offset = -(height / 2);
-            return new Ellipse2D.Float(h_offset, v_offset, width, height);
+            double h_offset = -(width / 2);
+            double v_offset = -(height / 2);
+            return new Ellipse2D.Double(h_offset, v_offset, width, height);
         }
     }
 }

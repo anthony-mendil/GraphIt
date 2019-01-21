@@ -7,9 +7,13 @@ import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.DefaultVisualizationModel;
 import edu.uci.ics.jung.visualization.VisualizationModel;
+import edu.uci.ics.jung.visualization.control.CrossoverScalingControl;
+import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
+import edu.uci.ics.jung.visualization.control.ScalingControl;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
+import graph.visualization.renderers.SyndromRenderer;
 import log_management.DatabaseManager;
 
 import java.awt.*;
@@ -43,10 +47,16 @@ public class CreateGraphAction extends GraphAction {
         syndrom.setLayout(layout);
         final VisualizationModel<Vertex, Edge> visualizationModel =
                 new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize()); // TODO im A4 Format
-        SyndromVisualisationViewer vv = new SyndromVisualisationViewer<>(visualizationModel, values
-                .getDefaultLayoutSize());
+        SyndromVisualisationViewer vv = new SyndromVisualisationViewer<>(visualizationModel,values
+                .getDefaultLayoutVVSize());
         vv.setGraphLayout(layout);
         syndrom.setVisualisationViewer(vv);
+
+        final SatelliteVisualizationViewer<Vertex,Edge> vv2 =
+                new SatelliteVisualizationViewer(vv, new Dimension(200,150));
+
+        syndrom.setVisualisationViewer2(vv2);
+
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         Action.attach(databaseManager);

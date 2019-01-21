@@ -7,13 +7,14 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object of the action EditVerticesFormLogAction.
  */
 @Data
-public class EditVerticesFormParam extends Param{
+public class EditVerticesFormParam extends Param implements Serializable {
     /**
      * The set of vertices containing their old shapes/annotation.
      */

@@ -55,6 +55,8 @@ public class EditFontSizeSphereLogAction extends LogAction {
             sphere.setFontSize(newFontSize);
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());

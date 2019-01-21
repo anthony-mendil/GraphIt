@@ -52,7 +52,9 @@ public class EditFontSphereLogAction extends LogAction {
             String newFont = ((EditFontSphereParam)parameters).getNewFont();
             sphere.setFont(newFont);
         }
-        vv.repaint();
+ 
+        syndrom.getVv2().repaint();
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

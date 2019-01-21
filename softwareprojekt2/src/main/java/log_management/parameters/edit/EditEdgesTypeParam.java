@@ -7,13 +7,14 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Parameter object of the action EditEdgesTypeLogAction.
  */
 @Data
-public class EditEdgesTypeParam extends Param{
+public class EditEdgesTypeParam extends Param implements Serializable {
     /**
      * The set of all edges containing their old edge-type.
      */

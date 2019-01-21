@@ -10,6 +10,7 @@ import graph.graph.SyndromGraph;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -45,7 +46,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      */
     public Sphere getSphere(double x, double y) {
         Sphere sphaereContains = null;
-        Point2D ip = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(Layer.VIEW,
+        Point2D ip = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(Layer.LAYOUT,
                 new Point2D.Double(x, y));
         x = ip.getX();
         y = ip.getY();
@@ -56,10 +57,10 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 for (Object aSet : list) {
                     Sphere s = (Sphere) aSet;
                     Point2D p = s.getCoordinates();
-                    p = vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, p);
                     Shape rec =  new Rectangle2D.Double(p.getX(), p.getY(), s
                             .getWidth(), s.getHeight());
-
+                    AffineTransform transform = vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.LAYOUT).getTransform();
+                    transform.createTransformedShape(rec);
                     if (rec.contains(x,y)) {
                         sphaereContains = s;
                     }

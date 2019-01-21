@@ -68,6 +68,8 @@ public class EditSphereAnnotationLogAction extends LogAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+        syndrom.getVv2().repaint();
+
     }
 
     @Override

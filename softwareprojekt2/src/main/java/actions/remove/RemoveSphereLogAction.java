@@ -58,6 +58,8 @@ public class RemoveSphereLogAction extends LogAction {
             graph.removeSphere(((AddRemoveSphereParam)parameters).getSphere());
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
         databaseManager.addEntryDatabase(createLog());

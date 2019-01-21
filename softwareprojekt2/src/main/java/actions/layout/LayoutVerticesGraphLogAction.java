@@ -112,6 +112,8 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         vv.setGraphLayout(layout);
 
         vv.repaint();
+        syndrom.getVv2().repaint();
+
     }
 
 

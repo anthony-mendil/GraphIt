@@ -1,3 +1,13 @@
 .buttonbar {
     -fx-background-color: #AECCC9;
 }
+
+.zoomSlider {
+    -fx-pref-height: 10px;
+    -fx-pref-width: 20px;
+}
+
+.zoomSlider .thumb {
+    -fx-pref-height: 30;
+    -fx-prefer-width: 30;
+}

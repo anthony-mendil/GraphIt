@@ -60,6 +60,8 @@ public class EditVerticesFormLogAction extends LogAction {
                 }
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

@@ -32,17 +32,7 @@ public class Values {
      */
     @Setter(AccessLevel.NONE)
     private final double defaultHeightSphere = 200;
-    /**
-     * The default annotation of a sphere.
-     */
-    @Setter(AccessLevel.NONE)
-    private final Map<String, String> defaultAnnotationSphere;
 
-    /**
-     * The default annotation of a vertex.
-     */
-    @Setter(AccessLevel.NONE)
-    private final Map<String, String> defaultAnnotationVertex;
     /**
      * The default size of a vertex.
      */
@@ -66,7 +56,6 @@ public class Values {
     /**
      * The default layout size.
      */
-    @Setter(AccessLevel.NONE)
     private Dimension defaultLayoutSize = new Dimension(985,540);
 
     @Setter(AccessLevel.NONE)
@@ -115,19 +104,19 @@ public class Values {
     /**
      * The edge paint color of an edge.
      */
-    private Paint edgePaint;
+    private Color edgePaint = Color.BLACK;
     /**
      * The edge weight.
      */
-    private int edgeWeight;
+    private int edgeWeight = 1;
     /**
      * The edge stroke.
      */
-    private StrokeType strokeEdge;
+    private StrokeType strokeEdge = StrokeType.BASIC;
     /**
      * The edge arrow type.
      */
-    private EdgeArrowType edgeArrowType;
+    private EdgeArrowType edgeArrowType = EdgeArrowType.EXTENUATING;
     /**
      * The actual graph button type, pressed in the gui.
      */
@@ -165,16 +154,32 @@ public class Values {
     @Setter(AccessLevel.NONE)
     private final javafx.scene.paint.Color actionTextColorInfo =  javafx.scene.paint.Color.BLACK;
 
+    private int scale;
+
+    @Setter(AccessLevel.NONE)
+    private final int minScale = 10;
+
+    @Setter(AccessLevel.NONE)
+    private final int maxScale = 200;
+
 
 
     private Values() {
-        defaultAnnotationSphere = new HashMap<>();
-        defaultAnnotationSphere.put("de","Sphäre Überschrift");
-        defaultAnnotationSphere.put("en","Sphere Headline");
 
-        defaultAnnotationVertex = new HashMap<>();
-        defaultAnnotationVertex.put("de","Vertex");
-        defaultAnnotationVertex.put("en","vertex");
+    }
+
+    public HashMap<String, String> getDefaultAnnotationVertex(){
+        HashMap<String, String> annotation = new HashMap<>();
+        annotation.put("de","Vertex");
+        annotation.put("en","vertex");
+        return annotation;
+    }
+
+    public HashMap<String, String> getDefaultAnnotationSphere(){
+        HashMap<String, String> annotation = new HashMap<>();
+        annotation.put("de","Sphäre");
+        annotation.put("en","sphere");
+        return annotation;
     }
 
     public static Values getInstance(){

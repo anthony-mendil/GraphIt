@@ -11,14 +11,12 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 import gui.GraphButtonType;
+import gui.SphereContextMenu;
 import gui.Values;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -60,72 +58,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
         values = Values.getInstance();
         helper = new HelperFunctions();
+        contextMenu = new SphereContextMenu().getContextMenu();
     }
-    {
-        contextMenu = createContextMenu();
-
-    }
-
-    private ContextMenu createContextMenu(){
-        contextMenu = new ContextMenu();
-        MenuItem remove = new MenuItem("Entfernen");
-        Image image = new Image("/icons2/008-rubbish-bin.png");
-        ImageView iconRemove = new ImageView();
-        iconRemove.setImage(image);
-        iconRemove.setFitWidth(15);
-        iconRemove.setFitHeight(15);
-        remove.setGraphic(iconRemove);
-
-        remove.setOnAction(event -> {
-            RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-            history.execute(removeSphereLogAction);
-        });
-        MenuItem annotation = new MenuItem("Titel");
-
-        annotation.setOnAction(event -> {
-            TextInputDialog dialog = new TextInputDialog("Sphäre Titel");
-
-            dialog.setHeaderText("Titel Sphäre eingeben:");
-            dialog.setContentText("Titel:");
-            dialog.setTitle("Sphäre Titel");
-
-            Optional<String> result = dialog.showAndWait();
-
-            result.ifPresent(title -> {
-                if (title.length() > 100){
-                    title = title.substring(0, 99);
-                }
-                EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(title);
-                history.execute(editSphereAnnotationLogAction);
-            });
-
-        });
-
-        MenuItem color = new MenuItem("Farbe");
-        color.setOnAction(event ->{
-
-            EditSphereColorLogAction editSphereColorLogAction = new EditSphereColorLogAction(values.getFillPaintSphere());
-            history.execute(editSphereColorLogAction);
-                });
-
-        MenuItem text = new MenuItem("Schriftart");
-        text.setOnAction(event ->{
-            EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(values.getFontSphere());
-            history.execute(editFontSphereLogAction);
-        });
-
-        MenuItem size = new MenuItem("Schriftgröße");
-        size.setOnAction(event ->{
-            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(values.getFontSizeSphere());
-            history.execute(editFontSizeSphereLogAction);
-        });
-
-        contextMenu.getItems().addAll(remove, annotation, color, text, size);
-        contextMenu.setAutoHide(true);
-        return contextMenu;
-    }
-
-
 
     /**
      * The ActionHistory
@@ -170,6 +104,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             }
 
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
         }
 
         if (SwingUtilities.isRightMouseButton(e)){
@@ -180,6 +116,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 spheres.pick(sp, true);
             }
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
         }
     }
 
@@ -206,6 +144,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                     pickedSphereState.pick(sp, true);
                 }
                 vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+
             } else {
                 pickedSphereState.clear();
             }
@@ -246,6 +186,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
              spherePickedCoord = null;
              points = null;
              vv.repaint();
+
+             Syndrom.getInstance().getVv2().repaint();
          }
     }
 
@@ -290,6 +232,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 }
                 down = p;
                 vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+
             }
         }
     }

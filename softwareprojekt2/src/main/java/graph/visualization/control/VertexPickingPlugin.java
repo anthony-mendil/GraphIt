@@ -13,12 +13,14 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import gui.GraphButtonType;
 import gui.Values;
+import gui.VertexContextMenu;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -46,6 +48,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
     private Values values;
     private Map<Integer, Pair<Point2D, Sphere>> points;
+    private final HelperFunctions helper;
+    private final ContextMenu contextMenu;
+
 
 
 
@@ -59,18 +64,20 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
         values = Values.getInstance();
         history = ActionHistory.getInstance();
+        helper = new HelperFunctions();
+        contextMenu = new VertexContextMenu().getContextMenu();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
-            SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
-            Point2D point = e.getPoint();
-            Sphere sp = pickSupport.getSphere(point.getX(), point.getY());
-            Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
+        Point2D point = e.getPoint();
+        Sphere sp = pickSupport.getSphere(point.getX(), point.getY());
+        Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
 
+        if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null) {
 
@@ -111,6 +118,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 }
             }
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
+        }
+
+        if (SwingUtilities.isRightMouseButton(e)){
+            if (vertex != null){
+                PickedState<Vertex> vertices = vv.getPickedVertexState();
+                vertices.clear();
+                vertices.pick(vertex, true);
+                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+            }
+            vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
         }
     }
 
@@ -145,6 +165,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 points.put(v.getId(), new Pair<>(v.getCoordinates(), sp));
             }
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
         } else if (SwingUtilities.isRightMouseButton(e)) {
             if (vert != null) {
                 source = vert;
@@ -196,6 +217,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             points = null;
             down = null;
             vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
         }
 
         if (SwingUtilities.isRightMouseButton(e)) {
@@ -241,6 +264,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
                 down = p;
                 vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+
             }
         }
     }

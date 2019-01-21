@@ -12,6 +12,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -30,7 +31,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -549,7 +550,7 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <ColorPicker minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="46.0">
+                              <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="46.0" onAction="#editEdgesColor">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -566,7 +567,7 @@
                                     </ImageView>
                                  </graphic>
                                  <items>
-                                    <MenuItem mnemonicParsing="false">
+                                    <MenuItem fx:id="edgeStrokeBasic" mnemonicParsing="false" onAction="#edgeStrokeBasic">
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -575,6 +576,24 @@
                                           </ImageView>
                                        </graphic>
                                     </MenuItem>
+                                     <MenuItem fx:id="edgeStrokeDotted" mnemonicParsing="false" onAction="#edgeStrokeDotted">
+                                         <graphic>
+                                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                 <image>
+                                                     <Image url="@icons2/dotted.png" />
+                                                 </image>
+                                             </ImageView>
+                                         </graphic>
+                                     </MenuItem>
+                                     <MenuItem fx:id="edgeStrokeDashed" mnemonicParsing="false" onAction="#edgeStrokeDashed">
+                                         <graphic>
+                                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                 <image>
+                                                     <Image url="@icons2/015-circle.png.png" />
+                                                 </image>
+                                             </ImageView>
+                                         </graphic>
+                                     </MenuItem>
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Kantenart" />
@@ -592,7 +611,7 @@
                                     </ImageView>
                                  </graphic>
                                  <items>
-                                    <MenuItem mnemonicParsing="false">
+                                    <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false" onAction="#edgeExtenuating">
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -601,7 +620,7 @@
                                           </ImageView>
                                        </graphic>
                                     </MenuItem>
-                                    <MenuItem mnemonicParsing="false">
+                                    <MenuItem  fx:id="edgeArrowNeutral" mnemonicParsing="false" onAction="#edgeNeutral">
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -840,12 +859,18 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="317.0">
                <children>
+                  <Text fx:id="prozent" strokeType="OUTSIDE" strokeWidth="0.0" text="100 %">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                      <HBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Text>
-                  <Slider cacheShape="false" focusTraversable="false" prefHeight="14.0" prefWidth="109.0">
+
+                  <Slider fx:id="zoomSlider"  cacheShape="false" focusTraversable="false" prefHeight="14.0" prefWidth="200.0">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -858,12 +883,7 @@
                   </Slider>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                      <HBox.margin>
-                        <Insets bottom="2.0" right="2.0" top="2.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="100%">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="8.0" top="5.0" />
+                        <Insets bottom="2.0" right="10.0" top="2.0" />
                      </HBox.margin>
                   </Text>
                </children>
@@ -877,7 +897,7 @@
    <right>
       <TitledPane animated="false" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="722.0" prefWidth="270.0" text="Übersicht" BorderPane.alignment="CENTER">
          <content>
-            <VBox fillWidth="false" prefHeight="702.0" prefWidth="269.0">
+            <VBox fillWidth="false" prefHeight="94.0" prefWidth="268.0">
                <children>
                   <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
                      <VBox.margin>
@@ -906,17 +926,34 @@
                      <VBox.margin>
                         <Insets bottom="2.0" />
                      </VBox.margin></CheckBox>
-                  <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="702.0" prefWidth="248.0" />
+
+                  <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="248.0" />
+                  <Separator focusTraversable="false" maxHeight="10.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="250.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
+                  </Separator>
+                  <StackPane alignment="BOTTOM_CENTER" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <SwingNode fx:id="satellite"/>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </StackPane>
                </children>
             </VBox>
          </content>
       </TitledPane>
    </right>
    <center>
-      <StackPane fx:id="paneSwingNode" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <SwingNode fx:id="canvas" />
-         </children>
-      </StackPane>
+      <ScrollPane fx:id="paneSwingNode">
+         <SwingNode fx:id="canvas" />
+      </ScrollPane>
+
+
    </center>
 </BorderPane>

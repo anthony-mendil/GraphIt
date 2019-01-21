@@ -95,6 +95,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
             }
         }
         vv.repaint();
+        syndrom.getVv2().repaint();
     }
 
     public static Comparator<Sphere> sphereCompare = new Comparator<Sphere>() {

@@ -2,12 +2,20 @@ package actions.edit.annotation;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.edit.EditVertexAnnotationParam;
+
+import java.util.Map;
 
 /**
  * Changes the annotation of a selected Vertex.
  */
 public class EditVertexAnnotationLogAction extends LogAction {
+    private String text;
     /**
      * The annotation of the vertex.
      */
@@ -19,6 +27,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
      */
     public EditVertexAnnotationLogAction(String pText) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);
+        text = pText;
     }
 
     /**
@@ -33,7 +42,17 @@ public class EditVertexAnnotationLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+
+        for (Vertex v: pickedState.getPicked()) {
+            Map<String, String> annotation = v.getAnnotation();
+            annotation.put("de", text);
+            v.setAnnotation(annotation);
+            System.out.println("annotation vertex: "+v);
+        }
+        vv.repaint();
+        syndrom.getVv2().repaint();
     }
 
     @Override
