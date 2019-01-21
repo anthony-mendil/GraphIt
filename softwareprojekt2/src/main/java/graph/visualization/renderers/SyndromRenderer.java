@@ -7,6 +7,7 @@ package graph.visualization.renderers;/*
  */
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -14,9 +15,12 @@ import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
 import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
+import log_management.tables.Graph;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -50,6 +54,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         Collection<E> renderEdges = new ArrayList<>();
         Sphere sp = null;
         boolean overlapped = false;
+        ArrayList<Sphere> getOverlapped = new ArrayList<>();
 
             for (Sphere s : pickedState.getPicked()) {
                 sp = s;
@@ -59,6 +64,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
                         Shape sphereShape = sphereShapeTransformer.transform(sphere);
                         if (sphereShape.intersects(sShape.getBounds())) {
                             overlapped = true;
+                            getOverlapped.add(sphere);
                         }
                     }
                 }
@@ -69,19 +75,41 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         try {
             for (Sphere sphere : g.getSpheres()) {
                 sphaerenRenderer.paintSphere(renderContext, sphere);
+
+
+
             }
         } catch (ConcurrentModificationException cme) {
             renderContext.getScreenDevice().repaint();
         }
 
         // if a sphere overlaps another one all incoming and outgoing edges get detected
+        // get all incoming/ outgoing edges of sphere overlapping
         if (overlapped && sp != null) {
             Collection<V> included =  (Collection<V>) sp.getVertices();
             Collection<E> incoming = new ArrayList<>();
             Collection<E> outgoing = new ArrayList<>();
+
             for (V v : included) {
-                incoming.addAll(g.getInEdges(v));
-                outgoing.addAll(g.getOutEdges(v));
+                Collection<E> inEdges = g.getInEdges(v);
+                for (E e : inEdges){
+                    V vS  = g.getEndpoints(e).getFirst();
+                    for(Sphere sphere : getOverlapped){
+                        if (sphere.getVertices().contains(vS)){
+                            incoming.add(e);
+                        }
+                    }
+                }
+
+                Collection<E> outEdges = g.getOutEdges(v);
+                for (E e : outEdges){
+                    V vS  = g.getEndpoints(e).getSecond();
+                    for(Sphere sphere : getOverlapped){
+                        if (sphere.getVertices().contains(vS)){
+                            outgoing.add(e);
+                        }
+                    }
+                }
             }
 
             for (E e : layout.getGraph().getEdges()) {
@@ -89,6 +117,8 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
                     renderEdges.add(e);
                 }
             }
+
+            sphaerenRenderer.paintSphere(renderContext, sp);
 
             for(E e :renderEdges){
                 renderEdge(e, renderContext, layout);
@@ -106,24 +136,28 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         // if a sphere overlaps another one, the sphere is painted with all its vertices and all edges
         // between the spheres vertices
         if (overlapped && sp != null){
-            sphaerenRenderer.paintSphere(renderContext, sp);
-            Collection<V> collection = (Collection<V>) sp.getVertices();
-            for (E e : layout.getGraph().getEdges()) {
-                Collection<V> incident = g.getEndpoints(e);
-                if (collection.containsAll(incident)) {
-                    renderEdge(
-                            renderContext,
-                            layout,
-                            e);
-                    renderEdgeLabel(
-                            renderContext,
-                            layout,
-                            e);
-                }
-            }
-
-            renderVertices(collection, renderContext, layout);
+            renderSphereWithVertices(sp, renderContext, layout, g);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void renderSphereWithVertices(Sphere sp, RenderContext<V, E> renderContext, Layout<V, E> layout, SyndromGraph<V,E> g){
+        Collection<V> collection = (Collection<V>) sp.getVertices();
+        for (E e : layout.getGraph().getEdges()) {
+            Collection<V> incident = g.getEndpoints(e);
+            if (collection.containsAll(incident)) {
+                renderEdge(
+                        renderContext,
+                        layout,
+                        e);
+                renderEdgeLabel(
+                        renderContext,
+                        layout,
+                        e);
+            }
+        }
+
+        renderVertices(collection, renderContext, layout);
     }
 
     private void renderVertices(Collection<V> vertices, RenderContext<V, E> renderContext, Layout<V, E> layout) {
