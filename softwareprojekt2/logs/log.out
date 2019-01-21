@@ -222,7 +222,7 @@ org.hibernate.HibernateException: Use of DefaultSchemaNameResolver requires Dial
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:767)
 Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
-Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@423aa2] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@1bdb894]
+Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@13906eb] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@19ceda0]
 Binding entity from annotated class: log_management.tables.Graph
 Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 Import with entity name Graph
@@ -320,10 +320,10 @@ JPA compliance - transactions :
 Using ORDINAL-based conversion for Enum actions.LogEntryName
 Session factory constructed with filter configurations : {}
 Instantiating session factory with properties: {sun.desktop=windows, hibernate.format_sql=false, awt.toolkit=sun.awt.windows.WToolkit, file.encoding.pkg=sun.io, java.specification.version=1.8, javafx.runtime.version=8.0.171-b11, sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86, sun.jnu.encoding=Cp1252, java.class.path=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\deploy.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\access-bridge-32.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\cldrdata.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\dnsns.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\jaccess.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\jfxrt.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\localedata.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\nashorn.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\sunec.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\sunjce_provider.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\sunmscapi.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\sunpkcs11.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext\zipfs.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\javaws.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jfxswt.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\management-agent.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\plugin.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\rt.jar;C:\Users\cleme\Desktop\3.Semester\SWP2Abgabe\softwareprojekt2\target\classes;C:\Users\cleme\.m2\repository\net\sourceforge\net.sourceforge.gxl\0.92-SNAPSHOT\net.sourceforge.gxl-0.92-SNAPSHOT.jar;C:\Users\cleme\.m2\repository\org\apache\pdfbox\pdfbox\2.0.12\pdfbox-2.0.12.jar;C:\Users\cleme\.m2\repository\org\apache\pdfbox\fontbox\2.0.12\fontbox-2.0.12.jar;C:\Users\cleme\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\cleme\.m2\repository\commons-io\commons-io\2.6\commons-io-2.6.jar;C:\Users\cleme\.m2\repository\net\sf\jung\jung-api\2.0.1\jung-api-2.0.1.jar;C:\Users\cleme\.m2\repository\net\sourceforge\collections\collections-generic\4.01\collections-generic-4.01.jar;C:\Users\cleme\.m2\repository\net\sf\jung\jung-visualization\2.0.1\jung-visualization-2.0.1.jar;C:\Users\cleme\.m2\repository\net\sf\jung\jung-graph-impl\2.0.1\jung-graph-impl-2.0.1.jar;C:\Users\cleme\.m2\repository\net\sf\jung\jung-algorithms\2.0.1\jung-algorithms-2.0.1.jar;C:\Users\cleme\.m2\repository\colt\colt\1.2.0\colt-1.2.0.jar;C:\Users\cleme\.m2\repository\concurrent\concurrent\1.3.4\concurrent-1.3.4.jar;C:\Users\cleme\.m2\repository\net\sf\jung\jung-io\2.0.1\jung-io-2.0.1.jar;C:\Users\cleme\.m2\repository\org\codehaus\woodstox\wstx-asl\3.2.6\wstx-asl-3.2.6.jar;C:\Users\cleme\.m2\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\Users\cleme\.m2\repository\org\freehep\freehep-graphicsio\2.4\freehep-graphicsio-2.4.jar;C:\Users\cleme\.m2\repository\org\freehep\freehep-graphics2d\2.4\freehep-graphics2d-2.4.jar;C:\Users\cleme\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\cleme\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Users\cleme\.m2\repository\org\freehep\freehep-io\2.2.2\freehep-io-2.2.2.jar;C:\Users\cleme\.m2\repository\org\freehep\freehep-graphicsbase\2.4\freehep-graphicsbase-2.4.jar;C:\Users\cleme\.m2\repository\org\freehep\freehep-graphicsio-pdf\2.4\freehep-graphicsio-pdf-2.4.jar;C:\Users\cleme\.m2\repository\org\freehep\freehep-graphicsio-tests\2.4\freehep-graphicsio-tests-2.4.jar;C:\Users\cleme\.m2\repository\org\freehep\freehep-graphicsio-svg\2.4\freehep-graphicsio-svg-2.4.jar;C:\Users\cleme\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\cleme\.m2\repository\com\h2database\h2\1.4.190\h2-1.4.190.jar;C:\Users\cleme\.m2\repository\org\hibernate\hibernate-entitymanager\5.3.7.Final\hibernate-entitymanager-5.3.7.Final.jar;C:\Users\cleme\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\cleme\.m2\repository\org\hibernate\hibernate-core\5.3.7.Final\hibernate-core-5.3.7.Final.jar;C:\Users\cleme\.m2\repository\org\javassist\javassist\3.23.1-GA\javassist-3.23.1-GA.jar;C:\Users\cleme\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\cleme\.m2\repository\org\jboss\jandex\2.0.5.Final\jandex-2.0.5.Final.jar;C:\Users\cleme\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\cleme\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\cleme\.m2\repository\org\dom4j\dom4j\2.1.1\dom4j-2.1.1.jar;C:\Users\cleme\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.4.Final\hibernate-commons-annotations-5.0.4.Final.jar;C:\Users\cleme\.m2\repository\javax\persistence\javax.persistence-api\2.2\javax.persistence-api-2.2.jar;C:\Users\cleme\.m2\repository\net\bytebuddy\byte-buddy\1.8.17\byte-buddy-1.8.17.jar;C:\Users\cleme\.m2\repository\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.1.1.Final\jboss-transaction-api_1.2_spec-1.1.1.Final.jar;C:\Users\cleme\.m2\repository\org\jgrapht\jgrapht-core\1.3.0\jgrapht-core-1.3.0.jar;C:\Users\cleme\.m2\repository\org\jheaps\jheaps\0.9\jheaps-0.9.jar;C:\Users\cleme\.m2\repository\com\google\inject\guice\3.0\guice-3.0.jar;C:\Users\cleme\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\cleme\.m2\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;C:\Users\cleme\.m2\repository\org\codehaus\jackson\jackson-mapper-asl\1.9.13\jackson-mapper-asl-1.9.13.jar;C:\Users\cleme\.m2\repository\org\codehaus\jackson\jackson-core-asl\1.9.13\jackson-core-asl-1.9.13.jar;C:\Users\cleme\.m2\repository\org\controlsfx\controlsfx\8.40.14\controlsfx-8.40.14.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3\lib\idea_rt.jar, java.vm.vendor=Oracle Corporation, sun.arch.data.model=32, hbm2ddl.auto=update, user.variant=, java.vendor.url=http://java.oracle.com/, user.timezone=, javafx.version=8.0.171, os.name=Windows 10, java.vm.specification.version=1.8, user.country=DE, sun.java.launcher=SUN_STANDARD, sun.boot.library.path=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\bin, sun.java.command=gui.Main, sun.cpu.endian=little, user.home=C:\Users\cleme, user.language=de, java.specification.vendor=Oracle Corporation, java.home=C:\Program Files (x86)\Java\jdk1.8.0_171\jre, file.separator=\, line.separator=
-, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, hibernate.transaction.coordinator_class=class org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, sun.boot.class.path=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\classes, user.script=, sun.management.compiler=HotSpot Client Compiler, java.runtime.version=1.8.0_171-b11, user.name=Clement Phung, path.separator=;, hibernate.connection.username=****, os.version=10.0, java.endorsed.dirs=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\endorsed, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.archive.autodetection=class, hibernate.connection.url=jdbc:h2:~/GraphItDatabase, hibernate.ejb.persistenceUnitName=NewPersistenceUnit, file.encoding=UTF-8, java.vm.name=Java HotSpot(TM) Client VM, hibernate.show_sql=false, hibernate.connection.driver_class=org.h2.Driver, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, java.io.tmpdir=C:\Users\cleme\AppData\Local\Temp\, java.version=1.8.0_171, user.dir=C:\Users\cleme\Desktop\3.Semester\SWP2Abgabe\softwareprojekt2, os.arch=x86, java.vm.specification.name=Java Virtual Machine Specification, hibernate.connection.password=****, java.awt.printerjob=sun.awt.windows.WPrinterJob, javax.persistence.schema-generation.database.action=create, sun.os.patch.level=, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@50eab8, java.library.path=C:\Program Files (x86)\Java\jdk1.8.0_171\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.4.3\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.4.3\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Haskell Platform\8.4.3\mingw\bin;C:\Users\cleme\AppData\Roaming\cabal\bin;C:\Users\cleme\AppData\Roaming\local\bin;C:\Users\cleme\AppData\Local\Microsoft\WindowsApps;C:\Users\cleme\AppData\Local\Programs\MiKTeX 2.9\miktex\bin\x64\;., java.vm.info=mixed mode, java.vendor=Oracle Corporation, java.vm.version=25.171-b11, hibernate.bytecode.use_reflection_optimizer=false, java.ext.dirs=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.io.unicode.encoding=UnicodeLittle, java.class.version=52.0}
+, java.vm.specification.vendor=Oracle Corporation, java.specification.name=Java Platform API Specification, hibernate.transaction.coordinator_class=class org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorBuilderImpl, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, sun.boot.class.path=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_171\jre\classes, user.script=, sun.management.compiler=HotSpot Client Compiler, java.runtime.version=1.8.0_171-b11, user.name=Clement Phung, path.separator=;, hibernate.connection.username=****, os.version=10.0, java.endorsed.dirs=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\endorsed, java.runtime.name=Java(TM) SE Runtime Environment, hibernate.archive.autodetection=class, hibernate.connection.url=jdbc:h2:~/GraphItDatabase, hibernate.ejb.persistenceUnitName=NewPersistenceUnit, file.encoding=UTF-8, java.vm.name=Java HotSpot(TM) Client VM, hibernate.show_sql=false, hibernate.connection.driver_class=org.h2.Driver, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, java.io.tmpdir=C:\Users\cleme\AppData\Local\Temp\, java.version=1.8.0_171, user.dir=C:\Users\cleme\Desktop\3.Semester\SWP2Abgabe\softwareprojekt2, os.arch=x86, java.vm.specification.name=Java Virtual Machine Specification, hibernate.connection.password=****, java.awt.printerjob=sun.awt.windows.WPrinterJob, javax.persistence.schema-generation.database.action=create, sun.os.patch.level=, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@179a760, java.library.path=C:\Program Files (x86)\Java\jdk1.8.0_171\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.4.3\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.4.3\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Haskell Platform\8.4.3\mingw\bin;C:\Users\cleme\AppData\Roaming\cabal\bin;C:\Users\cleme\AppData\Roaming\local\bin;C:\Users\cleme\AppData\Local\Microsoft\WindowsApps;C:\Users\cleme\AppData\Local\Programs\MiKTeX 2.9\miktex\bin\x64\;., java.vm.info=mixed mode, java.vendor=Oracle Corporation, java.vm.version=25.171-b11, hibernate.bytecode.use_reflection_optimizer=false, java.ext.dirs=C:\Program Files (x86)\Java\jdk1.8.0_171\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.io.unicode.encoding=UnicodeLittle, java.class.version=52.0}
 Skipping JACC integration as it was not enabled
 Instantiated session factory
-Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@423aa2] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@15fe372]
+Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@13906eb] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@1018107]
 Not known whether passed class name [log_management.tables.Graph] is safe
 No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : log_management.tables.Graph
 Not known whether passed class name [log_management.tables.Graph] is safe
@@ -342,7 +342,7 @@ Static SQL for entity: log_management.tables.Graph
  Insert 0: insert into GRAPHITDATABASE.PUBLIC.GRAPHS (GXL, id) values (?, ?)
  Update 0: update GRAPHITDATABASE.PUBLIC.GRAPHS set GXL=? where id=?
  Delete 0: delete from GRAPHITDATABASE.PUBLIC.GRAPHS where id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1a47fea]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@84624f]
 Visiting attribute path : gxl
 Building LoadPlan...
 processing queryspace <gen:0>
@@ -356,7 +356,7 @@ LoadPlan(entity=log_management.tables.Graph)
           - suffixed key columns - {id1_0_0_}
 
 Static select for entity log_management.tables.Graph [NONE]: select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@143defe]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1386d72]
 Visiting attribute path : gxl
 Building LoadPlan...
 processing queryspace <gen:0>
@@ -378,9 +378,9 @@ Static SQL for entity: log_management.tables.Log
  Insert 0: insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
  Update 0: update GRAPHITDATABASE.PUBLIC.LOGS set graph_id=?, LOGENTRYNAME=?, PARAMETERS=?, TIME=? where id=?
  Delete 0: delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@26c41e]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5f7fa9]
 Visiting attribute path : graph
-Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@a27288]
+Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1154f21]
 Visiting attribute path : graph.gxl
 Visiting attribute path : logEntryName
 Visiting attribute path : parameters
@@ -403,9 +403,9 @@ LoadPlan(entity=log_management.tables.Log)
                 - suffixed key columns - {id1_0_1_}
 
 Static select for entity log_management.tables.Log [NONE]: select log0_.id as id1_1_0_, log0_.graph_id as graph_id5_1_0_, log0_.LOGENTRYNAME as LOGENTRY2_1_0_, log0_.PARAMETERS as PARAMETE3_1_0_, log0_.TIME as TIME4_1_0_, graph1_.id as id1_0_1_, graph1_.GXL as GXL2_0_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ left outer join GRAPHITDATABASE.PUBLIC.GRAPHS graph1_ on log0_.graph_id=graph1_.id where log0_.id=?
-Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1fe380b]
+Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1e80a5e]
 Visiting attribute path : graph
-Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1edb4a6]
+Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@139e1]
 Visiting attribute path : graph.gxl
 Visiting attribute path : logEntryName
 Visiting attribute path : parameters
@@ -433,7 +433,7 @@ Static select for action ACTION_REFRESH on entity log_management.tables.Log: sel
 Using ORDINAL-based conversion for Enum actions.LogEntryName
 Using ORDINAL-based conversion for Enum actions.LogEntryName
 create table GRAPHITDATABASE.PUBLIC.GRAPHS (id integer not null, GXL varchar(255), primary key (id))
-HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@52f555] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1b663b3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 GenerationTarget encountered exception accepting command : Error executing DDL "create table GRAPHITDATABASE.PUBLIC.GRAPHS (id integer not null, GXL varchar(255), primary key (id))" via JDBC Statement
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create table GRAPHITDATABASE.PUBLIC.GRAPHS (id integer not null, GXL varchar(255), primary key (id))" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
@@ -607,18 +607,381 @@ alter table GRAPHITDATABASE.PUBLIC.LOGS add constraint FKpqy60tdpytcj4yucd0mfoy7
 	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
 	... 26 more
-HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@122ec89'
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3659f8'
 No JtaPlatform was specified, checking resolver
 No JtaPlatformResolver was specified, using default [org.hibernate.engine.transaction.jta.platform.internal.StandardJtaPlatformResolver]
 Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 Checking 0 named HQL queries
 Checking 0 named SQL queries
-Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@1942c1
-Registering SessionFactory: f07d815e-5998-43b2-b26c-5f5e59873e5a (<unnamed>)
+Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@12644e3
+Registering SessionFactory: a8d9631f-cf20-4479-8d09-0fbde84df2e1 (<unnamed>)
 Not binding SessionFactory to JNDI, no JNDI name configured
 Statistics initialized [enabled=false]
+QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@1456810
+HHH000397: Using ASTQueryTranslatorFactory
+parse() - HQL: SELECT g from log_management.tables.Graph g where g.id > 0
+throwQueryException() : no errors
+--- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[IDENT] Node: 'log_management'
+    |  |     |  |  \-[IDENT] Node: 'tables'
+    |  |     |  \-[IDENT] Node: 'Graph'
+    |  |     \-[ALIAS] Node: 'g'
+    |  \-[SELECT] Node: 'SELECT'
+    |     \-[IDENT] Node: 'g'
+    \-[WHERE] Node: 'where'
+       \-[GT] Node: '>'
+          +-[DOT] Node: '.'
+          |  +-[IDENT] Node: 'g'
+          |  \-[IDENT] Node: 'id'
+          \-[NUM_INT] Node: '0'
+
+select << begin [level=1, statement=select]
+FromClause{level=1} : log_management.tables.Graph (g) -> graph0_
+Resolved : g -> graph0_.id
+Resolved : g -> graph0_.id
+getDataType() : id -> org.hibernate.type.IntegerType@65fe7c
+Resolved : g.id -> graph0_.id
+select : finishing up [level=1, statement=select]
+processQuery() :  ( SELECT ( {select clause} graph0_.id ) ( FromClause{level=1} GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ ) ( where ( > ( graph0_.id graph0_.id id ) 0 ) ) )
+Using FROM fragment [GRAPHITDATABASE.PUBLIC.GRAPHS graph0_]
+select >> end [level=1, statement=select]
+--- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (GRAPHITDATABASE.PUBLIC.GRAPHS)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'graph0_.id as id1_0_' {alias=g, className=log_management.tables.Graph, tableAlias=graph0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'graph0_.GXL as GXL2_0_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[g], fromElementByTableAlias=[graph0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'GRAPHITDATABASE.PUBLIC.GRAPHS graph0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=g,role=null,tableName=GRAPHITDATABASE.PUBLIC.GRAPHS,tableAlias=graph0_,origin=null,columns={,className=log_management.tables.Graph}}
+    \-[WHERE] SqlNode: 'where'
+       \-[GT] BinaryLogicOperatorNode: '>'
+          +-[DOT] DotNode: 'graph0_.id' {propertyName=id,dereferenceType=PRIMITIVE,getPropertyPath=id,path=g.id,tableAlias=graph0_,className=log_management.tables.Graph,classAlias=g}
+          |  +-[ALIAS_REF] IdentNode: 'graph0_.id' {alias=g, className=log_management.tables.Graph, tableAlias=graph0_}
+          |  \-[IDENT] IdentNode: 'id' {originalText=id}
+          \-[NUM_INT] LiteralNode: '0'
+
+throwQueryException() : no errors
+HQL: SELECT g from log_management.tables.Graph g where g.id > 0
+SQL: select graph0_.id as id1_0_, graph0_.GXL as GXL2_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id>0
+throwQueryException() : no errors
+select graph0_.id as id1_0_, graph0_.GXL as GXL2_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id>0
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#836]
+Resolving associations for [log_management.tables.Graph#836]
+Done materializing entity [log_management.tables.Graph#836]
+Initiating JDBC connection release from afterTransaction
+parse() - HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
+throwQueryException() : no errors
+--- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[IDENT] Node: 'log_management'
+    |  |     |  |  \-[IDENT] Node: 'tables'
+    |  |     |  \-[IDENT] Node: 'Log'
+    |  |     \-[ALIAS] Node: 'l'
+    |  \-[SELECT] Node: 'SELECT'
+    |     \-[IDENT] Node: 'l'
+    \-[WHERE] Node: 'where'
+       \-[EQ] Node: '='
+          +-[DOT] Node: '.'
+          |  +-[DOT] Node: '.'
+          |  |  +-[IDENT] Node: 'l'
+          |  |  \-[IDENT] Node: 'graph'
+          |  \-[IDENT] Node: 'id'
+          \-[COLON] Node: ':'
+             \-[IDENT] Node: 'gid'
+
+select << begin [level=1, statement=select]
+FromClause{level=1} : log_management.tables.Log (l) -> log0_
+Resolved : l -> log0_.id
+Resolved : l -> log0_.id
+getDataType() : graph -> org.hibernate.type.ManyToOneType(log_management.tables.Graph)
+dereferenceShortcut() : property id in log_management.tables.Log does not require a join.
+Unresolved property path is now 'graph.id'
+Resolved : l.graph -> log0_.graph_id
+getDataType() : graph.id -> org.hibernate.type.IntegerType@65fe7c
+Resolved : l.graph.id -> log0_.graph_id
+select : finishing up [level=1, statement=select]
+processQuery() :  ( SELECT ( {select clause} log0_.id ) ( FromClause{level=1} GRAPHITDATABASE.PUBLIC.LOGS log0_ ) ( where ( = ( log0_.graph_id ( log0_.graph_id log0_.id graph ) id ) ? ) ) )
+Using FROM fragment [GRAPHITDATABASE.PUBLIC.LOGS log0_]
+select >> end [level=1, statement=select]
+--- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (GRAPHITDATABASE.PUBLIC.LOGS)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'log0_.id as id1_1_' {alias=l, className=log_management.tables.Log, tableAlias=log0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'log0_.graph_id as graph_id5_1_, log0_.LOGENTRYNAME as LOGENTRY2_1_, log0_.PARAMETERS as PARAMETE3_1_, log0_.TIME as TIME4_1_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[l], fromElementByTableAlias=[log0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'GRAPHITDATABASE.PUBLIC.LOGS log0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=l,role=null,tableName=GRAPHITDATABASE.PUBLIC.LOGS,tableAlias=log0_,origin=null,columns={,className=log_management.tables.Log}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'log0_.graph_id' {propertyName=id,dereferenceType=PRIMITIVE,getPropertyPath=graph.id,path=l.graph.id,tableAlias=log0_,className=log_management.tables.Log,classAlias=l}
+          |  +-[DOT] DotNode: 'log0_.graph_id' {propertyName=id,dereferenceType=UNKNOWN,getPropertyPath=graph.id,path=l.graph,tableAlias=log0_,className=log_management.tables.Log,classAlias=l}
+          |  |  +-[ALIAS_REF] IdentNode: 'log0_.id' {alias=l, className=log_management.tables.Log, tableAlias=log0_}
+          |  |  \-[IDENT] IdentNode: 'graph' {originalText=graph}
+          |  \-[IDENT] IdentNode: 'id' {originalText=id}
+          \-[NAMED_PARAM] ParameterNode: '?' {name=gid, expectedType=org.hibernate.type.IntegerType@65fe7c}
+
+throwQueryException() : no errors
+HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
+SQL: select log0_.id as id1_1_, log0_.graph_id as graph_id5_1_, log0_.LOGENTRYNAME as LOGENTRY2_1_, log0_.PARAMETERS as PARAMETE3_1_, log0_.TIME as TIME4_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ where log0_.graph_id=?
+throwQueryException() : no errors
+select log0_.id as id1_1_, log0_.graph_id as graph_id5_1_, log0_.LOGENTRYNAME as LOGENTRY2_1_, log0_.PARAMETERS as PARAMETE3_1_, log0_.TIME as TIME4_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ where log0_.graph_id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Log#837]
+Result set row: 1
+Result row: EntityKey[log_management.tables.Log#838]
+Result set row: 2
+Result row: EntityKey[log_management.tables.Log#839]
+Result set row: 3
+Result row: EntityKey[log_management.tables.Log#840]
+Result set row: 4
+Result row: EntityKey[log_management.tables.Log#841]
+Resolving associations for [log_management.tables.Log#837]
+Done materializing entity [log_management.tables.Log#837]
+Resolving associations for [log_management.tables.Log#838]
+Done materializing entity [log_management.tables.Log#838]
+Resolving associations for [log_management.tables.Log#839]
+Done materializing entity [log_management.tables.Log#839]
+Resolving associations for [log_management.tables.Log#840]
+Done materializing entity [log_management.tables.Log#840]
+Resolving associations for [log_management.tables.Log#841]
+Done materializing entity [log_management.tables.Log#841]
+Initiating JDBC connection release from afterTransaction
+On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 842
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 842, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 6 deletions to 7 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=837, time=2019-01-21T19:21:40.326, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#836}
+log_management.tables.Log{id=838, time=2019-01-21T19:21:41.759, logEntryName=REMOVE_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#836}
+log_management.tables.Log{id=839, time=2019-01-21T19:21:44.609, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#836}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@1e6b3c9 updateLevel: 0 listeners: [] compoundEdit: null, id=836}
+log_management.tables.Log{id=840, time=2019-01-21T19:21:47.826, logEntryName=ADD_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#836}
+log_management.tables.Log{id=841, time=2019-01-21T19:21:49.091, logEntryName=REMOVE_VERTICES, parameters={"parameter":{"2":"1"}}, graph=log_management.tables.Graph#836}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@17f667a updateLevel: 0 listeners: [] compoundEdit: null, id=842}
+insert into GRAPHITDATABASE.PUBLIC.GRAPHS (GXL, id) values (?, ?)
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
+delete from GRAPHITDATABASE.PUBLIC.GRAPHS where id=?
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 843
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 843, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 2 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@17f667a updateLevel: 0 listeners: [] compoundEdit: null, id=842}
+log_management.tables.Log{id=843, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 844
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 844, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 3 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=844, time=2019-01-21T19:22:37.123, logEntryName=REMOVE_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=843, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@17f667a updateLevel: 0 listeners: [] compoundEdit: null, id=842}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 845
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 845, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 4 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=844, time=2019-01-21T19:22:37.123, logEntryName=REMOVE_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=845, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=843, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@17f667a updateLevel: 0 listeners: [] compoundEdit: null, id=842}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 846
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 846, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 5 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=844, time=2019-01-21T19:22:37.123, logEntryName=REMOVE_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=845, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=846, time=2019-01-21T19:22:40.562, logEntryName=ADD_VERTICES, parameters={"parameter":{"1":"0"}}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=843, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@17f667a updateLevel: 0 listeners: [] compoundEdit: null, id=842}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 847
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 847, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 6 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=844, time=2019-01-21T19:22:37.123, logEntryName=REMOVE_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=845, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=846, time=2019-01-21T19:22:40.562, logEntryName=ADD_VERTICES, parameters={"parameter":{"1":"0"}}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=847, time=2019-01-21T19:22:41.466, logEntryName=REMOVE_VERTICES, parameters={"parameter":{"1":"0"}}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=843, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@17f667a updateLevel: 0 listeners: [] compoundEdit: null, id=842}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 848
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 848, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 7 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=848, time=2019-01-21T19:22:40.562, logEntryName=ADD_VERTICES, parameters={"parameter":{"1":"0"}}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=844, time=2019-01-21T19:22:37.123, logEntryName=REMOVE_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=845, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=846, time=2019-01-21T19:22:40.562, logEntryName=ADD_VERTICES, parameters={"parameter":{"1":"0"}}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=847, time=2019-01-21T19:22:41.466, logEntryName=REMOVE_VERTICES, parameters={"parameter":{"1":"0"}}, graph=log_management.tables.Graph#842}
+log_management.tables.Log{id=843, time=2019-01-21T19:22:36.032, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#842}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@17f667a updateLevel: 0 listeners: [] compoundEdit: null, id=842}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#842]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#842]
+Resolving associations for [log_management.tables.Graph#842]
+Done materializing entity [log_management.tables.Graph#842]
+Done entity load
 HHH000031: Closing
-Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@499e48] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@15fe372]
+Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@ba28ee] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@1018107]
 Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
 HHH10001008: Cleaning up connection pool [jdbc:h2:~/GraphItDatabase]
+Connection leak detected: there are 1 unclosed connections upon shutting down pool jdbc:h2:~/GraphItDatabase
 Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries

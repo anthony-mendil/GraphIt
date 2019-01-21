@@ -15,7 +15,6 @@ import java.util.Map;
  * Changes the annotation of a selected Vertex.
  */
 public class EditVertexAnnotationLogAction extends LogAction {
-    private String text;
     /**
      * The annotation of the vertex.
      */
