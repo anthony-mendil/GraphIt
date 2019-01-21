@@ -32,17 +32,7 @@ public class Values {
      */
     @Setter(AccessLevel.NONE)
     private final double defaultHeightSphere = 200;
-    /**
-     * The default annotation of a sphere.
-     */
-    @Setter(AccessLevel.NONE)
-    private final Map<String, String> defaultAnnotationSphere;
 
-    /**
-     * The default annotation of a vertex.
-     */
-    @Setter(AccessLevel.NONE)
-    private final Map<String, String> defaultAnnotationVertex;
     /**
      * The default size of a vertex.
      */
@@ -175,13 +165,21 @@ public class Values {
 
 
     private Values() {
-        defaultAnnotationSphere = new HashMap<>();
-        defaultAnnotationSphere.put("de","Sphäre Überschrift");
-        defaultAnnotationSphere.put("en","Sphere Headline");
 
-        defaultAnnotationVertex = new HashMap<>();
-        defaultAnnotationVertex.put("de","Vertex");
-        defaultAnnotationVertex.put("en","vertex");
+    }
+
+    public HashMap<String, String> getDefaultAnnotationVertex(){
+        HashMap<String, String> annotation = new HashMap<>();
+        annotation.put("de","Vertex");
+        annotation.put("en","vertex");
+        return annotation;
+    }
+
+    public HashMap<String, String> getDefaultAnnotationSphere(){
+        HashMap<String, String> annotation = new HashMap<>();
+        annotation.put("de","Sphäre");
+        annotation.put("en","sphere");
+        return annotation;
     }
 
     public static Values getInstance(){
