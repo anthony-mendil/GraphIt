@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import log_management.dao.PersonalEntityManager;
 import lombok.Getter;
@@ -12,6 +11,9 @@ import lombok.Getter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.*;
+import java.awt.*;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -53,7 +55,10 @@ public class Main extends Application {
         fonts=new ArrayList<Font>();
 
         try {
-            Font Roboto_Regular = Font.loadFont("file:fonts/regular/Roboto-Regular.ttf",12);
+            InputStream is=Main.class.getResourceAsStream("fonts/bold/Mali-Bold.ttf");
+            Font mali_b =Font.createFont(Font.TRUETYPE_FONT, is);
+            fonts.add(mali_b.deriveFont(12));
+          /*  Font Roboto_Regular = Font.loadFont("file:fonts/regular/Roboto-Regular.ttf",12);
             fonts.add(Roboto_Regular);
             Font Alegreya_Regular = Font.loadFont("file:fonts/regular/Alegreya-Regular.ttf",12);
             fonts.add(Alegreya_Regular);
@@ -96,7 +101,7 @@ public class Main extends Application {
             fonts.add(Cousine_BoldItalic);
             Font Mali_BoldItalic = Font.loadFont("file:fonts/bolditalic/Mali-BoldItalic.ttf", 12);
             fonts.add(Mali_BoldItalic);
-
+*/
 
 
 
@@ -104,6 +109,14 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        JFrame jFrame=new JFrame();
+        JPanel jPanel=new JPanel();
+        JLabel jLabel=new JLabel("abcABC123");
+        jPanel.add(jLabel);
+        jFrame.add(jPanel);
+        jFrame.setBounds(200,200,200,200);
+        jFrame.setVisible(true);
+        jLabel.setFont(fonts.get(0));
     }
     /**
      * Starts the application.
