@@ -2,7 +2,12 @@ package actions.remove;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
 import graph.graph.Syndrom;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
 /**
@@ -39,7 +44,15 @@ public class RemoveEdgesLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Edge> pickedState = vv.getPickedEdgeState();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+
+        for (Edge e: pickedState.getPicked()) {
+            graph.removeEdge(e);
+        }
+        vv.repaint();
+        syndrom.getVv2().repaint();
     }
 
     @Override

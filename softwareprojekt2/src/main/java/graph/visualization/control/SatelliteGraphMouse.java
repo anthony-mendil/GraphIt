@@ -13,13 +13,12 @@ public class SatelliteGraphMouse  extends ModalSatelliteGraphMouse implements
 
     public void loadPlugins(){
         System.out.println("yes");
-        pickingPlugin = new PickingGraphMousePlugin();
-        animatedPickingPlugin = new SatelliteAnimatedPickingGraphMousePlugin();
+        //pickingPlugin = new PickingGraphMousePlugin();
+        //animatedPickingPlugin = new SatelliteAnimatedPickingGraphMousePlugin();
         translatingPlugin = new SatelliteTranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
-        rotatingPlugin = new SatelliteRotatingGraphMousePlugin();
-        shearingPlugin = new SatelliteShearingGraphMousePlugin();
-       // scalingPlugin = new SyndromSatelliteScalingGraphMousePlugin(new AbsoluteCrossoverScalingControl(), 0);
+        scalingPlugin = new SyndromSatelliteScalingGraphMousePlugin(new AbsoluteCrossoverScalingControl(), 0);
         add(scalingPlugin);
-        setMode(Mode.TRANSFORMING);
+        add(translatingPlugin);
+       //setMode(Mode.TRANSFORMING);
     }
 }

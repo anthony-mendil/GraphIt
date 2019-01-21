@@ -1,38 +1,23 @@
 package graph.graph;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.*;
 import edu.uci.ics.jung.visualization.control.*;
-import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.algorithmen.predicates.*;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.PickingGraphMouseEditSyndromPlugin;
-import graph.visualization.control.SatelliteGraphMouse;
-import graph.visualization.control.SpherePickingPlugin;
-import graph.visualization.control.VertexPickingPlugin;
+import graph.visualization.control.*;
 import graph.visualization.picking.SyndromPickSupport;
+import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
-import graph.visualization.util.SyndromArrowFactory;
 import gui.Values;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
-import org.apache.commons.collections15.functors.MapTransformer;
-import org.apache.commons.collections15.map.LazyMap;
 
-import javax.swing.*;
 import java.awt.*;
-import java.nio.file.Path;
-import java.util.HashMap;
 
 /**
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualization
@@ -235,6 +220,7 @@ public class Syndrom {
         pluggable = new PluggableGraphMouse();
         pluggable.add(new SpherePickingPlugin());
         pluggable.add(new VertexPickingPlugin());
+        pluggable.add(new EdgePickingPlugin());
     }
 
     public static Syndrom getInstance(){
@@ -280,7 +266,13 @@ public class Syndrom {
 
         vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vv.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
-        vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>());
+        vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<Edge>(vv));
+        vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+
+        vv.getGraphLayout().setGraph(new SyndromGraph<>());
+        EdgeRenderer<Vertex, Edge> edgeRenderer = new EdgeRenderer<>();
+        vv.getRenderer().setEdgeRenderer(edgeRenderer);
 
     }
 

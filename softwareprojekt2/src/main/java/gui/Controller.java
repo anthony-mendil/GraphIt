@@ -19,6 +19,7 @@ import actions.export_graph.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
+import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
 import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
@@ -1262,7 +1263,8 @@ public class Controller implements ObserverSyndrom {
      * Creates an RemoveEdgesLogAction-object and executes the action with the action history.
      */
     public void removeEdges() {
-        throw new UnsupportedOperationException();
+        RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction();
+        history.execute(removeEdgesLogAction);
     }
 
     /**
