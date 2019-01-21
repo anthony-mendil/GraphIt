@@ -87,7 +87,7 @@
                               <Tooltip text="Rückgängig" />
                            </tooltip>
                         </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -530,7 +530,7 @@
                         </Text>
                         <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="290.0">
                            <children>
-                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                              <Button fx:id="removeEdges" onAction="#removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>

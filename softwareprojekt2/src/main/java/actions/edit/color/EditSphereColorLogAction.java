@@ -50,8 +50,8 @@ public class EditSphereColorLogAction extends LogAction {
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
     if(parameters == null) {
         for (Sphere sp : pickedState.getPicked()) {
-            sp.setFillPaint(color);
             createParameter(sp, sp.getFillPaint(), color);
+            sp.setFillPaint(color);
         }
     }else{
         Sphere sphere = ((EditSphereColorParam)parameters).getSphere();

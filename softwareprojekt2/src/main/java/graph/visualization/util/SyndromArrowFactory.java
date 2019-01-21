@@ -75,7 +75,8 @@ public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.Arr
         ((GeneralPath) shape).closePath();
 
         AffineTransform transform = new AffineTransform();
-        transform.setToTranslation(-9.7, -6.5);
+
+        transform.setToTranslation(-14, -6.5);
         Shape s = transform.createTransformedShape(shape);
         return new GeneralPath(s);
     }

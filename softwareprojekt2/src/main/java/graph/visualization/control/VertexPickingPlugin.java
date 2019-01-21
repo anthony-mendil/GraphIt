@@ -76,10 +76,12 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Point2D point = e.getPoint();
         Sphere sp = pickSupport.getSphere(point.getX(), point.getY());
         Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
+        Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
+
 
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
-                if (sp != null && vertex == null) {
+                if (sp != null && vertex == null && edge == null) {
 
                    /* boolean add = true;
                     for (Vertex sphereVert : sp.getVertices()) {
@@ -138,6 +140,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
+        helper.hideMenu(contextMenu);
         setActionText("<<Action>>", false);
         down = e.getPoint();
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
