@@ -14,7 +14,7 @@ public class EditSphereAnnotationParam extends Param{
      * The sphere containing its old annotation.
      */
     @Getter
-    private Sphere pSphere;
+    private Sphere Sphere;
     /**
      * The old annotation of the sphere.
      */
@@ -34,7 +34,7 @@ public class EditSphereAnnotationParam extends Param{
      * @param pNewAnnotation The new annotation.
      */
     public EditSphereAnnotationParam(Sphere pSphere,String pOldAnnotation, String pNewAnnotation) {
-        this.pSphere = pSphere;
+        this.Sphere = pSphere;
         this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }
