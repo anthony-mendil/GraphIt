@@ -79,7 +79,7 @@ public class Controller implements ObserverSyndrom {
     /**
      *
      */
-    public static ArrayList<Font> fonts;
+    public ArrayList<Font> fonts;
 
     /**
      * The swing node that displays the zoom window.
@@ -1311,7 +1311,7 @@ public class Controller implements ObserverSyndrom {
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
     }
 
-    private static void initFonts() {
+    private void initFonts() {
 
         fonts = new ArrayList<Font>();
 
@@ -1448,6 +1448,10 @@ public class Controller implements ObserverSyndrom {
         edgeArrowReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
         edgeArrowExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
         edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
+    }
+
+    private void loadFontComboBox(ComboBox comboBox){
+
     }
 
     private void loadSizeComboBox(ComboBox comboBox) {
