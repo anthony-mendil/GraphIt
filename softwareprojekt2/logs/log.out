@@ -614,10 +614,10 @@ Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.j
 Checking 0 named HQL queries
 Checking 0 named SQL queries
 Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@5202d1
-Registering SessionFactory: c5714d6c-2f69-47f7-93d4-5019816a79d8 (<unnamed>)
+Registering SessionFactory: b2ddd94e-9020-4565-92f6-7e8f5c64a9f2 (<unnamed>)
 Not binding SessionFactory to JNDI, no JNDI name configured
 Statistics initialized [enabled=false]
-QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@19bcd16
+QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@590026
 HHH000397: Using ASTQueryTranslatorFactory
 parse() - HQL: SELECT g from log_management.tables.Graph g where g.id > 0
 throwQueryException() : no errors
@@ -671,9 +671,9 @@ SQL: select graph0_.id as id1_0_, graph0_.GXL as GXL2_0_ from GRAPHITDATABASE.PU
 throwQueryException() : no errors
 select graph0_.id as id1_0_, graph0_.GXL as GXL2_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id>0
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14175]
-Resolving associations for [log_management.tables.Graph#14175]
-Done materializing entity [log_management.tables.Graph#14175]
+Result row: EntityKey[log_management.tables.Graph#14404]
+Resolving associations for [log_management.tables.Graph#14404]
+Done materializing entity [log_management.tables.Graph#14404]
 Initiating JDBC connection release from afterTransaction
 parse() - HQL: SELECT l from log_management.tables.Log l where l.graph.id = :gid
 throwQueryException() : no errors
@@ -736,50 +736,50 @@ SQL: select log0_.id as id1_1_, log0_.graph_id as graph_id5_1_, log0_.LOGENTRYNA
 throwQueryException() : no errors
 select log0_.id as id1_1_, log0_.graph_id as graph_id5_1_, log0_.LOGENTRYNAME as LOGENTRY2_1_, log0_.PARAMETERS as PARAMETE3_1_, log0_.TIME as TIME4_1_ from GRAPHITDATABASE.PUBLIC.LOGS log0_ where log0_.graph_id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Log#14176]
+Result row: EntityKey[log_management.tables.Log#14405]
 Result set row: 1
-Result row: EntityKey[log_management.tables.Log#14177]
+Result row: EntityKey[log_management.tables.Log#14406]
 Result set row: 2
-Result row: EntityKey[log_management.tables.Log#14178]
+Result row: EntityKey[log_management.tables.Log#14407]
 Result set row: 3
-Result row: EntityKey[log_management.tables.Log#14179]
+Result row: EntityKey[log_management.tables.Log#14408]
 Result set row: 4
-Result row: EntityKey[log_management.tables.Log#14180]
+Result row: EntityKey[log_management.tables.Log#14409]
 Result set row: 5
-Result row: EntityKey[log_management.tables.Log#14181]
-Resolving associations for [log_management.tables.Log#14176]
-Done materializing entity [log_management.tables.Log#14176]
-Resolving associations for [log_management.tables.Log#14177]
-Done materializing entity [log_management.tables.Log#14177]
-Resolving associations for [log_management.tables.Log#14178]
-Done materializing entity [log_management.tables.Log#14178]
-Resolving associations for [log_management.tables.Log#14179]
-Done materializing entity [log_management.tables.Log#14179]
-Resolving associations for [log_management.tables.Log#14180]
-Done materializing entity [log_management.tables.Log#14180]
-Resolving associations for [log_management.tables.Log#14181]
-Done materializing entity [log_management.tables.Log#14181]
+Result row: EntityKey[log_management.tables.Log#14410]
+Resolving associations for [log_management.tables.Log#14405]
+Done materializing entity [log_management.tables.Log#14405]
+Resolving associations for [log_management.tables.Log#14406]
+Done materializing entity [log_management.tables.Log#14406]
+Resolving associations for [log_management.tables.Log#14407]
+Done materializing entity [log_management.tables.Log#14407]
+Resolving associations for [log_management.tables.Log#14408]
+Done materializing entity [log_management.tables.Log#14408]
+Resolving associations for [log_management.tables.Log#14409]
+Done materializing entity [log_management.tables.Log#14409]
+Resolving associations for [log_management.tables.Log#14410]
+Done materializing entity [log_management.tables.Log#14410]
 Initiating JDBC connection release from afterTransaction
 On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 14205
+Sequence value obtained: 14436
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 14205, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 14436, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 7 deletions to 8 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=14180, time=2019-01-23T17:51:26.176, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"4\"":"2"}}, graph=log_management.tables.Graph#14175}
-log_management.tables.Log{id=14181, time=2019-01-23T17:51:27.374, logEntryName=ADD_EDGES, parameters={"edges":{"4":"3"}}, graph=log_management.tables.Graph#14175}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@c66e8f updateLevel: 0 listeners: [] compoundEdit: null, id=14175}
-log_management.tables.Log{id=14176, time=2019-01-23T17:51:09.311, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14175}
-log_management.tables.Log{id=14177, time=2019-01-23T17:51:11.510, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14175}
-log_management.tables.Log{id=14178, time=2019-01-23T17:51:22.670, logEntryName=ADD_SPHERE, parameters={"sphere":"2"}, graph=log_management.tables.Graph#14175}
-log_management.tables.Log{id=14179, time=2019-01-23T17:51:25.608, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14175}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@112dd49 updateLevel: 0 listeners: [] compoundEdit: null, id=14205}
+log_management.tables.Log{id=14405, time=2019-01-23T21:23:35.669, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14404}
+log_management.tables.Log{id=14406, time=2019-01-23T21:23:36.699, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14404}
+log_management.tables.Log{id=14407, time=2019-01-23T21:23:38.595, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"0"}}, graph=log_management.tables.Graph#14404}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@57fd72 updateLevel: 0 listeners: [] compoundEdit: null, id=14404}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
+log_management.tables.Log{id=14408, time=2019-01-23T21:23:39.115, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"0"}}, graph=log_management.tables.Graph#14404}
+log_management.tables.Log{id=14409, time=2019-01-23T21:23:39.756, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"4\"":"0"}}, graph=log_management.tables.Graph#14404}
+log_management.tables.Log{id=14410, time=2019-01-23T21:23:46.387, logEntryName=ADD_SPHERE, parameters={"sphere":"5"}, graph=log_management.tables.Graph#14404}
 insert into GRAPHITDATABASE.PUBLIC.GRAPHS (GXL, id) values (?, ?)
 delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
 delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
@@ -790,204 +790,234 @@ delete from GRAPHITDATABASE.PUBLIC.LOGS where id=?
 delete from GRAPHITDATABASE.PUBLIC.GRAPHS where id=?
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 14206
+Sequence value obtained: 14437
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 14206, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 14437, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 2 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=14206, time=2019-01-23T17:53:31.904, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@112dd49 updateLevel: 0 listeners: [] compoundEdit: null, id=14205}
+log_management.tables.Log{id=14437, time=2019-01-23T21:24:53.664, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 14207
+Sequence value obtained: 14438
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 14207, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 14438, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 3 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=14206, time=2019-01-23T17:53:31.904, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14207, time=2019-01-23T17:53:33.617, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@112dd49 updateLevel: 0 listeners: [] compoundEdit: null, id=14205}
+log_management.tables.Log{id=14437, time=2019-01-23T21:24:53.664, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14438, time=2019-01-23T21:24:55.574, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 14208
+Sequence value obtained: 14439
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 14208, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 14439, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 4 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=14208, time=2019-01-23T17:53:38.187, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"0"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14206, time=2019-01-23T17:53:31.904, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14207, time=2019-01-23T17:53:33.617, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@112dd49 updateLevel: 0 listeners: [] compoundEdit: null, id=14205}
+log_management.tables.Log{id=14437, time=2019-01-23T21:24:53.664, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14438, time=2019-01-23T21:24:55.574, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14439, time=2019-01-23T21:24:56.623, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 14209
+Sequence value obtained: 14440
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 14209, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 14440, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 5 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=14208, time=2019-01-23T17:53:38.187, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"0"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14209, time=2019-01-23T17:53:38.793, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14206, time=2019-01-23T17:53:31.904, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14207, time=2019-01-23T17:53:33.617, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@112dd49 updateLevel: 0 listeners: [] compoundEdit: null, id=14205}
+log_management.tables.Log{id=14437, time=2019-01-23T21:24:53.664, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14438, time=2019-01-23T21:24:55.574, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14439, time=2019-01-23T21:24:56.623, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
+log_management.tables.Log{id=14440, time=2019-01-23T21:24:57.118, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14436}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 14210
+Sequence value obtained: 14441
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 14210, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 14441, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 6 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=14208, time=2019-01-23T17:53:38.187, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"0"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14209, time=2019-01-23T17:53:38.793, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14210, time=2019-01-23T17:53:40.031, logEntryName=ADD_EDGES, parameters={"edges":{"3":"2"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14206, time=2019-01-23T17:53:31.904, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14207, time=2019-01-23T17:53:33.617, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@112dd49 updateLevel: 0 listeners: [] compoundEdit: null, id=14205}
+log_management.tables.Log{id=14437, time=2019-01-23T21:24:53.664, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14438, time=2019-01-23T21:24:55.574, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14439, time=2019-01-23T21:24:56.623, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
+log_management.tables.Log{id=14440, time=2019-01-23T21:24:57.118, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14441, time=2019-01-23T21:24:57.536, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"4\"":"1"}}, graph=log_management.tables.Graph#14436}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
 begin
 call next value for hibernate_sequence
-Sequence value obtained: 14211
+Sequence value obtained: 14442
 HHH000387: ResultSet's statement was not registered
-Generated identifier: 14211, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+Generated identifier: 14442, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
 committing
 Processing flush-time cascades
 Dirty checking collections
 Flushed: 1 insertions, 0 updates, 0 deletions to 7 objects
 Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 Listing entities:
-log_management.tables.Log{id=14208, time=2019-01-23T17:53:38.187, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"0"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14209, time=2019-01-23T17:53:38.793, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14210, time=2019-01-23T17:53:40.031, logEntryName=ADD_EDGES, parameters={"edges":{"3":"2"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14211, time=2019-01-23T17:54:02.768, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"5\"":"1"}}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14206, time=2019-01-23T17:53:31.904, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Log{id=14207, time=2019-01-23T17:53:33.617, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14205}
-log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@112dd49 updateLevel: 0 listeners: [] compoundEdit: null, id=14205}
+log_management.tables.Log{id=14437, time=2019-01-23T21:24:53.664, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14438, time=2019-01-23T21:24:55.574, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14439, time=2019-01-23T21:24:56.623, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
+log_management.tables.Log{id=14440, time=2019-01-23T21:24:57.118, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14441, time=2019-01-23T21:24:57.536, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"4\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14442, time=2019-01-23T21:25:02.047, logEntryName=ADD_SPHERE, parameters={"sphere":"5"}, graph=log_management.tables.Graph#14436}
 insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
 Initiating JDBC connection release from afterTransaction
 Initiating JDBC connection release from afterTransaction
-Loading entity: [log_management.tables.Graph#14205]
+Loading entity: [log_management.tables.Graph#14436]
 select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
 Result set row: 0
-Result row: EntityKey[log_management.tables.Graph#14205]
-Resolving associations for [log_management.tables.Graph#14205]
-Done materializing entity [log_management.tables.Graph#14205]
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
 Done entity load
-HHH000031: Closing
-Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@117d36b] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@19bf286]
-Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
-HHH10001008: Cleaning up connection pool [jdbc:h2:~/GraphItDatabase]
-Connection leak detected: there are 1 unclosed connections upon shutting down pool jdbc:h2:~/GraphItDatabase
-Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+Loading entity: [log_management.tables.Graph#14436]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
+Done entity load
+begin
+call next value for hibernate_sequence
+Sequence value obtained: 14443
+HHH000387: ResultSet's statement was not registered
+Generated identifier: 14443, using strategy: org.hibernate.id.enhanced.SequenceStyleGenerator
+committing
+Processing flush-time cascades
+Dirty checking collections
+Flushed: 1 insertions, 0 updates, 0 deletions to 8 objects
+Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+Listing entities:
+log_management.tables.Log{id=14437, time=2019-01-23T21:24:53.664, logEntryName=ADD_SPHERE, parameters={"sphere":"0"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14438, time=2019-01-23T21:24:55.574, logEntryName=ADD_SPHERE, parameters={"sphere":"1"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14439, time=2019-01-23T21:24:56.623, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"2\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Graph{gxl=net.sourceforge.gxl.GXLDocument@2215c6 updateLevel: 0 listeners: [] compoundEdit: null, id=14436}
+log_management.tables.Log{id=14440, time=2019-01-23T21:24:57.118, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"3\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14441, time=2019-01-23T21:24:57.536, logEntryName=ADD_VERTICES, parameters={"parameter":{"\"4\"":"1"}}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14442, time=2019-01-23T21:25:02.047, logEntryName=ADD_SPHERE, parameters={"sphere":"5"}, graph=log_management.tables.Graph#14436}
+log_management.tables.Log{id=14443, time=2019-01-23T21:25:37.027, logEntryName=ADD_SPHERE, parameters={"sphere":"6"}, graph=log_management.tables.Graph#14436}
+insert into GRAPHITDATABASE.PUBLIC.LOGS (graph_id, LOGENTRYNAME, PARAMETERS, TIME, id) values (?, ?, ?, ?, ?)
+Initiating JDBC connection release from afterTransaction
+Initiating JDBC connection release from afterTransaction
+Loading entity: [log_management.tables.Graph#14436]
+select graph0_.id as id1_0_0_, graph0_.GXL as GXL2_0_0_ from GRAPHITDATABASE.PUBLIC.GRAPHS graph0_ where graph0_.id=?
+Result set row: 0
+Result row: EntityKey[log_management.tables.Graph#14436]
+Resolving associations for [log_management.tables.Graph#14436]
+Done materializing entity [log_management.tables.Graph#14436]
+Done entity load

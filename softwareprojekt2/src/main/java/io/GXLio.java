@@ -409,7 +409,6 @@ public class GXLio {
     public String gxlFromInstance(){
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        System.out.println("size: "+theGraph.getSpheres().size());
         List<Sphere> currentSpheres = theGraph.getSpheres();
 
         GXLDocument doc = new GXLDocument();
@@ -534,7 +533,6 @@ public class GXLio {
         }
 
         doc.getDocumentElement().add(gxlSyndrom);
-        System.out.println("gxlSyndrom wurde dem Dokument hinzugefügt.");
         try {
             doc.write(file);
         }catch(Exception e){}
