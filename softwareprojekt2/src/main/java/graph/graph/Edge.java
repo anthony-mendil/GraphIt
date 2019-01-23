@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * An edge of the syndrom-graph. There are 3 type of edges, defined by the three types of relations: extenuating,
@@ -38,6 +39,8 @@ public class Edge {
      */
     @NonNull
     private boolean hasAnchor;
+
+    private Point2D anchorPoint;
     /**
      * Defines the degree to which the anchor point is attached to the vertex.
      */

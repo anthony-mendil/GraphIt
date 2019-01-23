@@ -15,6 +15,8 @@ import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
+import graph.graph.Vertex;
+import javafx.geometry.Bounds;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,6 +63,8 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         }
 
         AffineTransform xform = AffineTransform.getTranslateInstance(x1, y1);
+        Shape oldEdge = edgeShape;
+        g.setStroke(new BasicStroke(1.0f));
 
 
         // this is a normal edge. Rotate it to the angle between
@@ -85,7 +89,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         if (edgeHit == true) {
 
             Paint oldPaint = g.getPaint();
-
+/*
             // get Paints for filling and drawing
             // (filling is done first so that drawing and label use same Paint)
             Paint fill_paint = rc.getEdgeFillPaintTransformer().transform(e);
@@ -97,7 +101,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             if (draw_paint != null) {
                 g.setPaint(draw_paint);
                 g.draw(edgeShape);
-            }
+            }*/
 
             float scalex = (float) g.getTransform().getScaleX();
             float scaley = (float) g.getTransform().getScaleY();
@@ -106,11 +110,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
             if (rc.getEdgeArrowPredicate().evaluate(Context.<Graph<V, E>, E>getInstance(graph, e))) {
 
-                Stroke new_stroke = rc.getEdgeArrowStrokeTransformer().transform(e);
-                Stroke old_stroke = g.getStroke();
-                if (new_stroke != null)
-                    g.setStroke(new_stroke);
-
+                Vertex second = (Vertex) graph.getEndpoints(e).getSecond();
 
                 Shape destVertexShape =
                         rc.getVertexShapeTransformer().transform(graph.getEndpoints(e).getSecond());
@@ -125,8 +125,53 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                             edgeArrowRenderingSupport.getArrowTransform(rc, edgeShape, destVertexShape);
                     if (at == null) return;
                     Shape arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
-                    arrow = at.createTransformedShape(arrow);
+                    //arrow = at.createTransformedShape(arrow);
+
+                    Shape newArr = at.createTransformedShape(arrow);
+
                     Edge edge = (Edge) e;
+
+                    if (edge.isHasAnchor()) {
+                        Line2D lineAngle = new Line2D.Double( edge.getAnchorPoint(), second.getCoordinates());
+                        AffineTransform edgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle,destVertexShape);
+
+                       // arrow = edgeAngle.createTransformedShape(arrow);
+                        arrow = edgeAngle.createTransformedShape(arrow);
+
+
+                        x2 = (float) arrow.getBounds2D().getCenterX();
+                        y2 = (float) arrow.getBounds2D().getCenterY();
+                    } else {
+                        arrow = at.createTransformedShape(arrow);
+                    }
+
+                    AffineTransform x_form = AffineTransform.getTranslateInstance(x1, y1);
+                    dx = x2 - x1;
+                    dy = y2 - y1;
+                    thetaRadians = (float) Math.atan2(dy, dx);
+                    x_form.rotate(thetaRadians);
+                    dist = (float) Math.sqrt(dx * dx + dy * dy);
+                    x_form.scale(dist, 1.0);
+                    edgeShape = x_form.createTransformedShape(oldEdge);
+                    Paint fill_paint = rc.getEdgeFillPaintTransformer().transform(e);
+                    Stroke new_stroke = rc.getEdgeStrokeTransformer().transform(e);
+
+                    if (new_stroke != null)
+                        g.setStroke(new_stroke);
+
+                    if (fill_paint != null) {
+                        g.setPaint(fill_paint);
+                        g.fill(edgeShape);
+                    }
+                    Paint draw_paint = rc.getEdgeDrawPaintTransformer().transform(e);
+                    if (draw_paint != null) {
+                        g.setPaint(draw_paint);
+                        g.draw(edgeShape);
+                    }
+
+                    g.setStroke(new BasicStroke(1.0f));
+
+
                     Paint drawColor = rc.getArrowFillPaintTransformer().transform(e);
                     if (edge.getArrowType() == EdgeArrowType.NEUTRAL) {
                         Shape ellipse = new Ellipse2D.Double(-18.06472, -18.06472 / 2, 18.06472, 18.06472);
@@ -150,11 +195,6 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     g.draw(arrow);
 
                 }
-
-                // restore paint and stroke
-                if (new_stroke != null)
-                    g.setStroke(old_stroke);
-
             }
 
             // restore old paint
