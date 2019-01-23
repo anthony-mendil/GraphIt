@@ -53,7 +53,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      */
     public Sphere getSphere(double x, double y) {
         Sphere sphaereContains = null;
-        Point2D ip = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(Layer.LAYOUT,
+        Point2D ip = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(Layer.VIEW,
                 new Point2D.Double(x, y));
         x = ip.getX();
         y = ip.getY();
@@ -66,8 +66,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 Point2D p = s.getCoordinates();
                 Shape rec = new Rectangle2D.Double(p.getX(), p.getY(), s
                         .getWidth(), s.getHeight());
-                AffineTransform transform = vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.LAYOUT).getTransform();
-                transform.createTransformedShape(rec);
+                rec = vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, rec);
                 if (rec.contains(x, y)) {
                     sphaereContains = s;
                 }
@@ -196,18 +195,6 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
         transform = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle, destVertexShape);
         return transform;
-    }
-
-    /**
-     * Iterates over edges, checking to see if x,y is contained in a edge arrow.
-     *
-     * @param layout The current layout.
-     * @param x      The x- coordinate.
-     * @param y      The y- coordinate.
-     * @return The associated edge to the arrow.
-     */
-    public Edge getEdgeArrow(Layout<V, E> layout, double x, double y) {
-        throw new UnsupportedOperationException();
     }
 
 }
