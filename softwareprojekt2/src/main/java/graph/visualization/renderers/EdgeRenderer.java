@@ -30,32 +30,35 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
     @Override
     protected void drawSimpleEdge(RenderContext<V, E> rc, Layout<V, E> layout, E e) {
+        // code from framework
         GraphicsDecorator g = rc.getGraphicsContext();
         Graph<V, E> graph = layout.getGraph();
         Pair<V> endpoints = graph.getEndpoints(e);
         V v1 = endpoints.getFirst();
         V v2 = endpoints.getSecond();
 
-        Point2D p1 = layout.transform(v1);
-        Point2D p2 = layout.transform(v2);
-        p1 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, p1);
-        p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, p2);
+        Point2D p1 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v1));
+        Point2D p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v2));
         float x1 = (float) p1.getX();
         float y1 = (float) p1.getY();
         float x2 = (float) p2.getX();
         float y2 = (float) p2.getY();
 
+        // shape of the edge
         Shape edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
 
         boolean edgeHit;
         boolean arrowHit;
-        Rectangle deviceRectangle = null;
+        Rectangle deviceRectangle;
         JComponent vv = rc.getScreenDevice();
         if (vv != null) {
             Dimension d = vv.getSize();
             deviceRectangle = new Rectangle(0, 0, d.width, d.height);
+        } else {
+            deviceRectangle = null;
         }
 
+        // translates the edges shape
         AffineTransform xform = AffineTransform.getTranslateInstance(x1, y1);
         Shape oldEdge = edgeShape;
         g.setStroke(new BasicStroke(1.0f));
@@ -71,7 +74,6 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         float dist = (float) Math.sqrt(dx * dx + dy * dy);
         xform.scale(dist, 1.0);
 
-
         edgeShape = xform.createTransformedShape(edgeShape);
 
         MutableTransformer vt = rc.getMultiLayerTransformer().getTransformer(Layer.VIEW);
@@ -81,7 +83,6 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         edgeHit = vt.transform(edgeShape).intersects(deviceRectangle);
 
         if (edgeHit) {
-
             Paint oldPaint = g.getPaint();
             float scalex = (float) g.getTransform().getScaleX();
             float scaley = (float) g.getTransform().getScaleY();
@@ -91,7 +92,6 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             if (rc.getEdgeArrowPredicate().evaluate(Context.<Graph<V, E>, E>getInstance(graph, e))) {
 
                 Vertex second = (Vertex) graph.getEndpoints(e).getSecond();
-
                 Shape destVertexShape =
                         rc.getVertexShapeTransformer().transform(graph.getEndpoints(e).getSecond());
 
@@ -104,21 +104,23 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                             edgeArrowRenderingSupport.getArrowTransform(rc, edgeShape, destVertexShape);
                     if (at == null) return;
                     Shape arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
-                    //arrow = at.createTransformedShape(arrow);
-
-                    Shape newArr = at.createTransformedShape(arrow);
-
                     Edge edge = (Edge) e;
                     AffineTransform edgeAngle = null;
 
                     if (edge.isHasAnchor()) {
-                        Point2D anchor = new Point2D.Double(edge.getAnchorPoint().getX()+second.getCoordinates().getX(), edge.getAnchorPoint().getY()+second.getCoordinates().getY());
-                        Line2D lineAngle = new Line2D.Double( anchor, second.getCoordinates());
-                        edgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle,destVertexShape);
+                        Point2D an = edge.getAnchorPoint();
+                        Point2D cord = second.getCoordinates();
+                        Point2D t =  new Point2D.Double(an.getX() +cord.getX(), an.getY() + cord.getY());
+                        Point2D anchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, t);
+                        cord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, cord);
 
-                       // arrow = edgeAngle.createTransformedShape(arrow);
+                        Line2D lineAngle = new Line2D.Double(anchor, cord);
+
+                        edgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle, destVertexShape);
+                        if (edgeAngle == null) return;
+
+                        // arrow = edgeAngle.createTransformedShape(arrow);
                         arrow = edgeAngle.createTransformedShape(arrow);
-
 
                         x2 = (float) arrow.getBounds2D().getCenterX();
                         y2 = (float) arrow.getBounds2D().getCenterY();
@@ -157,7 +159,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     if (edge.getArrowType() == EdgeArrowType.NEUTRAL) {
                         Shape ellipse = new Ellipse2D.Double(-18.06472, -18.06472 / 2, 18.06472, 18.06472);
 
-                        if (edgeAngle != null){
+                        if (edgeAngle != null) {
                             ellipse = edgeAngle.createTransformedShape(ellipse);
                         } else {
                             ellipse = at.createTransformedShape(ellipse);
@@ -183,8 +185,8 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         }
     }
 
-    private Color getLuminanceColor(Paint drawColor){
-        double luminance = (0.2126*((Color) drawColor).getRed() + 0.7152*((Color) drawColor).getGreen() + 0.0722*((Color) drawColor).getGreen());
-        return luminance > 127 ?  new Color(20,20,20): new Color(245,245,245);
+    private Color getLuminanceColor(Paint drawColor) {
+        double luminance = (0.2126 * ((Color) drawColor).getRed() + 0.7152 * ((Color) drawColor).getGreen() + 0.0722 * ((Color) drawColor).getGreen());
+        return luminance > 127 ? new Color(20, 20, 20) : new Color(245, 245, 245);
     }
 }
