@@ -336,7 +336,7 @@ public class GXLio {
 
                 // rel.add(new GXLRelend(singleNodeInSphere));
                 singleNodeInSphere.setAttr("TYPE", new GXLString("Node"));
-                Color color = (Color) v.getFillPaint();
+                Color color = v.getFillColor();
                 singleNodeInSphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
                 singleNodeInSphere.setAttr("coordinate", new GXLString("" + v.getCoordinates().toString()));
                 singleNodeInSphere.setAttr("shape", new GXLString("" + v.getShape()));
@@ -347,7 +347,7 @@ public class GXLio {
                     }
                 }
                 singleNodeInSphere.setAttr("annotation", new GXLString(nodeAnnotationContent));
-                Color drawPaint = (Color) v.getDrawPaint();
+                Color drawPaint = (Color) v.getDrawColor();
                 singleNodeInSphere.setAttr("drawPaint", new GXLString(getPaintDescription(drawPaint)));
                 if (v.getVertexArrowReinforced() != null) {
                     singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
@@ -380,7 +380,7 @@ public class GXLio {
             edge.setID(e.getId() + "");
 
             edge.setAttr("TYPE", new GXLString("Edge"));
-            Color color = (Color) e.getPaint();
+            Color color = (Color) e.getColor();
             edge.setAttr("paint", new GXLString(getPaintDescription(color)));
             // edge.setAttr("paint", new GXLString(e.getPaint() + ""));
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
@@ -477,7 +477,7 @@ public class GXLio {
 
                 // rel.add(new GXLRelend(singleNodeInSphere));
                 singleNodeInSphere.setAttr("TYPE", new GXLString("Node"));
-                Color color = (Color) v.getFillPaint();
+                Color color = v.getFillColor();
                 singleNodeInSphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
                 singleNodeInSphere.setAttr("coordinate", new GXLString("" + v.getCoordinates().toString()));
                 singleNodeInSphere.setAttr("shape", new GXLString("" + v.getShape()));
@@ -488,7 +488,7 @@ public class GXLio {
                     }
                 }
                 singleNodeInSphere.setAttr("annotation", new GXLString(nodeAnnotationContent));
-                Color drawPaint = (Color) v.getDrawPaint();
+                Color drawPaint = (Color) v.getDrawColor();
                 singleNodeInSphere.setAttr("drawPaint", new GXLString(getPaintDescription(drawPaint)));
                 if (v.getVertexArrowReinforced() != null) {
                     singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
@@ -521,7 +521,7 @@ public class GXLio {
             edge.setID(e.getId() + "");
 
             edge.setAttr("TYPE", new GXLString("Edge"));
-            Color color = (Color) e.getPaint();
+            Color color = (Color) e.getColor();
             edge.setAttr("paint", new GXLString(getPaintDescription(color)));
             // edge.setAttr("paint", new GXLString(e.getPaint() + ""));
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
