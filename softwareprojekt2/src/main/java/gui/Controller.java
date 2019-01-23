@@ -44,8 +44,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -195,36 +198,43 @@ public class Controller implements ObserverSyndrom {
     /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
      */
+    @FXML
     private TextField maxSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of symptoms in the graph".
      */
+    @FXML
     private TextField maxSymptomField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of symptoms in a sphere in the graph".
      */
+    @FXML
     private TextField maxSymptominSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of edges in the graph".
      */
+    @FXML
     private TextField maxEdgesField;
 
     /**
      * The checkbox for setting the template rule "allowing reinforced edges".
      */
+    @FXML
     private CheckBox reinforcedBox;
 
     /**
      * The checkbox for setting the template rule "allowing extenuating edges".
      */
+    @FXML
     private CheckBox extenuatingBox;
 
     /**
      * The checkbox for setting the template rule "allowing neutral edges".
      */
+    @FXML
     private CheckBox neutralBox;
 
     /* Analyse Mode */
@@ -1009,6 +1019,7 @@ public class Controller implements ObserverSyndrom {
     public void verticesCircle() {
         editVerticesForm(VertexShapeType.CIRCLE);
     }
+
     public void verticesRectangle() {
         editVerticesForm(VertexShapeType.RECTANGLE);
     }
@@ -1239,7 +1250,13 @@ public class Controller implements ObserverSyndrom {
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
-        throw new UnsupportedOperationException();
+        /*Template temp = new Template();
+
+            temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
+            temp.setMaxVertexCounter(Integer.parseInt(maxSymptomField.getText()));
+            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.toString()));
+
+        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);*/
     }
 
     /**
@@ -1260,6 +1277,7 @@ public class Controller implements ObserverSyndrom {
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
         templateStage.setAlwaysOnTop(true);
+        templateStage.getIcons().add(new Image("/logo.png"));
         templateStage.show();
     }
 
@@ -1436,7 +1454,7 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private void loadMenuItem(){
+    private void loadMenuItem() {
         symptomCircle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
         symptomRectangle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
         edgeStrokeBasic.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
@@ -1450,7 +1468,7 @@ public class Controller implements ObserverSyndrom {
         edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
     }
 
-    private void loadFontComboBox(ComboBox comboBox){
+    private void loadFontComboBox(ComboBox comboBox) {
 
     }
 
@@ -1485,7 +1503,7 @@ public class Controller implements ObserverSyndrom {
 
         private final MenuButton menuButton;
 
-        public MenuItemHandler(MenuButton pMenuButton){
+        public MenuItemHandler(MenuButton pMenuButton) {
             menuButton = pMenuButton;
         }
 
