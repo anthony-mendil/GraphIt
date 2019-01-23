@@ -1,5 +1,6 @@
 package graph.visualization.transformer.edge;
 
+import graph.graph.Edge;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -13,6 +14,8 @@ import java.awt.*;
 public class EdgeArrowFillPaintTransformer<E> implements Transformer<E, Paint> {
     @Override
     public Paint transform(E e) {
-        throw new UnsupportedOperationException();
+        Edge edge = (Edge) e;
+
+        return edge.getPaint();
     }
 }
