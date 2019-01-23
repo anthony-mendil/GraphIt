@@ -514,6 +514,23 @@
                         </Text>
                         <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="290.0">
                            <children>
+                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="50.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/anchor.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                              <Separator orientation="VERTICAL" prefHeight="4.0" prefWidth="4.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
                               <Button fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -529,11 +546,21 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="4.0" prefWidth="4.0">
+                              <Button fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
                                  <HBox.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
-                              </Separator>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/unlink.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Löschen" />
+                                 </tooltip>
+                              </Button>
                               <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editEdgesColor" prefHeight="30.0" prefWidth="46.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -612,18 +639,6 @@
                                     <Tooltip text="Pfeilspitze" />
                                  </tooltip>
                               </MenuButton>
-                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="50.0" styleClass="button1" stylesheets="@gui_style.css">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/anchor.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

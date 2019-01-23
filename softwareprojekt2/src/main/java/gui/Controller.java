@@ -21,6 +21,7 @@ import actions.export_graph.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
+import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
@@ -876,6 +877,11 @@ public class Controller implements ObserverSyndrom {
             ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
             history.execute(activateAnchorPointsFadeoutLogAction);
         }
+    }
+
+    public void removeAnchor(){
+        RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
+        history.execute(removeAnchorPointsLogAction);
     }
 
     /**
