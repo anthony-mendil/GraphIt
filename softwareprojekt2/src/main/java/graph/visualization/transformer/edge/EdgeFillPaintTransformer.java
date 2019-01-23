@@ -15,6 +15,6 @@ public class EdgeFillPaintTransformer<E> implements Transformer<E, Paint> {
     @Override
     public Paint transform(E e) {
         Edge edge = (Edge) e;
-        return edge.getPaint();
+        return edge.getColor();
     }
 }
