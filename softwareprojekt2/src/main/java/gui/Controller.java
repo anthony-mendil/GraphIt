@@ -2,6 +2,8 @@ package gui;
 
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
+import actions.activate.ActivateAnchorPointsFadeoutLogAction;
+import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
@@ -882,9 +884,11 @@ public class Controller implements ObserverSyndrom {
 
     public void anchorPointsEdge(){
         if(anchorPointsButton.isSelected()){
-            System.out.println("CLICKED");
+            DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
+            history.execute(deactivateAnchorPointsFadeoutLogAction);
         }else{
-            System.out.println("UNCLICKED");
+            ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
+            history.execute(activateAnchorPointsFadeoutLogAction);
         }
     }
 
