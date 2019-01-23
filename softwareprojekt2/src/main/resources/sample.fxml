@@ -434,30 +434,14 @@
                                     <Tooltip text="Randfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                              <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verticesForm1" prefHeight="30.0" prefWidth="50.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/022-square.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
                                  <items>
-                                    <MenuItem fx:id="circle" mnemonicParsing="false" onAction="#verticesForm1">
+                                    <MenuItem fx:id="sphereForm1" mnemonicParsing="false" onAction="#verticesForm2">
                                        <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@icons2/015-circle.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem fx:id="cube" mnemonicParsing="false" onAction="#verticesForm2">
-                                       <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="alternativeFormImage1" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@icons2/023-square-1.png" />
                                              </image>
@@ -468,6 +452,13 @@
                                  <tooltip>
                                     <Tooltip text="Form" />
                                  </tooltip>
+                                 <graphic>
+                                    <ImageView fx:id="currentFormImage" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/015-circle.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                               </MenuButton>
                               <Button fx:id="verticesAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verticesAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
@@ -530,7 +521,7 @@
                         </Text>
                         <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="290.0">
                            <children>
-                              <Button fx:id="removeEdges" onAction="#removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                              <Button fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -550,7 +541,7 @@
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
-                              <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="46.0" onAction="#editEdgesColor">
+                              <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editEdgesColor" prefHeight="30.0" prefWidth="46.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
@@ -569,7 +560,7 @@
                                  <items>
                                     <MenuItem fx:id="edgeStrokeBasic" mnemonicParsing="false" onAction="#edgeStrokeBasic">
                                        <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@icons2/015-circle.png" />
                                              </image>
@@ -578,7 +569,7 @@
                                     </MenuItem>
                                      <MenuItem fx:id="edgeStrokeDotted" mnemonicParsing="false" onAction="#edgeStrokeDotted">
                                          <graphic>
-                                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                  <image>
                                                      <Image url="@icons2/dotted.png" />
                                                  </image>
@@ -587,9 +578,9 @@
                                      </MenuItem>
                                      <MenuItem fx:id="edgeStrokeDashed" mnemonicParsing="false" onAction="#edgeStrokeDashed">
                                          <graphic>
-                                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                  <image>
-                                                     <Image url="@icons2/015-circle.png.png" />
+                                                     <Image url="@icons2/015-circle.png" />
                                                  </image>
                                              </ImageView>
                                          </graphic>
@@ -613,16 +604,16 @@
                                  <items>
                                     <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false" onAction="#edgeExtenuating">
                                        <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@icons2/015-circle.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </MenuItem>
-                                    <MenuItem  fx:id="edgeArrowNeutral" mnemonicParsing="false" onAction="#edgeNeutral">
+                                    <MenuItem fx:id="edgeArrowNeutral" mnemonicParsing="false" onAction="#edgeNeutral">
                                        <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@icons2/014-question.png" />
                                              </image>
@@ -756,7 +747,7 @@
                                        <items>
                                           <MenuItem mnemonicParsing="false">
                                              <graphic>
-                                                <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@icons2/014-question.png" />
                                                    </image>
@@ -765,7 +756,7 @@
                                           </MenuItem>
                                           <MenuItem mnemonicParsing="false">
                                              <graphic>
-                                                <ImageView fitHeight="15.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@icons2/015-circle.png" />
                                                    </image>
@@ -846,7 +837,7 @@
       </VBox>
    </top>
    <bottom>
-      <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" >
+      <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css">
          <buttons>
             <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1497.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
                <children>
@@ -870,7 +861,7 @@
                      </HBox.margin>
                   </Text>
 
-                  <Slider fx:id="zoomSlider"  cacheShape="false" focusTraversable="false" prefHeight="14.0" prefWidth="200.0">
+                  <Slider fx:id="zoomSlider" cacheShape="false" focusTraversable="false" prefHeight="14.0" prefWidth="200.0">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -938,7 +929,7 @@
                   </Separator>
                   <StackPane alignment="BOTTOM_CENTER" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <SwingNode fx:id="satellite"/>
+                        <SwingNode fx:id="satellite" />
                      </children>
                      <VBox.margin>
                         <Insets />

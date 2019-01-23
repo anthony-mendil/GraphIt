@@ -50,6 +50,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -413,51 +414,6 @@ public class Controller implements ObserverSyndrom {
      */
     private MenuItem sphereFont5;
 
-    /**
-     * The textfield for changing the size of the sphere text.
-     */
-    private TextField sphereSize;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize1;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize2;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize3;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize4;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize5;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize6;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize7;
-
-    /**
-     * The menuitem for changing the size of the sphere text to a specific size.
-     */
-    private MenuItem sphereSize8;
-
     /* Symptom */
 
     /**
@@ -471,6 +427,18 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private ColorPicker symptomBorder;
+
+    /**
+     * The menubutton for changing the form of a symptom.
+     */
+    @FXML
+    private MenuButton sphereFormMenuButton;
+
+    /**
+     * The menubutton for changing the form of a symptom to a different form
+     */
+    @FXML
+    private MenuItem sphereForm1;
 
     /**
      * The menuitem for changing the form of a symptom to a rectangle.
@@ -516,52 +484,6 @@ public class Controller implements ObserverSyndrom {
      * The menuitem for changing the font of the symptom text to a specific font.
      */
     private MenuItem symptomFont5;
-
-    /**
-     * The textfield for changing the size of the symptom text.
-     */
-    @FXML
-    private TextField symptomSizeTextField;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize1;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize2;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize3;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize4;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize5;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize6;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize7;
-
-    /**
-     * The menuitem for changing the size of the symptom text to a specific size.
-     */
-    private MenuItem symptomSize8;
 
     /* Edge */
 
@@ -746,9 +668,15 @@ public class Controller implements ObserverSyndrom {
 
     private String currentSize = "";
 
+    /**
+     * The combobox for changing the size of the sphere text.
+      */
     @FXML
     private ComboBox sizeSphereComboBox;
 
+    /**
+     * The combobox for changing the size of the symptom text.
+     */
     @FXML
     private ComboBox sizeSymptomComboBox;
 
@@ -760,6 +688,14 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private ButtonBar currentActionBox;
+
+    private VertexShapeType currentSymptomShape = VertexShapeType.CIRCLE;
+
+    @FXML
+    private ImageView currentFormImage;
+
+    @FXML
+    private ImageView alternativeFormImage1;
 
 
     public Controller() {
@@ -1038,14 +974,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(editFontSizeVerticesLogAction);
     }
 
-    public void fontSizeVertex1() {
-        editFontSizeVertices(13);
-    }
-
-    public void fontSizeVertex2() {
-        editFontSizeVertices(30);
-    }
-
     /* ......form..... */
 
     /**
@@ -1059,12 +987,18 @@ public class Controller implements ObserverSyndrom {
 
     public void verticesForm1() {
         editVerticesForm(VertexShapeType.CIRCLE);
-    }
+        EventHandler currentAction = sphereFormMenuButton.getOnAction();
 
+        sphereFormMenuButton.setOnAction(sphereForm1.getOnAction());
+        sphereForm1.setOnAction(currentAction);
+    }
     public void verticesForm2() {
         editVerticesForm(VertexShapeType.RECTANGLE);
-    }
+        EventHandler currentAction = sphereFormMenuButton.getOnAction();
 
+        sphereFormMenuButton.setOnAction(sphereForm1.getOnAction());
+        sphereForm1.setOnAction(currentAction);
+    }
     /* ----------------EXPORT---------------------- */
 
     /**
@@ -1342,6 +1276,7 @@ public class Controller implements ObserverSyndrom {
 
         loadComboBox(sizeSphereComboBox);
         loadComboBox(sizeSymptomComboBox);
+        sphereForm1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
 
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
@@ -1430,8 +1365,6 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-
-
     private class ComboBoxValueListener implements ChangeListener<String>{
         private final ComboBox comboBox;
         private ComboBoxValueListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
@@ -1485,6 +1418,28 @@ public class Controller implements ObserverSyndrom {
         comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
+    }
+
+    /**
+     * The event handler that provides the arguments, needed to use the actions after clicking on a menuitem.
+     */
+    private class MenuItemHandler implements EventHandler<ActionEvent>{
+
+        private final MenuButton menuButton;
+
+        public MenuItemHandler(MenuButton pMenuButton){
+            menuButton = pMenuButton;
+        }
+
+        @Override
+        public void handle(ActionEvent evt) {
+            System.out.println("EVENTHANDLER");
+            MenuItem mnItm = (MenuItem)evt.getSource();
+            javafx.scene.Node currentImage = menuButton.getGraphic();
+
+            menuButton.setGraphic(mnItm.getGraphic());
+            mnItm.setGraphic(currentImage);
+        }
     }
 
     private void analysisMode(Boolean active) {
@@ -1600,15 +1555,6 @@ public class Controller implements ObserverSyndrom {
 
     public void buttonClicked(ActionEvent actionEvent) {
         values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
-    }
-
-    /**
-     * The event handler that provides the arguments, needed to use the actions after clicking on a menuitem.
-     */
-    private class MenuItemHandler implements EventHandler<Event> {
-        @Override
-        public void handle(Event evt) {
-        }
     }
 
     /**
