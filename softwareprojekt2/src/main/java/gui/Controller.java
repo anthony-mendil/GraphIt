@@ -43,6 +43,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -419,26 +420,16 @@ public class Controller implements ObserverSyndrom {
     private MenuButton sphereFormMenuButton;
 
     /**
-     * The menubutton for changing the form of a symptom to a different form
+     * The menuitem for changing the form of a symptom to a circle.
      */
-
     @FXML
-    private MenuItem symptomForm1;
+    private MenuItem symptomCircle;
 
     /**
      * The menuitem for changing the form of a symptom to a rectangle.
      */
+    @FXML
     private MenuItem symptomRectangle;
-
-    /**
-     * The menuitem for changing the form of a symptom to a circle.
-     */
-    private MenuItem symptomCircle;
-
-    /**
-     * The menuitem for changing the form of a symptom to a ellipse.
-     */
-    private MenuItem symptomEllipse;
 
     /**
      * The textfield for changing the font of the symptom text.
@@ -485,30 +476,40 @@ public class Controller implements ObserverSyndrom {
     private MenuButton edgeStrokeMenuButton;
 
     /**
-     * The menuitem for changing the stroke type to the first alternative form
+     * The menuitem for changing the stroke type to the dashed stroke type.
      */
     @FXML
-    private MenuItem edgeStrokeOption1;
-
-    /**
-     * The menuitem for changing the stroke type to the second alternative form
-     */
-    @FXML
-    private MenuItem edgeStrokeOption2;
-
-    /*
     private MenuItem edgeStrokeDashed;
 
+    /**
+     * The menuitem for changing the stroke type to the dashed weighted stroke type.
+     */
+    @FXML
     private MenuItem edgeStrokeDashedWeight;
 
+    /**
+     * The menuitem for changing the stroke type to the dotted stroke type.
+     */
+    @FXML
     private MenuItem edgeStrokeDotted;
 
+    /**
+     * The menuitem for changing the stroke type to the dotted weighted stroke type.
+     */
+    @FXML
     private MenuItem edgeStrokeDottedWeight;
 
+    /**
+     * The menuitem for changing the stroke type to the basic stroke type.
+     */
+    @FXML
     private MenuItem edgeStrokeBasic;
 
+    /**
+     * The menuitem for changing the stroke type to the basic weighted stroke type.
+     */
+    @FXML
     private MenuItem edgeStrokeBasicWeight;
-    */
 
     /**
      * The menubutton for changing the arrow type of edges.
@@ -519,6 +520,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * The menuitem for changing the arrow type of edges to reinforced.
      */
+    @FXML
     private MenuItem edgeArrowReinforced;
 
     /**
@@ -679,12 +681,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ButtonBar currentActionBox;
 
-    private MenuItem currentSphereFormOption;
-
-    private MenuItem currentEdgeTypeOption;
-
-    private MenuItem currentArrowTypeOption;
-
     @FXML
     private ToggleButton anchorPointsButton;
 
@@ -783,49 +779,31 @@ public class Controller implements ObserverSyndrom {
     public void edgeStrokeBasic(){
         values.setStrokeEdge(StrokeType.BASIC);
         editEdgesStroke(StrokeType.BASIC);
-
-        edgeStrokeChangeMethod();
     }
 
     public void edgeStrokeBasicWeighted(){
         values.setStrokeEdge(StrokeType.BASIC_WEIGHT);
         editEdgesStroke(StrokeType.BASIC_WEIGHT);
-
-        edgeStrokeChangeMethod();
     }
 
     public void edgeStrokeDotted(){
         values.setStrokeEdge(StrokeType.DOTTED);
         editEdgesStroke(StrokeType.DOTTED);
-
-        edgeStrokeChangeMethod();
     }
 
     public void edgeStrokeDottedWeighted(){
         values.setStrokeEdge(StrokeType.DOTTED_WEIGHT);
         editEdgesStroke(StrokeType.DOTTED_WEIGHT);
-
-        edgeStrokeChangeMethod();
     }
 
     public void edgeStrokeDashed(){
         values.setStrokeEdge(StrokeType.DASHED);
         editEdgesStroke(StrokeType.DASHED);
-
-        edgeStrokeChangeMethod();
     }
 
     public void edgeStrokeDashedWeighted(){
         values.setStrokeEdge(StrokeType.DASHED_WEIGHT);
         editEdgesStroke(StrokeType.DASHED_WEIGHT);
-
-        edgeStrokeChangeMethod();
-    }
-
-    private void edgeStrokeChangeMethod(){
-        EventHandler currentAction = edgeStrokeMenuButton.getOnAction();
-        edgeStrokeMenuButton.setOnAction(currentEdgeTypeOption.getOnAction());
-        currentEdgeTypeOption.setOnAction(currentAction);
     }
 
     /**
@@ -839,19 +817,16 @@ public class Controller implements ObserverSyndrom {
     public void edgeReinforced(){
         values.setEdgeArrowType(EdgeArrowType.REINFORCED);
         editEdgesType(EdgeArrowType.REINFORCED);
-
     }
 
     public void edgeExtenuating(){
         values.setEdgeArrowType(EdgeArrowType.EXTENUATING);
         editEdgesType(EdgeArrowType.EXTENUATING);
-
     }
 
     public void edgeNeutral(){
         values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         editEdgesType(EdgeArrowType.NEUTRAL);
-
     }
 
     /* ......annotation..... */
@@ -1017,20 +992,13 @@ public class Controller implements ObserverSyndrom {
         history.execute(editVerticesFormLogAction);
     }
 
-    public void verticesForm1() {
+    public void verticesCircle() {
         editVerticesForm(VertexShapeType.CIRCLE);
-        verticesFormChangeMethod();
     }
-    public void verticesForm2() {
+    public void verticesRectangle() {
         editVerticesForm(VertexShapeType.RECTANGLE);
-        verticesFormChangeMethod();
     }
 
-    public void verticesFormChangeMethod(){
-        EventHandler currentAction = sphereFormMenuButton.getOnAction();
-        sphereFormMenuButton.setOnAction(currentSphereFormOption.getOnAction());
-        currentSphereFormOption.setOnAction(currentAction);
-    }
     /* ----------------EXPORT---------------------- */
 
     /**
@@ -1308,9 +1276,7 @@ public class Controller implements ObserverSyndrom {
 
         loadSizeComboBox(sizeSphereComboBox);
         loadSizeComboBox(sizeSymptomComboBox);
-        symptomForm1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton, symptomForm1));
-        edgeStrokeOption1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton,edgeStrokeOption1));
-        edgeStrokeOption2.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton, edgeStrokeOption2));
+        loadMenuItem();
 
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
@@ -1432,7 +1398,17 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadMenuItem(){
-
+        symptomCircle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
+        symptomRectangle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
+        edgeStrokeBasic.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeBasicWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDashed.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDashedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDotted.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDottedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeArrowReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
+        edgeArrowExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
+        edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
     }
 
     private void loadSizeComboBox(ComboBox comboBox) {
@@ -1465,24 +1441,17 @@ public class Controller implements ObserverSyndrom {
     private class MenuItemHandler implements EventHandler<ActionEvent>{
 
         private final MenuButton menuButton;
-        private MenuItem mnItm;
 
-        public MenuItemHandler(MenuButton pMenuButton, MenuItem pMnItm){
+        public MenuItemHandler(MenuButton pMenuButton){
             menuButton = pMenuButton;
-            mnItm = pMnItm;
         }
 
         @Override
         public void handle(ActionEvent evt) {
-            javafx.scene.Node currentImage = menuButton.getGraphic();
-
-            menuButton.setGraphic(mnItm.getGraphic());
-            mnItm.setGraphic(currentImage);
-            if(mnItm.getId().equals("symptomForm1")){
-                currentSphereFormOption = mnItm;
-            }else if(mnItm.getId().equals("edgeStrokeOption1") || mnItm.getId().equals("edgeStrokeOption2")){
-                currentEdgeTypeOption = mnItm;
-            }
+            MenuItem mnItm = (MenuItem) evt.getSource();
+            ImageView newImage = (ImageView) mnItm.getGraphic();
+            ImageView currentImage = (ImageView) menuButton.getGraphic();
+            currentImage.setImage(newImage.getImage());
         }
     }
 

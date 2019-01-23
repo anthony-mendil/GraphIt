@@ -427,14 +427,23 @@
                                     <Tooltip text="Randfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verticesForm1" prefHeight="30.0" prefWidth="50.0">
+                              <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <items>
-                                    <MenuItem fx:id="symptomForm1" mnemonicParsing="false" onAction="#verticesForm2">
+                                    <MenuItem fx:id="symptomCircle" mnemonicParsing="false" onAction="#verticesCircle">
                                        <graphic>
-                                          <ImageView fx:id="alternativeFormImage1" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/015-circle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem fx:id="symptomRectangle" mnemonicParsing="false" onAction="#verticesRectangle">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@icons2/023-square-1.png" />
                                              </image>
@@ -446,7 +455,7 @@
                                     <Tooltip text="Form" />
                                  </tooltip>
                                  <graphic>
-                                    <ImageView fx:id="currentFormImage" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icons2/015-circle.png" />
                                        </image>
@@ -551,7 +560,25 @@
                                     </ImageView>
                                  </graphic>
                                  <items>
-                                     <MenuItem fx:id="edgeStrokeOption1" mnemonicParsing="false" onAction="#edgeStrokeDotted">
+                                    <MenuItem fx:id="edgeStrokeBasic" mnemonicParsing="false" onAction="#edgeStrokeBasic">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/021-line.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem fx:id="edgeStrokeBasicWeight" mnemonicParsing="false" onAction="#edgeStrokeBasicWeighted">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/021-line.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                     <MenuItem fx:id="edgeStrokeDotted" mnemonicParsing="false" onAction="#edgeStrokeDotted">
                                          <graphic>
                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                  <image>
@@ -560,7 +587,16 @@
                                              </ImageView>
                                          </graphic>
                                      </MenuItem>
-                                     <MenuItem fx:id="edgeStrokeOption2" mnemonicParsing="false" onAction="#edgeStrokeDashed">
+                                    <MenuItem fx:id="edgeStrokeDottedWeight" mnemonicParsing="false" onAction="#edgeStrokeDottedWeighted">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/dotted.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                     <MenuItem fx:id="edgeStrokeDashed" mnemonicParsing="false" onAction="#edgeStrokeDashed">
                                          <graphic>
                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                  <image>
@@ -569,6 +605,15 @@
                                              </ImageView>
                                          </graphic>
                                      </MenuItem>
+                                    <MenuItem fx:id="edgeStrokeDashedWeight" mnemonicParsing="false" onAction="#edgeStrokeDashedWeighted">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/015-circle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Kantenart" />
@@ -586,6 +631,15 @@
                                     </ImageView>
                                  </graphic>
                                  <items>
+                                    <MenuItem fx:id="edgeArrowReinforced" mnemonicParsing="false" onAction="#edgeReinforced">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/005-right-chevron.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
                                     <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false" onAction="#edgeExtenuating">
                                        <graphic>
                                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
