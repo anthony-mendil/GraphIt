@@ -17,6 +17,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.TreeView?>
@@ -160,14 +161,6 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                         </Separator>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
-                           <tooltip>
-                              <Tooltip text="Layout" />
-                           </tooltip>
-                           <HBox.margin>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </HBox.margin>
-                        </Button>
                         <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
                               <Tooltip text="Ausgeblendete Elemente einblenden" />
@@ -439,7 +432,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <items>
-                                    <MenuItem fx:id="sphereForm1" mnemonicParsing="false" onAction="#verticesForm2">
+                                    <MenuItem fx:id="symptomForm1" mnemonicParsing="false" onAction="#verticesForm2">
                                        <graphic>
                                           <ImageView fx:id="alternativeFormImage1" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -549,7 +542,7 @@
                                     <Tooltip text="Kantenfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                              <MenuButton fx:id="edgeStrokeMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeStrokeBasic" prefHeight="30.0" prefWidth="50.0">
                                  <graphic>
                                     <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -558,16 +551,7 @@
                                     </ImageView>
                                  </graphic>
                                  <items>
-                                    <MenuItem fx:id="edgeStrokeBasic" mnemonicParsing="false" onAction="#edgeStrokeBasic">
-                                       <graphic>
-                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@icons2/015-circle.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                     <MenuItem fx:id="edgeStrokeDotted" mnemonicParsing="false" onAction="#edgeStrokeDotted">
+                                     <MenuItem fx:id="edgeStrokeOption1" mnemonicParsing="false" onAction="#edgeStrokeDotted">
                                          <graphic>
                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                  <image>
@@ -576,7 +560,7 @@
                                              </ImageView>
                                          </graphic>
                                      </MenuItem>
-                                     <MenuItem fx:id="edgeStrokeDashed" mnemonicParsing="false" onAction="#edgeStrokeDashed">
+                                     <MenuItem fx:id="edgeStrokeOption2" mnemonicParsing="false" onAction="#edgeStrokeDashed">
                                          <graphic>
                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                  <image>
@@ -628,6 +612,11 @@
                                     <Tooltip text="Pfeilspitze" />
                                  </tooltip>
                               </MenuButton>
+                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="50.0" text="ToggleButton">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </ToggleButton>
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

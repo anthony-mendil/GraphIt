@@ -22,16 +22,9 @@ import actions.other.CreateGraphAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
-import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
-import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
-import edu.uci.ics.jung.visualization.control.ScalingControl;
-import edu.uci.ics.jung.visualization.transform.BidirectionalTransformer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import io.GXLio;
-import io.OOFio;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -42,15 +35,12 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -59,16 +49,8 @@ import javafx.stage.Stage;
 import log_management.dao.LogDao;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Label;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -437,8 +419,9 @@ public class Controller implements ObserverSyndrom {
     /**
      * The menubutton for changing the form of a symptom to a different form
      */
+
     @FXML
-    private MenuItem sphereForm1;
+    private MenuItem symptomForm1;
 
     /**
      * The menuitem for changing the form of a symptom to a rectangle.
@@ -494,37 +477,36 @@ public class Controller implements ObserverSyndrom {
     private ColorPicker edgeColour;
 
     /**
-     * The menuitem for changing the stroke type of edges to dashed.
+     * The menubutton for changing the stroke type of edges.
      */
     @FXML
+    private MenuButton edgeStrokeMenuButton;
+
+    /**
+     * The menuitem for changing the stroke type to the first alternative form
+     */
+    @FXML
+    private MenuItem edgeStrokeOption1;
+
+    /**
+     * The menuitem for changing the stroke type to the second alternative form
+     */
+    @FXML
+    private MenuItem edgeStrokeOption2;
+
+    /*
     private MenuItem edgeStrokeDashed;
 
-    /**
-     * The menuitem for changing the stroke type of edges to weighted dashed.
-     */
     private MenuItem edgeStrokeDashedWeight;
 
-    /**
-     * The menuitem for changing the stroke type of edges to dotted.
-     */
-    @FXML
     private MenuItem edgeStrokeDotted;
 
-    /**
-     * The menuitem for changing the stroke type of edges to weighted dotted.
-     */
     private MenuItem edgeStrokeDottedWeight;
 
-    /**
-     * The menuitem for changing the stroke type of edges to basic.
-     */
-    @FXML
     private MenuItem edgeStrokeBasic;
 
-    /**
-     * The menuitem for changing the stroke type of edges to weighted basic.
-     */
     private MenuItem edgeStrokeBasicWeight;
+    */
 
     /**
      * The menuitem for changing the arrow type of edges to reinforced.
@@ -689,14 +671,14 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ButtonBar currentActionBox;
 
-    private VertexShapeType currentSymptomShape = VertexShapeType.CIRCLE;
+    private MenuItem currentSphereFormOption;
+
+    private MenuItem currentEdgeTypeOption;
+
+    private MenuItem currentArrowTypeOption;
 
     @FXML
-    private ImageView currentFormImage;
-
-    @FXML
-    private ImageView alternativeFormImage1;
-
+    private ToggleButton anchorPointsButton;
 
     public Controller() {
     }
@@ -793,16 +775,49 @@ public class Controller implements ObserverSyndrom {
     public void edgeStrokeBasic(){
         values.setStrokeEdge(StrokeType.BASIC);
         editEdgesStroke(StrokeType.BASIC);
+
+        edgeStrokeChangeMethod();
+    }
+
+    public void edgeStrokeBasicWeighted(){
+        values.setStrokeEdge(StrokeType.BASIC_WEIGHT);
+        editEdgesStroke(StrokeType.BASIC_WEIGHT);
+
+        edgeStrokeChangeMethod();
     }
 
     public void edgeStrokeDotted(){
+        values.setStrokeEdge(StrokeType.DOTTED);
+        editEdgesStroke(StrokeType.DOTTED);
+
+        edgeStrokeChangeMethod();
+    }
+
+    public void edgeStrokeDottedWeighted(){
         values.setStrokeEdge(StrokeType.DOTTED_WEIGHT);
         editEdgesStroke(StrokeType.DOTTED_WEIGHT);
+
+        edgeStrokeChangeMethod();
     }
 
     public void edgeStrokeDashed(){
+        values.setStrokeEdge(StrokeType.DASHED);
+        editEdgesStroke(StrokeType.DASHED);
+
+        edgeStrokeChangeMethod();
+    }
+
+    public void edgeStrokeDashedWeighted(){
         values.setStrokeEdge(StrokeType.DASHED_WEIGHT);
         editEdgesStroke(StrokeType.DASHED_WEIGHT);
+
+        edgeStrokeChangeMethod();
+    }
+
+    private void edgeStrokeChangeMethod(){
+        EventHandler currentAction = edgeStrokeMenuButton.getOnAction();
+        edgeStrokeMenuButton.setOnAction(currentEdgeTypeOption.getOnAction());
+        currentEdgeTypeOption.setOnAction(currentAction);
     }
 
     /**
@@ -849,6 +864,14 @@ public class Controller implements ObserverSyndrom {
         Values.getInstance().setEdgePaint(color);
         EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(color);
         history.execute(editEdgesColorLogAction);
+    }
+
+    public void anchorPointsEdge(){
+        if(anchorPointsButton.isSelected()){
+            System.out.println("CLICKED");
+        }else{
+            System.out.println("UNCLICKED");
+        }
     }
 
     /**
@@ -946,14 +969,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(editFontSizeSphereLogAction);
     }
 
-    public void fontSize2() {
-        editFontSizeSphere(14);
-    }
-
-    public void fontSize1() {
-        editFontSizeSphere(13);
-    }
-
     public void sphereAutoLayout() {
         LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
         layoutSphereGraphLogAction.action();
@@ -987,17 +1002,17 @@ public class Controller implements ObserverSyndrom {
 
     public void verticesForm1() {
         editVerticesForm(VertexShapeType.CIRCLE);
-        EventHandler currentAction = sphereFormMenuButton.getOnAction();
-
-        sphereFormMenuButton.setOnAction(sphereForm1.getOnAction());
-        sphereForm1.setOnAction(currentAction);
+        verticesFormChangeMethod();
     }
     public void verticesForm2() {
         editVerticesForm(VertexShapeType.RECTANGLE);
-        EventHandler currentAction = sphereFormMenuButton.getOnAction();
+        verticesFormChangeMethod();
+    }
 
-        sphereFormMenuButton.setOnAction(sphereForm1.getOnAction());
-        sphereForm1.setOnAction(currentAction);
+    public void verticesFormChangeMethod(){
+        EventHandler currentAction = sphereFormMenuButton.getOnAction();
+        sphereFormMenuButton.setOnAction(currentSphereFormOption.getOnAction());
+        currentSphereFormOption.setOnAction(currentAction);
     }
     /* ----------------EXPORT---------------------- */
 
@@ -1274,9 +1289,11 @@ public class Controller implements ObserverSyndrom {
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
 
-        loadComboBox(sizeSphereComboBox);
-        loadComboBox(sizeSymptomComboBox);
-        sphereForm1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
+        loadSizeComboBox(sizeSphereComboBox);
+        loadSizeComboBox(sizeSymptomComboBox);
+        symptomForm1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton, symptomForm1));
+        edgeStrokeOption1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton,edgeStrokeOption1));
+        edgeStrokeOption2.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton, edgeStrokeOption2));
 
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
@@ -1396,7 +1413,12 @@ public class Controller implements ObserverSyndrom {
                 comboBox.getEditor().setText(currentSize);
         }
     }
-    private void loadComboBox(ComboBox comboBox) {
+
+    private void loadMenuItem(){
+
+    }
+
+    private void loadSizeComboBox(ComboBox comboBox) {
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "8",
@@ -1426,19 +1448,24 @@ public class Controller implements ObserverSyndrom {
     private class MenuItemHandler implements EventHandler<ActionEvent>{
 
         private final MenuButton menuButton;
+        private MenuItem mnItm;
 
-        public MenuItemHandler(MenuButton pMenuButton){
+        public MenuItemHandler(MenuButton pMenuButton, MenuItem pMnItm){
             menuButton = pMenuButton;
+            mnItm = pMnItm;
         }
 
         @Override
         public void handle(ActionEvent evt) {
-            System.out.println("EVENTHANDLER");
-            MenuItem mnItm = (MenuItem)evt.getSource();
             javafx.scene.Node currentImage = menuButton.getGraphic();
 
             menuButton.setGraphic(mnItm.getGraphic());
             mnItm.setGraphic(currentImage);
+            if(mnItm.getId().equals("symptomForm1")){
+                currentSphereFormOption = mnItm;
+            }else if(mnItm.getId().equals("edgeStrokeOption1") || mnItm.getId().equals("edgeStrokeOption2")){
+                currentEdgeTypeOption = mnItm;
+            }
         }
     }
 
