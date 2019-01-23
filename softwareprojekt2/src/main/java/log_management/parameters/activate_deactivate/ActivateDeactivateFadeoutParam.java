@@ -4,8 +4,10 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import gui.Values;
 import gui.properties.Language;
+import log_management.parameters.ColorNameCreator;
 import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -40,31 +42,32 @@ public class ActivateDeactivateFadeoutParam extends Param{
     public String toString() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
-            String list = "";
+            String list = "Relations:\n";
             if (edges != null) {
-                list += "Edges:\n";
                 for (int i = 0; i < edges.size(); i++) {
-                    list += "Id: " + edges.get(i).getId() + ", Stroke type: "
-                            + EnumNameCreator.strokeTypeTranslaotr(edges.get(i).getStroke(), language)
-                            + ", Arrow type: "
-                            + EnumNameCreator.edgeArrowTypeTranslator(edges.get(i).getArrowType(), language);
+                    list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i));
                 }
             }
+            list += "Symptoms:\n";
             if (vertices != null) {
-                list += "\nVertices:\n";
                 for (int i = 0; i < vertices.size(); i++) {
-                    list += "Id: " + vertices.get(i).getId() + ", Stroke type: "
-                            + edges.get(i).getStroke().name()
-                            + ", Arrow type: "
-                            + edges.get(i).getArrowType().name();
+                    list += SyndromObjectPrinter.vertexPrintEnglish(vertices.get(i));
                 }
             }
             return list;
         } else {
             String list = "";
-            for (int i = 0; i < edges.size(); i++) {
-                list += "Id: " + edges.get(i).getId() + ", Linienart: " + edges.get(i).getStroke().name()
-                        + ", Relationsart: " + edges.get(i).getArrowType().name();
+            if (edges != null) {
+                list += "Relationen:\n";
+                for (int i = 0; i < edges.size(); i++) {
+                    list += SyndromObjectPrinter.edgePrintGerman(edges.get(i));
+                }
+            }
+            if (vertices != null) {
+                list += "Symptome:\n";
+                for (int i = 0; i < vertices.size(); i++) {
+                    list += SyndromObjectPrinter.vertexPrintGerman(vertices.get(i));
+                }
             }
             return list;
         }

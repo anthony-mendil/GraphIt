@@ -74,10 +74,12 @@ public class Main extends Application {
         entityManager.getEntityManagerFactory().close();
         entityManager.close();
 
-        Values.getInstance().setGuiLanguage(Language.ENGLISH);
-        List<Edge> list = new ArrayList<>();
-        list.add(new Edge(1, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
-        ActivateDeactivateAnchorPointsFadeoutParam test = new ActivateDeactivateAnchorPointsFadeoutParam(list);
-        System.out.println(test);
+//        Values.getInstance().setGuiLanguage(Language.ENGLISH);
+//        List<Edge> list = new ArrayList<>();
+//        list.add(new Edge(1, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
+//        list.add(new Edge(2, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
+//        list.add(new Edge(3, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
+//        ActivateDeactivateAnchorPointsFadeoutParam test = new ActivateDeactivateAnchorPointsFadeoutParam(list);
+//        System.out.println(test);
     }
 }
