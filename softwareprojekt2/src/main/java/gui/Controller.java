@@ -385,12 +385,11 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ColorPicker sphereBackgroundColour;
 
-
     /**
-     * The textfield for changing the font of the sphere text.
+     * The combobox for changing the font of the symptom text.
      */
     @FXML
-    private TextField sphereSizeTextField;
+    private ComboBox fontSphereComboBox;
 
     /**
      * The menuitem for changing the font of the sphere text to a specific font.
@@ -450,9 +449,10 @@ public class Controller implements ObserverSyndrom {
     private MenuItem symptomRectangle;
 
     /**
-     * The textfield for changing the font of the symptom text.
+     * The combobox for changing the font of the symptom text.
      */
-    private TextField symptomFontField;
+    @FXML
+    private ComboBox fontSymptomComboBox;
 
     /**
      * The menuitem for changing the font of the symptom text to a specific font.
@@ -1310,6 +1310,8 @@ public class Controller implements ObserverSyndrom {
         loadSizeComboBox(sizeSphereComboBox);
         loadSizeComboBox(sizeSymptomComboBox);
         loadMenuItem();
+        loadFontComboBox(fontSphereComboBox);
+        loadFontComboBox(fontSymptomComboBox);
 
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
@@ -1468,12 +1470,22 @@ public class Controller implements ObserverSyndrom {
         edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
     }
 
-    private void loadFontComboBox(ComboBox comboBox) {
+    private void loadFontComboBox(ComboBox comboBox){
+        ObservableList<String> fonts =
+                FXCollections.observableArrayList(
+                        "AveriaSansLibre",
+                        "Kalam",
+                        "Mali",
+                        "Roboto",
+                        "RobotoSlab"
+                );
 
+        comboBox.setItems(fonts);
     }
 
+
     private void loadSizeComboBox(ComboBox comboBox) {
-        ObservableList<String> options =
+        ObservableList<String> sizes =
                 FXCollections.observableArrayList(
                         "8",
                         "9",
@@ -1490,7 +1502,7 @@ public class Controller implements ObserverSyndrom {
                         "72",
                         "96"
                 );
-        comboBox.setItems(options);
+        comboBox.setItems(sizes);
         comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));

@@ -1,12 +1,21 @@
 package gui;
 
+import actions.activate.ActivateAnchorPointsFadeoutLogAction;
+import graph.graph.Edge;
+import graph.graph.EdgeArrowType;
+import graph.graph.StrokeType;
+import gui.properties.Language;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import log_management.DatabaseManager;
+import log_management.LogToStringConverter;
 import log_management.dao.PersonalEntityManager;
+import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
+import log_management.tables.Log;
 import lombok.Getter;
 
 import javax.persistence.EntityManager;
