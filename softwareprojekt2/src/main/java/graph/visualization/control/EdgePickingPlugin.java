@@ -1,21 +1,27 @@
 package graph.visualization.control;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Point2D;
 
 public class EdgePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
+
+    private Edge edgeMove = null;
     /**
      * create an instance with passed values
      */
@@ -39,6 +45,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
             if (edge != null) {
+                edgeMove = edge;
                 if (!edgePickedState.isPicked(edge)) {
                     edgePickedState.pick(edge, true);
                 }
@@ -50,7 +57,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        edgeMove = null;
     }
 
     @Override
@@ -65,7 +72,30 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            if (edgeMove != null ) {
+                Vertex endpoint = graph.getEndpoints(edgeMove).getSecond();
+                Point2D vPoint =  endpoint.getCoordinates();
+                Point dragged = e.getPoint();
+                Point2D downPoint = new Point2D.Double(vPoint.getX(), vPoint.getY()- 100);
+                Point2D draggedPoint =  vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, dragged);
+
+                double angle = angleBetween(vPoint, draggedPoint, downPoint);
+                edgeMove.setHasAnchor(true);
+                draggedPoint = new Point2D.Double(draggedPoint.getX()-endpoint.getCoordinates().getX(),draggedPoint.getY()-endpoint.getCoordinates().getY());
+                edgeMove.setAnchorPoint(draggedPoint);
+            }
+        }
+
+    }
+
+    private double angleBetween(Point2D center, Point2D previous, Point2D current) {
+
+        return Math.toDegrees(Math.atan2(current.getX() - center.getX(),current.getY() - center.getY())-
+                Math.atan2(previous.getX()- center.getX(),previous.getY()- center.getY()));
     }
 
     @Override

@@ -2,6 +2,11 @@ package actions.activate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import graph.graph.Edge;
+import graph.graph.Vertex;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 
 import java.awt.geom.Point2D;
@@ -17,17 +22,6 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
      */
     public ActivateAnchorPointsFadeoutLogAction() {
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Constructor for the action in case only one anchor-point shall fade out.
-     *
-     * @param pPoint2D The position of the vertex which hosts the anchor-point.
-     */
-    public ActivateAnchorPointsFadeoutLogAction(Point2D pPoint2D) {
-        super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -43,7 +37,14 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
+        vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv2.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv2.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv.repaint();
+        vv2.repaint();
     }
 
     @Override
