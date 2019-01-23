@@ -1,6 +1,7 @@
 package actions.template;
 
 import actions.GraphAction;
+import graph.graph.Syndrom;
 import graph.graph.Template;
 
 /**
@@ -12,6 +13,10 @@ public class RulesTemplateAction extends GraphAction {
      */
     Template template;
     /**
+     *
+     */
+    Template previousTemplate;
+    /**
      * Creates a new rules template action.
      *
      * @param pTemplate The template to use.
@@ -22,11 +27,12 @@ public class RulesTemplateAction extends GraphAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        previousTemplate=Syndrom.getInstance().getTemplate();
+        Syndrom.getInstance().setTemplate(template);
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        Syndrom.getInstance().setTemplate(previousTemplate);
     }
 }
