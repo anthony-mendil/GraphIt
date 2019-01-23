@@ -795,42 +795,42 @@ public class Controller implements ObserverSyndrom {
         edgeStrokeChangeMethod();
     }
 
-    public void edgeStrokeBasicWeighted(){
+    public void edgeStrokeBasicWeighted() {
         values.setStrokeEdge(StrokeType.BASIC_WEIGHT);
         editEdgesStroke(StrokeType.BASIC_WEIGHT);
 
         edgeStrokeChangeMethod();
     }
 
-    public void edgeStrokeDotted(){
+    public void edgeStrokeDotted() {
         values.setStrokeEdge(StrokeType.DOTTED);
         editEdgesStroke(StrokeType.DOTTED);
 
         edgeStrokeChangeMethod();
     }
 
-    public void edgeStrokeDottedWeighted(){
+    public void edgeStrokeDottedWeighted() {
         values.setStrokeEdge(StrokeType.DOTTED_WEIGHT);
         editEdgesStroke(StrokeType.DOTTED_WEIGHT);
 
         edgeStrokeChangeMethod();
     }
 
-    public void edgeStrokeDashed(){
+    public void edgeStrokeDashed() {
         values.setStrokeEdge(StrokeType.DASHED);
         editEdgesStroke(StrokeType.DASHED);
 
         edgeStrokeChangeMethod();
     }
 
-    public void edgeStrokeDashedWeighted(){
+    public void edgeStrokeDashedWeighted() {
         values.setStrokeEdge(StrokeType.DASHED_WEIGHT);
         editEdgesStroke(StrokeType.DASHED_WEIGHT);
 
         edgeStrokeChangeMethod();
     }
 
-    private void edgeStrokeChangeMethod(){
+    private void edgeStrokeChangeMethod() {
         EventHandler currentAction = edgeStrokeMenuButton.getOnAction();
         edgeStrokeMenuButton.setOnAction(currentEdgeTypeOption.getOnAction());
         currentEdgeTypeOption.setOnAction(currentAction);
@@ -844,13 +844,13 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesTypeLogAction);
     }
 
-    public void edgeReinforced(){
+    public void edgeReinforced() {
         values.setEdgeArrowType(EdgeArrowType.REINFORCED);
         editEdgesType(EdgeArrowType.REINFORCED);
 
     }
 
-    public void edgeExtenuating(){
+    public void edgeExtenuating() {
         values.setEdgeArrowType(EdgeArrowType.EXTENUATING);
         editEdgesType(EdgeArrowType.EXTENUATING);
 
@@ -890,17 +890,17 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesColorLogAction);
     }
 
-    public void anchorPointsEdge(){
-        if(anchorPointsButton.isSelected()){
+    public void anchorPointsEdge() {
+        if (anchorPointsButton.isSelected()) {
             DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
             history.execute(deactivateAnchorPointsFadeoutLogAction);
-        }else{
+        } else {
             ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
             history.execute(activateAnchorPointsFadeoutLogAction);
         }
     }
 
-    public void removeAnchor(){
+    public void removeAnchor() {
         RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
         history.execute(removeAnchorPointsLogAction);
     }
@@ -952,6 +952,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /* ......font..... */
+
     /**
      * Creates an EditFontSphereLogAction-object and executes the action with the action history.
      *
@@ -1040,7 +1041,7 @@ public class Controller implements ObserverSyndrom {
         verticesFormChangeMethod();
     }
 
-    public void verticesFormChangeMethod(){
+    public void verticesFormChangeMethod() {
         EventHandler currentAction = sphereFormMenuButton.getOnAction();
         sphereFormMenuButton.setOnAction(currentSphereFormOption.getOnAction());
         currentSphereFormOption.setOnAction(currentAction);
@@ -1324,7 +1325,7 @@ public class Controller implements ObserverSyndrom {
         loadSizeComboBox(sizeSphereComboBox);
         loadSizeComboBox(sizeSymptomComboBox);
         symptomForm1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton, symptomForm1));
-        edgeStrokeOption1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton,edgeStrokeOption1));
+        edgeStrokeOption1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton, edgeStrokeOption1));
         edgeStrokeOption2.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton, edgeStrokeOption2));
 
         zoomSlider.setMin(10);
@@ -1470,7 +1471,7 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private void loadMenuItem(){
+    private void loadMenuItem() {
 
     }
 
@@ -1506,7 +1507,7 @@ public class Controller implements ObserverSyndrom {
         private final MenuButton menuButton;
         private MenuItem mnItm;
 
-        public MenuItemHandler(MenuButton pMenuButton, MenuItem pMnItm){
+        public MenuItemHandler(MenuButton pMenuButton, MenuItem pMnItm) {
             menuButton = pMenuButton;
             mnItm = pMnItm;
         }
@@ -1517,9 +1518,9 @@ public class Controller implements ObserverSyndrom {
 
             menuButton.setGraphic(mnItm.getGraphic());
             mnItm.setGraphic(currentImage);
-            if(mnItm.getId().equals("symptomForm1")){
+            if (mnItm.getId().equals("symptomForm1")) {
                 currentSphereFormOption = mnItm;
-            }else if(mnItm.getId().equals("edgeStrokeOption1") || mnItm.getId().equals("edgeStrokeOption2")){
+            } else if (mnItm.getId().equals("edgeStrokeOption1") || mnItm.getId().equals("edgeStrokeOption2")) {
                 currentEdgeTypeOption = mnItm;
             }
         }
