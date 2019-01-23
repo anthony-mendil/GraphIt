@@ -32,9 +32,9 @@
     <node x="1861.0" y="3359.0">graph.algorithmen.predicates.SphereIsVisiblePredicate</node>
     <node x="6931.5" y="1889.0">graph.visualization.renderers.SyndromRenderer</node>
     <node x="835.0" y="1889.0">graph.visualization.transformer.vertex.VertexShapeTransformer</node>
-    <node x="0.0" y="1900.5">graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer</node>
+    <node x="0.0" y="1900.5">graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer</node>
     <node x="6952.0" y="1307.0">graph.visualization.renderers.SphereRenderer</node>
-    <node x="6467.5" y="1900.5">graph.visualization.transformer.edge.EdgeArrowDrawPaintTransformer</node>
+    <node x="6467.5" y="1900.5">graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer</node>
     <node x="4105.5" y="1878.5">graph.graph.FunctionMode</node>
     <node x="2919.5" y="1889.0">graph.visualization.transformer.vertex.VertexStrokeTransformer</node>
     <node x="4839.125" y="11.0">graph.graph.VertexShapeType</node>
@@ -128,7 +128,7 @@
       <point x="5101.875" y="580.0" />
       <point x="122.25" y="191.5" />
     </edge>
-    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer">
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer">
       <point x="-201.5" y="-500.0" />
       <point x="3108.705303030303" y="2254.0" />
       <point x="106.5" y="2254.0" />
@@ -142,7 +142,7 @@
       <point x="3570.731060606061" y="1758.0" />
       <point x="-70.0" y="147.5" />
     </edge>
-    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeArrowDrawPaintTransformer">
+    <edge source="graph.graph.Syndrom" target="graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer">
       <point x="162.5" y="-500.0" />
       <point x="3472.705303030303" y="2224.0" />
       <point x="6580.0" y="2224.0" />
