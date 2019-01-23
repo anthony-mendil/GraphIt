@@ -76,8 +76,8 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         return sphaereContains;
     }
 
-    @Override
-    public Object getEdge(Layout layout, double x, double y) {
+    //@Override
+    public Object getEdges(Layout layout, double x, double y) {
         Point2D ip = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(Layer.VIEW, new Point2D.Double(x, y));
         x = ip.getX();
         y = ip.getY();
