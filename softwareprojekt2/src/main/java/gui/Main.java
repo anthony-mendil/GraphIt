@@ -11,9 +11,7 @@ import lombok.Getter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.swing.*;
 import java.awt.*;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -50,15 +48,15 @@ public class Main extends Application {
         primaryStage.setMaximized(true);
     }
 
-    private static void initFonts(){
+   /* private static void initFonts(){
 
         fonts=new ArrayList<Font>();
 
         try {
-            InputStream is=Main.class.getResourceAsStream("fonts/bold/Mali-Bold.ttf");
-            Font mali_b =Font.createFont(Font.TRUETYPE_FONT, is);
-            fonts.add(mali_b.deriveFont(12));
-          /*  Font Roboto_Regular = Font.loadFont("file:fonts/regular/Roboto-Regular.ttf",12);
+            File file =new File("fonts/bold/Mali-Bold.ttf");
+            Font mali_b =Font.createFont(Font.TRUETYPE_FONT, file);
+            fonts.add(mali_b.deriveFont(Font.BOLD,20));
+            Font Roboto_Regular = Font.loadFont("file:fonts/regular/Roboto-Regular.ttf",12);
             fonts.add(Roboto_Regular);
             Font Alegreya_Regular = Font.loadFont("file:fonts/regular/Alegreya-Regular.ttf",12);
             fonts.add(Alegreya_Regular);
@@ -101,7 +99,7 @@ public class Main extends Application {
             fonts.add(Cousine_BoldItalic);
             Font Mali_BoldItalic = Font.loadFont("file:fonts/bolditalic/Mali-BoldItalic.ttf", 12);
             fonts.add(Mali_BoldItalic);
-*/
+
 
 
 
@@ -117,7 +115,8 @@ public class Main extends Application {
         jFrame.setBounds(200,200,200,200);
         jFrame.setVisible(true);
         jLabel.setFont(fonts.get(0));
-    }
+    }*/
+
     /**
      * Starts the application.
      *
@@ -134,7 +133,7 @@ public class Main extends Application {
         entityManager.getEntityManagerFactory().close();
         entityManager.close();
 
-        initFonts();
+        //initFonts();
 
     }
 }

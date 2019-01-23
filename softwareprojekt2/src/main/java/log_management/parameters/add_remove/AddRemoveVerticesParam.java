@@ -2,15 +2,12 @@ package log_management.parameters.add_remove;
 
 import graph.graph.Sphere;
 import graph.graph.Vertex;
-import log_management.json_serializers.SphereSerializer;
 import log_management.json_serializers.VertexSerializer;
 import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.codehaus.jackson.map.ser.std.MapSerializer;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +20,7 @@ public class AddRemoveVerticesParam extends Param{
      * Set of vertices to their sphere.
      */
     @Getter
-    //@JsonSerialize(keyUsing = VertexSerializer.class)
+    @JsonSerialize(keyUsing = VertexSerializer.class)
     private Map<Vertex, Sphere> parameter = new HashMap<>();
 
     /**
