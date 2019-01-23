@@ -8,12 +8,16 @@ import graph.graph.Template;
  */
 public class RulesTemplateAction extends GraphAction {
     /**
+     * TODO :^)
+     */
+    Template template;
+    /**
      * Creates a new rules template action.
      *
-     * @param template The template to use.
+     * @param pTemplate The template to use.
      */
-    public RulesTemplateAction(Template template) {
-        throw new UnsupportedOperationException();
+    public RulesTemplateAction(Template pTemplate) {
+        template=pTemplate;
     }
 
     @Override

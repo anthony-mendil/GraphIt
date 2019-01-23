@@ -2,6 +2,9 @@ package actions.activate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import graph.graph.Edge;
+import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
@@ -34,10 +37,14 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
 
     @Override
     public void action() {
-        syndrom.getVv().getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
-        syndrom.getVv().getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
-        syndrom.getVv2().getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
-        syndrom.getVv2().getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
+        vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv2.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv2.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv.repaint();
+        vv2.repaint();
     }
 
     @Override

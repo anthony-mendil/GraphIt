@@ -386,7 +386,7 @@ public class GXLio {
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
-            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorAngle()));
+            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
         }
@@ -439,7 +439,6 @@ public class GXLio {
         */
    GXLGraph gxlSyndrom = new GXLGraph("syndrom");
         for (Sphere s : theGraph.getSpheres()) {
-            System.out.println("huhu");
             GXLNode sphere = new GXLNode(s.getId() + "");
             //gxlSyndrom.add(sphere);
             // sphere.setID("" + s.getId());
@@ -470,7 +469,6 @@ public class GXLio {
             sphere.setAttr("IDs of nodes containt in this shpere: ", new GXLString(nodeIDs));
             gxlSyndrom.add(sphere);
         }
-        System.out.println("anzahl Kn.");
         for(Sphere s : currentSpheres) {
             // GXLRel rel = new GXLRel();
             for (Vertex v : s.getVertices()) {
@@ -518,7 +516,6 @@ public class GXLio {
             // GXLEdge edge = new GXLEdge((GXLNode) doc.getElement(s.getId() + ""), rel);
 
         }
-        System.out.println("Anzahl Kanten:");
         for(Edge e : theGraph.getEdges()) {
             Pair<Vertex> verticesOfEdge = theGraph.getEndpoints(e);
             GXLEdge edge = new GXLEdge(verticesOfEdge.getFirst().getId() + "", verticesOfEdge.getSecond().getId() + "");
@@ -531,7 +528,7 @@ public class GXLio {
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
-            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorAngle()));
+            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
         }
