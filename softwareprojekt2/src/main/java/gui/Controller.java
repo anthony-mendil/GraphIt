@@ -512,6 +512,12 @@ public class Controller implements ObserverSyndrom {
     */
 
     /**
+     * The menubutton for changing the arrow type of edges.
+     */
+    @FXML
+    private MenuButton edgeArrowMenuButton;
+
+    /**
      * The menuitem for changing the arrow type of edges to reinforced.
      */
     private MenuItem edgeArrowReinforced;
@@ -831,14 +837,22 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesTypeLogAction);
     }
 
+    public void edgeReinforced(){
+        values.setEdgeArrowType(EdgeArrowType.REINFORCED);
+        editEdgesType(EdgeArrowType.REINFORCED);
+
+    }
+
     public void edgeExtenuating(){
         values.setEdgeArrowType(EdgeArrowType.EXTENUATING);
         editEdgesType(EdgeArrowType.EXTENUATING);
+
     }
 
     public void edgeNeutral(){
         values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         editEdgesType(EdgeArrowType.NEUTRAL);
+
     }
 
     /* ......annotation..... */
@@ -931,7 +945,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     /* ......font..... */
-
     /**
      * Creates an EditFontSphereLogAction-object and executes the action with the action history.
      *
