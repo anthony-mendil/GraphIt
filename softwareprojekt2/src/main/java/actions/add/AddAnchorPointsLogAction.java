@@ -9,12 +9,12 @@ import java.awt.geom.Point2D;
 /**
  * Adds an anchor-point to the selected vertex.
  */
-public class AddAnchorPointsLog extends LogAction {
+public class AddAnchorPointsLogAction extends LogAction {
 	 /**
      * Constructor in the case few anchor-points shall be added.
      * Gets all picked edges through pick support.
      */
-    public AddAnchorPointsLog(){
+    public AddAnchorPointsLogAction(){
     	super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }
@@ -23,7 +23,7 @@ public class AddAnchorPointsLog extends LogAction {
      *
      * @param pPoint2D The position of the vertex which hosts the anchor-point.
      */
-    public AddAnchorPointsLog(Point2D pPoint2D) {
+    public AddAnchorPointsLogAction(Point2D pPoint2D) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }
@@ -34,7 +34,7 @@ public class AddAnchorPointsLog extends LogAction {
      *
      * @param pAddRemoveAnchorPointsParam The parameter object containing all anchor points to add.
      */
-    public AddAnchorPointsLog(AddRemoveAnchorPointsParam pAddRemoveAnchorPointsParam) {
+    public AddAnchorPointsLogAction(AddRemoveAnchorPointsParam pAddRemoveAnchorPointsParam) {
         super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }

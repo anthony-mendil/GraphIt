@@ -54,6 +54,6 @@ public class Template {
      * Creates a new Template object.
      */
     public Template() {
-        throw new UnsupportedOperationException();
+
     }
 }
