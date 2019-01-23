@@ -10,7 +10,6 @@ import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.renderers.SyndromRenderer;
 import gui.Values;
-import org.apache.commons.io.FileCleaningTracker;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
 import org.freehep.graphics2d.VectorGraphics;
@@ -22,6 +21,7 @@ import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Properties;
 
@@ -141,7 +141,11 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
      * Starts the dialog to export the current graph visualization as PDF.
      */
     public void printPDF() {
-        exportPDF(new File("SyndromToPrint.pdf"));
+        try {
+            exportPDF(Files.createTempFile("graphit", null).toFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PDDocument pdDocument = new PDDocument();
         try {
             pdDocument = PDDocument.load(file);
@@ -156,11 +160,9 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
                 printerJob.print();
             } catch (PrinterException e) {
                 e.printStackTrace();
-            } finally {
-                FileCleaningTracker fileCleaningTracker = new FileCleaningTracker();
-                fileCleaningTracker.track(new File("SyndromToPrint.pdf"), this);
-                fileCleaningTracker.exitWhenFinished();
-            }//TODO: deleting not yet working
+            } finally{
+                file.deleteOnExit();
+            }
         }
     }
 }
