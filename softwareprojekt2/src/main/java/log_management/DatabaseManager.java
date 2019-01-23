@@ -65,7 +65,7 @@ public class DatabaseManager implements ObserverSyndrom {
      * @param log The log for the called action.
      */
     public void addEntryDatabase(Log log) {
-        graph.setGxl(gxlIo.gxlFromInstance());
+   //     graph.setGxl(gxlIo.gxlFromInstance());
         updateGraph();
 
         logDao.save(log);
