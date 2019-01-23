@@ -85,7 +85,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
                 double angle = angleBetween(vPoint, draggedPoint, downPoint);
                 edgeMove.setHasAnchor(true);
-                edgeMove.setAnchorAngle(angle);
+                draggedPoint = new Point2D.Double(draggedPoint.getX()-endpoint.getCoordinates().getX(),draggedPoint.getY()-endpoint.getCoordinates().getY());
                 edgeMove.setAnchorPoint(draggedPoint);
             }
         }

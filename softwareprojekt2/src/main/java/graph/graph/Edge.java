@@ -41,11 +41,7 @@ public class Edge {
     private boolean hasAnchor;
 
     private Point2D anchorPoint;
-    /**
-     * Defines the degree to which the anchor point is attached to the vertex.
-     */
-    @NonNull
-    private double anchorAngle;
+
     /**
      * Defines whether a edge is visible or not.
      */

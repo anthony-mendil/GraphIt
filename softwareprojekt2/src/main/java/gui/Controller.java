@@ -21,6 +21,7 @@ import actions.export_graph.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
+import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
@@ -50,10 +51,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -72,6 +75,11 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private SwingNode satellite;
+
+    /**
+     *
+     */
+    public static ArrayList<Font> fonts;
 
     /**
      * The swing node that displays the zoom window.
@@ -662,7 +670,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * The combobox for changing the size of the sphere text.
-      */
+     */
     @FXML
     private ComboBox sizeSphereComboBox;
 
@@ -776,32 +784,32 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesStrokeLogAction);
     }
 
-    public void edgeStrokeBasic(){
+    public void edgeStrokeBasic() {
         values.setStrokeEdge(StrokeType.BASIC);
         editEdgesStroke(StrokeType.BASIC);
     }
 
-    public void edgeStrokeBasicWeighted(){
+    public void edgeStrokeBasicWeighted() {
         values.setStrokeEdge(StrokeType.BASIC_WEIGHT);
         editEdgesStroke(StrokeType.BASIC_WEIGHT);
     }
 
-    public void edgeStrokeDotted(){
+    public void edgeStrokeDotted() {
         values.setStrokeEdge(StrokeType.DOTTED);
         editEdgesStroke(StrokeType.DOTTED);
     }
 
-    public void edgeStrokeDottedWeighted(){
+    public void edgeStrokeDottedWeighted() {
         values.setStrokeEdge(StrokeType.DOTTED_WEIGHT);
         editEdgesStroke(StrokeType.DOTTED_WEIGHT);
     }
 
-    public void edgeStrokeDashed(){
+    public void edgeStrokeDashed() {
         values.setStrokeEdge(StrokeType.DASHED);
         editEdgesStroke(StrokeType.DASHED);
     }
 
-    public void edgeStrokeDashedWeighted(){
+    public void edgeStrokeDashedWeighted() {
         values.setStrokeEdge(StrokeType.DASHED_WEIGHT);
         editEdgesStroke(StrokeType.DASHED_WEIGHT);
     }
@@ -814,17 +822,17 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesTypeLogAction);
     }
 
-    public void edgeReinforced(){
+    public void edgeReinforced() {
         values.setEdgeArrowType(EdgeArrowType.REINFORCED);
         editEdgesType(EdgeArrowType.REINFORCED);
     }
 
-    public void edgeExtenuating(){
+    public void edgeExtenuating() {
         values.setEdgeArrowType(EdgeArrowType.EXTENUATING);
         editEdgesType(EdgeArrowType.EXTENUATING);
     }
 
-    public void edgeNeutral(){
+    public void edgeNeutral() {
         values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         editEdgesType(EdgeArrowType.NEUTRAL);
     }
@@ -857,14 +865,19 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesColorLogAction);
     }
 
-    public void anchorPointsEdge(){
-        if(anchorPointsButton.isSelected()){
+    public void anchorPointsEdge() {
+        if (anchorPointsButton.isSelected()) {
             DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
             history.execute(deactivateAnchorPointsFadeoutLogAction);
-        }else{
+        } else {
             ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
             history.execute(activateAnchorPointsFadeoutLogAction);
         }
+    }
+
+    public void removeAnchor() {
+        RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
+        history.execute(removeAnchorPointsLogAction);
     }
 
     /**
@@ -914,6 +927,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /* ......font..... */
+
     /**
      * Creates an EditFontSphereLogAction-object and executes the action with the action history.
      *
@@ -1262,6 +1276,7 @@ public class Controller implements ObserverSyndrom {
      * Loads the swingnodes and sets the event handlers for menuitems and color pickers.
      */
     public void initialize() {
+        initFonts();
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
@@ -1296,6 +1311,25 @@ public class Controller implements ObserverSyndrom {
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
     }
 
+    private static void initFonts() {
+
+        fonts = new ArrayList<Font>();
+
+        try {
+            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Mali-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            fonts.add(roboto);
+            fonts.add(robotoSlab);
+            fonts.add(averiaSansLibre);
+            fonts.add(kalam);
+            fonts.add(mali);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     ChangeListener<Number> changeZoom = new ChangeListener<Number>() {
@@ -1348,51 +1382,56 @@ public class Controller implements ObserverSyndrom {
         }
     };
 
-    private class ComboBoxListener implements ChangeListener<String>{
+    private class ComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
-        private ComboBoxListener(ComboBox pComboBox){
+
+        private ComboBoxListener(ComboBox pComboBox) {
             this.comboBox = pComboBox;
         }
 
         @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             comboBox.show();
-            if(!newValue.matches("\\d*"))
+            if (!newValue.matches("\\d*"))
                 comboBox.getEditor().setText(oldValue);
 
-            if(comboBox.getEditor().getText().length() > 3)
+            if (comboBox.getEditor().getText().length() > 3)
                 comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
         }
     }
 
-    private class ComboBoxValueListener implements ChangeListener<String>{
+    private class ComboBoxValueListener implements ChangeListener<String> {
         private final ComboBox comboBox;
-        private ComboBoxValueListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        private ComboBoxValueListener(ComboBox pComboBox) {
+            this.comboBox = pComboBox;
+        }
 
         @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             currentSize = newValue;
             root.requestFocus();
-            if(comboBox.getId().equals("sizeSphereComboBox")){
+            if (comboBox.getId().equals("sizeSphereComboBox")) {
                 editFontSizeSphere(Integer.parseInt(currentSize));
-            }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+            } else if (comboBox.getId().equals("sizeSymptomComboBox")) {
                 editFontSizeVertices(Integer.parseInt(currentSize));
             }
         }
     }
 
-    private class ComboBoxFocusListener implements ChangeListener<Boolean>{
+    private class ComboBoxFocusListener implements ChangeListener<Boolean> {
         private final ComboBox comboBox;
-        private ComboBoxFocusListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        private ComboBoxFocusListener(ComboBox pComboBox) {
+            this.comboBox = pComboBox;
+        }
 
         @Override
-        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
-        {
+        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             comboBox.show();
             if (newPropertyValue) {
                 currentSize = comboBox.getEditor().getText();
-            }
-            else
+            } else
                 comboBox.getEditor().setText(currentSize);
         }
     }
@@ -1438,7 +1477,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * The event handler that provides the arguments, needed to use the actions after clicking on a menuitem.
      */
-    private class MenuItemHandler implements EventHandler<ActionEvent>{
+    private class MenuItemHandler implements EventHandler<ActionEvent> {
 
         private final MenuButton menuButton;
 
