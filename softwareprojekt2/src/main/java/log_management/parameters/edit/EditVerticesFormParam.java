@@ -27,7 +27,7 @@ public class EditVerticesFormParam extends Param implements Serializable {
     Map<Vertex,VertexShapeType> newVertices;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldVertices The vertices containing their old shape/annotation.
      * @param pNewVertices The vertices containing their new shape/annotation.
      */

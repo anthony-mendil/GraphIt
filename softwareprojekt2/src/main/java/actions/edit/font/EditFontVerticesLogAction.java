@@ -32,7 +32,7 @@ public class EditFontVerticesLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditFontVerticesParam The parameter object that contains every parameter that is needed.
+     * @param pEditFontVerticesParam The vertices object that contains every vertices that is needed.
      */
     public EditFontVerticesLogAction(EditFontVerticesParam pEditFontVerticesParam) {
         super(LogEntryName.EDIT_FONT_VERTICES);

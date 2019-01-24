@@ -29,7 +29,7 @@ public class EditFontVerticesParam extends Param implements Serializable {
     // A:Unfortunately no :( . But I am not actually sure about it, just pretending.
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldVertices The vertices containing their old font.
      * @param pNewVertices The vertices containing their new font.
      */

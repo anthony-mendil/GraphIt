@@ -24,7 +24,7 @@ public class EditSphereSizeLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param parameters The parameter object containing the sphere and size.
+     * @param parameters The vertices object containing the sphere and size.
      */
     public EditSphereSizeLogAction(EditSphereSizeParam parameters) {
         super(LogEntryName.EDIT_SPHERE_SIZE);
@@ -97,7 +97,7 @@ public class EditSphereSizeLogAction extends LogAction {
     }
 
     /**
-     * Creates the parameter object.
+     * Creates the vertices object.
      */
     public void createParameter() {
         throw new UnsupportedOperationException();

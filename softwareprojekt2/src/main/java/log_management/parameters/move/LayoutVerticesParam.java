@@ -28,7 +28,7 @@ public class LayoutVerticesParam extends Param implements Serializable {
     private Map<Vertex, Point2D> newVertices;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      *
      * @param pOldPosition Map of vertices containing their old positions.
      * @param pNewPosition Map of vertices containing their new positions.

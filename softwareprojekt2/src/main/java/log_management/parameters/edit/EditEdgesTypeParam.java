@@ -28,7 +28,7 @@ public class EditEdgesTypeParam extends Param implements Serializable {
     //private EdgeArrowType edgeType;
 
     /**
-     * Creates a new parameter object of its own class.
+     * Creates a new vertices object of its own class.
      * @param pOldEdges The set of edges containing their old edge-types.
      * @param pNewEdges The set of edges containing their new edge-types.
      */

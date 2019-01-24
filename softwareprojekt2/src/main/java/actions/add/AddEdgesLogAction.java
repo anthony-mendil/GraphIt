@@ -14,7 +14,9 @@ import log_management.parameters.add_remove.AddRemoveEdgesParam;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Adds a single/multiple edge/s to the graph.
@@ -54,8 +56,8 @@ public class AddEdgesLogAction extends LogAction {
             graph.addEdge(edge.getKey(),edge.getValue());
             createParameter(edge);
         }else{
-            for(Map.Entry<Vertex,Vertex> entry : ((AddRemoveEdgesParam)parameters).getEdges().entrySet()){
-                graph.addEdge(entry.getKey(),entry.getValue());
+            for(Pair<Vertex, Vertex> pair : ((AddRemoveEdgesParam)parameters).getEdges()){
+                graph.addEdge(pair.getKey(),pair.getValue());
             }
         }
         vv.repaint();
@@ -78,8 +80,8 @@ public class AddEdgesLogAction extends LogAction {
 
 
     public void createParameter(Pair<Vertex,Vertex> edge) {
-        Map<Vertex,Vertex> edges = new HashMap<>();
-        edges.put(edge.getKey(),edge.getValue());
+        Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
+        edges.add(new Pair<>(edge.getKey(),edge.getValue()));
         parameters = new AddRemoveEdgesParam(edges);
     }
 }

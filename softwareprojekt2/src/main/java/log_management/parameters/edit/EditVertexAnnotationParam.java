@@ -28,7 +28,7 @@ public class EditVertexAnnotationParam extends Param{
 
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pVertex The vertex containing its old annotation.
      * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.

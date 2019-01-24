@@ -26,7 +26,7 @@ public class MoveSphereParam extends Param implements Serializable {
     private Map<Sphere,Point2D> newSphere;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldSphere The sphere containing its old position.
      * @param pNewSphere The sphere containing its new position.
      */

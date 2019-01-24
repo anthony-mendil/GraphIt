@@ -28,7 +28,7 @@ public class EditFontSphereParam extends Param {
     private String newFont;
 
     /**
-     * Creates a new parameter object of its own class.
+     * Creates a new vertices object of its own class.
      * @param sphere The sphere containing its old font.
      * @param pOldFont The old font.
      * @param pNewFont The new font.

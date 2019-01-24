@@ -27,7 +27,7 @@ public class EditEdgesStrokeParam extends Param implements Serializable {
     Map<Edge,Pair<Vertex,Vertex>> edgesNew;
 
     /**
-     * Creates a new parameter object of its own class.
+     * Creates a new vertices object of its own class.
      * @param pEdgesOld The map of all edges and their old info.
      * @param pEdgesNew The map of all edges and their new info.
      */

@@ -28,7 +28,7 @@ public class EditSphereAnnotationParam extends Param{
     private String newAnnotation;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pSphere The sphere containing its old annotation.
      * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.

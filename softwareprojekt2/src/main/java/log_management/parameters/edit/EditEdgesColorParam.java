@@ -27,7 +27,7 @@ public class EditEdgesColorParam extends Param implements Serializable {
     private Map<Edge,Pair<Vertex,Vertex>> edgesNew;
 
     /**
-     * Creates an parameter object of its own class.
+     * Creates an vertices object of its own class.
      * @param pEdgesOld The list of edges and their old color.
      * @param pEdgesNew The list of edges and their new color.
      */

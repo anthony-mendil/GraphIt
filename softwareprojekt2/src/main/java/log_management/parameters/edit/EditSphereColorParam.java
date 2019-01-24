@@ -29,7 +29,7 @@ public class EditSphereColorParam extends Param{
     private Color newColor;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param sphere  The sphere containing its old color.
      * @param pOldColor The old color of the sphere.
      * @param pNewColor The new color of the sphere.

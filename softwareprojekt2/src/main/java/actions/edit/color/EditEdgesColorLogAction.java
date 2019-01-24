@@ -28,7 +28,7 @@ public class EditEdgesColorLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditEdgesColorParam The parameter object that contains every parameter that is needed.
+     * @param pEditEdgesColorParam The vertices object that contains every vertices that is needed.
      */
     public EditEdgesColorLogAction(EditEdgesColorParam pEditEdgesColorParam) {
         super(LogEntryName.EDIT_EDGES_COLOR);

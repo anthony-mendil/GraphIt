@@ -22,7 +22,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -75,12 +75,13 @@ public class Main extends Application {
         entityManager.getEntityManagerFactory().close();
         entityManager.close();
 
-//        Values.getInstance().setGuiLanguage(Language.ENGLISH);
-//        List<Edge> list = new ArrayList<>();
-//        list.add(new Edge(1, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
-//        list.add(new Edge(2, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
-//        list.add(new Edge(3, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
-//        ActivateDeactivateAnchorPointsFadeoutParam test = new ActivateDeactivateAnchorPointsFadeoutParam(list);
-//        System.out.println(test);
+        Map<Integer, Integer> test = new HashMap<>();
+        test.put(1,1);
+        test.put(2,2);
+        test.put(1,3);
+        Object[] set = test.entrySet().toArray();
+        for (int i = 0; i < set.length; i++) {
+            System.out.println(((Map.Entry<Integer, Integer>)set[i]).getKey() + " " + ((Map.Entry<Integer, Integer>)set[i]).getValue());
+        }
     }
 }

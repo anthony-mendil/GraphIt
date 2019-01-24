@@ -26,7 +26,7 @@ public class MoveVerticesParam extends Param implements Serializable {
     private Map<Vertex,Point2D> newVertices;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldVertices The set of old vertices and their position.
      * @param pNewVertices The set of new vertices and their position.
      */
