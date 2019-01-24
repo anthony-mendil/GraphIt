@@ -5,9 +5,13 @@ import graph.graph.Syndrom;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Separator;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -64,18 +68,23 @@ public class TemplateController {
         }
         ObservableList<String> test = FXCollections.observableArrayList();
         */
-        ObservableList<String> sizes =
+        ObservableList sizes =
                 FXCollections.observableArrayList(
+                        "Sphären",
                         "8",
                         "9",
                         "10",
                         "11",
                         "12",
+                        new Separator(),
+                        "Symptome",
                         "14",
                         "18",
                         "24",
                         "30",
                         "36",
+                        new Separator(),
+                        "Kanten",
                         "48",
                         "60",
                         "72",
@@ -83,5 +92,6 @@ public class TemplateController {
                     );
 
         templateListView.setItems(sizes);
+
     }
 }
