@@ -59,7 +59,7 @@ public class Template {
 
         maxSphereCounter = pMaxSphereCounter;
         maxVertexCounter = pMaxVertexCounter;
-        maxVertexCounter = pMaxVertexInSphereCounter;
+        maxVertexInSphereCounter = pMaxVertexInSphereCounter;
         maxEdgeCounter = pMaxEdgeCounter;
         nameLockedObjects = pNameLockedObjects;
         colorLockedObjects = pColorLockedObjects;

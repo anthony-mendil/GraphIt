@@ -25,6 +25,7 @@ import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
+import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
@@ -1247,16 +1248,66 @@ public class Controller implements ObserverSyndrom {
     /* ----------------TEMPLATE---------------------- */
 
     /**
-     * Creates an RulesTemplateAction-object and executes the action with the action history.
+     * Creates an RulesTemplateAction-object and executes the action with the action history. Get's executed on saving the template.
      */
     public void rulesTemplate() {
-        /*Template temp = new Template();
+        int param1 = 0;
+        int param2 = 0;
+        int param3 = 0;
+        int param4 = 0;
+        ArrayList<Integer> param5 = new ArrayList<Integer>();
+        ArrayList<Integer> param6 = new ArrayList<Integer>();
+        ArrayList<Integer> param7 = new ArrayList<Integer>();
+        ArrayList<EdgeArrowType> param8 = new ArrayList<EdgeArrowType>();
+        boolean inputError = false;
+        if (!maxSphereField.getText().isEmpty()) {
+            try {
+                param1 = Integer.parseInt(maxSphereField.getText());
+            } catch (NumberFormatException e) {
+                System.out.println("Error on Maximum Spheres: Please enter a positive number");
+                inputError = true;
+            }
+        } else {
+            param1 = -1;
+        }
+        if (!maxSymptomField.getText().isEmpty()) {
+            try {
+                param1 = Integer.parseInt(maxSymptomField.getText());
+            } catch (NumberFormatException e) {
+                System.out.println("Error on Maximum Symptoms: Please enter a positive number");
+                inputError = true;
+            }
+        } else {
+            param2 = -1;
+        }
+        if (!maxSymptominSphereField.getText().isEmpty()) {
+            try {
+                param1 = Integer.parseInt(maxSymptominSphereField.getText());
+            } catch (NumberFormatException e) {
+                System.out.println("Error on Maximum Symptoms per Sphere: Please enter a positive number");
+                inputError = true;
+            }
+        } else {
+            param3 = -1;
+        }
+        if (!maxEdgesField.getText().isEmpty()) {
+            try {
+                param1 = Integer.parseInt(maxEdgesField.getText());
+            } catch (NumberFormatException e) {
+                System.out.println("Error on Maximum Edges: Please enter a positive number");
+                inputError = true;
+            }
+        } else {
+            param4 = -1;
+        }
 
-            temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
-            temp.setMaxVertexCounter(Integer.parseInt(maxSymptomField.getText()));
-            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.toString()));
+        if(!inputError) {
+            Template temp = new Template(param1, param2, param3, param4,
+                    param5, param6, param7, param8);
+            RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
+            closeTemplateWindow();
+        }
 
-        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);*/
     }
 
     /**
@@ -1264,6 +1315,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void deleteTemplateRules() {
         throw new UnsupportedOperationException();
+        //Syndrom.getInstance().setTemplateIsSet(false);
     }
 
     /**
@@ -1470,7 +1522,7 @@ public class Controller implements ObserverSyndrom {
         edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
     }
 
-    private void loadFontComboBox(ComboBox comboBox){
+    private void loadFontComboBox(ComboBox comboBox) {
         ObservableList<String> fonts =
                 FXCollections.observableArrayList(
                         "AveriaSansLibre",

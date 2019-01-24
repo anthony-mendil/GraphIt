@@ -17,7 +17,7 @@ public class RulesTemplateAction extends GraphAction {
      */
     Template previousTemplate;
     /**
-     * Creates a new rules template action.
+     * Creates a new rules template action to save the template so the Syndrom
      *
      * @param pTemplate The template to use.
      */
