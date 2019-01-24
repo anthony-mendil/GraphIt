@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="166.0" prefWidth="350.0">
         <columnConstraints>
@@ -47,22 +47,22 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </Text>
-            <TextField GridPane.columnIndex="1">
+            <TextField fx:id="maxSphereField" GridPane.columnIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="maxSymptomField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="maxSymptominSphereField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="maxEdgesField" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -75,17 +75,17 @@
       <Separator prefWidth="588.0" />
       <VBox prefHeight="89.0" prefWidth="350.0">
          <children>
-            <CheckBox mnemonicParsing="false" text="Verstärkende Kanten erlauben">
+            <CheckBox fx:id="reinforcedBox" mnemonicParsing="false" text="Verstärkende Kanten erlauben">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="Abschwächende Kanten erlauben">
+            <CheckBox fx:id="extenuatingBox" mnemonicParsing="false" text="Abschwächende Kanten erlauben">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="Neutrale Kanten erlauben">
+            <CheckBox fx:id="neutralBox" mnemonicParsing="false" text="Neutrale Kanten erlauben">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -102,7 +102,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Region>
-            <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="140.0" text="Regeln speichern">
+            <Button fx:id="templateButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#rulesTemplate" prefHeight="26.0" prefWidth="140.0" text="Regeln speichern">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>

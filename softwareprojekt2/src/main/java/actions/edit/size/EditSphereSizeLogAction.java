@@ -2,11 +2,9 @@ package actions.edit.size;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SizeChange;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
@@ -14,12 +12,14 @@ import log_management.parameters.edit.EditSphereSizeParam;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Changes the sphere size.
  */
 public class EditSphereSizeLogAction extends LogAction {
     private SizeChange sizeChange;
+    private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer();
 
     /**
      * Constructor which will be used to realize the undo-method of itself.
@@ -45,6 +45,7 @@ public class EditSphereSizeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         for (Sphere sp : pickedState.getPicked()) {
             if (sizeChange == SizeChange.ENLARGE) {
                 double newHeight = sp.getHeight() + 10;
@@ -53,22 +54,12 @@ public class EditSphereSizeLogAction extends LogAction {
                 double x = sp.getCoordinates().getX();
                 double y = sp.getCoordinates().getY();
                 boolean enlarge = true;
-                for (int j = (int) y; j < newHeight + y; j++) {
-                    Point2D val = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double
-                            (x + newWidth, j));
-                    Sphere s = pickSupport.getSphere(val.getX(), val.getY());
-                    if (s != null && !s.equals(sp)) {
-                        enlarge = false;
-                        break;
-                    }
-                }
 
-                for (int j = (int) y; j < newWidth + y; j++) {
-                    Point2D point = new Point2D.Double
-                            (j, y + newHeight);
-                    point = vv.getRenderContext().getMultiLayerTransformer().transform(point);
-                    Sphere s = pickSupport.getSphere(point.getX(), point.getY());
-                    if (s != null && !s.equals(sp)) {
+                Rectangle2D newShape = new Rectangle2D.Double(x,y,newWidth, newHeight);
+
+                for (Sphere s : graph.getSpheres()){
+                    Shape sphereShape = sphereShapeTransformer.transform(s);
+                    if (!s.equals(sp) && sphereShape.intersects( newShape)){
                         enlarge = false;
                         break;
                     }
@@ -78,7 +69,6 @@ public class EditSphereSizeLogAction extends LogAction {
                     sp.setHeight(newHeight);
                     sp.setWidth(newWidth);
                 }
-
 
             } else {
                 boolean add = true;

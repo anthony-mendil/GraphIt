@@ -2,6 +2,10 @@ package actions.remove;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 
 /**
@@ -14,7 +18,6 @@ public class RemoveAnchorPointsLogAction extends LogAction {
      */
     public RemoveAnchorPointsLogAction() {
         super(LogEntryName.REMOVE_ANCHOR_POINTS);
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -35,7 +38,15 @@ public class RemoveAnchorPointsLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Edge> pickedState = vv.getPickedEdgeState();
+
+        for (Edge e: pickedState.getPicked()) {
+            e.setHasAnchor(false);
+            e.setAnchorPoint(null);
+        }
+        vv.repaint();
+        syndrom.getVv2().repaint();
     }
 
     @Override

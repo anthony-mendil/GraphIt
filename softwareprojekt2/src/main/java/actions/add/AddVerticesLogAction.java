@@ -75,8 +75,7 @@ public class AddVerticesLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null){
-            position2D = vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.LAYOUT).inverseTransform(position2D);
-
+            position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
             Vertex newVertex = graph.addVertex(position2D, sphere);
             createParameter(newVertex, sphere);
             vv.getGraphLayout().setLocation(newVertex, position2D);

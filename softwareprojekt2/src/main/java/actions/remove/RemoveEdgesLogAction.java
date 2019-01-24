@@ -17,19 +17,14 @@ import log_management.parameters.add_remove.AddRemoveEdgesParam;
  * Removes edges from the syndrom graph.
  */
 public class RemoveEdgesLogAction extends LogAction {
-    /**
-     * The pair of vertices connecting the edge.
-     */
-    private Pair<Vertex,Vertex> edge;
 
     /**
      * Removes all passed edges from the graph.
      * Gets the picked edges through pick support.
      *
      */
-    public RemoveEdgesLogAction(Pair<Vertex,Vertex> pEdge) {
+    public RemoveEdgesLogAction() {
         super(LogEntryName.REMOVE_EDGES);
-        edge = pEdge;
     }
 
     /**
@@ -52,13 +47,20 @@ public class RemoveEdgesLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Edge> pickedState = vv.getPickedEdgeState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+
+        for (Edge e: pickedState.getPicked()) {
+            graph.removeEdge(e);
+        }
+        vv.repaint();
+        syndrom.getVv2().repaint();
+
         if(parameters == null) {
            // graph.removeEdge(edge)
         }else{
 
         }
-        vv.repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

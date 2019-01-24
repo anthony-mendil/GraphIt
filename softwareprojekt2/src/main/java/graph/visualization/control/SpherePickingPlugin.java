@@ -135,11 +135,13 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
         Vertex vert = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+        Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), e.getX(), e.getY());
+
         down = e.getPoint();
 
         if (SwingUtilities.isLeftMouseButton(e)) {
             PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
-            if (sp != null && vert == null) {
+            if (sp != null && vert == null && edge == null) {
                 spherePickedCoord = sp.getCoordinates();
                 points = new LinkedHashMap<>();
                 for (Vertex v: sp.getVertices()){

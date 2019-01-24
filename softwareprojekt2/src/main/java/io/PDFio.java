@@ -1,6 +1,7 @@
 package io;
 
 import com.sun.javafx.geom.Point2D;
+import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
@@ -9,7 +10,6 @@ import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.renderers.SyndromRenderer;
 import gui.Values;
-import org.apache.commons.io.FileCleaningTracker;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
 import org.freehep.graphics2d.VectorGraphics;
@@ -21,6 +21,7 @@ import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Properties;
 
@@ -48,7 +49,7 @@ public class PDFio {
     /**
      * ä
      */
-    private double BORDER=10.0;
+    private double BORDER = 10.0;
 
     /**
      * Constructs a new PDFio object.
@@ -62,18 +63,18 @@ public class PDFio {
 
     protected Point2D getMinPoint() {
         List<Sphere> spheres = Syndrom.getInstance().getGraph().getSpheres();
-        if(spheres.size()==0){
-            return new Point2D(0,0);
+        if (spheres.size() == 0) {
+            return new Point2D(0, 0);
         }
-        Point2D point = new Point2D((float)Values.getInstance().getDefaultLayoutVVSize().getWidth(), (float)Values.getInstance().getDefaultLayoutVVSize().getHeight());
-        for (Sphere sph:spheres) {
+        Point2D point = new Point2D((float) Values.getInstance().getDefaultLayoutVVSize().getWidth(), (float) Values.getInstance().getDefaultLayoutVVSize().getHeight());
+        for (Sphere sph : spheres) {
             //check x
             if (sph.getCoordinates().getX() < point.x) {
-                point.x=(float)sph.getCoordinates().getX();
+                point.x = (float) sph.getCoordinates().getX();
             }
             //check y
             if (sph.getCoordinates().getY() < point.y) {
-                point.y=(float)sph.getCoordinates().getY();
+                point.y = (float) sph.getCoordinates().getY();
             }
         }
         return point;
@@ -90,18 +91,23 @@ public class PDFio {
         Dimension dimension = new Dimension(0, 0);
         for (Sphere sph : spheres) {
             //check x
-            double x = sph.getCoordinates().getX() + sph.getWidth()+BORDER;
+            double x = sph.getCoordinates().getX() + sph.getWidth() + BORDER;
             if (x > dimension.getWidth()) {
                 dimension.setSize(x, dimension.getHeight());
             }
             //check y
-            double y = sph.getCoordinates().getY() + sph.getHeight()+BORDER;
+            double y = sph.getCoordinates().getY() + sph.getHeight() + BORDER;
             if (y > dimension.getHeight()) {
                 dimension.setSize(dimension.getWidth(), y);
             }
         }
         return dimension;
     }
+
+    /*
+    vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(), Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(), vv.getCenter());
+dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
+    */
 
     /**
      * Starts the dialog to export the current graph visualization as PDF.
@@ -111,10 +117,12 @@ public class PDFio {
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<Vertex, Edge>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
         vis.setBackground(Color.WHITE);
         vis.setRenderer(new SyndromRenderer<>());
+        vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(), Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(), vv.getCenter());
         System.out.println(getMinPoint().toString());
         VectorGraphics vectorGraphics = null;
-        Dimension dimensionWithBorder=new Dimension();
-        dimensionWithBorder.setSize(getGraphDimension().getWidth()+BORDER , getGraphDimension().getHeight()+BORDER);
+        Dimension dimensionWithBorder = new Dimension();
+        dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
+        //dimensionWithBorder.setSize(getGraphDimension().getWidth() + BORDER, getGraphDimension().getHeight() + BORDER);
         try {
             vectorGraphics = new PDFGraphics2D(file, dimensionWithBorder);
         } catch (FileNotFoundException e) {
@@ -133,7 +141,11 @@ public class PDFio {
      * Starts the dialog to export the current graph visualization as PDF.
      */
     public void printPDF() {
-        exportPDF(new File("SyndromToPrint.pdf"));
+        try {
+            exportPDF(Files.createTempFile("graphit", null).toFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PDDocument pdDocument = new PDDocument();
         try {
             pdDocument = PDDocument.load(file);
@@ -148,11 +160,9 @@ public class PDFio {
                 printerJob.print();
             } catch (PrinterException e) {
                 e.printStackTrace();
-            } finally {
-                FileCleaningTracker fileCleaningTracker = new FileCleaningTracker();
-                fileCleaningTracker.track(new File("SyndromToPrint.pdf"), this);
-                fileCleaningTracker.exitWhenFinished();
-            }//TODO: deleting not yet working
+            } finally{
+                file.deleteOnExit();
+            }
         }
     }
 }

@@ -39,7 +39,6 @@ public class EditVerticesSizeLogAction extends LogAction {
         for (Vertex vertex: pickedState.getPicked()) {
             if (sizeChange == SizeChange.ENLARGE){
                 vertex.setSize(vertex.getSize()+5);
-                System.out.println("layout" +vv.getGraphLayout().transform(vertex));
             } else {
                 if (vertex.getSize() > 45){
                     vertex.setSize(vertex.getSize()-5);

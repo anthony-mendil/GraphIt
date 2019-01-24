@@ -11,10 +11,11 @@ import java.awt.*;
  *
  * @param <E> The edge type.
  */
-public class EdgeFillPaintTransformer<E> implements Transformer<E, Paint> {
+public class EdgeArrowFillPaintAnchorTransformer<E> implements Transformer<E, Paint> {
     @Override
     public Paint transform(E e) {
         Edge edge = (Edge) e;
-        return edge.getColor();
+
+        return edge.isHasAnchor() ? new Color(204, 0,0) : edge.getColor();
     }
 }

@@ -31,21 +31,17 @@ public class SyndromSatelliteScalingGraphMousePlugin extends SatelliteScalingGra
                         ((SatelliteVisualizationViewer)vv).getMaster();
 
                 int amount = e.getWheelRotation();
-                System.out.println("amount: "+amount);
 
                 if(amount > 0 && (scale + 10) < max) {
                     scaleNew = scale + 10;
                     scaler.scale(vvMaster, (float) scaleNew/100, vvMaster.getCenter());
                     values.setScale(scaleNew);
-                    System.out.println("+: "+amount);
 
                 } else if(amount < 0 && (scale - 10) > min) {
                     scaleNew = scale - 10;
 
                     scaler.scale(vvMaster, (float) scaleNew/100, vvMaster.getCenter());
                     values.setScale(scaleNew);
-
-                    System.out.println("-: "+amount);
                 }
             }
             vv.repaint();
