@@ -300,7 +300,7 @@ public class GXLio {
             //gxlSyndrom.add(sphere);
             // sphere.setID("" + s.getId());
             sphere.setAttr("TYPE", new GXLString("Sphäre"));
-            Color color = (Color) s.getFillPaint();
+            Color color = s.getColor();
             System.out.println("color sphere: "+color);
             sphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
             sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
@@ -442,7 +442,7 @@ public class GXLio {
             //gxlSyndrom.add(sphere);
             // sphere.setID("" + s.getId());
             sphere.setAttr("TYPE", new GXLString("Sphäre"));
-            Color color = (Color) s.getFillPaint();
+            Color color = s.getColor();
             sphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
             sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
             sphere.setAttr("width", new GXLString("" + s.getWidth()));
