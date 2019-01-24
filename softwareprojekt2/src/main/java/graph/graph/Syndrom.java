@@ -35,6 +35,9 @@ public class Syndrom {
      * Template rules for the graph/layout.
      */
     private Template template;
+
+    private boolean templateIsSet=false;
+
     /**
      * The layout of syndrom.
      */

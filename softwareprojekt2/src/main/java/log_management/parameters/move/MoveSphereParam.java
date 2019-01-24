@@ -1,7 +1,11 @@
 package log_management.parameters.move;
 
 import graph.graph.Sphere;
+import graph.graph.Vertex;
+import gui.Values;
+import gui.properties.Language;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -26,7 +30,7 @@ public class MoveSphereParam extends Param implements Serializable {
     private Map<Sphere,Point2D> newSphere;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldSphere The sphere containing its old position.
      * @param pNewSphere The sphere containing its new position.
      */
@@ -36,6 +40,25 @@ public class MoveSphereParam extends Param implements Serializable {
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        String information = "";
+        if (language == Language.ENGLISH) {
+            information += "Spheres moved:\n";
+            for (Map.Entry<Sphere, Point2D> entry : oldSphere.entrySet()) {
+                information += "Sphere : " + SyndromObjectPrinter.spherePrintEnglish(entry.getKey());
+                information += "New Coordinates: x = "
+                        + newSphere.get(entry.getKey()).getX()
+                        + " y = " + newSphere.get(entry.getKey()).getY() + "\n";
+            }
+        } else {
+            information += "Bewegte Sphären:\n";
+            for (Map.Entry<Sphere, Point2D> entry : oldSphere.entrySet()) {
+                information += "Sphäre : " + SyndromObjectPrinter.spherePrintGerman(entry.getKey());
+                information += "Neue Koordinaten: x = "
+                        + newSphere.get(entry.getKey()).getX()
+                        + " y = " + newSphere.get(entry.getKey()).getY() + "\n";
+            }
+        }
+        return information;
     }
 }

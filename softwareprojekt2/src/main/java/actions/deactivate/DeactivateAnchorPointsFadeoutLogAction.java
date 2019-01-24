@@ -18,7 +18,7 @@ public class DeactivateAnchorPointsFadeoutLogAction extends LogAction {
      * Makes all selected anchor-points visible again. Also used to implement the
      * undo-method of ActivateAnchorPointsFadeoutLogAction.
      *
-     * @param pParam The parameter object that contains every parameter that is needed.
+     * @param pParam The vertices object that contains every vertices that is needed.
      */
     public DeactivateAnchorPointsFadeoutLogAction(ActivateDeactivateAnchorPointsFadeoutParam pParam) {
         super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);

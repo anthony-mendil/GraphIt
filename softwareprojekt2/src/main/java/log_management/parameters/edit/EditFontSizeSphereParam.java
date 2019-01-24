@@ -15,7 +15,7 @@ public class EditFontSizeSphereParam extends Param{
      * The sphere containing the annotation.
      */
     @Getter
-    private Sphere sphereText;
+    private Sphere sphere;
     /**
      * The old size of the font.
      */
@@ -26,17 +26,15 @@ public class EditFontSizeSphereParam extends Param{
      */
     @Getter
     private int newFontSize;
-    // Q:Does the font size change everywhere or is for example a list of vertex id's needed?
-    // A:Like I said, no!! But I am not sure about it.
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pSphere The sphere containing the old annotation.
      * @param pOldFontSize The old font size.
      * @param pNewFontSize The new font size.
      */
     public EditFontSizeSphereParam(Sphere pSphere, int pOldFontSize, int pNewFontSize) {
-        this.sphereText = pSphere;
+        this.sphere = pSphere;
         this.oldFontSize = pOldFontSize;
         this.newFontSize = pNewFontSize;
     }

@@ -21,7 +21,7 @@ public class DeactivateHighlightLogAction extends LogAction {
      * Cancels the highlight-option of the vertices. Also used to implement the undo-method of
      * ActivateHighLightLogAction.
      *
-     * @param pParam The parameter object that contains every parameter that is needed.
+     * @param pParam The vertices object that contains every vertices that is needed.
      */
     public DeactivateHighlightLogAction(ActivateDeactivateHighlightParam pParam) {
         super(LogEntryName.DEACTIVATE_HIGHLIGHT);

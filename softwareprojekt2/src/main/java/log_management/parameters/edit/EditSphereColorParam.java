@@ -21,20 +21,20 @@ public class EditSphereColorParam extends Param{
      * The old color of the sphere.
      */
     @Getter
-    private Paint oldColor;
+    private Color oldColor;
     /**
      * The new color the sphere should get.
      */
     @Getter
-    private Paint newColor;
+    private Color newColor;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param sphere  The sphere containing its old color.
      * @param pOldColor The old color of the sphere.
      * @param pNewColor The new color of the sphere.
      */
-    public EditSphereColorParam(Sphere sphere,Paint pOldColor, Paint pNewColor) {
+    public EditSphereColorParam(Sphere sphere,Color pOldColor, Color pNewColor) {
         this.sphere = sphere;
         this.oldColor = pOldColor;
         this.newColor = pNewColor;

@@ -2,6 +2,8 @@ package log_management.parameters.move;
 
 
 import graph.graph.Vertex;
+import gui.Values;
+import gui.properties.Language;
 import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
@@ -28,7 +30,7 @@ public class LayoutVerticesParam extends Param implements Serializable {
     private Map<Vertex, Point2D> newVertices;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      *
      * @param pOldPosition Map of vertices containing their old positions.
      * @param pNewPosition Map of vertices containing their new positions.
@@ -39,6 +41,11 @@ public class LayoutVerticesParam extends Param implements Serializable {
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        if (language == Language.ENGLISH) {
+            return "The symptoms were automatically positioned";
+        } else {
+            return "Die Symptome wurden automatisch angeordnet";
+        }
     }
 }

@@ -26,7 +26,7 @@ public class EditVerticesFillColorParam extends Param implements Serializable {
     private Map<Vertex,Paint> newVertices;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldVertices The selected vertices containing their old color.
      * @param pNewVertices The selected vertices containing their new color.
      */

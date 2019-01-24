@@ -1,9 +1,14 @@
 package log_management.parameters.edit;
 
 import graph.graph.Edge;
+import graph.graph.Syndrom;
 import graph.graph.Vertex;
+import gui.Values;
+import gui.properties.Language;
 import javafx.util.Pair;
+import log_management.parameters.ColorNameCreator;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -27,7 +32,7 @@ public class EditEdgesColorParam extends Param implements Serializable {
     private Map<Edge,Pair<Vertex,Vertex>> edgesNew;
 
     /**
-     * Creates an parameter object of its own class.
+     * Creates an vertices object of its own class.
      * @param pEdgesOld The list of edges and their old color.
      * @param pEdgesNew The list of edges and their new color.
      */
@@ -38,6 +43,31 @@ public class EditEdgesColorParam extends Param implements Serializable {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        String information = "";
+        if (language == Language.ENGLISH) {
+            information += "Relations changed:\n";
+            for (Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edgesOld.entrySet()) {
+                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(entry.getKey());
+
+                Pair<Vertex, Vertex> endPoints = edgesNew.get(entry.getKey());
+                Edge edge = Syndrom.getInstance().getGraph().findEdge(endPoints.getKey(), endPoints.getValue());
+
+                information += "New Color: "
+                        + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.ENGLISH) + "\n";
+            }
+        } else {
+            information += "Geänderte Relationen:\n";
+            for (Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edgesOld.entrySet()) {
+                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(entry.getKey());
+
+                Pair<Vertex, Vertex> endPoints = edgesNew.get(entry.getKey());
+                Edge edge = Syndrom.getInstance().getGraph().findEdge(endPoints.getKey(), endPoints.getValue());
+
+                information += "Neue Farbe: "
+                        + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.GERMAN) +  "\n";
+            }
+        }
+        return information;
     }
 }

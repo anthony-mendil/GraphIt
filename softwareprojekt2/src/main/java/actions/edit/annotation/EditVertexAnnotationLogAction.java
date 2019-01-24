@@ -32,7 +32,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditVertexAnnotationParam The parameter object containing the new vertex annotation.
+     * @param pEditVertexAnnotationParam The vertices object containing the new vertex annotation.
      */
     public EditVertexAnnotationLogAction(EditVertexAnnotationParam pEditVertexAnnotationParam) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);

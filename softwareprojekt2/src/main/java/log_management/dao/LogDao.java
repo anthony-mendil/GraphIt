@@ -19,7 +19,7 @@ import java.util.Optional;
 public class LogDao implements Dao<Log> {
 
     /**
-     * Returns a logs object, attribute parameter gets converted from string to object with jackson.
+     * Returns a logs object, attribute vertices gets converted from string to object with jackson.
      * @param id The id of the object to get.
      * @return The log object.
      */

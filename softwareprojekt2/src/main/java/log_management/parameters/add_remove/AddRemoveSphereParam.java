@@ -1,7 +1,10 @@
 package log_management.parameters.add_remove;
 
 import graph.graph.Sphere;
+import gui.Values;
+import gui.properties.Language;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -27,6 +30,11 @@ public class AddRemoveSphereParam extends Param{
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        if (language == Language.ENGLISH) {
+            return "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere);
+        } else {
+            return "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere);
+        }
     }
 }
