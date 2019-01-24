@@ -514,7 +514,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="265.0">
+                  <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="300.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kante">
                            <VBox.margin>
@@ -523,7 +523,7 @@
                         </Text>
                         <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="290.0">
                            <children>
-                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="50.0" styleClass="button1" stylesheets="@gui_style.css">
+                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
