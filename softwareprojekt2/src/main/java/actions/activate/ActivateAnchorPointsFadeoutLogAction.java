@@ -32,7 +32,6 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
      */
     public ActivateAnchorPointsFadeoutLogAction(ActivateDeactivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
-        throw new UnsupportedOperationException();
     }
 
     @Override

@@ -31,6 +31,6 @@ public class SwitchModiEditorAction extends GraphAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        return;
     }
 }

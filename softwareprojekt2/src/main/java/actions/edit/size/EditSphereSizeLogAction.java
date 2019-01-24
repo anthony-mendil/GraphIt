@@ -46,6 +46,7 @@ public class EditSphereSizeLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+      //  if(parameters ==)
         for (Sphere sp : pickedState.getPicked()) {
             if (sizeChange == SizeChange.ENLARGE) {
                 double newHeight = sp.getHeight() + 10;

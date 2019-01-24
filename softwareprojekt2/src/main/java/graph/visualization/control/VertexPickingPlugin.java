@@ -3,6 +3,7 @@ package graph.visualization.control;
 import actions.ActionHistory;
 import actions.add.AddEdgesLogAction;
 import actions.add.AddVerticesLogAction;
+import actions.move.MoveVerticesLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
@@ -50,6 +51,18 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     private Map<Integer, Pair<Point2D, Sphere>> points;
     private final HelperFunctions helper;
     private final ContextMenu contextMenu;
+    /**
+     * The difference in x.
+     */
+    private Double DeltaX;
+    /**
+     * The difference in y.
+     */
+    private Double DeltaY;
+    /**
+     * The current position of the cursor.
+     */
+    private Point vertexPickedCoord;
 
 
 
@@ -113,7 +126,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
                     	history.execute(addVerticesLogAction);
                     //} else {
-                    //    setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
+                    // setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
                     //}
                 } else {
                     setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
@@ -152,6 +165,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             if (vert != null) {
                 if (!vertexPickedState.isPicked(vert)) {
                     vertexPickedState.pick(vert, true);
+                    vertexPickedCoord = e.getPoint();
                 }
             } else {
                 vertexPickedState.clear();
@@ -213,9 +227,13 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         LinkedList<Vertex> newList = s.getVertices();
                         newList.add(v);
                         s.setVertices(newList);
+
                     }
+         //           MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(DeltaX,DeltaY,pickedState.getPicked());
+          //          history.execute(moveVerticesLogAction);
                 }
             }
+
             points = null;
             down = null;
             vv.repaint();
@@ -254,6 +272,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(down);
                 double dx = graphPoint.getX() - graphDown.getX();
                 double dy = graphPoint.getY() - graphDown.getY();
+         //       DeltaX = vertexPickedCoord.getX() - graphPoint.getX();
+         //       DeltaY = vertexPickedCoord.getY() - graphPoint.getY();
                 PickedState<Vertex> pickedState = vv.getPickedVertexState();
 
                 Layout<Vertex, Edge> layout = vv.getGraphLayout();

@@ -2,6 +2,7 @@ package actions.deactivate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import actions.activate.ActivateAnchorPointsFadeoutLogAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
@@ -41,11 +42,12 @@ public class DeactivateAnchorPointsFadeoutLogAction extends LogAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
+        activateAnchorPointsFadeoutLogAction.action();
     }
 
 
     public void createParameter() {
-        throw new UnsupportedOperationException();
+        return;
     }
 }
