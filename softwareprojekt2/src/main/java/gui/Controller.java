@@ -25,7 +25,6 @@ import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
-import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
@@ -696,6 +695,7 @@ public class Controller implements ObserverSyndrom {
     private Stage templateStage = new Stage();
 
     private String currentSize = "";
+    private String currentFont = "";
 
     /**
      * The combobox for changing the size of the sphere text.
@@ -1266,66 +1266,16 @@ public class Controller implements ObserverSyndrom {
     /* ----------------TEMPLATE---------------------- */
 
     /**
-     * Creates an RulesTemplateAction-object and executes the action with the action history. Get's executed on saving the template.
+     * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
-        int param1 = 0;
-        int param2 = 0;
-        int param3 = 0;
-        int param4 = 0;
-        ArrayList<Integer> param5 = new ArrayList<Integer>();
-        ArrayList<Integer> param6 = new ArrayList<Integer>();
-        ArrayList<Integer> param7 = new ArrayList<Integer>();
-        ArrayList<EdgeArrowType> param8 = new ArrayList<EdgeArrowType>();
-        boolean inputError = false;
-        if (!maxSphereField.getText().isEmpty()) {
-            try {
-                param1 = Integer.parseInt(maxSphereField.getText());
-            } catch (NumberFormatException e) {
-                System.out.println("Error on Maximum Spheres: Please enter a positive number");
-                inputError = true;
-            }
-        } else {
-            param1 = -1;
-        }
-        if (!maxSymptomField.getText().isEmpty()) {
-            try {
-                param1 = Integer.parseInt(maxSymptomField.getText());
-            } catch (NumberFormatException e) {
-                System.out.println("Error on Maximum Symptoms: Please enter a positive number");
-                inputError = true;
-            }
-        } else {
-            param2 = -1;
-        }
-        if (!maxSymptominSphereField.getText().isEmpty()) {
-            try {
-                param1 = Integer.parseInt(maxSymptominSphereField.getText());
-            } catch (NumberFormatException e) {
-                System.out.println("Error on Maximum Symptoms per Sphere: Please enter a positive number");
-                inputError = true;
-            }
-        } else {
-            param3 = -1;
-        }
-        if (!maxEdgesField.getText().isEmpty()) {
-            try {
-                param1 = Integer.parseInt(maxEdgesField.getText());
-            } catch (NumberFormatException e) {
-                System.out.println("Error on Maximum Edges: Please enter a positive number");
-                inputError = true;
-            }
-        } else {
-            param4 = -1;
-        }
+        /*Template temp = new Template();
 
-        if(!inputError) {
-            Template temp = new Template(param1, param2, param3, param4,
-                    param5, param6, param7, param8);
-            RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
-            closeTemplateWindow();
-        }
+            temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
+            temp.setMaxVertexCounter(Integer.parseInt(maxSymptomField.getText()));
+            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.toString()));
 
+        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);*/
     }
 
     /**
@@ -1333,7 +1283,6 @@ public class Controller implements ObserverSyndrom {
      */
     public void deleteTemplateRules() {
         throw new UnsupportedOperationException();
-        //Syndrom.getInstance().setTemplateIsSet(false);
     }
 
     /**
@@ -1348,6 +1297,7 @@ public class Controller implements ObserverSyndrom {
         templateStage.setTitle("Vorlagenregeln");
         templateStage.setAlwaysOnTop(true);
         templateStage.getIcons().add(new Image("/logo.png"));
+        templateStage.show();
     }
 
     public void showTemplateWindow(){
@@ -1380,6 +1330,12 @@ public class Controller implements ObserverSyndrom {
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
+        paneSwingNode.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                root.requestFocus();
+            }
+        });
 
         loadSizeComboBox(sizeSphereComboBox);
         loadSizeComboBox(sizeSymptomComboBox);
@@ -1476,10 +1432,10 @@ public class Controller implements ObserverSyndrom {
         }
     };
 
-    private class ComboBoxListener implements ChangeListener<String> {
+    private class OnlyNumberComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
 
-        private ComboBoxListener(ComboBox pComboBox) {
+        private OnlyNumberComboBoxListener(ComboBox pComboBox) {
             this.comboBox = pComboBox;
         }
 
@@ -1494,6 +1450,22 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    private class OnlyLettersSpacesComboBoxListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+
+        private OnlyLettersSpacesComboBoxListener(ComboBox pComboBox){
+            this.comboBox = pComboBox;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            comboBox.show();
+
+            if(!newValue.matches("[a-zA-Z ]*"))
+                comboBox.getEditor().setText(oldValue);
+        }
+    }
+
     private class ComboBoxValueListener implements ChangeListener<String> {
         private final ComboBox comboBox;
 
@@ -1503,15 +1475,20 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            currentSize = newValue;
-            root.requestFocus();
             if (comboBox.getId().equals("sizeSphereComboBox")) {
+                currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
             }else if (comboBox.getId().equals("fontSphereComboBox")){
-                //editFontSphere();
+                currentFont = newValue;
+                editFontSphere(currentFont);
             }else if (comboBox.getId().equals("sizeSymptomComboBox")) {
+                currentSize = newValue;
                 editFontSizeVertices(Integer.parseInt(currentSize));
+            }else if (comboBox.getId().equals("fontSymptomComboBox")) {
+                currentFont = newValue;
+                editFontVertex(currentFont);
             }
+            root.requestFocus();
         }
     }
 
@@ -1525,9 +1502,18 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
-                currentSize = comboBox.getEditor().getText();
-            } else
-                comboBox.getEditor().setText(currentSize);
+                if(comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
+                    currentSize = comboBox.getEditor().getText();
+                }else if(comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSphereComboBox")) {
+                    currentFont = comboBox.getEditor().getText();
+                }
+            } else {
+                if (comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
+                    comboBox.getEditor().setText(currentSize);
+                }else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSphereComboBox")) {
+                    comboBox.getEditor().setText(currentFont);
+                }
+            }
         }
     }
 
@@ -1545,18 +1531,22 @@ public class Controller implements ObserverSyndrom {
         edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
     }
 
-    private void loadFontComboBox(ComboBox comboBox) {
+    private void loadFontComboBox(ComboBox comboBox){
         ObservableList<String> fonts =
                 FXCollections.observableArrayList(
                         "AveriaSansLibre",
                         "Kalam",
                         "Mali",
                         "Roboto",
-                        "RobotoSlab"
+                        "RobotoSlab",
+                        "Times New Roman",
+                        "Comic Sans Ms"
                 );
 
         comboBox.setItems(fonts);
-
+        comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
+        comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
+        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
 
 
@@ -1579,7 +1569,7 @@ public class Controller implements ObserverSyndrom {
                         "96"
                 );
         comboBox.setItems(sizes);
-        comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
+        comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
