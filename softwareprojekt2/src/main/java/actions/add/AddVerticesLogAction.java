@@ -32,7 +32,6 @@ public class AddVerticesLogAction extends LogAction {
      */
     Map<Vertex, Pair<Integer, String>> vertexPairMap;
 
-    private Point2D pos;
 
     /**
      * The new position of the vertex.
@@ -83,11 +82,14 @@ public class AddVerticesLogAction extends LogAction {
             vv.getGraphLayout().setLocation(newVertex, position2D);
         }else{
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getParameter();
+            Map<Vertex, Sphere> newVertices = new HashMap<>();
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
                 Vertex vertex = entry.getKey();
                 Vertex newVertex = graph.addVertex(vertex.getCoordinates(), entry.getValue());
+                newVertices.put(newVertex, entry.getValue());
                 vv.getGraphLayout().setLocation(newVertex, newVertex.getCoordinates());
             }
+            parameters = new AddRemoveVerticesParam(newVertices);
         }
         vv.repaint();
         syndrom.getVv2().repaint();

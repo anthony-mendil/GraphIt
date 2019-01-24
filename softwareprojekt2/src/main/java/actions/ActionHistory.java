@@ -10,7 +10,7 @@ public class ActionHistory {
     /**
      * Upper bound of actions.
      */
-    private static final int maxActions = 10;
+    private static final int maxActions = 100;
 
     /**
      * Saved actions.
@@ -39,6 +39,9 @@ public class ActionHistory {
         }
         actions[current] = action;
         actions[current].action();
+        for(int i = current+1; i<maxActions; i++){
+            actions[i] = null;
+        }
 
     }
 
@@ -58,7 +61,6 @@ public class ActionHistory {
             current--;
         }catch(UnsupportedOperationException e){
             System.err.println("Can't undo further more actions.");
-            throw new UnsupportedOperationException();
 
         }
     }
@@ -68,11 +70,12 @@ public class ActionHistory {
      */
     public void redo() {
         try{
-            current++;
-            actions[current].action();
+            if(actions[current+1] != null) {
+                current++;
+                actions[current].action();
+            }
         }catch(UnsupportedOperationException e){
             System.err.println("Can't redo the latest action.");
-            throw new UnsupportedOperationException();
         }
     }
 }

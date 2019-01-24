@@ -6,6 +6,7 @@ import actions.edit.annotation.EditSphereAnnotationLogAction;
 import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
+import actions.move.MoveSphereLogAction;
 import actions.remove.RemoveSphereLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Pair;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -48,6 +50,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     private final Values values;
     private ContextMenu contextMenu;
     private final HelperFunctions helper;
+    /**
+     * The current position of the moving sphere.
+     */
+    private Point2D sphereCurrentPosition = null;
 
 
     /**
@@ -162,15 +168,15 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
              SyndromGraph graph = (SyndromGraph) vv.getGraphLayout().getGraph();
              List<Sphere> allSpheres = graph.getSpheres();
              SphereShapeTransformer sphereShapeTransformer = new SphereShapeTransformer();
-
              for (Sphere s : spheres) {
                  Shape sShape = sphereShapeTransformer.transform(s);
                  boolean move = true;
                  for (Sphere sphere: allSpheres){
-                     if (!s.equals(sphere)){
+                     if (!s.equals(sphere)) {
                          Shape sphereShape = sphereShapeTransformer.transform(sphere);
-                         if (sphereShape.intersects(sShape.getBounds())){
+                         if (sphereShape.intersects(sShape.getBounds())) {
                              move = false;
+
                          }
                      }
                  }
@@ -181,6 +187,11 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                          v.setCoordinates(vp);
                          vv.getGraphLayout().setLocation(v, vp);
                      }
+                 }
+                 else {
+                     MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s,spherePickedCoord ,sphereCurrentPosition);
+                     history.execute(moveSphereLogAction);
+
                  }
              }
              spherePickedCoord = null;
@@ -214,7 +225,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 double dx = graphPoint.getX() - graphDown.getX();
                 double dy = graphPoint.getY() - graphDown.getY();
                 PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
-
                 for (Sphere s : spherePickedState.getPicked()) {
                     if (downFirst == null) {
                         downFirst = s.getCoordinates();
@@ -222,6 +232,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
                     s.setCoordinates(new Point2D.Double(s.getCoordinates().getX() + dx, s.getCoordinates().getY() +
                             dy));
+                    sphereCurrentPosition = s.getCoordinates();
                     for (Vertex vertex : s.getVertices()) {
                         Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dx, vertex.getCoordinates()
                                 .getY() + dy);
