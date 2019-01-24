@@ -43,17 +43,16 @@ public class AddRemoveVerticesParam extends Param{
 
     @Override
     public String toString() {
-        int counter = 1;
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
             for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
-                information += "Symptom " + counter++ + ": " + SyndromObjectPrinter.vertexPrintEnglish(entry.getKey());
+                information += "Symptom: " + SyndromObjectPrinter.vertexPrintEnglish(entry.getKey());
                 information += "In Sphere: " + SyndromObjectPrinter.spherePrintEnglish(entry.getValue());
             }
         } else {
             for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
-                information += "Symptom " + counter++ + ": " + SyndromObjectPrinter.vertexPrintGerman(entry.getKey());
+                information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(entry.getKey());
                 information += "In Sphäre: " + SyndromObjectPrinter.spherePrintGerman(entry.getValue());
             }
         }
