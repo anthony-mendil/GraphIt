@@ -1291,13 +1291,11 @@ public class Controller implements ObserverSyndrom {
     public void createTemplateWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
-        fxmlLoader.setController(this);
+        fxmlLoader.setController(new TemplateController(templateStage));
         templateStage.setResizable(false);
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
-        templateStage.setAlwaysOnTop(true);
         templateStage.getIcons().add(new Image("/logo.png"));
-        templateStage.show();
     }
 
     public void showTemplateWindow(){
@@ -1504,13 +1502,13 @@ public class Controller implements ObserverSyndrom {
             if (newPropertyValue) {
                 if(comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
                     currentSize = comboBox.getEditor().getText();
-                }else if(comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSphereComboBox")) {
+                }else if(comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
                 if (comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
                     comboBox.getEditor().setText(currentSize);
-                }else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSphereComboBox")) {
+                }else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
                     comboBox.getEditor().setText(currentFont);
                 }
             }
@@ -1650,11 +1648,11 @@ public class Controller implements ObserverSyndrom {
         toolBarSeparator1.setManaged(active);
     }
 
-    /**
+    /*
      * Uses the provided swingnode to display the zoom window on it.
      *
      * @param swingNode The swingnode, that the fxml file provides.
-     */
+
     private void createSwingZoomWindow(final SwingNode swingNode) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -1662,12 +1660,13 @@ public class Controller implements ObserverSyndrom {
             }
         });
     }
+    */
 
-    /**
+    /*
      * Uses the provided swingnode to display the graph canvas on it.
      *
      * @param swingNode The swingnode, that the fxml file provides.
-     */
+
     private void createSwingCanvas(final SwingNode swingNode) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -1675,6 +1674,7 @@ public class Controller implements ObserverSyndrom {
             }
         });
     }
+    */
 
     public void buttonClicked2(ActionEvent actionEvent) {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
@@ -1718,14 +1718,15 @@ public class Controller implements ObserverSyndrom {
         values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
     }
 
-    /**
+    /*
      * The event handler that provides the arguments, needed to use the actions after choosing a colour.
-     */
+
     private class ColorPickerHandler implements EventHandler<Event> {
         @Override
         public void handle(Event evt) {
         }
     }
+     */
 
     @Override
     public void updateGraph() {
