@@ -1,7 +1,10 @@
 package log_management.parameters.add_remove;
 
 import graph.graph.Edge;
+import gui.Values;
+import gui.properties.Language;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -28,6 +31,19 @@ public class AddRemoveAnchorPointsParam extends Param {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        if (language == Language.ENGLISH) {
+            String list = "Relations:\n";
+            for (int i = 0; i < edges.size(); i++) {
+                list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i));
+            }
+            return list;
+        } else {
+            String list = "Relationen:\n";
+            for (int i = 0; i < edges.size(); i++) {
+                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i));
+            }
+            return list;
+        }
     }
 }
