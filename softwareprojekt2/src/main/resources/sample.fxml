@@ -182,7 +182,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                         </Separator>
-                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createTemplateWindow" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showTemplateWindow" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
                               <Tooltip text="Vorlage-Regeln setzen" />
                            </tooltip>
