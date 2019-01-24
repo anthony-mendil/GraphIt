@@ -42,7 +42,7 @@
                      <items>
                         <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="Neue Datei" />
                         <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#buttonClicked3" text="Datei öffnen" />
-                        <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#buttonClicked4" text="Importieren als GXL-Datei" />
+                        <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="Importieren als GXL-Datei" />
                         <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter.." />
                         <Menu mnemonicParsing="false" text="Exportieren als..">
                            <items>
@@ -182,7 +182,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                         </Separator>
-                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showTemplateWindow" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createTemplateWindow" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
                               <Tooltip text="Vorlage-Regeln setzen" />
                            </tooltip>
@@ -1011,8 +1011,8 @@
       </TitledPane>
    </right>
    <center>
-      <ScrollPane fx:id="paneSwingNode">
-         <SwingNode fx:id="canvas" />
+      <ScrollPane fx:id="paneSwingNode" focusTraversable="false">
+         <SwingNode fx:id="canvas" focusTraversable="false" />
       </ScrollPane>
 
 
