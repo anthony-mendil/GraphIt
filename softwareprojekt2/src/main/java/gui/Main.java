@@ -56,6 +56,7 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
         primaryStage.setMaximized(true);
+        controller.createTemplateWindow();
     }
 
     /**
