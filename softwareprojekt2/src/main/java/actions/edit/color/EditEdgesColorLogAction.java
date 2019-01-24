@@ -39,7 +39,7 @@ public class EditEdgesColorLogAction extends LogAction {
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
 
         for (Edge e: pickedState.getPicked()) {
-            e.setPaint(color);
+            e.setColor(color);
         }
         vv.repaint();
         syndrom.getVv2().repaint();

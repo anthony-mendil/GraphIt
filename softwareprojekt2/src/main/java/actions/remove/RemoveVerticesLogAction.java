@@ -69,6 +69,10 @@ public class RemoveVerticesLogAction extends LogAction {
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getParameter();
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
                 graph.removeVertex(entry.getKey());
+                Point2D posVertex = entry.getKey().getCoordinates();
+                posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
+                Sphere sp = pickSupport.getSphere(posVertex.getX(),posVertex.getY());
+                sp.getVertices().remove(entry.getKey());
             }
         }
         vv.repaint();

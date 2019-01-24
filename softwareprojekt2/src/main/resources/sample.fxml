@@ -42,7 +42,7 @@
                      <items>
                         <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="Neue Datei" />
                         <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#buttonClicked3" text="Datei öffnen" />
-                        <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#buttonClicked4" text="Importieren als GXL-Datei" />
+                        <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="Importieren als GXL-Datei" />
                         <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter.." />
                         <Menu mnemonicParsing="false" text="Exportieren als..">
                            <items>
@@ -73,7 +73,7 @@
                <items>
                   <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="318.0">
                      <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -88,7 +88,7 @@
                               <Tooltip text="Rückgängig" />
                            </tooltip>
                         </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -103,7 +103,7 @@
                               <Tooltip text="Wiederherstellen" />
                            </tooltip>
                         </Button>
-                        <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
+                        <Separator fx:id="toolBarSeparator1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -182,7 +182,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                         </Separator>
-                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createTemplateWindow" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showTemplateWindow" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
                               <Tooltip text="Vorlage-Regeln setzen" />
                            </tooltip>
@@ -196,7 +196,7 @@
             </ToolBar>
             <HBox prefHeight="58.0" prefWidth="621.0">
                <children>
-                  <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="450.0">
+                  <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="450.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sphäre">
                            <HBox.margin>
@@ -223,7 +223,7 @@
                                     <Tooltip text="Hinzufügen" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
@@ -282,9 +282,9 @@
                                  </tooltip>
                               </ColorPicker>
 
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
                               <ComboBox fx:id="fontSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
@@ -333,7 +333,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="555.0">
+                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="555.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                            <HBox.margin>
@@ -360,7 +360,7 @@
                                     <Tooltip text="Hinzufügen" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
@@ -477,9 +477,9 @@
                                     <Tooltip text="Automatische Anordnung" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
-                                    <Insets bottom="1.0" left="1.0" top="1.0" />
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
                               <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
@@ -514,32 +514,15 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="265.0">
+                  <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="290.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kante">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="290.0">
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0">
                            <children>
-                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="50.0" styleClass="button1" stylesheets="@gui_style.css">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/anchor.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
-                              <Separator orientation="VERTICAL" prefHeight="4.0" prefWidth="4.0">
-                                 <HBox.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </HBox.margin>
-                              </Separator>
                               <Button fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -555,6 +538,23 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
+                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/anchor.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
                               <Button fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -570,6 +570,11 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
                               <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editEdgesColor" prefHeight="30.0" prefWidth="46.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

@@ -171,6 +171,24 @@ public class Controller implements ObserverSyndrom {
     private MenuItem documentation;
 
     /**
+     * The button to undo an action.
+     */
+    @FXML
+    private Button undoButton;
+
+    /**
+     * The button to redo an action.
+     */
+    @FXML
+    private Button redoButton;
+
+    /**
+     * The separator between redo/undo and edit/analysis mode
+     */
+    @FXML
+    private Separator toolBarSeparator1;
+
+    /**
      * The button to change the gui layout to edit-mode
      */
     @FXML
@@ -1330,13 +1348,17 @@ public class Controller implements ObserverSyndrom {
         templateStage.setTitle("Vorlagenregeln");
         templateStage.setAlwaysOnTop(true);
         templateStage.getIcons().add(new Image("/logo.png"));
-        templateStage.show();
+    }
+
+    public void showTemplateWindow(){
+        if(!templateStage.isShowing()){
+            templateStage.show();
+        }
     }
 
     public void closeTemplateWindow() {
         if (templateStage.isShowing()) {
             templateStage.hide();
-            templateStage.close();
         }
     }
 
@@ -1485,7 +1507,9 @@ public class Controller implements ObserverSyndrom {
             root.requestFocus();
             if (comboBox.getId().equals("sizeSphereComboBox")) {
                 editFontSizeSphere(Integer.parseInt(currentSize));
-            } else if (comboBox.getId().equals("sizeSymptomComboBox")) {
+            }else if (comboBox.getId().equals("fontSphereComboBox")){
+                //editFontSphere();
+            }else if (comboBox.getId().equals("sizeSymptomComboBox")) {
                 editFontSizeVertices(Integer.parseInt(currentSize));
             }
         }
@@ -1500,7 +1524,6 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-            comboBox.show();
             if (newPropertyValue) {
                 currentSize = comboBox.getEditor().getText();
             } else
@@ -1533,6 +1556,7 @@ public class Controller implements ObserverSyndrom {
                 );
 
         comboBox.setItems(fonts);
+
     }
 
 
@@ -1561,7 +1585,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * The event handler that provides the arguments, needed to use the actions after clicking on a menuitem.
+     * The event handler that replace the images visible in the menubutton to the latest selected image.
      */
     private class MenuItemHandler implements EventHandler<ActionEvent> {
 
@@ -1625,6 +1649,15 @@ public class Controller implements ObserverSyndrom {
 
         templateButton.setVisible(active);
         templateButton.setManaged(active);
+
+        redoButton.setVisible(active);
+        redoButton.setManaged(active);
+
+        undoButton.setVisible(active);
+        undoButton.setManaged(active);
+
+        toolBarSeparator1.setVisible(active);
+        toolBarSeparator1.setManaged(active);
     }
 
     /**

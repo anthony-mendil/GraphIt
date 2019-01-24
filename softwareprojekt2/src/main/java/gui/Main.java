@@ -21,6 +21,9 @@ import lombok.Getter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Starts the whole application.
@@ -53,9 +56,8 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("/logo.png"));
         primaryStage.show();
         primaryStage.setMaximized(true);
+        controller.createTemplateWindow();
     }
-
-
 
     /**
      * Starts the application.
@@ -73,5 +75,12 @@ public class Main extends Application {
         entityManager.getEntityManagerFactory().close();
         entityManager.close();
 
+//        Values.getInstance().setGuiLanguage(Language.ENGLISH);
+//        List<Edge> list = new ArrayList<>();
+//        list.add(new Edge(1, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
+//        list.add(new Edge(2, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
+//        list.add(new Edge(3, new Color(45, 45, 200), StrokeType.BASIC_WEIGHT, EdgeArrowType.EXTENUATING, true, true));
+//        ActivateDeactivateAnchorPointsFadeoutParam test = new ActivateDeactivateAnchorPointsFadeoutParam(list);
+//        System.out.println(test);
     }
 }

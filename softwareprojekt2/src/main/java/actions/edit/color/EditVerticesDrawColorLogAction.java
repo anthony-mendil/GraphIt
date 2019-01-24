@@ -44,9 +44,9 @@ public class EditVerticesDrawColorLogAction extends LogAction {
             Map<Vertex, Paint> paramOldVertices = new HashMap<>();
             Map<Vertex, Paint> paramNewVertices = new HashMap<>();
             for (Vertex vertex: pickedStateVertex.getPicked()) {
-                paramOldVertices.put(vertex, vertex.getDrawPaint());
+                paramOldVertices.put(vertex, vertex.getDrawColor());
                 paramNewVertices.put(vertex, color);
-                vertex.setDrawPaint(color);
+                vertex.setDrawColor(color);
             }
             createParameter(paramOldVertices,paramNewVertices);
         }else{
@@ -54,7 +54,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
             Map<Vertex, Paint> newVertices = ((EditVerticesDrawColorParam)parameters).getNewVertices();
             for (Map.Entry<Vertex, Paint> entry : oldVertices.entrySet()){
                 Vertex target = entry.getKey();
-                target.setDrawPaint(newVertices.get(target));
+                target.setDrawColor((Color) newVertices.get(target));
             }
         }
         vv.repaint();
