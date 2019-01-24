@@ -2,6 +2,8 @@ package gui;
 
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
+import actions.activate.ActivateAnchorPointsFadeoutLogAction;
+import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
@@ -19,19 +21,13 @@ import actions.export_graph.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
+import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
-import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
-import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
-import edu.uci.ics.jung.visualization.control.ScalingControl;
-import edu.uci.ics.jung.visualization.transform.BidirectionalTransformer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import io.GXLio;
-import io.OOFio;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -42,33 +38,28 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Label;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -87,6 +78,11 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private SwingNode satellite;
+
+    /**
+     *
+     */
+    public ArrayList<Font> fonts;
 
     /**
      * The swing node that displays the zoom window.
@@ -174,6 +170,24 @@ public class Controller implements ObserverSyndrom {
     private MenuItem documentation;
 
     /**
+     * The button to undo an action.
+     */
+    @FXML
+    private Button undoButton;
+
+    /**
+     * The button to redo an action.
+     */
+    @FXML
+    private Button redoButton;
+
+    /**
+     * The separator between redo/undo and edit/analysis mode
+     */
+    @FXML
+    private Separator toolBarSeparator1;
+
+    /**
      * The button to change the gui layout to edit-mode
      */
     @FXML
@@ -202,36 +216,43 @@ public class Controller implements ObserverSyndrom {
     /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
      */
+    @FXML
     private TextField maxSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of symptoms in the graph".
      */
+    @FXML
     private TextField maxSymptomField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of symptoms in a sphere in the graph".
      */
+    @FXML
     private TextField maxSymptominSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of edges in the graph".
      */
+    @FXML
     private TextField maxEdgesField;
 
     /**
      * The checkbox for setting the template rule "allowing reinforced edges".
      */
+    @FXML
     private CheckBox reinforcedBox;
 
     /**
      * The checkbox for setting the template rule "allowing extenuating edges".
      */
+    @FXML
     private CheckBox extenuatingBox;
 
     /**
      * The checkbox for setting the template rule "allowing neutral edges".
      */
+    @FXML
     private CheckBox neutralBox;
 
     /* Analyse Mode */
@@ -382,12 +403,11 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ColorPicker sphereBackgroundColour;
 
-
     /**
-     * The textfield for changing the font of the sphere text.
+     * The combobox for changing the font of the symptom text.
      */
     @FXML
-    private TextField sphereSizeTextField;
+    private ComboBox fontSphereComboBox;
 
     /**
      * The menuitem for changing the font of the sphere text to a specific font.
@@ -435,30 +455,22 @@ public class Controller implements ObserverSyndrom {
     private MenuButton sphereFormMenuButton;
 
     /**
-     * The menubutton for changing the form of a symptom to a different form
+     * The menuitem for changing the form of a symptom to a circle.
      */
     @FXML
-    private MenuItem sphereForm1;
+    private MenuItem symptomCircle;
 
     /**
      * The menuitem for changing the form of a symptom to a rectangle.
      */
+    @FXML
     private MenuItem symptomRectangle;
 
     /**
-     * The menuitem for changing the form of a symptom to a circle.
+     * The combobox for changing the font of the symptom text.
      */
-    private MenuItem symptomCircle;
-
-    /**
-     * The menuitem for changing the form of a symptom to a ellipse.
-     */
-    private MenuItem symptomEllipse;
-
-    /**
-     * The textfield for changing the font of the symptom text.
-     */
-    private TextField symptomFontField;
+    @FXML
+    private ComboBox fontSymptomComboBox;
 
     /**
      * The menuitem for changing the font of the symptom text to a specific font.
@@ -494,41 +506,57 @@ public class Controller implements ObserverSyndrom {
     private ColorPicker edgeColour;
 
     /**
-     * The menuitem for changing the stroke type of edges to dashed.
+     * The menubutton for changing the stroke type of edges.
+     */
+    @FXML
+    private MenuButton edgeStrokeMenuButton;
+
+    /**
+     * The menuitem for changing the stroke type to the dashed stroke type.
      */
     @FXML
     private MenuItem edgeStrokeDashed;
 
     /**
-     * The menuitem for changing the stroke type of edges to weighted dashed.
+     * The menuitem for changing the stroke type to the dashed weighted stroke type.
      */
+    @FXML
     private MenuItem edgeStrokeDashedWeight;
 
     /**
-     * The menuitem for changing the stroke type of edges to dotted.
+     * The menuitem for changing the stroke type to the dotted stroke type.
      */
     @FXML
     private MenuItem edgeStrokeDotted;
 
     /**
-     * The menuitem for changing the stroke type of edges to weighted dotted.
+     * The menuitem for changing the stroke type to the dotted weighted stroke type.
      */
+    @FXML
     private MenuItem edgeStrokeDottedWeight;
 
     /**
-     * The menuitem for changing the stroke type of edges to basic.
+     * The menuitem for changing the stroke type to the basic stroke type.
      */
     @FXML
     private MenuItem edgeStrokeBasic;
 
     /**
-     * The menuitem for changing the stroke type of edges to weighted basic.
+     * The menuitem for changing the stroke type to the basic weighted stroke type.
      */
+    @FXML
     private MenuItem edgeStrokeBasicWeight;
+
+    /**
+     * The menubutton for changing the arrow type of edges.
+     */
+    @FXML
+    private MenuButton edgeArrowMenuButton;
 
     /**
      * The menuitem for changing the arrow type of edges to reinforced.
      */
+    @FXML
     private MenuItem edgeArrowReinforced;
 
     /**
@@ -670,7 +698,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * The combobox for changing the size of the sphere text.
-      */
+     */
     @FXML
     private ComboBox sizeSphereComboBox;
 
@@ -689,14 +717,8 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ButtonBar currentActionBox;
 
-    private VertexShapeType currentSymptomShape = VertexShapeType.CIRCLE;
-
     @FXML
-    private ImageView currentFormImage;
-
-    @FXML
-    private ImageView alternativeFormImage1;
-
+    private ToggleButton anchorPointsButton;
 
     public Controller() {
     }
@@ -790,17 +812,32 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesStrokeLogAction);
     }
 
-    public void edgeStrokeBasic(){
+    public void edgeStrokeBasic() {
         values.setStrokeEdge(StrokeType.BASIC);
         editEdgesStroke(StrokeType.BASIC);
     }
 
-    public void edgeStrokeDotted(){
+    public void edgeStrokeBasicWeighted() {
+        values.setStrokeEdge(StrokeType.BASIC_WEIGHT);
+        editEdgesStroke(StrokeType.BASIC_WEIGHT);
+    }
+
+    public void edgeStrokeDotted() {
+        values.setStrokeEdge(StrokeType.DOTTED);
+        editEdgesStroke(StrokeType.DOTTED);
+    }
+
+    public void edgeStrokeDottedWeighted() {
         values.setStrokeEdge(StrokeType.DOTTED_WEIGHT);
         editEdgesStroke(StrokeType.DOTTED_WEIGHT);
     }
 
-    public void edgeStrokeDashed(){
+    public void edgeStrokeDashed() {
+        values.setStrokeEdge(StrokeType.DASHED);
+        editEdgesStroke(StrokeType.DASHED);
+    }
+
+    public void edgeStrokeDashedWeighted() {
         values.setStrokeEdge(StrokeType.DASHED_WEIGHT);
         editEdgesStroke(StrokeType.DASHED_WEIGHT);
     }
@@ -813,12 +850,17 @@ public class Controller implements ObserverSyndrom {
         history.execute(editEdgesTypeLogAction);
     }
 
-    public void edgeExtenuating(){
+    public void edgeReinforced() {
+        values.setEdgeArrowType(EdgeArrowType.REINFORCED);
+        editEdgesType(EdgeArrowType.REINFORCED);
+    }
+
+    public void edgeExtenuating() {
         values.setEdgeArrowType(EdgeArrowType.EXTENUATING);
         editEdgesType(EdgeArrowType.EXTENUATING);
     }
 
-    public void edgeNeutral(){
+    public void edgeNeutral() {
         values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         editEdgesType(EdgeArrowType.NEUTRAL);
     }
@@ -849,6 +891,21 @@ public class Controller implements ObserverSyndrom {
         Values.getInstance().setEdgePaint(color);
         EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(color);
         history.execute(editEdgesColorLogAction);
+    }
+
+    public void anchorPointsEdge() {
+        if (anchorPointsButton.isSelected()) {
+            DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
+            history.execute(deactivateAnchorPointsFadeoutLogAction);
+        } else {
+            ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
+            history.execute(activateAnchorPointsFadeoutLogAction);
+        }
+    }
+
+    public void removeAnchor() {
+        RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
+        history.execute(removeAnchorPointsLogAction);
     }
 
     /**
@@ -946,14 +1003,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(editFontSizeSphereLogAction);
     }
 
-    public void fontSize2() {
-        editFontSizeSphere(14);
-    }
-
-    public void fontSize1() {
-        editFontSizeSphere(13);
-    }
-
     public void sphereAutoLayout() {
         LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
         layoutSphereGraphLogAction.action();
@@ -985,20 +1034,14 @@ public class Controller implements ObserverSyndrom {
         history.execute(editVerticesFormLogAction);
     }
 
-    public void verticesForm1() {
+    public void verticesCircle() {
         editVerticesForm(VertexShapeType.CIRCLE);
-        EventHandler currentAction = sphereFormMenuButton.getOnAction();
-
-        sphereFormMenuButton.setOnAction(sphereForm1.getOnAction());
-        sphereForm1.setOnAction(currentAction);
     }
-    public void verticesForm2() {
+
+    public void verticesRectangle() {
         editVerticesForm(VertexShapeType.RECTANGLE);
-        EventHandler currentAction = sphereFormMenuButton.getOnAction();
-
-        sphereFormMenuButton.setOnAction(sphereForm1.getOnAction());
-        sphereForm1.setOnAction(currentAction);
     }
+
     /* ----------------EXPORT---------------------- */
 
     /**
@@ -1225,7 +1268,13 @@ public class Controller implements ObserverSyndrom {
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
-        throw new UnsupportedOperationException();
+        /*Template temp = new Template();
+
+            temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
+            temp.setMaxVertexCounter(Integer.parseInt(maxSymptomField.getText()));
+            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.toString()));
+
+        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);*/
     }
 
     /**
@@ -1246,13 +1295,18 @@ public class Controller implements ObserverSyndrom {
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
         templateStage.setAlwaysOnTop(true);
-        templateStage.show();
+        templateStage.getIcons().add(new Image("/logo.png"));
+    }
+
+    public void showTemplateWindow(){
+        if(!templateStage.isShowing()){
+            templateStage.show();
+        }
     }
 
     public void closeTemplateWindow() {
         if (templateStage.isShowing()) {
             templateStage.hide();
-            templateStage.close();
         }
     }
 
@@ -1262,6 +1316,7 @@ public class Controller implements ObserverSyndrom {
      * Loads the swingnodes and sets the event handlers for menuitems and color pickers.
      */
     public void initialize() {
+        initFonts();
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
@@ -1274,9 +1329,11 @@ public class Controller implements ObserverSyndrom {
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
 
-        loadComboBox(sizeSphereComboBox);
-        loadComboBox(sizeSymptomComboBox);
-        sphereForm1.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
+        loadSizeComboBox(sizeSphereComboBox);
+        loadSizeComboBox(sizeSymptomComboBox);
+        loadMenuItem();
+        loadFontComboBox(fontSphereComboBox);
+        loadFontComboBox(fontSymptomComboBox);
 
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
@@ -1296,6 +1353,25 @@ public class Controller implements ObserverSyndrom {
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
     }
 
+    private void initFonts() {
+
+        fonts = new ArrayList<Font>();
+
+        try {
+            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Mali-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            fonts.add(roboto);
+            fonts.add(robotoSlab);
+            fonts.add(averiaSansLibre);
+            fonts.add(kalam);
+            fonts.add(mali);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     ChangeListener<Number> changeZoom = new ChangeListener<Number>() {
@@ -1348,56 +1424,92 @@ public class Controller implements ObserverSyndrom {
         }
     };
 
-    private class ComboBoxListener implements ChangeListener<String>{
+    private class ComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
-        private ComboBoxListener(ComboBox pComboBox){
+
+        private ComboBoxListener(ComboBox pComboBox) {
             this.comboBox = pComboBox;
         }
 
         @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             comboBox.show();
-            if(!newValue.matches("\\d*"))
+            if (!newValue.matches("\\d*"))
                 comboBox.getEditor().setText(oldValue);
 
-            if(comboBox.getEditor().getText().length() > 3)
+            if (comboBox.getEditor().getText().length() > 3)
                 comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
         }
     }
 
-    private class ComboBoxValueListener implements ChangeListener<String>{
+    private class ComboBoxValueListener implements ChangeListener<String> {
         private final ComboBox comboBox;
-        private ComboBoxValueListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        private ComboBoxValueListener(ComboBox pComboBox) {
+            this.comboBox = pComboBox;
+        }
 
         @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             currentSize = newValue;
             root.requestFocus();
-            if(comboBox.getId().equals("sizeSphereComboBox")){
+            if (comboBox.getId().equals("sizeSphereComboBox")) {
                 editFontSizeSphere(Integer.parseInt(currentSize));
-            }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+            }else if (comboBox.getId().equals("fontSphereComboBox")){
+                //editFontSphere();
+            }else if (comboBox.getId().equals("sizeSymptomComboBox")) {
                 editFontSizeVertices(Integer.parseInt(currentSize));
             }
         }
     }
 
-    private class ComboBoxFocusListener implements ChangeListener<Boolean>{
+    private class ComboBoxFocusListener implements ChangeListener<Boolean> {
         private final ComboBox comboBox;
-        private ComboBoxFocusListener(ComboBox pComboBox){ this.comboBox = pComboBox; }
+
+        private ComboBoxFocusListener(ComboBox pComboBox) {
+            this.comboBox = pComboBox;
+        }
 
         @Override
-        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
-        {
-            comboBox.show();
+        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
                 currentSize = comboBox.getEditor().getText();
-            }
-            else
+            } else
                 comboBox.getEditor().setText(currentSize);
         }
     }
-    private void loadComboBox(ComboBox comboBox) {
-        ObservableList<String> options =
+
+    private void loadMenuItem() {
+        symptomCircle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
+        symptomRectangle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
+        edgeStrokeBasic.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeBasicWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDashed.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDashedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDotted.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeStrokeDottedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
+        edgeArrowReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
+        edgeArrowExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
+        edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
+    }
+
+    private void loadFontComboBox(ComboBox comboBox){
+        ObservableList<String> fonts =
+                FXCollections.observableArrayList(
+                        "AveriaSansLibre",
+                        "Kalam",
+                        "Mali",
+                        "Roboto",
+                        "RobotoSlab"
+                );
+
+        comboBox.setItems(fonts);
+
+    }
+
+
+    private void loadSizeComboBox(ComboBox comboBox) {
+        ObservableList<String> sizes =
                 FXCollections.observableArrayList(
                         "8",
                         "9",
@@ -1414,31 +1526,29 @@ public class Controller implements ObserverSyndrom {
                         "72",
                         "96"
                 );
-        comboBox.setItems(options);
+        comboBox.setItems(sizes);
         comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
 
     /**
-     * The event handler that provides the arguments, needed to use the actions after clicking on a menuitem.
+     * The event handler that replace the images visible in the menubutton to the latest selected image.
      */
-    private class MenuItemHandler implements EventHandler<ActionEvent>{
+    private class MenuItemHandler implements EventHandler<ActionEvent> {
 
         private final MenuButton menuButton;
 
-        public MenuItemHandler(MenuButton pMenuButton){
+        public MenuItemHandler(MenuButton pMenuButton) {
             menuButton = pMenuButton;
         }
 
         @Override
         public void handle(ActionEvent evt) {
-            System.out.println("EVENTHANDLER");
-            MenuItem mnItm = (MenuItem)evt.getSource();
-            javafx.scene.Node currentImage = menuButton.getGraphic();
-
-            menuButton.setGraphic(mnItm.getGraphic());
-            mnItm.setGraphic(currentImage);
+            MenuItem mnItm = (MenuItem) evt.getSource();
+            ImageView newImage = (ImageView) mnItm.getGraphic();
+            ImageView currentImage = (ImageView) menuButton.getGraphic();
+            currentImage.setImage(newImage.getImage());
         }
     }
 
@@ -1487,6 +1597,15 @@ public class Controller implements ObserverSyndrom {
 
         templateButton.setVisible(active);
         templateButton.setManaged(active);
+
+        redoButton.setVisible(active);
+        redoButton.setManaged(active);
+
+        undoButton.setVisible(active);
+        undoButton.setManaged(active);
+
+        toolBarSeparator1.setVisible(active);
+        toolBarSeparator1.setManaged(active);
     }
 
     /**

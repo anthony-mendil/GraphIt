@@ -3,7 +3,10 @@ package log_management.parameters.activate_deactivate;
 import graph.graph.Edge;
 import gui.Values;
 import gui.properties.Language;
+import log_management.parameters.ColorNameCreator;
+import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -33,17 +36,15 @@ public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
     public String toString() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
-            String list = "";
+            String list = "Relations:\n";
             for (int i = 0; i < edges.size(); i++) {
-                list += "Id: " + edges.get(i).getId() + " Stroke type: " + edges.get(i).getStroke().name()
-                        + " Arrow type: " + edges.get(i).getArrowType().name();
+                list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i));
             }
             return list;
         } else {
-            String list = "";
+            String list = "Relationen:\n";
             for (int i = 0; i < edges.size(); i++) {
-                list += "Id: " + edges.get(i).getId() + " Linienart: " + edges.get(i).getStroke().name()
-                        + " Relationsart: " + edges.get(i).getArrowType().name();
+                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i));
             }
             return list;
         }

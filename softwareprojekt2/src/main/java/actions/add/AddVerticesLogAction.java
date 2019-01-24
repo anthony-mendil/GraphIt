@@ -32,7 +32,6 @@ public class AddVerticesLogAction extends LogAction {
      */
     Map<Vertex, Pair<Integer, String>> vertexPairMap;
 
-    private Point2D pos;
 
     /**
      * The new position of the vertex.
@@ -76,18 +75,20 @@ public class AddVerticesLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null){
-            position2D = vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.LAYOUT).inverseTransform(position2D);
-
+            position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
             Vertex newVertex = graph.addVertex(position2D, sphere);
             createParameter(newVertex, sphere);
             vv.getGraphLayout().setLocation(newVertex, position2D);
         }else{
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getParameter();
+            Map<Vertex, Sphere> newVertices = new HashMap<>();
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
                 Vertex vertex = entry.getKey();
                 Vertex newVertex = graph.addVertex(vertex.getCoordinates(), entry.getValue());
+                newVertices.put(newVertex, entry.getValue());
                 vv.getGraphLayout().setLocation(newVertex, newVertex.getCoordinates());
             }
+            parameters = new AddRemoveVerticesParam(newVertices);
         }
         vv.repaint();
         syndrom.getVv2().repaint();

@@ -37,12 +37,12 @@ public class GraphObjectsFactory {
     public Edge createEdge() {
 
        int id = objectCounter++;
-       Paint paint = values.getEdgePaint();
+       Color color = values.getEdgePaint();
        StrokeType stroke = values.getStrokeEdge();
        EdgeArrowType arrowType = values.getEdgeArrowType();
        boolean hasAnchor = false;
        boolean isVisible = true;
-       return new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
+       return new Edge(id, color, stroke, arrowType, hasAnchor, isVisible);
     }
 
     /**
@@ -51,7 +51,7 @@ public class GraphObjectsFactory {
      */
     public Vertex createVertex(Point2D position) {
         int id = objectCounter++;
-        Paint fillPaint = values.getFillPaintVertex();
+        Color fillPaint = values.getFillPaintVertex();
         Color drawPaint = values.getDrawPaintVertex();
         Map<String, String> annotation = values.getDefaultAnnotationVertex();
         String font = values.getFontVertex();

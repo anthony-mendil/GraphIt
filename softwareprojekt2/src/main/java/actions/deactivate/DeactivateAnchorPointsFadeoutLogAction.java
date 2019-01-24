@@ -2,6 +2,10 @@ package actions.deactivate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import graph.graph.Edge;
+import graph.graph.Vertex;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 
 /**
@@ -19,9 +23,20 @@ public class DeactivateAnchorPointsFadeoutLogAction extends LogAction {
         super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
     }
 
+    public DeactivateAnchorPointsFadeoutLogAction(){
+        super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
+    }
+
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
+        syndrom.getVv().getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintAnchorTransformer<>());
+        syndrom.getVv().getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintAnchorTransformer<>());
+        syndrom.getVv2().getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintAnchorTransformer<>());
+        syndrom.getVv2().getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintAnchorTransformer<>());
+        vv.repaint();
+        vv2.repaint();
     }
 
     @Override

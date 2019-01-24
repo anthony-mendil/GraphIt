@@ -71,12 +71,12 @@ public class Syndrom {
      * Defines a functor that transform an edge into its arrow draw color. The input edge is left unchanged.
      * Its extracting the arrow draw color of an edge.
      */
-    private EdgeArrowDrawPaintTransformer arrowDrawPaint;
+    private EdgeArrowFillPaintTransformer arrowDrawPaint;
     /**
      * Defines a functor that transform an edge into its edge arrow fill color. The input edge is left unchanged.
      * Its extracting the arrow fill color of an edge.
      */
-    private EdgeArrowFillPaintTransformer arrowFillPaint;
+    private EdgeArrowFillPaintAnchorTransformer arrowFillPaint;
     /**
      * Defines a functor that transform an edge into its edge arrow type. The input edge is left unchanged.
      * Its extracting the edge arrow type.
@@ -267,6 +267,7 @@ public class Syndrom {
         vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vv.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
         vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<Edge>(vv));
+
         vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
 

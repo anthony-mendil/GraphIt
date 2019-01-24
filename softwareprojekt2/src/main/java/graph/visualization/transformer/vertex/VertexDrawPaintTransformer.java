@@ -15,6 +15,6 @@ public class VertexDrawPaintTransformer<V> implements Transformer<V, Paint> {
     @Override
     public Paint transform(V v){
         Vertex vertex = (Vertex) v;
-        return vertex.getDrawPaint();
+        return vertex.getDrawColor();
     }
 }

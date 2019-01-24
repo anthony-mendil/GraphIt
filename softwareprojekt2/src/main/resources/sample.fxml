@@ -17,6 +17,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.TreeView?>
@@ -72,7 +73,7 @@
                <items>
                   <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="318.0">
                      <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -87,7 +88,7 @@
                               <Tooltip text="Rückgängig" />
                            </tooltip>
                         </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -102,7 +103,7 @@
                               <Tooltip text="Wiederherstellen" />
                            </tooltip>
                         </Button>
-                        <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
+                        <Separator fx:id="toolBarSeparator1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -162,14 +163,6 @@
                         </Separator>
                         <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
-                              <Tooltip text="Layout" />
-                           </tooltip>
-                           <HBox.margin>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
-                           <tooltip>
                               <Tooltip text="Ausgeblendete Elemente einblenden" />
                            </tooltip>
                            <HBox.margin>
@@ -189,7 +182,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                         </Separator>
-                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createTemplateWindow" prefHeight="23.0" prefWidth="26.0">
+                        <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showTemplateWindow" prefHeight="23.0" prefWidth="26.0">
                            <tooltip>
                               <Tooltip text="Vorlage-Regeln setzen" />
                            </tooltip>
@@ -203,7 +196,7 @@
             </ToolBar>
             <HBox prefHeight="58.0" prefWidth="621.0">
                <children>
-                  <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="450.0">
+                  <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="450.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sphäre">
                            <HBox.margin>
@@ -230,7 +223,7 @@
                                     <Tooltip text="Hinzufügen" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
@@ -289,9 +282,9 @@
                                  </tooltip>
                               </ColorPicker>
 
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
                               <ComboBox fx:id="fontSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
@@ -340,7 +333,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="555.0">
+                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="555.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                            <HBox.margin>
@@ -367,7 +360,7 @@
                                     <Tooltip text="Hinzufügen" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
@@ -434,14 +427,23 @@
                                     <Tooltip text="Randfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verticesForm1" prefHeight="30.0" prefWidth="50.0">
+                              <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <items>
-                                    <MenuItem fx:id="sphereForm1" mnemonicParsing="false" onAction="#verticesForm2">
+                                    <MenuItem fx:id="symptomCircle" mnemonicParsing="false" onAction="#verticesCircle">
                                        <graphic>
-                                          <ImageView fx:id="alternativeFormImage1" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/015-circle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem fx:id="symptomRectangle" mnemonicParsing="false" onAction="#verticesRectangle">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@icons2/023-square-1.png" />
                                              </image>
@@ -453,7 +455,7 @@
                                     <Tooltip text="Form" />
                                  </tooltip>
                                  <graphic>
-                                    <ImageView fx:id="currentFormImage" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icons2/015-circle.png" />
                                        </image>
@@ -475,9 +477,9 @@
                                     <Tooltip text="Automatische Anordnung" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
-                                    <Insets bottom="1.0" left="1.0" top="1.0" />
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
                               </Separator>
                               <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
@@ -512,14 +514,14 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="265.0">
+                  <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="290.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kante">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="290.0">
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0">
                            <children>
                               <Button fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
                                  <HBox.margin>
@@ -536,7 +538,39 @@
                                     <Tooltip text="Löschen" />
                                  </tooltip>
                               </Button>
-                              <Separator orientation="VERTICAL" prefHeight="4.0" prefWidth="4.0">
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
+                                 <HBox.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </HBox.margin>
+                              </Separator>
+                              <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/anchor.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                              <Button fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/unlink.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Löschen" />
+                                 </tooltip>
+                              </Button>
+                              <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
@@ -549,7 +583,7 @@
                                     <Tooltip text="Kantenfarbe" />
                                  </tooltip>
                               </ColorPicker>
-                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                              <MenuButton fx:id="edgeStrokeMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeStrokeBasic" prefHeight="30.0" prefWidth="50.0">
                                  <graphic>
                                     <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -562,7 +596,16 @@
                                        <graphic>
                                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@icons2/015-circle.png" />
+                                                <Image url="@icons2/021-line.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem fx:id="edgeStrokeBasicWeight" mnemonicParsing="false" onAction="#edgeStrokeBasicWeighted">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/021-line.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -576,6 +619,15 @@
                                              </ImageView>
                                          </graphic>
                                      </MenuItem>
+                                    <MenuItem fx:id="edgeStrokeDottedWeight" mnemonicParsing="false" onAction="#edgeStrokeDottedWeighted">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/dotted.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
                                      <MenuItem fx:id="edgeStrokeDashed" mnemonicParsing="false" onAction="#edgeStrokeDashed">
                                          <graphic>
                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -585,6 +637,15 @@
                                              </ImageView>
                                          </graphic>
                                      </MenuItem>
+                                    <MenuItem fx:id="edgeStrokeDashedWeight" mnemonicParsing="false" onAction="#edgeStrokeDashedWeighted">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/015-circle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
                                  </items>
                                  <tooltip>
                                     <Tooltip text="Kantenart" />
@@ -593,7 +654,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                               </MenuButton>
-                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                              <MenuButton fx:id="edgeArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
                                  <graphic>
                                     <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -602,6 +663,15 @@
                                     </ImageView>
                                  </graphic>
                                  <items>
+                                    <MenuItem fx:id="edgeArrowReinforced" mnemonicParsing="false" onAction="#edgeReinforced">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@icons2/005-right-chevron.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </MenuItem>
                                     <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false" onAction="#edgeExtenuating">
                                        <graphic>
                                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">

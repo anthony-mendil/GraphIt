@@ -50,13 +50,13 @@ public class EditSphereColorLogAction extends LogAction {
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
     if(parameters == null) {
         for (Sphere sp : pickedState.getPicked()) {
-            createParameter(sp, sp.getFillPaint(), color);
-            sp.setFillPaint(color);
+            createParameter(sp, sp.getColor(), color);
+            sp.setColor(color);
         }
     }else{
         Sphere sphere = ((EditSphereColorParam)parameters).getSphere();
-        Paint newColor = ((EditSphereColorParam)parameters).getNewColor();
-            sphere.setFillPaint(newColor);
+        Color newColor = ((EditSphereColorParam)parameters).getNewColor();
+            sphere.setColor(newColor);
         }
         vv.repaint();
         syndrom.getVv2().repaint();
@@ -68,8 +68,8 @@ public class EditSphereColorLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Paint oldColor = ((EditSphereColorParam)parameters).getOldColor();
-        Paint newColor = ((EditSphereColorParam)parameters).getNewColor();
+        Color oldColor = ((EditSphereColorParam)parameters).getOldColor();
+        Color newColor = ((EditSphereColorParam)parameters).getNewColor();
         Sphere sphere  = ((EditSphereColorParam)parameters).getSphere();
         EditSphereColorParam editSphereColorParam = new EditSphereColorParam(sphere, newColor,oldColor);
         EditSphereColorLogAction editSphereColorLogAction = new EditSphereColorLogAction(editSphereColorParam);
@@ -78,7 +78,7 @@ public class EditSphereColorLogAction extends LogAction {
     }
 
 
-    public void createParameter(Sphere sphere, Paint oldColor, Paint newColor) {
+    public void createParameter(Sphere sphere, Color oldColor, Color newColor) {
         parameters = new EditSphereColorParam(sphere,oldColor, newColor);
     }
 }

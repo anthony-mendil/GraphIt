@@ -116,7 +116,7 @@ public class Values {
     /**
      * The edge arrow type.
      */
-    private EdgeArrowType edgeArrowType = EdgeArrowType.EXTENUATING;
+    private EdgeArrowType edgeArrowType = EdgeArrowType.REINFORCED;
     /**
      * The actual graph button type, pressed in the gui.
      */

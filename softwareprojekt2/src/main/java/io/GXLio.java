@@ -342,7 +342,7 @@ public class GXLio {
             //gxlSyndrom.add(sphere);
             // sphere.setID("" + s.getId());
             sphere.setAttr("TYPE", new GXLString("Sphäre"));
-            Color color = (Color) s.getFillPaint();
+            Color color = s.getColor();
             System.out.println("color sphere: "+color);
             sphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
             sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
@@ -378,7 +378,7 @@ public class GXLio {
 
                 // rel.add(new GXLRelend(singleNodeInSphere));
                 singleNodeInSphere.setAttr("TYPE", new GXLString("Node"));
-                Color color = (Color) v.getFillPaint();
+                Color color = v.getFillColor();
                 singleNodeInSphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
                 singleNodeInSphere.setAttr("coordinate", new GXLString("" + v.getCoordinates().toString()));
                 singleNodeInSphere.setAttr("shape", new GXLString("" + v.getShape()));
@@ -389,7 +389,7 @@ public class GXLio {
                     }
                 }
                 singleNodeInSphere.setAttr("annotation", new GXLString(nodeAnnotationContent));
-                Color drawPaint = (Color) v.getDrawPaint();
+                Color drawPaint = (Color) v.getDrawColor();
                 singleNodeInSphere.setAttr("drawPaint", new GXLString(getPaintDescription(drawPaint)));
                 if (v.getVertexArrowReinforced() != null) {
                     singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
@@ -422,13 +422,13 @@ public class GXLio {
             edge.setID(e.getId() + "");
 
             edge.setAttr("TYPE", new GXLString("Edge"));
-            Color color = (Color) e.getPaint();
+            Color color = (Color) e.getColor();
             edge.setAttr("paint", new GXLString(getPaintDescription(color)));
             // edge.setAttr("paint", new GXLString(e.getPaint() + ""));
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
-            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorAngle()));
+            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
         }
@@ -451,7 +451,6 @@ public class GXLio {
     public String gxlFromInstance(){
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        System.out.println("size: "+theGraph.getSpheres().size());
         List<Sphere> currentSpheres = theGraph.getSpheres();
 
         GXLDocument doc = new GXLDocument();
@@ -481,12 +480,11 @@ public class GXLio {
         */
    GXLGraph gxlSyndrom = new GXLGraph("syndrom");
         for (Sphere s : theGraph.getSpheres()) {
-            System.out.println("huhu");
             GXLNode sphere = new GXLNode(s.getId() + "");
             //gxlSyndrom.add(sphere);
             // sphere.setID("" + s.getId());
             sphere.setAttr("TYPE", new GXLString("Sphäre"));
-            Color color = (Color) s.getFillPaint();
+            Color color = s.getColor();
             sphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
             sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
             sphere.setAttr("width", new GXLString("" + s.getWidth()));
@@ -512,7 +510,6 @@ public class GXLio {
             sphere.setAttr("IDs of nodes containt in this shpere: ", new GXLString(nodeIDs));
             gxlSyndrom.add(sphere);
         }
-        System.out.println("anzahl Kn.");
         for(Sphere s : currentSpheres) {
             // GXLRel rel = new GXLRel();
             for (Vertex v : s.getVertices()) {
@@ -522,7 +519,7 @@ public class GXLio {
 
                 // rel.add(new GXLRelend(singleNodeInSphere));
                 singleNodeInSphere.setAttr("TYPE", new GXLString("Node"));
-                Color color = (Color) v.getFillPaint();
+                Color color = v.getFillColor();
                 singleNodeInSphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
                 singleNodeInSphere.setAttr("coordinate", new GXLString("" + v.getCoordinates().toString()));
                 singleNodeInSphere.setAttr("shape", new GXLString("" + v.getShape()));
@@ -533,7 +530,7 @@ public class GXLio {
                     }
                 }
                 singleNodeInSphere.setAttr("annotation", new GXLString(nodeAnnotationContent));
-                Color drawPaint = (Color) v.getDrawPaint();
+                Color drawPaint = (Color) v.getDrawColor();
                 singleNodeInSphere.setAttr("drawPaint", new GXLString(getPaintDescription(drawPaint)));
                 if (v.getVertexArrowReinforced() != null) {
                     singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
@@ -560,26 +557,24 @@ public class GXLio {
             // GXLEdge edge = new GXLEdge((GXLNode) doc.getElement(s.getId() + ""), rel);
 
         }
-        System.out.println("Anzahl Kanten:");
         for(Edge e : theGraph.getEdges()) {
             Pair<Vertex> verticesOfEdge = theGraph.getEndpoints(e);
             GXLEdge edge = new GXLEdge(verticesOfEdge.getFirst().getId() + "", verticesOfEdge.getSecond().getId() + "");
             edge.setID(e.getId() + "");
 
             edge.setAttr("TYPE", new GXLString("Edge"));
-            Color color = (Color) e.getPaint();
+            Color color = (Color) e.getColor();
             edge.setAttr("paint", new GXLString(getPaintDescription(color)));
             // edge.setAttr("paint", new GXLString(e.getPaint() + ""));
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
-            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorAngle()));
+            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
         }
 
         doc.getDocumentElement().add(gxlSyndrom);
-        System.out.println("gxlSyndrom wurde dem Dokument hinzugefügt.");
         try {
             doc.write(file);
         }catch(Exception e){}

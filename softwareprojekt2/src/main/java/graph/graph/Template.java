@@ -53,7 +53,18 @@ public class Template {
     /**
      * Creates a new Template object.
      */
-    public Template() {
-        throw new UnsupportedOperationException();
+    public Template(int pMaxSphereCounter, int pMaxVertexCounter, int pMaxVertexInSphereCounter, int pMaxEdgeCounter,
+                    List<Integer> pNameLockedObjects, List<Integer> pColorLockedObjects, List<Integer> pIsLockedObjects,
+                    List<EdgeArrowType> pAllowedEdgeTypes) {
+
+        maxSphereCounter = pMaxSphereCounter;
+        maxVertexCounter = pMaxVertexCounter;
+        maxVertexCounter = pMaxVertexInSphereCounter;
+        maxEdgeCounter = pMaxEdgeCounter;
+        nameLockedObjects = pNameLockedObjects;
+        colorLockedObjects = pColorLockedObjects;
+        isLockedObjects = pIsLockedObjects;
+        allowedEdgeTypes = pAllowedEdgeTypes;
+
     }
 }

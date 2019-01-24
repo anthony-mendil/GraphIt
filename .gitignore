@@ -11,4 +11,4 @@ software-project-2.iml
 *tasks.xml
 *.idea/modules.xml
 *.idea/libraries/*
-/softwareprojekt2/logs/log.out
+*.out

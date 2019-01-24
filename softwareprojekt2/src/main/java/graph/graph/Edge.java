@@ -23,7 +23,7 @@ public class Edge {
      * The fill color of the edge/arrow.
      */
     @NonNull
-    private Paint paint;
+    private Color color;
     /**
      * The stroke type of the edge.
      */
@@ -41,20 +41,16 @@ public class Edge {
     private boolean hasAnchor;
 
     private Point2D anchorPoint;
-    /**
-     * Defines the degree to which the anchor point is attached to the vertex.
-     */
-    @NonNull
-    private double anchorAngle;
+
     /**
      * Defines whether a edge is visible or not.
      */
     @NonNull
     private boolean isVisible;
 
-    public Edge(int id, Paint paint, StrokeType stroke, EdgeArrowType arrowType, boolean hasAnchor, boolean isVisible){
+    public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean hasAnchor, boolean isVisible){
         this.id = id;
-        this.paint = paint;
+        this.color = color;
         this.stroke = stroke;
         this.arrowType = arrowType;
         this.hasAnchor = hasAnchor;

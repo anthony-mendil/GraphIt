@@ -25,7 +25,7 @@ public class Sphere {
      * The fill color of the sphere.
      */
     @NonNull
-    private Paint fillPaint;
+    private Color color;
 
     /**
      * The coordinate of the sphere. The coordinate refers to the upper left corner of a sphere. A sphere can
@@ -70,10 +70,10 @@ public class Sphere {
     @NonNull
     private int fontSize;
 
-    public Sphere(int id, Paint fillPaint, Point2D coordinates, double width, double height, Map<String, String>
+    public Sphere(int id, Color color, Point2D coordinates, double width, double height, Map<String, String>
             annotation, String font, int fontSize ){
         this.id = id;
-        this.fillPaint = fillPaint;
+        this.color = color;
         this.coordinates = coordinates;
         this.width = width;
         this.height = height;
