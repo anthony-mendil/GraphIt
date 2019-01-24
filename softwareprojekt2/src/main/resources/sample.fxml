@@ -41,7 +41,7 @@
                      <items>
                         <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="Neue Datei" />
                         <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#buttonClicked3" text="Datei öffnen" />
-                        <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#buttonClicked4" text="Importieren als GXL-Datei" />
+                        <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="Importieren als GXL-Datei" />
                         <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter.." />
                         <Menu mnemonicParsing="false" text="Exportieren als..">
                            <items>

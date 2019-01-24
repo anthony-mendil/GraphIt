@@ -5,11 +5,13 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.dao.GraphDao;
 import net.sourceforge.gxl.*;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,7 +55,7 @@ public class GXLio {
      * @param pGXL The GXL representation that gets written into syndrom.
      */
     protected void gxlToInstance(String pGXL){
-
+    System.out.println("Methode gxlToInstance() wurde aufgerufen.");
         try { GXLDocument doc = new GXLDocument(file);
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
             if (gxlGraph == null) {
@@ -76,9 +78,9 @@ public class GXLio {
                 if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Sphäre")) {
                     //   System.out.println("Sphäre gefunden");
                     int id = Integer.parseInt(elem.getID());
-                    //  System.out.println("id: " + id);
-                    //   System.out.println("before fillPaint: " + getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue()).get(0));
-                    //
+                    System.out.println("id: " + id);
+                  //  System.out.println("before fillPaint: " + getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue()).get(0));
+
                     String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
                     Color paint = new Color(
                             Integer.parseInt(paintArray[0]),
@@ -86,10 +88,14 @@ public class GXLio {
                             Integer.parseInt(paintArray[2]),
                             Integer.parseInt(paintArray[3]));
                     System.out.println("" + paint.toString() + "ist da");
+                    System.out.println(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
                     String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
+                    System.out.println(java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)) + " " + java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length()-2)));
                     java.awt.geom.Point2D coordinates = new java.awt.geom.Point2D.Float(
                             java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
                             java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length()-2)));
+                            //java.lang.Double.parseDouble(coordinatesArray[0]),
+                            //java.lang.Double.parseDouble(coordinatesArray[1]));
                     System.out.println("coordinates: " + coordinates.toString());
                     //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).length()-2));
                     //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).length()-2));
@@ -97,22 +103,28 @@ public class GXLio {
                     System.out.println("width: " + width);
                     double height = Double.parseDouble(((GXLString) elem.getAttr("height").getValue()).getValue());
                     System.out.println("height: " + height);
-                    Map<String, String> annotation = new HashMap<String, String>();
-                    annotation.put(((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0],
-                            ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+                    Map<String, String> annotation = new HashMap<>();
+                    annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
+                    annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
                     System.out.println("annotation: " + annotation.toString());
                     String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
                     System.out.println("font: " + font);
                     int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
                     System.out.println("fontSize: " + fontSize);
+                    HashMap<String, String> anno = new HashMap<>();
+                    anno.put("de","Vertex");
+                    anno.put("en+-","vertex");
+
                     Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
 
                     spheres.add(newSphere);
+                    System.out.println("*********************************************************** "+newSphere.getAnnotation());
                 }
                 if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Node")) {
                     System.out.println("Knoten gefunden");
                     int id = Integer.parseInt(elem.getID());
                     String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
+                    System.out.println(Integer.parseInt(paintArray[0]) + ""  + Integer.parseInt(paintArray[1]) + " " + Integer.parseInt(paintArray[2]) + " " + Integer.parseInt(paintArray[3]));
                     Color paint = new Color(
                             Integer.parseInt(paintArray[0]),
                             Integer.parseInt(paintArray[1]),
@@ -130,8 +142,8 @@ public class GXLio {
                     // String[] annotationArray = ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6");
                     //  annotation.put(annotationArray[0], annotationArray[1]);
                     Map<String, String> annotation = new HashMap<String, String>();
-                    annotation.put(((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0],
-                            ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+                    annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
+                    annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
                     System.out.println("Knoten: " + annotation);
                     String[] drawPaintArray = getNumberArrayFromString(((GXLString) elem.getAttr("drawPaint").getValue()).getValue());
                     Color drawPaint = new Color(
@@ -188,12 +200,21 @@ public class GXLio {
                     edges.add(newEdge);
 
                     GXLEdge currentEdge = (GXLEdge) elem;
+                    System.out.println(currentEdge);
                     int edgeID = Integer.parseInt(currentEdge.getID());
+                    System.out.println(currentEdge.getID());
                     int sourceID = Integer.parseInt(currentEdge.getSource().getID());
+                    System.out.println(currentEdge.getSource());
+                    System.out.println(currentEdge.getSource().getID());
                     int targetID = Integer.parseInt(currentEdge.getTarget().getID());
+                    System.out.println(currentEdge.getTarget());
+                    System.out.println(currentEdge.getTarget().getID());
                     int[] entry = {edgeID, sourceID, targetID};
+                    System.out.println(entry);
                     edgeIDsAndNodeIDs.add(entry);
+                    System.out.println("Eintrag ins edgeAndNode array hinzugefügt");
                 }
+                System.out.println("Ende der Schleife aller GXL-Elemente");
 
             }
             System.out.println("number of spheres: " + spheres.size());
@@ -201,27 +222,39 @@ public class GXLio {
             System.out.println("number of edges; " + edges.size());
 
 
-            //    VisualizationViewer<Vertex, Edge> newVV = syndrom.getVv();
-            //    SyndromGraph<Vertex, Edge> newGraph = new SyndromGraph();
-            //    newVV.getGraphLayout().setGraph(newGraph);
+            SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+            //SyndromGraph<Vertex, Edge> graphnew = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+            SyndromGraph newGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             for(Sphere s : spheres){
-                //      newGraph.getSpheres().add(s);
+                newGraph.getSpheres().add(s);
+               // System.out.println(s.getCoordinates());
+              //  newGraph.addSphere(new Point2D.Double(s.getCoordinates().getX(), s.getCoordinates().getY()));
                 System.out.println("Die Sphäre wurde dem Graphen hinzugefügt");
+                vv.getGraphLayout().setGraph(newGraph);
+                vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
             }
             for(Vertex v : vertices){
-                Sphere sphereWithThisNode = null;
                 int idOfSphere = -1;
                 for(int[] i : nodeIDAndSphereID){
                     if(v.getId() == i[0]){
                         idOfSphere = i[1];
                     }
                 }
-                //newGraph.addVertex(v);
-                System.out.println("Der Knoten wurde dem Graphen hinzugefügt");
-                for(Sphere s : spheres){
-                    if(s.getId() == idOfSphere){
-                        sphereWithThisNode = s;
+                for(Sphere sp : (List<Sphere>) newGraph.getSpheres()){
+                    if(sp.getId() == idOfSphere){
+
                         System.out.println("Die Sphäre zu dem dieser Knoten gehört wurde gefunden");
+                        System.out.println("Die coordinaten des Knoten lauten: " + v.getCoordinates());
+                        //newGraph.addVertex(v);
+                        newGraph.addVertexToSphere(sp, v);
+                        //newGraph.addVertex(v.getCoordinates(), sp);
+                       // vv.getGraphLayout().setLocation(v, v.getCoordinates());
+                        //s.getVertices().add(v);
+                        System.out.println("Der Knoten wurde dem Graphen hinzugefügt");
+                        vv.getGraphLayout().setGraph(newGraph);
+                        vv.repaint();
+                        Syndrom.getInstance().getVv2().repaint();
                     }
                 }
             }
@@ -233,19 +266,28 @@ public class GXLio {
                 for(int[] i : edgeIDsAndNodeIDs){
                     if(e.getId() == i[0]){
                         idOfStart = i[1];
+                        System.out.println("Die id des Startknoten: " + idOfStart);
                         idOfEnd = i[2];
+                        System.out.println("Die id des Zielknoten" + idOfEnd);
                     }
                 }
+                System.out.println("Vor der Schleife");
                 for(Vertex v : vertices){
+                 System.out.println("In der Schleife" + v.getId());
                     if(v.getId() == idOfStart){
                         start = v;
+                        System.out.println("Start Knoten gefunden - in der Schleife");
                     }else if(v.getId() == idOfEnd){
                         end = v;
+                        System.out.println("Ziel Knoten gefunden - in der Schleife");
                     }
                 }
-                // Pair<Vertex> endPoints = new Pair<Vertex>(start, end);
-                // newGraph.addEdge(e, endPoints);
-
+                Pair<Vertex> endPoints = new Pair<>(start, end);
+                newGraph.addEdge(e, endPoints);
+                System.out.println("Die Kante wurde dem Graphen hinzugefügt.");
+                vv.getGraphLayout().setGraph(newGraph);
+                vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
             }
 
         } catch (IOException e) {
@@ -585,8 +627,10 @@ public class GXLio {
             numberOFDots++;
         }
         word = word.substring(numberOFDots);
-        word = word.substring(2, word.length()-1);
+        word = word.substring(1, word.length()-1);
+
         if(word.contains("=")){
+            word = word.substring(1);
             word = word.replaceAll(",", "");
             System.out.println("aktuelles word: " + word);
             //System.out.println(word.split("=")[0] + word.split("=")[1] + word.split("=")[2] + word.split("=")[4]);
@@ -670,6 +714,9 @@ public class GXLio {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        file = pFile;
         gxlToInstance(gxl);
     }
+
+
 }
