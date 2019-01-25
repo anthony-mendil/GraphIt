@@ -28,10 +28,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
      * The sphere renderer responsible for the rendering of the spheres.
      */
     private SphereRenderer sphaerenRenderer = new SphereRenderer();
-    /**
-     * The edge renderer responsible for the edges of the graph.
-     */
-    //private EdgeRenderer edgeRenderer = new EdgeRenderer();
+
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
 
     /**
@@ -47,34 +44,15 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         PickedState<Sphere> pickedState = Syndrom.getInstance().getVv().getPickedSphereState();
         Collection<E> renderEdges = new ArrayList<>();
         Sphere sp = null;
-        boolean overlapped = false;
-
-            for (Sphere s : pickedState.getPicked()) {
-                sp = s;
-                Shape sShape = sphereShapeTransformer.transform(s);
-                for (Sphere sphere : g.getSpheres()) {
-                    if (!s.equals(sphere)) {
-                        Shape sphereShape = sphereShapeTransformer.transform(sphere);
-                        if (sphereShape.intersects(sShape.getBounds())) {
-                            overlapped = true;
-                        }
-                    }
-                }
-            }
-
+        boolean overlapped = isOverlapped(pickedState, g);
 
         // paints all spheres
-        try {
-            for (Sphere sphere : g.getSpheres()) {
-                sphaerenRenderer.paintSphere(renderContext, sphere);
-            }
-        } catch (ConcurrentModificationException cme) {
-            renderContext.getScreenDevice().repaint();
-        }
+        renderSpheres((ArrayList<Sphere>) g.getSpheres(), renderContext);
 
         // if a sphere overlaps another one all incoming and outgoing edges get detected
-        if (overlapped && sp != null) {
-            Collection<V> included =  (Collection<V>) sp.getVertices();
+        if (overlapped) {
+            sp = pickedState.getPicked().iterator().next();
+            Collection<V> included = (Collection<V>) sp.getVertices();
             Collection<E> incoming = new ArrayList<>();
             Collection<E> outgoing = new ArrayList<>();
             for (V v : included) {
@@ -88,40 +66,60 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
                 }
             }
 
-            for(E e :renderEdges){
+            for (E e : renderEdges) {
                 renderEdge(e, renderContext, layout);
             }
         } else {
             // if not sphere overlaps another one all edges get rendered
-            for (E e : layout.getGraph().getEdges()){
+            for (E e : layout.getGraph().getEdges()) {
                 renderEdge(e, renderContext, layout);
             }
         }
 
         // all vertices get rendered
-        renderVertices(layout.getGraph().getVertices(), renderContext, layout);
+        renderVerticesWithPicked(g, renderContext, layout);
 
         // if a sphere overlaps another one, the sphere is painted with all its vertices and all edges
         // between the spheres vertices
-        if (overlapped && sp != null){
-            sphaerenRenderer.paintSphere(renderContext, sp);
-            Collection<V> collection = (Collection<V>) sp.getVertices();
-            for (E e : layout.getGraph().getEdges()) {
-                Collection<V> incident = g.getEndpoints(e);
-                if (collection.containsAll(incident)) {
-                    renderEdge(
-                            renderContext,
-                            layout,
-                            e);
-                    renderEdgeLabel(
-                            renderContext,
-                            layout,
-                            e);
-                }
-            }
-
-            renderVertices(collection, renderContext, layout);
+        if (overlapped) {
+            renderObjectsSphere(sp, g, renderContext, layout);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void renderObjectsSphere(Sphere sp, SyndromGraph<V, E> g, RenderContext<V, E> renderContext, Layout<V, E> layout) {
+        sphaerenRenderer.paintSphere(renderContext, sp);
+        Collection<V> collection = (Collection<V>) sp.getVertices();
+        for (E e : layout.getGraph().getEdges()) {
+            Collection<V> incident = g.getEndpoints(e);
+            if (collection.containsAll(incident)) {
+                renderEdge(
+                        renderContext,
+                        layout,
+                        e);
+                renderEdgeLabel(
+                        renderContext,
+                        layout,
+                        e);
+            }
+        }
+        renderVertices(collection, renderContext, layout);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void renderVerticesWithPicked(SyndromGraph<V, E> g, RenderContext<V, E> renderContext, Layout<V, E> layout){
+        PickedState<graph.graph.Vertex> picked = Syndrom.getInstance().getVv().getPickedVertexState();
+        Collection<V> vertices = g.getVertices();
+        Collection<V> pick = (Collection<V>) picked.getPicked();
+        ArrayList<V> render = new ArrayList<>();
+        for (V v: vertices){
+            if (!pick.contains(v)){
+                render.add(v);
+            }
+        }
+
+        renderVertices(render, renderContext, layout);
+        renderVertices(pick, renderContext, layout);
     }
 
     private void renderVertices(Collection<V> vertices, RenderContext<V, E> renderContext, Layout<V, E> layout) {
@@ -154,5 +152,31 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         } catch (ConcurrentModificationException cme) {
             renderContext.getScreenDevice().repaint();
         }
+    }
+
+    private void renderSpheres(ArrayList<Sphere> spheres, RenderContext<V, E> renderContext) {
+        try {
+            for (Sphere sphere : spheres) {
+                sphaerenRenderer.paintSphere(renderContext, sphere);
+            }
+        } catch (ConcurrentModificationException cme) {
+            renderContext.getScreenDevice().repaint();
+        }
+    }
+
+    private boolean isOverlapped(PickedState<Sphere> pickedState, SyndromGraph<V, E> g){
+        boolean overlapped = false;
+        for (Sphere s : pickedState.getPicked()) {
+            Shape sShape = sphereShapeTransformer.transform(s);
+            for (Sphere sphere : g.getSpheres()) {
+                if (!s.equals(sphere)) {
+                    Shape sphereShape = sphereShapeTransformer.transform(sphere);
+                    if (sphereShape.intersects(sShape.getBounds())) {
+                        overlapped = true;
+                    }
+                }
+            }
+        }
+        return overlapped;
     }
 }

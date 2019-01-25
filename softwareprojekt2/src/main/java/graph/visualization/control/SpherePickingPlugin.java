@@ -191,8 +191,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                      }
                  }
                  else {
-                     MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s,spherePickedCoord ,sphereCurrentPosition);
-                     history.execute(moveSphereLogAction);
+         //            MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s,spherePickedCoord ,sphereCurrentPosition);
+         //            history.execute(moveSphereLogAction);
 
                  }
              }

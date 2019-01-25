@@ -65,6 +65,6 @@ public class CreateGraphAction extends GraphAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        return;
     }
 }

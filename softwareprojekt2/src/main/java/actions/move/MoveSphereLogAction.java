@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class MoveSphereLogAction extends LogAction {
     /**
-     * The new position.
+     * The old position.
      */
     private Point2D oldPosition;
     /**
