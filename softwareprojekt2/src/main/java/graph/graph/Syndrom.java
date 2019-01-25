@@ -251,11 +251,10 @@ public class Syndrom {
         AbsoluteCrossoverScalingControl vv2Scaler = new AbsoluteCrossoverScalingControl();
         scalingControl = vv2Scaler;
         vv2.scaleToLayout(vv2Scaler);
-        setVv2(vv2);
         vv2.setRenderer(new SyndromRenderer<>());
         setRenderer(vv2);
         vv2.setGraphMouse(new SatelliteGraphMouse());
-
+        this.vv2 = vv2;
     }
 
     private void setRenderer(VisualizationViewer<Vertex, Edge> vv){

@@ -9,6 +9,7 @@ import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.renderers.SyndromRenderer;
+import graph.visualization.transformer.edge.EdgeStrokeTransformer;
 import gui.Values;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
@@ -117,6 +118,7 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<Vertex, Edge>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
         vis.setBackground(Color.WHITE);
         vis.setRenderer(new SyndromRenderer<>());
+        vis.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>(vv));
         vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(), Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(), vv.getCenter());
         System.out.println(getMinPoint().toString());
         VectorGraphics vectorGraphics = null;
