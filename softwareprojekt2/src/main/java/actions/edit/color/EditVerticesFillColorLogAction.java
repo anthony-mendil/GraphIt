@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class EditVerticesFillColorLogAction extends LogAction {
     /**
-     * Temporary parameter for the color;
+     * Temporary vertices for the color;
      */
     private Color color;
     /**

@@ -170,6 +170,24 @@ public class Controller implements ObserverSyndrom {
     private MenuItem documentation;
 
     /**
+     * The button to undo an action.
+     */
+    @FXML
+    private Button undoButton;
+
+    /**
+     * The button to redo an action.
+     */
+    @FXML
+    private Button redoButton;
+
+    /**
+     * The separator between redo/undo and edit/analysis mode
+     */
+    @FXML
+    private Separator toolBarSeparator1;
+
+    /**
      * The button to change the gui layout to edit-mode
      */
     @FXML
@@ -677,6 +695,7 @@ public class Controller implements ObserverSyndrom {
     private Stage templateStage = new Stage();
 
     private String currentSize = "";
+    private String currentFont = "";
 
     /**
      * The combobox for changing the size of the sphere text.
@@ -1272,19 +1291,22 @@ public class Controller implements ObserverSyndrom {
     public void createTemplateWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
-        fxmlLoader.setController(this);
+        fxmlLoader.setController(new TemplateController(templateStage));
         templateStage.setResizable(false);
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
-        templateStage.setAlwaysOnTop(true);
         templateStage.getIcons().add(new Image("/logo.png"));
-        templateStage.show();
+    }
+
+    public void showTemplateWindow(){
+        if(!templateStage.isShowing()){
+            templateStage.show();
+        }
     }
 
     public void closeTemplateWindow() {
         if (templateStage.isShowing()) {
             templateStage.hide();
-            templateStage.close();
         }
     }
 
@@ -1306,6 +1328,12 @@ public class Controller implements ObserverSyndrom {
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
+        paneSwingNode.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                root.requestFocus();
+            }
+        });
 
         loadSizeComboBox(sizeSphereComboBox);
         loadSizeComboBox(sizeSymptomComboBox);
@@ -1402,10 +1430,10 @@ public class Controller implements ObserverSyndrom {
         }
     };
 
-    private class ComboBoxListener implements ChangeListener<String> {
+    private class OnlyNumberComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
 
-        private ComboBoxListener(ComboBox pComboBox) {
+        private OnlyNumberComboBoxListener(ComboBox pComboBox) {
             this.comboBox = pComboBox;
         }
 
@@ -1420,6 +1448,22 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    private class OnlyLettersSpacesComboBoxListener implements ChangeListener<String>{
+        private final ComboBox comboBox;
+
+        private OnlyLettersSpacesComboBoxListener(ComboBox pComboBox){
+            this.comboBox = pComboBox;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            comboBox.show();
+
+            if(!newValue.matches("[a-zA-Z ]*"))
+                comboBox.getEditor().setText(oldValue);
+        }
+    }
+
     private class ComboBoxValueListener implements ChangeListener<String> {
         private final ComboBox comboBox;
 
@@ -1429,13 +1473,20 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            currentSize = newValue;
-            root.requestFocus();
             if (comboBox.getId().equals("sizeSphereComboBox")) {
+                currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
-            } else if (comboBox.getId().equals("sizeSymptomComboBox")) {
+            }else if (comboBox.getId().equals("fontSphereComboBox")){
+                currentFont = newValue;
+                editFontSphere(currentFont);
+            }else if (comboBox.getId().equals("sizeSymptomComboBox")) {
+                currentSize = newValue;
                 editFontSizeVertices(Integer.parseInt(currentSize));
+            }else if (comboBox.getId().equals("fontSymptomComboBox")) {
+                currentFont = newValue;
+                editFontVertex(currentFont);
             }
+            root.requestFocus();
         }
     }
 
@@ -1448,11 +1499,19 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-            comboBox.show();
             if (newPropertyValue) {
-                currentSize = comboBox.getEditor().getText();
-            } else
-                comboBox.getEditor().setText(currentSize);
+                if(comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
+                    currentSize = comboBox.getEditor().getText();
+                }else if(comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
+                    currentFont = comboBox.getEditor().getText();
+                }
+            } else {
+                if (comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
+                    comboBox.getEditor().setText(currentSize);
+                }else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
+                    comboBox.getEditor().setText(currentFont);
+                }
+            }
         }
     }
 
@@ -1477,10 +1536,15 @@ public class Controller implements ObserverSyndrom {
                         "Kalam",
                         "Mali",
                         "Roboto",
-                        "RobotoSlab"
+                        "RobotoSlab",
+                        "Times New Roman",
+                        "Comic Sans Ms"
                 );
 
         comboBox.setItems(fonts);
+        comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
+        comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
+        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
 
 
@@ -1503,13 +1567,13 @@ public class Controller implements ObserverSyndrom {
                         "96"
                 );
         comboBox.setItems(sizes);
-        comboBox.getEditor().textProperty().addListener(new ComboBoxListener(comboBox));
+        comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
 
     /**
-     * The event handler that provides the arguments, needed to use the actions after clicking on a menuitem.
+     * The event handler that replace the images visible in the menubutton to the latest selected image.
      */
     private class MenuItemHandler implements EventHandler<ActionEvent> {
 
@@ -1573,13 +1637,22 @@ public class Controller implements ObserverSyndrom {
 
         templateButton.setVisible(active);
         templateButton.setManaged(active);
+
+        redoButton.setVisible(active);
+        redoButton.setManaged(active);
+
+        undoButton.setVisible(active);
+        undoButton.setManaged(active);
+
+        toolBarSeparator1.setVisible(active);
+        toolBarSeparator1.setManaged(active);
     }
 
-    /**
+    /*
      * Uses the provided swingnode to display the zoom window on it.
      *
      * @param swingNode The swingnode, that the fxml file provides.
-     */
+
     private void createSwingZoomWindow(final SwingNode swingNode) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -1587,12 +1660,13 @@ public class Controller implements ObserverSyndrom {
             }
         });
     }
+    */
 
-    /**
+    /*
      * Uses the provided swingnode to display the graph canvas on it.
      *
      * @param swingNode The swingnode, that the fxml file provides.
-     */
+
     private void createSwingCanvas(final SwingNode swingNode) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -1600,6 +1674,7 @@ public class Controller implements ObserverSyndrom {
             }
         });
     }
+    */
 
     public void buttonClicked2(ActionEvent actionEvent) {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
@@ -1643,14 +1718,15 @@ public class Controller implements ObserverSyndrom {
         values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
     }
 
-    /**
+    /*
      * The event handler that provides the arguments, needed to use the actions after choosing a colour.
-     */
+
     private class ColorPickerHandler implements EventHandler<Event> {
         @Override
         public void handle(Event evt) {
         }
     }
+     */
 
     @Override
     public void updateGraph() {

@@ -2,6 +2,8 @@ package log_management.parameters.move;
 
 import graph.graph.Sphere;
 import graph.graph.Vertex;
+import gui.Values;
+import gui.properties.Language;
 import log_management.parameters.Param;
 import lombok.Getter;
 
@@ -23,7 +25,7 @@ public class LayoutSpheresParam extends Param implements Serializable {
     private Map<Sphere, Point2D> newSpheres;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      *
      * @param pOldPosition Map of vertices containing their old positions.
      * @param pNewPosition Map of vertices containing their new positions.
@@ -34,6 +36,11 @@ public class LayoutSpheresParam extends Param implements Serializable {
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        if (language == Language.ENGLISH) {
+            return "The Spheres were automatically positioned";
+        } else {
+            return "Die Sphären wurden automatisch angeordnet";
+        }
     }
 }

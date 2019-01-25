@@ -43,19 +43,19 @@ public class EnumNameCreator {
         if (language == Language.ENGLISH) {
             switch (strokeType) {
                 case BASIC: return "Basic";
-                case DOTTED_WEIGHT: return "Dotted weight";
-                case DASHED_WEIGHT: return "Dashed weight";
+                case DOTTED_WEIGHT: return "Dotted (weight)";
+                case DASHED_WEIGHT: return "Dashed (weight)";
                 case DOTTED: return "Dotted";
-                case BASIC_WEIGHT: return "Basic weight";
+                case BASIC_WEIGHT: return "Basic (weight)";
                 default: return "Dashed";
             }
         } else {
             switch (strokeType) {
-                case BASIC: return "Normal";
-                case DOTTED_WEIGHT: return "Gepunkted dick";
-                case DASHED_WEIGHT: return "Gestrichelt dick";
+                case BASIC: return "Durchgezogen";
+                case DOTTED_WEIGHT: return "Gepunkted (dick)";
+                case DASHED_WEIGHT: return "Gestrichelt (dick)";
                 case DOTTED: return "Gepunkted";
-                case BASIC_WEIGHT: return "Normal dick";
+                case BASIC_WEIGHT: return "Durchgezogen (dick)";
                 default: return "Gestrichelt";
             }
         }

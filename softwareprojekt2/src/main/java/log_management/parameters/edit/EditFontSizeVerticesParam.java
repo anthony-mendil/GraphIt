@@ -28,7 +28,7 @@ public class EditFontSizeVerticesParam extends Param implements Serializable {
     //   Therefore there must be a map or something kinda like this...
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldVertices The vertices containing their old font-size.
      * @param pNewVertices The vertices containing their new font-size.
      */

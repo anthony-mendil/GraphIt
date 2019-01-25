@@ -1,7 +1,10 @@
 package log_management.parameters.move;
 
 import graph.graph.Vertex;
+import gui.Values;
+import gui.properties.Language;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -26,7 +29,7 @@ public class MoveVerticesParam extends Param implements Serializable {
     private Map<Vertex,Point2D> newVertices;
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldVertices The set of old vertices and their position.
      * @param pNewVertices The set of new vertices and their position.
      */
@@ -36,6 +39,25 @@ public class MoveVerticesParam extends Param implements Serializable {
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        String information = "";
+        if (language == Language.ENGLISH) {
+            information += "Symptoms moved:\n";
+            for (Map.Entry<Vertex, Point2D> entry : oldVertices.entrySet()) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(entry.getKey());
+                information += "New Coordinates: x = "
+                        + newVertices.get(entry.getKey()).getX()
+                        + " y = " + newVertices.get(entry.getKey()).getY() + "\n";
+            }
+        } else {
+            information += "Bewegte Symptome:\n";
+            for (Map.Entry<Vertex, Point2D> entry : oldVertices.entrySet()) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(entry.getKey());
+                information += "Neue Koordinaten: x = "
+                        + newVertices.get(entry.getKey()).getX()
+                        + " y = " + newVertices.get(entry.getKey()).getY() + "\n";
+            }
+        }
+        return information;
     }
 }

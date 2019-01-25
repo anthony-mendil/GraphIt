@@ -9,15 +9,13 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeSphereParam;
-import log_management.parameters.edit.EditSphereColorParam;
-import log_management.tables.Log;
 
 /**
  * Changes the font-size of annotations of a sphere.
  */
 public class EditFontSizeSphereLogAction extends LogAction {
     /**
-     * Temporary size parameter.
+     * Temporary size vertices.
      */
     private int size;
     /**
@@ -50,7 +48,7 @@ public class EditFontSizeSphereLogAction extends LogAction {
                 createParameter(sp, sp.getFontSize(), size);
             }
         }else{
-            Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphereText();
+            Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphere();
             int newFontSize = ((EditFontSizeSphereParam)parameters).getNewFontSize();
             sphere.setFontSize(newFontSize);
         }
@@ -67,7 +65,7 @@ public class EditFontSizeSphereLogAction extends LogAction {
     public void undo() {
         int oldFontSize = ((EditFontSizeSphereParam)parameters).getOldFontSize();
         int newFontSize = ((EditFontSizeSphereParam)parameters).getNewFontSize();
-        Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphereText();
+        Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphere();
         EditFontSizeSphereParam editFontSizeSphereParam = new EditFontSizeSphereParam(sphere, newFontSize, oldFontSize);
         EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(editFontSizeSphereParam);
         editFontSizeSphereLogAction.action();

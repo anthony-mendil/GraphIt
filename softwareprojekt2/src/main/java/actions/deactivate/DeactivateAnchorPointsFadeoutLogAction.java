@@ -2,6 +2,7 @@ package actions.deactivate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import actions.activate.ActivateAnchorPointsFadeoutLogAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
@@ -17,7 +18,7 @@ public class DeactivateAnchorPointsFadeoutLogAction extends LogAction {
      * Makes all selected anchor-points visible again. Also used to implement the
      * undo-method of ActivateAnchorPointsFadeoutLogAction.
      *
-     * @param pParam The parameter object that contains every parameter that is needed.
+     * @param pParam The vertices object that contains every vertices that is needed.
      */
     public DeactivateAnchorPointsFadeoutLogAction(ActivateDeactivateAnchorPointsFadeoutParam pParam) {
         super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
@@ -41,11 +42,12 @@ public class DeactivateAnchorPointsFadeoutLogAction extends LogAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
+        activateAnchorPointsFadeoutLogAction.action();
     }
 
 
     public void createParameter() {
-        throw new UnsupportedOperationException();
+        return;
     }
 }

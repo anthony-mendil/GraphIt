@@ -26,7 +26,7 @@ public class EditVerticesSizeParam extends Param implements Serializable {
 
 
     /**
-     * Creates a parameter object of its own class.
+     * Creates a vertices object of its own class.
      * @param pOldVertices The vertices containing their old size.
      * @param pNewVertices The vertices containing their new size.
      */

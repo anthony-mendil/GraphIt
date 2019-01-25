@@ -16,7 +16,7 @@ public class SphereFillPaintTransformer<S> implements Transformer<S, Paint> {
     public Paint transform(S s){
         try{
             Sphere sphere = (Sphere) s;
-            return sphere.getFillPaint();
+            return sphere.getColor();
         } catch (Exception e){
             throw new IllegalArgumentException();
         }

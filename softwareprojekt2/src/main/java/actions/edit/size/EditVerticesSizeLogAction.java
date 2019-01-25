@@ -24,7 +24,7 @@ public class EditVerticesSizeLogAction extends LogAction {
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditVerticesSizeParam The parameter object that contains every parameter that is needed.
+     * @param pEditVerticesSizeParam The vertices object that contains every vertices that is needed.
      */
     public EditVerticesSizeLogAction(EditVerticesSizeParam pEditVerticesSizeParam) {
         super(LogEntryName.EDIT_VERTICES_SIZE);
@@ -56,7 +56,7 @@ public class EditVerticesSizeLogAction extends LogAction {
     }
 
     /**
-     * Creates the parameter object.
+     * Creates the vertices object.
      */
     public void createParameter() {
         throw new UnsupportedOperationException();

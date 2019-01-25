@@ -6,6 +6,7 @@ import gui.properties.Language;
 import log_management.parameters.ColorNameCreator;
 import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -35,25 +36,15 @@ public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
     public String toString() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
-            String list = "";
+            String list = "Relations:\n";
             for (int i = 0; i < edges.size(); i++) {
-                list += "\nId: " + edges.get(i).getId() + ", Stroke type: "
-                        + EnumNameCreator.strokeTypeTranslaotr(edges.get(i).getStroke(), language)
-                        + ", Arrow type: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(edges.get(i).getArrowType(), language)
-                        + ", Color: "
-                        + ColorNameCreator.getInstance().getColorNameFromColor(edges.get(i).getColor(), language);
+                list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i));
             }
             return list;
         } else {
-            String list = "";
+            String list = "Relationen:\n";
             for (int i = 0; i < edges.size(); i++) {
-                list += "\nId: " + edges.get(i).getId() + ", Linienart: "
-                        + EnumNameCreator.strokeTypeTranslaotr(edges.get(i).getStroke(), language)
-                        + ", Relationsart: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(edges.get(i).getArrowType(), language)
-                        + ", Farbe: "
-                        + ColorNameCreator.getInstance().getColorNameFromColor(edges.get(i).getColor(), language);
+                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i));
             }
             return list;
         }
