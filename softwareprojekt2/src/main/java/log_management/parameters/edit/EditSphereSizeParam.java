@@ -1,8 +1,11 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
+import gui.Values;
+import gui.properties.Language;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -41,6 +44,15 @@ public class EditSphereSizeParam extends Param{
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        String information = "";
+        if (language == Language.ENGLISH) {
+            information += "Sphere:\n" + SyndromObjectPrinter.spherePrintEnglish(sphere)
+                    + " New width: " + newSize.getKey() + ", New height: " + newSize.getValue();
+        } else {
+            information += "Sphäre:\n" + SyndromObjectPrinter.spherePrintGerman(sphere)
+                    + " Neue Breite: " + newSize.getKey() + ", Neue Höhe: " + newSize.getValue();
+        }
+        return information;
     }
 }

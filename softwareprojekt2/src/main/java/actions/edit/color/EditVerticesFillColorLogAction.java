@@ -46,8 +46,8 @@ public class EditVerticesFillColorLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if(parameters == null){
-            Map<Vertex,Paint> oldVerticesParam = new HashMap<>();
-            Map<Vertex,Paint> newVerticesParam = new HashMap<>();
+            Map<Vertex,Color> oldVerticesParam = new HashMap<>();
+            Map<Vertex,Color> newVerticesParam = new HashMap<>();
             for (Vertex vertex: pickedState.getPicked()) {
                 oldVerticesParam.put(vertex, vertex.getFillColor());
                 newVerticesParam.put(vertex, color);
@@ -55,9 +55,9 @@ public class EditVerticesFillColorLogAction extends LogAction {
             }
             createParameter(oldVerticesParam, newVerticesParam);
         }else{
-            Map<Vertex, Paint> oldVertices = ((EditVerticesFillColorParam)parameters).getOldVertices();
-            Map<Vertex, Paint> newVertices = ((EditVerticesFillColorParam)parameters).getNewVertices();
-            for(Map.Entry<Vertex,Paint> entry : oldVertices.entrySet()){
+            Map<Vertex, Color> oldVertices = ((EditVerticesFillColorParam)parameters).getOldVertices();
+            Map<Vertex, Color> newVertices = ((EditVerticesFillColorParam)parameters).getNewVertices();
+            for(Map.Entry<Vertex,Color> entry : oldVertices.entrySet()){
                 Vertex vertex = entry.getKey();
                 vertex.setFillColor((Color) newVertices.get(vertex));
             }
@@ -72,14 +72,14 @@ public class EditVerticesFillColorLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Vertex, Paint> oldVertices = ((EditVerticesFillColorParam)parameters).getOldVertices();
-        Map<Vertex, Paint> newVertices = ((EditVerticesFillColorParam)parameters).getNewVertices();
+        Map<Vertex, Color> oldVertices = ((EditVerticesFillColorParam)parameters).getOldVertices();
+        Map<Vertex, Color> newVertices = ((EditVerticesFillColorParam)parameters).getNewVertices();
         EditVerticesFillColorParam editVerticesFillColorParam = new EditVerticesFillColorParam(newVertices, oldVertices);
         EditVerticesFillColorLogAction editVerticesFillColorLogAction = new EditVerticesFillColorLogAction(editVerticesFillColorParam);
         editVerticesFillColorLogAction.action();
     }
 
-    public void createParameter(Map<Vertex,Paint> oldVertices, Map<Vertex,Paint> newVertices) {
+    public void createParameter(Map<Vertex,Color> oldVertices, Map<Vertex,Color> newVertices) {
         parameters = new EditVerticesFillColorParam(oldVertices, newVertices);
     }
 }
