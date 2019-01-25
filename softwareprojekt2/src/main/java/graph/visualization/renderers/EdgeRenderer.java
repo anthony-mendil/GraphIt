@@ -119,7 +119,6 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                         edgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle, destVertexShape);
                         if (edgeAngle == null) return;
 
-                        // arrow = edgeAngle.createTransformedShape(arrow);
                         arrow = edgeAngle.createTransformedShape(arrow);
 
                         x2 = (float) arrow.getBounds2D().getCenterX();
@@ -128,27 +127,27 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                         arrow = at.createTransformedShape(arrow);
                     }
 
-                    AffineTransform x_form = AffineTransform.getTranslateInstance(x1, y1);
+                    AffineTransform xTransform = AffineTransform.getTranslateInstance(x1, y1);
                     dx = x2 - x1;
                     dy = y2 - y1;
                     thetaRadians = (float) Math.atan2(dy, dx);
-                    x_form.rotate(thetaRadians);
+                    xTransform.rotate(thetaRadians);
                     dist = (float) Math.sqrt(dx * dx + dy * dy);
-                    x_form.scale(dist, 1.0);
-                    edgeShape = x_form.createTransformedShape(oldEdge);
-                    Paint fill_paint = rc.getEdgeFillPaintTransformer().transform(e);
-                    Stroke new_stroke = rc.getEdgeStrokeTransformer().transform(e);
+                    xTransform.scale(dist, 1.0);
+                    edgeShape = xTransform.createTransformedShape(oldEdge);
+                    Paint fillPaint = rc.getEdgeFillPaintTransformer().transform(e);
+                    Stroke newStroke = rc.getEdgeStrokeTransformer().transform(e);
 
-                    if (new_stroke != null)
-                        g.setStroke(new_stroke);
+                    if (newStroke != null)
+                        g.setStroke(newStroke);
 
-                    if (fill_paint != null) {
-                        g.setPaint(fill_paint);
+                    if (fillPaint != null) {
+                        g.setPaint(fillPaint);
                         g.fill(edgeShape);
                     }
-                    Paint draw_paint = rc.getEdgeDrawPaintTransformer().transform(e);
-                    if (draw_paint != null) {
-                        g.setPaint(draw_paint);
+                    Paint drawPaint = rc.getEdgeDrawPaintTransformer().transform(e);
+                    if (drawPaint != null) {
+                        g.setPaint(drawPaint);
                         g.draw(edgeShape);
                     }
 

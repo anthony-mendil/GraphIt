@@ -26,10 +26,7 @@ import java.util.List;
  * SyndromPickSupport extends the ShapePickSupport with the option to pick spheres and arrows from edges.
  */
 public class SyndromPickSupport<V, E> extends ShapePickSupport {
-    /**
-     * The visualisation server.
-     */
-    private VisualizationServer<V, E> pVisualizationServer;
+
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<Sphere>();
 
     /**
@@ -63,9 +60,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
             List<Sphere> list = g.getSpheres();
             for (Object aSet : list) {
                 Sphere s = (Sphere) aSet;
-                Point2D p = s.getCoordinates();
-                Shape rec = new Rectangle2D.Double(p.getX(), p.getY(), s
-                        .getWidth(), s.getHeight());
+                Shape rec = sphereShapeTransformer.transform(s);
                 rec = vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, rec);
                 if (rec.contains(x, y)) {
                     sphaereContains = s;
@@ -129,6 +124,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 }
                 break;
             } catch (ConcurrentModificationException cme) {
+                cme.printStackTrace();
             }
         }
         return closest;

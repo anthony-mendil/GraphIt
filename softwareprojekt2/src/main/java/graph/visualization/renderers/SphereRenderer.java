@@ -2,7 +2,6 @@ package graph.visualization.renderers;
 
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
-import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
 import graph.graph.Sphere;
 import graph.graph.Syndrom;
@@ -11,7 +10,6 @@ import graph.visualization.transformer.sphere.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 /**
  * The SphereRenderer renders all spheres from the syndrom graph.
@@ -24,8 +22,6 @@ public class SphereRenderer {
     private SphereShapeTransformer<Sphere> sphereShapeTransformer =  new SphereShapeTransformer<>();
     private SphereFontSizeTransformer<Sphere> sphereSphereFontSizeTransformer = new SphereFontSizeTransformer<>();
 
-    private double crossover = 1.0;
-
     /**
      * Renders the given sphere.
      * @param pRc The renderContext implemented in JUNG.
@@ -33,11 +29,10 @@ public class SphereRenderer {
      */
     public void paintSphere(RenderContext pRc, Sphere pSphere) {
         GraphicsDecorator g2d = pRc.getGraphicsContext();
-        Point2D p = pSphere.getCoordinates();
 
         AffineTransform transform = pRc.getMultiLayerTransformer().getTransformer(Layer.LAYOUT).getTransform();
-        Shape sphereShape =  new Rectangle2D.Double(p.getX(), p.getY(), pSphere
-                .getWidth(), pSphere.getHeight());
+
+        Shape sphereShape = sphereShapeTransformer.transform(pSphere);
         sphereShape = transform.createTransformedShape(sphereShape);
 
         g2d.setPaint(sphereFillPaintTransformer.transform(pSphere));
@@ -127,7 +122,7 @@ public class SphereRenderer {
         double labelX;
 
         if (width+10 < (sWidth)){
-            labelX = (x + sWidth/2)-(width/2);
+            labelX = (x + sWidth/2) - ((double) width/2);
         } else {
             labelX = x+5;
         }
