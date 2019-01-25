@@ -1688,12 +1688,12 @@ public class Controller implements ObserverSyndrom {
 
     public void sphereEnlarge(ActionEvent actionEvent) {
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
-        editSphereSizeLogAction.action();
+        history.execute(editSphereSizeLogAction);
     }
 
     public void sphereShrink(ActionEvent actionEvent) {
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
-        editSphereSizeLogAction.action();
+        history.execute(editSphereSizeLogAction);
     }
 
     public void vertexEnlarge() {
