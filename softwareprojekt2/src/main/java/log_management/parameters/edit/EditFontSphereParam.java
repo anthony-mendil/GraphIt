@@ -1,7 +1,10 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
+import gui.Values;
+import gui.properties.Language;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -40,6 +43,15 @@ public class EditFontSphereParam extends Param {
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        String information = "";
+        if (language == Language.ENGLISH) {
+            information += "Sphere:\n" + SyndromObjectPrinter.spherePrintEnglish(sphere)
+                    + " New font: " + newFont;
+        } else {
+            information += "Sphäre:\n" + SyndromObjectPrinter.spherePrintGerman(sphere)
+                    + " Neue Schriftart: " + newFont;
+        }
+        return information;
     }
 }

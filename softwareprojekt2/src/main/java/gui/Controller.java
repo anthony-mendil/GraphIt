@@ -697,6 +697,8 @@ public class Controller implements ObserverSyndrom {
     private String currentSize = "";
     private String currentFont = "";
 
+    private TemplateController templateController = new TemplateController(templateStage);
+
     /**
      * The combobox for changing the size of the sphere text.
      */
@@ -1291,7 +1293,7 @@ public class Controller implements ObserverSyndrom {
     public void createTemplateWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
-        fxmlLoader.setController(new TemplateController(templateStage));
+        fxmlLoader.setController(templateController);
         templateStage.setResizable(false);
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
@@ -1301,6 +1303,7 @@ public class Controller implements ObserverSyndrom {
     public void showTemplateWindow(){
         if(!templateStage.isShowing()){
             templateStage.show();
+            templateController.loadListView();
         }
     }
 
@@ -1688,12 +1691,12 @@ public class Controller implements ObserverSyndrom {
 
     public void sphereEnlarge(ActionEvent actionEvent) {
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
-        editSphereSizeLogAction.action();
+        history.execute(editSphereSizeLogAction);
     }
 
     public void sphereShrink(ActionEvent actionEvent) {
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
-        editSphereSizeLogAction.action();
+        history.execute(editSphereSizeLogAction);
     }
 
     public void vertexEnlarge() {

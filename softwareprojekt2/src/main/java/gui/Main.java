@@ -75,13 +75,13 @@ public class Main extends Application {
         entityManager.getEntityManagerFactory().close();
         entityManager.close();
 
-        Map<Integer, Integer> test = new HashMap<>();
-        test.put(1,1);
-        test.put(2,2);
-        test.put(1,3);
-        Object[] set = test.entrySet().toArray();
-        for (int i = 0; i < set.length; i++) {
-            System.out.println(((Map.Entry<Integer, Integer>)set[i]).getKey() + " " + ((Map.Entry<Integer, Integer>)set[i]).getValue());
-        }
+//        Map<Integer, Integer> test = new HashMap<>();
+//        test.put(1,1);
+//        test.put(2,2);
+//        test.put(1,3);
+//        Object[] set = test.entrySet().toArray();
+//        for (int i = 0; i < set.length; i++) {
+//            System.out.println(((Map.Entry<Integer, Integer>)set[i]).getKey() + " " + ((Map.Entry<Integer, Integer>)set[i]).getValue());
+//        }
     }
 }
