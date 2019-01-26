@@ -1,7 +1,7 @@
 package gui;
 
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
+import graph.graph.*;
+import graph.visualization.SyndromVisualisationViewer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +15,7 @@ import javafx.util.Callback;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TemplateController {
 
@@ -23,7 +24,6 @@ public class TemplateController {
 
     private Stage templateStage;
 
-    private Syndrom syndrom;
 
     public TemplateController(Stage pStage){
         templateStage = pStage;
@@ -54,20 +54,22 @@ public class TemplateController {
         }
     }
 
-    public void initialize(){
-        loadListView();
-    }
-
     public void loadListView(){
         templateListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        /*
-        ArrayList<Sphere> spheres = new ArrayList<Sphere>(syndrom.getGraph().getSpheres());
+
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+
+        List<Sphere> spheres = graph.getSpheres();
+
         ArrayList<String> name = new ArrayList<>();
+
         for(Sphere sphere : spheres){
-            name.add();
+            name.add(sphere.getAnnotation().get("de"));
         }
-        ObservableList<String> test = FXCollections.observableArrayList();
-        */
+
+        ObservableList<String> test = FXCollections.observableArrayList(name);
+        /*
         ObservableList sizes =
                 FXCollections.observableArrayList(
                         "Sphären",
@@ -90,8 +92,8 @@ public class TemplateController {
                         "72",
                         "96"
                     );
-
-        templateListView.setItems(sizes);
+        */
+        templateListView.setItems(test);
 
     }
 }

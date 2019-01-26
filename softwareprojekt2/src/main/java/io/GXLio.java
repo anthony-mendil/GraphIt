@@ -7,6 +7,7 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.dao.GraphDao;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
 import net.sourceforge.gxl.*;
 import org.xml.sax.SAXException;
 
@@ -69,17 +70,20 @@ public class GXLio {
             // each array contains at index 0 the id of an edge, at index 1 the id of the source node and at index 2 the id of the target node
             List<int[]> edgeIDsAndNodeIDs = new ArrayList<>();
             //for (int i = 0; i < readDok.getDocumentElement().getGraphCount(); i++) {
+            int idCounter = 0;
             for (int i = 0; i < gxlGraph.getGraphElementCount(); i++) {
                 // System.out.println("Graph gefunden");
-                GXLAttributedElement elem = doc.getElement(i + "");
+            if(doc.containsID(idCounter + "")) {
+                GXLAttributedElement elem = doc.getElement(idCounter + "");
 
+                System.out.println(" ---" + ((GXLString) elem.getAttr("TYPE").getValue()).getValue());
                 //System.out.println(((GXLString) elem.getAttr("TYPE").getValue()).getValue());
 
                 if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Sphäre")) {
                     //   System.out.println("Sphäre gefunden");
                     int id = Integer.parseInt(elem.getID());
                     System.out.println("id: " + id);
-                  //  System.out.println("before fillPaint: " + getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue()).get(0));
+                    //  System.out.println("before fillPaint: " + getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue()).get(0));
 
                     String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
                     Color paint = new Color(
@@ -90,12 +94,12 @@ public class GXLio {
                     System.out.println("" + paint.toString() + "ist da");
                     System.out.println(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
                     String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
-                    System.out.println(java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)) + " " + java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length()-2)));
+                    System.out.println(java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)) + " " + java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
                     java.awt.geom.Point2D coordinates = new java.awt.geom.Point2D.Float(
-                            java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
-                            java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length()-2)));
-                            //java.lang.Double.parseDouble(coordinatesArray[0]),
-                            //java.lang.Double.parseDouble(coordinatesArray[1]));
+                            java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
+                            java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
+                    //java.lang.Double.parseDouble(coordinatesArray[0]),
+                    //java.lang.Double.parseDouble(coordinatesArray[1]));
                     System.out.println("coordinates: " + coordinates.toString());
                     //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).length()-2));
                     //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).length()-2));
@@ -112,19 +116,18 @@ public class GXLio {
                     int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
                     System.out.println("fontSize: " + fontSize);
                     HashMap<String, String> anno = new HashMap<>();
-                    anno.put("de","Vertex");
-                    anno.put("en+-","vertex");
+                    anno.put("de", "Vertex");
+                    anno.put("en+-", "vertex");
 
                     Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
 
                     spheres.add(newSphere);
-                    System.out.println("*********************************************************** "+newSphere.getAnnotation());
-                }
-                if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Node")) {
+                    System.out.println("*********************************************************** " + newSphere.getAnnotation());
+                } else if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Node")) {
                     System.out.println("Knoten gefunden");
                     int id = Integer.parseInt(elem.getID());
                     String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
-                    System.out.println(Integer.parseInt(paintArray[0]) + ""  + Integer.parseInt(paintArray[1]) + " " + Integer.parseInt(paintArray[2]) + " " + Integer.parseInt(paintArray[3]));
+                    System.out.println(Integer.parseInt(paintArray[0]) + "" + Integer.parseInt(paintArray[1]) + " " + Integer.parseInt(paintArray[2]) + " " + Integer.parseInt(paintArray[3]));
                     Color paint = new Color(
                             Integer.parseInt(paintArray[0]),
                             Integer.parseInt(paintArray[1]),
@@ -133,8 +136,8 @@ public class GXLio {
                     System.out.println("Knoten: " + paint);
                     String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinate").getValue()).getValue());
                     java.awt.geom.Point2D coordinates = new java.awt.geom.Point2D.Float(
-                            java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
-                            java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length()-2)));
+                            java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
+                            java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
                     System.out.println("Knoten: " + coordinates);
                     VertexShapeType shape = VertexShapeType.valueOf(((GXLString) elem.getAttr("shape").getValue()).getValue());
                     System.out.println("Knoten: " + shape);
@@ -174,8 +177,8 @@ public class GXLio {
                     int[] entry = {nodeID, idOfTheSphereContainingThisNode};
                     nodeIDAndSphereID.add(entry);
                     System.out.println("Die Eintrag von Knoten- und Sphären-ID wurde ins Array geschrieben.");
-                }
-                if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Edge")) {
+                } else {
+                    //    if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Edge")) {
                     System.out.println("Kante gefunden");
                     int id = Integer.parseInt(elem.getID());
                     System.out.println("Kante: " + id);
@@ -194,7 +197,7 @@ public class GXLio {
                     // edge.getAttr("anchorAngle");
                     System.out.println("Kante: " + hasAnchor);
                     Boolean isVisible = Boolean.getBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
-                    System.out.println("Kante: "+ isVisible);
+                    System.out.println("Kante: " + isVisible);
                     Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
 
                     edges.add(newEdge);
@@ -215,7 +218,9 @@ public class GXLio {
                     System.out.println("Eintrag ins edgeAndNode array hinzugefügt");
                 }
                 System.out.println("Ende der Schleife aller GXL-Elemente");
-
+                System.out.println("number of gxlGraphElements: " + gxlGraph.getGraphElementCount());
+            }
+            idCounter++;
             }
             System.out.println("number of spheres: " + spheres.size());
             System.out.println("number of nodes: " + vertices.size());
@@ -230,10 +235,23 @@ public class GXLio {
                // System.out.println(s.getCoordinates());
               //  newGraph.addSphere(new Point2D.Double(s.getCoordinates().getX(), s.getCoordinates().getY()));
                 System.out.println("Die Sphäre wurde dem Graphen hinzugefügt");
-                vv.getGraphLayout().setGraph(newGraph);
-                vv.repaint();
-                Syndrom.getInstance().getVv2().repaint();
+                for(Vertex v : vertices){
+                    System.out.println("Die Sphäre zu dem dieser Knoten gehört wurde gefunden");
+                    System.out.println("Die coordinaten des Knoten lauten: " + v.getCoordinates());
+                    //newGraph.addVertex(v);
+                    //newGraph.addVertexToSphere(s, v);
+                   // if(s.getVertices().size()==0) {
+                        Vertex ver = newGraph.addVertex(v.getCoordinates(), s);
+                        //vv.getGraphLayout().setLocation(newVertex, v.getCoordinates());
+                        //s.getVertices().add(v);
+                        // newGraph.getVertices().add(v);
+                             newGraph.addVertexToSphere(s, ver);
+                        vv.getGraphLayout().setLocation(ver, ver.getCoordinates());
+                    System.out.println("Der Knoten wurde dem Graphen hinzugefügt");
+                }
             }
+
+            /*
             for(Vertex v : vertices){
                 int idOfSphere = -1;
                 for(int[] i : nodeIDAndSphereID){
@@ -248,16 +266,17 @@ public class GXLio {
                         System.out.println("Die coordinaten des Knoten lauten: " + v.getCoordinates());
                         //newGraph.addVertex(v);
                         newGraph.addVertexToSphere(sp, v);
-                        //newGraph.addVertex(v.getCoordinates(), sp);
-                       // vv.getGraphLayout().setLocation(v, v.getCoordinates());
+
+                        //newGraph.getSpheres().get()
+                        newGraph.addVertex(v.getCoordinates(), sp);
+                        //vv.getGraphLayout().setLocation(v, v.getCoordinates());
                         //s.getVertices().add(v);
+                        // newGraph.getVertices().add(v);
                         System.out.println("Der Knoten wurde dem Graphen hinzugefügt");
-                        vv.getGraphLayout().setGraph(newGraph);
-                        vv.repaint();
-                        Syndrom.getInstance().getVv2().repaint();
                     }
                 }
             }
+            */
             for(Edge e : edges){
                 Vertex start = null;
                 Vertex end = null;
@@ -285,11 +304,11 @@ public class GXLio {
                 Pair<Vertex> endPoints = new Pair<>(start, end);
                 newGraph.addEdge(e, endPoints);
                 System.out.println("Die Kante wurde dem Graphen hinzugefügt.");
-                vv.getGraphLayout().setGraph(newGraph);
-                vv.repaint();
-                Syndrom.getInstance().getVv2().repaint();
-            }
 
+            }
+            vv.getGraphLayout().setGraph(newGraph);
+            vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {

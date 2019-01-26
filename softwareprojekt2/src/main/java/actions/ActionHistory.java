@@ -56,9 +56,11 @@ public class ActionHistory {
      * Undo for a current action.
      */
     public void undo() {
-        try{
-            actions[current].undo();
+        try {
+            if (current > 0){
+                actions[current].undo();
             current--;
+        }
         }catch(UnsupportedOperationException e){
             System.err.println("Can't undo further more actions.");
 

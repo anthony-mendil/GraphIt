@@ -1,9 +1,17 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import gui.Values;
+import gui.properties.Language;
+import javafx.util.Pair;
+import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
+
+import java.util.Map;
 
 
 /**
@@ -40,6 +48,15 @@ public class EditFontSizeSphereParam extends Param{
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        String information = "";
+        if (language == Language.ENGLISH) {
+            information += "Sphere:\n" + SyndromObjectPrinter.spherePrintEnglish(sphere)
+            + " New font size: " + newFontSize;
+        } else {
+            information += "Sphäre:\n" + SyndromObjectPrinter.spherePrintGerman(sphere)
+                    + " Neue Schriftgröße: " + newFontSize;
+        }
+        return information;
     }
 }
