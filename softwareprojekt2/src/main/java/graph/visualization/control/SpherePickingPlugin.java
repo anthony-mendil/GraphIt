@@ -155,7 +155,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 Syndrom.getInstance().getVv2().repaint();
 
             } else {
-                pickedSphereState.clear();
+                //pickedSphereState.clear();
             }
         }
     }
