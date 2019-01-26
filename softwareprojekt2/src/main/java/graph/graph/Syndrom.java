@@ -224,6 +224,7 @@ public class Syndrom {
         pluggable.add(new SpherePickingPlugin());
         pluggable.add(new VertexPickingPlugin());
         pluggable.add(new EdgePickingPlugin());
+        pluggable.add(new GeneralPickingPlugin());
     }
 
     public static Syndrom getInstance(){

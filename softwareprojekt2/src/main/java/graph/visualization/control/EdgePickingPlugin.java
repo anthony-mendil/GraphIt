@@ -41,16 +41,19 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         Edge edge = (Edge) pickSupport.getEdge(layout, e.getX(), e.getY());
+        Vertex vertex = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
+
 
         if (SwingUtilities.isLeftMouseButton(e)) {
             PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
-            if (edge != null) {
+
+            if (edge != null && vertex == null) {
                 edgeMove = edge;
                 if (!edgePickedState.isPicked(edge)) {
                     edgePickedState.pick(edge, true);
                 }
             } else {
-                edgePickedState.clear();
+                //edgePickedState.clear();
             }
         }
     }
@@ -89,7 +92,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
                 edgeMove.setAnchorPoint(draggedPoint);
             }
         }
-
+        vv.repaint();
     }
 
     private double angleBetween(Point2D center, Point2D previous, Point2D current) {

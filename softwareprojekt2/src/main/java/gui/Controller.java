@@ -751,6 +751,10 @@ public class Controller implements ObserverSyndrom {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
     }
 
+    public void handVertex(){
+        values.setGraphButtonType(GraphButtonType.NONE);
+    }
+
     /* ----------------ANALYSE---------------------- */
 
     /**
