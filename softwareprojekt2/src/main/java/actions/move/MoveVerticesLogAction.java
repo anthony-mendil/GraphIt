@@ -21,18 +21,13 @@ import java.util.Set;
  * and it must be positioned within a sphere.
  */
 public class MoveVerticesLogAction extends LogAction {
-    /**
-     * The difference in x.
-     */
-    private Double dX;
-    /**
-     * The difference in y.
-     */
-    private Double dY;
+
     /**
      * The collection of vertices, which were moved.
      */
     private Set<Vertex> vertices;
+
+    private Map<Vertex, Pair<Point2D, Sphere>> points;
 
 
     /**
@@ -49,59 +44,68 @@ public class MoveVerticesLogAction extends LogAction {
     /**
      * Moves all vertices according to the difference.
      *
-     * @param dx       The difference between the x-coordinate from the point where the user pressed the mouse and the
-     *                 point where the user released the mouse.
-     * @param dy       The difference between the y-coordinate from the point where the user pressed the mouse and the
-     *                 point where the user released the mouse.
      * @param vertices The collection of vertices to move.
      */
-    public MoveVerticesLogAction(double dx, double dy, Set<Vertex> vertices) {
+    public MoveVerticesLogAction(Set<Vertex> vertices,  Map<Vertex, Pair<Point2D, Sphere>> points) {
         super(LogEntryName.MOVE_VERTICES);
-        dX = dx;
-        dY = dy;
         this.vertices = vertices;
+        this.points = points;
     }
 
     @Override
     public void action() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        Layout<Vertex, Edge> layout = vv.getGraphLayout();
-        if (parameters == null) {
-            Map<Vertex, Point2D> oldVer = new HashMap<>();
-            Map<Vertex, Point2D> newVer = new HashMap<>();
-            for (Vertex vertex : vertices) {
-                Point2D oldPoint = new Point2D.Double(vertex.getCoordinates().getX() - dX, vertex.getCoordinates().getY() - dY);
-                oldVer.put(vertex, oldPoint);
-                newVer.put(vertex, vertex.getCoordinates());
-            }
-            createParameter(oldVer, newVer);
+       if (parameters != null){
+           SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+           Layout<Vertex, Edge> layout = vv.getGraphLayout();
 
-        } else {
-            Map<Vertex, Point2D> oldVertices = ((MoveVerticesParam) parameters).getOldVertices();
-            Map<Vertex, Point2D> newVertices = ((MoveVerticesParam) parameters).getNewVertices();
-            for (Map.Entry<Vertex, Point2D> entry : oldVertices.entrySet()) {
-                entry.getKey().setCoordinates(newVertices.get(entry.getKey()));
+           Map<Vertex,Point2D> oldVertices = ((MoveVerticesParam)parameters).getOldVertices();
+           Map<Vertex,Point2D> newVertices = ((MoveVerticesParam)parameters).getNewVertices();
+           oldVertices.clear();
 
-            }
-        }
-        vv.repaint();
-        Syndrom.getInstance().getVv2().repaint();
+           for (Vertex v : vertices) {
+               Point2D vp = newVertices.get(v);
+               newVertices.put(v, v.getCoordinates());
+               oldVertices.put(v, vp);
+               v.setCoordinates(vp);
+               layout.setLocation(v, vp);
+           }
+
+           vv.repaint();
+           Syndrom.getInstance().getVv2().repaint();
+       } else {
+           Map<Vertex,Point2D> oldVertices = new HashMap<>();
+           Map<Vertex,Point2D> newVertices = new HashMap<>();
+           for (Vertex v : points.keySet()){
+               oldVertices.put(v, points.get(v).getKey());
+               newVertices.put(v, v.getCoordinates());
+           }
+           createParameter(oldVertices, newVertices);
+       }
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
-
-
     }
 
 
     @Override
     public void undo() {
-        Map<Vertex,Point2D> oldVertices = ((MoveVerticesParam)parameters).getOldVertices();
-        Map<Vertex,Point2D> newVertices = ((MoveVerticesParam)parameters).getNewVertices();
-        MoveVerticesParam  moveVerticesParam = new MoveVerticesParam(newVertices,oldVertices);
-        MoveVerticesLogAction moveVerticesLogAction= new MoveVerticesLogAction(moveVerticesParam);
-        moveVerticesLogAction.action();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        Layout<Vertex, Edge> layout = vv.getGraphLayout();
+        MoveVerticesParam param = (MoveVerticesParam)parameters;
+        Map<Vertex,Point2D> oldVertices = param.getOldVertices();
+        Map<Vertex,Point2D> newVertices = param.getNewVertices();
+        newVertices.clear();
+
+        for (Vertex v : vertices) {
+            Point2D vp = oldVertices.get(v);
+            newVertices.put(v, vp);
+            oldVertices.put(v, v.getCoordinates());
+            v.setCoordinates(vp);
+            layout.setLocation(v, vp);
+        }
+
+        param.setNewVertices(newVertices);
+        param.setOldVertices(oldVertices);
     }
 
     public void createParameter(Map<Vertex,Point2D> oldVertices, Map<Vertex,Point2D> newVertices) {

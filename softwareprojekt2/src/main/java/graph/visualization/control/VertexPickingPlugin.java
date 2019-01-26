@@ -3,6 +3,7 @@ package graph.visualization.control;
 import actions.ActionHistory;
 import actions.add.AddEdgesLogAction;
 import actions.add.AddVerticesLogAction;
+import actions.move.MoveVerticesLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -34,7 +35,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     private Vertex source;
 
     private Values values;
-    private Map<Integer, Pair<Point2D, Sphere>> points;
+    private Map<Vertex, Pair<Point2D, Sphere>> points;
     private final HelperFunctions helper;
     private final ContextMenu contextMenu;
     private int addToSelectionModifiers;
@@ -70,14 +71,12 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null && edge == null) {
-
                     AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
                     history.execute(addVerticesLogAction);
                     Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
                     PickedState<Vertex> pickedState = vv.getPickedVertexState();
                     pickedState.clear();
                     pickedState.pick(newVertex, true);
-
                 } else {
                     helper.setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
                 }
@@ -110,29 +109,28 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Vertex vert = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
         PickedState<Vertex> vertexPickedState = vv.getPickedVertexState();
 
-        if (SwingUtilities.isRightMouseButton(e)) {
-
-            Object[] pickedArray = vertexPickedState.getPicked().toArray();
-            points = new LinkedHashMap<>();
-            for (Object aPickedArray : pickedArray) {
-                Vertex v = (Vertex) aPickedArray;
-                Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double(v
-                        .getCoordinates().getX(), v.getCoordinates().getY()));
-                Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
-                points.put(v.getId(), new Pair<>(v.getCoordinates(), sp));
-            }
-            vv.repaint();
-            Syndrom.getInstance().getVv2().repaint();
-        } else if (e.getModifiers() == InputEvent.BUTTON1_MASK) {
-            if (vert != null) {
-                source = vert;
-            }
+        if (e.getModifiers() == addToSelectionModifiers && vert != null) {
+            vertexPickedState.pick(vert, true);
+        } else {
             if (vert != null && !vertexPickedState.isPicked(vert)) {
                 vertexPickedState.clear();
                 vertexPickedState.pick(vert, true);
             }
-        } else if (e.getModifiers() == addToSelectionModifiers && vert != null) {
-            vertexPickedState.pick(vert, true);
+            if (SwingUtilities.isRightMouseButton(e)) {
+                Object[] pickedArray = vertexPickedState.getPicked().toArray();
+                points = new LinkedHashMap<>();
+                for (Object aPickedArray : pickedArray) {
+                    Vertex v = (Vertex) aPickedArray;
+                    Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double(v
+                            .getCoordinates().getX(), v.getCoordinates().getY()));
+                    Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
+                    points.put(v, new Pair<>(v.getCoordinates(), sp));
+                }
+                vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+            } else if (e.getModifiers() == InputEvent.BUTTON1_MASK && vert != null) {
+                source = vert;
+            }
         }
     }
 
@@ -161,6 +159,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void mouseDragged(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
             SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
@@ -188,7 +187,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
-    private void setVerticesCoord(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport pickSupport){
+    private void setVerticesCoord(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport pickSupport) {
         boolean addNot = false;
         for (Vertex v : pickedState.getPicked()) {
             Point2D vp = vv.getRenderContext().getMultiLayerTransformer().transform(v.getCoordinates());
@@ -209,7 +208,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
                         .getCoordinates());
                 Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
-                Sphere oldSphere = points.get(v.getId()).getValue();
+                Sphere oldSphere = points.get(v).getValue();
                 if (!s.equals(oldSphere)) {
                     LinkedList<Vertex> list = oldSphere.getVertices();
                     list.remove(v);
@@ -218,11 +217,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     LinkedList<Vertex> newList = s.getVertices();
                     newList.add(v);
                     s.setVertices(newList);
-
                 }
-                //           MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(DeltaX,DeltaY,pickedState.getPicked());
-                //          history.execute(moveVerticesLogAction);
             }
+            MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
+            history.execute(moveVerticesLogAction);
         }
     }
 

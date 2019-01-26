@@ -97,19 +97,20 @@ public class Vertex {
 
     /**
      * Creates a new vertex.
-     * @param id The identification of the vertex.
-     * @param fillColor The inner colour of the vertex.
+     *
+     * @param id          The identification of the vertex.
+     * @param fillColor   The inner colour of the vertex.
      * @param coordinates The cooridnates of the vertex.
-     * @param shape The shape of the vertex.
-     * @param annotation The annotation of the vertex.
-     * @param drawColor The colour of the boundary.
-     * @param size The size of the vertex.
-     * @param font The font of the annotation of the vertex.
-     * @param fontSize The font size of the annotation of the vertex.
+     * @param shape       The shape of the vertex.
+     * @param annotation  The annotation of the vertex.
+     * @param drawColor   The colour of the boundary.
+     * @param size        The size of the vertex.
+     * @param font        The font of the annotation of the vertex.
+     * @param fontSize    The font size of the annotation of the vertex.
      */
 
     public Vertex(int id, Color fillColor, Point2D coordinates, VertexShapeType shape, Map<String, String>
-            annotation, Color drawColor, int size, String font, int fontSize ){
+            annotation, Color drawColor, int size, String font, int fontSize) {
         this.id = id;
         this.fillColor = fillColor;
         this.coordinates = coordinates;
@@ -125,18 +126,21 @@ public class Vertex {
         isVisible = true;
     }
 
-    /**
-     * Checks whether two vertices are the same.
-     * @param v the target vertex.
-     * @return judgement, whether the vertices are equal.
-     */
-    public boolean equals(Vertex v){
-        return this.id == v.id;
-    }
     @Override
-    @JsonValue
-    public String toString(){
-        return Integer.toString(id);
+    public boolean equals(Object obj) {
+        if (obj instanceof Vertex) {
+            Vertex v = (Vertex) obj;
+            System.out.println("b");
+            return this.id == v.id;
+        }
+
+        System.out.println("a");
+        return false;
     }
 
+    @Override
+    @JsonValue
+    public String toString() {
+        return Integer.toString(id);
+    }
 }
