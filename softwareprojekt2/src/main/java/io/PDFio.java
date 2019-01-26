@@ -147,7 +147,7 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
         System.out.println(getMinPoint().toString());
         VectorGraphics vectorGraphics = null;
         Dimension dimensionWithBorder = new Dimension();
-        dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
+        dimensionWithBorder = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
         //dimensionWithBorder.setSize(getGraphDimension().getWidth() + BORDER, getGraphDimension().getHeight() + BORDER);
         try {
             vectorGraphics = new PDFGraphics2D(file, dimensionWithBorder);
@@ -186,7 +186,7 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
                 printerJob.print();
             } catch (PrinterException e) {
                 e.printStackTrace();
-            } finally{
+            } finally {
                 file.deleteOnExit();
             }
         }

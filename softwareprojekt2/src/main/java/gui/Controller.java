@@ -34,7 +34,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -1367,7 +1366,9 @@ public class Controller implements ObserverSyndrom {
         fonts = new ArrayList<Font>();
 
         try {
-            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            
+            Font roboto = Font.createFont(getClass().getResourceAsStream("/fonts/regular/Roboto-Regular.ttf"));
+                    //Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
@@ -1380,6 +1381,8 @@ public class Controller implements ObserverSyndrom {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //getClass().getResourceAsStream("/fonts/");
+
     }
 
 
