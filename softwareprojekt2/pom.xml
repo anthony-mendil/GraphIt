@@ -13,21 +13,27 @@
     </properties>
     <build>
 
+        <finalName>GraphIt</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
+                        <phase>install</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
                             <transformers>
                                 <transformer implementation=
                                                      "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>gui.Main</mainClass>
+                                    <manifestEntries>
+                                        <main-Class>gui.Main</main-Class>
+                                        <Build-By>Simlpyusejava</Build-By>
+                                        <Build-Jdk>1.8</Build-Jdk>
+                                    </manifestEntries>
                                 </transformer>
                             </transformers>
                         </configuration>
