@@ -1,12 +1,15 @@
 package graph.graph;
 
+import javafx.util.Pair;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 import org.codehaus.jackson.annotate.JsonValue;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -57,19 +60,19 @@ public class Vertex {
      * The edges with a reinforcing relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowReinforced;
+    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowReinforced;
 
     /**
      * The edges with a neutral relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowNeutral;
+    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowNeutral;
 
     /**
      * The edges with a extenuating relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowExtenuating;
+    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowExtenuating;
 
     /**
      * The size of a vertex.
@@ -120,9 +123,9 @@ public class Vertex {
         this.annotation = annotation;
         this.font = font;
         this.fontSize = fontSize;
-        vertexArrowExtenuating = new LinkedHashMap<>();
-        vertexArrowNeutral = new LinkedHashMap<>();
-        vertexArrowReinforced = new LinkedHashMap<>();
+        vertexArrowExtenuating = new EnumMap<>(ScopePoint.class);
+        vertexArrowNeutral = new EnumMap<>(ScopePoint.class);
+        vertexArrowReinforced = new EnumMap<>(ScopePoint.class);
         isVisible = true;
     }
 
@@ -130,11 +133,8 @@ public class Vertex {
     public boolean equals(Object obj) {
         if (obj instanceof Vertex) {
             Vertex v = (Vertex) obj;
-            System.out.println("b");
             return this.id == v.id;
         }
-
-        System.out.println("a");
         return false;
     }
 

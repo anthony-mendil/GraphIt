@@ -50,7 +50,7 @@ public class EditEdgesColorLogAction extends LogAction {
             Map<Edge,Pair<Vertex,Vertex>> oldEdge = new HashMap<>();
             Map<Edge,Pair<Vertex,Vertex>> newEdge = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                edu.uci.ics.jung.graph.util.Pair<Vertex> sourceTargetJung = Syndrom.getInstance().getGraph().getEndpoints(e);
+                edu.uci.ics.jung.graph.util.Pair<Vertex> sourceTargetJung = vv.getGraphLayout().getGraph().getEndpoints(e);
                 Pair<Vertex,Vertex> sourceTarget = new Pair<>(sourceTargetJung.getFirst(),sourceTargetJung.getSecond());
                 oldEdge.put(e,sourceTarget);
                 e.setColor(color);

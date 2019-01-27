@@ -32,6 +32,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import java.lang.String?>
 <BorderPane fx:id="root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -221,6 +222,24 @@
                                  </graphic>
                                  <tooltip>
                                     <Tooltip text="Sphäre hinzufügen" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="handVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons2/hand.png" />
+                                       </image>
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Auswählen" />
                                  </tooltip>
                               </Button>
                               <Separator orientation="VERTICAL" prefHeight="4.0">
