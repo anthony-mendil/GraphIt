@@ -5,31 +5,18 @@ import actions.add.AddEdgesLogAction;
 import actions.add.AddVerticesLogAction;
 import actions.move.MoveVerticesLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.visualization.Layer;
-import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import gui.GraphButtonType;
 import gui.Values;
 import gui.VertexContextMenu;
-import javafx.animation.*;
-import javafx.application.Platform;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
-import javafx.geometry.Insets;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 import javafx.util.Pair;
 
 import javax.swing.*;
@@ -38,45 +25,35 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-import java.util.*;
-import java.util.concurrent.CountDownLatch;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     private Vertex source;
 
     private Values values;
-    private Map<Integer, Pair<Point2D, Sphere>> points;
+    private Map<Vertex, Pair<Point2D, Sphere>> points = null;
     private final HelperFunctions helper;
     private final ContextMenu contextMenu;
-    /**
-     * The difference in x.
-     */
-    private Double DeltaX;
-    /**
-     * The difference in y.
-     */
-    private Double DeltaY;
-    /**
-     * The current position of the cursor.
-     */
-    private Point vertexPickedCoord;
-
-
-
-
+    private int addToSelectionModifiers;
     private ActionHistory history;
 
     /**
      * create an instance with passed values
      */
     public VertexPickingPlugin() {
-        super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
+        this(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK, InputEvent.SHIFT_MASK | InputEvent.BUTTON1_MASK);
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
         values = Values.getInstance();
         history = ActionHistory.getInstance();
+    }
+
+    private VertexPickingPlugin(int selectionModifiers, int addToSelectionModifiers) {
+        super(selectionModifiers);
+        this.addToSelectionModifiers = addToSelectionModifiers;
         helper = new HelperFunctions();
         contextMenu = new VertexContextMenu().getContextMenu();
     }
@@ -91,54 +68,25 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
 
-
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null && edge == null) {
-
-                   /* boolean add = true;
-                    for (Vertex sphereVert : sp.getVertices()) {
-                        GraphObjectsFactory graphObjectsFactory = new GraphObjectsFactory();
-                        Vertex test = graphObjectsFactory.createTestVertex(point);
-                        RenderContext<Vertex, Edge> rc = vv.getRenderContext();
-                        Layout<Vertex, Edge> layout = vv.getGraphLayout();
-
-                        Shape shapeTest = vv.getRenderContext().getVertexShapeTransformer().transform(test);
-                        Shape shapeSphereVert = rc.getVertexShapeTransformer().transform
-                                (sphereVert);
-                        float x = (float) point.getX();
-                        float y = (float) point.getY();
-                        AffineTransform xform = AffineTransform.getTranslateInstance(x, y);
-                        shapeTest = xform.createTransformedShape(shapeTest);
-
-                        Point2D p2 = layout.transform(sphereVert);
-                        p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, p2);
-                        float x2 = (float) p2.getX();
-                        float y2 = (float) p2.getY();
-                        AffineTransform xform2 = AffineTransform.getTranslateInstance(x2, y2);
-                        shapeSphereVert = xform2.createTransformedShape(shapeSphereVert);
-
-                        if (shapeTest.intersects(shapeSphereVert.getBounds())) {
-                            add = false;
-                        }*/
-                    //}
-                   // if (add) {
-                        AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
-                    	history.execute(addVerticesLogAction);
-                    //} else {
-                    // setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
-                    //}
+                    AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
+                    history.execute(addVerticesLogAction);
+                    Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+                    PickedState<Vertex> pickedState = vv.getPickedVertexState();
+                    pickedState.clear();
+                    pickedState.pick(newVertex, true);
                 } else {
-                    setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
+                    helper.setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
                 }
             }
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
-
         }
 
-        if (SwingUtilities.isRightMouseButton(e)){
-            if (vertex != null){
+        if (SwingUtilities.isRightMouseButton(e)) {
+            if (vertex != null) {
                 PickedState<Vertex> vertices = vv.getPickedVertexState();
                 vertices.clear();
                 vertices.pick(vertex, true);
@@ -159,31 +107,28 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         Vertex vert = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
+        PickedState<Vertex> vertexPickedState = vv.getPickedVertexState();
 
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            PickedState<Vertex> vertexPickedState = vv.getPickedVertexState();
-            if (vert != null) {
-                if (!vertexPickedState.isPicked(vert)) {
-                    vertexPickedState.pick(vert, true);
-                    vertexPickedCoord = e.getPoint();
-                }
-            } else {
+        if (e.getModifiers() == addToSelectionModifiers && vert != null) {
+            vertexPickedState.pick(vert, true);
+        } else {
+            if (vert != null && !vertexPickedState.isPicked(vert)) {
                 vertexPickedState.clear();
+                vertexPickedState.pick(vert, true);
             }
-
-            Object[] pickedArray = vertexPickedState.getPicked().toArray();
-            points = new LinkedHashMap<>();
-            for (Object aPickedArray : pickedArray) {
-                Vertex v = (Vertex) aPickedArray;
-                Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double(v
-                        .getCoordinates().getX(), v.getCoordinates().getY()));
-                Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
-                points.put(v.getId(), new Pair<>(v.getCoordinates(), sp));
-            }
-            vv.repaint();
-            Syndrom.getInstance().getVv2().repaint();
-        } else if (SwingUtilities.isRightMouseButton(e)) {
-            if (vert != null) {
+            if (SwingUtilities.isRightMouseButton(e) && vert != null) {
+                Object[] pickedArray = vertexPickedState.getPicked().toArray();
+                points = new LinkedHashMap<>();
+                for (Object aPickedArray : pickedArray) {
+                    Vertex v = (Vertex) aPickedArray;
+                    Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double(v
+                            .getCoordinates().getX(), v.getCoordinates().getY()));
+                    Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
+                    points.put(v, new Pair<>(v.getCoordinates(), sp));
+                }
+                vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+            } else if (e.getModifiers() == InputEvent.BUTTON1_MASK && vert != null) {
                 source = vert;
             }
         }
@@ -197,73 +142,26 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         Vertex vert = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            boolean addNot = false;
-            for (Vertex v : pickedState.getPicked()) {
-                Point2D vp = vv.getRenderContext().getMultiLayerTransformer().transform(v.getCoordinates());
-                Sphere sp = pickSupport.getSphere(vp.getX(), vp.getY());
-                if (sp == null) {
-                    addNot = true;
-                }
-            }
-            if (addNot) {
-                for (Vertex v : pickedState.getPicked()) {
-                    Point2D vp = new Point2D.Double(points.get(v.getId()).getKey().getX(), points.get(v.getId())
-                            .getKey().getY());
-                    v.setCoordinates(vp);
-                    layout.setLocation(v, vp);
-                }
-            } else {
-                for (Vertex v : pickedState.getPicked()) {
-                    Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
-                            .getCoordinates());
-                    Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
-                    Sphere oldSphere = points.get(v.getId()).getValue();
-                    if (!s.equals(oldSphere)){
-                        LinkedList<Vertex> list = oldSphere.getVertices();
-                        list.remove(v);
-                        oldSphere.setVertices(list);
-
-                        LinkedList<Vertex> newList = s.getVertices();
-                        newList.add(v);
-                        s.setVertices(newList);
-
-                    }
-         //           MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(DeltaX,DeltaY,pickedState.getPicked());
-          //          history.execute(moveVerticesLogAction);
-                }
-            }
-
+        if (SwingUtilities.isRightMouseButton(e) && points != null) {
+            setVerticesCoord(pickedState, vv, layout, pickSupport);
             points = null;
             down = null;
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
-
         }
 
-        if (SwingUtilities.isRightMouseButton(e)) {
-            if (vert != null && source != null && !source.equals(vert)) {
-                Pair<Vertex, Vertex> edge = new Pair<>(source, vert);
-                AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
-                history.execute(addEdgesLogAction);
-            }
+        if (SwingUtilities.isLeftMouseButton(e) && vert != null && source != null && !source.equals(vert)) {
+            Pair<Vertex, Vertex> edge = new Pair<>(source, vert);
+            AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
+            history.execute(addEdgesLogAction);
         }
         source = null;
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        //
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //
-    }
-
-    @Override
+    @SuppressWarnings("unchecked")
     public void mouseDragged(MouseEvent e) {
-        if (SwingUtilities.isLeftMouseButton(e)) {
+        if (SwingUtilities.isRightMouseButton(e)) {
             SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
 
             if (points != null) {
@@ -272,8 +170,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(down);
                 double dx = graphPoint.getX() - graphDown.getX();
                 double dy = graphPoint.getY() - graphDown.getY();
-         //       DeltaX = vertexPickedCoord.getX() - graphPoint.getX();
-         //       DeltaY = vertexPickedCoord.getY() - graphPoint.getY();
                 PickedState<Vertex> pickedState = vv.getPickedVertexState();
 
                 Layout<Vertex, Edge> layout = vv.getGraphLayout();
@@ -287,8 +183,44 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 down = p;
                 vv.repaint();
                 Syndrom.getInstance().getVv2().repaint();
-
             }
+        }
+    }
+
+    private void setVerticesCoord(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport pickSupport) {
+        boolean addNot = false;
+        for (Vertex v : pickedState.getPicked()) {
+            Point2D vp = vv.getRenderContext().getMultiLayerTransformer().transform(v.getCoordinates());
+            Sphere sp = pickSupport.getSphere(vp.getX(), vp.getY());
+            if (sp == null) {
+                addNot = true;
+            }
+        }
+        if (addNot) {
+            for (Vertex v : pickedState.getPicked()) {
+                Point2D vp = new Point2D.Double(points.get(v).getKey().getX(), points.get(v)
+                        .getKey().getY());
+                v.setCoordinates(vp);
+                layout.setLocation(v, vp);
+            }
+        } else {
+            for (Vertex v : pickedState.getPicked()) {
+                Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
+                        .getCoordinates());
+                Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
+                Sphere oldSphere = points.get(v).getValue();
+                if (!s.equals(oldSphere)) {
+                    LinkedList<Vertex> list = oldSphere.getVertices();
+                    list.remove(v);
+                    oldSphere.setVertices(list);
+
+                    LinkedList<Vertex> newList = s.getVertices();
+                    newList.add(v);
+                    s.setVertices(newList);
+                }
+            }
+            MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
+            history.execute(moveVerticesLogAction);
         }
     }
 
@@ -297,54 +229,13 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         //
     }
 
-    private void setActionText(String string, boolean isAlert) {
-        Service<Void> service = new Service<Void>() {
-            @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>() {
-                    @Override
-                    protected Void call() throws Exception {
-                        final CountDownLatch latch = new CountDownLatch(1);
-                        Platform.runLater(() -> {
-                            try {
-                                Text text = (Text) values.getNamespace().get("currentActionText");
-                                HBox hBox = (HBox) values.getNamespace().get("textBox");
-                                Color color = Color.WHITE;
-                                Font font = values.getActionTextAlert();
-                                if (isAlert) {
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //
+    }
 
-
-                                    String style = "-fx-background-color: rgba(160, 12, 12, 1);";
-                                    hBox.setStyle(style);
-
-                                    final Animation animation = new Transition() {
-                                        {
-                                            setCycleDuration(Duration.millis(3000));
-                                            setInterpolator(Interpolator.LINEAR);
-                                        }
-
-                                        @Override
-                                        protected void interpolate(double frac) {
-                                            hBox.setOpacity(1-frac);
-                                        }
-                                    };
-                                    animation.play();
-
-
-                                }
-                                text.setFill(color);
-                                text.setText(string);
-                                text.setFont(font);
-                            } finally {
-                                latch.countDown();
-                            }
-                        });
-                        latch.await();
-                        return null;
-                    }
-                };
-            }
-        };
-        service.start();
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //
     }
 }

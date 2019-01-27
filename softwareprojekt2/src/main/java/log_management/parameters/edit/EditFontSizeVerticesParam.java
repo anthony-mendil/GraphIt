@@ -1,7 +1,13 @@
 package log_management.parameters.edit;
 
+import graph.graph.Syndrom;
 import graph.graph.Vertex;
+import gui.Values;
+import gui.properties.Language;
+import javafx.util.Pair;
+import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -23,9 +29,6 @@ public class EditFontSizeVerticesParam extends Param implements Serializable {
      */
     @Getter
     Map<Vertex,Integer> newVertices;
-    //Q: Does the font size change everywhere or is for example a list of vertex id's needed?
-    //A: I think, that every font size of all vertices should be independent from each other.
-    //   Therefore there must be a map or something kinda like this...
 
     /**
      * Creates a vertices object of its own class.
@@ -38,6 +41,21 @@ public class EditFontSizeVerticesParam extends Param implements Serializable {
     }
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        Language language = Values.getInstance().getGuiLanguage();
+        String information = "";
+        if (language == Language.ENGLISH) {
+            information += "Symptoms changed:\n";
+            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish((entry.getKey()))
+                        + "New font size: " + newVertices.get(entry.getKey()) + "\n";
+            }
+        } else {
+            information += "Veränderte Symptome:\n";
+            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman((entry.getKey()))
+                        + "Neue Schriftgröße: " + newVertices.get(entry.getKey()) + "\n";
+            }
+        }
+        return information;
     }
 }

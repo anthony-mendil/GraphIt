@@ -4,12 +4,16 @@ import com.sun.javafx.geom.Point2D;
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.Vertex;
+import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
+import edu.uci.ics.jung.visualization.renderers.Renderer;
+import graph.graph.*;
+import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeArrowTransformer;
+import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgeStrokeTransformer;
+import graph.visualization.transformer.vertex.*;
 import gui.Values;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
@@ -120,10 +124,30 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
         vis.setRenderer(new SyndromRenderer<>());
         vis.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>(vv));
         vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(), Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(), vv.getCenter());
+
+        vis.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
+        vis.getRenderContext().setVertexFontTransformer(new VertexFontTransformer<>());
+        vis.getRenderContext().setVertexDrawPaintTransformer(new VertexDrawPaintTransformer<>());
+        vis.getRenderContext().setVertexLabelTransformer(new VertexLabelTransformer<>());
+        vis.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
+        vis.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
+        vis.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
+
+        vis.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
+        vis.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
+        vis.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<Edge>(vv));
+
+        vis.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vis.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+
+        EdgeRenderer<Vertex, Edge> edgeRenderer = new EdgeRenderer<>();
+        vis.getRenderer().setEdgeRenderer(edgeRenderer);
+
+
         System.out.println(getMinPoint().toString());
         VectorGraphics vectorGraphics = null;
         Dimension dimensionWithBorder = new Dimension();
-        dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
+        dimensionWithBorder = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
         //dimensionWithBorder.setSize(getGraphDimension().getWidth() + BORDER, getGraphDimension().getHeight() + BORDER);
         try {
             vectorGraphics = new PDFGraphics2D(file, dimensionWithBorder);
@@ -162,7 +186,7 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
                 printerJob.print();
             } catch (PrinterException e) {
                 e.printStackTrace();
-            } finally{
+            } finally {
                 file.deleteOnExit();
             }
         }

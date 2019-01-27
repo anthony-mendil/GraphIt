@@ -15,8 +15,8 @@ public class SatelliteGraphMouse  extends ModalSatelliteGraphMouse implements
         //pickingPlugin = new PickingGraphMousePlugin();
         //animatedPickingPlugin = new SatelliteAnimatedPickingGraphMousePlugin();
         translatingPlugin = new SatelliteTranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
-        scalingPlugin = new SyndromSatelliteScalingGraphMousePlugin(new AbsoluteCrossoverScalingControl(), 0);
-        add(scalingPlugin);
+        //scalingPlugin = new SyndromSatelliteScalingGraphMousePlugin(new AbsoluteCrossoverScalingControl(), 0);
+        //add(scalingPlugin);
         add(translatingPlugin);
        //setMode(Mode.TRANSFORMING);
     }

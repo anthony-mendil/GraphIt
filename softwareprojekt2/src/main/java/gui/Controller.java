@@ -34,7 +34,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -697,6 +696,8 @@ public class Controller implements ObserverSyndrom {
     private String currentSize = "";
     private String currentFont = "";
 
+    private TemplateController templateController = new TemplateController(templateStage);
+
     /**
      * The combobox for changing the size of the sphere text.
      */
@@ -748,6 +749,10 @@ public class Controller implements ObserverSyndrom {
      */
     public void addVertex() {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
+    }
+
+    public void handVertex(){
+        values.setGraphButtonType(GraphButtonType.NONE);
     }
 
     /* ----------------ANALYSE---------------------- */
@@ -1291,7 +1296,7 @@ public class Controller implements ObserverSyndrom {
     public void createTemplateWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
-        fxmlLoader.setController(new TemplateController(templateStage));
+        fxmlLoader.setController(templateController);
         templateStage.setResizable(false);
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
@@ -1301,6 +1306,7 @@ public class Controller implements ObserverSyndrom {
     public void showTemplateWindow(){
         if(!templateStage.isShowing()){
             templateStage.show();
+            templateController.loadListView();
         }
     }
 
@@ -1364,6 +1370,7 @@ public class Controller implements ObserverSyndrom {
         fonts = new ArrayList<Font>();
 
         try {
+            
             Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
@@ -1377,6 +1384,8 @@ public class Controller implements ObserverSyndrom {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //getClass().getResourceAsStream("/fonts/");
+
     }
 
 
