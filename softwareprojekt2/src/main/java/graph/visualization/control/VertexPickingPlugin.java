@@ -35,7 +35,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     private Vertex source;
 
     private Values values;
-    private Map<Vertex, Pair<Point2D, Sphere>> points;
+    private Map<Vertex, Pair<Point2D, Sphere>> points = null;
     private final HelperFunctions helper;
     private final ContextMenu contextMenu;
     private int addToSelectionModifiers;
@@ -116,7 +116,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 vertexPickedState.clear();
                 vertexPickedState.pick(vert, true);
             }
-            if (SwingUtilities.isRightMouseButton(e)) {
+            if (SwingUtilities.isRightMouseButton(e) && vert != null) {
                 Object[] pickedArray = vertexPickedState.getPicked().toArray();
                 points = new LinkedHashMap<>();
                 for (Object aPickedArray : pickedArray) {
@@ -142,7 +142,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         Vertex vert = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if (SwingUtilities.isRightMouseButton(e)) {
+        if (SwingUtilities.isRightMouseButton(e) && points != null) {
             setVerticesCoord(pickedState, vv, layout, pickSupport);
             points = null;
             down = null;
@@ -198,7 +198,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
         if (addNot) {
             for (Vertex v : pickedState.getPicked()) {
-                Point2D vp = new Point2D.Double(points.get(v.getId()).getKey().getX(), points.get(v.getId())
+                Point2D vp = new Point2D.Double(points.get(v).getKey().getX(), points.get(v)
                         .getKey().getY());
                 v.setCoordinates(vp);
                 layout.setLocation(v, vp);

@@ -10,15 +10,11 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.SyndromGraph;
+import graph.graph.*;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
+import java.util.*;
 
 /**
  * The SyndromRenderer paints the syndrom graph.
@@ -45,6 +41,13 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         Collection<E> renderEdges = new ArrayList<>();
         Sphere sp = null;
         boolean overlapped = isOverlapped(pickedState, g);
+
+        for (V v : g.getVertices()){
+            graph.graph.Vertex vertex = (graph.graph.Vertex) v;
+            vertex.setVertexArrowExtenuating(new EnumMap<>(ScopePoint.class));
+            vertex.setVertexArrowNeutral(new EnumMap<>(ScopePoint.class));
+            vertex.setVertexArrowReinforced(new EnumMap<>(ScopePoint.class));
+        }
 
         // paints all spheres
         renderSpheres((ArrayList<Sphere>) g.getSpheres(), renderContext);
