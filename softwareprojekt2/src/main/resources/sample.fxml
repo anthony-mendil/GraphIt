@@ -220,7 +220,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Hinzufügen" />
+                                    <Tooltip text="Sphäre hinzufügen" />
                                  </tooltip>
                               </Button>
                               <Separator orientation="VERTICAL" prefHeight="4.0">
@@ -240,7 +240,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Löschen" />
+                                    <Tooltip text="Sphäre löschen" />
                                  </tooltip>
                               </Button>
                                <Button fx:id="sphereEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
@@ -255,7 +255,7 @@
                                        </ImageView>
                                    </graphic>
                                    <tooltip>
-                                       <Tooltip text="Vergrößern" />
+                                       <Tooltip text="Sphäre vergrößern" />
                                    </tooltip>
                                </Button>
                                <Button fx:id="sphereShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
@@ -270,7 +270,7 @@
                                        </ImageView>
                                    </graphic>
                                    <tooltip>
-                                       <Tooltip text="Verkleinern" />
+                                       <Tooltip text="Sphäre verkleinern" />
                                    </tooltip>
                                </Button>
                               <ColorPicker fx:id="sphereBackgroundColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editSphereColor" prefHeight="30.0" prefWidth="46.0">
@@ -278,11 +278,11 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
-                                    <Tooltip text="Hintergrundfarbe" />
+                                    <Tooltip text="Hintergrundfarbe der Sphäre verändern" />
                                  </tooltip>
                               </ColorPicker>
 
-                              <Separator orientation="VERTICAL" prefHeight="4.0">
+                                          <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </HBox.margin>
@@ -292,7 +292,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
-                                    <Tooltip text="Schriftart" />
+                                    <Tooltip text="Schriftart der Sphäre verändern" />
                                  </tooltip>
                               </ComboBox>
                               <ComboBox fx:id="sizeSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="Schriftgröße">
@@ -300,7 +300,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
-                                    <Tooltip text="Schriftgröße" />
+                                    <Tooltip text="Schriftgröße der Sphäre verändern" />
                                  </tooltip>
                               </ComboBox>
                               <Button fx:id="sphereAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
@@ -333,14 +333,14 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="555.0">
+                  <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="600.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="23.0" prefWidth="550.0">
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="599.0">
                            <children>
                               <Button fx:id="buttoVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                  <HBox.margin>
@@ -357,7 +357,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Hinzufügen" />
+                                    <Tooltip text="Symptom hinzufügen" />
                                  </tooltip>
                               </Button>
                               <Button fx:id="handVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
@@ -375,7 +375,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Auswählen" />
+                                    <Tooltip text="Symptom auswählen" />
                                  </tooltip>
                               </Button>
                               <Separator orientation="VERTICAL" prefHeight="4.0">
@@ -395,7 +395,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Löschen" />
+                                    <Tooltip text="Symptom löschen" />
                                  </tooltip>
                               </Button>
                               <Button fx:id="vertexEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
@@ -410,7 +410,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Vergrößern" />
+                                    <Tooltip text="Symptom vergrößern" />
                                  </tooltip>
                               </Button>
                               <Button fx:id="vertexShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
@@ -425,7 +425,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Verkleinern" />
+                                    <Tooltip text="Symptom verkleinern" />
                                  </tooltip>
                               </Button>
                               <ColorPicker fx:id="symptomBackground" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesFillColor" prefHeight="30.0" prefWidth="46.0">
@@ -434,7 +434,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
-                                    <Tooltip text="Hintergrundfarbe" />
+                                    <Tooltip text="Hintergrundfarbe des Symptoms verändern" />
                                  </tooltip>
                               </ColorPicker>
                               <ColorPicker fx:id="symptomBorder" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesDrawColor" prefHeight="30.0" prefWidth="46.0">
@@ -442,7 +442,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
-                                    <Tooltip text="Randfarbe" />
+                                    <Tooltip text="Randfarbe des Symptoms verändern" />
                                  </tooltip>
                               </ColorPicker>
                               <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
@@ -470,7 +470,7 @@
                                     </MenuItem>
                                  </items>
                                  <tooltip>
-                                    <Tooltip text="Form" />
+                                    <Tooltip text="Form des Symptoms verändern" />
                                  </tooltip>
                                  <graphic>
                                     <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -502,7 +502,7 @@
                               </Separator>
                               <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
                                  <tooltip>
-                                    <Tooltip text="Schriftart" />
+                                    <Tooltip text="Schriftart des Symptoms verändern" />
                                  </tooltip>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -510,7 +510,7 @@
                               </ComboBox>
                               <ComboBox fx:id="sizeSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="Schriftgröße">
                                  <tooltip>
-                                    <Tooltip text="Schriftgröße" />
+                                    <Tooltip text="Schriftgröße des Symptoms verändern" />
                                  </tooltip>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -551,6 +551,9 @@
                                        </image>
                                     </ImageView>
                                  </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Ankerpunkte setzen" />
+                                 </tooltip>
                               </ToggleButton>
                               <Separator orientation="VERTICAL" prefHeight="4.0">
                                  <HBox.margin>
@@ -569,7 +572,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Löschen" />
+                                    <Tooltip text="Kante löschen" />
                                  </tooltip>
                               </Button>
                               <Button fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
@@ -584,7 +587,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Löschen" />
+                                    <Tooltip text="Ankerpunkt löschen" />
                                  </tooltip>
                               </Button>
                               <Separator orientation="VERTICAL" prefHeight="4.0">
@@ -597,7 +600,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
-                                    <Tooltip text="Kantenfarbe" />
+                                    <Tooltip text="Farbe der Kante verändern" />
                                  </tooltip>
                               </ColorPicker>
                               <MenuButton fx:id="edgeStrokeMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeStrokeBasic" prefHeight="30.0" prefWidth="50.0">
@@ -665,7 +668,7 @@
                                     </MenuItem>
                                  </items>
                                  <tooltip>
-                                    <Tooltip text="Kantenart" />
+                                    <Tooltip text="Art der Kante verändern" />
                                  </tooltip>
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -712,7 +715,7 @@
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </HBox.margin>
                                  <tooltip>
-                                    <Tooltip text="Pfeilspitze" />
+                                    <Tooltip text="Pfeilspitze der Kante verändern" />
                                  </tooltip>
                               </MenuButton>
                            </children>
@@ -779,14 +782,23 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger" />
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1" />
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger">
+                                 <tooltip>
+                                    <Tooltip text="Vorgänger des Symptoms anzeigen" />
+                                 </tooltip></CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Nachfolger des Symptoms anzeigen" />
+                                 </tooltip></CheckBox>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField fx:id="amountSymptomTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="amountSymptomTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="Anzahl der Vorgänger/Nachfolger" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Anzahl der Vorgänger/Nachfolger" />
+                                 </tooltip></TextField>
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -820,14 +832,23 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger" />
-                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1" />
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger">
+                                 <tooltip>
+                                    <Tooltip text="Vorgänger der Kante anzeigen" />
+                                 </tooltip></CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Nachfolger der Kante anzeigen" />
+                                 </tooltip></CheckBox>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
                               </Text>
-                              <TextField fx:id="amountEdgeTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="amountEdgeTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="Anzahl der Vorgänger/Nachfolger" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Anzahl der Vorgänger/Nachfolger" />
+                                 </tooltip></TextField>
                               <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" " GridPane.columnIndex="2">
                                  <graphic>
                                     <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
@@ -863,6 +884,9 @@
                                        </padding>
                                     </MenuButton>
                                  </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Nur bestimmte Pfeiltypen anzeigen" />
+                                 </tooltip>
                               </CheckBox>
                            </children>
                            <VBox.margin>
@@ -906,6 +930,9 @@
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </HBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="Analyse-Optionen aktivieren" />
+                                       </tooltip>
                                     </CheckBox>
                                  </children>
                               </HBox>
