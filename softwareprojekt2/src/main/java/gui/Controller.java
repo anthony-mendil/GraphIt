@@ -28,6 +28,7 @@ import actions.remove.RemoveVerticesLogAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -52,6 +53,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import log_management.dao.LogDao;
 
 import javax.swing.*;
@@ -59,6 +61,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -1091,6 +1094,7 @@ public class Controller implements ObserverSyndrom {
      * and executes the action with the action history.
      */
     public void openFile() {
+
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1104,6 +1108,7 @@ public class Controller implements ObserverSyndrom {
      * and executes the action with the action history.
      */
     public void importGXL() {
+        //optionSaveWindow();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1323,6 +1328,18 @@ public class Controller implements ObserverSyndrom {
      */
     public void initialize() {
         initFonts();
+
+        /*
+        mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("CLOSE");
+                event.consume();
+                optionSaveWindow();
+            }
+        });
+        */
+
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
@@ -1346,16 +1363,15 @@ public class Controller implements ObserverSyndrom {
         loadMenuItem();
         loadFontComboBox(fontSphereComboBox);
         loadFontComboBox(fontSymptomComboBox);
+        disableEditMode(true);
+        disableAnalysisMode(true);
 
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
         zoomSlider.setValue(100);
-        values.setScale(100);
-        zoomSlider.setShowTickMarks(true);
         zoomSlider.setBlockIncrement(20);
         zoomSlider.setMajorTickUnit(20);
         zoomSlider.setMinorTickCount(5);
-        zoomSlider.setShowTickLabels(true);
         zoomSlider.setSnapToTicks(true);
         zoomSlider.valueProperty().addListener(changeZoom);
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
@@ -1657,6 +1673,63 @@ public class Controller implements ObserverSyndrom {
         toolBarSeparator1.setManaged(active);
     }
 
+    private void disableEditMode(Boolean disable){
+        separator1.setDisable(disable);
+        separator2.setDisable(disable);
+        menubarSeparator3.setDisable(disable);
+        vBoxEditSphere.setDisable(disable);
+        vBoxEditSymptom.setDisable(disable);
+        vBoxEditEdge.setDisable(disable);
+        templateButton.setDisable(disable);
+        redoButton.setDisable(disable);
+        undoButton.setDisable(disable);
+        toolBarSeparator1.setDisable(disable);
+        zoomSlider.setDisable(disable);
+    }
+
+    private void disableAnalysisMode(Boolean disable){
+        vBoxGraphStats.setDisable(disable);
+        separator3.setDisable(disable);
+        separator4.setDisable(disable);
+        separator5.setDisable(disable);
+        vBoxAnalysisSymptom.setDisable(disable);
+        vBoxAnalysisEdge.setDisable(disable);
+        vBoxAnalysisOption.setDisable(disable);
+    }
+
+    private void optionSaveWindow(){
+        if(canvas.getContent() != null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("GraphIt");
+            alert.setHeaderText(null);
+            alert.setContentText("Wollen Sie die aktuelle Datei speichern?");
+
+            ButtonType buttonTypeOne = new ButtonType("Speichern");
+            ButtonType buttonTypeTwo = new ButtonType("Nicht Speichern");
+            ButtonType buttonTypeCancel = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonTypeOne,buttonTypeTwo, buttonTypeCancel);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeOne){
+                // ... user chose "One"
+                System.out.println("SPEICHERN");
+            }else if(result.get() == buttonTypeTwo){
+                // ... user chose "Two"
+                System.out.println("NICHT SPEICHERN");
+                Platform.exit();
+            }
+            else {
+                // ... user chose CANCEL or closed the dialog
+                System.out.println("CANCEL");
+            }
+        }else{
+            Platform.exit();
+        }
+    }
+
+
+
     /*
      * Uses the provided swingnode to display the zoom window on it.
      *
@@ -1688,11 +1761,13 @@ public class Controller implements ObserverSyndrom {
     public void buttonClicked2(ActionEvent actionEvent) {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
 
+        //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("First Graph");
         history.execute(action);
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
-
+        disableEditMode(false);
+        disableAnalysisMode(false);
     }
 
     public void sphereEnlarge(ActionEvent actionEvent) {
@@ -1716,6 +1791,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void buttonClicked3(ActionEvent actionEvent) {
+        //optionSaveWindow();
         throw new UnsupportedOperationException();
     }
 

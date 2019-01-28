@@ -22,6 +22,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
 
     private Edge edgeMove = null;
+    private int addToSelection = InputEvent.BUTTON1_MASK | InputEvent.SHIFT_MASK;
 
     /**
      * create an instance with passed values
@@ -43,7 +44,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
         if (edge != null && vertex == null) {
             edgeMove = edge;
-            if (e.getModifiers() == InputEvent.SHIFT_MASK) {
+            if (e.getModifiers() == addToSelection) {
                 edgePickedState.pick(edge, true);
             } else if (SwingUtilities.isLeftMouseButton(e)) {
                 edgePickedState.clear();

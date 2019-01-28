@@ -12,9 +12,11 @@ import javafx.scene.control.Separator;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Pair;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class TemplateController {
@@ -62,38 +64,38 @@ public class TemplateController {
 
         List<Sphere> spheres = graph.getSpheres();
 
+        Collection<Vertex> vertices = graph.getVertices();
+
+        Collection<Edge> edges = graph.getEdges();
+
         ArrayList<String> name = new ArrayList<>();
 
-        for(Sphere sphere : spheres){
-            name.add(sphere.getAnnotation().get("de"));
+        if(!spheres.isEmpty()){
+            name.add("---------------------------Sphären---------------------------");
+
+            for(Sphere sphere : spheres){
+                name.add(sphere.getAnnotation().get("de"));
+            }
+        }
+
+        if(!vertices.isEmpty()){
+            name.add("---------------------------Symptome------------------------");
+
+            for(Vertex vertex : vertices){
+                name.add(vertex.getAnnotation().get("de"));
+            }
+        }
+
+        if(!edges.isEmpty()) {
+            name.add("---------------------------Kanten----------------------------");
+
+            for(Edge edge : edges){
+                edu.uci.ics.jung.graph.util.Pair<Vertex> sourceTargetJung = vv.getGraphLayout().getGraph().getEndpoints(edge);
+                name.add(sourceTargetJung.getFirst().getAnnotation().get("de") + " -> " + sourceTargetJung.getSecond().getAnnotation().get("de"));
+            }
         }
 
         ObservableList<String> test = FXCollections.observableArrayList(name);
-        /*
-        ObservableList sizes =
-                FXCollections.observableArrayList(
-                        "Sphären",
-                        "8",
-                        "9",
-                        "10",
-                        "11",
-                        "12",
-                        new Separator(),
-                        "Symptome",
-                        "14",
-                        "18",
-                        "24",
-                        "30",
-                        "36",
-                        new Separator(),
-                        "Kanten",
-                        "48",
-                        "60",
-                        "72",
-                        "96"
-                    );
-        */
         templateListView.setItems(test);
-
     }
 }
