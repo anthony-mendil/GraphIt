@@ -1002,7 +1002,7 @@
    <right>
       <TitledPane animated="false" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="722.0" prefWidth="270.0" text="Übersicht" BorderPane.alignment="CENTER">
          <content>
-            <VBox fillWidth="false" prefHeight="94.0" prefWidth="268.0">
+            <VBox fillWidth="false" prefHeight="94.0" prefWidth="270.0">
                <children>
                   <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
                      <VBox.margin>
@@ -1032,7 +1032,10 @@
                         <Insets bottom="2.0" />
                      </VBox.margin></CheckBox>
 
-                  <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="250.0" />
+                  <TreeView fx:id="treeView" focusTraversable="false" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="250.0">
+                     <VBox.margin>
+                        <Insets left="2.0" right="2.0" top="5.0" />
+                     </VBox.margin></TreeView>
                   <Separator focusTraversable="false" maxHeight="10.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="HORIZONTAL" prefHeight="25.0" prefWidth="250.0">
                      <HBox.margin>
                         <Insets />

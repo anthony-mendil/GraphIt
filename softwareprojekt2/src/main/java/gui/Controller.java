@@ -1730,6 +1730,9 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    /**
+     * SPRACHE ÄNDERN, AUCH IN SPHERE.TOSTRING(), VERTEX.TOSTRING() BEACHTEN
+     */
     public void treeViewUpdate(){
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
@@ -1738,9 +1741,21 @@ public class Controller implements ObserverSyndrom {
         Collection<Edge> edges = graph.getEdges();
         ArrayList<String> name = new ArrayList<>();
 
-        TreeItem<String> rootItem = new TreeItem<String>(spheres.get(0).getAnnotation().get("de"));
-        TreeItem<String> testItem = new TreeItem<String>(spheres.get(1).getAnnotation().get("de"));
-        rootItem.getChildren().add(testItem);
+        TreeItem<Object> rootItem = new TreeItem<Object>();
+
+        for(Sphere sphere : spheres){
+            TreeItem<Object> sphereItem = new TreeItem<Object>(sphere);
+            for(Vertex vertex : sphere.getVertices()){
+                TreeItem<Object> vertexItem = new TreeItem<Object>(vertex);
+                for(Edge edge : graph.getOutEdges(vertex)){
+                    TreeItem<Object> edgeItem = new TreeItem<Object>(edge);
+                    vertexItem.getChildren().add(edgeItem);
+                }
+                sphereItem.getChildren().add(vertexItem);
+            }
+            rootItem.getChildren().add(sphereItem);
+        }
+
         rootItem.setExpanded(true);
 
         /*
@@ -1757,7 +1772,7 @@ public class Controller implements ObserverSyndrom {
         rootItem.getChildren().addAll(vertex1,vertex2);
         */
         treeView.setRoot(rootItem);
-        treeView.setShowRoot(true);
+        treeView.setShowRoot(false);
 
 
         /*
