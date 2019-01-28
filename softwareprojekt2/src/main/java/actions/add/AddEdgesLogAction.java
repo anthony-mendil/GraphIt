@@ -2,6 +2,7 @@ package actions.add;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveVerticesLogAction;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
@@ -73,8 +74,8 @@ public class AddEdgesLogAction extends LogAction {
      */
     @Override
     public void undo() {
-        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction((AddRemoveVerticesParam) parameters);
-        removeVerticesLogAction.action();
+        RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction((AddRemoveEdgesParam) parameters);
+        removeEdgesLogAction.action();
     }
 
 

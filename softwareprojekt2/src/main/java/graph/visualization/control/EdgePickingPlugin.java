@@ -22,6 +22,8 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
 
     private Edge edgeMove = null;
+    private int addToSelection = InputEvent.BUTTON1_MASK | InputEvent.SHIFT_MASK;
+
     /**
      * create an instance with passed values
      */
@@ -29,11 +31,8 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
 
-    }
-
+    @SuppressWarnings("unchecked")
     @Override
     public void mousePressed(MouseEvent e) {
         down = e.getPoint();
@@ -41,16 +40,15 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         Edge edge = (Edge) pickSupport.getEdge(layout, e.getX(), e.getY());
-
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
-            if (edge != null) {
-                edgeMove = edge;
-                if (!edgePickedState.isPicked(edge)) {
-                    edgePickedState.pick(edge, true);
-                }
-            } else {
+        Vertex vertex = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
+        PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
+        if (edge != null && vertex == null) {
+            edgeMove = edge;
+            if (e.getModifiers() == addToSelection) {
+                edgePickedState.pick(edge, true);
+            } else if (SwingUtilities.isLeftMouseButton(e)) {
                 edgePickedState.clear();
+                edgePickedState.pick(edge, true);
             }
         }
     }
@@ -60,46 +58,40 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         edgeMove = null;
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
+    @SuppressWarnings("unchecked")
     @Override
     public void mouseDragged(MouseEvent e) {
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            if (edgeMove != null ) {
-                Vertex endpoint = graph.getEndpoints(edgeMove).getSecond();
-                Point2D vPoint =  endpoint.getCoordinates();
-                Point dragged = e.getPoint();
-                Point2D downPoint = new Point2D.Double(vPoint.getX(), vPoint.getY()- 100);
-                Point2D draggedPoint =  vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, dragged);
-
-                double angle = angleBetween(vPoint, draggedPoint, downPoint);
-                edgeMove.setHasAnchor(true);
-                draggedPoint = new Point2D.Double(draggedPoint.getX()-endpoint.getCoordinates().getX(),draggedPoint.getY()-endpoint.getCoordinates().getY());
-                edgeMove.setAnchorPoint(draggedPoint);
-            }
+        if (SwingUtilities.isLeftMouseButton(e) && edgeMove != null) {
+            Vertex endpoint = graph.getEndpoints(edgeMove).getSecond();
+            Point dragged = e.getPoint();
+            Point2D draggedPoint = vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, dragged);
+            edgeMove.setHasAnchor(true);
+            draggedPoint = new Point2D.Double(draggedPoint.getX() - endpoint.getCoordinates().getX(), draggedPoint.getY() - endpoint.getCoordinates().getY());
+            edgeMove.setAnchorPoint(draggedPoint);
         }
-
-    }
-
-    private double angleBetween(Point2D center, Point2D previous, Point2D current) {
-
-        return Math.toDegrees(Math.atan2(current.getX() - center.getX(),current.getY() - center.getY())-
-                Math.atan2(previous.getX()- center.getX(),previous.getY()- center.getY()));
+        vv.repaint();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        //
+    }
 
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        //
     }
 }

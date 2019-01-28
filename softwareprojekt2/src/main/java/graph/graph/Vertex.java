@@ -1,12 +1,15 @@
 package graph.graph;
 
+import javafx.util.Pair;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 import org.codehaus.jackson.annotate.JsonValue;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -57,19 +60,19 @@ public class Vertex {
      * The edges with a reinforcing relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowReinforced;
+    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowReinforced;
 
     /**
      * The edges with a neutral relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowNeutral;
+    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowNeutral;
 
     /**
      * The edges with a extenuating relation with its position on the vertex.
      */
     @NonNull
-    private Map<ScopePoint, Point2D> vertexArrowExtenuating;
+    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowExtenuating;
 
     /**
      * The size of a vertex.
@@ -97,19 +100,20 @@ public class Vertex {
 
     /**
      * Creates a new vertex.
-     * @param id The identification of the vertex.
-     * @param fillColor The inner colour of the vertex.
+     *
+     * @param id          The identification of the vertex.
+     * @param fillColor   The inner colour of the vertex.
      * @param coordinates The cooridnates of the vertex.
-     * @param shape The shape of the vertex.
-     * @param annotation The annotation of the vertex.
-     * @param drawColor The colour of the boundary.
-     * @param size The size of the vertex.
-     * @param font The font of the annotation of the vertex.
-     * @param fontSize The font size of the annotation of the vertex.
+     * @param shape       The shape of the vertex.
+     * @param annotation  The annotation of the vertex.
+     * @param drawColor   The colour of the boundary.
+     * @param size        The size of the vertex.
+     * @param font        The font of the annotation of the vertex.
+     * @param fontSize    The font size of the annotation of the vertex.
      */
 
     public Vertex(int id, Color fillColor, Point2D coordinates, VertexShapeType shape, Map<String, String>
-            annotation, Color drawColor, int size, String font, int fontSize ){
+            annotation, Color drawColor, int size, String font, int fontSize) {
         this.id = id;
         this.fillColor = fillColor;
         this.coordinates = coordinates;
@@ -119,24 +123,24 @@ public class Vertex {
         this.annotation = annotation;
         this.font = font;
         this.fontSize = fontSize;
-        vertexArrowExtenuating = new LinkedHashMap<>();
-        vertexArrowNeutral = new LinkedHashMap<>();
-        vertexArrowReinforced = new LinkedHashMap<>();
+        vertexArrowExtenuating = new EnumMap<>(ScopePoint.class);
+        vertexArrowNeutral = new EnumMap<>(ScopePoint.class);
+        vertexArrowReinforced = new EnumMap<>(ScopePoint.class);
         isVisible = true;
     }
 
-    /**
-     * Checks whether two vertices are the same.
-     * @param v the target vertex.
-     * @return judgement, whether the vertices are equal.
-     */
-    public boolean equals(Vertex v){
-        return this.id == v.id;
-    }
     @Override
-    @JsonValue
-    public String toString(){
-        return Integer.toString(id);
+    public boolean equals(Object obj) {
+        if (obj instanceof Vertex) {
+            Vertex v = (Vertex) obj;
+            return this.id == v.id;
+        }
+        return false;
     }
 
+    @Override
+    @JsonValue
+    public String toString() {
+        return Integer.toString(id);
+    }
 }

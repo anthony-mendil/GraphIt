@@ -12,11 +12,13 @@ import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
+import graph.graph.ScopePoint;
 import graph.graph.Vertex;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.*;
 
 /**
  * The EdgeRenderer renders all edges from the syndrom graph. If edges converge at the vertex with the same arrowhead
@@ -106,11 +108,13 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     Shape arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
                     Edge edge = (Edge) e;
                     AffineTransform edgeAngle = null;
+                    AffineTransform arr = null;
+
 
                     if (edge.isHasAnchor()) {
                         Point2D an = edge.getAnchorPoint();
                         Point2D cord = second.getCoordinates();
-                        Point2D t =  new Point2D.Double(an.getX() +cord.getX(), an.getY() + cord.getY());
+                        Point2D t = new Point2D.Double(an.getX() + cord.getX(), an.getY() + cord.getY());
                         Point2D anchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, t);
                         cord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, cord);
 
@@ -124,7 +128,39 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                         x2 = (float) arrow.getBounds2D().getCenterX();
                         y2 = (float) arrow.getBounds2D().getCenterY();
                     } else {
-                        arrow = at.createTransformedShape(arrow);
+
+                        EdgeArrowType edgetype = edge.getArrowType();
+                        EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map;
+                        map = getMap(edgetype, second);
+                        Point2D fitPoint = null;
+                        ArrayList<ScopePoint> scopePoints = null;
+                        if (map != null) {
+                            javafx.util.Pair<Point2D, AffineTransform> pair = getFitPoint(map, at, second, arrow);
+                            fitPoint = pair.getKey();
+                            arr = pair.getValue();
+                            scopePoints = getUnusedScopePoints(map);
+                        }
+
+                        if (fitPoint != null) {
+                            x2 = (float) fitPoint.getX();
+                            y2 = (float) fitPoint.getY();
+                            edge.setAnchorPoint(fitPoint);
+                            arrow = arr.createTransformedShape(arrow);
+
+                        } else {
+                            arrow = at.createTransformedShape(arrow);
+                            x2 = (float) arrow.getBounds2D().getCenterX();
+                            y2 = (float) arrow.getBounds2D().getCenterY();
+                            Point2D newPoint = new Point2D.Double(arrow.getBounds2D().getCenterX(), arrow.getBounds2D().getCenterY());
+
+                            if (scopePoints != null && !scopePoints.isEmpty()) {
+                                map.put(scopePoints.get(scopePoints.size() - 1), new javafx.util.Pair<>(newPoint, at));
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
+                            setMap(edgetype, second, map);
+                            edge.setAnchorPoint(newPoint);
+                        }
                     }
 
                     AffineTransform xTransform = AffineTransform.getTranslateInstance(x1, y1);
@@ -135,46 +171,9 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     dist = (float) Math.sqrt(dx * dx + dy * dy);
                     xTransform.scale(dist, 1.0);
                     edgeShape = xTransform.createTransformedShape(oldEdge);
-                    Paint fillPaint = rc.getEdgeFillPaintTransformer().transform(e);
-                    Stroke newStroke = rc.getEdgeStrokeTransformer().transform(e);
 
-                    if (newStroke != null)
-                        g.setStroke(newStroke);
-
-                    if (fillPaint != null) {
-                        g.setPaint(fillPaint);
-                        g.fill(edgeShape);
-                    }
-                    Paint drawPaint = rc.getEdgeDrawPaintTransformer().transform(e);
-                    if (drawPaint != null) {
-                        g.setPaint(drawPaint);
-                        g.draw(edgeShape);
-                    }
-
-                    g.setStroke(new BasicStroke(1.0f));
-
-
-                    Paint drawColor = rc.getArrowFillPaintTransformer().transform(e);
-                    if (edge.getArrowType() == EdgeArrowType.NEUTRAL) {
-                        Shape ellipse = new Ellipse2D.Double(-18.06472, -18.06472 / 2, 18.06472, 18.06472);
-
-                        if (edgeAngle != null) {
-                            ellipse = edgeAngle.createTransformedShape(ellipse);
-                        } else {
-                            ellipse = at.createTransformedShape(ellipse);
-                        }
-
-                        g.setPaint(rc.getArrowFillPaintTransformer().transform(e));
-                        g.fill(ellipse);
-                        g.draw(ellipse);
-
-                        drawColor = getLuminanceColor(drawColor);
-
-                    }
-                    g.setPaint(drawColor);
-                    g.fill(arrow);
-                    g.setPaint(drawColor);
-                    g.draw(arrow);
+                    setPaintEdge(e, rc, g);
+                    drawEdgeArrow(rc, new javafx.util.Pair<>(e, edgeShape), g, arrow, edgeAngle, arr, at);
 
                 }
             }
@@ -182,10 +181,130 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             // restore old paint
             g.setPaint(oldPaint);
         }
+
     }
+
+    /**
+     *
+     * @param rc
+     * @param pair
+     * @param g
+     * @param arrow
+     * @param edgeAngle AffineTransform for arrow, if the edge having an anchor point
+     * @param arr AffineTransform from the fitPoint
+     * @param at AffineTransform for arrow
+     */
+    private void drawEdgeArrow(RenderContext<V, E> rc, javafx.util.Pair<E, Shape> pair, GraphicsDecorator g, Shape arrow, AffineTransform edgeAngle, AffineTransform arr, AffineTransform at) {
+        E e = pair.getKey();
+        Shape edgeShape = pair.getValue();
+        Paint drawPaint = rc.getEdgeDrawPaintTransformer().transform(e);
+        if (drawPaint != null) {
+            g.setPaint(drawPaint);
+            g.draw(edgeShape);
+        }
+        Edge edge = (Edge) e;
+
+        g.setStroke(new BasicStroke(1.0f));
+        Paint drawColor = rc.getArrowFillPaintTransformer().transform(e);
+
+        if (edge.getArrowType() == EdgeArrowType.NEUTRAL) {
+            Shape ellipse = new Ellipse2D.Double(-18.06472, -18.06472 / 2, 18.06472, 18.06472);
+
+            if (edgeAngle != null) {
+                ellipse = edgeAngle.createTransformedShape(ellipse);
+            } else {
+                ellipse = (arr != null) ? arr.createTransformedShape(ellipse) : at.createTransformedShape(ellipse);
+            }
+            g.setPaint(rc.getArrowFillPaintTransformer().transform(e));
+            g.fill(ellipse);
+            g.draw(ellipse);
+            drawColor = getLuminanceColor(drawColor);
+        }
+        g.setPaint(drawColor);
+        g.fill(arrow);
+        g.setPaint(drawColor);
+        g.draw(arrow);
+    }
+
+
+    private double angleBetween(Point2D center, Point2D previous, Point2D current) {
+        return Math.toDegrees(Math.atan2(current.getX() - center.getX(), current.getY() - center.getY()) -
+                Math.atan2(previous.getX() - center.getX(), previous.getY() - center.getY()));
+    }
+
 
     private Color getLuminanceColor(Paint drawColor) {
         double luminance = (0.2126 * ((Color) drawColor).getRed() + 0.7152 * ((Color) drawColor).getGreen() + 0.0722 * ((Color) drawColor).getGreen());
         return luminance > 127 ? new Color(20, 20, 20) : new Color(245, 245, 245);
+    }
+
+    private ArrayList<ScopePoint> getUnusedScopePoints(EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map) {
+        ArrayList<ScopePoint> scopePoints = new ArrayList<>(Arrays.asList(ScopePoint.values()));
+        for (Map.Entry<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> entry : map.entrySet()) {
+            scopePoints.remove(entry.getKey());
+        }
+        return scopePoints;
+    }
+
+    private javafx.util.Pair<Point2D, AffineTransform> getFitPoint(EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map, AffineTransform at, Vertex second, Shape arrow) {
+        Point2D fitPoint = null;
+        AffineTransform ar = null;
+        for (Map.Entry<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> entry : map.entrySet()) {
+            Point2D position = entry.getValue().getKey();
+            Shape arrowTemp = at.createTransformedShape(arrow);
+            double x2 = (float) arrowTemp.getBounds2D().getCenterX();
+            double y2 = (float) arrowTemp.getBounds2D().getCenterY();
+            Point2D newPoint = new Point2D.Double(x2, y2);
+            double angle = angleBetween(second.getCoordinates(), position, newPoint);
+            angle = Math.abs(angle);
+            if (angle > 0 && angle <= 45) {
+                fitPoint = position;
+                ar = entry.getValue().getValue();
+                break;
+            }
+        }
+        return new javafx.util.Pair<>(fitPoint, ar);
+    }
+
+    private void setMap(EdgeArrowType edgetype, Vertex second, EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map) {
+        switch (edgetype) {
+            case EXTENUATING:
+                second.setVertexArrowExtenuating(map);
+                break;
+            case REINFORCED:
+                second.setVertexArrowReinforced(map);
+                break;
+            case NEUTRAL:
+                second.setVertexArrowNeutral(map);
+                break;
+        }
+    }
+
+    private EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> getMap(EdgeArrowType edgetype, Vertex second) {
+        EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map = null;
+        switch (edgetype) {
+            case EXTENUATING:
+                map = second.getVertexArrowExtenuating();
+                break;
+            case REINFORCED:
+                map = second.getVertexArrowReinforced();
+                break;
+            case NEUTRAL:
+                map = second.getVertexArrowNeutral();
+                break;
+        }
+        return map;
+    }
+
+    private void setPaintEdge(E e, RenderContext<V, E> rc, GraphicsDecorator g) {
+        Paint fillPaint = rc.getEdgeFillPaintTransformer().transform(e);
+        Stroke newStroke = rc.getEdgeStrokeTransformer().transform(e);
+
+        if (newStroke != null)
+            g.setStroke(newStroke);
+
+        if (fillPaint != null) {
+            g.setPaint(fillPaint);
+        }
     }
 }

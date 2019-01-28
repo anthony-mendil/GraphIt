@@ -5,6 +5,7 @@ import edu.uci.ics.jung.visualization.*;
 import edu.uci.ics.jung.visualization.control.*;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
+import edu.uci.ics.jung.visualization.transform.MutableAffineTransformer;
 import graph.algorithmen.predicates.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.*;
@@ -18,6 +19,7 @@ import gui.Values;
 import lombok.Data;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 /**
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualization
@@ -224,6 +226,7 @@ public class Syndrom {
         pluggable.add(new SpherePickingPlugin());
         pluggable.add(new VertexPickingPlugin());
         pluggable.add(new EdgePickingPlugin());
+        pluggable.add(new GeneralPickingPlugin());
     }
 
     public static Syndrom getInstance(){
@@ -282,5 +285,11 @@ public class Syndrom {
     public void scale(int value){
         scale = value;
         scalingControl.scale(vv, (float) value / 100, vv.getCenter());
+
+        if (value < 100){
+            AffineTransform modelLayoutTransform =
+                    new AffineTransform(vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform());
+            vv2.getRenderContext().getMultiLayerTransformer().setTransformer(Layer.LAYOUT, new MutableAffineTransformer(modelLayoutTransform));
+        }
     }
 }

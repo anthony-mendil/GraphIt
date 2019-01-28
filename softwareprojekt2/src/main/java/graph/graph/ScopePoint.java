@@ -20,5 +20,9 @@ public enum ScopePoint {
     /**
      * The fourth quarter.
      */
-    POS_4
+    POS_4,
+    POS_5,
+    POS_6,
+    POS_7,
+    POS_8
 }

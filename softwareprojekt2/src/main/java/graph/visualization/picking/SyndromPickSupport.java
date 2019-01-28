@@ -159,6 +159,12 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 arrow = edgeAngle.createTransformedShape(arrow);
                 x2 = (float) arrow.getBounds2D().getCenterX();
                 y2 = (float) arrow.getBounds2D().getCenterY();
+            } else {
+                if (edge.getAnchorPoint() != null){
+                    x2 = (float)edge.getAnchorPoint().getX();
+                    y2 = (float)edge.getAnchorPoint().getY();
+                }
+
             }
 
             AffineTransform x_form = AffineTransform.getTranslateInstance(x1, y1);

@@ -10,15 +10,11 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.SyndromGraph;
+import graph.graph.*;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
+import java.util.*;
 
 /**
  * The SyndromRenderer paints the syndrom graph.
@@ -45,6 +41,13 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         Collection<E> renderEdges = new ArrayList<>();
         Sphere sp = null;
         boolean overlapped = isOverlapped(pickedState, g);
+
+        for (V v : g.getVertices()){
+            graph.graph.Vertex vertex = (graph.graph.Vertex) v;
+            vertex.setVertexArrowExtenuating(new EnumMap<>(ScopePoint.class));
+            vertex.setVertexArrowNeutral(new EnumMap<>(ScopePoint.class));
+            vertex.setVertexArrowReinforced(new EnumMap<>(ScopePoint.class));
+        }
 
         // paints all spheres
         renderSpheres((ArrayList<Sphere>) g.getSpheres(), renderContext);
@@ -77,7 +80,9 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         }
 
         // all vertices get rendered
-        renderVerticesWithPicked(g, renderContext, layout);
+        if (!g.getVertices().isEmpty()){
+            renderVertices(g.getVertices(), renderContext, layout);
+        }
 
         // if a sphere overlaps another one, the sphere is painted with all its vertices and all edges
         // between the spheres vertices
@@ -104,22 +109,6 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             }
         }
         renderVertices(collection, renderContext, layout);
-    }
-
-    @SuppressWarnings("unchecked")
-    private void renderVerticesWithPicked(SyndromGraph<V, E> g, RenderContext<V, E> renderContext, Layout<V, E> layout){
-        PickedState<graph.graph.Vertex> picked = Syndrom.getInstance().getVv().getPickedVertexState();
-        Collection<V> vertices = g.getVertices();
-        Collection<V> pick = (Collection<V>) picked.getPicked();
-        ArrayList<V> render = new ArrayList<>();
-        for (V v: vertices){
-            if (!pick.contains(v)){
-                render.add(v);
-            }
-        }
-
-        renderVertices(render, renderContext, layout);
-        renderVertices(pick, renderContext, layout);
     }
 
     private void renderVertices(Collection<V> vertices, RenderContext<V, E> renderContext, Layout<V, E> layout) {

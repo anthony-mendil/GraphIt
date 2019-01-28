@@ -2,11 +2,13 @@ package actions.layout;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.Layer;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import javafx.util.Pair;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -30,14 +32,29 @@ public class LayoutSphereGraphLogAction extends LogAction {
         throw new UnsupportedOperationException();
     }
 
+    private Point2D getSmallestXY(List<Sphere> sphereList){
+        double x = 20;
+        double y = 20;
+        for(Sphere s : sphereList){
+            Point2D point2D = s.getCoordinates();
+            if (point2D.getY() < y){
+                x = point2D.getX();
+                y = point2D.getY();
+            }
+
+        }
+        return new Point2D.Double(x,y);
+    }
+
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> sphereList = graph.getSpheres();
         if (!sphereList.isEmpty()){
-            double y = 20;
-            double x = 20;
+            Point2D xY = getSmallestXY(sphereList);
+            double x = xY.getX();
+            double y = xY.getY();
 
             double height = sphereList.get(0).getHeight();
             double minHeight = sphereList.get(0).getHeight();
