@@ -14,12 +14,8 @@ import org.xml.sax.SAXException;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  * The GXL importer/exporter.
@@ -56,7 +52,7 @@ public class GXLio {
      * @param pGXL The GXL representation that gets written into syndrom.
      */
     protected void gxlToInstance(String pGXL){
-    System.out.println("Methode gxlToInstance() wurde aufgerufen.");
+        System.out.println("Methode gxlToInstance() wurde aufgerufen.");
         try { GXLDocument doc = new GXLDocument(file);
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
             if (gxlGraph == null) {
@@ -65,6 +61,7 @@ public class GXLio {
             List<Sphere> spheres = new ArrayList<>();
             List<Vertex> vertices = new ArrayList<>();
             List<Edge> edges = new ArrayList<>();
+            List<Map<Sphere, List<Vertex>>> list = new ArrayList<>();
             // each array contains at index 0 the id of a node and at index 1 the id of the spere that  contains the node with the id (at index 0)
             List<int[]> nodeIDAndSphereID = new ArrayList<>();
             // each array contains at index 0 the id of an edge, at index 1 the id of the source node and at index 2 the id of the target node
@@ -73,163 +70,193 @@ public class GXLio {
             int idCounter = 0;
             for (int i = 0; i < gxlGraph.getGraphElementCount(); i++) {
                 // System.out.println("Graph gefunden");
-            if(doc.containsID(idCounter + "")) {
-                GXLAttributedElement elem = doc.getElement(idCounter + "");
+                if(doc.containsID(idCounter + "")) {
+                    GXLAttributedElement elem = doc.getElement(idCounter + "");
 
-                System.out.println(" ---" + ((GXLString) elem.getAttr("TYPE").getValue()).getValue());
-                //System.out.println(((GXLString) elem.getAttr("TYPE").getValue()).getValue());
+                    System.out.println(" ---" + ((GXLString) elem.getAttr("TYPE").getValue()).getValue());
+                    //System.out.println(((GXLString) elem.getAttr("TYPE").getValue()).getValue());
 
-                if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Sphäre")) {
-                    //   System.out.println("Sphäre gefunden");
-                    int id = Integer.parseInt(elem.getID());
-                    System.out.println("id: " + id);
-                    //  System.out.println("before fillPaint: " + getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue()).get(0));
+                    if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Sphäre")) {
+                        //   System.out.println("Sphäre gefunden");
+                        int id = Integer.parseInt(elem.getID());
+                        System.out.println("id: " + id);
+                        //  System.out.println("before fillPaint: " + getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue()).get(0));
 
-                    String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
-                    Color paint = new Color(
-                            Integer.parseInt(paintArray[0]),
-                            Integer.parseInt(paintArray[1]),
-                            Integer.parseInt(paintArray[2]),
-                            Integer.parseInt(paintArray[3]));
-                    System.out.println("" + paint.toString() + "ist da");
-                    System.out.println(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
-                    String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
-                    System.out.println(java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)) + " " + java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
-                    java.awt.geom.Point2D coordinates = new java.awt.geom.Point2D.Float(
-                            java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
-                            java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
-                    //java.lang.Double.parseDouble(coordinatesArray[0]),
-                    //java.lang.Double.parseDouble(coordinatesArray[1]));
-                    System.out.println("coordinates: " + coordinates.toString());
-                    //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).length()-2));
-                    //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).length()-2));
-                    double width = Double.parseDouble(((GXLString) elem.getAttr("width").getValue()).getValue());
-                    System.out.println("width: " + width);
-                    double height = Double.parseDouble(((GXLString) elem.getAttr("height").getValue()).getValue());
-                    System.out.println("height: " + height);
-                    Map<String, String> annotation = new HashMap<>();
-                    annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
-                    annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
-                    System.out.println("annotation: " + annotation.toString());
-                    String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
-                    System.out.println("font: " + font);
-                    int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
-                    System.out.println("fontSize: " + fontSize);
-                    HashMap<String, String> anno = new HashMap<>();
-                    anno.put("de", "Vertex");
-                    anno.put("en+-", "vertex");
+                        String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
+                        Color paint = new Color(
+                                Integer.parseInt(paintArray[0]),
+                                Integer.parseInt(paintArray[1]),
+                                Integer.parseInt(paintArray[2]),
+                                Integer.parseInt(paintArray[3]));
+                        System.out.println("" + paint.toString() + "ist da");
+                        System.out.println(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
+                        String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinates").getValue()).getValue());
+                        System.out.println(java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)) + " " + java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
+                        java.awt.geom.Point2D coordinates = new java.awt.geom.Point2D.Float(
+                                java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
+                                java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
+                        //java.lang.Double.parseDouble(coordinatesArray[0]),
+                        //java.lang.Double.parseDouble(coordinatesArray[1]));
+                        System.out.println("coordinates: " + coordinates.toString());
+                        //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(0).length()-2));
+                        //    System.out.println(getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).substring(0, getNumberArrayFromString(elem.getAttr("coordinates") + "").get(1).length()-2));
+                        double width = Double.parseDouble(((GXLString) elem.getAttr("width").getValue()).getValue());
+                        System.out.println("width: " + width);
+                        double height = Double.parseDouble(((GXLString) elem.getAttr("height").getValue()).getValue());
+                        System.out.println("height: " + height);
+                        Map<String, String> annotation = new HashMap<>();
+                        annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
+                        annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+                        System.out.println("annotation: " + annotation.toString());
+                        String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
+                        System.out.println("font: " + font);
+                        int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
+                        System.out.println("fontSize: " + fontSize);
+                        HashMap<String, String> anno = new HashMap<>();
+                        anno.put("de", "Vertex");
+                        anno.put("en+-", "vertex");
 
-                    Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
 
-                    spheres.add(newSphere);
-                    System.out.println("*********************************************************** " + newSphere.getAnnotation());
-                } else if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Node")) {
-                    System.out.println("Knoten gefunden");
-                    int id = Integer.parseInt(elem.getID());
-                    String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
-                    System.out.println(Integer.parseInt(paintArray[0]) + "" + Integer.parseInt(paintArray[1]) + " " + Integer.parseInt(paintArray[2]) + " " + Integer.parseInt(paintArray[3]));
-                    Color paint = new Color(
-                            Integer.parseInt(paintArray[0]),
-                            Integer.parseInt(paintArray[1]),
-                            Integer.parseInt(paintArray[2]),
-                            Integer.parseInt(paintArray[3]));
-                    System.out.println("Knoten: " + paint);
-                    String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinate").getValue()).getValue());
-                    java.awt.Point coordinates = null;
-                    if(coordinatesArray[0].contains(".")){
-                        System.out.println(coordinatesArray[0]);
-                        System.out.println(coordinatesArray[1]);
-                        coordinates = new java.awt.Point(
-                                java.lang.Integer.parseInt(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
-                                java.lang.Integer.parseInt(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length()-3)));
-                    }else{
-                        coordinates = new java.awt.Point(
-                                java.lang.Integer.parseInt(coordinatesArray[0]),
-                                java.lang.Integer.parseInt(coordinatesArray[1]));
+
+                        Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
+
+                        Map<Sphere, List<Vertex>> map = new HashMap<>();
+                        map.put(newSphere, new ArrayList<>());
+                        //  map.entrySet();
+                        list.add(map);
+
+
+                        spheres.add(newSphere);
+                        System.out.println("*********************************************************** " + newSphere.getAnnotation());
+                    } else if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Node")) {
+                        System.out.println("Knoten gefunden");
+                        int id = Integer.parseInt(elem.getID());
+                        String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
+                        System.out.println(Integer.parseInt(paintArray[0]) + "" + Integer.parseInt(paintArray[1]) + " " + Integer.parseInt(paintArray[2]) + " " + Integer.parseInt(paintArray[3]));
+                        Color paint = new Color(
+                                Integer.parseInt(paintArray[0]),
+                                Integer.parseInt(paintArray[1]),
+                                Integer.parseInt(paintArray[2]),
+                                Integer.parseInt(paintArray[3]));
+                        System.out.println("Knoten: " + paint);
+                        String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinate").getValue()).getValue());
+                        java.awt.Point coordinates = null;
+                        if(coordinatesArray[0].contains(".")){
+                            System.out.println(coordinatesArray[0]);
+                            System.out.println(coordinatesArray[1]);
+                            coordinates = new java.awt.Point(
+                                    java.lang.Integer.parseInt(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
+                                    java.lang.Integer.parseInt(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length()-3)));
+                        }else{
+                            coordinates = new java.awt.Point(
+                                    java.lang.Integer.parseInt(coordinatesArray[0]),
+                                    java.lang.Integer.parseInt(coordinatesArray[1]));
+                        }
+                        System.out.println("Knoten: " + coordinates);
+                        VertexShapeType shape = VertexShapeType.valueOf(((GXLString) elem.getAttr("shape").getValue()).getValue());
+                        System.out.println("Knoten: " + shape);
+                        //Map<String, String> annotation = new HashMap<String, String>();
+                        // String[] annotationArray = ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6");
+                        //  annotation.put(annotationArray[0], annotationArray[1]);
+                        Map<String, String> annotation = new HashMap<String, String>();
+                        annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
+                        annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+                        System.out.println("Knoten: " + annotation);
+                        String[] drawPaintArray = getNumberArrayFromString(((GXLString) elem.getAttr("drawPaint").getValue()).getValue());
+                        Color drawPaint = new Color(
+                                Integer.parseInt(drawPaintArray[0]),
+                                Integer.parseInt(drawPaintArray[1]),
+                                Integer.parseInt(drawPaintArray[2]),
+                                Integer.parseInt(drawPaintArray[3]));
+                        System.out.println("Knoten: " + drawPaint);
+                        String vertexArrowReinforced = ((GXLString) elem.getAttr("vertexArrowReinforced").getValue()).getValue();
+                        String vertexArrowNeutral = ((GXLString) elem.getAttr("vertexArrowNeutral").getValue()).getValue();
+                        String vertexArrowExtenuating = ((GXLString) elem.getAttr("vertexArrowExtenuating").getValue()).getValue();
+                        int size = Integer.parseInt(((GXLString) elem.getAttr("size").getValue()).getValue());
+                        System.out.println("Knoten: " + size);
+                        boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
+                        String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
+                        System.out.println("Knoten: " + font);
+                        int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
+                        System.out.println("Knoten: " + fontSize);
+                        Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
+
+                        vertices.add(newVertex);
+                        System.out.println("Knoten ins Array gelegt.");
+
+                        int nodeID = Integer.parseInt(elem.getID());
+                        System.out.println("NodeID: " + nodeID);
+                        int idOfTheSphereContainingThisNode = Integer.parseInt(((GXLString) elem.getAttr("ID of the sphere containing this node:").getValue()).getValue());
+                        System.out.println("ID of sphere containing this node: " + idOfTheSphereContainingThisNode);
+                        int[] entry = {nodeID, idOfTheSphereContainingThisNode};
+                        nodeIDAndSphereID.add(entry);
+                        System.out.println("Die Eintrag von Knoten- und Sphären-ID wurde ins Array geschrieben.");
+
+                        //for(Map m : list){
+                        //   for(Map en : m.entrySet()){
+                        for(Map<Sphere, List<Vertex>> m : list) {
+                            m.entrySet();
+                            for (Map.Entry<Sphere, List<Vertex>> en : m.entrySet()) {
+                                if (en.getKey().getId() == idOfTheSphereContainingThisNode) {
+                                    en.getValue().add(newVertex);
+                                }
+                            }
+                        }
+
+                    } else {
+                        //    if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Edge")) {
+                        System.out.println("Kante gefunden");
+                        int id = Integer.parseInt(elem.getID());
+                        System.out.println("Kante: " + id);
+                        String[] drawPaintArray = getNumberArrayFromString(((GXLString) elem.getAttr("paint").getValue()).getValue());
+                        Color paint = new Color(
+                                Integer.parseInt(drawPaintArray[0]),
+                                Integer.parseInt(drawPaintArray[1]),
+                                Integer.parseInt(drawPaintArray[2]),
+                                Integer.parseInt(drawPaintArray[3]));
+                        System.out.println("Kante: " + paint);
+                        StrokeType stroke = StrokeType.valueOf(((GXLString) elem.getAttr("stroke").getValue()).getValue());
+                        System.out.println("Kante: " + stroke);
+                        EdgeArrowType arrowType = EdgeArrowType.valueOf(((GXLString) elem.getAttr("arrowType").getValue()).getValue());
+                        System.out.println("Kante: " + arrowType);
+                        Boolean hasAnchor = Boolean.getBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
+                        // edge.getAttr("anchorAngle");
+                        System.out.println("Kante: " + hasAnchor);
+                        String[] coordinatesArray = null;
+                        java.awt.geom.Point2D coordinates = null;
+                        if(hasAnchor) {
+                            coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle").getValue()).getValue());
+                             coordinates = new java.awt.geom.Point2D.Double(
+                                    java.lang.Double.parseDouble(coordinatesArray[0]),
+                                    java.lang.Double.parseDouble(coordinatesArray[1]));
+                        }
+                        Boolean isVisible = Boolean.getBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
+                        System.out.println("Kante: " + isVisible);
+                        Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
+                        if(hasAnchor) {
+                            newEdge.setAnchorPoint(coordinates);
+                        }
+                        edges.add(newEdge);
+
+                        GXLEdge currentEdge = (GXLEdge) elem;
+                        System.out.println(currentEdge);
+                        int edgeID = Integer.parseInt(currentEdge.getID());
+                        System.out.println(currentEdge.getID());
+                        int sourceID = Integer.parseInt(currentEdge.getSource().getID());
+                        System.out.println(currentEdge.getSource());
+                        System.out.println(currentEdge.getSource().getID());
+                        int targetID = Integer.parseInt(currentEdge.getTarget().getID());
+                        System.out.println(currentEdge.getTarget());
+                        System.out.println(currentEdge.getTarget().getID());
+                        int[] entry = {edgeID, sourceID, targetID};
+                        System.out.println(entry);
+                        edgeIDsAndNodeIDs.add(entry);
+                        System.out.println("Eintrag ins edgeAndNode array hinzugefügt");
                     }
-                    System.out.println("Knoten: " + coordinates);
-                    VertexShapeType shape = VertexShapeType.valueOf(((GXLString) elem.getAttr("shape").getValue()).getValue());
-                    System.out.println("Knoten: " + shape);
-                    //Map<String, String> annotation = new HashMap<String, String>();
-                    // String[] annotationArray = ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6");
-                    //  annotation.put(annotationArray[0], annotationArray[1]);
-                    Map<String, String> annotation = new HashMap<String, String>();
-                    annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
-                    annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
-                    System.out.println("Knoten: " + annotation);
-                    String[] drawPaintArray = getNumberArrayFromString(((GXLString) elem.getAttr("drawPaint").getValue()).getValue());
-                    Color drawPaint = new Color(
-                            Integer.parseInt(drawPaintArray[0]),
-                            Integer.parseInt(drawPaintArray[1]),
-                            Integer.parseInt(drawPaintArray[2]),
-                            Integer.parseInt(drawPaintArray[3]));
-                    System.out.println("Knoten: " + drawPaint);
-                    String vertexArrowReinforced = ((GXLString) elem.getAttr("vertexArrowReinforced").getValue()).getValue();
-                    String vertexArrowNeutral = ((GXLString) elem.getAttr("vertexArrowNeutral").getValue()).getValue();
-                    String vertexArrowExtenuating = ((GXLString) elem.getAttr("vertexArrowExtenuating").getValue()).getValue();
-                    int size = Integer.parseInt(((GXLString) elem.getAttr("size").getValue()).getValue());
-                    System.out.println("Knoten: " + size);
-                    boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
-                    String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
-                    System.out.println("Knoten: " + font);
-                    int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
-                    System.out.println("Knoten: " + fontSize);
-                    Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
-
-                    vertices.add(newVertex);
-                    System.out.println("Knoten ins Array gelegt.");
-
-                    int nodeID = Integer.parseInt(elem.getID());
-                    System.out.println("NodeID: " + nodeID);
-                    int idOfTheSphereContainingThisNode = Integer.parseInt(((GXLString) elem.getAttr("ID of the sphere containing this node:").getValue()).getValue());
-                    System.out.println("ID of sphere containing this node: " + idOfTheSphereContainingThisNode);
-                    int[] entry = {nodeID, idOfTheSphereContainingThisNode};
-                    nodeIDAndSphereID.add(entry);
-                    System.out.println("Die Eintrag von Knoten- und Sphären-ID wurde ins Array geschrieben.");
-                } else {
-                    //    if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Edge")) {
-                    System.out.println("Kante gefunden");
-                    int id = Integer.parseInt(elem.getID());
-                    System.out.println("Kante: " + id);
-                    String[] drawPaintArray = getNumberArrayFromString(((GXLString) elem.getAttr("paint").getValue()).getValue());
-                    Color paint = new Color(
-                            Integer.parseInt(drawPaintArray[0]),
-                            Integer.parseInt(drawPaintArray[1]),
-                            Integer.parseInt(drawPaintArray[2]),
-                            Integer.parseInt(drawPaintArray[3]));
-                    System.out.println("Kante: " + paint);
-                    StrokeType stroke = StrokeType.valueOf(((GXLString) elem.getAttr("stroke").getValue()).getValue());
-                    System.out.println("Kante: " + stroke);
-                    EdgeArrowType arrowType = EdgeArrowType.valueOf(((GXLString) elem.getAttr("arrowType").getValue()).getValue());
-                    System.out.println("Kante: " + arrowType);
-                    Boolean hasAnchor = Boolean.getBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
-                    // edge.getAttr("anchorAngle");
-                    System.out.println("Kante: " + hasAnchor);
-                    Boolean isVisible = Boolean.getBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
-                    System.out.println("Kante: " + isVisible);
-                    Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
-
-                    edges.add(newEdge);
-
-                    GXLEdge currentEdge = (GXLEdge) elem;
-                    System.out.println(currentEdge);
-                    int edgeID = Integer.parseInt(currentEdge.getID());
-                    System.out.println(currentEdge.getID());
-                    int sourceID = Integer.parseInt(currentEdge.getSource().getID());
-                    System.out.println(currentEdge.getSource());
-                    System.out.println(currentEdge.getSource().getID());
-                    int targetID = Integer.parseInt(currentEdge.getTarget().getID());
-                    System.out.println(currentEdge.getTarget());
-                    System.out.println(currentEdge.getTarget().getID());
-                    int[] entry = {edgeID, sourceID, targetID};
-                    System.out.println(entry);
-                    edgeIDsAndNodeIDs.add(entry);
-                    System.out.println("Eintrag ins edgeAndNode array hinzugefügt");
+                    System.out.println("Ende der Schleife aller GXL-Elemente");
+                    System.out.println("number of gxlGraphElements: " + gxlGraph.getGraphElementCount());
                 }
-                System.out.println("Ende der Schleife aller GXL-Elemente");
-                System.out.println("number of gxlGraphElements: " + gxlGraph.getGraphElementCount());
-            }
-            idCounter++;
+                idCounter++;
             }
             System.out.println("number of spheres: " + spheres.size());
             System.out.println("number of nodes: " + vertices.size());
@@ -239,6 +266,33 @@ public class GXLio {
             SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
             //SyndromGraph<Vertex, Edge> graphnew = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             SyndromGraph newGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+
+
+            for(Map<Sphere, List<Vertex>> m : list){
+                for(Map.Entry<Sphere, List<Vertex>> e : m.entrySet()){
+                    // Sphere mySphere = e.getKey().getId());
+                    // List<Vertex> myVertices = e.getValue();
+                    newGraph.getSpheres().add(e.getKey());
+                    vv.getGraphLayout().setGraph(newGraph);
+
+                    // newGraph.addSphere(e.getKey().getCoordinates());
+                    for(Vertex v : e.getValue()){
+                        newGraph.addVertex(v);
+                        vv.getGraphLayout().setLocation(v, v.getCoordinates());
+                        //  e.getKey().getVertices().add(v);
+                        //  newGraph.addVertexToSphere(e.getKey(), v);
+
+                        //   newGraph.addVertex(v.getCoordinates(), e.getKey());
+                        // newGraph.addVertex(v.getCoordinates(), e.getKey());
+
+
+                    }
+
+
+                }
+            }
+
+            /*
             for(Sphere s : spheres){
                 for(int[] i : nodeIDAndSphereID){
                     if(i[1]==s.getId()){
@@ -315,7 +369,7 @@ public class GXLio {
                 }
                 System.out.println("Vor der Schleife");
                 for(Vertex v : vertices){
-                 System.out.println("In der Schleife" + v.getId());
+                    System.out.println("In der Schleife" + v.getId());
                     if(v.getId() == idOfStart){
                         start = v;
                         System.out.println("Start Knoten gefunden - in der Schleife");
@@ -409,7 +463,7 @@ public class GXLio {
                 }
             }
             sphere.setAttr("IDs of nodes containt in this shpere: ", new GXLString(nodeIDs));
-             gxlSyndrom.add(sphere);
+            gxlSyndrom.add(sphere);
         }
         for(Sphere s :currentSpheres) {
             // GXLRel rel = new GXLRel();
@@ -470,7 +524,11 @@ public class GXLio {
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
-            edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
+            if(e.isHasAnchor()) {
+                edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
+            }else{
+                edge.setAttr("anchorAngle", new GXLString("is not set as no anchorpoint was added"));
+            }// edge.setAttr("anchorpoint", new GXLString("" + e.getAnchorPoint()));
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
         }
@@ -520,7 +578,7 @@ public class GXLio {
         GXLEdge ed = new GXLEdge(rr, rr);
         doc.getDocumentElement().add(gg);
         */
-   GXLGraph gxlSyndrom = new GXLGraph("syndrom");
+        GXLGraph gxlSyndrom = new GXLGraph("syndrom");
         for (Sphere s : theGraph.getSpheres()) {
             GXLNode sphere = new GXLNode(s.getId() + "");
             //gxlSyndrom.add(sphere);
