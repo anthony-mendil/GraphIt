@@ -3,7 +3,9 @@ package gui;
 import actions.ActionHistory;
 import actions.ObserverSyndrom;
 import actions.activate.ActivateAnchorPointsFadeoutLogAction;
+import actions.activate.ActivateHighlightLogAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
+import actions.deactivate.DeactivateHighlightLogAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
@@ -727,6 +729,9 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ToggleButton anchorPointsButton;
 
+    @FXML
+    private ToggleButton highlight;
+
     public Controller() {
     }
 
@@ -1016,12 +1021,12 @@ public class Controller implements ObserverSyndrom {
 
     public void sphereAutoLayout() {
         LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
-        layoutSphereGraphLogAction.action();
+        history.execute(layoutSphereGraphLogAction);
     }
 
     public void verticesAutoLayout() {
         LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
-        layoutVerticesGraphLogAction.action();
+        history.execute(layoutVerticesGraphLogAction);
     }
 
 
@@ -1103,6 +1108,7 @@ public class Controller implements ObserverSyndrom {
         File file = fileChooser.showOpenDialog(mainStage);
         ImportOofAction importOofAction = new ImportOofAction(file);
         importOofAction.action();
+        zoomSlider.setValue(100);
     }
 
     /**
@@ -1117,6 +1123,7 @@ public class Controller implements ObserverSyndrom {
         File file = fileChooser.showOpenDialog(mainStage);
         ImportGxlAction importGxlAction = new ImportGxlAction(file);
         importGxlAction.action();
+        zoomSlider.setValue(100);
     }
 
     /**
@@ -1308,6 +1315,24 @@ public class Controller implements ObserverSyndrom {
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
         templateStage.getIcons().add(new Image("/logo.png"));
+    }
+
+    public void highlight(){
+        if (highlight.isSelected()) {
+            ActivateHighlightLogAction activateHighlightLogAction = new ActivateHighlightLogAction();
+            history.execute(activateHighlightLogAction);
+        } else {
+            DeactivateHighlightLogAction deactivateHighlightLogAction = new DeactivateHighlightLogAction();
+            history.execute(deactivateHighlightLogAction);
+        }
+    }
+
+    public void highlightElements(){
+
+    }
+
+    public void dehighlightElements(){
+
     }
 
     public void showTemplateWindow(){
@@ -1846,6 +1871,7 @@ public class Controller implements ObserverSyndrom {
         satellite.setContent(syndrom.getVv2());
         disableEditMode(false);
         disableAnalysisMode(false);
+        zoomSlider.setValue(100);
     }
 
     public void sphereEnlarge(ActionEvent actionEvent) {

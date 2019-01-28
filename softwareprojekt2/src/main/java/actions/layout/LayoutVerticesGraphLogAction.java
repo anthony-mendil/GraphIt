@@ -12,11 +12,14 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import log_management.DatabaseManager;
+import log_management.parameters.move.LayoutSpheresParam;
 import log_management.parameters.move.LayoutVerticesParam;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -24,6 +27,10 @@ import java.util.Map;
  * Layouts the graph according to a previously defined layout.
  */
 public class LayoutVerticesGraphLogAction extends LogAction {
+    /**
+     * Indicator whether the action is an undo action.
+     */
+    private boolean indicator;
 
     /**
      * Layouts the graph (including all vertices) according to the defined layout.
@@ -37,17 +44,17 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         parameters = pLayoutVerticesParam;
     }
 
-    //@Override
-    //public void createParameter() {
-    //    throw new UnsupportedOperationException();
-    //}
+    public void createParameter(Map<Vertex,Point2D> oldVertices) {
+        parameters = new LayoutVerticesParam(oldVertices);
+     }
 
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         AggregateLayout<Vertex, Edge> layout =  syndrom.getLayout();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-        if(parameters == null){
+        if(parameters == null || indicator == true){
+            Map<Vertex,Point2D> oldVertices = new HashMap<>();
         for (Sphere s : graph.getSpheres()) {
             LinkedList<Vertex> vertices = s.getVertices();
 
@@ -88,37 +95,41 @@ public class LayoutVerticesGraphLogAction extends LogAction {
             Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
             if (sp != null){
                 for (Vertex v: sp.getVertices()){
+                    oldVertices.put(v, v.getCoordinates());
                     v.setCoordinates(layout.transform(v));
                 }
             }
         }
-
-
+        indicator = true;
+        createParameter(oldVertices);
+        }else{
+            Map<Vertex,Point2D> oldVertices = ((LayoutVerticesParam)parameters).getOldVertices();
+            for(Map.Entry<Vertex,Point2D> entry : oldVertices.entrySet()){
+                entry.getKey().setCoordinates(oldVertices.get(entry.getKey()));
+            }
+        }
         layout.removeAll();
 
         for (Sphere s : graph.getSpheres()) {
-            for(Vertex v : s.getVertices()){
-                layout.setLocation(v,v.getCoordinates());
+            for (Vertex v : s.getVertices()) {
+                layout.setLocation(v, v.getCoordinates());
             }
         }
-        }else{
-            Map<Vertex,Point2D> oldVertices = ((LayoutVerticesParam)parameters).getOldVertices();
-            Map<Vertex,Point2D> newVertices = ((LayoutVerticesParam)parameters).getNewVertices();
-            for(Map.Entry<Vertex,Point2D> entry : oldVertices.entrySet()){
-
-            }
-        }
-
         vv.setGraphLayout(layout);
 
         vv.repaint();
         syndrom.getVv2().repaint();
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
 
     }
 
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        LayoutVerticesParam layoutVerticesParam = (LayoutVerticesParam)parameters;
+        LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction(layoutVerticesParam);
+        layoutVerticesGraphLogAction.action();
     }
 }

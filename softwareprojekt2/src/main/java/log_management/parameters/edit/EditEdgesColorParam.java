@@ -25,19 +25,19 @@ public class EditEdgesColorParam extends Param implements Serializable {
      * The list of edges containing their old color.
      */
     @Getter
-    private Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> edgesOld;
+    private Map<Edge,Color> edgesOld;
     /**
      * The list of edges containing their new color.
      */
     @Getter
-    private Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> edgesNew;
+    private Map<Edge,Color> edgesNew;
 
     /**
      * Creates an vertices object of its own class.
      * @param pEdgesOld The list of edges and their old color.
      * @param pEdgesNew The list of edges and their new color.
      */
-    public EditEdgesColorParam(Map<Pair<Edge, Color>,Pair<Vertex,Vertex>> pEdgesOld, Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> pEdgesNew) {
+    public EditEdgesColorParam(Map<Edge,Color> pEdgesOld, Map<Edge,Color> pEdgesNew) {
         this.edgesOld = pEdgesOld;
         this.edgesNew = pEdgesNew;
     }

@@ -4,6 +4,7 @@ import edu.uci.ics.jung.visualization.decorators.AbstractVertexShapeTransformer;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.graph.VertexShapeType;
+import graph.visualization.renderers.VertexLabelRenderer;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -41,29 +42,36 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
         FontMetrics fontMetrics = Syndrom.getInstance().getVv().getFontMetrics(font);
         Graphics graphics = Syndrom.getInstance().getVv().getGraphics();
         Rectangle2D metrics = fontMetrics.getStringBounds(label, graphics);
+
         double width;
-        if (vsf.transform(v) < metrics.getWidth() + 15) {
-            width = metrics.getWidth() + 15;
-        } else {
-            width = vsf.transform(v);
+
+        double minWidth;
+        minWidth = (metrics.getWidth() < 160) ? metrics.getWidth() : 160;
+        width = (vsf.transform(v) < minWidth + 15) ?  minWidth + 15 : vsf.transform(v);
+
+        double height = metrics.getHeight() + 5;
+        VertexLabelRenderer vertexLabelRenderer = new VertexLabelRenderer();
+        String title = vertexLabelRenderer.splitAnnotation(label, fontMetrics);
+
+        int stringsLenght = title.split("\n").length;
+        double minHeight = stringsLenght* height;
+        height = (1 + (vsf.transform(v) * 0.01)) * height;
+
+        if (height < minHeight) {
+            height = minHeight;
         }
 
-        double height = metrics.getHeight()+5;
-        height = (1+(vsf.transform(v)*0.01))*height;
-
         if (shapeType == VertexShapeType.RECTANGLE) {
-
             float arc_size = (float) Math.min(height, width) / 2;
             RoundRectangle2D round = new RoundRectangle2D.Float();
-            round.setRoundRect( -(width / 2), -(height / 2),
-                    width, height, arc_size, arc_size);
+            round.setRoundRect(-(width / 2), -(height / 2),
+                    width+font.getSize(), height, arc_size, arc_size);
             return round;
 
 
-        } else if (shapeType == VertexShapeType.ELLIPSE) {
-            return factory.getEllipse(v);
         } else {
-
+            height = height + stringsLenght*(font.getSize()*(0.5));
+            width = width + stringsLenght*(font.getSize()*0.5);
             double h_offset = -(width / 2);
             double v_offset = -(height / 2);
             return new Ellipse2D.Double(h_offset, v_offset, width, height);

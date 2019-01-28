@@ -191,8 +191,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
             if (spherePickedCoord != null) {
                 Point p = e.getPoint();
-                Point2D graphPoint = vv.getRenderContext().getMultiLayerTransformer().transform(p);
-                Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().transform(down);
+                Point2D graphPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(p);
+                Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(down);
                 double dx = graphPoint.getX() - graphDown.getX();
                 double dy = graphPoint.getY() - graphDown.getY();
                 PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
@@ -203,6 +203,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
                     s.setCoordinates(new Point2D.Double(s.getCoordinates().getX() + dx, s.getCoordinates().getY() +
                             dy));
+
                     for (Vertex vertex : s.getVertices()) {
                         Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dx, vertex.getCoordinates()
                                 .getY() + dy);

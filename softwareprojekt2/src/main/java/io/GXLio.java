@@ -146,8 +146,8 @@ public class GXLio {
                             System.out.println(coordinatesArray[0]);
                             System.out.println(coordinatesArray[1]);
                             coordinates = new java.awt.Point(
-                                    java.lang.Integer.parseInt(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
-                                    java.lang.Integer.parseInt(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length()-3)));
+                                    (int)java.lang.Double.parseDouble(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
+                                    (int)java.lang.Double.parseDouble(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length()-3)));
                         }else{
                             coordinates = new java.awt.Point(
                                     java.lang.Integer.parseInt(coordinatesArray[0]),
@@ -368,25 +368,18 @@ public class GXLio {
                 for(int[] i : edgeIDsAndNodeIDs){
                     if(e.getId() == i[0]){
                         idOfStart = i[1];
-                        System.out.println("Die id des Startknoten: " + idOfStart);
                         idOfEnd = i[2];
-                        System.out.println("Die id des Zielknoten" + idOfEnd);
                     }
                 }
-                System.out.println("Vor der Schleife");
                 for(Vertex v : vertices){
-                    System.out.println("In der Schleife" + v.getId());
                     if(v.getId() == idOfStart){
                         start = v;
-                        System.out.println("Start Knoten gefunden - in der Schleife");
                     }else if(v.getId() == idOfEnd){
                         end = v;
-                        System.out.println("Ziel Knoten gefunden - in der Schleife");
                     }
                 }
                 Pair<Vertex> endPoints = new Pair<>(start, end);
                 newGraph.addEdge(e, endPoints);
-                System.out.println("Die Kante wurde dem Graphen hinzugefügt.");
 
             }
             vv.getGraphLayout().setGraph(newGraph);

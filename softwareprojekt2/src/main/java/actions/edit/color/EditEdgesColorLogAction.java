@@ -47,29 +47,19 @@ public class EditEdgesColorLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
         if(parameters == null) {
-            Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> oldEdge = new HashMap<>();
-            Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> newEdge = new HashMap<>();
+            Map<Edge,Color> oldEdges = new HashMap<>();
+            Map<Edge,Color> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                edu.uci.ics.jung.graph.util.Pair<Vertex> sourceTargetJung = vv.getGraphLayout().getGraph().getEndpoints(e);
-                Pair<Vertex,Vertex> sourceTarget = new Pair<>(sourceTargetJung.getFirst(),sourceTargetJung.getSecond());
-                oldEdge.put(new Pair<>(e,e.getColor()),sourceTarget);
+                oldEdges.put(e,e.getColor());
                 e.setColor(color);
-                newEdge.put(new Pair<>(e,color),sourceTarget);
+                newEdges.put(e,color);
             }
-            createParameter(oldEdge,newEdge);
+            createParameter(oldEdges,newEdges);
         }else {
-            Map<Pair<Edge,Color>, Pair<Vertex, Vertex>> oldEdges = ((EditEdgesColorParam) parameters).getEdgesOld();
-            Map<Pair<Edge,Color>, Pair<Vertex, Vertex>> newEdges = ((EditEdgesColorParam) parameters).getEdgesNew();
-            Set<Pair<Edge,Color>> setNewVertices = newEdges.keySet();
-            System.out.println("afa");
-            for (Map.Entry<Pair<Edge,Color>, Pair<Vertex, Vertex>> entry : oldEdges.entrySet()) {
-                Color newEdgeColor = null;
-                for(Pair<Edge,Color> entries : setNewVertices){
-                    if(entry.getKey().getKey().getId() == (entries.getKey().getId())){
-                        newEdgeColor = entries.getKey().getColor();
-                    }
-                }
-                entry.getKey().getKey().setColor(newEdgeColor);
+            Map<Edge,Color> oldEdges = ((EditEdgesColorParam) parameters).getEdgesOld();
+            Map<Edge,Color> newEdges = ((EditEdgesColorParam) parameters).getEdgesNew();
+            for (Map.Entry<Edge,Color> entry : oldEdges.entrySet()) {
+                entry.getKey().setColor(newEdges.get(entry.getKey()));
             }
         }
         vv.repaint();
@@ -81,14 +71,14 @@ public class EditEdgesColorLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> edgesOld = ((EditEdgesColorParam)parameters).getEdgesOld();
-        Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> edgesNew = ((EditEdgesColorParam)parameters).getEdgesNew();
+        Map<Edge,Color> edgesOld = ((EditEdgesColorParam)parameters).getEdgesOld();
+        Map<Edge,Color> edgesNew = ((EditEdgesColorParam)parameters).getEdgesNew();
         EditEdgesColorParam editEdgesColorParam = new EditEdgesColorParam(edgesNew,edgesOld);
         EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(editEdgesColorParam);
         editEdgesColorLogAction.action();
     }
 
-    public void createParameter(Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> oldEdge, Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> newEdge) {
+    public void createParameter(Map<Edge,Color> oldEdge, Map<Edge,Color> newEdge) {
         parameters = new EditEdgesColorParam(oldEdge,newEdge);
     }
 }

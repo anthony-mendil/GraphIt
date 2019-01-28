@@ -71,6 +71,7 @@ public class Sphere {
     @NonNull
     private int fontSize;
 
+
     public Sphere(int id, Color color, Point2D coordinates, double width, double height, Map<String, String>
             annotation, String font, int fontSize ){
         this.id = id;

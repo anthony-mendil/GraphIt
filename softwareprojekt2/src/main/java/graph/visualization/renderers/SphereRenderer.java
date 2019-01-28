@@ -42,6 +42,8 @@ public class SphereRenderer {
                 .getInstance().getVv());
         g2d.setStroke(sphereStrokeTransformer.transform(pSphere));
         g2d.draw(sphereShape);
+
+
         g2d.setFont(sphereFontTransformer.transform(pSphere));
         FontMetrics fontMetrics = g2d.getFontMetrics();
         String annotation = sphereLabelTransformer.transform(pSphere);
@@ -63,7 +65,7 @@ public class SphereRenderer {
         }
     }
 
-    private String shrinkAnnotation(double sphereWidth, double sphereHeight, String annotation, FontMetrics
+    public String shrinkAnnotation(double sphereWidth, double sphereHeight, String annotation, FontMetrics
             fontMetrics){
         String[] lines = breakAnnotation(sphereWidth, annotation, fontMetrics).split("\n");
         int count = (int) sphereHeight / fontMetrics.getHeight();
@@ -116,7 +118,7 @@ public class SphereRenderer {
         return label.toString();
     }
 
-    private Point2D getAnchorPoint(Shape sphereShape, Point2D p, int width){
+    public Point2D getAnchorPoint(Shape sphereShape, Point2D p, int width){
         double sWidth = sphereShape.getBounds().getWidth();
         double x = p.getX();
         double labelX;

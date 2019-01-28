@@ -27,13 +27,13 @@ public class EnumNameCreator {
         if (language == Language.ENGLISH) {
             switch (vertexShapeType) {
                 case CIRCLE: return "Circle";
-                case ELLIPSE: return "Ellipse";
+               // case ELLIPSE: return "Ellipse";
                 default: return "Rectangle";
             }
         } else {
             switch (vertexShapeType) {
                 case CIRCLE: return "Kreis";
-                case ELLIPSE: return "Ellipse";
+               // case ELLIPSE: return "Ellipse";
                 default: return "Rechteck";
             }
         }
