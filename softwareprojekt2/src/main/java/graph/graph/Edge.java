@@ -61,4 +61,10 @@ public class Edge {
         return this.id == e.id;
     }
 
+    @Override
+    public String toString(){
+        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " -> " +
+                Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
+    }
+
 }

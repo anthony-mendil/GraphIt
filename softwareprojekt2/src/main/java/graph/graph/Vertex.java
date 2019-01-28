@@ -141,6 +141,6 @@ public class Vertex {
     @Override
     @JsonValue
     public String toString() {
-        return Integer.toString(id);
+        return annotation.get("de");
     }
 }
