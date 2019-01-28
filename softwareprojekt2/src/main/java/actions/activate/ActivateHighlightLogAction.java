@@ -2,6 +2,13 @@ package actions.activate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import graph.graph.Edge;
+import graph.graph.Vertex;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeHighlightTransformer;
+import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
 
 import java.awt.geom.Point2D;
@@ -10,22 +17,12 @@ import java.awt.geom.Point2D;
  * Highlights the chosen vertices and the attached edges.
  */
 public class ActivateHighlightLogAction extends LogAction {
-    /**
-     * Constructor in case only one vertex shall be highlighted.
-     *
-     * @param pPoint2D The position of the vertex.
-     */
-    public ActivateHighlightLogAction(Point2D pPoint2D) {
-        super(LogEntryName.ACTIVATE_HIGHLIGHT);
-        throw new UnsupportedOperationException();
-    }
 
     /**
      * Constructor in case several/all vertices shall be highlighted.
      */
     public ActivateHighlightLogAction() {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -44,7 +41,14 @@ public class ActivateHighlightLogAction extends LogAction {
      */
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
+        vv.getRenderContext().setVertexFillPaintTransformer(new VertexPaintHighlightTransformer<>());
+        vv2.getRenderContext().setVertexFillPaintTransformer(new VertexPaintHighlightTransformer<>());
+        vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeHighlightTransformer<>());
+        vv2.getRenderContext().setEdgeDrawPaintTransformer(new EdgeHighlightTransformer<>());
+        vv.repaint();
+        vv2.repaint();
     }
 
     /**

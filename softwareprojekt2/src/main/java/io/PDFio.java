@@ -9,6 +9,7 @@ import edu.uci.ics.jung.visualization.renderers.Renderer;
 import graph.graph.*;
 import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
+import graph.visualization.renderers.VertexLabelRenderer;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgeArrowTransformer;
 import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
@@ -143,11 +144,15 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
         EdgeRenderer<Vertex, Edge> edgeRenderer = new EdgeRenderer<>();
         vis.getRenderer().setEdgeRenderer(edgeRenderer);
 
+        VertexLabelRenderer<Vertex, Edge> vertexLabelRenderer = new VertexLabelRenderer<>();
+        vis.getRenderer().setVertexLabelRenderer(vertexLabelRenderer);
+
+
 
         System.out.println(getMinPoint().toString());
         VectorGraphics vectorGraphics = null;
         Dimension dimensionWithBorder = new Dimension();
-        dimensionWithBorder = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
+        dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
         //dimensionWithBorder.setSize(getGraphDimension().getWidth() + BORDER, getGraphDimension().getHeight() + BORDER);
         try {
             vectorGraphics = new PDFGraphics2D(file, dimensionWithBorder);
@@ -186,7 +191,7 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
                 printerJob.print();
             } catch (PrinterException e) {
                 e.printStackTrace();
-            } finally {
+            } finally{
                 file.deleteOnExit();
             }
         }
