@@ -135,9 +135,18 @@ public class GXLio {
                             Integer.parseInt(paintArray[3]));
                     System.out.println("Knoten: " + paint);
                     String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinate").getValue()).getValue());
-                    java.awt.geom.Point2D coordinates = new java.awt.geom.Point2D.Float(
-                            java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
-                            java.lang.Float.parseFloat(coordinatesArray[1].substring(0, coordinatesArray[1].length() - 2)));
+                    java.awt.Point coordinates = null;
+                    if(coordinatesArray[0].contains(".")){
+                        System.out.println(coordinatesArray[0]);
+                        System.out.println(coordinatesArray[1]);
+                        coordinates = new java.awt.Point(
+                                java.lang.Integer.parseInt(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
+                                java.lang.Integer.parseInt(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length()-3)));
+                    }else{
+                        coordinates = new java.awt.Point(
+                                java.lang.Integer.parseInt(coordinatesArray[0]),
+                                java.lang.Integer.parseInt(coordinatesArray[1]));
+                    }
                     System.out.println("Knoten: " + coordinates);
                     VertexShapeType shape = VertexShapeType.valueOf(((GXLString) elem.getAttr("shape").getValue()).getValue());
                     System.out.println("Knoten: " + shape);
@@ -231,24 +240,38 @@ public class GXLio {
             //SyndromGraph<Vertex, Edge> graphnew = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             SyndromGraph newGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             for(Sphere s : spheres){
-                newGraph.getSpheres().add(s);
+                for(int[] i : nodeIDAndSphereID){
+                    if(i[1]==s.getId()){
+                        int idOfNode = i[0];
+                        for(Vertex v : vertices){
+                            if(idOfNode == v.getId()){
+                                s.getVertices().add(v);
+                                newGraph.addVertexToSphere(s, v);
+                                vv.getGraphLayout().setLocation(v, v.getCoordinates());
+                            }
+                        }
+                    }
+                }
+
+       newGraph.getSpheres().add(s);
                // System.out.println(s.getCoordinates());
               //  newGraph.addSphere(new Point2D.Double(s.getCoordinates().getX(), s.getCoordinates().getY()));
-                System.out.println("Die Sphäre wurde dem Graphen hinzugefügt");
-                for(Vertex v : vertices){
+      //System.out.println("Die Sphäre wurde dem Graphen hinzugefügt");
+       // for(Vertex v : vertices){
                     System.out.println("Die Sphäre zu dem dieser Knoten gehört wurde gefunden");
-                    System.out.println("Die coordinaten des Knoten lauten: " + v.getCoordinates());
+                 //   System.out.println("Die coordinaten des Knoten lauten: " + v.getCoordinates());
                     //newGraph.addVertex(v);
                     //newGraph.addVertexToSphere(s, v);
                    // if(s.getVertices().size()==0) {
-                        Vertex ver = newGraph.addVertex(v.getCoordinates(), s);
+        //            Vertex ver = newGraph.addVertex(v.getCoordinates(), s);
+        //            newGraph.addVertexToSphere(s, ver);
+       //             vv.getGraphLayout().setLocation(ver, ver.getCoordinates());
                         //vv.getGraphLayout().setLocation(newVertex, v.getCoordinates());
                         //s.getVertices().add(v);
                         // newGraph.getVertices().add(v);
-                             newGraph.addVertexToSphere(s, ver);
-                        vv.getGraphLayout().setLocation(ver, ver.getCoordinates());
+
                     System.out.println("Der Knoten wurde dem Graphen hinzugefügt");
-                }
+
             }
 
             /*
@@ -630,7 +653,7 @@ public class GXLio {
 
 
     public String[] getNumberArrayFromString(String pWord) {
-        String word = pWord.trim();
+        String word = pWord;
         String[] alphabet = {"2D", "a","b", "c","d", "e","f", "g","h", "i", "j", "k","l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         for(String s : alphabet){
             word = word.replaceAll(s, "");
@@ -640,6 +663,7 @@ public class GXLio {
         while(word.charAt(numberOFDots) == '.' ){
             numberOFDots++;
         }
+        System.out.println(word);
         word = word.substring(numberOFDots);
         word = word.substring(1, word.length()-1);
 
@@ -651,7 +675,8 @@ public class GXLio {
             return word.split("=");
             //  return Arrays.asList(word.split("="));
         }
-
+        word = word.trim();
+        System.out.println(word);
         return word.split(",");
         //return Arrays.asList(word.split(", "));
         /*

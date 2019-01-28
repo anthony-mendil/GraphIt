@@ -7,12 +7,19 @@ import graph.graph.Edge;
 import graph.graph.StrokeType;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesStrokeParam;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Changes the stroke of the selected edges.
  */
 public class EditEdgesStrokeLogAction extends LogAction {
+    /**
+     * Temporary variable for the new stroke-type of the edge.
+     */
     private StrokeType stroke;
     /**
      * Constructor for the EditEdgesStrokeLogAction.
@@ -29,27 +36,46 @@ public class EditEdgesStrokeLogAction extends LogAction {
      */
     public EditEdgesStrokeLogAction(EditEdgesStrokeParam pEditEdgesStrokeParam) {
         super(LogEntryName.EDIT_EDGES_STROKE);
-        throw new UnsupportedOperationException();
+        parameters = pEditEdgesStrokeParam;
     }
 
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        PickedState<Edge> pickedState = vv.getPickedEdgeState();
-
-        for (Edge e: pickedState.getPicked()) {
-            e.setStroke(stroke);
+        if(parameters == null) {
+            PickedState<Edge> pickedState = vv.getPickedEdgeState();
+            Map<Edge,StrokeType> oldEdges = new HashMap<>();
+            Map<Edge,StrokeType> newEdges = new HashMap<>();
+            for (Edge e : pickedState.getPicked()) {
+                oldEdges.put(e,e.getStroke());
+                e.setStroke(stroke);
+                newEdges.put(e,stroke);
+            }
+            createParameter(oldEdges, newEdges);
+        }else{
+            Map<Edge,StrokeType> oldEdges = ((EditEdgesStrokeParam)parameters).getEdgesOld();
+            Map<Edge,StrokeType> newEdges = ((EditEdgesStrokeParam)parameters).getEdgesNew();
+            for(Map.Entry<Edge,StrokeType> entry : oldEdges.entrySet()){
+                entry.getKey().setStroke(newEdges.get(entry.getKey()));
+            }
         }
         vv.repaint();
         syndrom.getVv2().repaint();
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        Map<Edge,StrokeType> oldEdges = ((EditEdgesStrokeParam)parameters).getEdgesOld();
+        Map<Edge,StrokeType> newEdges = ((EditEdgesStrokeParam)parameters).getEdgesNew();
+        EditEdgesStrokeParam editEdgesStrokeParam = new EditEdgesStrokeParam(newEdges,oldEdges);
+        EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(editEdgesStrokeParam);
+        editEdgesStrokeLogAction.action();
     }
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Map<Edge,StrokeType> oldEdges, Map<Edge,StrokeType> newEdges) {
+        parameters = new EditEdgesStrokeParam(oldEdges,newEdges);
     }
 }
