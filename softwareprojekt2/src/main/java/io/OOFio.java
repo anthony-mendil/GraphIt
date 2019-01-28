@@ -27,7 +27,6 @@ public class OOFio {
      * Creates a new OOFio object.
      */
     public OOFio(){
-        throw new UnsupportedOperationException();
     }
 
     /**
