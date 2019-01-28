@@ -80,7 +80,9 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         }
 
         // all vertices get rendered
-        renderVerticesWithPicked(g, renderContext, layout);
+        if (!g.getVertices().isEmpty()){
+            renderVertices(g.getVertices(), renderContext, layout);
+        }
 
         // if a sphere overlaps another one, the sphere is painted with all its vertices and all edges
         // between the spheres vertices
@@ -107,22 +109,6 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             }
         }
         renderVertices(collection, renderContext, layout);
-    }
-
-    @SuppressWarnings("unchecked")
-    private void renderVerticesWithPicked(SyndromGraph<V, E> g, RenderContext<V, E> renderContext, Layout<V, E> layout){
-        PickedState<graph.graph.Vertex> picked = Syndrom.getInstance().getVv().getPickedVertexState();
-        Collection<V> vertices = g.getVertices();
-        Collection<V> pick = (Collection<V>) picked.getPicked();
-        ArrayList<V> render = new ArrayList<>();
-        for (V v: vertices){
-            if (!pick.contains(v)){
-                render.add(v);
-            }
-        }
-
-        renderVertices(render, renderContext, layout);
-        renderVertices(pick, renderContext, layout);
     }
 
     private void renderVertices(Collection<V> vertices, RenderContext<V, E> renderContext, Layout<V, E> layout) {
