@@ -13,9 +13,5 @@ public enum VertexShapeType {
      * A circle as a shape.
      */
     CIRCLE,
-    /**
-     *
-     * A circular shape.
-     */
-    ELLIPSE
+
 }

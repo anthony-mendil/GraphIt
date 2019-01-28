@@ -12,6 +12,7 @@ import graph.visualization.control.*;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
+import graph.visualization.renderers.VertexLabelRenderer;
 import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
@@ -278,6 +279,8 @@ public class Syndrom {
 
         vv.getGraphLayout().setGraph(new SyndromGraph<>());
         EdgeRenderer<Vertex, Edge> edgeRenderer = new EdgeRenderer<>();
+        VertexLabelRenderer<Vertex, Edge> vertexLabelRenderer = new VertexLabelRenderer<>();
+        vv.getRenderer().setVertexLabelRenderer(vertexLabelRenderer);
         vv.getRenderer().setEdgeRenderer(edgeRenderer);
 
     }
