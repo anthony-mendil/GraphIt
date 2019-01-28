@@ -61,6 +61,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -1728,7 +1730,83 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    /**
+     * SPRACHE ÄNDERN, AUCH IN SPHERE.TOSTRING(), VERTEX.TOSTRING() BEACHTEN
+     */
+    public void treeViewUpdate(){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        List<Sphere> spheres = graph.getSpheres();
+        Collection<Vertex> vertices = graph.getVertices();
+        Collection<Edge> edges = graph.getEdges();
+        ArrayList<String> name = new ArrayList<>();
 
+        TreeItem<Object> rootItem = new TreeItem<Object>();
+
+        for(Sphere sphere : spheres){
+            TreeItem<Object> sphereItem = new TreeItem<Object>(sphere);
+            for(Vertex vertex : sphere.getVertices()){
+                TreeItem<Object> vertexItem = new TreeItem<Object>(vertex);
+                for(Edge edge : graph.getOutEdges(vertex)){
+                    TreeItem<Object> edgeItem = new TreeItem<Object>(edge);
+                    vertexItem.getChildren().add(edgeItem);
+                }
+                sphereItem.getChildren().add(vertexItem);
+            }
+            rootItem.getChildren().add(sphereItem);
+        }
+
+        rootItem.setExpanded(true);
+
+        /*
+        TreeItem<String> vertex1 = new TreeItem<String>("Symptom1");
+        TreeItem<String> vertex2 = new TreeItem<String>("Symptom2");
+
+        TreeItem<String> edge1 = new TreeItem<String>("Kante1");
+        TreeItem<String> edge2 = new TreeItem<String>("Kante2");
+        TreeItem<String> edge3 = new TreeItem<String>("Kante3");
+        TreeItem<String> edge4 = new TreeItem<String>("Kante4");
+
+        vertex1.getChildren().addAll(edge1,edge2);
+        vertex2.getChildren().addAll(edge3,edge4);
+        rootItem.getChildren().addAll(vertex1,vertex2);
+        */
+        treeView.setRoot(rootItem);
+        treeView.setShowRoot(false);
+
+
+        /*
+        if(!spheres.isEmpty()){
+            name.add("---------------------------Sphären---------------------------");
+
+            for(Sphere sphere : spheres){
+                name.add(sphere.getAnnotation().get("de"));
+                treeView.getRoot().getChildren().adAll
+            }
+        }
+
+        if(!vertices.isEmpty()){
+            name.add("---------------------------Symptome------------------------");
+
+            for(Vertex vertex : vertices){
+                name.add(vertex.getAnnotation().get("de"));
+            }
+        }
+
+        if(!edges.isEmpty()) {
+            name.add("---------------------------Kanten----------------------------");
+
+            for(Edge edge : edges){
+                edu.uci.ics.jung.graph.util.Pair<Vertex> sourceTargetJung = vv.getGraphLayout().getGraph().getEndpoints(edge);
+                name.add(sourceTargetJung.getFirst().getAnnotation().get("de") + " -> " + sourceTargetJung.getSecond().getAnnotation().get("de"));
+            }
+        }
+
+        ObservableList<String> test = FXCollections.observableArrayList(name);
+        */
+
+
+    }
 
     /*
      * Uses the provided swingnode to display the zoom window on it.

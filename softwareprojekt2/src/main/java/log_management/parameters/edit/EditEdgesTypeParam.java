@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
 import graph.graph.Edge;
+import graph.graph.EdgeArrowType;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import gui.Values;
@@ -24,24 +25,25 @@ public class EditEdgesTypeParam extends Param implements Serializable {
      * The set of all edges containing their old edge-type.
      */
     @Getter
-    private Map<Edge,Pair<Vertex,Vertex>> edgesOldEdgeType;
+    private Map<Edge,EdgeArrowType> edgesOldEdgeType;
     /**
      * The set of all edges containing their new edge-type.
      */
     @Getter
-    private Map<Edge,Pair<Vertex,Vertex>> edgesNewEdgeType;
+    private Map<Edge,EdgeArrowType> edgesNewEdgeType;
 
     /**
      * Creates a new vertices object of its own class.
      * @param pOldEdges The set of edges containing their old edge-types.
      * @param pNewEdges The set of edges containing their new edge-types.
      */
-    public EditEdgesTypeParam(Map<Edge,Pair<Vertex,Vertex>> pOldEdges, Map<Edge,Pair<Vertex,Vertex>> pNewEdges) {
+    public EditEdgesTypeParam(Map<Edge,EdgeArrowType> pOldEdges, Map<Edge,EdgeArrowType> pNewEdges) {
         this.edgesOldEdgeType = pOldEdges;
         this.edgesNewEdgeType = pNewEdges;
     }
     @Override
     public String toString() {
+        /**
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
@@ -68,6 +70,8 @@ public class EditEdgesTypeParam extends Param implements Serializable {
             }
         }
         return information;
+         */
+        return null;
     }
 
 }

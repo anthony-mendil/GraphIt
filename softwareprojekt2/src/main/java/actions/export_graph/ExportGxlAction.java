@@ -40,6 +40,7 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void undo() {
+        return;
     }
 
     /**
@@ -47,5 +48,6 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void redo() {
+        return;
     }
 }

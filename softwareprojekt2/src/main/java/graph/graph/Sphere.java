@@ -1,5 +1,6 @@
 package graph.graph;
 
+import gui.Values;
 import lombok.Data;
 import lombok.NonNull;
 import org.codehaus.jackson.annotate.JsonValue;
@@ -89,6 +90,6 @@ public class Sphere {
     @Override
     @JsonValue
     public String toString(){
-        return Integer.toString(id);
+        return annotation.get("de");
     }
 }
