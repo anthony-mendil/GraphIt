@@ -5,6 +5,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import log_management.DatabaseManager;
 import log_management.dao.GraphDao;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
@@ -219,23 +220,26 @@ public class GXLio {
                         System.out.println("Kante: " + stroke);
                         EdgeArrowType arrowType = EdgeArrowType.valueOf(((GXLString) elem.getAttr("arrowType").getValue()).getValue());
                         System.out.println("Kante: " + arrowType);
-                        Boolean hasAnchor = Boolean.getBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
+                        boolean hasAnchor = Boolean.parseBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
                         // edge.getAttr("anchorAngle");
-                        System.out.println("Kante: " + hasAnchor);
+                        System.out.println("Kante hasAnchor: " + hasAnchor);
+
                         String[] coordinatesArray = null;
                         java.awt.geom.Point2D coordinates = null;
-                        if(hasAnchor) {
+                        if(hasAnchor == true) {
                             coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle").getValue()).getValue());
                              coordinates = new java.awt.geom.Point2D.Double(
                                     java.lang.Double.parseDouble(coordinatesArray[0]),
                                     java.lang.Double.parseDouble(coordinatesArray[1]));
                         }
-                        Boolean isVisible = Boolean.getBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
-                        System.out.println("Kante: " + isVisible);
+                        boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
+                        System.out.println("Kante isVisible: " + isVisible);
                         Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
-                        if(hasAnchor) {
+                        if(hasAnchor == true) {
                             newEdge.setAnchorPoint(coordinates);
                         }
+
+
                         edges.add(newEdge);
 
                         GXLEdge currentEdge = (GXLEdge) elem;
@@ -526,8 +530,8 @@ public class GXLio {
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
             if(e.isHasAnchor()) {
                 edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
-            }else{
-                edge.setAttr("anchorAngle", new GXLString("is not set as no anchorpoint was added"));
+           // }else{
+           //     edge.setAttr("anchorAngle", new GXLString("is not set as no anchorpoint was added"));
             }// edge.setAttr("anchorpoint", new GXLString("" + e.getAnchorPoint()));
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
