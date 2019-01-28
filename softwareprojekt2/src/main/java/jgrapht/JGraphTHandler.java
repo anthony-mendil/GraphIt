@@ -45,7 +45,7 @@ public class JGraphTHandler {
      * @return The Graph in JGraphT-Type.
      */
     public Graph convertGraphToJGraphT(List<Vertex> pVertices, List<Edge> pEdges) {
-        throw new UnsupportedOperationException();
+        
     }
     /**
      * Detects all cycles in the directed graph and returns them in a set.

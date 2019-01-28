@@ -24,20 +24,12 @@ public class LayoutVerticesParam extends Param implements Serializable {
     private Map<Vertex, Point2D> oldVertices;
 
     /**
-     * The map from vertex ids to the new position.
-     */
-    @Getter
-    private Map<Vertex, Point2D> newVertices;
-
-    /**
      * Creates a vertices object of its own class.
      *
      * @param pOldPosition Map of vertices containing their old positions.
-     * @param pNewPosition Map of vertices containing their new positions.
      */
-    public LayoutVerticesParam(Map<Vertex, Point2D> pOldPosition, Map<Vertex, Point2D> pNewPosition) {
+    public LayoutVerticesParam(Map<Vertex, Point2D> pOldPosition) {
         this.oldVertices = pOldPosition;
-        this.newVertices = pNewPosition;
     }
     @Override
     public String toString() {

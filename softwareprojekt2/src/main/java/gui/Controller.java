@@ -1014,12 +1014,12 @@ public class Controller implements ObserverSyndrom {
 
     public void sphereAutoLayout() {
         LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
-        layoutSphereGraphLogAction.action();
+        history.execute(layoutSphereGraphLogAction);
     }
 
     public void verticesAutoLayout() {
         LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
-        layoutVerticesGraphLogAction.action();
+        history.execute(layoutVerticesGraphLogAction);
     }
 
 

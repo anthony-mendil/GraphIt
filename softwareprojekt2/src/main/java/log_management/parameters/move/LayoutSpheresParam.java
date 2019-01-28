@@ -4,6 +4,7 @@ import graph.graph.Sphere;
 import graph.graph.Vertex;
 import gui.Values;
 import gui.properties.Language;
+import javafx.util.Pair;
 import log_management.parameters.Param;
 import lombok.Getter;
 
@@ -13,26 +14,25 @@ import java.util.Map;
 
 public class LayoutSpheresParam extends Param implements Serializable {
     /**
-     * The vertices containing their old position.
+     * The spheres containing their old position and size.
      */
     @Getter
-    private Map<Sphere, Point2D> oldSpheres;
-
+    private Map<Sphere,Pair<Pair<Double,Double>,Point2D>> oldSpheres;
     /**
-     * The map from vertex ids to the new position.
+     * The vertices and their old position.
      */
     @Getter
-    private Map<Sphere, Point2D> newSpheres;
+    private Map<Vertex,Point2D> oldVertices;
+
 
     /**
      * Creates a vertices object of its own class.
      *
      * @param pOldPosition Map of vertices containing their old positions.
-     * @param pNewPosition Map of vertices containing their new positions.
      */
-    public LayoutSpheresParam(Map<Sphere, Point2D> pOldPosition, Map<Sphere, Point2D> pNewPosition) {
+    public LayoutSpheresParam(Map<Sphere,Pair<Pair<Double,Double>,Point2D>> pOldPosition, Map<Vertex,Point2D> pOldVertices) {
         this.oldSpheres = pOldPosition;
-        this.newSpheres= pNewPosition;
+        this.oldVertices = pOldVertices;
     }
     @Override
     public String toString() {
