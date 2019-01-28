@@ -1041,7 +1041,7 @@
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </padding>
                   </Separator>
-                  <StackPane alignment="BOTTOM_CENTER" prefHeight="220.0" prefWidth="250.0">
+                  <StackPane alignment="BOTTOM_CENTER" prefHeight="187.0" prefWidth="250.0">
                      <children>
                         <SwingNode fx:id="satellite" />
                      </children>
