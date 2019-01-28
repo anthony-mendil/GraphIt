@@ -2,6 +2,13 @@ package actions.deactivate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import graph.graph.Edge;
+import graph.graph.Vertex;
+import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeHighlightTransformer;
+import graph.visualization.transformer.vertex.VertexFillPaintTransformer;
+import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
 
 
@@ -29,7 +36,14 @@ public class DeactivateHighlightLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
+        vv.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
+        vv2.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
+        vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
+        vv2.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
+        vv.repaint();
+        vv2.repaint();
     }
 
     @Override

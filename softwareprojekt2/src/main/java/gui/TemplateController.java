@@ -68,13 +68,13 @@ public class TemplateController {
 
         Collection<Edge> edges = graph.getEdges();
 
-        ArrayList<String> name = new ArrayList<>();
+        ArrayList<Object> name = new ArrayList<>();
 
         if(!spheres.isEmpty()){
             name.add("---------------------------Sphären---------------------------");
 
             for(Sphere sphere : spheres){
-                name.add(sphere.getAnnotation().get("de"));
+                name.add(sphere);
             }
         }
 
@@ -82,7 +82,7 @@ public class TemplateController {
             name.add("---------------------------Symptome------------------------");
 
             for(Vertex vertex : vertices){
-                name.add(vertex.getAnnotation().get("de"));
+                name.add(vertex);
             }
         }
 
@@ -90,12 +90,11 @@ public class TemplateController {
             name.add("---------------------------Kanten----------------------------");
 
             for(Edge edge : edges){
-                edu.uci.ics.jung.graph.util.Pair<Vertex> sourceTargetJung = vv.getGraphLayout().getGraph().getEndpoints(edge);
-                name.add(sourceTargetJung.getFirst().getAnnotation().get("de") + " -> " + sourceTargetJung.getSecond().getAnnotation().get("de"));
+                name.add(edge);
             }
         }
 
-        ObservableList<String> test = FXCollections.observableArrayList(name);
+        ObservableList<Object> test = FXCollections.observableArrayList(name);
         templateListView.setItems(test);
     }
 }

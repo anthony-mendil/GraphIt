@@ -1,5 +1,6 @@
 package graph.graph;
 
+import gui.Values;
 import lombok.Data;
 import lombok.NonNull;
 import org.codehaus.jackson.annotate.JsonValue;
@@ -70,6 +71,7 @@ public class Sphere {
     @NonNull
     private int fontSize;
 
+
     public Sphere(int id, Color color, Point2D coordinates, double width, double height, Map<String, String>
             annotation, String font, int fontSize ){
         this.id = id;
@@ -89,6 +91,6 @@ public class Sphere {
     @Override
     @JsonValue
     public String toString(){
-        return Integer.toString(id);
+        return annotation.get("de");
     }
 }

@@ -98,6 +98,9 @@ public class Vertex {
     @NonNull
     private int fontSize;
 
+    private boolean isHighlighted = false;
+
+
     /**
      * Creates a new vertex.
      *
@@ -141,6 +144,6 @@ public class Vertex {
     @Override
     @JsonValue
     public String toString() {
-        return Integer.toString(id);
+        return annotation.get("de");
     }
 }

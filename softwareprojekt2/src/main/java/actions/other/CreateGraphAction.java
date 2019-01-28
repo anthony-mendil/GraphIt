@@ -2,22 +2,18 @@ package actions.other;
 
 import actions.Action;
 import actions.GraphAction;
-import com.google.inject.Inject;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.DefaultVisualizationModel;
 import edu.uci.ics.jung.visualization.VisualizationModel;
-import edu.uci.ics.jung.visualization.control.CrossoverScalingControl;
 import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
-import edu.uci.ics.jung.visualization.control.ScalingControl;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.renderers.SyndromRenderer;
+import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 
 import java.awt.*;
-import graph.visualization.SyndromVisualisationViewer;
 
 /**
  * Creates a new graph.
@@ -53,7 +49,7 @@ public class CreateGraphAction extends GraphAction {
         syndrom.setVisualisationViewer(vv);
 
         final SatelliteVisualizationViewer<Vertex,Edge> vv2 =
-                new SatelliteVisualizationViewer(vv, new Dimension(200,150));
+                new SatelliteVisualizationViewer(vv, new Dimension(250,187));
 
         syndrom.setVisualisationViewer2(vv2);
 

@@ -48,6 +48,8 @@ public class Edge {
     @NonNull
     private boolean isVisible;
 
+    private boolean isHighlighted = false;
+
     public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean hasAnchor, boolean isVisible){
         this.id = id;
         this.color = color;
@@ -59,6 +61,12 @@ public class Edge {
 
     public boolean equals(Edge e){
         return this.id == e.id;
+    }
+
+    @Override
+    public String toString(){
+        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " -> " +
+                Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
     }
 
 }
