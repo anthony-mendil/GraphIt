@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
 import graph.graph.Edge;
+import graph.graph.StrokeType;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import gui.Values;
@@ -24,19 +25,19 @@ public class EditEdgesStrokeParam extends Param implements Serializable {
      * The set of edges containing their old stoke-type.
      */
     @Getter
-    Map<Edge,Pair<Vertex,Vertex>> edgesOld;
+    Map<Edge, StrokeType> edgesOld;
     /**
      * The set of edges containing their old stoke-type.
      */
     @Getter
-    Map<Edge,Pair<Vertex,Vertex>> edgesNew;
+    Map<Edge, StrokeType> edgesNew;
 
     /**
      * Creates a new vertices object of its own class.
      * @param pEdgesOld The map of all edges and their old info.
      * @param pEdgesNew The map of all edges and their new info.
      */
-    public EditEdgesStrokeParam(Map<Edge,Pair<Vertex,Vertex>> pEdgesOld, Map<Edge,Pair<Vertex,Vertex>> pEdgesNew
+    public EditEdgesStrokeParam(Map<Edge,StrokeType> pEdgesOld, Map<Edge,StrokeType> pEdgesNew
                                 ) {
         this.edgesOld = pEdgesOld;
         this.edgesNew = pEdgesNew;
@@ -44,6 +45,7 @@ public class EditEdgesStrokeParam extends Param implements Serializable {
 
     @Override
     public String toString() {
+        /**
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
@@ -70,5 +72,7 @@ public class EditEdgesStrokeParam extends Param implements Serializable {
             }
         }
         return information;
+         */
+        return null;
     }
 }

@@ -12,6 +12,7 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -24,25 +25,26 @@ public class EditEdgesColorParam extends Param implements Serializable {
      * The list of edges containing their old color.
      */
     @Getter
-    private Map<Edge,Pair<Vertex,Vertex>> edgesOld;
+    private Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> edgesOld;
     /**
      * The list of edges containing their new color.
      */
     @Getter
-    private Map<Edge,Pair<Vertex,Vertex>> edgesNew;
+    private Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> edgesNew;
 
     /**
      * Creates an vertices object of its own class.
      * @param pEdgesOld The list of edges and their old color.
      * @param pEdgesNew The list of edges and their new color.
      */
-    public EditEdgesColorParam(Map<Edge,Pair<Vertex,Vertex>> pEdgesOld, Map<Edge,Pair<Vertex,Vertex>> pEdgesNew) {
+    public EditEdgesColorParam(Map<Pair<Edge, Color>,Pair<Vertex,Vertex>> pEdgesOld, Map<Pair<Edge,Color>,Pair<Vertex,Vertex>> pEdgesNew) {
         this.edgesOld = pEdgesOld;
         this.edgesNew = pEdgesNew;
     }
 
     @Override
     public String toString() {
+        /**
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
@@ -69,5 +71,7 @@ public class EditEdgesColorParam extends Param implements Serializable {
             }
         }
         return information;
+         */
+        return null;
     }
 }
