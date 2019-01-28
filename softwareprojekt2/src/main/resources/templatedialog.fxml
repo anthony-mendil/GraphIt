@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -106,13 +105,8 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </VBox.margin>
       </ListView>
-      <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="420.0">
+      <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="330.0">
          <children>
-            <Region minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="140.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Region>
             <Button fx:id="templateButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#rulesTemplate" prefHeight="30.0" prefWidth="140.0" text="Regeln speichern">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -125,7 +119,7 @@
             </Button>
          </children>
          <VBox.margin>
-            <Insets top="2.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="2.0" />
          </VBox.margin>
       </HBox>
    </children>

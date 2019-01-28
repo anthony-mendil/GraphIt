@@ -1369,12 +1369,9 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
         zoomSlider.setValue(100);
-        values.setScale(100);
-        zoomSlider.setShowTickMarks(true);
         zoomSlider.setBlockIncrement(20);
         zoomSlider.setMajorTickUnit(20);
         zoomSlider.setMinorTickCount(5);
-        zoomSlider.setShowTickLabels(true);
         zoomSlider.setSnapToTicks(true);
         zoomSlider.valueProperty().addListener(changeZoom);
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
@@ -1687,6 +1684,7 @@ public class Controller implements ObserverSyndrom {
         redoButton.setDisable(disable);
         undoButton.setDisable(disable);
         toolBarSeparator1.setDisable(disable);
+        zoomSlider.setDisable(disable);
     }
 
     private void disableAnalysisMode(Boolean disable){
