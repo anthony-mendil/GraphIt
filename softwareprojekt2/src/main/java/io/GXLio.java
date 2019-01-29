@@ -14,7 +14,9 @@ import java.util.*;
 import java.util.List;
 
 /**
- * The GXL importer/exporter.
+ * This class provides methods to exports a GXL-Representation from a graph
+ * and to import a gxl document into the system and make an graph out of the document
+ * and visualize this graph.
  */
 public class GXLio {
     /**
@@ -31,43 +33,65 @@ public class GXLio {
 
 
     /**
-     * Der File an den die erstellte GXL_Datei geschrieben werden soll.
+     * The file that specifies the location where the gxl document will be created (in case of the export)
+     * or the location of the gxl document whose content need to be imported (in case of the import)
      */
     private File file;
 
 
     /**
+     * Constructor of class GXLio.
      * Creates a new GXLio object.
      */
     public GXLio(){;
     }
 
     /**
-     * Writes the GXL representation into the syndrom.
+     * Writes the gxl representation from the graph that was created or edited
+     * and currently is shown to the user in the system into a document.
+     * As location of the document the file-attribut is used.
+     * Whose value is set when the {@exportGXL}-method is called.
      *
      * @param pGXL The GXL representation that gets written into syndrom.
      */
     protected void gxlToInstance(String pGXL){
         try {
+            // At first a document needs to be imported into the system.
+            // Thereby it is important that the document selected by the user has a valid structure.
             GXLDocument doc = new GXLDocument(file);
+            // The only gxl graph in documents that are created with or system is called "syndrom". See the {@gxlFromInstance()}-method in this class.
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
             if (gxlGraph == null) {
                 System.out.println("Das Dokument ist leer!");
             }
+            // The list of all vertices descripted in the document.
+            // Elements are added to this list when ever a gxl element that descripes a vertex was found
+            // and the java object from this gxl description was created.
             List<Vertex> vertices = new ArrayList<>();
+            // This list saves for each sphere the vertices that belong to the sphere (as a list).
             List<Map<Sphere, List<Vertex>>> list = new ArrayList<>();
+            // This list saves for each edge the source and the target vertex.
             List<Map<Edge, Pair<Vertex>>> edgeAndVertices = new ArrayList<>();
+            // This counter is needed as the documents elements not always will have successive ids.
+            // This fact is a result from the users possibility to delete elements after creating them
+            // befor he/she exports the graph. This leads to gaps in the row of ids.
             int idCounter = 0;
             for (int i = 0; i < gxlGraph.getGraphElementCount(); i++) {
                 if (doc.containsID(idCounter + "")) {
                     GXLAttributedElement elem = doc.getElement(idCounter + "");
+                    // Checks if the current element is a sphere.
                     if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Sphäre")) {
                         Sphere newSphere = convertGXLElementToSphere(elem);
+                        // The sphere generated from the description in the gxl document is add to the list
+                        // of all spheres at the moment with an empty list of vertices that belong to the sphere
                         Map<Sphere, List<Vertex>> map = new HashMap<>();
                         map.put(newSphere, new ArrayList<>());
                         list.add(map);
+                    // Checks if the current element is a vertex.
                     } else if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Node")) {
                         Vertex newVertex = convertGXLElementToVertex(elem);
+                        // The vertex generated from the description in the gxl document is add to the list
+                        // of vertices of the sphere that this vertex belongs to.
                         Integer sphereID = Integer.parseInt(((GXLString) elem.getAttr("ID of the sphere containing this node:").getValue()).getValue());
                         for (Map<Sphere, List<Vertex>> m : list) {
                             for (Map.Entry<Sphere, List<Vertex>> en : m.entrySet()) {
@@ -76,10 +100,14 @@ public class GXLio {
                                 }
                             }
                         }
+                        // The vertex is added to the list of all vertices.
+                        // his is neccessa. (see else.paragraph)ry to be able to find the source and target vertex of an edge
                         vertices.add(newVertex);
+                    // If the element is weither a sphere nor a vertex it has to be an edge.
                     } else {
                         Edge newEdge = convertGXLElemToEdge(elem);
-
+                        // The edge generated from the description in the gxl document is add to the list
+                        // of all edges together with its source and target vertex.
                         GXLEdge currentEdge = (GXLEdge) elem;
                         int sourceID = Integer.parseInt(currentEdge.getSource().getID());
                         int targetID = Integer.parseInt(currentEdge.getTarget().getID());
@@ -92,6 +120,7 @@ public class GXLio {
                                 target = v;
                             }
                         }
+                        // The source vertex is the first element of the pair and the target vertex the second element.
                         Pair<Vertex> pair = new Pair<>(source, target);
                         Map<Edge, Pair<Vertex>> entry = new HashMap<>();
                         entry.put(newEdge, pair);
@@ -101,7 +130,8 @@ public class GXLio {
                 idCounter++;
             }
 
-
+            // Getting the objects that are needed to get the spheres, vertices and edges
+            // out of the lists into or system.
             SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
             SyndromGraph newGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             for (Map<Sphere, List<Vertex>> m : list) {
@@ -109,9 +139,11 @@ public class GXLio {
                     for (Vertex currentVertex : e.getValue()) {
                         e.getKey().getVertices().add(currentVertex);
                     }
+                    // Adds the sphere to the graph.
                     newGraph.getSpheres().add(e.getKey());
                     vv.getGraphLayout().setGraph(newGraph);
                     for (Vertex v : e.getValue()) {
+                        // Adds the vertex to the graph.
                         newGraph.addVertex(v);
                         vv.getGraphLayout().setLocation(v, v.getCoordinates());
                     }
@@ -121,9 +153,11 @@ public class GXLio {
                 for (Map.Entry<Edge, Pair<Vertex>> e : m.entrySet()) {
                     Edge edge = e.getKey();
                     Pair<Vertex> endPoints = e.getValue();
+                    // Adds the edge to the graph.
                     newGraph.addEdge(edge, endPoints);
                 }
             }
+            // Paints the graph with the elements imported from the gxl document.
             vv.getGraphLayout().setGraph(newGraph);
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
