@@ -62,7 +62,7 @@ public class LogDao implements Dao<Log> {
 
         Graph graph = DatabaseManager.getInstance().getGraph();
         if (graph == null) {
-            throw new NoSuchElementException();
+            throw new IllegalStateException();
         }
         int graphId = graph.getId();
 
