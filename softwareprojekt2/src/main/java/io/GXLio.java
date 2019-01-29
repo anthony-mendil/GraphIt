@@ -11,6 +11,7 @@ import org.xml.sax.SAXException;
 
 import java.awt.*;
 import java.io.*;
+import java.util.stream.Stream;
 import java.util.*;
 import java.util.List;
 
@@ -404,29 +405,31 @@ public class GXLio {
 
         doc.getDocumentElement().add(gxlSyndrom);
 
+        String content = "";
         try {
             doc.write(file);
+
+            // reading the content of the created gxl document and write its content into a String
+            try{
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                Stream<String> lines = reader.lines();
+                Object[] linesArray = lines.toArray();
+                for(Object s : linesArray){
+                    String objectContetnt = (String) s;
+                    content = content + "\n" + objectContetnt;
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(content);
         }catch(Exception e){}
 
 
-        // reding the content of the created gxl document and write its content into a String
-        String content = "";
 
-        /*
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String currentLine = "";
-            while(reader.readLine() != null) {
-                currentLine = reader.readLine();
-                content = content + "\n" + currentLine;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
-    return doc.toString();
+
+    return content;
     }
 
     /**
