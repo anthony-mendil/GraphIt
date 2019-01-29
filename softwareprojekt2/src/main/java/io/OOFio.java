@@ -1,7 +1,6 @@
 package io;
 
 import com.google.inject.Inject;
-import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
 
 import java.io.*;
@@ -17,16 +16,12 @@ public class OOFio {
      */
     @Inject
     private LogDao logDao;
-    /**
-     * The graph dao object, for accessing the graph data.
-     */
-    @Inject
-    private GraphDao graphDao;
 
     /**
      * Creates a new OOFio object.
      */
     public OOFio(){
+        // Can handle oof-import/-export now
     }
 
     /**
@@ -69,11 +64,9 @@ public class OOFio {
      */
     public void exportAsOOF(File pFile){
         GXLio gxlio=new GXLio();
-        String oof=gxlio.gxlFromInstance()+"\0"+logDao.getAllString();
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile));
+        String oof=createOOF(gxlio.gxlFromInstance(),logDao.getAllString());
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
             bufferedWriter.write(oof);
-            bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,8 +79,8 @@ public class OOFio {
      */
     public void importOOF(File pFile){
         String oof = "";
-        try {
-            oof = new Scanner(pFile).useDelimiter("\\A").next();
+        try(Scanner scanner =new Scanner(pFile)) {
+            oof = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
