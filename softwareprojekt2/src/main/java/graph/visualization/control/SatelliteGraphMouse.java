@@ -13,13 +13,9 @@ public class SatelliteGraphMouse  extends ModalSatelliteGraphMouse implements
         super();
     }
 
+    @Override
     public void loadPlugins(){
-        //pickingPlugin = new PickingGraphMousePlugin();
-        //animatedPickingPlugin = new SatelliteAnimatedPickingGraphMousePlugin();
         translatingPlugin = new SatelliteTranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
-        //scalingPlugin = new SyndromSatelliteScalingGraphMousePlugin(new AbsoluteCrossoverScalingControl(), 0);
-        //add(scalingPlugin);
         add(translatingPlugin);
-       //setMode(Mode.TRANSFORMING);
     }
 }

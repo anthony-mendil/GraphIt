@@ -2,8 +2,6 @@ package graph.visualization.control;
 
 import gui.Values;
 import javafx.animation.Animation;
-import javafx.animation.Interpolator;
-import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -13,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.awt.geom.Point2D;
 import java.util.concurrent.CountDownLatch;
@@ -88,24 +85,9 @@ class HelperFunctions {
                                 Color color = Color.WHITE;
                                 Font font = values.getActionTextAlert();
                                 if (isAlert) {
-
-
                                     String style = "-fx-background-color: rgba(160, 12, 12, 1);";
                                     hBox.setStyle(style);
-
-                                    final Animation animation = new Transition() {
-
-                                        {
-                                            setCycleDuration(Duration.millis(3000));
-                                            setInterpolator(Interpolator.LINEAR);
-                                        }
-
-                                        @Override
-                                        protected void interpolate(double frac) {
-                                            hBox.setOpacity(1 - frac);
-                                        }
-                                    };
-
+                                    final Animation animation = new ErrorMessagesTransition(hBox);
                                     animation.play();
                                 }
                                 text.setFill(color);
