@@ -5,21 +5,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Tooltip;
 import javafx.scene.text.Text;
+import lombok.Data;
 
 /**
  * This class changes every description of the gui elements to the desired language.
  */
+@Data
 public class LoadLanguage {
 
     /**
      * The controller that is needed to translate gui elements used by the controller class.
      */
-    private Controller control;
+    private Controller control ;
 
     /**
      * The menu on the taskbar for file.
      */
-    private Menu file;
+    private Menu file ;
 
     /**
      * The menu on the taskbar for options.
@@ -433,6 +435,6 @@ public class LoadLanguage {
      * @param lang The desired language.
      */
     public void loadLanguages(String lang){
-        throw new UnsupportedOperationException();
+         throw new UnsupportedOperationException();
     }
 }

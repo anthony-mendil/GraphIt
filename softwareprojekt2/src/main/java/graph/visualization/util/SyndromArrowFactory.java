@@ -30,11 +30,11 @@ public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.Arr
     public GeneralPath getExtenuatingEdgeArrow(int r) {
         GeneralPath arrow = new GeneralPath();
         arrow.moveTo(0.0F, 0.0F);
-        int x = -r;
-        int y = 0;
+        double x = -r;
+        double y = 0;
         double kappa = 0.5522847498;
 
-        arrow.moveTo(x, y - r);
+        arrow.moveTo(x, y - (float)r);
         arrow.curveTo(x + r * kappa, y - r, x + r, y - r * kappa, x + r, y);
         arrow.curveTo(x + r, y + r * kappa, x + r * kappa, y + r, x, y + r);
         arrow.curveTo(x - r * kappa, y + r, x - r, y + r * kappa, x - r, y);

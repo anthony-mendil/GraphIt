@@ -8,10 +8,6 @@ import graph.visualization.SyndromVisualisationViewer;
 
 public class AddHighlightElementAction extends GraphAction {
 
-    public AddHighlightElementAction() {
-
-    }
-
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
@@ -31,6 +27,6 @@ public class AddHighlightElementAction extends GraphAction {
 
     @Override
     public void undo() {
-
+        throw new UnsupportedOperationException();
     }
 }

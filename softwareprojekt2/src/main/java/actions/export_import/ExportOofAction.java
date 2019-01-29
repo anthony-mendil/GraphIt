@@ -23,10 +23,8 @@ public class ExportOofAction extends GraphAction {
      */
     public ExportOofAction(File pFile) {
         file = pFile;
-        try {
+        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
             Syndrom.getInstance().getVv().getPickedSphereState().clear();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         }
     }
 
@@ -44,6 +42,7 @@ public class ExportOofAction extends GraphAction {
      */
     @Override
     public void undo() {
+        //there is no undo/redo operation for io
     }
 
     /**
@@ -51,5 +50,6 @@ public class ExportOofAction extends GraphAction {
      */
     @Override
     public void redo() {
+        //there is no undo/redo operation for io
     }
 }

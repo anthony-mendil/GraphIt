@@ -1,6 +1,5 @@
 package io;
 
-import com.sun.javafx.geom.Point2D;
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -19,6 +18,8 @@ import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgeStrokeTransformer;
 import graph.visualization.transformer.vertex.*;
 import gui.Values;
+import javafx.geometry.Point2D;
+import org.apache.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
 import org.freehep.graphics2d.VectorGraphics;
@@ -55,10 +56,8 @@ public class PDFio {
      */
     private File file;
 
-    /**
-     * ä
-     */
-    private double BORDER = 10.0;
+
+    private static Logger logger = Logger.getLogger(PDFio.class);
 
     /**
      * Constructs a new PDFio object.
@@ -70,20 +69,20 @@ public class PDFio {
     }
 
 
-    protected Point2D getMinPoint() {
+    private Point2D getMinPoint() {
         List<Sphere> spheres = Syndrom.getInstance().getGraph().getSpheres();
-        if (spheres.size() == 0) {
+        if (spheres.isEmpty()) {
             return new Point2D(0, 0);
         }
         Point2D point = new Point2D((float) Values.getInstance().getDefaultLayoutVVSize().getWidth(), (float) Values.getInstance().getDefaultLayoutVVSize().getHeight());
         for (Sphere sph : spheres) {
             //check x
-            if (sph.getCoordinates().getX() < point.x) {
-                point.x = (float) sph.getCoordinates().getX();
+            if (sph.getCoordinates().getX() < point.getX()) {
+                point = new Point2D((float) sph.getCoordinates().getX(),point.getY());
             }
             //check y
-            if (sph.getCoordinates().getY() < point.y) {
-                point.y = (float) sph.getCoordinates().getY();
+            if (sph.getCoordinates().getY() < point.getY()) {
+                point = new Point2D(point.getX (),(float) sph.getCoordinates().getY());
             }
         }
         return point;
@@ -100,23 +99,18 @@ public class PDFio {
         Dimension dimension = new Dimension(0, 0);
         for (Sphere sph : spheres) {
             //check x
-            double x = sph.getCoordinates().getX() + sph.getWidth() + BORDER;
+            double x = sph.getCoordinates().getX() + sph.getWidth();
             if (x > dimension.getWidth()) {
                 dimension.setSize(x, dimension.getHeight());
             }
             //check y
-            double y = sph.getCoordinates().getY() + sph.getHeight() + BORDER;
+            double y = sph.getCoordinates().getY() + sph.getHeight();
             if (y > dimension.getHeight()) {
                 dimension.setSize(dimension.getWidth(), y);
             }
         }
         return dimension;
     }
-
-    /*
-    vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(), Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(), vv.getCenter());
-dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
-    */
 
     /**
      * Starts the dialog to export the current graph visualization as PDF.
@@ -139,7 +133,7 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
 
         vis.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vis.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
-        vis.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<Edge>(vv));
+        vis.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>(vv));
 
         vis.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vis.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
@@ -152,23 +146,21 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
 
 
 
-        System.out.println(getMinPoint().toString());
-        VectorGraphics vectorGraphics = null;
-        Dimension dimensionWithBorder = new Dimension();
-        dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
-        //dimensionWithBorder.setSize(getGraphDimension().getWidth() + BORDER, getGraphDimension().getHeight() + BORDER);
+        VectorGraphics vectorGraphics;
+        Dimension dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
         try {
             vectorGraphics = new PDFGraphics2D(file, dimensionWithBorder);
+            Properties properties = new Properties();
+            properties.setProperty(ORIENTATION, LANDSCAPE);
+            properties.setProperty(PAGE_SIZE, A4);
+            vectorGraphics.setProperties(properties);
+            vectorGraphics.startExport();
+            vis.print(vectorGraphics);
+            vectorGraphics.endExport();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            file.deleteOnExit();
+            logger.error(e.toString());
         }
-        Properties properties = new Properties();
-        properties.setProperty(ORIENTATION, LANDSCAPE);
-        properties.setProperty(PAGE_SIZE, A4);
-        vectorGraphics.setProperties(properties);
-        vectorGraphics.startExport();
-        vis.print(vectorGraphics);
-        vectorGraphics.endExport();
     }
 
     /**
@@ -178,13 +170,13 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
         try {
             exportPDF(Files.createTempFile("graphit", null).toFile());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
-        PDDocument pdDocument = new PDDocument();
+        PDDocument pdDocument = null;
         try {
             pdDocument = PDDocument.load(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         PrinterJob printerJob = PrinterJob.getPrinterJob();
         printerJob.setJobName(file.getName());
@@ -193,7 +185,7 @@ dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds
             try {
                 printerJob.print();
             } catch (PrinterException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             } finally{
                 file.deleteOnExit();
             }

@@ -48,12 +48,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         Sphere sp = null;
         boolean overlapped = isOverlapped(pickedState, g);
 
-        for (V v : g.getVertices()){
-            graph.graph.Vertex vertex = (graph.graph.Vertex) v;
-            vertex.setVertexArrowExtenuating(new EnumMap<>(ScopePoint.class));
-            vertex.setVertexArrowNeutral(new EnumMap<>(ScopePoint.class));
-            vertex.setVertexArrowReinforced(new EnumMap<>(ScopePoint.class));
-        }
+        clearVertexForRender(g);
 
         // paints all spheres
         renderSpheres((ArrayList<Sphere>) g.getSpheres(), renderContext);
@@ -85,10 +80,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             }
         }
 
-        // all vertices get rendered
-        if (!g.getVertices().isEmpty()){
-            renderVertices(g.getVertices(), renderContext, layout);
-        }
+        renderVertices(g.getVertices(), renderContext, layout);
 
         // if a sphere overlaps another one, the sphere is painted with all its vertices and all edges
         // between the spheres vertices
@@ -173,5 +165,14 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             }
         }
         return overlapped;
+    }
+
+    private void clearVertexForRender(SyndromGraph<V,E> g){
+        for (V v : g.getVertices()){
+            graph.graph.Vertex vertex = (graph.graph.Vertex) v;
+            vertex.setVertexArrowExtenuating(new EnumMap<>(ScopePoint.class));
+            vertex.setVertexArrowNeutral(new EnumMap<>(ScopePoint.class));
+            vertex.setVertexArrowReinforced(new EnumMap<>(ScopePoint.class));
+        }
     }
 }

@@ -54,6 +54,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.dao.LogDao;
+import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,6 +69,7 @@ import java.util.Optional;
  * Contains most of the gui elements, calls most of the actions and acts as interface between
  * the gui and the internal components of the application.
  */
+@Data
 public class Controller implements ObserverSyndrom {
 
 

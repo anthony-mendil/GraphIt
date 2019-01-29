@@ -85,8 +85,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
     private void addSphere(List<Sphere> list, Rectangle2D newRec, Point2D p){
         boolean addSphere = true;
-        for (Object s : list) {
-            Sphere sphere = (Sphere) s;
+        for (Sphere sphere : list) {
             double startY = sphere.getCoordinates().getY();
             for (int j = (int) startY; j <= startY + sphere.getHeight(); j++) {
                 if (newRec.contains(sphere.getCoordinates().getX(), j)) {
