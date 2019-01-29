@@ -48,6 +48,8 @@ public class Edge {
     @NonNull
     private boolean isVisible;
 
+    private boolean isHighlighted = false;
+
     public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean hasAnchor, boolean isVisible){
         this.id = id;
         this.color = color;

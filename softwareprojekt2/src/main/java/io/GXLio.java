@@ -5,6 +5,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import log_management.DatabaseManager;
 import log_management.dao.GraphDao;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
@@ -145,8 +146,8 @@ public class GXLio {
                             System.out.println(coordinatesArray[0]);
                             System.out.println(coordinatesArray[1]);
                             coordinates = new java.awt.Point(
-                                    java.lang.Integer.parseInt(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
-                                    java.lang.Integer.parseInt(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length()-3)));
+                                    (int)java.lang.Double.parseDouble(coordinatesArray[0].substring(0, coordinatesArray[0].length()-2)),
+                                    (int)java.lang.Double.parseDouble(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length()-3)));
                         }else{
                             coordinates = new java.awt.Point(
                                     java.lang.Integer.parseInt(coordinatesArray[0]),
@@ -180,7 +181,7 @@ public class GXLio {
                         int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
                         System.out.println("Knoten: " + fontSize);
                         Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
-
+                        newVertex.setVisible(isVisible);
                         vertices.add(newVertex);
                         System.out.println("Knoten ins Array gelegt.");
 
@@ -219,23 +220,25 @@ public class GXLio {
                         System.out.println("Kante: " + stroke);
                         EdgeArrowType arrowType = EdgeArrowType.valueOf(((GXLString) elem.getAttr("arrowType").getValue()).getValue());
                         System.out.println("Kante: " + arrowType);
-                        Boolean hasAnchor = Boolean.getBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
+                        boolean hasAnchor = Boolean.parseBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
                         // edge.getAttr("anchorAngle");
-                        System.out.println("Kante: " + hasAnchor);
+                        System.out.println("Kante hasAnchor: " + hasAnchor);
+
                         String[] coordinatesArray = null;
                         java.awt.geom.Point2D coordinates = null;
-                        if(hasAnchor) {
+                        if(hasAnchor == true) {
                             coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle").getValue()).getValue());
                              coordinates = new java.awt.geom.Point2D.Double(
                                     java.lang.Double.parseDouble(coordinatesArray[0]),
                                     java.lang.Double.parseDouble(coordinatesArray[1]));
                         }
-                        Boolean isVisible = Boolean.getBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
-                        System.out.println("Kante: " + isVisible);
+                        boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
+                        System.out.println("Kante isVisible: " + isVisible);
                         Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
-                        if(hasAnchor) {
+                        if(hasAnchor == true) {
                             newEdge.setAnchorPoint(coordinates);
                         }
+
                         edges.add(newEdge);
 
                         GXLEdge currentEdge = (GXLEdge) elem;
@@ -272,12 +275,15 @@ public class GXLio {
                 for(Map.Entry<Sphere, List<Vertex>> e : m.entrySet()){
                     // Sphere mySphere = e.getKey().getId());
                     // List<Vertex> myVertices = e.getValue();
+                    for(Vertex currentVertex : e.getValue()) {
+                        e.getKey().getVertices().add(currentVertex);
+                    }
                     newGraph.getSpheres().add(e.getKey());
                     vv.getGraphLayout().setGraph(newGraph);
-
                     // newGraph.addSphere(e.getKey().getCoordinates());
                     for(Vertex v : e.getValue()){
                         newGraph.addVertex(v);
+
                         vv.getGraphLayout().setLocation(v, v.getCoordinates());
                         //  e.getKey().getVertices().add(v);
                         //  newGraph.addVertexToSphere(e.getKey(), v);
@@ -362,25 +368,18 @@ public class GXLio {
                 for(int[] i : edgeIDsAndNodeIDs){
                     if(e.getId() == i[0]){
                         idOfStart = i[1];
-                        System.out.println("Die id des Startknoten: " + idOfStart);
                         idOfEnd = i[2];
-                        System.out.println("Die id des Zielknoten" + idOfEnd);
                     }
                 }
-                System.out.println("Vor der Schleife");
                 for(Vertex v : vertices){
-                    System.out.println("In der Schleife" + v.getId());
                     if(v.getId() == idOfStart){
                         start = v;
-                        System.out.println("Start Knoten gefunden - in der Schleife");
                     }else if(v.getId() == idOfEnd){
                         end = v;
-                        System.out.println("Ziel Knoten gefunden - in der Schleife");
                     }
                 }
                 Pair<Vertex> endPoints = new Pair<>(start, end);
                 newGraph.addEdge(e, endPoints);
-                System.out.println("Die Kante wurde dem Graphen hinzugefügt.");
 
             }
             vv.getGraphLayout().setGraph(newGraph);
@@ -526,8 +525,8 @@ public class GXLio {
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
             if(e.isHasAnchor()) {
                 edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
-            }else{
-                edge.setAttr("anchorAngle", new GXLString("is not set as no anchorpoint was added"));
+           // }else{
+           //     edge.setAttr("anchorAngle", new GXLString("is not set as no anchorpoint was added"));
             }// edge.setAttr("anchorpoint", new GXLString("" + e.getAnchorPoint()));
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);

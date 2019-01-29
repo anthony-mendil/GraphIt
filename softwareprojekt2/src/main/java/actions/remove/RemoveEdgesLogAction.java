@@ -49,18 +49,18 @@ public class RemoveEdgesLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-
-        for (Edge e: pickedState.getPicked()) {
-            graph.removeEdge(e);
-        }
-        vv.repaint();
-        syndrom.getVv2().repaint();
-
         if(parameters == null) {
-           // graph.removeEdge(edge)
+            for (Edge e: pickedState.getPicked()) {
+                graph.removeEdge(e);
+            }
         }else{
 
         }
+
+        vv.repaint();
+        syndrom.getVv2().repaint();
+
+
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

@@ -12,6 +12,7 @@ import graph.visualization.control.*;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
+import graph.visualization.renderers.VertexLabelRenderer;
 import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
@@ -19,6 +20,7 @@ import gui.Values;
 import lombok.Data;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.awt.geom.AffineTransform;
 
 /**
@@ -227,6 +229,11 @@ public class Syndrom {
         pluggable.add(new VertexPickingPlugin());
         pluggable.add(new EdgePickingPlugin());
         pluggable.add(new GeneralPickingPlugin());
+        //pluggable.add(new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK));
+       // pluggable.add(new RotatingGraphMousePlugin());
+       // pluggable.add(new ShearingGraphMousePlugin());
+
+
     }
 
     public static Syndrom getInstance(){
@@ -278,8 +285,9 @@ public class Syndrom {
 
         vv.getGraphLayout().setGraph(new SyndromGraph<>());
         EdgeRenderer<Vertex, Edge> edgeRenderer = new EdgeRenderer<>();
+        VertexLabelRenderer<Vertex, Edge> vertexLabelRenderer = new VertexLabelRenderer<>();
+        vv.getRenderer().setVertexLabelRenderer(vertexLabelRenderer);
         vv.getRenderer().setEdgeRenderer(edgeRenderer);
-
     }
 
     public void scale(int value){

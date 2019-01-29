@@ -98,6 +98,9 @@ public class Vertex {
     @NonNull
     private int fontSize;
 
+    private boolean isHighlighted = false;
+
+
     /**
      * Creates a new vertex.
      *
