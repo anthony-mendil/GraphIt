@@ -1,7 +1,9 @@
 package graph.graph;
 
 import gui.Values;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -15,12 +17,13 @@ public class GraphObjectsFactory {
     /**
      * The values to use.
      */
-    public Values values;
+    @Setter(AccessLevel.NONE)
+    private final Values values;
     /**
      * The global objects counter for the ids for the graph objects.
      */
-    /* Has to be set private or public */
-    public int objectCounter;
+
+    private int objectCounter;
 
     /**
      * Creates a new GraphObjectsFactory object.

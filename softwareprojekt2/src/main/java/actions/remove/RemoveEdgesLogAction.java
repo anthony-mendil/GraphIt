@@ -5,11 +5,9 @@ import actions.LogEntryName;
 import actions.add.AddEdgesLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
-import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 

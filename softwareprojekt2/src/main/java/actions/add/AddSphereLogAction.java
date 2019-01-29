@@ -2,21 +2,13 @@ package actions.add;
 
 import actions.LogAction;
 import actions.LogEntryName;
-import actions.activate.ActivateAnchorPointsFadeoutLogAction;
 import actions.remove.RemoveSphereLogAction;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import gui.Values;
-import gui.properties.Language;
 import log_management.DatabaseManager;
-import log_management.LogToStringConverter;
-import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
-import log_management.tables.Log;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Adds a sphere to the graph.

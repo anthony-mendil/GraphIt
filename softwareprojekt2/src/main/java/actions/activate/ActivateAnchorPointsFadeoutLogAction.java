@@ -6,11 +6,8 @@ import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
-import graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
-
-import java.awt.geom.Point2D;
 
 /**
  * All existing anchor-points fadeout and are no longer visible for the user.

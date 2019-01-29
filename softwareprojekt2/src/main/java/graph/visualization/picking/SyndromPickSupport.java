@@ -9,12 +9,10 @@ import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.picking.ShapePickSupport;
 import edu.uci.ics.jung.visualization.renderers.BasicEdgeArrowRenderingSupport;
-import edu.uci.ics.jung.visualization.renderers.EdgeArrowRenderingSupport;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;

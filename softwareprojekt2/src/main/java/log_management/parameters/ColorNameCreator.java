@@ -2,7 +2,7 @@ package log_management.parameters;
 
 import gui.properties.Language;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**

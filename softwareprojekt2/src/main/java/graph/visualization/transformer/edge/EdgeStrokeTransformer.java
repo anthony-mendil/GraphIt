@@ -5,7 +5,6 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.StrokeType;
-import graph.visualization.SyndromVisualisationViewer;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;

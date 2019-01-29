@@ -3,14 +3,16 @@ package actions.move;
 import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.move.MoveVerticesParam;
 
 import java.awt.geom.Point2D;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

@@ -13,20 +13,6 @@ import gui.Values;
  * layout.
  */
 public abstract class GraphAction extends Action {
-    /**
-     * The internal state of the layout.
-     */
-    private Layout layout;
-
-    /**
-     * The internal state of the graph.
-     */
-    private SyndromGraph<Vertex, Edge> graph;
-
-    /**
-     * The visualisation viewer.
-     */
-    private VisualizationViewer<Vertex, Edge> visualizationViewer;
 
     /**
      * The syndrom to work with.

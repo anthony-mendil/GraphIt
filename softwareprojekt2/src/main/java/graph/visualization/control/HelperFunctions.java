@@ -94,6 +94,7 @@ class HelperFunctions {
                                     hBox.setStyle(style);
 
                                     final Animation animation = new Transition() {
+
                                         {
                                             setCycleDuration(Duration.millis(3000));
                                             setInterpolator(Interpolator.LINEAR);
@@ -104,6 +105,7 @@ class HelperFunctions {
                                             hBox.setOpacity(1 - frac);
                                         }
                                     };
+
                                     animation.play();
                                 }
                                 text.setFill(color);

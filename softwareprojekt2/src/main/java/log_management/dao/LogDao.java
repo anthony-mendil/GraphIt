@@ -6,7 +6,9 @@ import log_management.tables.Graph;
 import log_management.tables.Log;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

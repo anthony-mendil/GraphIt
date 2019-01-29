@@ -5,16 +5,14 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
-import log_management.DatabaseManager;
 import log_management.dao.GraphDao;
-import log_management.parameters.add_remove.AddRemoveVerticesParam;
 import net.sourceforge.gxl.*;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 

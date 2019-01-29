@@ -5,13 +5,9 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
-import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
-import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgeHighlightTransformer;
 import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
-
-import java.awt.geom.Point2D;
 
 /**
  * Highlights the chosen vertices and the attached edges.
