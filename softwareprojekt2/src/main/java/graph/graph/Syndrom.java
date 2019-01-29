@@ -22,7 +22,9 @@ import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
 import gui.Values;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -37,7 +39,6 @@ public class Syndrom {
     /**
      * The visualization viewer of syndrom. It contains the layout and graph.
      */
-    //TODO visualisation viewer was final
     private SyndromVisualisationViewer<Vertex, Edge> vv;
     /**
      * Template rules for the graph/layout.
@@ -211,8 +212,8 @@ public class Syndrom {
     /**
      * The values set by the gui.
      */
-    //TODO:: there was a setter accesslevel none
-    private Values values;
+    @Setter(AccessLevel.NONE)
+    private final Values values;
 
     private static Syndrom instance;
 
@@ -233,11 +234,6 @@ public class Syndrom {
         pluggable.add(new VertexPickingPlugin());
         pluggable.add(new EdgePickingPlugin());
         pluggable.add(new GeneralPickingPlugin());
-        //pluggable.add(new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK));
-       // pluggable.add(new RotatingGraphMousePlugin());
-       // pluggable.add(new ShearingGraphMousePlugin());
-
-
     }
 
     public static Syndrom getInstance(){
