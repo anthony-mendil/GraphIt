@@ -8,11 +8,9 @@ import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
-import log_management.parameters.edit.EditSphereAnnotationParam;
 import log_management.parameters.edit.EditSphereColorParam;
 
 import java.awt.*;
-import java.net.CookieHandler;
 
 
 /**

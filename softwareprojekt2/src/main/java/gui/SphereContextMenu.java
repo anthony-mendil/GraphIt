@@ -9,8 +9,6 @@ import actions.remove.RemoveSphereLogAction;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

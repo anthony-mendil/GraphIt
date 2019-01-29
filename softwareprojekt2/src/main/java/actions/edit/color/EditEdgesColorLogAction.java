@@ -4,16 +4,14 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
-import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesColorParam;
 
 import java.awt.*;
-import java.util.*;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Changes the color of the selected edges.

@@ -12,7 +12,6 @@ import lombok.Getter;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

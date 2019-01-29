@@ -1,6 +1,5 @@
 package graph.graph;
 
-import gui.Values;
 import lombok.Data;
 import lombok.NonNull;
 import org.codehaus.jackson.annotate.JsonValue;

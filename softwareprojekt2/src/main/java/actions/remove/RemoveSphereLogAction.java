@@ -1,10 +1,8 @@
 package actions.remove;
 
 import actions.LogAction;
-import actions.add.AddSphereLogAction;
-import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.*;
 import actions.LogEntryName;
+import actions.add.AddSphereLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Sphere;
@@ -13,9 +11,6 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Removes a sphere from the syndrom graph.

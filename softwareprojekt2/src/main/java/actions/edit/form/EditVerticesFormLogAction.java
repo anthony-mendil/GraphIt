@@ -1,6 +1,5 @@
 package actions.edit.form;
 
-import actions.ActionHistory;
 import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;

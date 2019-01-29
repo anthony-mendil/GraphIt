@@ -10,11 +10,17 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
-import graph.graph.*;
+import graph.graph.ScopePoint;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.SyndromGraph;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.EnumMap;
 
 /**
  * The SyndromRenderer paints the syndrom graph.
