@@ -1,4 +1,4 @@
-package actions.export_graph;
+package actions.export_import;
 
 import actions.GraphAction;
 import graph.graph.Syndrom;
@@ -22,8 +22,12 @@ public class ExportOofAction extends GraphAction {
      * @param pFile The destination of the oof-file
      */
     public ExportOofAction(File pFile) {
-        file=pFile;
-        Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        file = pFile;
+        try {
+            Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -31,7 +35,7 @@ public class ExportOofAction extends GraphAction {
      */
     @Override
     public void action() {
-        OOFio oofio=new OOFio();
+        OOFio oofio = new OOFio();
         oofio.exportAsOOF(file);
     }
 

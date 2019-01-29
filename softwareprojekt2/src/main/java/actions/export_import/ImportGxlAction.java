@@ -1,4 +1,4 @@
-package actions.export_graph;
+package actions.export_import;
 
 import actions.GraphAction;
 import io.GXLio;

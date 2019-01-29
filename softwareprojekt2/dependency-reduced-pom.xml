@@ -12,7 +12,7 @@
         <version>3.2.1</version>
         <executions>
           <execution>
-            <phase>install</phase>
+            <phase>package</phase>
             <goals>
               <goal>shade</goal>
             </goals>
@@ -21,7 +21,6 @@
                 <transformer>
                   <manifestEntries>
                     <main-Class>gui.Main</main-Class>
-                    <Build-By>Simlpyusejava</Build-By>
                     <Build-Jdk>1.8</Build-Jdk>
                   </manifestEntries>
                 </transformer>
