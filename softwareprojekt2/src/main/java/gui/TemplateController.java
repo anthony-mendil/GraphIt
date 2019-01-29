@@ -5,16 +5,10 @@ import graph.visualization.SyndromVisualisationViewer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.Separator;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.Pair;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

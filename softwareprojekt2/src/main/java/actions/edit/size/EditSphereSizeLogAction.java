@@ -1,9 +1,7 @@
 package actions.edit.size;
 
-import EDU.oswego.cs.dl.util.concurrent.FJTask;
 import actions.LogAction;
 import actions.LogEntryName;
-import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
@@ -14,7 +12,6 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereSizeParam;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 /**

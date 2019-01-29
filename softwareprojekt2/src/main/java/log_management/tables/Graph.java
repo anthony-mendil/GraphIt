@@ -1,7 +1,5 @@
 package log_management.tables;
 
-import log_management.DatabaseManager;
-
 import javax.persistence.*;
 
 /**

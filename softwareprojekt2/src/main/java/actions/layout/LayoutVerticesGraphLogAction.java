@@ -13,7 +13,6 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
-import log_management.parameters.move.LayoutSpheresParam;
 import log_management.parameters.move.LayoutVerticesParam;
 
 import java.awt.*;

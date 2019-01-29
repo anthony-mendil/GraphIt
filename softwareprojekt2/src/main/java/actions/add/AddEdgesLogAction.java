@@ -3,20 +3,15 @@ package actions.add;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveEdgesLogAction;
-import actions.remove.RemoveVerticesLogAction;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
-import log_management.parameters.SyndromObjectPrinter;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
-import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**

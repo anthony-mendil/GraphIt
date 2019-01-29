@@ -1,22 +1,15 @@
 package gui;
 
 import actions.ActionHistory;
-import actions.edit.annotation.EditSphereAnnotationLogAction;
 import actions.edit.annotation.EditVertexAnnotationLogAction;
-import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.color.EditVerticesDrawColorLogAction;
 import actions.edit.color.EditVerticesFillColorLogAction;
-import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSizeVerticesLogAction;
-import actions.edit.font.EditFontSphereLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
-import actions.remove.RemoveSphereLogAction;
 import actions.remove.RemoveVerticesLogAction;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

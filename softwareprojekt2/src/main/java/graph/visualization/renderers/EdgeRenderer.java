@@ -17,8 +17,14 @@ import graph.graph.Vertex;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * The EdgeRenderer renders all edges from the syndrom graph. If edges converge at the vertex with the same arrowhead

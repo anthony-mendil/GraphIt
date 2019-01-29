@@ -1,7 +1,6 @@
 package actions.add;
 
 import actions.GraphAction;
-import actions.LogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;

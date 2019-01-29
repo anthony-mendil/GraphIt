@@ -12,8 +12,6 @@ package graph.graph;/*
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
