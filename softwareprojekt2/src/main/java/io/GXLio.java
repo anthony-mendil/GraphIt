@@ -423,12 +423,8 @@ public class GXLio {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(content);
         }catch(Exception e){}
-
-
-
-
+    System.out.println(content);
     return content;
     }
 
