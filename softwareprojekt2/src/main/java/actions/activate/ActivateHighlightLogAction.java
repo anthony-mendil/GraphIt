@@ -47,6 +47,8 @@ public class ActivateHighlightLogAction extends LogAction {
         vv2.getRenderContext().setVertexFillPaintTransformer(new VertexPaintHighlightTransformer<>());
         vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeHighlightTransformer<>());
         vv2.getRenderContext().setEdgeDrawPaintTransformer(new EdgeHighlightTransformer<>());
+        vv.getRenderContext().setArrowFillPaintTransformer(new EdgeHighlightTransformer<>());
+        vv2.getRenderContext().setArrowFillPaintTransformer(new EdgeHighlightTransformer<>());
         vv.repaint();
         vv2.repaint();
     }

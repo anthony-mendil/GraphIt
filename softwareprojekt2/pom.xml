@@ -31,7 +31,6 @@
                                                      "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <main-Class>gui.Main</main-Class>
-                                        <Build-By>Simlpyusejava</Build-By>
                                         <Build-Jdk>1.8</Build-Jdk>
                                     </manifestEntries>
                                 </transformer>

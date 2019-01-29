@@ -169,14 +169,53 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
-                           <tooltip>
-                              <Tooltip text="Hervorgehobene Elemente " />
-                           </tooltip>
-                           <HBox.margin>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </HBox.margin>
-                        </Button>
+
+
+                         <ToggleButton fx:id="highlight" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                             <HBox.margin>
+                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                             </HBox.margin>
+                             <graphic>
+                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                     <image>
+                                         <Image url="@icons2/highlight.png" />
+                                     </image>
+                                 </ImageView>
+                             </graphic>
+                             <tooltip>
+                                 <Tooltip text="Hervorgehobene Elemente anzeigen" />
+                             </tooltip>
+                         </ToggleButton>
+                         <Button fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                             <HBox.margin>
+                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                             </HBox.margin>
+                             <graphic>
+                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                     <image>
+                                         <Image url="@icons2/highlight.png" />
+                                     </image>
+                                 </ImageView>
+                             </graphic>
+                             <tooltip>
+                                 <Tooltip text="Element hervorheben" />
+                             </tooltip>
+                         </Button>
+                         <Button fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dehighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                             <HBox.margin>
+                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                             </HBox.margin>
+                             <graphic>
+                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                     <image>
+                                         <Image url="@icons2/highlight.png" />
+                                     </image>
+                                 </ImageView>
+                             </graphic>
+                             <tooltip>
+                                 <Tooltip text="Element hervorheben entfernen" />
+                             </tooltip>
+                         </Button>
                         <Separator fx:id="menubarSeparator3" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                            <padding>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -718,51 +757,7 @@
                                     <Tooltip text="Pfeilspitze der Kante verändern" />
                                  </tooltip>
                               </MenuButton>
-                              <Button fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/highlight.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Elemente highlighten" />
-                                 </tooltip>
-                              </Button>
-                              <Button fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dehighlightElements" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/highlight.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Element highlight löschen" />
-                                 </tooltip>
-                              </Button>
-                              <ToggleButton fx:id="highlight" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons2/highlight.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Highlight anzeigen" />
-                                 </tooltip>
-                              </ToggleButton>
+
                            </children>
                            <VBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

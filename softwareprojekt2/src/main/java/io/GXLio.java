@@ -181,7 +181,7 @@ public class GXLio {
                         int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
                         System.out.println("Knoten: " + fontSize);
                         Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
-
+                        newVertex.setVisible(isVisible);
                         vertices.add(newVertex);
                         System.out.println("Knoten ins Array gelegt.");
 
@@ -239,7 +239,6 @@ public class GXLio {
                             newEdge.setAnchorPoint(coordinates);
                         }
 
-
                         edges.add(newEdge);
 
                         GXLEdge currentEdge = (GXLEdge) elem;
@@ -276,12 +275,15 @@ public class GXLio {
                 for(Map.Entry<Sphere, List<Vertex>> e : m.entrySet()){
                     // Sphere mySphere = e.getKey().getId());
                     // List<Vertex> myVertices = e.getValue();
+                    for(Vertex currentVertex : e.getValue()) {
+                        e.getKey().getVertices().add(currentVertex);
+                    }
                     newGraph.getSpheres().add(e.getKey());
                     vv.getGraphLayout().setGraph(newGraph);
-
                     // newGraph.addSphere(e.getKey().getCoordinates());
                     for(Vertex v : e.getValue()){
                         newGraph.addVertex(v);
+
                         vv.getGraphLayout().setLocation(v, v.getCoordinates());
                         //  e.getKey().getVertices().add(v);
                         //  newGraph.addVertexToSphere(e.getKey(), v);

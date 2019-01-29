@@ -1,6 +1,7 @@
 package graph.visualization.transformer.edge;
 
 import graph.graph.Edge;
+import gui.Values;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -10,6 +11,6 @@ public class EdgeHighlightTransformer<E> implements Transformer<E, Paint> {
     public Paint transform(E e) {
         Edge edge = (Edge) e;
 
-        return edge.isHasAnchor() ? new Color(204, 0,0) : edge.getColor();
+        return edge.isHighlighted() ? Values.getInstance().getHighlightPaint() : edge.getColor();
     }
 }

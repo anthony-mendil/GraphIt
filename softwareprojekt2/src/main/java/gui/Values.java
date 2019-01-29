@@ -100,7 +100,7 @@ public class Values {
     /**
      * The highlight color for vertices.
      */
-    private Color highlightPaint = new Color(204,0,0);
+    private Color highlightPaint = new Color(255,48,57);
     /**
      * The edge paint color of an edge.
      */
