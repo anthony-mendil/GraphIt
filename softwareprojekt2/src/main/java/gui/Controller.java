@@ -1350,6 +1350,7 @@ public class Controller implements ObserverSyndrom {
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
         analysisMode(false);
         editButton.setDisable(true);
+        treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
