@@ -4,6 +4,7 @@ import actions.ActionHistory;
 import actions.ObserverSyndrom;
 import actions.activate.ActivateAnchorPointsFadeoutLogAction;
 import actions.activate.ActivateHighlightLogAction;
+import actions.add.AddHighlightElementAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
 import actions.deactivate.DeactivateHighlightLogAction;
 import actions.edit.EditEdgesStrokeLogAction;
@@ -23,10 +24,7 @@ import actions.export_graph.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
-import actions.remove.RemoveAnchorPointsLogAction;
-import actions.remove.RemoveEdgesLogAction;
-import actions.remove.RemoveSphereLogAction;
-import actions.remove.RemoveVerticesLogAction;
+import actions.remove.*;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
@@ -1328,11 +1326,13 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void highlightElements(){
-
+        AddHighlightElementAction addHighlightElementAction = new AddHighlightElementAction();
+        history.execute(addHighlightElementAction);
     }
 
     public void dehighlightElements(){
-
+        RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
+        history.execute(removeHighlightElementAction);
     }
 
     public void showTemplateWindow(){

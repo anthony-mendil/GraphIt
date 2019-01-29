@@ -5,6 +5,7 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgeHighlightTransformer;
 import graph.visualization.transformer.vertex.VertexFillPaintTransformer;
@@ -42,6 +43,8 @@ public class DeactivateHighlightLogAction extends LogAction {
         vv2.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
         vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vv2.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
+        vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        vv2.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vv.repaint();
         vv2.repaint();
     }
