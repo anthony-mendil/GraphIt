@@ -1,10 +1,8 @@
 package graph.graph;
 
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
-import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
-import edu.uci.ics.jung.visualization.Layer;
-import edu.uci.ics.jung.visualization.VisualizationServer;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.algorithms.layout.StaticLayout;
+import edu.uci.ics.jung.visualization.*;
 import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
 import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
 import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
@@ -299,5 +297,22 @@ public class Syndrom {
                     new AffineTransform(vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform());
             vv2.getRenderContext().getMultiLayerTransformer().setTransformer(Layer.LAYOUT, new MutableAffineTransformer(modelLayoutTransform));
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void generateNew(){
+        graph = new SyndromGraph<>();
+
+        layout = new AggregateLayout<>(new StaticLayout<Vertex, Edge>(graph));
+        final VisualizationModel<Vertex, Edge> visualizationModel =
+                new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize()); // TODO im A4 Format
+        vv = new SyndromVisualisationViewer<>(visualizationModel,values
+                .getDefaultLayoutVVSize());
+        vv.setGraphLayout(layout);
+        setVisualisationViewer(vv);
+
+        vv2 = new SatelliteVisualizationViewer(vv, new Dimension(250,187));
+
+        setVisualisationViewer2(vv2);
     }
 }

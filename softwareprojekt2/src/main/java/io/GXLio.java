@@ -1,6 +1,9 @@
 package io;
 
 import com.google.inject.Inject;
+import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -29,8 +32,7 @@ public class GXLio {
     /**
      * The syndrom representation.
      */
-    @Inject
-    private Syndrom syndrom;
+    private Syndrom syndrom = Syndrom.getInstance();
 
     /**
      * The graph dao object, for accessing the graph data.
@@ -45,6 +47,10 @@ public class GXLio {
      */
     private File file;
 
+    /**
+     * The highest id of all GXLAttributetElements in the gxl document that is importet in the {@gxlToInstance()}-method.
+     */
+    int maxID = -1;
 
 
     private static Logger logger = Logger.getLogger(GXLio.class);
@@ -86,9 +92,13 @@ public class GXLio {
             // This fact is a result from the users possibility to delete elements after creating them
             // befor he/she exports the graph. This leads to gaps in the row of ids.
             int idCounter = 0;
+
             for (int i = 0; i < gxlGraph.getGraphElementCount(); i++) {
                 if (doc.containsID(idCounter + "")) {
                     GXLAttributedElement elem = doc.getElement(idCounter + "");
+                    if(maxID < Integer.parseInt(elem.getID())){
+                        maxID = Integer.parseInt(elem.getID());
+                    }
                     // Checks if the current element is a sphere.
                     if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Sphäre")) {
                         Sphere newSphere = convertGXLElementToSphere(elem);
@@ -142,8 +152,15 @@ public class GXLio {
 
             // Getting the objects that are needed to get the spheres, vertices and edges
             // out of the lists into or system.
+
+
+
+            syndrom.generateNew();
+            Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
+            SyndromGraph<Vertex, Edge> newGraph =(SyndromGraph<Vertex, Edge>) layout.getGraph();
+            newGraph.getGraphObjectsFactory().setObjectCounter(++maxID);
             SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-            SyndromGraph newGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+
             for (Map<Sphere, List<Vertex>> m : list) {
                 for (Map.Entry<Sphere, List<Vertex>> e : m.entrySet()) {
                     for (Vertex currentVertex : e.getValue()) {
@@ -168,6 +185,9 @@ public class GXLio {
                 }
             }
             // Paints the graph with the elements imported from the gxl document.
+
+            Syndrom.getInstance().getLayout().setGraph(newGraph);
+            Syndrom.getInstance().setGraph(newGraph);
             vv.getGraphLayout().setGraph(newGraph);
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
@@ -502,7 +522,7 @@ public class GXLio {
 
     public void importGXL(File pFile){
         String gxl = "";
-        try(Scanner scanner= new Scanner(file)) {
+        try(Scanner scanner= new Scanner(pFile)) {
             gxl = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
             logger.error(e.toString());

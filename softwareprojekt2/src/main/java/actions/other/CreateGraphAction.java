@@ -37,21 +37,7 @@ public class CreateGraphAction extends GraphAction {
     @Override
     @SuppressWarnings("unchecked")
     public void action() {
-        SyndromGraph graph = new SyndromGraph<>();
-        syndrom.setGraph(graph);
-        AggregateLayout<Vertex, Edge> layout = new AggregateLayout<>(new StaticLayout<Vertex, Edge>(graph));
-        syndrom.setLayout(layout);
-        final VisualizationModel<Vertex, Edge> visualizationModel =
-                new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize()); // TODO im A4 Format
-        SyndromVisualisationViewer vv = new SyndromVisualisationViewer<>(visualizationModel,values
-                .getDefaultLayoutVVSize());
-        vv.setGraphLayout(layout);
-        syndrom.setVisualisationViewer(vv);
-
-        final SatelliteVisualizationViewer<Vertex,Edge> vv2 =
-                new SatelliteVisualizationViewer(vv, new Dimension(250,187));
-
-        syndrom.setVisualisationViewer2(vv2);
+        syndrom.generateNew();
 
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();

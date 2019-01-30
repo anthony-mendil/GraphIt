@@ -52,6 +52,10 @@ public class GraphDao implements Dao<Graph> {
 
     @Override
     public void delete(int id) {
+        delete();
+    }
+
+    public void delete() {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);

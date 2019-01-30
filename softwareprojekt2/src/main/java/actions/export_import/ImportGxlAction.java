@@ -1,7 +1,9 @@
 package actions.export_import;
 
+import actions.Action;
 import actions.GraphAction;
 import io.GXLio;
+import log_management.DatabaseManager;
 
 import java.io.File;
 
@@ -31,6 +33,9 @@ public class ImportGxlAction extends GraphAction {
     public void action() {
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file);
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        Action.attach(databaseManager);
+        notifyObserverNewGraph();
     }
 
     /**
