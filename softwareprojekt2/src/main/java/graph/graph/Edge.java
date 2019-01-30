@@ -47,7 +47,7 @@ public class Edge {
      * first: ausgehender Ankerpunkt
      * second: mündender Ankerpunkt
      */
-    private Pair<Point2D, Point2D> anchorPoints;
+    private Pair<Point2D, Point2D> anchorPoints = new Pair<>(null, null);
 
     /**
      * Defines whether a edge is visible or not.

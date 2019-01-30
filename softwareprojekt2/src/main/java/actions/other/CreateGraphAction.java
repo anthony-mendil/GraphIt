@@ -2,18 +2,7 @@ package actions.other;
 
 import actions.Action;
 import actions.GraphAction;
-import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
-import edu.uci.ics.jung.algorithms.layout.StaticLayout;
-import edu.uci.ics.jung.visualization.DefaultVisualizationModel;
-import edu.uci.ics.jung.visualization.VisualizationModel;
-import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
-import graph.graph.Edge;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
-import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
-
-import java.awt.*;
 
 /**
  * Creates a new graph.
