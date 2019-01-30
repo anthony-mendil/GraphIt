@@ -1,9 +1,7 @@
 package io;
 
 import com.google.inject.Inject;
-import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -14,14 +12,10 @@ import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.*;
-import java.util.stream.Stream;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * This class provides methods to exports a GXL-Representation from a graph

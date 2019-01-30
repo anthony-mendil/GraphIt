@@ -2,7 +2,6 @@ package graph.visualization.control;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.util.Pair;
-import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;

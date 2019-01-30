@@ -2,16 +2,13 @@ package actions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import graph.graph.Sphere;
 import log_management.DatabaseManager;
 import log_management.json_deserializers.Point2DDeserializer;
 import log_management.json_serializers.Point2DSerializer;
 import log_management.parameters.Param;
-import log_management.parameters.add_remove.AddRemoveSphereParam;
 import log_management.tables.Log;
 import lombok.Getter;
 import lombok.Setter;
-
 
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;

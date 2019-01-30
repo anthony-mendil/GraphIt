@@ -15,7 +15,6 @@ import graph.graph.EdgeArrowType;
 import graph.graph.ScopePoint;
 import graph.graph.Vertex;
 import gui.Values;
-import javafx.scene.transform.Affine;
 
 import javax.swing.*;
 import java.awt.*;
