@@ -4,10 +4,18 @@ import actions.LogEntryName;
 import com.google.gson.Gson;
 import gui.Values;
 import gui.properties.Language;
-import log_management.parameters.activate_deactivate.*;
-import log_management.parameters.add_remove.*;
+import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
+import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
+import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
+import log_management.parameters.add_remove.AddRemoveEdgesParam;
+import log_management.parameters.add_remove.AddRemoveSphereParam;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
 import log_management.parameters.edit.*;
-import log_management.parameters.move.*;
+import log_management.parameters.move.LayoutSpheresParam;
+import log_management.parameters.move.LayoutVerticesParam;
+import log_management.parameters.move.MoveSphereParam;
+import log_management.parameters.move.MoveVerticesParam;
 import log_management.tables.Log;
 
 

@@ -4,14 +4,12 @@ import graph.graph.Vertex;
 import graph.graph.VertexShapeType;
 import gui.Values;
 import gui.properties.Language;
-import log_management.parameters.ColorNameCreator;
 import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
 import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.Map;
 

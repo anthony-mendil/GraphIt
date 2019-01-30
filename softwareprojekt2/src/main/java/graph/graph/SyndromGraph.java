@@ -12,8 +12,6 @@ package graph.graph;/*
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -29,12 +27,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * List of spheres.
      */
-    private List<Sphere> spheren = new ArrayList<>();
-
-    /**
-     * A counter for all objects.
-     */
-    private int counterObject;
+    private transient List<Sphere> spheren = new ArrayList<>();
 
     /**
      * The object factory for syndrom.
@@ -45,7 +38,6 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * Creates a new syndrom graph.
      */
     public SyndromGraph() {
-        // TODO
         graphObjectsFactory = new GraphObjectsFactory();
     }
 

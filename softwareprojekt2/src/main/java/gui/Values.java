@@ -13,7 +13,6 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Defines values for the syndrom. These are default values. The values represent the currently selected values from the

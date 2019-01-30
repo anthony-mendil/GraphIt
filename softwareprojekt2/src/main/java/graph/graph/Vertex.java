@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.util.EnumMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -142,6 +141,13 @@ public class Vertex {
     }
 
     @Override
+
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    @JsonValue
     public String toString() {
         return annotation.get("de");
     }

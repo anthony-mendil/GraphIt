@@ -3,7 +3,6 @@ package actions.layout;
 import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
-import edu.uci.ics.jung.visualization.Layer;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
@@ -13,11 +12,8 @@ import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.move.LayoutSpheresParam;
 
-import javax.xml.crypto.Data;
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.*;
-import java.util.List;
 
 /**
  * Layouts the graph according to a previously defined layout.

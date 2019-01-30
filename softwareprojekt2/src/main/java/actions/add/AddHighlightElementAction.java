@@ -1,17 +1,12 @@
 package actions.add;
 
 import actions.GraphAction;
-import actions.LogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 
 public class AddHighlightElementAction extends GraphAction {
-
-    public AddHighlightElementAction() {
-
-    }
 
     @Override
     public void action() {
@@ -32,6 +27,6 @@ public class AddHighlightElementAction extends GraphAction {
 
     @Override
     public void undo() {
-
+        throw new UnsupportedOperationException();
     }
 }

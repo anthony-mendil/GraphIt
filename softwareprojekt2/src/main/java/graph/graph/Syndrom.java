@@ -1,8 +1,13 @@
 package graph.graph;
 
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
-import edu.uci.ics.jung.visualization.*;
-import edu.uci.ics.jung.visualization.control.*;
+import edu.uci.ics.jung.visualization.GraphZoomScrollPane;
+import edu.uci.ics.jung.visualization.Layer;
+import edu.uci.ics.jung.visualization.VisualizationServer;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
+import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
+import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import edu.uci.ics.jung.visualization.transform.MutableAffineTransformer;
@@ -17,10 +22,11 @@ import graph.visualization.transformer.edge.*;
 import graph.visualization.transformer.sphere.*;
 import graph.visualization.transformer.vertex.*;
 import gui.Values;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.awt.geom.AffineTransform;
 
 /**
@@ -33,7 +39,6 @@ public class Syndrom {
     /**
      * The visualization viewer of syndrom. It contains the layout and graph.
      */
-    //TODO visualisation viewer was final
     private SyndromVisualisationViewer<Vertex, Edge> vv;
     /**
      * Template rules for the graph/layout.
@@ -207,8 +212,8 @@ public class Syndrom {
     /**
      * The values set by the gui.
      */
-    //TODO:: there was a setter accesslevel none
-    private Values values;
+    @Setter(AccessLevel.NONE)
+    private final Values values;
 
     private static Syndrom instance;
 
@@ -229,11 +234,6 @@ public class Syndrom {
         pluggable.add(new VertexPickingPlugin());
         pluggable.add(new EdgePickingPlugin());
         pluggable.add(new GeneralPickingPlugin());
-        //pluggable.add(new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK));
-       // pluggable.add(new RotatingGraphMousePlugin());
-       // pluggable.add(new ShearingGraphMousePlugin());
-
-
     }
 
     public static Syndrom getInstance(){

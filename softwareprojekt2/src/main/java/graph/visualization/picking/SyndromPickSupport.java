@@ -9,12 +9,10 @@ import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationServer;
 import edu.uci.ics.jung.visualization.picking.ShapePickSupport;
 import edu.uci.ics.jung.visualization.renderers.BasicEdgeArrowRenderingSupport;
-import edu.uci.ics.jung.visualization.renderers.EdgeArrowRenderingSupport;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
@@ -27,7 +25,7 @@ import java.util.List;
  */
 public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
-    private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<Sphere>();
+    private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
 
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
@@ -167,14 +165,14 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
             }
 
-            AffineTransform x_form = AffineTransform.getTranslateInstance(x1, y1);
+            AffineTransform xForm = AffineTransform.getTranslateInstance(x1, y1);
             float dx = x2 - x1;
             float dy = y2 - y1;
             float thetaRadians = (float) Math.atan2(dy, dx);
-            x_form.rotate(thetaRadians);
+            xForm.rotate(thetaRadians);
             float dist = (float) Math.sqrt(dx * dx + dy * dy);
-            x_form.scale(dist, 1.0);
-            edgeShape = x_form.createTransformedShape(edgeShape);
+            xForm.scale(dist, 1.0);
+            edgeShape = xForm.createTransformedShape(edgeShape);
         }
         return edgeShape;
     }

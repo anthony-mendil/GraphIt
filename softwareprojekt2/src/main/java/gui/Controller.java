@@ -20,7 +20,7 @@ import actions.edit.font.EditFontVerticesLogAction;
 import actions.edit.form.EditVerticesFormLogAction;
 import actions.edit.size.EditSphereSizeLogAction;
 import actions.edit.size.EditVerticesSizeLogAction;
-import actions.export_graph.*;
+import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
@@ -39,8 +39,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -53,8 +53,8 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import log_management.dao.LogDao;
+import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,6 +69,7 @@ import java.util.Optional;
  * Contains most of the gui elements, calls most of the actions and acts as interface between
  * the gui and the internal components of the application.
  */
+@Data
 public class Controller implements ObserverSyndrom {
 
 
@@ -1594,6 +1595,12 @@ public class Controller implements ObserverSyndrom {
                         "Comic Sans Ms"
                 );
 
+        if(comboBox.getId().equals("fontSphereComboBox")) {
+            comboBox.getEditor().setText(values.getFontSphere());
+        }else if(comboBox.getId().equals("fontSymptomComboBox")){
+            comboBox.getEditor().setText(values.getFontVertex());
+        }
+
         comboBox.setItems(fonts);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
@@ -1619,6 +1626,13 @@ public class Controller implements ObserverSyndrom {
                         "72",
                         "96"
                 );
+
+        if(comboBox.getId().equals("sizeSphereComboBox")) {
+            comboBox.getEditor().setText(""+values.getFontSizeSphere());
+        }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+            comboBox.getEditor().setText(""+values.getFontSizeVertex());
+        }
+
         comboBox.setItems(sizes);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));

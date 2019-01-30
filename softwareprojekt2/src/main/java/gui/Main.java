@@ -1,38 +1,17 @@
 package gui;
 
-import actions.activate.ActivateAnchorPointsFadeoutLogAction;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import graph.graph.Edge;
-import graph.graph.EdgeArrowType;
-import graph.graph.Sphere;
-import graph.graph.StrokeType;
-import gui.properties.Language;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import log_management.DatabaseManager;
-import log_management.LogToStringConverter;
 import log_management.dao.PersonalEntityManager;
-import log_management.json_deserializers.Point2DDeserializer;
-import log_management.json_serializers.Point2DSerializer;
-import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
-import log_management.parameters.add_remove.AddRemoveSphereParam;
-import log_management.tables.Log;
 import lombok.Getter;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.awt.*;
-import java.awt.geom.Point2D;
-import java.io.IOException;
-import java.util.*;
-import java.util.List;
 
 /**
  * Starts the whole application.

@@ -62,19 +62,19 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
         }
 
         if (shapeType == VertexShapeType.RECTANGLE) {
-            float arc_size = (float) Math.min(height, width) / 2;
+            float arcSize = (float) Math.min(height, width) / 2;
             RoundRectangle2D round = new RoundRectangle2D.Float();
             round.setRoundRect(-(width / 2), -(height / 2),
-                    width+font.getSize(), height, arc_size, arc_size);
+                    width+font.getSize(), height, arcSize, arcSize);
             return round;
 
 
         } else {
             height = height + stringsLenght*(font.getSize()*(0.5));
             width = width + stringsLenght*(font.getSize()*0.5);
-            double h_offset = -(width / 2);
-            double v_offset = -(height / 2);
-            return new Ellipse2D.Double(h_offset, v_offset, width, height);
+            double hOffset = -(width / 2);
+            double vOffset = -(height / 2);
+            return new Ellipse2D.Double(hOffset, vOffset, width, height);
         }
     }
 }

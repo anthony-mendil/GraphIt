@@ -1,23 +1,16 @@
 package graph.visualization.renderers;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.renderers.BasicVertexLabelRenderer;
-import edu.uci.ics.jung.visualization.transform.BidirectionalTransformer;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
-import edu.uci.ics.jung.visualization.transform.shape.ShapeTransformer;
-import edu.uci.ics.jung.visualization.transform.shape.TransformingGraphics;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 
 public class VertexLabelRenderer<V,E> extends BasicVertexLabelRenderer<V,E> {
     private int maxLength = 160;

@@ -2,6 +2,7 @@ package io;
 
 import com.google.inject.Inject;
 import log_management.dao.LogDao;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.Scanner;
@@ -24,6 +25,7 @@ public class OOFio {
         // Can handle oof-import/-export now
     }
 
+    private static Logger logger = Logger.getLogger(OOFio.class);
     /**
      * Creates an OOF out of the GXL and the JSON.
      *
@@ -68,7 +70,7 @@ public class OOFio {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
             bufferedWriter.write(oof);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
     }
 
@@ -82,7 +84,7 @@ public class OOFio {
         try(Scanner scanner =new Scanner(pFile)) {
             oof = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
         gxlio.gxlToInstance(gxlFromOOF(oof));

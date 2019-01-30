@@ -59,8 +59,18 @@ public class Edge {
         this.isVisible = isVisible;
     }
 
-    public boolean equals(Edge e){
-        return this.id == e.id;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Edge) {
+            Edge e = (Edge) obj;
+            return this.id == e.id;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override

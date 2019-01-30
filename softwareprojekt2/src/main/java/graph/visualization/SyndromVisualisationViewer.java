@@ -11,8 +11,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -28,12 +26,7 @@ public class SyndromVisualisationViewer<V,E> extends VisualizationViewer<V,E> {
     public void setPickedSphereState(PickedState<Sphere> pickedSphereState){
         this.pickedSphereState = pickedSphereState;
         if(pickEventListener == null) {
-            pickEventListener = new ItemListener() {
-
-                public void itemStateChanged(ItemEvent e) {
-                    repaint();
-                }
-            };
+            pickEventListener = e -> repaint();
         }
         pickedSphereState.addItemListener(pickEventListener);
     }

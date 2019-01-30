@@ -7,9 +7,7 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 
 public class RemoveHighlightElementAction extends GraphAction {
-    public RemoveHighlightElementAction(){
 
-    }
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
@@ -29,6 +27,6 @@ public class RemoveHighlightElementAction extends GraphAction {
 
     @Override
     public void undo() {
-
+        throw new UnsupportedOperationException();
     }
 }

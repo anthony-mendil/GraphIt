@@ -1,6 +1,5 @@
 package graph.graph;
 
-import gui.Values;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -84,9 +83,20 @@ public class Sphere {
         vertices = new LinkedList<>();
     }
 
-    public boolean equals(Sphere s){
-        return this.id == s.id;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Sphere) {
+            Sphere s = (Sphere) obj;
+            return this.id == s.id;
+        }
+        return false;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     @Override
     public String toString(){
         return annotation.get("de");

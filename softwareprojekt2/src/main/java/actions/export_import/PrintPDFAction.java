@@ -1,4 +1,4 @@
-package actions.export_graph;
+package actions.export_import;
 
 import actions.GraphAction;
 import graph.graph.Syndrom;
@@ -30,6 +30,7 @@ public class PrintPDFAction extends GraphAction {
      */
     @Override
     public void undo() {
+        //there is no undo/redo operation for io
     }
 
     /**
@@ -37,5 +38,6 @@ public class PrintPDFAction extends GraphAction {
      */
     @Override
     public void redo() {
+        //there is no undo/redo operation for io
     }
 }
