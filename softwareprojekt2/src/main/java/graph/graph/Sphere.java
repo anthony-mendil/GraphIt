@@ -76,27 +76,27 @@ public class Sphere {
      */
     @Getter
     @Setter
-    private boolean isLockedAnnotation = false;
+    private boolean lockedAnnotation = false;
     /**
      * The indicator whether the sphere can be moved.
      */
     @Getter
     @Setter
-    private boolean isLockedPosition = false;
+    private boolean lockedPosition = false;
     /**
      * The Indicator whether the sphere can be changed
      * in terms of style.
      */
     @Getter
     @Setter
-    private boolean isLockedStyle;
+    private boolean lockedStyle = false;
     /**
      * The indicator whether the amount of the vertices
      * inside the sphere can be modified.
      */
     @Getter
     @Setter
-    private boolean isLockedVertices;
+    private boolean lockedVertices = false;
 
 
     /**
