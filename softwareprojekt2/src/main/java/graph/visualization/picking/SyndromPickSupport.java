@@ -13,6 +13,7 @@ import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
@@ -26,6 +27,7 @@ import java.util.List;
 public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
+    private  BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
 
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
@@ -142,21 +144,52 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         float y2 = (float) p2.getY();
         Shape edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
 
+
         if (rc.getEdgeArrowPredicate().evaluate(Context.<Graph<V, E>, E>getInstance(graph, e))) {
             Vertex second = (Vertex) graph.getEndpoints(e).getSecond();
+            Vertex first = (Vertex) graph.getEndpoints(e).getFirst();
             Shape arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
             Edge edge = (Edge) e;
             AffineTransform edgeAngle = null;
+            AffineTransform outEdgeAngle = null;
 
             if (edge.isHasAnchor()) {
-                edgeAngle = getAffineTransformAnchor(rc, edge, second, x2, y2);
-                if (edgeAngle == null){
-                    return null;
+                Point2D out = edge.getAnchorPoints().getKey();
+                Point2D in = edge.getAnchorPoints().getValue();
+
+                if (in != null){
+                    edgeAngle = getAffineTransformAnchor(rc, edge, second, x2, y2);
+                    if (edgeAngle == null){
+                        return null;
+                    }
+
+                    arrow = edgeAngle.createTransformedShape(arrow);
+                    x2 = (float) arrow.getBounds2D().getCenterX();
+                    y2 = (float) arrow.getBounds2D().getCenterY();
                 }
 
-                arrow = edgeAngle.createTransformedShape(arrow);
-                x2 = (float) arrow.getBounds2D().getCenterX();
-                y2 = (float) arrow.getBounds2D().getCenterY();
+                if (out != null){
+                    System.out.println("here");
+                    AffineTransform xf = AffineTransform.getTranslateInstance(x1, y1);
+                    Shape departVertexShape = rc.getVertexShapeTransformer().transform((V)first);
+                    departVertexShape = xf.createTransformedShape(departVertexShape);
+                    Point2D outCoord = first.getCoordinates();
+                    Point2D oT = new Point2D.Double(out.getX() + outCoord.getX(), out.getY() + outCoord.getY());
+                    Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
+                    outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
+                    Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
+                    outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);
+                    if (outEdgeAngle == null) return null;
+                    Shape tryP = new Ellipse2D.Double(0,0, 5,5);
+                    tryP = outEdgeAngle.createTransformedShape(tryP);
+                    x1 = (float) tryP.getBounds2D().getCenterX();
+                    y1 = (float) tryP.getBounds2D().getCenterY();
+
+                    SyndromVisualisationViewer<Vertex, Edge> visualisationViewer = (SyndromVisualisationViewer<Vertex, Edge>) vv;
+                    ((SyndromVisualisationViewer<Vertex, Edge>) vv).getGraphics().drawRect((int)x1,(int) y1, 20,20);
+                    vv.repaint();
+                }
+
             } else {
                 if (edge.getAnchorPoints().getValue() != null){
                     x2 = (float)edge.getAnchorPoints().getValue().getX();
@@ -173,6 +206,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
             float dist = (float) Math.sqrt(dx * dx + dy * dy);
             xForm.scale(dist, 1.0);
             edgeShape = xForm.createTransformedShape(edgeShape);
+            System.out.println("yea");
         }
         return edgeShape;
     }
@@ -192,7 +226,6 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
         AffineTransform xf = AffineTransform.getTranslateInstance(endX, endY);
         destVertexShape = xf.createTransformedShape(destVertexShape);
-        BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
         transform = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle, destVertexShape);
         return transform;
     }
