@@ -1,5 +1,6 @@
 package graph.graph;
 
+import javafx.util.Pair;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -40,7 +41,11 @@ public class Edge {
     @NonNull
     private boolean hasAnchor;
 
-    private Point2D anchorPoint;
+    /**
+     * first: ausgehender Ankerpunkt
+     * second: mündender Ankerpunkt
+     */
+    private Pair<Point2D, Point2D> anchorPoints;
 
     /**
      * Defines whether a edge is visible or not.

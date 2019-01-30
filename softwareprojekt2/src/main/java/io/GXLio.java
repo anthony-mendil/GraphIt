@@ -10,6 +10,7 @@ import net.sourceforge.gxl.*;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -265,7 +266,7 @@ public class GXLio {
         boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
         Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
         if (hasAnchor == true) {
-            newEdge.setAnchorPoint(coordinates);
+            newEdge.setAnchorPoints(new javafx.util.Pair<>(null,coordinates));
         }
         return newEdge;
     }
@@ -289,7 +290,6 @@ public class GXLio {
             GXLNode sphere = new GXLNode(s.getId() + "");
             sphere.setAttr("TYPE", new GXLString("Sphäre"));
             Color color = s.getColor();
-            System.out.println("color sphere: "+color);
             sphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
             sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
             sphere.setAttr("width", new GXLString("" + s.getWidth()));
@@ -371,7 +371,7 @@ public class GXLio {
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
             if(e.isHasAnchor()) {
-                edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
+                edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoints().getValue()));
             }
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
