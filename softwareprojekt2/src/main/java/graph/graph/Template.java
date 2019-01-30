@@ -10,61 +10,94 @@ import java.util.List;
 @Data
 public class Template {
 
+    //Graphelement options:
     /**
      * The maximum number of spheres allowed to exist in the graph. This is defined in the template.
      */
-    private int maxSphereCounter;
+    private int maxSpheres;
 
     /**
      * The maximum number of vertices allowed to exist in the graph. This is defined in the template.
      */
-    private int maxVertexCounter;
-
-    /**
-     * The maximum number of vertices in a sphere. This is defined in the template.
-     */
-    private int maxVertexInSphereCounter;
+    private int maxVertices;
 
     /**
      * The maximum number of edges allowed to exist in the graph. This is defined in the template.
      */
-    private int maxEdgeCounter;
+    private int maxEdges;
 
     /**
-     * A list with all object ids where the name is not changeable.
+     * The maximum number of vertices in a sphere. This is defined in the template.
      */
-    private List<Integer> nameLockedObjects;
+    private int maxVerticesInSphere;
+
+    //Edgetype options:
+    /**
+     *
+     */
+    private boolean reinforcedEdgesAllowed;
 
     /**
-     * A list with all object ids where the color is not changeable.
+     *
      */
-    private List<Integer> colorLockedObjects;
+    private boolean extenuatingEdgesAllowed;
 
     /**
-     * A list with all object ids where all attributes are not changeable.
+     *
      */
-    private List<Integer> isLockedObjects;
+    private boolean unknownEdgesAllowed;
+
+    //Locked Objects options:
+    /**
+     *
+     */
+    private List<Integer> styleLockedSpheres;
 
     /**
-     * All edge types that are allowed to use.
+     *
      */
-    private List<EdgeArrowType> allowedEdgeTypes;
+    private List<Integer> annotationLockedSpheres;
+
+    /**
+     *
+     */
+    private List<Integer> positionLockedSpheres;
+
+    /**
+     *
+     */
+    private List<Integer> verticesLockedSpheres;
+
+    /**
+     *
+     */
+    private List<Integer> styleLockedVertices;
+
+    /**
+     *
+     */
+    private List<Integer> annotationLockedVertices;
+
+    /**
+     *
+     */
+    private List<Integer> positionLockedVertices;
+
+    /**
+     *
+     */
+    private List<Integer> styleLockedEdges;
+
+    /**
+     *
+     */
+    private List<Integer> typeLockedEdges;
+
 
     /**
      * Creates a new Template object.
      */
-    public Template(int pMaxSphereCounter, int pMaxVertexCounter, int pMaxVertexInSphereCounter, int pMaxEdgeCounter,
-                    List<Integer> pNameLockedObjects, List<Integer> pColorLockedObjects, List<Integer> pIsLockedObjects,
-                    List<EdgeArrowType> pAllowedEdgeTypes) {
-
-        maxSphereCounter = pMaxSphereCounter;
-        maxVertexCounter = pMaxVertexCounter;
-        maxVertexInSphereCounter = pMaxVertexInSphereCounter;
-        maxEdgeCounter = pMaxEdgeCounter;
-        nameLockedObjects = pNameLockedObjects;
-        colorLockedObjects = pColorLockedObjects;
-        isLockedObjects = pIsLockedObjects;
-        allowedEdgeTypes = pAllowedEdgeTypes;
+    public Template() {
 
     }
 }

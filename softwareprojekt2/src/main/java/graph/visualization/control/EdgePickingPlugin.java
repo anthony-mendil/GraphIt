@@ -23,13 +23,13 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
     private Edge edgeMove = null;
     private boolean isIncoming = false;
-    private int addToSelection = InputEvent.BUTTON1_MASK | InputEvent.SHIFT_MASK;
+    private int addToSelection = InputEvent.BUTTON1_DOWN_MASK  | InputEvent.SHIFT_DOWN_MASK;
 
     /**
      * create an instance with passed values
      */
     public EdgePickingPlugin() {
-        super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
+        super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK );
     }
 
 
@@ -51,7 +51,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
             double distanceSecond = Math.abs(getDistance(p, vertices.getSecond().getCoordinates()));
             isIncoming = (distanceFirst >= distanceSecond);
             edgeMove = edge;
-            if (e.getModifiers() == addToSelection) {
+            if (e.getModifiersEx() == addToSelection) {
                 edgePickedState.pick(edge, true);
             } else if (SwingUtilities.isLeftMouseButton(e)) {
                 edgePickedState.clear();
