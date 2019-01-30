@@ -7,9 +7,14 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.dao.GraphDao;
 import net.sourceforge.gxl.*;
+import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.*;
 import java.util.stream.Stream;
 import java.util.*;
@@ -44,6 +49,9 @@ public class GXLio {
      * The highest id of all GXLAttributetElements in the gxl document that is importet in the {@gxlToInstance()}-method.
      */
     int maxID = -1;
+
+
+    private static Logger logger = Logger.getLogger(GXLio.class);
 
     /**
      * Constructor of class GXLio.
@@ -176,9 +184,9 @@ public class GXLio {
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
             } catch(IOException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             } catch(SAXException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             }
 
     }
@@ -296,7 +304,7 @@ public class GXLio {
         boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
         Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
         if (hasAnchor == true) {
-            newEdge.setAnchorPoint(coordinates);
+            newEdge.setAnchorPoints(new javafx.util.Pair<>(null,coordinates));
         }
         return newEdge;
     }
@@ -327,7 +335,6 @@ public class GXLio {
             GXLNode sphere = new GXLNode(s.getId() + "");
             sphere.setAttr("TYPE", new GXLString("Sphäre"));
             Color color = s.getColor();
-            System.out.println("color sphere: "+color);
             sphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
             sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
             sphere.setAttr("width", new GXLString("" + s.getWidth()));
@@ -409,7 +416,7 @@ public class GXLio {
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
             if(e.isHasAnchor()) {
-                edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoint()));
+                edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoints().getValue()));
             }
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             gxlSyndrom.add(edge);
@@ -422,8 +429,7 @@ public class GXLio {
             doc.write(file);
 
             // reading the content of the created gxl document and write its content into a String
-            try{
-                BufferedReader reader = new BufferedReader(new FileReader(file));
+            try(BufferedReader reader = new BufferedReader(new FileReader(file));){
                 Stream<String> lines = reader.lines();
                 Object[] linesArray = lines.toArray();
                 for(Object s : linesArray){
@@ -431,9 +437,9 @@ public class GXLio {
                     content = content + "\n" + objectContetnt;
                 }
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             }
         }catch(Exception e){}
     System.out.println(content);
@@ -508,10 +514,10 @@ public class GXLio {
 
     public void importGXL(File pFile){
         String gxl = "";
-        try {
-            gxl = new Scanner(pFile).useDelimiter("\\A").next();
+        try(Scanner scanner= new Scanner(file)) {
+            gxl = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         file = pFile;
         gxlToInstance(gxl);

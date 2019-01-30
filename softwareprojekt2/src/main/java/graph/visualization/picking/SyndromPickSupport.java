@@ -158,9 +158,9 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 x2 = (float) arrow.getBounds2D().getCenterX();
                 y2 = (float) arrow.getBounds2D().getCenterY();
             } else {
-                if (edge.getAnchorPoint() != null){
-                    x2 = (float)edge.getAnchorPoint().getX();
-                    y2 = (float)edge.getAnchorPoint().getY();
+                if (edge.getAnchorPoints().getValue() != null){
+                    x2 = (float)edge.getAnchorPoints().getValue().getX();
+                    y2 = (float)edge.getAnchorPoints().getValue().getY();
                 }
 
             }
@@ -179,7 +179,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
     private AffineTransform getAffineTransformAnchor(RenderContext<V,E> rc, Edge edge, Vertex vertex, float endX, float endY){
         AffineTransform transform;
-        Point2D an = edge.getAnchorPoint();
+        Point2D an = edge.getAnchorPoints().getValue();
         Point2D cord = vertex.getCoordinates();
         Point2D t =  new Point2D.Double(an.getX() +cord.getX(), an.getY() + cord.getY());
         Point2D anchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, t);
