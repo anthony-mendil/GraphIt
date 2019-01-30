@@ -43,7 +43,7 @@ public class RemoveAnchorPointsLogAction extends LogAction {
 
         for (Edge e: pickedState.getPicked()) {
             e.setHasAnchor(false);
-            e.setAnchorPoint(null);
+            e.setAnchorPoints(null);
         }
         vv.repaint();
         syndrom.getVv2().repaint();

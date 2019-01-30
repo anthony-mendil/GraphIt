@@ -83,7 +83,7 @@ public class Values {
     /**
      * The fill paint color of a vertex.
      */
-    private Color fillPaintVertex = new Color(123,255,51);
+    private Color fillPaintVertex = new Color(123,255,51, 100);
     /**
      * The draw paint color of a vertex.
      */
