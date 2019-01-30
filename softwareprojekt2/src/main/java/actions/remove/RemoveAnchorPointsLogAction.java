@@ -43,7 +43,8 @@ public class RemoveAnchorPointsLogAction extends LogAction {
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
 
         for (Edge e: pickedState.getPicked()) {
-            e.setHasAnchor(false);
+            e.setHasAnchorOut(false);
+            e.setHasAnchorIn(false);
             e.setAnchorPoints(new Pair<>(null, null));
         }
         vv.repaint();

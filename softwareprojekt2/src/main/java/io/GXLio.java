@@ -314,7 +314,7 @@ public class GXLio {
             }
         }
         boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
-        Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
+        Edge newEdge = new Edge(id, paint, stroke, arrowType, false, hasAnchor, isVisible);
         if (hasAnchor == true) {
             newEdge.setAnchorPoints(new javafx.util.Pair<>(coordinatesSource, coordinatesTarget));
         }
@@ -426,8 +426,8 @@ public class GXLio {
             edge.setAttr("paint", new GXLString(getPaintDescription(color)));
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
-            edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
-            if(e.isHasAnchor()) {
+            edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchorOut()));
+            if(e.isHasAnchorOut()) {
                 edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoints().getValue()));
             }
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
@@ -570,8 +570,8 @@ public class GXLio {
             edge.setAttr("paint", new GXLString(getPaintDescription(color)));
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
-            edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
-            if(e.isHasAnchor()) {
+            edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchorOut()));
+            if(e.isHasAnchorOut()) {
                 if (e.getAnchorPoints().getKey() == null) {
                     edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the source set"));
                 } else {

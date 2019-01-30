@@ -70,6 +70,9 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     *   out------>in
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
@@ -79,13 +82,14 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
             Vertex endpoint = (isIncoming) ? graph.getEndpoints(edgeMove).getSecond():graph.getEndpoints(edgeMove).getFirst();
             Point dragged = e.getPoint();
             Point2D draggedPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(dragged);
-            edgeMove.setHasAnchor(true);
             draggedPoint = new Point2D.Double(draggedPoint.getX() - endpoint.getCoordinates().getX(), draggedPoint.getY() - endpoint.getCoordinates().getY());
 
             if (isIncoming){
                 edgeMove.setAnchorPoints(new javafx.util.Pair<>(edgeMove.getAnchorPoints().getKey(), draggedPoint));
+                edgeMove.setHasAnchorIn(true);
             } else {
                 edgeMove.setAnchorPoints(new javafx.util.Pair<>(draggedPoint, edgeMove.getAnchorPoints().getValue()));
+                edgeMove.setHasAnchorOut(true);
             }
         }
         vv.repaint();
