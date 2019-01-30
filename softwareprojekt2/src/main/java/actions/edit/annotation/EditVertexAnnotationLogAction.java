@@ -6,8 +6,10 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVertexAnnotationParam;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -42,23 +44,39 @@ public class EditVertexAnnotationLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-
-        for (Vertex v: pickedState.getPicked()) {
-            Map<String, String> annotation = v.getAnnotation();
-            annotation.put("de", text);
-            v.setAnnotation(annotation);
+        if(parameters == null) {
+            for (Vertex v : pickedState.getPicked()) {
+                Map<String, String> annotation = v.getAnnotation();
+                createParameter(v, v.getAnnotation().get("de"),text);
+                annotation.put("de", text);
+                v.setAnnotation(annotation);
+            }
+        }else{
+            Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
+            String newString = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
+            Map<String,String> newAnnotation = new HashMap<>();
+            newAnnotation.put("de",newString);
+            vertex.setAnnotation(newAnnotation);
         }
         vv.repaint();
         syndrom.getVv2().repaint();
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
+        notifyObserverGraph();
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
+        String oldAnnotation = ((EditVertexAnnotationParam)parameters).getOldAnnotation();
+        String newAnnotation = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
+        EditVertexAnnotationParam editVertexAnnotationParam = new EditVertexAnnotationParam(vertex,newAnnotation,oldAnnotation);
+        EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(editVertexAnnotationParam);
+        editVertexAnnotationLogAction.action();
     }
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Vertex vertex, String oldAnnotation, String newAnnotation) {
+        parameters = new EditVertexAnnotationParam(vertex, oldAnnotation, newAnnotation);
     }
 }
 
