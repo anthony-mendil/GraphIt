@@ -154,9 +154,11 @@ public class GXLio {
             // out of the lists into or system.
 
 
+
             syndrom.generateNew();
             Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
             SyndromGraph<Vertex, Edge> newGraph =(SyndromGraph<Vertex, Edge>) layout.getGraph();
+            newGraph.getGraphObjectsFactory().setObjectCounter(++maxID);
             SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
 
             for (Map<Sphere, List<Vertex>> m : list) {

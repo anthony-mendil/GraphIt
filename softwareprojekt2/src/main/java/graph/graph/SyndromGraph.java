@@ -12,6 +12,7 @@ package graph.graph;/*
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
+import lombok.Data;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.Map;
 /**
  * The syndrom graph. Its extending the directed sparse graph with spheres and anchor points.
  */
+@Data
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * List of spheres.
