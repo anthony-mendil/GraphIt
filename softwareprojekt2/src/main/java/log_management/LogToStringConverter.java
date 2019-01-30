@@ -1,6 +1,7 @@
 package log_management;
 
 import actions.LogEntryName;
+import com.google.gson.Gson;
 import gui.Values;
 import gui.properties.Language;
 import log_management.parameters.activate_deactivate.*;
@@ -8,7 +9,7 @@ import log_management.parameters.add_remove.*;
 import log_management.parameters.edit.*;
 import log_management.parameters.move.*;
 import log_management.tables.Log;
-import org.codehaus.jackson.map.ObjectMapper;
+
 
 import java.io.IOException;
 
@@ -184,74 +185,73 @@ public class LogToStringConverter {
     }
 
     private static String parametersPrint(String parameters, LogEntryName logEntryName) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return new Gson().fromJson(parameters, ActivateDeactivateHighlightParam.class).toString();
             case ACTIVATE_FADEOUT:
-                return objectMapper.readValue(parameters, ActivateDeactivateFadeoutParam.class).toString();
+                return new Gson().fromJson(parameters, ActivateDeactivateFadeoutParam.class).toString();
             case ADD_ANCHOR_POINTS:
-                return objectMapper.readValue(parameters, AddRemoveAnchorPointsParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveAnchorPointsParam.class).toString();
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return objectMapper.readValue(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).toString();
+                return new Gson().fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).toString();
             case ADD_EDGES:
-                return objectMapper.readValue(parameters, AddRemoveEdgesParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveEdgesParam.class).toString();
             case ADD_SPHERE:
-                return objectMapper.readValue(parameters, AddRemoveSphereParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveSphereParam.class).toString();
             case EDIT_SPHERES_LAYOUT:
-                return objectMapper.readValue(parameters, LayoutSpheresParam.class).toString();
+                return new Gson().fromJson(parameters, LayoutSpheresParam.class).toString();
             case MOVE_SPHERE:
-                return objectMapper.readValue(parameters, MoveSphereParam.class).toString();
+                return new Gson().fromJson(parameters, MoveSphereParam.class).toString();
             case ADD_VERTICES:
-                return objectMapper.readValue(parameters, AddRemoveVerticesParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveVerticesParam.class).toString();
             case REMOVE_EDGES:
-                return objectMapper.readValue(parameters, AddRemoveEdgesParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveEdgesParam.class).toString();
             case MOVE_VERTICES:
-                return objectMapper.readValue(parameters, MoveVerticesParam.class).toString();
+                return new Gson().fromJson(parameters, MoveVerticesParam.class).toString();
             case REMOVE_SPHERE:
-                return objectMapper.readValue(parameters, AddRemoveSphereParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveSphereParam.class).toString();
             case EDIT_EDGES_TYPE:
-                return objectMapper.readValue(parameters, EditEdgesTypeParam.class).toString();
+                return new Gson().fromJson(parameters, EditEdgesTypeParam.class).toString();
             case REMOVE_VERTICES:
-                return objectMapper.readValue(parameters, AddRemoveVerticesParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveVerticesParam.class).toString();
             case EDIT_EDGES_COLOR:
-                return objectMapper.readValue(parameters, EditEdgesColorParam.class).toString();
+                return new Gson().fromJson(parameters, EditEdgesColorParam.class).toString();
             case EDIT_FONT_SPHERE:
-                return objectMapper.readValue(parameters, EditFontSphereParam.class).toString();
+                return new Gson().fromJson(parameters, EditFontSphereParam.class).toString();
             case EDIT_SPHERE_SIZE:
-                return objectMapper.readValue(parameters, EditSphereSizeParam.class).toString();
+                return new Gson().fromJson(parameters, EditSphereSizeParam.class).toString();
             case EDIT_EDGES_STROKE:
-                return objectMapper.readValue(parameters, EditEdgesStrokeParam.class).toString();
+                return new Gson().fromJson(parameters, EditEdgesStrokeParam.class).toString();
             case EDIT_SPHERE_COLOR:
-                return objectMapper.readValue(parameters, EditSphereColorParam.class).toString();
+                return new Gson().fromJson(parameters, EditSphereColorParam.class).toString();
             case DEACTIVATE_FADEOUT:
-                return objectMapper.readValue(parameters, ActivateDeactivateFadeoutParam.class).toString();
+                return new Gson().fromJson(parameters, ActivateDeactivateFadeoutParam.class).toString();
             case EDIT_FONT_VERTICES:
-                return objectMapper.readValue(parameters, EditFontVerticesParam.class).toString();
+                return new Gson().fromJson(parameters, EditFontVerticesParam.class).toString();
             case EDIT_VERTICES_FORM:
-                return objectMapper.readValue(parameters, EditVerticesFormParam.class).toString();
+                return new Gson().fromJson(parameters, EditVerticesFormParam.class).toString();
             case EDIT_VERTICES_SIZE:
-                return objectMapper.readValue(parameters, EditVerticesSizeParam.class).toString();
+                return new Gson().fromJson(parameters, EditVerticesSizeParam.class).toString();
             case REMOVE_ANCHOR_POINTS:
-                return objectMapper.readValue(parameters, AddRemoveAnchorPointsParam.class).toString();
+                return new Gson().fromJson(parameters, AddRemoveAnchorPointsParam.class).toString();
             case EDIT_SPHERE_FONT_SIZE:
-                return objectMapper.readValue(parameters, EditFontSizeSphereParam.class).toString();
+                return new Gson().fromJson(parameters, EditFontSizeSphereParam.class).toString();
             case EDIT_SPHERE_ANNOTATION:
-                return objectMapper.readValue(parameters, EditSphereAnnotationParam.class).toString();
+                return new Gson().fromJson(parameters, EditSphereAnnotationParam.class).toString();
             case EDIT_VERTEX_ANNOTATION:
-                return objectMapper.readValue(parameters, EditVertexAnnotationParam.class).toString();
+                return new Gson().fromJson(parameters, EditVertexAnnotationParam.class).toString();
             case EDIT_VERTICES_FONT_SIZE:
-                return objectMapper.readValue(parameters, EditFontSizeVerticesParam.class).toString();
+                return new Gson().fromJson(parameters, EditFontSizeVerticesParam.class).toString();
             case EDIT_VERTICES_DRAW_COLOR:
-                return objectMapper.readValue(parameters, EditVerticesDrawColorParam.class).toString();
+                return new Gson().fromJson(parameters, EditVerticesDrawColorParam.class).toString();
             case EDIT_VERTICES_FILL_COLOR:
-                return objectMapper.readValue(parameters, EditVerticesFillColorParam.class).toString();
+                return new Gson().fromJson(parameters, EditVerticesFillColorParam.class).toString();
             case DEACTIVATE_HIGHLIGHT:
-                return objectMapper.readValue(parameters, ActivateDeactivateHighlightParam.class).toString();
+                return new Gson().fromJson(parameters, ActivateDeactivateHighlightParam.class).toString();
             case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return objectMapper.readValue(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).toString();
+                return new Gson().fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).toString();
             case EDIT_VERTICES_LAYOUT:
-                return objectMapper.readValue(parameters, LayoutVerticesParam.class).toString();
+                return new Gson().fromJson(parameters, LayoutVerticesParam.class).toString();
             default: throw new IllegalArgumentException();
         }
     }

@@ -4,12 +4,11 @@ import graph.graph.Sphere;
 import graph.graph.Vertex;
 import gui.Values;
 import gui.properties.Language;
-import log_management.json_serializers.VertexSerializer;
+
 import log_management.parameters.Param;
 import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +23,6 @@ public class AddRemoveVerticesParam extends Param{
      * Set of vertices to their sphere.
      */
     @Getter
-    @JsonSerialize(keyUsing = VertexSerializer.class)
     private Map<Vertex, Sphere> vertices = new HashMap<>();
 
     /**

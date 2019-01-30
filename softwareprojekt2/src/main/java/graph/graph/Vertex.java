@@ -1,10 +1,10 @@
 package graph.graph;
 
+
 import javafx.util.Pair;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
-import org.codehaus.jackson.annotate.JsonValue;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -142,7 +142,6 @@ public class Vertex {
     }
 
     @Override
-    @JsonValue
     public String toString() {
         return annotation.get("de");
     }

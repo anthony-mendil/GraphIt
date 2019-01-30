@@ -3,7 +3,6 @@ package graph.graph;
 import gui.Values;
 import lombok.Data;
 import lombok.NonNull;
-import org.codehaus.jackson.annotate.JsonValue;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -89,7 +88,6 @@ public class Sphere {
         return this.id == s.id;
     }
     @Override
-    @JsonValue
     public String toString(){
         return annotation.get("de");
     }
