@@ -11,15 +11,12 @@ import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
-<<<<<<< HEAD
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-=======
 import java.io.*;
 import java.util.stream.Stream;
->>>>>>> ed48f544d9facda9220c223a5bb81a0716a1e52a
 import java.util.*;
 import java.util.List;
 
