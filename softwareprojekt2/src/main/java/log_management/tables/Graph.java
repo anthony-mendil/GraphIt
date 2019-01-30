@@ -45,7 +45,7 @@ public class Graph {
      *
      * @return The GXL representation of the graph.
      */
-    @Column(name = "GXL")
+    @Column(name = "GXL", columnDefinition = "NVARCHAR(MAX)")
     public String getGxl() {
         return gxl;
     }

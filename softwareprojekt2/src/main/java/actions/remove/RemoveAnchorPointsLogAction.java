@@ -6,6 +6,7 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import javafx.util.Pair;
 import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 
 /**
@@ -43,7 +44,7 @@ public class RemoveAnchorPointsLogAction extends LogAction {
 
         for (Edge e: pickedState.getPicked()) {
             e.setHasAnchor(false);
-            e.setAnchorPoints(null);
+            e.setAnchorPoints(new Pair<>(null, null));
         }
         vv.repaint();
         syndrom.getVv2().repaint();

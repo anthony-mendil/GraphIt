@@ -14,7 +14,7 @@ import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
 import graph.graph.ScopePoint;
 import graph.graph.Vertex;
-import javafx.scene.transform.Affine;
+import gui.Values;
 
 import javax.swing.*;
 import java.awt.*;
@@ -153,19 +153,15 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                             Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
                             outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
                             Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
-                            g.setPaint(Color.MAGENTA);
-                            g.draw(outLineAngle);
                             outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);
                             if (outEdgeAngle == null) return;
 
-                            Shape tryP = new Ellipse2D.Double(0,0, 10,10);
+                            Shape tryP = new Ellipse2D.Double(0,0, 5,5);
                             tryP = outEdgeAngle.createTransformedShape(tryP);
-
-                            g.setPaint(Color.green);
-                            g.draw(tryP);
 
                             x1 = (float) tryP.getBounds2D().getCenterX();
                             y1 = (float) tryP.getBounds2D().getCenterY();
+
                         }
 
                     } else {
@@ -184,7 +180,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                         if (fitPoint != null) {
                             x2 = (float) fitPoint.getX();
                             y2 = (float) fitPoint.getY();
-                            edge.setAnchorPoints(new javafx.util.Pair<>(null,fitPoint));
+                            edge.setAnchorPoints(new javafx.util.Pair<>(edge.getAnchorPoints().getKey(),fitPoint));
                             arrow = arr.createTransformedShape(arrow);
 
                         } else {
@@ -199,22 +195,22 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                                 throw new IllegalArgumentException();
                             }
                             setMap(edgetype, second, map);
-                            edge.setAnchorPoints(new javafx.util.Pair<>(null,newPoint));
+                            edge.setAnchorPoints(new javafx.util.Pair<>(edge.getAnchorPoints().getKey(),newPoint));
                         }
                     }
 
-                    AffineTransform aff =  AffineTransform.getTranslateInstance(x1, y1);
+                    AffineTransform affineTransform =  AffineTransform.getTranslateInstance(x1, y1);
                     dx = x2 - x1;
                     dy = y2 - y1;
                     thetaRadians = (float) Math.atan2(dy, dx);
-                    aff.rotate(thetaRadians);
+                    affineTransform.rotate(thetaRadians);
                     dist = (float) Math.sqrt(dx * dx + dy * dy);
-                    xTransform.scale(dist, 1.0);
-                    edgeShape = aff.createTransformedShape(oldEdge);
+                    affineTransform.scale(dist, 1.0);
+                    edgeShape = affineTransform.createTransformedShape(oldEdge);
                     g.draw(edgeShape);
 
                     setPaintEdge(e, rc, g);
-                    drawEdgeArrow(rc, new javafx.util.Pair<>(e, edgeShape), g, arrow, edgeAngle, arr, at);
+                    drawEdgeArrow(rc, new javafx.util.Pair<>(e, edgeShape), g, arrow, edgeAngle, arr, at, new Point2D.Double(x1,y1));
                 }
             }
 
@@ -234,7 +230,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
      * @param arr AffineTransform from the fitPoint
      * @param at AffineTransform for arrow
      */
-    private void drawEdgeArrow(RenderContext<V, E> rc, javafx.util.Pair<E, Shape> pair, GraphicsDecorator g, Shape arrow, AffineTransform edgeAngle, AffineTransform arr, AffineTransform at) {
+    private void drawEdgeArrow(RenderContext<V, E> rc, javafx.util.Pair<E, Shape> pair, GraphicsDecorator g, Shape arrow, AffineTransform edgeAngle, AffineTransform arr, AffineTransform at, Point2D anchorPoint) {
         E e = pair.getKey();
         Shape edgeShape = pair.getValue();
         Paint drawPaint = rc.getEdgeDrawPaintTransformer().transform(e);
@@ -243,6 +239,17 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             g.draw(edgeShape);
         }
         Edge edge = (Edge) e;
+        Values values = Values.getInstance();
+        if (values.isShowAnchor() && edge.isHasAnchor()){
+            g.setStroke(new BasicStroke(1.0f));
+            double dimension = 15;
+            Shape anchor = new Ellipse2D.Double(-dimension/2,-dimension/2, dimension, dimension);
+            AffineTransform anchorTransform = AffineTransform.getTranslateInstance(anchorPoint.getX(),anchorPoint.getY());
+            anchor = anchorTransform.createTransformedShape(anchor);
+            g.setPaint(values.getAnchorHighlight());
+            g.fill(anchor);
+            g.draw(anchor);
+        }
 
         g.setStroke(new BasicStroke(1.0f));
         Paint drawColor = rc.getArrowFillPaintTransformer().transform(e);

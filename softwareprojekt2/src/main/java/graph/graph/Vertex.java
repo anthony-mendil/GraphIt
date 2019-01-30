@@ -5,6 +5,7 @@ import javafx.util.Pair;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -96,9 +97,29 @@ public class Vertex {
      */
     @NonNull
     private int fontSize;
-
+    /**
+     * The indicator whether the Vertex is highlighted.
+     */
     private boolean isHighlighted = false;
-
+    /**
+     * The indicator whether the vertex is locked in terms of style.
+     */
+    @Getter
+    @Setter
+    private boolean isLockedStyle = false;
+    /**
+     * The indicator whether the vertex can be moved.
+     */
+    @Getter
+    @Setter
+    private boolean isLockedPosition = false;
+    /**
+     * The indicator whether the vertex is locked in terms of the style
+     * and content of the annotation of the sphere.
+     */
+    @Getter
+    @Setter
+    private boolean isLockedAnnotation = false;
 
     /**
      * Creates a new vertex.

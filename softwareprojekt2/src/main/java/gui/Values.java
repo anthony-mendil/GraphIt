@@ -84,6 +84,16 @@ public class Values {
      * The fill paint color of a vertex.
      */
     private Color fillPaintVertex = new Color(123,255,51, 100);
+
+    /**
+     * true if the anchor points are highlighted in the gui
+     * false if the anchor points are not highlighted in the gui
+     */
+    private boolean showAnchor = false;
+
+    @Setter(AccessLevel.NONE)
+    private final Color anchorHighlight = new Color(204, 0,0);
+
     /**
      * The draw paint color of a vertex.
      */

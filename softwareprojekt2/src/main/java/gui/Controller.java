@@ -30,6 +30,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -39,12 +40,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -55,9 +59,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import log_management.DatabaseManager;
+import javafx.util.Callback;
 import log_management.dao.LogDao;
 import lombok.Data;
 
+import javax.persistence.Table;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -750,6 +756,24 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private TitledPane historyTitledPane;
+
+    @FXML
+    private TableView sphereTableView;
+
+    @FXML
+    private TableColumn sphereCol;
+
+    @FXML
+    private TableColumn annotationSphereCol;
+
+    @FXML
+    private TableColumn positionSphereCol;
+
+    @FXML
+    private TableColumn styleSphereCol;
+
+    @FXML
+    private TableColumn verticesSphereCol;
 
     public Controller() {
     }
@@ -1971,6 +1995,71 @@ public class Controller implements ObserverSyndrom {
         }
     }
      */
+
+    public void testTable(){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        List<Sphere> spheres = graph.getSpheres();
+        Collection<Vertex> vertices = graph.getVertices();
+        Collection<Edge> edges = graph.getEdges();
+        ArrayList<String> name = new ArrayList<>();
+
+        if(!spheres.isEmpty()){
+            sphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,String>("annotation")
+            );
+
+            annotationSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedAnnotation")
+            );
+
+            positionSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedPosition")
+            );
+
+            styleSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedStyle")
+            );
+
+            verticesSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedVertices")
+            );
+
+            sphereTableView.setItems(FXCollections.observableArrayList(spheres));
+
+            setRadioButtonTableColumn(annotationSphereCol);
+        }
+    }
+
+    private void setRadioButtonTableColumn(TableColumn pTableColumn){
+        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Boolean>,
+                ObservableValue<Boolean>>(){
+            @Override
+            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Sphere, Boolean> param) {
+                Sphere sphere = param.getValue();
+                SimpleBooleanProperty booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
+
+                //When "Boolean" column change
+                booleanProp.addListener(new ChangeListener<Boolean>(){
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        sphere.setLockedAnnotation(newValue);
+                        System.out.println("Locked Annotation: "+newValue);
+                    }
+                });
+                return booleanProp;
+            }
+        });
+
+        pTableColumn.setCellFactory(new Callback<TableColumn<Sphere,Boolean>, TableCell<Sphere,Boolean>>() {
+            @Override
+            public TableCell<Sphere,Boolean> call(TableColumn<Sphere,Boolean> param) {
+                CheckBoxTableCell<Sphere,Boolean> cell = new CheckBoxTableCell<Sphere,Boolean>();
+                cell.setAlignment(Pos.CENTER);
+                return cell;
+            }
+        });
+    }
 
     @Override
     public void updateGraph() {

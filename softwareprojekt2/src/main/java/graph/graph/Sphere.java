@@ -1,7 +1,9 @@
 package graph.graph;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -68,8 +70,46 @@ public class Sphere {
      */
     @NonNull
     private int fontSize;
+    /**
+     * The indicator whether the annotation and it's style
+     * of the Sphere can be modified.
+     */
+    @Getter
+    @Setter
+    private boolean lockedAnnotation = false;
+    /**
+     * The indicator whether the sphere can be moved.
+     */
+    @Getter
+    @Setter
+    private boolean lockedPosition = false;
+    /**
+     * The Indicator whether the sphere can be changed
+     * in terms of style.
+     */
+    @Getter
+    @Setter
+    private boolean lockedStyle = false;
+    /**
+     * The indicator whether the amount of the vertices
+     * inside the sphere can be modified.
+     */
+    @Getter
+    @Setter
+    private boolean lockedVertices = false;
 
 
+    /**
+     * Creates an Sphere. It will be created by the factory.
+     * @param id            The unique id of the sphere.
+     * @param color         The color of the sphere.
+     * @param coordinates   The coordinates of the sphere.
+     * @param width         The width of the sphere.
+     * @param height        The height of the sphere.
+     * @param annotation    The annotation of the sphere.
+     * @param font          The font of the annotation of the sphere.
+     * @param fontSize      The font-size of the sphere.
+     */
     public Sphere(int id, Color color, Point2D coordinates, double width, double height, Map<String, String>
             annotation, String font, int fontSize ){
         this.id = id;
