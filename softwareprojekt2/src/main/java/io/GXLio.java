@@ -1,6 +1,9 @@
 package io;
 
 import com.google.inject.Inject;
+import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -29,8 +32,7 @@ public class GXLio {
     /**
      * The syndrom representation.
      */
-    @Inject
-    private Syndrom syndrom;
+    private Syndrom syndrom = Syndrom.getInstance();
 
     /**
      * The graph dao object, for accessing the graph data.
@@ -142,8 +144,15 @@ public class GXLio {
 
             // Getting the objects that are needed to get the spheres, vertices and edges
             // out of the lists into or system.
+
+
+            syndrom.generateNew();
+            Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
+            SyndromGraph<Vertex, Edge> newGraph =(SyndromGraph<Vertex, Edge>) layout.getGraph();
             SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-            SyndromGraph newGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+           /* vv.setGraphLayout(layout);
+            vv.getGraphLayout().setGraph(newGraph);*/
+
             for (Map<Sphere, List<Vertex>> m : list) {
                 for (Map.Entry<Sphere, List<Vertex>> e : m.entrySet()) {
                     for (Vertex currentVertex : e.getValue()) {
@@ -502,7 +511,7 @@ public class GXLio {
 
     public void importGXL(File pFile){
         String gxl = "";
-        try(Scanner scanner= new Scanner(file)) {
+        try(Scanner scanner= new Scanner(pFile)) {
             gxl = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
             logger.error(e.toString());

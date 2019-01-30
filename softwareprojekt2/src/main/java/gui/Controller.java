@@ -1126,6 +1126,8 @@ public class Controller implements ObserverSyndrom {
         ImportOofAction importOofAction = new ImportOofAction(file);
         importOofAction.action();
         zoomSlider.setValue(100);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
     }
 
     /**
@@ -1141,6 +1143,8 @@ public class Controller implements ObserverSyndrom {
         ImportGxlAction importGxlAction = new ImportGxlAction(file);
         importGxlAction.action();
         zoomSlider.setValue(100);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
     }
 
     /**
@@ -1891,6 +1895,7 @@ public class Controller implements ObserverSyndrom {
         //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("First Graph");
         history.execute(action);
+        System.out.println("vv: "+syndrom.getVv());
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         disableEditMode(false);
