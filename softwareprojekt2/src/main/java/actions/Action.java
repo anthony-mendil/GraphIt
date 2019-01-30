@@ -33,7 +33,9 @@ public abstract class Action {
      * @param o The observer to attach.
      */
     public static void attach(ObserverSyndrom o) {
-        observers.add(o);
+        if (!observers.contains(o)){
+            observers.add(o);
+        }
     }
 
     /**

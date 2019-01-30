@@ -731,6 +731,24 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ToggleButton highlight;
 
+    @FXML
+    private ListView templateSphereListView;
+
+    @FXML
+    private ListView templateSymptomListView;
+
+    @FXML
+    private ListView templateEdgeListView;
+
+    @FXML
+    private Accordion overViewAccordion;
+
+    @FXML
+    private TitledPane templateTitledPane;
+
+    @FXML
+    private TitledPane historyTitledPane;
+
     public Controller() {
     }
 
@@ -1108,6 +1126,8 @@ public class Controller implements ObserverSyndrom {
         ImportOofAction importOofAction = new ImportOofAction(file);
         importOofAction.action();
         zoomSlider.setValue(100);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
     }
 
     /**
@@ -1123,6 +1143,8 @@ public class Controller implements ObserverSyndrom {
         ImportGxlAction importGxlAction = new ImportGxlAction(file);
         importGxlAction.action();
         zoomSlider.setValue(100);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
     }
 
     /**
@@ -1377,6 +1399,9 @@ public class Controller implements ObserverSyndrom {
         analysisMode(false);
         editButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        templateSphereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        templateSymptomListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        templateEdgeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
@@ -1681,6 +1706,15 @@ public class Controller implements ObserverSyndrom {
 
         vBoxAnalysisOption.setVisible(active);
         vBoxAnalysisOption.setManaged(active);
+
+        historyTitledPane.setVisible(active);
+        historyTitledPane.setManaged(active);
+
+        if(active){
+            overViewAccordion.getPanes().add(historyTitledPane);
+        }else{
+            overViewAccordion.getPanes().remove(historyTitledPane);
+        }
     }
 
     private void editMode(Boolean active) {
@@ -1713,6 +1747,12 @@ public class Controller implements ObserverSyndrom {
 
         toolBarSeparator1.setVisible(active);
         toolBarSeparator1.setManaged(active);
+
+        if(active){
+            overViewAccordion.getPanes().add(templateTitledPane);
+        }else{
+            overViewAccordion.getPanes().remove(templateTitledPane);
+        }
     }
 
     private void disableEditMode(Boolean disable){
@@ -1727,6 +1767,7 @@ public class Controller implements ObserverSyndrom {
         undoButton.setDisable(disable);
         toolBarSeparator1.setDisable(disable);
         zoomSlider.setDisable(disable);
+        overViewAccordion.setDisable(disable);
     }
 
     private void disableAnalysisMode(Boolean disable){
@@ -1797,54 +1838,26 @@ public class Controller implements ObserverSyndrom {
         }
 
         rootItem.setExpanded(true);
-
-        /*
-        TreeItem<String> vertex1 = new TreeItem<String>("Symptom1");
-        TreeItem<String> vertex2 = new TreeItem<String>("Symptom2");
-
-        TreeItem<String> edge1 = new TreeItem<String>("Kante1");
-        TreeItem<String> edge2 = new TreeItem<String>("Kante2");
-        TreeItem<String> edge3 = new TreeItem<String>("Kante3");
-        TreeItem<String> edge4 = new TreeItem<String>("Kante4");
-
-        vertex1.getChildren().addAll(edge1,edge2);
-        vertex2.getChildren().addAll(edge3,edge4);
-        rootItem.getChildren().addAll(vertex1,vertex2);
-        */
         treeView.setRoot(rootItem);
         treeView.setShowRoot(false);
+    }
 
+    public void templateViewUpdate(){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        List<Sphere> spheres = graph.getSpheres();
+        Collection<Vertex> vertices = graph.getVertices();
+        Collection<Edge> edges = graph.getEdges();
 
-        /*
         if(!spheres.isEmpty()){
-            name.add("---------------------------Sphären---------------------------");
-
-            for(Sphere sphere : spheres){
-                name.add(sphere.getAnnotation().get("de"));
-                treeView.getRoot().getChildren().adAll
-            }
+            templateSphereListView.setItems(FXCollections.observableArrayList(spheres));
         }
-
         if(!vertices.isEmpty()){
-            name.add("---------------------------Symptome------------------------");
-
-            for(Vertex vertex : vertices){
-                name.add(vertex.getAnnotation().get("de"));
-            }
+            templateSymptomListView.setItems(FXCollections.observableArrayList(vertices));
         }
-
-        if(!edges.isEmpty()) {
-            name.add("---------------------------Kanten----------------------------");
-
-            for(Edge edge : edges){
-                edu.uci.ics.jung.graph.util.Pair<Vertex> sourceTargetJung = vv.getGraphLayout().getGraph().getEndpoints(edge);
-                name.add(sourceTargetJung.getFirst().getAnnotation().get("de") + " -> " + sourceTargetJung.getSecond().getAnnotation().get("de"));
-            }
+        if(!edges.isEmpty()){
+            templateEdgeListView.setItems(FXCollections.observableArrayList(edges));
         }
-
-        ObservableList<String> test = FXCollections.observableArrayList(name);
-        */
-
 
     }
 
@@ -1882,6 +1895,7 @@ public class Controller implements ObserverSyndrom {
         //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("First Graph");
         history.execute(action);
+        System.out.println("vv: "+syndrom.getVv());
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         disableEditMode(false);

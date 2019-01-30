@@ -12,7 +12,6 @@ import java.util.Map;
 /**
  * Factory to create spheres, edges and vertices.
  */
-@Data
 public class GraphObjectsFactory {
     /**
      * The values to use.
@@ -31,6 +30,10 @@ public class GraphObjectsFactory {
     public GraphObjectsFactory() {
         values = Values.getInstance();
         objectCounter = 0;
+    }
+
+    public void setObjectCounter(int id){
+        objectCounter = id;
     }
 
     /**
@@ -72,6 +75,7 @@ public class GraphObjectsFactory {
      * @return A new sphere object.
      */
     public Sphere createSphere(Point2D position) {
+        System.out.println("create: "+objectCounter);
         int id = objectCounter++;
         Color fillPaint = values.getFillPaintSphere();
         double width = values.getDefaultWidthSphere();
