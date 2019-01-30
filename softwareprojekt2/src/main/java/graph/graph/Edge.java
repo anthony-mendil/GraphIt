@@ -2,7 +2,9 @@ package graph.graph;
 
 import javafx.util.Pair;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -52,9 +54,32 @@ public class Edge {
      */
     @NonNull
     private boolean isVisible;
-
+    /**
+     * Indicator whether the edge is currently highlighted.
+     */
     private boolean isHighlighted = false;
+    /**
+     * Indicator whether the edge can be modified in terms of style.
+     */
+    @Getter
+    @Setter
+    private boolean isLockedStyle = false;
+    /**
+     * Indicator whether the edge-type can be modified.
+     */
+    @Getter
+    @Setter
+    private boolean isLockedEdgeType = false;
 
+    /**
+     * Creates an edge between two vertices.
+     * @param id           The unique ID of the edge.
+     * @param color        The color of the edge.
+     * @param stroke       The stroke of the edge.
+     * @param arrowType    The arrowType of the edge.
+     * @param hasAnchor    Indicator whether of the Edge is an anchorpoint.
+     * @param isVisible    Indicator whether the edge is currently visible.
+     */
     public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean hasAnchor, boolean isVisible){
         this.id = id;
         this.color = color;
