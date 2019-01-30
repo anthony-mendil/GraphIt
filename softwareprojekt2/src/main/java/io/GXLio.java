@@ -47,6 +47,10 @@ public class GXLio {
      */
     private File file;
 
+    /**
+     * The highest id of all GXLAttributetElements in the gxl document that is importet in the {@gxlToInstance()}-method.
+     */
+    int maxID = -1;
 
 
     private static Logger logger = Logger.getLogger(GXLio.class);
@@ -88,9 +92,13 @@ public class GXLio {
             // This fact is a result from the users possibility to delete elements after creating them
             // befor he/she exports the graph. This leads to gaps in the row of ids.
             int idCounter = 0;
+
             for (int i = 0; i < gxlGraph.getGraphElementCount(); i++) {
                 if (doc.containsID(idCounter + "")) {
                     GXLAttributedElement elem = doc.getElement(idCounter + "");
+                    if(maxID < Integer.parseInt(elem.getID())){
+                        maxID = Integer.parseInt(elem.getID());
+                    }
                     // Checks if the current element is a sphere.
                     if (((GXLString) elem.getAttr("TYPE").getValue()).getValue().equals("Sphäre")) {
                         Sphere newSphere = convertGXLElementToSphere(elem);
@@ -150,8 +158,6 @@ public class GXLio {
             Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
             SyndromGraph<Vertex, Edge> newGraph =(SyndromGraph<Vertex, Edge>) layout.getGraph();
             SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-           /* vv.setGraphLayout(layout);
-            vv.getGraphLayout().setGraph(newGraph);*/
 
             for (Map<Sphere, List<Vertex>> m : list) {
                 for (Map.Entry<Sphere, List<Vertex>> e : m.entrySet()) {
@@ -177,6 +183,9 @@ public class GXLio {
                 }
             }
             // Paints the graph with the elements imported from the gxl document.
+
+            Syndrom.getInstance().getLayout().setGraph(newGraph);
+            Syndrom.getInstance().setGraph(newGraph);
             vv.getGraphLayout().setGraph(newGraph);
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
