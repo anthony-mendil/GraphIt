@@ -7,6 +7,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
+import gui.Values;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 
 /**
@@ -40,6 +41,7 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
         vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vv2.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vv2.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
+        Values.getInstance().setShowAnchor(false);
         vv.repaint();
         vv2.repaint();
     }

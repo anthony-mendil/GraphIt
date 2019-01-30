@@ -18,7 +18,6 @@ import log_management.parameters.move.MoveSphereParam;
 import log_management.parameters.move.MoveVerticesParam;
 import log_management.tables.Log;
 
-
 import java.io.IOException;
 
 public class LogToStringConverter {

@@ -1,9 +1,7 @@
 package io;
 
 import com.google.inject.Inject;
-import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -14,14 +12,10 @@ import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.*;
-import java.util.stream.Stream;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * This class provides methods to exports a GXL-Representation from a graph
@@ -301,18 +295,28 @@ public class GXLio {
         StrokeType stroke = StrokeType.valueOf(((GXLString) elem.getAttr("stroke").getValue()).getValue());
         EdgeArrowType arrowType = EdgeArrowType.valueOf(((GXLString) elem.getAttr("arrowType").getValue()).getValue());
         boolean hasAnchor = Boolean.parseBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
-        String[] coordinatesArray = null;
-        java.awt.geom.Point2D coordinates = null;
+        String[] coordinatesArraySource = null;
+        String[] coordinatesArrayTarget = null;
+        java.awt.geom.Point2D coordinatesSource = null;
+        java.awt.geom.Point2D coordinatesTarget = null;
         if (hasAnchor == true) {
-            coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle").getValue()).getValue());
-            coordinates = new java.awt.geom.Point2D.Double(
-                    java.lang.Double.parseDouble(coordinatesArray[0]),
-                    java.lang.Double.parseDouble(coordinatesArray[1]));
+            if(!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")){
+                coordinatesArraySource = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
+                coordinatesSource = new java.awt.geom.Point2D.Double(
+                    java.lang.Double.parseDouble(coordinatesArraySource[0]),
+                    java.lang.Double.parseDouble(coordinatesArraySource[1]));
+            }
+            if(!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")){
+                coordinatesArrayTarget = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of target").getValue()).getValue());
+                coordinatesTarget = new java.awt.geom.Point2D.Double(
+                        java.lang.Double.parseDouble(coordinatesArrayTarget[0]),
+                        java.lang.Double.parseDouble(coordinatesArrayTarget[1]));
+            }
         }
         boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
         Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
         if (hasAnchor == true) {
-            newEdge.setAnchorPoints(new javafx.util.Pair<>(null,coordinates));
+            newEdge.setAnchorPoints(new javafx.util.Pair<>(coordinatesSource, coordinatesTarget));
         }
         return newEdge;
     }
@@ -452,6 +456,181 @@ public class GXLio {
         }catch(Exception e){}
     System.out.println(content);
     return content;
+    }
+
+
+    /**
+     * Extracts the graph from our syndrom and creates a gxl document for this graph.
+     * The document is saved at the location specified by the file. This file is set when the
+     * {@exportGXL}-method is called.
+     * To create the document the method extracts the elements from the graph (spheres, vertices and edges)
+     * and saves them as GXLAttributedElements. In case of spheres and vertices this are GXLNodes object.
+     * In case of edges this are GXLEdges. GXLNode and GXLEdge are subclassses from the GXLAttributetElement class.
+     * The GXLAttributetElements have GXLAttr objects as childs. These childs describe the GXLAttributedElements.
+     * This method gives back the contetn of the new created document as string.
+     *
+     * @return the content of the created document
+     */
+    public String gxlFromInstanceWithTemplate(){
+        boolean exportWithRules = true;
+        VisualizationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        List<Sphere> currentSpheres = theGraph.getSpheres();
+
+        GXLDocument doc = new GXLDocument();
+        GXLIDGenerator idGenerator = new GXLIDGenerator(doc);
+        List<GXLNode> myNodes = new ArrayList<>();
+        GXLGraph gxlSyndrom = new GXLGraph("syndrom");
+        for (Sphere s : currentSpheres) {
+            GXLNode sphere = new GXLNode(s.getId() + "");
+            sphere.setAttr("TYPE", new GXLString("Sphäre"));
+            Color color = s.getColor();
+            sphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
+            sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
+            sphere.setAttr("width", new GXLString("" + s.getWidth()));
+            sphere.setAttr("height", new GXLString("" + s.getHeight()));
+            String annotationContent = "";
+            if (s.getAnnotation() != null) {
+                for (String partOfAnnotation : s.getAnnotation().keySet()) {
+                    annotationContent = annotationContent + s.getAnnotation().get(partOfAnnotation) + "\u00A6";
+                }
+            }
+            sphere.setAttr("annotation", new GXLString(annotationContent));
+            sphere.setAttr("font", new GXLString(s.getFont()));
+            sphere.setAttr("fontSize", new GXLString("" + s.getFontSize()));
+            String nodeIDs = "";
+            int numberOfCurrentNode = 0;
+            for(Vertex v : s.getVertices()){
+                nodeIDs = nodeIDs + v.getId();
+                numberOfCurrentNode++;
+                if(numberOfCurrentNode < s.getVertices().size()){
+                    nodeIDs = nodeIDs + ", ";
+                }
+            }
+            if(exportWithRules == true) {
+                sphere = addRulesToSphere(s, sphere);
+            }
+            sphere.setAttr("IDs of nodes containt in this shpere: ", new GXLString(nodeIDs));
+            gxlSyndrom.add(sphere);
+        }
+        for(Sphere s :currentSpheres) {
+            // GXLRel rel = new GXLRel();
+            for (Vertex v : s.getVertices()) {
+                GXLNode singleNodeInSphere = new GXLNode(v.getId() + "");
+                //  sphere.add(singleNodeInSphere);
+                gxlSyndrom.add(singleNodeInSphere);
+
+                // rel.add(new GXLRelend(singleNodeInSphere));
+                singleNodeInSphere.setAttr("TYPE", new GXLString("Node"));
+                Color color = v.getFillColor();
+                singleNodeInSphere.setAttr("fillPaint", new GXLString(getPaintDescription(color)));
+                singleNodeInSphere.setAttr("coordinate", new GXLString("" + v.getCoordinates().toString()));
+                singleNodeInSphere.setAttr("shape", new GXLString("" + v.getShape()));
+                String nodeAnnotationContent = "";
+                if (v.getAnnotation() != null) {
+                    for (String partOfNodeAnnotation : v.getAnnotation().keySet()) {
+                        nodeAnnotationContent = nodeAnnotationContent + v.getAnnotation().get(partOfNodeAnnotation) + "\u00A6";
+                    }
+                }
+                singleNodeInSphere.setAttr("annotation", new GXLString(nodeAnnotationContent));
+                Color drawPaint = (Color) v.getDrawColor();
+                singleNodeInSphere.setAttr("drawPaint", new GXLString(getPaintDescription(drawPaint)));
+                if (v.getVertexArrowReinforced() != null) {
+                    singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
+                } else {
+                    singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString(""));
+                }
+                if (v.getVertexArrowNeutral() != null) {
+                    singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString("" + v.getVertexArrowNeutral()));
+                } else {
+                    singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString(""));
+                }
+                if (v.getVertexArrowExtenuating() != null) {
+                    singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString("" + v.getVertexArrowExtenuating()));
+                } else {
+                    singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString(""));
+                }
+                singleNodeInSphere.setAttr("size", new GXLString("" + v.getSize()));
+                singleNodeInSphere.setAttr("isVisible", new GXLString("" + v.isVisible()));
+                singleNodeInSphere.setAttr("font", new GXLString("" + v.getFont()));
+                singleNodeInSphere.setAttr("fontSize", new GXLString("" + v.getFontSize()));
+                singleNodeInSphere.setAttr("ID of the sphere containing this node:", new GXLString("" + s.getId()));
+                if(exportWithRules == true){
+                    singleNodeInSphere = addRulesToNode(v, singleNodeInSphere);
+                }
+                myNodes.add(singleNodeInSphere);
+            }
+        }
+        for(Edge e : theGraph.getEdges()) {
+            Pair<Vertex> verticesOfEdge = theGraph.getEndpoints(e);
+            GXLEdge edge = new GXLEdge(verticesOfEdge.getFirst().getId() + "", verticesOfEdge.getSecond().getId() + "");
+            edge.setID(e.getId() + "");
+            edge.setAttr("TYPE", new GXLString("Edge"));
+            Color color = (Color) e.getColor();
+            edge.setAttr("paint", new GXLString(getPaintDescription(color)));
+            edge.setAttr("stroke", new GXLString("" + e.getStroke()));
+            edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
+            edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
+            if(e.isHasAnchor()) {
+                if (e.getAnchorPoints().getKey() == null) {
+                    edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the source set"));
+                } else {
+                    edge.setAttr("anchorAngle of source", new GXLString("" + e.getAnchorPoints().getKey()));
+                }
+                if (e.getAnchorPoints().getValue() == null) {
+                    edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the target set"));
+                }else{
+                    edge.setAttr("anchorAngle of target", new GXLString("" + e.getAnchorPoints().getValue()));
+                }
+            }
+            edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
+            if(exportWithRules == true){
+                edge = addRulesToEdge(e, edge);
+            }
+            gxlSyndrom.add(edge);
+        }
+
+        doc.getDocumentElement().add(gxlSyndrom);
+
+        String content = "";
+        try {
+            doc.write(file);
+
+            // reading the content of the created gxl document and write its content into a String
+            try(BufferedReader reader = new BufferedReader(new FileReader(file));){
+                Stream<String> lines = reader.lines();
+                Object[] linesArray = lines.toArray();
+                for(Object s : linesArray){
+                    String objectContetnt = (String) s;
+                    content = content + "\n" + objectContetnt;
+                }
+            } catch (FileNotFoundException e) {
+                logger.error(e.toString());
+            } catch (IOException e) {
+                logger.error(e.toString());
+            }
+        }catch(Exception e){}
+        System.out.println(content);
+        return content;
+    }
+
+    private GXLNode addRulesToSphere(Sphere sphere, GXLNode gxlSphere){
+        gxlSphere.setAttr("isLockedPosition", new GXLString(sphere.isLockedPosition() + ""));
+        gxlSphere.setAttr("isLockedAnnotation", new GXLString(sphere.isLockedAnnotation() + ""));
+        gxlSphere.setAttr("isLockedStyle", new GXLString(sphere.isLockedStyle() + ""));
+        gxlSphere.setAttr("isLockedVertices", new GXLString(sphere.isLockedVertices() + ""));
+        return gxlSphere;
+    }
+
+    private GXLNode addRulesToNode(Vertex vertex, GXLNode gxlNode){
+        gxlNode.setAttr("isLockedPosition", new GXLString(vertex.isLockedPosition() + ""));
+        gxlNode.setAttr("isLockedAnnotation", new GXLString(vertex.isLockedAnnotation() + ""));
+        gxlNode.setAttr("isLockedStyle", new GXLString(vertex.isLockedStyle() + ""));
+        return gxlNode;
+    }
+
+    private GXLEdge addRulesToEdge(Edge edge, GXLEdge gxlEdge){
+        return gxlEdge;
     }
 
     /**

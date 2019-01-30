@@ -1,6 +1,5 @@
 package jgrapht;
 
-import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;

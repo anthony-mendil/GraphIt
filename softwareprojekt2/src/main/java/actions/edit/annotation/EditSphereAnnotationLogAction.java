@@ -11,7 +11,9 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereAnnotationParam;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Changes the annotation of a selected sphere.
@@ -46,15 +48,20 @@ public class EditSphereAnnotationLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         if(parameters == null) {
+            Set<Sphere> lockedSpheres = new HashSet<>();
             for (Sphere sp : pickedState.getPicked()) {
-                createParameter(sp, sp.getAnnotation().get("de"), text);
-                Map<String, String> annotation = sp.getAnnotation();
-                if(annotation.get("de") != null){
-                    annotation.remove("de");
+                if(!sp.isLockedAnnotation()) {
+                    createParameter(sp, sp.getAnnotation().get("de"), text);
+                    Map<String, String> annotation = sp.getAnnotation();
+                    if (annotation.get("de") != null) {
+                        annotation.remove("de");
+                        sp.setAnnotation(annotation);
+                    }
+                    annotation.put("de", text);
                     sp.setAnnotation(annotation);
+                }else{
+                    lockedSpheres.add(sp);
                 }
-                annotation.put("de", text);
-                sp.setAnnotation(annotation);
             }
         }else{
             Sphere sphere = ((EditSphereAnnotationParam)parameters).getSphere();
