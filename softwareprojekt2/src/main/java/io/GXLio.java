@@ -168,9 +168,9 @@ public class GXLio {
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
             } catch(IOException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             } catch(SAXException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             }
 
     }
@@ -422,9 +422,9 @@ public class GXLio {
                     content = content + "\n" + objectContetnt;
                 }
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             }
         }catch(Exception e){}
     System.out.println(content);
