@@ -1,8 +1,14 @@
 package jgrapht;
 
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.Syndrom;
+import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+import javafx.util.Pair;
 import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultDirectedGraph;
 
 import java.util.List;
 import java.util.Set;
@@ -23,11 +29,12 @@ public class JGraphTHandler {
     /**
      * The graph in JGraphT-form.
      */
-    private Graph graph;
+    private Graph algorithmGraph;
     /**
      * Constructor in case the user changes to analyse-mode and analyses without using a vertex.
      */
-    public JGraphTHandler() {
+    public JGraphTHandler(List<Vertex> pVertices, Set<Pair<Vertex,Vertex>> pEdges) {
+        convertGraphToJGraphT(pVertices,pEdges);
     }
     /**
      * Constructor in case the user wants to analyse the graph in terms of paths.
@@ -44,8 +51,17 @@ public class JGraphTHandler {
      * @param pEdges    Given list of edges.
      * @return The Graph in JGraphT-Type.
      */
-    public Graph convertGraphToJGraphT(List<Vertex> pVertices, List<Edge> pEdges) {
-        return null;
+    public void convertGraphToJGraphT(List<Vertex> pVertices, Set<Pair<Vertex,Vertex>> pEdges) {
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        Graph<Vertex,Edge> jGraphTGraph = new DefaultDirectedGraph<>(Edge.class);
+        for(Vertex vertex : pVertices){
+            graph.addVertex(vertex);
+        }
+        for(Pair<Vertex,Vertex> edge : pEdges){
+            jGraphTGraph.addEdge(edge.getKey(),edge.getValue(),graph.findEdge(edge.getKey(), edge.getValue()));
+        }
+        algorithmGraph = jGraphTGraph;
     }
     /**
      * Detects all cycles in the directed graph and returns them in a set.

@@ -7,13 +7,19 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.dao.GraphDao;
 import net.sourceforge.gxl.*;
+import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
+<<<<<<< HEAD
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+=======
+import java.io.*;
+import java.util.stream.Stream;
+>>>>>>> ed48f544d9facda9220c223a5bb81a0716a1e52a
 import java.util.*;
 import java.util.List;
 
@@ -43,6 +49,9 @@ public class GXLio {
     private File file;
 
 
+
+    private static Logger logger = Logger.getLogger(GXLio.class);
+
     /**
      * Constructor of class GXLio.
      * Creates a new GXLio object.
@@ -54,7 +63,7 @@ public class GXLio {
      * Writes the gxl representation from the graph that was created or edited
      * and currently is shown to the user in the system into a document.
      * As location of the document the file-attribut is used.
-     * Whose value is set when the {@exportGXL}-method is called.
+     * Whose value is set when the {@importGXL}-method is called.
      *
      * @param pGXL The GXL representation that gets written into syndrom.
      */
@@ -166,14 +175,20 @@ public class GXLio {
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
             } catch(IOException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             } catch(SAXException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             }
 
     }
 
-
+    /**
+     * This method creates a new sphere object with the values from the passed GXLAttributedElement and returns this sphere.
+     * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Sphere]-class.
+     *
+     * @param elem is a GXLAttributetElement that describes a sphere having the same atributes as an sphere.
+     * @return a new sphere object with the values from the passed GXLAttributetElement object
+     */
     private Sphere convertGXLElementToSphere(GXLAttributedElement elem){
         int id = Integer.parseInt(elem.getID());
         System.out.println("id: " + id);
@@ -201,6 +216,13 @@ public class GXLio {
         return new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
     }
 
+    /**
+     * This method creates a new vertex object with the values from the passed GXLAttributedElement and returns this vertex.
+     * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Vertex]-class.
+     *
+     * @param elem is a GXLAttributetElement that describes a vertex having the same atributes as an vertex.
+     * @return a new vertex object with the values from the passed GXLAttributetElement object
+     */
     private Vertex convertGXLElementToVertex(GXLAttributedElement elem){
         int id = Integer.parseInt(elem.getID());
         String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
@@ -244,6 +266,13 @@ public class GXLio {
         return newVertex;
     }
 
+    /**
+     * This method creates a new edge object with the values from the passed GXLAttributedElement and returns this edge.
+     * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Edge]-class.
+     *
+     * @param elem is a GXLAttributetElement that describes a edge having the same atributes as an edge.
+     * @return a new edge object with the values from the passed GXLAttributetElement object
+     */
     private Edge convertGXLElemToEdge(GXLAttributedElement elem){
         int id = Integer.parseInt(elem.getID());
         String[] drawPaintArray = getNumberArrayFromString(((GXLString) elem.getAttr("paint").getValue()).getValue());
@@ -273,9 +302,16 @@ public class GXLio {
 
 
     /**
-     * Extracts the GXL representation from our syndrom and gives it back as string.
+     * Extracts the graph from our syndrom and creates a gxl document for this graph.
+     * The document is saved at the location specified by the file. This file is set when the
+     * {@exportGXL}-method is called.
+     * To create the document the method extracts the elements from the graph (spheres, vertices and edges)
+     * and saves them as GXLAttributedElements. In case of spheres and vertices this are GXLNodes object.
+     * In case of edges this are GXLEdges. GXLNode and GXLEdge are subclassses from the GXLAttributetElement class.
+     * The GXLAttributetElements have GXLAttr objects as childs. These childs describe the GXLAttributedElements.
+     * This method gives back the contetn of the new created document as string.
      *
-     *
+     * @return the content of the created document
      */
     public String gxlFromInstance(){
         VisualizationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
@@ -379,10 +415,26 @@ public class GXLio {
 
         doc.getDocumentElement().add(gxlSyndrom);
 
+        String content = "";
         try {
             doc.write(file);
+
+            // reading the content of the created gxl document and write its content into a String
+            try(BufferedReader reader = new BufferedReader(new FileReader(file));){
+                Stream<String> lines = reader.lines();
+                Object[] linesArray = lines.toArray();
+                for(Object s : linesArray){
+                    String objectContetnt = (String) s;
+                    content = content + "\n" + objectContetnt;
+                }
+            } catch (FileNotFoundException e) {
+                logger.error(e.toString());
+            } catch (IOException e) {
+                logger.error(e.toString());
+            }
         }catch(Exception e){}
-        return doc.toString();
+    System.out.println(content);
+    return content;
     }
 
     /**
@@ -453,10 +505,10 @@ public class GXLio {
 
     public void importGXL(File pFile){
         String gxl = "";
-        try {
-            gxl = new Scanner(pFile).useDelimiter("\\A").next();
+        try(Scanner scanner= new Scanner(file)) {
+            gxl = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         file = pFile;
         gxlToInstance(gxl);

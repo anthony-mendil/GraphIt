@@ -4,15 +4,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import graph.graph.Sphere;
 
+import java.awt.geom.Point2D;
 import java.lang.reflect.Type;
 
-public class SphereSerializer implements JsonSerializer<Sphere> {
-    public JsonElement serialize(Sphere position, Type type,
+public class Point2DSerializer implements JsonSerializer<Point2D> {
+    public JsonElement serialize(Point2D position, Type type,
                                  JsonSerializationContext jsc){
         JsonObject jo = new JsonObject();
-        return null;
+        jo.addProperty("x",position.getX());
+        jo.addProperty("y",position.getY());
 
+        return jo;
     }
 }

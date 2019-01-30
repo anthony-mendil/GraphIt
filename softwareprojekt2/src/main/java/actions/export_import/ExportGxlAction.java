@@ -23,8 +23,9 @@ public class ExportGxlAction extends GraphAction {
      */
     public ExportGxlAction(File pFile) {
         file=pFile;
-        Syndrom.getInstance().getVv().getPickedSphereState().clear();
-    }
+        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+            Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        }    }
 
     /**
      * Executes the defined behavior of the action.
@@ -40,7 +41,7 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //there is no undo/redo operation for io
     }
 
     /**
@@ -48,6 +49,6 @@ public class ExportGxlAction extends GraphAction {
      */
     @Override
     public void redo() {
-        return;
+        //there is no undo/redo operation for io
     }
 }

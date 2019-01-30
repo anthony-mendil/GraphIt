@@ -2,6 +2,7 @@ package io;
 
 import com.google.inject.Inject;
 import log_management.dao.LogDao;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +27,8 @@ public class Protocolio {
         // Can handle protocol-export now
     }
 
+    private static Logger logger= Logger.getLogger(Protocolio.class);
+
     /**
      * Export the current protocol as readable textfile.
      *
@@ -36,7 +39,7 @@ public class Protocolio {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
             bufferedWriter.write(protocol);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
     }
 
@@ -50,7 +53,7 @@ public class Protocolio {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
             bufferedWriter.write(protocol);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
     }
 

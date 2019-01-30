@@ -1,11 +1,6 @@
 package actions;
 
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
-import graph.graph.Edge;
 import graph.graph.Syndrom;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
 import gui.Values;
 
 /**

@@ -40,6 +40,7 @@ public class ExportUsableProtocolAction extends GraphAction {
      */
     @Override
     public void undo() {
+        //there is no undo/redo operation for io
     }
 
     /**
@@ -47,5 +48,6 @@ public class ExportUsableProtocolAction extends GraphAction {
      */
     @Override
     public void redo() {
+        //there is no undo/redo operation for io
     }
 }

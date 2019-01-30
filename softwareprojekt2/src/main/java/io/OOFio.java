@@ -84,7 +84,7 @@ public class OOFio {
         try(Scanner scanner =new Scanner(pFile)) {
             oof = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
         gxlio.gxlToInstance(gxlFromOOF(oof));
