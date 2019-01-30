@@ -1,10 +1,10 @@
 package log_management.dao;
 
 import actions.LogEntryName;
+import com.google.gson.Gson;
 import log_management.DatabaseManager;
 import log_management.tables.Graph;
 import log_management.tables.Log;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -70,10 +70,9 @@ public class LogDao implements Dao<Log> {
         selectLogs.setParameter("gid", graphId);
         List<Log> logList = selectLogs.getResultList();
 
-        ObjectMapper mapper = new ObjectMapper();
         String logString = null;
         try {
-            logString = mapper.writeValueAsString(logList);
+            logString = new Gson().toJson(logList);
         } catch (Exception e) {}
 
         return  logString;
@@ -93,13 +92,10 @@ public class LogDao implements Dao<Log> {
     }
 
     public  void saveLogs(String oofLogs) {
-        ObjectMapper mapper = new ObjectMapper();
         List<Log> logs;
-        try {
-            logs = mapper.readValue(oofLogs, List.class);
-        } catch (IOException e) {
-            throw new IllegalArgumentException();
-        }
+
+            logs = new Gson().fromJson(oofLogs, List.class);
+
         logs.forEach(log -> save(log));
     }
 

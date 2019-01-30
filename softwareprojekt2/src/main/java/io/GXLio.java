@@ -7,6 +7,7 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.dao.GraphDao;
 import net.sourceforge.gxl.*;
+import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
@@ -40,6 +41,9 @@ public class GXLio {
      */
     private File file;
 
+
+
+    private static Logger logger = Logger.getLogger(GXLio.class);
 
     /**
      * Constructor of class GXLio.
@@ -164,9 +168,9 @@ public class GXLio {
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
             } catch(IOException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             } catch(SAXException e){
-                e.printStackTrace();
+            logger.error(e.toString());
             }
 
     }
@@ -410,8 +414,7 @@ public class GXLio {
             doc.write(file);
 
             // reading the content of the created gxl document and write its content into a String
-            try{
-                BufferedReader reader = new BufferedReader(new FileReader(file));
+            try(BufferedReader reader = new BufferedReader(new FileReader(file));){
                 Stream<String> lines = reader.lines();
                 Object[] linesArray = lines.toArray();
                 for(Object s : linesArray){
@@ -419,9 +422,9 @@ public class GXLio {
                     content = content + "\n" + objectContetnt;
                 }
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             }
         }catch(Exception e){}
     System.out.println(content);
@@ -496,10 +499,10 @@ public class GXLio {
 
     public void importGXL(File pFile){
         String gxl = "";
-        try {
-            gxl = new Scanner(pFile).useDelimiter("\\A").next();
+        try(Scanner scanner= new Scanner(file)) {
+            gxl = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         file = pFile;
         gxlToInstance(gxl);

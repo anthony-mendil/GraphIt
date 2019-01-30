@@ -1,11 +1,13 @@
 package actions;
 
+import com.google.gson.Gson;
+import graph.graph.Sphere;
 import log_management.DatabaseManager;
 import log_management.parameters.Param;
 import log_management.tables.Log;
 import lombok.Getter;
 import lombok.Setter;
-import org.codehaus.jackson.map.ObjectMapper;
+
 
 import java.time.LocalDateTime;
 
@@ -47,10 +49,9 @@ public abstract class LogAction extends GraphAction {
         log.setLogEntryName(logEntryName);
         log.setTime(time);
 
-        ObjectMapper mapper = new ObjectMapper();
         String paramString = null;
         try {
-            paramString = mapper.writeValueAsString(parameters);
+            paramString = new Gson().toJson(parameters);
         } catch (Exception e) {}
         log.setParameters(paramString);
 

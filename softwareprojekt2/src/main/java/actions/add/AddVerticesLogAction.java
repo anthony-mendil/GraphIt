@@ -10,7 +10,6 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.awt.geom.Point2D;
 import java.util.HashMap;
@@ -34,7 +33,6 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Map of vertices and the sphere.
      */
-    @JsonSerialize
     private Map<Vertex,Sphere> vertices = new HashMap<>();
 
     /**
