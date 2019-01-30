@@ -24,6 +24,7 @@ import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
+import actions.other.LoadGraphAction;
 import actions.remove.*;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -53,6 +54,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import log_management.DatabaseManager;
 import log_management.dao.LogDao;
 import lombok.Data;
 
@@ -1433,6 +1435,30 @@ public class Controller implements ObserverSyndrom {
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
 
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
+
+        //trying direct load
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+
+        if (databaseManager.databaseEmpty()) {
+            CreateGraphAction action = new CreateGraphAction("First Graph");
+            history.execute(action);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+            disableEditMode(false);
+            disableAnalysisMode(false);
+            zoomSlider.setValue(100);
+            System.out.println("neuer Graph");
+        } else {
+            LoadGraphAction action = new LoadGraphAction();
+            history.execute(action);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+            disableEditMode(false);
+            disableAnalysisMode(false);
+            zoomSlider.setValue(100);
+            System.out.println("alter graph");
+        }
+
     }
 
     private void initFonts() {

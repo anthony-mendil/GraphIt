@@ -73,4 +73,22 @@ public class GraphDao implements Dao<Graph> {
             entityManager.remove(graph);
         });
     }
+
+    public String gxlFromDatabase() {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        List<Graph> graphList = selectAllGraphs.getResultList();
+
+        return graphList.get(0).getGxl();
+    }
+
+    public boolean isEmpty() {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        List<Graph> graphList = selectAllGraphs.getResultList();
+
+        return (graphList.size() == 0);
+    }
 }
