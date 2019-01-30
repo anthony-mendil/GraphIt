@@ -301,18 +301,28 @@ public class GXLio {
         StrokeType stroke = StrokeType.valueOf(((GXLString) elem.getAttr("stroke").getValue()).getValue());
         EdgeArrowType arrowType = EdgeArrowType.valueOf(((GXLString) elem.getAttr("arrowType").getValue()).getValue());
         boolean hasAnchor = Boolean.parseBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
-        String[] coordinatesArray = null;
-        java.awt.geom.Point2D coordinates = null;
+        String[] coordinatesArraySource = null;
+        String[] coordinatesArrayTarget = null;
+        java.awt.geom.Point2D coordinatesSource = null;
+        java.awt.geom.Point2D coordinatesTarget = null;
         if (hasAnchor == true) {
-            coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle").getValue()).getValue());
-            coordinates = new java.awt.geom.Point2D.Double(
-                    java.lang.Double.parseDouble(coordinatesArray[0]),
-                    java.lang.Double.parseDouble(coordinatesArray[1]));
+            if(!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")){
+                coordinatesArraySource = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
+                coordinatesSource = new java.awt.geom.Point2D.Double(
+                    java.lang.Double.parseDouble(coordinatesArraySource[0]),
+                    java.lang.Double.parseDouble(coordinatesArraySource[1]));
+            }
+            if(!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")){
+                coordinatesArrayTarget = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of target").getValue()).getValue());
+                coordinatesTarget = new java.awt.geom.Point2D.Double(
+                        java.lang.Double.parseDouble(coordinatesArrayTarget[0]),
+                        java.lang.Double.parseDouble(coordinatesArrayTarget[1]));
+            }
         }
         boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
         Edge newEdge = new Edge(id, paint, stroke, arrowType, hasAnchor, isVisible);
         if (hasAnchor == true) {
-            newEdge.setAnchorPoints(new javafx.util.Pair<>(null,coordinates));
+            newEdge.setAnchorPoints(new javafx.util.Pair<>(coordinatesSource, coordinatesTarget));
         }
         return newEdge;
     }
@@ -568,7 +578,16 @@ public class GXLio {
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchor()));
             if(e.isHasAnchor()) {
-                edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoints().getValue()));
+                if (e.getAnchorPoints().getKey() == null) {
+                    edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the source set"));
+                } else {
+                    edge.setAttr("anchorAngle of source", new GXLString("" + e.getAnchorPoints().getKey()));
+                }
+                if (e.getAnchorPoints().getValue() == null) {
+                    edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the target set"));
+                }else{
+                    edge.setAttr("anchorAngle of target", new GXLString("" + e.getAnchorPoints().getValue()));
+                }
             }
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
             if(exportWithRules == true){
@@ -602,13 +621,16 @@ public class GXLio {
     }
 
     private GXLNode addRulesToSphere(Sphere sphere, GXLNode gxlSphere){
-        gxlSphere.setAttr("isLockedStyle", new GXLString(sphere.getId() + ""));
+        gxlSphere.setAttr("isLockedPosition", new GXLString(sphere.isLockedPosition() + ""));
+        gxlSphere.setAttr("isLockedAnnotation", new GXLString(sphere.isLockedAnnotation() + ""));
+        gxlSphere.setAttr("isLockedStyle", new GXLString(sphere.isLockedStyle() + ""));
+        gxlSphere.setAttr("isLockedVertices", new GXLString(sphere.isLockedVertices() + ""));
         return gxlSphere;
     }
 
     private GXLNode addRulesToNode(Vertex vertex, GXLNode gxlNode){
-        gxlNode.setAttr("isLockedStyle", new GXLString(vertex.isLockedPosition() + ""));
-        gxlNode.setAttr("isLockedStyle", new GXLString(vertex.isLockedAnnotation() + ""));
+        gxlNode.setAttr("isLockedPosition", new GXLString(vertex.isLockedPosition() + ""));
+        gxlNode.setAttr("isLockedAnnotation", new GXLString(vertex.isLockedAnnotation() + ""));
         gxlNode.setAttr("isLockedStyle", new GXLString(vertex.isLockedStyle() + ""));
         return gxlNode;
     }
