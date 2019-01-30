@@ -148,10 +148,13 @@ public class GXLio {
                 idCounter++;
             }
 
+            if(importWithRules) {
+                GXLNode gxlTemplate = (GXLNode) doc.getElement("template");
+                initializeTemplateValues(gxlTemplate);
+            }
+
             // Getting the objects that are needed to get the spheres, vertices and edges
             // out of the lists into or system.
-
-
             syndrom.generateNew();
             Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
             SyndromGraph<Vertex, Edge> newGraph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
@@ -195,6 +198,32 @@ public class GXLio {
         }
         tmpGXL.deleteOnExit();
     }
+
+
+
+    /**
+     * This method is called from the {@gxlToInstance()}-method, when the import is an import of a graph with its rules.
+     *
+     * @param gxlTemplate the GXLNode from the imported GXLGraph describing a template object
+     */
+    private void initializeTemplateValues(GXLNode gxlTemplate){
+        Template template = Syndrom.getInstance().getTemplate();
+        int maxSpheres = ((GXLInt) gxlTemplate.getAttr("maxSpheres").getValue()).getIntValue();
+        template.setMaxSpheres(maxSpheres);
+        int maxVertices = ((GXLInt) gxlTemplate.getAttr("maxVertices").getValue()).getIntValue();
+        template.setMaxVertices(maxVertices);
+        int maxEdges = ((GXLInt) gxlTemplate.getAttr("maxEdges").getValue()).getIntValue();
+        template.setMaxEdges(maxEdges);
+        int maxVerticesInSphere = ((GXLInt) gxlTemplate.getAttr("maxVerticesInSphere").getValue()).getIntValue();
+        template.setMaxVerticesInSphere(maxVerticesInSphere);
+        boolean reinforcedEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("reinforcedEdgesAllowed").getValue()).getBooleanValue();
+        template.setReinforcedEdgesAllowed(reinforcedEdgesAllowed);
+        boolean unknownEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("unknownEdgesAllowed").getValue()).getBooleanValue();
+        template.setUnknownEdgesAllowed(unknownEdgesAllowed);
+        boolean extenuatingEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("extenuatingEdgesAllowed").getValue()).getBooleanValue();
+        template.setExtenuatingEdgesAllowed(extenuatingEdgesAllowed);
+    }
+
 
     /**
      * This method creates a new sphere object with the values from the passed GXLAttributedElement and returns this sphere.
@@ -631,6 +660,14 @@ public class GXLio {
 
         doc.getDocumentElement().add(gxlSyndrom);
 
+
+        if(exportWithRules){
+            GXLNode templateNode = createTemplateNode();
+            doc.getDocumentElement().add(templateNode);
+        }
+
+
+
         String content = "";
         try {
             doc.write(tmpGXL);
@@ -675,6 +712,20 @@ public class GXLio {
         gxlEdge.setAttr("isLockedStyle", new GXLBool(edge.isLockedStyle()));
         gxlEdge.setAttr("isLockedEdgeType", new GXLBool(edge.isLockedEdgeType()));
         return gxlEdge;
+    }
+
+
+    private GXLNode createTemplateNode(){
+        GXLNode templateNode = new GXLNode("template");
+        Template template = Syndrom.getInstance().getTemplate();
+        templateNode.setAttr("maxSpheres", new GXLInt(template.getMaxSpheres()));
+        templateNode.setAttr("maxVertices", new GXLInt(template.getMaxVertices()));
+        templateNode.setAttr("maxEdges", new GXLInt(template.getMaxEdges()));
+        templateNode.setAttr("maxVerticesInSphere", new GXLInt(template.getMaxVerticesInSphere()));
+        templateNode.setAttr("reinforcedEdgesAllowed", new GXLBool(template.isReinforcedEdgesAllowed()));
+        templateNode.setAttr("unknownEdgesAllowed", new GXLBool(template.isUnknownEdgesAllowed()));
+        templateNode.setAttr("extenuatingEdgesAllowed", new GXLBool(template.isExtenuatingEdgesAllowed()));
+        return templateNode;
     }
 
     private String getPaintDescription(Color color) {
