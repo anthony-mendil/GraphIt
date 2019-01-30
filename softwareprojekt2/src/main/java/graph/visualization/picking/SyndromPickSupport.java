@@ -169,25 +169,12 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 }
 
                 if (out != null){
-                    System.out.println("here");
-                    AffineTransform xf = AffineTransform.getTranslateInstance(x1, y1);
-                    Shape departVertexShape = rc.getVertexShapeTransformer().transform((V)first);
-                    departVertexShape = xf.createTransformedShape(departVertexShape);
-                    Point2D outCoord = first.getCoordinates();
-                    Point2D oT = new Point2D.Double(out.getX() + outCoord.getX(), out.getY() + outCoord.getY());
-                    Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
-                    outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
-                    Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
-                    outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);
+                    outEdgeAngle = getAffineTransformAnchor(rc, edge, first, x1, y1);
                     if (outEdgeAngle == null) return null;
                     Shape tryP = new Ellipse2D.Double(0,0, 5,5);
                     tryP = outEdgeAngle.createTransformedShape(tryP);
                     x1 = (float) tryP.getBounds2D().getCenterX();
                     y1 = (float) tryP.getBounds2D().getCenterY();
-
-                    SyndromVisualisationViewer<Vertex, Edge> visualisationViewer = (SyndromVisualisationViewer<Vertex, Edge>) vv;
-                    ((SyndromVisualisationViewer<Vertex, Edge>) vv).getGraphics().drawRect((int)x1,(int) y1, 20,20);
-                    vv.repaint();
                 }
 
             } else {
