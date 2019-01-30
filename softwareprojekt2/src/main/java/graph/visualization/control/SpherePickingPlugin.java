@@ -40,7 +40,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
      * create an instance with passed values
      */
     public SpherePickingPlugin() {
-        super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
+        super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
         values = Values.getInstance();
         helper = new HelperFunctions();

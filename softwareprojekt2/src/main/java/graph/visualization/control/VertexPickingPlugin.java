@@ -45,7 +45,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
      * create an instance with passed values
      */
     public VertexPickingPlugin() {
-        this(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK, InputEvent.SHIFT_MASK | InputEvent.BUTTON1_MASK);
+        this(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK, InputEvent.SHIFT_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
         values = Values.getInstance();
         history = ActionHistory.getInstance();
@@ -109,7 +109,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Vertex vert = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
         PickedState<Vertex> vertexPickedState = vv.getPickedVertexState();
 
-        if (e.getModifiers() == addToSelectionModifiers && vert != null) {
+        if (e.getModifiersEx() == addToSelectionModifiers && vert != null) {
             vertexPickedState.pick(vert, true);
         } else {
             if (vert != null && !vertexPickedState.isPicked(vert)) {

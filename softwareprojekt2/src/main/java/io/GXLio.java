@@ -46,6 +46,10 @@ public class GXLio {
      */
     int maxID = -1;
 
+    /**
+     * Specifies rather an import is just the import of a graph or a graph with editing rules.
+     */
+    boolean importWithRules = true;
 
     private static Logger logger = Logger.getLogger(GXLio.class);
 
@@ -223,8 +227,18 @@ public class GXLio {
         HashMap<String, String> anno = new HashMap<>();
         anno.put("de", "Vertex");
         anno.put("en+-", "vertex");
-
-        return new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
+        Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
+        if(importWithRules = true){
+            boolean isLockedPosition = ((GXLBool) elem.getAttr("isLockedPosition").getValue()).getBooleanValue();
+            newSphere.setLockedPosition(isLockedPosition);
+            boolean isLockedAnnotation = ((GXLBool) elem.getAttr("isLockedAnnotation").getValue()).getBooleanValue();
+            newSphere.setLockedAnnotation(isLockedAnnotation);
+            boolean isLockedStyle = ((GXLBool) elem.getAttr("isLockedStyle").getValue()).getBooleanValue();
+            newSphere.setLockedStyle(isLockedStyle);
+            boolean isLockedVertices = ((GXLBool) elem.getAttr("isLockedVertices").getValue()).getBooleanValue();
+            newSphere.setLockedVertices(isLockedVertices);
+        }
+        return newSphere;
     }
 
     /**
@@ -274,7 +288,16 @@ public class GXLio {
         int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
         Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
         newVertex.setVisible(isVisible);
+        if(importWithRules = true){
+            boolean isLockedPosition = ((GXLBool) elem.getAttr("isLockedPosition").getValue()).getBooleanValue();
+            newVertex.setLockedPosition(isLockedPosition);
+            boolean isLockedAnnotation = ((GXLBool) elem.getAttr("isLockedAnnotation").getValue()).getBooleanValue();
+            newVertex.setLockedAnnotation(isLockedAnnotation);
+            boolean isLockedStyle = ((GXLBool) elem.getAttr("isLockedStyle").getValue()).getBooleanValue();
+            newVertex.setLockedStyle(isLockedStyle);
+        }
         return newVertex;
+
     }
 
     /**
@@ -318,7 +341,24 @@ public class GXLio {
         if (hasAnchor == true) {
             newEdge.setAnchorPoints(new javafx.util.Pair<>(coordinatesSource, coordinatesTarget));
         }
+        if(importWithRules = true){
+            boolean isLockedStyle = ((GXLBool) elem.getAttr("isLockedStyle").getValue()).getBooleanValue();
+            newEdge.setLockedStyle(isLockedStyle);
+            boolean isLockedEdgeType = ((GXLBool) elem.getAttr("isLockedEdgeType").getValue()).getBooleanValue();
+            newEdge.setLockedStyle(isLockedEdgeType);
+
+        }
         return newEdge;
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -615,21 +655,23 @@ public class GXLio {
     }
 
     private GXLNode addRulesToSphere(Sphere sphere, GXLNode gxlSphere){
-        gxlSphere.setAttr("isLockedPosition", new GXLString(sphere.isLockedPosition() + ""));
-        gxlSphere.setAttr("isLockedAnnotation", new GXLString(sphere.isLockedAnnotation() + ""));
-        gxlSphere.setAttr("isLockedStyle", new GXLString(sphere.isLockedStyle() + ""));
-        gxlSphere.setAttr("isLockedVertices", new GXLString(sphere.isLockedVertices() + ""));
+        gxlSphere.setAttr("isLockedPosition", new GXLBool(sphere.isLockedPosition()));
+        gxlSphere.setAttr("isLockedAnnotation", new GXLBool(sphere.isLockedAnnotation()));
+        gxlSphere.setAttr("isLockedStyle", new GXLBool(sphere.isLockedStyle()));
+        gxlSphere.setAttr("isLockedVertices", new GXLBool(sphere.isLockedVertices()));
         return gxlSphere;
     }
 
     private GXLNode addRulesToNode(Vertex vertex, GXLNode gxlNode){
-        gxlNode.setAttr("isLockedPosition", new GXLString(vertex.isLockedPosition() + ""));
-        gxlNode.setAttr("isLockedAnnotation", new GXLString(vertex.isLockedAnnotation() + ""));
-        gxlNode.setAttr("isLockedStyle", new GXLString(vertex.isLockedStyle() + ""));
+        gxlNode.setAttr("isLockedPosition", new GXLBool(vertex.isLockedPosition()));
+        gxlNode.setAttr("isLockedAnnotation", new GXLBool(vertex.isLockedAnnotation()));
+        gxlNode.setAttr("isLockedStyle", new GXLBool(vertex.isLockedStyle()));
         return gxlNode;
     }
 
     private GXLEdge addRulesToEdge(Edge edge, GXLEdge gxlEdge){
+        gxlEdge.setAttr("isLockedStyle", new GXLBool(edge.isLockedStyle()));
+        gxlEdge.setAttr("isLockedEdgeType", new GXLBool(edge.isLockedEdgeType()));
         return gxlEdge;
     }
 
