@@ -145,7 +145,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     if (edge.isHasAnchorOut() && outgoing != null) {
                         Point2D outCoord = first.getCoordinates();
                         Point2D oT = new Point2D.Double(outgoing.getX() + outCoord.getX(), outgoing.getY() + outCoord.getY());
-                        Point2D outAnchovaluesr = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
+                        Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
                         outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
                         Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
                         outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);

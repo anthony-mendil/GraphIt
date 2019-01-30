@@ -24,11 +24,13 @@ import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
+import actions.other.LoadGraphAction;
 import actions.remove.*;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -38,12 +40,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -54,9 +58,12 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import log_management.DatabaseManager;
+import javafx.util.Callback;
 import log_management.dao.LogDao;
 import lombok.Data;
 
+import javax.persistence.Table;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -751,13 +758,22 @@ public class Controller implements ObserverSyndrom {
     private TitledPane historyTitledPane;
 
     @FXML
+    private TableView sphereTableView;
+
+    @FXML
     private TableColumn sphereCol;
 
     @FXML
-    private TableColumn colourCol;
+    private TableColumn annotationSphereCol;
 
     @FXML
-    private TableView sphereTableView;
+    private TableColumn positionSphereCol;
+
+    @FXML
+    private TableColumn styleSphereCol;
+
+    @FXML
+    private TableColumn verticesSphereCol;
 
     public Controller() {
     }
@@ -1443,6 +1459,30 @@ public class Controller implements ObserverSyndrom {
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
 
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
+
+        //trying direct load
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+
+        if (databaseManager.databaseEmpty()) {
+            CreateGraphAction action = new CreateGraphAction("First Graph");
+            history.execute(action);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+            disableEditMode(false);
+            disableAnalysisMode(false);
+            zoomSlider.setValue(100);
+            System.out.println("neuer Graph");
+        } else {
+            LoadGraphAction action = new LoadGraphAction();
+            history.execute(action);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+            disableEditMode(false);
+            disableAnalysisMode(false);
+            zoomSlider.setValue(100);
+            System.out.println("alter graph");
+        }
+
     }
 
     private void initFonts() {
@@ -1957,8 +1997,6 @@ public class Controller implements ObserverSyndrom {
      */
 
     public void testTable(){
-        System.out.println("TEST");
-
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
@@ -1971,10 +2009,56 @@ public class Controller implements ObserverSyndrom {
                     new PropertyValueFactory<Sphere,String>("annotation")
             );
 
+            annotationSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedAnnotation")
+            );
 
+            positionSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedPosition")
+            );
+
+            styleSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedStyle")
+            );
+
+            verticesSphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,Boolean>("lockedVertices")
+            );
 
             sphereTableView.setItems(FXCollections.observableArrayList(spheres));
+
+            setRadioButtonTableColumn(annotationSphereCol);
         }
+    }
+
+    private void setRadioButtonTableColumn(TableColumn pTableColumn){
+        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Boolean>,
+                ObservableValue<Boolean>>(){
+            @Override
+            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Sphere, Boolean> param) {
+                Sphere sphere = param.getValue();
+                SimpleBooleanProperty booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
+
+                //When "Boolean" column change
+                booleanProp.addListener(new ChangeListener<Boolean>(){
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        sphere.setLockedAnnotation(newValue);
+                        System.out.println("Locked Annotation: "+newValue);
+                    }
+                });
+                return booleanProp;
+            }
+        });
+
+        pTableColumn.setCellFactory(new Callback<TableColumn<Sphere,Boolean>, TableCell<Sphere,Boolean>>() {
+            @Override
+            public TableCell<Sphere,Boolean> call(TableColumn<Sphere,Boolean> param) {
+                CheckBoxTableCell<Sphere,Boolean> cell = new CheckBoxTableCell<Sphere,Boolean>();
+                cell.setAlignment(Pos.CENTER);
+                return cell;
+            }
+        });
     }
 
     @Override
