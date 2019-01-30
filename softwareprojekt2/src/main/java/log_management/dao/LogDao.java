@@ -2,14 +2,17 @@ package log_management.dao;
 
 import actions.LogEntryName;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import log_management.DatabaseManager;
+import log_management.json_deserializers.Point2DDeserializer;
+import log_management.json_serializers.Point2DSerializer;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.io.IOException;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -70,9 +73,14 @@ public class LogDao implements Dao<Log> {
         selectLogs.setParameter("gid", graphId);
         List<Log> logList = selectLogs.getResultList();
 
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
+        Gson gson = gsonBuilder.create();
+
         String logString = null;
         try {
-            logString = new Gson().toJson(logList);
+            logString = gson.toJson(logList);
         } catch (Exception e) {}
 
         return  logString;

@@ -1,14 +1,16 @@
 package actions;
 
 import com.google.gson.Gson;
-import graph.graph.Sphere;
+import com.google.gson.GsonBuilder;
 import log_management.DatabaseManager;
+import log_management.json_deserializers.Point2DDeserializer;
+import log_management.json_serializers.Point2DSerializer;
 import log_management.parameters.Param;
 import log_management.tables.Log;
 import lombok.Getter;
 import lombok.Setter;
 
-
+import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
 
 /**
@@ -49,9 +51,14 @@ public abstract class LogAction extends GraphAction {
         log.setLogEntryName(logEntryName);
         log.setTime(time);
 
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
+        Gson gson = gsonBuilder.create();
+
         String paramString = null;
         try {
-            paramString = new Gson().toJson(parameters);
+            paramString = gson.toJson(parameters);
         } catch (Exception e) {}
         log.setParameters(paramString);
 
