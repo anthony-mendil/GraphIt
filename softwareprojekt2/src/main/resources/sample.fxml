@@ -1049,11 +1049,11 @@
 
    </center>
    <right>
-      <Accordion fx:id="overViewAccordion" focusTraversable="false" prefHeight="766.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+      <Accordion fx:id="overViewAccordion" focusTraversable="false" maxHeight="1.7976931348623157E308" prefWidth="300.0" BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane fx:id="overViewTitledPane" animated="true" onMouseClicked="#treeViewUpdate" text="Übersicht">
+          <TitledPane fx:id="overViewTitledPane" animated="true" onMouseClicked="#treeViewUpdate" prefWidth="300.0" text="Übersicht">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="392.0">
+                  <VBox prefWidth="300.0">
                      <children>
                         <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
                            <VBox.margin>
@@ -1108,11 +1108,11 @@
                   </VBox>
                </content>
           </TitledPane>
-          <TitledPane fx:id="templateTitledPane" animated="true" onMouseClicked="#templateViewUpdate" prefHeight="742.0" prefWidth="300.0" text="Vorlage-Regeln">
+          <TitledPane fx:id="templateTitledPane" animated="true" onMouseClicked="#templateViewUpdate" prefWidth="300.0" text="Vorlage-Regeln">
             <content>
-               <VBox prefHeight="714.0" prefWidth="400.0">
+               <VBox prefWidth="300.0">
                   <children>
-                     <GridPane prefHeight="200.0" prefWidth="200.0">
+                     <GridPane prefHeight="200.0" prefWidth="275.0">
                         <columnConstraints>
                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.2000244140625" minWidth="10.0" prefWidth="186.39990234375" />
                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.39996337890625" minWidth="10.0" prefWidth="72.80009765624999" />
@@ -1169,8 +1169,8 @@
                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </VBox.margin>
                      </GridPane>
-                     <Separator minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="200.0" />
-                     <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="200.0">
+                     <Separator minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="275.0" />
+                     <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="275.0">
                         <children>
                            <CheckBox fx:id="reinforcedBox" mnemonicParsing="false" text="Verstärkende Kanten erlauben">
                               <VBox.margin>
@@ -1197,7 +1197,7 @@
                            <Insets bottom="2.0" left="2.0" right="2.0" top="10.0" />
                         </VBox.margin>
                      </Text>
-                        <Accordion maxHeight="1.7976931348623157E308" prefHeight="290.0" prefWidth="279.0">
+                        <Accordion maxHeight="1.7976931348623157E308" prefHeight="290.0" prefWidth="275.0">
                           <panes>
                             <TitledPane animated="false" maxHeight="1.7976931348623157E308" text="Sphären">
                                  <content>
@@ -1215,8 +1215,11 @@
                                  </content>
                             </TitledPane>
                           </panes>
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
                         </Accordion>
-                     <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                     <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="275.0">
                         <children>
                            <Button fx:id="templateSaveButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#rulesTemplate" prefHeight="30.0" prefWidth="140.0" text="Regeln speichern">
                               <HBox.margin>
@@ -1237,7 +1240,7 @@
                </VBox>
             </content>
           </TitledPane>
-            <TitledPane fx:id="historyTitledPane" prefHeight="200.0" prefWidth="200.0" text="Verlauf">
+            <TitledPane fx:id="historyTitledPane" prefWidth="300.0" text="Verlauf">
                <content>
                   <TreeView prefHeight="200.0" prefWidth="200.0" />
                </content>

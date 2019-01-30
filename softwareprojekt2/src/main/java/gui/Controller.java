@@ -1705,6 +1705,12 @@ public class Controller implements ObserverSyndrom {
 
         historyTitledPane.setVisible(active);
         historyTitledPane.setManaged(active);
+
+        if(active){
+            overViewAccordion.getPanes().add(historyTitledPane);
+        }else{
+            overViewAccordion.getPanes().remove(historyTitledPane);
+        }
     }
 
     private void editMode(Boolean active) {
@@ -1738,8 +1744,11 @@ public class Controller implements ObserverSyndrom {
         toolBarSeparator1.setVisible(active);
         toolBarSeparator1.setManaged(active);
 
-        templateTitledPane.setVisible(active);
-        templateTitledPane.setManaged(active);
+        if(active){
+            overViewAccordion.getPanes().add(templateTitledPane);
+        }else{
+            overViewAccordion.getPanes().remove(templateTitledPane);
+        }
     }
 
     private void disableEditMode(Boolean disable){
