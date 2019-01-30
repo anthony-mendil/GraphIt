@@ -44,6 +44,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -748,6 +749,15 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private TitledPane historyTitledPane;
+
+    @FXML
+    private TableColumn sphereCol;
+
+    @FXML
+    private TableColumn colourCol;
+
+    @FXML
+    private TableView sphereTableView;
 
     public Controller() {
     }
@@ -1945,6 +1955,27 @@ public class Controller implements ObserverSyndrom {
         }
     }
      */
+
+    public void testTable(){
+        System.out.println("TEST");
+
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        List<Sphere> spheres = graph.getSpheres();
+        Collection<Vertex> vertices = graph.getVertices();
+        Collection<Edge> edges = graph.getEdges();
+        ArrayList<String> name = new ArrayList<>();
+
+        if(!spheres.isEmpty()){
+            sphereCol.setCellValueFactory(
+                    new PropertyValueFactory<Sphere,String>("annotation")
+            );
+
+
+
+            sphereTableView.setItems(FXCollections.observableArrayList(spheres));
+        }
+    }
 
     @Override
     public void updateGraph() {

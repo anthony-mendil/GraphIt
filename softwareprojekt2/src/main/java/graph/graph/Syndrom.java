@@ -311,7 +311,7 @@ public class Syndrom {
         vv.setGraphLayout(layout);
         setVisualisationViewer(vv);
 
-        vv2 = new SatelliteVisualizationViewer(vv, new Dimension(250,187));
+        vv2 = new SatelliteVisualizationViewer(vv, new Dimension(260,195));
 
         setVisualisationViewer2(vv2);
     }
