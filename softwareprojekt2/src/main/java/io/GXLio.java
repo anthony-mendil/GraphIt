@@ -499,7 +499,7 @@ public class GXLio {
 
     public void importGXL(File pFile){
         String gxl = "";
-        try(Scanner scanner= new Scanner(file)) {
+        try(Scanner scanner= new Scanner(pFile)) {
             gxl = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
             logger.error(e.toString());
