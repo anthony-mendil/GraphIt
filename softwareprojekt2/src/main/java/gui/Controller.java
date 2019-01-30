@@ -1595,6 +1595,12 @@ public class Controller implements ObserverSyndrom {
                         "Comic Sans Ms"
                 );
 
+        if(comboBox.getId().equals("fontSphereComboBox")) {
+            comboBox.getEditor().setText(values.getFontSphere());
+        }else if(comboBox.getId().equals("fontSymptomComboBox")){
+            comboBox.getEditor().setText(values.getFontVertex());
+        }
+
         comboBox.setItems(fonts);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
@@ -1620,6 +1626,13 @@ public class Controller implements ObserverSyndrom {
                         "72",
                         "96"
                 );
+
+        if(comboBox.getId().equals("sizeSphereComboBox")) {
+            comboBox.getEditor().setText(""+values.getFontSizeSphere());
+        }else if(comboBox.getId().equals("sizeSymptomComboBox")){
+            comboBox.getEditor().setText(""+values.getFontSizeVertex());
+        }
+
         comboBox.setItems(sizes);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
