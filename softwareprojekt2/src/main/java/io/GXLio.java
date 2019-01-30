@@ -394,7 +394,7 @@ public class GXLio {
      *
      * @return the content of the created document
      */
-    public String gxlFromInstance() {
+     public String gxlFromInstance() {
         VisualizationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> currentSpheres = theGraph.getSpheres();
