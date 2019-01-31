@@ -681,9 +681,16 @@ public class GXLio {
             try (BufferedReader reader = new BufferedReader(new FileReader(tmpGXL));) {
                 Stream<String> lines = reader.lines();
                 Object[] linesArray = lines.toArray();
+                boolean firstLine = true;
                 for (Object s : linesArray) {
-                    String objectContetnt = (String) s;
-                    content = content + "\n" + objectContetnt;
+                    if(firstLine){
+                        String objectContetnt = (String) s;
+                        content = objectContetnt;
+                        firstLine = false;
+                    }else {
+                        String objectContetnt = (String) s;
+                        content = content + "\n" + objectContetnt;
+                    }
                 }
             } catch (FileNotFoundException e) {
                 logger.error(e.toString());
