@@ -144,7 +144,7 @@ public class Values {
     /**
      * The current language of the gui.
      */
-    private Language guiLanguage;
+    private Language guiLanguage = Language.GERMAN;
 
     private static Values instance;
 

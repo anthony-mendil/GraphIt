@@ -78,11 +78,11 @@ public class PDFio {
         for (Sphere sph : spheres) {
             //check x
             if (sph.getCoordinates().getX() < point.getX()) {
-                point = new Point2D((float) sph.getCoordinates().getX(),point.getY());
+                point = new Point2D((float) sph.getCoordinates().getX(), point.getY());
             }
             //check y
             if (sph.getCoordinates().getY() < point.getY()) {
-                point = new Point2D(point.getX (),(float) sph.getCoordinates().getY());
+                point = new Point2D(point.getX(), (float) sph.getCoordinates().getY());
             }
         }
         return point;
@@ -117,10 +117,9 @@ public class PDFio {
      */
     public void exportPDF(File pFile) {
         file = pFile;
-        VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<Vertex, Edge>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
-        vis.setBackground(Color.WHITE);
-        vis.setRenderer(new SyndromRenderer<>());
-        vis.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>(vv));
+        VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
+        vis.setBackground(Color.WHITE); //standard is grey
+        vis.setRenderer(new SyndromRenderer<>()); //Required to render the Spheres
         vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(), Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(), vv.getCenter());
 
         vis.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
@@ -129,7 +128,7 @@ public class PDFio {
         vis.getRenderContext().setVertexLabelTransformer(new VertexLabelTransformer<>());
         vis.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
         vis.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
-        vis.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
+
 
         vis.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vis.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
@@ -138,6 +137,9 @@ public class PDFio {
         vis.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vis.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
 
+
+        vis.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
+
         EdgeRenderer<Vertex, Edge> edgeRenderer = new EdgeRenderer<>();
         vis.getRenderer().setEdgeRenderer(edgeRenderer);
 
@@ -145,11 +147,10 @@ public class PDFio {
         vis.getRenderer().setVertexLabelRenderer(vertexLabelRenderer);
 
 
-
         VectorGraphics vectorGraphics;
-        Dimension dimensionWithBorder = new Dimension((int)Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
+        Dimension graphicsDimension = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
         try {
-            vectorGraphics = new PDFGraphics2D(file, dimensionWithBorder);
+            vectorGraphics = new PDFGraphics2D(file, graphicsDimension);
             Properties properties = new Properties();
             properties.setProperty(ORIENTATION, LANDSCAPE);
             properties.setProperty(PAGE_SIZE, A4);
@@ -186,7 +187,7 @@ public class PDFio {
                 printerJob.print();
             } catch (PrinterException e) {
                 logger.error(e.toString());
-            } finally{
+            } finally {
                 file.deleteOnExit();
             }
         }
