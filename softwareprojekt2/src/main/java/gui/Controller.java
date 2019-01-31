@@ -59,8 +59,8 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import log_management.DatabaseManager;
 import javafx.util.Callback;
+import log_management.DatabaseManager;
 import log_management.dao.LogDao;
 import lombok.Data;
 
