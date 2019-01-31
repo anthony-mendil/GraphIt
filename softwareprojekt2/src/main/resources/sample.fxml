@@ -21,7 +21,7 @@
                         <Menu mnemonicParsing="false" text="Exportieren als..">
                            <items>
                                <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF" />
-                               <MenuItem mnemonicParsing="false" text="Vorlage" />
+                               <MenuItem fx:id="exportTemplateGXL" mnemonicParsing="false" onAction="#exportTemplateGXL" text="Vorlage" />
                                <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL" />
                               <MenuItem mnemonicParsing="false" text="Verlauf" />
                                <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
