@@ -83,7 +83,7 @@ public class Values {
     /**
      * The fill paint color of a vertex.
      */
-    private Color fillPaintVertex = new Color(123,255,51, 100);
+    private Color fillPaintVertex = new Color(123,255,51);
 
     /**
      * true if the anchor points are highlighted in the gui
@@ -144,7 +144,7 @@ public class Values {
     /**
      * The current language of the gui.
      */
-    private Language guiLanguage;
+    private Language guiLanguage = Language.GERMAN;
 
     private static Values instance;
 

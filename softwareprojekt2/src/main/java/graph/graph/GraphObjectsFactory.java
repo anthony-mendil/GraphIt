@@ -45,9 +45,8 @@ public class GraphObjectsFactory {
        Color color = values.getEdgePaint();
        StrokeType stroke = values.getStrokeEdge();
        EdgeArrowType arrowType = values.getEdgeArrowType();
-       boolean hasAnchor = false;
        boolean isVisible = true;
-       return new Edge(id, color, stroke, arrowType, hasAnchor, isVisible);
+       return new Edge(id, color, stroke, arrowType,isVisible, false, false);
     }
 
     /**
@@ -74,7 +73,6 @@ public class GraphObjectsFactory {
      * @return A new sphere object.
      */
     public Sphere createSphere(Point2D position) {
-        System.out.println("create: "+objectCounter);
         int id = objectCounter++;
         Color fillPaint = values.getFillPaintSphere();
         double width = values.getDefaultWidthSphere();
