@@ -6,7 +6,6 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import javafx.scene.effect.Light;
 import log_management.dao.GraphDao;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;

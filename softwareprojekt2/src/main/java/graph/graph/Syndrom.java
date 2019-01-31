@@ -43,7 +43,7 @@ public class Syndrom {
      */
     private Template template;
 
-    private boolean templateIsSet=false;
+    private boolean templateIsSet = false;
 
     /**
      * The layout of syndrom.
@@ -185,7 +185,7 @@ public class Syndrom {
     /**
      * Satellite view for zoom context.
      */
-    private SatelliteVisualizationViewer<Vertex,Edge> vv2;
+    private SatelliteVisualizationViewer<Vertex, Edge> vv2;
 
     /**
      * Zoom pane, containing the visualization viewer.
@@ -225,7 +225,7 @@ public class Syndrom {
      * The constructor, initialising all attributes.
      */
     @SuppressWarnings("unchecked")
-    private Syndrom(){
+    private Syndrom() {
         values = Values.getInstance();
         pluggable = new PluggableGraphMouse();
         pluggable.add(new SpherePickingPlugin());
@@ -234,14 +234,14 @@ public class Syndrom {
         pluggable.add(new GeneralPickingPlugin());
     }
 
-    public static Syndrom getInstance(){
-        if (instance == null){
+    public static Syndrom getInstance() {
+        if (instance == null) {
             instance = new Syndrom();
         }
         return instance;
     }
 
-    public void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv){
+    public void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv) {
         pickSupport = new SyndromPickSupport(vv);
         gzsp = new GraphZoomScrollPane(vv);
         vv.setBackground(Color.WHITE);
@@ -255,7 +255,7 @@ public class Syndrom {
         this.vv = vv;
     }
 
-    public void setVisualisationViewer2(SatelliteVisualizationViewer<Vertex, Edge> vv2){
+    public void setVisualisationViewer2(SatelliteVisualizationViewer<Vertex, Edge> vv2) {
         AbsoluteCrossoverScalingControl vv2Scaler = new AbsoluteCrossoverScalingControl();
         scalingControl = vv2Scaler;
         vv2.scaleToLayout(vv2Scaler);
@@ -265,7 +265,7 @@ public class Syndrom {
         this.vv2 = vv2;
     }
 
-    private void setRenderer(VisualizationViewer<Vertex, Edge> vv){
+    private void setRenderer(VisualizationViewer<Vertex, Edge> vv) {
         vv.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
         vv.getRenderContext().setVertexFontTransformer(new VertexFontTransformer<>());
         vv.getRenderContext().setVertexDrawPaintTransformer(new VertexDrawPaintTransformer<>());
@@ -288,11 +288,11 @@ public class Syndrom {
         vv.getRenderer().setEdgeRenderer(edgeRenderer);
     }
 
-    public void scale(int value){
+    public void scale(int value) {
         scale = value;
         scalingControl.scale(vv, (float) value / 100, vv.getCenter());
 
-        if (value < 100){
+        if (value < 100) {
             AffineTransform modelLayoutTransform =
                     new AffineTransform(vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform());
             vv2.getRenderContext().getMultiLayerTransformer().setTransformer(Layer.LAYOUT, new MutableAffineTransformer(modelLayoutTransform));
@@ -300,18 +300,18 @@ public class Syndrom {
     }
 
     @SuppressWarnings("unchecked")
-    public void generateNew(){
+    public void generateNew() {
         graph = new SyndromGraph<>();
 
         layout = new AggregateLayout<>(new StaticLayout<Vertex, Edge>(graph));
         final VisualizationModel<Vertex, Edge> visualizationModel =
                 new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize());
-        vv = new SyndromVisualisationViewer<>(visualizationModel,values
+        vv = new SyndromVisualisationViewer<>(visualizationModel, values
                 .getDefaultLayoutVVSize());
         vv.setGraphLayout(layout);
         setVisualisationViewer(vv);
 
-        vv2 = new SatelliteVisualizationViewer(vv, new Dimension(260,195));
+        vv2 = new SatelliteVisualizationViewer(vv, new Dimension(260, 195));
 
         setVisualisationViewer2(vv2);
     }
