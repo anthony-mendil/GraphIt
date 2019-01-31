@@ -8,7 +8,7 @@ import log_management.DatabaseManager;
 import java.io.File;
 
 /**
- * Imports a GXL file.
+ * Imports a GXL file that includes a graph in gxl notation.
  */
 public class ImportGxlAction extends GraphAction {
 
