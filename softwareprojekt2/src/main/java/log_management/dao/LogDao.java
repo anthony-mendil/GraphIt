@@ -83,7 +83,6 @@ public class LogDao implements Dao<Log> {
 
         String logString = null;
         try {
-            //logString = gson.toJson(logList, );
             Type myType = new TypeToken<List<Log>>() {}.getType();
             logString = gson.toJson(logList, myType);
         } catch (Exception e) {}
@@ -98,11 +97,13 @@ public class LogDao implements Dao<Log> {
     @Override
     public void save(Log log) {
         EntityManager entityManager = PersonalEntityManager.getInstance();
-
-        deleteAllLogs();
+        //entityManager.clear();
+        //entityManager.flush();
 
         entityManager.getTransaction().begin();
+
         entityManager.persist(log);
+
         entityManager.getTransaction().commit();
     }
 
@@ -118,12 +119,15 @@ public class LogDao implements Dao<Log> {
 
             logList.forEach(log -> {
                 entityManager.remove(log);
+                //entityManager.flush();
             });
         });
     }
 
     public void saveLogs(String oofLogs) {
         ArrayList<Log> logs;
+
+        deleteAllLogs();
 
         Type myType = new TypeToken<List<Log>>() {}.getType();
         logs = new Gson().fromJson(oofLogs, myType);

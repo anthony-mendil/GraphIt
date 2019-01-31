@@ -62,7 +62,7 @@ public class GXLio {
      *
      * @param pGXL The GXL representation that gets written into syndrom.
      */
-    protected void gxlToInstance(String pGXL) {
+    public void gxlToInstance(String pGXL) {
         File tmpGXL = new File("gxl");
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tmpGXL))){
             bufferedWriter.write(pGXL);
