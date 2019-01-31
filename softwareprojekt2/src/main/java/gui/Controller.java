@@ -29,7 +29,9 @@ import actions.remove.*;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import gui.properties.Language;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -68,10 +70,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -2005,46 +2005,77 @@ public class Controller implements ObserverSyndrom {
         ArrayList<String> name = new ArrayList<>();
 
         if(!spheres.isEmpty()){
-            sphereCol.setCellValueFactory(
-                    new PropertyValueFactory<Sphere,String>("annotation")
-            );
+            sphereTableView.setEditable(true);
+            sphereCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere,Map<String,String>>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere,Map<String,String>> data) {
+                    String name = "";
+                    if(values.getGuiLanguage() == Language.GERMAN){
+                        name = data.getValue().getAnnotation().get("de");
+                    }else if(values.getGuiLanguage() == Language.ENGLISH){
+                        name = data.getValue().getAnnotation().get("en");
+                    }
+                    return new ReadOnlyStringWrapper(name);
+                }
+            });
 
-            annotationSphereCol.setCellValueFactory(
-                    new PropertyValueFactory<Sphere,Boolean>("lockedAnnotation")
-            );
-
-            positionSphereCol.setCellValueFactory(
-                    new PropertyValueFactory<Sphere,Boolean>("lockedPosition")
-            );
-
-            styleSphereCol.setCellValueFactory(
-                    new PropertyValueFactory<Sphere,Boolean>("lockedStyle")
-            );
-
-            verticesSphereCol.setCellValueFactory(
-                    new PropertyValueFactory<Sphere,Boolean>("lockedVertices")
-            );
+            setRadioButtonTableColumn(annotationSphereCol,"SphereAnnotation");
+            setRadioButtonTableColumn(positionSphereCol, "SpherePosition");
+            setRadioButtonTableColumn(styleSphereCol, "SphereStyle");
+            setRadioButtonTableColumn(verticesSphereCol, "SphereVertices");
 
             sphereTableView.setItems(FXCollections.observableArrayList(spheres));
-
-            setRadioButtonTableColumn(annotationSphereCol);
         }
     }
 
-    private void setRadioButtonTableColumn(TableColumn pTableColumn){
+    private void setRadioButtonTableColumn(TableColumn pTableColumn, String pLocked){
         pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Boolean>,
                 ObservableValue<Boolean>>(){
             @Override
             public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Sphere, Boolean> param) {
                 Sphere sphere = param.getValue();
-                SimpleBooleanProperty booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
+                SimpleBooleanProperty booleanProp;
+                switch(pLocked){
+                    case "SphereAnnotation":
+                        booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
+                        break;
+                    case "SpherePosition":
+                        booleanProp = new SimpleBooleanProperty(sphere.isLockedPosition());
+                        break;
+                    case "SphereStyle":
+                        booleanProp = new SimpleBooleanProperty(sphere.isLockedStyle());
+                        break;
+                    case "SphereVertices":
+                        booleanProp = new SimpleBooleanProperty(sphere.isLockedVertices());
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
+                }
 
                 //When "Boolean" column change
                 booleanProp.addListener(new ChangeListener<Boolean>(){
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        sphere.setLockedAnnotation(newValue);
-                        System.out.println("Locked Annotation: "+newValue);
+                        switch(pLocked){
+                            case "SphereAnnotation":
+                                sphere.setLockedAnnotation(newValue);
+                                System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
+                                break;
+                            case "SpherePosition":
+                                sphere.setLockedPosition(newValue);
+                                System.out.println("LockedPosition: " + oldValue + " to " + newValue);
+                                break;
+                            case "SphereStyle":
+                                sphere.setLockedStyle(newValue);
+                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
+                                break;
+                            case "SphereVertices":
+                                sphere.setLockedVertices(newValue);
+                                System.out.println("LockedVertices: " + oldValue + " to " + newValue);
+                                break;
+                            default:
+                                throw new IllegalArgumentException();
+                        }
                     }
                 });
                 return booleanProp;
