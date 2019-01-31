@@ -9,7 +9,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
@@ -1110,7 +1109,7 @@
                   </VBox>
                </content>
           </TitledPane>
-          <TitledPane fx:id="templateTitledPane" animated="true" onMouseClicked="#templateViewUpdate" prefWidth="260.0" text="Vorlage-Regeln">
+          <TitledPane fx:id="templateTitledPane" animated="true" onMouseClicked="#loadTables" prefWidth="260.0" text="Vorlage-Regeln">
             <content>
                <VBox fillWidth="false" prefWidth="260.0">
                   <children>
@@ -1201,11 +1200,11 @@
                      </Text>
                         <Accordion maxHeight="1.7976931348623157E308" prefHeight="290.0" prefWidth="260.0">
                           <panes>
-                              <TitledPane maxHeight="1.7976931348623157E308" text="Test">
+                              <TitledPane maxHeight="1.7976931348623157E308" text="Sphären">
                                  <content>
-                                    <TableView fx:id="sphereTableView" onScroll="#testTable" prefHeight="200.0" prefWidth="200.0">
+                                    <TableView fx:id="sphereTableView" prefHeight="200.0" prefWidth="200.0">
                                       <columns>
-                                        <TableColumn fx:id="sphereCol" prefWidth="75.0" text="Sphäre" />
+                                        <TableColumn fx:id="sphereCol" prefWidth="75.0" text="Name" />
                                           <TableColumn fx:id="annotationSphereCol" prefWidth="75.0" text="Annotation" />
                                           <TableColumn fx:id="positionSphereCol" prefWidth="75.0" text="Position" />
                                           <TableColumn fx:id="styleSphereCol" prefWidth="75.0" text="Style" />
@@ -1214,19 +1213,26 @@
                                     </TableView>
                                  </content>
                               </TitledPane>
-                            <TitledPane animated="false" maxHeight="1.7976931348623157E308" text="Sphären">
-                                 <content>
-                                 <ListView fx:id="templateSphereListView" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" />
-                                 </content>
-                            </TitledPane>
                             <TitledPane animated="false" maxHeight="1.7976931348623157E308" text="Symptome">
                                  <content>
-                                    <ListView fx:id="templateSymptomListView" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" />
+                                    <TableView fx:id="symptomTableView" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="symptomCol" prefWidth="75.0" text="Name" />
+                                        <TableColumn fx:id="annotationSymptomCol" prefWidth="75.0" text="Annotation" />
+                                          <TableColumn fx:id="positionSymptomCol" prefWidth="75.0" text="Position" />
+                                          <TableColumn fx:id="styleSymptomCol" prefWidth="75.0" text="Style" />
+                                      </columns>
+                                    </TableView>
                                  </content>
                             </TitledPane>
                             <TitledPane animated="false" maxHeight="1.7976931348623157E308" text="Kanten">
                                  <content>
-                                    <ListView fx:id="templateEdgeListView" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" />
+                                    <TableView fx:id="edgeTableView" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="styleEdgeCol" prefWidth="75.0" text="Style" />
+                                        <TableColumn fx:id="edgetypeEdgeCol" prefWidth="75.0" text="EdgeType" />
+                                      </columns>
+                                    </TableView>
                                  </content>
                             </TitledPane>
                           </panes>

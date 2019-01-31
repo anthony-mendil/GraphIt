@@ -50,7 +50,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -65,7 +64,6 @@ import javafx.util.Callback;
 import log_management.dao.LogDao;
 import lombok.Data;
 
-import javax.persistence.Table;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -740,15 +738,6 @@ public class Controller implements ObserverSyndrom {
     private ToggleButton highlight;
 
     @FXML
-    private ListView templateSphereListView;
-
-    @FXML
-    private ListView templateSymptomListView;
-
-    @FXML
-    private ListView templateEdgeListView;
-
-    @FXML
     private Accordion overViewAccordion;
 
     @FXML
@@ -774,6 +763,30 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private TableColumn verticesSphereCol;
+
+    @FXML
+    private TableView symptomTableView;
+
+    @FXML
+    private TableColumn symptomCol;
+
+    @FXML
+    private TableColumn annotationSymptomCol;
+
+    @FXML
+    private TableColumn positionSymptomCol;
+
+    @FXML
+    private TableColumn styleSymptomCol;
+
+    @FXML
+    private TableView edgeTableView;
+
+    @FXML
+    private TableColumn styleEdgeCol;
+
+    @FXML
+    private TableColumn edgetypeEdgeCol;
 
     public Controller() {
     }
@@ -804,7 +817,7 @@ public class Controller implements ObserverSyndrom {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
     }
 
-    public void handVertex(){
+    public void handVertex() {
         values.setGraphButtonType(GraphButtonType.NONE);
     }
 
@@ -1364,7 +1377,7 @@ public class Controller implements ObserverSyndrom {
         templateStage.getIcons().add(new Image("/logo.png"));
     }
 
-    public void highlight(){
+    public void highlight() {
         if (highlight.isSelected()) {
             ActivateHighlightLogAction activateHighlightLogAction = new ActivateHighlightLogAction();
             history.execute(activateHighlightLogAction);
@@ -1374,18 +1387,18 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    public void highlightElements(){
+    public void highlightElements() {
         AddHighlightElementAction addHighlightElementAction = new AddHighlightElementAction();
         history.execute(addHighlightElementAction);
     }
 
-    public void dehighlightElements(){
+    public void dehighlightElements() {
         RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
         history.execute(removeHighlightElementAction);
     }
 
-    public void showTemplateWindow(){
-        if(!templateStage.isShowing()){
+    public void showTemplateWindow() {
+        if (!templateStage.isShowing()) {
             templateStage.show();
             templateController.loadListView();
         }
@@ -1425,9 +1438,6 @@ public class Controller implements ObserverSyndrom {
         analysisMode(false);
         editButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        templateSphereListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        templateSymptomListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        templateEdgeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
@@ -1490,7 +1500,7 @@ public class Controller implements ObserverSyndrom {
         fonts = new ArrayList<Font>();
 
         try {
-            
+
             Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
@@ -1577,18 +1587,18 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private class OnlyLettersSpacesComboBoxListener implements ChangeListener<String>{
+    private class OnlyLettersSpacesComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
 
-        private OnlyLettersSpacesComboBoxListener(ComboBox pComboBox){
+        private OnlyLettersSpacesComboBoxListener(ComboBox pComboBox) {
             this.comboBox = pComboBox;
         }
 
         @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             comboBox.show();
 
-            if(!newValue.matches("[a-zA-Z ]*"))
+            if (!newValue.matches("[a-zA-Z ]*"))
                 comboBox.getEditor().setText(oldValue);
         }
     }
@@ -1605,13 +1615,13 @@ public class Controller implements ObserverSyndrom {
             if (comboBox.getId().equals("sizeSphereComboBox")) {
                 currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
-            }else if (comboBox.getId().equals("fontSphereComboBox")){
+            } else if (comboBox.getId().equals("fontSphereComboBox")) {
                 currentFont = newValue;
                 editFontSphere(currentFont);
-            }else if (comboBox.getId().equals("sizeSymptomComboBox")) {
+            } else if (comboBox.getId().equals("sizeSymptomComboBox")) {
                 currentSize = newValue;
                 editFontSizeVertices(Integer.parseInt(currentSize));
-            }else if (comboBox.getId().equals("fontSymptomComboBox")) {
+            } else if (comboBox.getId().equals("fontSymptomComboBox")) {
                 currentFont = newValue;
                 editFontVertex(currentFont);
             }
@@ -1629,15 +1639,15 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
-                if(comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
+                if (comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
                     currentSize = comboBox.getEditor().getText();
-                }else if(comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
+                } else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
                 if (comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
                     comboBox.getEditor().setText(currentSize);
-                }else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
+                } else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
                     comboBox.getEditor().setText(currentFont);
                 }
             }
@@ -1658,7 +1668,7 @@ public class Controller implements ObserverSyndrom {
         edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
     }
 
-    private void loadFontComboBox(ComboBox comboBox){
+    private void loadFontComboBox(ComboBox comboBox) {
         ObservableList<String> fonts =
                 FXCollections.observableArrayList(
                         "AveriaSansLibre",
@@ -1670,9 +1680,9 @@ public class Controller implements ObserverSyndrom {
                         "Comic Sans Ms"
                 );
 
-        if(comboBox.getId().equals("fontSphereComboBox")) {
+        if (comboBox.getId().equals("fontSphereComboBox")) {
             comboBox.getEditor().setText(values.getFontSphere());
-        }else if(comboBox.getId().equals("fontSymptomComboBox")){
+        } else if (comboBox.getId().equals("fontSymptomComboBox")) {
             comboBox.getEditor().setText(values.getFontVertex());
         }
 
@@ -1702,10 +1712,10 @@ public class Controller implements ObserverSyndrom {
                         "96"
                 );
 
-        if(comboBox.getId().equals("sizeSphereComboBox")) {
-            comboBox.getEditor().setText(""+values.getFontSizeSphere());
-        }else if(comboBox.getId().equals("sizeSymptomComboBox")){
-            comboBox.getEditor().setText(""+values.getFontSizeVertex());
+        if (comboBox.getId().equals("sizeSphereComboBox")) {
+            comboBox.getEditor().setText("" + values.getFontSizeSphere());
+        } else if (comboBox.getId().equals("sizeSymptomComboBox")) {
+            comboBox.getEditor().setText("" + values.getFontSizeVertex());
         }
 
         comboBox.setItems(sizes);
@@ -1760,9 +1770,9 @@ public class Controller implements ObserverSyndrom {
         historyTitledPane.setVisible(active);
         historyTitledPane.setManaged(active);
 
-        if(active){
+        if (active) {
             overViewAccordion.getPanes().add(historyTitledPane);
-        }else{
+        } else {
             overViewAccordion.getPanes().remove(historyTitledPane);
         }
     }
@@ -1798,14 +1808,14 @@ public class Controller implements ObserverSyndrom {
         toolBarSeparator1.setVisible(active);
         toolBarSeparator1.setManaged(active);
 
-        if(active){
+        if (active) {
             overViewAccordion.getPanes().add(templateTitledPane);
-        }else{
+        } else {
             overViewAccordion.getPanes().remove(templateTitledPane);
         }
     }
 
-    private void disableEditMode(Boolean disable){
+    private void disableEditMode(Boolean disable) {
         separator1.setDisable(disable);
         separator2.setDisable(disable);
         menubarSeparator3.setDisable(disable);
@@ -1820,7 +1830,7 @@ public class Controller implements ObserverSyndrom {
         overViewAccordion.setDisable(disable);
     }
 
-    private void disableAnalysisMode(Boolean disable){
+    private void disableAnalysisMode(Boolean disable) {
         vBoxGraphStats.setDisable(disable);
         separator3.setDisable(disable);
         separator4.setDisable(disable);
@@ -1830,8 +1840,8 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setDisable(disable);
     }
 
-    private void optionSaveWindow(){
-        if(canvas.getContent() != null){
+    private void optionSaveWindow() {
+        if (canvas.getContent() != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("GraphIt");
             alert.setHeaderText(null);
@@ -1841,22 +1851,21 @@ public class Controller implements ObserverSyndrom {
             ButtonType buttonTypeTwo = new ButtonType("Nicht Speichern");
             ButtonType buttonTypeCancel = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-            alert.getButtonTypes().setAll(buttonTypeOne,buttonTypeTwo, buttonTypeCancel);
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == buttonTypeOne){
+            if (result.get() == buttonTypeOne) {
                 // ... user chose "One"
                 System.out.println("SPEICHERN");
-            }else if(result.get() == buttonTypeTwo){
+            } else if (result.get() == buttonTypeTwo) {
                 // ... user chose "Two"
                 System.out.println("NICHT SPEICHERN");
                 Platform.exit();
-            }
-            else {
+            } else {
                 // ... user chose CANCEL or closed the dialog
                 System.out.println("CANCEL");
             }
-        }else{
+        } else {
             Platform.exit();
         }
     }
@@ -1864,7 +1873,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * SPRACHE ÄNDERN, AUCH IN SPHERE.TOSTRING(), VERTEX.TOSTRING() BEACHTEN
      */
-    public void treeViewUpdate(){
+    public void treeViewUpdate() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
@@ -1874,11 +1883,11 @@ public class Controller implements ObserverSyndrom {
 
         TreeItem<Object> rootItem = new TreeItem<Object>();
 
-        for(Sphere sphere : spheres){
+        for (Sphere sphere : spheres) {
             TreeItem<Object> sphereItem = new TreeItem<Object>(sphere);
-            for(Vertex vertex : sphere.getVertices()){
+            for (Vertex vertex : sphere.getVertices()) {
                 TreeItem<Object> vertexItem = new TreeItem<Object>(vertex);
-                for(Edge edge : graph.getOutEdges(vertex)){
+                for (Edge edge : graph.getOutEdges(vertex)) {
                     TreeItem<Object> edgeItem = new TreeItem<Object>(edge);
                     vertexItem.getChildren().add(edgeItem);
                 }
@@ -1890,25 +1899,6 @@ public class Controller implements ObserverSyndrom {
         rootItem.setExpanded(true);
         treeView.setRoot(rootItem);
         treeView.setShowRoot(false);
-    }
-
-    public void templateViewUpdate(){
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        List<Sphere> spheres = graph.getSpheres();
-        Collection<Vertex> vertices = graph.getVertices();
-        Collection<Edge> edges = graph.getEdges();
-
-        if(!spheres.isEmpty()){
-            templateSphereListView.setItems(FXCollections.observableArrayList(spheres));
-        }
-        if(!vertices.isEmpty()){
-            templateSymptomListView.setItems(FXCollections.observableArrayList(vertices));
-        }
-        if(!edges.isEmpty()){
-            templateEdgeListView.setItems(FXCollections.observableArrayList(edges));
-        }
-
     }
 
     /*
@@ -1945,7 +1935,7 @@ public class Controller implements ObserverSyndrom {
         //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("First Graph");
         history.execute(action);
-        System.out.println("vv: "+syndrom.getVv());
+        System.out.println("vv: " + syndrom.getVv());
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         disableEditMode(false);
@@ -1996,46 +1986,55 @@ public class Controller implements ObserverSyndrom {
     }
      */
 
-    public void testTable(){
+
+    public void loadTables() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
         Collection<Vertex> vertices = graph.getVertices();
         Collection<Edge> edges = graph.getEdges();
-        ArrayList<String> name = new ArrayList<>();
 
-        if(!spheres.isEmpty()){
-            sphereTableView.setEditable(true);
-            sphereCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere,Map<String,String>>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere,Map<String,String>> data) {
-                    String name = "";
-                    if(values.getGuiLanguage() == Language.GERMAN){
-                        name = data.getValue().getAnnotation().get("de");
-                    }else if(values.getGuiLanguage() == Language.ENGLISH){
-                        name = data.getValue().getAnnotation().get("en");
-                    }
-                    return new ReadOnlyStringWrapper(name);
-                }
-            });
-
-            setRadioButtonTableColumn(annotationSphereCol,"SphereAnnotation");
-            setRadioButtonTableColumn(positionSphereCol, "SpherePosition");
-            setRadioButtonTableColumn(styleSphereCol, "SphereStyle");
-            setRadioButtonTableColumn(verticesSphereCol, "SphereVertices");
-
-            sphereTableView.setItems(FXCollections.observableArrayList(spheres));
+        if (!spheres.isEmpty()) {
+            loadSpheresTable(spheres);
         }
+
+        if (!vertices.isEmpty()) {
+            loadVerticesTable(vertices);
+        }
+
     }
 
-    private void setRadioButtonTableColumn(TableColumn pTableColumn, String pLocked){
+    private void loadSpheresTable(List spheres) {
+        sphereTableView.setEditable(true);
+        sphereCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere, Map<String, String>> data) {
+                String name = "";
+                if (values.getGuiLanguage() == Language.GERMAN) {
+                    name = data.getValue().getAnnotation().get("de");
+                } else if (values.getGuiLanguage() == Language.ENGLISH) {
+                    name = data.getValue().getAnnotation().get("en");
+                }
+                return new ReadOnlyStringWrapper(name);
+            }
+        });
+
+        setSphereRadioButtonTableColumn(annotationSphereCol, "SphereAnnotation");
+        setSphereRadioButtonTableColumn(positionSphereCol, "SpherePosition");
+        setSphereRadioButtonTableColumn(styleSphereCol, "SphereStyle");
+        setSphereRadioButtonTableColumn(verticesSphereCol, "SphereVertices");
+
+        sphereTableView.setItems(FXCollections.observableArrayList(spheres));
+    }
+
+    private void setSphereRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
         pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Boolean>,
-                ObservableValue<Boolean>>(){
+                ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Sphere, Boolean> param) {
                 Sphere sphere = param.getValue();
                 SimpleBooleanProperty booleanProp;
-                switch(pLocked){
+                switch (pLocked) {
                     case "SphereAnnotation":
                         booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
                         break;
@@ -2053,25 +2052,25 @@ public class Controller implements ObserverSyndrom {
                 }
 
                 //When "Boolean" column change
-                booleanProp.addListener(new ChangeListener<Boolean>(){
+                booleanProp.addListener(new ChangeListener<Boolean>() {
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        switch(pLocked){
+                        switch (pLocked) {
                             case "SphereAnnotation":
                                 sphere.setLockedAnnotation(newValue);
-                                System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
+                                //System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
                                 break;
                             case "SpherePosition":
                                 sphere.setLockedPosition(newValue);
-                                System.out.println("LockedPosition: " + oldValue + " to " + newValue);
+                                //System.out.println("LockedPosition: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereStyle":
                                 sphere.setLockedStyle(newValue);
-                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
+                                //System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereVertices":
                                 sphere.setLockedVertices(newValue);
-                                System.out.println("LockedVertices: " + oldValue + " to " + newValue);
+                                //System.out.println("LockedVertices: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
@@ -2082,10 +2081,89 @@ public class Controller implements ObserverSyndrom {
             }
         });
 
-        pTableColumn.setCellFactory(new Callback<TableColumn<Sphere,Boolean>, TableCell<Sphere,Boolean>>() {
+        pTableColumn.setCellFactory(new Callback<TableColumn<Sphere, Boolean>, TableCell<Sphere, Boolean>>() {
             @Override
-            public TableCell<Sphere,Boolean> call(TableColumn<Sphere,Boolean> param) {
-                CheckBoxTableCell<Sphere,Boolean> cell = new CheckBoxTableCell<Sphere,Boolean>();
+            public TableCell<Sphere, Boolean> call(TableColumn<Sphere, Boolean> param) {
+                CheckBoxTableCell<Sphere, Boolean> cell = new CheckBoxTableCell<Sphere, Boolean>();
+                cell.setAlignment(Pos.CENTER);
+                return cell;
+            }
+        });
+    }
+
+    private void loadVerticesTable(Collection<Vertex> vertices) {
+        symptomTableView.setEditable(true);
+        symptomCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Vertex, Map<String, String>> data) {
+                String name = "";
+                if (values.getGuiLanguage() == Language.GERMAN) {
+                    name = data.getValue().getAnnotation().get("de");
+                } else if (values.getGuiLanguage() == Language.ENGLISH) {
+                    name = data.getValue().getAnnotation().get("en");
+                }
+                return new ReadOnlyStringWrapper(name);
+            }
+        });
+
+        setSymptomRadioButtonTableColumn(annotationSymptomCol, "SymptomAnnotation");
+        setSymptomRadioButtonTableColumn(positionSymptomCol, "SymptomPosition");
+        setSymptomRadioButtonTableColumn(styleSymptomCol, "SymptomStyle");
+
+        symptomTableView.setItems(FXCollections.observableArrayList(vertices));
+    }
+
+    private void setSymptomRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
+        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue call(TableColumn.CellDataFeatures<Vertex,Boolean> param) {
+                Vertex vertex = param.getValue();
+                SimpleBooleanProperty booleanProp;
+                switch(pLocked){
+                    case "SymptomAnnotation":
+                        booleanProp = new SimpleBooleanProperty(vertex.isLockedAnnotation());
+                        break;
+                    case "SymptomPosition":
+                        booleanProp = new SimpleBooleanProperty(vertex.isLockedPosition());
+                        break;
+                    case "SymptomStyle":
+                        booleanProp = new SimpleBooleanProperty(vertex.isLockedStyle());
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
+                }
+
+                //When "Boolean" column change
+                booleanProp.addListener(new ChangeListener<Boolean>(){
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+                        switch(pLocked){
+                            case "SymptomAnnotation":
+                                vertex.setLockedAnnotation(newValue);
+                                System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
+                                break;
+                            case "SymptomPosition":
+                                vertex.setLockedPosition(newValue);
+                                System.out.println("LockedPosition: " + oldValue + " to " + newValue);
+                                break;
+                            case "SymptomStyle":
+                                vertex.setLockedStyle(newValue);
+                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
+                                break;
+                            default:
+                                throw new IllegalArgumentException();
+                        }
+                    }
+                });
+                return booleanProp;
+            }
+        });
+
+        pTableColumn.setCellFactory(new Callback<TableColumn<Vertex, Boolean>, TableCell<Vertex, Boolean>>() {
+            @Override
+            public TableCell<Vertex, Boolean> call(TableColumn<Vertex, Boolean> param) {
+                CheckBoxTableCell<Vertex, Boolean> cell = new CheckBoxTableCell<Vertex, Boolean>();
                 cell.setAlignment(Pos.CENTER);
                 return cell;
             }
