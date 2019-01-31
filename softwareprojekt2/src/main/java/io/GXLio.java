@@ -6,6 +6,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import javafx.scene.effect.Light;
 import log_management.dao.GraphDao;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
@@ -38,6 +39,11 @@ public class GXLio {
      * The highest id of all GXLAttributetElements in the gxl document that is importet in the {@gxlToInstance()}-method.
      */
     int maxID = -1;
+
+    /**
+     * Specifies rather an import is just the import of a graph or a graph with editing rules.
+     */
+    boolean exportWithRules = false;
 
     /**
      * Specifies rather an import is just the import of a graph or a graph with editing rules.
@@ -249,12 +255,9 @@ public class GXLio {
         double height = Double.parseDouble(((GXLString) elem.getAttr("height").getValue()).getValue());
         Map<String, String> annotation = new HashMap<>();
         annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
-        annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+        annotation.put("en+-", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
-        int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
-        HashMap<String, String> anno = new HashMap<>();
-        anno.put("de", "Vertex");
-        anno.put("en+-", "vertex");
+        int fontSize = ((GXLInt) elem.getAttr("fontSize").getValue()).getIntValue();
         Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
         if (importWithRules == true) {
             boolean isLockedPosition = ((GXLBool) elem.getAttr("isLockedPosition").getValue()).getBooleanValue();
@@ -310,10 +313,10 @@ public class GXLio {
         String vertexArrowReinforced = ((GXLString) elem.getAttr("vertexArrowReinforced").getValue()).getValue();
         String vertexArrowNeutral = ((GXLString) elem.getAttr("vertexArrowNeutral").getValue()).getValue();
         String vertexArrowExtenuating = ((GXLString) elem.getAttr("vertexArrowExtenuating").getValue()).getValue();
-        int size = Integer.parseInt(((GXLString) elem.getAttr("size").getValue()).getValue());
-        boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
+        int size = ((GXLInt) elem.getAttr("size").getValue()).getIntValue();
+        boolean isVisible = ((GXLBool) elem.getAttr("isVisible").getValue()).getBooleanValue();
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
-        int fontSize = Integer.parseInt(((GXLString) elem.getAttr("fontSize").getValue()).getValue());
+        int fontSize = ((GXLInt) elem.getAttr("fontSize").getValue()).getIntValue();
         Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
         newVertex.setVisible(isVisible);
         if (importWithRules == true) {
@@ -345,30 +348,30 @@ public class GXLio {
                 Integer.parseInt(drawPaintArray[3]));
         StrokeType stroke = StrokeType.valueOf(((GXLString) elem.getAttr("stroke").getValue()).getValue());
         EdgeArrowType arrowType = EdgeArrowType.valueOf(((GXLString) elem.getAttr("arrowType").getValue()).getValue());
-        boolean hasAnchor = Boolean.parseBoolean(((GXLString) elem.getAttr("hasAnchor").getValue()).getValue());
+        boolean hasAnchorIn = ((GXLBool) elem.getAttr("hasAnchorIn").getValue()).getBooleanValue();
         String[] coordinatesArraySource = null;
-        String[] coordinatesArrayTarget = null;
         java.awt.geom.Point2D coordinatesSource = null;
+        if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")) {
+            coordinatesArraySource = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
+            coordinatesSource = new java.awt.geom.Point2D.Double(
+                    java.lang.Double.parseDouble(coordinatesArraySource[0]),
+                    java.lang.Double.parseDouble(coordinatesArraySource[1]));
+        }
+        boolean hasAnchorOut = ((GXLBool) elem.getAttr("hasAnchorOut").getValue()).getBooleanValue();
+        String[] coordinatesArrayTarget = null;
         java.awt.geom.Point2D coordinatesTarget = null;
-        if (hasAnchor == true) {
-            if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")) {
-                coordinatesArraySource = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
-                coordinatesSource = new java.awt.geom.Point2D.Double(
-                        java.lang.Double.parseDouble(coordinatesArraySource[0]),
-                        java.lang.Double.parseDouble(coordinatesArraySource[1]));
-            }
-            if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")) {
-                coordinatesArrayTarget = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of target").getValue()).getValue());
-                coordinatesTarget = new java.awt.geom.Point2D.Double(
-                        java.lang.Double.parseDouble(coordinatesArrayTarget[0]),
-                        java.lang.Double.parseDouble(coordinatesArrayTarget[1]));
-            }
+        if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the target set")) {
+            coordinatesArrayTarget = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of target").getValue()).getValue());
+            coordinatesTarget = new java.awt.geom.Point2D.Double(
+                    java.lang.Double.parseDouble(coordinatesArrayTarget[0]),
+                    java.lang.Double.parseDouble(coordinatesArrayTarget[1]));
         }
-        boolean isVisible = Boolean.parseBoolean(((GXLString) elem.getAttr("isVisible").getValue()).getValue());
-        Edge newEdge = new Edge(id, paint, stroke, arrowType, false, hasAnchor, isVisible);
-        if (hasAnchor == true) {
-            newEdge.setAnchorPoints(new javafx.util.Pair<>(coordinatesSource, coordinatesTarget));
-        }
+
+        boolean isVisible = ((GXLBool) elem.getAttr("isVisible").getValue()).getBooleanValue();
+        Edge newEdge = new Edge(id, paint, stroke, arrowType, isVisible, hasAnchorIn, hasAnchorOut);
+        newEdge.setHasAnchorIn(hasAnchorIn);
+        javafx.util.Pair<java.awt.geom.Point2D, java.awt.geom.Point2D> endPoints = new  javafx.util.Pair<>(coordinatesSource, coordinatesTarget);
+        newEdge.setAnchorPoints(endPoints);
         if (importWithRules == true) {
             boolean isLockedStyle = ((GXLBool) elem.getAttr("isLockedStyle").getValue()).getBooleanValue();
             newEdge.setLockedStyle(isLockedStyle);
@@ -539,7 +542,6 @@ public class GXLio {
      * @return the content of the created document
      */
     public String gxlFromInstanceWithTemplate() {
-        boolean exportWithRules = true;
         VisualizationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> currentSpheres = theGraph.getSpheres();
@@ -566,7 +568,7 @@ public class GXLio {
             }
             sphere.setAttr("annotation", new GXLString(annotationContent));
             sphere.setAttr("font", new GXLString(s.getFont()));
-            sphere.setAttr("fontSize", new GXLString("" + s.getFontSize()));
+            sphere.setAttr("fontSize", new GXLInt(s.getFontSize()));
             String nodeIDs = "";
             int numberOfCurrentNode = 0;
             for (Vertex v : s.getVertices()) {
@@ -576,7 +578,7 @@ public class GXLio {
                     nodeIDs = nodeIDs + ", ";
                 }
             }
-            if (exportWithRules == true) {
+            if (exportWithRules) {
                 sphere = addRulesToSphere(s, sphere);
             }
             sphere.setAttr("IDs of nodes containt in this shpere: ", new GXLString(nodeIDs));
@@ -619,10 +621,10 @@ public class GXLio {
                 } else {
                     singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString(""));
                 }
-                singleNodeInSphere.setAttr("size", new GXLString("" + v.getSize()));
-                singleNodeInSphere.setAttr("isVisible", new GXLString("" + v.isVisible()));
+                singleNodeInSphere.setAttr("size", new GXLInt(v.getSize()));
+                singleNodeInSphere.setAttr("isVisible", new GXLBool(v.isVisible()));
                 singleNodeInSphere.setAttr("font", new GXLString("" + v.getFont()));
-                singleNodeInSphere.setAttr("fontSize", new GXLString("" + v.getFontSize()));
+                singleNodeInSphere.setAttr("fontSize", new GXLInt(v.getFontSize()));
                 singleNodeInSphere.setAttr("ID of the sphere containing this node:", new GXLString("" + s.getId()));
                 if (exportWithRules == true) {
                     singleNodeInSphere = addRulesToNode(v, singleNodeInSphere);
@@ -640,21 +642,22 @@ public class GXLio {
             edge.setAttr("stroke", new GXLString("" + e.getStroke()));
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
 
-            edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchorOut()));
-            if(e.isHasAnchorOut()) {
-                if (e.getAnchorPoints().getKey() == null) {
-                    edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the source set"));
-                } else {
-                    edge.setAttr("anchorAngle of source", new GXLString("" + e.getAnchorPoints().getKey()));
-                }
-                if (e.getAnchorPoints().getValue() == null) {
-                    edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the target set"));
-                } else {
-                    edge.setAttr("anchorAngle of target", new GXLString("" + e.getAnchorPoints().getValue()));
-                }
+            edge.setAttr("hasAnchorIn", new GXLBool(e.isHasAnchorIn()));
+            if (e.getAnchorPoints().getKey() == null) {
+                edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the source set"));
+            } else {
+                edge.setAttr("anchorAngle of source", new GXLString("" + e.getAnchorPoints().getKey()));
             }
-            edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
-            if (exportWithRules == true) {
+
+            edge.setAttr("hasAnchorOut", new GXLBool(e.isHasAnchorOut()));
+            if (e.getAnchorPoints().getValue() == null) {
+                edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the target set"));
+            } else {
+                edge.setAttr("anchorAngle of target", new GXLString("" + e.getAnchorPoints().getValue()));
+            }
+
+            edge.setAttr("isVisible", new GXLBool(e.isVisible()));
+            if (exportWithRules) {
                 edge = addRulesToEdge(e, edge);
             }
             gxlSyndrom.add(edge);
@@ -766,8 +769,9 @@ public class GXLio {
      *
      * @param pFile The destination File
      */
-    public void exportGXL(File pFile) {
-        String gxl = gxlFromInstance();
+    public void exportGXL(File pFile, boolean pExportWithRules) {
+        exportWithRules = pExportWithRules;
+        String gxl = gxlFromInstanceWithTemplate();
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
             bufferedWriter.write(gxl);
         } catch (IOException e) {
@@ -781,7 +785,8 @@ public class GXLio {
      * @param pFile The File to import
      */
 
-    public void importGXL(File pFile) {
+    public void importGXL(File pFile, boolean pImportWithRules) {
+        importWithRules = pImportWithRules;
         String gxl = "";
         try (Scanner scanner = new Scanner(pFile)) {
             gxl = scanner.useDelimiter("\\A").next();

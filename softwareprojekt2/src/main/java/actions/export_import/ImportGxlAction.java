@@ -32,7 +32,7 @@ public class ImportGxlAction extends GraphAction {
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
-        gxlio.importGXL(file);
+        gxlio.importGXL(file, false);
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         Action.attach(databaseManager);
         notifyObserverNewGraph();

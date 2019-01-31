@@ -33,7 +33,7 @@ public class ExportGxlAction extends GraphAction {
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
-        gxlio.exportGXL(file);
+        gxlio.exportGXL(file, false);
     }
 
     /**
