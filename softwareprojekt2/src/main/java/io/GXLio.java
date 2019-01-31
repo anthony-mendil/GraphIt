@@ -36,12 +36,12 @@ public class GXLio {
     private GraphDao graphDao;
 
     /**
-     * The highest id of all GXLAttributetElements in the gxl document that is importet in the {@gxlToInstance()}-method.
+     * The highest id of all GXLAttributetElements in the gxl document that is imported in the {@gxlToInstance()}-method.
      */
     int maxID = -1;
 
     /**
-     * Specifies rather an import is just the import of a graph or a graph with editing rules.
+     * Specifies rather an export is just the export of a graph or a graph with editing rules.
      */
     boolean exportWithRules = false;
 
@@ -232,6 +232,11 @@ public class GXLio {
 
 
     /**
+     * This method is called from the {@gxlToInstance()}-method each time, when the gxl document is read and
+     * an element representing a sphere object is found.
+     *.
+     * the current element that is read
+     * by the gxl document
      * This method creates a new sphere object with the values from the passed GXLAttributedElement and returns this sphere.
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Sphere]-class.
      *
@@ -273,6 +278,8 @@ public class GXLio {
     }
 
     /**
+     * This method is called from the {@gxlToInstance()}-method each time, when the gxl document is read and
+     * an element representing a vertex object is found.
      * This method creates a new vertex object with the values from the passed GXLAttributedElement and returns this vertex.
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Vertex]-class.
      *
@@ -332,10 +339,13 @@ public class GXLio {
     }
 
     /**
+     * This method is called from the {@gxlToInstance()}-method each time, when the gxl document is read and
+     * an element representing an edge object is found.
+     *
      * This method creates a new edge object with the values from the passed GXLAttributedElement and returns this edge.
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Edge]-class.
      *
-     * @param elem is a GXLAttributetElement that describes a edge having the same atributes as an edge.
+     * @param elem is a GXLAttributetElement that describes an edge having the same atributes as an edge.
      * @return a new edge object with the values from the passed GXLAttributetElement object
      */
     private Edge convertGXLElemToEdge(GXLAttributedElement elem) {
@@ -705,6 +715,16 @@ public class GXLio {
         return content;
     }
 
+    /**
+     * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
+     * describes an export of a graph and the rules describing the editing options belonging to the graph.
+     *
+     * Adds attributes to the GXLAttributedElement that describe the editing options of the graph and returns it.
+     *
+     * @param sphere the object those values describe the editing options that the GXLAttributedElement needs.
+     * @param gxlSphere the GXLAttributedElement still not having the neccessary attributes.
+     * @return the GXLAttributedElement passed to this method now with the neccessary attributes.
+     */
     private GXLNode addRulesToSphere(Sphere sphere, GXLNode gxlSphere) {
         gxlSphere.setAttr("isLockedPosition", new GXLBool(sphere.isLockedPosition()));
         gxlSphere.setAttr("isLockedAnnotation", new GXLBool(sphere.isLockedAnnotation()));
@@ -713,6 +733,16 @@ public class GXLio {
         return gxlSphere;
     }
 
+    /**
+     * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
+     * describes an export of a graph and the rules describing the editing options belonging to the graph.
+     *
+     * Adds attributes to the GXLAttributedElement that describe the editing options of the graph and returns it.
+     *
+     * @param vertex the object those values describe the editing options that the GXLAttributedElement needs.
+     * @param gxlNode the GXLAttributedElement still not having the neccessary attributes.
+     * @return the GXLAttributedElement passed to this method now with the neccessary attributes.
+     */
     private GXLNode addRulesToNode(Vertex vertex, GXLNode gxlNode) {
         gxlNode.setAttr("isLockedPosition", new GXLBool(vertex.isLockedPosition()));
         gxlNode.setAttr("isLockedAnnotation", new GXLBool(vertex.isLockedAnnotation()));
@@ -720,13 +750,31 @@ public class GXLio {
         return gxlNode;
     }
 
+    /**
+     * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
+     * describes an export of a graph and the rules describing the editing options belonging to the graph.
+     *
+     * Adds attributes to the GXLAttributedElement that describe the editing options of the graph and returns it.
+     *
+     * @param edge the object those values describe the editing options that the GXLAttributedElement needs.
+     * @param gxlEdge the GXLAttributedElement still not having the neccessary attributes.
+     * @return the GXLAttributedElement passed to this method now with the neccessary attributes.
+     */
     private GXLEdge addRulesToEdge(Edge edge, GXLEdge gxlEdge) {
         gxlEdge.setAttr("isLockedStyle", new GXLBool(edge.isLockedStyle()));
         gxlEdge.setAttr("isLockedEdgeType", new GXLBool(edge.isLockedEdgeType()));
         return gxlEdge;
     }
 
-
+    /**
+     * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
+     * describes an export of a graph and the rules describing the editing options belonging to the graph.
+     *
+     * Creates a new GXLNode that descriped a template object
+     * having some of the attributes a template object has and returns it.
+     *
+     * @return the GXLNode representing the template object.
+     */
     private GXLNode createTemplateNode(){
         GXLNode templateNode = new GXLNode("template");
         Template template = Syndrom.getInstance().getTemplate();
@@ -740,12 +788,26 @@ public class GXLio {
         return templateNode;
     }
 
+    /**
+     * Forms a description of a color.
+     *
+     * @param color the color that need to be describted
+     * @return the description of the color as a String
+     */
     private String getPaintDescription(Color color) {
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
     }
 
 
+    /**
+     * Converts a String that contains an unknown amount of numbers into a String array.
+     * Each entry of the array contains a number as String.
+     * It is not generally clear of wich concrete type this number is.
+     *
+     * @param pWord a word containing an unknown amount of numbers.
+     * @return the numbers as String contained in the String parameter as entries in the array.
+     */
     public String[] getNumberArrayFromString(String pWord) {
         String word = pWord;
         String[] alphabet = {"2D", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
