@@ -40,12 +40,15 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -723,7 +726,7 @@ public class Controller implements ObserverSyndrom {
     private ComboBox sizeSymptomComboBox;
 
     @FXML
-    private Text prozent;
+    private Menu prozent;
 
     @FXML
     private HBox textBox;
@@ -793,6 +796,33 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private TableColumn edgetypeEdgeCol;
+
+    @FXML
+    private MenuItem zoomMenuItem10;
+
+    @FXML
+    private MenuItem zoomMenuItem25;
+
+    @FXML
+    private MenuItem zoomMenuItem50;
+
+    @FXML
+    private MenuItem zoomMenuItem75;
+
+    @FXML
+    private MenuItem zoomMenuItem100;
+
+    @FXML
+    private MenuItem zoomMenuItem125;
+
+    @FXML
+    private MenuItem zoomMenuItem150;
+
+    @FXML
+    private MenuItem zoomMenuItem175;
+
+    @FXML
+    private MenuItem zoomMenuItem200;
 
     public Controller() {
     }
@@ -1501,6 +1531,8 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.valueProperty().addListener(changeZoom);
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
 
+        setZoomMenu();
+
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
 
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
@@ -1558,15 +1590,18 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 
-            int value = newValue.intValue();
-            int oldV = oldValue.intValue();
+            if (zoomSlider.isValueChanging()){
+                int value = newValue.intValue();
+                int oldV = oldValue.intValue();
 
-            SwingUtilities.invokeLater(() -> {
-                if (value != 0 && oldV != value) {
-                    values.setScale(value);
-                    syndrom.scale(value);
-                }
-            });
+                SwingUtilities.invokeLater(() -> {
+                    if (value != 0 && oldV != value) {
+                        values.setScale(value);
+                        syndrom.scale(value);
+                    }
+                });
+            }
+
         }
     };
 
@@ -2270,6 +2305,38 @@ public class Controller implements ObserverSyndrom {
             }
         });
     }
+
+    private void setZoomMenu(){
+        EventHandler zoomHandler = new ZoomMenuItemHandler();
+        zoomMenuItem10.setOnAction(zoomHandler);
+        zoomMenuItem25.setOnAction(zoomHandler);
+        zoomMenuItem50.setOnAction(zoomHandler);
+        zoomMenuItem75.setOnAction(zoomHandler);
+        zoomMenuItem100.setOnAction(zoomHandler);
+        zoomMenuItem125.setOnAction(zoomHandler);
+        zoomMenuItem150.setOnAction(zoomHandler);
+        zoomMenuItem175.setOnAction(zoomHandler);
+        zoomMenuItem200.setOnAction(zoomHandler);
+
+    }
+
+    private class ZoomMenuItemHandler implements EventHandler<Event>{
+        @Override
+        public void handle(Event evt){
+            MenuItem mnItmn = (MenuItem) evt.getSource();
+            String percent = mnItmn.getText();
+            percent = percent.replaceAll("%","");
+            int per = Integer.parseInt(percent);
+
+            zoomSlider.setValue(per);
+            SwingUtilities.invokeLater(() -> {
+                syndrom.scale(per);
+            });
+
+        }
+    }
+
+
 
     @Override
     public void updateGraph() {
