@@ -13,7 +13,6 @@ import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
@@ -27,7 +26,7 @@ import java.util.List;
 public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
-    private  BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
+    private BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
 
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
@@ -90,8 +89,8 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 for (Object o : getFilteredEdges(layout)) {
 
                     E e = (E) o;
-
-                    Shape edgeShape = getTransformedEdgeShape(e, vv.getRenderContext(), layout);
+                    javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> pair = getTransformedEdgeShape(e, vv.getRenderContext(), layout);
+                    Shape edgeShape = pair.getKey().getKey();
                     if (edgeShape == null)
                         continue;
 
@@ -130,7 +129,8 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         return closest;
     }
 
-    public Shape getTransformedEdgeShape(E e, RenderContext<V, E> rc, Layout<V, E> layout) {
+
+    public javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> getTransformedEdgeShape(E e, RenderContext<V, E> rc, Layout<V, E> layout) {
         // code from framework
         Graph<V, E> graph = layout.getGraph();
         Pair<V> endpoints = graph.getEndpoints(e);
@@ -143,91 +143,77 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         float x2 = (float) p2.getX();
         float y2 = (float) p2.getY();
         Shape edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
-
+        Shape arrow = null;
 
         if (rc.getEdgeArrowPredicate().evaluate(Context.<Graph<V, E>, E>getInstance(graph, e))) {
             Vertex second = (Vertex) graph.getEndpoints(e).getSecond();
             Vertex first = (Vertex) graph.getEndpoints(e).getFirst();
-            Shape arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
+            arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
             Edge edge = (Edge) e;
             AffineTransform edgeAngle = null;
             AffineTransform outEdgeAngle = null;
-
-            if (edge.isHasAnchor()) {
-                Point2D out = edge.getAnchorPoints().getKey();
-                Point2D in = edge.getAnchorPoints().getValue();
-
-                if (in != null){
-                    edgeAngle = getAffineTransformAnchor(rc, edge, second, x2, y2);
-                    if (edgeAngle == null){
-                        return null;
-                    }
-
-                    arrow = edgeAngle.createTransformedShape(arrow);
-                    x2 = (float) arrow.getBounds2D().getCenterX();
-                    y2 = (float) arrow.getBounds2D().getCenterY();
+            Point2D in = edge.getAnchorPoints().getValue();
+            Point2D out = edge.getAnchorPoints().getKey();
+            if (edge.isHasAnchorIn() && in != null) {
+                edgeAngle = getAffineTransformAnchor(rc, second, x2, y2, in);
+                if (edgeAngle == null) {
+                    return null;
                 }
+                arrow = edgeAngle.createTransformedShape(arrow);
+                x2 = (float) arrow.getBounds2D().getCenterX();
+                y2 = (float) arrow.getBounds2D().getCenterY();
+            }
 
-                if (out != null){
-                    System.out.println("here");
-                    AffineTransform xf = AffineTransform.getTranslateInstance(x1, y1);
-                    Shape departVertexShape = rc.getVertexShapeTransformer().transform((V)first);
-                    departVertexShape = xf.createTransformedShape(departVertexShape);
-                    Point2D outCoord = first.getCoordinates();
-                    Point2D oT = new Point2D.Double(out.getX() + outCoord.getX(), out.getY() + outCoord.getY());
-                    Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
-                    outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
-                    Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
-                    outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);
-                    if (outEdgeAngle == null) return null;
-                    Shape tryP = new Ellipse2D.Double(0,0, 5,5);
-                    tryP = outEdgeAngle.createTransformedShape(tryP);
-                    x1 = (float) tryP.getBounds2D().getCenterX();
-                    y1 = (float) tryP.getBounds2D().getCenterY();
+            if (edge.isHasAnchorOut() && out != null) {
+                outEdgeAngle = getAffineTransformAnchor(rc, first, x1, y1, out);
+                if (outEdgeAngle == null) return null;
+                Shape tryP = new Ellipse2D.Double(0, 0, 5, 5);
+                tryP = outEdgeAngle.createTransformedShape(tryP);
+                x1 = (float) tryP.getBounds2D().getCenterX();
+                y1 = (float) tryP.getBounds2D().getCenterY();
+            }
 
-                    SyndromVisualisationViewer<Vertex, Edge> visualisationViewer = (SyndromVisualisationViewer<Vertex, Edge>) vv;
-                    ((SyndromVisualisationViewer<Vertex, Edge>) vv).getGraphics().drawRect((int)x1,(int) y1, 20,20);
-                    vv.repaint();
-                }
-
-            } else {
-                if (edge.getAnchorPoints().getValue() != null){
-                    x2 = (float)edge.getAnchorPoints().getValue().getX();
-                    y2 = (float)edge.getAnchorPoints().getValue().getY();
-                }
-
+            if (!edge.isHasAnchorIn()) {
+                x2 = (float) edge.getAnchorPoints().getValue().getX();
+                y2 = (float) edge.getAnchorPoints().getValue().getY();
             }
 
             AffineTransform xForm = AffineTransform.getTranslateInstance(x1, y1);
-            float dx = x2 - x1;
-            float dy = y2 - y1;
-            float thetaRadians = (float) Math.atan2(dy, dx);
-            xForm.rotate(thetaRadians);
-            float dist = (float) Math.sqrt(dx * dx + dy * dy);
-            xForm.scale(dist, 1.0);
-            edgeShape = xForm.createTransformedShape(edgeShape);
-            System.out.println("yea");
+            edgeShape = getNormalEdgeShape(edgeShape, xForm, new Point2D.Double(x1, y1), new Point2D.Double(x2, y2));
         }
-        return edgeShape;
+        javafx.util.Pair<Shape, Point2D> pair = new javafx.util.Pair<Shape, Point2D>(edgeShape, new Point2D.Double(x1, y1));
+        javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> pair2 = new javafx.util.Pair<>(pair, arrow);
+        return pair2;
     }
 
-    private AffineTransform getAffineTransformAnchor(RenderContext<V,E> rc, Edge edge, Vertex vertex, float endX, float endY){
+    private AffineTransform getAffineTransformAnchor(RenderContext<V, E> rc, Vertex vertex, float endX, float endY, Point2D anchorPoint) {
         AffineTransform transform;
-        Point2D an = edge.getAnchorPoints().getValue();
         Point2D cord = vertex.getCoordinates();
-        Point2D t =  new Point2D.Double(an.getX() +cord.getX(), an.getY() + cord.getY());
+        Point2D t = new Point2D.Double(anchorPoint.getX() + cord.getX(), anchorPoint.getY() + cord.getY());
         Point2D anchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, t);
         cord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, cord);
 
         Line2D lineAngle = new Line2D.Double(anchor, cord);
 
         Shape destVertexShape =
-                rc.getVertexShapeTransformer().transform((V)vertex);
+                rc.getVertexShapeTransformer().transform((V) vertex);
 
         AffineTransform xf = AffineTransform.getTranslateInstance(endX, endY);
         destVertexShape = xf.createTransformedShape(destVertexShape);
         transform = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle, destVertexShape);
         return transform;
+    }
+
+    public Shape getNormalEdgeShape(Shape edgeShape, AffineTransform xform, Point2D pointOne, Point2D pointTwo) {
+        float dx = (float) (pointTwo.getX() - pointOne.getX());
+        float dy = (float) (pointTwo.getY() - pointOne.getY());
+        float thetaRadians = (float) Math.atan2(dy, dx);
+        xform.rotate(thetaRadians);
+        float dist = (float) Math.sqrt(dx * dx + dy * dy);
+        xform.scale(dist, 1.0);
+
+        edgeShape = xform.createTransformedShape(edgeShape);
+        return edgeShape;
     }
 
 }

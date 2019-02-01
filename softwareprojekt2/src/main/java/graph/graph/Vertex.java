@@ -1,6 +1,8 @@
 package graph.graph;
 
 
+import gui.Values;
+import gui.properties.Language;
 import javafx.util.Pair;
 import lombok.Data;
 import lombok.Getter;
@@ -169,6 +171,12 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return annotation.get("de");
+        if(Values.getInstance().getGuiLanguage() == Language.GERMAN){
+            return annotation.get("de");
+        }else if(Values.getInstance().getGuiLanguage() == Language.ENGLISH){
+            return annotation.get("en");
+        }
+
+        return "";
     }
 }

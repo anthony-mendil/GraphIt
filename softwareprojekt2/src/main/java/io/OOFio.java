@@ -16,7 +16,7 @@ public class OOFio {
      * The log dao object, for accessing the log data.
      */
     @Inject
-    private LogDao logDao;
+    private LogDao logDao= new LogDao();
 
     /**
      * Creates a new OOFio object.
@@ -56,6 +56,7 @@ public class OOFio {
      */
     private String jsonFromOOF(String pOOF){
         String[] splits = pOOF.split("\0");
+        System.out.println(splits[1]);
         return splits[1];
     }
 
@@ -66,6 +67,8 @@ public class OOFio {
      */
     public void exportAsOOF(File pFile){
         GXLio gxlio=new GXLio();
+        gxlio.gxlFromInstance();
+        //System.out.println(logDao.getAllString());
         String oof=createOOF(gxlio.gxlFromInstance(),logDao.getAllString());
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
             bufferedWriter.write(oof);
@@ -88,6 +91,9 @@ public class OOFio {
         }
         GXLio gxlio = new GXLio();
         gxlio.gxlToInstance(gxlFromOOF(oof));
+
+        System.out.println(jsonFromOOF(oof));
+
         logDao.saveLogs(jsonFromOOF(oof));
     }
 

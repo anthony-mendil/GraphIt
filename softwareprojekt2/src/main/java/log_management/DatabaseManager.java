@@ -65,7 +65,7 @@ public class DatabaseManager implements ObserverSyndrom {
      * @param log The log for the called action.
      */
     public void addEntryDatabase(Log log) {
-   //     graph.setGxl(gxlIo.gxlFromInstance());
+        graph.setGxl(gxlIo.gxlFromInstance());
         updateGraph();
 
         logDao.save(log);
@@ -97,6 +97,14 @@ public class DatabaseManager implements ObserverSyndrom {
         graph.setGxl(gxlIo.gxlFromInstance());
         graphDao.save(graph);
         setGraph(graph);
+    }
+
+    public String getGxlFromDatabase() {
+        return graphDao.gxlFromDatabase();
+    }
+
+    public boolean databaseEmpty() {
+        return graphDao.isEmpty();
     }
 
 }

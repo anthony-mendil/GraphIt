@@ -3,6 +3,7 @@ package log_management.dao;
 import actions.LogEntryName;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import log_management.DatabaseManager;
 import log_management.json_deserializers.Point2DDeserializer;
 import log_management.json_serializers.Point2DSerializer;
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.awt.geom.Point2D;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -80,7 +82,9 @@ public class LogDao implements Dao<Log> {
 
         String logString = null;
         try {
-            logString = gson.toJson(logList);
+            //logString = gson.toJson(logList, );
+            Type myType = new TypeToken<List<Log>>() {}.getType();
+            logString = gson.toJson(logList, myType);
         } catch (Exception e) {}
 
         return  logString;
@@ -94,17 +98,39 @@ public class LogDao implements Dao<Log> {
     public void save(Log log) {
         EntityManager entityManager = PersonalEntityManager.getInstance();
 
+        deleteAllLogs();
+
         entityManager.getTransaction().begin();
         entityManager.persist(log);
         entityManager.getTransaction().commit();
     }
 
-    public  void saveLogs(String oofLogs) {
-        List<Log> logs;
+    private void deleteAllLogs() {
+        EntityManager entityManager = PersonalEntityManager.getInstance();
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        List<Graph> graphList = selectAllGraphs.getResultList();
 
-            logs = new Gson().fromJson(oofLogs, List.class);
+        graphList.forEach(graph -> {
+            TypedQuery<Log> selectAllLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid", Log.class);
+            selectAllLogs.setParameter("gid", graph.getId());
+            List<Log> logList = selectAllLogs.getResultList();
 
-        logs.forEach(log -> save(log));
+            logList.forEach(log -> {
+                entityManager.remove(log);
+            });
+        });
+    }
+
+    public void saveLogs(String oofLogs) {
+        ArrayList<Log> logs;
+
+        Type myType = new TypeToken<List<Log>>() {}.getType();
+        logs = new Gson().fromJson(oofLogs, myType);
+
+        for (int i = 0; i < logs.size(); i++) {
+            Log log = logs.get(i);
+            save(log);
+        }
     }
 
     @Override

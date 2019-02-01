@@ -23,13 +23,13 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
     private Edge edgeMove = null;
     private boolean isIncoming = false;
-    private int addToSelection = InputEvent.BUTTON1_MASK | InputEvent.SHIFT_MASK;
+    private int addToSelection = InputEvent.BUTTON1_DOWN_MASK  | InputEvent.SHIFT_DOWN_MASK;
 
     /**
      * create an instance with passed values
      */
     public EdgePickingPlugin() {
-        super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
+        super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK );
     }
 
 
@@ -51,7 +51,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
             double distanceSecond = Math.abs(getDistance(p, vertices.getSecond().getCoordinates()));
             isIncoming = (distanceFirst >= distanceSecond);
             edgeMove = edge;
-            if (e.getModifiers() == addToSelection) {
+            if (e.getModifiersEx() == addToSelection) {
                 edgePickedState.pick(edge, true);
             } else if (SwingUtilities.isLeftMouseButton(e)) {
                 edgePickedState.clear();
@@ -70,6 +70,9 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     *   out------>in
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
@@ -79,13 +82,14 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
             Vertex endpoint = (isIncoming) ? graph.getEndpoints(edgeMove).getSecond():graph.getEndpoints(edgeMove).getFirst();
             Point dragged = e.getPoint();
             Point2D draggedPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(dragged);
-            edgeMove.setHasAnchor(true);
             draggedPoint = new Point2D.Double(draggedPoint.getX() - endpoint.getCoordinates().getX(), draggedPoint.getY() - endpoint.getCoordinates().getY());
 
             if (isIncoming){
                 edgeMove.setAnchorPoints(new javafx.util.Pair<>(edgeMove.getAnchorPoints().getKey(), draggedPoint));
+                edgeMove.setHasAnchorIn(true);
             } else {
                 edgeMove.setAnchorPoints(new javafx.util.Pair<>(draggedPoint, edgeMove.getAnchorPoints().getValue()));
+                edgeMove.setHasAnchorOut(true);
             }
         }
         vv.repaint();

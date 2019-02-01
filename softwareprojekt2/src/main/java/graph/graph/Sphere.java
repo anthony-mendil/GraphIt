@@ -1,5 +1,7 @@
 package graph.graph;
 
+import gui.Values;
+import gui.properties.Language;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
@@ -76,27 +78,27 @@ public class Sphere {
      */
     @Getter
     @Setter
-    private boolean isLockedAnnotation = false;
+    private boolean lockedAnnotation = false;
     /**
      * The indicator whether the sphere can be moved deleted.
      */
     @Getter
     @Setter
-    private boolean isLockedPosition = false;
+    private boolean lockedPosition = false;
     /**
      * The Indicator whether the sphere can be changed
      * in terms of style.
      */
     @Getter
     @Setter
-    private boolean isLockedStyle;
+    private boolean lockedStyle = false;
     /**
      * The indicator whether the amount of the vertices
      * inside the sphere can be modified.
      */
     @Getter
     @Setter
-    private boolean isLockedVertices;
+    private boolean lockedVertices = false;
 
 
     /**
@@ -139,6 +141,12 @@ public class Sphere {
 
     @Override
     public String toString(){
-        return annotation.get("de");
+        if(Values.getInstance().getGuiLanguage() == Language.GERMAN){
+            return annotation.get("de");
+        }else if(Values.getInstance().getGuiLanguage() == Language.ENGLISH){
+            return annotation.get("en");
+        }
+
+        return "";
     }
 }

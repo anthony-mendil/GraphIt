@@ -7,9 +7,11 @@ import io.GXLio;
 import java.io.File;
 
 /**
- * Exports a GXL file with the current syndrom graph.
+ * Exports a GXL file with the current syndrom graph with editing rules.
  */
-public class ExportGxlAction extends GraphAction {
+public class ExportTemplateGxlAction extends GraphAction {
+
+
 
     /**
      * The File the gxl get's written into
@@ -21,11 +23,12 @@ public class ExportGxlAction extends GraphAction {
      *
      * @param pFile The destination of the gxl-file
      */
-    public ExportGxlAction(File pFile) {
+    public ExportTemplateGxlAction(File pFile) {
         file=pFile;
         if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
             Syndrom.getInstance().getVv().getPickedSphereState().clear();
-        }    }
+        }
+    }
 
     /**
      * Executes the defined behavior of the action.
@@ -33,7 +36,7 @@ public class ExportGxlAction extends GraphAction {
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
-        gxlio.exportGXL(file, false);
+        gxlio.exportGXL(file, true);
     }
 
     /**

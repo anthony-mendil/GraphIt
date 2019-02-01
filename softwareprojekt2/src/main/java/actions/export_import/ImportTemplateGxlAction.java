@@ -8,9 +8,9 @@ import log_management.DatabaseManager;
 import java.io.File;
 
 /**
- * Imports a GXL file that includes a graph in gxl notation.
+ * Imports a GXL file that includes a graph with editing rules in gxl notation.
  */
-public class ImportGxlAction extends GraphAction {
+public class ImportTemplateGxlAction  extends GraphAction {
 
     /**
      * The File the gxl get's taken from
@@ -18,16 +18,16 @@ public class ImportGxlAction extends GraphAction {
     private File file;
 
     /**
-     * Action handling for importing the graph as GXL file.
+     * Action handling for importing the graph with its editing rules as GXL file.
      *
      * @param pFile The File that the GXL is imported from.
      */
-    public ImportGxlAction(File pFile) {
+    public ImportTemplateGxlAction(File pFile) {
         file=pFile;
     }
 
     /**
-     * Executes the defined behavior of the action.
+     * Executes the relevant method calls to cause the import of a graph with editing rules from a gxl file.
      */
     @Override
     public void action() {
@@ -53,4 +53,5 @@ public class ImportGxlAction extends GraphAction {
     public void redo() {
         //there is no undo/redo operation for io
     }
+
 }

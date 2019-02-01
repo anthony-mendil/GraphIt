@@ -126,45 +126,39 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     AffineTransform arr = null;
                     Point2D outgoingEdgePoint;
 
+                    Point2D an = edge.getAnchorPoints().getValue();
+                    Point2D outgoing = edge.getAnchorPoints().getKey();
+                    if (edge.isHasAnchorIn() && (an != null)) {
+                        Point2D cord = second.getCoordinates();
+                        Point2D t = new Point2D.Double(an.getX() + cord.getX(), an.getY() + cord.getY());
+                        Point2D anchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, t);
+                        cord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, cord);
+                        Line2D lineAngle = new Line2D.Double(anchor, cord);
+                        edgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle, destVertexShape);
+                        if (edgeAngle == null) return;
+                        arrow = edgeAngle.createTransformedShape(arrow);
 
-                    if (edge.isHasAnchor()) {
-                        Point2D an = edge.getAnchorPoints().getValue();
+                        x2 = (float) arrow.getBounds2D().getCenterX();
+                        y2 = (float) arrow.getBounds2D().getCenterY();
+                    }
 
-                        if (an != null){
-                            Point2D cord = second.getCoordinates();
-                            Point2D t = new Point2D.Double(an.getX() + cord.getX(), an.getY() + cord.getY());
-                            Point2D anchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, t);
-                            cord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, cord);
+                    if (edge.isHasAnchorOut() && outgoing != null) {
+                        Point2D outCoord = first.getCoordinates();
+                        Point2D oT = new Point2D.Double(outgoing.getX() + outCoord.getX(), outgoing.getY() + outCoord.getY());
+                        Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
+                        outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
+                        Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
+                        outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);
+                        if (outEdgeAngle == null) return;
 
-                            Line2D lineAngle = new Line2D.Double(anchor, cord);
+                        Shape tryP = new Ellipse2D.Double(0,0, 5,5);
+                        tryP = outEdgeAngle.createTransformedShape(tryP);
 
-                            edgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, lineAngle, destVertexShape);
-                            if (edgeAngle == null) return;
+                        x1 = (float) tryP.getBounds2D().getCenterX();
+                        y1 = (float) tryP.getBounds2D().getCenterY();
+                    }
 
-                            arrow = edgeAngle.createTransformedShape(arrow);
-
-                            x2 = (float) arrow.getBounds2D().getCenterX();
-                            y2 = (float) arrow.getBounds2D().getCenterY();
-                        }
-                        Point2D outgoing = edge.getAnchorPoints().getKey();
-                        if (outgoing != null){
-                            Point2D outCoord = first.getCoordinates();
-                            Point2D oT = new Point2D.Double(outgoing.getX() + outCoord.getX(), outgoing.getY() + outCoord.getY());
-                            Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
-                            outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
-                            Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
-                            outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);
-                            if (outEdgeAngle == null) return;
-
-                            Shape tryP = new Ellipse2D.Double(0,0, 5,5);
-                            tryP = outEdgeAngle.createTransformedShape(tryP);
-
-                            x1 = (float) tryP.getBounds2D().getCenterX();
-                            y1 = (float) tryP.getBounds2D().getCenterY();
-
-                        }
-
-                    } else {
+                    if (!edge.isHasAnchorIn()){
                         EdgeArrowType edgetype = edge.getArrowType();
                         EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map;
                         map = getMap(edgetype, second);
@@ -207,7 +201,6 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     dist = (float) Math.sqrt(dx * dx + dy * dy);
                     affineTransform.scale(dist, 1.0);
                     edgeShape = affineTransform.createTransformedShape(oldEdge);
-                    g.draw(edgeShape);
 
                     setPaintEdge(e, rc, g);
                     drawEdgeArrow(rc, new javafx.util.Pair<>(e, edgeShape), g, arrow, edgeAngle, arr, at, new Point2D.Double(x1,y1));
@@ -240,7 +233,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         }
         Edge edge = (Edge) e;
         Values values = Values.getInstance();
-        if (values.isShowAnchor() && edge.isHasAnchor()){
+        if (values.isShowAnchor() && edge.isHasAnchorOut()){
             g.setStroke(new BasicStroke(1.0f));
             double dimension = 15;
             Shape anchor = new Ellipse2D.Double(-dimension/2,-dimension/2, dimension, dimension);

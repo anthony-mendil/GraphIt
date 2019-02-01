@@ -41,7 +41,10 @@ public class Edge {
      * Defines whether the edge has an anchor point or not on its vertex.
      */
     @NonNull
-    private boolean hasAnchor;
+    private boolean hasAnchorIn;
+
+    @NonNull
+    private boolean hasAnchorOut;
 
     /**
      * first: ausgehender Ankerpunkt
@@ -83,16 +86,16 @@ public class Edge {
      * @param color        The color of the edge.
      * @param stroke       The stroke of the edge.
      * @param arrowType    The arrowType of the edge.
-     * @param hasAnchor    Indicator whether of the Edge is an anchorpoint.
      * @param isVisible    Indicator whether the edge is currently visible.
      */
-    public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean hasAnchor, boolean isVisible){
+    public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean isVisible, boolean anchorIn, boolean anchorOut){
         this.id = id;
         this.color = color;
         this.stroke = stroke;
         this.arrowType = arrowType;
-        this.hasAnchor = hasAnchor;
         this.isVisible = isVisible;
+        this.hasAnchorIn = anchorIn;
+        this.hasAnchorOut = anchorOut;
     }
 
     @Override
@@ -111,7 +114,7 @@ public class Edge {
 
     @Override
     public String toString(){
-        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " -> " +
+        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + "->" +
                 Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
     }
 
