@@ -23,7 +23,7 @@ public class ImportGxlAction extends GraphAction {
      * @param pFile The File that the GXL is imported from.
      */
     public ImportGxlAction(File pFile) {
-        file=pFile;
+        file = pFile;
     }
 
     /**
