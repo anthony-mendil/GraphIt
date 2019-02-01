@@ -78,7 +78,7 @@ public class Sphere {
     @Setter
     private boolean isLockedAnnotation = false;
     /**
-     * The indicator whether the sphere can be moved.
+     * The indicator whether the sphere can be moved deleted.
      */
     @Getter
     @Setter

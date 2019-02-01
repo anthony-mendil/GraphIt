@@ -108,7 +108,7 @@ public class Vertex {
     @Setter
     private boolean isLockedStyle = false;
     /**
-     * The indicator whether the vertex can be moved.
+     * The indicator whether the vertex can be moved and deleted.
      */
     @Getter
     @Setter

@@ -6,6 +6,11 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 
+/**
+ * Highlights an element of the graph. This action will not be logged so
+ * therefore there would not be an implementation of the undo and the createParameters()
+ * method.
+ */
 public class AddHighlightElementAction extends GraphAction {
 
     @Override
