@@ -11,6 +11,8 @@ import log_management.parameters.edit.EditVerticesFillColorParam;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,12 +47,17 @@ public class EditVerticesFillColorLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if(parameters == null){
+            List<Vertex> lockedVertices = new LinkedList<>();
             Map<Vertex,Color> oldVerticesParam = new HashMap<>();
             Map<Vertex,Color> newVerticesParam = new HashMap<>();
             for (Vertex vertex: pickedState.getPicked()) {
-                oldVerticesParam.put(vertex, vertex.getFillColor());
-                newVerticesParam.put(vertex, color);
-                vertex.setFillColor(color);
+                if(!vertex.isLockedStyle()) {
+                    oldVerticesParam.put(vertex, vertex.getFillColor());
+                    newVerticesParam.put(vertex, color);
+                    vertex.setFillColor(color);
+                }else{
+                    lockedVertices.add(vertex);
+                }
             }
             createParameter(oldVerticesParam, newVerticesParam);
         }else{

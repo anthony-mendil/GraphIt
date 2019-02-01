@@ -12,6 +12,8 @@ import log_management.parameters.edit.EditEdgesTypeParam;
 import lombok.Data;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,13 +50,18 @@ public class EditEdgesTypeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if(parameters == null) {
+            List<Edge> lockedEdges = new LinkedList<>();
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
             Map<Edge,EdgeArrowType> oldEdges = new HashMap<>();
             Map<Edge,EdgeArrowType> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                oldEdges.put(e,e.getArrowType());
-                e.setArrowType(type);
-                newEdges.put(e,type);
+                if(!e.isLockedEdgeType()) {
+                    oldEdges.put(e, e.getArrowType());
+                    e.setArrowType(type);
+                    newEdges.put(e, type);
+                }else{
+                    lockedEdges.add(e);
+                }
             }
             createParameter(oldEdges,newEdges);
         }else{

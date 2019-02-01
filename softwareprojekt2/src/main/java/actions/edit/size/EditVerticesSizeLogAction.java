@@ -11,6 +11,8 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVerticesSizeParam;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,10 +41,12 @@ public class EditVerticesSizeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if(parameters == null){
+            List<Vertex> lockedVertices = new LinkedList<>();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         Map<Vertex,Integer> oldVertices = new HashMap<>();
         Map<Vertex,Integer> newVertices = new HashMap<>();
         for (Vertex vertex: pickedState.getPicked()) {
+            if(!vertex.isLockedStyle()){
             if (sizeChange == SizeChange.ENLARGE) {
                 oldVertices.put(vertex,vertex.getSize());
                 vertex.setSize(vertex.getSize() + 5);
@@ -53,6 +57,9 @@ public class EditVerticesSizeLogAction extends LogAction {
                     vertex.setSize(vertex.getSize() - 5);
                     newVertices.put(vertex,vertex.getSize());
                 }
+            }
+        }else{
+                lockedVertices.add(vertex);
             }
         }
         createParameter(oldVertices,newVertices);
