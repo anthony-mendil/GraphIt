@@ -783,6 +783,12 @@ public class Controller implements ObserverSyndrom {
     private TableView edgeTableView;
 
     @FXML
+    private TableColumn edgeCol;
+
+    @FXML
+    private TableColumn positionEdgeCol;
+
+    @FXML
     private TableColumn styleEdgeCol;
 
     @FXML
@@ -1129,6 +1135,18 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
+     * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
+     */
+    public void exportTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showSaveDialog(mainStage);
+        ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
+        exportTemplateGxlAction.action();
+    }
+    
+    /**
      * Creates an ExportPdfAction-object and executes the action with the action history.
      */
     public void exportPDF() {
@@ -1185,6 +1203,23 @@ public class Controller implements ObserverSyndrom {
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
     }
+
+    /**
+     * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
+     * and executes the action with the action history.
+     */
+    public void importTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showOpenDialog(mainStage);
+        ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
+        importTemplateGxlAction.action();
+        zoomSlider.setValue(100);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
+    }
+
 
     /**
      * Creates an PrintPDFAction-object and executes the action with the action history.
@@ -2002,6 +2037,9 @@ public class Controller implements ObserverSyndrom {
             loadVerticesTable(vertices);
         }
 
+        if(!edges.isEmpty()){
+            loadEdgesTable(edges);
+        }
     }
 
     private void loadSpheresTable(List spheres) {
@@ -2058,19 +2096,15 @@ public class Controller implements ObserverSyndrom {
                         switch (pLocked) {
                             case "SphereAnnotation":
                                 sphere.setLockedAnnotation(newValue);
-                                //System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
                                 break;
                             case "SpherePosition":
                                 sphere.setLockedPosition(newValue);
-                                //System.out.println("LockedPosition: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereStyle":
                                 sphere.setLockedStyle(newValue);
-                                //System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereVertices":
                                 sphere.setLockedVertices(newValue);
-                                //System.out.println("LockedVertices: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
@@ -2141,15 +2175,12 @@ public class Controller implements ObserverSyndrom {
                         switch(pLocked){
                             case "SymptomAnnotation":
                                 vertex.setLockedAnnotation(newValue);
-                                System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
                                 break;
                             case "SymptomPosition":
                                 vertex.setLockedPosition(newValue);
-                                System.out.println("LockedPosition: " + oldValue + " to " + newValue);
                                 break;
                             case "SymptomStyle":
                                 vertex.setLockedStyle(newValue);
-                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
@@ -2164,6 +2195,76 @@ public class Controller implements ObserverSyndrom {
             @Override
             public TableCell<Vertex, Boolean> call(TableColumn<Vertex, Boolean> param) {
                 CheckBoxTableCell<Vertex, Boolean> cell = new CheckBoxTableCell<Vertex, Boolean>();
+                cell.setAlignment(Pos.CENTER);
+                return cell;
+            }
+        });
+    }
+
+    private void loadEdgesTable(Collection<Edge> edges){
+        edgeTableView.setEditable(true);
+        edgeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge,String> data) {
+                String name = data.getValue().toString();
+                return new ReadOnlyStringWrapper(name);
+            }
+        });
+
+        setEdgeRadioButtonTableColumn(positionEdgeCol, "EdgePosition");
+        setEdgeRadioButtonTableColumn(styleEdgeCol, "EdgeStyle");
+        setEdgeRadioButtonTableColumn(edgetypeEdgeCol, "EdgeEdgeType");
+
+        edgeTableView.setItems(FXCollections.observableArrayList(edges));
+    }
+
+    private void setEdgeRadioButtonTableColumn(TableColumn pTableColumn, String pLocked){
+        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge,Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge,Boolean> param) {
+                Edge edge = param.getValue();
+                SimpleBooleanProperty booleanProp;
+                switch(pLocked){
+                    case "EdgePosition":
+                        booleanProp = new SimpleBooleanProperty(edge.isLockedPosition());
+                        break;
+                    case "EdgeStyle":
+                        booleanProp = new SimpleBooleanProperty(edge.isLockedStyle());
+                        break;
+                    case "EdgeEdgeType":
+                        booleanProp = new SimpleBooleanProperty(edge.isLockedEdgeType());
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
+                }
+
+                //When "Boolean" column change
+                booleanProp.addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        switch(pLocked){
+                            case "EdgePosition":
+                                edge.setLockedPosition(newValue);
+                                break;
+                            case "EdgeStyle":
+                                edge.setLockedStyle(newValue);
+                                break;
+                            case "EdgeEdgeType":
+                                edge.setLockedEdgeType(newValue);
+                                break;
+                            default:
+                                throw new IllegalArgumentException();
+                        }
+                    }
+                });
+                return booleanProp;
+            }
+        });
+
+        pTableColumn.setCellFactory(new Callback<TableColumn<Edge, Boolean>, TableCell<Edge, Boolean>>() {
+            @Override
+            public TableCell<Edge, Boolean> call(TableColumn<Edge, Boolean> param) {
+                CheckBoxTableCell<Edge, Boolean> cell = new CheckBoxTableCell<Edge, Boolean>();
                 cell.setAlignment(Pos.CENTER);
                 return cell;
             }

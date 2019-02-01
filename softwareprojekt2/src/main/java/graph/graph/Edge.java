@@ -73,6 +73,12 @@ public class Edge {
     @Getter
     @Setter
     private boolean isLockedEdgeType = false;
+    /**
+     * Indicator whether the edge can be deleted.
+     */
+    @Getter
+    @Setter
+    private boolean lockedPosition = false;
 
     /**
      * Creates an edge between two vertices.
@@ -108,7 +114,7 @@ public class Edge {
 
     @Override
     public String toString(){
-        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " -> " +
+        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + "->" +
                 Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
     }
 
