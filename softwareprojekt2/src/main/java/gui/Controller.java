@@ -786,6 +786,9 @@ public class Controller implements ObserverSyndrom {
     private TableColumn edgeCol;
 
     @FXML
+    private TableColumn positionEdgeCol;
+
+    @FXML
     private TableColumn styleEdgeCol;
 
     @FXML
@@ -1127,8 +1130,10 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportGxlAction exportGxlAction = new ExportGxlAction(file);
-        exportGxlAction.action();
+        if (file != null) {
+            ExportGxlAction exportGxlAction = new ExportGxlAction(file);
+            exportGxlAction.action();
+        }
     }
 
     /**
@@ -1139,10 +1144,12 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
-        exportTemplateGxlAction.action();
+        if (file != null) {
+            ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
+            exportTemplateGxlAction.action();
+        }
     }
-    
+
     /**
      * Creates an ExportPdfAction-object and executes the action with the action history.
      */
@@ -1151,8 +1158,10 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportPdfAction exportPdfAction = new ExportPdfAction(file);
-        exportPdfAction.action();
+        if (file != null) {
+            ExportPdfAction exportPdfAction = new ExportPdfAction(file);
+            exportPdfAction.action();
+        }
     }
 
     /**
@@ -1163,8 +1172,10 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportOofAction exportOofAction = new ExportOofAction(file);
-        exportOofAction.action();
+        if (file!=null) {
+            ExportOofAction exportOofAction = new ExportOofAction(file);
+            exportOofAction.action();
+        }
     }
 
     /**
@@ -1177,11 +1188,13 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        ImportOofAction importOofAction = new ImportOofAction(file);
-        importOofAction.action();
-        zoomSlider.setValue(100);
-        canvas.setContent(syndrom.getVv());
-        satellite.setContent(syndrom.getVv2());
+        if (file!=null) {
+            ImportOofAction importOofAction = new ImportOofAction(file);
+            importOofAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
     }
 
     /**
@@ -1194,11 +1207,13 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        ImportGxlAction importGxlAction = new ImportGxlAction(file);
-        importGxlAction.action();
-        zoomSlider.setValue(100);
-        canvas.setContent(syndrom.getVv());
-        satellite.setContent(syndrom.getVv2());
+        if (file!=null) {
+            ImportGxlAction importGxlAction = new ImportGxlAction(file);
+            importGxlAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
     }
 
     /**
@@ -1210,11 +1225,13 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
-        importTemplateGxlAction.action();
-        zoomSlider.setValue(100);
-        canvas.setContent(syndrom.getVv());
-        satellite.setContent(syndrom.getVv2());
+        if (file!=null) {
+            ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
+            importTemplateGxlAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
     }
 
 
@@ -2034,7 +2051,7 @@ public class Controller implements ObserverSyndrom {
             loadVerticesTable(vertices);
         }
 
-        if(!edges.isEmpty()){
+        if (!edges.isEmpty()) {
             loadEdgesTable(edges);
         }
     }
@@ -2093,19 +2110,15 @@ public class Controller implements ObserverSyndrom {
                         switch (pLocked) {
                             case "SphereAnnotation":
                                 sphere.setLockedAnnotation(newValue);
-                                //System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
                                 break;
                             case "SpherePosition":
                                 sphere.setLockedPosition(newValue);
-                                //System.out.println("LockedPosition: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereStyle":
                                 sphere.setLockedStyle(newValue);
-                                //System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereVertices":
                                 sphere.setLockedVertices(newValue);
-                                //System.out.println("LockedVertices: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
@@ -2152,10 +2165,10 @@ public class Controller implements ObserverSyndrom {
     private void setSymptomRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
         pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Vertex,Boolean> param) {
+            public ObservableValue call(TableColumn.CellDataFeatures<Vertex, Boolean> param) {
                 Vertex vertex = param.getValue();
                 SimpleBooleanProperty booleanProp;
-                switch(pLocked){
+                switch (pLocked) {
                     case "SymptomAnnotation":
                         booleanProp = new SimpleBooleanProperty(vertex.isLockedAnnotation());
                         break;
@@ -2170,21 +2183,18 @@ public class Controller implements ObserverSyndrom {
                 }
 
                 //When "Boolean" column change
-                booleanProp.addListener(new ChangeListener<Boolean>(){
+                booleanProp.addListener(new ChangeListener<Boolean>() {
                     @Override
-                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-                        switch(pLocked){
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        switch (pLocked) {
                             case "SymptomAnnotation":
                                 vertex.setLockedAnnotation(newValue);
-                                System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
                                 break;
                             case "SymptomPosition":
                                 vertex.setLockedPosition(newValue);
-                                System.out.println("LockedPosition: " + oldValue + " to " + newValue);
                                 break;
                             case "SymptomStyle":
                                 vertex.setLockedStyle(newValue);
-                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
@@ -2205,29 +2215,33 @@ public class Controller implements ObserverSyndrom {
         });
     }
 
-    private void loadEdgesTable(Collection<Edge> edges){
+    private void loadEdgesTable(Collection<Edge> edges) {
         edgeTableView.setEditable(true);
         edgeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Edge,String> data) {
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge, String> data) {
                 String name = data.getValue().toString();
                 return new ReadOnlyStringWrapper(name);
             }
         });
 
+        setEdgeRadioButtonTableColumn(positionEdgeCol, "EdgePosition");
         setEdgeRadioButtonTableColumn(styleEdgeCol, "EdgeStyle");
         setEdgeRadioButtonTableColumn(edgetypeEdgeCol, "EdgeEdgeType");
 
         edgeTableView.setItems(FXCollections.observableArrayList(edges));
     }
 
-    private void setEdgeRadioButtonTableColumn(TableColumn pTableColumn, String pLocked){
-        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge,Boolean>, ObservableValue<Boolean>>() {
+    private void setEdgeRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
+        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Edge,Boolean> param) {
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge, Boolean> param) {
                 Edge edge = param.getValue();
                 SimpleBooleanProperty booleanProp;
-                switch(pLocked){
+                switch (pLocked) {
+                    case "EdgePosition":
+                        booleanProp = new SimpleBooleanProperty(edge.isLockedPosition());
+                        break;
                     case "EdgeStyle":
                         booleanProp = new SimpleBooleanProperty(edge.isLockedStyle());
                         break;
@@ -2242,14 +2256,15 @@ public class Controller implements ObserverSyndrom {
                 booleanProp.addListener(new ChangeListener<Boolean>() {
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        switch(pLocked){
+                        switch (pLocked) {
+                            case "EdgePosition":
+                                edge.setLockedPosition(newValue);
+                                break;
                             case "EdgeStyle":
                                 edge.setLockedStyle(newValue);
-                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             case "EdgeEdgeType":
                                 edge.setLockedEdgeType(newValue);
-                                System.out.println("LockedEdgeType: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();

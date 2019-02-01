@@ -20,11 +20,10 @@ public class ExportPdfAction extends GraphAction {
      * Action handling for exporting the graph as PDF file.
      *
      * @param pFile The destination File
-     *
      */
     public ExportPdfAction(File pFile) {
-        file=pFile;
-        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+        file = pFile;
+        if (!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
             Syndrom.getInstance().getVv().getPickedSphereState().clear();
         }
     }

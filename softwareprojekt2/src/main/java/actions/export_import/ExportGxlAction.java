@@ -22,10 +22,11 @@ public class ExportGxlAction extends GraphAction {
      * @param pFile The destination of the gxl-file
      */
     public ExportGxlAction(File pFile) {
-        file=pFile;
-        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+        file = pFile;
+        if (!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
             Syndrom.getInstance().getVv().getPickedSphereState().clear();
-        }    }
+        }
+    }
 
     /**
      * Executes the defined behavior of the action.

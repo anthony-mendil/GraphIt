@@ -21,7 +21,7 @@ public class ImportOofAction extends GraphAction {
      * @param pFile The File that the oof is imported from.
      */
     public ImportOofAction(File pFile) {
-        file=pFile;
+        file = pFile;
     }
 
     /**
