@@ -1,6 +1,5 @@
 /softwareprojekt2/.idea/*
 /softwareprojekt2/target/*
-*.iml
 *.aux
 *.log
 *.pdf
