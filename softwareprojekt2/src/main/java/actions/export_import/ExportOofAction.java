@@ -23,7 +23,7 @@ public class ExportOofAction extends GraphAction {
      */
     public ExportOofAction(File pFile) {
         file = pFile;
-        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+        if (!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
             Syndrom.getInstance().getVv().getPickedSphereState().clear();
         }
     }

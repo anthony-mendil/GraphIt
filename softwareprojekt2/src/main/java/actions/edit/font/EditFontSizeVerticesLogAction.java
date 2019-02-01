@@ -10,6 +10,8 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeVerticesParam;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,10 +48,15 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         Map<Vertex,Integer> oldVerticesParam = new HashMap<>();
         Map<Vertex,Integer> newVerticesParam = new HashMap<>();
         if(parameters == null){
+            List<Vertex> lockedVertices = new LinkedList<>();
             for (Vertex vertex: pickedState.getPicked()) {
-                oldVerticesParam.put(vertex, vertex.getFontSize());
-                newVerticesParam.put(vertex, size);
-                vertex.setFontSize(size);
+                if(vertex.isLockedAnnotation()) {
+                    oldVerticesParam.put(vertex, vertex.getFontSize());
+                    newVerticesParam.put(vertex, size);
+                    vertex.setFontSize(size);
+                }else{
+                    lockedVertices.add(vertex);
+                }
             }
             createParameter(oldVerticesParam, newVerticesParam);
         }else{

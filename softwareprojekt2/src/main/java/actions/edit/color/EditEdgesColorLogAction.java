@@ -11,6 +11,8 @@ import log_management.parameters.edit.EditEdgesColorParam;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,14 +47,19 @@ public class EditEdgesColorLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
         if(parameters == null) {
+            List<Edge> lockedEdges = new LinkedList<>();
             Map<Edge,Color> oldEdges = new HashMap<>();
             Map<Edge,Color> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                oldEdges.put(e,e.getColor());
-                e.setColor(color);
-                newEdges.put(e,color);
+                if (e.isLockedStyle()) {
+                    oldEdges.put(e, e.getColor());
+                    e.setColor(color);
+                    newEdges.put(e, color);
+                }else{
+                    lockedEdges.add(e);
+                }
             }
-            createParameter(oldEdges,newEdges);
+                createParameter(oldEdges, newEdges);
         }else {
             Map<Edge,Color> oldEdges = ((EditEdgesColorParam) parameters).getEdgesOld();
             Map<Edge,Color> newEdges = ((EditEdgesColorParam) parameters).getEdgesNew();

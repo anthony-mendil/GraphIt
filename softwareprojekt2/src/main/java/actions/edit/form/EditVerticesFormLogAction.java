@@ -11,6 +11,8 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVerticesFormParam;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,12 +45,17 @@ public class EditVerticesFormLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if(parameters == null) {
+            List<Vertex> lockedVertices = new LinkedList<>();
             Map<Vertex,VertexShapeType> oldVertices = new HashMap<>();
             Map<Vertex,VertexShapeType> newVertices = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                oldVertices.put(vertex, vertex.getShape());
-                vertex.setShape(type);
-                newVertices.put(vertex, type);
+                if(!vertex.isLockedStyle()) {
+                    oldVertices.put(vertex, vertex.getShape());
+                    vertex.setShape(type);
+                    newVertices.put(vertex, type);
+                }else{
+                    lockedVertices.add(vertex);
+                }
             }
             createParameter(oldVertices, newVertices);
         }else{

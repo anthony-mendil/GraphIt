@@ -2,8 +2,6 @@ package graph.graph;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * Represents a template, which can be created by the creator(Ersteller).
  */
@@ -46,52 +44,6 @@ public class Template {
      *
      */
     private boolean unknownEdgesAllowed;
-
-    //Locked Objects options:
-    /**
-     *
-     */
-    private List<Integer> styleLockedSpheres;
-
-    /**
-     *
-     */
-    private List<Integer> annotationLockedSpheres;
-
-    /**
-     *
-     */
-    private List<Integer> positionLockedSpheres;
-
-    /**
-     *
-     */
-    private List<Integer> verticesLockedSpheres;
-
-    /**
-     *
-     */
-    private List<Integer> styleLockedVertices;
-
-    /**
-     *
-     */
-    private List<Integer> annotationLockedVertices;
-
-    /**
-     *
-     */
-    private List<Integer> positionLockedVertices;
-
-    /**
-     *
-     */
-    private List<Integer> styleLockedEdges;
-
-    /**
-     *
-     */
-    private List<Integer> typeLockedEdges;
 
 
     /**

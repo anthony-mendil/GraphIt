@@ -10,6 +10,8 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontVerticesParam;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,12 +46,17 @@ public class EditFontVerticesLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if(parameters == null) {
+            List<Vertex> lockedVertices = new LinkedList<>();
             Map<Vertex,String> oldVertices = new HashMap<>();
             Map<Vertex,String> newVertices = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                oldVertices.put(vertex, vertex.getFont());
-                vertex.setFont(font);
-                newVertices.put(vertex, font);
+                if(!vertex.isLockedAnnotation()) {
+                    oldVertices.put(vertex, vertex.getFont());
+                    vertex.setFont(font);
+                    newVertices.put(vertex, font);
+                }else{
+                    lockedVertices.add(vertex);
+                }
             }
             createParameter(oldVertices, newVertices);
         }else{

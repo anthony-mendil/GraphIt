@@ -11,6 +11,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereColorParam;
 
 import java.awt.*;
+import java.util.List;
 
 
 /**
@@ -47,9 +48,14 @@ public class EditSphereColorLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
     if(parameters == null) {
+        Sphere lockedSphere = null;
         for (Sphere sp : pickedState.getPicked()) {
-            createParameter(sp, sp.getColor(), color);
-            sp.setColor(color);
+            if(!sp.isLockedStyle()) {
+                createParameter(sp, sp.getColor(), color);
+                sp.setColor(color);
+            }else{
+                lockedSphere = sp;
+            }
         }
     }else{
         Sphere sphere = ((EditSphereColorParam)parameters).getSphere();

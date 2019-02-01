@@ -10,6 +10,8 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVertexAnnotationParam;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,11 +47,16 @@ public class EditVertexAnnotationLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if(parameters == null) {
+            List<Vertex> lockedVertices = new LinkedList<>();
             for (Vertex v : pickedState.getPicked()) {
-                Map<String, String> annotation = v.getAnnotation();
-                createParameter(v, v.getAnnotation().get("de"),text);
-                annotation.put("de", text);
-                v.setAnnotation(annotation);
+                if(!v.isLockedAnnotation()) {
+                    Map<String, String> annotation = v.getAnnotation();
+                    createParameter(v, v.getAnnotation().get("de"), text);
+                    annotation.put("de", text);
+                    v.setAnnotation(annotation);
+                }else{
+                    lockedVertices.add(v);
+                }
             }
         }else{
             Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();

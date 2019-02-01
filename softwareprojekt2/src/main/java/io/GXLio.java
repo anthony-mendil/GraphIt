@@ -709,7 +709,6 @@ public class GXLio {
         } catch (Exception e) {
             logger.error(e.toString());
         }
-        System.out.println(content);
         tmpGXL.deleteOnExit();
         return content;
     }

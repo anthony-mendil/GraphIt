@@ -43,9 +43,14 @@ public class EditFontSphereLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         if(parameters == null) {
+            Sphere sphere = null;
             for (Sphere sp : pickedState.getPicked()) {
-                createParameter(sp, sp.getFont(), font);
-                sp.setFont(font);
+                if(!sp.isLockedAnnotation()) {
+                    createParameter(sp, sp.getFont(), font);
+                    sp.setFont(font);
+                }else{
+                    sphere = sp;
+                }
             }
         }else{
             Sphere sphere = ((EditFontSphereParam)parameters).getSphere();

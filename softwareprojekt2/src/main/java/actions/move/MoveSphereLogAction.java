@@ -60,6 +60,7 @@ public class MoveSphereLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         if(parameters == null) {
+            Sphere lockedSphere = null;
             Map<Sphere,Point2D> oldSphere = new HashMap<>();
             Map<Sphere,Point2D> newSphere = new HashMap<>();
             oldSphere.put(sphere,oldPosition);

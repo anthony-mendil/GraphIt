@@ -13,6 +13,7 @@ import log_management.parameters.edit.EditSphereSizeParam;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 /**
  * Changes the sphere size.
@@ -50,7 +51,9 @@ public class EditSphereSizeLogAction extends LogAction {
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null) {
+            Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
+                if(!sp.isLockedStyle()){
                 if (sizeChange == SizeChange.ENLARGE) {
                     double newHeight = sp.getHeight() + 10;
                     double newWidth = sp.getWidth() + 10;
@@ -94,6 +97,9 @@ public class EditSphereSizeLogAction extends LogAction {
                         createParameter(sp, oldSize, newSize);
 
                     }
+                }
+            } else{
+                    lockedSphere = sp;
                 }
             }
         }else{

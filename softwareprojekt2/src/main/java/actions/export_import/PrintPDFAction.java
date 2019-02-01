@@ -13,7 +13,9 @@ public class PrintPDFAction extends GraphAction {
      * Action handling for printing the graph as PDF file.
      */
     public PrintPDFAction() {
-        Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        if (!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+            Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        }
     }
 
     /**
