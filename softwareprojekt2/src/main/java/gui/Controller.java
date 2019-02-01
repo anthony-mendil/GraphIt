@@ -1132,6 +1132,18 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
+     * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
+     */
+    public void exportTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showSaveDialog(mainStage);
+        ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
+        exportTemplateGxlAction.action();
+    }
+    
+    /**
      * Creates an ExportPdfAction-object and executes the action with the action history.
      */
     public void exportPDF() {
@@ -1188,6 +1200,23 @@ public class Controller implements ObserverSyndrom {
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
     }
+
+    /**
+     * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
+     * and executes the action with the action history.
+     */
+    public void importTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showOpenDialog(mainStage);
+        ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
+        importTemplateGxlAction.action();
+        zoomSlider.setValue(100);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
+    }
+
 
     /**
      * Creates an PrintPDFAction-object and executes the action with the action history.

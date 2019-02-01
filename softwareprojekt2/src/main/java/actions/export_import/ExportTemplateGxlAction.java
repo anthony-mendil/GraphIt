@@ -1,29 +1,33 @@
 package actions.export_import;
 
-import actions.Action;
 import actions.GraphAction;
+import graph.graph.Syndrom;
 import io.GXLio;
-import log_management.DatabaseManager;
 
 import java.io.File;
 
 /**
- * Imports a GXL file that includes a graph in gxl notation.
+ * Exports a GXL file with the current syndrom graph with editing rules.
  */
-public class ImportGxlAction extends GraphAction {
+public class ExportTemplateGxlAction extends GraphAction {
+
+
 
     /**
-     * The File the gxl get's taken from
+     * The File the gxl get's written into
      */
     private File file;
 
     /**
-     * Action handling for importing the graph as GXL file.
+     * Constructs action handling for exporting the graph as GXL file.
      *
-     * @param pFile The File that the GXL is imported from.
+     * @param pFile The destination of the gxl-file
      */
-    public ImportGxlAction(File pFile) {
+    public ExportTemplateGxlAction(File pFile) {
         file=pFile;
+        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+            Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        }
     }
 
     /**
@@ -32,10 +36,7 @@ public class ImportGxlAction extends GraphAction {
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
-        gxlio.importGXL(file, false);
-        DatabaseManager databaseManager = DatabaseManager.getInstance();
-        Action.attach(databaseManager);
-        notifyObserverNewGraph();
+        gxlio.exportGXL(file, true);
     }
 
     /**
