@@ -232,7 +232,7 @@ public class ColorNameCreator {
         }
 
         public int calculate(int pixRed, int pixGreen, int pixBlue) {
-            return (int) (((pixRed - red) * (pixRed - red) + (pixGreen - green) * (pixGreen - green) + (pixBlue - blue)
+            return (((pixRed - red) * (pixRed - red) + (pixGreen - green) * (pixGreen - green) + (pixBlue - blue)
                     * (pixBlue - blue)) / 3);
         }
 
