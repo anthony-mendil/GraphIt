@@ -783,6 +783,9 @@ public class Controller implements ObserverSyndrom {
     private TableView edgeTableView;
 
     @FXML
+    private TableColumn edgeCol;
+
+    @FXML
     private TableColumn styleEdgeCol;
 
     @FXML
@@ -2002,6 +2005,9 @@ public class Controller implements ObserverSyndrom {
             loadVerticesTable(vertices);
         }
 
+        if(!edges.isEmpty()){
+            loadEdgesTable(edges);
+        }
     }
 
     private void loadSpheresTable(List spheres) {
@@ -2164,6 +2170,71 @@ public class Controller implements ObserverSyndrom {
             @Override
             public TableCell<Vertex, Boolean> call(TableColumn<Vertex, Boolean> param) {
                 CheckBoxTableCell<Vertex, Boolean> cell = new CheckBoxTableCell<Vertex, Boolean>();
+                cell.setAlignment(Pos.CENTER);
+                return cell;
+            }
+        });
+    }
+
+    private void loadEdgesTable(Collection<Edge> edges){
+        edgeTableView.setEditable(true);
+        edgeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge,String> data) {
+                String name = data.getValue().toString();
+                return new ReadOnlyStringWrapper(name);
+            }
+        });
+
+        setEdgeRadioButtonTableColumn(styleEdgeCol, "EdgeStyle");
+        setEdgeRadioButtonTableColumn(edgetypeEdgeCol, "EdgeEdgeType");
+
+        edgeTableView.setItems(FXCollections.observableArrayList(edges));
+    }
+
+    private void setEdgeRadioButtonTableColumn(TableColumn pTableColumn, String pLocked){
+        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge,Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge,Boolean> param) {
+                Edge edge = param.getValue();
+                SimpleBooleanProperty booleanProp;
+                switch(pLocked){
+                    case "EdgeStyle":
+                        booleanProp = new SimpleBooleanProperty(edge.isLockedStyle());
+                        break;
+                    case "EdgeEdgeType":
+                        booleanProp = new SimpleBooleanProperty(edge.isLockedEdgeType());
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
+                }
+
+                //When "Boolean" column change
+                booleanProp.addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        switch(pLocked){
+                            case "EdgeStyle":
+                                edge.setLockedStyle(newValue);
+                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
+                                break;
+                            case "EdgeEdgeType":
+                                edge.setLockedEdgeType(newValue);
+                                System.out.println("LockedEdgeType: " + oldValue + " to " + newValue);
+                                break;
+                            default:
+                                throw new IllegalArgumentException();
+                        }
+                    }
+                });
+                return booleanProp;
+            }
+        });
+
+        pTableColumn.setCellFactory(new Callback<TableColumn<Edge, Boolean>, TableCell<Edge, Boolean>>() {
+            @Override
+            public TableCell<Edge, Boolean> call(TableColumn<Edge, Boolean> param) {
+                CheckBoxTableCell<Edge, Boolean> cell = new CheckBoxTableCell<Edge, Boolean>();
                 cell.setAlignment(Pos.CENTER);
                 return cell;
             }

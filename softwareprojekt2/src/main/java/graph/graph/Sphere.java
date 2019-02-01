@@ -1,5 +1,7 @@
 package graph.graph;
 
+import gui.Values;
+import gui.properties.Language;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
@@ -139,6 +141,12 @@ public class Sphere {
 
     @Override
     public String toString(){
-        return annotation.get("de");
+        if(Values.getInstance().getGuiLanguage() == Language.GERMAN){
+            return annotation.get("de");
+        }else if(Values.getInstance().getGuiLanguage() == Language.ENGLISH){
+            return annotation.get("en");
+        }
+
+        return "";
     }
 }
