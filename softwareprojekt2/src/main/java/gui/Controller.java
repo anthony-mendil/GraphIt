@@ -786,6 +786,9 @@ public class Controller implements ObserverSyndrom {
     private TableColumn edgeCol;
 
     @FXML
+    private TableColumn positionEdgeCol;
+
+    @FXML
     private TableColumn styleEdgeCol;
 
     @FXML
@@ -2093,19 +2096,15 @@ public class Controller implements ObserverSyndrom {
                         switch (pLocked) {
                             case "SphereAnnotation":
                                 sphere.setLockedAnnotation(newValue);
-                                //System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
                                 break;
                             case "SpherePosition":
                                 sphere.setLockedPosition(newValue);
-                                //System.out.println("LockedPosition: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereStyle":
                                 sphere.setLockedStyle(newValue);
-                                //System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             case "SphereVertices":
                                 sphere.setLockedVertices(newValue);
-                                //System.out.println("LockedVertices: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
@@ -2176,15 +2175,12 @@ public class Controller implements ObserverSyndrom {
                         switch(pLocked){
                             case "SymptomAnnotation":
                                 vertex.setLockedAnnotation(newValue);
-                                System.out.println("LockedAnnotation: " + oldValue + " to " + newValue);
                                 break;
                             case "SymptomPosition":
                                 vertex.setLockedPosition(newValue);
-                                System.out.println("LockedPosition: " + oldValue + " to " + newValue);
                                 break;
                             case "SymptomStyle":
                                 vertex.setLockedStyle(newValue);
-                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
@@ -2215,6 +2211,7 @@ public class Controller implements ObserverSyndrom {
             }
         });
 
+        setEdgeRadioButtonTableColumn(positionEdgeCol, "EdgePosition");
         setEdgeRadioButtonTableColumn(styleEdgeCol, "EdgeStyle");
         setEdgeRadioButtonTableColumn(edgetypeEdgeCol, "EdgeEdgeType");
 
@@ -2228,6 +2225,9 @@ public class Controller implements ObserverSyndrom {
                 Edge edge = param.getValue();
                 SimpleBooleanProperty booleanProp;
                 switch(pLocked){
+                    case "EdgePosition":
+                        booleanProp = new SimpleBooleanProperty(edge.isLockedPosition());
+                        break;
                     case "EdgeStyle":
                         booleanProp = new SimpleBooleanProperty(edge.isLockedStyle());
                         break;
@@ -2243,13 +2243,14 @@ public class Controller implements ObserverSyndrom {
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                         switch(pLocked){
+                            case "EdgePosition":
+                                edge.setLockedPosition(newValue);
+                                break;
                             case "EdgeStyle":
                                 edge.setLockedStyle(newValue);
-                                System.out.println("LockedStyle: " + oldValue + " to " + newValue);
                                 break;
                             case "EdgeEdgeType":
                                 edge.setLockedEdgeType(newValue);
-                                System.out.println("LockedEdgeType: " + oldValue + " to " + newValue);
                                 break;
                             default:
                                 throw new IllegalArgumentException();
