@@ -1,6 +1,7 @@
 package gui;
 
 import actions.ActionHistory;
+import actions.GraphAction;
 import actions.ObserverSyndrom;
 import actions.activate.ActivateAnchorPointsFadeoutLogAction;
 import actions.activate.ActivateHighlightLogAction;
@@ -1554,26 +1555,15 @@ public class Controller implements ObserverSyndrom {
         //trying direct load
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
-        if (databaseManager.databaseEmpty()) {
-            CreateGraphAction action = new CreateGraphAction("First Graph");
-            history.execute(action);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
-            disableEditMode(false);
-            disableAnalysisMode(false);
-            zoomSlider.setValue(100);
-            System.out.println("neuer Graph");
-        } else {
-            LoadGraphAction action = new LoadGraphAction();
-            history.execute(action);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
-            disableEditMode(false);
-            disableAnalysisMode(false);
-            zoomSlider.setValue(100);
-            System.out.println("alter graph");
-        }
-
+        GraphAction action = databaseManager.databaseEmpty()
+                ? new CreateGraphAction("First Graph")
+                : new LoadGraphAction();
+        history.execute(action);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
+        disableEditMode(false);
+        disableAnalysisMode(false);
+        zoomSlider.setValue(100);
     }
 
     private void initFonts() {
