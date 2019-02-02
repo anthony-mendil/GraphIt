@@ -6,6 +6,7 @@ import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.KKLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.util.Pair;
+import edu.uci.ics.jung.visualization.Layer;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
@@ -17,10 +18,8 @@ import log_management.parameters.move.LayoutVerticesParam;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 /**
  * Layouts the graph according to a previously defined layout.
@@ -55,12 +54,13 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         if(parameters == null || indicator == true){
             Map<Vertex,Point2D> oldVertices = new HashMap<>();
         for (Sphere s : graph.getSpheres()) {
-            LinkedList<Vertex> vertices = s.getVertices();
+            List<Vertex> vertices = s.getVertices();
 
             if (vertices.size() > 1 && !graph.getEdges().isEmpty()) {
                 Point2D center = new Point2D.Double();
                 center.setLocation(s.getCoordinates().getX() + (s.getWidth() / 2), s.getCoordinates().getY() + (s
                         .getHeight() / 2));
+
 
                 SyndromGraph<Vertex, Edge> subGraph;
                 try {
@@ -88,20 +88,14 @@ public class LayoutVerticesGraphLogAction extends LogAction {
 
         vv.setGraphLayout(layout);
 
-        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
-
-        for (Point2D point2D : layout.getLayouts().values()){
-            Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
-            if (sp != null){
-                for (Vertex v: sp.getVertices()){
-                    oldVertices.put(v, v.getCoordinates());
-                    v.setCoordinates(layout.transform(v));
-                }
-            }
+        for (Vertex v : graph.getVertices()){
+            oldVertices.put(v, v.getCoordinates());
+            v.setCoordinates(layout.transform(v));
         }
+
         indicator = true;
         createParameter(oldVertices);
-        }else{
+        } else{
             Map<Vertex,Point2D> oldVertices = ((LayoutVerticesParam)parameters).getOldVertices();
             for(Map.Entry<Vertex,Point2D> entry : oldVertices.entrySet()){
                 entry.getKey().setCoordinates(oldVertices.get(entry.getKey()));
@@ -109,11 +103,10 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         }
         layout.removeAll();
 
-        for (Sphere s : graph.getSpheres()) {
-            for (Vertex v : s.getVertices()) {
-                layout.setLocation(v, v.getCoordinates());
-            }
+        for (Vertex v : graph.getVertices()) {
+            layout.setLocation(v, v.getCoordinates());
         }
+
         vv.setGraphLayout(layout);
 
         vv.repaint();
