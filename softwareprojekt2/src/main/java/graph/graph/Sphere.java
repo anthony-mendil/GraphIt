@@ -105,7 +105,7 @@ public class Sphere {
      */
     @Getter
     @Setter
-    private int lockedMaxAmountVertices = 0;
+    private String lockedMaxAmountVertices = "";
 
 
     /**

@@ -51,8 +51,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -738,6 +741,9 @@ public class Controller implements ObserverSyndrom {
     private Accordion overViewAccordion;
 
     @FXML
+    private TitledPane overViewTitledPane;
+
+    @FXML
     private TitledPane templateTitledPane;
 
     @FXML
@@ -765,7 +771,7 @@ public class Controller implements ObserverSyndrom {
      * The tablecolumn for setting the template rule "maximum numbers of symptoms in the sphere".
      */
     @FXML
-    private TableColumn maxAmountSphereCol;
+    private TableColumn<Sphere,String> maxAmountSphereCol;
 
     @FXML
     private TableView symptomTableView;
@@ -1517,6 +1523,7 @@ public class Controller implements ObserverSyndrom {
         analysisMode(false);
         editButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        overViewAccordion.setExpandedPane(overViewTitledPane);
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
@@ -1641,6 +1648,21 @@ public class Controller implements ObserverSyndrom {
             }
         }
     };
+
+    private class OnlyNumberTextFieldTableCell implements ChangeListener<String>{
+        private final TextFieldTableCell<Sphere,String> textFieldTableCell;
+
+        private OnlyNumberTextFieldTableCell(TextFieldTableCell<Sphere, String> pTextFieldTableCell){
+            textFieldTableCell = pTextFieldTableCell;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            if(!newValue.matches("\\d*")){
+                textFieldTableCell.setText(oldValue);
+            }
+        }
+    }
 
     private class OnlyNumberComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
@@ -2093,6 +2115,26 @@ public class Controller implements ObserverSyndrom {
                 return new ReadOnlyStringWrapper(name);
             }
         });
+
+        // ==== MAX AMOUNT (TEXT FIELD)
+        maxAmountSphereCol.setCellValueFactory(new PropertyValueFactory<>("lockedMaxAmountVertices"));
+        maxAmountSphereCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        maxAmountSphereCol.setMinWidth(200);
+
+        //On Cell edit commit (for MaxAmount column)
+        maxAmountSphereCol.setOnEditCommit((CellEditEvent<Sphere, String> event) -> {
+            String maxAmount = event.getNewValue();
+            TablePosition<Sphere, String> pos = event.getTablePosition();
+            int row = pos.getRow();
+            Sphere sphere = event.getTableView().getItems().get(row);
+
+            if(!maxAmount.chars().anyMatch(Character::isLetter)){
+                sphere.setLockedMaxAmountVertices(maxAmount);
+            }
+            sphereTableView.getColumns().remove(maxAmountSphereCol);
+            sphereTableView.getColumns().add(maxAmountSphereCol);
+        });
+
 
         setSphereRadioButtonTableColumn(titleSphereCol, "SphereTitle");
         setSphereRadioButtonTableColumn(positionSphereCol, "SpherePosition");
