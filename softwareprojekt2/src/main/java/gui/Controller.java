@@ -49,7 +49,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -239,12 +238,6 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private TextField maxSymptomField;
-
-    /**
-     * The textfield for setting the template rule "maximum numbers of symptoms in a sphere in the graph".
-     */
-    @FXML
-    private TextField maxSymptominSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of edges in the graph".
@@ -757,7 +750,7 @@ public class Controller implements ObserverSyndrom {
     private TableColumn sphereCol;
 
     @FXML
-    private TableColumn annotationSphereCol;
+    private TableColumn titleSphereCol;
 
     @FXML
     private TableColumn positionSphereCol;
@@ -768,6 +761,12 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private TableColumn verticesSphereCol;
 
+    /**
+     * The tablecolumn for setting the template rule "maximum numbers of symptoms in the sphere".
+     */
+    @FXML
+    private TableColumn maxAmountSphereCol;
+
     @FXML
     private TableView symptomTableView;
 
@@ -775,7 +774,7 @@ public class Controller implements ObserverSyndrom {
     private TableColumn symptomCol;
 
     @FXML
-    private TableColumn annotationSymptomCol;
+    private TableColumn titleSymptomCol;
 
     @FXML
     private TableColumn positionSymptomCol;
@@ -2082,7 +2081,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadSpheresTable(List spheres) {
-        sphereTableView.setEditable(true);
         sphereCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere, Map<String, String>> data) {
@@ -2096,7 +2094,7 @@ public class Controller implements ObserverSyndrom {
             }
         });
 
-        setSphereRadioButtonTableColumn(annotationSphereCol, "SphereAnnotation");
+        setSphereRadioButtonTableColumn(titleSphereCol, "SphereTitle");
         setSphereRadioButtonTableColumn(positionSphereCol, "SpherePosition");
         setSphereRadioButtonTableColumn(styleSphereCol, "SphereStyle");
         setSphereRadioButtonTableColumn(verticesSphereCol, "SphereVertices");
@@ -2112,7 +2110,7 @@ public class Controller implements ObserverSyndrom {
                 Sphere sphere = param.getValue();
                 SimpleBooleanProperty booleanProp;
                 switch (pLocked) {
-                    case "SphereAnnotation":
+                    case "SphereTitle":
                         booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
                         break;
                     case "SpherePosition":
@@ -2133,8 +2131,9 @@ public class Controller implements ObserverSyndrom {
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                         switch (pLocked) {
-                            case "SphereAnnotation":
+                            case "SphereTitle":
                                 sphere.setLockedAnnotation(newValue);
+                                System.out.println("SphereAnnotation: " + oldValue + " to " + sphere.isLockedAnnotation());
                                 break;
                             case "SpherePosition":
                                 sphere.setLockedPosition(newValue);
@@ -2165,7 +2164,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadVerticesTable(Collection<Vertex> vertices) {
-        symptomTableView.setEditable(true);
         symptomCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>() {
 
             @Override
@@ -2180,7 +2178,7 @@ public class Controller implements ObserverSyndrom {
             }
         });
 
-        setSymptomRadioButtonTableColumn(annotationSymptomCol, "SymptomAnnotation");
+        setSymptomRadioButtonTableColumn(titleSymptomCol, "SymptomTitle");
         setSymptomRadioButtonTableColumn(positionSymptomCol, "SymptomPosition");
         setSymptomRadioButtonTableColumn(styleSymptomCol, "SymptomStyle");
 
@@ -2194,7 +2192,7 @@ public class Controller implements ObserverSyndrom {
                 Vertex vertex = param.getValue();
                 SimpleBooleanProperty booleanProp;
                 switch (pLocked) {
-                    case "SymptomAnnotation":
+                    case "SymptomTitle":
                         booleanProp = new SimpleBooleanProperty(vertex.isLockedAnnotation());
                         break;
                     case "SymptomPosition":
@@ -2212,8 +2210,9 @@ public class Controller implements ObserverSyndrom {
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                         switch (pLocked) {
-                            case "SymptomAnnotation":
+                            case "SymptomTitle":
                                 vertex.setLockedAnnotation(newValue);
+                                System.out.println("VertexAnnotation: " + oldValue + " to " + vertex.isLockedAnnotation());
                                 break;
                             case "SymptomPosition":
                                 vertex.setLockedPosition(newValue);
@@ -2241,7 +2240,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadEdgesTable(Collection<Edge> edges) {
-        edgeTableView.setEditable(true);
         edgeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue call(TableColumn.CellDataFeatures<Edge, String> data) {
