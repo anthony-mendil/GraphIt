@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * Imports a GXL file that includes a graph with editing rules in gxl notation.
  */
-public class ImportTemplateGxlAction  extends GraphAction {
+public class ImportTemplateGxlAction extends GraphAction {
 
     /**
      * The File the gxl get's taken from
@@ -23,7 +23,7 @@ public class ImportTemplateGxlAction  extends GraphAction {
      * @param pFile The File that the GXL is imported from.
      */
     public ImportTemplateGxlAction(File pFile) {
-        file=pFile;
+        file = pFile;
     }
 
     /**

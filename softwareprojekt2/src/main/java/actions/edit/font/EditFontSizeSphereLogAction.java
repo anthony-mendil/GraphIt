@@ -10,6 +10,8 @@ import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeSphereParam;
 
+import java.util.List;
+
 /**
  * Changes the font-size of annotations of a sphere.
  */
@@ -43,9 +45,14 @@ public class EditFontSizeSphereLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         if(parameters == null) {
+            Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
-                sp.setFontSize(size);
-                createParameter(sp, sp.getFontSize(), size);
+                if(!sp.isLockedAnnotation()) {
+                    sp.setFontSize(size);
+                    createParameter(sp, sp.getFontSize(), size);
+                }else{
+                    lockedSphere = sp;
+                }
             }
         }else{
             Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphere();

@@ -11,6 +11,8 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesStrokeParam;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,13 +45,18 @@ public class EditEdgesStrokeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if(parameters == null) {
+            List<Edge> lockedEdges = new LinkedList<>();
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
             Map<Edge,StrokeType> oldEdges = new HashMap<>();
             Map<Edge,StrokeType> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                oldEdges.put(e,e.getStroke());
-                e.setStroke(stroke);
-                newEdges.put(e,stroke);
+                if(!e.isLockedStyle()) {
+                    oldEdges.put(e, e.getStroke());
+                    e.setStroke(stroke);
+                    newEdges.put(e, stroke);
+                }else{
+                    lockedEdges.add(e);
+                }
             }
             createParameter(oldEdges, newEdges);
         }else{

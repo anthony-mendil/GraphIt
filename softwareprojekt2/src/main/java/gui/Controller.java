@@ -1,6 +1,7 @@
 package gui;
 
 import actions.ActionHistory;
+import actions.GraphAction;
 import actions.ObserverSyndrom;
 import actions.activate.ActivateAnchorPointsFadeoutLogAction;
 import actions.activate.ActivateHighlightLogAction;
@@ -40,16 +41,21 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -235,12 +241,6 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private TextField maxSymptomField;
-
-    /**
-     * The textfield for setting the template rule "maximum numbers of symptoms in a sphere in the graph".
-     */
-    @FXML
-    private TextField maxSymptominSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of edges in the graph".
@@ -723,7 +723,7 @@ public class Controller implements ObserverSyndrom {
     private ComboBox sizeSymptomComboBox;
 
     @FXML
-    private Text prozent;
+    private Menu prozent;
 
     @FXML
     private HBox textBox;
@@ -741,6 +741,9 @@ public class Controller implements ObserverSyndrom {
     private Accordion overViewAccordion;
 
     @FXML
+    private TitledPane overViewTitledPane;
+
+    @FXML
     private TitledPane templateTitledPane;
 
     @FXML
@@ -753,7 +756,7 @@ public class Controller implements ObserverSyndrom {
     private TableColumn sphereCol;
 
     @FXML
-    private TableColumn annotationSphereCol;
+    private TableColumn titleSphereCol;
 
     @FXML
     private TableColumn positionSphereCol;
@@ -764,6 +767,12 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private TableColumn verticesSphereCol;
 
+    /**
+     * The tablecolumn for setting the template rule "maximum numbers of symptoms in the sphere".
+     */
+    @FXML
+    private TableColumn<Sphere,String> maxAmountSphereCol;
+
     @FXML
     private TableView symptomTableView;
 
@@ -771,7 +780,7 @@ public class Controller implements ObserverSyndrom {
     private TableColumn symptomCol;
 
     @FXML
-    private TableColumn annotationSymptomCol;
+    private TableColumn titleSymptomCol;
 
     @FXML
     private TableColumn positionSymptomCol;
@@ -793,6 +802,33 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private TableColumn edgetypeEdgeCol;
+
+    @FXML
+    private MenuItem zoomMenuItem10;
+
+    @FXML
+    private MenuItem zoomMenuItem25;
+
+    @FXML
+    private MenuItem zoomMenuItem50;
+
+    @FXML
+    private MenuItem zoomMenuItem75;
+
+    @FXML
+    private MenuItem zoomMenuItem100;
+
+    @FXML
+    private MenuItem zoomMenuItem125;
+
+    @FXML
+    private MenuItem zoomMenuItem150;
+
+    @FXML
+    private MenuItem zoomMenuItem175;
+
+    @FXML
+    private MenuItem zoomMenuItem200;
 
     public Controller() {
     }
@@ -1130,8 +1166,10 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportGxlAction exportGxlAction = new ExportGxlAction(file);
-        exportGxlAction.action();
+        if (file != null) {
+            ExportGxlAction exportGxlAction = new ExportGxlAction(file);
+            exportGxlAction.action();
+        }
     }
 
     /**
@@ -1142,10 +1180,12 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
-        exportTemplateGxlAction.action();
+        if (file != null) {
+            ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
+            exportTemplateGxlAction.action();
+        }
     }
-    
+
     /**
      * Creates an ExportPdfAction-object and executes the action with the action history.
      */
@@ -1154,8 +1194,10 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportPdfAction exportPdfAction = new ExportPdfAction(file);
-        exportPdfAction.action();
+        if (file != null) {
+            ExportPdfAction exportPdfAction = new ExportPdfAction(file);
+            exportPdfAction.action();
+        }
     }
 
     /**
@@ -1166,8 +1208,10 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        ExportOofAction exportOofAction = new ExportOofAction(file);
-        exportOofAction.action();
+        if (file!=null) {
+            ExportOofAction exportOofAction = new ExportOofAction(file);
+            exportOofAction.action();
+        }
     }
 
     /**
@@ -1180,11 +1224,13 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        ImportOofAction importOofAction = new ImportOofAction(file);
-        importOofAction.action();
-        zoomSlider.setValue(100);
-        canvas.setContent(syndrom.getVv());
-        satellite.setContent(syndrom.getVv2());
+        if (file!=null) {
+            ImportOofAction importOofAction = new ImportOofAction(file);
+            importOofAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
     }
 
     /**
@@ -1197,11 +1243,13 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        ImportGxlAction importGxlAction = new ImportGxlAction(file);
-        importGxlAction.action();
-        zoomSlider.setValue(100);
-        canvas.setContent(syndrom.getVv());
-        satellite.setContent(syndrom.getVv2());
+        if (file!=null) {
+            ImportGxlAction importGxlAction = new ImportGxlAction(file);
+            importGxlAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
     }
 
     /**
@@ -1213,11 +1261,13 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
-        importTemplateGxlAction.action();
-        zoomSlider.setValue(100);
-        canvas.setContent(syndrom.getVv());
-        satellite.setContent(syndrom.getVv2());
+        if (file!=null) {
+            ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
+            importTemplateGxlAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
     }
 
 
@@ -1473,6 +1523,7 @@ public class Controller implements ObserverSyndrom {
         analysisMode(false);
         editButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        overViewAccordion.setExpandedPane(overViewTitledPane);
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
@@ -1501,6 +1552,8 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.valueProperty().addListener(changeZoom);
         prozent.textProperty().bind(zoomSlider.valueProperty().asString("%.0f").concat(" %"));
 
+        setZoomMenu();
+
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
 
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
@@ -1508,26 +1561,15 @@ public class Controller implements ObserverSyndrom {
         //trying direct load
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
-        if (databaseManager.databaseEmpty()) {
-            CreateGraphAction action = new CreateGraphAction("First Graph");
-            history.execute(action);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
-            disableEditMode(false);
-            disableAnalysisMode(false);
-            zoomSlider.setValue(100);
-            System.out.println("neuer Graph");
-        } else {
-            LoadGraphAction action = new LoadGraphAction();
-            history.execute(action);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
-            disableEditMode(false);
-            disableAnalysisMode(false);
-            zoomSlider.setValue(100);
-            System.out.println("alter graph");
-        }
-
+        GraphAction action = databaseManager.databaseEmpty()
+                ? new CreateGraphAction("First Graph")
+                : new LoadGraphAction();
+        history.execute(action);
+        canvas.setContent(syndrom.getVv());
+        satellite.setContent(syndrom.getVv2());
+        disableEditMode(false);
+        disableAnalysisMode(false);
+        zoomSlider.setValue(100);
     }
 
     private void initFonts() {
@@ -1558,15 +1600,18 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 
-            int value = newValue.intValue();
-            int oldV = oldValue.intValue();
+            if (zoomSlider.isValueChanging()){
+                int value = newValue.intValue();
+                int oldV = oldValue.intValue();
 
-            SwingUtilities.invokeLater(() -> {
-                if (value != 0 && oldV != value) {
-                    values.setScale(value);
-                    syndrom.scale(value);
-                }
-            });
+                SwingUtilities.invokeLater(() -> {
+                    if (value != 0 && oldV != value) {
+                        values.setScale(value);
+                        syndrom.scale(value);
+                    }
+                });
+            }
+
         }
     };
 
@@ -1603,6 +1648,21 @@ public class Controller implements ObserverSyndrom {
             }
         }
     };
+
+    private class OnlyNumberTextFieldTableCell implements ChangeListener<String>{
+        private final TextFieldTableCell<Sphere,String> textFieldTableCell;
+
+        private OnlyNumberTextFieldTableCell(TextFieldTableCell<Sphere, String> pTextFieldTableCell){
+            textFieldTableCell = pTextFieldTableCell;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+            if(!newValue.matches("\\d*")){
+                textFieldTableCell.setText(oldValue);
+            }
+        }
+    }
 
     private class OnlyNumberComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
@@ -2037,13 +2097,12 @@ public class Controller implements ObserverSyndrom {
             loadVerticesTable(vertices);
         }
 
-        if(!edges.isEmpty()){
+        if (!edges.isEmpty()) {
             loadEdgesTable(edges);
         }
     }
 
     private void loadSpheresTable(List spheres) {
-        sphereTableView.setEditable(true);
         sphereCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere, Map<String, String>> data) {
@@ -2057,7 +2116,27 @@ public class Controller implements ObserverSyndrom {
             }
         });
 
-        setSphereRadioButtonTableColumn(annotationSphereCol, "SphereAnnotation");
+        // ==== MAX AMOUNT (TEXT FIELD)
+        maxAmountSphereCol.setCellValueFactory(new PropertyValueFactory<>("lockedMaxAmountVertices"));
+        maxAmountSphereCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        maxAmountSphereCol.setMinWidth(200);
+
+        //On Cell edit commit (for MaxAmount column)
+        maxAmountSphereCol.setOnEditCommit((CellEditEvent<Sphere, String> event) -> {
+            String maxAmount = event.getNewValue();
+            TablePosition<Sphere, String> pos = event.getTablePosition();
+            int row = pos.getRow();
+            Sphere sphere = event.getTableView().getItems().get(row);
+
+            if(!maxAmount.chars().anyMatch(Character::isLetter)){
+                sphere.setLockedMaxAmountVertices(maxAmount);
+            }
+            sphereTableView.getColumns().remove(maxAmountSphereCol);
+            sphereTableView.getColumns().add(maxAmountSphereCol);
+        });
+
+
+        setSphereRadioButtonTableColumn(titleSphereCol, "SphereTitle");
         setSphereRadioButtonTableColumn(positionSphereCol, "SpherePosition");
         setSphereRadioButtonTableColumn(styleSphereCol, "SphereStyle");
         setSphereRadioButtonTableColumn(verticesSphereCol, "SphereVertices");
@@ -2073,7 +2152,7 @@ public class Controller implements ObserverSyndrom {
                 Sphere sphere = param.getValue();
                 SimpleBooleanProperty booleanProp;
                 switch (pLocked) {
-                    case "SphereAnnotation":
+                    case "SphereTitle":
                         booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
                         break;
                     case "SpherePosition":
@@ -2094,8 +2173,9 @@ public class Controller implements ObserverSyndrom {
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                         switch (pLocked) {
-                            case "SphereAnnotation":
+                            case "SphereTitle":
                                 sphere.setLockedAnnotation(newValue);
+                                System.out.println("SphereAnnotation: " + oldValue + " to " + sphere.isLockedAnnotation());
                                 break;
                             case "SpherePosition":
                                 sphere.setLockedPosition(newValue);
@@ -2126,7 +2206,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadVerticesTable(Collection<Vertex> vertices) {
-        symptomTableView.setEditable(true);
         symptomCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>() {
 
             @Override
@@ -2141,7 +2220,7 @@ public class Controller implements ObserverSyndrom {
             }
         });
 
-        setSymptomRadioButtonTableColumn(annotationSymptomCol, "SymptomAnnotation");
+        setSymptomRadioButtonTableColumn(titleSymptomCol, "SymptomTitle");
         setSymptomRadioButtonTableColumn(positionSymptomCol, "SymptomPosition");
         setSymptomRadioButtonTableColumn(styleSymptomCol, "SymptomStyle");
 
@@ -2151,11 +2230,11 @@ public class Controller implements ObserverSyndrom {
     private void setSymptomRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
         pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Vertex,Boolean> param) {
+            public ObservableValue call(TableColumn.CellDataFeatures<Vertex, Boolean> param) {
                 Vertex vertex = param.getValue();
                 SimpleBooleanProperty booleanProp;
-                switch(pLocked){
-                    case "SymptomAnnotation":
+                switch (pLocked) {
+                    case "SymptomTitle":
                         booleanProp = new SimpleBooleanProperty(vertex.isLockedAnnotation());
                         break;
                     case "SymptomPosition":
@@ -2169,12 +2248,13 @@ public class Controller implements ObserverSyndrom {
                 }
 
                 //When "Boolean" column change
-                booleanProp.addListener(new ChangeListener<Boolean>(){
+                booleanProp.addListener(new ChangeListener<Boolean>() {
                     @Override
-                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-                        switch(pLocked){
-                            case "SymptomAnnotation":
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        switch (pLocked) {
+                            case "SymptomTitle":
                                 vertex.setLockedAnnotation(newValue);
+                                System.out.println("VertexAnnotation: " + oldValue + " to " + vertex.isLockedAnnotation());
                                 break;
                             case "SymptomPosition":
                                 vertex.setLockedPosition(newValue);
@@ -2201,11 +2281,10 @@ public class Controller implements ObserverSyndrom {
         });
     }
 
-    private void loadEdgesTable(Collection<Edge> edges){
-        edgeTableView.setEditable(true);
+    private void loadEdgesTable(Collection<Edge> edges) {
         edgeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Edge,String> data) {
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge, String> data) {
                 String name = data.getValue().toString();
                 return new ReadOnlyStringWrapper(name);
             }
@@ -2218,13 +2297,13 @@ public class Controller implements ObserverSyndrom {
         edgeTableView.setItems(FXCollections.observableArrayList(edges));
     }
 
-    private void setEdgeRadioButtonTableColumn(TableColumn pTableColumn, String pLocked){
-        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge,Boolean>, ObservableValue<Boolean>>() {
+    private void setEdgeRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
+        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Edge,Boolean> param) {
+            public ObservableValue call(TableColumn.CellDataFeatures<Edge, Boolean> param) {
                 Edge edge = param.getValue();
                 SimpleBooleanProperty booleanProp;
-                switch(pLocked){
+                switch (pLocked) {
                     case "EdgePosition":
                         booleanProp = new SimpleBooleanProperty(edge.isLockedPosition());
                         break;
@@ -2242,7 +2321,7 @@ public class Controller implements ObserverSyndrom {
                 booleanProp.addListener(new ChangeListener<Boolean>() {
                     @Override
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        switch(pLocked){
+                        switch (pLocked) {
                             case "EdgePosition":
                                 edge.setLockedPosition(newValue);
                                 break;
@@ -2270,6 +2349,38 @@ public class Controller implements ObserverSyndrom {
             }
         });
     }
+
+    private void setZoomMenu(){
+        EventHandler zoomHandler = new ZoomMenuItemHandler();
+        zoomMenuItem10.setOnAction(zoomHandler);
+        zoomMenuItem25.setOnAction(zoomHandler);
+        zoomMenuItem50.setOnAction(zoomHandler);
+        zoomMenuItem75.setOnAction(zoomHandler);
+        zoomMenuItem100.setOnAction(zoomHandler);
+        zoomMenuItem125.setOnAction(zoomHandler);
+        zoomMenuItem150.setOnAction(zoomHandler);
+        zoomMenuItem175.setOnAction(zoomHandler);
+        zoomMenuItem200.setOnAction(zoomHandler);
+
+    }
+
+    private class ZoomMenuItemHandler implements EventHandler<Event>{
+        @Override
+        public void handle(Event evt){
+            MenuItem mnItmn = (MenuItem) evt.getSource();
+            String percent = mnItmn.getText();
+            percent = percent.replaceAll("%","");
+            int per = Integer.parseInt(percent);
+
+            zoomSlider.setValue(per);
+            SwingUtilities.invokeLater(() -> {
+                syndrom.scale(per);
+            });
+
+        }
+    }
+
+
 
     @Override
     public void updateGraph() {

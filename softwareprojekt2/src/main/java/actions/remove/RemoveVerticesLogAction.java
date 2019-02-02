@@ -14,9 +14,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.awt.geom.Point2D;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Removes vertices from the syndrom graph.
@@ -54,15 +52,20 @@ public class RemoveVerticesLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         if(parameters == null) {
+            List<Vertex> lockedVertices = new LinkedList<>();
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
             Map<Vertex,Sphere> params = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                graph.removeVertex(vertex);
-                Point2D posVertex = vertex.getCoordinates();
-                posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
-                Sphere sp = pickSupport.getSphere(posVertex.getX(),posVertex.getY());
-                sp.getVertices().remove(vertex);
-                params.put(vertex, sp);
+                if(!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) {
+                    graph.removeVertex(vertex);
+                    Point2D posVertex = vertex.getCoordinates();
+                    posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
+                    Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
+                    sp.getVertices().remove(vertex);
+                    params.put(vertex, sp);
+                }else{
+                    lockedVertices.add(vertex);
+                }
             }
             createParameter(params);
         } else{

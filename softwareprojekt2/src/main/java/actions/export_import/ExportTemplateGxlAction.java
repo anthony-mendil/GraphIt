@@ -12,7 +12,6 @@ import java.io.File;
 public class ExportTemplateGxlAction extends GraphAction {
 
 
-
     /**
      * The File the gxl get's written into
      */
@@ -24,8 +23,8 @@ public class ExportTemplateGxlAction extends GraphAction {
      * @param pFile The destination of the gxl-file
      */
     public ExportTemplateGxlAction(File pFile) {
-        file=pFile;
-        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+        file = pFile;
+        if (!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
             Syndrom.getInstance().getVv().getPickedSphereState().clear();
         }
     }

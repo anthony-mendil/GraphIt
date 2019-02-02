@@ -93,12 +93,19 @@ public class Sphere {
     @Setter
     private boolean lockedStyle = false;
     /**
-     * The indicator whether the amount of the vertices
-     * inside the sphere can be modified.
+     * The indicator whether the vertices in the sphere
+     * can be added or deleted.
      */
     @Getter
     @Setter
     private boolean lockedVertices = false;
+    /**
+     * The indicator that locks the maximum amount of vertices
+     * that are allowed in the sphere.
+     */
+    @Getter
+    @Setter
+    private String lockedMaxAmountVertices = "";
 
 
     /**

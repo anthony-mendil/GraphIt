@@ -117,10 +117,15 @@ public class PDFio {
      */
     public void exportPDF(File pFile) {
         file = pFile;
+
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
-        vis.setBackground(Color.WHITE); //standard is grey
-        vis.setRenderer(new SyndromRenderer<>()); //Required to render the Spheres
-        vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(), Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(), vv.getCenter());
+        vis.setBackground(Color.WHITE);
+        vis.setRenderer(new SyndromRenderer<>());
+        vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(
+                Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(),
+                Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(),
+                vv.getCenter()
+        );
 
         vis.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
         vis.getRenderContext().setVertexFontTransformer(new VertexFontTransformer<>());
@@ -128,7 +133,6 @@ public class PDFio {
         vis.getRenderContext().setVertexLabelTransformer(new VertexLabelTransformer<>());
         vis.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
         vis.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
-
 
         vis.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vis.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));

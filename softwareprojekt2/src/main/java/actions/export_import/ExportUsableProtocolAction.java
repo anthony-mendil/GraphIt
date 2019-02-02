@@ -23,7 +23,9 @@ public class ExportUsableProtocolAction extends GraphAction {
      */
     public ExportUsableProtocolAction(File pFile) {
         file=pFile;
-        Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+            Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        }
     }
 
     /**

@@ -11,6 +11,9 @@ import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Removes edges from the syndrom graph.
  */
@@ -48,8 +51,13 @@ public class RemoveEdgesLogAction extends LogAction {
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null) {
+            List<Edge> lockedEdges = new LinkedList<>();
             for (Edge e: pickedState.getPicked()) {
-                graph.removeEdge(e);
+                if(!e.isLockedEdgeType() && !e.isLockedStyle()){
+                    graph.removeEdge(e);
+                }else{
+                    lockedEdges.add(e);
+                }
             }
         }else{
 

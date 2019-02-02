@@ -173,7 +173,6 @@ public class GXLio {
                     }
                     // Adds the sphere to the graph.
                     newGraph.getSpheres().add(e.getKey());
-                    vv.getGraphLayout().setGraph(newGraph);
                     for (Vertex v : e.getValue()) {
                         // Adds the vertex to the graph.
                         newGraph.addVertex(v);
@@ -186,7 +185,7 @@ public class GXLio {
                     Edge edge = e.getKey();
                     Pair<Vertex> endPoints = e.getValue();
                     // Adds the edge to the graph.
-                    newGraph.addEdge(edge, endPoints);
+                    newGraph.addEdge(edge, endPoints.getFirst(), endPoints.getSecond());
                 }
             }
             // Paints the graph with the elements imported from the gxl document.
@@ -196,6 +195,7 @@ public class GXLio {
             vv.getGraphLayout().setGraph(newGraph);
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
+
         } catch (IOException e) {
             logger.error(e.toString());
         } catch (SAXException e) {
@@ -532,7 +532,7 @@ public class GXLio {
             System.out.println("error");
             logger.error(e.toString());
         }
-        System.out.println(content);
+       // System.out.println(content);
         tmpGXL.deleteOnExit();
         return content;
     }
@@ -709,7 +709,6 @@ public class GXLio {
         } catch (Exception e) {
             logger.error(e.toString());
         }
-        System.out.println(content);
         tmpGXL.deleteOnExit();
         return content;
     }
