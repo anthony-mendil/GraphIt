@@ -15,6 +15,6 @@
 //                          SerializerProvider serializerProvider)throws IOException, JsonProcessingException {
 //        StringWriter writer = new StringWriter();
 //        mapper.writeValue(writer, value);
-//        generator.writeFieldName(writer.toString());
+//        generator.writeFieldName(writer.prettyPrint());
 //    }
 //}

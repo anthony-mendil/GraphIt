@@ -38,7 +38,7 @@ public class AddRemoveVerticesParam extends Param{
     }
 
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {

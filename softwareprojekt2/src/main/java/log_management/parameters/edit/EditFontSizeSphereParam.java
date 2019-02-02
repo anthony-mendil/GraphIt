@@ -42,7 +42,7 @@ public class EditFontSizeSphereParam extends Param{
         this.newFontSize = pNewFontSize;
     }
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {

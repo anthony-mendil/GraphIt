@@ -31,20 +31,13 @@ public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
     }
 
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        if (language == Language.ENGLISH) {
-            String list = "Relations:\n";
-            for (int i = 0; i < edges.size(); i++) {
-                list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i));
-            }
-            return list;
-        } else {
-            String list = "Relationen:\n";
-            for (int i = 0; i < edges.size(); i++) {
-                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i));
-            }
-            return list;
-        }
+        StringBuilder builder = new StringBuilder();
+        builder.append(language == Language.GERMAN ? "Relationen" : "Relations:");
+        edges.forEach(e -> builder.append(language == Language.GERMAN
+                ? SyndromObjectPrinter.edgePrintGerman(e)
+                : SyndromObjectPrinter.edgePrintEnglish(e)));
+        return builder.toString();
     }
 }

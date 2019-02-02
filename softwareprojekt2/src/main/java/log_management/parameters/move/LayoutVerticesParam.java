@@ -32,7 +32,7 @@ public class LayoutVerticesParam extends Param implements Serializable {
         this.oldVertices = pOldPosition;
     }
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
             return "The symptoms were automatically positioned";

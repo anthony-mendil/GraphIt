@@ -29,7 +29,7 @@ public class AddRemoveSphereParam extends Param{
     }
 
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
             return "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere);

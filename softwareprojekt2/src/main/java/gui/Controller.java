@@ -1387,7 +1387,7 @@ public class Controller implements ObserverSyndrom {
 
             temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
             temp.setMaxVertexCounter(Integer.parseInt(maxSymptomField.getText()));
-            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.toString()));
+            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.prettyPrint()));
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);*/
     }

@@ -11,5 +11,5 @@ public abstract class Param {
      * A to-string method for pretty printing.
      * @return A string.
      */
-    public abstract String toString();
+    public abstract String prettyPrint();
 }

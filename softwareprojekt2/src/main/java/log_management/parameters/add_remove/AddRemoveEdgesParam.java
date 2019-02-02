@@ -35,7 +35,7 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String prettyPrint() {
         List<Edge> edgeList = new ArrayList<>();
 
         for(Pair<Vertex, Vertex> pair : edges){

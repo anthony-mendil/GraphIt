@@ -38,7 +38,7 @@ public class MoveSphereParam extends Param implements Serializable {
         this.newSphere = pOldSphere;
     }
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {

@@ -35,7 +35,7 @@ public class EditEdgesTypeParam extends Param implements Serializable {
         this.edgesNewEdgeType = pNewEdges;
     }
     @Override
-    public String toString() {
+    public String prettyPrint() {
         /**
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";

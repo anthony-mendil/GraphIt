@@ -41,7 +41,7 @@ public class EditFontVerticesParam extends Param implements Serializable {
         this.newVertices = pNewVertices;
     }
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {

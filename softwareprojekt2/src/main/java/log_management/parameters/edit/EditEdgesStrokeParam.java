@@ -37,7 +37,7 @@ public class EditEdgesStrokeParam extends Param implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String prettyPrint() {
         /**
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";

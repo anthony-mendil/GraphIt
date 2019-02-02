@@ -77,7 +77,7 @@ public class DatabaseManager implements ObserverSyndrom {
 
     @Override
     public void updateGraph() {
-        graph.setGxl(gxlIo.gxlFromInstance());
+        graph.setGxl(gxlIo.gxlFromInstanceWithTemplate());
         graphDao.update(graph);
     }
 
@@ -94,7 +94,7 @@ public class DatabaseManager implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         Graph graph = new Graph();
-        graph.setGxl(gxlIo.gxlFromInstance());
+        graph.setGxl(gxlIo.gxlFromInstanceWithTemplate());
         graphDao.save(graph);
         setGraph(graph);
     }

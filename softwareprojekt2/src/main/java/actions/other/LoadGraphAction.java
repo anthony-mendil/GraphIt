@@ -17,16 +17,19 @@ public class LoadGraphAction extends GraphAction {
     @Override
     public void action() {
         //macht momenatn da gleiche wie createGraphAction. Muss noch geändert werden.
-        syndrom.generateNew();
+        //syndrom.generateNew();
 
+        //DatabaseManager databaseManager = DatabaseManager.getInstance();
+        //Action.attach(databaseManager);
+        //notifyObserverNewGraph();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
-        Action.attach(databaseManager);
-        notifyObserverNewGraph();
-
         String gxlGraph = databaseManager.getGxlFromDatabase();
+        Action.attach(databaseManager);
+
+        //System.out.println("hi" + gxlGraph);
         GXLio gxLio = new GXLio();
         gxLio.gxlToInstance(gxlGraph);
-        //notifyObserverGraph();
+
         notifyObserverNewGraph();
     }
 

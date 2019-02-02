@@ -30,7 +30,7 @@ public class AddRemoveAnchorPointsParam extends Param {
     }
 
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
             String list = "Relations:\n";

@@ -35,7 +35,7 @@ public class LayoutSpheresParam extends Param implements Serializable {
         this.oldVertices = pOldVertices;
     }
     @Override
-    public String toString() {
+    public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
             return "The Spheres were automatically positioned";
