@@ -35,7 +35,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1"
+            xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -43,194 +44,231 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="Datei">
                             <items>
-                                <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="Neue Datei" />
-                                <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#openFile" text="Datei öffnen" />
-                                <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="Importieren als GXL-Datei" />
-                                <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter.." />
+                                <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2"
+                                          text="Neue Datei"/>
+                                <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#openFile"
+                                          text="Datei öffnen"/>
+                                <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL"
+                                          text="Importieren als GXL-Datei"/>
+                                <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter.."/>
                                 <Menu mnemonicParsing="false" text="Exportieren als..">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF" />
-                                        <MenuItem fx:id="exportTemplateGXL" mnemonicParsing="false" onAction="#exportTemplateGXL" text="Vorlage" />
-                                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL" />
-                                        <MenuItem mnemonicParsing="false" text="Verlauf" />
-                                        <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
-                                        <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
+                                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF"/>
+                                        <MenuItem fx:id="exportTemplateGXL" mnemonicParsing="false"
+                                                  onAction="#exportTemplateGXL" text="Vorlage"/>
+                                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL"
+                                                  text="GXL"/>
+                                        <MenuItem mnemonicParsing="false" text="Verlauf"/>
+                                        <MenuItem mnemonicParsing="false" text="andere Dateiformate"/>
+                                        <MenuItem mnemonicParsing="false" text="andere Dateiformate"/>
                                     </items>
                                 </Menu>
-                                <MenuItem fx:id="printPDF" mnemonicParsing="false" onAction="#printPDF" text="Drucken" />
+                                <MenuItem fx:id="printPDF" mnemonicParsing="false" onAction="#printPDF" text="Drucken"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Optionen">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Sprache" />
+                                <MenuItem mnemonicParsing="false" text="Sprache"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Hilfe">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Dokumentation" />
-                                <MenuItem mnemonicParsing="false" text="Über Uns" />
+                                <MenuItem mnemonicParsing="false" text="Dokumentation"/>
+                                <MenuItem mnemonicParsing="false" text="Über Uns"/>
                             </items>
                         </Menu>
                     </menus>
                 </MenuBar>
                 <ToolBar prefHeight="40.0" scaleShape="false">
                     <items>
-                        <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="318.0">
+                        <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                              prefHeight="30.0" prefWidth="318.0">
                             <children>
-                                <Button fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
+                                <Button fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity"
+                                        mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0"
+                                        prefWidth="26.0">
                                     <graphic>
-                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/006-reply.png" />
+                                                <Image url="@icons2/006-reply.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <tooltip>
-                                        <Tooltip text="Rückgängig" />
+                                        <Tooltip text="Rückgängig"/>
                                     </tooltip>
                                 </Button>
-                                <Button fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
+                                <Button fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity"
+                                        mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0"
+                                        prefWidth="26.0">
                                     <graphic>
-                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/001-share.png" />
+                                                <Image url="@icons2/001-share.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <tooltip>
-                                        <Tooltip text="Wiederherstellen" />
+                                        <Tooltip text="Wiederherstellen"/>
                                     </tooltip>
                                 </Button>
-                                <Separator fx:id="toolBarSeparator1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
+                                <Separator fx:id="toolBarSeparator1" focusTraversable="false" maxHeight="-Infinity"
+                                           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                           orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                                     <HBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </HBox.margin>
                                     <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
                                 </Separator>
-                                <Button fx:id="editButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiEditor" prefHeight="23.0" prefWidth="26.0">
+                                <Button fx:id="editButton" minHeight="-Infinity" minWidth="-Infinity"
+                                        mnemonicParsing="false" onAction="#switchModiEditor" prefHeight="23.0"
+                                        prefWidth="26.0">
                                     <graphic>
-                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/024-pencil-1.png" />
+                                                <Image url="@icons2/024-pencil-1.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <tooltip>
-                                        <Tooltip text="Ersteller-Modus" />
+                                        <Tooltip text="Ersteller-Modus"/>
                                     </tooltip>
                                 </Button>
-                                <Button fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis" prefHeight="23.0" prefWidth="26.0">
+                                <Button fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity"
+                                        minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis"
+                                        prefHeight="23.0" prefWidth="26.0">
                                     <graphic>
-                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/027-vision.png" />
+                                                <Image url="@icons2/027-vision.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <tooltip>
-                                        <Tooltip text="Analyse-Modus" />
+                                        <Tooltip text="Analyse-Modus"/>
                                     </tooltip>
                                 </Button>
-                                <Button focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                                <Button focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity"
+                                        mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
                                     <graphic>
-                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/027-vision.png" />
+                                                <Image url="@icons2/027-vision.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <tooltip>
-                                        <Tooltip text="Auswerter-Modus" />
+                                        <Tooltip text="Auswerter-Modus"/>
                                     </tooltip>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                 </Button>
-                                <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
+                                <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity"
+                                           minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL"
+                                           prefHeight="29.0" prefWidth="10.0">
                                     <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
                                 </Separator>
-                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                        prefHeight="23.0" prefWidth="26.0">
                                     <tooltip>
-                                        <Tooltip text="Ausgeblendete Elemente einblenden" />
+                                        <Tooltip text="Ausgeblendete Elemente einblenden"/>
                                     </tooltip>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                 </Button>
 
 
-                                <ToggleButton fx:id="highlight" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <ToggleButton fx:id="highlight" minHeight="-Infinity" minWidth="-Infinity"
+                                              mnemonicParsing="false" onAction="#highlight" prefHeight="23.0"
+                                              prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <graphic>
-                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/highlight.png" />
+                                                <Image url="@icons2/highlight.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <tooltip>
-                                        <Tooltip text="Hervorgehobene Elemente anzeigen" />
+                                        <Tooltip text="Hervorgehobene Elemente anzeigen"/>
                                     </tooltip>
                                 </ToggleButton>
-                                <Button fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <Button fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity"
+                                        mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0"
+                                        prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <graphic>
-                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/highlight.png" />
+                                                <Image url="@icons2/highlight.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <tooltip>
-                                        <Tooltip text="Element hervorheben" />
+                                        <Tooltip text="Element hervorheben"/>
                                     </tooltip>
                                 </Button>
-                                <Button fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dehighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <Button fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity"
+                                        mnemonicParsing="false" onAction="#dehighlightElements" prefHeight="23.0"
+                                        prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <graphic>
-                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@icons2/highlight.png" />
+                                                <Image url="@icons2/highlight.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                     <tooltip>
-                                        <Tooltip text="Element hervorheben entfernen" />
+                                        <Tooltip text="Element hervorheben entfernen"/>
                                     </tooltip>
                                 </Button>
-                                <Separator fx:id="menubarSeparator3" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
+                                <Separator fx:id="menubarSeparator3" focusTraversable="false" maxHeight="-Infinity"
+                                           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                           orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                                     <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
                                 </Separator>
-                                <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
+                                <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity"
+                                        mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
                                     <tooltip>
-                                        <Tooltip text="Vorlage-Regeln setzen" />
+                                        <Tooltip text="Vorlage-Regeln setzen"/>
                                     </tooltip>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                 </Button>
                             </children>
@@ -239,749 +277,913 @@
                 </ToolBar>
                 <HBox prefHeight="58.0" prefWidth="621.0">
                     <children>
-                        <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="485.0">
+                        <VBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                              prefHeight="60.0" prefWidth="50.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Auswahl">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                    </HBox.margin>
+                                </Text>
+                                <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0">
+                                    <children>
+                                        <Button fx:id="handVertex" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#handVertex" pickOnBounds="false"
+                                                prefHeight="30.0" prefWidth="30.0" styleClass="button1"
+                                                stylesheets="@gui_style.css">
+                                            <HBox.margin>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                            </HBox.margin>
+                                            <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@icons2/hand.png"/>
+                                                    </image>
+                                                    <viewport>
+                                                        <Rectangle2D/>
+                                                    </viewport>
+                                                </ImageView>
+                                            </graphic>
+                                            <tooltip>
+                                                <Tooltip text="Auswählen"/>
+                                            </tooltip>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </VBox>
+                        <Separator fx:id="sep" orientation="VERTICAL" prefHeight="200.0">
+                            <HBox.margin>
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                            </HBox.margin>
+                        </Separator>
+                        <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                              prefHeight="60.0" prefWidth="485.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sphäre">
                                     <HBox.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                     </HBox.margin>
                                 </Text>
                                 <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="479.0">
                                     <children>
-                                        <Button fx:id="buttonSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonClicked" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="buttonSphere" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#buttonClicked" pickOnBounds="false"
+                                                prefHeight="30.0" prefWidth="30.0" styleClass="button1"
+                                                stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/004-plus-black-symbol.png" />
+                                                        <Image url="@icons2/004-plus-black-symbol.png"/>
                                                     </image>
                                                     <viewport>
-                                                        <Rectangle2D />
+                                                        <Rectangle2D/>
                                                     </viewport>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Sphäre hinzufügen" />
-                                            </tooltip>
-                                        </Button>
-                                        <Button fx:id="handVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
-                                            <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                            </HBox.margin>
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/hand.png" />
-                                                    </image>
-                                                    <viewport>
-                                                        <Rectangle2D />
-                                                    </viewport>
-                                                </ImageView>
-                                            </graphic>
-                                            <tooltip>
-                                                <Tooltip text="Auswählen" />
+                                                <Tooltip text="Sphäre hinzufügen"/>
                                             </tooltip>
                                         </Button>
                                         <Separator orientation="VERTICAL" prefHeight="4.0">
                                             <HBox.margin>
-                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
                                             </HBox.margin>
                                         </Separator>
-                                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                                onAction="#removeSphere" pickOnBounds="false" prefHeight="30.0"
+                                                prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/008-rubbish-bin.png" />
+                                                        <Image url="@icons2/008-rubbish-bin.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Sphäre löschen" />
+                                                <Tooltip text="Sphäre löschen"/>
                                             </tooltip>
                                         </Button>
-                                        <Button fx:id="sphereEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="sphereEnlarge" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false"
+                                                prefHeight="30.0" prefWidth="30.0" styleClass="button1"
+                                                stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/enlarge.png" />
+                                                        <Image url="@icons2/enlarge.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Sphäre vergrößern" />
+                                                <Tooltip text="Sphäre vergrößern"/>
                                             </tooltip>
                                         </Button>
-                                        <Button fx:id="sphereShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="sphereShrink" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false"
+                                                prefHeight="30.0" prefWidth="30.0" styleClass="button1"
+                                                stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/shrink.png" />
+                                                        <Image url="@icons2/shrink.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Sphäre verkleinern" />
+                                                <Tooltip text="Sphäre verkleinern"/>
                                             </tooltip>
                                         </Button>
-                                        <ColorPicker fx:id="sphereBackgroundColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editSphereColor" prefHeight="30.0" prefWidth="46.0">
+                                        <ColorPicker fx:id="sphereBackgroundColour" minHeight="-Infinity"
+                                                     minWidth="-Infinity" onAction="#editSphereColor" prefHeight="30.0"
+                                                     prefWidth="46.0">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <tooltip>
-                                                <Tooltip text="Hintergrundfarbe der Sphäre verändern" />
+                                                <Tooltip text="Hintergrundfarbe der Sphäre verändern"/>
                                             </tooltip>
                                         </ColorPicker>
 
                                         <Separator orientation="VERTICAL" prefHeight="4.0">
                                             <HBox.margin>
-                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
                                             </HBox.margin>
                                         </Separator>
-                                        <ComboBox fx:id="fontSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
+                                        <ComboBox fx:id="fontSphereComboBox" editable="true" minHeight="-Infinity"
+                                                  minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0"
+                                                  promptText="Schriftart">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <tooltip>
-                                                <Tooltip text="Schriftart der Sphäre verändern" />
+                                                <Tooltip text="Schriftart der Sphäre verändern"/>
                                             </tooltip>
                                         </ComboBox>
-                                        <ComboBox fx:id="sizeSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="Schriftgröße">
+                                        <ComboBox fx:id="sizeSphereComboBox" editable="true" minHeight="-Infinity"
+                                                  minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0"
+                                                  promptText="Schriftgröße">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <tooltip>
-                                                <Tooltip text="Schriftgröße der Sphäre verändern" />
+                                                <Tooltip text="Schriftgröße der Sphäre verändern"/>
                                             </tooltip>
                                         </ComboBox>
-                                        <Button fx:id="sphereAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="sphereAutoLayout" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#sphereAutoLayout"
+                                                pickOnBounds="false" prefHeight="30.0" prefWidth="30.0"
+                                                styleClass="button1" stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/magic.png" />
+                                                        <Image url="@icons2/magic.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Automatische Anordnung" />
+                                                <Tooltip text="Automatische Anordnung"/>
                                             </tooltip>
                                         </Button>
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </HBox>
                             </children>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </VBox>
                         <Separator fx:id="separator1" orientation="VERTICAL" prefHeight="200.0">
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                             </HBox.margin>
                         </Separator>
-                        <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="560.0">
+                        <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                              prefHeight="60.0" prefWidth="560.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                                     <HBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </HBox.margin>
                                 </Text>
                                 <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="550.0">
                                     <children>
-                                        <Button fx:id="buttoVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="buttoVertex" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false"
+                                                prefHeight="30.0" prefWidth="30.0" styleClass="button1"
+                                                stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/004-plus-black-symbol.png" />
+                                                        <Image url="@icons2/004-plus-black-symbol.png"/>
                                                     </image>
                                                     <viewport>
-                                                        <Rectangle2D />
+                                                        <Rectangle2D/>
                                                     </viewport>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Symptom hinzufügen" />
+                                                <Tooltip text="Symptom hinzufügen"/>
                                             </tooltip>
                                         </Button>
                                         <Separator orientation="VERTICAL" prefHeight="4.0">
                                             <HBox.margin>
-                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
                                             </HBox.margin>
                                         </Separator>
-                                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeVertices" prefHeight="30.0" prefWidth="30.0">
+                                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                                onAction="#removeVertices" prefHeight="30.0" prefWidth="30.0">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/008-rubbish-bin.png" />
+                                                        <Image url="@icons2/008-rubbish-bin.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Symptom löschen" />
+                                                <Tooltip text="Symptom löschen"/>
                                             </tooltip>
                                         </Button>
-                                        <Button fx:id="vertexEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="vertexEnlarge" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#vertexEnlarge" pickOnBounds="false"
+                                                prefHeight="30.0" prefWidth="30.0" styleClass="button1"
+                                                stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/enlarge.png" />
+                                                        <Image url="@icons2/enlarge.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Symptom vergrößern" />
+                                                <Tooltip text="Symptom vergrößern"/>
                                             </tooltip>
                                         </Button>
-                                        <Button fx:id="vertexShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="vertexShrink" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#vertexShrink" pickOnBounds="false"
+                                                prefHeight="30.0" prefWidth="30.0" styleClass="button1"
+                                                stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/shrink.png" />
+                                                        <Image url="@icons2/shrink.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Symptom verkleinern" />
+                                                <Tooltip text="Symptom verkleinern"/>
                                             </tooltip>
                                         </Button>
-                                        <ColorPicker fx:id="symptomBackground" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesFillColor" prefHeight="30.0" prefWidth="46.0">
+                                        <ColorPicker fx:id="symptomBackground" minHeight="-Infinity"
+                                                     minWidth="-Infinity" onAction="#editVerticesFillColor"
+                                                     prefHeight="30.0" prefWidth="46.0">
 
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <tooltip>
-                                                <Tooltip text="Hintergrundfarbe des Symptoms verändern" />
+                                                <Tooltip text="Hintergrundfarbe des Symptoms verändern"/>
                                             </tooltip>
                                         </ColorPicker>
-                                        <ColorPicker fx:id="symptomBorder" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesDrawColor" prefHeight="30.0" prefWidth="46.0">
+                                        <ColorPicker fx:id="symptomBorder" minHeight="-Infinity" minWidth="-Infinity"
+                                                     onAction="#editVerticesDrawColor" prefHeight="30.0"
+                                                     prefWidth="46.0">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <tooltip>
-                                                <Tooltip text="Randfarbe des Symptoms verändern" />
+                                                <Tooltip text="Randfarbe des Symptoms verändern"/>
                                             </tooltip>
                                         </ColorPicker>
-                                        <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                                        <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity"
+                                                    minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0"
+                                                    prefWidth="50.0">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <items>
-                                                <MenuItem fx:id="symptomCircle" mnemonicParsing="false" onAction="#verticesCircle">
+                                                <MenuItem fx:id="symptomCircle" mnemonicParsing="false"
+                                                          onAction="#verticesCircle">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/015-circle.png" />
+                                                                <Image url="@icons2/015-circle.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="symptomRectangle" mnemonicParsing="false" onAction="#verticesRectangle">
+                                                <MenuItem fx:id="symptomRectangle" mnemonicParsing="false"
+                                                          onAction="#verticesRectangle">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/023-square-1.png" />
+                                                                <Image url="@icons2/023-square-1.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
                                             </items>
                                             <tooltip>
-                                                <Tooltip text="Form des Symptoms verändern" />
+                                                <Tooltip text="Form des Symptoms verändern"/>
                                             </tooltip>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/015-circle.png" />
+                                                        <Image url="@icons2/015-circle.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                         </MenuButton>
-                                        <Button fx:id="verticesAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verticesAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <Button fx:id="verticesAutoLayout" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#verticesAutoLayout"
+                                                pickOnBounds="false" prefHeight="30.0" prefWidth="30.0"
+                                                styleClass="button1" stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/magic.png" />
+                                                        <Image url="@icons2/magic.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Automatische Anordnung" />
+                                                <Tooltip text="Automatische Anordnung"/>
                                             </tooltip>
                                         </Button>
                                         <Separator orientation="VERTICAL" prefHeight="4.0">
                                             <HBox.margin>
-                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
                                             </HBox.margin>
                                         </Separator>
-                                        <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="Schriftart">
+                                        <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity"
+                                                  minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0"
+                                                  promptText="Schriftart">
                                             <tooltip>
-                                                <Tooltip text="Schriftart des Symptoms verändern" />
+                                                <Tooltip text="Schriftart des Symptoms verändern"/>
                                             </tooltip>
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                         </ComboBox>
-                                        <ComboBox fx:id="sizeSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="Schriftgröße">
+                                        <ComboBox fx:id="sizeSymptomComboBox" editable="true" minHeight="-Infinity"
+                                                  minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0"
+                                                  promptText="Schriftgröße">
                                             <tooltip>
-                                                <Tooltip text="Schriftgröße des Symptoms verändern" />
+                                                <Tooltip text="Schriftgröße des Symptoms verändern"/>
                                             </tooltip>
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                         </ComboBox>
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </HBox>
                             </children>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </VBox>
                         <Separator fx:id="separator2" orientation="VERTICAL" prefHeight="200.0">
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                             </HBox.margin>
                         </Separator>
-                        <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="290.0">
+                        <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                              prefHeight="60.0" prefWidth="290.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kante">
                                     <VBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </VBox.margin>
                                 </Text>
                                 <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0">
                                     <children>
-                                        <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity"
+                                                      minWidth="-Infinity" mnemonicParsing="false"
+                                                      onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0"
+                                                      styleClass="button1" stylesheets="@gui_style.css">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/anchor.png" />
+                                                        <Image url="@icons2/anchor.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Ankerpunkte setzen" />
+                                                <Tooltip text="Ankerpunkte setzen"/>
                                             </tooltip>
                                         </ToggleButton>
                                         <Separator orientation="VERTICAL" prefHeight="4.0">
                                             <HBox.margin>
-                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
                                             </HBox.margin>
                                         </Separator>
-                                        <Button fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
+                                        <Button fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0"
+                                                prefWidth="30.0">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/008-rubbish-bin.png" />
+                                                        <Image url="@icons2/008-rubbish-bin.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Kante löschen" />
+                                                <Tooltip text="Kante löschen"/>
                                             </tooltip>
                                         </Button>
-                                        <Button fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
+                                        <Button fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity"
+                                                mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0"
+                                                prefWidth="30.0">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <graphic>
-                                                <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/unlink.png" />
+                                                        <Image url="@icons2/unlink.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Ankerpunkt löschen" />
+                                                <Tooltip text="Ankerpunkt löschen"/>
                                             </tooltip>
                                         </Button>
                                         <Separator orientation="VERTICAL" prefHeight="4.0">
                                             <HBox.margin>
-                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
                                             </HBox.margin>
                                         </Separator>
-                                        <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editEdgesColor" prefHeight="30.0" prefWidth="46.0">
+                                        <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity"
+                                                     onAction="#editEdgesColor" prefHeight="30.0" prefWidth="46.0">
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <tooltip>
-                                                <Tooltip text="Farbe der Kante verändern" />
+                                                <Tooltip text="Farbe der Kante verändern"/>
                                             </tooltip>
                                         </ColorPicker>
-                                        <MenuButton fx:id="edgeStrokeMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeStrokeBasic" prefHeight="30.0" prefWidth="50.0">
+                                        <MenuButton fx:id="edgeStrokeMenuButton" minHeight="-Infinity"
+                                                    minWidth="-Infinity" mnemonicParsing="false"
+                                                    onAction="#edgeStrokeBasic" prefHeight="30.0" prefWidth="50.0">
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/021-line.png" />
+                                                        <Image url="@icons2/021-line.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <items>
-                                                <MenuItem fx:id="edgeStrokeBasic" mnemonicParsing="false" onAction="#edgeStrokeBasic">
+                                                <MenuItem fx:id="edgeStrokeBasic" mnemonicParsing="false"
+                                                          onAction="#edgeStrokeBasic">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/021-line.png" />
+                                                                <Image url="@icons2/021-line.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="edgeStrokeBasicWeight" mnemonicParsing="false" onAction="#edgeStrokeBasicWeighted">
+                                                <MenuItem fx:id="edgeStrokeBasicWeight" mnemonicParsing="false"
+                                                          onAction="#edgeStrokeBasicWeighted">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/021-line.png" />
+                                                                <Image url="@icons2/021-line.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="edgeStrokeDotted" mnemonicParsing="false" onAction="#edgeStrokeDotted">
+                                                <MenuItem fx:id="edgeStrokeDotted" mnemonicParsing="false"
+                                                          onAction="#edgeStrokeDotted">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/dotted.png" />
+                                                                <Image url="@icons2/dotted.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="edgeStrokeDottedWeight" mnemonicParsing="false" onAction="#edgeStrokeDottedWeighted">
+                                                <MenuItem fx:id="edgeStrokeDottedWeight" mnemonicParsing="false"
+                                                          onAction="#edgeStrokeDottedWeighted">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/dotted.png" />
+                                                                <Image url="@icons2/dotted.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="edgeStrokeDashed" mnemonicParsing="false" onAction="#edgeStrokeDashed">
+                                                <MenuItem fx:id="edgeStrokeDashed" mnemonicParsing="false"
+                                                          onAction="#edgeStrokeDashed">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/015-circle.png" />
+                                                                <Image url="@icons2/015-circle.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="edgeStrokeDashedWeight" mnemonicParsing="false" onAction="#edgeStrokeDashedWeighted">
+                                                <MenuItem fx:id="edgeStrokeDashedWeight" mnemonicParsing="false"
+                                                          onAction="#edgeStrokeDashedWeighted">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/015-circle.png" />
+                                                                <Image url="@icons2/015-circle.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
                                             </items>
                                             <tooltip>
-                                                <Tooltip text="Art der Kante verändern" />
+                                                <Tooltip text="Art der Kante verändern"/>
                                             </tooltip>
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                         </MenuButton>
-                                        <MenuButton fx:id="edgeArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                                        <MenuButton fx:id="edgeArrowMenuButton" minHeight="-Infinity"
+                                                    minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0"
+                                                    prefWidth="50.0">
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons2/005-right-chevron.png" />
+                                                        <Image url="@icons2/005-right-chevron.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <items>
-                                                <MenuItem fx:id="edgeArrowReinforced" mnemonicParsing="false" onAction="#edgeReinforced">
+                                                <MenuItem fx:id="edgeArrowReinforced" mnemonicParsing="false"
+                                                          onAction="#edgeReinforced">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/005-right-chevron.png" />
+                                                                <Image url="@icons2/005-right-chevron.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false" onAction="#edgeExtenuating">
+                                                <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false"
+                                                          onAction="#edgeExtenuating">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/015-circle.png" />
+                                                                <Image url="@icons2/015-circle.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
-                                                <MenuItem fx:id="edgeArrowNeutral" mnemonicParsing="false" onAction="#edgeNeutral">
+                                                <MenuItem fx:id="edgeArrowNeutral" mnemonicParsing="false"
+                                                          onAction="#edgeNeutral">
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/014-question.png" />
+                                                                <Image url="@icons2/014-question.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </MenuItem>
                                             </items>
                                             <HBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </HBox.margin>
                                             <tooltip>
-                                                <Tooltip text="Pfeilspitze der Kante verändern" />
+                                                <Tooltip text="Pfeilspitze der Kante verändern"/>
                                             </tooltip>
                                         </MenuButton>
 
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </HBox>
                             </children>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </VBox>
 
-                        <VBox fx:id="vBoxGraphStats" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="180.0">
+                        <VBox fx:id="vBoxGraphStats" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0"
+                              prefWidth="180.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Graphmaße">
                                     <VBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </VBox.margin>
                                 </Text>
                                 <GridPane prefHeight="89.0" prefWidth="132.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.39990997314453" minWidth="10.0" prefWidth="142.39990997314453" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.199951171875" minWidth="10.0" prefWidth="26.40009002685548" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.39990997314453"
+                                                           minWidth="10.0" prefWidth="142.39990997314453"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.199951171875" minWidth="10.0"
+                                                           prefWidth="26.40009002685548"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Umfang" wrappingWidth="59.898826599121094" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vernetzungsindex" wrappingWidth="126.59998321533203" GridPane.rowIndex="1" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Strukturindex" wrappingWidth="104.54531860351562" GridPane.rowIndex="2" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Umfang"
+                                              wrappingWidth="59.898826599121094"/>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999"
+                                              GridPane.columnIndex="1"/>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vernetzungsindex"
+                                              wrappingWidth="126.59998321533203" GridPane.rowIndex="1"/>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1"
+                                              GridPane.rowIndex="1"/>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Strukturindex"
+                                              wrappingWidth="104.54531860351562" GridPane.rowIndex="2"/>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1"
+                                              GridPane.rowIndex="2"/>
                                     </children>
                                 </GridPane>
                             </children>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </VBox>
                         <Separator fx:id="separator3" orientation="VERTICAL" prefHeight="200.0">
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                             </HBox.margin>
                         </Separator>
-                        <VBox fx:id="vBoxAnalysisSymptom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="250.0">
+                        <VBox fx:id="vBoxAnalysisSymptom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0"
+                              prefWidth="250.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symptom">
                                     <VBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </VBox.margin>
                                 </Text>
-                                <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="247.0">
+                                <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0"
+                                          prefWidth="247.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger">
+                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0"
+                                                  text="Vorgänger">
                                             <tooltip>
-                                                <Tooltip text="Vorgänger des Symptoms anzeigen" />
+                                                <Tooltip text="Vorgänger des Symptoms anzeigen"/>
                                             </tooltip>
                                         </CheckBox>
-                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1">
+                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0"
+                                                  text="Nachfolger" GridPane.rowIndex="1">
                                             <tooltip>
-                                                <Tooltip text="Nachfolger des Symptoms anzeigen" />
+                                                <Tooltip text="Nachfolger des Symptoms anzeigen"/>
                                             </tooltip>
                                         </CheckBox>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl"
+                                              wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" right="5.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <TextField fx:id="amountSymptomTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="Anzahl der Vorgänger/Nachfolger" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                        <TextField fx:id="amountSymptomTextField" maxWidth="-Infinity"
+                                                   minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0"
+                                                   prefWidth="90.0" promptText="Anzahl der Vorgänger/Nachfolger"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="1">
                                             <tooltip>
-                                                <Tooltip text="Anzahl der Vorgänger/Nachfolger" />
+                                                <Tooltip text="Anzahl der Vorgänger/Nachfolger"/>
                                             </tooltip>
                                         </TextField>
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </GridPane>
                             </children>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </VBox>
                         <Separator fx:id="separator4" orientation="VERTICAL" prefHeight="200.0">
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                             </HBox.margin>
                         </Separator>
-                        <VBox fx:id="vBoxAnalysisEdge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="345.0">
+                        <VBox fx:id="vBoxAnalysisEdge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0"
+                              prefWidth="345.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kante">
                                     <VBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </VBox.margin>
                                 </Text>
-                                <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="341.0">
+                                <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0"
+                                          prefWidth="341.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.99995880126953" minWidth="10.0" prefWidth="127.99995880126953" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.2001953125" minWidth="10.0" prefWidth="120.20004119873046" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.199951171875" minWidth="10.0" prefWidth="92.40007324218752" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.99995880126953"
+                                                           minWidth="10.0" prefWidth="127.99995880126953"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.2001953125" minWidth="10.0"
+                                                           prefWidth="120.20004119873046"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.199951171875" minWidth="10.0"
+                                                           prefWidth="92.40007324218752"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Vorgänger">
+                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0"
+                                                  text="Vorgänger">
                                             <tooltip>
-                                                <Tooltip text="Vorgänger der Kante anzeigen" />
+                                                <Tooltip text="Vorgänger der Kante anzeigen"/>
                                             </tooltip>
                                         </CheckBox>
-                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="Nachfolger" GridPane.rowIndex="1">
+                                        <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0"
+                                                  text="Nachfolger" GridPane.rowIndex="1">
                                             <tooltip>
-                                                <Tooltip text="Nachfolger der Kante anzeigen" />
+                                                <Tooltip text="Nachfolger der Kante anzeigen"/>
                                             </tooltip>
                                         </CheckBox>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl"
+                                              wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" right="5.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <TextField fx:id="amountEdgeTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="Anzahl der Vorgänger/Nachfolger" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                        <TextField fx:id="amountEdgeTextField" maxWidth="-Infinity"
+                                                   minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0"
+                                                   prefWidth="90.0" promptText="Anzahl der Vorgänger/Nachfolger"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="1">
                                             <tooltip>
-                                                <Tooltip text="Anzahl der Vorgänger/Nachfolger" />
+                                                <Tooltip text="Anzahl der Vorgänger/Nachfolger"/>
                                             </tooltip>
                                         </TextField>
-                                        <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" " GridPane.columnIndex="2">
+                                        <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0"
+                                                  prefWidth="79.0" text=" " GridPane.columnIndex="2">
                                             <graphic>
-                                                <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
+                                                <MenuButton minHeight="-Infinity" minWidth="-Infinity"
+                                                            mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
                                                     <items>
                                                         <MenuItem mnemonicParsing="false">
                                                             <graphic>
-                                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                <ImageView fitHeight="17.0" fitWidth="23.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
                                                                     <image>
-                                                                        <Image url="@icons2/014-question.png" />
+                                                                        <Image url="@icons2/014-question.png"/>
                                                                     </image>
                                                                 </ImageView>
                                                             </graphic>
                                                         </MenuItem>
                                                         <MenuItem mnemonicParsing="false">
                                                             <graphic>
-                                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                <ImageView fitHeight="17.0" fitWidth="23.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
                                                                     <image>
-                                                                        <Image url="@icons2/015-circle.png" />
+                                                                        <Image url="@icons2/015-circle.png"/>
                                                                     </image>
                                                                 </ImageView>
                                                             </graphic>
                                                         </MenuItem>
                                                     </items>
                                                     <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
                                                             <image>
-                                                                <Image url="@icons2/005-right-chevron.png" />
+                                                                <Image url="@icons2/005-right-chevron.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                     <padding>
-                                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                                     </padding>
                                                 </MenuButton>
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip text="Nur bestimmte Pfeiltypen anzeigen" />
+                                                <Tooltip text="Nur bestimmte Pfeiltypen anzeigen"/>
                                             </tooltip>
                                         </CheckBox>
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </GridPane>
                             </children>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </VBox>
-                        <Separator fx:id="separator5" orientation="VERTICAL" prefHeight="200.0" />
-                        <VBox fx:id="vBoxAnalysisOption" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="332.0">
+                        <Separator fx:id="separator5" orientation="VERTICAL" prefHeight="200.0"/>
+                        <VBox fx:id="vBoxAnalysisOption" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0"
+                              prefWidth="332.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Analyse-Optionen">
                                     <VBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </VBox.margin>
                                 </Text>
                                 <VBox prefHeight="50.0" prefWidth="392.0">
                                     <children>
                                         <HBox minWidth="-Infinity" prefHeight="30.0" prefWidth="330.0">
                                             <VBox.margin>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </VBox.margin>
                                             <children>
-                                                <CheckBox fx:id="reinforced11" mnemonicParsing="false" prefHeight="30.0" prefWidth="271.0" text=" ">
+                                                <CheckBox fx:id="reinforced11" mnemonicParsing="false" prefHeight="30.0"
+                                                          prefWidth="271.0" text=" ">
                                                     <graphic>
-                                                        <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="205.0" text="Pfeilketten">
+                                                        <MenuButton minHeight="-Infinity" minWidth="-Infinity"
+                                                                    mnemonicParsing="false" prefHeight="30.4"
+                                                                    prefWidth="205.0" text="Pfeilketten">
                                                             <items>
-                                                                <MenuItem mnemonicParsing="false" text="konvergente Verzweigungen" />
-                                                                <MenuItem mnemonicParsing="false" text="divergente Verzweigungen" />
-                                                                <MenuItem mnemonicParsing="false" text="Verzweigungen" />
-                                                                <MenuItem mnemonicParsing="false" text="Zyklen" />
+                                                                <MenuItem mnemonicParsing="false"
+                                                                          text="konvergente Verzweigungen"/>
+                                                                <MenuItem mnemonicParsing="false"
+                                                                          text="divergente Verzweigungen"/>
+                                                                <MenuItem mnemonicParsing="false" text="Verzweigungen"/>
+                                                                <MenuItem mnemonicParsing="false" text="Zyklen"/>
                                                             </items>
                                                             <padding>
-                                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                                             </padding>
                                                         </MenuButton>
                                                     </graphic>
                                                     <HBox.margin>
-                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                                     </HBox.margin>
                                                     <tooltip>
-                                                        <Tooltip text="Analyse-Optionen aktivieren" />
+                                                        <Tooltip text="Analyse-Optionen aktivieren"/>
                                                     </tooltip>
                                                 </CheckBox>
                                             </children>
@@ -990,233 +1192,267 @@
                                 </VBox>
                             </children>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </VBox>
                     </children>
                 </HBox>
-                <Separator prefWidth="200.0" />
+                <Separator prefWidth="200.0"/>
             </children>
         </VBox>
     </top>
     <bottom>
-        <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css">
+        <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0"
+                   styleClass="buttonbar" stylesheets="@gui_style.css">
             <buttons>
-                <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1497.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
+                <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity"
+                      minWidth="-Infinity" prefHeight="27.0" prefWidth="1497.0" scaleShape="false"
+                      styleClass="buttonbar" stylesheets="@gui_style.css">
                     <children>
-                        <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;" wrappingWidth="436.33087462186813">
+                        <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;&lt;Aktuelle Aktion&gt;"
+                              wrappingWidth="436.33087462186813">
                             <HBox.margin>
-                                <Insets bottom="5.0" right="5.0" top="5.0" />
+                                <Insets bottom="5.0" right="5.0" top="5.0"/>
                             </HBox.margin>
                         </Text>
                     </children>
                 </HBox>
                 <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="317.0">
                     <children>
-                  <MenuBar minWidth="-Infinity">
-                    <menus>
-                      <Menu fx:id="prozent" mnemonicParsing="false" text="100%">
-                        <items>
-                              <MenuItem fx:id="zoomMenuItem200" mnemonicParsing="false" text="200%" />
-                              <MenuItem fx:id="zoomMenuItem175" mnemonicParsing="false" text="175%" />
-                              <MenuItem fx:id="zoomMenuItem150" mnemonicParsing="false" text="150%" />
-                              <MenuItem fx:id="zoomMenuItem125" mnemonicParsing="false" text="125%" />
-                              <MenuItem fx:id="zoomMenuItem100" mnemonicParsing="false" text="100%" />
-                              <MenuItem fx:id="zoomMenuItem75" mnemonicParsing="false" text="75%" />
-                              <MenuItem fx:id="zoomMenuItem50" mnemonicParsing="false" text="50%" />
-                              <MenuItem fx:id="zoomMenuItem25" mnemonicParsing="false" text="25%" />
-                          <MenuItem fx:id="zoomMenuItem10" mnemonicParsing="false" text="10%" />
-                        </items>
-                      </Menu>
-                    </menus>
-                     <HBox.margin>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </HBox.margin>
-                  </MenuBar>
+                        <MenuBar minWidth="-Infinity">
+                            <menus>
+                                <Menu fx:id="prozent" mnemonicParsing="false" text="100%">
+                                    <items>
+                                        <MenuItem fx:id="zoomMenuItem200" mnemonicParsing="false" text="200%"/>
+                                        <MenuItem fx:id="zoomMenuItem175" mnemonicParsing="false" text="175%"/>
+                                        <MenuItem fx:id="zoomMenuItem150" mnemonicParsing="false" text="150%"/>
+                                        <MenuItem fx:id="zoomMenuItem125" mnemonicParsing="false" text="125%"/>
+                                        <MenuItem fx:id="zoomMenuItem100" mnemonicParsing="false" text="100%"/>
+                                        <MenuItem fx:id="zoomMenuItem75" mnemonicParsing="false" text="75%"/>
+                                        <MenuItem fx:id="zoomMenuItem50" mnemonicParsing="false" text="50%"/>
+                                        <MenuItem fx:id="zoomMenuItem25" mnemonicParsing="false" text="25%"/>
+                                        <MenuItem fx:id="zoomMenuItem10" mnemonicParsing="false" text="10%"/>
+                                    </items>
+                                </Menu>
+                            </menus>
+                            <HBox.margin>
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                            </HBox.margin>
+                        </MenuBar>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                             </HBox.margin>
                         </Text>
 
-                        <Slider fx:id="zoomSlider" cacheShape="false" focusTraversable="false" prefHeight="14.0" prefWidth="200.0">
+                        <Slider fx:id="zoomSlider" cacheShape="false" focusTraversable="false" prefHeight="14.0"
+                                prefWidth="200.0">
                             <padding>
-                                <Insets left="5.0" right="5.0" />
+                                <Insets left="5.0" right="5.0"/>
                             </padding>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="2.0" top="5.0" />
+                                <Insets bottom="5.0" left="2.0" top="5.0"/>
                             </HBox.margin>
                             <tooltip>
-                                <Tooltip text="Zoom" />
+                                <Tooltip text="Zoom"/>
                             </tooltip>
                         </Slider>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                             <HBox.margin>
-                                <Insets bottom="2.0" right="10.0" top="2.0" />
+                                <Insets bottom="2.0" right="10.0" top="2.0"/>
                             </HBox.margin>
                         </Text>
                     </children>
                 </HBox>
             </buttons>
             <BorderPane.margin>
-                <Insets />
+                <Insets/>
             </BorderPane.margin>
         </ButtonBar>
     </bottom>
     <center>
         <ScrollPane fx:id="paneSwingNode" focusTraversable="false">
-            <SwingNode fx:id="canvas" focusTraversable="false" />
+            <SwingNode fx:id="canvas" focusTraversable="false"/>
         </ScrollPane>
 
 
     </center>
     <right>
-        <Accordion fx:id="overViewAccordion" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="766.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+        <Accordion fx:id="overViewAccordion" focusTraversable="false" maxHeight="1.7976931348623157E308"
+                   maxWidth="-Infinity" prefHeight="766.0" prefWidth="260.0" BorderPane.alignment="CENTER">
             <panes>
-                <TitledPane fx:id="overViewTitledPane" animated="true" maxWidth="-Infinity" onMouseClicked="#treeViewUpdate" prefHeight="659.0" prefWidth="260.0" text="Übersicht">
+                <TitledPane fx:id="overViewTitledPane" animated="true" maxWidth="-Infinity"
+                            onMouseClicked="#treeViewUpdate" prefHeight="659.0" prefWidth="260.0" text="Übersicht">
                     <content>
                         <VBox fillWidth="false" maxWidth="-Infinity" prefWidth="260.0">
                             <children>
-                                <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
+                                <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0"
+                                          text="Verstärkend">
                                     <VBox.margin>
-                                        <Insets top="2.0" />
+                                        <Insets top="2.0"/>
                                     </VBox.margin>
                                     <graphic>
                                         <MenuButton mnemonicParsing="false" text="MenuButton">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                <MenuItem mnemonicParsing="false" text="Action 1"/>
+                                                <MenuItem mnemonicParsing="false" text="Action 2"/>
                                             </items>
                                             <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </padding>
                                         </MenuButton>
                                     </graphic>
                                 </CheckBox>
-                                <CheckBox fx:id="extenuating" mnemonicParsing="false" prefHeight="18.0" prefWidth="131.0" text="Abschwächend">
+                                <CheckBox fx:id="extenuating" mnemonicParsing="false" prefHeight="18.0"
+                                          prefWidth="131.0" text="Abschwächend">
                                     <graphic>
                                         <TextField prefHeight="25.0" prefWidth="104.0">
                                             <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </padding>
                                         </TextField>
                                     </graphic>
                                 </CheckBox>
-                                <CheckBox fx:id="neutral" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="17.0" prefWidth="115.0" text="Neutral">
+                                <CheckBox fx:id="neutral" mnemonicParsing="false" onAction="#buttonClicked"
+                                          prefHeight="17.0" prefWidth="115.0" text="Neutral">
                                     <VBox.margin>
-                                        <Insets bottom="2.0" />
+                                        <Insets bottom="2.0"/>
                                     </VBox.margin>
                                 </CheckBox>
 
-                                <TreeView fx:id="treeView" focusTraversable="false" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
+                                <TreeView fx:id="treeView" focusTraversable="false" onScroll="#treeViewUpdate"
+                                          prefHeight="400.0" prefWidth="260.0">
                                     <VBox.margin>
-                                        <Insets left="2.0" right="2.0" top="5.0" />
+                                        <Insets left="2.0" right="2.0" top="5.0"/>
                                     </VBox.margin>
                                 </TreeView>
-                                <Separator focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" orientation="HORIZONTAL" prefHeight="6.0" prefWidth="260.0">
+                                <Separator focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity"
+                                           orientation="HORIZONTAL" prefHeight="6.0" prefWidth="260.0">
                                     <VBox.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                     </VBox.margin>
                                 </Separator>
-                                <StackPane alignment="BOTTOM_CENTER" minHeight="-Infinity" prefHeight="195.0" prefWidth="260.0">
+                                <StackPane alignment="BOTTOM_CENTER" minHeight="-Infinity" prefHeight="195.0"
+                                           prefWidth="260.0">
                                     <children>
-                                        <SwingNode fx:id="satellite" />
+                                        <SwingNode fx:id="satellite"/>
                                     </children>
                                     <VBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </VBox.margin>
                                 </StackPane>
                             </children>
                         </VBox>
                     </content>
                 </TitledPane>
-                <TitledPane fx:id="templateTitledPane" animated="true" onMouseClicked="#loadTables" prefWidth="260.0" text="Vorlage-Regeln">
+                <TitledPane fx:id="templateTitledPane" animated="true" onMouseClicked="#loadTables" prefWidth="260.0"
+                            text="Vorlage-Regeln">
                     <content>
                         <VBox fillWidth="false" prefWidth="260.0">
                             <children>
                                 <GridPane prefHeight="200.0" prefWidth="260.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.2000244140625" minWidth="10.0" prefWidth="186.39990234375" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.39996337890625" minWidth="10.0" prefWidth="72.80009765624999" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.2000244140625"
+                                                           minWidth="10.0" prefWidth="186.39990234375"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.39996337890625"
+                                                           minWidth="10.0" prefWidth="72.80009765624999"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Sphären :">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Symptome :" GridPane.rowIndex="1">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Symptome :"
+                                              GridPane.rowIndex="1">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Symptome in Sphären :" wrappingWidth="165.210693359375" GridPane.rowIndex="2">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Maximale Symptome in Sphären :" wrappingWidth="165.210693359375"
+                                              GridPane.rowIndex="2">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Kanten :" GridPane.rowIndex="3">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Kanten :"
+                                              GridPane.rowIndex="3">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <TextField fx:id="maxSphereField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1">
+                                        <TextField fx:id="maxSphereField" minHeight="-Infinity" minWidth="-Infinity"
+                                                   prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1">
                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
                                             </padding>
                                         </TextField>
-                                        <TextField fx:id="maxSymptomField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                        <TextField fx:id="maxSymptomField" minHeight="-Infinity" minWidth="-Infinity"
+                                                   prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1"
+                                                   GridPane.rowIndex="1">
                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
                                             </padding>
                                         </TextField>
-                                        <TextField fx:id="maxSymptominSphereField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                        <TextField fx:id="maxSymptominSphereField" minHeight="-Infinity"
+                                                   minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="2">
                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
                                             </padding>
                                         </TextField>
-                                        <TextField fx:id="maxEdgesField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                        <TextField fx:id="maxEdgesField" minHeight="-Infinity" minWidth="-Infinity"
+                                                   prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1"
+                                                   GridPane.rowIndex="3">
                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
                                             </padding>
                                         </TextField>
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </GridPane>
-                                <Separator minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="260.0" />
+                                <Separator minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0"
+                                           prefWidth="260.0"/>
                                 <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="260.0">
                                     <children>
-                                        <CheckBox fx:id="reinforcedBox" mnemonicParsing="false" text="Verstärkende Kanten erlauben">
+                                        <CheckBox fx:id="reinforcedBox" mnemonicParsing="false"
+                                                  text="Verstärkende Kanten erlauben">
                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </VBox.margin>
                                         </CheckBox>
-                                        <CheckBox fx:id="extenuatingBox" mnemonicParsing="false" text="Abschwächende Kanten erlauben">
+                                        <CheckBox fx:id="extenuatingBox" mnemonicParsing="false"
+                                                  text="Abschwächende Kanten erlauben">
                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </VBox.margin>
                                         </CheckBox>
-                                        <CheckBox fx:id="neutralBox" mnemonicParsing="false" text="Neutrale Kanten erlauben">
+                                        <CheckBox fx:id="neutralBox" mnemonicParsing="false"
+                                                  text="Neutrale Kanten erlauben">
                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </VBox.margin>
                                         </CheckBox>
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </VBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mehrere Elemente auswählen: STRG + Maustaste" wrappingWidth="260.53678131103516">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="Mehrere Elemente auswählen: STRG + Maustaste"
+                                      wrappingWidth="260.53678131103516">
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="10.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="10.0"/>
                                     </VBox.margin>
                                 </Text>
                                 <Accordion maxHeight="1.7976931348623157E308" prefHeight="290.0" prefWidth="260.0">
@@ -1225,23 +1461,31 @@
                                             <content>
                                                 <TableView fx:id="sphereTableView" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
-                                                        <TableColumn fx:id="sphereCol" prefWidth="75.0" text="Name" />
-                                                        <TableColumn fx:id="annotationSphereCol" prefWidth="75.0" text="Annotation" />
-                                                        <TableColumn fx:id="positionSphereCol" prefWidth="75.0" text="Position" />
-                                                        <TableColumn fx:id="styleSphereCol" prefWidth="75.0" text="Style" />
-                                                        <TableColumn fx:id="verticesSphereCol" prefWidth="75.0" text="Vertices" />
+                                                        <TableColumn fx:id="sphereCol" prefWidth="75.0" text="Name"/>
+                                                        <TableColumn fx:id="annotationSphereCol" prefWidth="75.0"
+                                                                     text="Annotation"/>
+                                                        <TableColumn fx:id="positionSphereCol" prefWidth="75.0"
+                                                                     text="Position"/>
+                                                        <TableColumn fx:id="styleSphereCol" prefWidth="75.0"
+                                                                     text="Style"/>
+                                                        <TableColumn fx:id="verticesSphereCol" prefWidth="75.0"
+                                                                     text="Vertices"/>
                                                     </columns>
                                                 </TableView>
                                             </content>
                                         </TitledPane>
                                         <TitledPane maxHeight="1.7976931348623157E308" text="Symptome">
                                             <content>
-                                                <TableView fx:id="symptomTableView" prefHeight="200.0" prefWidth="200.0">
+                                                <TableView fx:id="symptomTableView" prefHeight="200.0"
+                                                           prefWidth="200.0">
                                                     <columns>
-                                                        <TableColumn fx:id="symptomCol" prefWidth="75.0" text="Name" />
-                                                        <TableColumn fx:id="annotationSymptomCol" prefWidth="75.0" text="Annotation" />
-                                                        <TableColumn fx:id="positionSymptomCol" prefWidth="75.0" text="Position" />
-                                                        <TableColumn fx:id="styleSymptomCol" prefWidth="75.0" text="Style" />
+                                                        <TableColumn fx:id="symptomCol" prefWidth="75.0" text="Name"/>
+                                                        <TableColumn fx:id="annotationSymptomCol" prefWidth="75.0"
+                                                                     text="Annotation"/>
+                                                        <TableColumn fx:id="positionSymptomCol" prefWidth="75.0"
+                                                                     text="Position"/>
+                                                        <TableColumn fx:id="styleSymptomCol" prefWidth="75.0"
+                                                                     text="Style"/>
                                                     </columns>
                                                 </TableView>
                                             </content>
@@ -1250,34 +1494,42 @@
                                             <content>
                                                 <TableView fx:id="edgeTableView" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
-                                                        <TableColumn fx:id="edgeCol" prefWidth="75.0" text="Name" />
-                                                        <TableColumn fx:id="positionEdgeCol" prefWidth="75.0" text="Position" />
-                                                        <TableColumn fx:id="styleEdgeCol" prefWidth="75.0" text="Style" />
-                                                        <TableColumn fx:id="edgetypeEdgeCol" prefWidth="75.0" text="EdgeType" />
+                                                        <TableColumn fx:id="edgeCol" prefWidth="75.0" text="Name"/>
+                                                        <TableColumn fx:id="positionEdgeCol" prefWidth="75.0"
+                                                                     text="Position"/>
+                                                        <TableColumn fx:id="styleEdgeCol" prefWidth="75.0"
+                                                                     text="Style"/>
+                                                        <TableColumn fx:id="edgetypeEdgeCol" prefWidth="75.0"
+                                                                     text="EdgeType"/>
                                                     </columns>
                                                 </TableView>
                                             </content>
                                         </TitledPane>
                                     </panes>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </Accordion>
-                                <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="260.0">
+                                <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity"
+                                      prefHeight="40.0" prefWidth="260.0">
                                     <children>
-                                        <Button fx:id="templateSaveButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#rulesTemplate" prefHeight="30.0" prefWidth="115.0" text="Speichern">
+                                        <Button fx:id="templateSaveButton" minWidth="-Infinity" mnemonicParsing="false"
+                                                onAction="#rulesTemplate" prefHeight="30.0" prefWidth="115.0"
+                                                text="Speichern">
                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>
                                         </Button>
-                                        <Button fx:id="defaultTemplateButton" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Löschen">
+                                        <Button fx:id="defaultTemplateButton" cancelButton="true" minWidth="-Infinity"
+                                                mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0"
+                                                text="Löschen">
                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>
                                         </Button>
                                     </children>
                                     <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </VBox.margin>
                                 </HBox>
                             </children>
@@ -1286,7 +1538,7 @@
                 </TitledPane>
                 <TitledPane fx:id="historyTitledPane" prefWidth="260.0" text="Verlauf">
                     <content>
-                        <TreeView prefWidth="260.0" />
+                        <TreeView prefWidth="260.0"/>
                     </content>
                 </TitledPane>
             </panes>
