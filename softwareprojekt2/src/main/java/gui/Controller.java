@@ -30,6 +30,7 @@ import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
 import actions.remove.*;
+import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
@@ -43,8 +44,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -1437,22 +1438,55 @@ public class Controller implements ObserverSyndrom {
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
-        //TODO Template
-        /*maxSphereField;
-        maxSymptomField;
-        maxEdgesField;
-        reinforcedBox;
-        extenuatingBox;
-        neutralBox;*/
-        /*Template temp = new Template();
+        int mSph=setValueFromTextField(maxSphereField);
+        int mSym=setValueFromTextField(maxSymptomField);
+        int mEdg=setValueFromTextField(maxEdgesField);
+        boolean rein = reinforcedBox.isSelected();
+        boolean exte = extenuatingBox.isSelected();
+        boolean neut = neutralBox.isSelected();
 
-            temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
-            temp.setMaxVertexCounter(Integer.parseInt(maxSymptomField.getText()));
-            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.toString()));
+        Template temp = new Template(mSph,mSym,mEdg,rein,exte,neut);
 
-        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);*/
+        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
+        rulesTemplateAction.action();
     }
 
+    /**
+     * Gets a TextField and returns its numeric content
+     * @param pTextField The TextField that contains the count
+     * @return -1 if there is no number set, -2 if the input is not valid, the number otherwise
+     */
+    private int getValidatedContent(TextField pTextField){
+        String content=pTextField.getText().trim();
+        try{
+            return Integer.parseInt(content);
+        }catch(NumberFormatException e){
+            if(content.isEmpty()){
+                return -1;
+            }else{
+                return -2;
+            }
+        }
+    }
+
+    /**
+     * Gets a TextField and returns its numeric content if its valid
+     * @param pTextField The Textfield that contains the count
+     * @return The number if it's valid, Integer.Max_Value otherwise
+     */
+    private int setValueFromTextField(TextField pTextField){
+        int ret=Integer.MAX_VALUE;
+        int cont= getValidatedContent(pTextField);
+        if (cont==-1){
+            pTextField.setStyle("-fx-background-color: white");
+        }else if(cont==-2){
+            pTextField.setStyle("-fx-background-color: rgba(255,0,0,0.25)");
+        }else{
+            pTextField.setStyle("-fx-background-color: white");
+            ret=cont;
+        }
+        return ret;
+    }
     /**
      * Deletes all Rules that were set before.
      */
