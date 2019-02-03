@@ -73,6 +73,9 @@ public class LayoutSphereGraphLogAction extends LogAction {
 
             double height = sphereList.get(0).getHeight();
             double minHeight = sphereList.get(0).getHeight();
+
+            double smallestY = sphereList.get(0).getCoordinates().getY();
+            double largestY = sphereList.get(0).getCoordinates().getY();
             for (Sphere sp: sphereList) {
                 double spHeight = sp.getHeight();
                 oldSphereMap.put(sp, new Pair<>(new Pair<>(sp.getWidth(),sp.getHeight()), sp.getCoordinates()));
@@ -82,12 +85,23 @@ public class LayoutSphereGraphLogAction extends LogAction {
                 if (minHeight > spHeight){
                     minHeight = spHeight;
                 }
+                double sphereY = sp.getCoordinates().getY();
+                if (smallestY > sphereY){
+                    smallestY = sphereY;
+                }
+
+                if (sphereY > largestY){
+                    largestY = sphereY;
+                }
             }
-            int maxI = (int) ((double) values.getDefaultLayoutVVSize().height / minHeight);
+
+            int maxI = (int) ((largestY - smallestY )/ minHeight)+ 5;
+
             ArrayList<ArrayList<Sphere>> sphereRows = new ArrayList<>(maxI);
             for(int i = 0; i < maxI; i++){
                 sphereRows.add(new ArrayList<>());
             }
+
             for(Sphere sp: sphereList){
                 for(int i = 0; i<maxI; i++){
                     if (sp.getCoordinates().getY() >= y+(height*i ) - height/2 && sp.getCoordinates().getY() < y+

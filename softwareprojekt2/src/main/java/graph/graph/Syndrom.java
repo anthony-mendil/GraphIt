@@ -292,7 +292,7 @@ public class Syndrom {
         scale = value;
         scalingControl.scale(vv, (float) value / 100, vv.getCenter());
 
-        if (value < 100) {
+        if (value <= 100) {
             AffineTransform modelLayoutTransform =
                     new AffineTransform(vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform());
             vv2.getRenderContext().getMultiLayerTransformer().setTransformer(Layer.LAYOUT, new MutableAffineTransformer(modelLayoutTransform));
