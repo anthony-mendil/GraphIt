@@ -1439,6 +1439,13 @@ public class Controller implements ObserverSyndrom {
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
+        //TODO Template
+        /*maxSphereField;
+        maxSymptomField;
+        maxEdgesField;
+        reinforcedBox;
+        extenuatingBox;
+        neutralBox;*/
         /*Template temp = new Template();
 
             temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
