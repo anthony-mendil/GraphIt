@@ -220,7 +220,7 @@
                                         <Tooltip text="Element hervorheben entfernen" />
                                     </tooltip>
                                 </Button>
-                                <ToggleButton fx:id="fadeout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                <ToggleButton fx:id="fadeout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -235,7 +235,7 @@
                                         <Tooltip text="Ausgeblendete Elemente anzeigen" />
                                     </tooltip>
                                 </ToggleButton>
-                                <Button fx:id="fadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <Button fx:id="fadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -250,7 +250,7 @@
                                         <Tooltip text="Element ausblenden" />
                                     </tooltip>
                                 </Button>
-                                <Button fx:id="deleteFadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dehighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <Button fx:id="deleteFadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#defadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>

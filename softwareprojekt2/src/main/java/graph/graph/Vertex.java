@@ -103,6 +103,7 @@ public class Vertex {
      * The indicator whether the Vertex is highlighted.
      */
     private boolean isHighlighted = false;
+
     /**
      * The indicator whether the vertex is locked in terms of style.
      */

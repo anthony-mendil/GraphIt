@@ -4,9 +4,12 @@ import actions.ActionHistory;
 import actions.GraphAction;
 import actions.ObserverSyndrom;
 import actions.activate.ActivateAnchorPointsFadeoutLogAction;
+import actions.activate.ActivateFadeoutLogAction;
 import actions.activate.ActivateHighlightLogAction;
+import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
+import actions.deactivate.DeactivateFadeoutLogAction;
 import actions.deactivate.DeactivateHighlightLogAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
@@ -736,6 +739,9 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private ToggleButton highlight;
+
+    @FXML
+    private ToggleButton fadeout;
 
     @FXML
     private Accordion overViewAccordion;
@@ -1480,6 +1486,26 @@ public class Controller implements ObserverSyndrom {
     public void dehighlightElements() {
         RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
         history.execute(removeHighlightElementAction);
+    }
+
+    public void fadeout() {
+        if (!fadeout.isSelected()) {
+            DeactivateFadeoutLogAction deactivateFadeoutLogAction = new DeactivateFadeoutLogAction();
+            history.execute(deactivateFadeoutLogAction);
+        } else {
+            ActivateFadeoutLogAction activateFadeoutLogAction = new ActivateFadeoutLogAction();
+            history.execute(activateFadeoutLogAction);
+        }
+    }
+
+    public void fadeoutElements() {
+        AddFadeoutElementAction addFadeoutElementAction = new AddFadeoutElementAction();
+        history.execute(addFadeoutElementAction);
+    }
+
+    public void defadeoutElements() {
+        RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
+        history.execute(removeFadeoutElementAction);
     }
 
     public void showTemplateWindow() {
