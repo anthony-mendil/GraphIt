@@ -6,6 +6,7 @@ import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
 import actions.remove.RemoveSphereLogAction;
+import graph.graph.Sphere;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
@@ -21,11 +22,13 @@ public class SphereContextMenu {
     private final ContextMenu contextMenu;
     private final ActionHistory history;
     private final Values values;
+    private final Sphere sphere;
 
-    public SphereContextMenu(){
+    public SphereContextMenu(Sphere sphere){
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
+        this.sphere = sphere;
         setup();
     }
 
@@ -45,7 +48,7 @@ public class SphereContextMenu {
         MenuItem annotation = new MenuItem("Titel");
         HelperGui.setImage("/icons2/fancy.png", annotation);
         annotation.setOnAction(event -> {
-            TextInputDialog dialog = new TextInputDialog("Sphäre Titel");
+            TextInputDialog dialog = new TextInputDialog(sphere.getAnnotation().get(values.getGuiLanguage().name()));
 
             dialog.setHeaderText("Titel Sphäre eingeben:");
             dialog.setContentText("Titel:");
@@ -89,7 +92,18 @@ public class SphereContextMenu {
             history.execute(editFontSizeSphereLogAction);
         });
 
-        contextMenu.getItems().addAll(remove, annotation, color, text, size);
+        boolean lockedAnnotation = sphere.isLockedAnnotation();
+        boolean lockedStyle = sphere.isLockedStyle();
+        if (!lockedAnnotation){
+            contextMenu.getItems().addAll(annotation, text);
+        }
+        if (!lockedStyle){
+            contextMenu.getItems().addAll(color, size);
+        }
+        if (!lockedStyle && !lockedAnnotation){
+            contextMenu.getItems().add(remove);
+        }
+
         contextMenu.setAutoHide(true);
     }
 }

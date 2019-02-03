@@ -2134,9 +2134,9 @@ public class Controller implements ObserverSyndrom {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere, Map<String, String>> data) {
                 String name = "";
                 if (values.getGuiLanguage() == Language.GERMAN) {
-                    name = data.getValue().getAnnotation().get("de");
+                    name = data.getValue().getAnnotation().get( Language.GERMAN.name());
                 } else if (values.getGuiLanguage() == Language.ENGLISH) {
-                    name = data.getValue().getAnnotation().get("en");
+                    name = data.getValue().getAnnotation().get( Language.ENGLISH.name());
                 }
                 return new ReadOnlyStringWrapper(name);
             }
@@ -2238,9 +2238,9 @@ public class Controller implements ObserverSyndrom {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Vertex, Map<String, String>> data) {
                 String name = "";
                 if (values.getGuiLanguage() == Language.GERMAN) {
-                    name = data.getValue().getAnnotation().get("de");
+                    name = data.getValue().getAnnotation().get(Language.GERMAN.name());
                 } else if (values.getGuiLanguage() == Language.ENGLISH) {
-                    name = data.getValue().getAnnotation().get("en");
+                    name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
                 }
                 return new ReadOnlyStringWrapper(name);
             }

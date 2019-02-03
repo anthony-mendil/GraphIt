@@ -6,6 +6,7 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVertexAnnotationParam;
 
@@ -51,8 +52,8 @@ public class EditVertexAnnotationLogAction extends LogAction {
             for (Vertex v : pickedState.getPicked()) {
                 if(!v.isLockedAnnotation()) {
                     Map<String, String> annotation = v.getAnnotation();
-                    createParameter(v, v.getAnnotation().get("de"), text);
-                    annotation.put("de", text);
+                    createParameter(v, v.getAnnotation().get(Language.GERMAN.name()), text);
+                    annotation.put(Language.GERMAN.name(), text);
                     v.setAnnotation(annotation);
                 }else{
                     lockedVertices.add(v);
@@ -62,7 +63,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
             Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
             String newString = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
             Map<String,String> newAnnotation = new HashMap<>();
-            newAnnotation.put("de",newString);
+            newAnnotation.put(Language.GERMAN.name(),newString);
             vertex.setAnnotation(newAnnotation);
         }
         vv.repaint();

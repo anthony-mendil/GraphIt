@@ -37,7 +37,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     private Values values;
     private Map<Vertex, Pair<Point2D, Sphere>> points = null;
     private final HelperFunctions helper;
-    private final ContextMenu contextMenu;
+    private ContextMenu contextMenu;
     private int addToSelectionModifiers;
     private ActionHistory history;
 
@@ -55,7 +55,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         super(selectionModifiers);
         this.addToSelectionModifiers = addToSelectionModifiers;
         helper = new HelperFunctions();
-        contextMenu = new VertexContextMenu().getContextMenu();
     }
 
     @Override
@@ -90,6 +89,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 PickedState<Vertex> vertices = vv.getPickedVertexState();
                 vertices.clear();
                 vertices.pick(vertex, true);
+                contextMenu = new VertexContextMenu(vertex).getContextMenu();
                 helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
             }
             vv.repaint();
@@ -101,7 +101,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
-        helper.hideMenu(contextMenu);
+        if (contextMenu != null){
+            helper.hideMenu(contextMenu);
+        }
+
         down = e.getPoint();
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();

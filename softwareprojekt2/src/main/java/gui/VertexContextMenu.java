@@ -7,6 +7,7 @@ import actions.edit.color.EditVerticesFillColorLogAction;
 import actions.edit.font.EditFontSizeVerticesLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
 import actions.remove.RemoveVerticesLogAction;
+import graph.graph.Vertex;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
@@ -22,12 +23,14 @@ public class VertexContextMenu {
     private final ContextMenu contextMenu;
     private final ActionHistory history;
     private final Values values;
+    private final Vertex vertex;
 
 
-    public VertexContextMenu(){
+    public VertexContextMenu(Vertex vertex){
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
+        this.vertex = vertex;
         setup();
     }
 
@@ -45,7 +48,7 @@ public class VertexContextMenu {
         MenuItem annotation = new MenuItem("Titel");
         HelperGui.setImage("/icons2/fancy.png", annotation);
         annotation.setOnAction(event -> {
-            TextInputDialog dialog = new TextInputDialog("Symptom Titel");
+            TextInputDialog dialog = new TextInputDialog(vertex.getAnnotation().get(values.getGuiLanguage().name()));
 
             dialog.setHeaderText("Titel Symptom eingeben:");
             dialog.setContentText("Titel:");
@@ -97,7 +100,17 @@ public class VertexContextMenu {
             history.execute(editFontSizeVerticesLogAction);
         });
 
-        contextMenu.getItems().addAll(remove, annotation, color, colorDraw, text, size);
+        boolean lockedAnnotation = vertex.isLockedAnnotation();
+        boolean lockedStyle = vertex.isLockedStyle();
+        if (!lockedAnnotation){
+            contextMenu.getItems().addAll(annotation, text);
+        }
+        if (!lockedStyle){
+            contextMenu.getItems().addAll(color, colorDraw, size);
+        }
+        if (!lockedStyle && !lockedAnnotation){
+            contextMenu.getItems().add(remove);
+        }
         contextMenu.setAutoHide(true);
     }
 }

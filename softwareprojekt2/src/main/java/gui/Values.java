@@ -146,6 +146,11 @@ public class Values {
      */
     private Language guiLanguage = Language.GERMAN;
 
+    /**
+     * the current language of the graph.
+     */
+    private Language graphLanguage = Language.GERMAN;
+
     private static Values instance;
 
     private ObservableMap<String, Object> namespace;
@@ -179,15 +184,15 @@ public class Values {
 
     public HashMap<String, String> getDefaultAnnotationVertex(){
         HashMap<String, String> annotation = new HashMap<>();
-        annotation.put("de","Vertex");
-        annotation.put("en","vertex");
+        annotation.put(Language.GERMAN.name(),"Vertex");
+        annotation.put(Language.ENGLISH.name(),"vertex");
         return annotation;
     }
 
     public HashMap<String, String> getDefaultAnnotationSphere(){
         HashMap<String, String> annotation = new HashMap<>();
-        annotation.put("de","Sphäre");
-        annotation.put("en","sphere");
+        annotation.put(Language.GERMAN.name(),"Sphäre");
+        annotation.put(Language.ENGLISH.name(),"sphere");
         return annotation;
     }
 
