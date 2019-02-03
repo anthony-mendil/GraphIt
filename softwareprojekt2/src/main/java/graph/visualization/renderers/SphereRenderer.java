@@ -93,8 +93,9 @@ public class SphereRenderer {
         int i = 0;
         for (String line : annotation.split("\\s+")){
             if (fontMetrics.stringWidth(lengthLabel.toString()+line) +10 < sphereWidth){
-                lengthLabel.append(line);
+                lengthLabel.append(line).append(" ");
             } else {
+
                 if (fontMetrics.stringWidth(line) + 10 >= sphereWidth){
                     char[] chars = line.toCharArray();
                     if (i != 0){
@@ -109,12 +110,14 @@ public class SphereRenderer {
                         }
                     }
                 } else {
-                    lengthLabel.append("\n").append(line);
+                    label.append(lengthLabel);
+                    lengthLabel.delete(0, lengthLabel.length());
+                    lengthLabel.append("\n").append(line).append(" ");
                 }
             }
             i++;
         }
-        label.append(lengthLabel);
+
         return label.toString();
     }
 
