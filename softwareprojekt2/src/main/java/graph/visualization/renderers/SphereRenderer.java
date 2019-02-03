@@ -21,6 +21,7 @@ public class SphereRenderer {
     private SphereLabelTransformer<Sphere> sphereLabelTransformer = new SphereLabelTransformer<>();
     private SphereShapeTransformer<Sphere> sphereShapeTransformer =  new SphereShapeTransformer<>();
     private SphereFontSizeTransformer<Sphere> sphereSphereFontSizeTransformer = new SphereFontSizeTransformer<>();
+    private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
 
     /**
      * Renders the given sphere.
@@ -52,9 +53,9 @@ public class SphereRenderer {
 
         if (width+10 > sphereWidth){
             if ((width/2)+10 > sphereWidth){
-                annotation = shrinkAnnotation(sphereWidth,pSphere.getHeight(), annotation, fontMetrics);
+                annotation = renderHelperFunction.shrinkAnnotation(sphereWidth,pSphere.getHeight(), annotation, fontMetrics);
             } else {
-                annotation = breakAnnotation(sphereWidth, annotation, fontMetrics);
+                annotation = renderHelperFunction.breakAnnotation(sphereWidth, annotation, fontMetrics);
             }
         }
         int i =1;
@@ -65,61 +66,7 @@ public class SphereRenderer {
         }
     }
 
-    public String shrinkAnnotation(double sphereWidth, double sphereHeight, String annotation, FontMetrics
-            fontMetrics){
-        String[] lines = breakAnnotation(sphereWidth, annotation, fontMetrics).split("\n");
-        int count = (int) sphereHeight / fontMetrics.getHeight();
-        StringBuilder label = new StringBuilder();
-        for (int i = 0; i < lines.length && i < count; i++){
-            if (!lines[i].isEmpty()){
-                int c = count -1;
-                if (i == c){
-                    if (lines[c].length()>=3){
-                        lines[c] = lines[c].substring(0, lines[c].length()-3);
-                        lines[c] += "...";
-                    } else {
-                        lines[c] = "...";
-                    }
-                }
-                label.append(lines[i]).append("\n");
-            }
-        }
-        return label.toString();
-    }
 
-    private String breakAnnotation(double sphereWidth, String annotation, FontMetrics fontMetrics){
-        StringBuilder label = new StringBuilder();
-        StringBuilder lengthLabel = new StringBuilder();
-        int i = 0;
-        for (String line : annotation.split("\\s+")){
-            if (fontMetrics.stringWidth(lengthLabel.toString()+line) +10 < sphereWidth){
-                lengthLabel.append(line).append(" ");
-            } else {
-
-                if (fontMetrics.stringWidth(line) + 10 >= sphereWidth){
-                    char[] chars = line.toCharArray();
-                    if (i != 0){
-                        lengthLabel.append(" ");
-                    }
-                    for (char c : chars){
-                        if (fontMetrics.stringWidth(lengthLabel.toString()+c) +10 < sphereWidth){
-                            lengthLabel.append(c);
-                        } else {
-                            label.append(lengthLabel).append("\n");
-                            lengthLabel.delete(0, lengthLabel.length()).append(c);
-                        }
-                    }
-                } else {
-                    label.append(lengthLabel);
-                    lengthLabel.delete(0, lengthLabel.length());
-                    lengthLabel.append("\n").append(line).append(" ");
-                }
-            }
-            i++;
-        }
-
-        return label.toString();
-    }
 
     public Point2D getAnchorPoint(Shape sphereShape, Point2D p, int width){
         double sWidth = sphereShape.getBounds().getWidth();

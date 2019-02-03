@@ -13,4 +13,6 @@ public class HelperGui {
         iconRemove.setFitHeight(15);
         menuItem.setGraphic(iconRemove);
     }
+
+
 }

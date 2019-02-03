@@ -811,8 +811,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private TableColumn edgetypeEdgeCol;
 
-    @FXML
-    private MenuItem zoomMenuItem10;
 
     @FXML
     private MenuItem zoomMenuItem25;
@@ -1603,7 +1601,7 @@ public class Controller implements ObserverSyndrom {
         loadFontComboBox(fontSymptomComboBox);
         loadTemplateTextFields();
 
-        zoomSlider.setMin(10);
+        zoomSlider.setMin(20);
         zoomSlider.setMax(200);
         zoomSlider.setValue(100);
         zoomSlider.setBlockIncrement(20);
@@ -2398,7 +2396,6 @@ public class Controller implements ObserverSyndrom {
 
     private void setZoomMenu(){
         EventHandler zoomHandler = new ZoomMenuItemHandler();
-        zoomMenuItem10.setOnAction(zoomHandler);
         zoomMenuItem25.setOnAction(zoomHandler);
         zoomMenuItem50.setOnAction(zoomHandler);
         zoomMenuItem75.setOnAction(zoomHandler);

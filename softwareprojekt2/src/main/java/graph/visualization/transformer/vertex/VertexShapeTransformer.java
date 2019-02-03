@@ -1,9 +1,11 @@
 package graph.visualization.transformer.vertex;
 
+import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.decorators.AbstractVertexShapeTransformer;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.graph.VertexShapeType;
+import graph.visualization.renderers.RenderHelperFunction;
 import graph.visualization.renderers.VertexLabelRenderer;
 import org.apache.commons.collections15.Transformer;
 
@@ -43,15 +45,20 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
         Graphics graphics = Syndrom.getInstance().getVv().getGraphics();
         Rectangle2D metrics = fontMetrics.getStringBounds(label, graphics);
 
+
+        double stringWidth = fontMetrics.stringWidth(label);
+
         double width;
 
         double minWidth;
-        minWidth = (metrics.getWidth() < 160) ? metrics.getWidth() : 160;
+
+        minWidth = (stringWidth < 160) ? stringWidth : 160;
         width = (vsf.transform(v) < minWidth + 15) ?  minWidth + 15 : vsf.transform(v);
 
         double height = metrics.getHeight() + 5;
-        VertexLabelRenderer vertexLabelRenderer = new VertexLabelRenderer();
-        String title = vertexLabelRenderer.splitAnnotation(label, fontMetrics);
+        RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
+
+        String title = renderHelperFunction.breakAnnotation(width, label, fontMetrics);
 
         int stringsLenght = title.split("\n").length;
         double minHeight = stringsLenght* height;
