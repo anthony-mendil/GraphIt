@@ -1457,6 +1457,7 @@ public class Controller implements ObserverSyndrom {
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
         rulesTemplateAction.action();
+        System.out.println(temp.toString());
     }
 
     /**
@@ -1483,6 +1484,7 @@ public class Controller implements ObserverSyndrom {
      * @return The number if it's valid, Integer.Max_Value otherwise
      */
     private int valueFromTextField(TextField pTextField){
+        System.out.println("validate");
         int ret=Integer.MAX_VALUE;
         int cont= getValidatedContent(pTextField);
         if (cont==-1){
@@ -2433,6 +2435,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadTemplateTextFields(){
+
         maxSphereField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSphereField));
         maxSymptomField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSymptomField));
         maxEdgesField.textProperty().addListener(new OnlyNumberTextFieldListener(maxEdgesField));
@@ -2462,10 +2465,9 @@ public class Controller implements ObserverSyndrom {
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
             if(newValue){
                 //Focused
-                System.out.println("FOCUS");
             }else{
                 //Not Focused
-                System.out.println("DEFOCUS");
+                rulesTemplate();
             }
         }
     }

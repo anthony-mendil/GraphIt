@@ -52,4 +52,31 @@ public class Template {
         extenuatingEdgesAllowed=pExtenuatingEdgesAllowed;
         unknownEdgesAllowed=pUnknownEdgesAllowed;
     }
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(maxSpheres);
+        stringBuilder.append(" spheres allowed, ");
+        stringBuilder.append(maxVertices);
+        stringBuilder.append(" vertices, ");
+        stringBuilder.append(maxEdges);
+        stringBuilder.append(" edges allowed");
+        if(reinforcedEdgesAllowed){
+            stringBuilder.append(", reinforced edges allowed");
+        }else{
+            stringBuilder.append(", reinforced edges not allowed");
+        }
+        if(extenuatingEdgesAllowed){
+            stringBuilder.append(", extenuating edges allowed");
+        }else {
+            stringBuilder.append(", extenuating edges not allowed");
+        }
+        if(unknownEdgesAllowed){
+            stringBuilder.append(", unknown edges allowed");
+        }else {
+            stringBuilder.append(", unknown edges not allowed");
+        }
+        return stringBuilder.toString();
+    }
+
 }
