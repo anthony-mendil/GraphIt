@@ -78,45 +78,7 @@
                     <items>
                         <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="318.0">
                             <children>
-                                <Button fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
-                                    <graphic>
-                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@icons2/006-reply.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                    <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </HBox.margin>
-                                    <tooltip>
-                                        <Tooltip text="Rückgängig" />
-                                    </tooltip>
-                                </Button>
-                                <Button fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
-                                    <graphic>
-                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@icons2/001-share.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                    <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </HBox.margin>
-                                    <tooltip>
-                                        <Tooltip text="Wiederherstellen" />
-                                    </tooltip>
-                                </Button>
-                                <Separator fx:id="toolBarSeparator1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </padding>
-                                </Separator>
-                                <Button fx:id="editButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiEditor" prefHeight="23.0" prefWidth="26.0">
+                                <Button fx:id="editButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiEditor" prefHeight="23.0" prefWidth="26.0">
                                     <graphic>
                                         <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -160,6 +122,44 @@
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
+                                </Button>
+                                <Separator fx:id="toolBarSeparator1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </padding>
+                                </Separator>
+                                <Button fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
+                                    <graphic>
+                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons2/006-reply.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </HBox.margin>
+                                    <tooltip>
+                                        <Tooltip text="Rückgängig" />
+                                    </tooltip>
+                                </Button>
+                                <Button fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
+                                    <graphic>
+                                        <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons2/001-share.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </HBox.margin>
+                                    <tooltip>
+                                        <Tooltip text="Wiederherstellen" />
+                                    </tooltip>
                                 </Button>
                                 <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                                     <padding>
@@ -266,26 +266,13 @@
                                         <Tooltip text="Element ausblenden entfernen" />
                                     </tooltip>
                                 </Button>
-                                <Separator fx:id="menubarSeparator3" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
-                                    <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </padding>
-                                </Separator>
-                                <Button fx:id="templateButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="26.0">
-                                    <tooltip>
-                                        <Tooltip text="Vorlage-Regeln setzen" />
-                                    </tooltip>
-                                    <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </HBox.margin>
-                                </Button>
                             </children>
                         </HBox>
                     </items>
                 </ToolBar>
                 <HBox prefHeight="58.0" prefWidth="621.0">
                     <children>
-                        <VBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0">
+                        <VBox fx:id="vBoxSelect" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Auswahl">
                                     <HBox.margin>
@@ -322,7 +309,7 @@
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </HBox.margin>
                         </VBox>
-                        <Separator fx:id="sep" orientation="VERTICAL" prefHeight="200.0">
+                        <Separator fx:id="separator0" orientation="VERTICAL" prefHeight="200.0">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
