@@ -9,13 +9,9 @@ import graph.graph.Template;
  */
 public class RulesTemplateAction extends GraphAction {
     /**
-     * TODO :^)
-     */
-    Template template;
-    /**
      *
      */
-    Template previousTemplate;
+    private Template template;
     /**
      * Creates a new rules template action to save the template so the Syndrom
      *
@@ -27,12 +23,15 @@ public class RulesTemplateAction extends GraphAction {
 
     @Override
     public void action() {
-        previousTemplate=Syndrom.getInstance().getTemplate();
         Syndrom.getInstance().setTemplate(template);
     }
 
     @Override
     public void undo() {
-        Syndrom.getInstance().setTemplate(previousTemplate);
+        //there is no undo operation for template
+    }
+    @Override
+    public void redo() {
+        //there is no redo operation for template
     }
 }
