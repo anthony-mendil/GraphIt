@@ -175,7 +175,7 @@
                                 </Button>
 
 
-                                <ToggleButton fx:id="highlight" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <ToggleButton fx:id="highlight" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -218,6 +218,51 @@
                                     </graphic>
                                     <tooltip>
                                         <Tooltip text="Element hervorheben entfernen" />
+                                    </tooltip>
+                                </Button>
+                                <ToggleButton fx:id="fadeout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons2/eyelash2.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <tooltip>
+                                        <Tooltip text="Ausgeblendete Elemente anzeigen" />
+                                    </tooltip>
+                                </ToggleButton>
+                                <Button fx:id="fadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons2/eyelash2.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <tooltip>
+                                        <Tooltip text="Element ausblenden" />
+                                    </tooltip>
+                                </Button>
+                                <Button fx:id="deleteFadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dehighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons2/eyelash2.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <tooltip>
+                                        <Tooltip text="Element ausblenden entfernen" />
                                     </tooltip>
                                 </Button>
                                 <Separator fx:id="menubarSeparator3" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
@@ -607,7 +652,7 @@
                                 </Text>
                                 <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0">
                                     <children>
-                                        <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                        <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                             <HBox.margin>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                             </HBox.margin>
