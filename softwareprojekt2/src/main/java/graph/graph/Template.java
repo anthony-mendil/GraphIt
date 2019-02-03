@@ -24,11 +24,6 @@ public class Template {
      */
     private int maxEdges;
 
-    /**
-     * The maximum number of vertices in a sphere. This is defined in the template.
-     */
-    private int maxVerticesInSphere;
-
     //Edgetype options:
     /**
      *
@@ -49,7 +44,12 @@ public class Template {
     /**
      * Creates a new Template object.
      */
-    public Template() {
-
+    public Template(int pMaxSpheres,int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
+        maxSpheres=pMaxSpheres;
+        maxVertices=pMaxVertices;
+        maxEdges=pMaxEdges;
+        reinforcedEdgesAllowed=pReinforcedEdgesAllowed;
+        extenuatingEdgesAllowed=pExtenuatingEdgesAllowed;
+        unknownEdgesAllowed=pUnknownEdgesAllowed;
     }
 }
