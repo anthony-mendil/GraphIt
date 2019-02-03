@@ -250,6 +250,7 @@ public class Syndrom {
         vv.setGraphMouse(pluggable);
 
         setRenderer(vv);
+        vv.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
 
         vv.getRenderContext().setVertexStrokeTransformer(new VertexStrokeTransformer<>(vv));
         this.vv = vv;
@@ -261,6 +262,7 @@ public class Syndrom {
         vv2.scaleToLayout(vv2Scaler);
         vv2.setRenderer(new SyndromRenderer<>());
         setRenderer(vv2);
+        vv2.getRenderContext().setVertexShapeTransformer(new VertexShapeVV2Transformer<>());
         vv2.setGraphMouse(new SatelliteGraphMouse());
         this.vv2 = vv2;
     }
@@ -270,7 +272,7 @@ public class Syndrom {
         vv.getRenderContext().setVertexFontTransformer(new VertexFontTransformer<>());
         vv.getRenderContext().setVertexDrawPaintTransformer(new VertexDrawPaintTransformer<>());
         vv.getRenderContext().setVertexLabelTransformer(new VertexLabelTransformer<>());
-        vv.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
+
         vv.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
         vv.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
 

@@ -16,6 +16,7 @@ import java.awt.geom.Point2D;
 
 public class VertexLabelRenderer<V,E> extends BasicVertexLabelRenderer<V,E> {
     private int maxLength = 160;
+    private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
 
     public VertexLabelRenderer() {
         super(Position.CNTR);
@@ -39,69 +40,35 @@ public class VertexLabelRenderer<V,E> extends BasicVertexLabelRenderer<V,E> {
         // falls die größe kleiner als die länge des textes, dann text auf 160 breite und größe passt sich an
         //
         // falls die Größe größer als die länge des textes, dann text auf die breite des shape -20
-        //
+        // moin
 
-        SphereRenderer renderer = new SphereRenderer();
+
         String annotation;
         if (vertexShape.getBounds2D().getWidth() < stringWidth){
-            annotation = renderer.shrinkAnnotation(160, vertexShape.getBounds2D().getHeight(), title, fontMetrics);
+            annotation =  renderHelperFunction.shrinkAnnotation(160, vertexShape.getBounds2D().getHeight(), title, fontMetrics);
         } else {
-            annotation = renderer.shrinkAnnotation(vertexShape.getBounds2D().getWidth(), vertexShape.getBounds2D().getHeight(), title, fontMetrics);
+            annotation =  renderHelperFunction.shrinkAnnotation(vertexShape.getBounds2D().getWidth(), vertexShape.getBounds2D().getHeight(), title, fontMetrics);
         }
 
-
-
-
         Graphics graphics = Syndrom.getInstance().getVv().getGraphics();
-        double height = fontMetrics.getStringBounds(label, graphics).getHeight();
+        double height = fontMetrics.getStringBounds(annotation, graphics).getHeight();
         Point2D vertexCord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT,vertex.getCoordinates());
         AffineTransform xform = AffineTransform.getTranslateInstance(vertexCord.getX(), vertexCord.getY());
         vertexShape = xform.createTransformedShape(vertexShape);
+        double sumHeight =  annotation.split("\n").length * height;
 
 
-
-       /* ;
-
-
-
-        Graphics graphics = Syndrom.getInstance().getVv().getGraphics();
-
-
-        if (stringWidth > maxLength){
-            title =  splitAnnotation(title, fontMetrics);
-        }
-
-
-       */
-        int i =0;
-        double sumHeight =  title.split("\n").length * height;
+        int i = 0;
         for (String line : annotation.split("\n")){
             Point2D anchor = getAnchorPoint(new Point2D.Double(vertexShape.getBounds2D().getCenterX(), vertexShape.getBounds2D().getCenterY()), fontMetrics.stringWidth(line), sumHeight);
             gD.drawString(line, (float) anchor.getX(), (float) (anchor.getY()+(height*i++)+font.getSize()));
         }
+
     }
 
     public Point2D getAnchorPoint(Point2D p, int width, double height){
         double labelX = p.getX() - ((double) width/2);
         double y = p.getY()-height/2;
         return new Point2D.Double(labelX, y);
-    }
-
-
-    public String splitAnnotation(String string, FontMetrics fontMetrics){
-        StringBuilder title = new StringBuilder();
-        StringBuilder subSequence = new StringBuilder();
-        for(int i = 0; i < string.length(); i++){
-            if (fontMetrics.stringWidth(subSequence.toString()) > maxLength){
-                title.append(subSequence);
-                title.append("\n");
-                subSequence.delete(0, subSequence.length());
-            }
-            subSequence.append(string.charAt(i));
-        }
-        if (subSequence.length() > 0){
-            title.append(subSequence);
-        }
-        return title.toString();
     }
 }
