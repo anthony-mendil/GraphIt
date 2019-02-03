@@ -103,6 +103,7 @@ public class Vertex {
      * The indicator whether the Vertex is highlighted.
      */
     private boolean isHighlighted = false;
+
     /**
      * The indicator whether the vertex is locked in terms of style.
      */
@@ -172,9 +173,9 @@ public class Vertex {
     @Override
     public String toString() {
         if(Values.getInstance().getGuiLanguage() == Language.GERMAN){
-            return annotation.get("de");
+            return annotation.get(Language.GERMAN.name());
         }else if(Values.getInstance().getGuiLanguage() == Language.ENGLISH){
-            return annotation.get("en");
+            return annotation.get(Language.ENGLISH.name());
         }
 
         return "";

@@ -1,6 +1,8 @@
 package graph.visualization.renderers;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.renderers.BasicVertexLabelRenderer;
@@ -21,6 +23,9 @@ public class VertexLabelRenderer<V,E> extends BasicVertexLabelRenderer<V,E> {
 
     @Override
     public void labelVertex(RenderContext<V, E> rc, Layout<V, E> layout, V v, String label) {
+        if (!rc.getVertexIncludePredicate().evaluate(Context.<Graph<V,E>,V>getInstance(layout.getGraph(),v))){
+            return;
+        }
         GraphicsDecorator gD = rc.getGraphicsContext();
         Font font = rc.getVertexFontTransformer().transform(v);
         gD.setFont(font);

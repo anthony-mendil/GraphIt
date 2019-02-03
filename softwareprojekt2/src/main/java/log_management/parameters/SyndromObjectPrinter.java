@@ -33,7 +33,7 @@ public class SyndromObjectPrinter {
 
     public static String vertexPrintGerman(Vertex vertex) {
         return "Id: " + vertex.getId() + ", Beschriftung: "
-                + vertex.getAnnotation().get("de")
+                + vertex.getAnnotation().get(Language.GERMAN.name())
                 + ", Form: "
                 + EnumNameCreator.vertexShapeTypeTranslator(vertex.getShape(), Language.GERMAN)
                 + ", Koordinaten: x = "
@@ -99,7 +99,7 @@ public class SyndromObjectPrinter {
 
     public static String spherePrintGerman(Sphere sphere) {
         String sphereText = "Id: " + sphere.getId() + ", Beschriftung: "
-                + sphere.getAnnotation().get("de") + ", Koordinaten: x = "
+                + sphere.getAnnotation().get(Language.GERMAN.name()) + ", Koordinaten: x = "
                 + sphere.getCoordinates().getX() + " y = "
                 + sphere.getCoordinates().getY() + ", Höhe: "
                 + sphere.getHeight() + ", Breite: "

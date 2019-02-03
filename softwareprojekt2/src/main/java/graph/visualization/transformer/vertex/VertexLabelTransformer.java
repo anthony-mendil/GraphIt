@@ -1,6 +1,7 @@
 package graph.visualization.transformer.vertex;
 
 import graph.graph.Vertex;
+import gui.properties.Language;
 import org.apache.commons.collections15.Transformer;
 
 /**
@@ -15,7 +16,7 @@ public class VertexLabelTransformer<V> implements Transformer<V, String> {
     public String transform(V v) {
         try{
             Vertex vertex = (Vertex) v;
-            return vertex.getAnnotation().get("de");
+            return vertex.getAnnotation().get(Language.GERMAN.name());
         } catch (Exception e){
             throw new IllegalArgumentException();
         }

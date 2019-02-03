@@ -1,6 +1,7 @@
 package graph.visualization.transformer.sphere;
 
 import graph.graph.Sphere;
+import gui.properties.Language;
 import org.apache.commons.collections15.Transformer;
 
 /**
@@ -14,7 +15,7 @@ public class SphereLabelTransformer<S> implements Transformer<S, String> {
     public String transform(S s){
         try{
             Sphere sphere = (Sphere) s;
-            return sphere.getAnnotation().get("de");
+            return sphere.getAnnotation().get(Language.GERMAN.name());
         } catch (Exception e){
             throw new IllegalArgumentException();
         }
