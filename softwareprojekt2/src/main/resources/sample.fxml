@@ -1094,7 +1094,6 @@
                                         <MenuItem fx:id="zoomMenuItem75" mnemonicParsing="false" text="75%" />
                                         <MenuItem fx:id="zoomMenuItem50" mnemonicParsing="false" text="50%" />
                                         <MenuItem fx:id="zoomMenuItem25" mnemonicParsing="false" text="25%" />
-                                        <MenuItem fx:id="zoomMenuItem10" mnemonicParsing="false" text="10%" />
                                     </items>
                                 </Menu>
                             </menus>
