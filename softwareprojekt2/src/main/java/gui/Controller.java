@@ -1440,9 +1440,9 @@ public class Controller implements ObserverSyndrom {
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
-        int mSph=setValueFromTextField(maxSphereField);
-        int mSym=setValueFromTextField(maxSymptomField);
-        int mEdg=setValueFromTextField(maxEdgesField);
+        int mSph= valueFromTextField(maxSphereField);
+        int mSym= valueFromTextField(maxSymptomField);
+        int mEdg= valueFromTextField(maxEdgesField);
         boolean rein = reinforcedBox.isSelected();
         boolean exte = extenuatingBox.isSelected();
         boolean neut = neutralBox.isSelected();
@@ -1476,7 +1476,7 @@ public class Controller implements ObserverSyndrom {
      * @param pTextField The Textfield that contains the count
      * @return The number if it's valid, Integer.Max_Value otherwise
      */
-    private int setValueFromTextField(TextField pTextField){
+    private int valueFromTextField(TextField pTextField){
         int ret=Integer.MAX_VALUE;
         int cont= getValidatedContent(pTextField);
         if (cont==-1){
