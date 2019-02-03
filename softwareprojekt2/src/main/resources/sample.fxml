@@ -1139,11 +1139,11 @@
               <ScrollPane fx:id="paneSwingNode" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="762.0" prefWidth="3000.0">
                   <SwingNode fx:id="canvas" focusTraversable="false" />
               </ScrollPane>
-            <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" SplitPane.resizableWithParent="false">
+            <StackPane fx:id="overviewStackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" SplitPane.resizableWithParent="false">
                <children>
                     <Accordion fx:id="overViewAccordion" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                         <panes>
-                            <TitledPane fx:id="overViewTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" prefHeight="659.0" prefWidth="260.0" text="Übersicht">
+                            <TitledPane fx:id="overViewTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" prefHeight="659.0" text="Übersicht">
                                 <content>
                                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
                                         <children>
@@ -1204,7 +1204,7 @@
                                     </VBox>
                                 </content>
                             </TitledPane>
-                            <TitledPane fx:id="templateTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#loadTables" prefWidth="260.0" text="Vorlage-Regeln">
+                            <TitledPane fx:id="templateTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#loadTables" text="Vorlage-Regeln">
                                 <content>
                                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
                                         <children>
@@ -1335,7 +1335,7 @@
                                     </VBox>
                                 </content>
                             </TitledPane>
-                            <TitledPane fx:id="historyTitledPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0" text="Verlauf">
+                            <TitledPane fx:id="historyTitledPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Verlauf">
                                 <content>
                                     <TreeView prefWidth="260.0" />
                                 </content>

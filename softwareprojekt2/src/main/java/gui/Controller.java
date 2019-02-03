@@ -1610,8 +1610,6 @@ public class Controller implements ObserverSyndrom {
         loadMenuItem();
         loadFontComboBox(fontSphereComboBox);
         loadFontComboBox(fontSymptomComboBox);
-        disableEditMode(true);
-        disableAnalysisMode(true);
 
         zoomSlider.setMin(10);
         zoomSlider.setMax(200);
@@ -1626,8 +1624,10 @@ public class Controller implements ObserverSyndrom {
         setZoomMenu();
 
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
-
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
+
+        OneTimeStackPaneListener onetime = new OneTimeStackPaneListener();
+        overviewStackPane.widthProperty().addListener(onetime);
 
         //trying direct load
         DatabaseManager databaseManager = DatabaseManager.getInstance();
@@ -1641,6 +1641,7 @@ public class Controller implements ObserverSyndrom {
         disableEditMode(false);
         disableAnalysisMode(false);
         zoomSlider.setValue(100);
+
     }
 
     private void initFonts() {
@@ -2451,7 +2452,14 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-
+    private class OneTimeStackPaneListener implements ChangeListener<Number>{
+        @Override
+        public void changed(ObservableValue<? extends Number> arg0, Number oldPropertyValue, Number newPropertyValue){
+            overviewStackPane.setMinWidth(0);
+            overviewStackPane.widthProperty().removeListener(this);
+            System.out.println(newPropertyValue);
+        }
+    }
 
     @Override
     public void updateGraph() {
