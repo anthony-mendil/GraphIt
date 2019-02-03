@@ -16,6 +16,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -35,7 +36,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -1132,209 +1133,218 @@
             </BorderPane.margin>
         </ButtonBar>
     </bottom>
-    <center>
-        <ScrollPane fx:id="paneSwingNode" focusTraversable="false">
-            <SwingNode fx:id="canvas" focusTraversable="false" />
-        </ScrollPane>
-
-
-    </center>
-    <right>
-        <Accordion fx:id="overViewAccordion" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="766.0" prefWidth="260.0" BorderPane.alignment="CENTER">
-            <panes>
-                <TitledPane fx:id="overViewTitledPane" animated="true" maxWidth="-Infinity" onMouseClicked="#treeViewUpdate" prefHeight="659.0" prefWidth="260.0" text="Übersicht">
-                    <content>
-                        <VBox fillWidth="false" maxWidth="-Infinity" prefWidth="260.0">
-                            <children>
-                                <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
-                                    <VBox.margin>
-                                        <Insets top="2.0" />
-                                    </VBox.margin>
-                                    <graphic>
-                                        <MenuButton mnemonicParsing="false" text="MenuButton">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                            </items>
-                                            <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                            </padding>
-                                        </MenuButton>
-                                    </graphic>
-                                </CheckBox>
-                                <CheckBox fx:id="extenuating" mnemonicParsing="false" prefHeight="18.0" prefWidth="131.0" text="Abschwächend">
-                                    <graphic>
-                                        <TextField prefHeight="25.0" prefWidth="104.0">
-                                            <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                            </padding>
-                                        </TextField>
-                                    </graphic>
-                                </CheckBox>
-                                <CheckBox fx:id="neutral" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="17.0" prefWidth="115.0" text="Neutral">
-                                    <VBox.margin>
-                                        <Insets bottom="2.0" />
-                                    </VBox.margin>
-                                </CheckBox>
-
-                                <TreeView fx:id="treeView" focusTraversable="false" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
-                                    <VBox.margin>
-                                        <Insets left="2.0" right="2.0" top="5.0" />
-                                    </VBox.margin>
-                                </TreeView>
-                                <Separator focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" orientation="HORIZONTAL" prefHeight="6.0" prefWidth="260.0">
-                                    <VBox.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </VBox.margin>
-                                </Separator>
-                                <StackPane alignment="BOTTOM_CENTER" minHeight="-Infinity" prefHeight="195.0" prefWidth="260.0">
-                                    <children>
-                                        <SwingNode fx:id="satellite" />
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </StackPane>
-                            </children>
-                        </VBox>
-                    </content>
-                </TitledPane>
-                <TitledPane fx:id="templateTitledPane" animated="true" onMouseClicked="#loadTables" prefWidth="260.0" text="Vorlage-Regeln">
-                    <content>
-                        <VBox fillWidth="false" prefWidth="260.0">
-                            <children>
-                                <GridPane prefHeight="125.0" prefWidth="260.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="200.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Sphären :">
-                                            <GridPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </GridPane.margin>
-                                        </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Symptome :" GridPane.rowIndex="1">
-                                            <GridPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </GridPane.margin>
-                                        </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Kanten :" GridPane.rowIndex="2">
-                                            <GridPane.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </GridPane.margin>
-                                        </Text>
-                                        <TextField fx:id="maxSphereField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1">
-                                            <padding>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                                            </padding>
-                                        </TextField>
-                                        <TextField fx:id="maxSymptomField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                            <padding>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                                            </padding>
-                                        </TextField>
-                                        <TextField fx:id="maxEdgesField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                            <padding>
-                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                                            </padding>
-                                        </TextField>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </VBox.margin>
-                                </GridPane>
-                                <Separator minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="260.0">
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </VBox.margin></Separator>
-                                <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="260.0">
-                                    <children>
-                                        <CheckBox fx:id="reinforcedBox" mnemonicParsing="false" text="Verstärkende Kanten erlauben">
-                                            <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </VBox.margin>
-                                        </CheckBox>
-                                        <CheckBox fx:id="extenuatingBox" mnemonicParsing="false" text="Abschwächende Kanten erlauben">
-                                            <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </VBox.margin>
-                                        </CheckBox>
-                                        <CheckBox fx:id="neutralBox" mnemonicParsing="false" text="Neutrale Kanten erlauben">
-                                            <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                            </VBox.margin>
-                                        </CheckBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </VBox.margin>
-                                </VBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zu sperrende Elemente auswählen:" wrappingWidth="260.53678131103516">
-                                    <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="10.0" />
-                                    </VBox.margin>
-                                </Text>
-                                <Accordion maxHeight="1.7976931348623157E308" prefHeight="290.0" prefWidth="260.0">
-                                    <panes>
-                                        <TitledPane maxHeight="1.7976931348623157E308" text="Sphären">
-                                            <content>
-                                                <TableView fx:id="sphereTableView" editable="true" prefHeight="200.0" prefWidth="200.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="sphereCol" prefWidth="75.0" text="Name" />
-                                                        <TableColumn fx:id="titleSphereCol" prefWidth="75.0" text="Title" />
-                                                        <TableColumn fx:id="positionSphereCol" prefWidth="75.0" text="Position" />
-                                                        <TableColumn fx:id="styleSphereCol" prefWidth="75.0" text="Style" />
-                                                        <TableColumn fx:id="verticesSphereCol" prefWidth="75.0" text="Löschen/Hinzufügen von Symptomen" />
-                                          <TableColumn fx:id="maxAmountSphereCol" prefWidth="75.0" text="Maximale Menge von Symptome" />
-                                                    </columns>
-                                                </TableView>
-                                            </content>
-                                        </TitledPane>
-                                        <TitledPane maxHeight="1.7976931348623157E308" text="Symptome">
-                                            <content>
-                                                <TableView fx:id="symptomTableView" editable="true" prefHeight="200.0" prefWidth="200.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="symptomCol" prefWidth="75.0" text="Name" />
-                                                        <TableColumn fx:id="titleSymptomCol" prefWidth="75.0" text="Title" />
-                                                        <TableColumn fx:id="positionSymptomCol" prefWidth="75.0" text="Position" />
-                                                        <TableColumn fx:id="styleSymptomCol" prefWidth="75.0" text="Style" />
-                                                    </columns>
-                                                </TableView>
-                                            </content>
-                                        </TitledPane>
-                                        <TitledPane maxHeight="1.7976931348623157E308" text="Kanten">
-                                            <content>
-                                                <TableView fx:id="edgeTableView" editable="true" prefHeight="200.0" prefWidth="200.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="edgeCol" prefWidth="75.0" text="Name" />
-                                                        <TableColumn fx:id="positionEdgeCol" prefWidth="75.0" text="Position" />
-                                                        <TableColumn fx:id="styleEdgeCol" prefWidth="75.0" text="Style" />
-                                                        <TableColumn fx:id="edgetypeEdgeCol" prefWidth="75.0" text="EdgeType" />
-                                                    </columns>
-                                                </TableView>
-                                            </content>
-                                        </TitledPane>
-                                    </panes>
-                                    <VBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </VBox.margin>
-                                </Accordion>
-                            </children>
-                        </VBox>
-                    </content>
-                </TitledPane>
-                <TitledPane fx:id="historyTitledPane" prefWidth="260.0" text="Verlauf">
-                    <content>
-                        <TreeView prefWidth="260.0" />
-                    </content>
-                </TitledPane>
-            </panes>
-        </Accordion>
-    </right>
+   <center>
+      <SplitPane dividerPositions="0.8872077028885833" BorderPane.alignment="CENTER">
+        <items>
+              <ScrollPane fx:id="paneSwingNode" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="762.0" prefWidth="3000.0">
+                  <SwingNode fx:id="canvas" focusTraversable="false" />
+              </ScrollPane>
+            <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" SplitPane.resizableWithParent="false">
+               <children>
+                    <Accordion fx:id="overViewAccordion" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                        <panes>
+                            <TitledPane fx:id="overViewTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" prefHeight="659.0" prefWidth="260.0" text="Übersicht">
+                                <content>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
+                                        <children>
+                                            <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
+                                                <VBox.margin>
+                                                    <Insets top="2.0" />
+                                                </VBox.margin>
+                                                <graphic>
+                                                    <MenuButton mnemonicParsing="false" text="MenuButton">
+                                                        <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                        </items>
+                                                        <padding>
+                                                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                        </padding>
+                                                    </MenuButton>
+                                                </graphic>
+                                            </CheckBox>
+                                            <CheckBox fx:id="extenuating" mnemonicParsing="false" prefHeight="18.0" prefWidth="131.0" text="Abschwächend">
+                                                <graphic>
+                                                    <TextField prefHeight="25.0" prefWidth="104.0">
+                                                        <padding>
+                                                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                        </padding>
+                                                    </TextField>
+                                                </graphic>
+                                            </CheckBox>
+                                            <CheckBox fx:id="neutral" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="17.0" prefWidth="115.0" text="Neutral">
+                                                <VBox.margin>
+                                                    <Insets bottom="2.0" />
+                                                </VBox.margin>
+                                            </CheckBox>
+            
+                                                              <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
+                                                <VBox.margin>
+                                                    <Insets left="2.0" right="2.0" top="5.0" />
+                                                </VBox.margin>
+                                            </TreeView>
+                                            <Separator focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" orientation="HORIZONTAL" prefHeight="6.0" prefWidth="260.0">
+                                                <VBox.margin>
+                                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </VBox.margin>
+                                            </Separator>
+                                    <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="260.0" VBox.vgrow="NEVER">
+                                                      <children>
+                                                          <SwingNode fx:id="satellite" StackPane.alignment="CENTER" />
+                                                      </children>
+                                                      <VBox.margin>
+                                                          <Insets />
+                                                      </VBox.margin>
+                                                  </StackPane>
+                                       </children>
+                                    </VBox>
+                                        </children>
+                                    </VBox>
+                                </content>
+                            </TitledPane>
+                            <TitledPane fx:id="templateTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#loadTables" prefWidth="260.0" text="Vorlage-Regeln">
+                                <content>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
+                                        <children>
+                                            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="125.0" prefWidth="260.0">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="200.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                </rowConstraints>
+                                                <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Sphären :">
+                                                        <GridPane.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                        </GridPane.margin>
+                                                    </Text>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Symptome :" GridPane.rowIndex="1">
+                                                        <GridPane.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                        </GridPane.margin>
+                                                    </Text>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale Kanten :" GridPane.rowIndex="2">
+                                                        <GridPane.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                        </GridPane.margin>
+                                                    </Text>
+                                                    <TextField fx:id="maxSphereField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1">
+                                                        <padding>
+                                                            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                        </padding>
+                                                    </TextField>
+                                                    <TextField fx:id="maxSymptomField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                        <padding>
+                                                            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                        </padding>
+                                                    </TextField>
+                                                    <TextField fx:id="maxEdgesField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                        <padding>
+                                                            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                        </padding>
+                                                    </TextField>
+                                                </children>
+                                                <VBox.margin>
+                                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </VBox.margin>
+                                            </GridPane>
+                                            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="260.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="260.0">
+                                                <children>
+                                                    <CheckBox fx:id="reinforcedBox" mnemonicParsing="false" text="Verstärkende Kanten erlauben">
+                                                        <VBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                        </VBox.margin>
+                                                    </CheckBox>
+                                                    <CheckBox fx:id="extenuatingBox" mnemonicParsing="false" text="Abschwächende Kanten erlauben">
+                                                        <VBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                        </VBox.margin>
+                                                    </CheckBox>
+                                                    <CheckBox fx:id="neutralBox" mnemonicParsing="false" text="Neutrale Kanten erlauben">
+                                                        <VBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                        </VBox.margin>
+                                                    </CheckBox>
+                                                </children>
+                                                <VBox.margin>
+                                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </VBox.margin>
+                                            </VBox>
+                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zu sperrende Elemente auswählen:" wrappingWidth="260.53678131103516">
+                                                <VBox.margin>
+                                                    <Insets bottom="2.0" left="2.0" right="2.0" top="10.0" />
+                                                </VBox.margin>
+                                            </Text>
+                                            <Accordion maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="290.0" prefWidth="260.0" VBox.vgrow="ALWAYS">
+                                                <panes>
+                                                    <TitledPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0" text="Sphären">
+                                                        <content>
+                                                            <TableView fx:id="sphereTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="260.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="sphereCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Name" />
+                                                                    <TableColumn fx:id="titleSphereCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Title" />
+                                                                    <TableColumn fx:id="positionSphereCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Position" />
+                                                                    <TableColumn fx:id="styleSphereCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Style" />
+                                                                    <TableColumn fx:id="verticesSphereCol" maxWidth="1.7976931348623157E308" prefWidth="275.0" text="Löschen/Hinzufügen von Symptomen" />
+                                                      <TableColumn fx:id="maxAmountSphereCol" maxWidth="1.7976931348623157E308" prefWidth="250.0" text="Maximale Menge von Symptome" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </content>
+                                                    </TitledPane>
+                                                    <TitledPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0" text="Symptome">
+                                                        <content>
+                                                            <TableView fx:id="symptomTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="260.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="symptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Name" />
+                                                                    <TableColumn fx:id="titleSymptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Title" />
+                                                                    <TableColumn fx:id="positionSymptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Position" />
+                                                                    <TableColumn fx:id="styleSymptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Style" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </content>
+                                                    </TitledPane>
+                                                    <TitledPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0" text="Kanten">
+                                                        <content>
+                                                            <TableView fx:id="edgeTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="260.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="edgeCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Name" />
+                                                                    <TableColumn fx:id="positionEdgeCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Position" />
+                                                                    <TableColumn fx:id="styleEdgeCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Style" />
+                                                                    <TableColumn fx:id="edgetypeEdgeCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="EdgeType" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </content>
+                                                    </TitledPane>
+                                                </panes>
+                                                <VBox.margin>
+                                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </VBox.margin>
+                                            </Accordion>
+                                        </children>
+                                    </VBox>
+                                </content>
+                            </TitledPane>
+                            <TitledPane fx:id="historyTitledPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0" text="Verlauf">
+                                <content>
+                                    <TreeView prefWidth="260.0" />
+                                </content>
+                            </TitledPane>
+                        </panes>
+                    </Accordion>
+               </children>
+            </StackPane>
+        </items>
+      </SplitPane>
+   </center>
 </BorderPane>

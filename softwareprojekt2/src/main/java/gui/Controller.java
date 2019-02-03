@@ -63,6 +63,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -835,6 +836,9 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private MenuItem zoomMenuItem200;
+
+    @FXML
+    private StackPane overviewStackPane;
 
     public Controller() {
     }
@@ -2161,7 +2165,7 @@ public class Controller implements ObserverSyndrom {
             int row = pos.getRow();
             Sphere sphere = event.getTableView().getItems().get(row);
 
-            if(!maxAmount.chars().anyMatch(Character::isLetter)){
+            if(maxAmount.chars().allMatch(Character::isDigit)){
                 sphere.setLockedMaxAmountVertices(maxAmount);
             }
             sphereTableView.getColumns().remove(maxAmountSphereCol);
