@@ -1,23 +1,24 @@
 package log_management.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
-public class PersonalEntityManager {
+public class PersonalEntityManagerFactory {
 
     /**
      * Manages the access to the database.
      */
-    private static EntityManager entityManager;
+    private static EntityManagerFactory entityManagerFactory;
 
     /**
      * Returns the personal Entity Manager used to access the database.
      * @return The personal Entity Manager.
      */
-    public static EntityManager getInstance() {
-        return entityManager;
+    public static EntityManagerFactory getInstance() {
+        return entityManagerFactory;
     }
 
-    public static void setEntityManager(EntityManager initialEntityManager) {
-        entityManager = initialEntityManager;
+    public static void setEntityManagerFactory(EntityManagerFactory initialEntityManagerFactory) {
+        entityManagerFactory = initialEntityManagerFactory;
     }
 }

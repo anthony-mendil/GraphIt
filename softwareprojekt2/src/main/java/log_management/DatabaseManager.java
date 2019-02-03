@@ -10,6 +10,8 @@ import log_management.tables.Graph;
 import log_management.tables.Log;
 import lombok.Data;
 
+import java.util.Optional;
+
 /**
  * The database manager, for managing the database access.
  */
@@ -31,11 +33,6 @@ public class DatabaseManager implements ObserverSyndrom {
      * The GXLio object to get the GXL string.
      */
     private GXLio gxlIo;
-
-    /**
-     * The current graph object.
-     */
-    private Graph graph;
 
     /**
      * The current mode.
@@ -65,7 +62,6 @@ public class DatabaseManager implements ObserverSyndrom {
      * @param log The log for the called action.
      */
     public void addEntryDatabase(Log log) {
-        graph.setGxl(gxlIo.gxlFromInstance());
         updateGraph();
 
         logDao.save(log);
@@ -77,8 +73,14 @@ public class DatabaseManager implements ObserverSyndrom {
 
     @Override
     public void updateGraph() {
-        graph.setGxl(gxlIo.gxlFromInstanceWithTemplate());
-        graphDao.update(graph);
+
+//        System.out.println(graphDao.get(-1).get().getId() + "\n");
+//        Graph graph = graphDao.get(-1).get();
+//        System.out.println("before\n" + graph.getGxl() + "\n");
+//        graph.setGxl(gxlIo.gxlFromInstanceWithTemplate());
+//        System.out.println(graph.getId() + "\n");
+//        System.out.println("after\n" + graph.getGxl() + "\n");
+        graphDao.update();
     }
 
     @Override
@@ -94,9 +96,9 @@ public class DatabaseManager implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         Graph graph = new Graph();
+
         graph.setGxl(gxlIo.gxlFromInstanceWithTemplate());
         graphDao.save(graph);
-        setGraph(graph);
     }
 
     public String getGxlFromDatabase() {

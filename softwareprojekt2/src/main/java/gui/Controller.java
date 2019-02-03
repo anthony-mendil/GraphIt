@@ -1558,8 +1558,8 @@ public class Controller implements ObserverSyndrom {
 
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
 
-        //trying direct load
         DatabaseManager databaseManager = DatabaseManager.getInstance();
+
 
         GraphAction action = databaseManager.databaseEmpty()
                 ? new CreateGraphAction("First Graph")

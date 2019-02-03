@@ -47,7 +47,7 @@ public abstract class LogAction extends GraphAction {
 
     public Log createLog() {
         Log log = new Log();
-        log.setGraph(DatabaseManager.getInstance().getGraph());
+        log.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).get());
         log.setLogEntryName(logEntryName);
         log.setTime(time);
 

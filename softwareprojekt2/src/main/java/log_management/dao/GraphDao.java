@@ -1,12 +1,11 @@
 package log_management.dao;
 
 
+import log_management.DatabaseManager;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,37 +16,76 @@ public class GraphDao implements Dao<Graph> {
 
     @Override
     public Optional<Graph> get(long id) {
-        EntityManager entityManager = PersonalEntityManager.getInstance();
+        return get();
+    }
 
-        Query query = entityManager.createQuery("select g from Graph g where g.id = :gid");
-        query.setParameter("gid", id);
-        return Optional.of((Graph) query.getSingleResult());
+    public Optional<Graph> get() {
+        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
+        entityManager.getTransaction().begin();
+
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        Graph graph = selectAllGraphs.getResultList().get(0);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        return Optional.of(graph);
     }
 
     @Override
     public List<Graph> getAll() {
-        EntityManager entityManager = PersonalEntityManager.getInstance();
+        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
+        entityManager.getTransaction().begin();
 
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
-        return selectAllGraphs.getResultList();
+        List<Graph> list = selectAllGraphs.getResultList();
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        return list;
     }
 
     @Override
     public void save(Graph graph) {
-        EntityManager entityManager = PersonalEntityManager.getInstance();
-
         delete(-1);
 
+        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
+
         entityManager.persist(graph);
+
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     @Override
     public void update(Graph graph) {
-        EntityManager entityManager = PersonalEntityManager.getInstance();
+        //not used
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//
+//        entityManager.getTransaction().begin();
+//        entityManager.refresh(entityManager.merge(graph));
+//        entityManager.flush();
+//        entityManager.clear();
+//        entityManager.getTransaction().commit();
+//        entityManager.close();
+//        entityManagerFactory.close();
+    }
 
-        entityManager.refresh(graph);
+    public void update() {
+        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
+        entityManager.getTransaction().begin();
+
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        Graph graph = selectAllGraphs.getResultList().get(0);
+
+        graph.setGxl(DatabaseManager.getInstance().getGxlIo().gxlFromInstanceWithTemplate());
+
+        entityManager.flush();
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     @Override
@@ -56,7 +94,8 @@ public class GraphDao implements Dao<Graph> {
     }
 
     public void delete() {
-        EntityManager entityManager = PersonalEntityManager.getInstance();
+        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
+        entityManager.getTransaction().begin();
 
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
@@ -72,22 +111,33 @@ public class GraphDao implements Dao<Graph> {
 
             entityManager.remove(graph);
         });
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     public String gxlFromDatabase() {
-        EntityManager entityManager = PersonalEntityManager.getInstance();
+        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
+        entityManager.getTransaction().begin();
 
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
 
         return graphList.get(0).getGxl();
     }
 
     public boolean isEmpty() {
-        EntityManager entityManager = PersonalEntityManager.getInstance();
+        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
+        entityManager.getTransaction().begin();
 
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
 
         return (graphList.size() == 0);
     }

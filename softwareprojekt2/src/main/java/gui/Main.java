@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import log_management.dao.PersonalEntityManager;
+import log_management.dao.PersonalEntityManagerFactory;
 import lombok.Getter;
 
 import javax.persistence.EntityManager;
@@ -54,14 +54,11 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        EntityManager initialEntityManager = entityManagerFactory.createEntityManager();
-        PersonalEntityManager.setEntityManager(initialEntityManager);
+        PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
 
         launch(args);
 
-        EntityManager entityManager = PersonalEntityManager.getInstance();
-        entityManager.getEntityManagerFactory().close();
-        entityManager.close();
+        PersonalEntityManagerFactory.getInstance().close();
 
 //        Map<Integer, Integer> test = new HashMap<>();
 //        test.put(1,1);

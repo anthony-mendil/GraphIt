@@ -1,5 +1,6 @@
 package actions.add;
 
+import actions.Action;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveSphereLogAction;
@@ -54,6 +55,7 @@ public class AddSphereLogAction extends LogAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
 
+        //Action.attach(databaseManager);
         notifyObserverGraph();
     }
 
