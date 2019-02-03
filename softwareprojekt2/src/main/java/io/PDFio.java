@@ -50,13 +50,6 @@ public class PDFio {
      */
     private VisualizationViewer vv;
 
-
-    /**
-     * The File the pdf get's written into
-     */
-    private File file;
-
-
     private static Logger logger = Logger.getLogger(PDFio.class);
 
     /**
@@ -116,7 +109,6 @@ public class PDFio {
      * Starts the dialog to export the current graph visualization as PDF.
      */
     public void exportPDF(File pFile) {
-        file = pFile;
 
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
         vis.setBackground(Color.WHITE);
@@ -154,7 +146,7 @@ public class PDFio {
         VectorGraphics vectorGraphics;
         Dimension graphicsDimension = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
         try {
-            vectorGraphics = new PDFGraphics2D(file, graphicsDimension);
+            vectorGraphics = new PDFGraphics2D(pFile, graphicsDimension);
             Properties properties = new Properties();
             properties.setProperty(ORIENTATION, LANDSCAPE);
             properties.setProperty(PAGE_SIZE, A4);
@@ -163,7 +155,7 @@ public class PDFio {
             vis.print(vectorGraphics);
             vectorGraphics.endExport();
         } catch (FileNotFoundException e) {
-            file.deleteOnExit();
+            pFile.deleteOnExit();
             logger.error(e.toString());
         }
     }
@@ -172,28 +164,30 @@ public class PDFio {
      * Starts the dialog to export the current graph visualization as PDF.
      */
     public void printPDF() {
+        File file = null;
         try {
-            exportPDF(Files.createTempFile("graphit", null).toFile());
-        } catch (IOException e) {
+            file=Files.createTempFile("graphit", null).toFile();
+            exportPDF(file);
+
+            PDDocument pdDocument = PDDocument.load(file);
+
+            PrinterJob printerJob = PrinterJob.getPrinterJob();
+            printerJob.setJobName(file.getName());
+            printerJob.setPageable(new PDFPageable(pdDocument));
+            if (printerJob.printDialog()) {
+                    printerJob.print();
+            }
+        } catch (IOException | PrinterException e) {
             logger.error(e.toString());
-        }
-        PDDocument pdDocument = null;
-        try {
-            pdDocument = PDDocument.load(file);
-        } catch (IOException e) {
-            logger.error(e.toString());
-        }
-        PrinterJob printerJob = PrinterJob.getPrinterJob();
-        printerJob.setJobName(file.getName());
-        printerJob.setPageable(new PDFPageable(pdDocument));
-        if (printerJob.printDialog()) {
-            try {
-                printerJob.print();
-            } catch (PrinterException e) {
-                logger.error(e.toString());
-            } finally {
-                file.deleteOnExit();
+        }finally {
+            if(file!=null){
+                try {
+                    Files.delete(file.toPath());
+                } catch (IOException e) {
+                    //ignored
+                }
             }
         }
+
     }
 }
