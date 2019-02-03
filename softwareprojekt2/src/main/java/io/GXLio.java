@@ -6,6 +6,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import gui.properties.Language;
 import log_management.dao.GraphDao;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
@@ -258,8 +259,8 @@ public class GXLio {
         double width = Double.parseDouble(((GXLString) elem.getAttr("width").getValue()).getValue());
         double height = Double.parseDouble(((GXLString) elem.getAttr("height").getValue()).getValue());
         Map<String, String> annotation = new HashMap<>();
-        annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
-        annotation.put("en+-", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+        annotation.put(Language.GERMAN.name(), ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
+        annotation.put(Language.ENGLISH.name()+"+-", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr("fontSize").getValue()).getIntValue();
         Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
@@ -308,8 +309,8 @@ public class GXLio {
         }
         VertexShapeType shape = VertexShapeType.valueOf(((GXLString) elem.getAttr("shape").getValue()).getValue());
         Map<String, String> annotation = new HashMap<String, String>();
-        annotation.put("de", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
-        annotation.put("en", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+        annotation.put(Language.GERMAN.name(), ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
+        annotation.put(Language.ENGLISH.name(), ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
         String[] drawPaintArray = getNumberArrayFromString(((GXLString) elem.getAttr("drawPaint").getValue()).getValue());
         Color drawPaint = new Color(
                 Integer.parseInt(drawPaintArray[0]),

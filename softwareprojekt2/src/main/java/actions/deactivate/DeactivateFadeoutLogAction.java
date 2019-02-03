@@ -2,7 +2,15 @@ package actions.deactivate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import graph.algorithmen.predicates.EdgeIsVisiblePredicate;
+import graph.algorithmen.predicates.VertexIsVisiblePredicate;
+import graph.graph.Edge;
+import graph.graph.Vertex;
 import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
+import org.apache.commons.collections15.Predicate;
+import org.apache.commons.collections15.functors.AllPredicate;
+import org.apache.commons.collections15.functors.TruePredicate;
 
 
 /**
@@ -28,7 +36,15 @@ public class DeactivateFadeoutLogAction extends LogAction {
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
+
+        vv.getRenderContext().setVertexIncludePredicate( TruePredicate.getInstance());
+        vv2.getRenderContext().setVertexIncludePredicate(TruePredicate.getInstance());
+        vv.getRenderContext().setEdgeIncludePredicate(TruePredicate.getInstance());
+        vv2.getRenderContext().setEdgeIncludePredicate(TruePredicate.getInstance());
+        vv.repaint();
+        vv2.repaint();
     }
 
     @Override

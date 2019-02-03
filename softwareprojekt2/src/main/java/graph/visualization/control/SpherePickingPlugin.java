@@ -44,7 +44,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
         values = Values.getInstance();
         helper = new HelperFunctions();
-        contextMenu = new SphereContextMenu().getContextMenu();
     }
 
     /**
@@ -72,6 +71,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             }
         } else {
             if (vertex == null && sp != null) {
+                contextMenu = new SphereContextMenu(sp).getContextMenu();
                 helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
                 PickedState<Sphere> spheres = vv.getPickedSphereState();
                 spheres.clear();
@@ -108,7 +108,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
-        helper.hideMenu(contextMenu);
+        if (contextMenu != null){
+            helper.hideMenu(contextMenu);
+        }
+
         SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());

@@ -7,6 +7,7 @@ import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereAnnotationParam;
 
@@ -51,13 +52,13 @@ public class EditSphereAnnotationLogAction extends LogAction {
             Set<Sphere> lockedSpheres = new HashSet<>();
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation()) {
-                    createParameter(sp, sp.getAnnotation().get("de"), text);
+                    createParameter(sp, sp.getAnnotation().get(Language.GERMAN.name()), text);
                     Map<String, String> annotation = sp.getAnnotation();
-                    if (annotation.get("de") != null) {
-                        annotation.remove("de");
+                    if (annotation.get(Language.GERMAN.name()) != null) {
+                        annotation.remove(Language.GERMAN.name());
                         sp.setAnnotation(annotation);
                     }
-                    annotation.put("de", text);
+                    annotation.put(Language.GERMAN.name(), text);
                     sp.setAnnotation(annotation);
                 }else{
                     lockedSpheres.add(sp);
@@ -67,7 +68,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
             Sphere sphere = ((EditSphereAnnotationParam)parameters).getSphere();
             String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
             Map<String,String> newAnno = new HashMap<>();
-            newAnno.put("de", newAnnotation);
+            newAnno.put(Language.GERMAN.name(), newAnnotation);
             sphere.setAnnotation(newAnno);
 
         }
