@@ -59,21 +59,6 @@ public class GraphDao implements Dao<Graph> {
         entityManager.close();
     }
 
-    @Override
-    public void update(Graph graph) {
-        //not used
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//
-//        entityManager.getTransaction().begin();
-//        entityManager.refresh(entityManager.merge(graph));
-//        entityManager.flush();
-//        entityManager.clear();
-//        entityManager.getTransaction().commit();
-//        entityManager.close();
-//        entityManagerFactory.close();
-    }
-
     public void update() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();

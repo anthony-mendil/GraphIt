@@ -30,12 +30,6 @@ public interface Dao<T> {
     void save(T t);
 
     /**
-     * Updates an object.
-     * @param t The updated object.
-     */
-    void update(T t);
-
-    /**
      * Deletes the object.
      * @param id The id of the object to delete.
      */

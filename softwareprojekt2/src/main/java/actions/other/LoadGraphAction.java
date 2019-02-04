@@ -22,7 +22,8 @@ public class LoadGraphAction extends GraphAction {
 
         GXLio gxLio = new GXLio();
         gxLio.gxlToInstance(gxlGraph);
-        notifyObserverNewGraph();
+        //System.out.println(gxlGraph);
+        notifyObserverGraph();
     }
 
     /**

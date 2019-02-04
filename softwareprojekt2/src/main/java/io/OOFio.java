@@ -1,6 +1,7 @@
 package io;
 
 import com.google.inject.Inject;
+import log_management.DatabaseManager;
 import log_management.dao.LogDao;
 import org.apache.log4j.Logger;
 
@@ -90,11 +91,15 @@ public class OOFio {
             logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
-        gxlio.gxlToInstance(gxlFromOOF(oof));
-
+        // villeict trim auf den string? Funktioniert jedenfalls noch nicht
         System.out.println(jsonFromOOF(oof));
 
-        logDao.saveLogs(jsonFromOOF(oof));
+        gxlio.gxlToInstance(gxlFromOOF(oof));
+
+        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
+
+        DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof));
+        //logDao.saveLogs(jsonFromOOF(oof));
     }
 
 }

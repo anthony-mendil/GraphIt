@@ -31,6 +31,7 @@ public class ImportOofAction extends GraphAction {
     public void action() {
         OOFio oofio = new OOFio();
         oofio.importOOF(file);
+        notifyObserverGraph();
     }
 
     /**

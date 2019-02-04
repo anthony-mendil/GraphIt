@@ -112,7 +112,13 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        entityManager.persist(log);
+        Log newLog = new Log();
+        newLog.setTime(log.getTime());
+        newLog.setParameters(log.getParameters());
+        newLog.setLogEntryName(log.getLogEntryName());
+        newLog.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).get());
+        //entityManager.merge(newLog);
+        entityManager.persist(newLog);
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -150,14 +156,6 @@ public class LogDao implements Dao<Log> {
             Log log = logs.get(i);
             save(log);
         }
-    }
-
-    @Override
-    public void update(Log log) {
-        // laut hibernate doku wird wenn man eine entity verändert und flushed automatisch geupdated
-        //EntityManager entityManager = PersonalEntityManager.getInstance();
-
-        //entityManager.refresh(entityManager.merge(log));
     }
 
     @Override

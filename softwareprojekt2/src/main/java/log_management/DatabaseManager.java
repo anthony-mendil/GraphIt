@@ -3,6 +3,7 @@ package log_management;
 import actions.ObserverSyndrom;
 import com.google.inject.Singleton;
 import graph.graph.FunctionMode;
+import gui.Values;
 import io.GXLio;
 import log_management.dao.GraphDao;
 import log_management.dao.LogDao;
@@ -48,6 +49,7 @@ public class DatabaseManager implements ObserverSyndrom {
         graphDao = new GraphDao();
         logDao = new LogDao();
         gxlIo = new GXLio();
+        mode = Values.getInstance().getMode();
     }
 
     public static DatabaseManager getInstance(){
@@ -63,8 +65,13 @@ public class DatabaseManager implements ObserverSyndrom {
      */
     public void addEntryDatabase(Log log) {
         updateGraph();
-
         logDao.save(log);
+    }
+
+    public void saveOofGraph(String gxl) {
+        Graph graph = new Graph();
+        graph.setGxl(gxl);
+        graphDao.save(graph);
     }
 
     public void saveOofLogs(String oofLogs) {
@@ -73,13 +80,6 @@ public class DatabaseManager implements ObserverSyndrom {
 
     @Override
     public void updateGraph() {
-
-//        System.out.println(graphDao.get(-1).get().getId() + "\n");
-//        Graph graph = graphDao.get(-1).get();
-//        System.out.println("before\n" + graph.getGxl() + "\n");
-//        graph.setGxl(gxlIo.gxlFromInstanceWithTemplate());
-//        System.out.println(graph.getId() + "\n");
-//        System.out.println("after\n" + graph.getGxl() + "\n");
         graphDao.update();
     }
 
@@ -96,7 +96,6 @@ public class DatabaseManager implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         Graph graph = new Graph();
-
         graph.setGxl(gxlIo.gxlFromInstanceWithTemplate());
         graphDao.save(graph);
     }
