@@ -3,6 +3,11 @@ package graph.visualization.renderers;
 import java.awt.*;
 
 public class RenderHelperFunction {
+    public Color getLuminanceColor(Paint drawColor) {
+        double luminance = (0.2126 * ((Color) drawColor).getRed() + 0.7152 * ((Color) drawColor).getGreen() + 0.0722 * ((Color) drawColor).getGreen());
+        return luminance > 127 ? new Color(20, 20, 20) : new Color(245, 245, 245);
+    }
+
     public String shrinkAnnotation(double sphereWidth, double sphereHeight, String annotation, FontMetrics
             fontMetrics){
         String[] lines = breakAnnotation(sphereWidth, annotation, fontMetrics).split("\n");

@@ -36,6 +36,7 @@ import java.util.Map;
  * @param <E> The edge type.
  */
 public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
+    private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
 
     @Override
     protected void drawSimpleEdge(RenderContext<V, E> rc, Layout<V, E> layout, E e) {
@@ -258,7 +259,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             g.setPaint(rc.getArrowFillPaintTransformer().transform(e));
             g.fill(ellipse);
             g.draw(ellipse);
-            drawColor = getLuminanceColor(drawColor);
+            drawColor = renderHelperFunction.getLuminanceColor(drawColor);
         }
         g.setPaint(drawColor);
         g.fill(arrow);
@@ -273,10 +274,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
 
-    private Color getLuminanceColor(Paint drawColor) {
-        double luminance = (0.2126 * ((Color) drawColor).getRed() + 0.7152 * ((Color) drawColor).getGreen() + 0.0722 * ((Color) drawColor).getGreen());
-        return luminance > 127 ? new Color(20, 20, 20) : new Color(245, 245, 245);
-    }
+
 
     private ArrayList<ScopePoint> getUnusedScopePoints(EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map) {
         ArrayList<ScopePoint> scopePoints = new ArrayList<>(Arrays.asList(ScopePoint.values()));

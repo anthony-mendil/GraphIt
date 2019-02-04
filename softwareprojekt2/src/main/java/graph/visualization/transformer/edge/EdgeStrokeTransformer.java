@@ -32,10 +32,10 @@ public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
 
         PickedState<E> vertexPickedState = vv.getPickedEdgeState();
         if (vertexPickedState.isPicked(e)) {
-            Stroke basic = new BasicStroke(5);
-            Stroke dotted = new BasicStroke(5.0f,
+            Stroke basic = new BasicStroke(4);
+            Stroke dotted = new BasicStroke(4.0f,
                     BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, dotting, 0f);
-            Stroke dashed = new BasicStroke(5.0f,
+            Stroke dashed = new BasicStroke(4.0f,
                     BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, RenderContext.dashing, 0f);
 
             if (edge.getStroke() == StrokeType.BASIC || edge.getStroke() ==  StrokeType.BASIC_WEIGHT){
