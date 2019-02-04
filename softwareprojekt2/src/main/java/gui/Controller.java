@@ -30,6 +30,7 @@ import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
 import actions.remove.*;
+import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
@@ -43,8 +44,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -63,6 +64,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -220,18 +222,6 @@ public class Controller implements ObserverSyndrom {
     private Button analysisButton;
 
     /* Template Options */
-
-    /**
-     * The button that opens the template window to set the rules
-     */
-    @FXML
-    private Button templateButton;
-
-    /**
-     * A separator in the menu bar
-     */
-    @FXML
-    private Separator menubarSeparator3;
 
     /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
@@ -659,6 +649,12 @@ public class Controller implements ObserverSyndrom {
      * A separator for the vboxes in edit mode.
      */
     @FXML
+    private Separator separator0;
+
+    /**
+     * A separator for the vboxes in edit mode.
+     */
+    @FXML
     private Separator separator1;
 
     /**
@@ -666,6 +662,12 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private Separator separator2;
+
+    /**
+     * The vbox that contains the select button in edit mode.
+     */
+    @FXML
+    private VBox vBoxSelect;
 
     /**
      * The vbox that contains sphere options in edit mode.
@@ -809,8 +811,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private TableColumn edgetypeEdgeCol;
 
-    @FXML
-    private MenuItem zoomMenuItem10;
 
     @FXML
     private MenuItem zoomMenuItem25;
@@ -835,6 +835,10 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     private MenuItem zoomMenuItem200;
+
+    @FXML
+    private StackPane overviewStackPane;
+
 
     public Controller() {
     }
@@ -1324,6 +1328,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void switchModiAnalysis() {
         if (editMode) {
+            values.setGraphButtonType(GraphButtonType.NONE);
             editMode(false);
             analysisMode(true);
             editButton.setDisable(false);
@@ -1439,22 +1444,57 @@ public class Controller implements ObserverSyndrom {
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
-        //TODO Template
-        /*maxSphereField;
-        maxSymptomField;
-        maxEdgesField;
-        reinforcedBox;
-        extenuatingBox;
-        neutralBox;*/
-        /*Template temp = new Template();
+        int mSph= valueFromTextField(maxSphereField);
+        int mSym= valueFromTextField(maxSymptomField);
+        int mEdg= valueFromTextField(maxEdgesField);
+        boolean rein = reinforcedBox.isSelected();
+        boolean exte = extenuatingBox.isSelected();
+        boolean neut = neutralBox.isSelected();
 
-            temp.setMaxSphereCounter(Integer.parseInt(maxSphereField.getText()));
-            temp.setMaxVertexCounter(Integer.parseInt(maxSymptomField.getText()));
-            temp.setMaxEdgeCounter(Integer.parseInt(maxEdgesField.prettyPrint()));
+        Template temp = new Template(mSph,mSym,mEdg,rein,exte,neut);
 
-        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);*/
+        RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
+        rulesTemplateAction.action();
+        System.out.println(temp.toString());
     }
 
+    /**
+     * Gets a TextField and returns its numeric content
+     * @param pTextField The TextField that contains the count
+     * @return -1 if there is no number set, -2 if the input is not valid, the number otherwise
+     */
+    private int getValidatedContent(TextField pTextField){
+        String content=pTextField.getText().trim();
+        try{
+            return Integer.parseInt(content);
+        }catch(NumberFormatException e){
+            if(content.isEmpty()){
+                return -1;
+            }else{
+                return -2;
+            }
+        }
+    }
+
+    /**
+     * Gets a TextField and returns its numeric content if its valid
+     * @param pTextField The Textfield that contains the count
+     * @return The number if it's valid, Integer.Max_Value otherwise
+     */
+    private int valueFromTextField(TextField pTextField){
+        System.out.println("validate");
+        int ret=Integer.MAX_VALUE;
+        int cont= getValidatedContent(pTextField);
+        if (cont==-1){
+            pTextField.setStyle("-fx-background-color: white");
+        }else if(cont==-2){
+            pTextField.setStyle("-fx-background-color: rgba(255,0,0,0.25)");
+        }else{
+            pTextField.setStyle("-fx-background-color: white");
+            ret=cont;
+        }
+        return ret;
+    }
     /**
      * Deletes all Rules that were set before.
      */
@@ -1515,19 +1555,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(removeFadeoutElementAction);
     }
 
-    public void showTemplateWindow() {
-        if (!templateStage.isShowing()) {
-            templateStage.show();
-            templateController.loadListView();
-        }
-    }
-
-    public void closeTemplateWindow() {
-        if (templateStage.isShowing()) {
-            templateStage.hide();
-        }
-    }
-
     /* ----------------INTERNAL---------------------- */
 
     /**
@@ -1572,10 +1599,9 @@ public class Controller implements ObserverSyndrom {
         loadMenuItem();
         loadFontComboBox(fontSphereComboBox);
         loadFontComboBox(fontSymptomComboBox);
-        disableEditMode(true);
-        disableAnalysisMode(true);
+        loadTemplateTextFields();
 
-        zoomSlider.setMin(10);
+        zoomSlider.setMin(20);
         zoomSlider.setMax(200);
         zoomSlider.setValue(100);
         zoomSlider.setBlockIncrement(20);
@@ -1588,9 +1614,12 @@ public class Controller implements ObserverSyndrom {
         setZoomMenu();
 
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
-
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
 
+        OneTimeStackPaneListener onetime = new OneTimeStackPaneListener();
+        overviewStackPane.widthProperty().addListener(onetime);
+
+        //trying direct load
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
 
@@ -1600,9 +1629,8 @@ public class Controller implements ObserverSyndrom {
         history.execute(action);
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
-        disableEditMode(false);
-        disableAnalysisMode(false);
         zoomSlider.setValue(100);
+
     }
 
     private void initFonts() {
@@ -1681,21 +1709,6 @@ public class Controller implements ObserverSyndrom {
             }
         }
     };
-
-    private class OnlyNumberTextFieldTableCell implements ChangeListener<String>{
-        private final TextFieldTableCell<Sphere,String> textFieldTableCell;
-
-        private OnlyNumberTextFieldTableCell(TextFieldTableCell<Sphere, String> pTextFieldTableCell){
-            textFieldTableCell = pTextFieldTableCell;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-            if(!newValue.matches("\\d*")){
-                textFieldTableCell.setText(oldValue);
-            }
-        }
-    }
 
     private class OnlyNumberComboBoxListener implements ChangeListener<String> {
         private final ComboBox comboBox;
@@ -1906,14 +1919,18 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void editMode(Boolean active) {
+
+        separator0.setVisible(active);
+        separator0.setManaged(active);
+
         separator1.setVisible(active);
         separator1.setManaged(active);
 
         separator2.setVisible(active);
         separator2.setManaged(active);
 
-        menubarSeparator3.setVisible(active);
-        menubarSeparator3.setManaged(active);
+        vBoxSelect.setVisible(active);
+        vBoxSelect.setManaged(active);
 
         vBoxEditSphere.setVisible(active);
         vBoxEditSphere.setManaged(active);
@@ -1923,9 +1940,6 @@ public class Controller implements ObserverSyndrom {
 
         vBoxEditEdge.setVisible(active);
         vBoxEditEdge.setManaged(active);
-
-        templateButton.setVisible(active);
-        templateButton.setManaged(active);
 
         redoButton.setVisible(active);
         redoButton.setManaged(active);
@@ -1946,11 +1960,9 @@ public class Controller implements ObserverSyndrom {
     private void disableEditMode(Boolean disable) {
         separator1.setDisable(disable);
         separator2.setDisable(disable);
-        menubarSeparator3.setDisable(disable);
         vBoxEditSphere.setDisable(disable);
         vBoxEditSymptom.setDisable(disable);
         vBoxEditEdge.setDisable(disable);
-        templateButton.setDisable(disable);
         redoButton.setDisable(disable);
         undoButton.setDisable(disable);
         toolBarSeparator1.setDisable(disable);
@@ -2161,7 +2173,7 @@ public class Controller implements ObserverSyndrom {
             int row = pos.getRow();
             Sphere sphere = event.getTableView().getItems().get(row);
 
-            if(!maxAmount.chars().anyMatch(Character::isLetter)){
+            if(maxAmount.chars().allMatch(Character::isDigit)){
                 sphere.setLockedMaxAmountVertices(maxAmount);
             }
             sphereTableView.getColumns().remove(maxAmountSphereCol);
@@ -2385,7 +2397,6 @@ public class Controller implements ObserverSyndrom {
 
     private void setZoomMenu(){
         EventHandler zoomHandler = new ZoomMenuItemHandler();
-        zoomMenuItem10.setOnAction(zoomHandler);
         zoomMenuItem25.setOnAction(zoomHandler);
         zoomMenuItem50.setOnAction(zoomHandler);
         zoomMenuItem75.setOnAction(zoomHandler);
@@ -2413,7 +2424,51 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    private class OneTimeStackPaneListener implements ChangeListener<Number>{
+        @Override
+        public void changed(ObservableValue<? extends Number> arg0, Number oldPropertyValue, Number newPropertyValue){
+            overviewStackPane.setMinWidth(0);
+            overviewStackPane.widthProperty().removeListener(this);
+        }
+    }
 
+    private void loadTemplateTextFields(){
+
+        maxSphereField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSphereField));
+        maxSymptomField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSymptomField));
+        maxEdgesField.textProperty().addListener(new OnlyNumberTextFieldListener(maxEdgesField));
+
+        FocusTextFieldListener focusTFListener = new FocusTextFieldListener();
+        maxSphereField.focusedProperty().addListener(focusTFListener);
+        maxSymptomField.focusedProperty().addListener(focusTFListener);
+        maxEdgesField.focusedProperty().addListener(focusTFListener);
+    }
+
+    private class OnlyNumberTextFieldListener implements ChangeListener<String>{
+        private TextField textField;
+
+        public OnlyNumberTextFieldListener(TextField pTextField){
+            textField = pTextField;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            if (!newValue.matches("\\d*"))
+                textField.setText(oldValue);
+        }
+    }
+
+    private class FocusTextFieldListener implements ChangeListener<Boolean>{
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if(newValue){
+                //Focused
+            }else{
+                //Not Focused
+                rulesTemplate();
+            }
+        }
+    }
 
     @Override
     public void updateGraph() {
