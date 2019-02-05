@@ -7,6 +7,7 @@ import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereAnnotationParam;
@@ -60,7 +61,8 @@ public class EditSphereAnnotationLogAction extends LogAction {
                     }
                     annotation.put(Language.GERMAN.name(), text);
                     sp.setAnnotation(annotation);
-                }else{
+                } else{
+                    helper.setActionText("Der Titel der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedSpheres.add(sp);
                 }
             }

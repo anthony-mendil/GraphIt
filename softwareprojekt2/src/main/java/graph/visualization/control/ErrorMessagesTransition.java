@@ -9,7 +9,7 @@ public class ErrorMessagesTransition extends Transition {
     private final Pane hBox;
 
     public ErrorMessagesTransition(Pane hBox){
-        setCycleDuration(Duration.millis(3000));
+        setCycleDuration(Duration.millis(5000));
         setInterpolator(Interpolator.LINEAR);
         this.hBox = hBox;
     }

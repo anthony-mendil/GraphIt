@@ -56,6 +56,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
                     newVerticesParam.put(vertex, color);
                     vertex.setFillColor(color);
                 }else{
+                    helper.setActionText("Die Farbe der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedVertices.add(vertex);
                 }
             }

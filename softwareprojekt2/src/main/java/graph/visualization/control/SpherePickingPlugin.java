@@ -102,6 +102,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (addSphere) {
             AddSphereLogAction addSphereLogAction = new AddSphereLogAction(p);
             history.execute(addSphereLogAction);
+        } else {
+            helper.setActionText("Hinzufügen einer Sphäre hier nicht möglich!", true);
         }
     }
 
@@ -120,7 +122,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
         down = e.getPoint();
         PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
-
 
         if (sp != null && vert == null && edge == null) {
            if (SwingUtilities.isRightMouseButton(e)) {

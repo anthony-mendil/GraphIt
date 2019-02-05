@@ -1,5 +1,6 @@
 package graph.visualization.transformer.vertex;
 
+import graph.graph.FadeType;
 import graph.graph.Vertex;
 import graph.visualization.transformer.FadeOutElementsTransition;
 import org.apache.commons.collections15.Transformer;
@@ -13,17 +14,20 @@ import java.awt.*;
  * @param <V> The vertex type.
  */
 public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
-    private FadeOutElementsTransition animation;
-    private Transformer<V, Paint> transformer;
-    public VertexFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<V, Paint> transformer){
+    private final FadeOutElementsTransition animation;
+    private final Transformer<V, Paint> transformer;
+    private final FadeType fadeType;
+    public VertexFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<V, Paint> transformer, FadeType fadeType){
         this.animation  = animation;
         this.transformer = transformer;
+        this.fadeType = fadeType;
     }
 
     @Override
     public Paint transform(V v) {
         Vertex vertex = (Vertex) v;
         Color color = (Color)transformer.transform(v);
-        return (!vertex.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (255 - (animation.frac*255))) : color;
+        double fracValue  = (fadeType == FadeType.ACTIVATE) ?  255 - (animation.frac*255) : animation.frac*255;
+        return (!vertex.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) fracValue) : color;
     }
 }

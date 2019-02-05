@@ -7,6 +7,7 @@ import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereColorParam;
 
@@ -54,6 +55,7 @@ public class EditSphereColorLogAction extends LogAction {
                 createParameter(sp, sp.getColor(), color);
                 sp.setColor(color);
             }else{
+                helper.setActionText("Die Farbe der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                 lockedSphere = sp;
             }
         }

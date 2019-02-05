@@ -5,8 +5,16 @@ import graph.graph.FunctionMode;
 import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
 import gui.properties.Language;
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableMap;
+import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -153,7 +161,11 @@ public class Values {
 
     private static Values instance;
 
-    private ObservableMap<String, Object> namespace;
+    private Text currentActionText = new Text("");
+
+    private Node canvas;
+
+    private HBox hBox;
 
     @Setter(AccessLevel.NONE)
     private final javafx.scene.text.Font actionTextInfo =  javafx.scene.text.Font.font("System Regular", FontWeight

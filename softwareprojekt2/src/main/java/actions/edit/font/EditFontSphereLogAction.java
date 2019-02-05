@@ -49,6 +49,7 @@ public class EditFontSphereLogAction extends LogAction {
                     createParameter(sp, sp.getFont(), font);
                     sp.setFont(font);
                 }else{
+                    helper.setActionText("Die Schrift der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     sphere = sp;
                 }
             }

@@ -34,6 +34,7 @@ import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -49,6 +50,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -62,6 +64,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -779,7 +783,7 @@ public class Controller implements ObserverSyndrom {
      * The tablecolumn for setting the template rule "maximum numbers of symptoms in the sphere".
      */
     @FXML
-    private TableColumn<Sphere,String> maxAmountSphereCol;
+    private TableColumn<Sphere, String> maxAmountSphereCol;
 
     @FXML
     private TableView symptomTableView;
@@ -1218,7 +1222,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        if (file!=null) {
+        if (file != null) {
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
@@ -1234,7 +1238,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        if (file!=null) {
+        if (file != null) {
             ImportOofAction importOofAction = new ImportOofAction(file);
             importOofAction.action();
             zoomSlider.setValue(100);
@@ -1253,7 +1257,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        if (file!=null) {
+        if (file != null) {
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             zoomSlider.setValue(100);
@@ -1271,7 +1275,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        if (file!=null) {
+        if (file != null) {
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
             importTemplateGxlAction.action();
             zoomSlider.setValue(100);
@@ -1444,14 +1448,14 @@ public class Controller implements ObserverSyndrom {
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
     public void rulesTemplate() {
-        int mSph= valueFromTextField(maxSphereField);
-        int mSym= valueFromTextField(maxSymptomField);
-        int mEdg= valueFromTextField(maxEdgesField);
+        int mSph = valueFromTextField(maxSphereField);
+        int mSym = valueFromTextField(maxSymptomField);
+        int mEdg = valueFromTextField(maxEdgesField);
         boolean rein = reinforcedBox.isSelected();
         boolean exte = extenuatingBox.isSelected();
         boolean neut = neutralBox.isSelected();
 
-        Template temp = new Template(mSph,mSym,mEdg,rein,exte,neut);
+        Template temp = new Template(mSph, mSym, mEdg, rein, exte, neut);
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
         rulesTemplateAction.action();
@@ -1460,17 +1464,18 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Gets a TextField and returns its numeric content
+     *
      * @param pTextField The TextField that contains the count
      * @return -1 if there is no number set, -2 if the input is not valid, the number otherwise
      */
-    private int getValidatedContent(TextField pTextField){
-        String content=pTextField.getText().trim();
-        try{
+    private int getValidatedContent(TextField pTextField) {
+        String content = pTextField.getText().trim();
+        try {
             return Integer.parseInt(content);
-        }catch(NumberFormatException e){
-            if(content.isEmpty()){
+        } catch (NumberFormatException e) {
+            if (content.isEmpty()) {
                 return -1;
-            }else{
+            } else {
                 return -2;
             }
         }
@@ -1478,23 +1483,25 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Gets a TextField and returns its numeric content if its valid
+     *
      * @param pTextField The Textfield that contains the count
      * @return The number if it's valid, Integer.Max_Value otherwise
      */
-    private int valueFromTextField(TextField pTextField){
+    private int valueFromTextField(TextField pTextField) {
         System.out.println("validate");
-        int ret=Integer.MAX_VALUE;
-        int cont= getValidatedContent(pTextField);
-        if (cont==-1){
+        int ret = Integer.MAX_VALUE;
+        int cont = getValidatedContent(pTextField);
+        if (cont == -1) {
             pTextField.setStyle("-fx-background-color: white");
-        }else if(cont==-2){
+        } else if (cont == -2) {
             pTextField.setStyle("-fx-background-color: rgba(255,0,0,0.25)");
-        }else{
+        } else {
             pTextField.setStyle("-fx-background-color: white");
-            ret=cont;
+            ret = cont;
         }
         return ret;
     }
+
     /**
      * Deletes all Rules that were set before.
      */
@@ -1577,12 +1584,18 @@ public class Controller implements ObserverSyndrom {
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
+
+        values.setCanvas(canvas);
+        values.setHBox(textBox);
+        values.setCurrentActionText(currentActionText);
+
+
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
         analysisMode(false);
         editButton.setDisable(true);
-        treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         overViewAccordion.setExpandedPane(overViewTitledPane);
 
         paneSwingNode.widthProperty().addListener(widthListener);
@@ -1661,7 +1674,7 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 
-            if (zoomSlider.isValueChanging()){
+            if (zoomSlider.isValueChanging()) {
                 int value = newValue.intValue();
                 int oldV = oldValue.intValue();
 
@@ -2013,6 +2026,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * SPRACHE ÄNDERN, AUCH IN SPHERE.TOSTRING(), VERTEX.TOSTRING() BEACHTEN
      */
+    @SuppressWarnings("unchecked")
     public void treeViewUpdate() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
@@ -2036,10 +2050,50 @@ public class Controller implements ObserverSyndrom {
             rootItem.getChildren().add(sphereItem);
         }
 
+        HelperFunctions helper = new HelperFunctions();
+        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ObservableValue observable, Object oldValue,
+                                Object newValue) {
+                TreeItem<Object> selectedItem = (TreeItem<Object>) newValue;
+                if (selectedItem != null){
+                    helper.pickElement(selectedItem.getValue());
+                }
+            }
+
+        });
+
+
+        treeView.setOnMouseClicked(e -> {
+                if (e.getButton() == MouseButton.SECONDARY){
+                    Node node = e.getPickResult().getIntersectedNode();
+                    if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+                        TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
+                        Object val = selected.getValue();
+                        if (!(val instanceof Edge)){
+                            ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                            if (contextMenu != null) {
+                                treeView.setContextMenu(contextMenu);
+                                contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
+                            }
+                        } else {
+                            treeView.setContextMenu(null);
+                        }
+                    } else {
+                        treeView.setContextMenu(null);
+                    }
+                } else
+                    if ( treeView.getContextMenu() != null){
+                        treeView.getContextMenu().hide();
+                    }
+        });
+
         rootItem.setExpanded(true);
         treeView.setRoot(rootItem);
         treeView.setShowRoot(false);
     }
+
 
     /*
      * Uses the provided swingnode to display the zoom window on it.
@@ -2153,9 +2207,9 @@ public class Controller implements ObserverSyndrom {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere, Map<String, String>> data) {
                 String name = "";
                 if (values.getGuiLanguage() == Language.GERMAN) {
-                    name = data.getValue().getAnnotation().get( Language.GERMAN.name());
+                    name = data.getValue().getAnnotation().get(Language.GERMAN.name());
                 } else if (values.getGuiLanguage() == Language.ENGLISH) {
-                    name = data.getValue().getAnnotation().get( Language.ENGLISH.name());
+                    name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
                 }
                 return new ReadOnlyStringWrapper(name);
             }
@@ -2173,7 +2227,7 @@ public class Controller implements ObserverSyndrom {
             int row = pos.getRow();
             Sphere sphere = event.getTableView().getItems().get(row);
 
-            if(maxAmount.chars().allMatch(Character::isDigit)){
+            if (maxAmount.chars().allMatch(Character::isDigit)) {
                 sphere.setLockedMaxAmountVertices(maxAmount);
             }
             sphereTableView.getColumns().remove(maxAmountSphereCol);
@@ -2395,7 +2449,7 @@ public class Controller implements ObserverSyndrom {
         });
     }
 
-    private void setZoomMenu(){
+    private void setZoomMenu() {
         EventHandler zoomHandler = new ZoomMenuItemHandler();
         zoomMenuItem25.setOnAction(zoomHandler);
         zoomMenuItem50.setOnAction(zoomHandler);
@@ -2408,12 +2462,12 @@ public class Controller implements ObserverSyndrom {
 
     }
 
-    private class ZoomMenuItemHandler implements EventHandler<Event>{
+    private class ZoomMenuItemHandler implements EventHandler<Event> {
         @Override
-        public void handle(Event evt){
+        public void handle(Event evt) {
             MenuItem mnItmn = (MenuItem) evt.getSource();
             String percent = mnItmn.getText();
-            percent = percent.replaceAll("%","");
+            percent = percent.replaceAll("%", "");
             int per = Integer.parseInt(percent);
 
             zoomSlider.setValue(per);
@@ -2424,15 +2478,15 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private class OneTimeStackPaneListener implements ChangeListener<Number>{
+    private class OneTimeStackPaneListener implements ChangeListener<Number> {
         @Override
-        public void changed(ObservableValue<? extends Number> arg0, Number oldPropertyValue, Number newPropertyValue){
+        public void changed(ObservableValue<? extends Number> arg0, Number oldPropertyValue, Number newPropertyValue) {
             overviewStackPane.setMinWidth(0);
             overviewStackPane.widthProperty().removeListener(this);
         }
     }
 
-    private void loadTemplateTextFields(){
+    private void loadTemplateTextFields() {
 
         maxSphereField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSphereField));
         maxSymptomField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSymptomField));
@@ -2444,10 +2498,10 @@ public class Controller implements ObserverSyndrom {
         maxEdgesField.focusedProperty().addListener(focusTFListener);
     }
 
-    private class OnlyNumberTextFieldListener implements ChangeListener<String>{
+    private class OnlyNumberTextFieldListener implements ChangeListener<String> {
         private TextField textField;
 
-        public OnlyNumberTextFieldListener(TextField pTextField){
+        public OnlyNumberTextFieldListener(TextField pTextField) {
             textField = pTextField;
         }
 
@@ -2458,12 +2512,12 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private class FocusTextFieldListener implements ChangeListener<Boolean>{
+    private class FocusTextFieldListener implements ChangeListener<Boolean> {
         @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-            if(newValue){
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if (newValue) {
                 //Focused
-            }else{
+            } else {
                 //Not Focused
                 rulesTemplate();
             }

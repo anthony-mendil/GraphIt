@@ -60,6 +60,7 @@ public class EditEdgesTypeLogAction extends LogAction {
                     e.setArrowType(type);
                     newEdges.put(e, type);
                 }else{
+                    helper.setActionText("Die Art der Pfeilspitze der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedEdges.add(e);
                 }
             }

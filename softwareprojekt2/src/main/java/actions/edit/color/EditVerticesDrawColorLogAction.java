@@ -6,6 +6,7 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVerticesDrawColorParam;
 
@@ -52,6 +53,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
                     paramNewVertices.put(vertex, color);
                     vertex.setDrawColor(color);
                 }else{
+                    helper.setActionText("Die Farbe der Kante(n) der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedVertices.add(vertex);
                 }
             }
