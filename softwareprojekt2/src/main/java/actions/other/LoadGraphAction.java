@@ -27,7 +27,7 @@ public class LoadGraphAction extends GraphAction {
     }
 
     /**
-     * Disables the undo-funktion for the gxl export
+     * Disables the undo-function for the gxl export
      */
     @Override
     public void undo() {
@@ -35,7 +35,7 @@ public class LoadGraphAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the gxl export
+     * Disables the redo-function for the gxl export
      */
     @Override
     public void redo() {
