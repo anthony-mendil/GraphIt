@@ -37,7 +37,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      */
     public SyndromPickSupport(VisualizationServer<V, E> vv) {
         super(vv);
-
+        pickSize = 5;
     }
 
     /**
@@ -71,6 +71,17 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         return sphaereContains;
     }
 
+    /**
+     * Dieser Code ist aus dem Framework JUNG aus der Klasse ShapePickSupport kopiert und hier eingefügt.
+     * Die Methode benutzt eine weitere Methode getTransformedEdgeShape(). Diese ist in der genannten Klasse private,
+     * weswegen wir sie nicht überschreiben konnten. Außerdem wurde der return Wert von getTransformedEdgeShape()
+     * geändert.
+     * Der restliche Code der Methode wurde nicht verändert und nicht von uns programmiert.
+     * @param layout
+     * @param x
+     * @param y
+     * @return
+     */
     @Override
     public Object getEdge(Layout layout, double x, double y) {
         Point2D ip = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(Layer.VIEW, new Point2D.Double(x, y));

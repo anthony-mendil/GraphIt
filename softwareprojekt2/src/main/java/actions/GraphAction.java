@@ -1,6 +1,7 @@
 package actions;
 
 import graph.graph.Syndrom;
+import graph.visualization.control.HelperFunctions;
 import gui.Values;
 
 /**
@@ -15,6 +16,8 @@ public abstract class GraphAction extends Action {
     protected Syndrom syndrom = Syndrom.getInstance();
 
     protected Values values = Values.getInstance();
+
+    protected HelperFunctions helper = new HelperFunctions();
 
     /**
      * Sets layout, graph, pick support from the current syndrom presentation.

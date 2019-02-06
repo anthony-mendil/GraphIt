@@ -10,6 +10,9 @@ import graph.graph.Sphere;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.TreeItem;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -63,7 +66,6 @@ public class SphereContextMenu {
                 EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(title);
                 history.execute(editSphereAnnotationLogAction);
             });
-
         });
 
         // COLOR
@@ -105,5 +107,10 @@ public class SphereContextMenu {
         }
 
         contextMenu.setAutoHide(true);
+        contextMenu.setHideOnEscape(true);
+
+        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
+            contextMenu.hide();
+        });
     }
 }

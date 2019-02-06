@@ -59,6 +59,7 @@ public class EditVerticesSizeLogAction extends LogAction {
                 }
             }
         }else{
+                helper.setActionText("Die Größe der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                 lockedVertices.add(vertex);
             }
         }

@@ -99,6 +99,7 @@ public class EditSphereSizeLogAction extends LogAction {
                     }
                 }
             } else{
+                    helper.setActionText("Die Größe der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedSphere = sp;
                 }
             }

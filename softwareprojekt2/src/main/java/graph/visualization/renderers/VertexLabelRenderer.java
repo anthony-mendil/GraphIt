@@ -7,8 +7,10 @@ import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.renderers.BasicVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
+import graph.graph.Edge;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -61,7 +63,11 @@ public class VertexLabelRenderer<V,E> extends BasicVertexLabelRenderer<V,E> {
         int i = 0;
         for (String line : annotation.split("\n")){
             Point2D anchor = getAnchorPoint(new Point2D.Double(vertexShape.getBounds2D().getCenterX(), vertexShape.getBounds2D().getCenterY()), fontMetrics.stringWidth(line), sumHeight);
+            SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+            Color oldColor = gD.getColor();
+            gD.setPaint(vv.getVertexFontColorTransformer().transform(vertex));
             gD.drawString(line, (float) anchor.getX(), (float) (anchor.getY()+(height*i++)+font.getSize()));
+            gD.setPaint(oldColor);
         }
 
     }
