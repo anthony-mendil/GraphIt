@@ -91,15 +91,13 @@ public class OOFio {
             logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
-        // villeict trim auf den string? Funktioniert jedenfalls noch nicht
         System.out.println(jsonFromOOF(oof));
 
         gxlio.gxlToInstance(gxlFromOOF(oof));
 
-        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
+        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof).trim());
 
         DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof));
-        //logDao.saveLogs(jsonFromOOF(oof));
     }
 
 }
