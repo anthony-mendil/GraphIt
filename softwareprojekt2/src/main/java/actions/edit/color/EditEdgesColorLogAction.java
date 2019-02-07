@@ -6,6 +6,7 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesColorParam;
 
@@ -51,11 +52,12 @@ public class EditEdgesColorLogAction extends LogAction {
             Map<Edge,Color> oldEdges = new HashMap<>();
             Map<Edge,Color> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                if (e.isLockedStyle()) {
+                if (!e.isLockedStyle()) {
                     oldEdges.put(e, e.getColor());
                     e.setColor(color);
                     newEdges.put(e, color);
                 }else{
+                    helper.setActionText("Die Farbe der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedEdges.add(e);
                 }
             }

@@ -1,10 +1,7 @@
 package graph.visualization.transformer.edge;
 
 import edu.uci.ics.jung.graph.util.Pair;
-import graph.graph.Edge;
-import graph.graph.Syndrom;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.transformer.FadeOutElementsTransition;
 import org.apache.commons.collections15.Transformer;
 
@@ -17,23 +14,26 @@ import java.awt.*;
  * @param <E> The edge type.
  */
 public class EdgeFadeoutPaintTransformer<E> implements Transformer<E, Paint> {
-    private FadeOutElementsTransition animation;
-    private Transformer<E, Paint> transformer;
-    public EdgeFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<E, Paint> transformer){
+    private final FadeOutElementsTransition animation;
+    private final Transformer<E, Paint> transformer;
+    private final FadeType fadeType;
+    public EdgeFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<E, Paint> transformer, FadeType fadeType){
         this.animation  = animation;
         this.transformer = transformer;
+        this.fadeType = fadeType;
     }
 
     @Override
     public Paint transform(E e) {
         Edge edge = (Edge) e;
         Color color = (Color)transformer.transform(e);
+        double fracValue  = (fadeType == FadeType.ACTIVATE) ?  255 - (animation.frac*255) : animation.frac*255;
 
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
         Pair<Vertex> pair = g.getEndpoints(edge);
         if (!pair.getSecond().isVisible() || !pair.getFirst().isVisible()){
-            return new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (255 - (animation.frac*255)));
+            return new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) fracValue);
         }
-        return (!edge.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (255 - (animation.frac*255))) : color;
+        return (!edge.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) fracValue) : color;
     }
 }

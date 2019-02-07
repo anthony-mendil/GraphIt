@@ -1,6 +1,14 @@
 package graph.visualization.control;
 
+import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+import gui.SphereContextMenu;
 import gui.Values;
+import gui.VertexContextMenu;
 import javafx.animation.Animation;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
@@ -15,9 +23,9 @@ import javafx.scene.text.Text;
 import java.awt.geom.Point2D;
 import java.util.concurrent.CountDownLatch;
 
-class HelperFunctions {
+public class HelperFunctions {
     private final Values values;
-    HelperFunctions(){
+    public HelperFunctions(){
         values = Values.getInstance();
     }
     void hideMenu(ContextMenu contextMenu){
@@ -54,7 +62,7 @@ class HelperFunctions {
                         final CountDownLatch latch = new CountDownLatch(1);
                         Platform.runLater(() -> {
                             try {
-                                Node node = (Node) values.getNamespace().get("canvas");
+                                Node node = values.getCanvas();
                                 contextMenu.show(node, point.getX() , point.getY()  );
 
                             } finally {
@@ -80,19 +88,17 @@ class HelperFunctions {
                         final CountDownLatch latch = new CountDownLatch(1);
                         Platform.runLater(() -> {
                             try {
-                                Text text = (Text) values.getNamespace().get("currentActionText");
-                                HBox hBox = (HBox) values.getNamespace().get("textBox");
-                                Color color = Color.WHITE;
-                                Font font = values.getActionTextAlert();
+                                values.getCurrentActionText().setText(string);
+                                Text text = values.getCurrentActionText();
                                 if (isAlert) {
+                                    text.setFill(javafx.scene.paint.Color.WHITE);
+                                    text.setFont(values.getActionTextAlert());
+                                    HBox hBox = values.getHBox();
                                     String style = "-fx-background-color: rgba(160, 12, 12, 1);";
                                     hBox.setStyle(style);
                                     final Animation animation = new ErrorMessagesTransition(hBox);
                                     animation.play();
                                 }
-                                text.setFill(color);
-                                text.setText(string);
-                                text.setFont(font);
                             } finally {
                                 latch.countDown();
                             }
@@ -104,5 +110,40 @@ class HelperFunctions {
             }
         };
         service.start();
+    }
+
+    public void pickElement(Object object){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
+        PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
+        PickedState<Edge> pickedEdgeState = vv.getPickedEdgeState();
+        pickedVertexState.clear();
+        pickedSphereState.clear();
+        pickedEdgeState.clear();
+        if (object instanceof Vertex){
+            Vertex vertex = (Vertex) object;
+            pickedVertexState.pick(vertex, true);
+        } else if (object instanceof Sphere){
+            Sphere sphere = (Sphere) object;
+            pickedSphereState.pick(sphere, true);
+        } else if (object instanceof Edge){
+            Edge edge = (Edge) object;
+            pickedEdgeState.pick(edge, true);
+        } else {
+            throw new IllegalArgumentException();
+        }
+        vv.repaint();
+    }
+
+    public ContextMenu openContextMenu(Object object, double x, double y){
+        ContextMenu contextMenu = null;
+        if (object instanceof Sphere){
+            Sphere sp = (Sphere) object;
+            contextMenu = new SphereContextMenu(sp).getContextMenu();
+        } else if (object instanceof Vertex){
+            Vertex vertex = (Vertex) object;
+            contextMenu = new VertexContextMenu(vertex).getContextMenu();
+        }
+        return contextMenu;
     }
 }

@@ -11,6 +11,7 @@ import graph.graph.Vertex;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -63,7 +64,6 @@ public class VertexContextMenu {
                 EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(title);
                 history.execute(editVertexAnnotationLogAction);
             });
-
         });
 
         // COLOR FILL
@@ -112,5 +112,8 @@ public class VertexContextMenu {
             contextMenu.getItems().add(remove);
         }
         contextMenu.setAutoHide(true);
+        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
+            contextMenu.hide();
+        });
     }
 }

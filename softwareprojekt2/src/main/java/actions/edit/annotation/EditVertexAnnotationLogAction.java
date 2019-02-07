@@ -6,6 +6,7 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVertexAnnotationParam;
@@ -56,6 +57,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     annotation.put(Language.GERMAN.name(), text);
                     v.setAnnotation(annotation);
                 }else{
+                    helper.setActionText("Der Titel des Knotens darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedVertices.add(v);
                 }
             }

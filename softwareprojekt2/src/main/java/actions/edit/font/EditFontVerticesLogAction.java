@@ -55,6 +55,7 @@ public class EditFontVerticesLogAction extends LogAction {
                     vertex.setFont(font);
                     newVertices.put(vertex, font);
                 }else{
+                    helper.setActionText("Die Schrift der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedVertices.add(vertex);
                 }
             }

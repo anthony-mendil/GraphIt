@@ -54,6 +54,7 @@ public class EditVerticesFormLogAction extends LogAction {
                     vertex.setShape(type);
                     newVertices.put(vertex, type);
                 }else{
+                    helper.setActionText("Die Form der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedVertices.add(vertex);
                 }
             }

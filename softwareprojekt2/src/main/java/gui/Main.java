@@ -38,7 +38,6 @@ public class Main extends Application {
         Controller controller = new Controller();
         controller.setStage(primaryStage);
         loader.setController(controller);
-        Values.getInstance().setNamespace(loader.getNamespace());
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(new Scene(borderPane));
