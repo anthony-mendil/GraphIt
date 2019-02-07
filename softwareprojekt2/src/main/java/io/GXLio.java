@@ -95,10 +95,18 @@ public class GXLio {
             // This counter is needed as the documents elements not always will have successive ids.
             // This fact is a result from the users possibility to delete elements after creating them
             // befor he/she exports the graph. This leads to gaps in the row of ids.
-            int idCounter = 0;
+            int foundElements = 0;
 
-            for (int i = 0; i < gxlGraph.getGraphElementCount(); i++) {
+            if(importWithRules) {
+                GXLNode gxlTemplate = (GXLNode) doc.getElement("template");
+                initializeTemplateValues(gxlTemplate);
+                foundElements++;
+            }
+
+
+            for (int idCounter = 0; foundElements < gxlGraph.getGraphElementCount(); idCounter++) {
                 if (doc.containsID(idCounter + "")) {
+                    foundElements++;
                     GXLAttributedElement elem = doc.getElement(idCounter + "");
                     if (maxID < Integer.parseInt(elem.getID())) {
                         maxID = Integer.parseInt(elem.getID());
@@ -151,12 +159,7 @@ public class GXLio {
                         edgeAndVertices.add(entry);
                     }
                 }
-                idCounter++;
-            }
 
-            if(importWithRules) {
-                GXLNode gxlTemplate = (GXLNode) doc.getElement("template");
-                initializeTemplateValues(gxlTemplate);
             }
 
             // Getting the objects that are needed to get the spheres, vertices and edges
@@ -271,6 +274,8 @@ public class GXLio {
             newSphere.setLockedStyle(isLockedStyle);
             boolean isLockedVertices = ((GXLBool) elem.getAttr("isLockedVertices").getValue()).getBooleanValue();
             newSphere.setLockedVertices(isLockedVertices);
+            String lockedMaxAmountVertices = ((GXLString) elem.getAttr("lockedMaxAmountVertices").getValue()).getValue();
+            newSphere.setLockedMaxAmountVertices(lockedMaxAmountVertices);
         }
         return newSphere;
     }
@@ -322,8 +327,10 @@ public class GXLio {
         boolean isVisible = ((GXLBool) elem.getAttr("isVisible").getValue()).getBooleanValue();
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr("fontSize").getValue()).getIntValue();
+        boolean isHighlighted = ((GXLBool) elem.getAttr("isHighlighted").getValue()).getBooleanValue();
         Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
         newVertex.setVisible(isVisible);
+        newVertex.setHighlighted(isHighlighted);
         if (importWithRules == true) {
             boolean isLockedPosition = ((GXLBool) elem.getAttr("isLockedPosition").getValue()).getBooleanValue();
             newVertex.setLockedPosition(isLockedPosition);
@@ -361,8 +368,7 @@ public class GXLio {
         java.awt.geom.Point2D coordinatesSource = null;
         if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")) {
             coordinatesArraySource = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
-            System.out.println("esfsoifh");
-            System.out.println(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
+          //  System.out.println(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
             coordinatesSource = new java.awt.geom.Point2D.Double(
                     java.lang.Double.parseDouble(coordinatesArraySource[0]),
                     java.lang.Double.parseDouble(coordinatesArraySource[1]));
@@ -379,15 +385,18 @@ public class GXLio {
 
         boolean isVisible = ((GXLBool) elem.getAttr("isVisible").getValue()).getBooleanValue();
         Edge newEdge = new Edge(id, paint, stroke, arrowType, isVisible, hasAnchorIn, hasAnchorOut);
-        newEdge.setHasAnchorIn(hasAnchorIn);
+       // newEdge.setHasAnchorIn(hasAnchorIn);
         javafx.util.Pair<java.awt.geom.Point2D, java.awt.geom.Point2D> endPoints = new  javafx.util.Pair<>(coordinatesSource, coordinatesTarget);
         newEdge.setAnchorPoints(endPoints);
+        boolean isHighlighted = ((GXLBool) elem.getAttr("isHighlighted").getValue()).getBooleanValue();
+        newEdge.setHighlighted(isHighlighted);
         if (importWithRules == true) {
             boolean isLockedStyle = ((GXLBool) elem.getAttr("isLockedStyle").getValue()).getBooleanValue();
             newEdge.setLockedStyle(isLockedStyle);
             boolean isLockedEdgeType = ((GXLBool) elem.getAttr("isLockedEdgeType").getValue()).getBooleanValue();
-            newEdge.setLockedStyle(isLockedEdgeType);
-
+            newEdge.setLockedEdgeType(isLockedEdgeType);
+            boolean lockedPosition = ((GXLBool) elem.getAttr("lockedPosition").getValue()).getBooleanValue();
+            newEdge.setLockedPosition(lockedPosition);
         }
         return newEdge;
 
@@ -635,6 +644,7 @@ public class GXLio {
                 singleNodeInSphere.setAttr("isVisible", new GXLBool(v.isVisible()));
                 singleNodeInSphere.setAttr("font", new GXLString("" + v.getFont()));
                 singleNodeInSphere.setAttr("fontSize", new GXLInt(v.getFontSize()));
+                singleNodeInSphere.setAttr("isHighlighted", new GXLBool(v.isHighlighted()));
                 singleNodeInSphere.setAttr("ID of the sphere containing this node:", new GXLString("" + s.getId()));
                 if (exportWithRules == true) {
                     singleNodeInSphere = addRulesToNode(v, singleNodeInSphere);
@@ -667,6 +677,7 @@ public class GXLio {
             }
 
             edge.setAttr("isVisible", new GXLBool(e.isVisible()));
+            edge.setAttr("isHighlighted", new GXLBool(e.isHighlighted()));
             if (exportWithRules) {
                 edge = addRulesToEdge(e, edge);
             }
@@ -729,6 +740,7 @@ public class GXLio {
         gxlSphere.setAttr("isLockedAnnotation", new GXLBool(sphere.isLockedAnnotation()));
         gxlSphere.setAttr("isLockedStyle", new GXLBool(sphere.isLockedStyle()));
         gxlSphere.setAttr("isLockedVertices", new GXLBool(sphere.isLockedVertices()));
+        gxlSphere.setAttr("lockedMaxAmountVertices", new GXLString(sphere.getLockedMaxAmountVertices()));
         return gxlSphere;
     }
 
@@ -762,6 +774,7 @@ public class GXLio {
     private GXLEdge addRulesToEdge(Edge edge, GXLEdge gxlEdge) {
         gxlEdge.setAttr("isLockedStyle", new GXLBool(edge.isLockedStyle()));
         gxlEdge.setAttr("isLockedEdgeType", new GXLBool(edge.isLockedEdgeType()));
+        gxlEdge.setAttr("lockedPosition", new GXLBool(edge.isLockedPosition()));
         return gxlEdge;
     }
 
