@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import log_management.dao.PersonalEntityManagerFactory;
 import lombok.Getter;
+import org.apache.log4j.BasicConfigurator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -53,13 +54,13 @@ public class Main extends Application {
      * @param args The java command line arguments that is needed to start the application.
      */
     public static void main(String[] args) {
+        BasicConfigurator.configure();
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
 
         launch(args);
 
         PersonalEntityManagerFactory.getInstance().close();
-
 //        Map<Integer, Integer> test = new HashMap<>();
 //        test.put(1,1);
 //        test.put(2,2);
