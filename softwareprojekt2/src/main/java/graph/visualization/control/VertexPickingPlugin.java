@@ -168,6 +168,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
 
             if (points != null) {
+
+
+
                 Point p = e.getPoint();
                 Point2D graphPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(p);
                 Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(down);
@@ -177,6 +180,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
                 Layout<Vertex, Edge> layout = vv.getGraphLayout();
                 for (Vertex vertex : pickedState.getPicked()) {
+                    for (Edge edge: vv.getGraphLayout().getGraph().getIncidentEdges(vertex)){
+                        edge.setHasPrio(true);
+                    }
                     Point2D vp = layout.transform(vertex);
                     vp.setLocation(vertex.getCoordinates().getX() + dx, vertex.getCoordinates().getY() + dy);
                     layout.setLocation(vertex, vp);
@@ -193,6 +199,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     private void setVerticesCoord(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport pickSupport) {
         boolean addNot = false;
         for (Vertex v : pickedState.getPicked()) {
+            for (Edge edge: vv.getGraphLayout().getGraph().getIncidentEdges(v)){
+                edge.setHasPrio(false);
+            }
             Point2D vp = vv.getRenderContext().getMultiLayerTransformer().transform(v.getCoordinates());
             Sphere sp = pickSupport.getSphere(vp.getX(), vp.getY());
             if (sp == null) {

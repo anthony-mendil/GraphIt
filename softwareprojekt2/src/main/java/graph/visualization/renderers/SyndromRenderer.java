@@ -10,17 +10,11 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
-import graph.graph.ScopePoint;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.SyndromGraph;
+import graph.graph.*;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
-import java.util.EnumMap;
+import java.util.*;
 
 /**
  * The SyndromRenderer paints the syndrom graph.
@@ -75,7 +69,20 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             }
         } else {
             // if not sphere overlaps another one all edges get rendered
-            for (E e : layout.getGraph().getEdges()) {
+            Collection<E> edges =  layout.getGraph().getEdges();
+            Collection<E> renderLast = new LinkedList<>();
+            for (E e : edges){
+                graph.graph.Edge edge = (graph.graph.Edge) e;
+                System.out.println(edge.isHasPrio());
+                if (!edge.isHasPrio()){
+                    renderEdge(e, renderContext, layout);
+                } else {
+                    renderLast.add(e);
+                }
+            }
+
+            for (E e : renderLast) {
+                System.out.println("hhi");
                 renderEdge(e, renderContext, layout);
             }
         }
@@ -93,6 +100,8 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     private void renderObjectsSphere(Sphere sp, SyndromGraph<V, E> g, RenderContext<V, E> renderContext, Layout<V, E> layout) {
         sphaerenRenderer.paintSphere(renderContext, sp);
         Collection<V> collection = (Collection<V>) sp.getVertices();
+        Collection<Edge> renderLater = new LinkedList<>();
+
         for (E e : layout.getGraph().getEdges()) {
             Collection<V> incident = g.getEndpoints(e);
             if (collection.containsAll(incident)) {
@@ -151,7 +160,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         }
     }
 
-    private boolean isOverlapped(PickedState<Sphere> pickedState, SyndromGraph<V, E> g){
+    private boolean isOverlapped(PickedState<Sphere> pickedState, SyndromGraph<V, E> g) {
         boolean overlapped = false;
         for (Sphere s : pickedState.getPicked()) {
             Shape sShape = sphereShapeTransformer.transform(s);
@@ -167,8 +176,8 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         return overlapped;
     }
 
-    private void clearVertexForRender(SyndromGraph<V,E> g){
-        for (V v : g.getVertices()){
+    private void clearVertexForRender(SyndromGraph<V, E> g) {
+        for (V v : g.getVertices()) {
             graph.graph.Vertex vertex = (graph.graph.Vertex) v;
             vertex.setVertexArrowExtenuating(new EnumMap<>(ScopePoint.class));
             vertex.setVertexArrowNeutral(new EnumMap<>(ScopePoint.class));

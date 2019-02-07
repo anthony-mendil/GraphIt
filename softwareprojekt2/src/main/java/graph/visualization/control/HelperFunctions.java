@@ -6,6 +6,7 @@ import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import gui.EdgeContextMenu;
 import gui.SphereContextMenu;
 import gui.Values;
 import gui.VertexContextMenu;
@@ -143,6 +144,9 @@ public class HelperFunctions {
         } else if (object instanceof Vertex){
             Vertex vertex = (Vertex) object;
             contextMenu = new VertexContextMenu(vertex).getContextMenu();
+        } else if (object instanceof  Edge){
+            Edge edge = (Edge) object;
+            contextMenu = new EdgeContextMenu(edge).getContextMenu();
         }
         return contextMenu;
     }

@@ -172,9 +172,9 @@ public class Vertex {
 
     @Override
     public String toString() {
-        if(Values.getInstance().getGuiLanguage() == Language.GERMAN){
+        if (Values.getInstance().getGuiLanguage() == Language.GERMAN) {
             return annotation.get(Language.GERMAN.name());
-        }else if(Values.getInstance().getGuiLanguage() == Language.ENGLISH){
+        } else if (Values.getInstance().getGuiLanguage() == Language.ENGLISH) {
             return annotation.get(Language.ENGLISH.name());
         }
 

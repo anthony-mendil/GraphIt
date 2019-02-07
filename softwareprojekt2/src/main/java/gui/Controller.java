@@ -2057,7 +2057,7 @@ public class Controller implements ObserverSyndrom {
             public void changed(ObservableValue observable, Object oldValue,
                                 Object newValue) {
                 TreeItem<Object> selectedItem = (TreeItem<Object>) newValue;
-                if (selectedItem != null){
+                if (selectedItem != null) {
                     helper.pickElement(selectedItem.getValue());
                 }
             }
@@ -2066,27 +2066,24 @@ public class Controller implements ObserverSyndrom {
 
 
         treeView.setOnMouseClicked(e -> {
-                if (e.getButton() == MouseButton.SECONDARY){
-                    Node node = e.getPickResult().getIntersectedNode();
-                    if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                        TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
-                        Object val = selected.getValue();
-                        if (!(val instanceof Edge)){
-                            ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
-                            if (contextMenu != null) {
-                                treeView.setContextMenu(contextMenu);
-                                contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
-                            }
-                        } else {
-                            treeView.setContextMenu(null);
-                        }
-                    } else {
-                        treeView.setContextMenu(null);
+            if (e.getButton() == MouseButton.SECONDARY) {
+                Node node = e.getPickResult().getIntersectedNode();
+                if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+                    TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
+                    Object val = selected.getValue();
+
+                    ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                    if (contextMenu != null) {
+                        treeView.setContextMenu(contextMenu);
+                        contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
                     }
-                } else
-                    if ( treeView.getContextMenu() != null){
-                        treeView.getContextMenu().hide();
-                    }
+
+                } else {
+                    treeView.setContextMenu(null);
+                }
+            } else if (treeView.getContextMenu() != null) {
+                treeView.getContextMenu().hide();
+            }
         });
 
         rootItem.setExpanded(true);

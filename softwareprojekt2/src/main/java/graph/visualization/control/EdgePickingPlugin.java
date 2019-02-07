@@ -4,11 +4,12 @@ import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import gui.EdgeContextMenu;
+import gui.VertexContextMenu;
+import javafx.scene.control.ContextMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +25,8 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     private Edge edgeMove = null;
     private boolean isIncoming = false;
     private int addToSelection = InputEvent.BUTTON1_DOWN_MASK  | InputEvent.SHIFT_DOWN_MASK;
+    private ContextMenu contextMenu;
+    private HelperFunctions helper = new HelperFunctions();
 
     /**
      * create an instance with passed values
@@ -36,6 +39,9 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     @SuppressWarnings("unchecked")
     @Override
     public void mousePressed(MouseEvent e) {
+        if (contextMenu != null){
+            helper.hideMenu(contextMenu);
+        }
         down = e.getPoint();
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
@@ -111,7 +117,24 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
-        //
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
+        Point2D point = e.getPoint();
+        Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
+        Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
+
+        if (SwingUtilities.isRightMouseButton(e)) {
+            if (vertex == null && edge != null) {
+                PickedState<Edge> edges = vv.getPickedEdgeState();
+                edges.clear();
+                edges.pick(edge, true);
+                contextMenu = new EdgeContextMenu(edge).getContextMenu();
+                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+            }
+            vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+        }
     }
 }

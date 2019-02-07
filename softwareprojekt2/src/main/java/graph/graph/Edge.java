@@ -80,6 +80,8 @@ public class Edge {
     @Setter
     private boolean lockedPosition = false;
 
+    private boolean hasPrio = false;
+
     /**
      * Creates an edge between two vertices.
      * @param id           The unique ID of the edge.
