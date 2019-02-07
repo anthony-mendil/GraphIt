@@ -361,6 +361,8 @@ public class GXLio {
         java.awt.geom.Point2D coordinatesSource = null;
         if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")) {
             coordinatesArraySource = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
+            System.out.println("esfsoifh");
+            System.out.println(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
             coordinatesSource = new java.awt.geom.Point2D.Double(
                     java.lang.Double.parseDouble(coordinatesArraySource[0]),
                     java.lang.Double.parseDouble(coordinatesArraySource[1]));
@@ -368,7 +370,7 @@ public class GXLio {
         boolean hasAnchorOut = ((GXLBool) elem.getAttr("hasAnchorOut").getValue()).getBooleanValue();
         String[] coordinatesArrayTarget = null;
         java.awt.geom.Point2D coordinatesTarget = null;
-        if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the target set")) {
+        if (!((GXLString) elem.getAttr("anchorAngle of target").getValue()).getValue().equals("no anchorpoint at the target set")) {
             coordinatesArrayTarget = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of target").getValue()).getValue());
             coordinatesTarget = new java.awt.geom.Point2D.Double(
                     java.lang.Double.parseDouble(coordinatesArrayTarget[0]),
@@ -659,7 +661,7 @@ public class GXLio {
 
             edge.setAttr("hasAnchorOut", new GXLBool(e.isHasAnchorOut()));
             if (e.getAnchorPoints().getValue() == null) {
-                edge.setAttr("anchorAngle of source", new GXLString("no anchorpoint at the target set"));
+                edge.setAttr("anchorAngle of target", new GXLString("no anchorpoint at the target set"));
             } else {
                 edge.setAttr("anchorAngle of target", new GXLString("" + e.getAnchorPoints().getValue()));
             }
