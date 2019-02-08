@@ -94,7 +94,7 @@ public class GXLio {
             // befor he/she exports the graph. This leads to gaps in the row of ids.
             int foundElements = 0;
 
-            if(importWithRules) {
+            if (importWithRules) {
                 GXLGraph gxlTemplate = (GXLGraph) doc.getElement("template");
                 initializeTemplateValues(gxlTemplate);
                 //foundElements++;
@@ -204,13 +204,12 @@ public class GXLio {
     }
 
 
-
     /**
      * This method is called from the {@gxlToInstance()}-method, when the import is an import of a graph with its rules.
      *
      * @param gxlTemplate the GXLNode from the imported GXLGraph describing a template object
      */
-    private void initializeTemplateValues(GXLGraph gxlTemplate){
+    private void initializeTemplateValues(GXLGraph gxlTemplate) {
         Template template = Syndrom.getInstance().getTemplate();
         int maxSpheres = ((GXLInt) gxlTemplate.getAttr("maxSpheres").getValue()).getIntValue();
         template.setMaxSpheres(maxSpheres);
@@ -230,7 +229,7 @@ public class GXLio {
     /**
      * This method is called from the {@gxlToInstance()}-method each time, when the gxl document is read and
      * an element representing a sphere object is found.
-     *.
+     * .
      * the current element that is read
      * by the gxl document
      * This method creates a new sphere object with the values from the passed GXLAttributedElement and returns this sphere.
@@ -256,7 +255,7 @@ public class GXLio {
         double height = Double.parseDouble(((GXLString) elem.getAttr("height").getValue()).getValue());
         Map<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(), ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[0]);
-        annotation.put(Language.ENGLISH.name()+"+-", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
+        annotation.put(Language.ENGLISH.name() + "+-", ((GXLString) elem.getAttr("annotation").getValue()).getValue().split("\u00A6")[1]);
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr("fontSize").getValue()).getIntValue();
         Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
@@ -341,7 +340,7 @@ public class GXLio {
     /**
      * This method is called from the {@gxlToInstance()}-method each time, when the gxl document is read and
      * an element representing an edge object is found.
-     *
+     * <p>
      * This method creates a new edge object with the values from the passed GXLAttributedElement and returns this edge.
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Edge]-class.
      *
@@ -381,7 +380,7 @@ public class GXLio {
         boolean isVisible = ((GXLBool) elem.getAttr("isVisible").getValue()).getBooleanValue();
         Edge newEdge = new Edge(id, paint, stroke, arrowType, isVisible, hasAnchorIn, hasAnchorOut);
         // newEdge.setHasAnchorIn(hasAnchorIn);
-        javafx.util.Pair<java.awt.geom.Point2D, java.awt.geom.Point2D> endPoints = new  javafx.util.Pair<>(coordinatesSource, coordinatesTarget);
+        javafx.util.Pair<java.awt.geom.Point2D, java.awt.geom.Point2D> endPoints = new javafx.util.Pair<>(coordinatesSource, coordinatesTarget);
         newEdge.setAnchorPoints(endPoints);
         boolean isHighlighted = ((GXLBool) elem.getAttr("isHighlighted").getValue()).getBooleanValue();
         newEdge.setHighlighted(isHighlighted);
@@ -507,7 +506,7 @@ public class GXLio {
             edge.setAttr("arrowType", new GXLString("" + e.getArrowType()));
 
             edge.setAttr("hasAnchor", new GXLString("" + e.isHasAnchorOut()));
-            if(e.isHasAnchorOut()) {
+            if (e.isHasAnchorOut()) {
                 edge.setAttr("anchorAngle", new GXLString("" + e.getAnchorPoints().getValue()));
             }
             edge.setAttr("isVisible", new GXLString("" + e.isVisible()));
@@ -682,7 +681,7 @@ public class GXLio {
         doc.getDocumentElement().add(gxlSyndrom);
 
 
-        if(exportWithRules){
+        if (exportWithRules) {
             GXLGraph templateNode = createTemplateNode();
             doc.getDocumentElement().add(templateNode);
         }
@@ -690,7 +689,7 @@ public class GXLio {
         String content = "";
         try {
             doc.write(gxlStream);
-            content=((ByteArrayOutputStream) gxlStream).toString("UTF-8");
+            content = ((ByteArrayOutputStream) gxlStream).toString("UTF-8");
 
         } catch (Exception e) {
             logger.error(e.toString());
@@ -701,10 +700,10 @@ public class GXLio {
     /**
      * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
      * describes an export of a graph and the rules describing the editing options belonging to the graph.
-     *
+     * <p>
      * Adds attributes to the GXLAttributedElement that describe the editing options of the graph and returns it.
      *
-     * @param sphere the object those values describe the editing options that the GXLAttributedElement needs.
+     * @param sphere    the object those values describe the editing options that the GXLAttributedElement needs.
      * @param gxlSphere the GXLAttributedElement still not having the neccessary attributes.
      * @return the GXLAttributedElement passed to this method now with the neccessary attributes.
      */
@@ -720,10 +719,10 @@ public class GXLio {
     /**
      * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
      * describes an export of a graph and the rules describing the editing options belonging to the graph.
-     *
+     * <p>
      * Adds attributes to the GXLAttributedElement that describe the editing options of the graph and returns it.
      *
-     * @param vertex the object those values describe the editing options that the GXLAttributedElement needs.
+     * @param vertex  the object those values describe the editing options that the GXLAttributedElement needs.
      * @param gxlNode the GXLAttributedElement still not having the neccessary attributes.
      * @return the GXLAttributedElement passed to this method now with the neccessary attributes.
      */
@@ -737,10 +736,10 @@ public class GXLio {
     /**
      * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
      * describes an export of a graph and the rules describing the editing options belonging to the graph.
-     *
+     * <p>
      * Adds attributes to the GXLAttributedElement that describe the editing options of the graph and returns it.
      *
-     * @param edge the object those values describe the editing options that the GXLAttributedElement needs.
+     * @param edge    the object those values describe the editing options that the GXLAttributedElement needs.
      * @param gxlEdge the GXLAttributedElement still not having the neccessary attributes.
      * @return the GXLAttributedElement passed to this method now with the neccessary attributes.
      */
@@ -754,13 +753,13 @@ public class GXLio {
     /**
      * This method is called from the {@gxlFromInstanceWithTemplate()}-method when the export
      * describes an export of a graph and the rules describing the editing options belonging to the graph.
-     *
+     * <p>
      * Creates a new GXLNode that descriped a template object
      * having some of the attributes a template object has and returns it.
      *
      * @return the GXLNode representing the template object.
      */
-    private GXLGraph createTemplateNode(){
+    private GXLGraph createTemplateNode() {
         GXLGraph templateNode = new GXLGraph("template");
         Template template = Syndrom.getInstance().getTemplate();
         templateNode.setAttr("maxSpheres", new GXLInt(template.getMaxSpheres()));

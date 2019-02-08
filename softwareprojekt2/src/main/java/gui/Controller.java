@@ -1288,11 +1288,23 @@ public class Controller implements ObserverSyndrom {
     /**
      * Sets the Template values into the fields (usage: importing template)
      */
-    private void templateToFields(){
-        Template currentTemplate=Syndrom.getInstance().getTemplate();
-        maxSphereField.setText(""+currentTemplate.getMaxSpheres());
-        maxSymptomField.setText(""+currentTemplate.getMaxVertices());
-        maxEdgesField.setText(""+currentTemplate.getMaxEdges());
+    private void templateToFields() {
+        Template currentTemplate = Syndrom.getInstance().getTemplate();
+        if (currentTemplate.getMaxSpheres() != Integer.MAX_VALUE) {
+            maxSphereField.setText("" + currentTemplate.getMaxSpheres());
+        }else{
+            maxSphereField.setText("");
+        }
+        if (currentTemplate.getMaxVertices() != Integer.MAX_VALUE) {
+            maxSymptomField.setText("" + currentTemplate.getMaxVertices());
+        }else{
+            maxSymptomField.setText("");
+        }
+        if (currentTemplate.getMaxEdges() != Integer.MAX_VALUE) {
+            maxEdgesField.setText("" + currentTemplate.getMaxEdges());
+        }else{
+            maxEdgesField.setText("");
+        }
         reinforcedBox.setSelected(currentTemplate.isReinforcedEdgesAllowed());
         extenuatingBox.setSelected(currentTemplate.isExtenuatingEdgesAllowed());
         neutralBox.setSelected(currentTemplate.isUnknownEdgesAllowed());
