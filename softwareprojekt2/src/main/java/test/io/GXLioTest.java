@@ -6,9 +6,6 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;

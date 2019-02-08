@@ -96,7 +96,7 @@ public class GXLio {
             int foundElements = 0;
 
             if(importWithRules) {
-                GXLNode gxlTemplate = (GXLNode) doc.getElement("template");
+                GXLGraph gxlTemplate = (GXLGraph) doc.getElement("template");
                 initializeTemplateValues(gxlTemplate);
                 foundElements++;
             }
@@ -211,7 +211,7 @@ public class GXLio {
      *
      * @param gxlTemplate the GXLNode from the imported GXLGraph describing a template object
      */
-    private void initializeTemplateValues(GXLNode gxlTemplate){
+    private void initializeTemplateValues(GXLGraph gxlTemplate){
         Template template = Syndrom.getInstance().getTemplate();
         int maxSpheres = ((GXLInt) gxlTemplate.getAttr("maxSpheres").getValue()).getIntValue();
         template.setMaxSpheres(maxSpheres);
@@ -684,7 +684,7 @@ public class GXLio {
 
 
         if(exportWithRules){
-            GXLNode templateNode = createTemplateNode();
+            GXLGraph templateNode = createTemplateNode();
             doc.getDocumentElement().add(templateNode);
         }
 
@@ -761,8 +761,8 @@ public class GXLio {
      *
      * @return the GXLNode representing the template object.
      */
-    private GXLNode createTemplateNode(){
-        GXLNode templateNode = new GXLNode("template");
+    private GXLGraph createTemplateNode(){
+        GXLGraph templateNode = new GXLGraph("template");
         Template template = Syndrom.getInstance().getTemplate();
         templateNode.setAttr("maxSpheres", new GXLInt(template.getMaxSpheres()));
         templateNode.setAttr("maxVertices", new GXLInt(template.getMaxVertices()));
