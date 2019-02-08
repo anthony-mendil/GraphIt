@@ -36,7 +36,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -45,20 +45,19 @@
                         <Menu mnemonicParsing="false" text="Datei">
                             <items>
                                 <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="Neue Datei" />
-                                <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#openFile" text="Datei öffnen" />
-                                <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="Importieren als GXL-Datei" />
-                                <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter.." />
-                                <Menu mnemonicParsing="false" text="Exportieren als..">
+                                <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#openFile" text="Datei öffnen..." />
+                                <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="GXL importieren..." />
+                        <MenuItem fx:id="importGXLWithTemplate" mnemonicParsing="false" onAction="#importGXLWithTemplate" text="Vorlage importieren..." />
+                                <MenuItem mnemonicParsing="false" onAction="#exportOOF" text="Speichern unter..." />
+                                <Menu mnemonicParsing="false" text="Exportieren als...">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF" />
-                                        <MenuItem fx:id="exportTemplateGXL" mnemonicParsing="false" onAction="#exportTemplateGXL" text="Vorlage" />
-                                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL" />
-                                        <MenuItem mnemonicParsing="false" text="Verlauf" />
-                                        <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
-                                        <MenuItem mnemonicParsing="false" text="andere Dateiformate" />
+                                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF..." />
+                                        <MenuItem fx:id="exportGXLWithTemplate" mnemonicParsing="false" onAction="#exportGXLWithTemplate" text="Vorlage..." />
+                                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL..." />
+                                        <MenuItem mnemonicParsing="false" text="Verlaufsprotokoll..." />
                                     </items>
                                 </Menu>
-                                <MenuItem fx:id="printPDF" mnemonicParsing="false" onAction="#printPDF" text="Drucken" />
+                                <MenuItem fx:id="printPDF" mnemonicParsing="false" onAction="#printPDF" text="Drucken..." />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Optionen">
@@ -1164,7 +1163,7 @@
                                                 </VBox.margin>
                                             </CheckBox>
             
-                                                              <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onScroll="#treeViewUpdate"  prefHeight="400.0" prefWidth="260.0">
+                                                              <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
                                                 <VBox.margin>
                                                     <Insets left="2.0" right="2.0" top="5.0" />
                                                 </VBox.margin>

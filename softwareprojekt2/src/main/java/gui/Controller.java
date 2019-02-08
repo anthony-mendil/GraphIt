@@ -65,7 +65,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -1189,7 +1188,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
      */
-    public void exportTemplateGXL() {
+    public void exportGXLWithTemplate() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1270,7 +1269,7 @@ public class Controller implements ObserverSyndrom {
      * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
      * and executes the action with the action history.
      */
-    public void importTemplateGXL() {
+    public void importGXLWithTemplate() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1569,7 +1568,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void initialize() {
         initFonts();
-
+        rulesTemplate();
         /*
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

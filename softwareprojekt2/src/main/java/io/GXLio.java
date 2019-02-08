@@ -15,7 +15,6 @@ import org.xml.sax.SAXException;
 
 import java.awt.*;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Stream;
@@ -76,7 +75,7 @@ public class GXLio {
         try {
             // At first a document needs to be imported into the system.
             // Thereby it is important that the document selected by the user has a valid structure.
-            GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes(StandardCharsets.UTF_8)));
+            GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes("UTF-8")));
             // The only gxl graph in documents that are created with or system is called "syndrom". See the {@gxlFromInstance()}-method in this class.
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
             if (gxlGraph == null) {
@@ -98,7 +97,7 @@ public class GXLio {
             if(importWithRules) {
                 GXLGraph gxlTemplate = (GXLGraph) doc.getElement("template");
                 initializeTemplateValues(gxlTemplate);
-                foundElements++;
+                //foundElements++;
             }
 
 

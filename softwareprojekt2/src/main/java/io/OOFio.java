@@ -69,7 +69,6 @@ public class OOFio {
         GXLio gxlio=new GXLio();
         gxlio.setExportWithRules(false);
         String oof=createOOF(gxlio.gxlFromInstanceWithTemplate(),logDao.getAllString());
-        oof=oof.substring(1,oof.length());
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
             bufferedWriter.write(oof);
             System.out.println("oof successfully saved");
