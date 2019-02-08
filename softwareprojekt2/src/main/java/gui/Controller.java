@@ -1292,17 +1292,20 @@ public class Controller implements ObserverSyndrom {
         Template currentTemplate = Syndrom.getInstance().getTemplate();
         if (currentTemplate.getMaxSpheres() != Integer.MAX_VALUE) {
             maxSphereField.setText("" + currentTemplate.getMaxSpheres());
-        }else{
+            System.out.println("max set");
+        } else {
             maxSphereField.setText("");
         }
         if (currentTemplate.getMaxVertices() != Integer.MAX_VALUE) {
             maxSymptomField.setText("" + currentTemplate.getMaxVertices());
-        }else{
+            System.out.println("max set");
+        } else {
             maxSymptomField.setText("");
         }
         if (currentTemplate.getMaxEdges() != Integer.MAX_VALUE) {
             maxEdgesField.setText("" + currentTemplate.getMaxEdges());
-        }else{
+            System.out.println("max set");
+        } else {
             maxEdgesField.setText("");
         }
         reinforcedBox.setSelected(currentTemplate.isReinforcedEdgesAllowed());
@@ -1661,13 +1664,15 @@ public class Controller implements ObserverSyndrom {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
 
-        GraphAction action = databaseManager.databaseEmpty()
-                ? new CreateGraphAction("First Graph")
-                : new LoadGraphAction();
+        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("New Graph") : new LoadGraphAction();
+
+
         history.execute(action);
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
+        System.out.println(Syndrom.getInstance().getTemplate().toString());
+        templateToFields();
 
     }
 

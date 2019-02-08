@@ -66,7 +66,7 @@ public class GraphDao implements Dao<Graph> {
         TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
         Graph graph = selectAllGraphs.getResultList().get(0);
 
-        graph.setGxl(DatabaseManager.getInstance().getGxlIo().gxlFromInstanceWithTemplate());
+        graph.setGxl(DatabaseManager.getInstance().getGxlIo().gxlFromInstance(true));
 
         entityManager.flush();
         entityManager.getTransaction().commit();
