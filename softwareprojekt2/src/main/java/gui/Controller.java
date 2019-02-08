@@ -1197,6 +1197,7 @@ public class Controller implements ObserverSyndrom {
             ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
             exportTemplateGxlAction.action();
         }
+
     }
 
     /**
@@ -1281,8 +1282,21 @@ public class Controller implements ObserverSyndrom {
             canvas.setContent(syndrom.getVv());
             satellite.setContent(syndrom.getVv2());
         }
+        templateToFields();
     }
 
+    /**
+     * Sets the Template values into the fields (usage: importing template)
+     */
+    private void templateToFields(){
+        Template currentTemplate=Syndrom.getInstance().getTemplate();
+        maxSphereField.setText(""+currentTemplate.getMaxSpheres());
+        maxSymptomField.setText(""+currentTemplate.getMaxVertices());
+        maxEdgesField.setText(""+currentTemplate.getMaxEdges());
+        reinforcedBox.setSelected(currentTemplate.isReinforcedEdgesAllowed());
+        extenuatingBox.setSelected(currentTemplate.isExtenuatingEdgesAllowed());
+        neutralBox.setSelected(currentTemplate.isUnknownEdgesAllowed());
+    }
 
     /**
      * Creates an PrintPDFAction-object and executes the action with the action history.
