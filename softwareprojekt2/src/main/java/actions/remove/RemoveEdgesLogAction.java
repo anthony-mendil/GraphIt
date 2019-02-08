@@ -8,11 +8,13 @@ import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Removes edges from the syndrom graph.
@@ -60,7 +62,11 @@ public class RemoveEdgesLogAction extends LogAction {
                 }
             }
         }else{
-
+            Set<Pair<Vertex,Vertex>> edges = ((AddRemoveEdgesParam)parameters).getEdges();
+            for(Pair<Vertex,Vertex> edge : edges){
+                Edge removeEdge = graph.findEdge(edge.getKey(),edge.getValue());
+                graph.removeEdge(removeEdge);
+            }
         }
 
         vv.repaint();
