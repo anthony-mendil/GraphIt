@@ -57,7 +57,6 @@ public class OOFio {
      */
     private String jsonFromOOF(String pOOF){
         String[] splits = pOOF.split("\0");
-        System.out.println(splits[1]);
         return splits[1];
     }
 
@@ -68,12 +67,14 @@ public class OOFio {
      */
     public void exportAsOOF(File pFile){
         GXLio gxlio=new GXLio();
-        gxlio.gxlFromInstance();
-        //System.out.println(logDao.getAllString());
-        String oof=createOOF(gxlio.gxlFromInstance(),logDao.getAllString());
+        gxlio.setExportWithRules(false);
+        String oof=createOOF(gxlio.gxlFromInstanceWithTemplate(),logDao.getAllString());
+        oof=oof.substring(1,oof.length());
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
             bufferedWriter.write(oof);
+            System.out.println("oof successfully saved");
         } catch (IOException e) {
+            System.out.println("ERROR ON SAVE");
             logger.error(e.toString());
         }
     }
@@ -91,11 +92,13 @@ public class OOFio {
             logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
-        System.out.println(jsonFromOOF(oof));
+        gxlio.setImportWithRules(false);
+        // villeict trim auf den string? Funktioniert jedenfalls noch nicht
+        //System.out.println(jsonFromOOF(oof));
 
         gxlio.gxlToInstance(gxlFromOOF(oof));
 
-        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof).trim());
+        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
 
         DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof));
     }

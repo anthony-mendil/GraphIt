@@ -8,12 +8,14 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import gui.properties.Language;
 import log_management.dao.GraphDao;
+import lombok.Setter;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Stream;
@@ -43,11 +45,13 @@ public class GXLio {
     /**
      * Specifies rather an export is just the export of a graph or a graph with editing rules.
      */
+    @Setter
     boolean exportWithRules = false;
 
     /**
      * Specifies rather an import is just the import of a graph or a graph with editing rules.
      */
+    @Setter
     boolean importWithRules = false;
 
     private static Logger logger = Logger.getLogger(GXLio.class);
@@ -57,7 +61,7 @@ public class GXLio {
      * Creates a new GXLio object.
      */
     public GXLio() {
-        ;
+
     }
 
     /**
@@ -69,16 +73,10 @@ public class GXLio {
      * @param pGXL The GXL representation that gets written into syndrom.
      */
     public void gxlToInstance(String pGXL) {
-        File tmpGXL = new File("gxl");
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tmpGXL))){
-            bufferedWriter.write(pGXL);
-        } catch (IOException e) {
-            logger.error(e.toString());
-        }
         try {
             // At first a document needs to be imported into the system.
             // Thereby it is important that the document selected by the user has a valid structure.
-            GXLDocument doc = new GXLDocument(tmpGXL);
+            GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes(StandardCharsets.UTF_8)));
             // The only gxl graph in documents that are created with or system is called "syndrom". See the {@gxlFromInstance()}-method in this class.
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
             if (gxlGraph == null) {
@@ -200,12 +198,10 @@ public class GXLio {
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
 
-        } catch (IOException e) {
-            logger.error(e.toString());
-        } catch (SAXException e) {
+        } catch (IOException | SAXException e) {
+            e.printStackTrace();
             logger.error(e.toString());
         }
-        tmpGXL.deleteOnExit();
     }
 
 
@@ -246,7 +242,7 @@ public class GXLio {
      */
     private Sphere convertGXLElementToSphere(GXLAttributedElement elem) {
         int id = Integer.parseInt(elem.getID());
-        System.out.println("id: " + id);
+        //System.out.println("id: " + id);
         String[] paintArray = getNumberArrayFromString(((GXLString) elem.getAttr("fillPaint").getValue()).getValue());
         Color paint = new Color(
                 Integer.parseInt(paintArray[0]),
@@ -265,7 +261,7 @@ public class GXLio {
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr("fontSize").getValue()).getIntValue();
         Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
-        if (importWithRules == true) {
+        if (importWithRules) {
             boolean isLockedPosition = ((GXLBool) elem.getAttr("isLockedPosition").getValue()).getBooleanValue();
             newSphere.setLockedPosition(isLockedPosition);
             boolean isLockedAnnotation = ((GXLBool) elem.getAttr("isLockedAnnotation").getValue()).getBooleanValue();
@@ -300,8 +296,8 @@ public class GXLio {
         String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinate").getValue()).getValue());
         java.awt.Point coordinates = null;
         if (coordinatesArray[0].contains(".")) {
-            System.out.println(coordinatesArray[0]);
-            System.out.println(coordinatesArray[1]);
+            //System.out.println(coordinatesArray[0]);
+            //System.out.println(coordinatesArray[1]);
             coordinates = new java.awt.Point(
                     (int) java.lang.Double.parseDouble(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
                     (int) java.lang.Double.parseDouble(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length() - 3)));
@@ -368,7 +364,7 @@ public class GXLio {
         java.awt.geom.Point2D coordinatesSource = null;
         if (!((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue().equals("no anchorpoint at the source set")) {
             coordinatesArraySource = getNumberArrayFromString(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
-          //  System.out.println(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
+            //  System.out.println(((GXLString) elem.getAttr("anchorAngle of source").getValue()).getValue());
             coordinatesSource = new java.awt.geom.Point2D.Double(
                     java.lang.Double.parseDouble(coordinatesArraySource[0]),
                     java.lang.Double.parseDouble(coordinatesArraySource[1]));
@@ -385,7 +381,7 @@ public class GXLio {
 
         boolean isVisible = ((GXLBool) elem.getAttr("isVisible").getValue()).getBooleanValue();
         Edge newEdge = new Edge(id, paint, stroke, arrowType, isVisible, hasAnchorIn, hasAnchorOut);
-       // newEdge.setHasAnchorIn(hasAnchorIn);
+        // newEdge.setHasAnchorIn(hasAnchorIn);
         javafx.util.Pair<java.awt.geom.Point2D, java.awt.geom.Point2D> endPoints = new  javafx.util.Pair<>(coordinatesSource, coordinatesTarget);
         newEdge.setAnchorPoints(endPoints);
         boolean isHighlighted = ((GXLBool) elem.getAttr("isHighlighted").getValue()).getBooleanValue();
@@ -416,7 +412,7 @@ public class GXLio {
      *
      * @return the content of the created document
      */
-     public String gxlFromInstance() {
+    public String gxlFromInstance() {
         VisualizationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> currentSpheres = theGraph.getSpheres();
@@ -542,7 +538,7 @@ public class GXLio {
             System.out.println("error");
             logger.error(e.toString());
         }
-       // System.out.println(content);
+        // System.out.println(content);
         tmpGXL.deleteOnExit();
         return content;
     }
@@ -565,7 +561,7 @@ public class GXLio {
         SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> currentSpheres = theGraph.getSpheres();
 
-        File tmpGXL = new File("tmp.gxl");
+        OutputStream gxlStream = new ByteArrayOutputStream();
 
         GXLDocument doc = new GXLDocument();
         GXLIDGenerator idGenerator = new GXLIDGenerator(doc);
@@ -692,36 +688,14 @@ public class GXLio {
             doc.getDocumentElement().add(templateNode);
         }
 
-
-
         String content = "";
         try {
-            doc.write(tmpGXL);
+            doc.write(gxlStream);
+            content=((ByteArrayOutputStream) gxlStream).toString("UTF-8");
 
-            // reading the content of the created gxl document and write its content into a String
-            try (BufferedReader reader = new BufferedReader(new FileReader(tmpGXL));) {
-                Stream<String> lines = reader.lines();
-                Object[] linesArray = lines.toArray();
-                boolean firstLine = true;
-                for (Object s : linesArray) {
-                    if(firstLine){
-                        String objectContetnt = (String) s;
-                        content = objectContetnt;
-                        firstLine = false;
-                    }else {
-                        String objectContetnt = (String) s;
-                        content = content + "\n" + objectContetnt;
-                    }
-                }
-            } catch (FileNotFoundException e) {
-                logger.error(e.toString());
-            } catch (IOException e) {
-                logger.error(e.toString());
-            }
         } catch (Exception e) {
             logger.error(e.toString());
         }
-        tmpGXL.deleteOnExit();
         return content;
     }
 
@@ -835,11 +809,11 @@ public class GXLio {
         if (word.contains("=")) {
             word = word.substring(1);
             word = word.replaceAll(",", "");
-            System.out.println("aktuelles word: " + word);
+            //System.out.println("aktuelles word: " + word);
             return word.split("=");
         }
         word = word.trim();
-        System.out.println(word);
+        //System.out.println(word);
         return word.split(",");
     }
 
@@ -867,13 +841,13 @@ public class GXLio {
 
     public void importGXL(File pFile, boolean pImportWithRules) {
         importWithRules = pImportWithRules;
-        String gxl = "";
         try (Scanner scanner = new Scanner(pFile)) {
-            gxl = scanner.useDelimiter("\\A").next();
+            String gxl = scanner.useDelimiter("\\A").next();
+            gxlToInstance(gxl);
         } catch (FileNotFoundException e) {
             logger.error(e.toString());
         }
-        gxlToInstance(gxl);
+
     }
 
 
