@@ -1487,7 +1487,7 @@ public class Controller implements ObserverSyndrom {
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
         rulesTemplateAction.action();
-        System.out.println(temp.toString());
+        System.out.println(Syndrom.getInstance().getTemplate().toString());
     }
 
     /**

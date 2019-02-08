@@ -24,6 +24,7 @@ public class RulesTemplateAction extends GraphAction {
     @Override
     public void action() {
         Syndrom.getInstance().setTemplate(template);
+        notifyObserverGraph();
     }
 
     @Override
