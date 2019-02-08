@@ -68,7 +68,7 @@ public class OOFio {
      */
     public void exportAsOOF(File pFile) {
         GXLio gxlio = new GXLio();
-        gxlio.setExportWithRules(false);
+        gxlio.setExportWithRules(true);
         String oof = createOOF(gxlio.gxlFromInstanceWithTemplate(), logDao.getAllString());
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
             bufferedWriter.write(oof);
@@ -92,7 +92,7 @@ public class OOFio {
             logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
-        gxlio.setImportWithRules(false);
+        gxlio.setImportWithRules(true);
         // villeict trim auf den string? Funktioniert jedenfalls noch nicht
         //System.out.println(jsonFromOOF(oof));
 
