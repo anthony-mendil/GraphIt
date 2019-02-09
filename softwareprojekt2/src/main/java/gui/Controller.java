@@ -29,6 +29,7 @@ import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
+import actions.other.SwitchModiAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -1340,10 +1341,10 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Creates an SwitchModiEditorAction-object for changing to the editor mode
+     * Creates an SwitchModiAction-object for changing to the editor mode
      * and executes the action with the action history.
      */
-    public void switchModiEditor() {
+    public void switchModiCreator() {
         if (analysisMode) {
             analysisMode(false);
             editMode(true);
@@ -1351,11 +1352,13 @@ public class Controller implements ObserverSyndrom {
             analysisButton.setDisable(false);
             editMode = true;
             analysisMode = false;
+            SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.TEMPLATE);
+            history.execute(switchModiAction);
         }
     }
 
     /**
-     * Creates an SwitchModiEditorAction-object for changing to the analyse mode
+     * Creates an SwitchModiAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
     public void switchModiAnalysis() {
@@ -1367,6 +1370,9 @@ public class Controller implements ObserverSyndrom {
             analysisButton.setDisable(true);
             editMode = false;
             analysisMode = true;
+            SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.ANALYSE);
+            history.execute(switchModiAction);
+
         }
     }
 
@@ -1374,8 +1380,10 @@ public class Controller implements ObserverSyndrom {
      * Creates an SwitchModeEditorAction-object for changing to the interpreter mode
      * and executes the action with action history.
      */
-    public void switchModiInterpreter() {
-        throw new UnsupportedOperationException();
+    public void switchModiEdit() {
+        //Philipps part
+        SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.EDIT);
+        history.execute(switchModiAction);
     }
 
     /**
@@ -1547,7 +1555,7 @@ public class Controller implements ObserverSyndrom {
         templateStage.setResizable(false);
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
-        templateStage.getIcons().add(new Image("/logo.png"));
+        templateStage.getIcons().add(new Image("/GraphItlogo.png"));
     }
 
     public void highlight() {
@@ -1617,6 +1625,8 @@ public class Controller implements ObserverSyndrom {
         values.setHBox(textBox);
         values.setCurrentActionText(currentActionText);
 
+        values.setMode(FunctionMode.TEMPLATE);
+
 
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
@@ -1660,7 +1670,6 @@ public class Controller implements ObserverSyndrom {
         OneTimeStackPaneListener onetime = new OneTimeStackPaneListener();
         overviewStackPane.widthProperty().addListener(onetime);
 
-        //trying direct load
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
 
@@ -1671,7 +1680,6 @@ public class Controller implements ObserverSyndrom {
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
-        System.out.println(Syndrom.getInstance().getTemplate().toString());
         templateToFields();
 
     }
@@ -2096,23 +2104,25 @@ public class Controller implements ObserverSyndrom {
 
 
         treeView.setOnMouseClicked(e -> {
-            if (e.getButton() == MouseButton.SECONDARY) {
-                Node node = e.getPickResult().getIntersectedNode();
-                if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                    TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
-                    Object val = selected.getValue();
+            if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                if (e.getButton() == MouseButton.SECONDARY) {
+                    Node node = e.getPickResult().getIntersectedNode();
+                    if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+                        TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
+                        Object val = selected.getValue();
 
-                    ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
-                    if (contextMenu != null) {
-                        treeView.setContextMenu(contextMenu);
-                        contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
+                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                        if (contextMenu != null) {
+                            treeView.setContextMenu(contextMenu);
+                            contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
+                        }
+
+                    } else {
+                        treeView.setContextMenu(null);
                     }
-
-                } else {
-                    treeView.setContextMenu(null);
+                } else if (treeView.getContextMenu() != null) {
+                    treeView.getContextMenu().hide();
                 }
-            } else if (treeView.getContextMenu() != null) {
-                treeView.getContextMenu().hide();
             }
         });
 

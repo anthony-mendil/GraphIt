@@ -1,10 +1,7 @@
 package graph.visualization.control;
 
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import gui.EdgeContextMenu;
 import gui.SphereContextMenu;
@@ -137,17 +134,17 @@ public class HelperFunctions {
     }
 
     public ContextMenu openContextMenu(Object object, double x, double y){
-        ContextMenu contextMenu = null;
-        if (object instanceof Sphere){
-            Sphere sp = (Sphere) object;
-            contextMenu = new SphereContextMenu(sp).getContextMenu();
-        } else if (object instanceof Vertex){
-            Vertex vertex = (Vertex) object;
-            contextMenu = new VertexContextMenu(vertex).getContextMenu();
-        } else if (object instanceof  Edge){
-            Edge edge = (Edge) object;
-            contextMenu = new EdgeContextMenu(edge).getContextMenu();
-        }
-        return contextMenu;
+            ContextMenu contextMenu = null;
+            if (object instanceof Sphere) {
+                Sphere sp = (Sphere) object;
+                contextMenu = new SphereContextMenu(sp).getContextMenu();
+            } else if (object instanceof Vertex) {
+                Vertex vertex = (Vertex) object;
+                contextMenu = new VertexContextMenu(vertex).getContextMenu();
+            } else if (object instanceof Edge) {
+                Edge edge = (Edge) object;
+                contextMenu = new EdgeContextMenu(edge).getContextMenu();
+            }
+            return contextMenu;
     }
 }

@@ -41,7 +41,7 @@ public class Main extends Application {
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(new Scene(borderPane));
-        primaryStage.getIcons().add(new Image("/logo.png"));
+        primaryStage.getIcons().add(new Image("/GraphItLogo.png"));
         primaryStage.show();
         primaryStage.setMaximized(true);
         controller.createTemplateWindow();

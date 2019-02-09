@@ -2,11 +2,12 @@ package actions.other;
 
 import actions.GraphAction;
 import graph.graph.FunctionMode;
+import gui.Values;
 
 /**
- * Changes the mode either to "Ersteller"/"Betrachter"/ "Auswerter".
+ * Changes the mode either to "Ersteller"/"Bearbeiter"/ "Auswerter".
  */
-public class SwitchModiEditorAction extends GraphAction {
+public class SwitchModiAction extends GraphAction {
     /**
      * The function mode to change to.
      */
@@ -18,19 +19,27 @@ public class SwitchModiEditorAction extends GraphAction {
 
     /**
      * Constructor in case the user changes the mode.
-     * @param mode The new mode.
+     * @param newMode The new mode.
      */
-    public SwitchModiEditorAction(FunctionMode mode) {
-        throw new UnsupportedOperationException();
+    public SwitchModiAction(FunctionMode newMode) {
+        mode = newMode;
+        oldMode = Values.getInstance().getMode();
+
     }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        Values.getInstance().setMode(mode);
+        System.out.println(Values.getInstance().getMode().name());
+        if (mode == FunctionMode.EDIT) {
+            notifyObserverEditMode();
+        }
+        else {
+            notifyObserverFunctionMode(mode);
+        }
     }
 
     @Override
     public void undo() {
-        return;
     }
 }

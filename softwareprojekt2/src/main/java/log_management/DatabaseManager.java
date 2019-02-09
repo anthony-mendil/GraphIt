@@ -62,8 +62,11 @@ public class DatabaseManager implements ObserverSyndrom {
      * @param log The log for the called action.
      */
     public void addEntryDatabase(Log log) {
-        updateGraph();
-        logDao.save(log);
+        System.out.println("\n\n\n\n" + mode.name() + "\n\n\n\n");
+        if (mode == FunctionMode.EDIT) {
+            updateGraph();
+            logDao.save(log);
+        }
     }
 
     public void saveOofGraph(String gxl) {
