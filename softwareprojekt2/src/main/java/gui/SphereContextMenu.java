@@ -6,6 +6,7 @@ import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
 import actions.remove.RemoveSphereLogAction;
+import graph.graph.FunctionMode;
 import graph.graph.Sphere;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -96,13 +97,13 @@ public class SphereContextMenu {
 
         boolean lockedAnnotation = sphere.isLockedAnnotation();
         boolean lockedStyle = sphere.isLockedStyle();
-        if (!lockedAnnotation){
+        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().addAll(annotation, text);
         }
-        if (!lockedStyle){
+        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().addAll(color, size);
         }
-        if (!lockedStyle && !lockedAnnotation){
+        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().add(remove);
         }
 
