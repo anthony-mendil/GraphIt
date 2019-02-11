@@ -75,7 +75,7 @@ public class MoveVerticesLogAction extends LogAction {
            vv.repaint();
            Syndrom.getInstance().getVv2().repaint();
        } else {
-           Map<Vertex,Point2D> oldVertices = ;
+           Map<Vertex,Point2D> oldVertices = ((MoveVerticesParam)parameters).getOldVertices();
            Map<Vertex,Point2D> newVertices = new HashMap<>();
            for (Vertex v : points.keySet()){
                oldVertices.put(v, points.get(v).getKey());
