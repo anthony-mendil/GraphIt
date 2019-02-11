@@ -692,9 +692,9 @@ public class Controller implements ObserverSyndrom {
     private VBox vBoxEditEdge;
 
     /**
-     * Checking if gui is in edit mode
+     * Checking if gui is in create mode
      */
-    private boolean editMode = true;
+    private boolean createMode = true;
 
     /**
      * Checking if gui is in analysis mode
@@ -1347,10 +1347,10 @@ public class Controller implements ObserverSyndrom {
     public void switchModiCreator() {
         if (analysisMode) {
             analysisMode(false);
-            editMode(true);
+            createOrEditMode(true,false);
             createButton.setDisable(true);
             analysisButton.setDisable(false);
-            editMode = true;
+            createMode = true;
             analysisMode = false;
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
             history.execute(switchModeAction);
@@ -1362,13 +1362,13 @@ public class Controller implements ObserverSyndrom {
      * and executes the action with action history.
      */
     public void switchModiAnalysis() {
-        if (editMode) {
+        if (createMode) {
             values.setGraphButtonType(GraphButtonType.NONE);
-            editMode(false);
+            createOrEditMode(false,false);
             analysisMode(true);
             createButton.setDisable(false);
             analysisButton.setDisable(true);
-            editMode = false;
+            createMode = false;
             analysisMode = true;
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
             history.execute(switchModeAction);
@@ -1381,7 +1381,7 @@ public class Controller implements ObserverSyndrom {
      * and executes the action with action history.
      */
     public void switchModiEdit() {
-        //Philipps part
+
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
         history.execute(switchModeAction);
     }
@@ -1970,7 +1970,7 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private void editMode(Boolean active) {
+    private void createOrEditMode(Boolean active, Boolean editMode) {
 
         separator0.setVisible(active);
         separator0.setManaged(active);
@@ -1993,19 +1993,21 @@ public class Controller implements ObserverSyndrom {
         vBoxEditEdge.setVisible(active);
         vBoxEditEdge.setManaged(active);
 
-        redoButton.setVisible(active);
-        redoButton.setManaged(active);
+        redoButton.setDisable(!active);
+        undoButton.setDisable(!active);
 
-        undoButton.setVisible(active);
-        undoButton.setManaged(active);
-
-        toolBarSeparator1.setVisible(active);
-        toolBarSeparator1.setManaged(active);
-
-        if (active) {
-            overViewAccordion.getPanes().add(templateTitledPane);
-        } else {
-            overViewAccordion.getPanes().remove(templateTitledPane);
+        if(editMode){
+            if(active){
+                overViewAccordion.getPanes().add(historyTitledPane);
+            }else{
+                overViewAccordion.getPanes().remove(historyTitledPane);
+            }
+        }else{
+            if (active) {
+                overViewAccordion.getPanes().add(templateTitledPane);
+            } else {
+                overViewAccordion.getPanes().remove(templateTitledPane);
+            }
         }
     }
 
@@ -2170,8 +2172,6 @@ public class Controller implements ObserverSyndrom {
         System.out.println("vv: " + syndrom.getVv());
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
-        disableEditMode(false);
-        disableAnalysisMode(false);
         zoomSlider.setValue(100);
     }
 
