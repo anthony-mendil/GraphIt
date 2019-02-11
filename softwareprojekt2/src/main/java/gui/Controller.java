@@ -225,6 +225,12 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Button analysisButton;
 
+    /**
+     * The button to change the gui layout to edit-mode
+     */
+    @FXML
+    private Button editButton;
+
     /* Template Options */
 
     /**
@@ -690,16 +696,6 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private VBox vBoxEditEdge;
-
-    /**
-     * Checking if gui is in create mode
-     */
-    private boolean createMode = true;
-
-    /**
-     * Checking if gui is in analysis mode
-     */
-    private boolean analysisMode = false;
 
     @FXML
     private SwingNode swing;
@@ -1345,16 +1341,14 @@ public class Controller implements ObserverSyndrom {
      * and executes the action with the action history.
      */
     public void switchModiCreator() {
-        if (analysisMode) {
             analysisMode(false);
+            createOrEditMode(false,true);
             createOrEditMode(true,false);
-            createButton.setDisable(true);
+            editButton.setDisable(false);
             analysisButton.setDisable(false);
-            createMode = true;
-            analysisMode = false;
+            createButton.setDisable(true);
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
             switchModeAction.action();
-        }
     }
 
     /**
@@ -1362,18 +1356,15 @@ public class Controller implements ObserverSyndrom {
      * and executes the action with action history.
      */
     public void switchModiAnalysis() {
-        if (createMode) {
             values.setGraphButtonType(GraphButtonType.NONE);
             createOrEditMode(false,false);
+            createOrEditMode(false, true);
             analysisMode(true);
             createButton.setDisable(false);
+            editButton.setDisable(false);
             analysisButton.setDisable(true);
-            createMode = false;
-            analysisMode = true;
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
             switchModeAction.action();
-
-        }
     }
 
     /**
@@ -1381,9 +1372,16 @@ public class Controller implements ObserverSyndrom {
      * and executes the action with action history.
      */
     public void switchModiEdit() {
+            values.setGraphButtonType(GraphButtonType.NONE);
+            analysisMode(false);
+            createOrEditMode(false,false);
+            createOrEditMode(true,true);
+            createButton.setDisable(false);
+            analysisButton.setDisable(false);
+            editButton.setDisable(true);
 
-        SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
-        history.execute(switchModeAction);
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
+            switchModeAction.action();
     }
 
     /**
@@ -1959,9 +1957,6 @@ public class Controller implements ObserverSyndrom {
 
         vBoxAnalysisOption.setVisible(active);
         vBoxAnalysisOption.setManaged(active);
-
-        historyTitledPane.setVisible(active);
-        historyTitledPane.setManaged(active);
 
         if (active) {
             overViewAccordion.getPanes().add(historyTitledPane);
