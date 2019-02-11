@@ -58,6 +58,7 @@ public class RemoveEdgesLogAction extends LogAction {
                 if(!e.isLockedEdgeType() && !e.isLockedStyle()){
                     graph.removeEdge(e);
                 }else{
+                    helper.setActionText("Die Kanten können nicht aufgrund der Vorlageregeln verändert werden." , true);
                     lockedEdges.add(e);
                 }
             }

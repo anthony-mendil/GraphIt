@@ -1353,7 +1353,7 @@ public class Controller implements ObserverSyndrom {
             createMode = true;
             analysisMode = false;
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
-            history.execute(switchModeAction);
+            switchModeAction.action();
         }
     }
 
@@ -1371,7 +1371,7 @@ public class Controller implements ObserverSyndrom {
             createMode = false;
             analysisMode = true;
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
-            history.execute(switchModeAction);
+            switchModeAction.action();
 
         }
     }

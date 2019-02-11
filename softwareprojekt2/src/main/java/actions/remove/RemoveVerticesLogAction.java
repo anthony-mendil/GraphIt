@@ -4,10 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import actions.add.AddVerticesLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
@@ -61,8 +58,12 @@ public class RemoveVerticesLogAction extends LogAction {
                     Point2D posVertex = vertex.getCoordinates();
                     posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
                     Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
-                    sp.getVertices().remove(vertex);
-                    params.put(vertex, sp);
+                    if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
+                        helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
+                    }else {
+                        sp.getVertices().remove(vertex);
+                        params.put(vertex, sp);
+                    }
                 }else{
                     lockedVertices.add(vertex);
                 }
