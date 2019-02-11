@@ -61,6 +61,7 @@ public class AddVerticesLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        if(!template.isLockedVertexNumber() || graph.getVertices().size() < template.getMaxVertices()){
         if(parameters == null){
             position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
             Vertex newVertex = graph.addVertex(position2D, sphere);
@@ -84,6 +85,9 @@ public class AddVerticesLogAction extends LogAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+    }else{
+            helper.setActionText("Only "+ template.getMaxVertices()+ " vertex/vertices are allowed.", true);
+        }
     }
 
     @Override

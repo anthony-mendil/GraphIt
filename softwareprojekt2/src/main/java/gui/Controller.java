@@ -1651,6 +1651,7 @@ public class Controller implements ObserverSyndrom {
         loadFontComboBox(fontSphereComboBox);
         loadFontComboBox(fontSymptomComboBox);
         loadTemplateTextFields();
+        loadTemplateCheckBox();
 
         zoomSlider.setMin(20);
         zoomSlider.setMax(200);
@@ -2557,6 +2558,35 @@ public class Controller implements ObserverSyndrom {
             } else {
                 //Not Focused
                 rulesTemplate();
+            }
+        }
+    }
+
+    private void loadTemplateCheckBox(){
+        reinforcedBox.selectedProperty().addListener(new TemplateCheckBoxListener(reinforcedBox));
+        extenuatingBox.selectedProperty().addListener(new TemplateCheckBoxListener(extenuatingBox));
+        neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox));
+    }
+
+    private class TemplateCheckBoxListener implements ChangeListener<Boolean>{
+        private CheckBox checkBox;
+
+        public TemplateCheckBoxListener(CheckBox pCheckBox){
+            checkBox = pCheckBox;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            System.out.println(checkBox.getId() + " " + newValue);
+            if(checkBox.getId() == "reinforcedBox"){
+                //System.out.println("reinforcedBox" + " " + newValue);
+                //Template.getInstance().setReinforcedEdgesAllowed(newValue);
+            }else if(checkBox.getId() == "neutralBox"){
+                //System.out.println("neutralBox" + " " + newValue);
+                //Template.getInstance().setUnknownEdgesAllowed(newValue);
+            }else if(checkBox.getId() == "extenuatingBox"){
+                //System.out.println("extenuatingBox" + newValue);
+                //Template.getInstance().setExtenuatingEdgesAllowed(newValue);
             }
         }
     }

@@ -48,6 +48,7 @@ public class AddEdgesLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        if(!template.isLockedEdgesNumber() || graph.getEdges().size() < template.getMaxVertices()){
         if(parameters == null) {
             graph.addEdge(edge.getKey(),edge.getValue());
             createParameter(edge);
@@ -57,11 +58,15 @@ public class AddEdgesLogAction extends LogAction {
             }
         }
         vv.repaint();
-        syndrom.getInstance().getVv2().repaint();
+        syndrom.getVv2().repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+    }else{
+            helper.setActionText("Only " + template.getMaxEdges() + " edge(s) are allowed in the graph.", true);
+        }
+
     }
 
     /**

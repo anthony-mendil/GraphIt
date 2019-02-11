@@ -8,6 +8,35 @@ import lombok.Data;
 @Data
 public class Template {
 
+    private Template() {
+
+    }
+    /**
+     * Instance-object of template.
+     */
+    private static Template instance;
+    /**
+     * Returning the instance Singleton-template.
+     */
+    public static Template getInstance(){
+        if(instance == null) {
+            instance = new Template();
+        }
+        return instance;
+    }
+
+    /**
+     * Indicator, whether the number of spheres is locked.
+     */
+    private boolean lockedSphereNumber = false;
+    /**
+     * Indicator, whether the number of vertices is locked.
+     */
+    private boolean lockedVertexNumber = false;
+    /**
+     * Indicator, whether the number of Edges is locked.
+     */
+    private boolean lockedEdgesNumber = false;
     //Graphelement options:
     /**
      * The maximum number of spheres allowed to exist in the graph. This is defined in the template.

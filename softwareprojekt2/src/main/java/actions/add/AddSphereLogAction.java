@@ -43,20 +43,24 @@ public class AddSphereLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if(parameters == null) {
-            graph.addSphere(point2D);
-            createParameter(graph.getSpheres().get(graph.getSpheres().size() - 1));
+        if(!template.isLockedSphereNumber() || graph.getSpheres().size() < template.getMaxSpheres()) {
+            if (parameters == null) {
+                graph.addSphere(point2D);
+                createParameter(graph.getSpheres().get(graph.getSpheres().size() - 1));
+            } else {
+                graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
+            }
+            vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
+
+            DatabaseManager databaseManager = DatabaseManager.getInstance();
+            databaseManager.addEntryDatabase(createLog());
+
+            //Action.attach(databaseManager);
+            notifyObserverGraph();
         }else{
-            graph.getSpheres().add(((AddRemoveSphereParam)parameters).getSphere());
+            helper.setActionText("Only "+ Template.getInstance().getMaxSpheres() + " sphere(s) are allowed in the graph.", true);
         }
-        vv.repaint();
-        Syndrom.getInstance().getVv2().repaint();
-
-        DatabaseManager databaseManager = DatabaseManager.getInstance();
-        databaseManager.addEntryDatabase(createLog());
-
-        //Action.attach(databaseManager);
-        notifyObserverGraph();
     }
 
     @Override
