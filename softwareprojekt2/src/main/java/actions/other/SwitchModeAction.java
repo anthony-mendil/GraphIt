@@ -7,7 +7,7 @@ import gui.Values;
 /**
  * Changes the mode either to "Ersteller"/"Bearbeiter"/ "Auswerter".
  */
-public class SwitchModiAction extends GraphAction {
+public class SwitchModeAction extends GraphAction {
     /**
      * The function mode to change to.
      */
@@ -21,7 +21,7 @@ public class SwitchModiAction extends GraphAction {
      * Constructor in case the user changes the mode.
      * @param newMode The new mode.
      */
-    public SwitchModiAction(FunctionMode newMode) {
+    public SwitchModeAction(FunctionMode newMode) {
         mode = newMode;
         oldMode = Values.getInstance().getMode();
 
@@ -41,5 +41,6 @@ public class SwitchModiAction extends GraphAction {
 
     @Override
     public void undo() {
+
     }
 }

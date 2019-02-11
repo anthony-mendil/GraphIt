@@ -29,7 +29,7 @@ import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
-import actions.other.SwitchModiAction;
+import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -1341,7 +1341,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Creates an SwitchModiAction-object for changing to the editor mode
+     * Creates an SwitchModeAction-object for changing to the editor mode
      * and executes the action with the action history.
      */
     public void switchModiCreator() {
@@ -1352,13 +1352,13 @@ public class Controller implements ObserverSyndrom {
             analysisButton.setDisable(false);
             editMode = true;
             analysisMode = false;
-            SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.TEMPLATE);
-            history.execute(switchModiAction);
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
+            history.execute(switchModeAction);
         }
     }
 
     /**
-     * Creates an SwitchModiAction-object for changing to the analyse mode
+     * Creates an SwitchModeAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
     public void switchModiAnalysis() {
@@ -1370,8 +1370,8 @@ public class Controller implements ObserverSyndrom {
             analysisButton.setDisable(true);
             editMode = false;
             analysisMode = true;
-            SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.ANALYSE);
-            history.execute(switchModiAction);
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
+            history.execute(switchModeAction);
 
         }
     }
@@ -1382,8 +1382,8 @@ public class Controller implements ObserverSyndrom {
      */
     public void switchModiEdit() {
         //Philipps part
-        SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.EDIT);
-        history.execute(switchModiAction);
+        SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
+        history.execute(switchModeAction);
     }
 
     /**

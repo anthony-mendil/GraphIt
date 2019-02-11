@@ -7,10 +7,7 @@ import actions.move.MoveVerticesLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import gui.GraphButtonType;
@@ -86,11 +83,13 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
         if (SwingUtilities.isRightMouseButton(e)) {
             if (vertex != null) {
-                PickedState<Vertex> vertices = vv.getPickedVertexState();
-                vertices.clear();
-                vertices.pick(vertex, true);
-                contextMenu = new VertexContextMenu(vertex).getContextMenu();
-                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                    PickedState<Vertex> vertices = vv.getPickedVertexState();
+                    vertices.clear();
+                    vertices.pick(vertex, true);
+                    contextMenu = new VertexContextMenu(vertex).getContextMenu();
+                    helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                }
             }
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
@@ -120,17 +119,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 vertexPickedState.pick(vert, true);
             }
             if (SwingUtilities.isRightMouseButton(e) && vert != null) {
-                Object[] pickedArray = vertexPickedState.getPicked().toArray();
-                points = new LinkedHashMap<>();
-                for (Object aPickedArray : pickedArray) {
-                    Vertex v = (Vertex) aPickedArray;
-                    Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double(v
-                            .getCoordinates().getX(), v.getCoordinates().getY()));
-                    Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
-                    points.put(v, new Pair<>(v.getCoordinates(), sp));
+                if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                    Object[] pickedArray = vertexPickedState.getPicked().toArray();
+                    points = new LinkedHashMap<>();
+                    for (Object aPickedArray : pickedArray) {
+                        Vertex v = (Vertex) aPickedArray;
+                        Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(new Point2D.Double(v
+                                .getCoordinates().getX(), v.getCoordinates().getY()));
+                        Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
+                        points.put(v, new Pair<>(v.getCoordinates(), sp));
+                    }
+                    vv.repaint();
+                    Syndrom.getInstance().getVv2().repaint();
                 }
-                vv.repaint();
-                Syndrom.getInstance().getVv2().repaint();
             } else if (e.getModifiers() == InputEvent.BUTTON1_MASK && vert != null) {
                 source = vert;
             }
