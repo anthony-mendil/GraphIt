@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
@@ -51,7 +52,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
         if(parameters == null) {
             List<Vertex> lockedVertices = new LinkedList<>();
             for (Vertex v : pickedState.getPicked()) {
-                if(!v.isLockedAnnotation()) {
+                if(!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     Map<String, String> annotation = v.getAnnotation();
                     createParameter(v, v.getAnnotation().get(Language.GERMAN.name()), text);
                     annotation.put(Language.GERMAN.name(), text);

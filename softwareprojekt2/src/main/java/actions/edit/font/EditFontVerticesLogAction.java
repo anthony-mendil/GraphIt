@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
@@ -50,7 +51,7 @@ public class EditFontVerticesLogAction extends LogAction {
             Map<Vertex,String> oldVertices = new HashMap<>();
             Map<Vertex,String> newVertices = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                if(!vertex.isLockedAnnotation()) {
+                if(!vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldVertices.put(vertex, vertex.getFont());
                     vertex.setFont(font);
                     newVertices.put(vertex, font);

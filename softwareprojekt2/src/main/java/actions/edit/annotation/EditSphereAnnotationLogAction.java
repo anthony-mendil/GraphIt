@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
@@ -52,7 +53,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
         if(parameters == null) {
             Set<Sphere> lockedSpheres = new HashSet<>();
             for (Sphere sp : pickedState.getPicked()) {
-                if(!sp.isLockedAnnotation()) {
+                if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     createParameter(sp, sp.getAnnotation().get(Language.GERMAN.name()), text);
                     Map<String, String> annotation = sp.getAnnotation();
                     if (annotation.get(Language.GERMAN.name()) != null) {

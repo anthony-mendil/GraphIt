@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
@@ -51,7 +52,7 @@ public class EditSphereColorLogAction extends LogAction {
     if(parameters == null) {
         Sphere lockedSphere = null;
         for (Sphere sp : pickedState.getPicked()) {
-            if(!sp.isLockedStyle()) {
+            if(!sp.isLockedStyle()|| values.getMode() == FunctionMode.TEMPLATE) {
                 createParameter(sp, sp.getColor(), color);
                 sp.setColor(color);
             }else{

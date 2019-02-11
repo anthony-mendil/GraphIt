@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
@@ -52,7 +53,7 @@ public class EditEdgesColorLogAction extends LogAction {
             Map<Edge,Color> oldEdges = new HashMap<>();
             Map<Edge,Color> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                if (!e.isLockedStyle()) {
+                if (!e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldEdges.put(e, e.getColor());
                     e.setColor(color);
                     newEdges.put(e, color);

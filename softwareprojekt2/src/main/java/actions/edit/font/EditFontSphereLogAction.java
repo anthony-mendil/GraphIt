@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
@@ -45,7 +46,7 @@ public class EditFontSphereLogAction extends LogAction {
         if(parameters == null) {
             Sphere sphere = null;
             for (Sphere sp : pickedState.getPicked()) {
-                if(!sp.isLockedAnnotation()) {
+                if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     createParameter(sp, sp.getFont(), font);
                     sp.setFont(font);
                 }else{

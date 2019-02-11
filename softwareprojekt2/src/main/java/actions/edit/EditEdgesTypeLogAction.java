@@ -5,6 +5,7 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
@@ -54,8 +55,8 @@ public class EditEdgesTypeLogAction extends LogAction {
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
             Map<Edge,EdgeArrowType> oldEdges = new HashMap<>();
             Map<Edge,EdgeArrowType> newEdges = new HashMap<>();
-            for (Edge e : pickedState.getPicked()) {
-                if(!e.isLockedEdgeType()) {
+            for (Edge e : pickedState.getPicked() ) {
+                if(!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldEdges.put(e, e.getArrowType());
                     e.setArrowType(type);
                     newEdges.put(e, type);

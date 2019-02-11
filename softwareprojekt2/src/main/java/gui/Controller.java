@@ -1358,7 +1358,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Creates an SwitchModiAction-object for changing to the analyse mode
+     * Creates an SwitchModiAction-object for changing tof the analyse mode
      * and executes the action with action history.
      */
     public void switchModiAnalysis() {
