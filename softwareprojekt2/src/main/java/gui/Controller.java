@@ -29,7 +29,7 @@ import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
-import actions.other.SwitchModiAction;
+import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -214,10 +214,10 @@ public class Controller implements ObserverSyndrom {
     private Separator toolBarSeparator1;
 
     /**
-     * The button to change the gui layout to edit-mode
+     * The button to change the gui layout to create-mode
      */
     @FXML
-    private Button editButton;
+    private Button createButton;
 
     /**
      * The button to change the gui layout to analysis-mode
@@ -1311,7 +1311,7 @@ public class Controller implements ObserverSyndrom {
         }
         reinforcedBox.setSelected(currentTemplate.isReinforcedEdgesAllowed());
         extenuatingBox.setSelected(currentTemplate.isExtenuatingEdgesAllowed());
-        neutralBox.setSelected(currentTemplate.isUnknownEdgesAllowed());
+        neutralBox.setSelected(currentTemplate.isNeutralEdgesAllowed());
     }
 
     /**
@@ -1341,24 +1341,24 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Creates an SwitchModiAction-object for changing to the editor mode
+     * Creates an SwitchModeAction-object for changing to the editor mode
      * and executes the action with the action history.
      */
     public void switchModiCreator() {
         if (analysisMode) {
             analysisMode(false);
             editMode(true);
-            editButton.setDisable(true);
+            createButton.setDisable(true);
             analysisButton.setDisable(false);
             editMode = true;
             analysisMode = false;
-            SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.TEMPLATE);
-            history.execute(switchModiAction);
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
+            history.execute(switchModeAction);
         }
     }
 
     /**
-     * Creates an SwitchModiAction-object for changing tof the analyse mode
+     * Creates an SwitchModeAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
     public void switchModiAnalysis() {
@@ -1366,12 +1366,12 @@ public class Controller implements ObserverSyndrom {
             values.setGraphButtonType(GraphButtonType.NONE);
             editMode(false);
             analysisMode(true);
-            editButton.setDisable(false);
+            createButton.setDisable(false);
             analysisButton.setDisable(true);
             editMode = false;
             analysisMode = true;
-            SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.ANALYSE);
-            history.execute(switchModiAction);
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
+            history.execute(switchModeAction);
 
         }
     }
@@ -1382,8 +1382,8 @@ public class Controller implements ObserverSyndrom {
      */
     public void switchModiEdit() {
         //Philipps part
-        SwitchModiAction switchModiAction = new SwitchModiAction(FunctionMode.EDIT);
-        history.execute(switchModiAction);
+        SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
+        history.execute(switchModeAction);
     }
 
     /**
@@ -1632,7 +1632,7 @@ public class Controller implements ObserverSyndrom {
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
         analysisMode(false);
-        editButton.setDisable(true);
+        createButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         overViewAccordion.setExpandedPane(overViewTitledPane);
 
@@ -1651,6 +1651,7 @@ public class Controller implements ObserverSyndrom {
         loadFontComboBox(fontSphereComboBox);
         loadFontComboBox(fontSymptomComboBox);
         loadTemplateTextFields();
+        loadTemplateCheckBox();
 
         zoomSlider.setMin(20);
         zoomSlider.setMax(200);
@@ -2557,6 +2558,34 @@ public class Controller implements ObserverSyndrom {
             } else {
                 //Not Focused
                 rulesTemplate();
+            }
+        }
+    }
+
+    private void loadTemplateCheckBox(){
+        reinforcedBox.selectedProperty().addListener(new TemplateCheckBoxListener(reinforcedBox));
+        extenuatingBox.selectedProperty().addListener(new TemplateCheckBoxListener(extenuatingBox));
+        neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox));
+    }
+
+    private class TemplateCheckBoxListener implements ChangeListener<Boolean>{
+        private CheckBox checkBox;
+
+        public TemplateCheckBoxListener(CheckBox pCheckBox){
+            checkBox = pCheckBox;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if(checkBox.getId() == "reinforcedBox"){
+                //System.out.println("reinforcedBox" + " " + newValue);
+                //Template.getInstance().setReinforcedEdgesAllowed(newValue);
+            }else if(checkBox.getId() == "neutralBox"){
+                //System.out.println("neutralBox" + " " + newValue);
+                //Template.getInstance().setNeutralEdgesAllowed(newValue);
+            }else if(checkBox.getId() == "extenuatingBox"){
+                //System.out.println("extenuatingBox" + newValue);
+                //Template.getInstance().setExtenuatingEdgesAllowed(newValue);
             }
         }
     }

@@ -206,7 +206,7 @@ public class GXLio {
         boolean reinforcedEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("reinforcedEdgesAllowed").getValue()).getBooleanValue();
         template.setReinforcedEdgesAllowed(reinforcedEdgesAllowed);
         boolean unknownEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("unknownEdgesAllowed").getValue()).getBooleanValue();
-        template.setUnknownEdgesAllowed(unknownEdgesAllowed);
+        template.setNeutralEdgesAllowed(unknownEdgesAllowed);
         boolean extenuatingEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("extenuatingEdgesAllowed").getValue()).getBooleanValue();
         template.setExtenuatingEdgesAllowed(extenuatingEdgesAllowed);
     }
@@ -607,7 +607,7 @@ public class GXLio {
         templateNode.setAttr("maxVertices", new GXLInt(template.getMaxVertices()));
         templateNode.setAttr("maxEdges", new GXLInt(template.getMaxEdges()));
         templateNode.setAttr("reinforcedEdgesAllowed", new GXLBool(template.isReinforcedEdgesAllowed()));
-        templateNode.setAttr("unknownEdgesAllowed", new GXLBool(template.isUnknownEdgesAllowed()));
+        templateNode.setAttr("unknownEdgesAllowed", new GXLBool(template.isNeutralEdgesAllowed()));
         templateNode.setAttr("extenuatingEdgesAllowed", new GXLBool(template.isExtenuatingEdgesAllowed()));
         return templateNode;
     }

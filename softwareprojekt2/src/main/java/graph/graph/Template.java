@@ -67,7 +67,7 @@ public class Template {
     /**
      *
      */
-    private boolean unknownEdgesAllowed;
+    private boolean neutralEdgesAllowed;
 
 
     /**
@@ -79,7 +79,7 @@ public class Template {
         maxEdges=pMaxEdges;
         reinforcedEdgesAllowed=pReinforcedEdgesAllowed;
         extenuatingEdgesAllowed=pExtenuatingEdgesAllowed;
-        unknownEdgesAllowed=pUnknownEdgesAllowed;
+        neutralEdgesAllowed=pUnknownEdgesAllowed;
     }
     @Override
     public String toString(){
@@ -100,7 +100,7 @@ public class Template {
         }else {
             stringBuilder.append(", extenuating edges not allowed");
         }
-        if(unknownEdgesAllowed){
+        if(neutralEdgesAllowed){
             stringBuilder.append(", unknown edges allowed");
         }else {
             stringBuilder.append(", unknown edges not allowed");
