@@ -214,10 +214,10 @@ public class Controller implements ObserverSyndrom {
     private Separator toolBarSeparator1;
 
     /**
-     * The button to change the gui layout to edit-mode
+     * The button to change the gui layout to create-mode
      */
     @FXML
-    private Button editButton;
+    private Button createButton;
 
     /**
      * The button to change the gui layout to analysis-mode
@@ -1311,7 +1311,7 @@ public class Controller implements ObserverSyndrom {
         }
         reinforcedBox.setSelected(currentTemplate.isReinforcedEdgesAllowed());
         extenuatingBox.setSelected(currentTemplate.isExtenuatingEdgesAllowed());
-        neutralBox.setSelected(currentTemplate.isUnknownEdgesAllowed());
+        neutralBox.setSelected(currentTemplate.isNeutralEdgesAllowed());
     }
 
     /**
@@ -1348,7 +1348,7 @@ public class Controller implements ObserverSyndrom {
         if (analysisMode) {
             analysisMode(false);
             editMode(true);
-            editButton.setDisable(true);
+            createButton.setDisable(true);
             analysisButton.setDisable(false);
             editMode = true;
             analysisMode = false;
@@ -1366,7 +1366,7 @@ public class Controller implements ObserverSyndrom {
             values.setGraphButtonType(GraphButtonType.NONE);
             editMode(false);
             analysisMode(true);
-            editButton.setDisable(false);
+            createButton.setDisable(false);
             analysisButton.setDisable(true);
             editMode = false;
             analysisMode = true;
@@ -1632,7 +1632,7 @@ public class Controller implements ObserverSyndrom {
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
         analysisMode(false);
-        editButton.setDisable(true);
+        createButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         overViewAccordion.setExpandedPane(overViewTitledPane);
 
@@ -2577,13 +2577,12 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-            System.out.println(checkBox.getId() + " " + newValue);
             if(checkBox.getId() == "reinforcedBox"){
                 //System.out.println("reinforcedBox" + " " + newValue);
                 //Template.getInstance().setReinforcedEdgesAllowed(newValue);
             }else if(checkBox.getId() == "neutralBox"){
                 //System.out.println("neutralBox" + " " + newValue);
-                //Template.getInstance().setUnknownEdgesAllowed(newValue);
+                //Template.getInstance().setNeutralEdgesAllowed(newValue);
             }else if(checkBox.getId() == "extenuatingBox"){
                 //System.out.println("extenuatingBox" + newValue);
                 //Template.getInstance().setExtenuatingEdgesAllowed(newValue);
