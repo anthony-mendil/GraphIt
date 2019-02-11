@@ -1,6 +1,8 @@
 package actions;
 
 import com.google.inject.Singleton;
+import graph.graph.FunctionMode;
+import gui.Values;
 
 /**
  * A bounded history of actions.

@@ -71,11 +71,13 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             }
         } else {
             if (vertex == null && sp != null) {
-                contextMenu = new SphereContextMenu(sp).getContextMenu();
-                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
-                PickedState<Sphere> spheres = vv.getPickedSphereState();
-                spheres.clear();
-                spheres.pick(sp, true);
+                if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                    contextMenu = new SphereContextMenu(sp).getContextMenu();
+                    helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                    PickedState<Sphere> spheres = vv.getPickedSphereState();
+                    spheres.clear();
+                    spheres.pick(sp, true);
+                }
             }
         }
         vv.repaint();
@@ -125,11 +127,13 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
         if (sp != null && vert == null && edge == null) {
            if (SwingUtilities.isRightMouseButton(e)) {
-                spherePickedCoord = sp.getCoordinates();
-                points = new LinkedHashMap<>();
-                for (Vertex v : sp.getVertices()) {
-                    points.put(v.getId(), v.getCoordinates());
-                }
+               if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                   spherePickedCoord = sp.getCoordinates();
+                   points = new LinkedHashMap<>();
+                   for (Vertex v : sp.getVertices()) {
+                       points.put(v.getId(), v.getCoordinates());
+                   }
+               }
             }
             if (!pickedSphereState.isPicked(sp)) {
                 pickedSphereState.clear();
