@@ -3,10 +3,7 @@ package actions.add;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveVerticesLogAction;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
@@ -59,6 +56,10 @@ public class AddVerticesLogAction extends LogAction {
 
     @Override
     public void action() {
+        if(sphere.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
+            helper.setActionText("The vertices of this sphere is locked.",true);
+            return;
+        }
         SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(!template.isLockedVertexNumber() || graph.getVertices().size() < template.getMaxVertices()){

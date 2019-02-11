@@ -59,7 +59,7 @@ public class AddSphereLogAction extends LogAction {
             //Action.attach(databaseManager);
             notifyObserverGraph();
         }else{
-            helper.setActionText("Only "+ Template.getInstance().getMaxSpheres() + " sphere(s) are allowed in the graph.", true);
+            helper.setActionText("Nur "+ Template.getInstance().getMaxSpheres() + " Sphäre(n) sind im Graph erlaubt.", true);
         }
     }
 

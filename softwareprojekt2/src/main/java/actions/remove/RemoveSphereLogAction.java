@@ -49,6 +49,7 @@ public class RemoveSphereLogAction extends LogAction {
                     graph.removeVertex(v);
                 }
                 }else{
+                    helper.setActionText("Die Sphäre kann aufgrund der Vorlagereglen nicht verändert werden.", true);
                     lockedSphere = sp;
                 }
                 graph.removeSphere(sp);
