@@ -67,12 +67,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null && edge == null) {
-                    AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
-                    history.execute(addVerticesLogAction);
-                    Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
-                    PickedState<Vertex> pickedState = vv.getPickedVertexState();
-                    pickedState.clear();
-                    pickedState.pick(newVertex, true);
+                    if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
+                        helper.setActionText("Es dürfen aufgrund der Vorlageregeln keine Symptome hinzugefügt werden.", true);
+                    }
+                    if(sp.getLockedMaxAmountVertices() == "" || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE)  {
+                        AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
+                        history.execute(addVerticesLogAction);
+                        Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+                        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+                        pickedState.clear();
+                        pickedState.pick(newVertex, true);
+                    }else{
+                        helper.setActionText("Es können aufgrund der Vorlageregeln keine weitere Symptome in die Sphäre gesetzt werden", true);
+                    }
                 } else {
                     helper.setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
                 }

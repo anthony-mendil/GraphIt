@@ -8,22 +8,6 @@ import lombok.Data;
 @Data
 public class Template {
 
-    private Template() {
-
-    }
-    /**
-     * Instance-object of template.
-     */
-    private static Template instance;
-    /**
-     * Returning the instance Singleton-template.
-     */
-    public static Template getInstance(){
-        if(instance == null) {
-            instance = new Template();
-        }
-        return instance;
-    }
 
     /**
      * Indicator, whether the number of spheres is locked.

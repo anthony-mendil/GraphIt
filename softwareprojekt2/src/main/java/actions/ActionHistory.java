@@ -82,4 +82,12 @@ public class ActionHistory {
             System.err.println("Can't redo the latest action.");
         }
     }
+
+    /**
+     * Removes the last action from the ActionHistory.
+     */
+    public void removeLastEntry(){
+        actions[current] = null;
+        current--;
+    }
 }

@@ -26,7 +26,7 @@ public abstract class GraphAction extends Action {
     /**
      * The template returning information about the existing rules.
      */
-    protected Template template = Template.getInstance();
+    protected Template template = Syndrom.getInstance().getTemplate();
     /**
      * Sets layout, graph, pick support from the current syndrom presentation.
      */
