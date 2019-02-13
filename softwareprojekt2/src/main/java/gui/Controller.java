@@ -1469,6 +1469,11 @@ public class Controller implements ObserverSyndrom {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         for (Sphere sp : pickedState.getPicked()) {
+            if(sp.verticesLocked()){
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("Eine der Symptome kann aufgrund der Vorlageregeln nicht gelöscht werden.", true);
+                return;
+            }
             if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
                 values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
                 RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();

@@ -23,9 +23,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
@@ -67,6 +66,11 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null && edge == null) {
+                    if(values.getMode() != FunctionMode.TEMPLATE && Syndrom.getInstance().getTemplate().getMaxVertices() != 0 &&
+                            Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size() >= Syndrom.getInstance().getTemplate().getMaxVertices()){
+                        helper.setActionText("Es dürfen aufgrund der Vorlageregeln nur maximal " + Syndrom.getInstance().getTemplate().getMaxVertices() + " Symptome gesetzt weren.", true);
+                        return;
+                    }
                     if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
                         helper.setActionText("Es dürfen aufgrund der Vorlageregeln keine Symptome hinzugefügt werden.", true);
                     }
@@ -128,6 +132,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             if (SwingUtilities.isRightMouseButton(e) && vert != null) {
                 if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
                     Object[] pickedArray = vertexPickedState.getPicked().toArray();
+                    List<Object> pickedList = Arrays.asList(pickedArray);
                     points = new LinkedHashMap<>();
                     for (Object aPickedArray : pickedArray) {
                         Vertex v = (Vertex) aPickedArray;

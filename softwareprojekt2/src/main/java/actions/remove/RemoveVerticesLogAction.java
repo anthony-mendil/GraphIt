@@ -72,7 +72,6 @@ public class RemoveVerticesLogAction extends LogAction {
             if(lockedVertices.size() == pickedState.getPicked().size()){
                 helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
                 ActionHistory.getInstance().removeLastEntry();
-                System.out.println("testitest");
                 return;
             }
             createParameter(params);
