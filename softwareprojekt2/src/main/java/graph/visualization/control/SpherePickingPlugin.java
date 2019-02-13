@@ -102,8 +102,14 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             }
         }
         if (addSphere) {
-            AddSphereLogAction addSphereLogAction = new AddSphereLogAction(p);
-            history.execute(addSphereLogAction);
+            SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+            if(graph.getSpheres().size() < Syndrom.getInstance().getTemplate().getMaxSpheres() || values.getMode() == FunctionMode.TEMPLATE) {
+                AddSphereLogAction addSphereLogAction = new AddSphereLogAction(p);
+                history.execute(addSphereLogAction);
+            }else{
+                helper.setActionText("Nur "+ Syndrom.getInstance().getTemplate().getMaxSpheres() + " Sphäre(n) sind im Graph erlaubt.", true);
+            }
         } else {
             helper.setActionText("Hinzufügen einer Sphäre hier nicht möglich!", true);
         }
@@ -127,7 +133,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
         if (sp != null && vert == null && edge == null) {
            if (SwingUtilities.isRightMouseButton(e)) {
-               if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+               if(sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT){
+                    helper.setActionText("Diese Sphäre kann aufgrund der Vorlageregeln nicht bewegt werden", true);
+               }
+               else if(values.getMode() != FunctionMode.ANALYSE) {
                    spherePickedCoord = sp.getCoordinates();
                    points = new LinkedHashMap<>();
                    for (Vertex v : sp.getVertices()) {

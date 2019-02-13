@@ -132,6 +132,15 @@ public class Sphere {
         vertices = new LinkedList<>();
     }
 
+    public boolean verticesLocked(){
+        for(Vertex vertex : vertices){
+            if(vertex.isLockedPosition() || vertex.isLockedAnnotation() || vertex.isLockedStyle()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Sphere) {

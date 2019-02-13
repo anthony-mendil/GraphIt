@@ -1,5 +1,6 @@
 package actions.remove;
 
+import actions.ActionHistory;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.add.AddVerticesLogAction;
@@ -54,19 +55,24 @@ public class RemoveVerticesLogAction extends LogAction {
             Map<Vertex,Sphere> params = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
                 if(!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) {
-                    graph.removeVertex(vertex);
-                    Point2D posVertex = vertex.getCoordinates();
+                   Point2D posVertex = vertex.getCoordinates();
                     posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
                     Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
                     if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
-                        helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
+                        lockedVertices.add(vertex);
                     }else {
+                        graph.removeVertex(vertex);
                         sp.getVertices().remove(vertex);
                         params.put(vertex, sp);
                     }
                 }else{
                     lockedVertices.add(vertex);
                 }
+            }
+            if(lockedVertices.size() == pickedState.getPicked().size()){
+                helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
+                ActionHistory.getInstance().removeLastEntry();
+                return;
             }
             createParameter(params);
         } else{
@@ -90,6 +96,7 @@ public class RemoveVerticesLogAction extends LogAction {
     @Override
     public void undo() {
         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction((AddRemoveVerticesParam)parameters);
+        System.out.println(((AddRemoveVerticesParam)parameters).getVertices().entrySet().size());
         addVerticesLogAction.action();
     }
 

@@ -33,9 +33,11 @@ import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
+import graph.visualization.picking.SyndromPickSupport;
 import gui.properties.Language;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -81,6 +83,7 @@ import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -1463,9 +1466,23 @@ public class Controller implements ObserverSyndrom {
      * Creates an RemoveSphereLogAction-object and executes the action with the action history.
      */
     public void removeSphere() {
-        values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
-        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        history.execute(removeSphereLogAction);
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState = vv.getPickedSphereState();
+        for (Sphere sp : pickedState.getPicked()) {
+            if(sp.verticesLocked()){
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("Eine der Symptome kann aufgrund der Vorlageregeln nicht gelöscht werden.", true);
+                return;
+            }
+            if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
+                values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
+                RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
+                history.execute(removeSphereLogAction);
+            }else{
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("Die Sphäre kann aufgrund der Vorlagereglen nicht gelöscht werden.", true);
+            }
+        }
     }
 
     /**
@@ -1473,7 +1490,8 @@ public class Controller implements ObserverSyndrom {
      */
     public void removeVertices() {
         RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
-        removeVerticesLogAction.action();
+        history.execute(removeVerticesLogAction);
+
     }
 
     /* ----------------TEMPLATE---------------------- */

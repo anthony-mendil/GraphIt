@@ -43,8 +43,7 @@ public class AddSphereLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if(!template.isLockedSphereNumber() || graph.getSpheres().size() < template.getMaxSpheres()) {
-            if (parameters == null) {
+             if (parameters == null) {
                 graph.addSphere(point2D);
                 createParameter(graph.getSpheres().get(graph.getSpheres().size() - 1));
             } else {
@@ -58,9 +57,6 @@ public class AddSphereLogAction extends LogAction {
 
             //Action.attach(databaseManager);
             notifyObserverGraph();
-        }else{
-            helper.setActionText("Nur "+ Template.getInstance().getMaxSpheres() + " Sphäre(n) sind im Graph erlaubt.", true);
-        }
     }
 
     @Override

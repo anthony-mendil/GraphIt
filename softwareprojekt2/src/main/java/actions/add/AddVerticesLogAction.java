@@ -56,14 +56,14 @@ public class AddVerticesLogAction extends LogAction {
 
     @Override
     public void action() {
-        if(sphere.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
-            helper.setActionText("The vertices of this sphere is locked.",true);
-            return;
-        }
         SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(!template.isLockedVertexNumber() || graph.getVertices().size() < template.getMaxVertices()){
         if(parameters == null){
+            if(sphere.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
+                helper.setActionText("The vertices of this sphere is locked.",true);
+                return;
+            }
             position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
             Vertex newVertex = graph.addVertex(position2D, sphere);
             createParameter(newVertex, sphere);
