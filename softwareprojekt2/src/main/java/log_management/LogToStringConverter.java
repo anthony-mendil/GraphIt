@@ -2,8 +2,11 @@ package log_management;
 
 import actions.LogEntryName;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import gui.Values;
 import gui.properties.Language;
+import log_management.json_deserializers.Point2DDeserializer;
+import log_management.json_serializers.Point2DSerializer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
 import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
@@ -18,6 +21,7 @@ import log_management.parameters.move.MoveSphereParam;
 import log_management.parameters.move.MoveVerticesParam;
 import log_management.tables.Log;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
 
 public class LogToStringConverter {
@@ -192,73 +196,78 @@ public class LogToStringConverter {
     }
 
     private static String parametersPrint(String parameters, LogEntryName logEntryName) throws IOException {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
+        Gson gson = gsonBuilder.create();
+
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
-                return new Gson().fromJson(parameters, ActivateDeactivateHighlightParam.class).prettyPrint();
+                return gson.fromJson(parameters, ActivateDeactivateHighlightParam.class).prettyPrint();
             case ACTIVATE_FADEOUT:
-                return new Gson().fromJson(parameters, ActivateDeactivateFadeoutParam.class).prettyPrint();
+                return gson.fromJson(parameters, ActivateDeactivateFadeoutParam.class).prettyPrint();
             case ADD_ANCHOR_POINTS:
-                return new Gson().fromJson(parameters, AddRemoveAnchorPointsParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveAnchorPointsParam.class).prettyPrint();
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return new Gson().fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
+                return gson.fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
             case ADD_EDGES:
-                return new Gson().fromJson(parameters, AddRemoveEdgesParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveEdgesParam.class).prettyPrint();
             case ADD_SPHERE:
-                return new Gson().fromJson(parameters, AddRemoveSphereParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveSphereParam.class).prettyPrint();
             case EDIT_SPHERES_LAYOUT:
-                return new Gson().fromJson(parameters, LayoutSpheresParam.class).prettyPrint();
+                return gson.fromJson(parameters, LayoutSpheresParam.class).prettyPrint();
             case MOVE_SPHERE:
-                return new Gson().fromJson(parameters, MoveSphereParam.class).prettyPrint();
+                return gson.fromJson(parameters, MoveSphereParam.class).prettyPrint();
             case ADD_VERTICES:
-                return new Gson().fromJson(parameters, AddRemoveVerticesParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveVerticesParam.class).prettyPrint();
             case REMOVE_EDGES:
-                return new Gson().fromJson(parameters, AddRemoveEdgesParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveEdgesParam.class).prettyPrint();
             case MOVE_VERTICES:
-                return new Gson().fromJson(parameters, MoveVerticesParam.class).prettyPrint();
+                return gson.fromJson(parameters, MoveVerticesParam.class).prettyPrint();
             case REMOVE_SPHERE:
-                return new Gson().fromJson(parameters, AddRemoveSphereParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveSphereParam.class).prettyPrint();
             case EDIT_EDGES_TYPE:
-                return new Gson().fromJson(parameters, EditEdgesTypeParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditEdgesTypeParam.class).prettyPrint();
             case REMOVE_VERTICES:
-                return new Gson().fromJson(parameters, AddRemoveVerticesParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveVerticesParam.class).prettyPrint();
             case EDIT_EDGES_COLOR:
-                return new Gson().fromJson(parameters, EditEdgesColorParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditEdgesColorParam.class).prettyPrint();
             case EDIT_FONT_SPHERE:
-                return new Gson().fromJson(parameters, EditFontSphereParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditFontSphereParam.class).prettyPrint();
             case EDIT_SPHERE_SIZE:
-                return new Gson().fromJson(parameters, EditSphereSizeParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditSphereSizeParam.class).prettyPrint();
             case EDIT_EDGES_STROKE:
-                return new Gson().fromJson(parameters, EditEdgesStrokeParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditEdgesStrokeParam.class).prettyPrint();
             case EDIT_SPHERE_COLOR:
-                return new Gson().fromJson(parameters, EditSphereColorParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditSphereColorParam.class).prettyPrint();
             case DEACTIVATE_FADEOUT:
-                return new Gson().fromJson(parameters, ActivateDeactivateFadeoutParam.class).prettyPrint();
+                return gson.fromJson(parameters, ActivateDeactivateFadeoutParam.class).prettyPrint();
             case EDIT_FONT_VERTICES:
-                return new Gson().fromJson(parameters, EditFontVerticesParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditFontVerticesParam.class).prettyPrint();
             case EDIT_VERTICES_FORM:
-                return new Gson().fromJson(parameters, EditVerticesFormParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditVerticesFormParam.class).prettyPrint();
             case EDIT_VERTICES_SIZE:
-                return new Gson().fromJson(parameters, EditVerticesSizeParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditVerticesSizeParam.class).prettyPrint();
             case REMOVE_ANCHOR_POINTS:
-                return new Gson().fromJson(parameters, AddRemoveAnchorPointsParam.class).prettyPrint();
+                return gson.fromJson(parameters, AddRemoveAnchorPointsParam.class).prettyPrint();
             case EDIT_SPHERE_FONT_SIZE:
-                return new Gson().fromJson(parameters, EditFontSizeSphereParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditFontSizeSphereParam.class).prettyPrint();
             case EDIT_SPHERE_ANNOTATION:
-                return new Gson().fromJson(parameters, EditSphereAnnotationParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditSphereAnnotationParam.class).prettyPrint();
             case EDIT_VERTEX_ANNOTATION:
-                return new Gson().fromJson(parameters, EditVertexAnnotationParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditVertexAnnotationParam.class).prettyPrint();
             case EDIT_VERTICES_FONT_SIZE:
-                return new Gson().fromJson(parameters, EditFontSizeVerticesParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditFontSizeVerticesParam.class).prettyPrint();
             case EDIT_VERTICES_DRAW_COLOR:
-                return new Gson().fromJson(parameters, EditVerticesDrawColorParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditVerticesDrawColorParam.class).prettyPrint();
             case EDIT_VERTICES_FILL_COLOR:
-                return new Gson().fromJson(parameters, EditVerticesFillColorParam.class).prettyPrint();
+                return gson.fromJson(parameters, EditVerticesFillColorParam.class).prettyPrint();
             case DEACTIVATE_HIGHLIGHT:
-                return new Gson().fromJson(parameters, ActivateDeactivateHighlightParam.class).prettyPrint();
+                return gson.fromJson(parameters, ActivateDeactivateHighlightParam.class).prettyPrint();
             case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return new Gson().fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
+                return gson.fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
             case EDIT_VERTICES_LAYOUT:
-                return new Gson().fromJson(parameters, LayoutVerticesParam.class).prettyPrint();
+                return gson.fromJson(parameters, LayoutVerticesParam.class).prettyPrint();
             default: throw new IllegalArgumentException();
         }
     }

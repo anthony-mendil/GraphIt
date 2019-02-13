@@ -2,6 +2,7 @@ package graph.algorithmen.predicates;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
+import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
 import lombok.NonNull;
 import lombok.Setter;
@@ -27,11 +28,12 @@ public class EdgeArrowPredicate<V, E> implements Predicate<Context<Graph<V, E>, 
      * @param edgeArrowType The edge arrow type to filter for.
      */
     public EdgeArrowPredicate(EdgeArrowType edgeArrowType) {
-        throw new UnsupportedOperationException();
+        this.edgeArrowType = edgeArrowType;
     }
 
     @Override
     public boolean evaluate(Context<Graph<V, E>, E> graphEContext) {
-        return false;
+        Edge e = (Edge)graphEContext.element;
+        return e.getArrowType() == edgeArrowType;
     }
 }

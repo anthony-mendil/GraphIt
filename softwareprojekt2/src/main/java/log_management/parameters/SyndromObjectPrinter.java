@@ -109,6 +109,11 @@ public class SyndromObjectPrinter {
                 + ColorNameCreator.getInstance().getColorName(sphere.getColor(), Language.GERMAN)
                 + "\nSymptome der Sphäre:\n";
         List<Vertex> vertexList = sphere.getVertices();
+
+        if(vertexList.isEmpty()) {
+            System.out.println( "\nempty\n");
+        }
+
         for (int i = 0; i < vertexList.size(); i++) {
             sphereText += vertexPrintGerman(vertexList.get(i));
         }

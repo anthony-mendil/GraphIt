@@ -59,7 +59,7 @@ public class Sphere {
      * A list with all vertices, that are assigned to this sphere.
      */
     @NonNull
-    private LinkedList<Vertex> vertices = null;
+    private LinkedList<Vertex> vertices;
 
     /**
      * The font of the annotation.
