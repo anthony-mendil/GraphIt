@@ -8,6 +8,7 @@ import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.move.MoveVerticesParam;
@@ -25,7 +26,7 @@ import java.util.Set;
 public class MoveVerticesLogAction extends LogAction {
 
     /**
-     * The collection of vertices, which were moved.
+     * The collection of vertices at their old state, which were moved.
      */
     private Set<Vertex> vertices;
 
@@ -56,32 +57,29 @@ public class MoveVerticesLogAction extends LogAction {
 
     @Override
     public void action() {
-       if (parameters != null){
-           SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-           Layout<Vertex, Edge> layout = vv.getGraphLayout();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
+        Layout<Vertex, Edge> layout = vv.getGraphLayout();
+        if (parameters == null){
+           Map<Vertex,Point2D> oldVertices = new HashMap<>();
+           Map<Vertex,Point2D> newVertices = new HashMap<>();
+           for(Vertex vertex : vertices){
+               oldVertices.put(vertex,points.get(vertex).getKey());
+               newVertices.put(vertex,vertex.getCoordinates());
 
-           Map<Vertex,Point2D> oldVertices = ((MoveVerticesParam)parameters).getOldVertices();
-           Map<Vertex,Point2D> newVertices = ((MoveVerticesParam)parameters).getNewVertices();
-           oldVertices.clear();
-
-           for (Vertex v : vertices) {
-               Point2D vp = newVertices.get(v);
-               newVertices.put(v, v.getCoordinates());
-               oldVertices.put(v, vp);
-               v.setCoordinates(vp);
-               layout.setLocation(v, vp);
            }
+
+           createParameter(oldVertices,newVertices);
 
            vv.repaint();
            Syndrom.getInstance().getVv2().repaint();
        } else {
            Map<Vertex,Point2D> oldVertices = ((MoveVerticesParam)parameters).getOldVertices();
-           Map<Vertex,Point2D> newVertices = new HashMap<>();
-           for (Vertex v : points.keySet()){
-               oldVertices.put(v, points.get(v).getKey());
-               newVertices.put(v, v.getCoordinates());
+           Map<Vertex,Point2D> newVertices = ((MoveVerticesParam)parameters).getNewVertices();
+           for(Map.Entry<Vertex,Point2D> entry : oldVertices.entrySet()){
+               entry.getKey().setCoordinates(newVertices.get(entry.getKey()));
+               layout.setLocation(entry.getKey(),newVertices.get(entry.getKey()));
            }
-           createParameter(oldVertices, newVertices);
        }
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
@@ -91,23 +89,11 @@ public class MoveVerticesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        Layout<Vertex, Edge> layout = vv.getGraphLayout();
-        MoveVerticesParam param = (MoveVerticesParam)parameters;
-        Map<Vertex,Point2D> oldVertices = param.getOldVertices();
-        Map<Vertex,Point2D> newVertices = param.getNewVertices();
-        newVertices.clear();
-
-        for (Vertex v : vertices) {
-            Point2D vp = oldVertices.get(v);
-            newVertices.put(v, vp);
-            oldVertices.put(v, v.getCoordinates());
-            v.setCoordinates(vp);
-            layout.setLocation(v, vp);
-        }
-
-        param.setNewVertices(newVertices);
-        param.setOldVertices(oldVertices);
+        Map<Vertex,Point2D> oldVertices = ((MoveVerticesParam)parameters).getOldVertices();
+        Map<Vertex,Point2D> newVertices = ((MoveVerticesParam)parameters).getNewVertices();
+        MoveVerticesParam moveVerticesParam = new MoveVerticesParam(newVertices,oldVertices);
+        MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(moveVerticesParam);
+        moveVerticesLogAction.action();
     }
 
     public void createParameter(Map<Vertex,Point2D> oldVertices, Map<Vertex,Point2D> newVertices) {
