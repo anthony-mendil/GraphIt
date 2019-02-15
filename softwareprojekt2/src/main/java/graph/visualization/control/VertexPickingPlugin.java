@@ -132,7 +132,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             if (SwingUtilities.isRightMouseButton(e) && vert != null) {
                 if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
                     Object[] pickedArray = vertexPickedState.getPicked().toArray();
-                    List<Object> pickedList = Arrays.asList(pickedArray);
                     points = new LinkedHashMap<>();
                     for (Object aPickedArray : pickedArray) {
                         Vertex v = (Vertex) aPickedArray;
@@ -196,10 +195,12 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     for (Edge edge: vv.getGraphLayout().getGraph().getIncidentEdges(vertex)){
                         edge.setHasPrio(true);
                     }
-                    Point2D vp = layout.transform(vertex);
-                    vp.setLocation(vertex.getCoordinates().getX() + dx, vertex.getCoordinates().getY() + dy);
-                    layout.setLocation(vertex, vp);
-                    vertex.setCoordinates(vp);
+                    if(!vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
+                        Point2D vp = layout.transform(vertex);
+                        vp.setLocation(vertex.getCoordinates().getX() + dx, vertex.getCoordinates().getY() + dy);
+                        layout.setLocation(vertex, vp);
+                        vertex.setCoordinates(vp);
+                    }
                 }
 
                 down = p;
@@ -230,6 +231,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             }
         } else {
             for (Vertex v : pickedState.getPicked()) {
+                if(intersects(v)){
+                    return;
+                }
                 Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
                         .getCoordinates());
                 Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
@@ -262,5 +266,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     @Override
     public void mouseExited(MouseEvent e) {
         //
+    }
+
+    public boolean intersects(Vertex v){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        for(Vertex vertex : graph.getVertices()){
+            if(vertex != v){
+                if(Math.abs(vertex.getCoordinates().getX() - v.getCoordinates().getX()) < 40
+                        && Math.abs(vertex.getCoordinates().getY() - v.getCoordinates().getY()) < 30 ){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -60,13 +60,11 @@ public class MoveSphereLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         if(parameters == null) {
-            Sphere lockedSphere = null;
             Map<Sphere,Point2D> oldSphere = new HashMap<>();
             Map<Sphere,Point2D> newSphere = new HashMap<>();
             oldSphere.put(sphere,oldPosition);
             sphere.setCoordinates(position);
             newSphere.put(sphere,position);
-
             createParameter(oldSphere, newSphere);
         }else{
             Map<Sphere,Point2D> oldSphere = ((MoveSphereParam)parameters).getOldSphere();
@@ -84,6 +82,7 @@ public class MoveSphereLogAction extends LogAction {
                 }
             }
         }
+        System.out.println(((MoveSphereParam)parameters).prettyPrint());
         vv.repaint();
         Syndrom.getInstance().getVv2().repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();

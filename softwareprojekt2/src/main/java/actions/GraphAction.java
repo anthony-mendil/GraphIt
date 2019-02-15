@@ -28,6 +28,10 @@ public abstract class GraphAction extends Action {
      */
     protected Template template = Syndrom.getInstance().getTemplate();
     /**
+     * The actionHistory in case the action needs to delete the latest entry.
+     */
+    protected  ActionHistory actionHistory = ActionHistory.getInstance();
+    /**
      * Sets layout, graph, pick support from the current syndrom presentation.
      */
     public GraphAction(){

@@ -2,6 +2,7 @@ package graph.visualization.control;
 
 import actions.ActionHistory;
 import actions.add.AddSphereLogAction;
+import actions.move.MoveSphereLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -194,6 +195,9 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                     v.setCoordinates(vp);
                     vv.getGraphLayout().setLocation(v, vp);
                 }
+            }else{
+                MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s,spherePickedCoord,s.getCoordinates());
+                history.execute(moveSphereLogAction);
             }
         }
 
