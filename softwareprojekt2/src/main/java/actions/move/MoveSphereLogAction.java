@@ -65,13 +65,10 @@ public class MoveSphereLogAction extends LogAction {
             oldSphere.put(sphere,oldPosition);
             sphere.setCoordinates(position);
             newSphere.put(sphere,position);
-
             createParameter(oldSphere, newSphere);
         }else{
             Map<Sphere,Point2D> oldSphere = ((MoveSphereParam)parameters).getOldSphere();
             Map<Sphere,Point2D> newSphere = ((MoveSphereParam)parameters).getNewSphere();
-            System.out.println(oldSphere.values());
-            System.out.println(newSphere.values());
             for(Map.Entry<Sphere,Point2D> entry : oldSphere.entrySet()){
                 entry.getKey().setCoordinates(newSphere.get(entry.getKey()));
                 Double dX = newSphere.get(entry.getKey()).getX() - oldSphere.get(entry.getKey()).getX();
@@ -85,6 +82,7 @@ public class MoveSphereLogAction extends LogAction {
                 }
             }
         }
+        System.out.println(((MoveSphereParam)parameters).prettyPrint());
         vv.repaint();
         Syndrom.getInstance().getVv2().repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();

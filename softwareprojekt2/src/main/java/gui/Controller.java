@@ -1107,8 +1107,8 @@ public class Controller implements ObserverSyndrom {
      */
     public void editFontVertex(String font) {
         values.setFontVertex(font);
-        EditFontVerticesLogAction editFontSphereLogAction = new EditFontVerticesLogAction(font);
-        history.execute(editFontSphereLogAction);
+        EditFontVerticesLogAction editFontVertexLogAction = new EditFontVerticesLogAction(font);
+        history.execute(editFontVertexLogAction);
     }
 
     public void vertexFont1() {
@@ -1693,7 +1693,7 @@ public class Controller implements ObserverSyndrom {
         GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("New Graph") : new LoadGraphAction();
 
 
-        history.execute(action);
+        action.action();
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
@@ -2181,7 +2181,7 @@ public class Controller implements ObserverSyndrom {
 
         //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("First Graph");
-        history.execute(action);
+        action.action();
         System.out.println("vv: " + syndrom.getVv());
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());

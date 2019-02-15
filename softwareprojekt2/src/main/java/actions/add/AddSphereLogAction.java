@@ -6,6 +6,7 @@ import actions.LogEntryName;
 import actions.remove.RemoveSphereLogAction;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
@@ -43,9 +44,11 @@ public class AddSphereLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-             if (parameters == null) {
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+        if (parameters == null) {
                 graph.addSphere(point2D);
-                createParameter(graph.getSpheres().get(graph.getSpheres().size() - 1));
+                Sphere sp = pickSupport.getSphere(point2D.getX(),point2D.getY());
+                createParameter(sp);
             } else {
                 graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
             }
