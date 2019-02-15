@@ -27,8 +27,7 @@ public class SyndromObjectPrinter {
                 getColorName(vertex.getFillColor(), Language.ENGLISH)
                 + ", Draw color: "
                 + ColorNameCreator.getInstance().
-                getColorName(vertex.getDrawColor(), Language.ENGLISH)
-                + "\n";
+                getColorName(vertex.getDrawColor(), Language.ENGLISH);
     }
 
     public static String vertexPrintGerman(Vertex vertex) {
@@ -47,8 +46,7 @@ public class SyndromObjectPrinter {
                 getColorName(vertex.getFillColor(), Language.GERMAN)
                 + ", Umrandungsfarbe: "
                 + ColorNameCreator.getInstance().
-                getColorName(vertex.getDrawColor(), Language.GERMAN)
-                + "\n";
+                getColorName(vertex.getDrawColor(), Language.GERMAN);
     }
 
     public static String edgePrintEnglish(Edge edge) {
@@ -60,9 +58,9 @@ public class SyndromObjectPrinter {
                 + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.ENGLISH)
                 + ", Color: "
                 + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.ENGLISH)
-                + "\nSymptoms of the relation:\nFirst Symptom: "
+                + ", Symptoms of the relation: First Symptom: "
                 + vertexPrintEnglish(vertices.getFirst())
-                + "Second Symptom: " + vertexPrintEnglish(vertices.getSecond());
+                + ", Second Symptom: " + vertexPrintEnglish(vertices.getSecond());
     }
 
     public static String edgePrintGerman(Edge edge) {
@@ -74,9 +72,9 @@ public class SyndromObjectPrinter {
                 + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.GERMAN)
                 + ", Color: "
                 + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.GERMAN)
-                + "\nSymptome der Relation:\nErstes Symptom: "
+                + ", Symptome der Relation: Erstes Symptom: "
                 + vertexPrintGerman(vertices.getFirst())
-                + "Zweites Symptom: " + vertexPrintGerman(vertices.getSecond());
+                + ", Zweites Symptom: " + vertexPrintGerman(vertices.getSecond());
     }
 
     public static String spherePrintEnglish(Sphere sphere) {
@@ -89,7 +87,7 @@ public class SyndromObjectPrinter {
                 + sphere.getFont() + ", Font size: "
                 + sphere.getFontSize() + ", Color: "
                 + ColorNameCreator.getInstance().getColorName(sphere.getColor(), Language.ENGLISH)
-                + "\nSymptoms of the sphere:\n";
+                + ", Symptoms of the sphere: ";
         List<Vertex> vertexList = sphere.getVertices();
         for (int i = 0; i < vertexList.size(); i++) {
             sphereText += vertexPrintEnglish(vertexList.get(i));
@@ -107,7 +105,7 @@ public class SyndromObjectPrinter {
                 + sphere.getFont() + ", Schriftgröße: "
                 + sphere.getFontSize() + ", Farbe: "
                 + ColorNameCreator.getInstance().getColorName(sphere.getColor(), Language.GERMAN)
-                + "\nSymptome der Sphäre:\n";
+                + ", Symptome der Sphäre: ";
         List<Vertex> vertexList = sphere.getVertices();
 
         if(vertexList.isEmpty()) {

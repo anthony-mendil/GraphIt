@@ -22,7 +22,6 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.Map;
 
 /**
@@ -158,7 +157,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
                     if (!edge.isHasAnchorIn()){
                         EdgeArrowType edgetype = edge.getArrowType();
-                        EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map;
+                        Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map;
                         map = getMap(edgetype, second);
                         Point2D fitPoint = null;
                         ArrayList<ScopePoint> scopePoints = null;
@@ -288,7 +287,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     private javafx.util.Pair<Point2D, AffineTransform> getNextFreePoint(EdgeArrowType arrowType, Point2D original, Vertex vertex, AffineTransform at, Shape arrow, Shape vertexShape, RenderContext<V,E> rc){
-        Pair<javafx.util.Pair<EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> getOtherTypesMap = getOtherTypesMap(arrowType, vertex);
+        Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> getOtherTypesMap = getOtherTypesMap(arrowType, vertex);
         javafx.util.Pair<Point2D, AffineTransform> first = getFitPoint(rc, getOtherTypesMap.getFirst().getKey(), at, vertex, arrow);
         javafx.util.Pair<Point2D, AffineTransform> second = getFitPoint(rc, getOtherTypesMap.getSecond().getKey(), at, vertex, arrow);
         Point2D pointF = first.getKey();
@@ -391,7 +390,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                 Math.atan2(previous.getX() - center.getX(), previous.getY() - center.getY()));
     }
 
-    private ArrayList<ScopePoint> getUnusedScopePoints(EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map) {
+    private ArrayList<ScopePoint> getUnusedScopePoints(Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map) {
         ArrayList<ScopePoint> scopePoints = new ArrayList<>(Arrays.asList(ScopePoint.values()));
         for (Map.Entry<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> entry : map.entrySet()) {
             scopePoints.remove(entry.getKey());
@@ -399,7 +398,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         return scopePoints;
     }
 
-    private javafx.util.Pair<Point2D, AffineTransform> getFitPoint(RenderContext<V,E> rc ,EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map, AffineTransform at, Vertex second, Shape arrow) {
+    private javafx.util.Pair<Point2D, AffineTransform> getFitPoint(RenderContext<V,E> rc ,Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map, AffineTransform at, Vertex second, Shape arrow) {
         Point2D fitPoint = null;
         AffineTransform ar = null;
         for (Map.Entry<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> entry : map.entrySet()) {
@@ -421,7 +420,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         return new javafx.util.Pair<>(fitPoint, ar);
     }
 
-    private void setMap(EdgeArrowType edgetype, Vertex second, EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map) {
+    private void setMap(EdgeArrowType edgetype, Vertex second, Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map) {
         switch (edgetype) {
             case EXTENUATING:
                 second.setVertexArrowExtenuating(map);
@@ -435,8 +434,8 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         }
     }
 
-    private EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> getMap(EdgeArrowType edgetype, Vertex second) {
-        EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map = null;
+    private Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> getMap(EdgeArrowType edgetype, Vertex second) {
+        Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map = null;
         switch (edgetype) {
             case EXTENUATING:
                 map = second.getVertexArrowExtenuating();
@@ -451,11 +450,11 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         return map;
     }
 
-    private Pair<javafx.util.Pair<EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> getOtherTypesMap(EdgeArrowType edgeArrowType, Vertex second){
-        Pair<javafx.util.Pair<EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>>  map;
-        EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> extenuating = second.getVertexArrowExtenuating();
-        EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> reinforced = second.getVertexArrowReinforced();
-        EnumMap<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> neutral = second.getVertexArrowNeutral();
+    private Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> getOtherTypesMap(EdgeArrowType edgeArrowType, Vertex second){
+        Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>>  map;
+        Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> extenuating = second.getVertexArrowExtenuating();
+        Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> reinforced = second.getVertexArrowReinforced();
+        Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> neutral = second.getVertexArrowNeutral();
 
         switch (edgeArrowType) {
             case EXTENUATING:

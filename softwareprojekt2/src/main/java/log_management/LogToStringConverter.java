@@ -30,17 +30,17 @@ public class LogToStringConverter {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.GERMAN) {
             try {
-                return "Nummer: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        "Typ der Aktion: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + " Zeit: " + log.getTime().toString();
-            } catch (IOException e) {
+                return "Nummer: " + log.getId() + ", Typ der Aktion: " + convertLogEntryNameGerman(log.getLogEntryName()) +
+                        "\nParameter: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\nZeit: " + log.getTime().toString();
+            } catch (IllegalArgumentException e) {
                 throw new IllegalStateException();
             }
         }
         else if (language == Language.ENGLISH) {
             try {
-                return "Number: " + log.getId() + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        "Type of Action: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + " Time: " + log.getTime().toString();
-            } catch (IOException e) {
+                return "Number: " + log.getId() + ", Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
+                        "\nParameters: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\nTime: " + log.getTime().toString();
+            } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
             }
         }
@@ -122,7 +122,7 @@ public class LogToStringConverter {
         }
     }
 
-    private static String convertLogEntryNameEnglish(LogEntryName logEntryName) {
+    private static String convertLogEntryNameEnglish(LogEntryName logEntryName) throws IllegalArgumentException{
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
                 return "Highlighting";
@@ -195,7 +195,7 @@ public class LogToStringConverter {
         }
     }
 
-    private static String parametersPrint(String parameters, LogEntryName logEntryName) throws IOException {
+    private static String parametersPrint(String parameters, LogEntryName logEntryName) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
