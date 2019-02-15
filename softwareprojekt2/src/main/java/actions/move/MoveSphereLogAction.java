@@ -60,29 +60,26 @@ public class MoveSphereLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         if(parameters == null) {
-            Map<Sphere,Point2D> oldSphere = new HashMap<>();
-            Map<Sphere,Point2D> newSphere = new HashMap<>();
-            oldSphere.put(sphere,oldPosition);
             sphere.setCoordinates(position);
-            newSphere.put(sphere,position);
-            createParameter(oldSphere, newSphere);
+            System.out.println(position);
+            createParameter(sphere, oldPosition, position);
         }else{
-            Map<Sphere,Point2D> oldSphere = ((MoveSphereParam)parameters).getOldSphere();
-            Map<Sphere,Point2D> newSphere = ((MoveSphereParam)parameters).getNewSphere();
-            for(Map.Entry<Sphere,Point2D> entry : oldSphere.entrySet()){
-                entry.getKey().setCoordinates(newSphere.get(entry.getKey()));
-                Double dX = newSphere.get(entry.getKey()).getX() - oldSphere.get(entry.getKey()).getX();
-                Double dY = newSphere.get(entry.getKey()).getY() - oldSphere.get(entry.getKey()).getY();
-                for(Vertex vertex : entry.getKey().getVertices()){
+            Sphere sphere = ((MoveSphereParam)parameters).getSphere();
+            Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
+            Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
+            System.out.println(newPos);
+            sphere.setCoordinates(newPos);
+                Double dX = newPos.getX() - oldPos.getX();
+                Double dY = newPos.getY() - newPos.getY();
+                for(Vertex vertex : sphere.getVertices()) {
                     Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dX, vertex.getCoordinates()
                             .getY() + dY);
                     vertex.setCoordinates(point);
                     Layout layout = vv.getGraphLayout();
                     layout.setLocation(vertex, point);
                 }
-            }
+
         }
-        System.out.println(((MoveSphereParam)parameters).prettyPrint());
         vv.repaint();
         Syndrom.getInstance().getVv2().repaint();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
@@ -92,15 +89,16 @@ public class MoveSphereLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Sphere,Point2D> oldSphere = ((MoveSphereParam)parameters).getOldSphere();
-        Map<Sphere,Point2D> newSphere = ((MoveSphereParam)parameters).getNewSphere();
-        MoveSphereParam moveSphereParam = new MoveSphereParam(newSphere,oldSphere);
+        Sphere sphere = ((MoveSphereParam)parameters).getSphere();
+        Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
+        Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
+        MoveSphereParam moveSphereParam = new MoveSphereParam(sphere, newPos, oldPos);
         MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(moveSphereParam);
         moveSphereLogAction.action();
     }
 
 
-    public void createParameter(Map<Sphere,Point2D> oldSphere, Map<Sphere,Point2D> newSphere) {
-        parameters = new MoveSphereParam(oldSphere, newSphere);
+    public void createParameter(Sphere sphere, Point2D oldSphere, Point2D newSphere) {
+        parameters = new MoveSphereParam(sphere, oldSphere, newSphere);
     }
 }
