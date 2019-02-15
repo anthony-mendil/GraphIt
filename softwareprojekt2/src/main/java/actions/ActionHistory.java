@@ -44,7 +44,6 @@ public class ActionHistory {
         for(int i = current+1; i<maxActions; i++){
             actions[i] = null;
         }
-
     }
 
     public static ActionHistory getInstance(){

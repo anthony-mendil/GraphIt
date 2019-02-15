@@ -61,7 +61,6 @@ public abstract class LogAction extends GraphAction {
             paramString = gson.toJson(parameters);
         } catch (Exception e) {}
         log.setParameters(paramString);
-
         return log;
     }
 

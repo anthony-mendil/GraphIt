@@ -65,6 +65,7 @@ public class AddEdgesLogAction extends LogAction {
         notifyObserverGraph();
     }else{
             helper.setActionText("Only " + template.getMaxEdges() + " edge(s) are allowed in the graph.", true);
+            actionHistory.removeLastEntry();
         }
 
     }
