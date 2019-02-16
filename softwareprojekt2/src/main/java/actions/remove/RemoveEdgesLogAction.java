@@ -63,10 +63,10 @@ public class RemoveEdgesLogAction extends LogAction {
                 }
             }
         }else{
-            Set<Pair<Vertex,Vertex>> edges = ((AddRemoveEdgesParam)parameters).getEdges();
-            for(Pair<Vertex,Vertex> edge : edges){
-                Edge removeEdge = graph.findEdge(edge.getKey(),edge.getValue());
-                graph.removeEdge(removeEdge);
+            List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
+            for(Edge edge : edges){
+                //Edge removeEdge = graph.findEdge(edge.getKey(),edge.getValue());
+                graph.removeEdge(edge);
             }
         }
 
@@ -81,7 +81,7 @@ public class RemoveEdgesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        AddRemoveEdgesParam addRemoveEdgesParam = new AddRemoveEdgesParam(((AddRemoveEdgesParam)parameters).getEdges());
+        AddRemoveEdgesParam addRemoveEdgesParam = new AddRemoveEdgesParam(((AddRemoveEdgesParam)parameters).getEdges(), ((AddRemoveEdgesParam)parameters).getVertices());
         AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(addRemoveEdgesParam);
         addEdgesLogAction.action();
     }

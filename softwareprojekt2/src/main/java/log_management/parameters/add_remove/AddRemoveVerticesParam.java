@@ -9,6 +9,7 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import java.util.Map;
  * Parameter object of the action of AddVerticesLogAction/RemoveVerticesLogAction.
  */
 @Data
-public class AddRemoveVerticesParam extends Param{
+public class AddRemoveVerticesParam extends Param implements Serializable {
     /**
      * Set of vertices to their sphere.
      */

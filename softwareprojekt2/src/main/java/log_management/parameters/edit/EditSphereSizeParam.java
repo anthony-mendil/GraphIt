@@ -9,11 +9,13 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * Parameter object of the action EditSphereSizeLogAction.
  */
 @Data
-public class EditSphereSizeParam extends Param{
+public class EditSphereSizeParam extends Param implements Serializable {
     /**
      * The sphere which size should be changed.
      */

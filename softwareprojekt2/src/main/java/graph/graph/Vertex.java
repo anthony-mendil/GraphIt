@@ -12,6 +12,7 @@ import lombok.Setter;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ import java.util.Map;
  * connected through edges. All attributes of a vertex can be changed, just the id is unique and final.
  */
 @Data
-public class Vertex {
+public class Vertex implements Serializable {
     /**
      * The unique id of a vertex.
      */

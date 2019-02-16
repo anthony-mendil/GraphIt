@@ -8,11 +8,13 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * Parameter object of the action EditSphereAnnotationLogAction.
  */
 @Data
-public class EditSphereAnnotationParam extends Param{
+public class EditSphereAnnotationParam extends Param implements Serializable {
     /**
      * The sphere containing its old annotation.
      */

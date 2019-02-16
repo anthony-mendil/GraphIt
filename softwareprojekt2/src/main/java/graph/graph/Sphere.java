@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ import java.util.Map;
  * each other. They can contain vertices. A vertex is always assigned to exactly one sphere. The id is unique and final.
  */
 @Data
-public class Sphere {
+public class Sphere implements Serializable {
     /**
      * The id of the sphere.
      */

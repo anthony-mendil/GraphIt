@@ -9,12 +9,13 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.List;
 /**
  * Parameter object of the action ActivateFadeoutLogAction/DeactivateFadeoutLogAction.
  */
 @Data
-public class ActivateDeactivateFadeoutParam extends Param{
+public class ActivateDeactivateFadeoutParam extends Param implements Serializable {
     /**
      * List of vertices to activate/cancel the highlight-option.
      */
@@ -38,36 +39,37 @@ public class ActivateDeactivateFadeoutParam extends Param{
 
     @Override
     public String prettyPrint() {
-        Language language = Values.getInstance().getGuiLanguage();
-        if (language == Language.ENGLISH) {
-            String list = "Relations:\n";
-            if (edges != null) {
-                for (int i = 0; i < edges.size(); i++) {
-                    list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i));
-                }
-            }
-            list += "Symptoms:\n";
-            if (vertices != null) {
-                for (int i = 0; i < vertices.size(); i++) {
-                    list += SyndromObjectPrinter.vertexPrintEnglish(vertices.get(i));
-                }
-            }
-            return list;
-        } else {
-            String list = "";
-            if (edges != null) {
-                list += "Relationen:\n";
-                for (int i = 0; i < edges.size(); i++) {
-                    list += SyndromObjectPrinter.edgePrintGerman(edges.get(i));
-                }
-            }
-            if (vertices != null) {
-                list += "Symptome:\n";
-                for (int i = 0; i < vertices.size(); i++) {
-                    list += SyndromObjectPrinter.vertexPrintGerman(vertices.get(i));
-                }
-            }
-            return list;
-        }
+//        Language language = Values.getInstance().getGuiLanguage();
+//        if (language == Language.ENGLISH) {
+//            String list = "Relations:\n";
+//            if (edges != null) {
+//                for (int i = 0; i < edges.size(); i++) {
+//                    list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i));
+//                }
+//            }
+//            list += "Symptoms:\n";
+//            if (vertices != null) {
+//                for (int i = 0; i < vertices.size(); i++) {
+//                    list += SyndromObjectPrinter.vertexPrintEnglish(vertices.get(i));
+//                }
+//            }
+//            return list;
+//        } else {
+//            String list = "";
+//            if (edges != null) {
+//                list += "Relationen:\n";
+//                for (int i = 0; i < edges.size(); i++) {
+//                    list += SyndromObjectPrinter.edgePrintGerman(edges.get(i));
+//                }
+//            }
+//            if (vertices != null) {
+//                list += "Symptome:\n";
+//                for (int i = 0; i < vertices.size(); i++) {
+//                    list += SyndromObjectPrinter.vertexPrintGerman(vertices.get(i));
+//                }
+//            }
+//            return list;
+//        }
+        return "";
     }
 }

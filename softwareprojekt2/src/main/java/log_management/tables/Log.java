@@ -2,6 +2,7 @@ package log_management.tables;
 
 import actions.LogEntryName;
 import log_management.LogToStringConverter;
+import log_management.parameters.Param;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  * the logs table of the database.
  */
 @Entity
-@Table(name = "LOGS", schema = "PUBLIC", catalog = "GRAPHITDATABASE")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Log {
     /**
      * The id of the logEntry.
@@ -25,10 +26,10 @@ public class Log {
      * The name of the log-entry.
      */
     private LogEntryName logEntryName;
-    /**
-     * The parameters used in the action.
-     */
-    private String parameters;
+//    /**
+//     * The parameters used in the action.
+//     */
+//    private Param parameters;
     /**
      * The time, in which the action got called.-
      */
@@ -93,24 +94,24 @@ public class Log {
         this.logEntryName = logEntryName;
     }
 
-    /**
-     * Gets the parameters.
-     *
-     * @return The parameters in the JSON format.
-     */
-    @Column(name = "PARAMETERS", columnDefinition = "NVARCHAR(MAX)")
-    public String getParameters() {
-        return parameters;
-    }
-
-    /**
-     * Sets the parameters.
-     *
-     * @param parameters The parameters in the JSON format.
-     */
-    public void setParameters(String parameters) {
-        this.parameters = parameters;
-    }
+//    /**
+//     * Gets the parameters.
+//     *
+//     * @return The parameters in the JSON format.
+//     */
+//    @Column(name = "PARAMETERS")
+//    public Param getParameters() {
+//        return parameters;
+//    }
+//
+//    /**
+//     * Sets the parameters.
+//     *
+//     * @param parameters The parameters in the JSON format.
+//     */
+//    public void setParameters(Param parameters) {
+//        this.parameters = parameters;
+//    }
 
     /**
      * Gets the time when the corresponding action was created.
