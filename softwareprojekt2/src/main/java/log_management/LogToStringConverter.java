@@ -7,7 +7,6 @@ import gui.Values;
 import gui.properties.Language;
 import log_management.json_deserializers.Point2DDeserializer;
 import log_management.json_serializers.Point2DSerializer;
-import log_management.parameters.Param;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
 import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
@@ -20,11 +19,9 @@ import log_management.parameters.move.LayoutSpheresParam;
 import log_management.parameters.move.LayoutVerticesParam;
 import log_management.parameters.move.MoveSphereParam;
 import log_management.parameters.move.MoveVerticesParam;
-import log_management.tables.AddRemoveSphereLog;
 import log_management.tables.Log;
 
 import java.awt.geom.Point2D;
-import java.io.IOException;
 
 public class LogToStringConverter {
 
@@ -33,7 +30,7 @@ public class LogToStringConverter {
         if (language == Language.GERMAN) {
             try {
                 return "Nummer: " + log.getId() + ", Typ der Aktion: " + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        "\nParameter: " + ((AddRemoveSphereLog)log).getParameters().prettyPrint() + "\nZeit: " + log.getTime().toString();
+                        "\nParameter: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\nZeit: " + log.getTime().toString();
             } catch (IllegalArgumentException e) {
                 throw new IllegalStateException();
             }
@@ -41,7 +38,7 @@ public class LogToStringConverter {
         else if (language == Language.ENGLISH) {
             try {
                 return "Number: " + log.getId() + ", Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
-                        "\nParameters: " + ((AddRemoveSphereLog)log).getParameters().prettyPrint() + "\nTime: " + log.getTime().toString();
+                        "\nParameters: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\nTime: " + log.getTime().toString();
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
             }

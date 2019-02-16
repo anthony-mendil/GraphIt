@@ -1,6 +1,5 @@
 package actions.add;
 
-import actions.Action;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveSphereLogAction;
@@ -9,8 +8,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
-import log_management.tables.AddRemoveSphereLog;
-import log_management.tables.Log;
 
 import java.awt.geom.Point2D;
 
@@ -58,20 +55,10 @@ public class AddSphereLogAction extends LogAction {
             Syndrom.getInstance().getVv2().repaint();
 
             DatabaseManager databaseManager = DatabaseManager.getInstance();
-            databaseManager.addEntryDatabase(createPersonalLog());
+            databaseManager.addEntryDatabase(createLog());
 
             //Action.attach(databaseManager);
             notifyObserverGraph();
-    }
-
-    //@Override
-    public AddRemoveSphereLog createPersonalLog() {
-        AddRemoveSphereLog log = new AddRemoveSphereLog();
-        log.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).get());
-        log.setLogEntryName(logEntryName);
-        log.setTime(time);
-        log.setParameters((AddRemoveSphereParam) parameters);
-        return log;
     }
 
     @Override

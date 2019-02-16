@@ -51,16 +51,16 @@ public abstract class LogAction extends GraphAction {
         log.setLogEntryName(logEntryName);
         log.setTime(time);
 
-//        GsonBuilder gsonBuilder = new GsonBuilder();
-//        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
-//        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
-//        Gson gson = gsonBuilder.create();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
+        gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
+        Gson gson = gsonBuilder.create();
 
-//        String paramString = null;
-//        try {
-//            paramString = gson.toJson(parameters);
-//        } catch (Exception e) {}
-        //log.setParameters(parameters);
+        String paramString = null;
+        try {
+            paramString = gson.toJson(parameters);
+        } catch (Exception e) {}
+        log.setParameters(paramString);
         return log;
     }
 

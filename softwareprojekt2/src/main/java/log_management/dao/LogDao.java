@@ -7,8 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import log_management.DatabaseManager;
 import log_management.json_deserializers.Point2DDeserializer;
 import log_management.json_serializers.Point2DSerializer;
-import log_management.parameters.add_remove.AddRemoveSphereParam;
-import log_management.tables.AddRemoveSphereLog;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 
@@ -114,14 +112,11 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-//        Log newLog = new Log();
-//        newLog.setTime(log.getTime());
-//        newLog.setParameters(log.getParameters());
-//        newLog.setLogEntryName(log.getLogEntryName());
-        AddRemoveSphereLog newLog = new AddRemoveSphereLog();
+        Log newLog = new Log();
         newLog.setTime(log.getTime());
-        newLog.setParameters(((AddRemoveSphereLog)log).getParameters());
+        newLog.setParameters(log.getParameters());
         newLog.setLogEntryName(log.getLogEntryName());
+
 
         newLog.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).get());
         entityManager.persist(newLog);
