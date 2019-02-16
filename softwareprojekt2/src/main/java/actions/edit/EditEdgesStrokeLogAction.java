@@ -56,9 +56,15 @@ public class EditEdgesStrokeLogAction extends LogAction {
                     e.setStroke(stroke);
                     newEdges.put(e, stroke);
                 }else{
-                    helper.setActionText("Die Linienart der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedEdges.add(e);
                 }
+            }
+            if(!lockedEdges.isEmpty()){
+                helper.setActionText("Die Linienart der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+            }
+            if(lockedEdges.size() == pickedState.getPicked().size()){
+                actionHistory.removeLastEntry();
+                return;
             }
             createParameter(oldEdges, newEdges);
         }else{

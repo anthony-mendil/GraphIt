@@ -75,11 +75,10 @@ public class AddVerticesLogAction extends LogAction {
             Map<Vertex, Sphere> newVertices = new HashMap<>();
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
                 Vertex vertex = entry.getKey();
-                Vertex newVertex = graph.addVertex(vertex.getCoordinates(), entry.getValue());
-                newVertices.put(newVertex, entry.getValue());
-                vv.getGraphLayout().setLocation(newVertex, newVertex.getCoordinates());
+                graph.addVertexExisting(vertex);
+                newVertices.put(vertex, entry.getValue());
+                vv.getGraphLayout().setLocation(vertex, vertex.getCoordinates());
             }
-            parameters = new AddRemoveVerticesParam(newVertices);
         }
         vv.repaint();
         syndrom.getVv2().repaint();

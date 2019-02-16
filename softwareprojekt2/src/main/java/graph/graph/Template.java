@@ -39,20 +39,24 @@ public class Template {
 
     //Edgetype options:
     /**
-     *
+     * Allows the user to use reinforced arrows.
      */
     private boolean reinforcedEdgesAllowed;
 
     /**
-     *
+     * Allows the user to use extenuating arrows.
      */
     private boolean extenuatingEdgesAllowed;
 
     /**
-     *
+     * Allows the user to use neutral arrows.
      */
     private boolean neutralEdgesAllowed;
 
+    /**
+     * Indicator whether the tickbox is ticked in one of them.(No use atm)
+     */
+    private boolean set;
 
     /**
      * Creates a new Template object.

@@ -58,9 +58,15 @@ public class EditEdgesColorLogAction extends LogAction {
                     e.setColor(color);
                     newEdges.put(e, color);
                 }else{
-                    helper.setActionText("Die Farbe der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedEdges.add(e);
                 }
+            }
+            if(!lockedEdges.isEmpty()){
+                helper.setActionText("Die Farbe der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+            }
+            if(pickedState.getPicked().size() == lockedEdges.size()){
+                actionHistory.removeLastEntry();
+                return;
             }
                 createParameter(oldEdges, newEdges);
         }else {

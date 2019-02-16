@@ -1023,16 +1023,16 @@ public class Controller implements ObserverSyndrom {
     public void anchorPointsEdge() {
         if (anchorPointsButton.isSelected()) {
             DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
-            history.execute(deactivateAnchorPointsFadeoutLogAction);
+            deactivateAnchorPointsFadeoutLogAction.action();
         } else {
             ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
-            history.execute(activateAnchorPointsFadeoutLogAction);
+            activateAnchorPointsFadeoutLogAction.action();
         }
     }
 
     public void removeAnchor() {
         RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
-        history.execute(removeAnchorPointsLogAction);
+        removeAnchorPointsLogAction.action();
     }
 
     /**
@@ -1577,41 +1577,41 @@ public class Controller implements ObserverSyndrom {
     public void highlight() {
         if (highlight.isSelected()) {
             ActivateHighlightLogAction activateHighlightLogAction = new ActivateHighlightLogAction();
-            history.execute(activateHighlightLogAction);
+            activateHighlightLogAction.action();
         } else {
             DeactivateHighlightLogAction deactivateHighlightLogAction = new DeactivateHighlightLogAction();
-            history.execute(deactivateHighlightLogAction);
+            deactivateHighlightLogAction.action();
         }
     }
 
     public void highlightElements() {
         AddHighlightElementAction addHighlightElementAction = new AddHighlightElementAction();
-        history.execute(addHighlightElementAction);
+        addHighlightElementAction.action();
     }
 
     public void dehighlightElements() {
         RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
-        history.execute(removeHighlightElementAction);
+        removeHighlightElementAction.action();
     }
 
     public void fadeout() {
         if (!fadeout.isSelected()) {
             DeactivateFadeoutLogAction deactivateFadeoutLogAction = new DeactivateFadeoutLogAction();
-            history.execute(deactivateFadeoutLogAction);
+            deactivateFadeoutLogAction.action();
         } else {
             ActivateFadeoutLogAction activateFadeoutLogAction = new ActivateFadeoutLogAction();
-            history.execute(activateFadeoutLogAction);
+            activateFadeoutLogAction.action();
         }
     }
 
     public void fadeoutElements() {
         AddFadeoutElementAction addFadeoutElementAction = new AddFadeoutElementAction();
-        history.execute(addFadeoutElementAction);
+        addFadeoutElementAction.action();
     }
 
     public void defadeoutElements() {
         RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
-        history.execute(removeFadeoutElementAction);
+        removeFadeoutElementAction.action();
     }
 
     /* ----------------INTERNAL---------------------- */

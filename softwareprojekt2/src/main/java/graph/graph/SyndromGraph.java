@@ -12,6 +12,8 @@ package graph.graph;/*
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
+import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.picking.SyndromPickSupport;
 import lombok.Data;
 
 import java.awt.geom.Point2D;
@@ -83,7 +85,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     }
 
     /**
-     * Adds a vertex to the syndrom graphs and assigns it to a sphere.
+     * Adds a vertex to the syndrom graphs and assigns it to a sphere if it wasn't existing in the past.
      *
      * @param pSphere The sphere to assign to.
      * @return True if the vertex was added to the graph, false if not.
@@ -93,6 +95,19 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
         addVertex((V) vertex);
         addVertexToSphere(pSphere, vertex);
         return vertex;
+    }
+
+    /**
+     * Adds a vertex to the syndromgraphs and assigns it to the sphere if was existing in the past.
+     */
+    public Vertex addVertexExisting(Vertex vertex){
+        SyndromVisualisationViewer vv = Syndrom.getInstance().getVv();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+        Sphere sp = pickSupport.getSphere(vertex.getCoordinates().getX(), vertex.getCoordinates().getY());
+        addVertex((V) vertex);
+        addVertexToSphere(sp, vertex);
+        return vertex;
+
     }
 
     /**
