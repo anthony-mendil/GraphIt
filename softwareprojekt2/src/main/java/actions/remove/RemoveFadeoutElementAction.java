@@ -25,8 +25,11 @@ public class RemoveFadeoutElementAction extends GraphAction {
         syndrom.getVv2().repaint();
     }
 
+    /**
+     * There is no undo operation of this action.
+     */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        return;
     }
 }

@@ -12,6 +12,7 @@ import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -43,8 +44,8 @@ public class RemoveEdgesLogAction extends LogAction {
 
 
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(Set<Pair<Vertex,Vertex>> edges) {
+        parameters = new AddRemoveEdgesParam(edges);
     }
 
     @Override
@@ -54,14 +55,25 @@ public class RemoveEdgesLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null) {
             List<Edge> lockedEdges = new LinkedList<>();
+            Set<Pair<Vertex,Vertex>> deleteEdges = new HashSet<>();
             for (Edge e: pickedState.getPicked()) {
                 if(!e.isLockedEdgeType() && !e.isLockedStyle()){
+                    edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+                    Pair<Vertex,Vertex> verticesJung = new Pair<>(vertices.getFirst(),vertices.getSecond());
+                    deleteEdges.add(verticesJung);
                     graph.removeEdge(e);
                 }else{
-                    helper.setActionText("Die Kanten können nicht aufgrund der Vorlageregeln verändert werden." , true);
                     lockedEdges.add(e);
                 }
             }
+            if(!lockedEdges.isEmpty()){
+                helper.setActionText("Die Kanten können nicht aufgrund der Vorlageregeln verändert werden." , true);
+            }
+            if(lockedEdges.size() == pickedState.getPicked().size()){
+                actionHistory.removeLastEntry();
+                return;
+            }
+            createParameter(deleteEdges);
         }else{
             List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
             for(Edge edge : edges){

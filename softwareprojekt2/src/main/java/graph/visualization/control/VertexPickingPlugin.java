@@ -166,9 +166,36 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
 
         if (SwingUtilities.isLeftMouseButton(e) && vert != null && source != null && !source.equals(vert)) {
-            Pair<Vertex, Vertex> edge = new Pair<>(source, vert);
-            AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
-            history.execute(addEdgesLogAction);
+            if(values.getMode() == FunctionMode.TEMPLATE ||
+                    Syndrom.getInstance().getTemplate().getMaxEdges() > Syndrom.getInstance().getVv().getGraphLayout().getGraph().getEdges().size()) {
+                if(values.getMode() != FunctionMode.TEMPLATE) {
+                    switch (values.getEdgeArrowType()) {
+                        case REINFORCED:
+                            if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
+                                helper.setActionText("Verstärkende Relationen sind aufgrund der Vorlageregeln nicht erlaubt", true);
+                                return;
+                            }
+                            break;
+                        case EXTENUATING:
+                            if (!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()) {
+                                helper.setActionText("Abschwächende Relationen sind aufgrund der Vorlageregelen nicht erlaubt", true);
+                                return;
+                            }
+                            break;
+                        case NEUTRAL:
+                            if (!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()) {
+                                helper.setActionText("Unbekannte Relationen sind aufgrund der Vorlageregelen nicht erlaubt.", true);
+                                return;
+                            }
+                            break;
+                    }
+                }
+                Pair<Vertex, Vertex> edge = new Pair<>(source, vert);
+                AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
+                history.execute(addEdgesLogAction);
+            }else{
+                helper.setActionText("Es dürfen nur " + Syndrom.getInstance().getTemplate().getMaxEdges() + " Relation(en) aufgrund der Vorlageregeln gesetzt werden.", true);
+            }
         }
         source = null;
     }
