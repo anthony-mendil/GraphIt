@@ -301,19 +301,19 @@ public class Syndrom {
         }
     }
 
-    @SuppressWarnings("unchecked")
+
     public void generateNew() {
         graph = new SyndromGraph<>();
 
         layout = new AggregateLayout<>(new StaticLayout<Vertex, Edge>(graph));
         final VisualizationModel<Vertex, Edge> visualizationModel =
-                new DefaultVisualizationModel(layout, values.getDefaultLayoutVVSize());
+                new DefaultVisualizationModel<>(layout, values.getDefaultLayoutVVSize());
         vv = new SyndromVisualisationViewer<>(visualizationModel, values
                 .getDefaultLayoutVVSize());
         vv.setGraphLayout(layout);
         setVisualisationViewer(vv);
 
-        vv2 = new SatelliteVisualizationViewer(vv, new Dimension(260, 195));
+        vv2 = new SatelliteVisualizationViewer<>(vv, new Dimension(260, 195));
 
         setVisualisationViewer2(vv2);
     }
