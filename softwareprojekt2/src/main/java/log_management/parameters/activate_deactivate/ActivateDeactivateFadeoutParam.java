@@ -12,7 +12,7 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.List;
 /**
- * Parameter object of the action ActivateFadeoutLogAction/DeactivateFadeoutLogAction.
+ * Parameter object of the action ActivateFadeoutAction/DeactivateFadeoutAction.
  */
 @Data
 public class ActivateDeactivateFadeoutParam extends Param implements Serializable {

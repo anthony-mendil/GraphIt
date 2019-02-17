@@ -25,21 +25,21 @@ import java.awt.*;
 /**
  * Makes the vertices and attached edges, which used to be invisible, visible again.
  */
-public class DeactivateFadeoutLogAction extends LogAction {
+public class DeactivateFadeoutAction extends LogAction {
     /**
      * Constructor in case the user wants to make every vertex and edge visible again.
      */
-    public DeactivateFadeoutLogAction() {
+    public DeactivateFadeoutAction() {
         super(LogEntryName.DEACTIVATE_FADEOUT);
     }
 
     /**
      * Makes the vertices and edges visible. Also used to implement the undo-method of
-     * ActivateFadeoutLogAction.
+     * ActivateFadeoutAction.
      *
      * @param pParam The vertices object that contains every vertices that is needed.
      */
-    public DeactivateFadeoutLogAction(ActivateDeactivateFadeoutParam pParam) {
+    public DeactivateFadeoutAction(ActivateDeactivateFadeoutParam pParam) {
         super(LogEntryName.DEACTIVATE_FADEOUT);
     }
 

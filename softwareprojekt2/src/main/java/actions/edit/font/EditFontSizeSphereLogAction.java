@@ -49,8 +49,8 @@ public class EditFontSizeSphereLogAction extends LogAction {
             Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    sp.setFontSize(size);
                     createParameter(sp, sp.getFontSize(), size);
+                    sp.setFontSize(size);
                 }else{
                     helper.setActionText("Die Größe der Schrift der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedSphere = sp;

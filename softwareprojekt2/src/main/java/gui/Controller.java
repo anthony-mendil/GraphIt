@@ -3,14 +3,14 @@ package gui;
 import actions.ActionHistory;
 import actions.GraphAction;
 import actions.ObserverSyndrom;
-import actions.activate.ActivateAnchorPointsFadeoutLogAction;
-import actions.activate.ActivateFadeoutLogAction;
-import actions.activate.ActivateHighlightLogAction;
+import actions.activate.ActivateAnchorPointsFadeoutAction;
+import actions.activate.ActivateFadeoutAction;
+import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
-import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
-import actions.deactivate.DeactivateFadeoutLogAction;
-import actions.deactivate.DeactivateHighlightLogAction;
+import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
+import actions.deactivate.DeactivateFadeoutAction;
+import actions.deactivate.DeactivateHighlightAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
@@ -37,7 +37,6 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
-import graph.visualization.picking.SyndromPickSupport;
 import gui.properties.Language;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -83,7 +82,6 @@ import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -916,14 +914,14 @@ public class Controller implements ObserverSyndrom {
     /* ----------------DEACTIVATE---------------------- */
 
     /**
-     * Creates an DeactivateFadeoutLogAction-object and executes the action with the action history.
+     * Creates an DeactivateFadeoutAction-object and executes the action with the action history.
      */
     public void deactivateFadeout() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     * Creates an DeactivateHighlightLogAction-object and executes the action with the action history.
+     * Creates an DeactivateHighlightAction-object and executes the action with the action history.
      */
     public void deactivateHighlight() {
         throw new UnsupportedOperationException();
@@ -1022,11 +1020,11 @@ public class Controller implements ObserverSyndrom {
 
     public void anchorPointsEdge() {
         if (anchorPointsButton.isSelected()) {
-            DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
-            deactivateAnchorPointsFadeoutLogAction.action();
+            DeactivateAnchorPointsFadeoutAction deactivateAnchorPointsFadeoutAction = new DeactivateAnchorPointsFadeoutAction();
+            deactivateAnchorPointsFadeoutAction.action();
         } else {
-            ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
-            activateAnchorPointsFadeoutLogAction.action();
+            ActivateAnchorPointsFadeoutAction activateAnchorPointsFadeoutAction = new ActivateAnchorPointsFadeoutAction();
+            activateAnchorPointsFadeoutAction.action();
         }
     }
 
@@ -1576,11 +1574,11 @@ public class Controller implements ObserverSyndrom {
 
     public void highlight() {
         if (highlight.isSelected()) {
-            ActivateHighlightLogAction activateHighlightLogAction = new ActivateHighlightLogAction();
-            activateHighlightLogAction.action();
+            ActivateHighlightAction activateHighlightAction = new ActivateHighlightAction();
+            activateHighlightAction.action();
         } else {
-            DeactivateHighlightLogAction deactivateHighlightLogAction = new DeactivateHighlightLogAction();
-            deactivateHighlightLogAction.action();
+            DeactivateHighlightAction deactivateHighlightAction = new DeactivateHighlightAction();
+            deactivateHighlightAction.action();
         }
     }
 
@@ -1596,11 +1594,11 @@ public class Controller implements ObserverSyndrom {
 
     public void fadeout() {
         if (!fadeout.isSelected()) {
-            DeactivateFadeoutLogAction deactivateFadeoutLogAction = new DeactivateFadeoutLogAction();
-            deactivateFadeoutLogAction.action();
+            DeactivateFadeoutAction deactivateFadeoutAction = new DeactivateFadeoutAction();
+            deactivateFadeoutAction.action();
         } else {
-            ActivateFadeoutLogAction activateFadeoutLogAction = new ActivateFadeoutLogAction();
-            activateFadeoutLogAction.action();
+            ActivateFadeoutAction activateFadeoutAction = new ActivateFadeoutAction();
+            activateFadeoutAction.action();
         }
     }
 
