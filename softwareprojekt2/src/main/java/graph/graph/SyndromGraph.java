@@ -85,6 +85,17 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     }
 
     /**
+     * Adds an edge to the graph, if it already existed once in the past.
+     *
+     * @param edge The existing edge.
+     * @param v1 The source vertex.
+     * @param v2 The sink vertex.
+     */
+    public void addEdgeExisting(Edge edge, V v1, V v2){
+        addEdge((E)edge, v1, v2);
+    }
+
+    /**
      * Adds a vertex to the syndrom graphs and assigns it to a sphere if it wasn't existing in the past.
      *
      * @param pSphere The sphere to assign to.
