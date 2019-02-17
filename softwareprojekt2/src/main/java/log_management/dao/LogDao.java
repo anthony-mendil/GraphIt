@@ -116,8 +116,9 @@ public class LogDao implements Dao<Log> {
         newLog.setTime(log.getTime());
         newLog.setParameters(log.getParameters());
         newLog.setLogEntryName(log.getLogEntryName());
+
+
         newLog.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).get());
-        //entityManager.merge(newLog);
         entityManager.persist(newLog);
 
         entityManager.getTransaction().commit();
@@ -149,7 +150,7 @@ public class LogDao implements Dao<Log> {
 
         deleteAllLogs();
 
-        Type myType = new TypeToken<List<Log>>() {}.getType();
+        Type myType = new TypeToken<ArrayList<Log>>() {}.getType();
         logs = new Gson().fromJson(oofLogs, myType);
 
         for (int i = 0; i < logs.size(); i++) {

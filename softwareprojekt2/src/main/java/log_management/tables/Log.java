@@ -2,6 +2,7 @@ package log_management.tables;
 
 import actions.LogEntryName;
 import log_management.LogToStringConverter;
+import log_management.parameters.Param;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,7 +12,6 @@ import java.time.LocalDateTime;
  * the logs table of the database.
  */
 @Entity
-@Table(name = "LOGS", schema = "PUBLIC", catalog = "GRAPHITDATABASE")
 public class Log {
     /**
      * The id of the logEntry.
@@ -98,7 +98,7 @@ public class Log {
      *
      * @return The parameters in the JSON format.
      */
-    @Column(name = "PARAMETERS", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "PARAMETERS", columnDefinition = "VARCHAR(MAX)")
     public String getParameters() {
         return parameters;
     }

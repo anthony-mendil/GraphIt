@@ -5,6 +5,7 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
@@ -50,19 +51,47 @@ public class EditEdgesTypeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if(parameters == null) {
+            if(values.getMode() != FunctionMode.TEMPLATE) {
+                switch (type) {
+                    case REINFORCED:
+                        if (!template.isReinforcedEdgesAllowed()) {
+                            helper.setActionText("Verstärkende Relationen sind aufgrund der Vorlageregeln nicht erlaubt", true);
+                            return;
+                        }
+                        break;
+                    case EXTENUATING:
+                        if (!template.isExtenuatingEdgesAllowed()) {
+                            helper.setActionText("Abschwächende Relationen sind aufgrund der Vorlageregelen nicht erlaubt", true);
+                            return;
+                        }
+                        break;
+                    case NEUTRAL:
+                        if (!template.isNeutralEdgesAllowed()) {
+                            helper.setActionText("Unbekannte Relationen sind aufgrund der Vorlageregelen nicht erlaubt.", true);
+                            return;
+                        }
+                        break;
+                }
+            }
             List<Edge> lockedEdges = new LinkedList<>();
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
             Map<Edge,EdgeArrowType> oldEdges = new HashMap<>();
             Map<Edge,EdgeArrowType> newEdges = new HashMap<>();
-            for (Edge e : pickedState.getPicked()) {
-                if(!e.isLockedEdgeType()) {
+            for (Edge e : pickedState.getPicked() ) {
+                if(!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldEdges.put(e, e.getArrowType());
                     e.setArrowType(type);
                     newEdges.put(e, type);
                 }else{
-                    helper.setActionText("Die Art der Pfeilspitze der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedEdges.add(e);
                 }
+            }
+            if(!lockedEdges.isEmpty()){
+                helper.setActionText("Die Art der Pfeilspitze der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+            }
+            if(lockedEdges.size() == pickedState.getPicked().size()){
+                actionHistory.removeLastEntry();
+                return;
             }
             createParameter(oldEdges,newEdges);
         }else{

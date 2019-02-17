@@ -3,10 +3,7 @@ package actions.add;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveVerticesLogAction;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
@@ -61,21 +58,27 @@ public class AddVerticesLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        if(!template.isLockedVertexNumber() || graph.getVertices().size() < template.getMaxVertices()){
         if(parameters == null){
+            if(sphere.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
+                helper.setActionText("The vertices of this sphere is locked.",true);
+                return;
+            }
             position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
             Vertex newVertex = graph.addVertex(position2D, sphere);
             createParameter(newVertex, sphere);
             vv.getGraphLayout().setLocation(newVertex, position2D);
+
+            System.out.println("The Number of lockedVertices =" + sphere.getLockedMaxAmountVertices());
         }else{
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getVertices();
             Map<Vertex, Sphere> newVertices = new HashMap<>();
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
                 Vertex vertex = entry.getKey();
-                Vertex newVertex = graph.addVertex(vertex.getCoordinates(), entry.getValue());
-                newVertices.put(newVertex, entry.getValue());
-                vv.getGraphLayout().setLocation(newVertex, newVertex.getCoordinates());
+                graph.addVertexExisting(vertex);
+                newVertices.put(vertex, entry.getValue());
+                vv.getGraphLayout().setLocation(vertex, vertex.getCoordinates());
             }
-            parameters = new AddRemoveVerticesParam(newVertices);
         }
         vv.repaint();
         syndrom.getVv2().repaint();
@@ -83,6 +86,9 @@ public class AddVerticesLogAction extends LogAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+    }else{
+            helper.setActionText("Only "+ template.getMaxVertices()+ " vertex/vertices are allowed.", true);
+        }
     }
 
     @Override

@@ -27,6 +27,7 @@ public class CreateGraphAction extends GraphAction {
     @SuppressWarnings("unchecked")
     public void action() {
         syndrom.generateNew();
+        actionHistory.wipe();
 
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();

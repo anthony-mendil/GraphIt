@@ -23,7 +23,7 @@ public abstract class LogAction extends GraphAction {
     /**
      * The name of the action.
      */
-    private LogEntryName logEntryName;
+    protected LogEntryName logEntryName;
     @Getter
     @Setter
     /**
@@ -34,7 +34,7 @@ public abstract class LogAction extends GraphAction {
     /**
      * The time, the action gets called.
      */
-    private LocalDateTime time;
+    protected LocalDateTime time;
 
     /**
      * Creates an action in the program, which will also be persisted into in the database.
@@ -61,7 +61,6 @@ public abstract class LogAction extends GraphAction {
             paramString = gson.toJson(parameters);
         } catch (Exception e) {}
         log.setParameters(paramString);
-
         return log;
     }
 

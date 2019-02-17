@@ -1,13 +1,19 @@
-package log_management.json_serializers;
+/*package log_management.json_deserializers;
 
 import com.google.gson.*;
 import graph.graph.Vertex;
 
 import java.lang.reflect.Type;
 
-public class VertexSerializer implements JsonSerializer<Vertex> {
-    public JsonElement serialize(Vertex vertex, Type type,
-                                 JsonSerializationContext jsonSerializationContext) {
+public class VertexDeserializer implements JsonDeserializer<Vertex> {
+    @Override
+    public Vertex deserialize(JsonElement jsonElement, Type type,
+                              JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+        JsonElement id = jsonObject.get("id");
+        JsonElement fillColor = jsonObject.get("filColor");
+
         JsonObject jo = new JsonObject();
         jo.addProperty("id",vertex.getId());
         jo.add("fillColor", new Gson().toJsonTree(vertex.getFillColor()));
@@ -27,6 +33,6 @@ public class VertexSerializer implements JsonSerializer<Vertex> {
         jo.addProperty("isLockedPosition", vertex.isLockedPosition());
         jo.addProperty("isLockedAnnotation", vertex.isLockedAnnotation());
 
-        return jo;
+        return new Vertex(id.ge)
     }
-}
+}*/

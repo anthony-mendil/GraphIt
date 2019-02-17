@@ -16,12 +16,12 @@ public class LoadGraphAction extends GraphAction {
 
     @Override
     public void action() {
+        actionHistory.wipe();
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         String gxlGraph = databaseManager.getGxlFromDatabase();
         Action.attach(databaseManager);
-
         GXLio gxLio = new GXLio();
-        gxLio.gxlToInstance(gxlGraph);
+        gxLio.gxlToInstance(gxlGraph,true);
         //System.out.println(gxlGraph);
         notifyObserverGraph();
     }

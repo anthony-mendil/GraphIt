@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.graph.VertexShapeType;
 import graph.visualization.SyndromVisualisationViewer;
@@ -49,7 +50,7 @@ public class EditVerticesFormLogAction extends LogAction {
             Map<Vertex,VertexShapeType> oldVertices = new HashMap<>();
             Map<Vertex,VertexShapeType> newVertices = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                if(!vertex.isLockedStyle()) {
+                if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldVertices.put(vertex, vertex.getShape());
                     vertex.setShape(type);
                     newVertices.put(vertex, type);

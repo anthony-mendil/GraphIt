@@ -1,6 +1,7 @@
 package actions;
 
 import com.google.inject.Singleton;
+import graph.graph.Syndrom;
 
 /**
  * A bounded history of actions.
@@ -42,7 +43,7 @@ public class ActionHistory {
         for(int i = current+1; i<maxActions; i++){
             actions[i] = null;
         }
-
+        System.out.println(current);
     }
 
     public static ActionHistory getInstance(){
@@ -56,15 +57,13 @@ public class ActionHistory {
      * Undo for a current action.
      */
     public void undo() {
-        try {
-            if (current > 0){
+            if (current >= 0) {
                 actions[current].undo();
-            current--;
-        }
-        }catch(UnsupportedOperationException e){
-            System.err.println("Can't undo further more actions.");
-
-        }
+                current--;
+            }else{
+                System.err.println("Can't undo further more actions.");
+            }
+            System.out.println(current);
     }
 
     /**
@@ -79,5 +78,24 @@ public class ActionHistory {
         }catch(UnsupportedOperationException e){
             System.err.println("Can't redo the latest action.");
         }
+        System.out.println(current);
+    }
+
+    /**
+     * Removes the last action from the ActionHistory.
+     */
+    public void removeLastEntry(){
+        if(current >= 0) {
+            actions[current] = null;
+            current--;
+        }
+    }
+
+    /**
+     * Wipes the existing ActionHistory.
+     */
+    public void wipe(){
+        actions = new Action[maxActions];
+        current = -1;
     }
 }

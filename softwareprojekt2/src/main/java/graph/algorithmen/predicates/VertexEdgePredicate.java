@@ -3,6 +3,7 @@ package graph.algorithmen.predicates;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import graph.graph.EdgeArrowType;
+import graph.graph.Vertex;
 import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
@@ -32,6 +33,7 @@ public class VertexEdgePredicate<V, E> implements Predicate<Context<Graph<V, E>,
 
     @Override
     public boolean evaluate(Context<Graph<V, E>, V> graphVContext) {
-        throw new UnsupportedOperationException();
+        Vertex v = ((Vertex) graphVContext.element);
+        return false;
     }
 }

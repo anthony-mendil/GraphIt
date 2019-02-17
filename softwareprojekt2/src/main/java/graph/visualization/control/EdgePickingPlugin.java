@@ -8,6 +8,7 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import gui.EdgeContextMenu;
+import gui.Values;
 import gui.VertexContextMenu;
 import javafx.scene.control.ContextMenu;
 
@@ -127,11 +128,13 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
         if (SwingUtilities.isRightMouseButton(e)) {
             if (vertex == null && edge != null) {
-                PickedState<Edge> edges = vv.getPickedEdgeState();
-                edges.clear();
-                edges.pick(edge, true);
-                contextMenu = new EdgeContextMenu(edge).getContextMenu();
-                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                    PickedState<Edge> edges = vv.getPickedEdgeState();
+                    edges.clear();
+                    edges.pick(edge, true);
+                    contextMenu = new EdgeContextMenu(edge).getContextMenu();
+                    helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                }
             }
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();

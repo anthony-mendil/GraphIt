@@ -2,6 +2,7 @@ package graph.visualization.control;
 
 import actions.ActionHistory;
 import actions.add.AddSphereLogAction;
+import actions.move.MoveSphereLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -71,11 +72,13 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             }
         } else {
             if (vertex == null && sp != null) {
-                contextMenu = new SphereContextMenu(sp).getContextMenu();
-                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
-                PickedState<Sphere> spheres = vv.getPickedSphereState();
-                spheres.clear();
-                spheres.pick(sp, true);
+                if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                    contextMenu = new SphereContextMenu(sp).getContextMenu();
+                    helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                    PickedState<Sphere> spheres = vv.getPickedSphereState();
+                    spheres.clear();
+                    spheres.pick(sp, true);
+                }
             }
         }
         vv.repaint();
@@ -100,8 +103,14 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             }
         }
         if (addSphere) {
-            AddSphereLogAction addSphereLogAction = new AddSphereLogAction(p);
-            history.execute(addSphereLogAction);
+            SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+            if(graph.getSpheres().size() < Syndrom.getInstance().getTemplate().getMaxSpheres() || values.getMode() == FunctionMode.TEMPLATE) {
+                AddSphereLogAction addSphereLogAction = new AddSphereLogAction(p);
+                history.execute(addSphereLogAction);
+            }else{
+                helper.setActionText("Nur "+ Syndrom.getInstance().getTemplate().getMaxSpheres() + " Sphäre(n) sind im Graph erlaubt.", true);
+            }
         } else {
             helper.setActionText("Hinzufügen einer Sphäre hier nicht möglich!", true);
         }
@@ -125,11 +134,16 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
         if (sp != null && vert == null && edge == null) {
            if (SwingUtilities.isRightMouseButton(e)) {
-                spherePickedCoord = sp.getCoordinates();
-                points = new LinkedHashMap<>();
-                for (Vertex v : sp.getVertices()) {
-                    points.put(v.getId(), v.getCoordinates());
-                }
+               if(sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT){
+                    helper.setActionText("Diese Sphäre kann aufgrund der Vorlageregeln nicht bewegt werden", true);
+               }
+               else if(values.getMode() != FunctionMode.ANALYSE) {
+                   spherePickedCoord = sp.getCoordinates();
+                   points = new LinkedHashMap<>();
+                   for (Vertex v : sp.getVertices()) {
+                       points.put(v.getId(), v.getCoordinates());
+                   }
+               }
             }
             if (!pickedSphereState.isPicked(sp)) {
                 pickedSphereState.clear();
@@ -181,6 +195,9 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                     v.setCoordinates(vp);
                     vv.getGraphLayout().setLocation(v, vp);
                 }
+            }else{
+                MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s,spherePickedCoord,s.getCoordinates());
+                history.execute(moveSphereLogAction);
             }
         }
 

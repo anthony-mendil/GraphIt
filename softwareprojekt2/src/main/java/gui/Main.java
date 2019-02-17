@@ -6,13 +6,16 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import log_management.DatabaseManager;
 import log_management.dao.PersonalEntityManagerFactory;
+import log_management.tables.Log;
 import lombok.Getter;
 import org.apache.log4j.BasicConfigurator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 /**
  * Starts the whole application.
@@ -41,7 +44,7 @@ public class Main extends Application {
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(new Scene(borderPane));
-        primaryStage.getIcons().add(new Image("/logo.png"));
+        primaryStage.getIcons().add(new Image("/GraphItLogo.png"));
         primaryStage.show();
         primaryStage.setMaximized(true);
         controller.createTemplateWindow();
@@ -58,6 +61,12 @@ public class Main extends Application {
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
 
         launch(args);
+
+        List<Log> list = DatabaseManager.getInstance().getLogDao().getAll();
+
+        for (Log l : list) {
+            System.out.println(l.toString());
+        }
 
         PersonalEntityManagerFactory.getInstance().close();
 //        Map<Integer, Integer> test = new HashMap<>();

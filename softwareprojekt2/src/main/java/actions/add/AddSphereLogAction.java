@@ -1,11 +1,11 @@
 package actions.add;
 
-import actions.Action;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveSphereLogAction;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 
@@ -43,20 +43,22 @@ public class AddSphereLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if(parameters == null) {
-            graph.addSphere(point2D);
-            createParameter(graph.getSpheres().get(graph.getSpheres().size() - 1));
-        }else{
-            graph.getSpheres().add(((AddRemoveSphereParam)parameters).getSphere());
-        }
-        vv.repaint();
-        Syndrom.getInstance().getVv2().repaint();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+        if (parameters == null) {
+                graph.addSphere(point2D);
+                Sphere sp = pickSupport.getSphere(point2D.getX(),point2D.getY());
+                createParameter(sp);
+            } else {
+                graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
+            }
+            vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
 
-        DatabaseManager databaseManager = DatabaseManager.getInstance();
-        databaseManager.addEntryDatabase(createLog());
+            DatabaseManager databaseManager = DatabaseManager.getInstance();
+            databaseManager.addEntryDatabase(createLog());
 
-        //Action.attach(databaseManager);
-        notifyObserverGraph();
+            //Action.attach(databaseManager);
+            notifyObserverGraph();
     }
 
     @Override

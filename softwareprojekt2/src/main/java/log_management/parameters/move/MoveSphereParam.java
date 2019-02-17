@@ -18,28 +18,35 @@ import java.util.Map;
 @Data
 public class MoveSphereParam extends Param implements Serializable {
     /**
-     * The sphere containing its old position.
+     * The sphere.
      */
     @Getter
-    private Map<Sphere,Point2D> oldSphere;
+    private Sphere sphere;
     /**
-     * The sphere containing its new position.
+     * The old position of the sphere.
      */
     @Getter
-    private Map<Sphere,Point2D> newSphere;
+    private Point2D oldPos;
+    /**
+     * The new position of the sphere.
+     */
+    @Getter
+    private Point2D newPos;
 
     /**
      * Creates a vertices object of its own class.
-     * @param pOldSphere The sphere containing its old position.
-     * @param pNewSphere The sphere containing its new position.
+     * @param pSphere The sphere.
+     * @param pOldPos The sphere containing its old position.
+     * @param pNewPos The sphere containing its new position.
      */
-    public MoveSphereParam(Map<Sphere,Point2D> pOldSphere, Map<Sphere,Point2D> pNewSphere) {
-        this.oldSphere = pNewSphere;
-        this.newSphere = pOldSphere;
+    public MoveSphereParam(Sphere pSphere, Point2D pOldPos, Point2D pNewPos) {
+        this.sphere = pSphere;
+        this.oldPos = pNewPos;
+        this.newPos = pOldPos;
     }
     @Override
     public String prettyPrint() {
-        Language language = Values.getInstance().getGuiLanguage();
+        /*Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
             information += "Spheres moved:\n";
@@ -58,6 +65,7 @@ public class MoveSphereParam extends Param implements Serializable {
                         + " y = " + newSphere.get(entry.getKey()).getY() + "\n";
             }
         }
-        return information;
+        return information;*/
+        return null;
     }
 }

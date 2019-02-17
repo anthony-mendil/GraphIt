@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
@@ -48,7 +49,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
             Map<Vertex, Color> paramOldVertices = new HashMap<>();
             Map<Vertex, Color> paramNewVertices = new HashMap<>();
             for (Vertex vertex: pickedStateVertex.getPicked()) {
-                if(!vertex.isLockedStyle()) {
+                if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     paramOldVertices.put(vertex, vertex.getDrawColor());
                     paramNewVertices.put(vertex, color);
                     vertex.setDrawColor(color);

@@ -3,15 +3,15 @@ package actions.edit.color;
 import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
+import jgrapht.JGraphTHandler;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereColorParam;
 
 import java.awt.*;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -51,7 +51,7 @@ public class EditSphereColorLogAction extends LogAction {
     if(parameters == null) {
         Sphere lockedSphere = null;
         for (Sphere sp : pickedState.getPicked()) {
-            if(!sp.isLockedStyle()) {
+            if(!sp.isLockedStyle()|| values.getMode() == FunctionMode.TEMPLATE) {
                 createParameter(sp, sp.getColor(), color);
                 sp.setColor(color);
             }else{
@@ -66,7 +66,9 @@ public class EditSphereColorLogAction extends LogAction {
         }
         vv.repaint();
         syndrom.getVv2().repaint();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
+     //   JGraphTHandler jGraphTHandler = new JGraphTHandler(graph.getVertices(),);
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();

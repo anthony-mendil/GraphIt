@@ -44,12 +44,8 @@ public class RemoveSphereLogAction extends LogAction {
             Sphere lockedSphere = null;
             PickedState<Sphere> pickedState = vv.getPickedSphereState();
             for (Sphere sp : pickedState.getPicked()) {
-                if(!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices()){
                 for(Vertex v: sp.getVertices()){
                     graph.removeVertex(v);
-                }
-                }else{
-                    lockedSphere = sp;
                 }
                 graph.removeSphere(sp);
                 createParameter(sp);

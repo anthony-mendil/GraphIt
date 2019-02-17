@@ -12,6 +12,7 @@ import lombok.Setter;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ import java.util.Map;
  * connected through edges. All attributes of a vertex can be changed, just the id is unique and final.
  */
 @Data
-public class Vertex {
+public class Vertex implements Serializable {
     /**
      * The unique id of a vertex.
      */
@@ -62,19 +63,19 @@ public class Vertex {
      * The edges with a reinforcing relation with its position on the vertex.
      */
     @NonNull
-    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowReinforced;
+    private Map<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowReinforced;
 
     /**
      * The edges with a neutral relation with its position on the vertex.
      */
     @NonNull
-    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowNeutral;
+    private Map<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowNeutral;
 
     /**
      * The edges with a extenuating relation with its position on the vertex.
      */
     @NonNull
-    private EnumMap<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowExtenuating;
+    private Map<ScopePoint, Pair<Point2D, AffineTransform>> vertexArrowExtenuating;
 
     /**
      * The size of a vertex.

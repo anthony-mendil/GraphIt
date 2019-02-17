@@ -8,6 +8,19 @@ import lombok.Data;
 @Data
 public class Template {
 
+
+    /**
+     * Indicator, whether the number of spheres is locked.
+     */
+    private boolean lockedSphereNumber = false;
+    /**
+     * Indicator, whether the number of vertices is locked.
+     */
+    private boolean lockedVertexNumber = false;
+    /**
+     * Indicator, whether the number of Edges is locked.
+     */
+    private boolean lockedEdgesNumber = false;
     //Graphelement options:
     /**
      * The maximum number of spheres allowed to exist in the graph. This is defined in the template.
@@ -26,20 +39,24 @@ public class Template {
 
     //Edgetype options:
     /**
-     *
+     * Allows the user to use reinforced arrows.
      */
     private boolean reinforcedEdgesAllowed;
 
     /**
-     *
+     * Allows the user to use extenuating arrows.
      */
     private boolean extenuatingEdgesAllowed;
 
     /**
-     *
+     * Allows the user to use neutral arrows.
      */
-    private boolean unknownEdgesAllowed;
+    private boolean neutralEdgesAllowed;
 
+    /**
+     * Indicator whether the tickbox is ticked in one of them.(No use atm)
+     */
+    private boolean set;
 
     /**
      * Creates a new Template object.
@@ -50,7 +67,7 @@ public class Template {
         maxEdges=pMaxEdges;
         reinforcedEdgesAllowed=pReinforcedEdgesAllowed;
         extenuatingEdgesAllowed=pExtenuatingEdgesAllowed;
-        unknownEdgesAllowed=pUnknownEdgesAllowed;
+        neutralEdgesAllowed=pUnknownEdgesAllowed;
     }
     @Override
     public String toString(){
@@ -71,7 +88,7 @@ public class Template {
         }else {
             stringBuilder.append(", extenuating edges not allowed");
         }
-        if(unknownEdgesAllowed){
+        if(neutralEdgesAllowed){
             stringBuilder.append(", unknown edges allowed");
         }else {
             stringBuilder.append(", unknown edges not allowed");

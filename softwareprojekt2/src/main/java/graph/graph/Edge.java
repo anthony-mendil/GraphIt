@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 /**
  * An edge of the syndrom-graph. There are 3 type of edges, defined by the three types of relations: extenuating,
@@ -16,7 +17,7 @@ import java.awt.geom.Point2D;
  */
 @Data
 
-public class Edge {
+public class Edge implements Serializable {
     /**
      * The id of the edge.
      */
@@ -116,7 +117,7 @@ public class Edge {
 
     @Override
     public String toString(){
-        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + "->" +
+        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " -> " +
                 Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
     }
 

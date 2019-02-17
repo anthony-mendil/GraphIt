@@ -30,6 +30,9 @@ public class AddHighlightElementAction extends GraphAction {
         syndrom.getVv2().repaint();
     }
 
+    /**
+     * The
+     */
     @Override
     public void undo() {
         return;

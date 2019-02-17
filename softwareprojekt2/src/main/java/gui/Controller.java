@@ -29,12 +29,15 @@ import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
+import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
+import graph.visualization.picking.SyndromPickSupport;
 import gui.properties.Language;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -65,7 +68,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -81,6 +83,7 @@ import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -214,16 +217,22 @@ public class Controller implements ObserverSyndrom {
     private Separator toolBarSeparator1;
 
     /**
-     * The button to change the gui layout to edit-mode
+     * The button to change the gui layout to create-mode
      */
     @FXML
-    private Button editButton;
+    private Button createButton;
 
     /**
      * The button to change the gui layout to analysis-mode
      */
     @FXML
     private Button analysisButton;
+
+    /**
+     * The button to change the gui layout to edit-mode
+     */
+    @FXML
+    private Button editButton;
 
     /* Template Options */
 
@@ -691,16 +700,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private VBox vBoxEditEdge;
 
-    /**
-     * Checking if gui is in edit mode
-     */
-    private boolean editMode = true;
-
-    /**
-     * Checking if gui is in analysis mode
-     */
-    private boolean analysisMode = false;
-
     @FXML
     private SwingNode swing;
 
@@ -1024,16 +1023,16 @@ public class Controller implements ObserverSyndrom {
     public void anchorPointsEdge() {
         if (anchorPointsButton.isSelected()) {
             DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
-            history.execute(deactivateAnchorPointsFadeoutLogAction);
+            deactivateAnchorPointsFadeoutLogAction.action();
         } else {
             ActivateAnchorPointsFadeoutLogAction activateAnchorPointsFadeoutLogAction = new ActivateAnchorPointsFadeoutLogAction();
-            history.execute(activateAnchorPointsFadeoutLogAction);
+            activateAnchorPointsFadeoutLogAction.action();
         }
     }
 
     public void removeAnchor() {
         RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
-        history.execute(removeAnchorPointsLogAction);
+        removeAnchorPointsLogAction.action();
     }
 
     /**
@@ -1108,8 +1107,8 @@ public class Controller implements ObserverSyndrom {
      */
     public void editFontVertex(String font) {
         values.setFontVertex(font);
-        EditFontVerticesLogAction editFontSphereLogAction = new EditFontVerticesLogAction(font);
-        history.execute(editFontSphereLogAction);
+        EditFontVerticesLogAction editFontVertexLogAction = new EditFontVerticesLogAction(font);
+        history.execute(editFontVertexLogAction);
     }
 
     public void vertexFont1() {
@@ -1189,7 +1188,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
      */
-    public void exportTemplateGXL() {
+    public void exportGXLWithTemplate() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1198,6 +1197,7 @@ public class Controller implements ObserverSyndrom {
             ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
             exportTemplateGxlAction.action();
         }
+
     }
 
     /**
@@ -1270,7 +1270,7 @@ public class Controller implements ObserverSyndrom {
      * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
      * and executes the action with the action history.
      */
-    public void importTemplateGXL() {
+    public void importGXLWithTemplate() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1282,8 +1282,36 @@ public class Controller implements ObserverSyndrom {
             canvas.setContent(syndrom.getVv());
             satellite.setContent(syndrom.getVv2());
         }
+        templateToFields();
     }
 
+    /**
+     * Sets the Template values into the fields (usage: importing template)
+     */
+    private void templateToFields() {
+        Template currentTemplate = Syndrom.getInstance().getTemplate();
+        if (currentTemplate.getMaxSpheres() != Integer.MAX_VALUE) {
+            maxSphereField.setText("" + currentTemplate.getMaxSpheres());
+            System.out.println("max set");
+        } else {
+            maxSphereField.setText("");
+        }
+        if (currentTemplate.getMaxVertices() != Integer.MAX_VALUE) {
+            maxSymptomField.setText("" + currentTemplate.getMaxVertices());
+            System.out.println("max set");
+        } else {
+            maxSymptomField.setText("");
+        }
+        if (currentTemplate.getMaxEdges() != Integer.MAX_VALUE) {
+            maxEdgesField.setText("" + currentTemplate.getMaxEdges());
+            System.out.println("max set");
+        } else {
+            maxEdgesField.setText("");
+        }
+        reinforcedBox.setSelected(currentTemplate.isReinforcedEdgesAllowed());
+        extenuatingBox.setSelected(currentTemplate.isExtenuatingEdgesAllowed());
+        neutralBox.setSelected(currentTemplate.isNeutralEdgesAllowed());
+    }
 
     /**
      * Creates an PrintPDFAction-object and executes the action with the action history.
@@ -1312,42 +1340,51 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Creates an SwitchModiEditorAction-object for changing to the editor mode
+     * Creates an SwitchModeAction-object for changing to the editor mode
      * and executes the action with the action history.
      */
-    public void switchModiEditor() {
-        if (analysisMode) {
+    public void switchModiCreator() {
             analysisMode(false);
-            editMode(true);
-            editButton.setDisable(true);
+            createOrEditMode(false,true);
+            createOrEditMode(true,false);
+            editButton.setDisable(false);
             analysisButton.setDisable(false);
-            editMode = true;
-            analysisMode = false;
-        }
+            createButton.setDisable(true);
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
+            switchModeAction.action();
     }
 
     /**
-     * Creates an SwitchModiEditorAction-object for changing to the analyse mode
+     * Creates an SwitchModeAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
     public void switchModiAnalysis() {
-        if (editMode) {
             values.setGraphButtonType(GraphButtonType.NONE);
-            editMode(false);
+            createOrEditMode(false,false);
+            createOrEditMode(false, true);
             analysisMode(true);
+            createButton.setDisable(false);
             editButton.setDisable(false);
             analysisButton.setDisable(true);
-            editMode = false;
-            analysisMode = true;
-        }
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
+            switchModeAction.action();
     }
 
     /**
      * Creates an SwitchModeEditorAction-object for changing to the interpreter mode
      * and executes the action with action history.
      */
-    public void switchModiInterpreter() {
-        throw new UnsupportedOperationException();
+    public void switchModiEdit() {
+            values.setGraphButtonType(GraphButtonType.NONE);
+            analysisMode(false);
+            createOrEditMode(false,false);
+            createOrEditMode(true,true);
+            createButton.setDisable(false);
+            analysisButton.setDisable(false);
+            editButton.setDisable(true);
+
+            SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
+            switchModeAction.action();
     }
 
     /**
@@ -1429,9 +1466,23 @@ public class Controller implements ObserverSyndrom {
      * Creates an RemoveSphereLogAction-object and executes the action with the action history.
      */
     public void removeSphere() {
-        values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
-        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        history.execute(removeSphereLogAction);
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState = vv.getPickedSphereState();
+        for (Sphere sp : pickedState.getPicked()) {
+            if(sp.verticesLocked()){
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("Eine der Symptome kann aufgrund der Vorlageregeln nicht gelöscht werden.", true);
+                return;
+            }
+            if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
+                values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
+                RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
+                history.execute(removeSphereLogAction);
+            }else{
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("Die Sphäre kann aufgrund der Vorlagereglen nicht gelöscht werden.", true);
+            }
+        }
     }
 
     /**
@@ -1439,7 +1490,8 @@ public class Controller implements ObserverSyndrom {
      */
     public void removeVertices() {
         RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
-        removeVerticesLogAction.action();
+        history.execute(removeVerticesLogAction);
+
     }
 
     /* ----------------TEMPLATE---------------------- */
@@ -1459,7 +1511,7 @@ public class Controller implements ObserverSyndrom {
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
         rulesTemplateAction.action();
-        System.out.println(temp.toString());
+        System.out.println(Syndrom.getInstance().getTemplate().toString());
     }
 
     /**
@@ -1519,47 +1571,47 @@ public class Controller implements ObserverSyndrom {
         templateStage.setResizable(false);
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
-        templateStage.getIcons().add(new Image("/logo.png"));
+        templateStage.getIcons().add(new Image("/GraphItlogo.png"));
     }
 
     public void highlight() {
         if (highlight.isSelected()) {
             ActivateHighlightLogAction activateHighlightLogAction = new ActivateHighlightLogAction();
-            history.execute(activateHighlightLogAction);
+            activateHighlightLogAction.action();
         } else {
             DeactivateHighlightLogAction deactivateHighlightLogAction = new DeactivateHighlightLogAction();
-            history.execute(deactivateHighlightLogAction);
+            deactivateHighlightLogAction.action();
         }
     }
 
     public void highlightElements() {
         AddHighlightElementAction addHighlightElementAction = new AddHighlightElementAction();
-        history.execute(addHighlightElementAction);
+        addHighlightElementAction.action();
     }
 
     public void dehighlightElements() {
         RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
-        history.execute(removeHighlightElementAction);
+        removeHighlightElementAction.action();
     }
 
     public void fadeout() {
         if (!fadeout.isSelected()) {
             DeactivateFadeoutLogAction deactivateFadeoutLogAction = new DeactivateFadeoutLogAction();
-            history.execute(deactivateFadeoutLogAction);
+            deactivateFadeoutLogAction.action();
         } else {
             ActivateFadeoutLogAction activateFadeoutLogAction = new ActivateFadeoutLogAction();
-            history.execute(activateFadeoutLogAction);
+            activateFadeoutLogAction.action();
         }
     }
 
     public void fadeoutElements() {
         AddFadeoutElementAction addFadeoutElementAction = new AddFadeoutElementAction();
-        history.execute(addFadeoutElementAction);
+        addFadeoutElementAction.action();
     }
 
     public void defadeoutElements() {
         RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
-        history.execute(removeFadeoutElementAction);
+        removeFadeoutElementAction.action();
     }
 
     /* ----------------INTERNAL---------------------- */
@@ -1569,7 +1621,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void initialize() {
         initFonts();
-
+        rulesTemplate();
         /*
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -1589,12 +1641,14 @@ public class Controller implements ObserverSyndrom {
         values.setHBox(textBox);
         values.setCurrentActionText(currentActionText);
 
+        values.setMode(FunctionMode.TEMPLATE);
+
 
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
         analysisMode(false);
-        editButton.setDisable(true);
+        createButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         overViewAccordion.setExpandedPane(overViewTitledPane);
 
@@ -1613,6 +1667,7 @@ public class Controller implements ObserverSyndrom {
         loadFontComboBox(fontSphereComboBox);
         loadFontComboBox(fontSymptomComboBox);
         loadTemplateTextFields();
+        loadTemplateCheckBox();
 
         zoomSlider.setMin(20);
         zoomSlider.setMax(200);
@@ -1632,17 +1687,17 @@ public class Controller implements ObserverSyndrom {
         OneTimeStackPaneListener onetime = new OneTimeStackPaneListener();
         overviewStackPane.widthProperty().addListener(onetime);
 
-        //trying direct load
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
 
-        GraphAction action = databaseManager.databaseEmpty()
-                ? new CreateGraphAction("First Graph")
-                : new LoadGraphAction();
-        history.execute(action);
+        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("New Graph") : new LoadGraphAction();
+
+
+        action.action();
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
+        templateToFields();
 
     }
 
@@ -1921,9 +1976,6 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setVisible(active);
         vBoxAnalysisOption.setManaged(active);
 
-        historyTitledPane.setVisible(active);
-        historyTitledPane.setManaged(active);
-
         if (active) {
             overViewAccordion.getPanes().add(historyTitledPane);
         } else {
@@ -1931,7 +1983,7 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private void editMode(Boolean active) {
+    private void createOrEditMode(Boolean active, Boolean editMode) {
 
         separator0.setVisible(active);
         separator0.setManaged(active);
@@ -1954,19 +2006,21 @@ public class Controller implements ObserverSyndrom {
         vBoxEditEdge.setVisible(active);
         vBoxEditEdge.setManaged(active);
 
-        redoButton.setVisible(active);
-        redoButton.setManaged(active);
+        redoButton.setDisable(!active);
+        undoButton.setDisable(!active);
 
-        undoButton.setVisible(active);
-        undoButton.setManaged(active);
-
-        toolBarSeparator1.setVisible(active);
-        toolBarSeparator1.setManaged(active);
-
-        if (active) {
-            overViewAccordion.getPanes().add(templateTitledPane);
-        } else {
-            overViewAccordion.getPanes().remove(templateTitledPane);
+        if(editMode){
+            if(active){
+                overViewAccordion.getPanes().add(historyTitledPane);
+            }else{
+                overViewAccordion.getPanes().remove(historyTitledPane);
+            }
+        }else{
+            if (active) {
+                overViewAccordion.getPanes().add(templateTitledPane);
+            } else {
+                overViewAccordion.getPanes().remove(templateTitledPane);
+            }
         }
     }
 
@@ -2066,23 +2120,25 @@ public class Controller implements ObserverSyndrom {
 
 
         treeView.setOnMouseClicked(e -> {
-            if (e.getButton() == MouseButton.SECONDARY) {
-                Node node = e.getPickResult().getIntersectedNode();
-                if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                    TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
-                    Object val = selected.getValue();
+            if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                if (e.getButton() == MouseButton.SECONDARY) {
+                    Node node = e.getPickResult().getIntersectedNode();
+                    if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+                        TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
+                        Object val = selected.getValue();
 
-                    ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
-                    if (contextMenu != null) {
-                        treeView.setContextMenu(contextMenu);
-                        contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
+                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                        if (contextMenu != null) {
+                            treeView.setContextMenu(contextMenu);
+                            contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
+                        }
+
+                    } else {
+                        treeView.setContextMenu(null);
                     }
-
-                } else {
-                    treeView.setContextMenu(null);
+                } else if (treeView.getContextMenu() != null) {
+                    treeView.getContextMenu().hide();
                 }
-            } else if (treeView.getContextMenu() != null) {
-                treeView.getContextMenu().hide();
             }
         });
 
@@ -2125,12 +2181,10 @@ public class Controller implements ObserverSyndrom {
 
         //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("First Graph");
-        history.execute(action);
+        action.action();
         System.out.println("vv: " + syndrom.getVv());
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
-        disableEditMode(false);
-        disableAnalysisMode(false);
         zoomSlider.setValue(100);
     }
 
@@ -2517,6 +2571,34 @@ public class Controller implements ObserverSyndrom {
             } else {
                 //Not Focused
                 rulesTemplate();
+            }
+        }
+    }
+
+    private void loadTemplateCheckBox(){
+        reinforcedBox.selectedProperty().addListener(new TemplateCheckBoxListener(reinforcedBox));
+        extenuatingBox.selectedProperty().addListener(new TemplateCheckBoxListener(extenuatingBox));
+        neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox));
+    }
+
+    private class TemplateCheckBoxListener implements ChangeListener<Boolean>{
+        private CheckBox checkBox;
+
+        public TemplateCheckBoxListener(CheckBox pCheckBox){
+            checkBox = pCheckBox;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if(checkBox.getId() == "reinforcedBox"){
+                //System.out.println("reinforcedBox" + " " + newValue);
+                //Template.getInstance().setReinforcedEdgesAllowed(newValue);
+            }else if(checkBox.getId() == "neutralBox"){
+                //System.out.println("neutralBox" + " " + newValue);
+                //Template.getInstance().setNeutralEdgesAllowed(newValue);
+            }else if(checkBox.getId() == "extenuatingBox"){
+                //System.out.println("extenuatingBox" + newValue);
+                //Template.getInstance().setExtenuatingEdgesAllowed(newValue);
             }
         }
     }

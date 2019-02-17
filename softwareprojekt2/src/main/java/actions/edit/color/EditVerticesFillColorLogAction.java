@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
@@ -51,7 +52,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
             Map<Vertex,Color> oldVerticesParam = new HashMap<>();
             Map<Vertex,Color> newVerticesParam = new HashMap<>();
             for (Vertex vertex: pickedState.getPicked()) {
-                if(!vertex.isLockedStyle()) {
+                if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldVerticesParam.put(vertex, vertex.getFillColor());
                     newVerticesParam.put(vertex, color);
                     vertex.setFillColor(color);

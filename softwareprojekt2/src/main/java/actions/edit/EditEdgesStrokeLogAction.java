@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.StrokeType;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
@@ -50,14 +51,20 @@ public class EditEdgesStrokeLogAction extends LogAction {
             Map<Edge,StrokeType> oldEdges = new HashMap<>();
             Map<Edge,StrokeType> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
-                if(!e.isLockedStyle()) {
+                if(!e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldEdges.put(e, e.getStroke());
                     e.setStroke(stroke);
                     newEdges.put(e, stroke);
                 }else{
-                    helper.setActionText("Die Linienart der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedEdges.add(e);
                 }
+            }
+            if(!lockedEdges.isEmpty()){
+                helper.setActionText("Die Linienart der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+            }
+            if(lockedEdges.size() == pickedState.getPicked().size()){
+                actionHistory.removeLastEntry();
+                return;
             }
             createParameter(oldEdges, newEdges);
         }else{

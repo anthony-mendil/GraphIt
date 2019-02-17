@@ -8,12 +8,14 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 
 /**
  * Parameter object of the action EditFontSizeSphereLogAction.
  */
 @Data
-public class EditFontSizeSphereParam extends Param{
+public class EditFontSizeSphereParam extends Param implements Serializable {
     /**
      * The sphere containing the annotation.
      */

@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ import java.util.Map;
  * each other. They can contain vertices. A vertex is always assigned to exactly one sphere. The id is unique and final.
  */
 @Data
-public class Sphere {
+public class Sphere implements Serializable {
     /**
      * The id of the sphere.
      */
@@ -59,7 +60,7 @@ public class Sphere {
      * A list with all vertices, that are assigned to this sphere.
      */
     @NonNull
-    private LinkedList<Vertex> vertices = null;
+    private LinkedList<Vertex> vertices;
 
     /**
      * The font of the annotation.
@@ -130,6 +131,15 @@ public class Sphere {
         this.font = font;
         this.fontSize = fontSize;
         vertices = new LinkedList<>();
+    }
+
+    public boolean verticesLocked(){
+        for(Vertex vertex : vertices){
+            if(vertex.isLockedPosition() || vertex.isLockedAnnotation() || vertex.isLockedStyle()){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -13,6 +13,7 @@ import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveVerticesLogAction;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -85,13 +86,13 @@ public class EdgeContextMenu {
 
         boolean lockedEdgeType = edge.isLockedEdgeType();
         boolean lockedStyle = edge.isLockedStyle();
-        if (!lockedEdgeType){
+        if (!lockedEdgeType || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().add(arrowType);
         }
-        if (!lockedStyle){
+        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().addAll(color, strokeType);
         }
-        if (!lockedStyle && !lockedEdgeType){
+        if (!lockedStyle && !lockedEdgeType || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().add(remove);
         }
         contextMenu.getItems().add(unlink);

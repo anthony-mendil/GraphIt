@@ -4,6 +4,7 @@ import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveEdgesLogAction;
 import graph.graph.Edge;
+import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
@@ -11,7 +12,9 @@ import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -48,20 +51,27 @@ public class AddEdgesLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        if(!template.isLockedEdgesNumber() || graph.getEdges().size() < template.getMaxVertices()){
         if(parameters == null) {
             graph.addEdge(edge.getKey(),edge.getValue());
             createParameter(edge);
         }else{
-            for(Pair<Vertex, Vertex> pair : ((AddRemoveEdgesParam)parameters).getEdges()){
-                graph.addEdge(pair.getKey(),pair.getValue());
+            for(Edge edge : ((AddRemoveEdgesParam)parameters).getEdges()){
+                edu.uci.ics.jung.graph.util.Pair<Vertex> pair = graph.getEndpoints(edge);
+                graph.addEdge(pair.getFirst(),pair.getSecond());
             }
         }
         vv.repaint();
-        syndrom.getInstance().getVv2().repaint();
+        syndrom.getVv2().repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+    }else{
+            helper.setActionText("Only " + template.getMaxEdges() + " edge(s) are allowed in the graph.", true);
+            actionHistory.removeLastEntry();
+        }
+
     }
 
     /**
@@ -76,8 +86,15 @@ public class AddEdgesLogAction extends LogAction {
 
 
     public void createParameter(Pair<Vertex,Vertex> edge) {
-        Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
-        edges.add(new Pair<>(edge.getKey(),edge.getValue()));
-        parameters = new AddRemoveEdgesParam(edges);
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+
+        List<Edge> edges = new ArrayList<>();
+        Edge toAdd = graph.findEdge(edge.getKey(), edge.getValue());
+        edges.add(toAdd);
+
+        Set<Pair<Vertex, Vertex>> vertices = new HashSet<>();
+        vertices.add(new Pair<>(edge.getKey(),edge.getValue()));
+        parameters = new AddRemoveEdgesParam(edges, vertices);
     }
 }

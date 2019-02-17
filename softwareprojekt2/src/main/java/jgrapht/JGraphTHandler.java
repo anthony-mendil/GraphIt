@@ -7,6 +7,7 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import org.jgrapht.Graph;
+import org.jgrapht.alg.cycle.CycleDetector;
 import org.jgrapht.graph.DefaultDirectedGraph;
 
 import java.util.List;
@@ -69,7 +70,12 @@ public class JGraphTHandler {
      * @return The set of vertices in a cycle.
      */
     public Set<Vertex> detectCycles(Graph pGraph) {
-        throw new UnsupportedOperationException();
+        CycleDetector<Vertex,Edge> cycleDetector = new CycleDetector<>(pGraph);
+        Set<Vertex> cycle = cycleDetector.findCycles();
+        for(Vertex vertex : cycle){
+            System.out.println(vertex.getId());
+        }
+        return cycle;
     }
     /**
      * List all possible paths between two vertices.

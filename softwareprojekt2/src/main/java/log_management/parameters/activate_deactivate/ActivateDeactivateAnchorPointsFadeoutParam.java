@@ -8,13 +8,14 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Parameter object for the action ActivateAnchorPointsFadeoutLogAction/DeactivateAnchorPointsFadeoutLogAction.
  */
 @Data
-public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
+public class ActivateDeactivateAnchorPointsFadeoutParam extends Param implements Serializable {
 
     /**
      * Set of edges, which anchor-points will (cancel) fadeout.
@@ -32,12 +33,13 @@ public class ActivateDeactivateAnchorPointsFadeoutParam extends Param{
 
     @Override
     public String prettyPrint() {
-        Language language = Values.getInstance().getGuiLanguage();
-        StringBuilder builder = new StringBuilder();
-        builder.append(language == Language.GERMAN ? "Relationen" : "Relations:");
-        edges.forEach(e -> builder.append(language == Language.GERMAN
-                ? SyndromObjectPrinter.edgePrintGerman(e)
-                : SyndromObjectPrinter.edgePrintEnglish(e)));
-        return builder.toString();
+//        Language language = Values.getInstance().getGuiLanguage();
+//        StringBuilder builder = new StringBuilder();
+//        builder.append(language == Language.GERMAN ? "Relationen" : "Relations:");
+//        edges.forEach(e -> builder.append(language == Language.GERMAN
+//                ? SyndromObjectPrinter.edgePrintGerman(e)
+//                : SyndromObjectPrinter.edgePrintEnglish(e)));
+//        return builder.toString();
+        return "";
     }
 }

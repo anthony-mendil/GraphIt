@@ -17,25 +17,26 @@ public class OOFio {
      * The log dao object, for accessing the log data.
      */
     @Inject
-    private LogDao logDao= new LogDao();
+    private LogDao logDao = new LogDao();
 
     /**
      * Creates a new OOFio object.
      */
-    public OOFio(){
+    public OOFio() {
         // Can handle oof-import/-export now
     }
 
     private static Logger logger = Logger.getLogger(OOFio.class);
+
     /**
      * Creates an OOF out of the GXL and the JSON.
      *
-     * @param pGXL The GXL string representation of the graph that gets written in the OOF file.
+     * @param pGXL  The GXL string representation of the graph that gets written in the OOF file.
      * @param pJSON The protocol as JSON string of the user that gets written in the OOF file.
      * @return The OOF file as string.
      */
-    private String createOOF(String pGXL, String pJSON){
-        return pGXL+"\0"+pJSON;
+    private String createOOF(String pGXL, String pJSON) {
+        return pGXL + "\0" + pJSON;
     }
 
     /**
@@ -44,7 +45,7 @@ public class OOFio {
      * @param pOOF The OOF containing a GXL string.
      * @return The GXL string.
      */
-    private String gxlFromOOF(String pOOF){
+    private String gxlFromOOF(String pOOF) {
         String[] splits = pOOF.split("\0");
         return splits[0];
     }
@@ -55,9 +56,8 @@ public class OOFio {
      * @param pOOF The OOF containing a JSON string.
      * @return The JSON string.
      */
-    private String jsonFromOOF(String pOOF){
+    private String jsonFromOOF(String pOOF) {
         String[] splits = pOOF.split("\0");
-        System.out.println(splits[1]);
         return splits[1];
     }
 
@@ -66,14 +66,14 @@ public class OOFio {
      *
      * @param pFile The destination file
      */
-    public void exportAsOOF(File pFile){
-        GXLio gxlio=new GXLio();
-        gxlio.gxlFromInstance();
-        //System.out.println(logDao.getAllString());
-        String oof=createOOF(gxlio.gxlFromInstance(),logDao.getAllString());
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
+    public void exportAsOOF(File pFile) {
+        GXLio gxlio = new GXLio();
+        String oof = createOOF(gxlio.gxlFromInstance(true), logDao.getAllString());
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
             bufferedWriter.write(oof);
+            System.out.println("oof successfully saved");
         } catch (IOException e) {
+            System.out.println("ERROR ON SAVE");
             logger.error(e.toString());
         }
     }
@@ -83,19 +83,20 @@ public class OOFio {
      *
      * @param pFile The file to import
      */
-    public void importOOF(File pFile){
+    public void importOOF(File pFile) {
         String oof = "";
-        try(Scanner scanner =new Scanner(pFile)) {
+        try (Scanner scanner = new Scanner(pFile)) {
             oof = scanner.useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
             logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
-        System.out.println(jsonFromOOF(oof));
+        // villeict trim auf den string? Funktioniert jedenfalls noch nicht
+        //System.out.println(jsonFromOOF(oof));
 
-        gxlio.gxlToInstance(gxlFromOOF(oof));
+        gxlio.gxlToInstance(gxlFromOOF(oof),true);
 
-        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof).trim());
+        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
 
         DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof));
     }

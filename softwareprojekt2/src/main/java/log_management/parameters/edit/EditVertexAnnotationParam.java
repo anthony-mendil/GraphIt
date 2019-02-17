@@ -8,11 +8,13 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * Parameter object of the action EditVertexAnnotationLogAction.
  */
 @Data
-public class EditVertexAnnotationParam extends Param{
+public class EditVertexAnnotationParam extends Param implements Serializable {
     /**
      * The vertex containing its old annotation.
      */

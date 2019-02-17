@@ -8,11 +8,15 @@ import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
+import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Removes edges from the syndrom graph.
@@ -41,8 +45,8 @@ public class RemoveEdgesLogAction extends LogAction {
 
 
 
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+    public void createParameter(List<Edge> list, Set<Pair<Vertex,Vertex>> edges) {
+        parameters = new AddRemoveEdgesParam(list,edges);
     }
 
     @Override
@@ -51,16 +55,34 @@ public class RemoveEdgesLogAction extends LogAction {
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null) {
+            List<Edge> edg = new LinkedList<>();
             List<Edge> lockedEdges = new LinkedList<>();
+            Set<Pair<Vertex,Vertex>> deleteEdges = new HashSet<>();
             for (Edge e: pickedState.getPicked()) {
                 if(!e.isLockedEdgeType() && !e.isLockedStyle()){
+                    edg.add(e);
+                    edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+                    Pair<Vertex,Vertex> verticesJung = new Pair<>(vertices.getFirst(),vertices.getSecond());
+                    deleteEdges.add(verticesJung);
                     graph.removeEdge(e);
                 }else{
                     lockedEdges.add(e);
                 }
             }
+            if(!lockedEdges.isEmpty()){
+                helper.setActionText("Die Kanten können nicht aufgrund der Vorlageregeln verändert werden." , true);
+            }
+            if(lockedEdges.size() == pickedState.getPicked().size()){
+                actionHistory.removeLastEntry();
+                return;
+            }
+            createParameter(edg,deleteEdges);
         }else{
-
+            List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
+            for(Edge edge : edges){
+                //Edge removeEdge = graph.findEdge(edge.getKey(),edge.getValue());
+                graph.removeEdge(edge);
+            }
         }
 
         vv.repaint();
@@ -74,7 +96,7 @@ public class RemoveEdgesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        AddRemoveEdgesParam addRemoveEdgesParam = new AddRemoveEdgesParam(((AddRemoveEdgesParam)parameters).getEdges());
+        AddRemoveEdgesParam addRemoveEdgesParam = new AddRemoveEdgesParam(((AddRemoveEdgesParam)parameters).getEdges(), ((AddRemoveEdgesParam)parameters).getVertices());
         AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(addRemoveEdgesParam);
         addEdgesLogAction.action();
     }

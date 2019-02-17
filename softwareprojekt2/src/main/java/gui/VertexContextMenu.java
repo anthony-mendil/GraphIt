@@ -7,6 +7,7 @@ import actions.edit.color.EditVerticesFillColorLogAction;
 import actions.edit.font.EditFontSizeVerticesLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
 import actions.remove.RemoveVerticesLogAction;
+import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -102,13 +103,13 @@ public class VertexContextMenu {
 
         boolean lockedAnnotation = vertex.isLockedAnnotation();
         boolean lockedStyle = vertex.isLockedStyle();
-        if (!lockedAnnotation){
+        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().addAll(annotation, text);
         }
-        if (!lockedStyle){
+        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().addAll(color, colorDraw, size);
         }
-        if (!lockedStyle && !lockedAnnotation){
+        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().add(remove);
         }
         contextMenu.setAutoHide(true);
