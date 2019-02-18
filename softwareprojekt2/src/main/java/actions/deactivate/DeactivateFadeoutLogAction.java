@@ -2,6 +2,8 @@ package actions.deactivate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.algorithmen.predicates.EdgeIsVisiblePredicate;
@@ -58,6 +60,9 @@ public class DeactivateFadeoutLogAction extends LogAction {
         Transformer<Edge, Paint> oldEdgeArrowTransformer = rc.getArrowFillPaintTransformer();
 
         FadeType fadeType = FadeType.DEACTIVATE;
+
+        Predicate<Context<Graph<Vertex, Edge>, Edge>> predicateEdge = TruePredicate.getInstance();
+        Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex =  TruePredicate.getInstance();
 
         VertexFadeoutPaintTransformer<Vertex> vertexFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFill, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexVertexDrawFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerDraw, fadeType);

@@ -2,6 +2,8 @@ package actions.activate;
 
 import actions.LogAction;
 import actions.LogEntryName;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.algorithmen.predicates.EdgeIsVisiblePredicate;
@@ -14,6 +16,7 @@ import graph.visualization.transformer.FadeOutElementsTransition;
 import graph.visualization.transformer.edge.EdgeFadeoutPaintTransformer;
 import graph.visualization.transformer.vertex.VertexFadeoutPaintTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
+import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -63,6 +66,9 @@ public class ActivateFadeoutLogAction extends LogAction {
 
         FadeType fadeType = FadeType.ACTIVATE;
 
+        Predicate<Context<Graph<Vertex, Edge>, Edge>> predicateEdge = new EdgeIsVisiblePredicate<>();
+        Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex = new VertexIsVisiblePredicate<>();
+
         VertexFadeoutPaintTransformer<Vertex> vertexFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFill, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexVertexDrawFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerDraw, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexFontColorFadeOutTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFont, fadeType);
@@ -77,10 +83,10 @@ public class ActivateFadeoutLogAction extends LogAction {
 
         transition.setOnFinished(
                 event -> {
-                   rc.setVertexIncludePredicate(new VertexIsVisiblePredicate<>());
-                    vv2.getRenderContext().setVertexIncludePredicate(new VertexIsVisiblePredicate<>());
-                    rc.setEdgeIncludePredicate(new EdgeIsVisiblePredicate<>());
-                    vv2.getRenderContext().setEdgeIncludePredicate(new EdgeIsVisiblePredicate<>());
+                    rc.setVertexIncludePredicate(predicateVertex);
+                    vv2.getRenderContext().setVertexIncludePredicate(predicateVertex);
+                    rc.setEdgeIncludePredicate(predicateEdge);
+                    vv2.getRenderContext().setEdgeIncludePredicate(predicateEdge);
                     rc.setVertexFillPaintTransformer(oldTransformerFill);
                     rc.setVertexDrawPaintTransformer(oldTransformerDraw);
                     vv.setVertexFontColorTransformer(oldTransformerFont);

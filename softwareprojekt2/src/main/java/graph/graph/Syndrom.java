@@ -3,9 +3,7 @@ package graph.graph;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.*;
-import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
-import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
-import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
+import edu.uci.ics.jung.visualization.control.*;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import edu.uci.ics.jung.visualization.transform.MutableAffineTransformer;
@@ -25,6 +23,7 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.awt.geom.AffineTransform;
 
 /**
@@ -58,7 +57,7 @@ public class Syndrom {
      */
     private EdgeArrowPredicate<Vertex, Edge> filterArrow;
     /**
-     * Defines a functor that performs a predicates test on vertices for filtering the vertices annotation.
+     * Defines a functor that performs a predicates test on vertices for filtering the vertices regex.
      */
     private VertexAnnotationPredicate<Vertex, Edge> vertexAnnotationPredicate;
     /**
@@ -221,6 +220,14 @@ public class Syndrom {
 
     private int scale;
 
+    private SpherePickingPlugin spherePickingPlugin = new SpherePickingPlugin();
+    private VertexPickingPlugin vertexPickingPlugin = new VertexPickingPlugin();
+    private EdgePickingPlugin edgePickingPlugin = new EdgePickingPlugin();
+    private GeneralPickingPlugin generalPickingPlugin = new GeneralPickingPlugin();
+    private TranslatingGraphMousePlugin translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
+    RotatingGraphMousePlugin rotatingPlugin = new RotatingGraphMousePlugin();
+    ShearingGraphMousePlugin shearingPlugin = new ShearingGraphMousePlugin();
+
     /**
      * The constructor, initialising all attributes.
      */
@@ -228,10 +235,22 @@ public class Syndrom {
     private Syndrom() {
         values = Values.getInstance();
         pluggable = new PluggableGraphMouse();
-        pluggable.add(new SpherePickingPlugin());
-        pluggable.add(new VertexPickingPlugin());
-        pluggable.add(new EdgePickingPlugin());
-        pluggable.add(new GeneralPickingPlugin());
+        pluggable.add(spherePickingPlugin);
+        pluggable.add(vertexPickingPlugin);
+        pluggable.add(edgePickingPlugin);
+        pluggable.add(generalPickingPlugin);
+    }
+
+    public void setPluggableModeEdit(){
+        pluggable.remove(translatingPlugin);
+        pluggable.remove(rotatingPlugin);
+        pluggable.remove(shearingPlugin);
+    }
+
+    public void setPluggableModeAnalyse(){
+        pluggable.add(translatingPlugin);
+        pluggable.add(rotatingPlugin);
+        pluggable.add(shearingPlugin);
     }
 
     public static Syndrom getInstance() {
@@ -248,10 +267,8 @@ public class Syndrom {
         vv.setRenderer(new SyndromRenderer<>());
         vv.getRenderContext().setPickSupport(pickSupport);
         vv.setGraphMouse(pluggable);
-
         setRenderer(vv);
         vv.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
-
         vv.getRenderContext().setVertexStrokeTransformer(new VertexStrokeTransformer<>(vv));
         this.vv = vv;
     }
@@ -304,15 +321,13 @@ public class Syndrom {
 
     public void generateNew() {
         graph = new SyndromGraph<>();
-
-        layout = new AggregateLayout<>(new StaticLayout<Vertex, Edge>(graph));
+        layout = new AggregateLayout<>(new StaticLayout<>(graph));
         final VisualizationModel<Vertex, Edge> visualizationModel =
                 new DefaultVisualizationModel<>(layout, values.getDefaultLayoutVVSize());
         vv = new SyndromVisualisationViewer<>(visualizationModel, values
                 .getDefaultLayoutVVSize());
         vv.setGraphLayout(layout);
         setVisualisationViewer(vv);
-
         vv2 = new SatelliteVisualizationViewer<>(vv, new Dimension(260, 195));
 
         setVisualisationViewer2(vv2);

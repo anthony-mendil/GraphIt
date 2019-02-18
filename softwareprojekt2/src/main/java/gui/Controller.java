@@ -1,5 +1,6 @@
 package gui;
 
+import actions.Action;
 import actions.ActionHistory;
 import actions.GraphAction;
 import actions.ObserverSyndrom;
@@ -8,6 +9,7 @@ import actions.activate.ActivateFadeoutLogAction;
 import actions.activate.ActivateHighlightLogAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
+import actions.analyse.FilterGraphAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
 import actions.deactivate.DeactivateFadeoutLogAction;
 import actions.deactivate.DeactivateHighlightLogAction;
@@ -32,6 +34,8 @@ import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
@@ -320,10 +324,6 @@ public class Controller implements ObserverSyndrom {
      */
     private CheckBox originatingEdgeBox;
 
-    /**
-     * The checkbox that highlights edges with a specific arrowtype.
-     */
-    private CheckBox edgeArrowTypeBox;
 
     /**
      * The menuitem under "edgeArrowType" that highlights reinforced edges.
@@ -379,9 +379,11 @@ public class Controller implements ObserverSyndrom {
 
     //Treeview-Filter
     /**
+     * Nina
      * The checkbox that allows to filter the overview after arrow types.
      */
-    private CheckBox treeViewArrowtype;
+    @FXML
+    private CheckBox treeViewArrowType;
 
     /**
      * The menuitem under "Treeviewarrowtype" that filters the overview after reinforced edges.
@@ -399,18 +401,23 @@ public class Controller implements ObserverSyndrom {
     private MenuItem treeViewNeutral;
 
     /**
+     * Nina
      * The checkbox that allows to filter the overview after regular expressions.
      */
+    @FXML
     private CheckBox regularExpressionBox;
 
     /**
      * The textfield that gets the argument to filter the overview after regular expressions.
      */
+    @FXML
     private TextField regularExpressionField;
 
     /**
+     * Nina
      * The checkbox that filters the overview after fadedout objects.
      */
+    @FXML
     private CheckBox showFadedOutObjects;
 
     /* Sphere */
@@ -842,6 +849,32 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private StackPane overviewStackPane;
 
+    @FXML
+    private MenuButton filterEdgeType;
+
+    @FXML
+    private MenuItem filterEdgeTypeReinforced;
+
+    @FXML
+    private MenuItem filterEdgeTypeExtenuating;
+
+    @FXML
+    private MenuItem filterEdgeTypeNeutral;
+
+    EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
+
+    public void filterEdgeTypeReinforced(){
+        filterEdgeArrowType = EdgeArrowType.REINFORCED;
+    }
+
+    public void filterEdgeTypeExtenuating(){
+        filterEdgeArrowType = EdgeArrowType.EXTENUATING;
+    }
+
+    public void filterEdgeTypeNeutral(){
+        filterEdgeArrowType = EdgeArrowType.NEUTRAL;
+    }
+
 
     public Controller() {
     }
@@ -992,7 +1025,7 @@ public class Controller implements ObserverSyndrom {
         editEdgesType(EdgeArrowType.NEUTRAL);
     }
 
-    /* ......annotation..... */
+    /* ......regex..... */
 
     /**
      * Creates an EditSphereAnnotationLogAction-object and executes the action with the action history.
@@ -1690,7 +1723,7 @@ public class Controller implements ObserverSyndrom {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
 
-        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("New Graph") : new LoadGraphAction();
+        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("New Graph", this) : new LoadGraphAction(this);
 
 
         action.action();
@@ -1699,6 +1732,51 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.setValue(100);
         templateToFields();
 
+        initTree();
+
+        regularExpressionField.textProperty().addListener((observable, oldValue, newValue) -> {
+            FilterGraphAction filterGraphAction = new FilterGraphAction(newValue, regularExpressionBox.isSelected());
+            filterGraphAction.action();
+        });
+    }
+
+    private void initTree(){
+        HelperFunctions helper = new HelperFunctions();
+        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue,
+                                Object newValue) {
+                TreeItem<Object> selectedItem = (TreeItem<Object>) newValue;
+                if (selectedItem != null) {
+                    helper.pickElement(selectedItem.getValue());
+                }
+            }
+
+        });
+
+
+        treeView.setOnMouseClicked(e -> {
+            if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                if (e.getButton() == MouseButton.SECONDARY) {
+                    Node node = e.getPickResult().getIntersectedNode();
+                    if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+                        TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
+                        Object val = selected.getValue();
+
+                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                        if (contextMenu != null) {
+                            treeView.setContextMenu(contextMenu);
+                            contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
+                        }
+
+                    } else {
+                        treeView.setContextMenu(null);
+                    }
+                } else if (treeView.getContextMenu() != null) {
+                    treeView.getContextMenu().hide();
+                }
+            }
+        });
     }
 
     private void initFonts() {
@@ -1875,6 +1953,13 @@ public class Controller implements ObserverSyndrom {
         edgeArrowReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
         edgeArrowExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
         edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
+
+        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
+        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
+        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
+        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.REINFORCED));
+        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.EXTENUATING));
+        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.NEUTRAL));
     }
 
     private void loadFontComboBox(ComboBox comboBox) {
@@ -1950,6 +2035,19 @@ public class Controller implements ObserverSyndrom {
             ImageView newImage = (ImageView) mnItm.getGraphic();
             ImageView currentImage = (ImageView) menuButton.getGraphic();
             currentImage.setImage(newImage.getImage());
+        }
+    }
+
+    private class FilterTypeHandler implements  EventHandler<ActionEvent> {
+        private final EdgeArrowType type;
+
+        public FilterTypeHandler(EdgeArrowType type) {
+            this.type = type;
+        }
+        @Override
+        public void handle(ActionEvent evt) {
+            FilterGraphAction filterGraphAction = new FilterGraphAction(type, treeViewArrowType.isSelected());
+            filterGraphAction.action();
         }
     }
 
@@ -2094,53 +2192,19 @@ public class Controller implements ObserverSyndrom {
         for (Sphere sphere : spheres) {
             TreeItem<Object> sphereItem = new TreeItem<Object>(sphere);
             for (Vertex vertex : sphere.getVertices()) {
-                TreeItem<Object> vertexItem = new TreeItem<Object>(vertex);
-                for (Edge edge : graph.getOutEdges(vertex)) {
-                    TreeItem<Object> edgeItem = new TreeItem<Object>(edge);
-                    vertexItem.getChildren().add(edgeItem);
+                if (syndrom.getVv().getRenderContext().getVertexIncludePredicate().evaluate(Context.<Graph<Vertex, Edge>,Vertex>getInstance(syndrom.getVv().getGraphLayout().getGraph(),vertex))){
+                    TreeItem<Object> vertexItem = new TreeItem<Object>(vertex);
+                    for (Edge edge : graph.getOutEdges(vertex)) {
+                        if (syndrom.getVv().getRenderContext().getEdgeIncludePredicate().evaluate(Context.<Graph<Vertex, Edge>,Edge>getInstance(syndrom.getVv().getGraphLayout().getGraph(),edge))){
+                            TreeItem<Object> edgeItem = new TreeItem<Object>(edge);
+                            vertexItem.getChildren().add(edgeItem);
+                        }
+                    }
+                    sphereItem.getChildren().add(vertexItem);
                 }
-                sphereItem.getChildren().add(vertexItem);
             }
             rootItem.getChildren().add(sphereItem);
         }
-
-        HelperFunctions helper = new HelperFunctions();
-        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-
-            @Override
-            public void changed(ObservableValue observable, Object oldValue,
-                                Object newValue) {
-                TreeItem<Object> selectedItem = (TreeItem<Object>) newValue;
-                if (selectedItem != null) {
-                    helper.pickElement(selectedItem.getValue());
-                }
-            }
-
-        });
-
-
-        treeView.setOnMouseClicked(e -> {
-            if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
-                if (e.getButton() == MouseButton.SECONDARY) {
-                    Node node = e.getPickResult().getIntersectedNode();
-                    if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                        TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
-                        Object val = selected.getValue();
-
-                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
-                        if (contextMenu != null) {
-                            treeView.setContextMenu(contextMenu);
-                            contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
-                        }
-
-                    } else {
-                        treeView.setContextMenu(null);
-                    }
-                } else if (treeView.getContextMenu() != null) {
-                    treeView.getContextMenu().hide();
-                }
-            }
-        });
 
         rootItem.setExpanded(true);
         treeView.setRoot(rootItem);
@@ -2180,7 +2244,7 @@ public class Controller implements ObserverSyndrom {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
 
         //optionSaveWindow();
-        CreateGraphAction action = new CreateGraphAction("First Graph");
+        CreateGraphAction action = new CreateGraphAction("First Graph", this);
         action.action();
         System.out.println("vv: " + syndrom.getVv());
         canvas.setContent(syndrom.getVv());
@@ -2576,9 +2640,13 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadTemplateCheckBox(){
+        System.out.println("hallo");
         reinforcedBox.selectedProperty().addListener(new TemplateCheckBoxListener(reinforcedBox));
         extenuatingBox.selectedProperty().addListener(new TemplateCheckBoxListener(extenuatingBox));
         neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox));
+        treeViewArrowType.selectedProperty().addListener(new TemplateCheckBoxListener(treeViewArrowType));
+        regularExpressionBox.selectedProperty().addListener(new TemplateCheckBoxListener(regularExpressionBox));
+        showFadedOutObjects.selectedProperty().addListener(new TemplateCheckBoxListener(showFadedOutObjects));
     }
 
     private class TemplateCheckBoxListener implements ChangeListener<Boolean>{
@@ -2599,27 +2667,56 @@ public class Controller implements ObserverSyndrom {
             }else if(checkBox.getId() == "extenuatingBox"){
                 //System.out.println("extenuatingBox" + newValue);
                 //Template.getInstance().setExtenuatingEdgesAllowed(newValue);
+            } else if (checkBox.getId().equals("treeViewArrowType")) {
+                treeViewArrowType.setSelected(newValue);
+                if (newValue){
+                    showFadedOutObjects.setSelected(false);
+                    regularExpressionBox.setSelected(false);
+                }
+
+                FilterGraphAction filterGraphAction = new FilterGraphAction(filterEdgeArrowType, newValue);
+                filterGraphAction.action();
+
+            } else if (checkBox.getId().equals("showFadedOutObjects")) {
+                showFadedOutObjects.setSelected(newValue);
+                if (newValue){
+                    treeViewArrowType.setSelected(false);
+                    regularExpressionBox.setSelected(false);
+                }
+                FilterGraphAction filterGraphAction = new FilterGraphAction(newValue);
+                filterGraphAction.action();
+
+            }else if (checkBox.getId().equals("regularExpressionBox")) {
+                regularExpressionBox.setSelected(newValue);
+                if (newValue){
+                    showFadedOutObjects.setSelected(false);
+                    treeViewArrowType.setSelected(false);
+                }
+
+                FilterGraphAction filterGraphAction = new FilterGraphAction(regularExpressionField.getText(), newValue);
+                filterGraphAction.action();
             }
         }
     }
 
+
     @Override
     public void updateGraph() {
-        throw new UnsupportedOperationException();
+        treeViewUpdate();
     }
 
     @Override
     public void updateFunctionMode(FunctionMode mode) {
-        throw new UnsupportedOperationException();
+        // nothing to do
     }
 
     @Override
     public void updateEditMode() {
-        throw new UnsupportedOperationException();
+        // nothing to do
     }
 
     @Override
     public void updateNewGraph() {
-        throw new UnsupportedOperationException();
+        treeViewUpdate();
     }
 }

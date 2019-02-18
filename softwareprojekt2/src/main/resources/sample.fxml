@@ -1128,42 +1128,77 @@
                <children>
                     <Accordion fx:id="overViewAccordion" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                         <panes>
-                            <TitledPane fx:id="overViewTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" prefHeight="659.0" text="Übersicht">
+                            <TitledPane fx:id="overViewTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="659.0" text="Übersicht">
                                 <content>
                                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
                                         <children>
-                                            <CheckBox fx:id="reinforced" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="Verstärkend">
+                                            <CheckBox fx:id="treeViewArrowType" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="">
                                                 <VBox.margin>
-                                                    <Insets top="2.0" />
+                                                    <Insets bottom="7.0" top="2.0" />
                                                 </VBox.margin>
                                                 <graphic>
-                                                    <MenuButton mnemonicParsing="false" text="MenuButton">
+                                                    <MenuButton fx:id="filterEdgeType" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                                                        <graphic>
+                                                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                <image>
+                                                                    <Image url="@icons2/005-right-chevron.png" />
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
                                                         <items>
-                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                            <MenuItem fx:id="filterEdgeTypeReinforced" mnemonicParsing="false" onAction="#filterEdgeTypeReinforced">
+                                                                <graphic>
+                                                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                        <image>
+                                                                            <Image url="@icons2/005-right-chevron.png" />
+                                                                        </image>
+                                                                    </ImageView>
+                                                                </graphic>
+                                                            </MenuItem>
+                                                            <MenuItem fx:id="filterEdgeTypeExtenuating" mnemonicParsing="false" onAction="#filterEdgeTypeExtenuating">
+                                                                <graphic>
+                                                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                        <image>
+                                                                            <Image url="@icons2/015-circle.png" />
+                                                                        </image>
+                                                                    </ImageView>
+                                                                </graphic>
+                                                            </MenuItem>
+                                                            <MenuItem fx:id="filterEdgeTypeNeutral" mnemonicParsing="false" onAction="#filterEdgeTypeNeutral">
+                                                                <graphic>
+                                                                    <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                        <image>
+                                                                            <Image url="@icons2/014-question.png" />
+                                                                        </image>
+                                                                    </ImageView>
+                                                                </graphic>
+                                                            </MenuItem>
                                                         </items>
-                                                        <padding>
+                                                        <HBox.margin>
                                                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                                        </padding>
+                                                        </HBox.margin>
+                                                        <tooltip>
+                                                            <Tooltip text="Nach der Pfeilspitze der Kante filtern" />
+                                                        </tooltip>
                                                     </MenuButton>
                                                 </graphic>
                                             </CheckBox>
-                                            <CheckBox fx:id="extenuating" mnemonicParsing="false" prefHeight="18.0" prefWidth="131.0" text="Abschwächend">
+                                            <CheckBox fx:id="regularExpressionBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="131.0" text="">
                                                 <graphic>
-                                                    <TextField prefHeight="25.0" prefWidth="104.0">
+                                                    <TextField fx:id="regularExpressionField" prefHeight="25.0" prefWidth="104.0">
                                                         <padding>
                                                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                                         </padding>
                                                     </TextField>
                                                 </graphic>
                                             </CheckBox>
-                                            <CheckBox fx:id="neutral" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="17.0" prefWidth="115.0" text="Neutral">
+                                            <CheckBox fx:id="showFadedOutObjects" mnemonicParsing="false" prefHeight="17.0" prefWidth="264.0" text="Nicht `sichtbare` Element ausblenden">
                                                 <VBox.margin>
-                                                    <Insets bottom="2.0" />
+                                                    <Insets bottom="2.0" top="5.0" />
                                                 </VBox.margin>
                                             </CheckBox>
             
-                                                              <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
+                                            <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
                                                 <VBox.margin>
                                                     <Insets left="2.0" right="2.0" top="5.0" />
                                                 </VBox.margin>
