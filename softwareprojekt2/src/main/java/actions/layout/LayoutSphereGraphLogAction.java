@@ -145,7 +145,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
             createParameter(oldSphereMap, verticesCoordinates);
         }
             }else{
-            Map<Sphere,Pair<Pair<Double,Double>,Point2D>> oldSpheres = ((LayoutSpheresParam)parameters).getOldSpheres();
+            Map<Sphere,Pair<Pair<Double,Double>,Point2D>> oldSpheres = ((LayoutSpheresParam)parameters).getOldPosition();
             Map<Vertex,Point2D> oldVertices = ((LayoutSpheresParam)parameters).getOldVertices();
             for(Map.Entry<Sphere,Pair<Pair<Double,Double>,Point2D>> entry : oldSpheres.entrySet()){
                 Pair<Pair<Double,Double>,Point2D> info = entry.getValue();

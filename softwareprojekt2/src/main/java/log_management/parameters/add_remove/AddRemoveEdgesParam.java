@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -40,7 +39,7 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
      * Creates an parameter object of its own class.
      * @param pEdges List of edges and their start/end vertex id.
      */
-    public AddRemoveEdgesParam(Map<Edge,Pair<Vertex,Vertex>> pEdges){
+    public AddRemoveEdgesParam(List<Edge> pEdges, Set<Pair<Vertex,Vertex>> pVertices){
         this.edges = pEdges;
 
         List<Vertex> list1 = new ArrayList();
@@ -54,7 +53,6 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
 
     @Override
     public String prettyPrint() {
-        /**
         List<Pair<Vertex,Vertex>> verticesList = new ArrayList<>();
         for (int i = 0; i < startVertices.size(); i++) {
             verticesList.add(new Pair<>(startVertices.get(i), endVertices.get(i)));
@@ -71,11 +69,10 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
         } else {
             String list = "Relationen: ";
             for (int i = 0; i < edges.size(); i++) {
-                    list += SyndromObjectPrinter.edgePrintGerman(edges.get(i), verticesList.get(i));
+                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i), verticesList.get(i));
             }
             return list;
-         */
-        return null;
+        }
     }
 
     public Set<Pair<Vertex,Vertex>> getVertices() {
