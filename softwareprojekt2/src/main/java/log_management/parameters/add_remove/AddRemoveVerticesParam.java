@@ -10,7 +10,9 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,24 +20,24 @@ import java.util.Map;
  */
 @Data
 public class AddRemoveVerticesParam extends Param implements Serializable {
-    /**
-     * Set of vertices to their sphere.
-     */
+
     @Getter
-    private Map<Vertex, Sphere> vertices;
+    private List<Vertex> vertexList;
+
+    @Getter
+    private List<Sphere> sphereList;
 
     /**
      * Creates an parameter object of its own class.
      * @param pParameter The set of vertices and their sphere.
      */
     public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter) {
-        vertices = pParameter;
-       // for (Map.Entry<Vertex,Sphere> entry : pParameter.entrySet()){
-        //    vertex = entry.getKey();
-         //   sphere = entry.getValue();
-         //   vertices.put(vertex,sphere);
-      //  }
-
+        vertexList = new ArrayList<>();
+        sphereList = new ArrayList<>();
+        pParameter.forEach((v, s) -> {
+            vertexList.add(v);
+            sphereList.add(s);
+        });
     }
 
     @Override
@@ -43,16 +45,24 @@ public class AddRemoveVerticesParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
-                information += "Symptom: " + SyndromObjectPrinter.vertexPrintEnglish(entry.getKey());
-                information += "In Sphere: " + SyndromObjectPrinter.spherePrintEnglish(entry.getValue());
+            for (int i = 0; i < vertexList.size(); i++) {
+                information += "Symptom: " + SyndromObjectPrinter.vertexPrintEnglish(vertexList.get(i));
+                information += "In Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i));
             }
         } else {
-            for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
-                information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(entry.getKey());
-                information += "In Sphäre: " + SyndromObjectPrinter.spherePrintGerman(entry.getValue());
+            for (int i = 0; i < vertexList.size(); i++) {
+                information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertexList.get(i));
+                information += "In Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphereList.get(i));
             }
         }
         return information;
+    }
+
+    public Map<Vertex, Sphere> getVertices() {
+        Map<Vertex, Sphere> map = new HashMap<>();
+        for (int i = 0; i < vertexList.size(); i++) {
+            map.put(vertexList.get(i), sphereList.get(i));
+        }
+        return map;
     }
 }

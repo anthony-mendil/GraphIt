@@ -5,7 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import gui.Values;
 import gui.properties.Language;
+import javafx.util.Pair;
+import log_management.json_deserializers.AffineTransformDeserializer;
+import log_management.json_deserializers.PairDeserializer;
 import log_management.json_deserializers.Point2DDeserializer;
+import log_management.json_serializers.AffineTransformSerializer;
+import log_management.json_serializers.PairSerializer;
 import log_management.json_serializers.Point2DSerializer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
 import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
@@ -21,6 +26,7 @@ import log_management.parameters.move.MoveSphereParam;
 import log_management.parameters.move.MoveVerticesParam;
 import log_management.tables.Log;
 
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
 public class LogToStringConverter {
@@ -65,7 +71,7 @@ public class LogToStringConverter {
             case MOVE_SPHERE:
                 return "Bewegen einer Sphäre";
             case ADD_VERTICES:
-                return "Entfernen von Symptomen rüchgänig gemacht";
+                return "Entfernen von Symptomen rückgänig gemacht";
             case REMOVE_EDGES:
                 return "Entfernen von Relationen";
             case MOVE_VERTICES:
@@ -198,6 +204,10 @@ public class LogToStringConverter {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
+        gsonBuilder.registerTypeAdapter(Pair.class, new PairSerializer());
+        gsonBuilder.registerTypeAdapter(Pair.class, new PairDeserializer());
+        gsonBuilder.registerTypeAdapter(AffineTransform.class, new AffineTransformDeserializer());
+        gsonBuilder.registerTypeAdapter(AffineTransform.class, new AffineTransformSerializer());
         Gson gson = gsonBuilder.create();
 
         switch (logEntryName) {

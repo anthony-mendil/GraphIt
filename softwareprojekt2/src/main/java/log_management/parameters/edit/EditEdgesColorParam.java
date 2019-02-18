@@ -16,6 +16,9 @@ import lombok.Getter;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,58 +26,91 @@ import java.util.Map;
  */
 @Data
 public class EditEdgesColorParam extends Param implements Serializable {
-    /**
-     * The list of edges containing their old color.
-     */
     @Getter
-    private Map<Edge,Color> edgesOld;
-    /**
-     * The list of edges containing their new color.
-     */
+    private List<Edge> oldEdges;
+
     @Getter
-    private Map<Edge,Color> edgesNew;
+    private List<Color> oldColors;
+
+    @Getter
+    private List<Edge> newEdges;
+
+    @Getter
+    private List<Color> newColors;
+
+    @Getter
+    private List<Vertex> startVertices;
+
+    @Getter
+    private List<Vertex> endVertices;
 
     /**
      * Creates an vertices object of its own class.
      * @param pEdgesOld The list of edges and their old color.
      * @param pEdgesNew The list of edges and their new color.
      */
-    public EditEdgesColorParam(Map<Edge,Color> pEdgesOld, Map<Edge,Color> pEdgesNew) {
-        this.edgesOld = pEdgesOld;
-        this.edgesNew = pEdgesNew;
+    public EditEdgesColorParam(Map<Edge,Color> pEdgesOld, Map<Edge,Color> pEdgesNew,
+                               List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
+        this.startVertices = pStartVertices;
+        this.endVertices = pEndVertices;
+
+        oldEdges = new ArrayList<>();
+        oldColors = new ArrayList<>();
+        newEdges = new ArrayList<>();
+        newColors = new ArrayList<>();
+
+        pEdgesOld.forEach((e, c) -> {
+            oldEdges.add(e);
+            oldColors.add(c);
+        });
+        pEdgesNew.forEach((e, c) -> {
+            newEdges.add(e);
+            newColors.add(c);
+        });
     }
 
     @Override
     public String prettyPrint() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Relations changed:\n";
-            for (Map.Entry<Edge, Color> entry : edgesOld.entrySet()) {
-                edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(entry.getKey());
-                Pair<Vertex,Vertex> vertPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
-                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(entry.getKey(),vertPair);
+            information += "Relations changed: ";
+            for (int i = 0; i < oldEdges.size(); i++) {
+                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i)));
 
 
-                information += "New Color: "
-                        + ColorNameCreator.getInstance().getColorName(entry.getKey().getColor(), Language.ENGLISH) + "\n";
+                information += ", New Color: "
+                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH) + "; ";
             }
         } else {
-            information += "Geänderte Relationen:\n";
-            for (Map.Entry<Edge, Color> entry : edgesOld.entrySet()) {
-                edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(entry.getKey());
-                Pair<Vertex,Vertex> vertPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
-                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(entry.getKey(),vertPair);
+            information += "Geänderte Relationen: ";
+            for (int i = 0; i < oldEdges.size(); i++) {
+                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i)));
 
 
-                information += "Neue Farbe: "
-                        + ColorNameCreator.getInstance().getColorName(entry.getKey().getColor(), Language.GERMAN) +  "\n";
+                information += ", Neue Farbe: "
+                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN) +  "; ";
             }
         }
         return information;
 
+    }
+
+    public Map<Edge,Color> getEdgesOld() {
+        Map<Edge, Color> map = new HashMap<>();
+        for (int i = 0; i < oldEdges.size(); i++) {
+            map.put(oldEdges.get(i), oldColors.get(i));
+        }
+        return map;
+    }
+
+    public Map<Edge,Color> getEdgesNew() {
+        Map<Edge, Color> map = new HashMap<>();
+        for (int i = 0; i < newEdges.size(); i++) {
+            map.put(newEdges.get(i), newColors.get(i));
+        }
+        return map;
     }
 }

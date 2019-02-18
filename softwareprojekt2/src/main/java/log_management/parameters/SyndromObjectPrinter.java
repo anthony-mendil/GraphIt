@@ -47,7 +47,7 @@ public class SyndromObjectPrinter {
 
     public static String edgePrintEnglish(Edge edge, javafx.util.Pair<Vertex, Vertex> vertices) {
         return "Id: " + edge.getId() + ", Stroke type: "
-                + EnumNameCreator.strokeTypeTranslaotr(edge.getStroke(), Language.ENGLISH)
+                + EnumNameCreator.strokeTypeTranslator(edge.getStroke(), Language.ENGLISH)
                 + ", Arrow type: "
                 + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.ENGLISH)
                 + ", Color: "
@@ -59,7 +59,7 @@ public class SyndromObjectPrinter {
 
     public static String edgePrintGerman(Edge edge, javafx.util.Pair<Vertex, Vertex> vertices) {
         return "Id: " + edge.getId() + ", Lienienart: "
-                + EnumNameCreator.strokeTypeTranslaotr(edge.getStroke(), Language.GERMAN)
+                + EnumNameCreator.strokeTypeTranslator(edge.getStroke(), Language.GERMAN)
                 + ", Pfeilspitze: "
                 + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.GERMAN)
                 + ", Color: "
@@ -81,8 +81,13 @@ public class SyndromObjectPrinter {
                 + ColorNameCreator.getInstance().getColorName(sphere.getColor(), Language.ENGLISH)
                 + ", Symptoms of the sphere: ";
         List<Vertex> vertexList = sphere.getVertices();
-        for (int i = 0; i < vertexList.size(); i++) {
-            sphereText += vertexPrintEnglish(vertexList.get(i));
+
+        if (vertexList.size() == 0) {
+            sphereText += "none. ";
+        } else {
+            for (int i = 0; i < vertexList.size(); i++) {
+                sphereText += vertexPrintEnglish(vertexList.get(i));
+            }
         }
         return sphereText;
     }
@@ -100,8 +105,12 @@ public class SyndromObjectPrinter {
                 + ", Symptome der Sphäre: ";
         List<Vertex> vertexList = sphere.getVertices();
 
-        for (int i = 0; i < vertexList.size(); i++) {
-            sphereText += vertexPrintGerman(vertexList.get(i));
+        if (vertexList.size() == 0) {
+            sphereText += "keine. ";
+        } else {
+            for (int i = 0; i < vertexList.size(); i++) {
+                sphereText += vertexPrintGerman(vertexList.get(i));
+            }
         }
         return sphereText;
     }

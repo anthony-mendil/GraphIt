@@ -27,19 +27,17 @@ public class EnumNameCreator {
         if (language == Language.ENGLISH) {
             switch (vertexShapeType) {
                 case CIRCLE: return "Circle";
-               // case ELLIPSE: return "Ellipse";
                 default: return "Rectangle";
             }
         } else {
             switch (vertexShapeType) {
                 case CIRCLE: return "Kreis";
-               // case ELLIPSE: return "Ellipse";
                 default: return "Rechteck";
             }
         }
     }
 
-    public static String strokeTypeTranslaotr(StrokeType strokeType, Language language) {
+    public static String strokeTypeTranslator(StrokeType strokeType, Language language) {
         if (language == Language.ENGLISH) {
             switch (strokeType) {
                 case BASIC: return "Basic";
@@ -54,7 +52,7 @@ public class EnumNameCreator {
                 case BASIC: return "Durchgezogen";
                 case DOTTED_WEIGHT: return "Gepunkted (dick)";
                 case DASHED_WEIGHT: return "Gestrichelt (dick)";
-                case DOTTED: return "Gepunkted";
+                case DOTTED: return "Gepunktet";
                 case BASIC_WEIGHT: return "Durchgezogen (dick)";
                 default: return "Gestrichelt";
             }

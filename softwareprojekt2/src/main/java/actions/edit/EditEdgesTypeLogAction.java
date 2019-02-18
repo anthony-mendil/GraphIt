@@ -3,19 +3,13 @@ package actions.edit;
 import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.EdgeArrowType;
-import graph.graph.FunctionMode;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesTypeParam;
 import lombok.Data;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Changes the EdgeType from a collection of edges.
@@ -79,7 +73,9 @@ public class EditEdgesTypeLogAction extends LogAction {
             Map<Edge,EdgeArrowType> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked() ) {
                 if(!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
-                    oldEdges.put(e, e.getArrowType());
+                    Edge oldEdge = new Edge(e.getId(), e.getColor(), e.getStroke(),
+                            e.getArrowType(), e.isVisible(), e.isHasAnchorIn(), e.isHasAnchorOut());
+                    oldEdges.put(oldEdge, oldEdge.getArrowType());
                     e.setArrowType(type);
                     newEdges.put(e, type);
                 }else{
@@ -112,13 +108,27 @@ public class EditEdgesTypeLogAction extends LogAction {
     public void undo() {
         Map<Edge,EdgeArrowType> oldEdges = ((EditEdgesTypeParam)parameters).getEdgesOldEdgeType();
         Map<Edge,EdgeArrowType> newEdges = ((EditEdgesTypeParam)parameters).getEdgesNewEdgeType();
-        EditEdgesTypeParam editEdgesTypeParam = new EditEdgesTypeParam(oldEdges,newEdges);
+        List<Vertex> starts = ((EditEdgesTypeParam)parameters).getStartVertices();
+        List<Vertex> ends = ((EditEdgesTypeParam)parameters).getEndVertices();
+        EditEdgesTypeParam editEdgesTypeParam = new EditEdgesTypeParam(oldEdges,newEdges, starts, ends);
         EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(editEdgesTypeParam);
         editEdgesTypeLogAction.action();
     }
 
 
-    public void createParameter(Map<Edge,EdgeArrowType> oldVertices, Map<Edge,EdgeArrowType> newVertices ) {
-        parameters = new EditEdgesTypeParam(oldVertices,newVertices);
+    public void createParameter(Map<Edge,EdgeArrowType> oldEdges, Map<Edge,EdgeArrowType> newEdges) {
+        List<Vertex> starts = new ArrayList<>();
+        List<Vertex> ends = new ArrayList<>();
+
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        newEdges.forEach((e, ed) -> {
+            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+
+            starts.add(vertices.getFirst());
+            ends.add(vertices.getSecond());
+        });
+
+        parameters = new EditEdgesTypeParam(oldEdges, newEdges, starts, ends);
     }
 }

@@ -2,8 +2,11 @@ package actions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.util.Pair;
 import log_management.DatabaseManager;
+import log_management.json_deserializers.PairDeserializer;
 import log_management.json_deserializers.Point2DDeserializer;
+import log_management.json_serializers.PairSerializer;
 import log_management.json_serializers.Point2DSerializer;
 import log_management.parameters.Param;
 import log_management.tables.Log;
@@ -54,6 +57,8 @@ public abstract class LogAction extends GraphAction {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
+        //gsonBuilder.registerTypeAdapter(Pair.class, new PairSerializer());
+        gsonBuilder.registerTypeAdapter(Pair.class, new PairDeserializer());
         Gson gson = gsonBuilder.create();
 
         String paramString = null;

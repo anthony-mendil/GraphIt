@@ -5,17 +5,17 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.FunctionMode;
+import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
+import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesColorParam;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Changes the color of the selected edges.
@@ -54,7 +54,9 @@ public class EditEdgesColorLogAction extends LogAction {
             Map<Edge,Color> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
                 if (!e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    oldEdges.put(e, e.getColor());
+                    Edge oldEdge = new Edge(e.getId(), e.getColor(), e.getStroke(),
+                            e.getArrowType(), e.isVisible(), e.isHasAnchorIn(), e.isHasAnchorOut());
+                    oldEdges.put(oldEdge, oldEdge.getColor());
                     e.setColor(color);
                     newEdges.put(e, color);
                 }else{
@@ -87,12 +89,26 @@ public class EditEdgesColorLogAction extends LogAction {
     public void undo() {
         Map<Edge,Color> edgesOld = ((EditEdgesColorParam)parameters).getEdgesOld();
         Map<Edge,Color> edgesNew = ((EditEdgesColorParam)parameters).getEdgesNew();
-        EditEdgesColorParam editEdgesColorParam = new EditEdgesColorParam(edgesNew,edgesOld);
+        List<Vertex> starts = ((EditEdgesColorParam)parameters).getStartVertices();
+        List<Vertex> ends = ((EditEdgesColorParam)parameters).getEndVertices();
+        EditEdgesColorParam editEdgesColorParam = new EditEdgesColorParam(edgesNew,edgesOld, starts, ends);
         EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(editEdgesColorParam);
         editEdgesColorLogAction.action();
     }
 
     public void createParameter(Map<Edge,Color> oldEdge, Map<Edge,Color> newEdge) {
-        parameters = new EditEdgesColorParam(oldEdge,newEdge);
+        List<Vertex> starts = new ArrayList<>();
+        List<Vertex> ends = new ArrayList<>();
+
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        newEdge.forEach((e, c) -> {
+            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+
+            starts.add(vertices.getFirst());
+            ends.add(vertices.getSecond());
+        });
+
+        parameters = new EditEdgesColorParam(oldEdge,newEdge, starts, ends);
     }
 }

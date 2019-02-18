@@ -48,6 +48,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -86,6 +88,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -2365,7 +2368,28 @@ public class Controller implements ObserverSyndrom {
 
     @Override
     public void updateGraph() {
-        treeViewUpdate();
+        Service<Void> service = new Service<Void>() {
+            @Override
+            protected Task<Void> createTask() {
+                return new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        final CountDownLatch latch = new CountDownLatch(1);
+                        Platform.runLater(() -> {
+                            try {
+                                treeViewUpdate();
+                            } finally {
+                                latch.countDown();
+                            }
+                        });
+                        latch.await();
+                        return null;
+                    }
+                };
+            }
+        };
+        service.start();
+
     }
 
     @Override

@@ -72,11 +72,13 @@ public class EditSphereSizeLogAction extends LogAction {
                         }
                     }
                     if (enlarge) {
-                        Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                        //Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                        Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(),
+                                sp.getWidth(), sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
                         sp.setHeight(newHeight);
                         sp.setWidth(newWidth);
-                        Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
-                        createParameter(sp, oldSize, newSize);
+                        //Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                        createParameter(spWithOldValues, true);
 
                     }
                 } else {
@@ -90,11 +92,12 @@ public class EditSphereSizeLogAction extends LogAction {
                         }
                     }
                     if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
-                        Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                        //Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                        Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(),
+                                sp.getWidth(), sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
                         sp.setHeight(sp.getHeight() - 10);
                         sp.setWidth(sp.getWidth() - 10);
-                        Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
-                        createParameter(sp, oldSize, newSize);
+                        createParameter(spWithOldValues, false);
 
                     }
                 }
@@ -104,10 +107,16 @@ public class EditSphereSizeLogAction extends LogAction {
                 }
             }
         }else{
-            Pair<Double,Double> newSize = ((EditSphereSizeParam)parameters).getNewSize();
-            Sphere sphere = ((EditSphereSizeParam)parameters).getSphere();
-            sphere.setWidth(newSize.getValue());
-            sphere.setHeight(newSize.getKey());
+            boolean enlarged = ((EditSphereSizeParam)parameters).isEnlarge();
+            if (enlarged) {
+                Sphere sphere = ((EditSphereSizeParam) parameters).getSphere();
+                sphere.setWidth(sphere.getWidth() + 10);
+                sphere.setHeight(sphere.getHeight() + 10);
+            } else {
+                Sphere sphere = ((EditSphereSizeParam) parameters).getSphere();
+                sphere.setWidth(sphere.getWidth() - 10);
+                sphere.setHeight(sphere.getHeight() - 10);
+            }
         }
         vv.repaint();
         syndrom.getVv2().repaint();
@@ -118,18 +127,23 @@ public class EditSphereSizeLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Pair<Double,Double> oldSize = ((EditSphereSizeParam)parameters).getOldSize();
-        Pair<Double,Double> newSize = ((EditSphereSizeParam)parameters).getNewSize();
+        boolean enlarged = ((EditSphereSizeParam)parameters).isEnlarge();
         Sphere sphere = ((EditSphereSizeParam)parameters).getSphere();
-        EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, newSize, oldSize);
-        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
-        editSphereSizeLogAction.action();
+        if (enlarged) {
+            EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, false);
+            EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
+            editSphereSizeLogAction.action();
+        } else {
+            EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, true);
+            EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
+            editSphereSizeLogAction.action();
+        }
     }
 
     /**
      * Creates the vertices object.
      */
-    public void createParameter(Sphere sphere, Pair<Double,Double> oldSize, Pair<Double,Double> newSize) {
-        parameters = new EditSphereSizeParam(sphere, oldSize,newSize);
+    public void createParameter(Sphere sphere, boolean enlarge) {
+        parameters = new EditSphereSizeParam(sphere, enlarge);
     }
 }

@@ -42,8 +42,12 @@ public class RemoveEdgesLogAction extends LogAction {
 
 
 
-    public void createParameter(Map<Edge,Pair<Vertex,Vertex>> list) {
-        parameters = new AddRemoveEdgesParam(list);
+    public void createParameter(Map<Edge,Pair<Vertex,Vertex>> map) {
+        List<Edge> edges = new ArrayList<>();
+        map.forEach((e, p) -> edges.add(e));
+        Set<Pair<Vertex, Vertex>> vertices = new HashSet<>();
+        map.forEach((e, p) -> vertices.add(p));
+        parameters = new AddRemoveEdgesParam(edges, vertices);
     }
 
     @Override
@@ -73,11 +77,12 @@ public class RemoveEdgesLogAction extends LogAction {
             }
             createParameter(edges);
         }else{
-            Map<Edge,Pair<Vertex,Vertex>> edg = ((AddRemoveEdgesParam)parameters).getEdges();
-            for(Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edg.entrySet()){
-                //Edge removeEdge = graph.findEdge(edge.getKey(),edge.getValue());
-                graph.removeEdge(entry.getKey());
-            }
+            //Map<Edge,Pair<Vertex,Vertex>> edg = ((AddRemoveEdgesParam)parameters).getEdges();
+            //for(Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edg.entrySet()){
+            //    graph.removeEdge(entry.getKey());
+            List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
+            edges.forEach(e -> graph.removeEdge(e));
+            //}
         }
 
         vv.repaint();
@@ -91,7 +96,7 @@ public class RemoveEdgesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        AddRemoveEdgesParam addRemoveEdgesParam = new AddRemoveEdgesParam(((AddRemoveEdgesParam)parameters).getEdges());
+        AddRemoveEdgesParam addRemoveEdgesParam = new AddRemoveEdgesParam(((AddRemoveEdgesParam)parameters).getEdges(), ((AddRemoveEdgesParam)parameters).getVertices());
         AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(addRemoveEdgesParam);
         addEdgesLogAction.action();
     }
