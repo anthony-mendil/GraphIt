@@ -1,6 +1,7 @@
 package actions.other;
 
 import actions.GraphAction;
+import com.sun.org.apache.xpath.internal.compiler.FunctionTable;
 import graph.graph.FunctionMode;
 import gui.Values;
 
@@ -24,18 +25,23 @@ public class SwitchModeAction extends GraphAction {
     public SwitchModeAction(FunctionMode newMode) {
         mode = newMode;
         oldMode = Values.getInstance().getMode();
-
     }
 
     @Override
     public void action() {
         Values.getInstance().setMode(mode);
-        System.out.println(Values.getInstance().getMode().name());
         if (mode == FunctionMode.EDIT) {
             notifyObserverEditMode();
+            syndrom.setPluggableModeEdit();
         }
         else {
             notifyObserverFunctionMode(mode);
+            if (mode == FunctionMode.TEMPLATE){
+                syndrom.setPluggableModeEdit();
+            } else {
+                // mode ==  FunctionMode.ANALYSE
+                syndrom.setPluggableModeAnalyse();
+            }
         }
     }
 

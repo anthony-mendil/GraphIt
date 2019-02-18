@@ -98,11 +98,11 @@ public enum LogEntryName {
      */
     EDIT_EDGES_TYPE,
     /**
-     * The log entry will be of this type if the annotation of a sphere is changed in the action.
+     * The log entry will be of this type if the regex of a sphere is changed in the action.
      */
     EDIT_SPHERE_ANNOTATION,
     /**
-     * The log entry will be of this type if the annotation of a vertex is changed in the action.
+     * The log entry will be of this type if the regex of a vertex is changed in the action.
      */
     EDIT_VERTEX_ANNOTATION,
     /**

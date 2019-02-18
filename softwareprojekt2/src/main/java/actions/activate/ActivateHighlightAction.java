@@ -12,22 +12,22 @@ import log_management.parameters.activate_deactivate.ActivateDeactivateHighlight
 /**
  * Highlights the chosen vertices and the attached edges.
  */
-public class ActivateHighlightLogAction extends LogAction {
+public class ActivateHighlightAction extends LogAction {
 
     /**
      * Constructor in case several/all vertices shall be highlighted.
      */
-    public ActivateHighlightLogAction() {
+    public ActivateHighlightAction() {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
     }
 
     /**
      * Highlight all vertices passed by ActivateHighlightParam. Also used to implement the undo-method of
-     * DeactivateHighlightLogAction.
+     * DeactivateHighlightAction.
      *
      * @param pActivateDeactivateHighlightParam The parameter object containing all vertices to highlight
      */
-    public ActivateHighlightLogAction(ActivateDeactivateHighlightParam pActivateDeactivateHighlightParam) {
+    public ActivateHighlightAction(ActivateDeactivateHighlightParam pActivateDeactivateHighlightParam) {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
         throw new UnsupportedOperationException();
     }

@@ -59,7 +59,7 @@ public class EditFontSphereLogAction extends LogAction {
             String newFont = ((EditFontSphereParam)parameters).getNewFont();
             sphere.setFont(newFont);
         }
- 
+        vv.repaint();
         syndrom.getVv2().repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
@@ -72,7 +72,7 @@ public class EditFontSphereLogAction extends LogAction {
         Sphere sphere = ((EditFontSphereParam)parameters).getSphere();
         String oldFont = ((EditFontSphereParam)parameters).getOldFont();
         String newFont = ((EditFontSphereParam)parameters).getNewFont();
-        EditFontSphereParam editFontSphereParam = new EditFontSphereParam(sphere, oldFont, newFont);
+        EditFontSphereParam editFontSphereParam = new EditFontSphereParam(sphere, newFont, oldFont);
         EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(editFontSphereParam);
         editFontSphereLogAction.action();
     }

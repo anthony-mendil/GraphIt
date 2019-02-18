@@ -22,7 +22,7 @@ public class AddRemoveVerticesParam extends Param implements Serializable {
      * Set of vertices to their sphere.
      */
     @Getter
-    private Map<Vertex, Sphere> vertices = new HashMap<>();
+    private Map<Vertex, Sphere> vertices;
 
     /**
      * Creates an parameter object of its own class.

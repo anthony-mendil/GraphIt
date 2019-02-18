@@ -1,8 +1,13 @@
 package log_management.parameters.edit;
 
-import graph.graph.Edge;
-import graph.graph.EdgeArrowType;
+import graph.graph.*;
+import graph.visualization.SyndromVisualisationViewer;
+import gui.Values;
+import gui.properties.Language;
+import javafx.util.Pair;
+import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -36,35 +41,33 @@ public class EditEdgesTypeParam extends Param implements Serializable {
     }
     @Override
     public String prettyPrint() {
-        /**
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
             information += "Relations changed:\n";
-            for (Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edgesOldEdgeType.entrySet()) {
-                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(entry.getKey());
-
-                Pair<Vertex, Vertex> endPoints = edgesNewEdgeType.get(entry.getKey());
-                Edge edge = Syndrom.getInstance().getGraph().findEdge(endPoints.getKey(), endPoints.getValue());
+            for (Map.Entry<Edge,EdgeArrowType> entry : edgesOldEdgeType.entrySet()) {
+                edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(entry.getKey());
+                Pair<Vertex,Vertex> vertPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
+                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(entry.getKey(),vertPair);
 
                 information += "New arrow type: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.ENGLISH) + "\n";
+                        + EnumNameCreator.edgeArrowTypeTranslator(entry.getKey().getArrowType(), Language.ENGLISH) + "\n";
             }
         } else {
             information += "Geänderte Relationen:\n";
-            for (Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edgesOldEdgeType.entrySet()) {
-                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(entry.getKey());
-
-                Pair<Vertex, Vertex> endPoints = edgesNewEdgeType.get(entry.getKey());
-                Edge edge = Syndrom.getInstance().getGraph().findEdge(endPoints.getKey(), endPoints.getValue());
+            for (Map.Entry<Edge,EdgeArrowType> entry : edgesOldEdgeType.entrySet()) {
+                edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(entry.getKey());
+                Pair<Vertex,Vertex> vertPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
+                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(entry.getKey(),vertPair);
 
                 information += "Neue Pfeilspitze: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.GERMAN) + "\n";
+                        + EnumNameCreator.edgeArrowTypeTranslator(entry.getKey().getArrowType(), Language.GERMAN) + "\n";
             }
         }
         return information;
-         */
-        return null;
     }
 
 }

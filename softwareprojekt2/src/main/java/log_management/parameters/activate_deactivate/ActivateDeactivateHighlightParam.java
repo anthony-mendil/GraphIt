@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Parameter object for action ActivateHighlightLogAction/DeactivateHighlightLogAction.
+ * Parameter object for action ActivateHighlightAction/DeactivateHighlightAction.
  */
 @Data
 public class ActivateDeactivateHighlightParam extends Param implements Serializable {

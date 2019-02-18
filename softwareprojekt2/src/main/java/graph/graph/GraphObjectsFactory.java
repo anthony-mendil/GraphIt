@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -58,12 +59,16 @@ public class GraphObjectsFactory {
         Color fillPaint = values.getFillPaintVertex();
         Color drawPaint = values.getDrawPaintVertex();
         Map<String, String> annotation = values.getDefaultAnnotationVertex();
+        Map vertexAnnotation = new HashMap();
+        for (Map.Entry<String, String> entry: annotation.entrySet()) {
+            vertexAnnotation.put(entry.getKey(), entry.getValue()+" "+id);
+        }
         String font = values.getFontVertex();
         int fontSize = values.getFontSizeVertex();
         VertexShapeType shape = values.getShapeVertex();
         int size = values.getDefaultSizeVertex();
         return new Vertex(id, fillPaint, position, shape,
-                annotation, drawPaint, size, font, fontSize);
+                vertexAnnotation, drawPaint, size, font, fontSize);
     }
 
 
@@ -78,8 +83,12 @@ public class GraphObjectsFactory {
         double width = values.getDefaultWidthSphere();
         double height = values.getDefaultHeightSphere();
         Map<String, String> annotation = values.getDefaultAnnotationSphere();
+        Map sphereAnnotation = new HashMap();
+        for (Map.Entry<String, String> entry: annotation.entrySet()) {
+            sphereAnnotation.put(entry.getKey(), entry.getValue()+" "+id);
+        }
         String font = values.getFontSphere();
         int fontSize = values.getFontSizeSphere();
-        return new Sphere(id, fillPaint, position, width, height, annotation, font, fontSize);
+        return new Sphere(id, fillPaint, position, width, height, sphereAnnotation, font, fontSize);
     }
 }
