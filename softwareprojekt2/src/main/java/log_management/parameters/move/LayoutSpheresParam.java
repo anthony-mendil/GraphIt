@@ -17,7 +17,7 @@ public class LayoutSpheresParam extends Param implements Serializable {
      * The spheres containing their old position and size.
      */
     @Getter
-    private Map<Sphere,Pair<Pair<Double,Double>,Point2D>> oldSpheres;
+    private Map<Sphere,Pair<Pair<Double,Double>,Point2D>> oldPosition;
     /**
      * The vertices and their old position.
      */
@@ -31,7 +31,7 @@ public class LayoutSpheresParam extends Param implements Serializable {
      * @param pOldPosition Map of vertices containing their old positions.
      */
     public LayoutSpheresParam(Map<Sphere,Pair<Pair<Double,Double>,Point2D>> pOldPosition, Map<Vertex,Point2D> pOldVertices) {
-        this.oldSpheres = pOldPosition;
+        this.oldPosition = pOldPosition;
         this.oldVertices = pOldVertices;
     }
     @Override

@@ -63,10 +63,10 @@ public class SyndromObjectPrinter {
                 + ", Pfeilspitze: "
                 + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.GERMAN)
                 + ", Color: "
-                + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.GERMAN)
-                + ", Symptome der Relation: Erstes Symptom: "
-                + vertexPrintGerman(vertices.getKey())
-                + ", Zweites Symptom: " + vertexPrintGerman(vertices.getValue());
+                + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.GERMAN);
+//                + ", Symptome der Relation: Erstes Symptom: "
+//                + vertexPrintGerman(vertices.getKey())
+//                + ", Zweites Symptom: " + vertexPrintGerman(vertices.getValue());
     }
 
     public static String spherePrintEnglish(Sphere sphere) {
@@ -81,8 +81,13 @@ public class SyndromObjectPrinter {
                 + ColorNameCreator.getInstance().getColorName(sphere.getColor(), Language.ENGLISH)
                 + ", Symptoms of the sphere: ";
         List<Vertex> vertexList = sphere.getVertices();
-        for (int i = 0; i < vertexList.size(); i++) {
-            sphereText += vertexPrintEnglish(vertexList.get(i));
+
+        if (vertexList.size() == 0) {
+            sphereText += "none. ";
+        } else {
+            for (int i = 0; i < vertexList.size(); i++) {
+                sphereText += vertexPrintEnglish(vertexList.get(i));
+            }
         }
         return sphereText;
     }
@@ -100,8 +105,12 @@ public class SyndromObjectPrinter {
                 + ", Symptome der Sphäre: ";
         List<Vertex> vertexList = sphere.getVertices();
 
-        for (int i = 0; i < vertexList.size(); i++) {
-            sphereText += vertexPrintGerman(vertexList.get(i));
+        if (vertexList.size() == 0) {
+            sphereText += "keine. ";
+        } else {
+            for (int i = 0; i < vertexList.size(); i++) {
+                sphereText += vertexPrintGerman(vertexList.get(i));
+            }
         }
         return sphereText;
     }

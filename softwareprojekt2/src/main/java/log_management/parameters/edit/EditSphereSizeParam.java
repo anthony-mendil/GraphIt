@@ -21,40 +21,43 @@ public class EditSphereSizeParam extends Param implements Serializable {
      */
     @Getter
     private Sphere sphere;
-    /**
-     * The old size of the sphere.
-     */
-    @Getter
-    private Pair<Double,Double> oldSize;
 
-    /**
-     * The new size of the sphere.
-     */
     @Getter
-    private Pair<Double,Double> newSize;
+    private boolean enlarge;
 
     /**
      * Creates a vertices object of its own class.
      * @param pSphere The sphere containing its old size.
-     * @param pOldSize The old size of the sphere.
-     * @param pNewSize The new size of the sphere.
+     * @param pEnlarge For knowing which type of size change it is.
      */
-    public EditSphereSizeParam(Sphere pSphere,Pair<Double,Double> pOldSize, Pair<Double,Double> pNewSize) {
+    public EditSphereSizeParam(Sphere pSphere, boolean pEnlarge) {
         this.sphere = pSphere;
-        this.oldSize = pOldSize;
-        this.newSize = pNewSize;
+        this.enlarge = pEnlarge;
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
-        if (language == Language.ENGLISH) {
-            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
-                    + " New width: " + newSize.getKey() + ", New height: " + newSize.getValue();
-        } else {
-            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
-                    + " Neue Breite: " + newSize.getKey() + ", Neue Höhe: " + newSize.getValue();
+        if (enlarge) {
+            if (language == Language.ENGLISH) {
+                information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
+                        + " New width: " + (sphere.getWidth() + 10) +", New height: " + (sphere.getHeight() + 10);
+            } else {
+                information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
+                        + " Neue Breite: " + (sphere.getWidth() + 10) + ", Neue Höhe: " + (sphere.getHeight() + 10);
+            }
+            return information;
         }
-        return information;
+        else {
+            if (language == Language.ENGLISH) {
+                information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
+                        + " New width: " + (sphere.getWidth() - 10) +", New height: " + (sphere.getHeight() - 10);
+            } else {
+                information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
+                        + " Neue Breite: " + (sphere.getWidth() - 10) + ", Neue Höhe: " + (sphere.getHeight() - 10);
+            }
+            return information;
+        }
     }
 }

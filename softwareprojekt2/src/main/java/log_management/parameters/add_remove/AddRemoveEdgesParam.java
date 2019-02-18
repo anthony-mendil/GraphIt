@@ -12,6 +12,7 @@ import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -26,8 +27,13 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
     @Getter
     private List<Edge> edges;
 
+    //@Getter
+    //private Set<Pair<Vertex,Vertex>> vertices;
+
     @Getter
-    private Set<Pair<Vertex,Vertex>> vertices;
+    private List<Vertex> startVertices;
+
+    private List<Vertex> endVertices;
 
     /**
      * Creates an parameter object of its own class.
@@ -35,13 +41,23 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
      */
     public AddRemoveEdgesParam(List<Edge> pEdges, Set<Pair<Vertex,Vertex>> pVertices){
         this.edges = pEdges;
-        this.vertices = pVertices;
+
+        List<Vertex> list1 = new ArrayList();
+        List<Vertex> list2 = new ArrayList();
+        pVertices.forEach(s -> list1.add(s.getKey()));
+        pVertices.forEach(s -> list2.add(s.getValue()));
+
+        this.startVertices = list1;
+        this.endVertices = list2;
     }
 
     @Override
     public String prettyPrint() {
         List<Pair<Vertex,Vertex>> verticesList = new ArrayList<>();
-        vertices.forEach(p -> verticesList.add(new Pair<>(p.getKey(), p.getValue())));
+        for (int i = 0; i < startVertices.size(); i++) {
+            verticesList.add(new Pair<>(startVertices.get(i), endVertices.get(i)));
+        }
+        //vertices.forEach(p -> verticesList.add(new Pair<>(p.getKey(), p.getValue())));
 
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
@@ -57,5 +73,13 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
             }
             return list;
         }
+    }
+
+    public Set<Pair<Vertex,Vertex>> getVertices() {
+        Set<Pair<Vertex,Vertex>> set = new HashSet<>();
+        for (int i = 0; i < startVertices.size(); i++) {
+            set.add(new Pair<>(startVertices.get(i), endVertices.get(i)));
+        }
+        return set;
     }
 }
