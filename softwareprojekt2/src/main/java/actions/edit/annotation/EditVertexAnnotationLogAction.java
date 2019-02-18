@@ -54,7 +54,12 @@ public class EditVertexAnnotationLogAction extends LogAction {
             for (Vertex v : pickedState.getPicked()) {
                 if(!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     Map<String, String> annotation = v.getAnnotation();
-                    createParameter(v, v.getAnnotation().get(Language.GERMAN.name()), text);
+                    Map<String, String> oldAnnotation = new HashMap<>();
+                    annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
+
+                    Vertex oldVertex = new Vertex(v.getId(), v.getFillColor(), v.getCoordinates(), v.getShape(),
+                            v.getAnnotation(), v.getDrawColor(), v.getSize(), v.getFont(), v.getFontSize());
+                    createParameter(oldVertex, oldVertex.getAnnotation().get(Language.GERMAN.name()), text);
                     annotation.put(Language.GERMAN.name(), text);
                     v.setAnnotation(annotation);
                 }else{

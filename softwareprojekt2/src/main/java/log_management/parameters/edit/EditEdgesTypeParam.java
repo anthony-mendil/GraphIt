@@ -12,6 +12,9 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,55 +22,91 @@ import java.util.Map;
  */
 @Data
 public class EditEdgesTypeParam extends Param implements Serializable {
-    /**
-     * The set of all edges containing their old edge-type.
-     */
     @Getter
-    private Map<Edge,EdgeArrowType> edgesOldEdgeType;
-    /**
-     * The set of all edges containing their new edge-type.
-     */
+    private List<Edge> oldEdges;
+
     @Getter
-    private Map<Edge,EdgeArrowType> edgesNewEdgeType;
+    private List<EdgeArrowType> oldArrowTypes;
+
+    @Getter
+    private List<Edge> newEdges;
+
+    @Getter
+    private List<EdgeArrowType> newArrowTypes;
+
+    @Getter
+    private List<Vertex> startVertices;
+
+    @Getter
+    private List<Vertex> endVertices;
 
     /**
      * Creates a new vertices object of its own class.
      * @param pOldEdges The set of edges containing their old edge-types.
      * @param pNewEdges The set of edges containing their new edge-types.
      */
-    public EditEdgesTypeParam(Map<Edge,EdgeArrowType> pOldEdges, Map<Edge,EdgeArrowType> pNewEdges) {
-        this.edgesOldEdgeType = pOldEdges;
-        this.edgesNewEdgeType = pNewEdges;
+    public EditEdgesTypeParam(Map<Edge,EdgeArrowType> pOldEdges, Map<Edge,EdgeArrowType> pNewEdges,
+                              List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
+        this.startVertices = pStartVertices;
+        this.endVertices = pEndVertices;
+
+        oldEdges = new ArrayList<>();
+        oldArrowTypes = new ArrayList<>();
+        newEdges = new ArrayList<>();
+        newArrowTypes = new ArrayList<>();
+
+        pOldEdges.forEach((e, ed) -> {
+            oldEdges.add(e);
+            oldArrowTypes.add(ed);
+        });
+        pNewEdges.forEach((e, ed) -> {
+            newEdges.add(e);
+            newArrowTypes.add(ed);
+        });
+
+        //this.edgesOldEdgeType = pOldEdges;
+        //this.edgesNewEdgeType = pNewEdges;
     }
     @Override
     public String prettyPrint() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Relations changed:\n";
-            for (Map.Entry<Edge,EdgeArrowType> entry : edgesOldEdgeType.entrySet()) {
-                edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(entry.getKey());
-                Pair<Vertex,Vertex> vertPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
-                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(entry.getKey(),vertPair);
+            information += "Relations changed: ";
+            for (int i = 0; i < oldEdges.size(); i++) {
+                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i)));
 
-                information += "New arrow type: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(entry.getKey().getArrowType(), Language.ENGLISH) + "\n";
+                information += ", New arrow type: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH) + "; ";
             }
         } else {
-            information += "Geänderte Relationen:\n";
-            for (Map.Entry<Edge,EdgeArrowType> entry : edgesOldEdgeType.entrySet()) {
-                edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(entry.getKey());
-                Pair<Vertex,Vertex> vertPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
-                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(entry.getKey(),vertPair);
+            information += "Geänderte Relationen: ";
+            for (int i = 0; i < oldEdges.size(); i++) {
+                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i)));
 
-                information += "Neue Pfeilspitze: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(entry.getKey().getArrowType(), Language.GERMAN) + "\n";
+                information += ", Neue Pfeilspitze: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN) + "; ";
             }
         }
         return information;
+    }
+
+    public Map<Edge,EdgeArrowType> getEdgesOldEdgeType() {
+        Map<Edge, EdgeArrowType> map = new HashMap<>();
+        for (int i = 0; i < oldEdges.size(); i++) {
+            map.put(oldEdges.get(i), oldArrowTypes.get(i));
+        }
+        return map;
+    }
+
+    public Map<Edge,EdgeArrowType> getEdgesNewEdgeType() {
+        Map<Edge, EdgeArrowType> map = new HashMap<>();
+        for (int i = 0; i < newEdges.size(); i++) {
+            map.put(newEdges.get(i), newArrowTypes.get(i));
+        }
+        return map;
     }
 
 }

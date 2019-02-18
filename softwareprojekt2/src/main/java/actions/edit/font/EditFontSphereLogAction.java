@@ -47,7 +47,9 @@ public class EditFontSphereLogAction extends LogAction {
             Sphere sphere = null;
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    createParameter(sp, sp.getFont(), font);
+                    Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(), sp.getWidth(),
+                            sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
+                    createParameter(spWithOldValues, sp.getFont(), font);
                     sp.setFont(font);
                 }else{
                     helper.setActionText("Die Schrift der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);

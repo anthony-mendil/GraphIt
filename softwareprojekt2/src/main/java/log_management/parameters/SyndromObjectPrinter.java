@@ -47,7 +47,7 @@ public class SyndromObjectPrinter {
 
     public static String edgePrintEnglish(Edge edge, javafx.util.Pair<Vertex, Vertex> vertices) {
         return "Id: " + edge.getId() + ", Stroke type: "
-                + EnumNameCreator.strokeTypeTranslaotr(edge.getStroke(), Language.ENGLISH)
+                + EnumNameCreator.strokeTypeTranslator(edge.getStroke(), Language.ENGLISH)
                 + ", Arrow type: "
                 + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.ENGLISH)
                 + ", Color: "
@@ -59,14 +59,14 @@ public class SyndromObjectPrinter {
 
     public static String edgePrintGerman(Edge edge, javafx.util.Pair<Vertex, Vertex> vertices) {
         return "Id: " + edge.getId() + ", Lienienart: "
-                + EnumNameCreator.strokeTypeTranslaotr(edge.getStroke(), Language.GERMAN)
+                + EnumNameCreator.strokeTypeTranslator(edge.getStroke(), Language.GERMAN)
                 + ", Pfeilspitze: "
                 + EnumNameCreator.edgeArrowTypeTranslator(edge.getArrowType(), Language.GERMAN)
                 + ", Color: "
-                + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.GERMAN);
-//                + ", Symptome der Relation: Erstes Symptom: "
-//                + vertexPrintGerman(vertices.getKey())
-//                + ", Zweites Symptom: " + vertexPrintGerman(vertices.getValue());
+                + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.GERMAN)
+                + ", Symptome der Relation: Erstes Symptom: "
+                + vertexPrintGerman(vertices.getKey())
+                + ", Zweites Symptom: " + vertexPrintGerman(vertices.getValue());
     }
 
     public static String spherePrintEnglish(Sphere sphere) {

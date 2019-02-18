@@ -54,8 +54,13 @@ public class EditSphereAnnotationLogAction extends LogAction {
             Set<Sphere> lockedSpheres = new HashSet<>();
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    createParameter(sp, sp.getAnnotation().get(Language.GERMAN.name()), text);
                     Map<String, String> annotation = sp.getAnnotation();
+                    Map<String, String> oldAnnotation = new HashMap<>();
+                    annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
+
+                    Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(), sp.getWidth(),
+                            sp.getHeight(), oldAnnotation, sp.getFont(), sp.getFontSize());
+                    createParameter(spWithOldValues, oldAnnotation.get(Language.GERMAN.name()), text);
                     if (annotation.get(Language.GERMAN.name()) != null) {
                         annotation.remove(Language.GERMAN.name());
                         sp.setAnnotation(annotation);
@@ -88,6 +93,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
         String oldAnnotation = ((EditSphereAnnotationParam)parameters).getOldAnnotation();
         String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
         Sphere sphere = ((EditSphereAnnotationParam)parameters).getSphere();
+
         EditSphereAnnotationParam editSphereAnnotationParam = new EditSphereAnnotationParam(sphere, newAnnotation, oldAnnotation);
         EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(editSphereAnnotationParam);
         editSphereAnnotationLogAction.action();

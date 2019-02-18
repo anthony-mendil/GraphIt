@@ -3,18 +3,12 @@ package actions.edit;
 import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.FunctionMode;
-import graph.graph.StrokeType;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesStrokeParam;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Changes the stroke of the selected edges.
@@ -52,7 +46,9 @@ public class EditEdgesStrokeLogAction extends LogAction {
             Map<Edge,StrokeType> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
                 if(!e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    oldEdges.put(e, e.getStroke());
+                    Edge oldEdge = new Edge(e.getId(), e.getColor(), e.getStroke(),
+                            e.getArrowType(), e.isVisible(), e.isHasAnchorIn(), e.isHasAnchorOut());
+                    oldEdges.put(oldEdge, oldEdge.getStroke());
                     e.setStroke(stroke);
                     newEdges.put(e, stroke);
                 }else{
@@ -85,12 +81,27 @@ public class EditEdgesStrokeLogAction extends LogAction {
     public void undo() {
         Map<Edge,StrokeType> oldEdges = ((EditEdgesStrokeParam)parameters).getEdgesOld();
         Map<Edge,StrokeType> newEdges = ((EditEdgesStrokeParam)parameters).getEdgesNew();
-        EditEdgesStrokeParam editEdgesStrokeParam = new EditEdgesStrokeParam(newEdges,oldEdges);
+        List<Vertex> starts = ((EditEdgesStrokeParam)parameters).getStartVertices();
+        List<Vertex> ends = ((EditEdgesStrokeParam)parameters).getEndVertices();
+        EditEdgesStrokeParam editEdgesStrokeParam = new EditEdgesStrokeParam(newEdges,oldEdges, starts, ends);
         EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(editEdgesStrokeParam);
         editEdgesStrokeLogAction.action();
     }
 
     public void createParameter(Map<Edge,StrokeType> oldEdges, Map<Edge,StrokeType> newEdges) {
-        parameters = new EditEdgesStrokeParam(oldEdges,newEdges);
+        List<Vertex> starts = new ArrayList<>();
+        List<Vertex> ends = new ArrayList<>();
+
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        newEdges.forEach((e, s) -> {
+            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+
+            starts.add(vertices.getFirst());
+            ends.add(vertices.getSecond());
+        });
+
+
+        parameters = new EditEdgesStrokeParam(oldEdges,newEdges, starts, ends);
     }
 }
