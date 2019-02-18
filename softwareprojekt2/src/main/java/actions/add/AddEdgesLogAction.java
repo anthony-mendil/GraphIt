@@ -12,10 +12,7 @@ import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Adds a single/multiple edge/s to the graph.
@@ -53,12 +50,16 @@ public class AddEdgesLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(!template.isLockedEdgesNumber() || graph.getEdges().size() < template.getMaxVertices()){
         if(parameters == null) {
+            Map<Edge,Pair<Vertex,Vertex>> edges = new HashMap<>();
             graph.addEdge(edge.getKey(),edge.getValue());
-            createParameter(edge);
+            Edge edg = graph.findEdge(edge.getKey(),edge.getValue());
+            Pair<Vertex,Vertex> vertexP = new Pair<>(edge.getKey(),edge.getValue());
+            edges.put(edg,vertexP);
+            createParameter(edges);
         }else{
-            for(Edge edge : ((AddRemoveEdgesParam)parameters).getEdges()){
-                edu.uci.ics.jung.graph.util.Pair<Vertex> pair = graph.getEndpoints(edge);
-                graph.addEdge(pair.getFirst(),pair.getSecond());
+            Map<Edge,Pair<Vertex,Vertex>> edges = ((AddRemoveEdgesParam)parameters).getEdges();
+            for(Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edges.entrySet()){
+                graph.addEdgeExisting(entry.getKey(),entry.getValue().getKey(), entry.getValue().getValue());
             }
         }
         vv.repaint();
@@ -85,16 +86,7 @@ public class AddEdgesLogAction extends LogAction {
 
 
 
-    public void createParameter(Pair<Vertex,Vertex> edge) {
-        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-
-        List<Edge> edges = new ArrayList<>();
-        Edge toAdd = graph.findEdge(edge.getKey(), edge.getValue());
-        edges.add(toAdd);
-
-        Set<Pair<Vertex, Vertex>> vertices = new HashSet<>();
-        vertices.add(new Pair<>(edge.getKey(),edge.getValue()));
-        parameters = new AddRemoveEdgesParam(edges, vertices);
+    public void createParameter(Map<Edge,Pair<Vertex,Vertex>> edge) {
+        parameters = new AddRemoveEdgesParam(edge);
     }
 }

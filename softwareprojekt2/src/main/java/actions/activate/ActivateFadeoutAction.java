@@ -25,22 +25,22 @@ import java.awt.*;
  * The chosen vertices and all edges attached to them fadeout and will no longer be visible.
  */
 
-public class ActivateFadeoutLogAction extends LogAction {
+public class ActivateFadeoutAction extends LogAction {
     /**
      * Constructor
      *
      */
-    public ActivateFadeoutLogAction() {
+    public ActivateFadeoutAction() {
         super(LogEntryName.ACTIVATE_FADEOUT);
     }
 
     /**
      * Fadeout all vertices/edges defined in ActivateFadeoutParam. Also used to implement the undo-method of
-     * DeactivateFadeoutLogAction.
+     * DeactivateFadeoutAction.
      *
      * @param pActivateDeactivateFadeoutParam The parameter object containing all vertices/edges to fadeout
      */
-    public ActivateFadeoutLogAction(ActivateDeactivateFadeoutParam pActivateDeactivateFadeoutParam) {
+    public ActivateFadeoutAction(ActivateDeactivateFadeoutParam pActivateDeactivateFadeoutParam) {
         super(LogEntryName.ACTIVATE_FADEOUT);
         throw new UnsupportedOperationException();
     }

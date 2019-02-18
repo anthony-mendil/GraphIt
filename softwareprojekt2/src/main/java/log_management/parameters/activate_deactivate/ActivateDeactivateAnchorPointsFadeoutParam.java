@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Parameter object for the action ActivateAnchorPointsFadeoutLogAction/DeactivateAnchorPointsFadeoutLogAction.
+ * Parameter object for the action ActivateAnchorPointsFadeoutAction/DeactivateAnchorPointsFadeoutAction.
  */
 @Data
 public class ActivateDeactivateAnchorPointsFadeoutParam extends Param implements Serializable {

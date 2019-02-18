@@ -2,7 +2,7 @@ package actions.activate;
 
 import actions.LogAction;
 import actions.LogEntryName;
-import actions.deactivate.DeactivateAnchorPointsFadeoutLogAction;
+import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
@@ -13,23 +13,23 @@ import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPoi
 /**
  * All existing anchor-points fadeout and are no longer visible for the user.
  */
-public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
+public class ActivateAnchorPointsFadeoutAction extends LogAction {
 
     /**
      * Constructor in case all/several anchor-points shall fadeout. The action is applied to all picked edges/anchor
      * points.
      */
-    public ActivateAnchorPointsFadeoutLogAction() {
+    public ActivateAnchorPointsFadeoutAction() {
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
     }
 
     /**
      * Fadeout all anchor points defined in ActivateAnchorPointsFadeoutParam. Also used to implement the undo-method of
-     * DeactivateAnchorPointsFadeoutLogAction.
+     * DeactivateAnchorPointsFadeoutAction.
      *
      * @param pActivateAnchorPointsFadeoutParam The used parameter object containing the anchor points to fade out.
      */
-    public ActivateAnchorPointsFadeoutLogAction(ActivateDeactivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
+    public ActivateAnchorPointsFadeoutAction(ActivateDeactivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
         super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
     }
 
@@ -48,8 +48,8 @@ public class ActivateAnchorPointsFadeoutLogAction extends LogAction {
 
     @Override
     public void undo() {
-        DeactivateAnchorPointsFadeoutLogAction deactivateAnchorPointsFadeoutLogAction = new DeactivateAnchorPointsFadeoutLogAction();
-        deactivateAnchorPointsFadeoutLogAction.action();
+        DeactivateAnchorPointsFadeoutAction deactivateAnchorPointsFadeoutAction = new DeactivateAnchorPointsFadeoutAction();
+        deactivateAnchorPointsFadeoutAction.action();
     }
 
 

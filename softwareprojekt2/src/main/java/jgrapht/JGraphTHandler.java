@@ -1,15 +1,23 @@
 package jgrapht;
 
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
+import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
 import org.jgrapht.Graph;
+import org.jgrapht.GraphPath;
 import org.jgrapht.alg.cycle.CycleDetector;
+import org.jgrapht.alg.shortestpath.AllDirectedPaths;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultDirectedGraph;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -37,14 +45,6 @@ public class JGraphTHandler {
         convertGraphToJGraphT(pVertices,pEdges);
     }
     /**
-     * Constructor in case the user wants to analyse the graph in terms of paths.
-     * @param pStart The start-vertex.
-     * @param pEnd The end-vertex.
-     */
-    public JGraphTHandler(Vertex pStart, Vertex pEnd){
-
-    }
-    /**
      * Converts the graph from our datatype to the JGraphT datatype.
      *
      * @param pVertices Given list of vertices.
@@ -63,6 +63,22 @@ public class JGraphTHandler {
         }
         algorithmGraph = jGraphTGraph;
     }
+
+    /**
+     * Calculates the Endpoints in t
+     */
+    public void calculateEndpoints(){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+        if(pickedState.getPicked().size() != 2){
+            HelperFunctions helperFunctions = new HelperFunctions();
+            helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.",true);
+            return;
+        }
+        Iterator<Vertex> iterator = pickedState.getPicked().iterator();
+        startVertex = iterator.next();
+        endVertex = iterator.next();
+    }
     /**
      * Detects all cycles in the directed graph and returns them in a set.
      *
@@ -80,41 +96,54 @@ public class JGraphTHandler {
     /**
      * List all possible paths between two vertices.
      *
-     * @param pGraph  The graph in JGraphT-form.
-     * @param pSource The start-vertex of the path.
-     * @param pSink   The end-vertex of the path.
      * @return The list of paths between the vertices.
      */
-    public List<List<Vertex>> getAllPaths(Graph pGraph, Vertex pSource, Vertex pSink) {
-        throw new UnsupportedOperationException();
+    public List<GraphPath<Vertex,Edge>> getAllPaths() {
+        calculateEndpoints();
+
+        AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
+        List<GraphPath<Vertex,Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
+
+        return paths;
     }
     /**
      * Finds the shortest path between two vertices in the graph, if one exists.
      *
-     * @param pGraph  The graph in JGraphT-form.
-     * @param pSource The start-vertex of the path.
-     * @param pSink   The end-vertex of the path.
      * @return The shortest path between the vertices.
      */
-    public List<Vertex> getShortestPath(Graph pGraph, Vertex pSource, Vertex pSink) {
-        throw new UnsupportedOperationException();
+    public List<Vertex> getShortestPath() {
+        calculateEndpoints();
+
+        DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
+        GraphPath<Vertex,Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
+        return shortestPath.getVertexList();
     }
     /**
      * Detects all convergent branches in the directed graph.
      *
-     * @param pGraph The graph in JGraphT-form.
      * @return The set of vertices in the convergent branch.
      */
-    public Set<Vertex> detectConvergentBranches(Graph pGraph) {
-        throw new UnsupportedOperationException();
+    public Set<Vertex> detectConvergentBranches() {
+        Set<Vertex> convergentBranches = new HashSet<>();
+        for(Vertex vertex : (Set<Vertex>)algorithmGraph.vertexSet()){
+            if(algorithmGraph.inDegreeOf(vertex) > 1){
+                convergentBranches.add(vertex);
+            }
+        }
+        return convergentBranches;
     }
     /**
      * Detects all divergent branches in the directed graph.
      *
-     * @param pGraph The graph in JGraphT-form.
      * @return The set of vertices in the divergent branch.
      */
-    public Set<Vertex> detectDivergentBranches(Graph pGraph) {
-        throw new UnsupportedOperationException();
+    public Set<Vertex> detectDivergentBranches() {
+        Set<Vertex> divergentBranches = new HashSet<>();
+        for(Vertex vertex : (Set<Vertex>)algorithmGraph.vertexSet()){
+            if(algorithmGraph.outDegreeOf(vertex) > 1){
+                divergentBranches.add(vertex);
+            }
+        }
+        return divergentBranches;
     }
 }

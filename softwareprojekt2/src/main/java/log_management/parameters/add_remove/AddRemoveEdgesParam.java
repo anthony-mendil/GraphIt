@@ -13,6 +13,7 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -24,22 +25,19 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
      * The set of edges(pair describes the respective start-vertex and sink-vertex) bound to their edge-type.
      */
     @Getter
-    private List<Edge> edges;
-
-    @Getter
-    private Set<Pair<Vertex,Vertex>> vertices;
+    private Map<Edge,Pair<Vertex,Vertex>> edges;
 
     /**
      * Creates an parameter object of its own class.
      * @param pEdges List of edges and their start/end vertex id.
      */
-    public AddRemoveEdgesParam(List<Edge> pEdges, Set<Pair<Vertex,Vertex>> pVertices){
+    public AddRemoveEdgesParam(Map<Edge,Pair<Vertex,Vertex>> pEdges){
         this.edges = pEdges;
-        this.vertices = pVertices;
     }
 
     @Override
     public String prettyPrint() {
+        /**
         List<Pair<Vertex,Vertex>> verticesList = new ArrayList<>();
         vertices.forEach(p -> verticesList.add(new Pair<>(p.getKey(), p.getValue())));
 
@@ -56,6 +54,7 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
                     list += SyndromObjectPrinter.edgePrintGerman(edges.get(i), verticesList.get(i));
             }
             return list;
-        }
+         */
+        return null;
     }
 }
