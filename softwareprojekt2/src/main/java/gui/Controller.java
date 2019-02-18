@@ -1569,7 +1569,8 @@ public class Controller implements ObserverSyndrom {
         templateStage.setResizable(false);
         templateStage.setScene(new Scene(fxmlLoader.load()));
         templateStage.setTitle("Vorlagenregeln");
-        templateStage.getIcons().add(new Image("/GraphItlogo.png"));
+        templateStage.getIcons().add(new Image(
+            getClass().getResourceAsStream("/GraphItLogo.png")));
     }
 
     public void highlight() {
