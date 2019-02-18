@@ -72,7 +72,7 @@
     <repositories>
         <repository>
             <id>lokales-mvn-repo</id>
-            <url>file:///${project.basedir}\lokales-mvn-repo\</url>
+            <url>file:///${project.basedir}/lokales-mvn-repo/</url>
         </repository>
     </repositories>
 
