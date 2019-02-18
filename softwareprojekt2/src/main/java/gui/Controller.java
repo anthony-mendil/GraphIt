@@ -1,6 +1,5 @@
 package gui;
 
-import actions.Action;
 import actions.ActionHistory;
 import actions.GraphAction;
 import actions.ObserverSyndrom;
@@ -34,7 +33,6 @@ import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
-import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -42,6 +40,7 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
+import gui.properties.LoadLanguage;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -51,7 +50,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,10 +69,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -83,6 +78,7 @@ import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.dao.LogDao;
 import lombok.Data;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -104,16 +100,14 @@ public class Controller implements ObserverSyndrom {
     /**
      * The swing node that displays the JUNG-graph and allows to interact with it.
      */
-    @FXML
-    private SwingNode canvas;
+    @FXML private SwingNode canvas;
 
-    @FXML
-    private SwingNode satellite;
+    @FXML private SwingNode satellite;
 
     /**
      *
      */
-    public ArrayList<Font> fonts;
+    private List<Font> fonts;
 
     /**
      * The swing node that displays the zoom window.
@@ -129,8 +123,7 @@ public class Controller implements ObserverSyndrom {
      * The treeview displays the overview of the graph that also allows the user to edit the graph
      * through it.
      */
-    @FXML
-    private TreeView treeView;
+    @FXML private TreeView<Object> treeView;
 
     /**
      * The text that displays the current action.
@@ -140,461 +133,269 @@ public class Controller implements ObserverSyndrom {
     /**
      * The slider that allows the user to zoom out or in.
      */
-    @FXML
-    private Slider zoomSlider;
+    @FXML private Slider zoomSlider;
+
+    @FXML private Menu fileMenu;
 
     /* Menu Bar */
     /**
-     * The menuitem under the menu "File.." for creating a new file.
+     * The menuitem under the menu "File.." for creating a new fileMenu.
      */
-    @FXML
-    private MenuItem newFile;
+    @FXML private MenuItem newFile;
 
     /**
-     * The menuitem under the menu "File.." for opening a file.
+     * The menuitem under the menu "File.." for opening a fileMenu.
      */
-    private MenuItem openFile;
+    @FXML private MenuItem openFile;
 
     /**
-     * The menuitem under the menu "File.." for importing a GXL file.
+     * The menuitem under the menu "File.." for importing a GXL fileMenu.
      */
-    private MenuItem importGxl;
+    @FXML private MenuItem importGXL;
+
+    @FXML private MenuItem importGxlTemplate;
 
     /**
      * The menuitem under the menu "File.." for saving under a specified location.
      */
-    private MenuItem saveLocation;
+    @FXML private MenuItem saveLocation;
 
     /**
-     * The menuitem under the menu "File.. &gt; Export as.." for exporting the file as pdf.
+     * The menuitem under the menu "File.. &gt; Export as.." for exporting the fileMenu as pdf.
      */
-    private MenuItem exportPDF;
+    @FXML private MenuItem exportPDF;
+    @FXML private MenuItem exportGXLWithTemplate;
+    @FXML private MenuItem exportLogs;
 
     /**
-     * The menuitem under the menu "File.. &gt; Export as.." for exporting the file as template.
+     * The menuitem under the menu "File.." for printing the fileMenu.
      */
-    private MenuItem exportGXL;
-
-    /**
-     * The menuitem under the menu "File.. &gt; Export as.." for exporting the file as different formats (e.g. png,svg,etc.).
-     */
-    private MenuItem exportDifferentFormats;
-
-    /**
-     * The menuitem under the menu "File.." for printing the file.
-     */
-    private MenuItem print;
+    @FXML private MenuItem print;
+    @FXML private Menu options;
+    @FXML private Menu languages;
+    @FXML private Menu help;
 
     /**
      * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to german.
      */
-    private MenuItem languageGerman;
+    @FXML private CheckMenuItem languageGerman;
 
     /**
      * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to english.
      */
-    private MenuItem languageEnglisch;
+    @FXML private CheckMenuItem languageEnglish;
 
     /**
      * The menuitem under the menu "Help" for opening the documention.
      */
-    private MenuItem documentation;
+    @FXML private MenuItem documentation;
+    @FXML private MenuItem about;
 
     /**
      * The button to undo an action.
      */
-    @FXML
-    private Button undoButton;
+    @FXML private Button undoButton;
 
     /**
      * The button to redo an action.
      */
-    @FXML
-    private Button redoButton;
+    @FXML private Button redoButton;
 
     /**
      * The separator between redo/undo and edit/analysis mode
      */
-    @FXML
-    private Separator toolBarSeparator1;
+    @FXML private Separator toolBarSeparator1;
 
     /**
      * The button to change the gui layout to create-mode
      */
-    @FXML
-    private Button createButton;
+    @FXML private Button createButton;
 
     /**
      * The button to change the gui layout to analysis-mode
      */
-    @FXML
-    private Button analysisButton;
+    @FXML private Button analysisButton;
 
     /**
      * The button to change the gui layout to edit-mode
      */
-    @FXML
-    private Button editButton;
+    @FXML private Button editButton;
 
     /* Template Options */
 
     /**
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
      */
-    @FXML
-    private TextField maxSphereField;
+    @FXML private TextField maxSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of symptoms in the graph".
      */
-    @FXML
-    private TextField maxSymptomField;
+    @FXML private TextField maxSymptomField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of edges in the graph".
      */
-    @FXML
-    private TextField maxEdgesField;
+    @FXML private TextField maxEdgesField;
 
     /**
      * The checkbox for setting the template rule "allowing reinforced edges".
      */
-    @FXML
-    private CheckBox reinforcedBox;
+    @FXML private CheckBox reinforcedBox;
 
     /**
      * The checkbox for setting the template rule "allowing extenuating edges".
      */
-    @FXML
-    private CheckBox extenuatingBox;
+    @FXML private CheckBox extenuatingBox;
 
     /**
      * The checkbox for setting the template rule "allowing neutral edges".
      */
-    @FXML
-    private CheckBox neutralBox;
-
-    /* Analyse Mode */
-
-    //Information
-    /**
-     * The text that displays the scope of the graph in the analysis/interpreter mode.
-     */
-    private Text scope;
-
-    /**
-     * The text that displays the networking index of the graph in the analysis/interpreter mode.
-     */
-    private Text networkingIndex;
-
-    /**
-     * The text that displays the structure index of the graph in the analysis/interpreter mode.
-     */
-    private Text structureIndex;
-
-    //Sphere
-
-    /**
-     * The checkbox that allows the user to see all predecessor symptoms in the analysis/interpreter mode.
-     */
-    private CheckBox predecessorBox;
-
-    /**
-     * The checkbox that allows the user to see all successor symptoms in the analysis/interpreter mode.
-     */
-    private CheckBox successorBox;
+    @FXML private CheckBox neutralBox;
 
     /**
      * The textfield that sets the amount of predecessor/successor symptoms in the analysis/interpreter mode.
      */
-    @FXML
-    private TextField amountSymptomTextField;
-
-    //Edge
-
-    /**
-     * The checkbox that highlights all incoming edges.
-     */
-    private CheckBox incomingEdgeBox;
-
-    /**
-     * The checkbox that highlights all originating edges.
-     */
-    private CheckBox originatingEdgeBox;
-
-
-    /**
-     * The menuitem under "edgeArrowType" that highlights reinforced edges.
-     */
-    private MenuItem analysisReinforced;
-
-    /**
-     * The menuitem under "edgeArrowType" that highlights extenuating edges.
-     */
-    private MenuItem analysisExtenuating;
-
-    /**
-     * The menuitem under "edgeArrowTyp" that highlights neutral edges.
-     */
-    private MenuItem analysisNeutral;
+    @FXML private TextField amountSymptomTextField;
 
     /**
      * The textfield that sets the amount of originating or incoming edges.
      */
-    @FXML
-    private TextField amountEdgeTextField;
-
-    //Filter
-    /**
-     * The checkbox that allows filter options.
-     */
-    private CheckBox analysisBox;
-
-    /**
-     * The menuitem under "analysis" that shows chains of edges.
-     */
-    private MenuItem chainOfEdges;
-
-    /**
-     * The menuitem under "analysis" that shows convergent branches.
-     */
-    private MenuItem convergentBranches;
-
-    /**
-     * The menuitem under "analysis" that shows divergent branches.
-     */
-    private MenuItem divergentBranches;
+    @FXML private TextField amountEdgeTextField;
 
     /**
      * The menuitem under "analysis" that shows convergent and divergent branches.
      */
-    private MenuItem branches;
+    @FXML private MenuItem branches;
 
     /**
      * The menuitem under "analysis" that shows cycles in the graph.
      */
-    private MenuItem cycles;
+    @FXML private MenuItem cycles;
 
-    //Treeview-Filter
-    /**
-     * Nina
+      /**
      * The checkbox that allows to filter the overview after arrow types.
      */
-    @FXML
-    private CheckBox treeViewArrowType;
+    @FXML private CheckBox treeViewArrowType;
 
     /**
-     * The menuitem under "Treeviewarrowtype" that filters the overview after reinforced edges.
-     */
-    private MenuItem treeViewReinforced;
-
-    /**
-     * The menuitem under "Treeviewarrowtypes" that filters the overview after extenuating edges.
-     */
-    private MenuItem treeViewExtenuating;
-
-    /**
-     * The menuitem under "Treeviewarrowtypes" that filters the overview after neutral edges.
-     */
-    private MenuItem treeViewNeutral;
-
-    /**
-     * Nina
      * The checkbox that allows to filter the overview after regular expressions.
      */
-    @FXML
-    private CheckBox regularExpressionBox;
+    @FXML private CheckBox regularExpressionBox;
 
     /**
      * The textfield that gets the argument to filter the overview after regular expressions.
      */
-    @FXML
-    private TextField regularExpressionField;
+    @FXML private TextField regularExpressionField;
 
     /**
      * Nina
      * The checkbox that filters the overview after fadedout objects.
      */
-    @FXML
-    private CheckBox showFadedOutObjects;
+    @FXML private CheckBox showFadedOutObjects;
 
     /* Sphere */
     /**
      * The colorpicker for changing the background color of sphere.
      */
-    @FXML
-    private ColorPicker sphereBackgroundColour;
+    @FXML private ColorPicker sphereBackgroundColour;
 
     /**
      * The combobox for changing the font of the symptom text.
      */
-    @FXML
-    private ComboBox fontSphereComboBox;
-
-    /**
-     * The menuitem for changing the font of the sphere text to a specific font.
-     */
-    private MenuItem sphereFont1;
-
-    /**
-     * The menuitem for changing the font of the sphere text to a specific font.
-     */
-    private MenuItem sphereFont2;
-
-    /**
-     * The menuitem for changing the font of the sphere text to a specific font.
-     */
-    private MenuItem sphereFont3;
-
-    /**
-     * The menuitem for changing the font of the sphere text to a specific font.
-     */
-    private MenuItem sphereFont4;
-
-    /**
-     * The menuitem for changing the font of the sphere text to a specific font.
-     */
-    private MenuItem sphereFont5;
-
-    /* Symptom */
+    @FXML private ComboBox<String> fontSphereComboBox;
 
     /**
      * The colorpicker for changing the background color for a symptom.
      */
-    @FXML
-    private ColorPicker symptomBackground;
+    @FXML private ColorPicker symptomBackground;
 
     /**
      * The colorpicker for changing the border color for a symptom.
      */
-    @FXML
-    private ColorPicker symptomBorder;
+    @FXML private ColorPicker symptomBorder;
 
     /**
      * The menubutton for changing the form of a symptom.
      */
-    @FXML
-    private MenuButton sphereFormMenuButton;
+    @FXML private MenuButton sphereFormMenuButton;
 
     /**
      * The menuitem for changing the form of a symptom to a circle.
      */
-    @FXML
-    private MenuItem symptomCircle;
+    @FXML private MenuItem symptomCircle;
 
     /**
      * The menuitem for changing the form of a symptom to a rectangle.
      */
-    @FXML
-    private MenuItem symptomRectangle;
+    @FXML private MenuItem symptomRectangle;
 
     /**
      * The combobox for changing the font of the symptom text.
      */
-    @FXML
-    private ComboBox fontSymptomComboBox;
+    @FXML private ComboBox<String> fontSymptomComboBox;
 
-    /**
-     * The menuitem for changing the font of the symptom text to a specific font.
-     */
-    private MenuItem symptomFont1;
-
-    /**
-     * The menuitem for changing the font of the symptom text to a specific font.
-     */
-    private MenuItem symptomFont2;
-
-    /**
-     * The menuitem for changing the font of the symptom text to a specific font.
-     */
-    private MenuItem symptomFont3;
-
-    /**
-     * The menuitem for changing the font of the symptom text to a specific font.
-     */
-    private MenuItem symptomFont4;
-
-    /**
-     * The menuitem for changing the font of the symptom text to a specific font.
-     */
-    private MenuItem symptomFont5;
-
-    /* Edge */
-
-    /**
+     /**
      * The colorpicker for changing the color of edges.
      */
-    @FXML
-    private ColorPicker edgeColour;
+    @FXML  private ColorPicker edgeColour;
 
     /**
      * The menubutton for changing the stroke type of edges.
      */
-    @FXML
-    private MenuButton edgeStrokeMenuButton;
+    @FXML private MenuButton edgeStrokeMenuButton;
 
     /**
      * The menuitem for changing the stroke type to the dashed stroke type.
      */
-    @FXML
-    private MenuItem edgeStrokeDashed;
+    @FXML private MenuItem edgeStrokeDashed;
 
     /**
      * The menuitem for changing the stroke type to the dashed weighted stroke type.
      */
-    @FXML
-    private MenuItem edgeStrokeDashedWeight;
+    @FXML private MenuItem edgeStrokeDashedWeight;
 
     /**
      * The menuitem for changing the stroke type to the dotted stroke type.
      */
-    @FXML
-    private MenuItem edgeStrokeDotted;
+    @FXML private MenuItem edgeStrokeDotted;
 
     /**
      * The menuitem for changing the stroke type to the dotted weighted stroke type.
      */
-    @FXML
-    private MenuItem edgeStrokeDottedWeight;
+    @FXML private MenuItem edgeStrokeDottedWeight;
 
     /**
      * The menuitem for changing the stroke type to the basic stroke type.
      */
-    @FXML
-    private MenuItem edgeStrokeBasic;
+    @FXML private MenuItem edgeStrokeBasic;
 
     /**
      * The menuitem for changing the stroke type to the basic weighted stroke type.
      */
-    @FXML
-    private MenuItem edgeStrokeBasicWeight;
+    @FXML private MenuItem edgeStrokeBasicWeight;
 
     /**
      * The menubutton for changing the arrow type of edges.
      */
-    @FXML
-    private MenuButton edgeArrowMenuButton;
+    @FXML private MenuButton edgeArrowMenuButton;
 
     /**
      * The menuitem for changing the arrow type of edges to reinforced.
      */
-    @FXML
-    private MenuItem edgeArrowReinforced;
+    @FXML private MenuItem edgeArrowReinforced;
 
     /**
      * The menuitem for changing the arrow type of edges to extenuating.
      */
-    @FXML
-    private MenuItem edgeArrowExtenuating;
+    @FXML private MenuItem edgeArrowExtenuating;
 
     /**
      * The menuitem for changing the arrow type of edges to neutral.
      */
-    @FXML
-    private MenuItem edgeArrowNeutral;
+    @FXML private MenuItem edgeArrowNeutral;
 
-    @FXML
-    private Text currentActionText;
+    @FXML private Text currentActionText;
     /* Internal */
 
     /**
@@ -622,14 +423,12 @@ public class Controller implements ObserverSyndrom {
     /**
      * The vbox that contains all graph information in the analysis mode.
      */
-    @FXML
-    private VBox vBoxGraphStats;
+    @FXML private VBox vBoxGraphStats;
 
     /**
      * A separator for the vboxes in analysis mode.
      */
-    @FXML
-    private Separator separator3;
+    @FXML private Separator separator3;
 
     /**
      * A separator for the vboxes in analysis mode.
@@ -640,79 +439,65 @@ public class Controller implements ObserverSyndrom {
     /**
      * A separator for the vboxes in analysis mode.
      */
-    @FXML
-    private Separator separator5;
+    @FXML private Separator separator5;
 
     /**
      * The vbox that contains analysis options for symptoms.
      */
-    @FXML
-    private VBox vBoxAnalysisSymptom;
+    @FXML private VBox vBoxAnalysisSymptom;
 
     /**
      * The vbox that contains analysis options for edges.
      */
-    @FXML
-    private VBox vBoxAnalysisEdge;
+    @FXML private VBox vBoxAnalysisEdge;
 
     /**
      * The vbox that contains analysis options for the graph.
      */
-    @FXML
-    private VBox vBoxAnalysisOption;
+    @FXML private VBox vBoxAnalysisOption;
 
     //Edit GUI
 
     /**
      * A separator for the vboxes in edit mode.
      */
-    @FXML
-    private Separator separator0;
+    @FXML private Separator separator0;
 
     /**
      * A separator for the vboxes in edit mode.
      */
-    @FXML
-    private Separator separator1;
+    @FXML private Separator separator1;
 
     /**
      * A separator for the vboxes in edit mode.
      */
-    @FXML
-    private Separator separator2;
+    @FXML private Separator separator2;
 
     /**
      * The vbox that contains the select button in edit mode.
      */
-    @FXML
-    private VBox vBoxSelect;
+    @FXML private VBox vBoxSelect;
 
     /**
      * The vbox that contains sphere options in edit mode.
      */
-    @FXML
-    private VBox vBoxEditSphere;
+    @FXML private VBox vBoxEditSphere;
 
     /**
      * The vbox that ocntains symptom options in edit mode.
      */
-    @FXML
-    private VBox vBoxEditSymptom;
+    @FXML private VBox vBoxEditSymptom;
 
     /**
      * The vbox that contains edge options in edit mode.
      */
-    @FXML
-    private VBox vBoxEditEdge;
+    @FXML private VBox vBoxEditEdge;
 
-    @FXML
-    private SwingNode swing;
+    @FXML private SwingNode swing;
 
-    @FXML
-    private ScrollPane paneSwingNode;
+    @FXML private ScrollPane paneSwingNode;
 
-    @FXML
-    private BorderPane root;
+    @FXML private BorderPane root;
 
     private Stage mainStage;
 
@@ -726,140 +511,134 @@ public class Controller implements ObserverSyndrom {
     /**
      * The combobox for changing the size of the sphere text.
      */
-    @FXML
-    private ComboBox sizeSphereComboBox;
+    @FXML private ComboBox<String> sizeSphereComboBox;
 
     /**
      * The combobox for changing the size of the symptom text.
      */
-    @FXML
-    private ComboBox sizeSymptomComboBox;
+    @FXML private ComboBox<String> sizeSymptomComboBox;
+    private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
+    private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
+    private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
+    private static final String FONT_SPHERE_COMBO_BOX = "fontSphereComboBox";
+    @FXML private Menu prozent;
+    @FXML private HBox textBox;
+    @FXML private ButtonBar currentActionBox;
+    @FXML private ToggleButton anchorPointsButton;
+    @FXML private ToggleButton highlight;
+    @FXML private Button highlightElements;
+    @FXML private Button dehighlightElements;
+    @FXML private Button fadeoutElements;
+    @FXML private Button deleteFadeoutElements;
+    @FXML private ToggleButton fadeout;
+    @FXML private Text selection;
+    @FXML private Text selectionSphere;
+    @FXML private Button handVertex;
+    @FXML private Button addSphere;
+    @FXML private Button deleteSphere;
+    @FXML private Button sphereEnlarge;
+    @FXML private Button sphereShrink;
+    @FXML private Button sphereAutoLayout;
+    @FXML private Text selectionSymptom;
+    @FXML private Button addVertex;
+    @FXML private Button deleteVertex;
+    @FXML private Button vertexEnlarge;
+    @FXML private Button vertexShrink;
+    @FXML private Button verticesAutoLayout;
+    @FXML private Text selectionEdge;
+    @FXML private Button removeEdges;
+    @FXML private Button removeAnchor;
+    @FXML private Text analysisGraphInfo;
+    @FXML private Text analysisScope;
+    @FXML private Text analysisScopeTooltip;
+    @FXML private Text analysisNetworkingIndex;
+    @FXML private Text analysisNetworkingIndexTooltip;
+    @FXML private Text analysisStructureIndex;
+    @FXML private Text analysisStructureIndexTooltip;
+    @FXML private Text analysisSymptom;
+    @FXML private CheckBox analysisPredessor;
+    @FXML private CheckBox analysisSuccessor;
+    @FXML private Text analysisSymptomAmount;
+    @FXML private CheckBox analysisSuccessorEdge;
+    @FXML private CheckBox analysisPredessorEdge;
+    @FXML private Text analysisEdge;
+    @FXML private Text analysisEdgeAmount;
+    @FXML private CheckBox reinforced1;
+    @FXML private Text analysisOption;
+    @FXML private CheckBox analysisOptions;
+    @FXML private MenuItem convergent;
+    @FXML private MenuItem divergent;
+    @FXML private Text templateMaxSphere;
+    @FXML private Text templateMaxSymptom;
+    @FXML private Text templateMaxEdge;
+    @FXML private Text templateChoose;
+    @FXML private TitledPane templateSpheres;
+    @FXML private TitledPane templateSymptom;
+    @FXML private TitledPane templateEdge;
+    @FXML private MenuButton filterAnalysis;
+    @FXML private Accordion overViewAccordion;
+    @FXML private TitledPane overViewTitledPane;
+    @FXML private TitledPane templateTitledPane;
+    @FXML private TitledPane historyTitledPane;
+    @FXML private TableView<Sphere> sphereTableView;
+    @FXML private TableColumn sphereCol;
+    @FXML private TableColumn<Sphere, Boolean> titleSphereCol;
+    @FXML private TableColumn<Sphere, Boolean> positionSphereCol;
+    @FXML private TableColumn<Sphere, Boolean> styleSphereCol;
+    @FXML private TableColumn<Sphere, Boolean> verticesSphereCol;
+    /** The tablecolumn for setting the template rule "maximum numbers of symptoms in the sphere". */
+    @FXML private TableColumn<Sphere, String> maxAmountSphereCol;
+    @FXML private TableView<Vertex> symptomTableView;
+    @FXML private TableColumn symptomCol;
+    @FXML private TableColumn<Vertex, Boolean> titleSymptomCol;
+    @FXML private TableColumn<Vertex, Boolean> positionSymptomCol;
+    @FXML private TableColumn<Vertex, Boolean> styleSymptomCol;
+    @FXML private TableView<Edge> edgeTableView;
+    @FXML private TableColumn<Edge, String> edgeCol;
+    @FXML private TableColumn<Edge, Boolean> positionEdgeCol;
+    @FXML private TableColumn<Edge, Boolean> styleEdgeCol;
+    @FXML private TableColumn<Edge, Boolean> edgetypeEdgeCol;
+    @FXML private MenuItem zoomMenuItem25;
+    @FXML private MenuItem zoomMenuItem50;
+    @FXML private MenuItem zoomMenuItem75;
+    @FXML private MenuItem zoomMenuItem100;
+    @FXML private MenuItem zoomMenuItem125;
+    @FXML private MenuItem zoomMenuItem150;
+    @FXML private MenuItem zoomMenuItem175;
+    @FXML private MenuItem zoomMenuItem200;
+    @FXML private StackPane overviewStackPane;
+    @FXML private MenuButton filterEdgeType;
+    @FXML private MenuItem filterEdgeTypeReinforced;
+    @FXML private MenuItem filterEdgeTypeExtenuating;
+    @FXML private MenuItem filterEdgeTypeNeutral;
+    @FXML private ResourceBundle resources;
 
-    @FXML
-    private Menu prozent;
-
-    @FXML
-    private HBox textBox;
-
-    @FXML
-    private ButtonBar currentActionBox;
-
-    @FXML
-    private ToggleButton anchorPointsButton;
-
-    @FXML
-    private ToggleButton highlight;
-
-    @FXML
-    private ToggleButton fadeout;
-
-    @FXML
-    private Accordion overViewAccordion;
-
-    @FXML
-    private TitledPane overViewTitledPane;
-
-    @FXML
-    private TitledPane templateTitledPane;
-
-    @FXML
-    private TitledPane historyTitledPane;
-
-    @FXML
-    private TableView sphereTableView;
-
-    @FXML
-    private TableColumn sphereCol;
-
-    @FXML
-    private TableColumn titleSphereCol;
-
-    @FXML
-    private TableColumn positionSphereCol;
-
-    @FXML
-    private TableColumn styleSphereCol;
-
-    @FXML
-    private TableColumn verticesSphereCol;
-
-    /**
-     * The tablecolumn for setting the template rule "maximum numbers of symptoms in the sphere".
-     */
-    @FXML
-    private TableColumn<Sphere, String> maxAmountSphereCol;
-
-    @FXML
-    private TableView symptomTableView;
-
-    @FXML
-    private TableColumn symptomCol;
-
-    @FXML
-    private TableColumn titleSymptomCol;
-
-    @FXML
-    private TableColumn positionSymptomCol;
-
-    @FXML
-    private TableColumn styleSymptomCol;
-
-    @FXML
-    private TableView edgeTableView;
-
-    @FXML
-    private TableColumn edgeCol;
-
-    @FXML
-    private TableColumn positionEdgeCol;
-
-    @FXML
-    private TableColumn styleEdgeCol;
-
-    @FXML
-    private TableColumn edgetypeEdgeCol;
+    private static final String SPHERE_TITLE = "SphereTitle";
+    private static final String SPHERE_POSITION = "SpherePosition";
+    private static final String SPHERE_STYLE = "SphereStyle";
+    private static final String SPHERE_VERTICES = "SphereVertices";
+    private static final String VERTEX_TITLE = "SymptomTitle";
+    private static final String VERTEX_POSITION = "SymptomPosition";
+    private static final String VERTEX_STYLE = "SymptomStyle";
+    private static final String VERTEX_VERTICES = "VertexVertices";
+    private static final String EDGE_TITLE = "EdgeTitle";
+    private static final String EDGE_POSITION = "EdgePosition";
+    private static final String EDGE_STYLE = "EdgeStyle";
+    private static final String EDGE_VERTICES = "EdgeVertices";
+    private static final String EDGE_EDGE_TYPE = "EDGE_EDGE_TYPE";
+    private static final String GXL = "*.gxl";
+    private static final String PDF = "*.pdf";
+    private static final String OOF = "*.oof";
+    private static final String GXL_FILE = "GXL files (*.gxl)";
+    private static final String TIMES_NEW_ROMAN = "Times New Roman";
+    private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
 
-    @FXML
-    private MenuItem zoomMenuItem25;
+    private static Logger logger = Logger.getLogger(Controller.class);
 
-    @FXML
-    private MenuItem zoomMenuItem50;
+    private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
+    private LoadLanguage loadLanguage;
 
-    @FXML
-    private MenuItem zoomMenuItem75;
-
-    @FXML
-    private MenuItem zoomMenuItem100;
-
-    @FXML
-    private MenuItem zoomMenuItem125;
-
-    @FXML
-    private MenuItem zoomMenuItem150;
-
-    @FXML
-    private MenuItem zoomMenuItem175;
-
-    @FXML
-    private MenuItem zoomMenuItem200;
-
-    @FXML
-    private StackPane overviewStackPane;
-
-    @FXML
-    private MenuButton filterEdgeType;
-
-    @FXML
-    private MenuItem filterEdgeTypeReinforced;
-
-    @FXML
-    private MenuItem filterEdgeTypeExtenuating;
-
-    @FXML
-    private MenuItem filterEdgeTypeNeutral;
-
-    EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
 
     public void filterEdgeTypeReinforced(){
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
@@ -873,16 +652,13 @@ public class Controller implements ObserverSyndrom {
         filterEdgeArrowType = EdgeArrowType.NEUTRAL;
     }
 
-
-    public Controller() {
-    }
-
-    public void setStage(Stage pStage) {
+    void setStage(Stage pStage) {
         mainStage = pStage;
         templateStage.initOwner(mainStage);
         templateStage.initModality(Modality.APPLICATION_MODAL);
     }
 
+    @SuppressWarnings("unused")
     public Text getCurrentActionText() {
         return currentActionText;
     }
@@ -892,6 +668,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an AddSphereLogAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void addSphere() {
         throw new UnsupportedOperationException();
     }
@@ -912,6 +689,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an AnalysisGraphAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void analysisGraph() {
         throw new UnsupportedOperationException();
     }
@@ -919,6 +697,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EvaluationGraphAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void evaluationGraph() {
         throw new UnsupportedOperationException();
     }
@@ -926,6 +705,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an FilterGraphAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void filterGraph() {
         throw new UnsupportedOperationException();
     }
@@ -933,6 +713,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an GraphDimensionAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void graphDimension() {
         throw new UnsupportedOperationException();
     }
@@ -940,6 +721,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an SelectionAnalysisGraphAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void selectionAnalysisGraph() {
         throw new UnsupportedOperationException();
     }
@@ -949,6 +731,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an DeactivateFadeoutAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void deactivateFadeout() {
         throw new UnsupportedOperationException();
     }
@@ -956,6 +739,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an DeactivateHighlightAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void deactivateHighlight() {
         throw new UnsupportedOperationException();
     }
@@ -965,7 +749,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditEdgesStrokeLogAction-object and executes the action with the action history.
      */
-    public void editEdgesStroke(StrokeType stroke) {
+    private void editEdgesStroke(StrokeType stroke) {
         EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(stroke);
         history.execute(editEdgesStrokeLogAction);
     }
@@ -1003,7 +787,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditEdgesTypeLogAction-object and executes the action with the action history.
      */
-    public void editEdgesType(EdgeArrowType type) {
+    private void editEdgesType(EdgeArrowType type) {
         EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(type);
         history.execute(editEdgesTypeLogAction);
     }
@@ -1028,6 +812,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditSphereAnnotationLogAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void editSphereAnnotation() {
         throw new UnsupportedOperationException();
     }
@@ -1035,6 +820,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditVertexAnnotationLogAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void editVertexAnnotation() {
         throw new UnsupportedOperationException();
     }
@@ -1119,46 +905,39 @@ public class Controller implements ObserverSyndrom {
      *
      * @param font The font as String that the Sphere text gets changed to
      */
-    public void editFontSphere(String font) {
+    private void editFontSphere(String font) {
         values.setFontSphere(font);
         EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
         history.execute(editFontSphereLogAction);
     }
 
+    @SuppressWarnings("unused")
     public void sphereFont1() {
-        editFontSphere("Times New Roman");
+        editFontSphere(TIMES_NEW_ROMAN);
     }
 
+    @SuppressWarnings("unused")
     public void sphereFont2() {
-        editFontSphere("Comic Sans Ms");
+        editFontSphere(COMIC_SANS_MS);
     }
 
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
      */
-    public void editFontVertex(String font) {
+    private void editFontVertex(String font) {
         values.setFontVertex(font);
         EditFontVerticesLogAction editFontVertexLogAction = new EditFontVerticesLogAction(font);
         history.execute(editFontVertexLogAction);
     }
 
+    @SuppressWarnings("unused")
     public void vertexFont1() {
-        editFontVertex("Times New Roman");
+        editFontVertex(TIMES_NEW_ROMAN);
     }
 
+    @SuppressWarnings("unused")
     public void vertexFont2() {
-        editFontVertex("Comic Sans Ms");
-    }
-
-    /**
-     * Creates an EditFontSizeSphereLogAction-object and executes the action with the action history.
-     *
-     * @param size The new size of the sphere text
-     */
-    public void editFontSizeSphere(int size) {
-        values.setFontSizeSphere(size);
-        EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-        history.execute(editFontSizeSphereLogAction);
+        editFontVertex(COMIC_SANS_MS);
     }
 
     public void sphereAutoLayout() {
@@ -1175,6 +954,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void editFontSizeVertices(int size) {
         values.setFontSizeVertex(size);
         EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
@@ -1186,7 +966,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditVerticesFormLogAction-object and executes the action with the action history.
      */
-    public void editVerticesForm(VertexShapeType type) {
+    private void editVerticesForm(VertexShapeType type) {
         values.setShapeVertex(type);
         EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(type);
         history.execute(editVerticesFormLogAction);
@@ -1207,7 +987,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportGXL() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
@@ -1221,7 +1001,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportGXLWithTemplate() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
@@ -1236,11 +1016,11 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportPDF() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(mainStage);
-        if (file != null) {
-            ExportPdfAction exportPdfAction = new ExportPdfAction(file);
+        File exportDialog = fileChooser.showSaveDialog(mainStage);
+        if (exportDialog != null) {
+            ExportPdfAction exportPdfAction = new ExportPdfAction(exportDialog);
             exportPdfAction.action();
         }
     }
@@ -1250,7 +1030,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportOOF() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
@@ -1260,17 +1040,16 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Opens the selected OOF-file after choosing it in the file chooser, creates an ImportOofAction-object
+     * Opens the selected OOF-fileMenu after choosing it in the fileMenu chooser, creates an ImportOofAction-object
      * and executes the action with the action history.
      */
     public void openFile() {
-
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", "*.oof");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(mainStage);
-        if (file != null) {
-            ImportOofAction importOofAction = new ImportOofAction(file);
+        File dialog = fileChooser.showOpenDialog(mainStage);
+        if (dialog != null) {
+            ImportOofAction importOofAction = new ImportOofAction(dialog);
             importOofAction.action();
             zoomSlider.setValue(100);
             canvas.setContent(syndrom.getVv());
@@ -1279,13 +1058,12 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
+     * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportGxlAction-object
      * and executes the action with the action history.
      */
     public void importGXL() {
-        //optionSaveWindow();
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
@@ -1298,12 +1076,12 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Opens the selected GXL-file after choosing it in the file chooser, creates an ImportGxlAction-object
+     * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportGxlAction-object
      * and executes the action with the action history.
      */
     public void importGXLWithTemplate() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("GXL files (*.gxl)", "*.gxl");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
@@ -1323,19 +1101,16 @@ public class Controller implements ObserverSyndrom {
         Template currentTemplate = Syndrom.getInstance().getTemplate();
         if (currentTemplate.getMaxSpheres() != Integer.MAX_VALUE) {
             maxSphereField.setText("" + currentTemplate.getMaxSpheres());
-            System.out.println("max set");
         } else {
             maxSphereField.setText("");
         }
         if (currentTemplate.getMaxVertices() != Integer.MAX_VALUE) {
             maxSymptomField.setText("" + currentTemplate.getMaxVertices());
-            System.out.println("max set");
         } else {
             maxSymptomField.setText("");
         }
         if (currentTemplate.getMaxEdges() != Integer.MAX_VALUE) {
             maxEdgesField.setText("" + currentTemplate.getMaxEdges());
-            System.out.println("max set");
         } else {
             maxEdgesField.setText("");
         }
@@ -1357,6 +1132,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an LayoutSphereGraphLogAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void layoutGraph() {
         throw new UnsupportedOperationException();
     }
@@ -1364,17 +1140,10 @@ public class Controller implements ObserverSyndrom {
     /* ----------------OTHER---------------------- */
 
     /**
-     * Calls the loadLanguages-method from the LoadLanguage class to change the language.
-     */
-    public void changeLanguage() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
      * Creates an SwitchModeAction-object for changing to the editor mode
      * and executes the action with the action history.
      */
-    public void switchModiCreator() {
+    public void switchModeCreator() {
             analysisMode(false);
             createOrEditMode(false,true);
             createOrEditMode(true,false);
@@ -1405,7 +1174,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an SwitchModeEditorAction-object for changing to the interpreter mode
      * and executes the action with action history.
      */
-    public void switchModiEdit() {
+    public void switchModeEdit() {
             values.setGraphButtonType(GraphButtonType.NONE);
             analysisMode(false);
             createOrEditMode(false,false);
@@ -1421,6 +1190,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an CreateGraphAction-object and executes the action with the action history.
      */
+    @SuppressWarnings("unused")
     public void createGraph() {
         throw new UnsupportedOperationException();
     }
@@ -1442,6 +1212,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Opens the documentation about the application.
      */
+    @SuppressWarnings("unused")
     public void openDocumentation() {
         throw new UnsupportedOperationException();
     }
@@ -1449,6 +1220,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Zooms in or out of the graph canvas while using the slider.
      */
+    @SuppressWarnings("unused")
     public void zoomGraphCanvas() {
         throw new UnsupportedOperationException();
     }
@@ -1456,32 +1228,33 @@ public class Controller implements ObserverSyndrom {
     /**
      * Shows the current used action.
      */
+    @SuppressWarnings("unused")
     public void currentAction() {
         throw new UnsupportedOperationException();
     }
 
     /**
-     *  Opens a dialog window after pressing "open file", "import gxl" or "create new graph", that asks if the user wants to
-     *  export their current opened file.
-
+     *  Opens a dialog window after pressing "open fileMenu", "import gxl" or "create new graph", that asks if the user wants to
+     *  export their current opened fileMenu. */
+    @SuppressWarnings("unused")
      private void openExportConfirmationDialogWindow(){throw new UnsupportedOperationException();}
 
      /**
      *  Opens a dialog window after pressing "create new graph", that allows the user to name the
-     *  graph.
-
+     *  graph. */
+     @SuppressWarnings("unused")
      private void openNewGraphTextInputDialogWindow(){throw new UnsupportedOperationException();}
 
      /**
-     *  Opens a file search window after pressing "open file" or "import gxl".
-
+     *  Opens a fileMenu search window after pressing "open fileMenu" or "import gxl". */
+     @SuppressWarnings("unused")
      private void openSearchFileChooserWindow(){throw new UnsupportedOperationException();}
 
      /**
-     *  Opens a directory window to save the file under the desired location after pressing "saving under..".
-
+     *  Opens a directory window to save the fileMenu under the desired location after pressing "saving under..". */
+     @SuppressWarnings("unused")
      private void openSaveUnderChooserWindow(){throw new UnsupportedOperationException();}
-     */
+
 
     /* ----------------REMOVE---------------------- */
 
@@ -1530,19 +1303,19 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an RulesTemplateAction-object and executes the action with the action history.
      */
-    public void rulesTemplate() {
+    private void rulesTemplate() {
         int mSph = valueFromTextField(maxSphereField);
         int mSym = valueFromTextField(maxSymptomField);
         int mEdg = valueFromTextField(maxEdgesField);
         boolean rein = reinforcedBox.isSelected();
-        boolean exte = extenuatingBox.isSelected();
+        boolean ext = extenuatingBox.isSelected();
         boolean neut = neutralBox.isSelected();
 
-        Template temp = new Template(mSph, mSym, mEdg, rein, exte, neut);
+        Template temp = new Template(mSph, mSym, mEdg, rein, ext, neut);
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
         rulesTemplateAction.action();
-        System.out.println(Syndrom.getInstance().getTemplate().toString());
+        logger.error(Syndrom.getInstance().getTemplate().toString());
     }
 
     /**
@@ -1571,7 +1344,6 @@ public class Controller implements ObserverSyndrom {
      * @return The number if it's valid, Integer.Max_Value otherwise
      */
     private int valueFromTextField(TextField pTextField) {
-        System.out.println("validate");
         int ret = Integer.MAX_VALUE;
         int cont = getValidatedContent(pTextField);
         if (cont == -1) {
@@ -1588,6 +1360,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Deletes all Rules that were set before.
      */
+    @SuppressWarnings("unused")
     public void deleteTemplateRules() {
         throw new UnsupportedOperationException();
     }
@@ -1595,7 +1368,8 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates a Window that allows you to set Rules for your Template.
      */
-    public void createTemplateWindow() throws IOException {
+    @SuppressWarnings("unused")
+    void createTemplateWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
         fxmlLoader.setController(templateController);
@@ -1621,7 +1395,7 @@ public class Controller implements ObserverSyndrom {
         addHighlightElementAction.action();
     }
 
-    public void dehighlightElements() {
+    public void deHighlightElements() {
         RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
         removeHighlightElementAction.action();
     }
@@ -1641,7 +1415,7 @@ public class Controller implements ObserverSyndrom {
         addFadeoutElementAction.action();
     }
 
-    public void defadeoutElements() {
+    public void deFadeoutElements() {
         RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
         removeFadeoutElementAction.action();
     }
@@ -1686,12 +1460,7 @@ public class Controller implements ObserverSyndrom {
 
         paneSwingNode.widthProperty().addListener(widthListener);
         paneSwingNode.heightProperty().addListener(heightListener);
-        paneSwingNode.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                root.requestFocus();
-            }
-        });
+        paneSwingNode.focusedProperty().addListener((observable, oldValue, newValue) -> root.requestFocus());
 
         loadSizeComboBox(sizeSphereComboBox);
         loadSizeComboBox(sizeSymptomComboBox);
@@ -1737,20 +1506,25 @@ public class Controller implements ObserverSyndrom {
             FilterGraphAction filterGraphAction = new FilterGraphAction(newValue, regularExpressionBox.isSelected());
             filterGraphAction.action();
         });
+
+        initLanguage();
+
+        //newFile.setText(loadLanguage.getMenu1());
+
+    }
+
+    private void initLanguage(){
+        loadLanguage = LoadLanguage.getInstance();
+        languageEnglish.selectedProperty().addListener(new LanguageListener(languageEnglish, this));
+        languageGerman.selectedProperty().addListener(new LanguageListener(languageGerman, this));
     }
 
     private void initTree(){
         HelperFunctions helper = new HelperFunctions();
-        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue,
-                                Object newValue) {
-                TreeItem<Object> selectedItem = (TreeItem<Object>) newValue;
-                if (selectedItem != null) {
-                    helper.pickElement(selectedItem.getValue());
-                }
+        treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<TreeItem<Object>>) (observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                helper.pickElement(((TreeItem<Object>) newValue).getValue());
             }
-
         });
 
 
@@ -1759,7 +1533,7 @@ public class Controller implements ObserverSyndrom {
                 if (e.getButton() == MouseButton.SECONDARY) {
                     Node node = e.getPickResult().getIntersectedNode();
                     if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                        TreeItem<Object> selected = (TreeItem<Object>) treeView.getSelectionModel().getSelectedItem();
+                        TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
                         Object val = selected.getValue();
 
                         ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
@@ -1767,7 +1541,6 @@ public class Controller implements ObserverSyndrom {
                             treeView.setContextMenu(contextMenu);
                             contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
                         }
-
                     } else {
                         treeView.setContextMenu(null);
                     }
@@ -1779,11 +1552,8 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void initFonts() {
-
-        fonts = new ArrayList<Font>();
-
+        fonts = new ArrayList<>();
         try {
-
             Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
@@ -1795,10 +1565,8 @@ public class Controller implements ObserverSyndrom {
             fonts.add(kalam);
             fonts.add(mali);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
-        //getClass().getResourceAsStream("/fonts/");
-
     }
 
 
@@ -1826,13 +1594,9 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             if (canvas.getContent() != null) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        SyndromVisualisationViewer vv = syndrom.getVv();
-                        vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
-                        //canvas.setContent(syndrom.getGzsp());
-                    }
+                SwingUtilities.invokeLater(() -> {
+                    SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+                    vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
                 });
             }
         }
@@ -1842,23 +1606,20 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             if (canvas.getContent() != null) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        VisualizationViewer vv = syndrom.getVv();
-                        Dimension old = vv.getPreferredSize();
-                        old.setSize(old.getWidth(), newValue.intValue());
-                        vv.setPreferredSize(old);
-                    }
+                SwingUtilities.invokeLater(() -> {
+                    VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+                    Dimension old = vv.getPreferredSize();
+                    old.setSize(old.getWidth(), newValue.intValue());
+                    vv.setPreferredSize(old);
                 });
             }
         }
     };
 
     private class OnlyNumberComboBoxListener implements ChangeListener<String> {
-        private final ComboBox comboBox;
+        private final ComboBox<String> comboBox;
 
-        private OnlyNumberComboBoxListener(ComboBox pComboBox) {
+        private OnlyNumberComboBoxListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
         }
 
@@ -1874,9 +1635,9 @@ public class Controller implements ObserverSyndrom {
     }
 
     private class OnlyLettersSpacesComboBoxListener implements ChangeListener<String> {
-        private final ComboBox comboBox;
+        private final ComboBox<String> comboBox;
 
-        private OnlyLettersSpacesComboBoxListener(ComboBox pComboBox) {
+        private OnlyLettersSpacesComboBoxListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
         }
 
@@ -1890,50 +1651,48 @@ public class Controller implements ObserverSyndrom {
     }
 
     private class ComboBoxValueListener implements ChangeListener<String> {
-        private final ComboBox comboBox;
+        private final ComboBox<String> comboBox;
 
-        private ComboBoxValueListener(ComboBox pComboBox) {
+        private void editFontSizeSphere(int size) {
+            values.setFontSizeSphere(size);
+            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+            history.execute(editFontSizeSphereLogAction);
+        }
+
+
+        private ComboBoxValueListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
         }
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (comboBox.getId().equals("sizeSphereComboBox")) {
+            if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
                 currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
-            } else if (comboBox.getId().equals("fontSphereComboBox")) {
-                currentFont = newValue;
-                editFontSphere(currentFont);
-            } else if (comboBox.getId().equals("sizeSymptomComboBox")) {
-                currentSize = newValue;
-                editFontSizeVertices(Integer.parseInt(currentSize));
-            } else if (comboBox.getId().equals("fontSymptomComboBox")) {
-                currentFont = newValue;
-                editFontVertex(currentFont);
             }
             root.requestFocus();
         }
     }
 
     private class ComboBoxFocusListener implements ChangeListener<Boolean> {
-        private final ComboBox comboBox;
+        private final ComboBox<String> comboBox;
 
-        private ComboBoxFocusListener(ComboBox pComboBox) {
+        private ComboBoxFocusListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
         }
 
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
-                if (comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     currentSize = comboBox.getEditor().getText();
-                } else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
+                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
-                if (comboBox.getId().equals("sizeSphereComboBox") || comboBox.getId().equals("sizeSymptomComboBox")) {
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     comboBox.getEditor().setText(currentSize);
-                } else if (comboBox.getId().equals("fontSphereComboBox") || comboBox.getId().equals("fontSymptomComboBox")) {
+                } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
                     comboBox.getEditor().setText(currentFont);
                 }
             }
@@ -1961,32 +1720,32 @@ public class Controller implements ObserverSyndrom {
         filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.NEUTRAL));
     }
 
-    private void loadFontComboBox(ComboBox comboBox) {
-        ObservableList<String> fonts =
+    private void loadFontComboBox(ComboBox<String> comboBox) {
+        ObservableList<String> fontsList =
                 FXCollections.observableArrayList(
                         "AveriaSansLibre",
                         "Kalam",
                         "Mali",
                         "Roboto",
                         "RobotoSlab",
-                        "Times New Roman",
-                        "Comic Sans Ms"
+                        TIMES_NEW_ROMAN,
+                        COMIC_SANS_MS
                 );
 
-        if (comboBox.getId().equals("fontSphereComboBox")) {
+        if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontSphere());
-        } else if (comboBox.getId().equals("fontSymptomComboBox")) {
+        } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontVertex());
         }
 
-        comboBox.setItems(fonts);
+        comboBox.setItems(fontsList);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
 
 
-    private void loadSizeComboBox(ComboBox comboBox) {
+    private void loadSizeComboBox(ComboBox<String> comboBox) {
         ObservableList<String> sizes =
                 FXCollections.observableArrayList(
                         "8",
@@ -2005,9 +1764,9 @@ public class Controller implements ObserverSyndrom {
                         "96"
                 );
 
-        if (comboBox.getId().equals("sizeSphereComboBox")) {
+        if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeSphere());
-        } else if (comboBox.getId().equals("sizeSymptomComboBox")) {
+        } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeVertex());
         }
 
@@ -2024,7 +1783,7 @@ public class Controller implements ObserverSyndrom {
 
         private final MenuButton menuButton;
 
-        public MenuItemHandler(MenuButton pMenuButton) {
+        MenuItemHandler(MenuButton pMenuButton) {
             menuButton = pMenuButton;
         }
 
@@ -2037,10 +1796,36 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    private class LanguageListener implements ChangeListener<Boolean>{
+        private CheckMenuItem checkMenuItem;
+        private Controller controller;
+
+        private void changeLanguage(Language language) {
+            loadLanguage.changeLanguage(language);
+            loadLanguage.changeStringsLanguage(controller);
+        }
+
+        LanguageListener(CheckMenuItem checkMenuItem, Controller controller){
+            this.checkMenuItem = checkMenuItem;
+            this.controller = controller;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if (checkMenuItem.getId().equals("languageGerman") && newValue){
+                languageEnglish.setSelected(false);
+                changeLanguage(Language.GERMAN);
+            } else if (checkMenuItem.getId().equals("languageEnglish") && newValue){
+                languageGerman.setSelected(false);
+                changeLanguage(Language.ENGLISH);
+            }
+        }
+    }
+
     private class FilterTypeHandler implements  EventHandler<ActionEvent> {
         private final EdgeArrowType type;
 
-        public FilterTypeHandler(EdgeArrowType type) {
+        FilterTypeHandler(EdgeArrowType type) {
             this.type = type;
         }
         @Override
@@ -2121,6 +1906,7 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    @SuppressWarnings("unused")
     private void disableEditMode(Boolean disable) {
         separator1.setDisable(disable);
         separator2.setDisable(disable);
@@ -2134,6 +1920,7 @@ public class Controller implements ObserverSyndrom {
         overViewAccordion.setDisable(disable);
     }
 
+    @SuppressWarnings("unused")
     private void disableAnalysisMode(Boolean disable) {
         vBoxGraphStats.setDisable(disable);
         separator3.setDisable(disable);
@@ -2144,6 +1931,7 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setDisable(disable);
     }
 
+    @SuppressWarnings("unused")
     private void optionSaveWindow() {
         if (canvas.getContent() != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -2158,16 +1946,16 @@ public class Controller implements ObserverSyndrom {
             alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == buttonTypeOne) {
+            if (result.isPresent() && result.get() == buttonTypeOne) {
                 // ... user chose "One"
-                System.out.println("SPEICHERN");
-            } else if (result.get() == buttonTypeTwo) {
+                logger.debug("SPEICHERN");
+            } else if (result.isPresent() && result.get() == buttonTypeTwo) {
                 // ... user chose "Two"
-                System.out.println("NICHT SPEICHERN");
+                logger.debug("NICHT SPEICHERN");
                 Platform.exit();
             } else {
                 // ... user chose CANCEL or closed the dialog
-                System.out.println("CANCEL");
+                logger.debug("CANCEL");
             }
         } else {
             Platform.exit();
@@ -2177,25 +1965,22 @@ public class Controller implements ObserverSyndrom {
     /**
      * SPRACHE ÄNDERN, AUCH IN SPHERE.TOSTRING(), VERTEX.TOSTRING() BEACHTEN
      */
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     public void treeViewUpdate() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
-        Collection<Vertex> vertices = graph.getVertices();
-        Collection<Edge> edges = graph.getEdges();
-        ArrayList<String> name = new ArrayList<>();
 
-        TreeItem<Object> rootItem = new TreeItem<Object>();
+        TreeItem<Object> rootItem = new TreeItem<>();
 
         for (Sphere sphere : spheres) {
-            TreeItem<Object> sphereItem = new TreeItem<Object>(sphere);
+            TreeItem<Object> sphereItem = new TreeItem<>(sphere);
             for (Vertex vertex : sphere.getVertices()) {
-                if (syndrom.getVv().getRenderContext().getVertexIncludePredicate().evaluate(Context.<Graph<Vertex, Edge>,Vertex>getInstance(syndrom.getVv().getGraphLayout().getGraph(),vertex))){
-                    TreeItem<Object> vertexItem = new TreeItem<Object>(vertex);
+                if (syndrom.getVv().getRenderContext().getVertexIncludePredicate().evaluate(Context.getInstance(syndrom.getVv().getGraphLayout().getGraph(),vertex))){
+                    TreeItem<Object> vertexItem = new TreeItem<>(vertex);
                     for (Edge edge : graph.getOutEdges(vertex)) {
-                        if (syndrom.getVv().getRenderContext().getEdgeIncludePredicate().evaluate(Context.<Graph<Vertex, Edge>,Edge>getInstance(syndrom.getVv().getGraphLayout().getGraph(),edge))){
-                            TreeItem<Object> edgeItem = new TreeItem<Object>(edge);
+                        if (syndrom.getVv().getRenderContext().getEdgeIncludePredicate().evaluate(Context.getInstance(syndrom.getVv().getGraphLayout().getGraph(),edge))){
+                            TreeItem<Object> edgeItem = new TreeItem<>(edge);
                             vertexItem.getChildren().add(edgeItem);
                         }
                     }
@@ -2214,7 +1999,7 @@ public class Controller implements ObserverSyndrom {
     /*
      * Uses the provided swingnode to display the zoom window on it.
      *
-     * @param swingNode The swingnode, that the fxml file provides.
+     * @param swingNode The swingnode, that the fxml fileMenu provides.
 
     private void createSwingZoomWindow(final SwingNode swingNode) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -2228,7 +2013,7 @@ public class Controller implements ObserverSyndrom {
     /*
      * Uses the provided swingnode to display the graph canvas on it.
      *
-     * @param swingNode The swingnode, that the fxml file provides.
+     * @param swingNode The swingnode, that the fxml fileMenu provides.
 
     private void createSwingCanvas(final SwingNode swingNode) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -2239,24 +2024,23 @@ public class Controller implements ObserverSyndrom {
     }
     */
 
-    public void buttonClicked2(ActionEvent actionEvent) {
+    public void buttonClicked2() {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
 
         //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("First Graph", this);
         action.action();
-        System.out.println("vv: " + syndrom.getVv());
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
     }
 
-    public void sphereEnlarge(ActionEvent actionEvent) {
+    public void sphereEnlarge() {
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
         history.execute(editSphereSizeLogAction);
     }
 
-    public void sphereShrink(ActionEvent actionEvent) {
+    public void sphereShrink() {
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
         history.execute(editSphereSizeLogAction);
     }
@@ -2271,16 +2055,7 @@ public class Controller implements ObserverSyndrom {
         history.execute(editVerticesSizeLogAction);
     }
 
-    public void buttonClicked3(ActionEvent actionEvent) {
-        //optionSaveWindow();
-        throw new UnsupportedOperationException();
-    }
-
-    public void buttonClicked4(ActionEvent actionEvent) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void buttonClicked(ActionEvent actionEvent) {
+    public void addSphereButton() {
         values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
     }
 
@@ -2315,18 +2090,15 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private void loadSpheresTable(List spheres) {
-        sphereCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Sphere, Map<String, String>> data) {
-                String name = "";
-                if (values.getGuiLanguage() == Language.GERMAN) {
-                    name = data.getValue().getAnnotation().get(Language.GERMAN.name());
-                } else if (values.getGuiLanguage() == Language.ENGLISH) {
-                    name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
-                }
-                return new ReadOnlyStringWrapper(name);
+    private void loadSpheresTable(List<Sphere> spheres) {
+        sphereCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>) data -> {
+            String name = "";
+            if (values.getGuiLanguage() == Language.GERMAN) {
+                name = data.getValue().getAnnotation().get(Language.GERMAN.name());
+            } else if (values.getGuiLanguage() == Language.ENGLISH) {
+                name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
             }
+            return new ReadOnlyStringWrapper(name);
         });
 
         // ==== MAX AMOUNT (TEXT FIELD)
@@ -2349,222 +2121,185 @@ public class Controller implements ObserverSyndrom {
         });
 
 
-        setSphereRadioButtonTableColumn(titleSphereCol, "SphereTitle");
-        setSphereRadioButtonTableColumn(positionSphereCol, "SpherePosition");
-        setSphereRadioButtonTableColumn(styleSphereCol, "SphereStyle");
-        setSphereRadioButtonTableColumn(verticesSphereCol, "SphereVertices");
+        setSphereRadioButtonTableColumn(titleSphereCol, SPHERE_TITLE);
+        setSphereRadioButtonTableColumn(positionSphereCol, SPHERE_POSITION);
+        setSphereRadioButtonTableColumn(styleSphereCol, SPHERE_STYLE);
+        setSphereRadioButtonTableColumn(verticesSphereCol, SPHERE_VERTICES);
 
         sphereTableView.setItems(FXCollections.observableArrayList(spheres));
     }
 
-    private void setSphereRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
-        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Sphere, Boolean>,
-                ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Sphere, Boolean> param) {
-                Sphere sphere = param.getValue();
-                SimpleBooleanProperty booleanProp;
+    private void setSphereRadioButtonTableColumn(TableColumn<Sphere, Boolean> pTableColumn, String pLocked) {
+        pTableColumn.setCellValueFactory(param -> {
+            Sphere sphere = param.getValue();
+            SimpleBooleanProperty booleanProp;
+            switch (pLocked) {
+                case SPHERE_TITLE:
+                    booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
+                    break;
+                case SPHERE_POSITION:
+                    booleanProp = new SimpleBooleanProperty(sphere.isLockedPosition());
+                    break;
+                case SPHERE_STYLE:
+                    booleanProp = new SimpleBooleanProperty(sphere.isLockedStyle());
+                    break;
+                case SPHERE_VERTICES:
+                    booleanProp = new SimpleBooleanProperty(sphere.isLockedVertices());
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+
+            //When "Boolean" column change
+            booleanProp.addListener((observable, oldValue, newValue) -> {
                 switch (pLocked) {
-                    case "SphereTitle":
-                        booleanProp = new SimpleBooleanProperty(sphere.isLockedAnnotation());
+                    case SPHERE_TITLE:
+                        sphere.setLockedAnnotation(newValue);
                         break;
-                    case "SpherePosition":
-                        booleanProp = new SimpleBooleanProperty(sphere.isLockedPosition());
+                    case SPHERE_POSITION:
+                        sphere.setLockedPosition(newValue);
                         break;
-                    case "SphereStyle":
-                        booleanProp = new SimpleBooleanProperty(sphere.isLockedStyle());
+                    case SPHERE_STYLE:
+                        sphere.setLockedStyle(newValue);
                         break;
-                    case "SphereVertices":
-                        booleanProp = new SimpleBooleanProperty(sphere.isLockedVertices());
+                    case SPHERE_VERTICES:
+                        sphere.setLockedVertices(newValue);
                         break;
                     default:
                         throw new IllegalArgumentException();
                 }
-
-                //When "Boolean" column change
-                booleanProp.addListener(new ChangeListener<Boolean>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        switch (pLocked) {
-                            case "SphereTitle":
-                                sphere.setLockedAnnotation(newValue);
-                                System.out.println("SphereAnnotation: " + oldValue + " to " + sphere.isLockedAnnotation());
-                                break;
-                            case "SpherePosition":
-                                sphere.setLockedPosition(newValue);
-                                break;
-                            case "SphereStyle":
-                                sphere.setLockedStyle(newValue);
-                                break;
-                            case "SphereVertices":
-                                sphere.setLockedVertices(newValue);
-                                break;
-                            default:
-                                throw new IllegalArgumentException();
-                        }
-                    }
-                });
-                return booleanProp;
-            }
+            });
+            return booleanProp;
         });
 
-        pTableColumn.setCellFactory(new Callback<TableColumn<Sphere, Boolean>, TableCell<Sphere, Boolean>>() {
-            @Override
-            public TableCell<Sphere, Boolean> call(TableColumn<Sphere, Boolean> param) {
-                CheckBoxTableCell<Sphere, Boolean> cell = new CheckBoxTableCell<Sphere, Boolean>();
-                cell.setAlignment(Pos.CENTER);
-                return cell;
-            }
+        pTableColumn.setCellFactory( param -> {
+            CheckBoxTableCell<Sphere, Boolean> cell = new CheckBoxTableCell<>();
+            cell.setAlignment(Pos.CENTER);
+            return cell;
         });
     }
 
     private void loadVerticesTable(Collection<Vertex> vertices) {
-        symptomCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>() {
-
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Vertex, Map<String, String>> data) {
-                String name = "";
-                if (values.getGuiLanguage() == Language.GERMAN) {
-                    name = data.getValue().getAnnotation().get(Language.GERMAN.name());
-                } else if (values.getGuiLanguage() == Language.ENGLISH) {
-                    name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
-                }
-                return new ReadOnlyStringWrapper(name);
+        symptomCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>) data -> {
+            String name = "";
+            if (values.getGuiLanguage() == Language.GERMAN) {
+                name = data.getValue().getAnnotation().get(Language.GERMAN.name());
+            } else if (values.getGuiLanguage() == Language.ENGLISH) {
+                name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
             }
+            return new ReadOnlyStringWrapper(name);
         });
 
-        setSymptomRadioButtonTableColumn(titleSymptomCol, "SymptomTitle");
-        setSymptomRadioButtonTableColumn(positionSymptomCol, "SymptomPosition");
-        setSymptomRadioButtonTableColumn(styleSymptomCol, "SymptomStyle");
+        setSymptomRadioButtonTableColumn(titleSymptomCol, VERTEX_TITLE);
+        setSymptomRadioButtonTableColumn(positionSymptomCol, VERTEX_POSITION);
+        setSymptomRadioButtonTableColumn(styleSymptomCol, VERTEX_STYLE);
 
         symptomTableView.setItems(FXCollections.observableArrayList(vertices));
     }
 
-    private void setSymptomRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
-        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vertex, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Vertex, Boolean> param) {
-                Vertex vertex = param.getValue();
-                SimpleBooleanProperty booleanProp;
+    private void setSymptomRadioButtonTableColumn(TableColumn<Vertex, Boolean> pTableColumn, String pLocked) {
+        pTableColumn.setCellValueFactory(param -> {
+            Vertex vertex = param.getValue();
+            SimpleBooleanProperty booleanProp;
+            switch (pLocked) {
+                case VERTEX_TITLE:
+                    booleanProp = new SimpleBooleanProperty(vertex.isLockedAnnotation());
+                    break;
+                case VERTEX_POSITION:
+                    booleanProp = new SimpleBooleanProperty(vertex.isLockedPosition());
+                    break;
+                case VERTEX_STYLE:
+                    booleanProp = new SimpleBooleanProperty(vertex.isLockedStyle());
+                    break;
+                 default:
+                     throw new IllegalArgumentException();
+            }
+
+            //When "Boolean" column change
+            booleanProp.addListener((observable, oldValue, newValue) -> {
                 switch (pLocked) {
-                    case "SymptomTitle":
-                        booleanProp = new SimpleBooleanProperty(vertex.isLockedAnnotation());
+                    case VERTEX_TITLE:
+                        vertex.setLockedAnnotation(newValue);
                         break;
-                    case "SymptomPosition":
-                        booleanProp = new SimpleBooleanProperty(vertex.isLockedPosition());
+                    case VERTEX_POSITION:
+                        vertex.setLockedPosition(newValue);
                         break;
-                    case "SymptomStyle":
-                        booleanProp = new SimpleBooleanProperty(vertex.isLockedStyle());
+                    case VERTEX_STYLE:
+                        vertex.setLockedStyle(newValue);
                         break;
                     default:
                         throw new IllegalArgumentException();
                 }
-
-                //When "Boolean" column change
-                booleanProp.addListener(new ChangeListener<Boolean>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        switch (pLocked) {
-                            case "SymptomTitle":
-                                vertex.setLockedAnnotation(newValue);
-                                System.out.println("VertexAnnotation: " + oldValue + " to " + vertex.isLockedAnnotation());
-                                break;
-                            case "SymptomPosition":
-                                vertex.setLockedPosition(newValue);
-                                break;
-                            case "SymptomStyle":
-                                vertex.setLockedStyle(newValue);
-                                break;
-                            default:
-                                throw new IllegalArgumentException();
-                        }
-                    }
-                });
-                return booleanProp;
-            }
+            });
+            return booleanProp;
         });
 
-        pTableColumn.setCellFactory(new Callback<TableColumn<Vertex, Boolean>, TableCell<Vertex, Boolean>>() {
-            @Override
-            public TableCell<Vertex, Boolean> call(TableColumn<Vertex, Boolean> param) {
-                CheckBoxTableCell<Vertex, Boolean> cell = new CheckBoxTableCell<Vertex, Boolean>();
-                cell.setAlignment(Pos.CENTER);
-                return cell;
-            }
+        pTableColumn.setCellFactory( param -> {
+            CheckBoxTableCell<Vertex, Boolean> cell = new CheckBoxTableCell<>();
+            cell.setAlignment(Pos.CENTER);
+            return cell;
         });
     }
 
     private void loadEdgesTable(Collection<Edge> edges) {
-        edgeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Edge, String> data) {
-                String name = data.getValue().toString();
-                return new ReadOnlyStringWrapper(name);
-            }
+        edgeCol.setCellValueFactory( data -> {
+            String name = data.getValue().toString();
+            return new ReadOnlyStringWrapper(name);
         });
 
-        setEdgeRadioButtonTableColumn(positionEdgeCol, "EdgePosition");
-        setEdgeRadioButtonTableColumn(styleEdgeCol, "EdgeStyle");
-        setEdgeRadioButtonTableColumn(edgetypeEdgeCol, "EdgeEdgeType");
+        setEdgeRadioButtonTableColumn(positionEdgeCol, EDGE_POSITION);
+        setEdgeRadioButtonTableColumn(styleEdgeCol, EDGE_STYLE);
+        setEdgeRadioButtonTableColumn(edgetypeEdgeCol, EDGE_EDGE_TYPE);
 
         edgeTableView.setItems(FXCollections.observableArrayList(edges));
     }
 
-    private void setEdgeRadioButtonTableColumn(TableColumn pTableColumn, String pLocked) {
-        pTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Edge, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue call(TableColumn.CellDataFeatures<Edge, Boolean> param) {
-                Edge edge = param.getValue();
-                SimpleBooleanProperty booleanProp;
+    private void setEdgeRadioButtonTableColumn(TableColumn<Edge, Boolean> pTableColumn, String pLocked) {
+        pTableColumn.setCellValueFactory( param -> {
+            Edge edge = param.getValue();
+            SimpleBooleanProperty booleanProp;
+            switch (pLocked) {
+                case EDGE_POSITION:
+                    booleanProp = new SimpleBooleanProperty(edge.isLockedPosition());
+                    break;
+                case EDGE_STYLE:
+                    booleanProp = new SimpleBooleanProperty(edge.isLockedStyle());
+                    break;
+                case EDGE_EDGE_TYPE:
+                    booleanProp = new SimpleBooleanProperty(edge.isLockedEdgeType());
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+
+            //When "Boolean" column change
+            booleanProp.addListener((observable, oldValue, newValue) -> {
                 switch (pLocked) {
-                    case "EdgePosition":
-                        booleanProp = new SimpleBooleanProperty(edge.isLockedPosition());
+                    case EDGE_POSITION:
+                        edge.setLockedPosition(newValue);
                         break;
-                    case "EdgeStyle":
-                        booleanProp = new SimpleBooleanProperty(edge.isLockedStyle());
+                    case EDGE_STYLE:
+                        edge.setLockedStyle(newValue);
                         break;
-                    case "EdgeEdgeType":
-                        booleanProp = new SimpleBooleanProperty(edge.isLockedEdgeType());
+                    case EDGE_EDGE_TYPE:
+                        edge.setLockedEdgeType(newValue);
                         break;
                     default:
                         throw new IllegalArgumentException();
                 }
-
-                //When "Boolean" column change
-                booleanProp.addListener(new ChangeListener<Boolean>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                        switch (pLocked) {
-                            case "EdgePosition":
-                                edge.setLockedPosition(newValue);
-                                break;
-                            case "EdgeStyle":
-                                edge.setLockedStyle(newValue);
-                                break;
-                            case "EdgeEdgeType":
-                                edge.setLockedEdgeType(newValue);
-                                break;
-                            default:
-                                throw new IllegalArgumentException();
-                        }
-                    }
-                });
-                return booleanProp;
-            }
+            });
+            return booleanProp;
         });
 
-        pTableColumn.setCellFactory(new Callback<TableColumn<Edge, Boolean>, TableCell<Edge, Boolean>>() {
-            @Override
-            public TableCell<Edge, Boolean> call(TableColumn<Edge, Boolean> param) {
-                CheckBoxTableCell<Edge, Boolean> cell = new CheckBoxTableCell<Edge, Boolean>();
-                cell.setAlignment(Pos.CENTER);
-                return cell;
-            }
+        pTableColumn.setCellFactory( param -> {
+            CheckBoxTableCell<Edge, Boolean> cell = new CheckBoxTableCell<>();
+            cell.setAlignment(Pos.CENTER);
+            return cell;
         });
     }
 
     private void setZoomMenu() {
-        EventHandler zoomHandler = new ZoomMenuItemHandler();
+        EventHandler<ActionEvent> zoomHandler = new ZoomMenuItemHandler(this);
         zoomMenuItem25.setOnAction(zoomHandler);
         zoomMenuItem50.setOnAction(zoomHandler);
         zoomMenuItem75.setOnAction(zoomHandler);
@@ -2573,23 +2308,6 @@ public class Controller implements ObserverSyndrom {
         zoomMenuItem150.setOnAction(zoomHandler);
         zoomMenuItem175.setOnAction(zoomHandler);
         zoomMenuItem200.setOnAction(zoomHandler);
-
-    }
-
-    private class ZoomMenuItemHandler implements EventHandler<Event> {
-        @Override
-        public void handle(Event evt) {
-            MenuItem mnItmn = (MenuItem) evt.getSource();
-            String percent = mnItmn.getText();
-            percent = percent.replaceAll("%", "");
-            int per = Integer.parseInt(percent);
-
-            zoomSlider.setValue(per);
-            SwingUtilities.invokeLater(() -> {
-                syndrom.scale(per);
-            });
-
-        }
     }
 
     private class OneTimeStackPaneListener implements ChangeListener<Number> {
@@ -2615,7 +2333,7 @@ public class Controller implements ObserverSyndrom {
     private class OnlyNumberTextFieldListener implements ChangeListener<String> {
         private TextField textField;
 
-        public OnlyNumberTextFieldListener(TextField pTextField) {
+        OnlyNumberTextFieldListener(TextField pTextField) {
             textField = pTextField;
         }
 
@@ -2629,73 +2347,19 @@ public class Controller implements ObserverSyndrom {
     private class FocusTextFieldListener implements ChangeListener<Boolean> {
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if (newValue) {
-                //Focused
-            } else {
-                //Not Focused
+            if (!newValue) {
                 rulesTemplate();
             }
         }
     }
 
     private void loadTemplateCheckBox(){
-        System.out.println("hallo");
-        reinforcedBox.selectedProperty().addListener(new TemplateCheckBoxListener(reinforcedBox));
-        extenuatingBox.selectedProperty().addListener(new TemplateCheckBoxListener(extenuatingBox));
-        neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox));
-        treeViewArrowType.selectedProperty().addListener(new TemplateCheckBoxListener(treeViewArrowType));
-        regularExpressionBox.selectedProperty().addListener(new TemplateCheckBoxListener(regularExpressionBox));
-        showFadedOutObjects.selectedProperty().addListener(new TemplateCheckBoxListener(showFadedOutObjects));
-    }
-
-    private class TemplateCheckBoxListener implements ChangeListener<Boolean>{
-        private CheckBox checkBox;
-
-        public TemplateCheckBoxListener(CheckBox pCheckBox){
-            checkBox = pCheckBox;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-            if(checkBox.getId() == "reinforcedBox"){
-                //System.out.println("reinforcedBox" + " " + newValue);
-                //Template.getInstance().setReinforcedEdgesAllowed(newValue);
-            }else if(checkBox.getId() == "neutralBox"){
-                //System.out.println("neutralBox" + " " + newValue);
-                //Template.getInstance().setNeutralEdgesAllowed(newValue);
-            }else if(checkBox.getId() == "extenuatingBox"){
-                //System.out.println("extenuatingBox" + newValue);
-                //Template.getInstance().setExtenuatingEdgesAllowed(newValue);
-            } else if (checkBox.getId().equals("treeViewArrowType")) {
-                treeViewArrowType.setSelected(newValue);
-                if (newValue){
-                    showFadedOutObjects.setSelected(false);
-                    regularExpressionBox.setSelected(false);
-                }
-
-                FilterGraphAction filterGraphAction = new FilterGraphAction(filterEdgeArrowType, newValue);
-                filterGraphAction.action();
-
-            } else if (checkBox.getId().equals("showFadedOutObjects")) {
-                showFadedOutObjects.setSelected(newValue);
-                if (newValue){
-                    treeViewArrowType.setSelected(false);
-                    regularExpressionBox.setSelected(false);
-                }
-                FilterGraphAction filterGraphAction = new FilterGraphAction(newValue);
-                filterGraphAction.action();
-
-            }else if (checkBox.getId().equals("regularExpressionBox")) {
-                regularExpressionBox.setSelected(newValue);
-                if (newValue){
-                    showFadedOutObjects.setSelected(false);
-                    treeViewArrowType.setSelected(false);
-                }
-
-                FilterGraphAction filterGraphAction = new FilterGraphAction(regularExpressionField.getText(), newValue);
-                filterGraphAction.action();
-            }
-        }
+        reinforcedBox.selectedProperty().addListener(new TemplateCheckBoxListener(reinforcedBox, this));
+        extenuatingBox.selectedProperty().addListener(new TemplateCheckBoxListener(extenuatingBox, this));
+        neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox, this));
+        treeViewArrowType.selectedProperty().addListener(new TemplateCheckBoxListener(treeViewArrowType, this));
+        regularExpressionBox.selectedProperty().addListener(new TemplateCheckBoxListener(regularExpressionBox, this));
+        showFadedOutObjects.selectedProperty().addListener(new TemplateCheckBoxListener(showFadedOutObjects, this));
     }
 
 

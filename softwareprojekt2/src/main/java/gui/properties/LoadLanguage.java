@@ -1,440 +1,178 @@
 package gui.properties;
 
 import gui.Controller;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.Tooltip;
-import javafx.scene.text.Text;
 import lombok.Data;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * This class changes every description of the gui elements to the desired language.
  */
 @Data
 public class LoadLanguage {
-
-    /**
-     * The controller that is needed to translate gui elements used by the controller class.
-     */
-    private Controller control ;
-
-    /**
-     * The menu on the taskbar for file.
-     */
-    private Menu file ;
-
-    /**
-     * The menu on the taskbar for options.
-     */
-    private Menu options;
-
-    /**
-     * The menu on the taskbar for help.
-     */
-    private Menu help;
-
-    /**
-     * The tooltip for the undo-button.
-     */
-    private Tooltip undo;
-
-    /**
-     * The tooltip for the redo-button.
-     */
-    private Tooltip redo;
-
-    /**
-     * The tooltip for the creator-mode-button.
-     */
-    private Tooltip creatormode;
-
-    /**
-     * The tooltip for the analysis-mode-button.
-     */
-    private Tooltip analysismode;
-
-    /**
-     * The tooltip for the interpreter-mode-button.
-     */
-    private Tooltip interpretermode;
-
-    /**
-     * The tooltip for the layout-button.
-     */
-    private Tooltip layout;
-
-    /**
-     * The tooltip for the fadeout-button.
-     */
-    private Tooltip fadeout;
-
-    /**
-     * The tooltip for the highlight-button.
-     */
-    private Tooltip highlight;
-
-    /**
-     * The tooltip for the template-button.
-     */
-    private Tooltip template;
-
-    /**
-     * The heading for the sphere actions.
-     */
-    private Text sphereText;
-
-    /**
-     * The tooltip for the add-sphere-button.
-     */
-    private Tooltip addSphere;
-
-    /**
-     * The tooltip for the delete-sphere-button.
-     */
-    private Tooltip deleteSphere;
-
-    /**
-     * The tooltip for the sphere-colour-button.
-     */
-    private Tooltip spherecolour;
-
-    /**
-     * The tooltip for the sphere-font-menubutton.
-     */
-    private Tooltip spherefont;
-
-    /**
-     * The tooltip for the sphere-font-size-menubutton.
-     */
-    private Tooltip spherefontsize;
-
-    /**
-     * The heading for symptom actions.
-     */
-    private Text symptomText;
-
-    /**
-     * The tooltip for the add-symptom-button.
-     */
-    private Tooltip addSymptom;
-
-    /**
-     * The tooltip for the delete-symptom-button.
-     */
-    private Tooltip deleteSymptom;
-
-    /**
-     * The tooltip for the change-symptom-background-colour-button.
-     */
-    private Tooltip symptombackgroundcolour;
-
-    /**
-     * The tooltip for the change-symptom-border-colour-button.
-     */
-    private Tooltip symptombordercolour;
-
-    /**
-     * The tooltip for the change-symptom-form-menubutton.
-     */
-    private Tooltip symptomform;
-
-    /**
-     * The tooltip for the change-symptom-form-rectangle-menuitem.
-     */
-    private Tooltip symptomrectangle;
-
-    /**
-     * The tooltip for the change-symptom-form-circle-menuitem.
-     */
-    private Tooltip symptomcircle;
-
-    /**
-     * The tooltip for the change-symptom-form-ellipse-menuitem.
-     */
-    private Tooltip symptomellipse;
-
-    /**
-     * The tooltip for the change-symptom-font-menubutton.
-     */
-    private Tooltip symptomfont;
-
-    /**
-     * The tooltip for the change-symptom-fontsize-menubutton.
-     */
-    private Tooltip symptomfontsize;
-
-    /**
-     * The heading for the edge actions.
-     */
-    private Text edgetext;
-
-    /**
-     * The tooltip for the delete-edge-button.
-     */
-    private Tooltip deleteEdge;
-
-    /**
-     * The tooltip for the change-edge-colour-button.
-     */
-    private Tooltip edgeColour;
-
-    /**
-     * The tooltip for the change-edge-stroketype-menubutton.
-     */
-    private Tooltip edgeStroketype;
-
-    /**
-     * The tooltip for the change-stroketype-dashed-menuitem.
-     */
-    private Tooltip edgeStrokedashed;
-
-    /**
-     * The tooltip for the change-stroketype-dashedweight-menuitem.
-     */
-    private Tooltip edgeStrokedashedweight;
-
-    /**
-     * The tooltip for the change-stroketype-dotted-menuitem.
-     */
-    private Tooltip edgeStrokedotted;
-
-    /**
-     * The tooltip for the change-stroketype-dottedweight-menuitem.
-     */
-    private Tooltip edgeStrokedottedweight;
-
-    /**
-     * The tooltip for the change-stroketype-basic-menuitem.
-     */
-    private Tooltip edgeStrokebasic;
-
-    /**
-     * The tooltip for the change-stroketype-basicweight-menuitem.
-     */
-    private Tooltip edgeStrokebasicweight;
-
-    /**
-     * The tooltip for the change-edge-arrowtype-menubutton.
-     */
-    private Tooltip edgeArrowType;
-
-    /**
-     * The tooltip for the change-arrowtype-reinforced-menuitem.
-     */
-    private Tooltip edgeReinforced;
-
-    /**
-     * The tooltip for the change-arrowtype-extenuating-menuitem.
-     */
-    private Tooltip edgeExtenuating;
-
-    /**
-     * The tooltip for the change-arrowtype-neutral-menuitem.
-     */
-    private Tooltip edgeNeutral;
-
-    /**
-     * The heading for the template window.
-     */
-    private Text templateWindowText;
-
-    /**
-     * The description for the template rule "max spheres".
-     */
-    private Text templateMaxSphereText;
-
-    /**
-     * The description for the template rule "max symptoms".
-     */
-    private Text templateMaxSymptomText;
-
-    /**
-     * The description for the template rule "max symptoms in a sphere".
-     */
-    private Text templateMaxSymptonInSphereText;
-
-    /**
-     * The description for the template rule "max edges".
-     */
-    private Text templateMaxEdgeText;
-
-    /**
-     * The button for saving the template rules.
-     */
-    private Button templateSaveRule;
-
-    /**
-     * The button for deleting the template rules.
-     */
-    private Button templateDeleteRule;
-
-    /**
-     * The heading for the graph-information-area in analysis mode.
-     */
-    private Text analysisGraphInfoText;
-
-    /**
-     * The description for the scope-information in analysis mode.
-     */
-    private Text analysisScopeText;
-
-    /**
-     * The tooltip for the scope-information in analysis mode.
-     */
-    private Tooltip analysisScopeTooltip;
-
-    /**
-     * The description for the networkingindex-information in analysis mode.
-     */
-    private Text analysisNetworkingIndexText;
-
-    /**
-     * The tooltip for the networkingindex-information in analysis mode.
-     */
-    private Tooltip analysisNetworkingIndexTooltip;
-
-    /**
-     * The description for the structureindex-information in analysis mode.
-     */
-    private Text analysisStructureIndexText;
-
-    /**
-     * The tooltip for the structureindex-information in analysis mode.
-     */
-    private Tooltip analysisStructureIndexTooltip;
-
-    /**
-     * The heading of the symptom-filter-actions in analysis mode.
-     */
-    private Text analysisSymptom;
-
-    /**
-     * The tooltip for the predecessor-checkbox.
-     */
-    private Tooltip analysisPredecessorTooltip;
-
-    /**
-     * The tooltip for the successor-checkbox.
-     */
-    private Tooltip analysisSuccessorTooltip;
-
-    /**
-     * The description for the symptom-amount-option.
-     */
-    private Text symptomAmountText;
-
-    /**
-     * The tooltip for the symptom-amount-option.
-     */
-    private Tooltip analysisSymptomAmountTooltip;
-
-    /**
-     * The heading of the edge-filter-actions in analysis mode.
-     */
-    private Text analysisEdge;
-
-    /**
-     * The tooltip for the edge-incoming-checkbox.
-     */
-    private Tooltip analysisIncomingTooltip;
-
-    /**
-     * The tooltip for the edge-originating-checkbox.
-     */
-    private Tooltip analysisOriginatingTooltip;
-
-    /**
-     * The description for the edge-amount-option.
-     */
-    private Text edgeAmountText;
-
-    /**
-     * The tooltip for the edge-amount-option.
-     */
-    private Tooltip edgeAmountTooltip;
-
-    /**
-     * The tooltip for the filter-edge-arrowtype-menubutton.
-     */
-    private Tooltip analysisArrowTypeTooltip;
-
-    /**
-     * The tooltip for the filter-arrowtype-reinforced-menuitem in analysis mode.
-     */
-    private Tooltip analysisReinforced;
-
-    /**
-     * The tooltip for the filter-arrowtype-extenuating-menuitem in analysis mode.
-     */
-    private Tooltip analysisExtenuating;
-
-    /**
-     * The tooltip for the filter-arrowtype-neutral-menuitem in analysis mode.
-     */
-    private Tooltip analysisNeutral;
-
-    /**
-     * The tooltip for the filter-edgetype-checkbox in the treeview.
-     */
-    private Tooltip treeViewEdgeTypeTooltip;
-
-    /**
-     * The tooltip for the filter-reinforced-edge-menuitem in the treeview.
-     */
-    private Tooltip treeViewReinforced;
-
-    /**
-     * The tooltip for the filter-extenuating-edge-menuitem in the treeview.
-     */
-    private Tooltip treeViewExtenuating;
-
-    /**
-     * The tooltip for the filter-neutral-edge-menuitem in the treeview.
-     */
-    private Tooltip treeViewNeutral;
-
-    /**
-     * The tooltip for the filter-regular-expressions-checkbox in the treeview.
-     */
-    private Tooltip treeViewRegularExpressionTooltip;
-
-    /**
-     * The tooltip for the filter-actions-checkbox.
-     */
-    private Tooltip filterBoxTooltip;
-
-    /**
-     * The tooltip for the filter-chainofedges-menuitem.
-     */
-    private Tooltip filterChainOfEdgesTooltip;
-
-    /**
-     * The tooltip for the filter-convergentbranches-menuitem.
-     */
-    private Tooltip filterConvergentBranchesTooltip;
-
-    /**
-     * The tooltip for the filter-divergentbranches-menuitem.
-     */
-    private Tooltip filterDivergentBranchesTooltip;
-
-    /**
-     * The tooltip for the filter-branches-menuitem.
-     */
-    private Tooltip filterBranchesTooltip;
-
-    /**
-     * The tooltip for the filter-cycles-menuitem.
-     */
-    private Tooltip filterCyclesTooltip;
+    private ResourceBundle resource = ResourceBundle.getBundle("UIResources", new Locale("de"));
+    private Locale de = new Locale("de");
+    private Locale en = new Locale("en");
 
     /**
      * Calling this method with the desired language will translate all gui descriptions
      * to that language.
-     *
-     * @param lang The desired language.
      */
-    public void loadLanguages(String lang){
-         throw new UnsupportedOperationException();
+    private static LoadLanguage instance = null;
+
+    public static LoadLanguage getInstance(){
+        if (instance == null){
+            instance = new LoadLanguage();
+        }
+        return instance;
+    }
+
+    public void changeLanguage(Language language){
+        Locale lang;
+        if (language == Language.GERMAN){
+            lang = de;
+        } else {
+            lang = en;
+        }
+        resource = ResourceBundle.getBundle("UIResources", lang);
+    }
+
+    public void changeStringsLanguage(Controller c){
+        String templateName = "templateName";
+        String templateStyle = "templateStyle";
+        String templatePosition = "templatePosition";
+        String analysisSuccessor = "analysisSuccessor";
+        String sectionSymptom = "sectionSymptom";
+        String analysisSymptomAmountTooltip = "analysisSymptomAmountTooltip";
+        String sectionEdge = "sectionEdge";
+        c.getFileMenu().setText(loadLanguagesKey("file"));
+        c.getNewFile().setText(loadLanguagesKey("newFile"));
+        c.getOpenFile().setText(loadLanguagesKey("openFile"));
+        c.getImportGXL().setText(loadLanguagesKey("gxlImport"));
+        c.getImportGxlTemplate().setText(loadLanguagesKey("templateImport"));
+        c.getSaveLocation().setText(loadLanguagesKey("saveAs"));
+        c.getExportPDF().setText(loadLanguagesKey("exportAs"));
+        c.getExportGXLWithTemplate().setText(loadLanguagesKey("template"));
+        c.getExportLogs().setText(loadLanguagesKey("logs"));
+        c.getPrint().setText(loadLanguagesKey("print"));
+        c.getOptions().setText(loadLanguagesKey("options"));
+        c.getLanguages().setText(loadLanguagesKey("language"));
+        c.getLanguageGerman().setText(loadLanguagesKey("german"));
+        c.getLanguageEnglish().setText(loadLanguagesKey("english"));
+        c.getHelp().setText(loadLanguagesKey("help"));
+        c.getDocumentation().setText(loadLanguagesKey("documentation"));
+        c.getAbout().setText(loadLanguagesKey("aboutUs"));
+        c.getCreateButton().getTooltip().setText(loadLanguagesKey("toolbarCreatorMode"));
+        c.getAnalysisButton().getTooltip().setText(loadLanguagesKey("toolbarAnalysisMode"));
+        c.getEditButton().getTooltip().setText(loadLanguagesKey("toolbarInterpreterMode"));
+        c.getUndoButton().getTooltip().setText(loadLanguagesKey("toolbarUndo"));
+        c.getRedoButton().getTooltip().setText(loadLanguagesKey("toolbarRedo"));
+        c.getHighlight().getTooltip().setText(loadLanguagesKey("toolbarHighlight"));
+        c.getHighlightElements().getTooltip().setText(loadLanguagesKey("toolbarHighlight"));
+        c.getDehighlightElements().getTooltip().setText(loadLanguagesKey("toolbarNotHighlightElements"));
+        c.getFadeout().getTooltip().setText(loadLanguagesKey("toolbarFadeout"));
+        c.getFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutElement"));
+        c.getDeleteFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutDeleteElement"));
+        c.getSelection().setText(loadLanguagesKey("selectorHand"));
+        c.getHandVertex().getTooltip().setText(loadLanguagesKey("selectorHandTooltip"));
+        c.getSelectionSphere().setText(loadLanguagesKey("sectionSphere"));
+        c.getAddSphere().getTooltip().setText(loadLanguagesKey("addSphereTooltip"));
+        c.getDeleteSphere().getTooltip().setText(loadLanguagesKey("deleteSphereTooltip"));
+        c.getSphereEnlarge().getTooltip().setText(loadLanguagesKey("sizeChangeSphereTooltip"));
+        c.getSphereShrink().getTooltip().setText(loadLanguagesKey("sizeMinusChangeSphereTooltip"));
+        c.getSphereBackgroundColour().getTooltip().setText(loadLanguagesKey("sphereColourTooltip"));
+        c.getFontSphereComboBox().setPromptText(loadLanguagesKey("font"));
+        c.getFontSphereComboBox().hide();
+        c.getFontSphereComboBox().getTooltip().setText(loadLanguagesKey("sphereFontTooltip"));
+        c.getSizeSphereComboBox().setPromptText(loadLanguagesKey("fontSize"));
+        c.getSizeSphereComboBox().hide();
+        c.getSizeSphereComboBox().getTooltip().setText(loadLanguagesKey("sphereFontSizeTooltip"));
+        c.getSphereAutoLayout().getTooltip().setText(loadLanguagesKey("toolbarLayout"));
+        c.getSelectionSymptom().setText(loadLanguagesKey(sectionSymptom));
+        c.getAddVertex().getTooltip().setText(loadLanguagesKey("addSymptomTooltip"));
+        c.getDeleteVertex().getTooltip().setText(loadLanguagesKey("deleteSymptom"));
+        c.getVertexEnlarge().getTooltip().setText(loadLanguagesKey("enlargeSymptom"));
+        c.getVertexShrink().getTooltip().setText(loadLanguagesKey("shrinkSymptom"));
+        c.getSymptomBackground().getTooltip().setText(loadLanguagesKey("symptomBackgroundColourTooltip"));
+        c.getSymptomBorder().getTooltip().setText(loadLanguagesKey("symptomBorderColourTooltip"));
+        c.getSphereFormMenuButton().getTooltip().setText(loadLanguagesKey("symptomFormTooltip"));
+        c.getVerticesAutoLayout().getTooltip().setText(loadLanguagesKey("toolbarLayout"));
+        c.getFontSymptomComboBox().setPromptText(loadLanguagesKey("font"));
+        c.getFontSymptomComboBox().hide();
+        c.getFontSymptomComboBox().getTooltip().setText(loadLanguagesKey("symptomFontTooltip"));
+        c.getSizeSymptomComboBox().setPromptText(loadLanguagesKey("fontSize"));
+        c.getSizeSymptomComboBox().hide();
+        c.getSizeSymptomComboBox().getTooltip().setText(loadLanguagesKey("symptomFontSizeTooltip"));
+        c.getSelectionEdge().setText(loadLanguagesKey(sectionEdge));
+        c.getAnchorPointsButton().getTooltip().setText(loadLanguagesKey("edgeAnchorPoint"));
+        c.getRemoveEdges().getTooltip().setText(loadLanguagesKey("deleteEdge"));
+        c.getRemoveAnchor().getTooltip().setText(loadLanguagesKey("edgeAnchorPointDelete"));
+        c.getEdgeColour().getTooltip().setText(loadLanguagesKey("edgeColour"));
+        c.getEdgeStrokeMenuButton().getTooltip().setText(loadLanguagesKey("edgeStrokeType"));
+        c.getEdgeArrowMenuButton().getTooltip().setText(loadLanguagesKey("edgeArrowTypeTooltip"));
+        c.getAnalysisGraphInfo().setText(loadLanguagesKey("analysisGraphInfo"));
+        c.getAnalysisScope().setText(loadLanguagesKey("analysisScope"));
+        c.getAnalysisScopeTooltip().setText(loadLanguagesKey("analysisScopeTooltip"));
+        c.getAnalysisNetworkingIndex().setText(loadLanguagesKey("analysisNetworkingIndex"));
+        c.getAnalysisNetworkingIndexTooltip().setText(loadLanguagesKey("analysisNetworkingIndexTooltip"));
+        c.getAnalysisStructureIndex().setText(loadLanguagesKey("analysisStructureIndex"));
+        c.getAnalysisStructureIndexTooltip().setText(loadLanguagesKey("analysisStructureIndexTooltip"));
+        c.getAnalysisSymptom().setText(loadLanguagesKey(sectionSymptom));
+        c.getAnalysisPredessor().getTooltip().setText(loadLanguagesKey("analysisPredecessorTooltip"));
+        c.getAnalysisSuccessor().getTooltip().setText(loadLanguagesKey("analysisSuccessorTooltip"));
+        c.getAnalysisPredessor().setText(loadLanguagesKey("analysisPredecessor"));
+        c.getAnalysisSuccessor().setText(loadLanguagesKey(analysisSuccessor));
+        c.getAnalysisSymptomAmount().setText(loadLanguagesKey("analysisSymptomAmount"));
+        c.getAmountSymptomTextField().setPromptText(loadLanguagesKey(analysisSymptomAmountTooltip));
+        c.getAnalysisEdge().setText(loadLanguagesKey(sectionEdge));
+        c.getAnalysisPredessorEdge().setText(loadLanguagesKey("analysisPredecessor"));
+        c.getAnalysisPredessorEdge().getTooltip().setText(loadLanguagesKey("analysisPredecessorTooltip"));
+        c.getAnalysisSuccessorEdge().setText(loadLanguagesKey(analysisSuccessor));
+        c.getAnalysisSuccessorEdge().getTooltip().setText(loadLanguagesKey(analysisSuccessor));
+        c.getAnalysisEdgeAmount().setText(loadLanguagesKey("analysisSymptomAmount"));
+        c.getAmountEdgeTextField().setPromptText(loadLanguagesKey(analysisSymptomAmountTooltip));
+        c.getAmountEdgeTextField().getTooltip().setText(loadLanguagesKey(analysisSymptomAmountTooltip));
+        c.getReinforced1().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
+        c.getAnalysisOption().setText(loadLanguagesKey("analysisOptions"));
+        c.getAnalysisOptions().getTooltip().setText(loadLanguagesKey("analysisOptionsTooltip"));
+        c.getConvergent().setText(loadLanguagesKey("filterConvergentBranches"));
+        c.getDivergent().setText(loadLanguagesKey("filterDivergentBranches"));
+        c.getBranches().setText(loadLanguagesKey("filterBranches"));
+        c.getCycles().setText(loadLanguagesKey("filterCycles"));
+        c.getOverViewTitledPane().setText(loadLanguagesKey("treeView"));
+        c.getFilterEdgeType().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
+        c.getShowFadedOutObjects().setText(loadLanguagesKey("toolbarFadeout"));
+        c.getTemplateTitledPane().setText(loadLanguagesKey("toolbarTemplate"));
+        c.getFilterAnalysis().setText(loadLanguagesKey("filterChainOfEdges"));
+        c.getTemplateMaxSphere().setText(loadLanguagesKey("templateMaxSphere"));
+        c.getTemplateMaxSymptom().setText(loadLanguagesKey("templateMaxSymptom"));
+        c.getTemplateMaxEdge().setText(loadLanguagesKey("templateMaxEdge"));
+        c.getReinforcedBox().setText(loadLanguagesKey("templateReinforced"));
+        c.getExtenuatingBox().setText(loadLanguagesKey("templateExtenuating"));
+        c.getNeutralBox().setText(loadLanguagesKey("templateNeutral"));
+        c.getTemplateChoose().setText(loadLanguagesKey("templateChoose"));
+        c.getTemplateSpheres().setText(loadLanguagesKey("sectionSphere"));
+        c.getSphereCol().setText(loadLanguagesKey(templateName));
+        c.getTitleSphereCol().setText(loadLanguagesKey("templateTitle"));
+        c.getPositionSphereCol().setText(loadLanguagesKey(templatePosition));
+        c.getStyleSphereCol().setText(loadLanguagesKey(templateStyle));
+        c.getVerticesSphereCol().setText(loadLanguagesKey("templateDeleteAdd"));
+        c.getMaxAmountSphereCol().setText(loadLanguagesKey("templateMaxElements"));
+        c.getTemplateSymptom().setText(loadLanguagesKey(sectionSymptom));
+        c.getSymptomCol().setText(loadLanguagesKey(templateName));
+        c.getTitleSymptomCol().setText(loadLanguagesKey("templateTitle"));
+        c.getPositionSymptomCol().setText(loadLanguagesKey(templatePosition));
+        c.getStyleSymptomCol().setText(loadLanguagesKey(templateStyle));
+        c.getTemplateEdge().setText(loadLanguagesKey(sectionEdge));
+        c.getEdgeCol().setText(loadLanguagesKey(templateName));
+        c.getPositionEdgeCol().setText(loadLanguagesKey(templatePosition));
+        c.getStyleEdgeCol().setText(loadLanguagesKey(templateStyle));
+        c.getEdgetypeEdgeCol().setText(loadLanguagesKey("templateEdgeType"));
+        c.getHistoryTitledPane().setText(loadLanguagesKey("log"));
+    }
+
+    private String loadLanguagesKey(String key)  {
+        return resource.getString(key);
     }
 }

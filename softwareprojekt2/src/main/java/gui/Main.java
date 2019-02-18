@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import log_management.DatabaseManager;
 import log_management.dao.PersonalEntityManagerFactory;
@@ -16,6 +17,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Starts the whole application.
@@ -34,21 +37,24 @@ public class Main extends Application {
      * and the window size.
      *
      * @param primaryStage The window of the application.
-     * @throws Exception If the loading of the fxml file fails.
+     * @throws Exception If the loading of the fxml fileMenu fails.
      */
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"));
-        Controller controller = new Controller();
-        controller.setStage(primaryStage);
-        loader.setController(controller);
+        ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("en"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
+
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
-        primaryStage.setScene(new Scene(borderPane));
+
+        Scene scene = new Scene(borderPane);
+
+        primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("/GraphItLogo.png"));
         primaryStage.show();
         primaryStage.setMaximized(true);
-        controller.createTemplateWindow();
+
     }
+
 
     /**
      * Starts the application.
