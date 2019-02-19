@@ -48,12 +48,18 @@ public class EditVerticesSizeLogAction extends LogAction {
         for (Vertex vertex: pickedState.getPicked()) {
             if(!vertex.isLockedStyle()){
             if (sizeChange == SizeChange.ENLARGE) {
-                oldVertices.put(vertex,vertex.getSize());
+                Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
+                        vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
+                        vertex.getSize(), vertex.getFont(), vertex.getFontSize());
+                oldVertices.put(oldVertex,oldVertex.getSize());
                 vertex.setSize(vertex.getSize() + 5);
                 newVertices.put(vertex,vertex.getSize());
             } else {
                 if (vertex.getSize() > 45) {
-                    oldVertices.put(vertex,vertex.getSize());
+                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
+                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
+                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
+                    oldVertices.put(oldVertex,oldVertex.getSize());
                     vertex.setSize(vertex.getSize() - 5);
                     newVertices.put(vertex,vertex.getSize());
                 }

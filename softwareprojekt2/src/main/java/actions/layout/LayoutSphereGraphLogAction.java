@@ -131,6 +131,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
                     xCoord = xCoord + height + sepX;
                     for(Vertex v : s.getVertices()){
                         verticesCoordinates.put(v,v.getCoordinates());
+
                         Point2D point = new Point2D.Double(v.getCoordinates().getX() + dx, v.getCoordinates()
                                 .getY() + dy);
                         v.setCoordinates(point);

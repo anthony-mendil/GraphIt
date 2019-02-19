@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,19 +20,17 @@ import java.util.Map;
  */
 @Data
 public class EditFontVerticesParam extends Param implements Serializable {
-    /**
-     * The set of vertices containing their old font.
-     */
     @Getter
-    private Map<Vertex,String> oldVertices;
-    /**
-     * The set of vertices containing their new font.
-     */
-    @Getter
-    private Map<Vertex,String> newVertices;
+    private List<Vertex> oldVertices;
 
-    // Q:Does the font change everywhere or is for example a list of vertex id's needed?
-    // A:Unfortunately no :( . But I am not actually sure about it, just pretending.
+    @Getter
+    private List<String> oldFonts;
+
+    @Getter
+    private List<Vertex> newVertices;
+
+    @Getter
+    private List<String> newFonts;
 
     /**
      * Creates a vertices object of its own class.
@@ -37,26 +38,54 @@ public class EditFontVerticesParam extends Param implements Serializable {
      * @param pNewVertices The vertices containing their new font.
      */
     public EditFontVerticesParam(Map<Vertex,String> pOldVertices, Map<Vertex,String> pNewVertices) {
-        this.oldVertices = pOldVertices;
-        this.newVertices = pNewVertices;
+        oldVertices = new ArrayList<>();
+        oldFonts = new ArrayList<>();
+        newVertices = new ArrayList<>();
+        newFonts = new ArrayList<>();
+
+        pOldVertices.forEach((v, s) -> {
+            oldVertices.add(v);
+            oldFonts.add(s);
+        });
+        pNewVertices.forEach((v, s) -> {
+            newVertices.add(v);
+            newFonts.add(s);
+        });
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed:\n";
-            for (Map.Entry<Vertex, String> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish((entry.getKey()))
-                        + "New font: " + newVertices.get(entry.getKey()) + "\n";
+            information += "Symptoms changed: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
+                        + "New font: " + newFonts.get(i) + "; ";
             }
         } else {
-            information += "Veränderte Symptome:\n";
-            for (Map.Entry<Vertex, String> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman((entry.getKey()))
-                        + "Neue Schriftart: " + newVertices.get(entry.getKey()) + "\n";
+            information += "Veränderte Symptome: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
+                        + "Neue Schriftart: " + newFonts.get(i) + "; ";
             }
         }
         return information;
+    }
+
+    public Map<Vertex,String> getOldVertices() {
+        Map<Vertex, String> map = new HashMap<>();
+        for (int i = 0; i < oldVertices.size(); i++) {
+            map.put(oldVertices.get(i), oldFonts.get(i));
+        }
+        return map;
+    }
+
+    public Map<Vertex,String> getNewVertices() {
+        Map<Vertex, String> map = new HashMap<>();
+        for (int i = 0; i <newVertices.size(); i++) {
+            map.put(newVertices.get(i), newFonts.get(i));
+        }
+        return map;
     }
 }

@@ -23,7 +23,7 @@ public class SyndromObjectPrinter {
                 getColorName(vertex.getFillColor(), Language.ENGLISH)
                 + ", Draw color: "
                 + ColorNameCreator.getInstance().
-                getColorName(vertex.getDrawColor(), Language.ENGLISH);
+                getColorName(vertex.getDrawColor(), Language.ENGLISH)  + ".";
     }
 
     public static String vertexPrintGerman(Vertex vertex) {
@@ -42,7 +42,7 @@ public class SyndromObjectPrinter {
                 getColorName(vertex.getFillColor(), Language.GERMAN)
                 + ", Umrandungsfarbe: "
                 + ColorNameCreator.getInstance().
-                getColorName(vertex.getDrawColor(), Language.GERMAN);
+                getColorName(vertex.getDrawColor(), Language.GERMAN)  + ".";
     }
 
     public static String edgePrintEnglish(Edge edge, javafx.util.Pair<Vertex, Vertex> vertices) {
@@ -54,7 +54,7 @@ public class SyndromObjectPrinter {
                 + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.ENGLISH)
                 + ", Symptoms of the relation: First Symptom: "
                 + vertexPrintEnglish(vertices.getKey())
-                + ", Second Symptom: " + vertexPrintEnglish(vertices.getValue());
+                + ", Second Symptom: " + vertexPrintEnglish(vertices.getValue())  + ".";
     }
 
     public static String edgePrintGerman(Edge edge, javafx.util.Pair<Vertex, Vertex> vertices) {
@@ -66,7 +66,7 @@ public class SyndromObjectPrinter {
                 + ColorNameCreator.getInstance().getColorName(edge.getColor(), Language.GERMAN)
                 + ", Symptome der Relation: Erstes Symptom: "
                 + vertexPrintGerman(vertices.getKey())
-                + ", Zweites Symptom: " + vertexPrintGerman(vertices.getValue());
+                + ", Zweites Symptom: " + vertexPrintGerman(vertices.getValue())  + ".";
     }
 
     public static String spherePrintEnglish(Sphere sphere) {

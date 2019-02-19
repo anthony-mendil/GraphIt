@@ -46,26 +46,21 @@ public class MoveSphereParam extends Param implements Serializable {
     }
     @Override
     public String prettyPrint() {
-        /*Language language = Values.getInstance().getGuiLanguage();
+        Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Spheres moved:\n";
-            for (Map.Entry<Sphere, Point2D> entry : oldSphere.entrySet()) {
-                information += "Sphere : " + SyndromObjectPrinter.spherePrintEnglish(entry.getKey());
-                information += "New Coordinates: x = "
-                        + newSphere.get(entry.getKey()).getX()
-                        + " y = " + newSphere.get(entry.getKey()).getY() + "\n";
-            }
+            information += "Sphere moved: ";
+            information += "Sphere : " + SyndromObjectPrinter.spherePrintEnglish(sphere);
+            information += " New Coordinates: x = "
+                    + newPos.getX()
+                    + " y = " + newPos.getY() + "; ";
         } else {
-            information += "Bewegte Sphären:\n";
-            for (Map.Entry<Sphere, Point2D> entry : oldSphere.entrySet()) {
-                information += "Sphäre : " + SyndromObjectPrinter.spherePrintGerman(entry.getKey());
-                information += "Neue Koordinaten: x = "
-                        + newSphere.get(entry.getKey()).getX()
-                        + " y = " + newSphere.get(entry.getKey()).getY() + "\n";
-            }
+            information += "Bewegte Sphäre: ";
+            information += "Sphäre : " + SyndromObjectPrinter.spherePrintGerman(sphere);
+            information += " Neue Koordinaten: x = "
+                    + newPos.getX()
+                    + " y = " + newPos.getY() + "; ";
         }
-        return information;*/
-        return null;
+        return information;
     }
 }

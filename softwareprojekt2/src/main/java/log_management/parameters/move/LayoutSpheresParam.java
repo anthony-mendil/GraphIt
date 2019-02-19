@@ -28,11 +28,11 @@ public class LayoutSpheresParam extends Param implements Serializable {
     @Getter
     private List<Point2D> positions;
 
-    /**
-     * The vertices and their old position.
-     */
     @Getter
-    private Map<Vertex,Point2D> oldVertices;
+    private List<Vertex> oldVertices;
+
+    @Getter
+    private List<Point2D> oldPositions;
 
 
     /**
@@ -41,31 +41,32 @@ public class LayoutSpheresParam extends Param implements Serializable {
      * @param pOldPosition Map of vertices containing their old positions.
      */
     public LayoutSpheresParam(Map<Sphere,Pair<Pair<Double,Double>,Point2D>> pOldPosition, Map<Vertex,Point2D> pOldVertices) {
-        List<Sphere> pSpheres = new ArrayList<>();
-        List<Double> pFirst = new ArrayList<>();
-        List<Double> pSecond = new ArrayList<>();
-        List<Point2D> pPositions = new ArrayList<>();
+        spheres = new ArrayList<>();
+        first = new ArrayList<>();
+        second = new ArrayList<>();
+        positions = new ArrayList<>();
+        oldVertices = new ArrayList<>();
+        oldPositions = new ArrayList<>();
 
         pOldPosition.forEach((s, p) -> {
-            pSpheres.add(s);
-            pFirst.add(p.getKey().getKey());
-            pSecond.add(p.getKey().getValue());
-            pPositions.add(p.getValue());
+            spheres.add(s);
+            first.add(p.getKey().getKey());
+            second.add(p.getKey().getValue());
+            positions.add(p.getValue());
                 });
-
-        this.spheres = pSpheres;
-        this.first = pFirst;
-        this.second = pSecond;
-        this.positions = pPositions;
-        this.oldVertices = pOldVertices;
+        pOldVertices.forEach((v, p) -> {
+            oldVertices.add(v);
+            oldPositions.add(p);
+        });
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
-            return "The Spheres were automatically positioned";
+            return "The Spheres were automatically positioned or the automatic positioning was undone.";
         } else {
-            return "Die Sphären wurden automatisch angeordnet";
+            return "Die Sphären wurden automatisch angeordnet oder die automatische Anordnung wurde rückgängig gemacht";
         }
     }
 
@@ -75,5 +76,13 @@ public class LayoutSpheresParam extends Param implements Serializable {
             oldPosition.put(spheres.get(i), new Pair<>(new Pair<>(first.get(i), second.get(i)), positions.get(i)));
         }
         return oldPosition;
+    }
+
+    public Map<Vertex, Point2D> getOldVertices() {
+        Map<Vertex, Point2D> map = new HashMap<>();
+        for (int i = 0; i < oldVertices.size(); i++) {
+            map.put(oldVertices.get(i), oldPositions.get(i));
+        }
+        return map;
     }
 }

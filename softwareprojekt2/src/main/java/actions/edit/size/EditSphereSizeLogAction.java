@@ -72,12 +72,10 @@ public class EditSphereSizeLogAction extends LogAction {
                         }
                     }
                     if (enlarge) {
-                        //Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
                         Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(),
                                 sp.getWidth(), sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
                         sp.setHeight(newHeight);
                         sp.setWidth(newWidth);
-                        //Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
                         createParameter(spWithOldValues, true);
 
                     }
@@ -92,7 +90,6 @@ public class EditSphereSizeLogAction extends LogAction {
                         }
                     }
                     if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
-                        //Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
                         Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(),
                                 sp.getWidth(), sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
                         sp.setHeight(sp.getHeight() - 10);
