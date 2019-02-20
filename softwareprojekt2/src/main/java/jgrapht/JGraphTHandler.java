@@ -1,5 +1,6 @@
 package jgrapht;
 
+import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
@@ -12,14 +13,13 @@ import javafx.util.Pair;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.cycle.CycleDetector;
+import org.jgrapht.alg.cycle.TarjanSimpleCycles;
 import org.jgrapht.alg.shortestpath.AllDirectedPaths;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultDirectedGraph;
+import org.jgrapht.graph.DefaultEdge;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Represents a handler converting the JUNG-graph to a graph working with the
@@ -54,20 +54,21 @@ public class JGraphTHandler {
     public void convertGraphToJGraphT(List<Vertex> pVertices, Set<Pair<Vertex,Vertex>> pEdges) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        Graph<Vertex,Edge> jGraphTGraph = new DefaultDirectedGraph<>(Edge.class);
+        DefaultDirectedGraph<Vertex,Edge> jGraphTGraph = new DefaultDirectedGraph<>(Edge.class);
         for(Vertex vertex : pVertices){
-            graph.addVertex(vertex);
+            jGraphTGraph.addVertex(vertex);
+            System.out.println("vertexId is: " + vertex.getId());
         }
         for(Pair<Vertex,Vertex> edge : pEdges){
-            jGraphTGraph.addEdge(edge.getKey(),edge.getValue(),graph.findEdge(edge.getKey(), edge.getValue()));
+            jGraphTGraph.addEdge(edge.getKey(),edge.getValue(),graph.findEdge(edge.getKey(),edge.getValue() ));
         }
         algorithmGraph = jGraphTGraph;
     }
 
     /**
-     * Calculates the Endpoints in t
+     * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
      */
-    public void calculateEndpoints(){
+    private void calculateEndpoints(){
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if(pickedState.getPicked().size() != 2){
@@ -80,18 +81,17 @@ public class JGraphTHandler {
         endVertex = iterator.next();
     }
     /**
-     * Detects all cycles in the directed graph and returns them in a set.
+     * Detects all cycles in the directed graph and returns them in a set. Tarjan's algorithm is the best one.
      *
-     * @param pGraph The graph in JGraphT-form.
      * @return The set of vertices in a cycle.
      */
-    public Set<Vertex> detectCycles(Graph pGraph) {
-        CycleDetector<Vertex,Edge> cycleDetector = new CycleDetector<>(pGraph);
-        Set<Vertex> cycle = cycleDetector.findCycles();
-        for(Vertex vertex : cycle){
-            System.out.println(vertex.getId());
-        }
-        return cycle;
+    public List<List<Vertex>> detectCycles() {
+
+        TarjanSimpleCycles tarjanSimpleCycles = new TarjanSimpleCycles(algorithmGraph);
+        List<List<Vertex>> list = tarjanSimpleCycles.findSimpleCycles();
+
+
+        return list;
     }
     /**
      * List all possible paths between two vertices.
@@ -145,5 +145,25 @@ public class JGraphTHandler {
             }
         }
         return divergentBranches;
+    }
+
+    /**
+     * Detects relation chains.
+     */
+    public List<List<Vertex>> detectRelationChains() {
+
+        List<List<Vertex>> relationChains = new ArrayList<>();
+        for (Vertex vertex : (Set<Vertex>)algorithmGraph.vertexSet()){
+            List<Vertex> relationChain = new ArrayList<>();
+            while(algorithmGraph.outDegreeOf(vertex) == 1){
+                if(!relationChain.contains(vertex)) {
+                    relationChain.add(vertex);
+                }
+            }
+            if(relationChain.size() > 2){
+                relationChains.add(relationChain);
+            }
+        }
+        return relationChains;
     }
 }
