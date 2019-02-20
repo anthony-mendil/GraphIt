@@ -23,6 +23,8 @@ import log_management.parameters.move.LayoutVerticesParam;
 import log_management.parameters.move.MoveSphereParam;
 import log_management.parameters.move.MoveVerticesParam;
 import log_management.tables.Log;
+import lombok.Data;
+import lombok.Getter;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
@@ -30,9 +32,13 @@ import java.time.format.DateTimeFormatter;
 
 public class LogToStringConverter {
 
-    private static int incrementer = 1;
+    private int incrementer = 1;
 
-    public static String convert(Log log) {
+    public void resetIncrementer(){
+        incrementer = 1;
+    }
+
+    public String convert(Log log) {
         Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         if (language == Language.GERMAN) {
@@ -56,7 +62,7 @@ public class LogToStringConverter {
         }
     }
 
-    public static String convertForTextFile(Log log) {
+    public String convertForTextFile(Log log) {
         Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         if (language == Language.GERMAN) {
@@ -80,7 +86,7 @@ public class LogToStringConverter {
         }
     }
 
-    private static String convertLogEntryNameGerman(LogEntryName logEntryName) {
+    private String convertLogEntryNameGerman(LogEntryName logEntryName) {
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
                 return "Hervorhebung";
@@ -153,7 +159,7 @@ public class LogToStringConverter {
         }
     }
 
-    private static String convertLogEntryNameEnglish(LogEntryName logEntryName) throws IllegalArgumentException{
+    private String convertLogEntryNameEnglish(LogEntryName logEntryName) throws IllegalArgumentException{
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
                 return "Highlighting";
@@ -226,7 +232,7 @@ public class LogToStringConverter {
         }
     }
 
-    private static String parametersPrint(String parameters, LogEntryName logEntryName) {
+    private String parametersPrint(String parameters, LogEntryName logEntryName) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());

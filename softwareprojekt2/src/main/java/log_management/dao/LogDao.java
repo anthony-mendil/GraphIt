@@ -211,18 +211,25 @@ public class LogDao implements Dao<Log> {
         }
         int graphId = graph.getId();
 
+        System.out.println("a");
+
         TypedQuery<Log> selectLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid and l.logEntryName = :logType", Log.class);
         selectLogs.setParameter("gid", graphId);
         selectLogs.setParameter("logType", logEntryName);
         List<Log> logList = selectLogs.getResultList();
 
+        System.out.println("b");
         List<String> logs = new ArrayList<>();
         logList.forEach(log -> {
             logs.add(log.toString());
         });
 
+        System.out.println("c");
+
         entityManager.getTransaction().commit();
         entityManager.close();
+
+        System.out.println("d");
 
         return logs;
     }

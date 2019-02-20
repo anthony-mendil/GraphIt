@@ -2,12 +2,14 @@ package gui;
 
 import actions.ActionHistory;
 import actions.GraphAction;
+import actions.LogEntryName;
 import actions.ObserverSyndrom;
 import actions.activate.ActivateAnchorPointsFadeoutAction;
 import actions.activate.ActivateFadeoutAction;
 import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
+import actions.add.AddVerticesLogAction;
 import actions.analyse.FilterGraphAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
@@ -78,7 +80,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
+import log_management.LogToStringConverter;
 import log_management.dao.LogDao;
+import log_management.tables.Log;
 import lombok.Data;
 import org.apache.log4j.Logger;
 
@@ -404,7 +408,9 @@ public class Controller implements ObserverSyndrom {
     /**
      * The logdao object that provides the treeview with the protocol.
      */
-    private LogDao protocol;
+    private LogDao logDao = new LogDao();
+
+    private LogToStringConverter logToStringConverter = new LogToStringConverter();
 
     /**
      * The values object that gets all the arguments from the gui for the actions.
@@ -615,6 +621,7 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem filterEdgeTypeExtenuating;
     @FXML private MenuItem filterEdgeTypeNeutral;
     @FXML private ResourceBundle resources;
+    @FXML private TreeView<Object> protocol;
 
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
@@ -1520,6 +1527,8 @@ public class Controller implements ObserverSyndrom {
         loadLanguage = LoadLanguage.getInstance();
         languageEnglish.selectedProperty().addListener(new LanguageListener(languageEnglish, this));
         languageGerman.selectedProperty().addListener(new LanguageListener(languageGerman, this));
+        languageEnglish.setSelected(false);
+        languageGerman.setSelected(true);
     }
 
     private void initTree(){
@@ -1806,6 +1815,7 @@ public class Controller implements ObserverSyndrom {
         private void changeLanguage(Language language) {
             loadLanguage.changeLanguage(language);
             loadLanguage.changeStringsLanguage(controller);
+            values.setGuiLanguage(language);
         }
 
         LanguageListener(CheckMenuItem checkMenuItem, Controller controller){
@@ -2405,5 +2415,52 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         treeViewUpdate();
+    }
+
+    @FXML public void filterLogAddSphere(){
+        filterLogs(LogEntryName.ADD_SPHERE);
+    }
+
+    @FXML public void filterLogAddVertex(){
+        filterLogs(LogEntryName.ADD_VERTICES);
+    }
+
+    @FXML public void filterLogAddEdge(){
+        filterLogs(LogEntryName.ADD_EDGES);
+    }
+
+    private void filterLogs(LogEntryName entryName){
+        logToStringConverter.resetIncrementer();
+        Service<Void> service = new Service<Void>() {
+            @Override
+            protected Task<Void> createTask() {
+                return new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        final CountDownLatch latch = new CountDownLatch(1);
+                        Platform.runLater(() -> {
+                            try {
+                                TreeItem<Object> rootItem = new TreeItem<>();
+                                List<Log> filterLog = logDao.getLogType(entryName);
+                                for(Log log: filterLog){
+                                    String s = logToStringConverter.convert(log);
+                                    TreeItem<Object> logItem = new TreeItem<>(s);
+                                    rootItem.getChildren().add(logItem);
+                                }
+
+                                rootItem.setExpanded(true);
+                                protocol.setRoot(rootItem);
+                                protocol.setShowRoot(false);
+                            } finally {
+                                latch.countDown();
+                            }
+                        });
+                        latch.await();
+                        return null;
+                    }
+                };
+            }
+        };
+        service.start();
     }
 }

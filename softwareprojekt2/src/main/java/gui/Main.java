@@ -40,7 +40,7 @@ public class Main extends Application {
      * @throws Exception If the loading of the fxml fileMenu fails.
      */
     public void start(Stage primaryStage) throws Exception {
-        ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("en"));
+        ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
 
         BorderPane borderPane = loader.load();
