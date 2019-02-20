@@ -24,7 +24,6 @@ import log_management.parameters.move.MoveSphereParam;
 import log_management.parameters.move.MoveVerticesParam;
 import log_management.tables.Log;
 
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.time.format.DateTimeFormatter;
 
@@ -61,16 +60,16 @@ public class LogToStringConverter {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         if (language == Language.GERMAN) {
             try {
-                return "Nummer: " + incrementer++ + "\n" + "Typ der Aktion: " + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        "\n" + "Informationen: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "Zeit: " + log.getTime().format(formatter) + "\n";
+                return "Nummer des Eintrags: " + incrementer++ + "\n" + "  Typ der Aktion: " + convertLogEntryNameGerman(log.getLogEntryName()) +
+                        "\n" + "  Informationen: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "  Zeit: " + log.getTime().format(formatter) + "\n";
             } catch (IllegalArgumentException e) {
                 throw new IllegalStateException();
             }
         }
         else if (language == Language.ENGLISH) {
             try {
-                return "Number: " + incrementer++ + "\n" + "Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
-                        "\n" + "Information: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "Time: " + log.getTime().format(formatter) + "\n";
+                return "Log number: " + incrementer++ + "\n" + "  Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
+                        "\n" + "  Information: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "  Time: " + log.getTime().format(formatter) + "\n";
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
             }

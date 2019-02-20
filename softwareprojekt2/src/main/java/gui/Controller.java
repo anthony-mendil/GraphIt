@@ -632,6 +632,7 @@ public class Controller implements ObserverSyndrom {
     private static final String GXL = "*.gxl";
     private static final String PDF = "*.pdf";
     private static final String OOF = "*.oof";
+    private static final String TXT = "*.txt";
     private static final String GXL_FILE = "GXL files (*.gxl)";
     private static final String TIMES_NEW_ROMAN = "Times New Roman";
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
@@ -1025,6 +1026,17 @@ public class Controller implements ObserverSyndrom {
         if (exportDialog != null) {
             ExportPdfAction exportPdfAction = new ExportPdfAction(exportDialog);
             exportPdfAction.action();
+        }
+    }
+
+    public void exportProtocol() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File exportDialog = fileChooser.showSaveDialog(mainStage);
+        if (exportDialog != null) {
+            ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(exportDialog);
+            exportReadableProtocolAction.action();
         }
     }
 

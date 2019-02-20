@@ -57,7 +57,9 @@
                                   onAction="#exportGXLWithTemplate" text="%template"/>
                         <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL"
                                   text="GXL"/>
-                        <MenuItem fx:id="exportLogs" mnemonicParsing="false" text="%logs"/>
+                        <MenuItem fx:id="exportLogs" mnemonicParsing="false" onAction="#exportProtocol"
+                                  text="%logs"/>
+
                     </Menu>
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print"/>
                 </Menu>
