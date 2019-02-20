@@ -54,9 +54,8 @@ public class EditEdgesColorLogAction extends LogAction {
             Map<Edge,Color> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
                 if (!e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    Edge oldEdge = new Edge(e.getId(), e.getColor(), e.getStroke(),
-                            e.getArrowType(), e.isVisible(), e.isHasAnchorIn(), e.isHasAnchorOut());
-                    oldEdges.put(oldEdge, oldEdge.getColor());
+
+                    oldEdges.put(e, e.getColor());
                     e.setColor(color);
                     newEdges.put(e, color);
                 }else{

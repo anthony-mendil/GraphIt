@@ -81,7 +81,7 @@ public class EditVerticesFillColorParam extends Param implements Serializable {
     public Map<Vertex,Color> getOldVertices() {
         Map<Vertex, Color> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
-            map.put(oldVertices.get(i), oldColors.get(i));
+            map.put(newVertices.get(i), oldColors.get(i));
         }
         return map;
     }

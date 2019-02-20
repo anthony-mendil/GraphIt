@@ -54,66 +54,60 @@ public class EditSphereSizeLogAction extends LogAction {
             Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedStyle()){
-                if (sizeChange == SizeChange.ENLARGE) {
-                    double newHeight = sp.getHeight() + 10;
-                    double newWidth = sp.getWidth() + 10;
-                    SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
-                    double x = sp.getCoordinates().getX();
-                    double y = sp.getCoordinates().getY();
-                    boolean enlarge = true;
+                    if (sizeChange == SizeChange.ENLARGE) {
+                        double newHeight = sp.getHeight() + 10;
+                        double newWidth = sp.getWidth() + 10;
+                        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
+                        double x = sp.getCoordinates().getX();
+                        double y = sp.getCoordinates().getY();
+                        boolean enlarge = true;
 
-                    Rectangle2D newShape = new Rectangle2D.Double(x, y, newWidth, newHeight);
+                        Rectangle2D newShape = new Rectangle2D.Double(x, y, newWidth, newHeight);
 
-                    for (Sphere s : graph.getSpheres()) {
-                        Shape sphereShape = sphereShapeTransformer.transform(s);
-                        if (!s.equals(sp) && sphereShape.intersects(newShape)) {
-                            enlarge = false;
-                            break;
+                        for (Sphere s : graph.getSpheres()) {
+                            Shape sphereShape = sphereShapeTransformer.transform(s);
+                            if (!s.equals(sp) && sphereShape.intersects(newShape)) {
+                                enlarge = false;
+                                break;
+                            }
+                        }
+                        if (enlarge) {
+                            Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                            sp.setHeight(newHeight);
+                            sp.setWidth(newWidth);
+                            Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                            createParameter(sp, oldSize, newSize);
+
+                        }
+                    } else {
+                        boolean add = true;
+                        SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<Sphere>();
+                        Shape sphereShape = sphereShapeTransformer.transform(sp);
+                        for (Vertex v : sp.getVertices()) {
+                            if (!sphereShape.contains(v.getCoordinates())) {
+                                add = false;
+                                break;
+                            }
+                        }
+                        if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
+                            Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                            sp.setHeight(sp.getHeight() - 10);
+                            sp.setWidth(sp.getWidth() - 10);
+                            Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
+                            createParameter(sp, oldSize, newSize);
+
                         }
                     }
-                    if (enlarge) {
-                        Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(),
-                                sp.getWidth(), sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
-                        sp.setHeight(newHeight);
-                        sp.setWidth(newWidth);
-                        createParameter(spWithOldValues, true);
-
-                    }
-                } else {
-                    boolean add = true;
-                    SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<Sphere>();
-                    Shape sphereShape = sphereShapeTransformer.transform(sp);
-                    for (Vertex v : sp.getVertices()) {
-                        if (!sphereShape.contains(v.getCoordinates())) {
-                            add = false;
-                            break;
-                        }
-                    }
-                    if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
-                        Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(),
-                                sp.getWidth(), sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
-                        sp.setHeight(sp.getHeight() - 10);
-                        sp.setWidth(sp.getWidth() - 10);
-                        createParameter(spWithOldValues, false);
-
-                    }
-                }
-            } else{
+                } else{
                     helper.setActionText("Die Größe der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedSphere = sp;
                 }
             }
         }else{
-            boolean enlarged = ((EditSphereSizeParam)parameters).isEnlarge();
-            if (enlarged) {
-                Sphere sphere = ((EditSphereSizeParam) parameters).getSphere();
-                sphere.setWidth(sphere.getWidth() + 10);
-                sphere.setHeight(sphere.getHeight() + 10);
-            } else {
-                Sphere sphere = ((EditSphereSizeParam) parameters).getSphere();
-                sphere.setWidth(sphere.getWidth() - 10);
-                sphere.setHeight(sphere.getHeight() - 10);
-            }
+            Pair<Double,Double> newSize = ((EditSphereSizeParam)parameters).getNewSize();
+            Sphere sphere = ((EditSphereSizeParam)parameters).getSphere();
+            sphere.setWidth(newSize.getValue());
+            sphere.setHeight(newSize.getKey());
         }
         vv.repaint();
         syndrom.getVv2().repaint();
@@ -124,23 +118,18 @@ public class EditSphereSizeLogAction extends LogAction {
 
     @Override
     public void undo() {
-        boolean enlarged = ((EditSphereSizeParam)parameters).isEnlarge();
+        Pair<Double,Double> oldSize = ((EditSphereSizeParam)parameters).getOldSize();
+        Pair<Double,Double> newSize = ((EditSphereSizeParam)parameters).getNewSize();
         Sphere sphere = ((EditSphereSizeParam)parameters).getSphere();
-        if (enlarged) {
-            EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, false);
-            EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
-            editSphereSizeLogAction.action();
-        } else {
-            EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, true);
-            EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
-            editSphereSizeLogAction.action();
-        }
+        EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, newSize, oldSize);
+        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
+        editSphereSizeLogAction.action();
     }
 
     /**
      * Creates the vertices object.
      */
-    public void createParameter(Sphere sphere, boolean enlarge) {
-        parameters = new EditSphereSizeParam(sphere, enlarge);
+    public void createParameter(Sphere sphere, Pair<Double,Double> oldSize, Pair<Double,Double> newSize) {
+        parameters = new EditSphereSizeParam(sphere, oldSize,newSize);
     }
 }

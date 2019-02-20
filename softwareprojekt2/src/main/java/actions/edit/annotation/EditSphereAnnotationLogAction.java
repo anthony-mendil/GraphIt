@@ -60,7 +60,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
 
                     Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(), sp.getWidth(),
                             sp.getHeight(), oldAnnotation, sp.getFont(), sp.getFontSize());
-                    createParameter(spWithOldValues, oldAnnotation.get(Language.GERMAN.name()), text);
+                    createParameter(spWithOldValues, sp, oldAnnotation.get(Language.GERMAN.name()), text);
                     if (annotation.get(Language.GERMAN.name()) != null) {
                         annotation.remove(Language.GERMAN.name());
                         sp.setAnnotation(annotation);
@@ -73,7 +73,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
                 }
             }
         }else{
-            Sphere sphere = ((EditSphereAnnotationParam)parameters).getSphere();
+            Sphere sphere = ((EditSphereAnnotationParam)parameters).getNewSphere();
             String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
             Map<String,String> newAnno = new HashMap<>();
             newAnno.put(Language.GERMAN.name(), newAnnotation);
@@ -92,14 +92,14 @@ public class EditSphereAnnotationLogAction extends LogAction {
     public void undo() {
         String oldAnnotation = ((EditSphereAnnotationParam)parameters).getOldAnnotation();
         String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
-        Sphere sphere = ((EditSphereAnnotationParam)parameters).getSphere();
+        Sphere sphere = ((EditSphereAnnotationParam)parameters).getNewSphere();
 
-        EditSphereAnnotationParam editSphereAnnotationParam = new EditSphereAnnotationParam(sphere, newAnnotation, oldAnnotation);
+        EditSphereAnnotationParam editSphereAnnotationParam = new EditSphereAnnotationParam(sphere, sphere, newAnnotation, oldAnnotation);
         EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(editSphereAnnotationParam);
         editSphereAnnotationLogAction.action();
     }
 
-    public void createParameter(Sphere sphere, String oldAnnotation, String newAnnotation) {
-        parameters = new EditSphereAnnotationParam(sphere, oldAnnotation, newAnnotation);
+    public void createParameter(Sphere sphere, Sphere newSphere, String oldAnnotation, String newAnnotation) {
+        parameters = new EditSphereAnnotationParam(sphere, newSphere, oldAnnotation, newAnnotation);
     }
 }

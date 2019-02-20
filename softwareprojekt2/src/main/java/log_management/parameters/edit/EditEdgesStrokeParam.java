@@ -88,8 +88,8 @@ public class EditEdgesStrokeParam extends Param implements Serializable {
 
     public Map<Edge,StrokeType> getEdgesOld() {
         Map<Edge, StrokeType> map = new HashMap<>();
-        for (int i = 0; i < oldEdges.size(); i++) {
-            map.put(oldEdges.get(i), oldStrokeTypes.get(i));
+        for (int i = 0; i < newEdges.size(); i++) {
+            map.put(newEdges.get(i), oldStrokeTypes.get(i));
         }
         return map;
     }

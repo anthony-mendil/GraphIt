@@ -100,8 +100,8 @@ public class EditEdgesColorParam extends Param implements Serializable {
 
     public Map<Edge,Color> getEdgesOld() {
         Map<Edge, Color> map = new HashMap<>();
-        for (int i = 0; i < oldEdges.size(); i++) {
-            map.put(oldEdges.get(i), oldColors.get(i));
+        for (int i = 0; i < newEdges.size(); i++) {
+            map.put(newEdges.get(i), oldColors.get(i));
         }
         return map;
     }

@@ -39,7 +39,7 @@ public class EditSphereColorParam extends Param implements Serializable {
      * @param pOldColor The old color of the sphere.
      * @param pNewColor The new color of the sphere.
      */
-    public EditSphereColorParam(Sphere sphere,Color pOldColor, Color pNewColor) {
+    public EditSphereColorParam(Sphere sphere, Color pOldColor, Color pNewColor) {
         this.sphere = sphere;
         this.oldColor = pOldColor;
         this.newColor = pNewColor;

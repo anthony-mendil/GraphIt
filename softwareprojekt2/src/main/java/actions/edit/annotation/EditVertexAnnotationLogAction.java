@@ -57,9 +57,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     Map<String, String> oldAnnotation = new HashMap<>();
                     annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
 
-                    Vertex oldVertex = new Vertex(v.getId(), v.getFillColor(), v.getCoordinates(), v.getShape(),
-                            v.getAnnotation(), v.getDrawColor(), v.getSize(), v.getFont(), v.getFontSize());
-                    createParameter(oldVertex, oldVertex.getAnnotation().get(Language.GERMAN.name()), text);
+                    createParameter(v, v.getAnnotation().get(Language.GERMAN.name()), text);
                     annotation.put(Language.GERMAN.name(), text);
                     v.setAnnotation(annotation);
                 }else{
@@ -67,21 +65,22 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     lockedVertices.add(v);
                 }
             }
-            Set<Pair<Vertex,Vertex>> edges = new HashSet<>();
+            /*Set<Pair<Vertex,Vertex>> edges = new HashSet<>();
             SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             for(Edge edge : graph.getEdges()){
                 edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
                 Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
                 edges.add(vertices);
             }
-            /*JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()),edges);
+            System.out.println("wdqd");
+            JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()),edges);
             List<List<Vertex>> relationChains = jGraphTHandler.detectRelationChains();
             for(List<Vertex> rel: relationChains){
                 System.out.println("RealtionChain incoming:");
                 for(Vertex v : rel){
-                    System.out.println(v.getId());
-                }
-            }*/
+                    System.out.println(v.getId());*/
+             //   }
+          //  }
 
         }else{
             Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
@@ -102,7 +101,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
         Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
         String oldAnnotation = ((EditVertexAnnotationParam)parameters).getOldAnnotation();
         String newAnnotation = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
-        EditVertexAnnotationParam editVertexAnnotationParam = new EditVertexAnnotationParam(vertex,newAnnotation,oldAnnotation);
+        EditVertexAnnotationParam editVertexAnnotationParam = new EditVertexAnnotationParam(vertex, newAnnotation,oldAnnotation);
         EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(editVertexAnnotationParam);
         editVertexAnnotationLogAction.action();
     }

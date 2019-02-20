@@ -52,10 +52,7 @@ public class EditFontVerticesLogAction extends LogAction {
             Map<Vertex,String> newVertices = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
                 if(!vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
-                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
-                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
-                    oldVertices.put(oldVertex, oldVertex.getFont());
+                     oldVertices.put(vertex, vertex.getFont());
                     vertex.setFont(font);
                     newVertices.put(vertex, font);
                 }else{

@@ -12,6 +12,7 @@ import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
+import org.jgrapht.Graphs;
 import org.jgrapht.alg.cycle.CycleDetector;
 import org.jgrapht.alg.cycle.TarjanSimpleCycles;
 import org.jgrapht.alg.shortestpath.AllDirectedPaths;
@@ -37,13 +38,15 @@ public class JGraphTHandler {
     /**
      * The graph in JGraphT-form.
      */
-    private Graph algorithmGraph;
+    private DefaultDirectedGraph algorithmGraph;
+
     /**
      * Constructor in case the user changes to analyse-mode and analyses without using a vertex.
      */
-    public JGraphTHandler(List<Vertex> pVertices, Set<Pair<Vertex,Vertex>> pEdges) {
-        convertGraphToJGraphT(pVertices,pEdges);
+    public JGraphTHandler(List<Vertex> pVertices, Set<Pair<Vertex, Vertex>> pEdges) {
+        convertGraphToJGraphT(pVertices, pEdges);
     }
+
     /**
      * Converts the graph from our datatype to the JGraphT datatype.
      *
@@ -51,16 +54,15 @@ public class JGraphTHandler {
      * @param pEdges    Given list of edges.
      * @return The Graph in JGraphT-Type.
      */
-    public void convertGraphToJGraphT(List<Vertex> pVertices, Set<Pair<Vertex,Vertex>> pEdges) {
+    public void convertGraphToJGraphT(List<Vertex> pVertices, Set<Pair<Vertex, Vertex>> pEdges) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        DefaultDirectedGraph<Vertex,Edge> jGraphTGraph = new DefaultDirectedGraph<>(Edge.class);
-        for(Vertex vertex : pVertices){
+        DefaultDirectedGraph<Vertex, Edge> jGraphTGraph = new DefaultDirectedGraph<>(Edge.class);
+        for (Vertex vertex : pVertices) {
             jGraphTGraph.addVertex(vertex);
-            System.out.println("vertexId is: " + vertex.getId());
         }
-        for(Pair<Vertex,Vertex> edge : pEdges){
-            jGraphTGraph.addEdge(edge.getKey(),edge.getValue(),graph.findEdge(edge.getKey(),edge.getValue() ));
+        for (Pair<Vertex, Vertex> edge : pEdges) {
+            jGraphTGraph.addEdge(edge.getKey(), edge.getValue(), graph.findEdge(edge.getKey(), edge.getValue()));
         }
         algorithmGraph = jGraphTGraph;
     }
@@ -68,18 +70,19 @@ public class JGraphTHandler {
     /**
      * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
      */
-    private void calculateEndpoints(){
+    private void calculateEndpoints() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if(pickedState.getPicked().size() != 2){
+        if (pickedState.getPicked().size() != 2) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.",true);
+            helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.", true);
             return;
         }
         Iterator<Vertex> iterator = pickedState.getPicked().iterator();
         startVertex = iterator.next();
         endVertex = iterator.next();
     }
+
     /**
      * Detects all cycles in the directed graph and returns them in a set. Tarjan's algorithm is the best one.
      *
@@ -93,19 +96,21 @@ public class JGraphTHandler {
 
         return list;
     }
+
     /**
      * List all possible paths between two vertices.
      *
      * @return The list of paths between the vertices.
      */
-    public List<GraphPath<Vertex,Edge>> getAllPaths() {
+    public List<GraphPath<Vertex, Edge>> getAllPaths() {
         calculateEndpoints();
 
         AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
-        List<GraphPath<Vertex,Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
+        List<GraphPath<Vertex, Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
 
         return paths;
     }
+
     /**
      * Finds the shortest path between two vertices in the graph, if one exists.
      *
@@ -115,9 +120,10 @@ public class JGraphTHandler {
         calculateEndpoints();
 
         DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
-        GraphPath<Vertex,Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
+        GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
         return shortestPath.getVertexList();
     }
+
     /**
      * Detects all convergent branches in the directed graph.
      *
@@ -125,13 +131,14 @@ public class JGraphTHandler {
      */
     public Set<Vertex> detectConvergentBranches() {
         Set<Vertex> convergentBranches = new HashSet<>();
-        for(Vertex vertex : (Set<Vertex>)algorithmGraph.vertexSet()){
-            if(algorithmGraph.inDegreeOf(vertex) > 1){
+        for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
+            if (algorithmGraph.inDegreeOf(vertex) > 1) {
                 convergentBranches.add(vertex);
             }
         }
         return convergentBranches;
     }
+
     /**
      * Detects all divergent branches in the directed graph.
      *
@@ -139,8 +146,8 @@ public class JGraphTHandler {
      */
     public Set<Vertex> detectDivergentBranches() {
         Set<Vertex> divergentBranches = new HashSet<>();
-        for(Vertex vertex : (Set<Vertex>)algorithmGraph.vertexSet()){
-            if(algorithmGraph.outDegreeOf(vertex) > 1){
+        for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
+            if (algorithmGraph.outDegreeOf(vertex) > 1) {
                 divergentBranches.add(vertex);
             }
         }
@@ -151,19 +158,24 @@ public class JGraphTHandler {
      * Detects relation chains.
      */
     public List<List<Vertex>> detectRelationChains() {
-
+      /*  DefaultDirectedGraph<Vertex, Edge> tempGraph = algorithmGraph;
         List<List<Vertex>> relationChains = new ArrayList<>();
-        for (Vertex vertex : (Set<Vertex>)algorithmGraph.vertexSet()){
-            List<Vertex> relationChain = new ArrayList<>();
-            while(algorithmGraph.outDegreeOf(vertex) == 1){
-                if(!relationChain.contains(vertex)) {
-                    relationChain.add(vertex);
-                }
-            }
-            if(relationChain.size() > 2){
-                relationChains.add(relationChain);
-            }
+        ArrayList<Vertex> verticesLeft = new ArrayList<>();
+        verticesLeft.addAll(algorithmGraph.vertexSet());
+        Vertex pivotVertex = verticesLeft.get(0);
+        LinkedList<Vertex> potentialChain = new LinkedList<>();
+    while(!verticesLeft.isEmpty()) {
+        while (algorithmGraph.outDegreeOf(pivotVertex) > 1 && algorithmGraph.inDegreeOf(targetVertex) > 1) {
+            verticesLeft.remove(pivotVertex);
+            verticesLeft.get(0);
         }
+        while (algorithmGraph.outDegreeOf(pivotVertex) == 1 || algorithmGraph.inDegreeOf(targetVertex) == 1) {
+
+        }
+    }
+
         return relationChains;
+    }*/
+      return null;
     }
 }

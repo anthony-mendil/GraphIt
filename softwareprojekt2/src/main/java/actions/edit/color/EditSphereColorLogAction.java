@@ -52,9 +52,7 @@ public class EditSphereColorLogAction extends LogAction {
         Sphere lockedSphere = null;
         for (Sphere sp : pickedState.getPicked()) {
             if(!sp.isLockedStyle()|| values.getMode() == FunctionMode.TEMPLATE) {
-                Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(), sp.getWidth(),
-                        sp.getHeight(), sp.getAnnotation(), sp.getFont(), sp.getFontSize());
-                createParameter(spWithOldValues, sp.getColor(), color);
+                createParameter(sp, sp.getColor(), color);
                 sp.setColor(color);
             }else{
                 helper.setActionText("Die Farbe der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
@@ -89,6 +87,6 @@ public class EditSphereColorLogAction extends LogAction {
 
 
     public void createParameter(Sphere sphere, Color oldColor, Color newColor) {
-        parameters = new EditSphereColorParam(sphere,oldColor, newColor);
+        parameters = new EditSphereColorParam(sphere, oldColor, newColor);
     }
 }

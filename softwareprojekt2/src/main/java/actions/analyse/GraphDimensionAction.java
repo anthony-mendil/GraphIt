@@ -1,7 +1,6 @@
 package actions.analyse;
 
 import actions.GraphAction;
-import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;

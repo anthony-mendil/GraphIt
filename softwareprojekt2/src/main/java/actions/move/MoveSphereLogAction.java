@@ -60,17 +60,14 @@ public class MoveSphereLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         if(parameters == null) {
-            Sphere oldSphere = new Sphere(sphere.getId(), sphere.getColor(), sphere.getCoordinates(), sphere.getWidth(),
-                    sphere.getHeight(), sphere.getAnnotation(), sphere.getFont(), sphere.getFontSize());
-            oldSphere.setVertices(sphere.getVertices());
+            sphere.setVertices(sphere.getVertices());
             sphere.setCoordinates(position);
 
-            createParameter(oldSphere, oldPosition, position);
+            createParameter(sphere, oldPosition, position);
         }else{
             Sphere sphere = ((MoveSphereParam)parameters).getSphere();
             Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
             Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
-            System.out.println(newPos);
             sphere.setCoordinates(newPos);
                 Double dX = newPos.getX() - oldPos.getX();
                 Double dY = newPos.getY() - newPos.getY();

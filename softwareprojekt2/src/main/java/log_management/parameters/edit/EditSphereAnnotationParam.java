@@ -21,6 +21,11 @@ public class EditSphereAnnotationParam extends Param implements Serializable {
     @Getter
     private Sphere sphere;
     /**
+     * The new sphere containing its new annotation.
+     */
+    @Getter
+    private Sphere newSphere;
+    /**
      * The old annotation of the sphere.
      */
     @Getter
@@ -38,8 +43,9 @@ public class EditSphereAnnotationParam extends Param implements Serializable {
      * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditSphereAnnotationParam(Sphere pSphere,String pOldAnnotation, String pNewAnnotation) {
+    public EditSphereAnnotationParam(Sphere pSphere, Sphere pNewSphere, String pOldAnnotation, String pNewAnnotation) {
         this.sphere = pSphere;
+        this.newSphere = pNewSphere;
         this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }
