@@ -48,10 +48,15 @@
                     <MenuItem fx:id="importGxlTemplate" mnemonicParsing="false" onAction="#importGXLWithTemplate" text="%templateImport" />
                     <MenuItem fx:id="saveLocation" mnemonicParsing="false" onAction="#exportOOF" text="%saveAs" />
                     <Menu fx:id="exportPDF" mnemonicParsing="false" text="%exportAs">
-                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF" />
-                        <MenuItem fx:id="exportGXLWithTemplate" mnemonicParsing="false" onAction="#exportGXLWithTemplate" text="%template" />
-                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL" />
-                        <MenuItem fx:id="exportLogs" mnemonicParsing="false" text="%logs" />
+
+                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF"/>
+                        <MenuItem fx:id="exportGXLWithTemplate" mnemonicParsing="false"
+                                  onAction="#exportGXLWithTemplate" text="%template"/>
+                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL"
+                                  text="GXL"/>
+                        <MenuItem fx:id="exportLogs" mnemonicParsing="false" onAction="#exportProtocol"
+                                  text="%logs"/>
+
                     </Menu>
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print" />
                 </Menu>
