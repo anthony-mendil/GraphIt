@@ -48,11 +48,13 @@ public class EditFontSphereParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
-                    + " New font: " + newFont;
+            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". "
+                    + "Old font: " + oldFont
+                    + ", new font: " + newFont + ". ";
         } else {
-            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
-                    + " Neue Schriftart: " + newFont;
+            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". "
+                    + "Alte Schriftart: " + oldFont
+                    + ", neue Schriftart: " + newFont + ". ";
         }
         return information;
     }

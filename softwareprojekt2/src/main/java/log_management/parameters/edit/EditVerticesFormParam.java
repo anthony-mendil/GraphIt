@@ -61,16 +61,20 @@ public class EditVerticesFormParam extends Param implements Serializable {
         if (language == Language.ENGLISH) {
             information += "Symptoms changed: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
-                        + ", New shape: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + "; ";
+                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
+                        + "Old shape: "
+                        + EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)
+                        + ", new shape: "
+                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + ". ";
             }
         } else {
             information += "Veränderte Symptome: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
-                        + ", Neue Form: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + "; ";
+                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
+                        + "Alte Form: "
+                        + EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)
+                        + ", neue Form: "
+                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + ". ";
             }
         }
         return information;

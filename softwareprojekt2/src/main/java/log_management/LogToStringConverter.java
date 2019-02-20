@@ -6,10 +6,8 @@ import com.google.gson.GsonBuilder;
 import gui.Values;
 import gui.properties.Language;
 import javafx.util.Pair;
-import log_management.json_deserializers.AffineTransformDeserializer;
 import log_management.json_deserializers.PairDeserializer;
 import log_management.json_deserializers.Point2DDeserializer;
-import log_management.json_serializers.AffineTransformSerializer;
 import log_management.json_serializers.PairSerializer;
 import log_management.json_serializers.Point2DSerializer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
@@ -47,8 +45,32 @@ public class LogToStringConverter {
         }
         else if (language == Language.ENGLISH) {
             try {
-                return incrementer++ + "\n" + ", Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
-                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n: " + log.getTime().format(formatter);
+                return incrementer++ + "\n" + convertLogEntryNameEnglish(log.getLogEntryName()) +
+                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + log.getTime().format(formatter);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException();
+            }
+        }
+        else {
+            throw new IllegalStateException();
+        }
+    }
+
+    public static String convertForTextFile(Log log) {
+        Language language = Values.getInstance().getGuiLanguage();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        if (language == Language.GERMAN) {
+            try {
+                return "Nummer: " + incrementer++ + "\n" + "Typ der Aktion: " + convertLogEntryNameGerman(log.getLogEntryName()) +
+                        "\n" + "Informationen: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "Zeit: " + log.getTime().format(formatter) + "\n";
+            } catch (IllegalArgumentException e) {
+                throw new IllegalStateException();
+            }
+        }
+        else if (language == Language.ENGLISH) {
+            try {
+                return "Number: " + incrementer++ + "\n" + "Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
+                        "\n" + "Information: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "Time: " + log.getTime().format(formatter) + "\n";
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
             }
@@ -210,8 +232,6 @@ public class LogToStringConverter {
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
         gsonBuilder.registerTypeAdapter(Pair.class, new PairSerializer());
         gsonBuilder.registerTypeAdapter(Pair.class, new PairDeserializer());
-        gsonBuilder.registerTypeAdapter(AffineTransform.class, new AffineTransformDeserializer());
-        gsonBuilder.registerTypeAdapter(AffineTransform.class, new AffineTransformSerializer());
         Gson gson = gsonBuilder.create();
 
         switch (logEntryName) {

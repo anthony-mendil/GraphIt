@@ -49,11 +49,13 @@ public class EditSphereColorParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
-                    + " New color: " + ColorNameCreator.getInstance().getColorName(newColor, language);
+            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". "
+                    + "Old color: " + ColorNameCreator.getInstance().getColorName(oldColor, language)
+                    + ", new color: " + ColorNameCreator.getInstance().getColorName(newColor, language) + ". ";
         } else {
-            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
-                    + " Neue Farbe: " + ColorNameCreator.getInstance().getColorName(newColor, language);
+            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". "
+                    + "Alte Farbe: " + ColorNameCreator.getInstance().getColorName(oldColor, language)
+                    + ", neue Farbe: " + ColorNameCreator.getInstance().getColorName(newColor, language) + ". ";
         }
         return information;
     }

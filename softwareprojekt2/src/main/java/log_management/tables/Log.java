@@ -2,7 +2,6 @@ package log_management.tables;
 
 import actions.LogEntryName;
 import log_management.LogToStringConverter;
-import log_management.parameters.Param;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -140,5 +139,9 @@ public class Log {
     @Override
     public String toString() {
         return LogToStringConverter.convert(this);
+    }
+
+    public String toStringForTextFile() {
+        return LogToStringConverter.convertForTextFile(this);
     }
 }

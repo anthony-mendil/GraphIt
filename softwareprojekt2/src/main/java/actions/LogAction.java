@@ -57,8 +57,6 @@ public abstract class LogAction extends GraphAction {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DDeserializer());
-        //gsonBuilder.registerTypeAdapter(Pair.class, new PairSerializer());
-        gsonBuilder.registerTypeAdapter(Pair.class, new PairDeserializer());
         Gson gson = gsonBuilder.create();
 
         String paramString = null;

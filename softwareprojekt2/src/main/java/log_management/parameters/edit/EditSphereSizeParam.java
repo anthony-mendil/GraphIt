@@ -80,7 +80,7 @@ public class EditSphereSizeParam extends Param implements Serializable {
             }
             return information;
             */
-        return null;
+        return "";
 
     }
 

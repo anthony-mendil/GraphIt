@@ -76,22 +76,22 @@ public class EditEdgesColorParam extends Param implements Serializable {
         if (language == Language.ENGLISH) {
             information += "Relations changed: ";
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i)));
-
-
-                information += ", New Color: "
-                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH) + "; ";
+                information += SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
+                information += "Old color: "
+                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.ENGLISH);
+                information += ", new color: "
+                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH) + ". ";
             }
         } else {
             information += "Geänderte Relationen: ";
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i)));
-
-
-                information += ", Neue Farbe: "
-                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN) +  "; ";
+                information += SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
+                information += "Alte Farbe: "
+                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.GERMAN);
+                information += ", neue Farbe: "
+                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN) +  ". ";
             }
         }
         return information;

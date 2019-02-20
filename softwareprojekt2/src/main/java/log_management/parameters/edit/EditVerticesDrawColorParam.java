@@ -61,18 +61,24 @@ public class EditVerticesDrawColorParam extends Param implements Serializable {
         if (language == Language.ENGLISH) {
             information += "Symptoms changed: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
-                        + ", New draw color: "
+                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
+                        + "Old draw color: "
+                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
+                            Language.ENGLISH)
+                        + ", new draw color: "
                         + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                            Language.ENGLISH) + "; ";
+                            Language.ENGLISH) + ". ";
             }
         } else {
             information += "Veränderte Symptome: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
-                        + ", Neue Umrandungsfarbe: "
+                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
+                        + "Alte Umrandungsfarbe: "
+                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
+                            Language.GERMAN)
+                        + ", neue Umrandungsfarbe: "
                         + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                            Language.GERMAN) + "; ";
+                            Language.GERMAN) + ". ";
             }
         }
         return information;

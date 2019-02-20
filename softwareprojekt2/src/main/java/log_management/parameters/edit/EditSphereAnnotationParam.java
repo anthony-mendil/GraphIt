@@ -54,11 +54,13 @@ public class EditSphereAnnotationParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
-                    + " New annotation: " + newAnnotation;
+            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". "
+                    + "Old annotation: " + oldAnnotation
+                    + ", new annotation: " + newAnnotation + ". ";
         } else {
-            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
-                    + " Neue Beschriftung: " + newAnnotation;
+            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". "
+                    + "Alte Beschriftung: "
+                    + ", neue Beschriftung: " + newAnnotation + ". ";
         }
         return information;
     }

@@ -48,11 +48,13 @@ public class EditFontSizeSphereParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Sphere:\n" + SyndromObjectPrinter.spherePrintEnglish(sphere)
-            + " New font size: " + newFontSize;
+            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". "
+                    + "Old font size: " + oldFontSize
+                    + ", new font size: " + newFontSize + ". ";
         } else {
-            information += "Sphäre:\n" + SyndromObjectPrinter.spherePrintGerman(sphere)
-                    + " Neue Schriftgröße: " + newFontSize;
+            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". "
+                    + "Alte Schriftgröße: " + oldFontSize
+                    + ", neue Schriftgröße: " + newFontSize + ". ";
         }
         return information;
     }

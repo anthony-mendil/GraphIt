@@ -71,20 +71,22 @@ public class EditEdgesTypeParam extends Param implements Serializable {
         if (language == Language.ENGLISH) {
             information += "Relations changed: ";
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += "Relation : " + SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i)));
-
-                information += ", New arrow type: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH) + "; ";
+                information += SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
+                information += "Old arrow type: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.ENGLISH);
+                information += ", new arrow type: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH) + ". ";
             }
         } else {
             information += "Geänderte Relationen: ";
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += "Relation : " + SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i)));
-
-                information += ", Neue Pfeilspitze: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN) + "; ";
+                information += SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
+                information += "Alte Pfeilspitze: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.GERMAN);
+                information += ", neue Pfeilspitze: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN) + ". ";
             }
         }
         return information;

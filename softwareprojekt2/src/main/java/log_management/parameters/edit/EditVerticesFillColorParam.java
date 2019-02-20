@@ -61,18 +61,24 @@ public class EditVerticesFillColorParam extends Param implements Serializable {
         if (language == Language.ENGLISH) {
             information += "Symptoms changed: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
-                        + ", New fill color: "
+                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
+                        + "Old fill color: "
+                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
+                            Language.ENGLISH)
+                        + ", new fill color: "
                         + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.ENGLISH) + "; ";
+                            Language.ENGLISH) + ". ";
             }
         } else {
             information += "Veränderte Symptome: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
-                        + ", Neue Füllfarbe: "
+                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
+                        + "Alte Füllfarbe: "
+                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
+                            Language.GERMAN)
+                        + ", neue Füllfarbe: "
                         + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.GERMAN) + "; ";
+                            Language.GERMAN) + ". ";
             }
         }
         return information;

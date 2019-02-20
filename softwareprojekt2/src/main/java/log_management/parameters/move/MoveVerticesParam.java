@@ -60,28 +60,26 @@ public class MoveVerticesParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Symptoms moved: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : ";
+                information += "Symptoms: ";
                 information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". ";
                 information += "Old coordinates: x = "
-                        + oldPositions.get(i).getX()
+                        + (int) oldPositions.get(i).getX()
                         + " y = " + (int) oldPositions.get(i).getY() + ", ";
                 information += ", new Coordinates: x = "
-                        + newPositions.get(i).getX()
-                        + " y = " + newPositions.get(i).getY() + ". ";
+                        + (int) newPositions.get(i).getX()
+                        + " y = " + (int) newPositions.get(i).getY() + ". ";
             }
         } else {
-            information += "Bewegte Symptome: ";
             for (int i = 0; i < oldVertices.size(); i++) {
                 information += "Symptome: ";
                 information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". ";
                 information += "Alte Koordinaten: x = "
-                        + oldPositions.get(i).getX()
+                        + (int) oldPositions.get(i).getX()
                         + " y = " + (int) oldPositions.get(i).getY();
                 information += ", neue Koordinaten: x = "
-                        + newPositions.get(i).getX()
-                        + " y = " + newPositions.get(i).getY() + ". ";
+                        + (int) newPositions.get(i).getX()
+                        + " y = " + (int) newPositions.get(i).getY() + ". ";
             }
         }
         return information;

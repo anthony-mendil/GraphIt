@@ -48,11 +48,13 @@ public class EditVertexAnnotationParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Symptom:\n" + SyndromObjectPrinter.vertexPrintGerman(vertex)
-                    + " New annotation: " + newAnnotation;
+            information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
+                    + "Old annotation: " + oldAnnotation
+                    + ", new annotation: " + newAnnotation + ". ";
         } else {
-            information += "Symptom:\n" + SyndromObjectPrinter.vertexPrintGerman(vertex)
-                    + " Neue Beschriftung: " + newAnnotation;
+            information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
+                    + "Alte Beschriftung: " + oldAnnotation
+                    + ", neue Beschriftung: " + newAnnotation + ". ";
         }
         return information;
     }

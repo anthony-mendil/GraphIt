@@ -59,14 +59,16 @@ public class EditFontSizeVerticesParam extends Param implements Serializable {
         if (language == Language.ENGLISH) {
             information += "Symptoms changed: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
-                        + "New font size: " + newFontSize.get(i) + "; ";
+                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
+                        + "Old font size: " + oldFontSize.get(i)
+                        + ", new font size: " + newFontSize.get(i) + ". ";
             }
         } else {
             information += "Veränderte Symptome: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
-                        + "Neue Schriftgröße: " + newFontSize.get(i) + "; ";
+                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
+                        + "Alte Schriftgröße: " + oldFontSize.get(i)
+                        + ", neue Schriftgröße: " + newFontSize.get(i) + ". ";
             }
         }
         return information;
