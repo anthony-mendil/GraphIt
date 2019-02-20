@@ -62,13 +62,13 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
         if (language == Language.ENGLISH) {
             String list = "Relations:\n";
             for (int i = 0; i < edges.size(); i++) {
-                list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i), verticesList.get(i));
+                list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i), verticesList.get(i)) + ". ";
             }
             return list;
         } else {
             String list = "Relationen: ";
             for (int i = 0; i < edges.size(); i++) {
-                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i), verticesList.get(i));
+                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i), verticesList.get(i)) + ". ";
             }
             return list;
         }

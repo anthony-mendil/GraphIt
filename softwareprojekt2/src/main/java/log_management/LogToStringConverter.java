@@ -28,23 +28,27 @@ import log_management.tables.Log;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.time.format.DateTimeFormatter;
 
 public class LogToStringConverter {
 
+    private static int incrementer = 1;
+
     public static String convert(Log log) {
         Language language = Values.getInstance().getGuiLanguage();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         if (language == Language.GERMAN) {
             try {
-                return "Nummer: " + log.getId() + ", Typ der Aktion: " + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        "\nParameter: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\nZeit: " + log.getTime().toString();
+                return incrementer++ + "\n" + convertLogEntryNameGerman(log.getLogEntryName()) +
+                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + log.getTime().format(formatter);
             } catch (IllegalArgumentException e) {
                 throw new IllegalStateException();
             }
         }
         else if (language == Language.ENGLISH) {
             try {
-                return "Number: " + log.getId() + ", Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
-                        "\nParameters: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\nTime: " + log.getTime().toString();
+                return incrementer++ + "\n" + ", Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
+                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n: " + log.getTime().format(formatter);
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
             }
@@ -65,13 +69,13 @@ public class LogToStringConverter {
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
                 return "Ausblenden von Ankerpunkten";
             case ADD_EDGES:
-                return "Entfernen von Realtionen rückgängig gemacht";
+                return "Hinzufügen von Realtionen";
             case ADD_SPHERE:
                 return "Hinzufügen einer Sphäre";
             case MOVE_SPHERE:
                 return "Bewegen einer Sphäre";
             case ADD_VERTICES:
-                return "Entfernen von Symptomen rückgänig gemacht";
+                return "Hinzufügen von Symptomen";
             case REMOVE_EDGES:
                 return "Entfernen von Relationen";
             case MOVE_VERTICES:
@@ -138,13 +142,13 @@ public class LogToStringConverter {
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
                 return "Anchor points faded out";
             case ADD_EDGES:
-                return "Undoing removing relations";
+                return "Relations added";
             case ADD_SPHERE:
                 return "Sphere added";
             case MOVE_SPHERE:
                 return "Sphere moved";
             case ADD_VERTICES:
-                return "Undoing adding symptoms";
+                return "Symptoms added";
             case REMOVE_EDGES:
                 return "Relations removed";
             case MOVE_VERTICES:

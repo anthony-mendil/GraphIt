@@ -46,13 +46,13 @@ public class AddRemoveVerticesParam extends Param implements Serializable {
         String information = "";
         if (language == Language.ENGLISH) {
             for (int i = 0; i < vertexList.size(); i++) {
-                information += "Symptom: " + SyndromObjectPrinter.vertexPrintEnglish(vertexList.get(i));
-                information += "In Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i));
+                information += "Symptom: " + SyndromObjectPrinter.vertexPrintEnglish(vertexList.get(i)) + ". ";
+                information += "In sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i)) + ". ";
             }
         } else {
             for (int i = 0; i < vertexList.size(); i++) {
-                information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertexList.get(i));
-                information += "In Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphereList.get(i));
+                information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertexList.get(i)) + ". ";
+                information += "In Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphereList.get(i)) + ". ";
             }
         }
         return information;

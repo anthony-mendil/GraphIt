@@ -14,9 +14,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.move.MoveVerticesParam;
 
 import java.awt.geom.Point2D;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -63,6 +61,7 @@ public class MoveVerticesLogAction extends LogAction {
         if (parameters == null){
            Map<Vertex,Point2D> oldVertices = new HashMap<>();
            Map<Vertex,Point2D> newVertices = new HashMap<>();
+
            for(Vertex vertex : vertices){
                oldVertices.put(vertex,points.get(vertex).getKey());
                newVertices.put(vertex,vertex.getCoordinates());

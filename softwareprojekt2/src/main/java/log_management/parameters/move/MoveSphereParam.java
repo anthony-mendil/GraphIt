@@ -49,17 +49,21 @@ public class MoveSphereParam extends Param implements Serializable {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Sphere moved: ";
-            information += "Sphere : " + SyndromObjectPrinter.spherePrintEnglish(sphere);
-            information += " New Coordinates: x = "
+            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". ";
+            information += "Old coordinates: x = "
+                    + oldPos.getX()
+                    + " y = " + (int) oldPos.getY() + ", ";
+            information += "new coordinates: x = "
                     + newPos.getX()
-                    + " y = " + newPos.getY() + "; ";
+                    + " y = " + (int) newPos.getY() + ". ";
         } else {
-            information += "Bewegte Sphäre: ";
-            information += "Sphäre : " + SyndromObjectPrinter.spherePrintGerman(sphere);
-            information += " Neue Koordinaten: x = "
-                    + newPos.getX()
-                    + " y = " + newPos.getY() + "; ";
+            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". ";
+            information += "Alte Koordinaten: x = "
+                    + (int) oldPos.getX()
+                    + " y = " + (int) oldPos.getY() + ", ";
+            information += "neue Koordinaten: x = "
+                    + (int) newPos.getX()
+                    + " y = " +  (int) newPos.getY() + ". ";
         }
         return information;
     }

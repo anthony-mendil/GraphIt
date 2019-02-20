@@ -34,9 +34,9 @@ public class AddRemoveSphereParam extends Param implements Serializable {
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
-            return "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere);
+            return "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ".";
         } else {
-            return "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere);
+            return "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ".";
         }
     }
 }

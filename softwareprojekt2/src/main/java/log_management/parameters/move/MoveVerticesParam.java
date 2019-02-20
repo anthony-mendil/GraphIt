@@ -63,49 +63,25 @@ public class MoveVerticesParam extends Param implements Serializable {
             information += "Symptoms moved: ";
             for (int i = 0; i < oldVertices.size(); i++) {
                 information += "Symptom : ";
-                information += "Id: " + oldVertices.get(i).getId() + ", Annotation: "
-                        + oldVertices.get(i).getAnnotation().get("en")
-                        + ", Shape: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(oldVertices.get(i).getShape(), Language.ENGLISH)
-                        + ", Coordinates: x = "
+                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". ";
+                information += "Old coordinates: x = "
                         + oldPositions.get(i).getX()
-                        + " y = "
-                        + oldPositions.get(i).getY() + ", Size: " + oldVertices.get(i).getSize()
-                        + ", Font: " + oldVertices.get(i).getFont()
-                        + ", Font size: " + oldVertices.get(i).getFontSize()
-                        + ", Fill color: "
-                        + ColorNameCreator.getInstance().
-                        getColorName(oldVertices.get(i).getFillColor(), Language.ENGLISH)
-                        + ", Draw color: "
-                        + ColorNameCreator.getInstance().
-                        getColorName(oldVertices.get(i).getDrawColor(), Language.ENGLISH);
-                information += ", New Coordinates: x = "
+                        + " y = " + (int) oldPositions.get(i).getY() + ", ";
+                information += ", new Coordinates: x = "
                         + newPositions.get(i).getX()
-                        + " y = " + newPositions.get(i).getY() + "; ";
+                        + " y = " + newPositions.get(i).getY() + ". ";
             }
         } else {
             information += "Bewegte Symptome: ";
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptom : ";
-                information += "Id: " + oldVertices.get(i).getId() + ", Beschriftung: "
-                        + oldVertices.get(i).getAnnotation().get(Language.GERMAN.name())
-                        + ", Form: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(oldVertices.get(i).getShape(), Language.GERMAN)
-                        + ", Koordinaten: x = "
+                information += "Symptome: ";
+                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". ";
+                information += "Alte Koordinaten: x = "
                         + oldPositions.get(i).getX()
-                        + " y = "
-                        + oldPositions.get(i).getY() + ", Größe: " + oldVertices.get(i).getSize()
-                        + ", Schriftart: " + oldVertices.get(i).getFont()
-                        + ", Schriftgröße: " + oldVertices.get(i).getFontSize()
-                        + ", Füllfarbe: "
-                        + ColorNameCreator.getInstance().
-                        getColorName(oldVertices.get(i).getFillColor(), Language.GERMAN)
-                        + ", Umrandungsfarbe: "
-                        + ColorNameCreator.getInstance().
-                        getColorName(oldVertices.get(i).getDrawColor(), Language.GERMAN);
-                information += ", Neue Koordinaten: x = "
+                        + " y = " + (int) oldPositions.get(i).getY();
+                information += ", neue Koordinaten: x = "
                         + newPositions.get(i).getX()
-                        + " y = " + newPositions.get(i).getY() + "; ";
+                        + " y = " + newPositions.get(i).getY() + ". ";
             }
         }
         return information;
