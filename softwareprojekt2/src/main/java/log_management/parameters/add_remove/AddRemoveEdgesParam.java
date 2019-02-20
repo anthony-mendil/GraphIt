@@ -57,7 +57,6 @@ public class AddRemoveEdgesParam extends Param implements Serializable {
         for (int i = 0; i < startVertices.size(); i++) {
             verticesList.add(new Pair<>(startVertices.get(i), endVertices.get(i)));
         }
-        //vertices.forEach(p -> verticesList.add(new Pair<>(p.getKey(), p.getValue())));
 
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {

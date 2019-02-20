@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,17 +19,17 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesSizeParam extends Param implements Serializable {
-    /**
-     * The set of vertices containing their old size.
-     */
     @Getter
-    private Map<Vertex,Integer> oldVertices;
-    /**
-     * The set of vertices containing their new size.
-     */
-    @Getter
-    private Map<Vertex,Integer> newVertices;
+    private List<Vertex> oldVertices;
 
+    @Getter
+    private List<Integer> oldSizes;
+
+    @Getter
+    private List<Vertex> newVertices;
+
+    @Getter
+    private List<Integer> newSizes;
 
     /**
      * Creates a vertices object of its own class.
@@ -34,26 +37,54 @@ public class EditVerticesSizeParam extends Param implements Serializable {
      * @param pNewVertices The vertices containing their new size.
      */
     public EditVerticesSizeParam(Map<Vertex,Integer> pOldVertices, Map<Vertex,Integer> pNewVertices ) {
-        this.oldVertices = pOldVertices;
-        this.newVertices = pNewVertices;
+        oldVertices = new ArrayList<>();
+        oldSizes = new ArrayList<>();
+        newVertices = new ArrayList<>();
+        newSizes = new ArrayList<>();
+
+        pOldVertices.forEach((v, s) -> {
+            oldVertices.add(v);
+            oldSizes.add(s);
+        });
+        pNewVertices.forEach((v, s) -> {
+            newVertices.add(v);
+            newSizes.add(s);
+        });
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed:\n";
-            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(entry.getKey())
-                        + "New size: " + newVertices.get(entry.getKey()) + "\n";
+            information += "Symptoms changed: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
+                        + ", New size: " + newSizes.get(i) + "; ";
             }
         } else {
-            information += "Veränderte Symptome:\n";
-            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(entry.getKey())
-                        + "Neue Größe: " + newVertices.get(entry.getKey()) + "\n";
+            information += "Veränderte Symptome: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
+                        + ", Neue Größe: " + newSizes.get(i) + "; ";
             }
         }
         return information;
+    }
+
+    public Map<Vertex,Integer> getOldVertices() {
+        Map<Vertex, Integer> map = new HashMap<>();
+        for (int i = 0; i < oldVertices.size(); i++) {
+            map.put(oldVertices.get(i), oldSizes.get(i));
+        }
+        return map;
+    }
+
+    public Map<Vertex,Integer> getNewVertices() {
+        Map<Vertex, Integer> map = new HashMap<>();
+        for (int i = 0; i <newVertices.size(); i++) {
+            map.put(newVertices.get(i), newSizes.get(i));
+        }
+        return map;
     }
 }

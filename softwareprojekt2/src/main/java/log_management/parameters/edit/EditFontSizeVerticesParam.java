@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,16 +19,17 @@ import java.util.Map;
  */
 @Data
 public class EditFontSizeVerticesParam extends Param implements Serializable {
-    /**
-     * The set of the vertices and their old font-size.
-     */
     @Getter
-    Map<Vertex,Integer> oldVertices;
-    /**
-     * The set of the vertices and their new font-size.
-     */
+    private List<Vertex> oldVertices;
+
     @Getter
-    Map<Vertex,Integer> newVertices;
+    private List<Integer> oldFontSize;
+
+    @Getter
+    private List<Vertex> newVertices;
+
+    @Getter
+    private List<Integer> newFontSize;
 
     /**
      * Creates a vertices object of its own class.
@@ -33,26 +37,54 @@ public class EditFontSizeVerticesParam extends Param implements Serializable {
      * @param pNewVertices The vertices containing their new font-size.
      */
     public EditFontSizeVerticesParam(Map<Vertex,Integer> pOldVertices, Map<Vertex,Integer> pNewVertices) {
-        this.oldVertices = pOldVertices;
-        this.newVertices = pNewVertices;
+        oldVertices = new ArrayList<>();
+        oldFontSize = new ArrayList<>();
+        newVertices = new ArrayList<>();
+        newFontSize = new ArrayList<>();
+
+        pOldVertices.forEach((v, i) -> {
+            oldVertices.add(v);
+            oldFontSize.add(i);
+        });
+        pNewVertices.forEach((v, i) -> {
+            newVertices.add(v);
+            newFontSize.add(i);
+        });
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed:\n";
-            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish((entry.getKey()))
-                        + "New font size: " + newVertices.get(entry.getKey()) + "\n";
+            information += "Symptoms changed: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
+                        + "New font size: " + newFontSize.get(i) + "; ";
             }
         } else {
-            information += "Veränderte Symptome:\n";
-            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman((entry.getKey()))
-                        + "Neue Schriftgröße: " + newVertices.get(entry.getKey()) + "\n";
+            information += "Veränderte Symptome: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
+                        + "Neue Schriftgröße: " + newFontSize.get(i) + "; ";
             }
         }
         return information;
+    }
+
+    public Map<Vertex,Integer> getOldVertices() {
+        Map<Vertex, Integer> map = new HashMap<>();
+        for (int i = 0; i < oldVertices.size(); i++) {
+            map.put(oldVertices.get(i), oldFontSize.get(i));
+        }
+        return map;
+    }
+
+    public Map<Vertex,Integer> getNewVertices() {
+        Map<Vertex, Integer> map = new HashMap<>();
+        for (int i = 0; i <newVertices.size(); i++) {
+            map.put(newVertices.get(i), newFontSize.get(i));
+        }
+        return map;
     }
 }

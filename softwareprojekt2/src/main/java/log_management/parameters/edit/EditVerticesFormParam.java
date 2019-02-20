@@ -11,6 +11,9 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,16 +21,17 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesFormParam extends Param implements Serializable {
-    /**
-     * The set of vertices containing their old shapes/annotation.
-     */
     @Getter
-    Map<Vertex, VertexShapeType> oldVertices;
-    /**
-     * The set of vertices containing their old shapes/annotation.
-     */
+    private List<Vertex> oldVertices;
+
     @Getter
-    Map<Vertex,VertexShapeType> newVertices;
+    private List<VertexShapeType> oldShapeTypes;
+
+    @Getter
+    private List<Vertex> newVertices;
+
+    @Getter
+    private List<VertexShapeType> newShapeTypes;
 
     /**
      * Creates a vertices object of its own class.
@@ -35,28 +39,56 @@ public class EditVerticesFormParam extends Param implements Serializable {
      * @param pNewVertices The vertices containing their new shape/annotation.
      */
     public EditVerticesFormParam(Map<Vertex,VertexShapeType> pOldVertices, Map<Vertex,VertexShapeType> pNewVertices) {
-        this.oldVertices = pOldVertices;
-        this.newVertices = pNewVertices;
+        oldVertices = new ArrayList<>();
+        oldShapeTypes = new ArrayList<>();
+        newVertices = new ArrayList<>();
+        newShapeTypes = new ArrayList<>();
+
+        pOldVertices.forEach((v, s) -> {
+            oldVertices.add(v);
+            oldShapeTypes.add(s);
+        });
+        pNewVertices.forEach((v, s) -> {
+            newVertices.add(v);
+            newShapeTypes.add(s);
+        });
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed:\n";
-            for (Map.Entry<Vertex, VertexShapeType> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(entry.getKey())
-                        + "New shape: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(newVertices.get(entry.getKey()), language) + "\n";
+            information += "Symptoms changed: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))
+                        + ", New shape: "
+                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + "; ";
             }
         } else {
-            information += "Veränderte Symptome:\n";
-            for (Map.Entry<Vertex, VertexShapeType> entry : oldVertices.entrySet()) {
-                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(entry.getKey())
-                        + "Neue Form: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(newVertices.get(entry.getKey()), language) + "\n";
+            information += "Veränderte Symptome: ";
+            for (int i = 0; i < oldVertices.size(); i++) {
+                information += "Symptom : " + SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))
+                        + ", Neue Form: "
+                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + "; ";
             }
         }
         return information;
+    }
+
+    public Map<Vertex,VertexShapeType> getOldVertices() {
+        Map<Vertex, VertexShapeType> map = new HashMap<>();
+        for (int i = 0; i < oldVertices.size(); i++) {
+            map.put(oldVertices.get(i), oldShapeTypes.get(i));
+        }
+        return map;
+    }
+
+    public Map<Vertex,VertexShapeType> getNewVertices() {
+        Map<Vertex, VertexShapeType> map = new HashMap<>();
+        for (int i = 0; i <newVertices.size(); i++) {
+            map.put(newVertices.get(i), newShapeTypes.get(i));
+        }
+        return map;
     }
 }

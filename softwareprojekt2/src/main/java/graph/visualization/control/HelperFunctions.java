@@ -3,22 +3,29 @@ package graph.visualization.control;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import gui.EdgeContextMenu;
-import gui.SphereContextMenu;
-import gui.Values;
-import gui.VertexContextMenu;
+import gui.*;
+import gui.properties.Language;
 import javafx.animation.Animation;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.awt.geom.Point2D;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 public class HelperFunctions {
@@ -146,5 +153,30 @@ public class HelperFunctions {
                 contextMenu = new EdgeContextMenu(edge).getContextMenu();
             }
             return contextMenu;
+    }
+
+    public Dialog<Map<Language, String>> getDialog(){
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/titlePane.fxml"));
+            Stage titleStage = new Stage();
+            titleStage.setResizable(false);
+            titleStage.setTitle("Title");
+            titleStage.getIcons().add(new Image(
+                    getClass().getResourceAsStream("/GraphItLogo.png")));
+
+            DialogPane dialogPane = null;
+            try {
+                dialogPane = fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Dialog<Map<Language, String>> d = new Dialog<>();
+
+            dialogPane.getButtonTypes().addAll(
+                    ButtonType.OK
+            );
+            d.setDialogPane(dialogPane);
+            d.setResultConverter(button -> button == ButtonType.OK ? new HashMap<>() : null);
+        return  d;
     }
 }

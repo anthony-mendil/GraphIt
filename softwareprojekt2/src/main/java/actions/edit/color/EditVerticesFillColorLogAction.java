@@ -53,9 +53,12 @@ public class EditVerticesFillColorLogAction extends LogAction {
             Map<Vertex,Color> newVerticesParam = new HashMap<>();
             for (Vertex vertex: pickedState.getPicked()) {
                 if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    oldVerticesParam.put(vertex, vertex.getFillColor());
-                    newVerticesParam.put(vertex, color);
+                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
+                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
+                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
+                    oldVerticesParam.put(oldVertex, oldVertex.getFillColor());
                     vertex.setFillColor(color);
+                    newVerticesParam.put(vertex, color);
                 }else{
                     helper.setActionText("Die Farbe der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedVertices.add(vertex);

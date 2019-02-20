@@ -52,9 +52,12 @@ public class EditFontSizeVerticesLogAction extends LogAction {
             List<Vertex> lockedVertices = new LinkedList<>();
             for (Vertex vertex: pickedState.getPicked()) {
                 if(vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    oldVerticesParam.put(vertex, vertex.getFontSize());
-                    newVerticesParam.put(vertex, size);
+                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
+                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
+                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
+                    oldVerticesParam.put(oldVertex, oldVertex.getFontSize());
                     vertex.setFontSize(size);
+                    newVerticesParam.put(vertex, size);
                 }else{
                     helper.setActionText("Die Größe der Schrift der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
                     lockedVertices.add(vertex);

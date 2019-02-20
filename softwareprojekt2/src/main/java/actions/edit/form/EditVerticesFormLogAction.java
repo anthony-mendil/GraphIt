@@ -51,7 +51,10 @@ public class EditVerticesFormLogAction extends LogAction {
             Map<Vertex,VertexShapeType> newVertices = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
                 if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    oldVertices.put(vertex, vertex.getShape());
+                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
+                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
+                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
+                    oldVertices.put(oldVertex, oldVertex.getShape());
                     vertex.setShape(type);
                     newVertices.put(vertex, type);
                 }else{

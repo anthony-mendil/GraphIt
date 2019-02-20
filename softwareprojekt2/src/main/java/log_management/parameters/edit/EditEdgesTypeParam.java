@@ -63,9 +63,6 @@ public class EditEdgesTypeParam extends Param implements Serializable {
             newEdges.add(e);
             newArrowTypes.add(ed);
         });
-
-        //this.edgesOldEdgeType = pOldEdges;
-        //this.edgesNewEdgeType = pNewEdges;
     }
     @Override
     public String prettyPrint() {

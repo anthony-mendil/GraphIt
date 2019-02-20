@@ -8,10 +8,8 @@ import actions.edit.font.EditFontSphereLogAction;
 import actions.remove.RemoveSphereLogAction;
 import graph.graph.FunctionMode;
 import graph.graph.Sphere;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.TreeItem;
+import graph.visualization.control.HelperFunctions;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import lombok.AccessLevel;
@@ -52,7 +50,8 @@ public class SphereContextMenu {
         MenuItem annotation = new MenuItem("Titel");
         HelperGui.setImage("/icons2/fancy.png", annotation);
         annotation.setOnAction(event -> {
-            TextInputDialog dialog = new TextInputDialog(sphere.getAnnotation().get(values.getGuiLanguage().name()));
+            HelperFunctions helperFunctions = new HelperFunctions();
+            Dialog dialog = helperFunctions.getDialog();
 
             dialog.setHeaderText("Titel Sphäre eingeben:");
             dialog.setContentText("Titel:");
@@ -60,13 +59,13 @@ public class SphereContextMenu {
 
             Optional<String> result = dialog.showAndWait();
 
-            result.ifPresent(title -> {
+            /*result.ifPresent(title -> {
                 if (title.length() > 100){
                     title = title.substring(0, 99);
                 }
                 EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(title);
                 history.execute(editSphereAnnotationLogAction);
-            });
+            });*/
         });
 
         // COLOR
