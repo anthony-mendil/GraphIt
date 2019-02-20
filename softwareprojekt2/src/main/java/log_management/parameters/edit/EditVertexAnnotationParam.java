@@ -21,7 +21,7 @@ public class EditVertexAnnotationParam extends Param implements Serializable {
     @Getter
     private Vertex vertex;
     /**
-     * The new annotation of the vertex.
+     * The new vertex and it's new annotation.
      */
     @Getter
     private String newAnnotation;
@@ -38,7 +38,7 @@ public class EditVertexAnnotationParam extends Param implements Serializable {
      * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.
      */
-    public EditVertexAnnotationParam(Vertex pVertex,String pOldAnnotation, String pNewAnnotation) {
+    public EditVertexAnnotationParam(Vertex pVertex, String pOldAnnotation, String pNewAnnotation) {
         this.vertex = pVertex;
         this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;

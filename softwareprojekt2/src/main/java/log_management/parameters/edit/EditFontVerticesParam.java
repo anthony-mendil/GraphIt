@@ -75,8 +75,8 @@ public class EditFontVerticesParam extends Param implements Serializable {
 
     public Map<Vertex,String> getOldVertices() {
         Map<Vertex, String> map = new HashMap<>();
-        for (int i = 0; i < oldVertices.size(); i++) {
-            map.put(oldVertices.get(i), oldFonts.get(i));
+        for (int i = 0; i < newVertices.size(); i++) {
+            map.put(newVertices.get(i), oldFonts.get(i));
         }
         return map;
     }

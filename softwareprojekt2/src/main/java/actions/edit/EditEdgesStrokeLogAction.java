@@ -46,9 +46,7 @@ public class EditEdgesStrokeLogAction extends LogAction {
             Map<Edge,StrokeType> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
                 if(!e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    Edge oldEdge = new Edge(e.getId(), e.getColor(), e.getStroke(),
-                            e.getArrowType(), e.isVisible(), e.isHasAnchorIn(), e.isHasAnchorOut());
-                    oldEdges.put(oldEdge, oldEdge.getStroke());
+                    oldEdges.put(e, e.getStroke());
                     e.setStroke(stroke);
                     newEdges.put(e, stroke);
                 }else{

@@ -1,6 +1,7 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
+import graph.graph.Vertex;
 import gui.Values;
 import gui.properties.Language;
 import javafx.util.Pair;
@@ -22,21 +23,41 @@ public class EditSphereSizeParam extends Param implements Serializable {
     @Getter
     private Sphere sphere;
 
+    /**
+     * The old width.
+     */
     @Getter
-    private boolean enlarge;
-
+    private Double oldWidth;
+    /**
+     * The new width.
+     */
+    @Getter
+    private Double newWidth;
+    /**
+     * The old height.
+     */
+    @Getter
+    private Double oldHeight;
+    /**
+     * The new height.
+     */
+    @Getter
+    private Double newHeight;
     /**
      * Creates a vertices object of its own class.
      * @param pSphere The sphere containing its old size.
-     * @param pEnlarge For knowing which type of size change it is.
      */
-    public EditSphereSizeParam(Sphere pSphere, boolean pEnlarge) {
+    public EditSphereSizeParam(Sphere pSphere, Pair<Double,Double> pOldSize, Pair<Double,Double> pNewSize) {
         this.sphere = pSphere;
-        this.enlarge = pEnlarge;
+        this.oldWidth = pOldSize.getKey();
+        this.newWidth = pNewSize.getKey();
+        this.oldHeight = pOldSize.getValue();
+        this.newHeight = pNewSize.getValue();
     }
 
     @Override
     public String prettyPrint() {
+        /*
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
         if (enlarge) {
@@ -58,6 +79,15 @@ public class EditSphereSizeParam extends Param implements Serializable {
                         + " Neue Breite: " + (sphere.getWidth() - 10) + ", Neue Höhe: " + (sphere.getHeight() - 10);
             }
             return information;
-        }
+            */
+        return null;
+
+    }
+
+    public Pair<Double,Double> getOldSize(){
+        return new Pair<>(oldWidth,oldHeight);
+    }
+    public Pair<Double,Double> getNewSize(){
+        return new Pair<>(newWidth,newHeight);
     }
 }

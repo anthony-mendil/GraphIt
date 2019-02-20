@@ -43,7 +43,6 @@ public class ActionHistory {
         for(int i = current+1; i<maxActions; i++){
             actions[i] = null;
         }
-        System.out.println(current);
     }
 
     public static ActionHistory getInstance(){
@@ -63,7 +62,6 @@ public class ActionHistory {
             }else{
                 System.err.println("Can't undo further more actions.");
             }
-            System.out.println(current);
     }
 
     /**
@@ -78,7 +76,6 @@ public class ActionHistory {
         }catch(UnsupportedOperationException e){
             System.err.println("Can't redo the latest action.");
         }
-        System.out.println(current);
     }
 
     /**

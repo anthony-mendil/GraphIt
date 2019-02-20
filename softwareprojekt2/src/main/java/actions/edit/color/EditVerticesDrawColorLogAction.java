@@ -50,10 +50,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
             Map<Vertex, Color> paramNewVertices = new HashMap<>();
             for (Vertex vertex: pickedStateVertex.getPicked()) {
                 if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
-                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
-                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
-                    paramOldVertices.put(oldVertex, oldVertex.getDrawColor());
+                    paramOldVertices.put(vertex, vertex.getDrawColor());
                     vertex.setDrawColor(color);
                     paramNewVertices.put(vertex, color);
                 }else{

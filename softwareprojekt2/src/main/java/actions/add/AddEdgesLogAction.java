@@ -56,9 +56,11 @@ public class AddEdgesLogAction extends LogAction {
                 graph.addEdge(edge.getKey(),edge.getValue());
                 createParameter(edge);
             }else{
-                for(Edge edge : ((AddRemoveEdgesParam)parameters).getEdges()){
-                    edu.uci.ics.jung.graph.util.Pair<Vertex> pair = graph.getEndpoints(edge);
-                    graph.addEdge(pair.getFirst(),pair.getSecond());
+                List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
+                List<Vertex> startVertices = ((AddRemoveEdgesParam)parameters).getStartVertices();
+                List<Vertex> endVertices = ((AddRemoveEdgesParam)parameters).getEndVertices();
+                for(Edge edge : edges){
+                    graph.addEdgeExisting(edge, startVertices.get(edges.indexOf(edge)), endVertices.get(edges.indexOf(edge)));
                 }
             }
             vv.repaint();

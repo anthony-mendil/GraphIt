@@ -92,8 +92,8 @@ public class EditEdgesTypeParam extends Param implements Serializable {
 
     public Map<Edge,EdgeArrowType> getEdgesOldEdgeType() {
         Map<Edge, EdgeArrowType> map = new HashMap<>();
-        for (int i = 0; i < oldEdges.size(); i++) {
-            map.put(oldEdges.get(i), oldArrowTypes.get(i));
+        for (int i = 0; i < newEdges.size(); i++) {
+            map.put(newEdges.get(i), oldArrowTypes.get(i));
         }
         return map;
     }

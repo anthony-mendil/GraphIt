@@ -42,34 +42,28 @@ public class EditVerticesSizeLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if(parameters == null){
             List<Vertex> lockedVertices = new LinkedList<>();
-        PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        Map<Vertex,Integer> oldVertices = new HashMap<>();
-        Map<Vertex,Integer> newVertices = new HashMap<>();
-        for (Vertex vertex: pickedState.getPicked()) {
-            if(!vertex.isLockedStyle()){
-            if (sizeChange == SizeChange.ENLARGE) {
-                Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
-                        vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
-                        vertex.getSize(), vertex.getFont(), vertex.getFontSize());
-                oldVertices.put(oldVertex,oldVertex.getSize());
-                vertex.setSize(vertex.getSize() + 5);
-                newVertices.put(vertex,vertex.getSize());
-            } else {
-                if (vertex.getSize() > 45) {
-                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
-                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
-                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
-                    oldVertices.put(oldVertex,oldVertex.getSize());
-                    vertex.setSize(vertex.getSize() - 5);
-                    newVertices.put(vertex,vertex.getSize());
+            PickedState<Vertex> pickedState = vv.getPickedVertexState();
+            Map<Vertex,Integer> oldVertices = new HashMap<>();
+            Map<Vertex,Integer> newVertices = new HashMap<>();
+            for (Vertex vertex: pickedState.getPicked()) {
+                if(!vertex.isLockedStyle()){
+                    if (sizeChange == SizeChange.ENLARGE) {
+                        oldVertices.put(vertex,vertex.getSize());
+                        vertex.setSize(vertex.getSize() + 5);
+                        newVertices.put(vertex,vertex.getSize());
+                    } else {
+                        if (vertex.getSize() > 45) {
+                            oldVertices.put(vertex,vertex.getSize());
+                            vertex.setSize(vertex.getSize() - 5);
+                            newVertices.put(vertex,vertex.getSize());
+                        }
+                    }
+                }else{
+                    helper.setActionText("Die Größe der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+                    lockedVertices.add(vertex);
                 }
             }
-        }else{
-                helper.setActionText("Die Größe der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
-                lockedVertices.add(vertex);
-            }
-        }
-        createParameter(oldVertices,newVertices);
+            createParameter(oldVertices,newVertices);
         }else{
             Map<Vertex,Integer> oldVertices = ((EditVerticesSizeParam)parameters).getOldVertices();
             Map<Vertex,Integer> newVertices = ((EditVerticesSizeParam)parameters).getNewVertices();

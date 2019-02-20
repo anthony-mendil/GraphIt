@@ -53,10 +53,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
             Map<Vertex,Color> newVerticesParam = new HashMap<>();
             for (Vertex vertex: pickedState.getPicked()) {
                 if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                    Vertex oldVertex = new Vertex(vertex.getId(), vertex.getFillColor(), vertex.getCoordinates(),
-                            vertex.getShape(), vertex.getAnnotation(), vertex.getDrawColor(),
-                            vertex.getSize(), vertex.getFont(), vertex.getFontSize());
-                    oldVerticesParam.put(oldVertex, oldVertex.getFillColor());
+                    oldVerticesParam.put(vertex, vertex.getFillColor());
                     vertex.setFillColor(color);
                     newVerticesParam.put(vertex, color);
                 }else{
@@ -70,7 +67,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
             Map<Vertex, Color> newVertices = ((EditVerticesFillColorParam)parameters).getNewVertices();
             for(Map.Entry<Vertex,Color> entry : oldVertices.entrySet()){
                 Vertex vertex = entry.getKey();
-                vertex.setFillColor((Color) newVertices.get(vertex));
+                vertex.setFillColor(newVertices.get(vertex));
             }
         }
         vv.repaint();

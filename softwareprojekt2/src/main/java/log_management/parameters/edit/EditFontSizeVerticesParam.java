@@ -74,8 +74,8 @@ public class EditFontSizeVerticesParam extends Param implements Serializable {
 
     public Map<Vertex,Integer> getOldVertices() {
         Map<Vertex, Integer> map = new HashMap<>();
-        for (int i = 0; i < oldVertices.size(); i++) {
-            map.put(oldVertices.get(i), oldFontSize.get(i));
+        for (int i = 0; i < newVertices.size(); i++) {
+            map.put(newVertices.get(i), oldFontSize.get(i));
         }
         return map;
     }
