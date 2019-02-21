@@ -31,7 +31,7 @@ import java.time.format.DateTimeFormatter;
 
 public class LogToStringConverter {
 
-    private int incrementer = 1;
+    private static int incrementer = 1;
 
     public void resetIncrementer(){
         incrementer = 1;
