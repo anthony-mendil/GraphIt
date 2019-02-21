@@ -10,6 +10,7 @@ import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
 import actions.add.AddVerticesLogAction;
+import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
@@ -38,6 +39,7 @@ import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.algorithmen.AnalyseTypeSingle;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
@@ -2482,5 +2484,10 @@ public class Controller implements ObserverSyndrom {
             }
         };
         service.start();
+    }
+
+    @FXML public void analysisCycles(){
+        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
+        analysisGraphAction.action();
     }
 }
