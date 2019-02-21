@@ -2487,7 +2487,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     @FXML public void analysisCycles(){
-        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
+        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN, null);
         analysisGraphAction.action();
     }
 }
