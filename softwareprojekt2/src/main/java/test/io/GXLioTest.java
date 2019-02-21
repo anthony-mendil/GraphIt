@@ -127,7 +127,7 @@ public class GXLioTest {
     }
 
 
-
+ 
     @Before
     public void prepare(){
         doc = new GXLDocument();
