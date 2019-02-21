@@ -23,5 +23,9 @@ public enum AnalyseTypeSingle {
     /**
      * Filter-type which will filter cycles of the graph.
      */
-    CYCLEN
+    CYCLEN,
+    /**
+     * Filter-type which will filter the edge type of the selected vertex.
+     */
+    EDGETYPE,
 }

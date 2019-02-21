@@ -10,6 +10,7 @@ import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
 import actions.add.AddVerticesLogAction;
+import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
@@ -38,6 +39,7 @@ import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
+import graph.algorithmen.AnalyseTypeSingle;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
@@ -1337,7 +1339,6 @@ public class Controller implements ObserverSyndrom {
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
         rulesTemplateAction.action();
-        logger.error(Syndrom.getInstance().getTemplate().toString());
     }
 
     /**
@@ -1693,6 +1694,15 @@ public class Controller implements ObserverSyndrom {
             if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
                 currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
+            } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
+                currentFont = newValue;
+                editFontSphere(currentFont);
+            } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
+                currentSize = newValue;
+                editFontSizeVertices(Integer.parseInt(currentSize));
+            } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
+                currentFont = newValue;
+                editFontVertex(currentFont);
             }
             root.requestFocus();
         }
@@ -1744,8 +1754,8 @@ public class Controller implements ObserverSyndrom {
         filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.NEUTRAL));
     }
 
-    private void loadFontComboBox(ComboBox<String> comboBox) {
-        ObservableList<String> fontsList =
+    public void loadFontComboBox(ComboBox<String> comboBox) {
+        ObservableList<String> fonts =
                 FXCollections.observableArrayList(
                         "AveriaSansLibre",
                         "Kalam",
@@ -1762,7 +1772,7 @@ public class Controller implements ObserverSyndrom {
             comboBox.getEditor().setText(values.getFontVertex());
         }
 
-        comboBox.setItems(fontsList);
+        comboBox.setItems(fonts);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
@@ -2474,5 +2484,10 @@ public class Controller implements ObserverSyndrom {
             }
         };
         service.start();
+    }
+
+    @FXML public void analysisCycles(){
+        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN, null);
+        analysisGraphAction.action();
     }
 }

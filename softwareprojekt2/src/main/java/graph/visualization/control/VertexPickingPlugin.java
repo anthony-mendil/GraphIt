@@ -168,6 +168,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e) && vert != null && source != null && !source.equals(vert)) {
             if(values.getMode() == FunctionMode.TEMPLATE ||
                     Syndrom.getInstance().getTemplate().getMaxEdges() > Syndrom.getInstance().getVv().getGraphLayout().getGraph().getEdges().size()) {
+                    System.out.println(values.getEdgeArrowType().name());
+                    System.out.println(Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed());
                 if(values.getMode() != FunctionMode.TEMPLATE) {
                     switch (values.getEdgeArrowType()) {
                         case REINFORCED:
@@ -275,8 +277,13 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     s.setVertices(newList);
                 }
             }
-            MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
-            history.execute(moveVerticesLogAction);
+            List<Vertex> vertList = new ArrayList<>();
+            vertList.addAll(pickedState.getPicked());
+            Vertex pivotVertex = vertList.get(0);
+            if(pivotVertex.getCoordinates() != points.get(pivotVertex).getKey()) {
+                MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
+                history.execute(moveVerticesLogAction);
+            }
         }
     }
 
