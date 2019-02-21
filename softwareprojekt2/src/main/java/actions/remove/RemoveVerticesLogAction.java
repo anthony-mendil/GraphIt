@@ -8,11 +8,14 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.*;
+import java.util.List;
 
 /**
  * Removes vertices from the syndrom graph.
@@ -53,6 +56,7 @@ public class RemoveVerticesLogAction extends LogAction {
             List<Vertex> lockedVertices = new LinkedList<>();
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
             Map<Vertex,Sphere> params = new HashMap<>();
+            Map<Edge, Pair<Vertex,Vertex>> edg = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
                 if(!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) {
                    Point2D posVertex = vertex.getCoordinates();
@@ -61,6 +65,18 @@ public class RemoveVerticesLogAction extends LogAction {
                     if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
                         lockedVertices.add(vertex);
                     }else {
+                        Collection<Edge> inList = graph.getInEdges(vertex);
+                        Collection<Edge> outList = graph.getOutEdges(vertex);
+                        for(Edge e : inList){
+                            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+                            Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
+                            edg.put(e,vertexPair);
+                        }
+                        for(Edge e : outList){
+                            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+                            Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
+                            edg.put(e,vertexPair);
+                        }
                         graph.removeVertex(vertex);
                         sp.getVertices().remove(vertex);
                         params.put(vertex, sp);
@@ -74,7 +90,7 @@ public class RemoveVerticesLogAction extends LogAction {
                 ActionHistory.getInstance().removeLastEntry();
                 return;
             }
-            createParameter(params);
+            createParameter(params, edg);
         } else{
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getVertices();
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
@@ -101,7 +117,7 @@ public class RemoveVerticesLogAction extends LogAction {
     }
 
 
-    public void createParameter(Map<Vertex,Sphere> vertices) {
-        parameters = new AddRemoveVerticesParam(vertices);
+    public void createParameter(Map<Vertex,Sphere> vertices, Map<Edge,Pair<Vertex,Vertex>> edges) {
+        parameters = new AddRemoveVerticesParam(vertices, edges);
     }
 }

@@ -2,10 +2,23 @@ package actions.analyse;
 
 import actions.GraphAction;
 import edu.uci.ics.jung.graph.util.EdgeType;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.algorithmen.AnalyseTypeSeveral;
 import graph.algorithmen.AnalyseTypeSingle;
+import graph.graph.Edge;
+import graph.graph.EdgeArrowType;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
+import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.transformer.edge.EdgeHighlightTransformer;
+import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
+import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
+import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
+import javafx.util.Pair;
+import jgrapht.JGraphTHandler;
+import org.jgrapht.Graphs;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
@@ -26,7 +39,14 @@ public class AnalysisGraphAction extends GraphAction{
      * A single analyse type, one type can be analysed at once.
      */
     private AnalyseTypeSingle analyseTypeSingle;
-
+    /**
+     * The amount of successors/predecessors of a specific vertex.
+     */
+    private int amountVertices;
+    /**
+     * The edge-type which will be filtered.
+     */
+    private EdgeArrowType edgeType;
     /**
      * Constructor in case the user chooses a AnalyseTypeSeveral - analyse option.
      * These analyse functions are implemented by JUNG functions.
@@ -35,13 +55,11 @@ public class AnalysisGraphAction extends GraphAction{
      * The action is applied to all picked vertices/edges or to all objects if nothing is picked.
      *
      * @param pAnalyseTypeSeveral A list of AnalyseTypeSeveral, several types can be analysed at once.
-     * @param counterEdges The number of incoming/outgoing edges to analyse.
      * @param counterVertex The number of adjacent vertices to analyse.
-     * @param edgeType The edge type to analyse.
      */
-    public AnalysisGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, int counterVertex, int counterEdges,
-                               EdgeType edgeType) {
-        throw new UnsupportedOperationException();
+    public AnalysisGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, int counterVertex) {
+
+        amountVertices = counterVertex;
     }
 
     /**
@@ -51,18 +69,106 @@ public class AnalysisGraphAction extends GraphAction{
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
      * @param pAnalyseTypeSingle The analyse type, one type can be analysed at once.
+     * @param edgeArrowType The edge type to analyse.
      */
-    public AnalysisGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {
-        throw new UnsupportedOperationException();
+    public AnalysisGraphAction(AnalyseTypeSingle pAnalyseTypeSingle, EdgeArrowType edgeArrowType) {
+        analyseTypeSingle = pAnalyseTypeSingle;
+        this.edgeType = edgeArrowType;
     }
 
     @Override
     public void action() {
-        throw new UnsupportedOperationException();
+        Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
+
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+            for(Edge edge : graph.getEdges()){
+                edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
+                Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
+                edges.add(vertices);
+            }
+        JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()), edges);
+        if(analyseTypeSingle != null) {
+            ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+            ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
+            switch (analyseTypeSingle) {
+                case CYCLEN:
+                    List<List<Vertex>> listCylces = jGraphTHandler.detectCycles();
+                    for (List<Vertex> list : listCylces) {
+                        for (int i = 0; i < list.size(); i++) {
+                            verticesAnalyse.add(list.get(i));
+                            if (i == list.size() - 1) {
+                                edgesAnalyse.add(graph.findEdge(list.get(i), list.get(0)));
+                            } else {
+                                edgesAnalyse.add(graph.findEdge(list.get(i), list.get(i + 1)));
+                            }
+                        }
+                    }
+                    break;
+                case DIVERGENT_BRANCHES:
+                    Set<Vertex> divergentBranches = jGraphTHandler.detectDivergentBranches();
+                    for (Vertex vertex : divergentBranches) {
+                        Collection<Edge> successors = graph.getOutEdges(vertex);
+                        edgesAnalyse.addAll(successors);
+                    }
+                    verticesAnalyse.addAll(divergentBranches);
+
+                    break;
+                case CONVERGENT_BRANCHES:
+                    Set<Vertex> convergentBranches = jGraphTHandler.detectConvergentBranches();
+                    for (Vertex vertex : convergentBranches) {
+                        Collection<Edge> predecessors = graph.getInEdges(vertex);
+                        edgesAnalyse.addAll(predecessors);
+                    }
+                    verticesAnalyse.addAll(convergentBranches);
+                    break;
+                case BRANCHES:
+                    Set<Vertex> branches = jGraphTHandler.detectDivergentBranches();
+                    branches.addAll(jGraphTHandler.detectConvergentBranches());
+                    for (Vertex vertex : branches) {
+                        Collection<Edge> predecessors = graph.getInEdges(vertex);
+                        if (predecessors.size() > 1) {
+                            edgesAnalyse.addAll(predecessors);
+                        }
+                        Collection<Edge> successors = graph.getOutEdges(vertex);
+                        if (successors.size() > 1) {
+                            edgesAnalyse.addAll(successors);
+                        }
+                    }
+                    verticesAnalyse.addAll(branches);
+                    break;
+                case EDGE_CHAINS:
+                    List<List<Vertex>> edgeChains = jGraphTHandler.detectRelationChains();
+                    break;
+                case EDGETYPE:
+                    for(Edge edge : graph.getEdges()){
+                        if(edge.getArrowType() == edgeType){
+                            edgesAnalyse.add(edge);
+                        }
+                    }
+            }
+
+            // TODO
+            vv.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
+            vv2.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
+            vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+            vv2.getRenderContext().setEdgeDrawPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+            vv.getRenderContext().setArrowFillPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+            vv2.getRenderContext().setArrowFillPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+            vv.repaint();
+            vv2.repaint();
+
+        }else{
+
+        }
     }
 
+    /**
+     * There is no undo for this action.
+     */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        return;
     }
 }

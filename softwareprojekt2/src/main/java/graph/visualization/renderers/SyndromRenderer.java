@@ -54,7 +54,9 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             Collection<E> incoming = new ArrayList<>();
             Collection<E> outgoing = new ArrayList<>();
             for (V v : included) {
-                incoming.addAll(g.getInEdges(v));
+                if(!g.getInEdges(v).isEmpty()) {
+                    incoming.addAll(g.getInEdges(v));
+                }
                 outgoing.addAll(g.getOutEdges(v));
             }
 

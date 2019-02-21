@@ -196,8 +196,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                     vv.getGraphLayout().setLocation(v, vp);
                 }
             }else{
-                MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s,spherePickedCoord,s.getCoordinates());
-                history.execute(moveSphereLogAction);
+                if(spherePickedCoord != s.getCoordinates()) {
+                    MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s, spherePickedCoord, s.getCoordinates());
+                    history.execute(moveSphereLogAction);
+                }
             }
         }
 

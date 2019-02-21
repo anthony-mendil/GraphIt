@@ -981,7 +981,7 @@
                                                         <MenuItem fx:id="convergent" mnemonicParsing="false" text="%filterConvergentBranches" />
                                                         <MenuItem fx:id="divergent" mnemonicParsing="false" text="%filterDivergentBranches" />
                                                         <MenuItem fx:id="branches" mnemonicParsing="false" text="%filterBranches" />
-                                                        <MenuItem fx:id="cycles" mnemonicParsing="false" text="%filterCycles" />
+                                                        <MenuItem fx:id="cycles" mnemonicParsing="false" text="%filterCycles" onAction="#analysisCycles" />
                                                     </items>
                                                     <padding>
                                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

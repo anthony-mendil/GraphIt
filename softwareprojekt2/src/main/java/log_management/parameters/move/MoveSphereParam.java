@@ -41,8 +41,8 @@ public class MoveSphereParam extends Param implements Serializable {
      */
     public MoveSphereParam(Sphere pSphere, Point2D pOldPos, Point2D pNewPos) {
         this.sphere = pSphere;
-        this.oldPos = pNewPos;
-        this.newPos = pOldPos;
+        this.oldPos = pOldPos;
+        this.newPos = pNewPos;
     }
     @Override
     public String prettyPrint() {
