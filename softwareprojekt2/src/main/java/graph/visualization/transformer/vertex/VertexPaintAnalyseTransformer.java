@@ -5,6 +5,7 @@ import gui.Values;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Defines a functor that transform a vertex into highlight color. The input vertex is left unchanged.
@@ -12,10 +13,14 @@ import java.awt.*;
  *
  * @param <V> The vertex type
  */
-public class VertexPaintHighlightTransformer<V> implements Transformer<V, Paint> {
+public class VertexPaintAnalyseTransformer<V> implements Transformer<V, Paint> {
+    private ArrayList<Vertex> vertices;
+    public VertexPaintAnalyseTransformer(ArrayList<Vertex> vertices){
+        this.vertices = vertices;
+    }
     @Override
     public Paint transform(V v) {
         Vertex vertex = (Vertex) v;
-        return vertex.isHighlighted() ? Values.getInstance().getHighlightPaint() : vertex.getFillColor();
+        return vertices.contains(vertex) ? Color.green : Color.GRAY;
     }
 }
