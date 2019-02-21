@@ -1,6 +1,8 @@
 package gui;
 
 import actions.analyse.FilterGraphAction;
+import graph.graph.Syndrom;
+import graph.graph.Template;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
@@ -57,17 +59,16 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
         switch (checkBox.getId()) {
             case "reinforcedBox":
-                logger.error("yea");
+                /*System.out.println("neutralBox" + " " + newValue);*/
+                Syndrom.getInstance().getTemplate().setReinforcedEdgesAllowed(newValue);
                 break;
             case "neutralBox":
-                logger.error("yea");
-                /*System.out.println("neutralBox" + " " + newValue);
-                //Template.getInstance().setNeutralEdgesAllowed(newValue)*/
+                /*System.out.println("neutralBox" + " " + newValue);*/
+                Syndrom.getInstance().getTemplate().setNeutralEdgesAllowed(newValue);
                 break;
             case "extenuatingBox":
-                logger.error("yea");
                 //System.out.println("extenuatingBox" + newValue);
-                //Template.getInstance().setExtenuatingEdgesAllowed(newValue);
+                Syndrom.getInstance().getTemplate().setExtenuatingEdgesAllowed(newValue);
                 break;
             case "treeViewArrowType": treeViewArrowTypeBoxChecked(newValue);
                 break;

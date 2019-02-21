@@ -1337,7 +1337,6 @@ public class Controller implements ObserverSyndrom {
 
         RulesTemplateAction rulesTemplateAction = new RulesTemplateAction(temp);
         rulesTemplateAction.action();
-        logger.error(Syndrom.getInstance().getTemplate().toString());
     }
 
     /**
@@ -1693,6 +1692,15 @@ public class Controller implements ObserverSyndrom {
             if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
                 currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
+            } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
+                currentFont = newValue;
+                editFontSphere(currentFont);
+            } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
+                currentSize = newValue;
+                editFontSizeVertices(Integer.parseInt(currentSize));
+            } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
+                currentFont = newValue;
+                editFontVertex(currentFont);
             }
             root.requestFocus();
         }
@@ -1744,8 +1752,8 @@ public class Controller implements ObserverSyndrom {
         filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.NEUTRAL));
     }
 
-    private void loadFontComboBox(ComboBox<String> comboBox) {
-        ObservableList<String> fontsList =
+    public void loadFontComboBox(ComboBox<String> comboBox) {
+        ObservableList<String> fonts =
                 FXCollections.observableArrayList(
                         "AveriaSansLibre",
                         "Kalam",
@@ -1762,7 +1770,7 @@ public class Controller implements ObserverSyndrom {
             comboBox.getEditor().setText(values.getFontVertex());
         }
 
-        comboBox.setItems(fontsList);
+        comboBox.setItems(fonts);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
