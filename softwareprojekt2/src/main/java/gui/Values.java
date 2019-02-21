@@ -196,15 +196,15 @@ public class Values {
 
     public HashMap<String, String> getDefaultAnnotationVertex(){
         HashMap<String, String> annotation = new HashMap<>();
-        annotation.put(Language.GERMAN.name(),"Vertex");
-        annotation.put(Language.ENGLISH.name(),"vertex");
+        annotation.put(Language.GERMAN.name(),"Symptom");
+        annotation.put(Language.ENGLISH.name(),"Symptom");
         return annotation;
     }
 
     public HashMap<String, String> getDefaultAnnotationSphere(){
         HashMap<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(),"Sphäre");
-        annotation.put(Language.ENGLISH.name(),"sphere");
+        annotation.put(Language.ENGLISH.name(),"Sphere");
         return annotation;
     }
 

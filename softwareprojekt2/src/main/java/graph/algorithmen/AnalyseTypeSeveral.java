@@ -12,16 +12,12 @@ public enum AnalyseTypeSeveral {
      * Filter-type which will filter the successor-vertices of the selected vertex.
      */
     NEIGHBOUR_SUCCESSOR,
-    /**
-     * Filter-type which will filter the originating edges of the selected vertex.
-     */
-    OUTGOING_EDGES,
-    /**
-     * Filter-type which will filter the incoming edges of the selected vertex.
-     */
-    INCOMING_EDGES,
-    /**
-     * Filter-type which will filter the edge type of the selected vertex.
-     */
-    EDGETYPE,
+//    /**
+//     * Filter-type which will filter the originating edges of the selected vertex.
+//     */
+//    OUTGOING_EDGES,
+//    /**
+//     * Filter-type which will filter the incoming edges of the selected vertex.
+//     */
+//    INCOMING_EDGES,
 }

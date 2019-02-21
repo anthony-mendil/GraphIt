@@ -277,8 +277,13 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     s.setVertices(newList);
                 }
             }
-            MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
-            history.execute(moveVerticesLogAction);
+            List<Vertex> vertList = new ArrayList<>();
+            vertList.addAll(pickedState.getPicked());
+            Vertex pivotVertex = vertList.get(0);
+            if(pivotVertex.getCoordinates() != points.get(pivotVertex).getKey()) {
+                MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
+                history.execute(moveVerticesLogAction);
+            }
         }
     }
 
