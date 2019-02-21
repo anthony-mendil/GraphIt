@@ -21,7 +21,7 @@ public class MoveSphereLogAction extends LogAction {
     /**
      * The old position.
      */
-    private Point2D oldPosition;
+    private Point2D.Double oldPosition;
     /**
      * The selected sphere.
      */
@@ -49,7 +49,7 @@ public class MoveSphereLogAction extends LogAction {
      */
     public MoveSphereLogAction(Sphere pSphere,Point2D oldPos, Point2D newPos) {
         super(LogEntryName.MOVE_SPHERE);
-        oldPosition = oldPos;
+        oldPosition = new Point2D.Double(oldPos.getX(),oldPos.getY());
         sphere = pSphere;
         position = newPos;
     }
@@ -57,18 +57,15 @@ public class MoveSphereLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         if(parameters == null) {
             sphere.setVertices(sphere.getVertices());
             sphere.setCoordinates(position);
-
             createParameter(sphere, oldPosition, position);
         }else{
             Sphere sphere = ((MoveSphereParam)parameters).getSphere();
             Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
             Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
-            sphere.setCoordinates(newPos);
+                sphere.setCoordinates(newPos);
                 Double dX = newPos.getX() - oldPos.getX();
                 Double dY = newPos.getY() - newPos.getY();
                 for(Vertex vertex : sphere.getVertices()) {
@@ -98,7 +95,7 @@ public class MoveSphereLogAction extends LogAction {
     }
 
 
-    public void createParameter(Sphere sphere, Point2D oldSphere, Point2D newSphere) {
-        parameters = new MoveSphereParam(sphere, oldSphere, newSphere);
+    public void createParameter(Sphere sphere, Point2D oldPosition, Point2D newPosition) {
+        parameters = new MoveSphereParam(sphere, oldPosition, newPosition);
     }
 }

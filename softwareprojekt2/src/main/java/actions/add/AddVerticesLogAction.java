@@ -10,6 +10,7 @@ import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.awt.geom.Point2D;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -72,12 +73,17 @@ public class AddVerticesLogAction extends LogAction {
             System.out.println("The Number of lockedVertices =" + sphere.getLockedMaxAmountVertices());
         }else{
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getVertices();
-            Map<Vertex, Sphere> newVertices = new HashMap<>();
+            List<Vertex> startVertices = ((AddRemoveVerticesParam)parameters).getStartVertexList();
+            List<Edge> edgeList = ((AddRemoveVerticesParam)parameters).getEdgeList();
+            List<Vertex> sinkVertices = ((AddRemoveVerticesParam)parameters).getSinkVertexList();
+
             for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
                 Vertex vertex = entry.getKey();
                 graph.addVertexExisting(vertex);
-                newVertices.put(vertex, entry.getValue());
                 vv.getGraphLayout().setLocation(vertex, vertex.getCoordinates());
+            }
+            for(int i = 0; i < edgeList.size(); i++){
+                graph.addEdgeExisting(edgeList.get(i), startVertices.get(i),sinkVertices.get(i));
             }
         }
         vv.repaint();
@@ -100,6 +106,6 @@ public class AddVerticesLogAction extends LogAction {
 
     public void createParameter(Vertex vertex, Sphere sphere) {
         vertices.put(vertex, sphere);
-        parameters = new AddRemoveVerticesParam(vertices);
+        parameters = new AddRemoveVerticesParam(vertices, new HashMap<>());
     }
 }
