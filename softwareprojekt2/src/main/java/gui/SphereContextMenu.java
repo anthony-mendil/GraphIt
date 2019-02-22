@@ -1,6 +1,7 @@
 package gui;
 
 import actions.ActionHistory;
+import actions.edit.annotation.EditSphereAnnotationLogAction;
 import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;

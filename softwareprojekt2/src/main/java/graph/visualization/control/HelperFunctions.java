@@ -8,10 +8,7 @@ import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import gui.EdgeContextMenu;
-import gui.SphereContextMenu;
-import gui.Values;
-import gui.VertexContextMenu;
+import gui.*;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
 import javafx.animation.Animation;
@@ -222,5 +219,8 @@ public class HelperFunctions {
                 return map;
             } else {
                 return null;
-             }
+            }
+        });
+        return d;
+    }
 }
