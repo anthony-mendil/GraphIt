@@ -9,13 +9,12 @@ import log_management.parameters.Param;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LayoutSpheresParam extends Param implements Serializable {
+public class LayoutSpheresParam extends Param {
     @Getter
     private List<Sphere> spheres;
 

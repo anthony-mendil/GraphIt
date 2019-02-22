@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ import java.util.Map;
  * each other. They can contain vertices. A vertex is always assigned to exactly one sphere. The id is unique and final.
  */
 @Data
-public class Sphere implements Serializable {
+public class Sphere {
     /**
      * The id of the sphere.
      */
@@ -111,17 +110,18 @@ public class Sphere implements Serializable {
 
     /**
      * Creates an Sphere. It will be created by the factory.
-     * @param id            The unique id of the sphere.
-     * @param color         The color of the sphere.
-     * @param coordinates   The coordinates of the sphere.
-     * @param width         The width of the sphere.
-     * @param height        The height of the sphere.
-     * @param annotation    The annotation of the sphere.
-     * @param font          The font of the annotation of the sphere.
-     * @param fontSize      The font-size of the sphere.
+     *
+     * @param id          The unique id of the sphere.
+     * @param color       The color of the sphere.
+     * @param coordinates The coordinates of the sphere.
+     * @param width       The width of the sphere.
+     * @param height      The height of the sphere.
+     * @param annotation  The annotation of the sphere.
+     * @param font        The font of the annotation of the sphere.
+     * @param fontSize    The font-size of the sphere.
      */
     public Sphere(int id, Color color, Point2D coordinates, double width, double height, Map<String, String>
-            annotation, String font, int fontSize ){
+            annotation, String font, int fontSize) {
         this.id = id;
         this.color = color;
         this.coordinates = coordinates;
@@ -133,9 +133,9 @@ public class Sphere implements Serializable {
         vertices = new LinkedList<>();
     }
 
-    public boolean verticesLocked(){
-        for(Vertex vertex : vertices){
-            if(vertex.isLockedPosition() || vertex.isLockedAnnotation() || vertex.isLockedStyle()){
+    public boolean verticesLocked() {
+        for (Vertex vertex : vertices) {
+            if (vertex.isLockedPosition() || vertex.isLockedAnnotation() || vertex.isLockedStyle()) {
                 return true;
             }
         }
@@ -157,10 +157,10 @@ public class Sphere implements Serializable {
     }
 
     @Override
-    public String toString(){
-        if(Values.getInstance().getGuiLanguage() == Language.GERMAN){
+    public String toString() {
+        if (Values.getInstance().getGuiLanguage() == Language.GERMAN) {
             return annotation.get(Language.GERMAN.name());
-        }else if(Values.getInstance().getGuiLanguage() == Language.ENGLISH){
+        } else if (Values.getInstance().getGuiLanguage() == Language.ENGLISH) {
             return annotation.get(Language.ENGLISH.name());
         }
 

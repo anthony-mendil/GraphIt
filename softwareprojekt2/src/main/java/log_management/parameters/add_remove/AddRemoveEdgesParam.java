@@ -20,7 +20,7 @@ import java.util.Set;
  * Parameter object for the action AddEdgesLogAction/RemoveEdgesLogAction.
  */
 @Data
-public class AddRemoveEdgesParam extends Param implements Serializable {
+public class AddRemoveEdgesParam extends Param {
     /**
      * The set of edges(pair describes the respective start-vertex and sink-vertex) bound to their edge-type.
      */

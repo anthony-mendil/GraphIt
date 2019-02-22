@@ -20,7 +20,7 @@ import java.util.Map;
  * Parameter object of the action EditVerticesFillColorLogAction.
  */
 @Data
-public class EditVerticesFillColorParam extends Param implements Serializable {
+public class EditVerticesFillColorParam extends Param {
     @Getter
     private List<Vertex> oldVertices;
 

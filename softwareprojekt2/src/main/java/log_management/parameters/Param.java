@@ -8,7 +8,7 @@ import java.io.Serializable;
  * The abstract param class.
  */
 @Data
-public class Param implements Serializable {
+public class Param {
 
     public Param() {}
     /**

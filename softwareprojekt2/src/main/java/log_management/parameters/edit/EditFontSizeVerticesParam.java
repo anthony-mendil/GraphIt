@@ -18,7 +18,7 @@ import java.util.Map;
  * Parameter object for the Action EditFontSizeVerticesLogAction.
  */
 @Data
-public class EditFontSizeVerticesParam extends Param implements Serializable {
+public class EditFontSizeVerticesParam extends Param {
     @Getter
     private List<Vertex> oldVertices;
 
