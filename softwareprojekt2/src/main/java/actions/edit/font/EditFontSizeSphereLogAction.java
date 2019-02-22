@@ -11,8 +11,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeSphereParam;
 
-import java.util.List;
-
 /**
  * Changes the font-size of annotations of a sphere.
  */

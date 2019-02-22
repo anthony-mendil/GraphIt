@@ -1,6 +1,5 @@
 package log_management.parameters;
 
-import log_management.parameters.add_remove.AddRemoveSphereParam;
 import lombok.Data;
 
 import java.io.Serializable;

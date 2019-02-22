@@ -8,7 +8,6 @@ import graph.graph.FunctionMode;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereAnnotationParam;
@@ -26,14 +25,16 @@ public class EditSphereAnnotationLogAction extends LogAction {
      * The new annotation of the sphere.
      */
     private String text;
+    private Language language;
     /**
      * Constructor in case the user changes the annotation of a sphere.
      *
      * @param pText The new sphere annotation.
      */
-    public EditSphereAnnotationLogAction(String pText) {
+    public EditSphereAnnotationLogAction(String pText, Language language) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
         text = pText;
+        this.language = language;
     }
 
     /**
@@ -60,12 +61,12 @@ public class EditSphereAnnotationLogAction extends LogAction {
 
                     Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(), sp.getWidth(),
                             sp.getHeight(), oldAnnotation, sp.getFont(), sp.getFontSize());
-                    createParameter(spWithOldValues, sp, oldAnnotation.get(Language.GERMAN.name()), text);
-                    if (annotation.get(Language.GERMAN.name()) != null) {
-                        annotation.remove(Language.GERMAN.name());
+                    createParameter(spWithOldValues, sp, oldAnnotation.get(language.name()), text);
+                    if (annotation.get(language.name()) != null) {
+                        annotation.remove(language.name());
                         sp.setAnnotation(annotation);
                     }
-                    annotation.put(Language.GERMAN.name(), text);
+                    annotation.put(language.name(), text);
                     sp.setAnnotation(annotation);
                 } else{
                     helper.setActionText("Der Titel der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
@@ -76,7 +77,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
             Sphere sphere = ((EditSphereAnnotationParam)parameters).getNewSphere();
             String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
             Map<String,String> newAnno = new HashMap<>();
-            newAnno.put(Language.GERMAN.name(), newAnnotation);
+            newAnno.put(language.name(), newAnnotation);
             sphere.setAnnotation(newAnno);
 
         }

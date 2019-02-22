@@ -3,17 +3,11 @@ package actions.add;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveSphereLogAction;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
-import log_management.json_deserializers.Point2DDeserializer;
-import log_management.json_serializers.Point2DSerializer;
-import log_management.parameters.Param;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
-import log_management.tables.Log;
 
 import java.awt.geom.Point2D;
 

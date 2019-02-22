@@ -12,10 +12,8 @@ import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.*;
-import java.util.List;
 
 /**
  * Removes vertices from the syndrom graph.
@@ -26,7 +24,7 @@ public class RemoveVerticesLogAction extends LogAction {
      * All vertices which should be removed.
      */
     /* Must be set on private or public */
-    public Collection<Vertex> vertices;
+    private Collection<Vertex> vertices;
 
     /**
      * Removes all passed vertices from the graph.
@@ -77,6 +75,7 @@ public class RemoveVerticesLogAction extends LogAction {
                             Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
                             edg.put(e,vertexPair);
                         }
+                        pickedState.pick(vertex, false);
                         graph.removeVertex(vertex);
                         sp.getVertices().remove(vertex);
                         params.put(vertex, sp);

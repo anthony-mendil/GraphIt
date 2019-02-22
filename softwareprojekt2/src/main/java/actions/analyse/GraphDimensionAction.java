@@ -7,6 +7,7 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +18,21 @@ import java.util.Set;
  * information is displayed in the gui.
  */
 public class GraphDimensionAction extends GraphAction {
+    /**
+     * The scope.
+     */
+    @Getter
+    private double scope;
+    /**
+     * The networkIndex.
+     */
+    @Getter
+    private double networkIndex;
+    /**
+     * The structureindex.
+     */
+    @Getter
+    private double structureIndex;
     /**
      * Computes the data needed for the current graph.
      */
@@ -39,9 +55,12 @@ public class GraphDimensionAction extends GraphAction {
         /**
          * Calculating the indices.
          */
-        double umfang = graph.getSpheres().size() + graph.getVertices().size();
-        double vernetzungsindex = (2 * graph.getEdges().size())/graph.getVertices().size();
-        double strukturindex = 3;
+        scope =(double) (graph.getSpheres().size() + graph.getVertices().size());
+        networkIndex = (double)(2 * graph.getEdges().size())/graph.getVertices().size();
+        structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
+                                         jGraphTHandler.detectConvergentBranches().size() +
+                                         jGraphTHandler.detectDivergentBranches().size() +
+                                         jGraphTHandler.detectCycles().size())/graph.getVertices().size();
 
     }
 

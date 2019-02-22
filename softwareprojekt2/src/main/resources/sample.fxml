@@ -37,7 +37,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" stylesheets="gui_style.css" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <MenuBar>
@@ -58,9 +58,13 @@
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print" />
                 </Menu>
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
-                    <Menu fx:id="languages" mnemonicParsing="false" text="%language">
+                    <Menu fx:id="languages" mnemonicParsing="false" text="%languageGui">
                         <CheckMenuItem fx:id="languageGerman" mnemonicParsing="false" text="%german" />
                         <CheckMenuItem fx:id="languageEnglish" mnemonicParsing="false" text="%english" />
+                    </Menu>
+                    <Menu fx:id="languagesGraph" mnemonicParsing="false" text="%languageGraph">
+                        <CheckMenuItem fx:id="languageGraphGerman" mnemonicParsing="false" text="%german" />
+                        <CheckMenuItem fx:id="languageGraphEnglish" mnemonicParsing="false" text="%english" />
                     </Menu>
                 </Menu>
                 <Menu fx:id="help" mnemonicParsing="false" text="%help">
@@ -800,11 +804,11 @@
                             </rowConstraints>
                             <children>
                                 <Text fx:id="analysisScope" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisScope" wrappingWidth="59.898826599121094" />
-                                <Text fx:id="analysisScopeTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisScopeTooltip" GridPane.columnIndex="1" />
+                                <Text fx:id="analysisScopeNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" />
                                 <Text fx:id="analysisNetworkingIndex" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisNetworkingIndex" wrappingWidth="126.59998321533203" GridPane.rowIndex="1" />
-                                <Text fx:id="analysisNetworkingIndexTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisNetworkingIndexTooltip" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Text fx:id="analysisNetworkingIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Text fx:id="analysisStructureIndex" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisStructureIndex" wrappingWidth="104.54531860351562" GridPane.rowIndex="2" />
-                                <Text fx:id="analysisStructureIndexTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisStructureIndexTooltip" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Text fx:id="analysisStructureIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                         </GridPane>
                     </children>
@@ -817,24 +821,25 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </HBox.margin>
                 </Separator>
-                <VBox fx:id="vBoxAnalysisSymptom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="250.0">
+                <VBox fx:id="vBoxAnalysisSymptom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="467.0">
                     <children>
                         <Text fx:id="analysisSymptom" strokeType="OUTSIDE" strokeWidth="0.0" text="%sectionSymptom">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
                         </Text>
-                        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="247.0">
+                        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="425.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.2000732421875" minWidth="10.0" prefWidth="78.20005798339844" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.79994201660156" minWidth="10.0" prefWidth="231.79994201660156" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <CheckBox fx:id="analysisPredessor" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="%analysisPredecessor">
+                                <CheckBox fx:id="analysisPredecessor" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="%analysisPredecessor">
                                     <tooltip>
                                         <Tooltip text="%analysisPredecessorTooltip" />
                                     </tooltip>
@@ -849,14 +854,29 @@
                                         <Insets bottom="5.0" right="5.0" top="5.0" />
                                     </GridPane.margin>
                                 </Text>
-                                <TextField fx:id="amountSymptomTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="%analysisSymptomAmountTooltip" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <TextField fx:id="amountSymptomTextField" disable="true" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="%analysisSymptomAmountTooltip" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <tooltip>
                                         <Tooltip text="%analysisSymptomAmountTooltip" />
                                     </tooltip>
                                 </TextField>
+                        <CheckBox mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text=" " GridPane.columnIndex="2">
+                           <graphic>
+                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="200.0">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" />
+                                </items>
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </MenuButton>
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </CheckBox>
                             </children>
                             <VBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="5.2" />
                             </VBox.margin>
                         </GridPane>
                     </children>
@@ -869,94 +889,6 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </HBox.margin>
                 </Separator>
-                <VBox fx:id="vBoxAnalysisEdge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="345.0">
-                    <children>
-                        <Text fx:id="analysisEdge" strokeType="OUTSIDE" strokeWidth="0.0" text="%sectionEdge">
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                        </Text>
-                        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="341.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.99995880126953" minWidth="10.0" prefWidth="127.99995880126953" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.2001953125" minWidth="10.0" prefWidth="120.20004119873046" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.199951171875" minWidth="10.0" prefWidth="92.40007324218752" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <CheckBox fx:id="analysisPredessorEdge" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="%analysisPredecessor">
-                                    <tooltip>
-                                        <Tooltip text="%analysisPredecessorTooltip" />
-                                    </tooltip>
-                                </CheckBox>
-                                <CheckBox fx:id="analysisSuccessorEdge" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="%analysisSuccessor" GridPane.rowIndex="1">
-                                    <tooltip>
-                                        <Tooltip text="%analysisSuccessor" />
-                                    </tooltip>
-                                </CheckBox>
-                                <Text fx:id="analysisEdgeAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisSymptomAmount" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
-                                    <GridPane.margin>
-                                        <Insets bottom="5.0" right="5.0" top="5.0" />
-                                    </GridPane.margin>
-                                </Text>
-                                <TextField fx:id="amountEdgeTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="%analysisSymptomAmountTooltip" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <tooltip>
-                                        <Tooltip text="%analysisSymptomAmountTooltip" />
-                                    </tooltip>
-                                </TextField>
-                                <CheckBox fx:id="reinforced1" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" " GridPane.columnIndex="2">
-                                    <graphic>
-                                        <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false">
-                                                    <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                            <image>
-                                                                <Image url="@icons2/014-question.png" />
-                                                            </image>
-                                                        </ImageView>
-                                                    </graphic>
-                                                </MenuItem>
-                                                <MenuItem mnemonicParsing="false">
-                                                    <graphic>
-                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                            <image>
-                                                                <Image url="@icons2/015-circle.png" />
-                                                            </image>
-                                                        </ImageView>
-                                                    </graphic>
-                                                </MenuItem>
-                                            </items>
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/005-right-chevron.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                            </padding>
-                                        </MenuButton>
-                                    </graphic>
-                                    <tooltip>
-                                        <Tooltip text="%treeViewEdgeTypeTooltip" />
-                                    </tooltip>
-                                </CheckBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                            </VBox.margin>
-                        </GridPane>
-                    </children>
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </HBox.margin>
-                </VBox>
-                <Separator fx:id="separator5" orientation="VERTICAL" prefHeight="200.0" />
                 <VBox fx:id="vBoxAnalysisOption" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="332.0">
                     <children>
                         <Text fx:id="analysisOption" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisOptions">
@@ -964,7 +896,7 @@
                                 <Insets />
                             </VBox.margin>
                         </Text>
-                        <VBox prefHeight="50.0" prefWidth="392.0">
+                        <VBox prefHeight="67.0" prefWidth="392.0">
                             <children>
                                 <HBox minWidth="-Infinity" prefHeight="30.0" prefWidth="330.0">
                                     <VBox.margin>
@@ -975,6 +907,7 @@
                                             <graphic>
                                                 <MenuButton fx:id="filterAnalysis" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="205.0" text="%filterChainOfEdges">
                                                     <items>
+                                          <MenuItem fx:id="convergent1" mnemonicParsing="false" text="%filterChainOfEdges" />
                                                         <MenuItem fx:id="convergent" mnemonicParsing="false" text="%filterConvergentBranches" />
                                                         <MenuItem fx:id="divergent" mnemonicParsing="false" text="%filterDivergentBranches" />
                                                         <MenuItem fx:id="branches" mnemonicParsing="false" text="%filterBranches" />
@@ -992,6 +925,48 @@
                                                 <Tooltip text="%analysisOptionsTooltip" />
                                             </tooltip>
                                         </CheckBox>
+                                      <CheckBox fx:id="filterArrowTypeCheckBox" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" ">
+                                          <graphic>
+                                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
+                                                  <items>
+                                                      <MenuItem mnemonicParsing="false">
+                                                          <graphic>
+                                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <image>
+                                                                      <Image url="@icons2/014-question.png" />
+                                                                  </image>
+                                                              </ImageView>
+                                                          </graphic>
+                                                      </MenuItem>
+                                                      <MenuItem mnemonicParsing="false">
+                                                          <graphic>
+                                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <image>
+                                                                      <Image url="@icons2/015-circle.png" />
+                                                                  </image>
+                                                              </ImageView>
+                                                          </graphic>
+                                                      </MenuItem>
+                                                  </items>
+                                                  <graphic>
+                                                      <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                          <image>
+                                                              <Image url="@icons2/005-right-chevron.png" />
+                                                          </image>
+                                                      </ImageView>
+                                                  </graphic>
+                                                  <padding>
+                                                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                  </padding>
+                                              </MenuButton>
+                                          </graphic>
+                                          <tooltip>
+                                              <Tooltip text="%treeViewEdgeTypeTooltip" />
+                                          </tooltip>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                                      </CheckBox>
                                     </children>
                                 </HBox>
                             </children>
@@ -1142,7 +1117,7 @@
                                                     </TextField>
                                                 </graphic>
                                             </CheckBox>
-                                            <CheckBox fx:id="showFadedOutObjects" mnemonicParsing="false" prefHeight="17.0" prefWidth="264.0" text="%toolbarFadeout">
+                                            <CheckBox fx:id="showFadedOutObjects" mnemonicParsing="false" prefHeight="18.0" prefWidth="350.0" text="%toolbarFadeout">
                                                 <VBox.margin>
                                                     <Insets bottom="2.0" top="5.0" />
                                                 </VBox.margin>
@@ -1310,58 +1285,74 @@
                                 <content>
                               <VBox>
                                  <children>
-                                     <CheckBox fx:id="filterProtocol" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="">
-                                         <VBox.margin>
-                                             <Insets bottom="7.0" top="2.0" />
-                                         </VBox.margin>
-                                         <graphic>
-                                             <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="%ADD_SPHERE">
-                                                 <items>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddSphere" mnemonicParsing="false" text="%ADD_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddVertex" mnemonicParsing="false" text="%ADD_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddEdge" mnemonicParsing="false" text="%ADD_EDGES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditFontVertices" mnemonicParsing="false" text="%EDIT_FONT_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logDeactivateFadeout" mnemonicParsing="false" text="%DEACTIVATE_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereColor" mnemonicParsing="false" text="%EDIT_SPHERE_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditEdgesStroke" mnemonicParsing="false" text="%EDIT_EDGES_STROKE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereSize" mnemonicParsing="false" text="%EDIT_SPHERE_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditFontSphere" mnemonicParsing="false" text="%EDIT_FONT_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditEdgesColor" mnemonicParsing="false" text="%EDIT_EDGES_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveVertices" mnemonicParsing="false" text="%REMOVE_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditEdgesType" mnemonicParsing="false" text="%EDIT_EDGES_TYPE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveSphere" mnemonicParsing="false" text="%REMOVE_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logMoveVertices" mnemonicParsing="false" text="%MOVE_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveEdge" mnemonicParsing="false" text="%REMOVE_EDGES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logMoveSphere" mnemonicParsing="false" text="%MOVE_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logActivateAnchorPointsFadeout" mnemonicParsing="false" text="%ACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddAnchorPoints" mnemonicParsing="false" text="%ADD_ANCHOR_POINTS"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logActivateFadeout" mnemonicParsing="false" text="%ACTIVATE_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logActivateHighlight" mnemonicParsing="false" text="%ACTIVATE_HIGHLIGHT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesForm" mnemonicParsing="false" text="%EDIT_VERTICES_FORM"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveEdges" mnemonicParsing="false" text="%REMOVE_EDGES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesSize" mnemonicParsing="false" text="%EDIT_VERTICES_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveAnchorPoints" mnemonicParsing="false" text="%REMOVE_ANCHOR_POINTS"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereFontSize" mnemonicParsing="false" text="%EDIT_SPHERE_FONT_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereAnnotation" mnemonicParsing="false" text="%EDIT_SPHERE_ANNOTATION"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVertexAnnotation" mnemonicParsing="false" text="%EDIT_VERTEX_ANNOTATION"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesFontSize" mnemonicParsing="false" text="%EDIT_VERTICES_FONT_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesDrawColor" mnemonicParsing="false" text="%EDIT_VERTICES_DRAW_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesFillColor" mnemonicParsing="false" text="%EDIT_VERTICES_FILL_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logDeactivateHighlight" mnemonicParsing="false" text="%DEACTIVATE_HIGHLIGHT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logDeactivateAnchorPointsFadeout" mnemonicParsing="false" text="%DEACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSpheresLayout" mnemonicParsing="false" text="%EDIT_SPHERES_LAYOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesLayout" mnemonicParsing="false" text="%EDIT_VERTICES_LAYOUT"> </MenuItem>
-                                                 </items>
-                                                 <HBox.margin>
-                                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                                 </HBox.margin>
-                                                 <tooltip>
-                                                     <Tooltip text="" />
-                                                 </tooltip>
-                                             </MenuButton>
-                                         </graphic>
-                                     </CheckBox>
-                                          <TreeView fx:id="protocol" prefWidth="260.0" />
+                                    <HBox>
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                       <children>
+                                           <Button fx:id="syncButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#synAnalysis" prefHeight="30.0" prefWidth="30.0">
+                                               <graphic>
+                                                   <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                       <Image url="@icons2/sync-alt-solid.png" />
+                                                   </ImageView>
+                                               </graphic>
+                                               <tooltip>
+                                                   <Tooltip text="%toolbarCreatorMode" />
+                                               </tooltip>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                           </Button>
+      
+                                                   <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="240.0" text="%LOG_ALL">
+                                                       <items>
+                                                           <MenuItem fx:id="logAll" mnemonicParsing="false" styleClass="analysisMenuItem" text="%LOG_ALL"> </MenuItem>
+                                                           <MenuItem fx:id="logAddSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logAddVertex" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logAddEdge" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logEditFontVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_FONT_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logDeactivateFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%DEACTIVATE_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logEditEdgesStroke" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_STROKE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditFontSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_FONT_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditEdgesColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logEditEdgesType" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_TYPE"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logMoveVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveEdge" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logMoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logActivateAnchorPointsFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logAddAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_ANCHOR_POINTS"> </MenuItem>
+                                                           <MenuItem fx:id="logActivateFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logActivateHighlight" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_HIGHLIGHT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesForm" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FORM"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveEdges" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_ANCHOR_POINTS"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereFontSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_FONT_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereAnnotation" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_ANNOTATION"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVertexAnnotation" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTEX_ANNOTATION"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesFontSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FONT_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesDrawColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_DRAW_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesFillColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FILL_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logDeactivateHighlight" mnemonicParsing="false" styleClass="analysisMenuItem" text="%DEACTIVATE_HIGHLIGHT"> </MenuItem>
+                                                           <MenuItem fx:id="logDeactivateAnchorPointsFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%DEACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSpheresLayout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERES_LAYOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesLayout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_LAYOUT"> </MenuItem>
+                                                       </items>
+                                                       <tooltip>
+                                                           <Tooltip text="" />
+                                                       </tooltip>
+                                                   </MenuButton>
+                                       </children>
+                                    </HBox>
+
+                                          <TreeView fx:id="protocol" prefHeight="633.0" prefWidth="275.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin></TreeView>
                                  </children>
                               </VBox>
                                 </content>

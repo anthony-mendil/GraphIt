@@ -22,7 +22,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * The new position of the vertex.
      */
-    Point2D position2D;
+    private Point2D position2D;
 
     /**
      * The sphere of the Vertex.
@@ -31,7 +31,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Map of vertices and the sphere.
      */
-    private Map<Vertex,Sphere> vertices = new HashMap<>();
+    private Map<Vertex, Sphere> vertices;
 
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
@@ -57,43 +57,41 @@ public class AddVerticesLogAction extends LogAction {
 
     @Override
     public void action() {
-        SyndromVisualisationViewer<Vertex,Edge> vv = syndrom.getVv();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if(!template.isLockedVertexNumber() || graph.getVertices().size() < template.getMaxVertices()){
-        if(parameters == null){
-            if(sphere.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
-                helper.setActionText("The vertices of this sphere is locked.",true);
-                return;
-            }
-            position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
-            Vertex newVertex = graph.addVertex(position2D, sphere);
-            createParameter(newVertex, sphere);
-            vv.getGraphLayout().setLocation(newVertex, position2D);
+        if (!template.isLockedVertexNumber() || graph.getVertices().size() < template.getMaxVertices()) {
+            if (parameters == null) {
+                if (sphere.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
+                    helper.setActionText("The vertices of this sphere is locked.", true);
+                    return;
+                }
+                position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
+                Vertex newVertex = graph.addVertex(position2D, sphere);
+                createParameter(newVertex, sphere);
+                vv.getGraphLayout().setLocation(newVertex, position2D);
+            } else {
+                Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam) parameters).getVertices();
+                List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
+                List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
+                List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getSinkVertexList();
 
-            System.out.println("The Number of lockedVertices =" + sphere.getLockedMaxAmountVertices());
-        }else{
-            Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getVertices();
-            List<Vertex> startVertices = ((AddRemoveVerticesParam)parameters).getStartVertexList();
-            List<Edge> edgeList = ((AddRemoveVerticesParam)parameters).getEdgeList();
-            List<Vertex> sinkVertices = ((AddRemoveVerticesParam)parameters).getSinkVertexList();
-
-            for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
-                Vertex vertex = entry.getKey();
-                graph.addVertexExisting(vertex);
-                vv.getGraphLayout().setLocation(vertex, vertex.getCoordinates());
+                for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
+                    Vertex vertex = entry.getKey();
+                    graph.addVertexExisting(vertex);
+                    vv.getGraphLayout().setLocation(vertex, vertex.getCoordinates());
+                }
+                for (int i = 0; i < edgeList.size(); i++) {
+                    graph.addEdgeExisting(edgeList.get(i), startVertices.get(i), sinkVertices.get(i));
+                }
             }
-            for(int i = 0; i < edgeList.size(); i++){
-                graph.addEdgeExisting(edgeList.get(i), startVertices.get(i),sinkVertices.get(i));
-            }
-        }
-        vv.repaint();
-        syndrom.getVv2().repaint();
+            vv.repaint();
+            syndrom.getVv2().repaint();
 
-        DatabaseManager databaseManager = DatabaseManager.getInstance();
-        databaseManager.addEntryDatabase(createLog());
-        notifyObserverGraph();
-    }else{
-            helper.setActionText("Only "+ template.getMaxVertices()+ " vertex/vertices are allowed.", true);
+            DatabaseManager databaseManager = DatabaseManager.getInstance();
+            databaseManager.addEntryDatabase(createLog());
+            notifyObserverGraph();
+        } else {
+            helper.setActionText("Only " + template.getMaxVertices() + " vertex/vertices are allowed.", true);
         }
     }
 

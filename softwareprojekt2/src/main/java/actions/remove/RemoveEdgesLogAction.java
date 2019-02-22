@@ -11,7 +11,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.*;
 
@@ -63,6 +62,7 @@ public class RemoveEdgesLogAction extends LogAction {
                     edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
                     Pair<Vertex,Vertex> verticesJung = new Pair<>(vertices.getFirst(),vertices.getSecond());
                     edges.put(e,verticesJung);
+                    pickedState.pick(e, false);
                     graph.removeEdge(e);
                 }else{
                     lockedEdges.add(e);

@@ -8,8 +8,6 @@ import graph.graph.FunctionMode;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
-import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesColorParam;
 

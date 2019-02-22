@@ -2,7 +2,6 @@ package actions.other;
 
 import actions.ActionHistory;
 import actions.GraphAction;
-import com.sun.org.apache.xpath.internal.compiler.FunctionTable;
 import graph.graph.FunctionMode;
 import gui.Values;
 

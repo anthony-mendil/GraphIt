@@ -5,7 +5,8 @@ import log_management.DatabaseManager;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 

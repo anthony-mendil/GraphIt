@@ -9,9 +9,9 @@ import actions.activate.ActivateFadeoutAction;
 import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
-import actions.add.AddVerticesLogAction;
 import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
+import actions.analyse.GraphDimensionAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
 import actions.deactivate.DeactivateHighlightAction;
@@ -31,13 +31,12 @@ import actions.edit.size.EditVerticesSizeLogAction;
 import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
+import actions.other.ChangeGraphLanguageAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
-import com.sun.javafx.scene.control.behavior.MenuButtonBehavior;
-import com.sun.javafx.scene.control.skin.MenuButtonSkin;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -60,11 +59,8 @@ import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -75,10 +71,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -94,8 +93,6 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -188,6 +185,9 @@ public class Controller implements ObserverSyndrom {
     @FXML private Menu languages;
     @FXML private Menu help;
 
+    @FXML private Menu languagesGraph;
+    @FXML private CheckMenuItem languageGraphGerman;
+    @FXML private CheckMenuItem languageGraphEnglish;
     /**
      * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to german.
      */
@@ -270,11 +270,6 @@ public class Controller implements ObserverSyndrom {
      * The textfield that sets the amount of predecessor/successor symptoms in the analysis/interpreter mode.
      */
     @FXML private TextField amountSymptomTextField;
-
-    /**
-     * The textfield that sets the amount of originating or incoming edges.
-     */
-    @FXML private TextField amountEdgeTextField;
 
     /**
      * The menuitem under "analysis" that shows convergent and divergent branches.
@@ -452,19 +447,9 @@ public class Controller implements ObserverSyndrom {
     private Separator separator4;
 
     /**
-     * A separator for the vboxes in analysis mode.
-     */
-    @FXML private Separator separator5;
-
-    /**
      * The vbox that contains analysis options for symptoms.
      */
     @FXML private VBox vBoxAnalysisSymptom;
-
-    /**
-     * The vbox that contains analysis options for edges.
-     */
-    @FXML private VBox vBoxAnalysisEdge;
 
     /**
      * The vbox that contains analysis options for the graph.
@@ -521,7 +506,6 @@ public class Controller implements ObserverSyndrom {
     private String currentSize = "";
     private String currentFont = "";
 
-    private TemplateController templateController = new TemplateController(templateStage);
 
     /**
      * The combobox for changing the size of the sphere text.
@@ -532,6 +516,7 @@ public class Controller implements ObserverSyndrom {
      * The combobox for changing the size of the symptom text.
      */
     @FXML private ComboBox<String> sizeSymptomComboBox;
+
     private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
     private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
     private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
@@ -565,20 +550,16 @@ public class Controller implements ObserverSyndrom {
     @FXML private Button removeAnchor;
     @FXML private Text analysisGraphInfo;
     @FXML private Text analysisScope;
-    @FXML private Text analysisScopeTooltip;
+    @FXML private Text analysisScopeNumber;
     @FXML private Text analysisNetworkingIndex;
-    @FXML private Text analysisNetworkingIndexTooltip;
+    @FXML private Text analysisNetworkingIndexNumber;
     @FXML private Text analysisStructureIndex;
-    @FXML private Text analysisStructureIndexTooltip;
+    @FXML private Text analysisStructureIndexNumber;
     @FXML private Text analysisSymptom;
-    @FXML private CheckBox analysisPredessor;
+    @FXML private CheckBox analysisPredecessor;
     @FXML private CheckBox analysisSuccessor;
     @FXML private Text analysisSymptomAmount;
-    @FXML private CheckBox analysisSuccessorEdge;
-    @FXML private CheckBox analysisPredessorEdge;
-    @FXML private Text analysisEdge;
-    @FXML private Text analysisEdgeAmount;
-    @FXML private CheckBox reinforced1;
+    @FXML private CheckBox filterArrowTypeCheckBox;
     @FXML private Text analysisOption;
     @FXML private CheckBox analysisOptions;
     @FXML private MenuItem convergent;
@@ -629,12 +610,10 @@ public class Controller implements ObserverSyndrom {
     @FXML private ResourceBundle resources;
     @FXML private TreeView<Object> protocol;
     @FXML private CheckBox filterProtocol;
-
     @FXML private MenuItem logAddSphere;
     @FXML private MenuItem logAddVertex;
     @FXML private MenuItem logAddEdge;
     @FXML private MenuButton filterLogType;
-
     @FXML private MenuItem logEditFontVertices;
     @FXML private MenuItem logDeactivateFadeout;
     @FXML private MenuItem logEditSphereColor;
@@ -666,7 +645,7 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem logDeactivateAnchorPointsFadeout;
     @FXML private MenuItem logEditSpheresLayout;
     @FXML private MenuItem logEditVerticesLayout;
-
+    @FXML private MenuItem logAll;
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
     private static final String SPHERE_STYLE = "SphereStyle";
@@ -692,7 +671,7 @@ public class Controller implements ObserverSyndrom {
     private static Logger logger = Logger.getLogger(Controller.class);
 
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
-    private LogEntryName analysisLogEntryName = LogEntryName.ADD_SPHERE;
+    private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
 
 
@@ -1234,6 +1213,15 @@ public class Controller implements ObserverSyndrom {
             createButton.setDisable(false);
             editButton.setDisable(false);
             analysisButton.setDisable(true);
+
+//        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+//        graphDimensionAction.action();
+//
+//
+//            analysisScopeNumber.setText("" + graphDimensionAction.getScope());
+//            analysisNetworkingIndexNumber.setText("" + graphDimensionAction.getNetworkIndex());
+//            analysisStructureIndexNumber.setText("" + graphDimensionAction.getStructureIndex());
+
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
             switchModeAction.action();
     }
@@ -1432,21 +1420,6 @@ public class Controller implements ObserverSyndrom {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Creates a Window that allows you to set Rules for your Template.
-     */
-    @SuppressWarnings("unused")
-    void createTemplateWindow() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
-        fxmlLoader.setController(templateController);
-        templateStage.setResizable(false);
-        templateStage.setScene(new Scene(fxmlLoader.load()));
-        templateStage.setTitle("Vorlagenregeln");
-        templateStage.getIcons().add(new Image(
-            getClass().getResourceAsStream("/GraphItLogo.png")));
-    }
-
     public void highlight() {
         if (highlight.isSelected()) {
             ActivateHighlightAction activateHighlightAction = new ActivateHighlightAction();
@@ -1536,6 +1509,7 @@ public class Controller implements ObserverSyndrom {
         loadFontComboBox(fontSymptomComboBox);
         loadTemplateTextFields();
         loadTemplateCheckBox();
+        loadAnalysisElements();
 
         zoomSlider.setMin(20);
         zoomSlider.setMax(200);
@@ -1576,27 +1550,22 @@ public class Controller implements ObserverSyndrom {
 
         initLanguage();
         initProtocolTree();
+        initGraphLanguage();
 
         //newFile.setText(loadLanguage.getMenu1());
+    }
 
+    private void initGraphLanguage(){
+        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(languageGraphEnglish, this));
+        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(languageGraphGerman, this));
+        languageGraphEnglish.setSelected(false);
+        languageGraphGerman.setSelected(true);
     }
 
 
     private void initProtocolTree(){
         historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
-            if (isNowExpanded && !filterProtocol.isSelected()){
-                filterLogs(null);
-            } else {
-                filterLogs(analysisLogEntryName);
-            }
-        });
-
-        filterProtocol.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
-            if (isNowSelected){
-                filterLogs(analysisLogEntryName);
-            } else {
-                filterLogs(null);
-            }
+            filterLogs(analysisLogEntryName);
         });
     }
 
@@ -1625,7 +1594,7 @@ public class Controller implements ObserverSyndrom {
                         TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
                         Object val = selected.getValue();
 
-                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                        ContextMenu contextMenu = helper.openContextMenu(val);
                         if (contextMenu != null) {
                             treeView.setContextMenu(contextMenu);
                             contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
@@ -1855,6 +1824,7 @@ public class Controller implements ObserverSyndrom {
         logDeactivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT));
         logEditSpheresLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_SPHERES_LAYOUT));
         logEditVerticesLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_LAYOUT));
+        logAll.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(null));
     }
 
     public void loadFontComboBox(ComboBox<String> comboBox) {
@@ -1957,6 +1927,7 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeLanguage(language);
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
+            treeViewUpdate();
         }
 
         LanguageListener(CheckMenuItem checkMenuItem, Controller controller){
@@ -1971,6 +1942,31 @@ public class Controller implements ObserverSyndrom {
                 changeLanguage(Language.GERMAN);
             } else if (checkMenuItem.getId().equals("languageEnglish") && newValue){
                 languageGerman.setSelected(false);
+                changeLanguage(Language.ENGLISH);
+            }
+        }
+    }
+
+    private class LanguageGraphListener implements ChangeListener<Boolean>{
+        private CheckMenuItem checkMenuItem;
+
+        private void changeLanguage(Language language) {
+            values.setGraphLanguage(language);
+            ChangeGraphLanguageAction changeGraphLanguageAction = new ChangeGraphLanguageAction();
+            changeGraphLanguageAction.action();
+        }
+
+        LanguageGraphListener(CheckMenuItem checkMenuItem, Controller controller){
+            this.checkMenuItem = checkMenuItem;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if (checkMenuItem.getId().equals("languageGraphGerman") && newValue){
+                languageGraphEnglish.setSelected(false);
+                changeLanguage(Language.GERMAN);
+            } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue){
+                languageGraphGerman.setSelected(false);
                 changeLanguage(Language.ENGLISH);
             }
         }
@@ -1997,11 +1993,7 @@ public class Controller implements ObserverSyndrom {
         }
         @Override
         public void handle(ActionEvent evt) {
-            if (filterProtocol.isSelected()){
-                filterLogs(type);
-            } else {
-                analysisLogEntryName = type;
-            }
+            filterLogs(type);
         }
     }
 
@@ -2016,14 +2008,9 @@ public class Controller implements ObserverSyndrom {
         separator4.setVisible(active);
         separator4.setManaged(active);
 
-        separator5.setVisible(active);
-        separator5.setManaged(active);
-
         vBoxAnalysisSymptom.setVisible(active);
         vBoxAnalysisSymptom.setManaged(active);
 
-        vBoxAnalysisEdge.setVisible(active);
-        vBoxAnalysisEdge.setManaged(active);
 
         vBoxAnalysisOption.setVisible(active);
         vBoxAnalysisOption.setManaged(active);
@@ -2095,9 +2082,7 @@ public class Controller implements ObserverSyndrom {
         vBoxGraphStats.setDisable(disable);
         separator3.setDisable(disable);
         separator4.setDisable(disable);
-        separator5.setDisable(disable);
         vBoxAnalysisSymptom.setDisable(disable);
-        vBoxAnalysisEdge.setDisable(disable);
         vBoxAnalysisOption.setDisable(disable);
     }
 
@@ -2494,7 +2479,7 @@ public class Controller implements ObserverSyndrom {
         maxSymptomField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSymptomField));
         maxEdgesField.textProperty().addListener(new OnlyNumberTextFieldListener(maxEdgesField));
 
-        FocusTextFieldListener focusTFListener = new FocusTextFieldListener();
+        FocusTemplateTextFieldListener focusTFListener = new FocusTemplateTextFieldListener();
         maxSphereField.focusedProperty().addListener(focusTFListener);
         maxSymptomField.focusedProperty().addListener(focusTFListener);
         maxEdgesField.focusedProperty().addListener(focusTFListener);
@@ -2511,10 +2496,12 @@ public class Controller implements ObserverSyndrom {
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             if (!newValue.matches("\\d*"))
                 textField.setText(oldValue);
+
+
         }
     }
 
-    private class FocusTextFieldListener implements ChangeListener<Boolean> {
+    private class FocusTemplateTextFieldListener implements ChangeListener<Boolean> {
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             if (!newValue) {
@@ -2532,6 +2519,14 @@ public class Controller implements ObserverSyndrom {
         showFadedOutObjects.selectedProperty().addListener(new TemplateCheckBoxListener(showFadedOutObjects, this));
     }
 
+    private void loadAnalysisElements(){
+        amountSymptomTextField.textProperty().addListener(new OnlyNumberTextFieldListener(amountSymptomTextField));
+        amountSymptomTextField.focusedProperty().addListener(new AnalysisFocusTextFieldListener(amountSymptomTextField, this));
+        amountSymptomTextField.addEventHandler(KeyEvent.KEY_PRESSED, new ConfirmKeyListener(this, amountSymptomTextField));
+
+        analysisSuccessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisSuccessor, this));
+        analysisPredecessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisPredecessor, this));
+    }
 
     @Override
     public void updateGraph() {
@@ -2575,9 +2570,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void filterLogs(LogEntryName entryName){
-        if (entryName != null){
-            analysisLogEntryName = entryName;
-        }
+        analysisLogEntryName = entryName;
         logToStringConverter.resetIncrementer();
         Service<Void> service = new Service<Void>() {
             @Override
@@ -2612,7 +2605,11 @@ public class Controller implements ObserverSyndrom {
     }
 
     @FXML public void analysisCycles(){
-        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN, null);
+        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
         analysisGraphAction.action();
+    }
+
+    @FXML public void synAnalysis(){
+        filterLogs(analysisLogEntryName);
     }
 }

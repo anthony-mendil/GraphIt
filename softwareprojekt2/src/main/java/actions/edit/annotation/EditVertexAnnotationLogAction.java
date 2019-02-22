@@ -5,17 +5,16 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.FunctionMode;
-import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
-import javafx.util.Pair;
-import jgrapht.JGraphTHandler;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVertexAnnotationParam;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Changes the annotation of a selected Vertex.
@@ -25,14 +24,16 @@ public class EditVertexAnnotationLogAction extends LogAction {
      * The annotation of the vertex.
      */
     private String text;
+    private Language language;
     /**
      * Constructor in case the user wants to change the annotation of vertex.
      *
      * @param pText The new vertex annotation.
      */
-    public EditVertexAnnotationLogAction(String pText) {
+    public EditVertexAnnotationLogAction(String pText, Language language) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);
         text = pText;
+        this.language = language;
     }
 
     /**
@@ -57,8 +58,8 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     Map<String, String> oldAnnotation = new HashMap<>();
                     annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
 
-                    createParameter(v, v.getAnnotation().get(Language.GERMAN.name()), text);
-                    annotation.put(Language.GERMAN.name(), text);
+                    createParameter(v, v.getAnnotation().get(language.name()), text);
+                    annotation.put(language.name(), text);
                     v.setAnnotation(annotation);
                 }else{
                     helper.setActionText("Der Titel des Knotens darf aufgrund der Vorlageregeln nicht geändert werden.", true);
@@ -86,7 +87,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
             Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
             String newString = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
             Map<String,String> newAnnotation = new HashMap<>();
-            newAnnotation.put(Language.GERMAN.name(),newString);
+            newAnnotation.put(language.name(),newString);
             vertex.setAnnotation(newAnnotation);
         }
         vv.repaint();

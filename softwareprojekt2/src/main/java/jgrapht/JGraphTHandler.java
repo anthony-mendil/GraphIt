@@ -1,6 +1,5 @@
 package jgrapht;
 
-import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
@@ -8,17 +7,13 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
-import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
-import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
-import org.jgrapht.alg.cycle.CycleDetector;
 import org.jgrapht.alg.cycle.TarjanSimpleCycles;
 import org.jgrapht.alg.shortestpath.AllDirectedPaths;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
 
 import java.util.*;
 
@@ -39,6 +34,10 @@ public class JGraphTHandler {
      * The graph in JGraphT-form.
      */
     private DefaultDirectedGraph algorithmGraph;
+    /**
+     * The list of selected vertices.
+     */
+    private Set<Vertex> pickedVertices;
 
     /**
      * Constructor in case the user changes to analyse-mode and analyses without using a vertex.
@@ -70,17 +69,33 @@ public class JGraphTHandler {
     /**
      * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
      */
-    private void calculateEndpoints() {
+    private boolean calculateEndpoints() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() != 2) {
             HelperFunctions helperFunctions = new HelperFunctions();
             helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.", true);
-            return;
+            return false;
         }
         Iterator<Vertex> iterator = pickedState.getPicked().iterator();
         startVertex = iterator.next();
         endVertex = iterator.next();
+        return true;
+    }
+
+    /**
+     * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
+     */
+    public boolean isAtLeastOnePicked(){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+        if (pickedState.getPicked().size() < 1) {
+            HelperFunctions helperFunctions = new HelperFunctions();
+            helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.", true);
+            return false;
+        }
+        pickedVertices = pickedState.getPicked();
+        return true;
     }
 
     /**
@@ -103,12 +118,13 @@ public class JGraphTHandler {
      * @return The list of paths between the vertices.
      */
     public List<GraphPath<Vertex, Edge>> getAllPaths() {
-        calculateEndpoints();
+        if(calculateEndpoints()) {
 
-        AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
-        List<GraphPath<Vertex, Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
-
-        return paths;
+            AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
+            List<GraphPath<Vertex, Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
+            return paths;
+        }
+        return null;
     }
 
     /**
@@ -116,12 +132,13 @@ public class JGraphTHandler {
      *
      * @return The shortest path between the vertices.
      */
-    public List<Vertex> getShortestPath() {
-        calculateEndpoints();
-
-        DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
-        GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
-        return shortestPath.getVertexList();
+    public GraphPath<Vertex,Edge> getShortestPath() {
+        if(calculateEndpoints()) {
+            DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
+            GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
+            return shortestPath;
+        }
+        return null;
     }
 
     /**
@@ -155,27 +172,98 @@ public class JGraphTHandler {
     }
 
     /**
+     * Returns all predecessors and their edges towards them in
+     * the given iterations.
+     */
+    public Pair<List<Vertex>, List<Edge>> predecessorsIterations(int steps){
+        if(isAtLeastOnePicked()) {
+            List<Vertex> vertices = new ArrayList<>();
+            List<Edge> edges = new ArrayList<>();
+            for(Vertex startVertex : pickedVertices) {
+                List<Vertex> tempVertex = new ArrayList<>();
+                tempVertex.add(startVertex);
+                for (int i = steps; i > 0; i--) {
+                    for (Vertex pivotVertex : tempVertex) {
+                        List<Vertex> predecessors = Graphs.predecessorListOf(algorithmGraph, pivotVertex);
+                        for (Vertex neighborVertex : predecessors) {
+                            vertices.add(neighborVertex);
+                            edges.add((Edge) algorithmGraph.getEdge(pivotVertex, neighborVertex));
+                        }
+                        tempVertex = predecessors;
+                    }
+                }
+            }
+            return new Pair<>(vertices, edges);
+        }
+        return null;
+    }
+
+    /**
+     * Returns all predecessors and their edges towards them in
+     * the given iterations.
+     */
+    public Pair<List<Vertex>, List<Edge>> successorIterations(int steps){
+        if(isAtLeastOnePicked()) {
+            List<Vertex> vertices = new ArrayList<>();
+            List<Edge> edges = new ArrayList<>();
+            for(Vertex startVertex : pickedVertices) {
+                List<Vertex> tempVertex = new ArrayList<>();
+                tempVertex.add(startVertex);
+                for (int i = steps; i > 0; i--) {
+                    for (Vertex pivotVertex : tempVertex) {
+                        List<Vertex> successors = Graphs.successorListOf(algorithmGraph, pivotVertex);
+                        for (Vertex neighborVertex : successors) {
+                            vertices.add(neighborVertex);
+                            edges.add((Edge) algorithmGraph.getEdge(pivotVertex, neighborVertex));
+                        }
+                        tempVertex = successors;
+                    }
+                }
+            }
+            return new Pair<>(vertices, edges);
+        }
+        return null;
+    }
+
+    /**
      * Detects relation chains.
      */
-    public List<List<Vertex>> detectRelationChains() {
-      /*  DefaultDirectedGraph<Vertex, Edge> tempGraph = algorithmGraph;
-        List<List<Vertex>> relationChains = new ArrayList<>();
-        ArrayList<Vertex> verticesLeft = new ArrayList<>();
-        verticesLeft.addAll(algorithmGraph.vertexSet());
-        Vertex pivotVertex = verticesLeft.get(0);
-        LinkedList<Vertex> potentialChain = new LinkedList<>();
-    while(!verticesLeft.isEmpty()) {
-        while (algorithmGraph.outDegreeOf(pivotVertex) > 1 && algorithmGraph.inDegreeOf(targetVertex) > 1) {
-            verticesLeft.remove(pivotVertex);
-            verticesLeft.get(0);
+    public Pair<List<List<Vertex>>,Set<Edge>> detectRelationChains() {
+        List<List<Vertex>> relationChains = new LinkedList<>();
+        List<Vertex> InnerVertices = new ArrayList<>();
+        for(Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()){
+            if(algorithmGraph.inDegreeOf(vert) == 1 && algorithmGraph.outDegreeOf(vert) == 1){
+                InnerVertices.add(vert);
+            }
         }
-        while (algorithmGraph.outDegreeOf(pivotVertex) == 1 || algorithmGraph.inDegreeOf(targetVertex) == 1) {
-
+        while(!InnerVertices.isEmpty()) {
+            LinkedList<Vertex> potentialChain = new LinkedList<>();
+            Vertex pivotVertex = InnerVertices.get(0);
+            Vertex predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph,pivotVertex).get(0);
+            Vertex successor = (Vertex) Graphs.successorListOf(algorithmGraph,pivotVertex).get(0);
+            potentialChain.add(predecessor);
+            potentialChain.add(pivotVertex);
+            potentialChain.add(successor);
+            while(Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 ){
+                predecessor = (Vertex)Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
+                potentialChain.addFirst((Vertex)Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
+            }
+            while(Graphs.successorListOf(algorithmGraph, successor).size() == 1 ){
+                successor = (Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0);
+                potentialChain.addFirst((Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0));
+            }
+            InnerVertices.removeAll(potentialChain);
+            if(potentialChain.size() > 3) {
+                relationChains.add(potentialChain);
+            }
         }
+        Set<Edge> edgesRelationChain = new HashSet<>();
+        for(List<Vertex> list : relationChains){
+            for(int i = 0 ; i < list.size(); i++){
+                edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(i),list.get(i + 1)));
+            }
+        }
+        return new Pair<>(relationChains,edgesRelationChain);
     }
 
-        return relationChains;
-    }*/
-      return null;
-    }
 }

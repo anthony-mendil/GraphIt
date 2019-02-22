@@ -4,7 +4,6 @@ import actions.LogAction;
 import actions.LogEntryName;
 import actions.remove.RemoveEdgesLogAction;
 import graph.graph.Edge;
-import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;

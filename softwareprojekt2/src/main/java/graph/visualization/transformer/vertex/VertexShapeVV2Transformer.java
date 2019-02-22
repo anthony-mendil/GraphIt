@@ -3,16 +3,10 @@ package graph.visualization.transformer.vertex;
 import edu.uci.ics.jung.visualization.Layer;
 import edu.uci.ics.jung.visualization.decorators.AbstractVertexShapeTransformer;
 import graph.graph.Syndrom;
-import graph.graph.Vertex;
-import graph.graph.VertexShapeType;
-import graph.visualization.renderers.RenderHelperFunction;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
 
 /**
  * Defines a functor that transform a vertex into its shape. The input vertex is left unchanged.

@@ -3,8 +3,6 @@ package log_management.parameters.move;
 import graph.graph.Vertex;
 import gui.Values;
 import gui.properties.Language;
-import log_management.parameters.ColorNameCreator;
-import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
 import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;

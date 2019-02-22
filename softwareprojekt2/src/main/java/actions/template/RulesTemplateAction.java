@@ -11,19 +11,19 @@ public class RulesTemplateAction extends GraphAction {
     /**
      *
      */
-    private Template template;
+    private Template newTemplate;
     /**
      * Creates a new rules template action to save the template so the Syndrom
      *
      * @param pTemplate The template to use.
      */
     public RulesTemplateAction(Template pTemplate) {
-        template=pTemplate;
+        newTemplate=pTemplate;
     }
 
     @Override
     public void action() {
-        Syndrom.getInstance().setTemplate(template);
+        Syndrom.getInstance().setTemplate(newTemplate);
         notifyObserverGraph();
     }
 
