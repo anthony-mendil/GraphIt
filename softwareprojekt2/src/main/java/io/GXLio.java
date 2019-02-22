@@ -513,21 +513,10 @@ public class GXLio {
         singleNodeInSphere.setAttr("annotation", new GXLString(nodeAnnotationContent));
         Color drawPaint = (Color) v.getDrawColor();
         singleNodeInSphere.setAttr("drawPaint", new GXLString(getPaintDescription(drawPaint)));
-        if (v.getVertexArrowReinforced() != null) {
-            singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
-        } else {
-            singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString(""));
-        }
-        if (v.getVertexArrowNeutral() != null) {
-            singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString("" + v.getVertexArrowNeutral()));
-        } else {
-            singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString(""));
-        }
-        if (v.getVertexArrowExtenuating() != null) {
-            singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString("" + v.getVertexArrowExtenuating()));
-        } else {
-            singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString(""));
-        }
+        singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
+        singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString("" + v.getVertexArrowNeutral()));
+        singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString("" + v.getVertexArrowExtenuating()));
+
         singleNodeInSphere.setAttr("size", new GXLInt(v.getSize()));
         singleNodeInSphere.setAttr("isVisible", new GXLBool(v.isVisible()));
         singleNodeInSphere.setAttr("font", new GXLString("" + v.getFont()));
