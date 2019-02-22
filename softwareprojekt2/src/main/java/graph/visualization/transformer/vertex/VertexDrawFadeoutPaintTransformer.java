@@ -23,6 +23,6 @@ public class VertexDrawFadeoutPaintTransformer<V> implements Transformer<V, Pain
     public Paint transform(V v){
         Vertex vertex = (Vertex) v;
         Color color = (Color) transformer.transform(v);
-        return (!vertex.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (255 - (animation.frac*255))) : color;
+        return (!vertex.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (255 - (animation.getFrac()*255))) : color;
     }
 }

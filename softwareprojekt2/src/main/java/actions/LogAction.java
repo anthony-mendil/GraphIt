@@ -2,11 +2,8 @@ package actions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import javafx.util.Pair;
 import log_management.DatabaseManager;
-import log_management.json_deserializers.PairDeserializer;
 import log_management.json_deserializers.Point2DDeserializer;
-import log_management.json_serializers.PairSerializer;
 import log_management.json_serializers.Point2DSerializer;
 import log_management.parameters.Param;
 import log_management.tables.Log;
@@ -50,7 +47,7 @@ public abstract class LogAction extends GraphAction {
 
     public Log createLog() {
         Log log = new Log();
-        log.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).get());
+        log.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null));
         log.setLogEntryName(logEntryName);
         log.setTime(time);
 
@@ -62,7 +59,9 @@ public abstract class LogAction extends GraphAction {
         String paramString = null;
         try {
             paramString = gson.toJson(parameters);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+
+        }
         log.setParameters(paramString);
         return log;
     }

@@ -5,14 +5,10 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
-import jgrapht.JGraphTHandler;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereColorParam;
 
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.List;
 
 
 /**

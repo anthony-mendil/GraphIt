@@ -173,7 +173,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
         notifyObserverGraph();
     }
 
-    public static Comparator<Sphere> sphereCompare = new Comparator<Sphere>() {
+    final public static Comparator<Sphere> sphereCompare = new Comparator<Sphere>() {
         @Override
         public int compare(Sphere sphere1, Sphere sphere2) {
                 return Integer.compare((int)sphere1.getCoordinates().getX(), (int) sphere2.getCoordinates().getX());

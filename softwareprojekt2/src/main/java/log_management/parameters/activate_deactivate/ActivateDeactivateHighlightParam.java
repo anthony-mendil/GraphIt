@@ -2,10 +2,7 @@ package log_management.parameters.activate_deactivate;
 
 import graph.graph.Edge;
 import graph.graph.Vertex;
-import gui.Values;
-import gui.properties.Language;
 import log_management.parameters.Param;
-import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 

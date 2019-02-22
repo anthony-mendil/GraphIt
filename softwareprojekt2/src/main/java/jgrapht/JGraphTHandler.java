@@ -1,6 +1,5 @@
 package jgrapht;
 
-import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
@@ -8,17 +7,13 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
-import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
-import log_management.tables.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
-import org.jgrapht.alg.cycle.CycleDetector;
 import org.jgrapht.alg.cycle.TarjanSimpleCycles;
 import org.jgrapht.alg.shortestpath.AllDirectedPaths;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
 
 import java.util.*;
 
@@ -233,25 +228,42 @@ public class JGraphTHandler {
     /**
      * Detects relation chains.
      */
-    public List<List<Vertex>> detectRelationChains() {
-      /*  DefaultDirectedGraph<Vertex, Edge> tempGraph = algorithmGraph;
-        List<List<Vertex>> relationChains = new ArrayList<>();
-        ArrayList<Vertex> verticesLeft = new ArrayList<>();
-        verticesLeft.addAll(algorithmGraph.vertexSet());
-        Vertex pivotVertex = verticesLeft.get(0);
-        LinkedList<Vertex> potentialChain = new LinkedList<>();
-    while(!verticesLeft.isEmpty()) {
-        while (algorithmGraph.outDegreeOf(pivotVertex) > 1 && algorithmGraph.inDegreeOf(targetVertex) > 1) {
-            verticesLeft.remove(pivotVertex);
-            verticesLeft.get(0);
+    public Pair<List<List<Vertex>>,Set<Edge>> detectRelationChains() {
+        List<List<Vertex>> relationChains = new LinkedList<>();
+        List<Vertex> InnerVertices = new ArrayList<>();
+        for(Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()){
+            if(algorithmGraph.inDegreeOf(vert) == 1 && algorithmGraph.outDegreeOf(vert) == 1){
+                InnerVertices.add(vert);
+            }
         }
-        while (algorithmGraph.outDegreeOf(pivotVertex) == 1 || algorithmGraph.inDegreeOf(targetVertex) == 1) {
-
+        while(!InnerVertices.isEmpty()) {
+            LinkedList<Vertex> potentialChain = new LinkedList<>();
+            Vertex pivotVertex = InnerVertices.get(0);
+            Vertex predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph,pivotVertex).get(0);
+            Vertex successor = (Vertex) Graphs.successorListOf(algorithmGraph,pivotVertex).get(0);
+            potentialChain.add(predecessor);
+            potentialChain.add(pivotVertex);
+            potentialChain.add(successor);
+            while(Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 ){
+                predecessor = (Vertex)Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
+                potentialChain.addFirst((Vertex)Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
+            }
+            while(Graphs.successorListOf(algorithmGraph, successor).size() == 1 ){
+                successor = (Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0);
+                potentialChain.addFirst((Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0));
+            }
+            InnerVertices.removeAll(potentialChain);
+            if(potentialChain.size() > 3) {
+                relationChains.add(potentialChain);
+            }
         }
+        Set<Edge> edgesRelationChain = new HashSet<>();
+        for(List<Vertex> list : relationChains){
+            for(int i = 0 ; i < list.size(); i++){
+                edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(i),list.get(i + 1)));
+            }
+        }
+        return new Pair<>(relationChains,edgesRelationChain);
     }
 
-        return relationChains;
-    }*/
-      return null;
-    }
 }

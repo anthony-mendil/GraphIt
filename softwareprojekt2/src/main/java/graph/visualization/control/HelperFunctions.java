@@ -1,9 +1,15 @@
 package graph.visualization.control;
 
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import gui.*;
+import gui.EdgeContextMenu;
+import gui.SphereContextMenu;
+import gui.Values;
+import gui.VertexContextMenu;
 import gui.properties.Language;
 import javafx.animation.Animation;
 import javafx.application.Platform;
@@ -17,10 +23,9 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -30,6 +35,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class HelperFunctions {
     private final Values values;
+    private static Logger logger = Logger.getLogger(HelperFunctions.class);
     public HelperFunctions(){
         values = Values.getInstance();
     }
@@ -168,7 +174,7 @@ public class HelperFunctions {
             try {
                 dialogPane = fxmlLoader.load();
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.toString());
             }
             Dialog<Map<Language, String>> d = new Dialog<>();
 
