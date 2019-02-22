@@ -1329,7 +1329,7 @@
                                              </HBox.margin>
                                            </Button>
       
-                                                   <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="240.0" text="%ADD_SPHERE">
+                                                   <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="240.0" text="%LOG_ALL">
                                                        <items>
                                                            <MenuItem fx:id="logAll" mnemonicParsing="false" styleClass="analysisMenuItem" text="%LOG_ALL"> </MenuItem>
                                                            <MenuItem fx:id="logAddSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_SPHERE"> </MenuItem>
