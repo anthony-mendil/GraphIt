@@ -53,6 +53,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
@@ -625,7 +626,6 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem logEditEdgesType;
     @FXML private MenuItem logRemoveSphere;
     @FXML private MenuItem logMoveVertices;
-    @FXML private MenuItem logRemoveEdge;
     @FXML private MenuItem logMoveSphere;
     @FXML private MenuItem logActivateAnchorPointsFadeout;
     @FXML private MenuItem logAddAnchorPoints;
@@ -1561,8 +1561,29 @@ public class Controller implements ObserverSyndrom {
         languageGraphGerman.setSelected(true);
     }
 
+    final public static Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+
+    private void sortFilterLogs(){
+        ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
+        f.sort(menuItemCompare);
+        filterLogType.getItems().removeAll(f);
+
+        Platform.runLater(() -> {
+            for(MenuItem item: f){
+                filterLogType.getItems().add(item);
+            }
+
+        });
+    }
 
     private void initProtocolTree(){
+        sortFilterLogs();
+
+        for(MenuItem item: filterLogType.getItems()){
+            item.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterLogType));
+        }
+
+
         historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
             filterLogs(analysisLogEntryName);
         });
@@ -1803,7 +1824,6 @@ public class Controller implements ObserverSyndrom {
         logEditEdgesType.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_EDGES_TYPE));
         logRemoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_SPHERE));
         logMoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.MOVE_VERTICES));
-        logRemoveEdge.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_EDGES));
         logMoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.MOVE_SPHERE));
         logActivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT));
         logAddAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ADD_ANCHOR_POINTS));
@@ -1927,6 +1947,7 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
             treeViewUpdate();
+            sortFilterLogs();
         }
 
         LanguageListener(CheckMenuItem checkMenuItem, Controller controller){
