@@ -27,7 +27,7 @@ public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
     public Paint transform(V v) {
         Vertex vertex = (Vertex) v;
         Color color = (Color)transformer.transform(v);
-        double fracValue  = (fadeType == FadeType.ACTIVATE) ?  255 - (animation.frac*255) : animation.frac*255;
+        double fracValue  = (fadeType == FadeType.ACTIVATE) ?  255 - (animation.getFrac()*255) : animation.getFrac()*255;
         return (!vertex.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) fracValue) : color;
     }
 }

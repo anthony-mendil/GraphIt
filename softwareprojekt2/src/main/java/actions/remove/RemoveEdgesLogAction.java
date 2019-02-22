@@ -11,7 +11,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.*;
 

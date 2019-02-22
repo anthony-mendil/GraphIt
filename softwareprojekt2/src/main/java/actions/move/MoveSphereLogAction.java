@@ -3,15 +3,15 @@ package actions.move;
 import actions.LogAction;
 import actions.LogEntryName;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
 import log_management.parameters.move.MoveSphereParam;
 
 import java.awt.geom.Point2D;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Moves a sphere from one to another position. A sphere can not be positioned where another sphere is already located.
@@ -67,7 +67,7 @@ public class MoveSphereLogAction extends LogAction {
             Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
                 sphere.setCoordinates(newPos);
                 Double dX = newPos.getX() - oldPos.getX();
-                Double dY = newPos.getY() - newPos.getY();
+                Double dY = newPos.getY() - oldPos.getY();
                 for(Vertex vertex : sphere.getVertices()) {
                     Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dX, vertex.getCoordinates()
                             .getY() + dY);

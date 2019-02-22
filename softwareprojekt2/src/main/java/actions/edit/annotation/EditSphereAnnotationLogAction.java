@@ -8,7 +8,6 @@ import graph.graph.FunctionMode;
 import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereAnnotationParam;

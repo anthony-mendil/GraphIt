@@ -1,12 +1,8 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
-import graph.graph.Vertex;
-import gui.Values;
-import gui.properties.Language;
 import javafx.util.Pair;
 import log_management.parameters.Param;
-import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 

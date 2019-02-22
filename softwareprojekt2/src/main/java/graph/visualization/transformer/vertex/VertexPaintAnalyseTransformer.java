@@ -1,7 +1,6 @@
 package graph.visualization.transformer.vertex;
 
 import graph.graph.Vertex;
-import gui.Values;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;

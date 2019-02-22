@@ -1,8 +1,6 @@
 package gui.properties;
 
 import gui.Controller;
-import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 import lombok.Data;
 
 import java.util.Locale;
@@ -121,21 +119,13 @@ public class LoadLanguage {
         c.getAnalysisStructureIndex().setText(loadLanguagesKey("analysisStructureIndex"));
         c.getAnalysisStructureIndexTooltip().setText(loadLanguagesKey("analysisStructureIndexTooltip"));
         c.getAnalysisSymptom().setText(loadLanguagesKey(sectionSymptom));
-        c.getAnalysisPredessor().getTooltip().setText(loadLanguagesKey("analysisPredecessorTooltip"));
+        c.getAnalysisPredecessor().getTooltip().setText(loadLanguagesKey("analysisPredecessorTooltip"));
         c.getAnalysisSuccessor().getTooltip().setText(loadLanguagesKey("analysisSuccessorTooltip"));
-        c.getAnalysisPredessor().setText(loadLanguagesKey("analysisPredecessor"));
+        c.getAnalysisPredecessor().setText(loadLanguagesKey("analysisPredecessor"));
         c.getAnalysisSuccessor().setText(loadLanguagesKey(analysisSuccessor));
         c.getAnalysisSymptomAmount().setText(loadLanguagesKey("analysisSymptomAmount"));
         c.getAmountSymptomTextField().setPromptText(loadLanguagesKey(analysisSymptomAmountTooltip));
-        c.getAnalysisEdge().setText(loadLanguagesKey(sectionEdge));
-        c.getAnalysisPredessorEdge().setText(loadLanguagesKey("analysisPredecessor"));
-        c.getAnalysisPredessorEdge().getTooltip().setText(loadLanguagesKey("analysisPredecessorTooltip"));
-        c.getAnalysisSuccessorEdge().setText(loadLanguagesKey(analysisSuccessor));
-        c.getAnalysisSuccessorEdge().getTooltip().setText(loadLanguagesKey(analysisSuccessor));
-        c.getAnalysisEdgeAmount().setText(loadLanguagesKey("analysisSymptomAmount"));
-        c.getAmountEdgeTextField().setPromptText(loadLanguagesKey(analysisSymptomAmountTooltip));
-        c.getAmountEdgeTextField().getTooltip().setText(loadLanguagesKey(analysisSymptomAmountTooltip));
-        c.getReinforced1().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
+        c.getFilterArrowTypeCheckBox().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
         c.getAnalysisOption().setText(loadLanguagesKey("analysisOptions"));
         c.getAnalysisOptions().getTooltip().setText(loadLanguagesKey("analysisOptionsTooltip"));
         c.getConvergent().setText(loadLanguagesKey("filterConvergentBranches"));

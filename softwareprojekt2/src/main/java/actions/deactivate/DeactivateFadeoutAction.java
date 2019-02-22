@@ -6,8 +6,6 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import graph.algorithmen.predicates.EdgeIsVisiblePredicate;
-import graph.algorithmen.predicates.VertexIsVisiblePredicate;
 import graph.graph.Edge;
 import graph.graph.FadeType;
 import graph.graph.Vertex;
@@ -18,7 +16,6 @@ import graph.visualization.transformer.vertex.VertexFadeoutPaintTransformer;
 import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
 import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.Transformer;
-import org.apache.commons.collections15.functors.AllPredicate;
 import org.apache.commons.collections15.functors.TruePredicate;
 
 import java.awt.*;

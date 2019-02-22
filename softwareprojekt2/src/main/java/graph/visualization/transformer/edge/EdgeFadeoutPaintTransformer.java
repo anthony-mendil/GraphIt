@@ -27,7 +27,7 @@ public class EdgeFadeoutPaintTransformer<E> implements Transformer<E, Paint> {
     public Paint transform(E e) {
         Edge edge = (Edge) e;
         Color color = (Color)transformer.transform(e);
-        double fracValue  = (fadeType == FadeType.ACTIVATE) ?  255 - (animation.frac*255) : animation.frac*255;
+        double fracValue  = (fadeType == FadeType.ACTIVATE) ?  255 - (animation.getFrac()*255) : animation.getFrac()*255;
 
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
         Pair<Vertex> pair = g.getEndpoints(edge);

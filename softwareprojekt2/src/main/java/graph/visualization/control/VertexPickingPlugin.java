@@ -74,7 +74,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
                         helper.setActionText("Es dürfen aufgrund der Vorlageregeln keine Symptome hinzugefügt werden.", true);
                     }
-                    if(sp.getLockedMaxAmountVertices() == "" || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE)  {
+                    if(sp.getLockedMaxAmountVertices() .equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE)  {
                         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
                         history.execute(addVerticesLogAction);
                         Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
@@ -241,6 +241,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
     private void setVerticesCoord(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport pickSupport) {
         boolean addNot = false;
+        boolean jumpBack = false;
         for (Vertex v : pickedState.getPicked()) {
             for (Edge edge: vv.getGraphLayout().getGraph().getIncidentEdges(v)){
                 edge.setHasPrio(false);
@@ -261,21 +262,32 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         } else {
             for (Vertex v : pickedState.getPicked()) {
                 if(intersects(v)){
-                    return;
-                }
-                Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
-                        .getCoordinates());
-                Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
-                Sphere oldSphere = points.get(v).getValue();
-                if (!s.equals(oldSphere)) {
-                    LinkedList<Vertex> list = oldSphere.getVertices();
-                    list.remove(v);
-                    oldSphere.setVertices(list);
+                    jumpBack = true;
+                    break;
+                }else {
+                    Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
+                            .getCoordinates());
+                    Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
+                    Sphere oldSphere = points.get(v).getValue();
+                    if (!s.equals(oldSphere)) {
+                        LinkedList<Vertex> list = oldSphere.getVertices();
+                        list.remove(v);
+                        oldSphere.setVertices(list);
 
-                    LinkedList<Vertex> newList = s.getVertices();
-                    newList.add(v);
-                    s.setVertices(newList);
+                        LinkedList<Vertex> newList = s.getVertices();
+                        newList.add(v);
+                        s.setVertices(newList);
+                    }
                 }
+            }
+            if(jumpBack){
+                for(Vertex vert : pickedState.getPicked()){
+                    vert.setCoordinates(points.get(vert).getKey());
+                    layout.setLocation(vert, vert.getCoordinates());
+                }
+                vv.repaint();
+                Syndrom.getInstance().getVv2().repaint();
+                return;
             }
             List<Vertex> vertList = new ArrayList<>();
             vertList.addAll(pickedState.getPicked());

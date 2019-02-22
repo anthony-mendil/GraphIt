@@ -3,9 +3,15 @@ package graph.visualization.control;
 import actions.ActionHistory;
 import actions.edit.annotation.EditSphereAnnotationLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import gui.*;
+import gui.EdgeContextMenu;
+import gui.SphereContextMenu;
+import gui.Values;
+import gui.VertexContextMenu;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
 import javafx.animation.Animation;
@@ -160,6 +166,7 @@ public class HelperFunctions {
         return contextMenu;
     }
 
+
     public Dialog<EnumMap<Language, String>> getDialog(Map<String, String> old) {
         String a;
         switch (values.getGuiLanguage()) {
@@ -215,8 +222,5 @@ public class HelperFunctions {
                 return map;
             } else {
                 return null;
-            }
-        });
-        return d;
-    }
+             }
 }

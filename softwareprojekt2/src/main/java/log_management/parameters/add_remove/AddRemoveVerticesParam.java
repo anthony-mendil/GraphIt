@@ -12,7 +12,10 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Parameter object of the action of AddVerticesLogAction/RemoveVerticesLogAction.
