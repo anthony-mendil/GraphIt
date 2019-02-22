@@ -117,7 +117,7 @@ public class GXLioTest {
     public void testGraph() throws IOException, SAXException {
         /*prepareSyndrom();
         GXLio gxlio = new GXLio();
-        gxlio.setSyndrom(Syndrom.getInstance());
+    //    gxlio.setSyndrom(Syndrom.getInstance());
         gxlio.exportGXL(new File("testGraph"), false);
         GXLDocument doc = new GXLDocument(new File("testGraph"));
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());

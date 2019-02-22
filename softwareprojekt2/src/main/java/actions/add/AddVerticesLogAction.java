@@ -69,8 +69,6 @@ public class AddVerticesLogAction extends LogAction {
             Vertex newVertex = graph.addVertex(position2D, sphere);
             createParameter(newVertex, sphere);
             vv.getGraphLayout().setLocation(newVertex, position2D);
-
-            System.out.println("The Number of lockedVertices =" + sphere.getLockedMaxAmountVertices());
         }else{
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getVertices();
             List<Vertex> startVertices = ((AddRemoveVerticesParam)parameters).getStartVertexList();

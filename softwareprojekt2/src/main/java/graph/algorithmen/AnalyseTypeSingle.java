@@ -25,7 +25,23 @@ public enum AnalyseTypeSingle {
      */
     CYCLEN,
     /**
-     * Filter-type which will filter the edge type of the selected vertex.
+     * Filter-type which will filter the reinforced edges.
      */
-    EDGETYPE,
+    REINFORCED,
+    /**
+     * Filter-type which will filter the extenuating edges.
+     */
+    EXTENUATING,
+    /**
+     * Filter-type which will filter the neutral edges.
+     */
+    NEUTRAL,
+    /**
+     * Filter-type which will filter all the paths between two vertices.
+     */
+    ALLPATHS,
+    /**
+     * Filter-type which will filter the shortest path between two vertices.
+     */
+    SHORTESTPATH
 }
