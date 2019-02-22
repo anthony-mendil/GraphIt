@@ -10,7 +10,7 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
 import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
-import org.jgrapht.Graph;
+import log_management.tables.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
 import org.jgrapht.alg.cycle.CycleDetector;
@@ -39,6 +39,10 @@ public class JGraphTHandler {
      * The graph in JGraphT-form.
      */
     private DefaultDirectedGraph algorithmGraph;
+    /**
+     * The list of selected vertices.
+     */
+    private Set<Vertex> pickedVertices;
 
     /**
      * Constructor in case the user changes to analyse-mode and analyses without using a vertex.
@@ -70,17 +74,33 @@ public class JGraphTHandler {
     /**
      * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
      */
-    private void calculateEndpoints() {
+    private boolean calculateEndpoints() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() != 2) {
             HelperFunctions helperFunctions = new HelperFunctions();
             helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.", true);
-            return;
+            return false;
         }
         Iterator<Vertex> iterator = pickedState.getPicked().iterator();
         startVertex = iterator.next();
         endVertex = iterator.next();
+        return true;
+    }
+
+    /**
+     * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
+     */
+    public boolean isAtLeastOnePicked(){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+        if (pickedState.getPicked().size() < 1) {
+            HelperFunctions helperFunctions = new HelperFunctions();
+            helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.", true);
+            return false;
+        }
+        pickedVertices = pickedState.getPicked();
+        return true;
     }
 
     /**
@@ -103,12 +123,13 @@ public class JGraphTHandler {
      * @return The list of paths between the vertices.
      */
     public List<GraphPath<Vertex, Edge>> getAllPaths() {
-        calculateEndpoints();
+        if(calculateEndpoints()) {
 
-        AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
-        List<GraphPath<Vertex, Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
-
-        return paths;
+            AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
+            List<GraphPath<Vertex, Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
+            return paths;
+        }
+        return null;
     }
 
     /**
@@ -116,12 +137,13 @@ public class JGraphTHandler {
      *
      * @return The shortest path between the vertices.
      */
-    public List<Vertex> getShortestPath() {
-        calculateEndpoints();
-
-        DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
-        GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
-        return shortestPath.getVertexList();
+    public GraphPath<Vertex,Edge> getShortestPath() {
+        if(calculateEndpoints()) {
+            DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
+            GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
+            return shortestPath;
+        }
+        return null;
     }
 
     /**
@@ -152,6 +174,60 @@ public class JGraphTHandler {
             }
         }
         return divergentBranches;
+    }
+
+    /**
+     * Returns all predecessors and their edges towards them in
+     * the given iterations.
+     */
+    public Pair<List<Vertex>, List<Edge>> predecessorsIterations(int steps){
+        if(isAtLeastOnePicked()) {
+            List<Vertex> vertices = new ArrayList<>();
+            List<Edge> edges = new ArrayList<>();
+            for(Vertex startVertex : pickedVertices) {
+                List<Vertex> tempVertex = new ArrayList<>();
+                tempVertex.add(startVertex);
+                for (int i = steps; i > 0; i--) {
+                    for (Vertex pivotVertex : tempVertex) {
+                        List<Vertex> predecessors = Graphs.predecessorListOf(algorithmGraph, pivotVertex);
+                        for (Vertex neighborVertex : predecessors) {
+                            vertices.add(neighborVertex);
+                            edges.add((Edge) algorithmGraph.getEdge(pivotVertex, neighborVertex));
+                        }
+                        tempVertex = predecessors;
+                    }
+                }
+            }
+            return new Pair<>(vertices, edges);
+        }
+        return null;
+    }
+
+    /**
+     * Returns all predecessors and their edges towards them in
+     * the given iterations.
+     */
+    public Pair<List<Vertex>, List<Edge>> successorIterations(int steps){
+        if(isAtLeastOnePicked()) {
+            List<Vertex> vertices = new ArrayList<>();
+            List<Edge> edges = new ArrayList<>();
+            for(Vertex startVertex : pickedVertices) {
+                List<Vertex> tempVertex = new ArrayList<>();
+                tempVertex.add(startVertex);
+                for (int i = steps; i > 0; i--) {
+                    for (Vertex pivotVertex : tempVertex) {
+                        List<Vertex> successors = Graphs.successorListOf(algorithmGraph, pivotVertex);
+                        for (Vertex neighborVertex : successors) {
+                            vertices.add(neighborVertex);
+                            edges.add((Edge) algorithmGraph.getEdge(pivotVertex, neighborVertex));
+                        }
+                        tempVertex = successors;
+                    }
+                }
+            }
+            return new Pair<>(vertices, edges);
+        }
+        return null;
     }
 
     /**

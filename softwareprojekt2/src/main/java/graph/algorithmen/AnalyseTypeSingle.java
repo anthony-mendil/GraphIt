@@ -35,5 +35,13 @@ public enum AnalyseTypeSingle {
     /**
      * Filter-type which will filter the neutral edges.
      */
-    NEUTRAL
+    NEUTRAL,
+    /**
+     * Filter-type which will filter all the paths between two vertices.
+     */
+    ALLPATHS,
+    /**
+     * Filter-type which will filter the shortest path between two vertices.
+     */
+    SHORTESTPATH
 }

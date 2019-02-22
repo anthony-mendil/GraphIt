@@ -16,6 +16,7 @@ import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
 import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
+import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
 
 import java.util.*;
@@ -42,11 +43,7 @@ public class AnalysisGraphAction extends GraphAction{
     /**
      * The amount of successors/predecessors of a specific vertex.
      */
-    private int amountVertices;
-    /**
-     * The edge-type which will be filtered.
-     */
-    private EdgeArrowType edgeType;
+    private int amountSteps = 0;
     /**
      * Constructor in case the user chooses a AnalyseTypeSeveral - analyse option.
      * These analyse functions are implemented by JUNG functions.
@@ -58,8 +55,8 @@ public class AnalysisGraphAction extends GraphAction{
      * @param counterVertex The number of adjacent vertices to analyse.
      */
     public AnalysisGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, int counterVertex) {
-
-        amountVertices = counterVertex;
+        this.analyseTypeSeverals = pAnalyseTypeSeveral;
+        amountSteps = counterVertex;
     }
 
     /**
@@ -75,6 +72,10 @@ public class AnalysisGraphAction extends GraphAction{
 
     }
 
+    /**
+     * Analyses the graph on the given criteria. All the
+     * calculated edges and vertices will be highlighted.
+     */
     @Override
     public void action() {
         Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
@@ -88,9 +89,9 @@ public class AnalysisGraphAction extends GraphAction{
                 edges.add(vertices);
             }
         JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()), edges);
-        if(analyseTypeSingle != null) {
-            ArrayList<Edge> edgesAnalyse = new ArrayList<>();
-            ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
+        ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+        ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
+            if(analyseTypeSingle != null) {
             switch (analyseTypeSingle) {
                 case CYCLEN:
                     List<List<Vertex>> listCylces = jGraphTHandler.detectCycles();
@@ -167,20 +168,49 @@ public class AnalysisGraphAction extends GraphAction{
                         }
                     }
                     break;
+                case ALLPATHS:
+                    List<GraphPath<Vertex,Edge>> allPaths = jGraphTHandler.getAllPaths();
+                    if(allPaths == null){
+                        break;
+                    }
+                    for(GraphPath<Vertex,Edge> path : allPaths){
+                        verticesAnalyse.addAll(path.getVertexList());
+                        edgesAnalyse.addAll(path.getEdgeList());
+                    }
+                    break;
+                case SHORTESTPATH:
+                    GraphPath<Vertex,Edge> shortestPath = jGraphTHandler.getShortestPath();
+                    if(shortestPath == null){
+                        break;
+                    }
+                    verticesAnalyse.addAll(shortestPath.getVertexList());
+                    edgesAnalyse.addAll(shortestPath.getEdgeList());
+                    break;
             }
 
-            vv.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
-            vv2.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
-            vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
-            vv2.getRenderContext().setEdgeDrawPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
-            vv.getRenderContext().setArrowFillPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
-            vv2.getRenderContext().setArrowFillPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
-            vv.repaint();
-            vv2.repaint();
+
 
         }else{
-
+            for(AnalyseTypeSeveral analyseTypeSeveral : analyseTypeSeverals){
+                if(analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR){
+                    Pair<List<Vertex>,List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
+                    verticesAnalyse.addAll(predecessors.getKey());
+                    edgesAnalyse.addAll(predecessors.getValue());
+                }else{
+                    Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.predecessorsIterations(amountSteps);
+                    verticesAnalyse.addAll(successors.getKey());
+                    edgesAnalyse.addAll(successors.getValue());
+                }
+            }
         }
+        vv.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
+        vv2.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
+        vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+        vv2.getRenderContext().setEdgeDrawPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+        vv.getRenderContext().setArrowFillPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+        vv2.getRenderContext().setArrowFillPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
+        vv.repaint();
+        vv2.repaint();
     }
 
     /**
