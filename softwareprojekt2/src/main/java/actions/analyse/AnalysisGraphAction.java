@@ -139,7 +139,13 @@ public class AnalysisGraphAction extends GraphAction{
                     verticesAnalyse.addAll(branches);
                     break;
                 case EDGE_CHAINS:
-                    List<List<Vertex>> edgeChains = jGraphTHandler.detectRelationChains();
+                    Pair<List<List<Vertex>>,Set<Edge>> edgeChains = jGraphTHandler.detectRelationChains();
+                    for(List<Vertex> list : edgeChains.getKey()){
+                        for(int i = 0 ; i < list.size(); i++){
+                            verticesAnalyse.add(list.get(i));
+                        }
+                    }
+                    edgesAnalyse.addAll(edgeChains.getValue());
                     break;
                 case REINFORCED:
                     for(Edge edge : graph.getEdges()){
