@@ -629,12 +629,10 @@ public class Controller implements ObserverSyndrom {
     @FXML private ResourceBundle resources;
     @FXML private TreeView<Object> protocol;
     @FXML private CheckBox filterProtocol;
-
     @FXML private MenuItem logAddSphere;
     @FXML private MenuItem logAddVertex;
     @FXML private MenuItem logAddEdge;
     @FXML private MenuButton filterLogType;
-
     @FXML private MenuItem logEditFontVertices;
     @FXML private MenuItem logDeactivateFadeout;
     @FXML private MenuItem logEditSphereColor;
@@ -666,7 +664,7 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem logDeactivateAnchorPointsFadeout;
     @FXML private MenuItem logEditSpheresLayout;
     @FXML private MenuItem logEditVerticesLayout;
-
+    @FXML private MenuItem logAll;
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
     private static final String SPHERE_STYLE = "SphereStyle";
@@ -692,7 +690,7 @@ public class Controller implements ObserverSyndrom {
     private static Logger logger = Logger.getLogger(Controller.class);
 
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
-    private LogEntryName analysisLogEntryName = LogEntryName.ADD_SPHERE;
+    private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
 
 
@@ -1583,19 +1581,7 @@ public class Controller implements ObserverSyndrom {
 
     private void initProtocolTree(){
         historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
-            if (isNowExpanded && !filterProtocol.isSelected()){
-                filterLogs(null);
-            } else {
-                filterLogs(analysisLogEntryName);
-            }
-        });
-
-        filterProtocol.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
-            if (isNowSelected){
-                filterLogs(analysisLogEntryName);
-            } else {
-                filterLogs(null);
-            }
+            filterLogs(analysisLogEntryName);
         });
     }
 
@@ -1854,6 +1840,7 @@ public class Controller implements ObserverSyndrom {
         logDeactivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT));
         logEditSpheresLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_SPHERES_LAYOUT));
         logEditVerticesLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_LAYOUT));
+        logAll.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(null));
     }
 
     public void loadFontComboBox(ComboBox<String> comboBox) {
@@ -1996,11 +1983,7 @@ public class Controller implements ObserverSyndrom {
         }
         @Override
         public void handle(ActionEvent evt) {
-            if (filterProtocol.isSelected()){
-                filterLogs(type);
-            } else {
-                analysisLogEntryName = type;
-            }
+            filterLogs(type);
         }
     }
 
@@ -2574,9 +2557,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void filterLogs(LogEntryName entryName){
-        if (entryName != null){
-            analysisLogEntryName = entryName;
-        }
+        analysisLogEntryName = entryName;
         logToStringConverter.resetIncrementer();
         Service<Void> service = new Service<Void>() {
             @Override
@@ -2613,5 +2594,9 @@ public class Controller implements ObserverSyndrom {
     @FXML public void analysisCycles(){
         AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
         analysisGraphAction.action();
+    }
+
+    @FXML public void synAnalysis(){
+
     }
 }

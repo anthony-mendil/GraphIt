@@ -63,6 +63,7 @@ public class RemoveEdgesLogAction extends LogAction {
                     edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
                     Pair<Vertex,Vertex> verticesJung = new Pair<>(vertices.getFirst(),vertices.getSecond());
                     edges.put(e,verticesJung);
+                    pickedState.pick(e, false);
                     graph.removeEdge(e);
                 }else{
                     lockedEdges.add(e);

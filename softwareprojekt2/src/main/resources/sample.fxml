@@ -37,7 +37,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" stylesheets="gui_style.css" prefHeight="960.0" prefWidth="1280" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <MenuBar>
@@ -1310,58 +1310,74 @@
                                 <content>
                               <VBox>
                                  <children>
-                                     <CheckBox fx:id="filterProtocol" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="">
-                                         <VBox.margin>
-                                             <Insets bottom="7.0" top="2.0" />
-                                         </VBox.margin>
-                                         <graphic>
-                                             <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="%ADD_SPHERE">
-                                                 <items>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddSphere" mnemonicParsing="false" text="%ADD_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddVertex" mnemonicParsing="false" text="%ADD_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddEdge" mnemonicParsing="false" text="%ADD_EDGES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditFontVertices" mnemonicParsing="false" text="%EDIT_FONT_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logDeactivateFadeout" mnemonicParsing="false" text="%DEACTIVATE_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereColor" mnemonicParsing="false" text="%EDIT_SPHERE_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditEdgesStroke" mnemonicParsing="false" text="%EDIT_EDGES_STROKE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereSize" mnemonicParsing="false" text="%EDIT_SPHERE_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditFontSphere" mnemonicParsing="false" text="%EDIT_FONT_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditEdgesColor" mnemonicParsing="false" text="%EDIT_EDGES_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveVertices" mnemonicParsing="false" text="%REMOVE_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditEdgesType" mnemonicParsing="false" text="%EDIT_EDGES_TYPE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveSphere" mnemonicParsing="false" text="%REMOVE_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logMoveVertices" mnemonicParsing="false" text="%MOVE_VERTICES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveEdge" mnemonicParsing="false" text="%REMOVE_EDGES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logMoveSphere" mnemonicParsing="false" text="%MOVE_SPHERE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logActivateAnchorPointsFadeout" mnemonicParsing="false" text="%ACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logAddAnchorPoints" mnemonicParsing="false" text="%ADD_ANCHOR_POINTS"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logActivateFadeout" mnemonicParsing="false" text="%ACTIVATE_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logActivateHighlight" mnemonicParsing="false" text="%ACTIVATE_HIGHLIGHT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesForm" mnemonicParsing="false" text="%EDIT_VERTICES_FORM"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveEdges" mnemonicParsing="false" text="%REMOVE_EDGES"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesSize" mnemonicParsing="false" text="%EDIT_VERTICES_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logRemoveAnchorPoints" mnemonicParsing="false" text="%REMOVE_ANCHOR_POINTS"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereFontSize" mnemonicParsing="false" text="%EDIT_SPHERE_FONT_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSphereAnnotation" mnemonicParsing="false" text="%EDIT_SPHERE_ANNOTATION"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVertexAnnotation" mnemonicParsing="false" text="%EDIT_VERTEX_ANNOTATION"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesFontSize" mnemonicParsing="false" text="%EDIT_VERTICES_FONT_SIZE"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesDrawColor" mnemonicParsing="false" text="%EDIT_VERTICES_DRAW_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesFillColor" mnemonicParsing="false" text="%EDIT_VERTICES_FILL_COLOR"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logDeactivateHighlight" mnemonicParsing="false" text="%DEACTIVATE_HIGHLIGHT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logDeactivateAnchorPointsFadeout" mnemonicParsing="false" text="%DEACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditSpheresLayout" mnemonicParsing="false" text="%EDIT_SPHERES_LAYOUT"> </MenuItem>
-                                                     <MenuItem styleClass="analysisMenuItem" fx:id="logEditVerticesLayout" mnemonicParsing="false" text="%EDIT_VERTICES_LAYOUT"> </MenuItem>
-                                                 </items>
-                                                 <HBox.margin>
-                                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                                 </HBox.margin>
-                                                 <tooltip>
-                                                     <Tooltip text="" />
-                                                 </tooltip>
-                                             </MenuButton>
-                                         </graphic>
-                                     </CheckBox>
-                                          <TreeView fx:id="protocol" prefWidth="260.0" />
+                                    <HBox>
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </HBox.margin>
+                                       <children>
+                                           <Button fx:id="syncButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#synAnalysis" prefHeight="30.0" prefWidth="30.0">
+                                               <graphic>
+                                                   <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                       <Image url="@icons2/sync-alt-solid.png" />
+                                                   </ImageView>
+                                               </graphic>
+                                               <tooltip>
+                                                   <Tooltip text="%toolbarCreatorMode" />
+                                               </tooltip>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                           </Button>
+      
+                                                   <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="240.0" text="%LOG_ALL">
+                                                       <items>
+                                                           <MenuItem fx:id="logAll" mnemonicParsing="false" styleClass="analysisMenuItem" text="%LOG_ALL"> </MenuItem>
+                                                           <MenuItem fx:id="logAddSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logAddVertex" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logAddEdge" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logEditFontVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_FONT_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logDeactivateFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%DEACTIVATE_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logEditEdgesStroke" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_STROKE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditFontSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_FONT_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditEdgesColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logEditEdgesType" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_TYPE"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logMoveVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_VERTICES"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveEdge" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logMoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_SPHERE"> </MenuItem>
+                                                           <MenuItem fx:id="logActivateAnchorPointsFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logAddAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_ANCHOR_POINTS"> </MenuItem>
+                                                           <MenuItem fx:id="logActivateFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logActivateHighlight" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_HIGHLIGHT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesForm" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FORM"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveEdges" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_ANCHOR_POINTS"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereFontSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_FONT_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSphereAnnotation" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_ANNOTATION"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVertexAnnotation" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTEX_ANNOTATION"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesFontSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FONT_SIZE"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesDrawColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_DRAW_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesFillColor" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FILL_COLOR"> </MenuItem>
+                                                           <MenuItem fx:id="logDeactivateHighlight" mnemonicParsing="false" styleClass="analysisMenuItem" text="%DEACTIVATE_HIGHLIGHT"> </MenuItem>
+                                                           <MenuItem fx:id="logDeactivateAnchorPointsFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%DEACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditSpheresLayout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERES_LAYOUT"> </MenuItem>
+                                                           <MenuItem fx:id="logEditVerticesLayout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_LAYOUT"> </MenuItem>
+                                                       </items>
+                                                       <tooltip>
+                                                           <Tooltip text="" />
+                                                       </tooltip>
+                                                   </MenuButton>
+                                       </children>
+                                    </HBox>
+
+                                          <TreeView fx:id="protocol" prefHeight="633.0" prefWidth="275.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin></TreeView>
                                  </children>
                               </VBox>
                                 </content>
