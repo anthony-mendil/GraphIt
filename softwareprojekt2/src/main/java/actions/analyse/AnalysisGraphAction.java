@@ -69,11 +69,10 @@ public class AnalysisGraphAction extends GraphAction{
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
      * @param pAnalyseTypeSingle The analyse type, one type can be analysed at once.
-     * @param edgeArrowType The edge type to analyse.
      */
-    public AnalysisGraphAction(AnalyseTypeSingle pAnalyseTypeSingle, EdgeArrowType edgeArrowType) {
+    public AnalysisGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {
         analyseTypeSingle = pAnalyseTypeSingle;
-        this.edgeType = edgeArrowType;
+
     }
 
     @Override
@@ -141,15 +140,35 @@ public class AnalysisGraphAction extends GraphAction{
                 case EDGE_CHAINS:
                     List<List<Vertex>> edgeChains = jGraphTHandler.detectRelationChains();
                     break;
-                case EDGETYPE:
+                case REINFORCED:
                     for(Edge edge : graph.getEdges()){
-                        if(edge.getArrowType() == edgeType){
+                        if(edge.getArrowType() == EdgeArrowType.REINFORCED){
                             edgesAnalyse.add(edge);
+                            edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
+                            verticesAnalyse.add(endPoints.getFirst());
                         }
                     }
+                    break;
+                case EXTENUATING:
+                    for(Edge edge : graph.getEdges()){
+                        if(edge.getArrowType() == EdgeArrowType.EXTENUATING){
+                            edgesAnalyse.add(edge);
+                            edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
+                            verticesAnalyse.add(endPoints.getFirst());
+                        }
+                    }
+                    break;
+                case NEUTRAL:
+                    for(Edge edge : graph.getEdges()){
+                        if(edge.getArrowType() == EdgeArrowType.NEUTRAL){
+                            edgesAnalyse.add(edge);
+                            edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
+                            verticesAnalyse.add(endPoints.getFirst());
+                        }
+                    }
+                    break;
             }
 
-            // TODO
             vv.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
             vv2.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
             vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgePaintAnalyseTransformer<>(edgesAnalyse));
