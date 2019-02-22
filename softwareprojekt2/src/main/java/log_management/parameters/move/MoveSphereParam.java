@@ -15,7 +15,7 @@ import java.io.Serializable;
  * Parameter object of the action MoveSphereLogAction.
  */
 @Data
-public class MoveSphereParam extends Param implements Serializable {
+public class MoveSphereParam extends Param {
     /**
      * The sphere.
      */

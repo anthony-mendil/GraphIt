@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Parameter object of the action EditSphereAnnotationLogAction.
  */
 @Data
-public class EditSphereAnnotationParam extends Param implements Serializable {
+public class EditSphereAnnotationParam extends Param {
     /**
      * The sphere containing its old annotation.
      */

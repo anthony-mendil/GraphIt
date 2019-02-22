@@ -12,7 +12,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.Map;
  * Parameter object of the action EditEdgesStrokeLogAction.
  */
 @Data
-public class EditEdgesStrokeParam extends Param implements Serializable {
+public class EditEdgesStrokeParam extends Param {
     @Getter
     private List<Edge> oldEdges;
 
