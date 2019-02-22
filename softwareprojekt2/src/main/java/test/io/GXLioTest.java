@@ -105,7 +105,7 @@ public class GXLioTest {
         Syndrom syndrom = graph.graph.Syndrom.getInstance();
         syndrom.generateNew();
         makeSphere(new Point2D.Double(20, 20));
-
+        makeVertex(new Point2D.Double(30, 30));
         Syndrom.getInstance().getVv().getGraphLayout().setGraph(Syndrom.getInstance().getGraph());
     }
 

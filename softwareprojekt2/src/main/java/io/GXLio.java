@@ -158,7 +158,7 @@ public class GXLio {
 
         updateVisualisationAndLayout(newGraph, vv);
     }
-
+ 
     private void updateSystemDataOfSpheresAndVertices(List<Map<Sphere, List<Vertex>>> spheresWithVertices, SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv){
         for (Map<Sphere, List<Vertex>> m : spheresWithVertices) {
             for (Map.Entry<Sphere, List<Vertex>> e : m.entrySet()) {
