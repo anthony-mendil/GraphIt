@@ -1,6 +1,8 @@
 package gui.properties;
 
 import gui.Controller;
+import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import lombok.Data;
 
 import java.util.Locale;
@@ -170,6 +172,39 @@ public class LoadLanguage {
         c.getStyleEdgeCol().setText(loadLanguagesKey(templateStyle));
         c.getEdgetypeEdgeCol().setText(loadLanguagesKey("templateEdgeType"));
         c.getHistoryTitledPane().setText(loadLanguagesKey("log"));
+
+
+        c.getLogEditFontVertices().setText(loadLanguagesKey("EDIT_FONT_VERTICES"));
+        c.getLogDeactivateFadeout().setText(loadLanguagesKey("DEACTIVATE_FADEOUT"));
+        c.getLogEditSphereColor().setText(loadLanguagesKey("EDIT_SPHERE_COLOR"));
+        c.getLogEditEdgesStroke().setText(loadLanguagesKey("EDIT_EDGES_STROKE"));
+        c.getLogEditSphereSize().setText(loadLanguagesKey("EDIT_SPHERE_SIZE"));
+        c.getLogEditFontSphere().setText(loadLanguagesKey("EDIT_FONT_SPHERE"));
+        c.getLogEditEdgesColor().setText(loadLanguagesKey("EDIT_EDGES_COLOR"));
+        c.getLogRemoveVertices().setText(loadLanguagesKey("REMOVE_VERTICES"));
+        c.getLogEditEdgesType().setText(loadLanguagesKey("EDIT_EDGES_TYPE"));
+        c.getLogRemoveSphere().setText(loadLanguagesKey("REMOVE_SPHERE"));
+        c.getLogMoveVertices().setText(loadLanguagesKey("MOVE_VERTICES"));
+        c.getLogRemoveEdge().setText(loadLanguagesKey("REMOVE_EDGES"));
+        c.getLogMoveSphere().setText(loadLanguagesKey("MOVE_SPHERE"));
+        c.getLogActivateAnchorPointsFadeout().setText(loadLanguagesKey("ACTIVATE_ANCHOR_POINTS_FADEOUT"));
+        c.getLogAddAnchorPoints().setText(loadLanguagesKey("ADD_ANCHOR_POINTS"));
+        c.getLogActivateFadeout().setText(loadLanguagesKey("ACTIVATE_FADEOUT"));
+        c.getLogActivateHighlight().setText(loadLanguagesKey("ACTIVATE_HIGHLIGHT"));
+        c.getLogEditVerticesForm().setText(loadLanguagesKey("EDIT_VERTICES_FORM"));
+        c.getLogRemoveEdges().setText(loadLanguagesKey("REMOVE_EDGES"));
+        c.getLogEditVerticesSize().setText(loadLanguagesKey("EDIT_VERTICES_SIZE"));
+        c.getLogRemoveAnchorPoints().setText(loadLanguagesKey("REMOVE_ANCHOR_POINTS"));
+        c.getLogEditSphereFontSize().setText(loadLanguagesKey("EDIT_SPHERE_FONT_SIZE"));
+        c.getLogEditSphereAnnotation().setText(loadLanguagesKey("EDIT_SPHERE_ANNOTATION"));
+        c.getLogEditVertexAnnotation().setText(loadLanguagesKey("EDIT_VERTEX_ANNOTATION"));
+        c.getLogEditVerticesFontSize().setText(loadLanguagesKey("EDIT_VERTICES_FONT_SIZE"));
+        c.getLogEditVerticesDrawColor().setText(loadLanguagesKey("EDIT_VERTICES_DRAW_COLOR"));
+        c.getLogEditVerticesFillColor().setText(loadLanguagesKey("EDIT_VERTICES_FILL_COLOR"));
+        c.getLogDeactivateHighlight().setText(loadLanguagesKey("DEACTIVATE_HIGHLIGHT"));
+        c.getLogDeactivateAnchorPointsFadeout().setText(loadLanguagesKey("DEACTIVATE_ANCHOR_POINTS_FADEOUT"));
+        c.getLogEditSpheresLayout().setText(loadLanguagesKey("EDIT_SPHERES_LAYOUT"));
+        c.getLogEditVerticesLayout().setText(loadLanguagesKey("EDIT_VERTICES_LAYOUT"));
     }
 
     private String loadLanguagesKey(String key)  {
