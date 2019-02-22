@@ -5,17 +5,16 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.FunctionMode;
-import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
-import javafx.util.Pair;
-import jgrapht.JGraphTHandler;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVertexAnnotationParam;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Changes the annotation of a selected Vertex.

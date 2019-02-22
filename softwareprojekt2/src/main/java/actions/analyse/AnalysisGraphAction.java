@@ -1,7 +1,6 @@
 package actions.analyse;
 
 import actions.GraphAction;
-import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.algorithmen.AnalyseTypeSeveral;
 import graph.algorithmen.AnalyseTypeSingle;
@@ -10,14 +9,11 @@ import graph.graph.EdgeArrowType;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.transformer.edge.EdgeHighlightTransformer;
 import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
 import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
-import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 import org.jgrapht.GraphPath;
-import org.jgrapht.Graphs;
 
 import java.util.*;
 

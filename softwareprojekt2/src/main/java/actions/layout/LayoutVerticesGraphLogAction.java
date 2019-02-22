@@ -6,20 +6,21 @@ import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.KKLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.util.Pair;
-import edu.uci.ics.jung.visualization.Layer;
 import graph.graph.Edge;
 import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
 import log_management.parameters.move.LayoutVerticesParam;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Layouts the graph according to a previously defined layout.
@@ -29,6 +30,8 @@ public class LayoutVerticesGraphLogAction extends LogAction {
      * Indicator whether the action is an undo action.
      */
     private boolean indicator;
+
+    private static Logger logger = Logger.getLogger(LayoutVerticesGraphLogAction.class);
 
     /**
      * Layouts the graph (including all vertices) according to the defined layout.
@@ -81,7 +84,7 @@ public class LayoutVerticesGraphLogAction extends LogAction {
                     subLayout.setSize(new Dimension((int)s.getWidth(),(int) s.getHeight()));
                     layout.put(subLayout, center);
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    logger.error(ex.toString());
                 }
             }
         }

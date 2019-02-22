@@ -1,12 +1,10 @@
 package graph.visualization.transformer.vertex;
 
-import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.decorators.AbstractVertexShapeTransformer;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.graph.VertexShapeType;
 import graph.visualization.renderers.RenderHelperFunction;
-import graph.visualization.renderers.VertexLabelRenderer;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
