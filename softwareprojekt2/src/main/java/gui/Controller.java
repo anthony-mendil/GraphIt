@@ -11,6 +11,7 @@ import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
 import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
+import actions.analyse.GraphDimensionAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
 import actions.deactivate.DeactivateHighlightAction;
@@ -545,11 +546,11 @@ public class Controller implements ObserverSyndrom {
     @FXML private Button removeAnchor;
     @FXML private Text analysisGraphInfo;
     @FXML private Text analysisScope;
-    @FXML private Text analysisScopeTooltip;
+    @FXML private Text analysisScopeNumber;
     @FXML private Text analysisNetworkingIndex;
-    @FXML private Text analysisNetworkingIndexTooltip;
+    @FXML private Text analysisNetworkingIndexNumber;
     @FXML private Text analysisStructureIndex;
-    @FXML private Text analysisStructureIndexTooltip;
+    @FXML private Text analysisStructureIndexNumber;
     @FXML private Text analysisSymptom;
     @FXML private CheckBox analysisPredecessor;
     @FXML private CheckBox analysisSuccessor;
@@ -1207,6 +1208,15 @@ public class Controller implements ObserverSyndrom {
             createButton.setDisable(false);
             editButton.setDisable(false);
             analysisButton.setDisable(true);
+
+//        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+//        graphDimensionAction.action();
+//
+//
+//            analysisScopeNumber.setText("" + graphDimensionAction.getScope());
+//            analysisNetworkingIndexNumber.setText("" + graphDimensionAction.getNetworkIndex());
+//            analysisStructureIndexNumber.setText("" + graphDimensionAction.getStructureIndex());
+
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
             switchModeAction.action();
     }
