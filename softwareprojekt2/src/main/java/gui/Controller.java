@@ -11,7 +11,6 @@ import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
 import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
-import actions.analyse.GraphDimensionAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
 import actions.deactivate.DeactivateHighlightAction;
@@ -1611,11 +1610,11 @@ public class Controller implements ObserverSyndrom {
     private void initFonts() {
         fonts = new ArrayList<>();
         try {
-            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Mali-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Mali-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             fonts.add(roboto);
             fonts.add(robotoSlab);
             fonts.add(averiaSansLibre);
