@@ -1122,6 +1122,7 @@ public class Controller implements ObserverSyndrom {
             canvas.setContent(syndrom.getVv());
             satellite.setContent(syndrom.getVv2());
         }
+        templateToFields();
     }
 
     /**

@@ -1,5 +1,6 @@
 package actions.other;
 
+import actions.ActionHistory;
 import actions.GraphAction;
 import com.sun.org.apache.xpath.internal.compiler.FunctionTable;
 import graph.graph.FunctionMode;
@@ -43,6 +44,7 @@ public class SwitchModeAction extends GraphAction {
                 syndrom.setPluggableModeAnalyse();
             }
         }
+        ActionHistory.getInstance().wipe();
     }
 
     @Override
