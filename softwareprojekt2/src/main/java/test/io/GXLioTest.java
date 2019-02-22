@@ -6,6 +6,7 @@ import java.util.*;
 import actions.add.AddSphereLogAction;
 import actions.add.AddVerticesLogAction;
 import actions.other.CreateGraphAction;
+import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import gui.Controller;
@@ -56,10 +57,14 @@ public class GXLioTest {
     }
     */
 
-    private Sphere makeSphere(Point2D.Double pCoordinates){
+    private Sphere makeSphere(Vertex pVertex, Point2D.Double pCoordinates){
+        Layout<Vertex, Edge> layout = Syndrom.getInstance().getVv().getGraphLayout();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
         GraphObjectsFactory factory = new GraphObjectsFactory();
         Sphere s1 = factory.createSphere(pCoordinates);
-        Syndrom.getInstance().getGraph().getSpheres().add(s1);
+        s1.getVertices().add(pVertex);
+        graph.getSpheres().add(s1);
+        Syndrom.getInstance().getGraph().addSphere(s1.getCoordinates());
         System.out.println("sphere1: "+ s1);
         return s1;
     }
@@ -82,13 +87,18 @@ public class GXLioTest {
     */
 
     private Vertex makeVertex(Point2D.Double pCoordinates){
+        Layout<Vertex, Edge> layout = Syndrom.getInstance().getVv().getGraphLayout();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
         GraphObjectsFactory factory = new GraphObjectsFactory();
         Vertex v1 = factory.createVertex(pCoordinates);
+        graph.addVertex(v1);
         Syndrom.getInstance().getGraph().addVertex(v1);
-        System.out.println("vertex1: "+ v1);
+     //   Syndrom.getInstance().getVv().getGraphLayout().setLocation(v1, v1.getCoordinates());
+     //   pSphere.getVertices().add(v1);
         return v1;
     }
 
+    /*
     private List<Map<Edge, Pair<Vertex>>> makeEdges(){
         List<Map<Edge, Pair<Vertex>>> edges = new ArrayList<Map<Edge, Pair<Vertex>>>();
         java.awt.Color color = new Color(10, 30, 70, 255);
@@ -100,25 +110,30 @@ public class GXLioTest {
         edges.add(map);
         return edges;
     }
+    */
+
 //List<Sphere> pSpheres, List<Vertex> pVertices, List<Map<Edge, Pair<Vertex>>> pEdges
     public void prepareSyndrom() {
         Syndrom syndrom = graph.graph.Syndrom.getInstance();
         syndrom.generateNew();
-        makeSphere(new Point2D.Double(20, 20));
-        makeVertex(new Point2D.Double(30, 30));
-        Syndrom.getInstance().getVv().getGraphLayout().setGraph(Syndrom.getInstance().getGraph());
+        Vertex v = makeVertex(new Point2D.Double(30, 30));
+        Sphere s = makeSphere(v, new Point2D.Double(20, 20));
+      //  Syndrom.getInstance().getVv().getGraphLayout().setGraph(Syndrom.getInstance().getGraph());
     }
 
     @Test
     public void testGraph() throws IOException, SAXException {
         prepareSyndrom();
         GXLio gxlio = new GXLio();
-        System.out.println(Syndrom.getInstance().getGraph());
+        System.out.println(Syndrom.getInstance().getVv().getGraphLayout().getGraph());
+        System.out.println(Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices());
+        System.out.println(Syndrom.getInstance().getGraph().getVertices().size());
+        System.out.println(Syndrom.getInstance().getGraph().getSpheres().get(0));
       //  gxlio.setSyndrom(Syndrom.getInstance());
         gxlio.exportGXL(new File("testGraph"), false);
         GXLDocument doc = new GXLDocument(new File("testGraph"));
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
-        System.out.println("Anzahl an Elementen: " + doc.getElement("syndrom").getChildCount());
+        System.out.println("Anzahl an Elementen: " + doc.getElement("syndrom").getChildCount() + Syndrom.getInstance().getGraph().getSpheres().get(0).getVertices());
         Assert.assertEquals(1, doc.getElement("syndrom").getChildCount());
     }
 
