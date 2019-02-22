@@ -30,7 +30,7 @@ public class AnalysisGraphAction extends GraphAction{
     /**
      * The list of analyse types, several types can be passed and processed at once.
      */
-    private List<AnalyseTypeSeveral> analyseTypeSeverals;
+    private AnalyseTypeSeveral analyseTypeSeverals;
 
     /**
      * A single analyse type, one type can be analysed at once.
@@ -50,7 +50,7 @@ public class AnalysisGraphAction extends GraphAction{
      * @param pAnalyseTypeSeveral A list of AnalyseTypeSeveral, several types can be analysed at once.
      * @param counterVertex The number of adjacent vertices to analyse.
      */
-    public AnalysisGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, int counterVertex) {
+    public AnalysisGraphAction(AnalyseTypeSeveral pAnalyseTypeSeveral, int counterVertex) {
         this.analyseTypeSeverals = pAnalyseTypeSeveral;
         amountSteps = counterVertex;
     }
@@ -193,8 +193,8 @@ public class AnalysisGraphAction extends GraphAction{
 
 
         }else{
-            for(AnalyseTypeSeveral analyseTypeSeveral : analyseTypeSeverals){
-                if(analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR){
+
+                if(analyseTypeSeverals == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR){
                     Pair<List<Vertex>,List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
                     verticesAnalyse.addAll(predecessors.getKey());
                     edgesAnalyse.addAll(predecessors.getValue());
@@ -203,7 +203,7 @@ public class AnalysisGraphAction extends GraphAction{
                     verticesAnalyse.addAll(successors.getKey());
                     edgesAnalyse.addAll(successors.getValue());
                 }
-            }
+
         }
         vv.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));
         vv2.getRenderContext().setVertexFillPaintTransformer(new VertexPaintAnalyseTransformer<>(verticesAnalyse));

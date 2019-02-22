@@ -804,11 +804,11 @@
                             </rowConstraints>
                             <children>
                                 <Text fx:id="analysisScope" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisScope" wrappingWidth="59.898826599121094" />
-                                <Text fx:id="analysisScopeTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisScopeTooltip" GridPane.columnIndex="1" />
+                                <Text fx:id="analysisScopeNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" />
                                 <Text fx:id="analysisNetworkingIndex" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisNetworkingIndex" wrappingWidth="126.59998321533203" GridPane.rowIndex="1" />
-                                <Text fx:id="analysisNetworkingIndexTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisNetworkingIndexTooltip" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Text fx:id="analysisNetworkingIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Text fx:id="analysisStructureIndex" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisStructureIndex" wrappingWidth="104.54531860351562" GridPane.rowIndex="2" />
-                                <Text fx:id="analysisStructureIndexTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisStructureIndexTooltip" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Text fx:id="analysisStructureIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                         </GridPane>
                     </children>

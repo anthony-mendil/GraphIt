@@ -113,11 +113,8 @@ public class LoadLanguage {
         c.getEdgeArrowMenuButton().getTooltip().setText(loadLanguagesKey("edgeArrowTypeTooltip"));
         c.getAnalysisGraphInfo().setText(loadLanguagesKey("analysisGraphInfo"));
         c.getAnalysisScope().setText(loadLanguagesKey("analysisScope"));
-        c.getAnalysisScopeTooltip().setText(loadLanguagesKey("analysisScopeTooltip"));
         c.getAnalysisNetworkingIndex().setText(loadLanguagesKey("analysisNetworkingIndex"));
-        c.getAnalysisNetworkingIndexTooltip().setText(loadLanguagesKey("analysisNetworkingIndexTooltip"));
         c.getAnalysisStructureIndex().setText(loadLanguagesKey("analysisStructureIndex"));
-        c.getAnalysisStructureIndexTooltip().setText(loadLanguagesKey("analysisStructureIndexTooltip"));
         c.getAnalysisSymptom().setText(loadLanguagesKey(sectionSymptom));
         c.getAnalysisPredecessor().getTooltip().setText(loadLanguagesKey("analysisPredecessorTooltip"));
         c.getAnalysisSuccessor().getTooltip().setText(loadLanguagesKey("analysisSuccessorTooltip"));
