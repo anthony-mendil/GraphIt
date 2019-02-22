@@ -629,12 +629,10 @@ public class Controller implements ObserverSyndrom {
     @FXML private ResourceBundle resources;
     @FXML private TreeView<Object> protocol;
     @FXML private CheckBox filterProtocol;
-
     @FXML private MenuItem logAddSphere;
     @FXML private MenuItem logAddVertex;
     @FXML private MenuItem logAddEdge;
     @FXML private MenuButton filterLogType;
-
     @FXML private MenuItem logEditFontVertices;
     @FXML private MenuItem logDeactivateFadeout;
     @FXML private MenuItem logEditSphereColor;
@@ -666,7 +664,6 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem logDeactivateAnchorPointsFadeout;
     @FXML private MenuItem logEditSpheresLayout;
     @FXML private MenuItem logEditVerticesLayout;
-
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
     private static final String SPHERE_STYLE = "SphereStyle";
@@ -1583,18 +1580,10 @@ public class Controller implements ObserverSyndrom {
 
     private void initProtocolTree(){
         historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
-            if (isNowExpanded && !filterProtocol.isSelected()){
+            if (isNowExpanded){
                 filterLogs(null);
             } else {
                 filterLogs(analysisLogEntryName);
-            }
-        });
-
-        filterProtocol.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
-            if (isNowSelected){
-                filterLogs(analysisLogEntryName);
-            } else {
-                filterLogs(null);
             }
         });
     }
@@ -1996,11 +1985,7 @@ public class Controller implements ObserverSyndrom {
         }
         @Override
         public void handle(ActionEvent evt) {
-            if (filterProtocol.isSelected()){
-                filterLogs(type);
-            } else {
-                analysisLogEntryName = type;
-            }
+            filterLogs(type);
         }
     }
 
@@ -2613,5 +2598,9 @@ public class Controller implements ObserverSyndrom {
     @FXML public void analysisCycles(){
         AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN, null);
         analysisGraphAction.action();
+    }
+
+    @FXML public void synAnalysis(){
+
     }
 }
