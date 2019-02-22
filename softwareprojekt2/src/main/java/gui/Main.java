@@ -66,12 +66,6 @@ public class Main extends Application {
 
         launch(args);
 
-        List<Log> list = DatabaseManager.getInstance().getLogDao().getAll();
-
-        for (Log l : list) {
-            System.out.println(l.toString());
-        }
-
         PersonalEntityManagerFactory.getInstance().close();
     }
 }
