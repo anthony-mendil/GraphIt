@@ -122,9 +122,14 @@ public class LoadLanguage {
         c.getAnalysisSuccessor().setText(loadLanguagesKey(analysisSuccessor));
         c.getAnalysisSymptomAmount().setText(loadLanguagesKey("analysisSymptomAmount"));
         c.getAmountSymptomTextField().setPromptText(loadLanguagesKey(analysisSymptomAmountTooltip));
+        c.getAnalysisPathMenuButton().setText(loadLanguagesKey("analysisPathMenuButton"));
+        c.getAnalysisPathMenuButton().getTooltip().setText(loadLanguagesKey("analysisPathToolTip"));
+        c.getAnalysisShortestPath().setText(loadLanguagesKey("analysisShortestPath"));
+        c.getAnalysisAllPaths().setText(loadLanguagesKey("analysisAllPaths"));
         c.getFilterArrowTypeCheckBox().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
         c.getAnalysisOption().setText(loadLanguagesKey("analysisOptions"));
         c.getAnalysisOptions().getTooltip().setText(loadLanguagesKey("analysisOptionsTooltip"));
+        c.getChainOfEdges().setText(loadLanguagesKey("filterChainOfEdges"));
         c.getConvergent().setText(loadLanguagesKey("filterConvergentBranches"));
         c.getDivergent().setText(loadLanguagesKey("filterDivergentBranches"));
         c.getBranches().setText(loadLanguagesKey("filterBranches"));

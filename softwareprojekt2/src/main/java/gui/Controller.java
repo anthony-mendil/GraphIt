@@ -555,9 +555,15 @@ public class Controller implements ObserverSyndrom {
     @FXML private CheckBox analysisPredecessor;
     @FXML private CheckBox analysisSuccessor;
     @FXML private Text analysisSymptomAmount;
+    @FXML private CheckBox analysisPathCheckBox;
+    @FXML private MenuButton analysisPathMenuButton;
+    @FXML private MenuItem analysisShortestPath;
+    @FXML private MenuItem analysisAllPaths;
     @FXML private CheckBox filterArrowTypeCheckBox;
+    @FXML private MenuButton analysisArrowMenuButton;
     @FXML private Text analysisOption;
     @FXML private CheckBox analysisOptions;
+    @FXML private MenuItem chainOfEdges;
     @FXML private MenuItem convergent;
     @FXML private MenuItem divergent;
     @FXML private Text templateMaxSphere;
@@ -2485,6 +2491,18 @@ public class Controller implements ObserverSyndrom {
 
         analysisSuccessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisSuccessor, this));
         analysisPredecessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisPredecessor, this));
+
+        analysisPathCheckBox.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(analysisPathMenuButton));
+        analysisOptions.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(filterAnalysis));
+
+        analysisShortestPath.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
+        analysisAllPaths.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
+
+        chainOfEdges.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
+        convergent.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
+        divergent.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
+        branches.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
+        cycles.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
     }
 
     @Override
@@ -2563,12 +2581,68 @@ public class Controller implements ObserverSyndrom {
         service.start();
     }
 
+    @FXML public void shortestpath(){
+        //Clean up Method needed
+        if(analysisPathCheckBox.isSelected()){
+            System.out.println("shortestpath");
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.SHORTESTPATH);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void allpaths(){
+        //Clean up Method needed
+        if(analysisPathCheckBox.isSelected()){
+            System.out.println("allpaths");
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.ALLPATHS);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void chainOfEdges(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            System.out.println("chainofedges");
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.EDGE_CHAINS);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void convergentBranches(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            System.out.println("convergentbranches");
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CONVERGENT_BRANCHES);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void divergentBranches(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            System.out.println("divergentbranches");
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.DIVERGENT_BRANCHES);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void branches(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            System.out.println("branches");
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.BRANCHES);
+            analysisGraphAction.action();
+        }
+    }
+
     @FXML public void analysisCycles(){
-        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
-        analysisGraphAction.action();
+        if(analysisOptions.isSelected()){
+            System.out.println("cycles");
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
+            analysisGraphAction.action();
+        }
     }
 
     @FXML public void synAnalysis(){
-
     }
 }
