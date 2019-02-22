@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 
 /**
  * An edge of the syndrom-graph. There are 3 type of edges, defined by the three types of relations: extenuating,
@@ -17,7 +16,7 @@ import java.io.Serializable;
  */
 @Data
 
-public class Edge implements Serializable {
+public class Edge {
     /**
      * The id of the edge.
      */
@@ -85,13 +84,14 @@ public class Edge implements Serializable {
 
     /**
      * Creates an edge between two vertices.
-     * @param id           The unique ID of the edge.
-     * @param color        The color of the edge.
-     * @param stroke       The stroke of the edge.
-     * @param arrowType    The arrowType of the edge.
-     * @param isVisible    Indicator whether the edge is currently visible.
+     *
+     * @param id        The unique ID of the edge.
+     * @param color     The color of the edge.
+     * @param stroke    The stroke of the edge.
+     * @param arrowType The arrowType of the edge.
+     * @param isVisible Indicator whether the edge is currently visible.
      */
-    public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean isVisible, boolean anchorIn, boolean anchorOut){
+    public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean isVisible, boolean anchorIn, boolean anchorOut) {
         this.id = id;
         this.color = color;
         this.stroke = stroke;
@@ -116,7 +116,7 @@ public class Edge implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " -> " +
                 Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
     }

@@ -8,7 +8,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.Map;
  * Parameter object of the action EditVerticesSizeLogAction.
  */
 @Data
-public class EditVerticesSizeParam extends Param implements Serializable {
+public class EditVerticesSizeParam extends Param {
     @Getter
     private List<Vertex> oldVertices;
 

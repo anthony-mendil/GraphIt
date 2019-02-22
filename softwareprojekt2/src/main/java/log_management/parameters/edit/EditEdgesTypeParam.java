@@ -22,7 +22,7 @@ import java.util.Map;
  * Parameter object of the action EditEdgesTypeLogAction.
  */
 @Data
-public class EditEdgesTypeParam extends Param implements Serializable {
+public class EditEdgesTypeParam extends Param {
     @Getter
     private List<Edge> oldEdges;
 

@@ -21,7 +21,7 @@ import java.util.Map;
  * connected through edges. All attributes of a vertex can be changed, just the id is unique and final.
  */
 @Data
-public class Vertex implements Serializable {
+public class Vertex {
     /**
      * The unique id of a vertex.
      */

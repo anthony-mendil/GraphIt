@@ -11,7 +11,6 @@ import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
 import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
-import actions.analyse.GraphDimensionAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
 import actions.deactivate.DeactivateHighlightAction;
@@ -31,6 +30,7 @@ import actions.edit.size.EditVerticesSizeLogAction;
 import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
+import actions.other.ChangeGraphLanguageAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
@@ -52,6 +52,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
@@ -184,6 +185,9 @@ public class Controller implements ObserverSyndrom {
     @FXML private Menu languages;
     @FXML private Menu help;
 
+    @FXML private Menu languagesGraph;
+    @FXML private CheckMenuItem languageGraphGerman;
+    @FXML private CheckMenuItem languageGraphEnglish;
     /**
      * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to german.
      */
@@ -627,7 +631,6 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem logEditEdgesType;
     @FXML private MenuItem logRemoveSphere;
     @FXML private MenuItem logMoveVertices;
-    @FXML private MenuItem logRemoveEdge;
     @FXML private MenuItem logMoveSphere;
     @FXML private MenuItem logActivateAnchorPointsFadeout;
     @FXML private MenuItem logAddAnchorPoints;
@@ -1103,6 +1106,7 @@ public class Controller implements ObserverSyndrom {
             canvas.setContent(syndrom.getVv());
             satellite.setContent(syndrom.getVv2());
         }
+        templateToFields();
     }
 
     /**
@@ -1551,10 +1555,41 @@ public class Controller implements ObserverSyndrom {
 
         initLanguage();
         initProtocolTree();
+        initGraphLanguage();
+
+        //newFile.setText(loadLanguage.getMenu1());
     }
 
+    private void initGraphLanguage(){
+        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(languageGraphEnglish, this));
+        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(languageGraphGerman, this));
+        languageGraphEnglish.setSelected(false);
+        languageGraphGerman.setSelected(true);
+    }
+
+    final public static Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+
+    private void sortFilterLogs(){
+        ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
+        f.sort(menuItemCompare);
+        filterLogType.getItems().removeAll(f);
+
+        Platform.runLater(() -> {
+            for(MenuItem item: f){
+                filterLogType.getItems().add(item);
+            }
+
+        });
+    }
 
     private void initProtocolTree(){
+        sortFilterLogs();
+
+        for(MenuItem item: filterLogType.getItems()){
+            item.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterLogType));
+        }
+
+
         historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
             filterLogs(analysisLogEntryName);
         });
@@ -1585,7 +1620,7 @@ public class Controller implements ObserverSyndrom {
                         TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
                         Object val = selected.getValue();
 
-                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                        ContextMenu contextMenu = helper.openContextMenu(val);
                         if (contextMenu != null) {
                             treeView.setContextMenu(contextMenu);
                             contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
@@ -1603,11 +1638,11 @@ public class Controller implements ObserverSyndrom {
     private void initFonts() {
         fonts = new ArrayList<>();
         try {
-            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Mali-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
+            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Mali-Regular.ttf")).deriveFont(Font.PLAIN, 32);
             fonts.add(roboto);
             fonts.add(robotoSlab);
             fonts.add(averiaSansLibre);
@@ -1795,7 +1830,6 @@ public class Controller implements ObserverSyndrom {
         logEditEdgesType.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_EDGES_TYPE));
         logRemoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_SPHERE));
         logMoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.MOVE_VERTICES));
-        logRemoveEdge.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_EDGES));
         logMoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.MOVE_SPHERE));
         logActivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT));
         logAddAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ADD_ANCHOR_POINTS));
@@ -1918,6 +1952,8 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeLanguage(language);
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
+            treeViewUpdate();
+            sortFilterLogs();
         }
 
         LanguageListener(CheckMenuItem checkMenuItem, Controller controller){
@@ -1932,6 +1968,31 @@ public class Controller implements ObserverSyndrom {
                 changeLanguage(Language.GERMAN);
             } else if (checkMenuItem.getId().equals("languageEnglish") && newValue){
                 languageGerman.setSelected(false);
+                changeLanguage(Language.ENGLISH);
+            }
+        }
+    }
+
+    private class LanguageGraphListener implements ChangeListener<Boolean>{
+        private CheckMenuItem checkMenuItem;
+
+        private void changeLanguage(Language language) {
+            values.setGraphLanguage(language);
+            ChangeGraphLanguageAction changeGraphLanguageAction = new ChangeGraphLanguageAction();
+            changeGraphLanguageAction.action();
+        }
+
+        LanguageGraphListener(CheckMenuItem checkMenuItem, Controller controller){
+            this.checkMenuItem = checkMenuItem;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if (checkMenuItem.getId().equals("languageGraphGerman") && newValue){
+                languageGraphEnglish.setSelected(false);
+                changeLanguage(Language.GERMAN);
+            } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue){
+                languageGraphGerman.setSelected(false);
                 changeLanguage(Language.ENGLISH);
             }
         }
@@ -2644,5 +2705,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     @FXML public void synAnalysis(){
+        filterLogs(analysisLogEntryName);
     }
 }

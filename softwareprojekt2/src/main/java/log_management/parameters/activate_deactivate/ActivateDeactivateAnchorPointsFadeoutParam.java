@@ -5,14 +5,13 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Parameter object for the action ActivateAnchorPointsFadeoutAction/DeactivateAnchorPointsFadeoutAction.
  */
 @Data
-public class ActivateDeactivateAnchorPointsFadeoutParam extends Param implements Serializable {
+public class ActivateDeactivateAnchorPointsFadeoutParam extends Param {
 
     /**
      * Set of edges, which anchor-points will (cancel) fadeout.

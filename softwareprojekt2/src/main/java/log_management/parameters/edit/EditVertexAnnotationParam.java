@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Parameter object of the action EditVertexAnnotationLogAction.
  */
 @Data
-public class EditVertexAnnotationParam extends Param implements Serializable {
+public class EditVertexAnnotationParam extends Param {
     /**
      * The vertex containing its old annotation.
      */

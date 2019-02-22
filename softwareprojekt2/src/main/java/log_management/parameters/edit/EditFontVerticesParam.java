@@ -19,7 +19,7 @@ import java.util.Map;
  * Parameter object of the action EditFontVerticesLogAction.
  */
 @Data
-public class EditFontVerticesParam extends Param implements Serializable {
+public class EditFontVerticesParam extends Param {
     @Getter
     private List<Vertex> oldVertices;
 

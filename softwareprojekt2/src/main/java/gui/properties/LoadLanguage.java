@@ -57,7 +57,7 @@ public class LoadLanguage {
         c.getExportLogs().setText(loadLanguagesKey("logs"));
         c.getPrint().setText(loadLanguagesKey("print"));
         c.getOptions().setText(loadLanguagesKey("options"));
-        c.getLanguages().setText(loadLanguagesKey("language"));
+        c.getLanguages().setText(loadLanguagesKey("languageGui"));
         c.getLanguageGerman().setText(loadLanguagesKey("german"));
         c.getLanguageEnglish().setText(loadLanguagesKey("english"));
         c.getHelp().setText(loadLanguagesKey("help"));
@@ -164,8 +164,7 @@ public class LoadLanguage {
         c.getStyleEdgeCol().setText(loadLanguagesKey(templateStyle));
         c.getEdgetypeEdgeCol().setText(loadLanguagesKey("templateEdgeType"));
         c.getHistoryTitledPane().setText(loadLanguagesKey("log"));
-
-
+        c.getFilterLogType().setText(loadLanguagesKey("LOG_ALL"));
         c.getLogEditFontVertices().setText(loadLanguagesKey("EDIT_FONT_VERTICES"));
         c.getLogDeactivateFadeout().setText(loadLanguagesKey("DEACTIVATE_FADEOUT"));
         c.getLogEditSphereColor().setText(loadLanguagesKey("EDIT_SPHERE_COLOR"));
@@ -177,7 +176,6 @@ public class LoadLanguage {
         c.getLogEditEdgesType().setText(loadLanguagesKey("EDIT_EDGES_TYPE"));
         c.getLogRemoveSphere().setText(loadLanguagesKey("REMOVE_SPHERE"));
         c.getLogMoveVertices().setText(loadLanguagesKey("MOVE_VERTICES"));
-        c.getLogRemoveEdge().setText(loadLanguagesKey("REMOVE_EDGES"));
         c.getLogMoveSphere().setText(loadLanguagesKey("MOVE_SPHERE"));
         c.getLogActivateAnchorPointsFadeout().setText(loadLanguagesKey("ACTIVATE_ANCHOR_POINTS_FADEOUT"));
         c.getLogAddAnchorPoints().setText(loadLanguagesKey("ADD_ANCHOR_POINTS"));
@@ -197,9 +195,13 @@ public class LoadLanguage {
         c.getLogDeactivateAnchorPointsFadeout().setText(loadLanguagesKey("DEACTIVATE_ANCHOR_POINTS_FADEOUT"));
         c.getLogEditSpheresLayout().setText(loadLanguagesKey("EDIT_SPHERES_LAYOUT"));
         c.getLogEditVerticesLayout().setText(loadLanguagesKey("EDIT_VERTICES_LAYOUT"));
+        c.getLogAll().setText(loadLanguagesKey("LOG_ALL"));
+        c.getLogAddSphere().setText(loadLanguagesKey("ADD_SPHERE"));
+        c.getLogAddEdge().setText(loadLanguagesKey("ADD_EDGES"));
+        c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
     }
 
-    private String loadLanguagesKey(String key)  {
+    public String loadLanguagesKey(String key)  {
         return resource.getString(key);
     }
 }

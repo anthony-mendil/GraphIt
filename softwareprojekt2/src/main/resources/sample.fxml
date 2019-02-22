@@ -58,9 +58,13 @@
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print" />
                 </Menu>
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
-                    <Menu fx:id="languages" mnemonicParsing="false" text="%language">
+                    <Menu fx:id="languages" mnemonicParsing="false" text="%languageGui">
                         <CheckMenuItem fx:id="languageGerman" mnemonicParsing="false" text="%german" />
                         <CheckMenuItem fx:id="languageEnglish" mnemonicParsing="false" text="%english" />
+                    </Menu>
+                    <Menu fx:id="languagesGraph" mnemonicParsing="false" text="%languageGraph">
+                        <CheckMenuItem fx:id="languageGraphGerman" mnemonicParsing="false" text="%german" />
+                        <CheckMenuItem fx:id="languageGraphEnglish" mnemonicParsing="false" text="%english" />
                     </Menu>
                 </Menu>
                 <Menu fx:id="help" mnemonicParsing="false" text="%help">
@@ -1333,14 +1337,13 @@
                                                            <MenuItem fx:id="logEditEdgesType" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_TYPE"> </MenuItem>
                                                            <MenuItem fx:id="logRemoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_SPHERE"> </MenuItem>
                                                            <MenuItem fx:id="logMoveVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_VERTICES"> </MenuItem>
-                                                           <MenuItem fx:id="logRemoveEdge" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveEdges" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
                                                            <MenuItem fx:id="logMoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_SPHERE"> </MenuItem>
                                                            <MenuItem fx:id="logActivateAnchorPointsFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
                                                            <MenuItem fx:id="logAddAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_ANCHOR_POINTS"> </MenuItem>
                                                            <MenuItem fx:id="logActivateFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_FADEOUT"> </MenuItem>
                                                            <MenuItem fx:id="logActivateHighlight" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_HIGHLIGHT"> </MenuItem>
                                                            <MenuItem fx:id="logEditVerticesForm" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FORM"> </MenuItem>
-                                                           <MenuItem fx:id="logRemoveEdges" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
                                                            <MenuItem fx:id="logEditVerticesSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_SIZE"> </MenuItem>
                                                            <MenuItem fx:id="logRemoveAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_ANCHOR_POINTS"> </MenuItem>
                                                            <MenuItem fx:id="logEditSphereFontSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_FONT_SIZE"> </MenuItem>

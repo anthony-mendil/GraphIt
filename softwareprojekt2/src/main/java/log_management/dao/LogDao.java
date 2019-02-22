@@ -9,6 +9,7 @@ import log_management.json_deserializers.Point2DDeserializer;
 import log_management.json_serializers.Point2DSerializer;
 import log_management.tables.Graph;
 import log_management.tables.Log;
+import org.apache.log4j.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -25,6 +26,11 @@ import java.util.Optional;
  */
 public class LogDao implements Dao<Log> {
 
+    private static final String LOG_FROM_ID = "SELECT l from Log l where l.id = :lid";
+    private static final String GRAPH_FROM_ID = "SELECT l from Log l where l.graph.id = :gid";
+
+
+    private static Logger logger = Logger.getLogger(LogDao.class);
     /**
      * Returns a logs object, attribute vertices gets converted from string to object with jackson.
      * @param id The id of the object to get.
@@ -35,7 +41,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        Query query = entityManager.createQuery("select l from Log l where l.id = :lid");
+        Query query = entityManager.createQuery(LOG_FROM_ID);
         query.setParameter("lid", id);
         Log log = (Log) query.getSingleResult();
 
@@ -50,7 +56,7 @@ public class LogDao implements Dao<Log> {
      * @return A list of log objects.
      */
     @Override
-    public List<Log> getAll() throws NoSuchElementException {
+    public List<Log> getAll() {
 
         Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
@@ -61,7 +67,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Log> selectLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid", Log.class);
+        TypedQuery<Log> selectLogs = entityManager.createQuery(GRAPH_FROM_ID, Log.class);
         selectLogs.setParameter("gid", graphId);
         List<Log> list = selectLogs.getResultList();
 
@@ -74,7 +80,7 @@ public class LogDao implements Dao<Log> {
      * Returns a string (json) containing all logs from the current graph.
      * @return A a string (json) containing all logs.
      */
-    public String getAllString() throws NoSuchElementException {
+    public String getAllString()  {
         Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
             throw new IllegalStateException();
@@ -84,7 +90,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Log> selectLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid", Log.class);
+        TypedQuery<Log> selectLogs = entityManager.createQuery(GRAPH_FROM_ID, Log.class);
         selectLogs.setParameter("gid", graphId);
         List<Log> logList = selectLogs.getResultList();
 
@@ -100,7 +106,9 @@ public class LogDao implements Dao<Log> {
         try {
             Type myType = new TypeToken<List<Log>>() {}.getType();
             logString = gson.toJson(logList, myType);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            logger.error(e.toString());
+        }
 
         return  logString;
     }
@@ -135,13 +143,11 @@ public class LogDao implements Dao<Log> {
         List<Graph> graphList = selectAllGraphs.getResultList();
 
         graphList.forEach(graph -> {
-            TypedQuery<Log> selectAllLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid", Log.class);
+            TypedQuery<Log> selectAllLogs = entityManager.createQuery(GRAPH_FROM_ID, Log.class);
             selectAllLogs.setParameter("gid", graph.getId());
             List<Log> logList = selectAllLogs.getResultList();
 
-            logList.forEach(log -> {
-                entityManager.remove(log);
-            });
+            logList.forEach(entityManager::remove);
         });
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -155,8 +161,7 @@ public class LogDao implements Dao<Log> {
         Type myType = new TypeToken<ArrayList<Log>>() {}.getType();
         logs = new Gson().fromJson(oofLogs, myType);
 
-        for (int i = 0; i < logs.size(); i++) {
-            Log log = logs.get(i);
+        for (Log log: logs){
             save(log);
         }
     }
@@ -177,7 +182,7 @@ public class LogDao implements Dao<Log> {
      * @param logEntryName The log type.
      * @return A list with all logs of this log type.
      */
-    public List<Log> getLogType(LogEntryName logEntryName) throws NoSuchElementException {
+    public List<Log> getLogType(LogEntryName logEntryName) {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -198,70 +203,5 @@ public class LogDao implements Dao<Log> {
         return list;
     }
 
-    /**
-     * Gets all logs of a specific log type as a list of strings.
-     * @param logEntryName The log type.
-     * @return A list with all logs of this log type as strings.
-     */
-    public List<String> getLogTypeString(LogEntryName logEntryName) throws NoSuchElementException {
-        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
-        entityManager.getTransaction().begin();
 
-        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
-        if (graph == null) {
-            throw new NoSuchElementException();
-        }
-        int graphId = graph.getId();
-
-        System.out.println("a");
-
-        TypedQuery<Log> selectLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid and l.logEntryName = :logType", Log.class);
-        selectLogs.setParameter("gid", graphId);
-        selectLogs.setParameter("logType", logEntryName);
-        List<Log> logList = selectLogs.getResultList();
-
-        System.out.println("b");
-        List<String> logs = new ArrayList<>();
-        logList.forEach(log -> {
-            logs.add(log.toString());
-        });
-
-        System.out.println("c");
-
-        entityManager.getTransaction().commit();
-        entityManager.close();
-
-        System.out.println("d");
-
-        return logs;
-    }
-
-    /**
-     * Gets all log entries as strings.
-     * @return List of strings containing all log entries.
-     */
-    public List<String> getAllStrings() throws NoSuchElementException {
-        EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
-        entityManager.getTransaction().begin();
-
-        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
-        if (graph == null) {
-            throw new NoSuchElementException();
-        }
-        int graphId = graph.getId();
-
-        TypedQuery<Log> selectAllLogs = entityManager.createQuery("SELECT l from Log l where l.graph.id = :gid", Log.class);
-        selectAllLogs.setParameter("gid", graphId);
-        List<Log> logList = selectAllLogs.getResultList();
-
-        List<String> logs = new ArrayList<>();
-        logList.forEach(log -> {
-            logs.add(log.toString());
-        });
-
-        entityManager.getTransaction().commit();
-        entityManager.close();
-
-        return logs;
-    }
 }

@@ -20,7 +20,7 @@ import java.util.Map;
  * Parameter object of the action EditVerticesFormLogAction.
  */
 @Data
-public class EditVerticesFormParam extends Param implements Serializable {
+public class EditVerticesFormParam extends Param {
     @Getter
     private List<Vertex> oldVertices;
 

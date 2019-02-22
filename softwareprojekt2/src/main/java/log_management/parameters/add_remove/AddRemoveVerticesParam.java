@@ -21,7 +21,7 @@ import java.util.Map;
  * Parameter object of the action of AddVerticesLogAction/RemoveVerticesLogAction.
  */
 @Data
-public class AddRemoveVerticesParam extends Param implements Serializable {
+public class AddRemoveVerticesParam extends Param {
 
     @Getter
     private List<Vertex> vertexList;
