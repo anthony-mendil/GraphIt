@@ -22,7 +22,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * The new position of the vertex.
      */
-    Point2D position2D;
+    private Point2D position2D;
 
     /**
      * The sphere of the Vertex.
