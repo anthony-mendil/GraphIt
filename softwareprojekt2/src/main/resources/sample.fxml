@@ -58,9 +58,13 @@
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print" />
                 </Menu>
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
-                    <Menu fx:id="languages" mnemonicParsing="false" text="%language">
+                    <Menu fx:id="languages" mnemonicParsing="false" text="%languageGui">
                         <CheckMenuItem fx:id="languageGerman" mnemonicParsing="false" text="%german" />
                         <CheckMenuItem fx:id="languageEnglish" mnemonicParsing="false" text="%english" />
+                    </Menu>
+                    <Menu fx:id="languagesGraph" mnemonicParsing="false" text="%languageGraph">
+                        <CheckMenuItem fx:id="languageGraphGerman" mnemonicParsing="false" text="%german" />
+                        <CheckMenuItem fx:id="languageGraphEnglish" mnemonicParsing="false" text="%english" />
                     </Menu>
                 </Menu>
                 <Menu fx:id="help" mnemonicParsing="false" text="%help">

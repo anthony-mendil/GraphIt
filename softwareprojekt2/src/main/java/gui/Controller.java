@@ -31,6 +31,7 @@ import actions.edit.size.EditVerticesSizeLogAction;
 import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
+import actions.other.ChangeGraphLanguageAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
@@ -188,6 +189,9 @@ public class Controller implements ObserverSyndrom {
     @FXML private Menu languages;
     @FXML private Menu help;
 
+    @FXML private Menu languagesGraph;
+    @FXML private CheckMenuItem languageGraphGerman;
+    @FXML private CheckMenuItem languageGraphEnglish;
     /**
      * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to german.
      */
@@ -1573,9 +1577,17 @@ public class Controller implements ObserverSyndrom {
 
         initLanguage();
         initProtocolTree();
+        initGraphLanguage();
 
         //newFile.setText(loadLanguage.getMenu1());
 
+    }
+
+    private void initGraphLanguage(){
+        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(languageGraphEnglish, this));
+        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(languageGraphGerman, this));
+        languageGraphEnglish.setSelected(false);
+        languageGraphGerman.setSelected(true);
     }
 
 
@@ -1610,7 +1622,7 @@ public class Controller implements ObserverSyndrom {
                         TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
                         Object val = selected.getValue();
 
-                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                        ContextMenu contextMenu = helper.openContextMenu(val);
                         if (contextMenu != null) {
                             treeView.setContextMenu(contextMenu);
                             contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
@@ -1943,6 +1955,7 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeLanguage(language);
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
+            treeViewUpdate();
         }
 
         LanguageListener(CheckMenuItem checkMenuItem, Controller controller){
@@ -1957,6 +1970,31 @@ public class Controller implements ObserverSyndrom {
                 changeLanguage(Language.GERMAN);
             } else if (checkMenuItem.getId().equals("languageEnglish") && newValue){
                 languageGerman.setSelected(false);
+                changeLanguage(Language.ENGLISH);
+            }
+        }
+    }
+
+    private class LanguageGraphListener implements ChangeListener<Boolean>{
+        private CheckMenuItem checkMenuItem;
+
+        private void changeLanguage(Language language) {
+            values.setGraphLanguage(language);
+            ChangeGraphLanguageAction changeGraphLanguageAction = new ChangeGraphLanguageAction();
+            changeGraphLanguageAction.action();
+        }
+
+        LanguageGraphListener(CheckMenuItem checkMenuItem, Controller controller){
+            this.checkMenuItem = checkMenuItem;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if (checkMenuItem.getId().equals("languageGraphGerman") && newValue){
+                languageGraphEnglish.setSelected(false);
+                changeLanguage(Language.GERMAN);
+            } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue){
+                languageGraphGerman.setSelected(false);
                 changeLanguage(Language.ENGLISH);
             }
         }
@@ -2597,6 +2635,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     @FXML public void synAnalysis(){
-
+        filterLogs(analysisLogEntryName);
     }
 }

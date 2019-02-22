@@ -15,6 +15,7 @@ import actions.remove.RemoveVerticesLogAction;
 import graph.graph.Edge;
 import graph.graph.FunctionMode;
 import graph.graph.Vertex;
+import gui.properties.LoadLanguage;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
@@ -32,19 +33,20 @@ public class EdgeContextMenu {
     private final ActionHistory history;
     private final Values values;
     private final Edge edge;
-
+    private LoadLanguage language = new LoadLanguage();
 
     public EdgeContextMenu(Edge edge){
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
+        language.changeLanguage(values.getGuiLanguage());
         this.edge = edge;
         setup();
     }
 
     private void setup(){
         // REMOVE
-        MenuItem remove = new MenuItem("Entfernen");
+        MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));
         HelperGui.setImage("/icons2/008-rubbish-bin.png", remove);
 
         remove.setOnAction(event -> {
@@ -53,7 +55,7 @@ public class EdgeContextMenu {
         });
 
         // COLOR FILL
-        MenuItem color = new MenuItem("Kantenfarbe");
+        MenuItem color = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_STROKE_EDGE_COLOR"));
         HelperGui.setImage("/icons2/fill.png", color);
         color.setOnAction(event ->{
             EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(values.getEdgePaint());
@@ -61,7 +63,7 @@ public class EdgeContextMenu {
         });
 
         // Stroke type
-        MenuItem strokeType = new MenuItem("Kantenart");
+        MenuItem strokeType = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_STROKE_EDGE_TYPE"));
         HelperGui.setImage("/icons2/021-line.png", strokeType);
         strokeType.setOnAction(event ->{
             EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(values.getStrokeEdge());
@@ -69,7 +71,7 @@ public class EdgeContextMenu {
         });
 
         // Pfeilspitze
-        MenuItem arrowType = new MenuItem("Pfeilspitze");
+        MenuItem arrowType = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_EDGE_ARROW"));
         HelperGui.setImage("/icons2/017-arrow.png", arrowType);
         arrowType.setOnAction(event ->{
             EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(values.getEdgeArrowType());
@@ -77,7 +79,7 @@ public class EdgeContextMenu {
         });
 
         // unlink
-        MenuItem unlink = new MenuItem("Anker entfernen");
+        MenuItem unlink = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_EDGE_ARROW_REMOVE"));
         HelperGui.setImage("/icons2/unlink.png", unlink);
         unlink.setOnAction(event ->{
             RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();

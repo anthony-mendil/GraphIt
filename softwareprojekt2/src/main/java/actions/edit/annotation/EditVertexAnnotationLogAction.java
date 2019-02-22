@@ -25,14 +25,16 @@ public class EditVertexAnnotationLogAction extends LogAction {
      * The annotation of the vertex.
      */
     private String text;
+    private Language language;
     /**
      * Constructor in case the user wants to change the annotation of vertex.
      *
      * @param pText The new vertex annotation.
      */
-    public EditVertexAnnotationLogAction(String pText) {
+    public EditVertexAnnotationLogAction(String pText, Language language) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);
         text = pText;
+        this.language = language;
     }
 
     /**
@@ -57,8 +59,8 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     Map<String, String> oldAnnotation = new HashMap<>();
                     annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
 
-                    createParameter(v, v.getAnnotation().get(Language.GERMAN.name()), text);
-                    annotation.put(Language.GERMAN.name(), text);
+                    createParameter(v, v.getAnnotation().get(language.name()), text);
+                    annotation.put(language.name(), text);
                     v.setAnnotation(annotation);
                 }else{
                     helper.setActionText("Der Titel des Knotens darf aufgrund der Vorlageregeln nicht geändert werden.", true);
@@ -86,7 +88,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
             Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
             String newString = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
             Map<String,String> newAnnotation = new HashMap<>();
-            newAnnotation.put(Language.GERMAN.name(),newString);
+            newAnnotation.put(language.name(),newString);
             vertex.setAnnotation(newAnnotation);
         }
         vv.repaint();

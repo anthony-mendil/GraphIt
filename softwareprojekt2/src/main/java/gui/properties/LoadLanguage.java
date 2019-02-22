@@ -59,7 +59,7 @@ public class LoadLanguage {
         c.getExportLogs().setText(loadLanguagesKey("logs"));
         c.getPrint().setText(loadLanguagesKey("print"));
         c.getOptions().setText(loadLanguagesKey("options"));
-        c.getLanguages().setText(loadLanguagesKey("language"));
+        c.getLanguages().setText(loadLanguagesKey("languageGui"));
         c.getLanguageGerman().setText(loadLanguagesKey("german"));
         c.getLanguageEnglish().setText(loadLanguagesKey("english"));
         c.getHelp().setText(loadLanguagesKey("help"));
@@ -207,7 +207,7 @@ public class LoadLanguage {
         c.getLogEditVerticesLayout().setText(loadLanguagesKey("EDIT_VERTICES_LAYOUT"));
     }
 
-    private String loadLanguagesKey(String key)  {
+    public String loadLanguagesKey(String key)  {
         return resource.getString(key);
     }
 }
