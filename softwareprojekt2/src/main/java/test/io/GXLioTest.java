@@ -9,10 +9,7 @@ import actions.other.CreateGraphAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
-import gui.Controller;
 import io.GXLio;
-import edu.uci.ics.jung.graph.util.Pair;
-import log_management.parameters.add_remove.AddRemoveVerticesParam;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.freehep.graphicsbase.util.Assert;
@@ -20,11 +17,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GXLioTest {
 
@@ -184,7 +184,7 @@ public class GXLioTest {
         try {
             doc.write(new File("GXLTest"));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
     }
 

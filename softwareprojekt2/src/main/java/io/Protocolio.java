@@ -1,6 +1,5 @@
 package io;
 
-import com.google.inject.Inject;
 import log_management.dao.LogDao;
 import log_management.tables.Log;
 import org.apache.log4j.Logger;

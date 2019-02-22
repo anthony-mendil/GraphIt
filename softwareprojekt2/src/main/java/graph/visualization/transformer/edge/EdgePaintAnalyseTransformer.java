@@ -1,7 +1,6 @@
 package graph.visualization.transformer.edge;
 
 import graph.graph.Edge;
-import graph.graph.Vertex;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;

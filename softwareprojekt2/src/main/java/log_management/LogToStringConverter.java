@@ -23,8 +23,6 @@ import log_management.parameters.move.LayoutVerticesParam;
 import log_management.parameters.move.MoveSphereParam;
 import log_management.parameters.move.MoveVerticesParam;
 import log_management.tables.Log;
-import lombok.Data;
-import lombok.Getter;
 
 import java.awt.geom.Point2D;
 import java.time.format.DateTimeFormatter;

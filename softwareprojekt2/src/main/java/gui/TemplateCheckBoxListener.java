@@ -2,7 +2,6 @@ package gui;
 
 import actions.analyse.FilterGraphAction;
 import graph.graph.Syndrom;
-import graph.graph.Template;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;

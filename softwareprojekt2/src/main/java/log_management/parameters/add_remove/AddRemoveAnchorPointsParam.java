@@ -1,10 +1,7 @@
 package log_management.parameters.add_remove;
 
 import graph.graph.Edge;
-import gui.Values;
-import gui.properties.Language;
 import log_management.parameters.Param;
-import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 

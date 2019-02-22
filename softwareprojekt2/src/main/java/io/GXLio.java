@@ -63,6 +63,10 @@ public class GXLio {
             // At first a document needs to be imported into the system. Thereby it is important that the document selected by the user has a valid structure.
             GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes("UTF-8")));
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
+            if(gxlGraph==null){
+                logger.error("Error on empty Syndrom GXLGraph");
+                return;
+            }
             // The list of all vertices descripted in the document. Elements are added to this list when ever a gxl element that describes a vertex was found reading the gxl document and the java object from this gxl description was created.
             List<Vertex> vertices = new ArrayList<>();
             // This list saves for each sphere the vertices that belong to the sphere (as a list of vertices).
@@ -72,7 +76,8 @@ public class GXLio {
             // This counter is needed as the documents elements not always will have successive ids. This fact is a result from the users possibility to delete elements after creating them before he/she exports the graph. This leads to gaps in the row of ids.
             int foundElements = 0;
             searchForTemplate(doc, withTemplate);
-            for (int idCounter = 0; foundElements < gxlGraph.getGraphElementCount(); idCounter++) {
+            int elementCount=gxlGraph.getGraphElementCount();
+            for (int idCounter = 0; foundElements < elementCount; idCounter++) {
                 if (doc.containsID(idCounter + "")) {
                     foundElements++;
                     makeGraphElemt(vertices, spheresWithVertices, edgeAndVertices, doc.getElement( idCounter + ""), withTemplate);
@@ -81,7 +86,6 @@ public class GXLio {
             }
             updateSystemDataAndVisualisation(vertices, spheresWithVertices, edgeAndVertices);
         } catch (IOException | SAXException e) {
-            e.printStackTrace();
             logger.error(e.toString());
         }
     }
@@ -509,21 +513,10 @@ public class GXLio {
         singleNodeInSphere.setAttr("annotation", new GXLString(nodeAnnotationContent));
         Color drawPaint = (Color) v.getDrawColor();
         singleNodeInSphere.setAttr("drawPaint", new GXLString(getPaintDescription(drawPaint)));
-        if (v.getVertexArrowReinforced() != null) {
-            singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
-        } else {
-            singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString(""));
-        }
-        if (v.getVertexArrowNeutral() != null) {
-            singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString("" + v.getVertexArrowNeutral()));
-        } else {
-            singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString(""));
-        }
-        if (v.getVertexArrowExtenuating() != null) {
-            singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString("" + v.getVertexArrowExtenuating()));
-        } else {
-            singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString(""));
-        }
+        singleNodeInSphere.setAttr("vertexArrowReinforced", new GXLString("" + v.getVertexArrowReinforced()));
+        singleNodeInSphere.setAttr("vertexArrowNeutral", new GXLString("" + v.getVertexArrowNeutral()));
+        singleNodeInSphere.setAttr("vertexArrowExtenuating", new GXLString("" + v.getVertexArrowExtenuating()));
+
         singleNodeInSphere.setAttr("size", new GXLInt(v.getSize()));
         singleNodeInSphere.setAttr("isVisible", new GXLBool(v.isVisible()));
         singleNodeInSphere.setAttr("font", new GXLString("" + v.getFont()));

@@ -1,7 +1,8 @@
 package log_management.parameters.edit;
 
-import graph.graph.*;
-import graph.visualization.SyndromVisualisationViewer;
+import graph.graph.Edge;
+import graph.graph.EdgeArrowType;
+import graph.graph.Vertex;
 import gui.Values;
 import gui.properties.Language;
 import javafx.util.Pair;

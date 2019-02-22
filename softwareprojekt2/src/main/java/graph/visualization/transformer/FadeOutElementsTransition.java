@@ -3,11 +3,13 @@ package graph.visualization.transformer;
 import graph.graph.Syndrom;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import lombok.Getter;
 
 public class FadeOutElementsTransition extends Transition {
-    public double frac;
+    @Getter
+    private double frac;
+
 
     public FadeOutElementsTransition(){
         setCycleDuration(Duration.millis(2000));

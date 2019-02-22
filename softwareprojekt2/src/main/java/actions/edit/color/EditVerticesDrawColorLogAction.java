@@ -7,7 +7,6 @@ import graph.graph.Edge;
 import graph.graph.FunctionMode;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVerticesDrawColorParam;
 

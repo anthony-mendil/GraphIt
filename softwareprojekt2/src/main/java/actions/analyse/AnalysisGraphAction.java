@@ -1,7 +1,6 @@
 package actions.analyse;
 
 import actions.GraphAction;
-import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.algorithmen.AnalyseTypeSeveral;
 import graph.algorithmen.AnalyseTypeSingle;
@@ -10,14 +9,11 @@ import graph.graph.EdgeArrowType;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.transformer.edge.EdgeHighlightTransformer;
 import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
 import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
-import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 import org.jgrapht.GraphPath;
-import org.jgrapht.Graphs;
 
 import java.util.*;
 
@@ -139,7 +135,13 @@ public class AnalysisGraphAction extends GraphAction{
                     verticesAnalyse.addAll(branches);
                     break;
                 case EDGE_CHAINS:
-                    List<List<Vertex>> edgeChains = jGraphTHandler.detectRelationChains();
+                    Pair<List<List<Vertex>>,Set<Edge>> edgeChains = jGraphTHandler.detectRelationChains();
+                    for(List<Vertex> list : edgeChains.getKey()){
+                        for(int i = 0 ; i < list.size(); i++){
+                            verticesAnalyse.add(list.get(i));
+                        }
+                    }
+                    edgesAnalyse.addAll(edgeChains.getValue());
                     break;
                 case REINFORCED:
                     for(Edge edge : graph.getEdges()){
@@ -197,7 +199,7 @@ public class AnalysisGraphAction extends GraphAction{
                     verticesAnalyse.addAll(predecessors.getKey());
                     edgesAnalyse.addAll(predecessors.getValue());
                 }else{
-                    Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.predecessorsIterations(amountSteps);
+                    Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
                     verticesAnalyse.addAll(successors.getKey());
                     edgesAnalyse.addAll(successors.getValue());
                 }

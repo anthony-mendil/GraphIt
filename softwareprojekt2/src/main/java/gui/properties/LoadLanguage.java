@@ -1,8 +1,6 @@
 package gui.properties;
 
 import gui.Controller;
-import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 import lombok.Data;
 
 import java.util.Locale;

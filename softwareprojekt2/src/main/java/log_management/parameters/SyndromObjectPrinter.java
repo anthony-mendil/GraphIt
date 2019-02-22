@@ -1,6 +1,8 @@
 package log_management.parameters;
 
-import graph.graph.*;
+import graph.graph.Edge;
+import graph.graph.Sphere;
+import graph.graph.Vertex;
 import gui.properties.Language;
 
 public class SyndromObjectPrinter {

@@ -57,10 +57,8 @@ import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -71,10 +69,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -90,7 +91,6 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -501,7 +501,6 @@ public class Controller implements ObserverSyndrom {
     private String currentSize = "";
     private String currentFont = "";
 
-    private TemplateController templateController = new TemplateController(templateStage);
 
     /**
      * The combobox for changing the size of the sphere text.
@@ -512,6 +511,7 @@ public class Controller implements ObserverSyndrom {
      * The combobox for changing the size of the symptom text.
      */
     @FXML private ComboBox<String> sizeSymptomComboBox;
+
     private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
     private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
     private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
@@ -1403,21 +1403,6 @@ public class Controller implements ObserverSyndrom {
     @SuppressWarnings("unused")
     public void deleteTemplateRules() {
         throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates a Window that allows you to set Rules for your Template.
-     */
-    @SuppressWarnings("unused")
-    void createTemplateWindow() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/templatedialog.fxml"));
-        fxmlLoader.setController(templateController);
-        templateStage.setResizable(false);
-        templateStage.setScene(new Scene(fxmlLoader.load()));
-        templateStage.setTitle("Vorlagenregeln");
-        templateStage.getIcons().add(new Image(
-            getClass().getResourceAsStream("/GraphItLogo.png")));
     }
 
     public void highlight() {
@@ -2486,6 +2471,7 @@ public class Controller implements ObserverSyndrom {
     private void loadAnalysisElements(){
         amountSymptomTextField.textProperty().addListener(new OnlyNumberTextFieldListener(amountSymptomTextField));
         amountSymptomTextField.focusedProperty().addListener(new AnalysisFocusTextFieldListener(amountSymptomTextField, this));
+        amountSymptomTextField.addEventHandler(KeyEvent.KEY_PRESSED, new ConfirmKeyListener(this, amountSymptomTextField));
 
         analysisSuccessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisSuccessor, this));
         analysisPredecessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisPredecessor, this));

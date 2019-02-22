@@ -1,7 +1,6 @@
 package actions;
 
 import com.google.inject.Singleton;
-import graph.graph.Syndrom;
 
 /**
  * A bounded history of actions.
@@ -11,12 +10,12 @@ public class ActionHistory {
     /**
      * Upper bound of actions.
      */
-    private static final int maxActions = 100;
+    private static final int MAX_ACTIONS = 100;
 
     /**
      * Saved actions.
      */
-    private Action[] actions = new Action[maxActions];
+    private Action[] actions = new Action[MAX_ACTIONS];
 
     /**
      * The current action in actions.
@@ -32,15 +31,15 @@ public class ActionHistory {
      */
     public void execute(Action action) {
         current++;
-        if(current == maxActions) {
-            for (int i = 0; i < maxActions - 1; i++) {
+        if(current == MAX_ACTIONS) {
+            for (int i = 0; i < MAX_ACTIONS - 1; i++) {
                 actions[i] = actions[i + 1];
             }
-            current = maxActions - 1;
+            current = MAX_ACTIONS - 1;
         }
         actions[current] = action;
         actions[current].action();
-        for(int i = current+1; i<maxActions; i++){
+        for(int i = current+1; i< MAX_ACTIONS; i++){
             actions[i] = null;
         }
     }
@@ -92,7 +91,7 @@ public class ActionHistory {
      * Wipes the existing ActionHistory.
      */
     public void wipe(){
-        actions = new Action[maxActions];
+        actions = new Action[MAX_ACTIONS];
         current = -1;
     }
 }

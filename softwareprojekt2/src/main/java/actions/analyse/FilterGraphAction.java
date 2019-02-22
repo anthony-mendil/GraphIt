@@ -3,7 +3,6 @@ package actions.analyse;
 import actions.GraphAction;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
-import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.algorithmen.predicates.EdgeArrowPredicate;
 import graph.algorithmen.predicates.EdgeIsVisiblePredicate;
@@ -12,8 +11,6 @@ import graph.algorithmen.predicates.VertexIsVisiblePredicate;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
 import graph.graph.Vertex;
-import graph.visualization.transformer.edge.EdgeHighlightTransformer;
-import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.functors.TruePredicate;
 

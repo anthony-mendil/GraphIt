@@ -10,7 +10,9 @@ import log_management.json_serializers.Point2DSerializer;
 import log_management.tables.Graph;
 import log_management.tables.Log;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.awt.geom.Point2D;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
