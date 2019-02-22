@@ -217,11 +217,13 @@ public class ColorNameCreator {
      */
     public class ColorNames {
 
-        public int red, green, blue;
+        private int red;
+        private int green;
+        private int blue;
 
-        public String germanName;
+        private String germanName;
 
-        public String englishName;
+        private String englishName;
 
         public ColorNames(String englishName, String germanName, int red, int green, int blue) {
             this.red = red;

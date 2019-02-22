@@ -14,6 +14,7 @@ import graph.graph.Sphere;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -27,7 +28,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
     private BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
-
+    private static Logger logger = Logger.getLogger(SyndromPickSupport.class);
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
      * <code>VisualizationServer</code> is used to access properties of the current visualization (layout, renderer,
@@ -66,7 +67,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         return sphaereContains;
     }
@@ -134,7 +135,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 }
                 break;
             } catch (ConcurrentModificationException cme) {
-                cme.printStackTrace();
+                logger.error(cme.toString());
             }
         }
         return closest;
