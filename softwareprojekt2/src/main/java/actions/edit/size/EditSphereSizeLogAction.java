@@ -13,7 +13,6 @@ import log_management.parameters.edit.EditSphereSizeParam;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
 
 /**
  * Changes the sphere size.

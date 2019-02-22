@@ -1,7 +1,6 @@
 package gui;
 
 import actions.ActionHistory;
-import actions.edit.annotation.EditSphereAnnotationLogAction;
 import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
@@ -9,8 +8,9 @@ import actions.remove.RemoveSphereLogAction;
 import graph.graph.FunctionMode;
 import graph.graph.Sphere;
 import graph.visualization.control.HelperFunctions;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import lombok.AccessLevel;
 import lombok.Data;

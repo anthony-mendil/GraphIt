@@ -14,7 +14,9 @@ import log_management.DatabaseManager;
 import log_management.parameters.move.MoveVerticesParam;
 
 import java.awt.geom.Point2D;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 
 /**

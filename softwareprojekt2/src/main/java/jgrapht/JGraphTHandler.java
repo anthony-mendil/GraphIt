@@ -1,6 +1,5 @@
 package jgrapht;
 
-import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
@@ -8,17 +7,13 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
-import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
-import log_management.tables.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
-import org.jgrapht.alg.cycle.CycleDetector;
 import org.jgrapht.alg.cycle.TarjanSimpleCycles;
 import org.jgrapht.alg.shortestpath.AllDirectedPaths;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
 
 import java.util.*;
 

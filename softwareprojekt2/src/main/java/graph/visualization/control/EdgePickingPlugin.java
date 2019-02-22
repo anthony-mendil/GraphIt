@@ -9,7 +9,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import gui.EdgeContextMenu;
 import gui.Values;
-import gui.VertexContextMenu;
 import javafx.scene.control.ContextMenu;
 
 import javax.swing.*;

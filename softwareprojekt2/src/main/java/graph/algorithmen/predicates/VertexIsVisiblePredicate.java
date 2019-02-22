@@ -2,7 +2,6 @@ package graph.algorithmen.predicates;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
-import graph.graph.Edge;
 import graph.graph.Vertex;
 import org.apache.commons.collections15.Predicate;
 

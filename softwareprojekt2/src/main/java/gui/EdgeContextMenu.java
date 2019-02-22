@@ -3,27 +3,17 @@ package gui;
 import actions.ActionHistory;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
-import actions.edit.annotation.EditVertexAnnotationLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
-import actions.edit.color.EditVerticesDrawColorLogAction;
-import actions.edit.color.EditVerticesFillColorLogAction;
-import actions.edit.font.EditFontSizeVerticesLogAction;
-import actions.edit.font.EditFontVerticesLogAction;
 import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
-import actions.remove.RemoveVerticesLogAction;
 import graph.graph.Edge;
 import graph.graph.FunctionMode;
-import graph.graph.Vertex;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
-
-import java.util.Optional;
 
 @Data
 public class EdgeContextMenu {
