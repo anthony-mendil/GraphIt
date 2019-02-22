@@ -8,8 +8,7 @@ import actions.edit.color.EditVerticesFillColorLogAction;
 import actions.edit.font.EditFontSizeVerticesLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
 import actions.remove.RemoveVerticesLogAction;
-import graph.graph.FunctionMode;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
@@ -35,6 +34,7 @@ public class VertexContextMenu {
     private final Vertex vertex;
     private HelperFunctions helperFunctions = new HelperFunctions();
     private LoadLanguage language = new LoadLanguage();
+    private Syndrom syndrom = Syndrom.getInstance();
 
 
     public VertexContextMenu(Vertex vertex){

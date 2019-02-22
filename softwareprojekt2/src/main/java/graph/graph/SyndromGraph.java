@@ -31,7 +31,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * List of spheres.
      */
-    private transient List<Sphere> spheren = new ArrayList<>();
+    private transient List<Sphere> spheres = new ArrayList<>();
 
     /**
      * The object factory for syndrom.
@@ -45,14 +45,6 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
         graphObjectsFactory = new GraphObjectsFactory();
     }
 
-    /**
-     * Returns a list of all spheres from the syndrom graph.
-     *
-     * @return A list of all spheres.
-     */
-    public List<Sphere> getSpheres() {
-        return spheren;
-    }
 
 
     /**
@@ -129,7 +121,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      */
     public boolean addSphere(Point2D pos) {
         Sphere sphere = graphObjectsFactory.createSphere(pos);
-        return spheren.add(sphere);
+        return spheres.add(sphere);
     }
 
     /**
@@ -138,7 +130,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @param pSphere The sphere to remove.
      */
     public void removeSphere(Sphere pSphere) {
-        spheren.remove(pSphere);
+        spheres.remove(pSphere);
     }
 
     /**

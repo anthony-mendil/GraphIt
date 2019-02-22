@@ -6,12 +6,10 @@ import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
 import actions.remove.RemoveSphereLogAction;
-import graph.graph.FunctionMode;
-import graph.graph.Sphere;
+import graph.graph.*;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
-import javafx.scene.control.*;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
@@ -20,10 +18,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Data
 public class SphereContextMenu {
@@ -34,6 +29,7 @@ public class SphereContextMenu {
     private final Sphere sphere;
     private LoadLanguage language = new LoadLanguage();
     private HelperFunctions helperFunctions = new HelperFunctions();
+    private Syndrom syndrom = Syndrom.getInstance();
 
     public SphereContextMenu(Sphere sphere){
         contextMenu = new ContextMenu();
@@ -124,10 +120,12 @@ public class SphereContextMenu {
     private void checkAnnotation(Map<Language, String> map, Map<String, String> oldAnno, Language lang){
         if (map != null && map.containsKey(lang)) {
             String text = map.get(lang);
-            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0){
+            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0 ){
                 EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(map.get(lang), lang);
                 history.execute(editSphereAnnotationLogAction);
             }
         }
     }
+
+
 }
