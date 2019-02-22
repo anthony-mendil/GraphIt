@@ -9,7 +9,6 @@ import actions.activate.ActivateFadeoutAction;
 import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
-import actions.add.AddVerticesLogAction;
 import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
@@ -36,8 +35,6 @@ import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
-import com.sun.javafx.scene.control.behavior.MenuButtonBehavior;
-import com.sun.javafx.scene.control.skin.MenuButtonSkin;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
@@ -62,7 +59,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -95,7 +91,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -270,11 +265,6 @@ public class Controller implements ObserverSyndrom {
      * The textfield that sets the amount of predecessor/successor symptoms in the analysis/interpreter mode.
      */
     @FXML private TextField amountSymptomTextField;
-
-    /**
-     * The textfield that sets the amount of originating or incoming edges.
-     */
-    @FXML private TextField amountEdgeTextField;
 
     /**
      * The menuitem under "analysis" that shows convergent and divergent branches.
@@ -452,19 +442,9 @@ public class Controller implements ObserverSyndrom {
     private Separator separator4;
 
     /**
-     * A separator for the vboxes in analysis mode.
-     */
-    @FXML private Separator separator5;
-
-    /**
      * The vbox that contains analysis options for symptoms.
      */
     @FXML private VBox vBoxAnalysisSymptom;
-
-    /**
-     * The vbox that contains analysis options for edges.
-     */
-    @FXML private VBox vBoxAnalysisEdge;
 
     /**
      * The vbox that contains analysis options for the graph.
@@ -571,14 +551,10 @@ public class Controller implements ObserverSyndrom {
     @FXML private Text analysisStructureIndex;
     @FXML private Text analysisStructureIndexTooltip;
     @FXML private Text analysisSymptom;
-    @FXML private CheckBox analysisPredessor;
+    @FXML private CheckBox analysisPredecessor;
     @FXML private CheckBox analysisSuccessor;
     @FXML private Text analysisSymptomAmount;
-    @FXML private CheckBox analysisSuccessorEdge;
-    @FXML private CheckBox analysisPredessorEdge;
-    @FXML private Text analysisEdge;
-    @FXML private Text analysisEdgeAmount;
-    @FXML private CheckBox reinforced1;
+    @FXML private CheckBox filterArrowTypeCheckBox;
     @FXML private Text analysisOption;
     @FXML private CheckBox analysisOptions;
     @FXML private MenuItem convergent;
@@ -1533,6 +1509,7 @@ public class Controller implements ObserverSyndrom {
         loadFontComboBox(fontSymptomComboBox);
         loadTemplateTextFields();
         loadTemplateCheckBox();
+        loadAnalysisElements();
 
         zoomSlider.setMin(20);
         zoomSlider.setMax(200);
@@ -1573,9 +1550,6 @@ public class Controller implements ObserverSyndrom {
 
         initLanguage();
         initProtocolTree();
-
-        //newFile.setText(loadLanguage.getMenu1());
-
     }
 
 
@@ -1998,14 +1972,9 @@ public class Controller implements ObserverSyndrom {
         separator4.setVisible(active);
         separator4.setManaged(active);
 
-        separator5.setVisible(active);
-        separator5.setManaged(active);
-
         vBoxAnalysisSymptom.setVisible(active);
         vBoxAnalysisSymptom.setManaged(active);
 
-        vBoxAnalysisEdge.setVisible(active);
-        vBoxAnalysisEdge.setManaged(active);
 
         vBoxAnalysisOption.setVisible(active);
         vBoxAnalysisOption.setManaged(active);
@@ -2077,9 +2046,7 @@ public class Controller implements ObserverSyndrom {
         vBoxGraphStats.setDisable(disable);
         separator3.setDisable(disable);
         separator4.setDisable(disable);
-        separator5.setDisable(disable);
         vBoxAnalysisSymptom.setDisable(disable);
-        vBoxAnalysisEdge.setDisable(disable);
         vBoxAnalysisOption.setDisable(disable);
     }
 
@@ -2476,7 +2443,7 @@ public class Controller implements ObserverSyndrom {
         maxSymptomField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSymptomField));
         maxEdgesField.textProperty().addListener(new OnlyNumberTextFieldListener(maxEdgesField));
 
-        FocusTextFieldListener focusTFListener = new FocusTextFieldListener();
+        FocusTemplateTextFieldListener focusTFListener = new FocusTemplateTextFieldListener();
         maxSphereField.focusedProperty().addListener(focusTFListener);
         maxSymptomField.focusedProperty().addListener(focusTFListener);
         maxEdgesField.focusedProperty().addListener(focusTFListener);
@@ -2493,10 +2460,12 @@ public class Controller implements ObserverSyndrom {
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             if (!newValue.matches("\\d*"))
                 textField.setText(oldValue);
+
+
         }
     }
 
-    private class FocusTextFieldListener implements ChangeListener<Boolean> {
+    private class FocusTemplateTextFieldListener implements ChangeListener<Boolean> {
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             if (!newValue) {
@@ -2514,6 +2483,13 @@ public class Controller implements ObserverSyndrom {
         showFadedOutObjects.selectedProperty().addListener(new TemplateCheckBoxListener(showFadedOutObjects, this));
     }
 
+    private void loadAnalysisElements(){
+        amountSymptomTextField.textProperty().addListener(new OnlyNumberTextFieldListener(amountSymptomTextField));
+        amountSymptomTextField.focusedProperty().addListener(new AnalysisFocusTextFieldListener(amountSymptomTextField, this));
+
+        analysisSuccessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisSuccessor, this));
+        analysisPredecessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisPredecessor, this));
+    }
 
     @Override
     public void updateGraph() {

@@ -59,15 +59,12 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
         switch (checkBox.getId()) {
             case "reinforcedBox":
-                /*System.out.println("neutralBox" + " " + newValue);*/
                 Syndrom.getInstance().getTemplate().setReinforcedEdgesAllowed(newValue);
                 break;
             case "neutralBox":
-                /*System.out.println("neutralBox" + " " + newValue);*/
                 Syndrom.getInstance().getTemplate().setNeutralEdgesAllowed(newValue);
                 break;
             case "extenuatingBox":
-                //System.out.println("extenuatingBox" + newValue);
                 Syndrom.getInstance().getTemplate().setExtenuatingEdgesAllowed(newValue);
                 break;
             case "treeViewArrowType": treeViewArrowTypeBoxChecked(newValue);
