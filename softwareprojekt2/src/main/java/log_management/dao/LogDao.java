@@ -50,7 +50,7 @@ public class LogDao implements Dao<Log> {
     @Override
     public List<Log> getAll() throws NoSuchElementException {
 
-        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).get();
+        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -73,7 +73,7 @@ public class LogDao implements Dao<Log> {
      * @return A a string (json) containing all logs.
      */
     public String getAllString() throws NoSuchElementException {
-        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).get();
+        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
             throw new IllegalStateException();
         }
@@ -118,7 +118,7 @@ public class LogDao implements Dao<Log> {
         newLog.setLogEntryName(log.getLogEntryName());
 
 
-        newLog.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).get());
+        newLog.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null));
         entityManager.persist(newLog);
 
         entityManager.getTransaction().commit();
@@ -179,7 +179,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).get();
+        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -205,7 +205,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).get();
+        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
             throw new NoSuchElementException();
         }
@@ -242,7 +242,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).get();
+        Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
             throw new NoSuchElementException();
         }
