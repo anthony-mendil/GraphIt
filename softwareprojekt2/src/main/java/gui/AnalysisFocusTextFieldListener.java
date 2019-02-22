@@ -1,5 +1,6 @@
 package gui;
 
+import actions.analyse.AnalysisGraphAction;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
@@ -21,11 +22,13 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if(!newValue){
-            if(analysisPredecessor.isSelected()){
-                System.out.println("Predecessor is selected.");
-            }
-            if(analysisSuccessor.isSelected()){
-                System.out.println("Successor is selected.");
+            if(!textField.getText().isEmpty()){
+                if(analysisPredecessor.isSelected()){
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction()
+                }
+                if(analysisSuccessor.isSelected()){
+                    //CALL PREDECESSOR METHOD
+                }
             }
         }
     }

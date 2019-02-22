@@ -30,10 +30,10 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
             if(!amountSymptomTextField.getText().isEmpty()){
                 if(checkBox.getId().equals("analysisPredecessor")){
                     //CALL PREDECESSOR METHOD
-                    System.out.println("Predecessor " + amountSymptomTextField.getText());
+                    System.out.println("PREDECESSOR");
                 }else if(checkBox.getId().equals("analysisSuccessor")){
                     //CALL SUCCESSOR METHOD
-                    System.out.println("Sucessor " + amountSymptomTextField.getText());
+                    System.out.println("SUCCESSOR");
                 }
             }
         }else{
