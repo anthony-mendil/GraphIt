@@ -199,7 +199,7 @@ public class AnalysisGraphAction extends GraphAction{
                     verticesAnalyse.addAll(predecessors.getKey());
                     edgesAnalyse.addAll(predecessors.getValue());
                 }else{
-                    Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.predecessorsIterations(amountSteps);
+                    Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
                     verticesAnalyse.addAll(successors.getKey());
                     edgesAnalyse.addAll(successors.getValue());
                 }
