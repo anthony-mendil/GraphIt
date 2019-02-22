@@ -31,7 +31,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Map of vertices and the sphere.
      */
-    private Map<Vertex, Sphere> vertices = new HashMap<>();
+    private Map<Vertex, Sphere> vertices;
 
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
