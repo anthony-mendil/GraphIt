@@ -77,6 +77,7 @@ public class RemoveVerticesLogAction extends LogAction {
                             Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
                             edg.put(e,vertexPair);
                         }
+                        pickedState.pick(vertex, false);
                         graph.removeVertex(vertex);
                         sp.getVertices().remove(vertex);
                         params.put(vertex, sp);
