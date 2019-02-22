@@ -58,9 +58,13 @@
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print" />
                 </Menu>
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
-                    <Menu fx:id="languages" mnemonicParsing="false" text="%language">
+                    <Menu fx:id="languages" mnemonicParsing="false" text="%languageGui">
                         <CheckMenuItem fx:id="languageGerman" mnemonicParsing="false" text="%german" />
                         <CheckMenuItem fx:id="languageEnglish" mnemonicParsing="false" text="%english" />
+                    </Menu>
+                    <Menu fx:id="languagesGraph" mnemonicParsing="false" text="%languageGraph">
+                        <CheckMenuItem fx:id="languageGraphGerman" mnemonicParsing="false" text="%german" />
+                        <CheckMenuItem fx:id="languageGraphEnglish" mnemonicParsing="false" text="%english" />
                     </Menu>
                 </Menu>
                 <Menu fx:id="help" mnemonicParsing="false" text="%help">
@@ -800,11 +804,11 @@
                             </rowConstraints>
                             <children>
                                 <Text fx:id="analysisScope" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisScope" wrappingWidth="59.898826599121094" />
-                                <Text fx:id="analysisScopeTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisScopeTooltip" GridPane.columnIndex="1" />
+                                <Text fx:id="analysisScopeNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" />
                                 <Text fx:id="analysisNetworkingIndex" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisNetworkingIndex" wrappingWidth="126.59998321533203" GridPane.rowIndex="1" />
-                                <Text fx:id="analysisNetworkingIndexTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisNetworkingIndexTooltip" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Text fx:id="analysisNetworkingIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Text fx:id="analysisStructureIndex" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisStructureIndex" wrappingWidth="104.54531860351562" GridPane.rowIndex="2" />
-                                <Text fx:id="analysisStructureIndexTooltip" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisStructureIndexTooltip" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Text fx:id="analysisStructureIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                         </GridPane>
                     </children>
@@ -817,17 +821,18 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </HBox.margin>
                 </Separator>
-                <VBox fx:id="vBoxAnalysisSymptom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="250.0">
+                <VBox fx:id="vBoxAnalysisSymptom" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="467.0">
                     <children>
                         <Text fx:id="analysisSymptom" strokeType="OUTSIDE" strokeWidth="0.0" text="%sectionSymptom">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
                         </Text>
-                        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="247.0">
+                        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="425.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.2000732421875" minWidth="10.0" prefWidth="78.20005798339844" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.79994201660156" minWidth="10.0" prefWidth="231.79994201660156" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -854,9 +859,24 @@
                                         <Tooltip text="%analysisSymptomAmountTooltip" />
                                     </tooltip>
                                 </TextField>
+                        <CheckBox mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text=" " GridPane.columnIndex="2">
+                           <graphic>
+                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="200.0">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" />
+                                </items>
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </MenuButton>
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </CheckBox>
                             </children>
                             <VBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="5.2" />
                             </VBox.margin>
                         </GridPane>
                     </children>
@@ -876,7 +896,7 @@
                                 <Insets />
                             </VBox.margin>
                         </Text>
-                        <VBox prefHeight="50.0" prefWidth="392.0">
+                        <VBox prefHeight="67.0" prefWidth="392.0">
                             <children>
                                 <HBox minWidth="-Infinity" prefHeight="30.0" prefWidth="330.0">
                                     <VBox.margin>
@@ -887,6 +907,7 @@
                                             <graphic>
                                                 <MenuButton fx:id="filterAnalysis" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="205.0" text="%filterChainOfEdges">
                                                     <items>
+                                          <MenuItem fx:id="convergent1" mnemonicParsing="false" text="%filterChainOfEdges" />
                                                         <MenuItem fx:id="convergent" mnemonicParsing="false" text="%filterConvergentBranches" />
                                                         <MenuItem fx:id="divergent" mnemonicParsing="false" text="%filterDivergentBranches" />
                                                         <MenuItem fx:id="branches" mnemonicParsing="false" text="%filterBranches" />
@@ -1096,7 +1117,7 @@
                                                     </TextField>
                                                 </graphic>
                                             </CheckBox>
-                                            <CheckBox fx:id="showFadedOutObjects" mnemonicParsing="false" prefHeight="17.0" prefWidth="264.0" text="%toolbarFadeout">
+                                            <CheckBox fx:id="showFadedOutObjects" mnemonicParsing="false" prefHeight="18.0" prefWidth="350.0" text="%toolbarFadeout">
                                                 <VBox.margin>
                                                     <Insets bottom="2.0" top="5.0" />
                                                 </VBox.margin>

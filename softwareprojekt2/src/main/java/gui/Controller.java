@@ -11,6 +11,7 @@ import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
 import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
+import actions.analyse.GraphDimensionAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
 import actions.deactivate.DeactivateHighlightAction;
@@ -30,6 +31,7 @@ import actions.edit.size.EditVerticesSizeLogAction;
 import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
+import actions.other.ChangeGraphLanguageAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
@@ -70,6 +72,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -182,6 +185,9 @@ public class Controller implements ObserverSyndrom {
     @FXML private Menu languages;
     @FXML private Menu help;
 
+    @FXML private Menu languagesGraph;
+    @FXML private CheckMenuItem languageGraphGerman;
+    @FXML private CheckMenuItem languageGraphEnglish;
     /**
      * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to german.
      */
@@ -510,6 +516,7 @@ public class Controller implements ObserverSyndrom {
      * The combobox for changing the size of the symptom text.
      */
     @FXML private ComboBox<String> sizeSymptomComboBox;
+
     private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
     private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
     private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
@@ -543,11 +550,11 @@ public class Controller implements ObserverSyndrom {
     @FXML private Button removeAnchor;
     @FXML private Text analysisGraphInfo;
     @FXML private Text analysisScope;
-    @FXML private Text analysisScopeTooltip;
+    @FXML private Text analysisScopeNumber;
     @FXML private Text analysisNetworkingIndex;
-    @FXML private Text analysisNetworkingIndexTooltip;
+    @FXML private Text analysisNetworkingIndexNumber;
     @FXML private Text analysisStructureIndex;
-    @FXML private Text analysisStructureIndexTooltip;
+    @FXML private Text analysisStructureIndexNumber;
     @FXML private Text analysisSymptom;
     @FXML private CheckBox analysisPredecessor;
     @FXML private CheckBox analysisSuccessor;
@@ -1205,6 +1212,15 @@ public class Controller implements ObserverSyndrom {
             createButton.setDisable(false);
             editButton.setDisable(false);
             analysisButton.setDisable(true);
+
+//        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+//        graphDimensionAction.action();
+//
+//
+//            analysisScopeNumber.setText("" + graphDimensionAction.getScope());
+//            analysisNetworkingIndexNumber.setText("" + graphDimensionAction.getNetworkIndex());
+//            analysisStructureIndexNumber.setText("" + graphDimensionAction.getStructureIndex());
+
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
             switchModeAction.action();
     }
@@ -1533,6 +1549,16 @@ public class Controller implements ObserverSyndrom {
 
         initLanguage();
         initProtocolTree();
+        initGraphLanguage();
+
+        //newFile.setText(loadLanguage.getMenu1());
+    }
+
+    private void initGraphLanguage(){
+        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(languageGraphEnglish, this));
+        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(languageGraphGerman, this));
+        languageGraphEnglish.setSelected(false);
+        languageGraphGerman.setSelected(true);
     }
 
 
@@ -1567,7 +1593,7 @@ public class Controller implements ObserverSyndrom {
                         TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
                         Object val = selected.getValue();
 
-                        ContextMenu contextMenu = helper.openContextMenu(val, e.getScreenX(), e.getScreenY());
+                        ContextMenu contextMenu = helper.openContextMenu(val);
                         if (contextMenu != null) {
                             treeView.setContextMenu(contextMenu);
                             contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
@@ -1900,6 +1926,7 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeLanguage(language);
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
+            treeViewUpdate();
         }
 
         LanguageListener(CheckMenuItem checkMenuItem, Controller controller){
@@ -1914,6 +1941,31 @@ public class Controller implements ObserverSyndrom {
                 changeLanguage(Language.GERMAN);
             } else if (checkMenuItem.getId().equals("languageEnglish") && newValue){
                 languageGerman.setSelected(false);
+                changeLanguage(Language.ENGLISH);
+            }
+        }
+    }
+
+    private class LanguageGraphListener implements ChangeListener<Boolean>{
+        private CheckMenuItem checkMenuItem;
+
+        private void changeLanguage(Language language) {
+            values.setGraphLanguage(language);
+            ChangeGraphLanguageAction changeGraphLanguageAction = new ChangeGraphLanguageAction();
+            changeGraphLanguageAction.action();
+        }
+
+        LanguageGraphListener(CheckMenuItem checkMenuItem, Controller controller){
+            this.checkMenuItem = checkMenuItem;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if (checkMenuItem.getId().equals("languageGraphGerman") && newValue){
+                languageGraphEnglish.setSelected(false);
+                changeLanguage(Language.GERMAN);
+            } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue){
+                languageGraphGerman.setSelected(false);
                 changeLanguage(Language.ENGLISH);
             }
         }
@@ -2469,6 +2521,7 @@ public class Controller implements ObserverSyndrom {
     private void loadAnalysisElements(){
         amountSymptomTextField.textProperty().addListener(new OnlyNumberTextFieldListener(amountSymptomTextField));
         amountSymptomTextField.focusedProperty().addListener(new AnalysisFocusTextFieldListener(amountSymptomTextField, this));
+        amountSymptomTextField.addEventHandler(KeyEvent.KEY_PRESSED, new ConfirmKeyListener(this, amountSymptomTextField));
 
         analysisSuccessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisSuccessor, this));
         analysisPredecessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisPredecessor, this));
@@ -2556,6 +2609,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     @FXML public void synAnalysis(){
-
+        filterLogs(analysisLogEntryName);
     }
 }
