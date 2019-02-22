@@ -39,8 +39,8 @@ public class GraphDimensionAction extends GraphAction {
         /**
          * Calculating the indices.
          */
-        double umfang = graph.getSpheres().size() + graph.getVertices().size();
-        double vernetzungsindex = (2 * graph.getEdges().size())/graph.getVertices().size();
+        double umfang =(double) (graph.getSpheres().size() + graph.getVertices().size());
+        double vernetzungsindex = (double)(2 * graph.getEdges().size())/graph.getVertices().size();
         double strukturindex = 3;
 
     }

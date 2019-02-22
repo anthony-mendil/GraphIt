@@ -74,7 +74,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
                         helper.setActionText("Es dürfen aufgrund der Vorlageregeln keine Symptome hinzugefügt werden.", true);
                     }
-                    if(sp.getLockedMaxAmountVertices() == "" || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE)  {
+                    if(sp.getLockedMaxAmountVertices() .equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE)  {
                         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
                         history.execute(addVerticesLogAction);
                         Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
