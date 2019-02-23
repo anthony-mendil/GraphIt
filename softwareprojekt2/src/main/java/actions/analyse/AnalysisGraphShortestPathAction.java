@@ -53,7 +53,7 @@ public class AnalysisGraphShortestPathAction extends GraphAction{
         GraphPath<Vertex,Edge> shortestPath = jGraphTHandler.getShortestPath();
         if(shortestPath == null){
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Es sxistiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true);
+            helperFunctions.setActionText("Es sxistiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true, false);
         }
         verticesAnalyse.addAll(shortestPath.getVertexList());
         edgesAnalyse.addAll(shortestPath.getEdgeList());

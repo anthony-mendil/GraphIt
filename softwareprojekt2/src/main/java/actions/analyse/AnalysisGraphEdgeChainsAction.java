@@ -25,15 +25,6 @@ import java.util.*;
  */
 public class AnalysisGraphEdgeChainsAction extends GraphAction{
 
-    /**
-     * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
-     * These analyse functions are implemented by JGraphT algorithms and will be processed through the JGraphT Handler.
-     * After processing and finding out the values the action is looking for, the information is displayed
-     * or the found vertices/ edges get highlighted.
-     * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
-     */
-    public AnalysisGraphEdgeChainsAction() {
-    }
 
     /**
      * Analyses the graph on the given criteria. All the

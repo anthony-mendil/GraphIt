@@ -25,17 +25,6 @@ import java.util.*;
 public class AnalysisGraphBranchesAction extends GraphAction{
 
     /**
-     * Constructor in case the user chooses a AnalyseTypeSeveral - analyse option.
-     * These analyse functions are implemented by JGraphT functions.
-     * After analysing the graph and finding out the values the action is looking for,
-     * the information is displayed or the found vertices/edges get highlighted.
-     * The action is applied to all picked vertices/edges or to all objects if nothing is picked.
-     *
-     */
-    public AnalysisGraphBranchesAction() {
-    }
-
-    /**
      * Analyses the graph on the given criteria. All the
      * calculated edges and vertices will be highlighted.
      */
