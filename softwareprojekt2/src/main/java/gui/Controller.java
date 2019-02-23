@@ -81,6 +81,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.LogToStringConverter;
@@ -501,8 +502,6 @@ public class Controller implements ObserverSyndrom {
 
     private Stage mainStage;
 
-    private Stage templateStage = new Stage();
-
     private String currentSize = "";
     private String currentFont = "";
 
@@ -690,12 +689,6 @@ public class Controller implements ObserverSyndrom {
 
     public void filterEdgeTypeNeutral(){
         filterEdgeArrowType = EdgeArrowType.NEUTRAL;
-    }
-
-    void setStage(Stage pStage) {
-        mainStage = pStage;
-        templateStage.initOwner(mainStage);
-        templateStage.initModality(Modality.APPLICATION_MODAL);
     }
 
     @SuppressWarnings("unused")
@@ -1479,16 +1472,6 @@ public class Controller implements ObserverSyndrom {
     public void initialize() {
         initFonts();
         rulesTemplate();
-        /*
-        mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                System.out.println("CLOSE");
-                event.consume();
-                optionSaveWindow();
-            }
-        });
-        */
 
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
@@ -1564,6 +1547,18 @@ public class Controller implements ObserverSyndrom {
         initGraphLanguage();
 
         //newFile.setText(loadLanguage.getMenu1());
+    }
+
+    public void setStage(Stage pStage){
+        mainStage = pStage;
+
+        mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                event.consume();
+                optionExitWindow();
+            }
+        });
     }
 
     private void initGraphLanguage(){
@@ -2124,34 +2119,22 @@ public class Controller implements ObserverSyndrom {
     }
 
     @SuppressWarnings("unused")
-    private void optionSaveWindow() {
-        if (canvas.getContent() != null) {
+    private void optionExitWindow() {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("GraphIt");
             alert.setHeaderText(null);
-            alert.setContentText("Wollen Sie die aktuelle Datei speichern?");
-
-            ButtonType buttonTypeOne = new ButtonType("Speichern");
-            ButtonType buttonTypeTwo = new ButtonType("Nicht Speichern");
-            ButtonType buttonTypeCancel = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+            alert.setContentText("Wollen Sie sicher GraphIt schließen?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == buttonTypeOne) {
+            if (result.isPresent() && result.get() == ButtonType.OK) {
                 // ... user chose "One"
-                logger.debug("SPEICHERN");
-            } else if (result.isPresent() && result.get() == buttonTypeTwo) {
-                // ... user chose "Two"
-                logger.debug("NICHT SPEICHERN");
+                logger.debug("SCHLIEßEN");
+                System.exit(0);
                 Platform.exit();
-            } else {
+            }else {
                 // ... user chose CANCEL or closed the dialog
                 logger.debug("CANCEL");
             }
-        } else {
-            Platform.exit();
-        }
     }
 
     /**
@@ -2577,6 +2560,79 @@ public class Controller implements ObserverSyndrom {
         cycles.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
     }
 
+    @FXML public void shortestpath(){
+        //Clean up Method needed
+        if(analysisPathCheckBox.isSelected()){
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.SHORTESTPATH);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void allpaths(){
+        //Clean up Method needed
+        if(analysisPathCheckBox.isSelected()){
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.ALLPATHS);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void chainOfEdges(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.EDGE_CHAINS);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void convergentBranches(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CONVERGENT_BRANCHES);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void divergentBranches(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.DIVERGENT_BRANCHES);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void branches(){
+        //Clean up Method needed
+        if(analysisOptions.isSelected()){
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.BRANCHES);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void analysisCycles(){
+        if(analysisOptions.isSelected()){
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
+            analysisGraphAction.action();
+        }
+    }
+
+    @FXML public void synAnalysis(){
+        filterLogs(analysisLogEntryName);
+    }
+
     @Override
     public void updateGraph() {
         Service<Void> service = new Service<Void>() {
@@ -2651,78 +2707,5 @@ public class Controller implements ObserverSyndrom {
             }
         };
         service.start();
-    }
-
-    @FXML public void shortestpath(){
-        //Clean up Method needed
-        if(analysisPathCheckBox.isSelected()){
-            ResetVvAction resetAction = new ResetVvAction();
-            resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.SHORTESTPATH);
-            analysisGraphAction.action();
-        }
-    }
-
-    @FXML public void allpaths(){
-        //Clean up Method needed
-        if(analysisPathCheckBox.isSelected()){
-            ResetVvAction resetAction = new ResetVvAction();
-            resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.ALLPATHS);
-            analysisGraphAction.action();
-        }
-    }
-
-    @FXML public void chainOfEdges(){
-        //Clean up Method needed
-        if(analysisOptions.isSelected()){
-            ResetVvAction resetAction = new ResetVvAction();
-            resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.EDGE_CHAINS);
-            analysisGraphAction.action();
-        }
-    }
-
-    @FXML public void convergentBranches(){
-        //Clean up Method needed
-        if(analysisOptions.isSelected()){
-            ResetVvAction resetAction = new ResetVvAction();
-            resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CONVERGENT_BRANCHES);
-            analysisGraphAction.action();
-        }
-    }
-
-    @FXML public void divergentBranches(){
-        //Clean up Method needed
-        if(analysisOptions.isSelected()){
-            ResetVvAction resetAction = new ResetVvAction();
-            resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.DIVERGENT_BRANCHES);
-            analysisGraphAction.action();
-        }
-    }
-
-    @FXML public void branches(){
-        //Clean up Method needed
-        if(analysisOptions.isSelected()){
-            ResetVvAction resetAction = new ResetVvAction();
-            resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.BRANCHES);
-            analysisGraphAction.action();
-        }
-    }
-
-    @FXML public void analysisCycles(){
-        if(analysisOptions.isSelected()){
-            ResetVvAction resetAction = new ResetVvAction();
-            resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
-            analysisGraphAction.action();
-        }
-    }
-
-    @FXML public void synAnalysis(){
-        filterLogs(analysisLogEntryName);
     }
 }
