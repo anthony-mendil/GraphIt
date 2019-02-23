@@ -1,61 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.embed.swing.SwingNode?>
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.CheckMenuItem?>
-<?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.control.TreeView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <MenuBar>
                 <Menu fx:id="fileMenu" mnemonicParsing="false" text="%file">
-                    <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="%newFile" />
-                    <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openFile" text="%openFile" />
-                    <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="%gxlImport" />
-                    <MenuItem fx:id="importGxlTemplate" mnemonicParsing="false" onAction="#importGXLWithTemplate" text="%templateImport" />
-                    <MenuItem fx:id="saveLocation" mnemonicParsing="false" onAction="#exportOOF" text="%saveAs" />
+                    <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="%newFile">
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        </accelerator>
+                    </MenuItem>
+                    <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openFile" text="%openFile" >
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        </accelerator>
+                    </MenuItem>
+                    <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="%gxlImport">
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                        </accelerator>
+                    </MenuItem>
+                    <MenuItem fx:id="importGxlTemplate" mnemonicParsing="false" onAction="#importGXLWithTemplate" text="%templateImport">
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        </accelerator>
+                    </MenuItem>
+                    <MenuItem fx:id="saveLocation" mnemonicParsing="false" onAction="#exportOOF" text="%saveAs" >
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        </accelerator>
+                    </MenuItem>
                     <Menu fx:id="exportPDF" mnemonicParsing="false" text="%exportAs">
 
-                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF" />
-                        <MenuItem fx:id="exportGXLWithTemplate" mnemonicParsing="false" onAction="#exportGXLWithTemplate" text="%template" />
-                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL" />
+                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="exportGXLWithTemplate" mnemonicParsing="false" onAction="#exportGXLWithTemplate" text="%template">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL" >
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
                         <MenuItem fx:id="exportLogs" mnemonicParsing="false" onAction="#exportProtocol" text="%logs" />
 
                     </Menu>
-                    <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print" />
+                    <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                    </MenuItem>
                 </Menu>
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
                     <Menu fx:id="languages" mnemonicParsing="false" text="%languageGui">
@@ -1138,7 +1144,7 @@
                                                     <Insets bottom="2.0" top="5.0" />
                                                 </VBox.margin>
                                             </CheckBox>
-            
+
                                             <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
                                                 <VBox.margin>
                                                     <Insets left="2.0" right="2.0" top="5.0" />
@@ -1319,7 +1325,7 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                            </Button>
-      
+
                                                    <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="240.0" text="%LOG_ALL">
                                                        <items>
                                                            <MenuItem fx:id="logAll" mnemonicParsing="false" styleClass="analysisMenuItem" text="%LOG_ALL"> </MenuItem>

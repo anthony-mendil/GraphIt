@@ -38,7 +38,6 @@ import actions.remove.*;
 import actions.template.RulesTemplateAction;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.algorithmen.AnalyseTypeSingle;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
@@ -72,15 +71,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -94,7 +91,6 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -1507,11 +1503,44 @@ public class Controller implements ObserverSyndrom {
             filterGraphAction.action();
         });
 
+
         initLanguage();
         initProtocolTree();
         initGraphLanguage();
 
-        //newFile.setText(loadLanguage.getMenu1());
+    }
+
+    public void setButtonShortcuts(){
+        KeyCombination plus = new KeyCodeCombination(KeyCode.PLUS);
+        KeyCombination minus = new KeyCodeCombination(KeyCode.MINUS);
+        KeyCombination strgZ = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
+        KeyCombination strgY = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
+        mainStage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event) {
+                if(plus.match(event)){
+                    sphereEnlarge();
+                    vertexEnlarge();
+                }
+            }
+        });
+        mainStage.getScene().setOnKeyPressed((KeyEvent event)-> {
+                if(minus.match(event)){
+                    sphereShrink();
+                    vertexShrink();
+                }
+        });
+        mainStage.getScene().setOnKeyPressed((KeyEvent event)-> {
+            if(strgZ.match(event)){
+                executeUndo();
+            }
+        });
+        mainStage.getScene().setOnKeyPressed((KeyEvent event)-> {
+            if(strgY.match(event)){
+                executeRedo();
+            }
+        });
+
     }
 
     public void setStage(Stage pStage){
