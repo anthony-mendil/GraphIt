@@ -75,7 +75,6 @@ public class RemoveVerticesLogAction extends LogAction {
                             Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
                             edg.put(e,vertexPair);
                         }
-                        pickedState.pick(vertex, false);
                         graph.removeVertex(vertex);
                         sp.getVertices().remove(vertex);
                         params.put(vertex, sp);
@@ -84,7 +83,7 @@ public class RemoveVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            if(lockedVertices.size() == pickedState.getPicked().size()){
+            if(lockedVertices.size() > 0){
                 helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
                 ActionHistory.getInstance().removeLastEntry();
                 return;
@@ -111,12 +110,13 @@ public class RemoveVerticesLogAction extends LogAction {
     @Override
     public void undo() {
         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction((AddRemoveVerticesParam)parameters);
-        System.out.println(((AddRemoveVerticesParam)parameters).getVertices().entrySet().size());
         addVerticesLogAction.action();
     }
 
 
     public void createParameter(Map<Vertex,Sphere> vertices, Map<Edge,Pair<Vertex,Vertex>> edges) {
+      System.out.println(vertices.size());
+      System.out.println(edges.size());
         parameters = new AddRemoveVerticesParam(vertices, edges);
     }
 }
