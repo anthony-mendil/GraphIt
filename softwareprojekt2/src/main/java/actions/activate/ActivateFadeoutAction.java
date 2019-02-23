@@ -53,33 +53,34 @@ public class ActivateFadeoutAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
         RenderContext<Vertex, Edge> rc = vv.getRenderContext();
+        VisualizationViewer<Vertex, Edge> vv2 = syndrom.getVv2();
 
         final FadeOutElementsTransition transition = new FadeOutElementsTransition();
 
-        Transformer<Vertex, Paint> oldTransformerFill = rc.getVertexFillPaintTransformer();
         Transformer<Vertex, Paint> oldTransformerDraw = rc.getVertexDrawPaintTransformer();
-        Transformer<Vertex, Paint> oldTransformerFont = vv.getVertexFontColorTransformer();
+        Transformer<Vertex, Paint> oldTransformerFill = rc.getVertexFillPaintTransformer();
         Transformer<Edge, Paint> oldEdgeTransformer = rc.getEdgeDrawPaintTransformer();
         Transformer<Edge, Paint> oldEdgeArrowTransformer = rc.getArrowFillPaintTransformer();
+        Transformer<Vertex, Paint> oldTransformerFont = vv.getVertexFontColorTransformer();
 
         FadeType fadeType = FadeType.ACTIVATE;
 
         Predicate<Context<Graph<Vertex, Edge>, Edge>> predicateEdge = new EdgeIsVisiblePredicate<>();
         Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex = new VertexIsVisiblePredicate<>();
 
+
+        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutPaintTransformer = new EdgeFadeoutPaintTransformer<>(transition, oldEdgeTransformer, fadeType);
+        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutArrowTransformer = new EdgeFadeoutPaintTransformer<>(transition, oldEdgeArrowTransformer, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFill, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexVertexDrawFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerDraw, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexFontColorFadeOutTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFont, fadeType);
-        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutPaintTransformer = new EdgeFadeoutPaintTransformer<>(transition, oldEdgeTransformer, fadeType);
-        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutArrowTransformer = new EdgeFadeoutPaintTransformer<>(transition, oldEdgeArrowTransformer, fadeType);
 
+        vv.setVertexFontColorTransformer(vertexFontColorFadeOutTransformer);
         rc.setVertexFillPaintTransformer(vertexFadeoutPaintTransformer);
         rc.setVertexDrawPaintTransformer(vertexVertexDrawFadeoutPaintTransformer);
-        vv.setVertexFontColorTransformer(vertexFontColorFadeOutTransformer);
-        rc.setEdgeDrawPaintTransformer(edgeFadeoutPaintTransformer);
         rc.setArrowFillPaintTransformer(edgeFadeoutArrowTransformer);
+        rc.setEdgeDrawPaintTransformer(edgeFadeoutPaintTransformer);
 
         transition.setOnFinished(
                 event -> {

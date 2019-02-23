@@ -40,6 +40,7 @@ public class AddSphereLogAction extends LogAction {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
@@ -57,7 +58,6 @@ public class AddSphereLogAction extends LogAction {
             DatabaseManager databaseManager = DatabaseManager.getInstance();
             databaseManager.addEntryDatabase(createLog());
 
-            //Action.attach(databaseManager);
             notifyObserverGraph();
     }
 
