@@ -1,12 +1,7 @@
 package test.io;
-
 import java.awt.*;
-
 import java.util.*;
-
-import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.*;
-import graph.visualization.SyndromVisualisationViewer;
 import gui.Values;
 import io.GXLio;
 import net.sourceforge.gxl.*;
@@ -15,26 +10,23 @@ import org.freehep.graphicsbase.util.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 
 public class GXLioTest {
 
 
-
+    private static Logger logger = Logger.getLogger(GXLioTest.class);
+    GraphObjectsFactory factory = new GraphObjectsFactory();
     /**
      * The values to use.
      */
     private Values values;
-
     private GXLDocument doc = null;
-
-    GraphObjectsFactory factory = new GraphObjectsFactory();
-
-    private static Logger logger = Logger.getLogger(GXLioTest.class);
 
     public GXLio prepareSyndrom() throws IOException, SAXException {
         Syndrom syndrom = graph.graph.Syndrom.getInstance();
@@ -48,7 +40,7 @@ public class GXLioTest {
         return gxlio;
     }
 
-    private void generateGraphElements(){
+    private void generateGraphElements() {
         Values.getInstance().setFontSizeSphere(10);
         Values.getInstance().setFillPaintSphere(new java.awt.Color(86, 151, 31, 183));
         Sphere s1 = factory.createSphere(new Point2D.Double(20, 20));
@@ -57,7 +49,7 @@ public class GXLioTest {
         s2.setWidth(300.0);
         Sphere s3 = factory.createSphere(new Point2D.Double(620, 20));
         Values.getInstance().setFillPaintSphere(new java.awt.Color(24, 54, 11, 178));
-        Values. getInstance().setFontSizeSphere(24);
+        Values.getInstance().setFontSizeSphere(24);
         Sphere s4 = factory.createSphere(new Point2D.Double(200, 310));
         Sphere s5 = factory.createSphere(new Point2D.Double(445, 310));
 
@@ -189,19 +181,8 @@ public class GXLioTest {
         Assert.assertEquals(50, vertices.get(8).getSize());
     }
 
-
-
-
-
-
-
-
-
-
-
-
     @Before
-    public void prepare(){
+    public void prepare() {
         doc = new GXLDocument();
         GXLGraph gxlGraph = new GXLGraph("syndrom");
         GXLNode sphere0 = new GXLNode("0");
@@ -252,7 +233,7 @@ public class GXLioTest {
     }
 
     @Test
-    public void testElementNumber(){
+    public void testElementNumber() {
         logger.info("Ich bin das GXLDokument: " + doc);
         int numberOfGraphs = doc.getDocumentElement().getGraphCount();
         Assert.assertEquals(1, numberOfGraphs);
@@ -261,7 +242,7 @@ public class GXLioTest {
     }
 
     @Test
-    public void testColor(){
+    public void testColor() {
         int numberOfGraphs = doc.getDocumentElement().getGraphCount();
         Assert.assertEquals(1, numberOfGraphs);
         GXLNode sphere0 = (GXLNode) doc.getElement("0");
@@ -276,9 +257,8 @@ public class GXLioTest {
     }
 
 
-
     @Test
-    public void testCoordinates(){
+    public void testCoordinates() {
         GXLNode vertex0 = (GXLNode) doc.getElement("3");
         String coordinatesDescription = ((GXLString) vertex0.getAttr("coordinates").getValue()).getValue();
         String[] coordinatesArray = getNumberArrayFromString(coordinatesDescription);
@@ -287,7 +267,7 @@ public class GXLioTest {
     }
 
     @Test
-    public void testSize(){
+    public void testSize() {
         GXLNode sphere1 = (GXLNode) doc.getElement("1");
         GXLNode vertex1 = (GXLNode) doc.getElement("4");
         double sphereWidth = Double.parseDouble((((GXLString) sphere1.getAttr("width").getValue()).getValue()));
@@ -297,7 +277,6 @@ public class GXLioTest {
         int vertexSize = (((GXLInt) vertex1.getAttr("size").getValue()).getIntValue());
         Assert.assertEquals(15, vertexSize);
     }
-
 
 
     /**
