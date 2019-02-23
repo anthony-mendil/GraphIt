@@ -18,9 +18,10 @@ import java.awt.*;
 @Data
 public class SyndromVisualisationViewer<V,E> extends VisualizationViewer<V,E> {
     @Setter(AccessLevel.NONE)
-    private PickedState<Sphere> pickedSphereState;
-    private Transformer<V,Paint> vertexFontColorTransformer;
+    private transient PickedState<Sphere> pickedSphereState;
+    private transient Transformer<V,Paint> vertexFontColorTransformer;
 
+    @SuppressWarnings("unchecked")
     public SyndromVisualisationViewer(VisualizationModel<V, E> model, Dimension preferredSize) {
         super(model, preferredSize);
         pickedSphereState = new MultiPickedState<>();
