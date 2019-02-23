@@ -33,7 +33,7 @@ public class VertexContextMenu {
     private final Values values;
     private final Vertex vertex;
     private HelperFunctions helperFunctions = new HelperFunctions();
-    private LoadLanguage language = new LoadLanguage();
+    private LoadLanguage language = LoadLanguage.getInstance();
     private Syndrom syndrom = Syndrom.getInstance();
 
 
@@ -42,7 +42,6 @@ public class VertexContextMenu {
         history = ActionHistory.getInstance();
         values = Values.getInstance();
         this.vertex = vertex;
-        language.changeLanguage(values.getGuiLanguage());
         setup();
     }
 

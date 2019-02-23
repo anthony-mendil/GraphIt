@@ -208,18 +208,7 @@ public class LoadLanguage {
         return resource.getString(key);
     }
 
-    public String loadLanguagesKey(Language lang, String key){
-        if (currentResource != lang){
-            changeLanguage(lang);
-        }
-        return loadLanguagesKey(key);
-    }
-
-    public String loadLanguagesKey(Language lang, String key, Object[] arr){
-        if (currentResource != lang){
-            changeLanguage(lang);
-        }
-
+    public String loadLanguagesKey(String key, Object[] arr){
         MessageFormat form = new MessageFormat(loadLanguagesKey(key));
         return form.format(arr);
     }

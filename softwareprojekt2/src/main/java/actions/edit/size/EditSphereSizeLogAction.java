@@ -98,7 +98,7 @@ public class EditSphereSizeLogAction extends LogAction {
                         }
                     }
                 } else{
-                    helper.setActionText("Die Größe der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+                    helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true);
                     lockedSphere = sp;
                 }
             }

@@ -69,7 +69,7 @@ public class RemoveEdgesLogAction extends LogAction {
                 }
             }
             if(!lockedEdges.isEmpty()){
-                helper.setActionText("Die Kanten können nicht aufgrund der Vorlageregeln verändert werden." , true);
+                helper.setActionText("REMOVE_EDGES_ALERT", true);
             }
             if(lockedEdges.size() == pickedState.getPicked().size()){
                 actionHistory.removeLastEntry();

@@ -69,7 +69,8 @@ public class AddEdgesLogAction extends LogAction {
             databaseManager.addEntryDatabase(createLog());
             notifyObserverGraph();
         }else{
-            helper.setActionText("Only " + template.getMaxEdges() + " edge(s) are allowed in the graph.", true);
+            Object[] obj = {template.getMaxEdges() };
+            helper.setActionText(loadLanguage.loadLanguagesKey("ADD_EDGES_ALERT", obj), true);
             actionHistory.removeLastEntry();
         }
 
