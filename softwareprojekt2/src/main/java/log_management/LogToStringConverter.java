@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import gui.Values;
 import gui.properties.Language;
+import gui.properties.LoadLanguage;
 import javafx.util.Pair;
 import log_management.json_deserializers.PairDeserializer;
 import log_management.json_deserializers.Point2DDeserializer;
@@ -29,32 +30,23 @@ import java.time.format.DateTimeFormatter;
 
 public class LogToStringConverter {
 
-    private  int incrementer = 1;
+    private int incrementer = 1;
+    private LoadLanguage lang = new LoadLanguage();
+    private Values values = Values.getInstance();
 
-    public  void resetIncrementer(){
+    public void resetIncrementer() {
         incrementer = 1;
     }
 
     public String convert(Log log) {
         Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        if (language == Language.GERMAN) {
-            try {
-                return incrementer++ + "\n" + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + log.getTime().format(formatter);
-            } catch (IllegalArgumentException e) {
-                throw new IllegalStateException();
-            }
-        }
-        else if (language == Language.ENGLISH) {
-            try {
-                return incrementer++ + "\n" + convertLogEntryNameEnglish(log.getLogEntryName()) +
-                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + log.getTime().format(formatter);
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException();
-            }
-        }
-        else {
+        try {
+            Object[] obj = {incrementer, convertLogEntryName(log.getLogEntryName()), parametersPrint(log.getParameters(), log.getLogEntryName()), log.getTime().format(formatter)};
+            incrementer++;
+            return lang.loadLanguagesKey(language, "LOG_STRING", obj);
+
+        } catch (IllegalArgumentException e) {
             throw new IllegalStateException();
         }
     }
@@ -62,169 +54,89 @@ public class LogToStringConverter {
     public String convertForTextFile(Log log) {
         Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        if (language == Language.GERMAN) {
-            try {
-                return "Nummer des Eintrags: " + incrementer++ + "\n" + "  Typ der Aktion: " + convertLogEntryNameGerman(log.getLogEntryName()) +
-                        "\n" + "  Informationen: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "  Zeit: " + log.getTime().format(formatter) + "\n";
-            } catch (IllegalArgumentException e) {
-                throw new IllegalStateException();
-            }
-        }
-        else if (language == Language.ENGLISH) {
-            try {
-                return "Log number: " + incrementer++ + "\n" + "  Type of Action: " + convertLogEntryNameEnglish(log.getLogEntryName()) +
-                        "\n" + "  Information: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "  Time: " + log.getTime().format(formatter) + "\n";
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException();
-            }
-        }
-        else {
+
+        try {
+            Object[] obj = {incrementer, convertLogEntryName(log.getLogEntryName()), parametersPrint(log.getParameters(), log.getLogEntryName()), log.getTime().format(formatter)};
+            incrementer++;
+            return lang.loadLanguagesKey(language, "LOG_STRING_PRINT", obj);
+
+        } catch (IllegalArgumentException e) {
             throw new IllegalStateException();
         }
+
     }
 
-    private String convertLogEntryNameGerman(LogEntryName logEntryName) {
+    private String convertLogEntryName(LogEntryName logEntryName) {
+        Language l = values.getGuiLanguage();
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
-                return "Hervorhebung";
+                return lang.loadLanguagesKey(l, "ACTIVATE_HIGHLIGHT");
             case ACTIVATE_FADEOUT:
-                return "Ausblenden";
+                return lang.loadLanguagesKey(l, "ACTIVATE_FADEOUT");
             case ADD_ANCHOR_POINTS:
-                return "Hinzufügen von Ankerpunkten";
+                return lang.loadLanguagesKey(l, "ADD_ANCHOR_POINTS");
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "Ausblenden von Ankerpunkten";
+                return lang.loadLanguagesKey(l, "ACTIVATE_ANCHOR_POINTS_FADEOUT");
             case ADD_EDGES:
-                return "Hinzufügen von Realtionen";
+                return lang.loadLanguagesKey(l, "ADD_EDGES");
             case ADD_SPHERE:
-                return "Hinzufügen einer Sphäre";
+                return lang.loadLanguagesKey(l, "ADD_SPHERE");
             case MOVE_SPHERE:
-                return "Bewegen einer Sphäre";
+                return lang.loadLanguagesKey(l, "MOVE_SPHERE");
             case ADD_VERTICES:
-                return "Hinzufügen von Symptomen";
+                return lang.loadLanguagesKey(l, "ADD_VERTICES");
             case REMOVE_EDGES:
-                return "Entfernen von Relationen";
+                return lang.loadLanguagesKey(l, "REMOVE_EDGES");
             case MOVE_VERTICES:
-                return "Bewegen von Symptomen";
+                return lang.loadLanguagesKey(l, "MOVE_VERTICES");
             case REMOVE_SPHERE:
-                return "Entfernen einer Sphäre";
+                return lang.loadLanguagesKey(l, "REMOVE_SPHERE");
             case EDIT_EDGES_TYPE:
-                return "Änderung von Relationstypen";
+                return lang.loadLanguagesKey(l, "EDIT_EDGES_TYPE");
             case REMOVE_VERTICES:
-                return "Entfernen von Symptomen";
+                return lang.loadLanguagesKey(l, "REMOVE_VERTICES");
             case EDIT_EDGES_COLOR:
-                return "Änderung der Farbe von Relationen";
+                return lang.loadLanguagesKey(l, "EDIT_EDGES_COLOR");
             case EDIT_FONT_SPHERE:
-                return "Änderung der Schriftart einer Sphäre";
+                return lang.loadLanguagesKey(l, "EDIT_FONT_SPHERE");
             case EDIT_SPHERE_SIZE:
-                return "Änderung der Größe einer Sphäre";
+                return lang.loadLanguagesKey(l, "EDIT_SPHERE_SIZE");
             case EDIT_EDGES_STROKE:
-                return "Änderung der Linienart von Realtionen";
+                return lang.loadLanguagesKey(l, "EDIT_EDGES_STROKE");
             case EDIT_SPHERE_COLOR:
-                return "Änderung der Farbe einer Sphäre";
+                return lang.loadLanguagesKey(l, "EDIT_SPHERE_COLOR");
             case DEACTIVATE_FADEOUT:
-                return "Einblenden";
+                return lang.loadLanguagesKey(l, "DEACTIVATE_FADEOUT");
             case EDIT_FONT_VERTICES:
-                return "Änderung der Schriftart von Symptomen";
+                return lang.loadLanguagesKey(l, "EDIT_FONT_VERTICES");
             case EDIT_VERTICES_FORM:
-                return "Änderung der Form von Symptomen";
+                return lang.loadLanguagesKey(l, "EDIT_VERTICES_FORM");
             case EDIT_VERTICES_SIZE:
-                return "Änderung der Größe von Symptomen";
+                return lang.loadLanguagesKey(l, "EDIT_VERTICES_SIZE");
             case REMOVE_ANCHOR_POINTS:
-                return "Entfernen von Ankerpunkten";
+                return lang.loadLanguagesKey(l, "REMOVE_ANCHOR_POINTS");
             case EDIT_SPHERE_FONT_SIZE:
-                return "Änderung der Schriftgröße einer Sphäre";
+                return lang.loadLanguagesKey(l, "EDIT_SPHERE_FONT_SIZE");
             case EDIT_SPHERE_ANNOTATION:
-                return "Änderung der Beschriftung einer Sphäre";
+                return lang.loadLanguagesKey(l, "EDIT_SPHERE_ANNOTATION");
             case EDIT_VERTEX_ANNOTATION:
-                return "Änderung der Beschriftung eines Symptoms";
+                return lang.loadLanguagesKey(l, "EDIT_VERTEX_ANNOTATION");
             case EDIT_VERTICES_FONT_SIZE:
-                return "Änderung der Schriftgröße von Symptomen";
+                return lang.loadLanguagesKey(l, "EDIT_VERTICES_FONT_SIZE");
             case EDIT_VERTICES_DRAW_COLOR:
-                return "Änderung der Umrandungsfarbe von Symptomen";
+                return lang.loadLanguagesKey(l, "EDIT_VERTICES_DRAW_COLOR");
             case EDIT_VERTICES_FILL_COLOR:
-                return "Änderung der Füllfarbe von Symptomen";
+                return lang.loadLanguagesKey(l, "EDIT_VERTICES_FILL_COLOR");
             case DEACTIVATE_HIGHLIGHT:
-                return "Deaktivieren der Hervorhebung";
+                return lang.loadLanguagesKey(l, "DEACTIVATE_HIGHLIGHT");
             case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "Einblenden von Ankerpunkten";
+                return lang.loadLanguagesKey(l, "DEACTIVATE_ANCHOR_POINTS_FADEOUT");
             case EDIT_SPHERES_LAYOUT:
-                return "Änderung des Layouts von Spären";
+                return lang.loadLanguagesKey(l, "EDIT_SPHERES_LAYOUT");
             case EDIT_VERTICES_LAYOUT:
-                return "Änderung des Layouts von Syptomen";
-            default: throw new IllegalArgumentException();
-
-        }
-    }
-
-    private String convertLogEntryNameEnglish(LogEntryName logEntryName) {
-        switch (logEntryName) {
-            case ACTIVATE_HIGHLIGHT:
-                return "Highlighting";
-            case ACTIVATE_FADEOUT:
-                return "Fade out";
-            case ADD_ANCHOR_POINTS:
-                return "Anchor points added";
-            case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "Anchor points faded out";
-            case ADD_EDGES:
-                return "Relations added";
-            case ADD_SPHERE:
-                return "Sphere added";
-            case MOVE_SPHERE:
-                return "Sphere moved";
-            case ADD_VERTICES:
-                return "Symptoms added";
-            case REMOVE_EDGES:
-                return "Relations removed";
-            case MOVE_VERTICES:
-                return "Symptoms moved";
-            case REMOVE_SPHERE:
-                return "Sphere removed";
-            case EDIT_EDGES_TYPE:
-                return "Changed the type of relations";
-            case REMOVE_VERTICES:
-                return "Symptoms removed";
-            case EDIT_EDGES_COLOR:
-                return "Changed the color of relations";
-            case EDIT_FONT_SPHERE:
-                return "Changed the font of a sphere";
-            case EDIT_SPHERE_SIZE:
-                return "Changed the size a sphere";
-            case EDIT_EDGES_STROKE:
-                return "Changed the line type of relations";
-            case EDIT_SPHERE_COLOR:
-                return "Changed the color of spheres";
-            case DEACTIVATE_FADEOUT:
-                return "Fade in";
-            case EDIT_FONT_VERTICES:
-                return "Changed the font of symptoms";
-            case EDIT_VERTICES_FORM:
-                return "Changed the form of symptoms";
-            case EDIT_VERTICES_SIZE:
-                return "Changed the size of symptoms";
-            case REMOVE_ANCHOR_POINTS:
-                return "Anchor points removed";
-            case EDIT_SPHERE_FONT_SIZE:
-                return "Changed font size of a sphere";
-            case EDIT_SPHERE_ANNOTATION:
-                return "Changed annotation of a sphere";
-            case EDIT_VERTEX_ANNOTATION:
-                return "Changed annotation of a symptom";
-            case EDIT_VERTICES_FONT_SIZE:
-                return "Changed font size of symptoms";
-            case EDIT_VERTICES_DRAW_COLOR:
-                return "Changed draw color of symptoms";
-            case EDIT_VERTICES_FILL_COLOR:
-                return "Changed fill color of symptoms";
-            case DEACTIVATE_HIGHLIGHT:
-                return "Turned of highlighting";
-            case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return "Anchor points faded in";
-            case EDIT_SPHERES_LAYOUT:
-                return "Changed Layout of a sphere";
-            case EDIT_VERTICES_LAYOUT:
-                return "Changed Layout of symptoms";
-            default: throw new IllegalArgumentException();
+                return lang.loadLanguagesKey(l, "EDIT_VERTICES_LAYOUT");
+            default:
+                throw new IllegalArgumentException();
 
         }
     }
@@ -304,7 +216,8 @@ public class LogToStringConverter {
                 return gson.fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
             case EDIT_VERTICES_LAYOUT:
                 return gson.fromJson(parameters, LayoutVerticesParam.class).prettyPrint();
-            default: throw new IllegalArgumentException();
+            default:
+                throw new IllegalArgumentException();
         }
     }
 }

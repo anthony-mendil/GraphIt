@@ -3,6 +3,7 @@ package gui.properties;
 import gui.Controller;
 import lombok.Data;
 
+import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -14,6 +15,7 @@ public class LoadLanguage {
     private ResourceBundle resource = ResourceBundle.getBundle("UIResources", new Locale("de"));
     private Locale de = new Locale("de");
     private Locale en = new Locale("en");
+    private Language currentResource = Language.GERMAN;
 
     /**
      * Calling this method with the desired language will translate all gui descriptions
@@ -35,6 +37,7 @@ public class LoadLanguage {
         } else {
             lang = en;
         }
+        currentResource = language;
         resource = ResourceBundle.getBundle("UIResources", lang);
     }
 
@@ -203,5 +206,21 @@ public class LoadLanguage {
 
     public String loadLanguagesKey(String key)  {
         return resource.getString(key);
+    }
+
+    public String loadLanguagesKey(Language lang, String key){
+        if (currentResource != lang){
+            changeLanguage(lang);
+        }
+        return loadLanguagesKey(key);
+    }
+
+    public String loadLanguagesKey(Language lang, String key, Object[] arr){
+        if (currentResource != lang){
+            changeLanguage(lang);
+        }
+
+        MessageFormat form = new MessageFormat(loadLanguagesKey(key));
+        return form.format(arr);
     }
 }
