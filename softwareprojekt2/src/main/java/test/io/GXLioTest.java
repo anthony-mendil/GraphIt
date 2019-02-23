@@ -1,10 +1,6 @@
 package test.io;
 
-import java.awt.*;
-
-import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.*;
-import graph.visualization.SyndromVisualisationViewer;
 import gui.Values;
 import io.GXLio;
 import net.sourceforge.gxl.*;
@@ -14,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;

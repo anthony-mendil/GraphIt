@@ -5,13 +5,8 @@ import graph.graph.Edge;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 import lombok.Getter;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Displays some useful data in matter of the dimension of the graph (scope, networking index, structural index). The

@@ -2,7 +2,6 @@ package graph.visualization.transformer.sphere;
 
 import graph.graph.Sphere;
 import gui.Values;
-import gui.properties.Language;
 import org.apache.commons.collections15.Transformer;
 
 /**
