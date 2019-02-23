@@ -14,12 +14,12 @@ import log_management.parameters.activate_deactivate.ActivateDeactivateHighlight
 /**
  * Cancels the highlight-option of the selected vertices.
  */
-public class DeactivateHighlightAction extends LogAction {
+public class ResetVvAction extends LogAction {
 
     /**
      * Constructor in case the user annuls all/several highlighted vertices.
      */
-    public DeactivateHighlightAction() {
+    public ResetVvAction() {
         super(LogEntryName.ACTIVATE_HIGHLIGHT);
     }
 
@@ -29,7 +29,7 @@ public class DeactivateHighlightAction extends LogAction {
      *
      * @param pParam The vertices object that contains every vertices that is needed.
      */
-    public DeactivateHighlightAction(ActivateDeactivateHighlightParam pParam) {
+    public ResetVvAction(ActivateDeactivateHighlightParam pParam) {
         super(LogEntryName.DEACTIVATE_HIGHLIGHT);
     }
 

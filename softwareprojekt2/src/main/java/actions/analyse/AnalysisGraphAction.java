@@ -186,9 +186,6 @@ public class AnalysisGraphAction extends GraphAction{
                         break;
                     }
                     verticesAnalyse.addAll(shortestPath.getVertexList());
-                    for(Vertex vert : verticesAnalyse){
-                        System.out.println(vert.getCoordinates());
-                    }
                     edgesAnalyse.addAll(shortestPath.getEdgeList());
                     break;
             }

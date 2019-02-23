@@ -136,6 +136,7 @@ public class JGraphTHandler {
         if(calculateEndpoints()) {
             DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
             GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
+            if(shortestPath.getVertexList() == null)
             return shortestPath;
         }
         return null;
