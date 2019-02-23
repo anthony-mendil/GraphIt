@@ -11,7 +11,7 @@ import java.util.List;
  * Parameter object for the action ActivateAnchorPointsFadeoutAction/DeactivateAnchorPointsFadeoutAction.
  */
 @Data
-public class ActivateDeactivateAnchorPointsFadeoutParam extends Param {
+public class ActivateDeactivateAnchorPointsFadeoutParam implements Param {
 
     /**
      * Set of edges, which anchor-points will (cancel) fadeout.
@@ -21,6 +21,7 @@ public class ActivateDeactivateAnchorPointsFadeoutParam extends Param {
 
     /**
      * Creates a parameter object of its own class.
+     *
      * @param pEdges The list of edges.
      */
     public ActivateDeactivateAnchorPointsFadeoutParam(List<Edge> pEdges) {

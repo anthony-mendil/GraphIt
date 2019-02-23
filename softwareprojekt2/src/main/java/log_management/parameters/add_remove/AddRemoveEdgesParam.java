@@ -10,7 +10,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.Set;
  * Parameter object for the action AddEdgesLogAction/RemoveEdgesLogAction.
  */
 @Data
-public class AddRemoveEdgesParam extends Param {
+public class AddRemoveEdgesParam implements Param {
     /**
      * The set of edges(pair describes the respective start-vertex and sink-vertex) bound to their edge-type.
      */
@@ -37,9 +36,10 @@ public class AddRemoveEdgesParam extends Param {
 
     /**
      * Creates an parameter object of its own class.
+     *
      * @param pEdges List of edges and their start/end vertex id.
      */
-    public AddRemoveEdgesParam(List<Edge> pEdges, Set<Pair<Vertex,Vertex>> pVertices){
+    public AddRemoveEdgesParam(List<Edge> pEdges, Set<Pair<Vertex, Vertex>> pVertices) {
         this.edges = pEdges;
 
         List<Vertex> list1 = new ArrayList();
@@ -53,7 +53,7 @@ public class AddRemoveEdgesParam extends Param {
 
     @Override
     public String prettyPrint() {
-        List<Pair<Vertex,Vertex>> verticesList = new ArrayList<>();
+        List<Pair<Vertex, Vertex>> verticesList = new ArrayList<>();
         for (int i = 0; i < startVertices.size(); i++) {
             verticesList.add(new Pair<>(startVertices.get(i), endVertices.get(i)));
         }
@@ -74,8 +74,8 @@ public class AddRemoveEdgesParam extends Param {
         }
     }
 
-    public Set<Pair<Vertex,Vertex>> getVertices() {
-        Set<Pair<Vertex,Vertex>> set = new HashSet<>();
+    public Set<Pair<Vertex, Vertex>> getVertices() {
+        Set<Pair<Vertex, Vertex>> set = new HashSet<>();
         for (int i = 0; i < startVertices.size(); i++) {
             set.add(new Pair<>(startVertices.get(i), endVertices.get(i)));
         }

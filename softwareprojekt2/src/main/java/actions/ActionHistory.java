@@ -1,6 +1,7 @@
 package actions;
 
 import com.google.inject.Singleton;
+import org.apache.log4j.Logger;
 
 /**
  * A bounded history of actions.
@@ -21,7 +22,7 @@ public class ActionHistory {
      * The current action in actions.
      */
     private int current = -1;
-
+    private static Logger logger = Logger.getLogger(ActionHistory.class);
     private static ActionHistory history;
 
     /**
@@ -32,10 +33,7 @@ public class ActionHistory {
     public void execute(Action action) {
         current++;
         if(current == MAX_ACTIONS) {
-            for (int i = 0; i < MAX_ACTIONS - 1; i++) {
-                actions[i] = actions[i + 1];
-            }
-            current = MAX_ACTIONS - 1;
+            System.arraycopy(actions,1,actions,0,MAX_ACTIONS-1);
         }
         actions[current] = action;
         actions[current].action();
@@ -59,7 +57,7 @@ public class ActionHistory {
                 actions[current].undo();
                 current--;
             }else{
-                System.err.println("Can't undo further more actions.");
+                logger.info("Can't undo further more actions.");
             }
     }
 
@@ -73,7 +71,7 @@ public class ActionHistory {
                 actions[current].action();
             }
         }catch(UnsupportedOperationException e){
-            System.err.println("Can't redo the latest action.");
+            logger.info("Can't redo the latest action.");
         }
     }
 

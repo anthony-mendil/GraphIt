@@ -12,7 +12,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.Map;
  * Parameter object of the action EditEdgesTypeLogAction.
  */
 @Data
-public class EditEdgesTypeParam extends Param {
+public class EditEdgesTypeParam implements Param {
     @Getter
     private List<Edge> oldEdges;
 
@@ -43,10 +42,11 @@ public class EditEdgesTypeParam extends Param {
 
     /**
      * Creates a new vertices object of its own class.
+     *
      * @param pOldEdges The set of edges containing their old edge-types.
      * @param pNewEdges The set of edges containing their new edge-types.
      */
-    public EditEdgesTypeParam(Map<Edge,EdgeArrowType> pOldEdges, Map<Edge,EdgeArrowType> pNewEdges,
+    public EditEdgesTypeParam(Map<Edge, EdgeArrowType> pOldEdges, Map<Edge, EdgeArrowType> pNewEdges,
                               List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
         this.startVertices = pStartVertices;
         this.endVertices = pEndVertices;
@@ -65,6 +65,7 @@ public class EditEdgesTypeParam extends Param {
             newArrowTypes.add(ed);
         });
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
@@ -93,7 +94,7 @@ public class EditEdgesTypeParam extends Param {
         return information;
     }
 
-    public Map<Edge,EdgeArrowType> getEdgesOldEdgeType() {
+    public Map<Edge, EdgeArrowType> getEdgesOldEdgeType() {
         Map<Edge, EdgeArrowType> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
             map.put(newEdges.get(i), oldArrowTypes.get(i));
@@ -101,7 +102,7 @@ public class EditEdgesTypeParam extends Param {
         return map;
     }
 
-    public Map<Edge,EdgeArrowType> getEdgesNewEdgeType() {
+    public Map<Edge, EdgeArrowType> getEdgesNewEdgeType() {
         Map<Edge, EdgeArrowType> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
             map.put(newEdges.get(i), newArrowTypes.get(i));

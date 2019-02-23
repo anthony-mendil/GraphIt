@@ -8,7 +8,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.Map;
  * Parameter object for the Action EditFontSizeVerticesLogAction.
  */
 @Data
-public class EditFontSizeVerticesParam extends Param {
+public class EditFontSizeVerticesParam implements Param {
     @Getter
     private List<Vertex> oldVertices;
 
@@ -33,10 +32,11 @@ public class EditFontSizeVerticesParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
+     *
      * @param pOldVertices The vertices containing their old font-size.
      * @param pNewVertices The vertices containing their new font-size.
      */
-    public EditFontSizeVerticesParam(Map<Vertex,Integer> pOldVertices, Map<Vertex,Integer> pNewVertices) {
+    public EditFontSizeVerticesParam(Map<Vertex, Integer> pOldVertices, Map<Vertex, Integer> pNewVertices) {
         oldVertices = new ArrayList<>();
         oldFontSize = new ArrayList<>();
         newVertices = new ArrayList<>();
@@ -74,7 +74,7 @@ public class EditFontSizeVerticesParam extends Param {
         return information;
     }
 
-    public Map<Vertex,Integer> getOldVertices() {
+    public Map<Vertex, Integer> getOldVertices() {
         Map<Vertex, Integer> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {
             map.put(newVertices.get(i), oldFontSize.get(i));
@@ -82,9 +82,9 @@ public class EditFontSizeVerticesParam extends Param {
         return map;
     }
 
-    public Map<Vertex,Integer> getNewVertices() {
+    public Map<Vertex, Integer> getNewVertices() {
         Map<Vertex, Integer> map = new HashMap<>();
-        for (int i = 0; i <newVertices.size(); i++) {
+        for (int i = 0; i < newVertices.size(); i++) {
             map.put(newVertices.get(i), newFontSize.get(i));
         }
         return map;

@@ -8,13 +8,11 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
-
 /**
  * Parameter object of the action EditVertexAnnotationLogAction.
  */
 @Data
-public class EditVertexAnnotationParam extends Param {
+public class EditVertexAnnotationParam implements Param {
     /**
      * The vertex containing its old annotation.
      */
@@ -34,7 +32,8 @@ public class EditVertexAnnotationParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
-     * @param pVertex The vertex containing its old annotation.
+     *
+     * @param pVertex        The vertex containing its old annotation.
      * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.
      */
@@ -43,6 +42,7 @@ public class EditVertexAnnotationParam extends Param {
         this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();

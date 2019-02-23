@@ -9,6 +9,7 @@ import log_management.parameters.Param;
 import log_management.tables.Log;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.log4j.Logger;
 
 import java.awt.geom.Point2D;
 import java.time.LocalDateTime;
@@ -18,23 +19,28 @@ import java.time.LocalDateTime;
  */
 public abstract class LogAction extends GraphAction {
 
-    @Getter
-    @lombok.Setter
+
     /**
      * The name of the action.
      */
-    protected LogEntryName logEntryName;
     @Getter
     @Setter
+    protected LogEntryName logEntryName;
+
     /**
      * The parameters, which were used in the action.
      */
-    protected Param parameters;
     @Getter
+    @Setter
+    protected Param parameters;
+
     /**
      * The time, the action gets called.
      */
+    @Getter
     protected LocalDateTime time;
+
+    private static Logger logger = Logger.getLogger(LogAction.class);
 
     /**
      * Creates an action in the program, which will also be persisted into in the database.
@@ -60,7 +66,7 @@ public abstract class LogAction extends GraphAction {
         try {
             paramString = gson.toJson(parameters);
         } catch (Exception e) {
-
+            logger.error(e.toString());
         }
         log.setParameters(paramString);
         return log;

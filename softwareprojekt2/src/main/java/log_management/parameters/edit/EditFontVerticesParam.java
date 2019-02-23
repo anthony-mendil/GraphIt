@@ -9,7 +9,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.Map;
  * Parameter object of the action EditFontVerticesLogAction.
  */
 @Data
-public class EditFontVerticesParam extends Param {
+public class EditFontVerticesParam implements Param {
     @Getter
     private List<Vertex> oldVertices;
 
@@ -34,10 +33,11 @@ public class EditFontVerticesParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
+     *
      * @param pOldVertices The vertices containing their old font.
      * @param pNewVertices The vertices containing their new font.
      */
-    public EditFontVerticesParam(Map<Vertex,String> pOldVertices, Map<Vertex,String> pNewVertices) {
+    public EditFontVerticesParam(Map<Vertex, String> pOldVertices, Map<Vertex, String> pNewVertices) {
         oldVertices = new ArrayList<>();
         oldFonts = new ArrayList<>();
         newVertices = new ArrayList<>();
@@ -75,7 +75,7 @@ public class EditFontVerticesParam extends Param {
         return information;
     }
 
-    public Map<Vertex,String> getOldVertices() {
+    public Map<Vertex, String> getOldVertices() {
         Map<Vertex, String> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {
             map.put(newVertices.get(i), oldFonts.get(i));
@@ -83,9 +83,9 @@ public class EditFontVerticesParam extends Param {
         return map;
     }
 
-    public Map<Vertex,String> getNewVertices() {
+    public Map<Vertex, String> getNewVertices() {
         Map<Vertex, String> map = new HashMap<>();
-        for (int i = 0; i <newVertices.size(); i++) {
+        for (int i = 0; i < newVertices.size(); i++) {
             map.put(newVertices.get(i), newFonts.get(i));
         }
         return map;

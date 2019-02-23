@@ -12,7 +12,6 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.Map;
  * Parameter object of the action EditEdgesColorLogAction.
  */
 @Data
-public class EditEdgesColorParam extends Param {
+public class EditEdgesColorParam implements Param {
     @Getter
     private List<Edge> oldEdges;
 
@@ -43,10 +42,11 @@ public class EditEdgesColorParam extends Param {
 
     /**
      * Creates an vertices object of its own class.
+     *
      * @param pEdgesOld The list of edges and their old color.
      * @param pEdgesNew The list of edges and their new color.
      */
-    public EditEdgesColorParam(Map<Edge,Color> pEdgesOld, Map<Edge,Color> pEdgesNew,
+    public EditEdgesColorParam(Map<Edge, Color> pEdgesOld, Map<Edge, Color> pEdgesNew,
                                List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
         this.startVertices = pStartVertices;
         this.endVertices = pEndVertices;
@@ -88,14 +88,14 @@ public class EditEdgesColorParam extends Param {
                 information += "Alte Farbe: "
                         + ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.GERMAN);
                 information += ", neue Farbe: "
-                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN) +  ". ";
+                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN) + ". ";
             }
         }
         return information;
 
     }
 
-    public Map<Edge,Color> getEdgesOld() {
+    public Map<Edge, Color> getEdgesOld() {
         Map<Edge, Color> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
             map.put(newEdges.get(i), oldColors.get(i));
@@ -103,7 +103,7 @@ public class EditEdgesColorParam extends Param {
         return map;
     }
 
-    public Map<Edge,Color> getEdgesNew() {
+    public Map<Edge, Color> getEdgesNew() {
         Map<Edge, Color> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
             map.put(newEdges.get(i), newColors.get(i));
