@@ -62,5 +62,7 @@ public class Main extends Application {
 
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
+        System.out.println("pre");
+        controller.setButtonShortcuts();
     }
 }

@@ -1694,32 +1694,21 @@ public class Controller implements ObserverSyndrom {
         KeyCombination minus = new KeyCodeCombination(KeyCode.MINUS);
         KeyCombination strgZ = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
         KeyCombination strgY = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
-        mainStage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (plus.match(event)) {
-                    sphereEnlarge();
-                    vertexEnlarge();
-                }
-            }
-        });
+        System.out.println("shortcuts init");
         mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
-            if (minus.match(event)) {
+            if (plus.match(event)) {
+                System.out.println("pressed plus");
+                sphereEnlarge();
+                vertexEnlarge();
+            }else if (minus.match(event)) {
                 sphereShrink();
                 vertexShrink();
-            }
-        });
-        mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
-            if (strgZ.match(event)) {
+            }else if (strgZ.match(event)) {
                 executeUndo();
-            }
-        });
-        mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
-            if (strgY.match(event)) {
+            }else if (strgY.match(event)) {
                 executeRedo();
             }
         });
-
     }
 
     public void setStage(Stage pStage) {
