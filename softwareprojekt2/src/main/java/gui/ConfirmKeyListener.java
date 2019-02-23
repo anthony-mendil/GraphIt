@@ -1,5 +1,7 @@
 package gui;
 
+import actions.analyse.AnalysisGraphAction;
+import graph.algorithmen.AnalyseTypeSeveral;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -26,10 +28,12 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
         if(event.getCode() == KeyCode.ENTER){
             if(!amountSymptomTextField.getText().isEmpty()){
                 if(analysisPredecessor.isSelected()){
-                    //CALL SUCCESSOR METHOD
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    analysisGraphAction.action();
                 }
                 if(analysisSuccessor.isSelected()){
-                    //CALL PREDECESSOR METHOD
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    analysisGraphAction.action();
                 }
             }
             c.getRoot().requestFocus();
