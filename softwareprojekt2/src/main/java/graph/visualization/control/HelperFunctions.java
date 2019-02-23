@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.*;
@@ -222,5 +223,27 @@ public class HelperFunctions {
             }
         });
         return d;
+    }
+
+    public Font returnFont(String f){
+        java.awt.Font newFont;
+        switch (f) {
+            case "AveriaSansLibre":
+                newFont = values.getAveriaSansLibr();
+                break;
+            case "Kalam":
+                newFont = values.getKalam();
+                break;
+            case "Mali":
+                newFont = values.getMali();
+                break;
+            case "Roboto":
+                newFont = values.getRoboto();
+                break;
+            default:
+                newFont = values.getRobotoSlab();
+                break;
+        }
+        return newFont;
     }
 }

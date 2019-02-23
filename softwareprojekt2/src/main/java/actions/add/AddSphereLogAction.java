@@ -8,8 +8,10 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.awt.geom.Point2D;
+import java.util.LinkedList;
 
 /**
  * Adds a sphere to the graph.
@@ -51,9 +53,14 @@ public class AddSphereLogAction extends LogAction {
                 createParameter(sp);
             } else {
                 graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
+                for(Vertex v : ((AddRemoveSphereParam)parameters).getVertices()){
+                    graph.addVertex(v);
+                    Sphere sp = pickSupport.getSphere(v.getCoordinates().getX(), v.getCoordinates().getY());
+                    sp.getVertices().add(v);
+                }
             }
             vv.repaint();
-            Syndrom.getInstance().getVv2().repaint();
+            syndrom.getVv2().repaint();
 
             DatabaseManager databaseManager = DatabaseManager.getInstance();
             databaseManager.addEntryDatabase(createLog());
@@ -69,6 +76,6 @@ public class AddSphereLogAction extends LogAction {
 
 
     public void createParameter(Sphere sphere) {
-        parameters = new AddRemoveSphereParam(sphere);
+        parameters = new AddRemoveSphereParam(sphere,new LinkedList<>());
     }
 }

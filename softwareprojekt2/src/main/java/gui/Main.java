@@ -40,17 +40,17 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
-
         BorderPane borderPane = loader.load();
         primaryStage.setTitle("Syndromansatz");
 
         Scene scene = new Scene(borderPane);
-
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("/GraphItLogo.png"));
         primaryStage.show();
         primaryStage.setMaximized(true);
 
+        Controller controller = loader.getController();
+        controller.setStage(primaryStage);
     }
 
 
