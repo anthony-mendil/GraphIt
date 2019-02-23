@@ -8,6 +8,7 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
+import gui.properties.LoadLanguage;
 import javafx.util.Pair;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
@@ -39,6 +40,8 @@ public class JGraphTHandler {
      * The list of selected vertices.
      */
     private Set<Vertex> pickedVertices;
+
+    private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 
     /**
      * Constructor in case the user changes to analyse-mode and analyses without using a vertex.
@@ -74,7 +77,7 @@ public class JGraphTHandler {
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() != 2) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.", true);
+            helperFunctions.setActionText("J_GRAPH_T_ALERT", true, true);
             return false;
         }
         Iterator<Vertex> iterator = pickedState.getPicked().iterator();
@@ -91,7 +94,7 @@ public class JGraphTHandler {
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().isEmpty()) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Bitte zuerst mindestens einen Knoten markieren.", true);
+            helperFunctions.setActionText("J_GRAPH_T_MARK_ALERT", true, true);
             return false;
         }
         pickedVertices = pickedState.getPicked();
@@ -139,7 +142,8 @@ public class JGraphTHandler {
             GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
             if(shortestPath == null){
                 HelperFunctions helperFunctions = new HelperFunctions();
-                helperFunctions.setActionText("Es exisitert kein Weg von " + startVertex.getAnnotation().get(Language.GERMAN.name()) + " nach " + endVertex.getAnnotation().get(Language.GERMAN.name()), true);
+                Object[] obj = {startVertex.getAnnotation().get(Language.GERMAN.name()), endVertex.getAnnotation().get(Language.GERMAN.name())};
+                helperFunctions.setActionText(loadLanguage.loadLanguagesKey("J_GRAPH_T_COUNT", obj), true, false);
             }
             return shortestPath;
         }

@@ -35,11 +35,10 @@ import java.util.concurrent.CountDownLatch;
 public class HelperFunctions {
     private final Values values;
     private static Logger logger = Logger.getLogger(HelperFunctions.class);
-    private LoadLanguage lang = new LoadLanguage();
+    private LoadLanguage lang = LoadLanguage.getInstance();
 
     public HelperFunctions() {
         values = Values.getInstance();
-        lang.changeLanguage(values.getGuiLanguage());
     }
 
     void hideMenu(ContextMenu contextMenu) {
@@ -92,7 +91,7 @@ public class HelperFunctions {
         service.start();
     }
 
-    public void setActionText(String string, boolean isAlert) {
+    public void setActionText(String string, boolean isAlert, boolean withPlaceHolder) {
         Service<Void> service = new Service<Void>() {
             @Override
             protected Task<Void> createTask() {
@@ -102,7 +101,8 @@ public class HelperFunctions {
                         final CountDownLatch latch = new CountDownLatch(1);
                         Platform.runLater(() -> {
                             try {
-                                values.getCurrentActionText().setText(string);
+                                String alert = (withPlaceHolder)? lang.loadLanguagesKey(string): string;
+                                values.getCurrentActionText().setText(alert);
                                 Text text = values.getCurrentActionText();
                                 if (isAlert) {
                                     text.setFill(javafx.scene.paint.Color.WHITE);
@@ -185,8 +185,7 @@ public class HelperFunctions {
         Stage titleStage = new Stage();
         titleStage.setResizable(false);
         titleStage.setTitle(lang.loadLanguagesKey("CONTEXT_DIALOG_TITLE"));
-        titleStage.getIcons().add(new Image(
-                getClass().getResourceAsStream("/GraphItLogo.png")));
+
 
         DialogPane dialogPane = null;
         try {

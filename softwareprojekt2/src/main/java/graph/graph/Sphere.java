@@ -133,6 +133,10 @@ public class Sphere {
         vertices = new LinkedList<>();
     }
 
+    /**
+     * Checks whether the vertices in the sphere are locked.
+     * @return
+     */
     public boolean verticesLocked() {
         for (Vertex vertex : vertices) {
             if (vertex.isLockedPosition() || vertex.isLockedAnnotation() || vertex.isLockedStyle()) {
@@ -163,7 +167,6 @@ public class Sphere {
         } else if (Values.getInstance().getGuiLanguage() == Language.ENGLISH) {
             return annotation.get(Language.ENGLISH.name());
         }
-
         return "";
     }
 }

@@ -69,7 +69,7 @@ public class LayoutSpheresParam implements Param {
         return oldPosition;
     }
 
-    public Map<Vertex, Point2D> getOldVertices() {
+    public Map<Vertex, Point2D> getOldVerticesMap() {
         Map<Vertex, Point2D> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
             map.put(oldVertices.get(i), oldPositions.get(i));

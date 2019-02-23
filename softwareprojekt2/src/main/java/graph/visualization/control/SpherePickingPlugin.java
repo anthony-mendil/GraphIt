@@ -13,6 +13,7 @@ import graph.visualization.transformer.sphere.SphereShapeTransformer;
 import gui.GraphButtonType;
 import gui.SphereContextMenu;
 import gui.Values;
+import gui.properties.LoadLanguage;
 import javafx.scene.control.ContextMenu;
 
 import javax.swing.*;
@@ -36,6 +37,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     private final Values values;
     private ContextMenu contextMenu;
     private final HelperFunctions helper;
+    private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 
     /**
      * create an instance with passed values
@@ -109,10 +111,11 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 AddSphereLogAction addSphereLogAction = new AddSphereLogAction(p);
                 history.execute(addSphereLogAction);
             }else{
-                helper.setActionText("Nur "+ Syndrom.getInstance().getTemplate().getMaxSpheres() + " Sphäre(n) sind im Graph erlaubt.", true);
+                Object[] obj = {Syndrom.getInstance().getTemplate().getMaxSpheres()};
+                helper.setActionText(loadLanguage.loadLanguagesKey("SPHERE_PICKING_TEMPLATE_ALERT", obj), true, false);
             }
         } else {
-            helper.setActionText("Hinzufügen einer Sphäre hier nicht möglich!", true);
+            helper.setActionText("SPHERE_PICKING_ADD_ALERT", true, true);
         }
     }
 
@@ -135,7 +138,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (sp != null && vert == null && edge == null) {
            if (SwingUtilities.isRightMouseButton(e)) {
                if(sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT){
-                    helper.setActionText("Diese Sphäre kann aufgrund der Vorlageregeln nicht bewegt werden", true);
+                    helper.setActionText("SPHERE_PICKING_ALERT", true, false);
                }
                else if(values.getMode() != FunctionMode.ANALYSE) {
                    spherePickedCoord = sp.getCoordinates();

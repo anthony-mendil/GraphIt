@@ -31,7 +31,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Map of vertices and the sphere.
      */
-    private Map<Vertex, Sphere> vertices = new HashMap<>();
+    private Map<Vertex, Sphere> vertices;
 
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
@@ -62,7 +62,7 @@ public class AddVerticesLogAction extends LogAction {
         if (!template.isLockedVertexNumber() || graph.getVertices().size() < template.getMaxVertices()) {
             if (parameters == null) {
                 if (sphere.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
-                    helper.setActionText("The vertices of this sphere is locked.", true);
+                    helper.setActionText("ADD_VERTICES_LOCKED_ALERT", true, true);
                     return;
                 }
                 position2D = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(position2D);
@@ -70,7 +70,7 @@ public class AddVerticesLogAction extends LogAction {
                 createParameter(newVertex, sphere);
                 vv.getGraphLayout().setLocation(newVertex, position2D);
             } else {
-                Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam) parameters).getVertices();
+                vertices = ((AddRemoveVerticesParam) parameters).getVertices();
                 List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
                 List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
                 List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getSinkVertexList();
@@ -91,7 +91,8 @@ public class AddVerticesLogAction extends LogAction {
             databaseManager.addEntryDatabase(createLog());
             notifyObserverGraph();
         } else {
-            helper.setActionText("Only " + template.getMaxVertices() + " vertex/vertices are allowed.", true);
+            Object[] obj = { template.getMaxVertices()};
+            helper.setActionText(loadLanguage.loadLanguagesKey("ADD_VERTICES_COUNT_ALERT", obj), true, false);
         }
     }
 

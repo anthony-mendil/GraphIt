@@ -92,7 +92,7 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() < 1) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Bitte zuerst mindestens einen Knoten markieren.", true);
+            helperFunctions.setActionText("ANALYSIS_ALERT", true, true);
             return false;
         }
         return true;

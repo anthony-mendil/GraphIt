@@ -12,7 +12,6 @@ import lombok.Setter;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -157,6 +156,10 @@ public class Vertex {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Vertex) {
             Vertex v = (Vertex) obj;
@@ -165,20 +168,13 @@ public class Vertex {
         return false;
     }
 
-    @Override
-
-    public int hashCode() {
-        return super.hashCode();
-    }
 
     @Override
     public String toString() {
-        if (Values.getInstance().getGuiLanguage() == Language.GERMAN) {
-            return annotation.get(Language.GERMAN.name());
-        } else if (Values.getInstance().getGuiLanguage() == Language.ENGLISH) {
+        if (Values.getInstance().getGuiLanguage() == Language.ENGLISH) {
             return annotation.get(Language.ENGLISH.name());
+        } else  {
+            return annotation.get(Language.GERMAN.name());
         }
-
-        return "";
     }
 }

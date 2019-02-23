@@ -75,7 +75,7 @@ public class Values {
     /**
      * The font of a sphere.
      */
-    private String fontSphere = "Arial";
+    private String fontSphere = "Roboto";
     /**
      * The font size of a sphere annotation.
      */
@@ -109,7 +109,7 @@ public class Values {
     /**
      * The font of a vertex.
      */
-    private String fontVertex = "Arial";
+    private String fontVertex = "Roboto";
     /**
      * The highlight color for vertices.
      */
@@ -185,7 +185,7 @@ public class Values {
     private final int maxScale = 200;
 
     private Font roboto;
-    private  Font robotoSlab;
+    private Font robotoSlab;
     private Font averiaSansLibr;
     private Font kalam;
     private Font mali;

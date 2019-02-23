@@ -12,8 +12,6 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditVertexAnnotationParam;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -51,7 +49,6 @@ public class EditVertexAnnotationLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if(parameters == null) {
-            List<Vertex> lockedVertices = new LinkedList<>();
             for (Vertex v : pickedState.getPicked()) {
                 if(!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     Map<String, String> annotation = v.getAnnotation();
@@ -62,26 +59,9 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     annotation.put(language.name(), text);
                     v.setAnnotation(annotation);
                 }else{
-                    helper.setActionText("Der Titel des Knotens darf aufgrund der Vorlageregeln nicht geändert werden.", true);
-                    lockedVertices.add(v);
+                    helper.setActionText("EDIT_VERTEX_ANNOTATION_ALERT", true, true);
                 }
             }
-            /*Set<Pair<Vertex,Vertex>> edges = new HashSet<>();
-            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-            for(Edge edge : graph.getEdges()){
-                edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
-                Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
-                edges.add(vertices);
-            }
-            System.out.println("wdqd");
-            JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()),edges);
-            List<List<Vertex>> relationChains = jGraphTHandler.detectRelationChains();
-            for(List<Vertex> rel: relationChains){
-                System.out.println("RealtionChain incoming:");
-                for(Vertex v : rel){
-                    System.out.println(v.getId());*/
-             //   }
-          //  }
 
         }else{
             Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();

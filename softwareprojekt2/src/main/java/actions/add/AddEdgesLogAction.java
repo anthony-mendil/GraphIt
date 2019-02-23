@@ -58,8 +58,8 @@ public class AddEdgesLogAction extends LogAction {
                 List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
                 List<Vertex> startVertices = ((AddRemoveEdgesParam)parameters).getStartVertices();
                 List<Vertex> endVertices = ((AddRemoveEdgesParam)parameters).getEndVertices();
-                for(Edge edge : edges){
-                    graph.addEdgeExisting(edge, startVertices.get(edges.indexOf(edge)), endVertices.get(edges.indexOf(edge)));
+                for(Edge e : edges){
+                    graph.addEdgeExisting(e, startVertices.get(edges.indexOf(e)), endVertices.get(edges.indexOf(e)));
                 }
             }
             vv.repaint();
@@ -69,7 +69,8 @@ public class AddEdgesLogAction extends LogAction {
             databaseManager.addEntryDatabase(createLog());
             notifyObserverGraph();
         }else{
-            helper.setActionText("Only " + template.getMaxEdges() + " edge(s) are allowed in the graph.", true);
+            Object[] obj = {template.getMaxEdges() };
+            helper.setActionText(loadLanguage.loadLanguagesKey("ADD_EDGES_ALERT", obj), true, false);
             actionHistory.removeLastEntry();
         }
 
