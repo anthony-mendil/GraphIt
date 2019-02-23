@@ -91,7 +91,7 @@ public class JGraphTHandler {
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() < 1) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Bitte zuerst zwei Knoten markieren.", true);
+            helperFunctions.setActionText("Bitte zuerst mindestens einen Knoten markieren.", true);
             return false;
         }
         pickedVertices = pickedState.getPicked();
@@ -136,6 +136,7 @@ public class JGraphTHandler {
         if(calculateEndpoints()) {
             DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
             GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
+            if(shortestPath.getVertexList() == null)
             return shortestPath;
         }
         return null;
@@ -182,12 +183,13 @@ public class JGraphTHandler {
             for(Vertex startVertex : pickedVertices) {
                 List<Vertex> tempVertex = new ArrayList<>();
                 tempVertex.add(startVertex);
+                vertices.add(startVertex);
                 for (int i = steps; i > 0; i--) {
                     for (Vertex pivotVertex : tempVertex) {
                         List<Vertex> predecessors = Graphs.predecessorListOf(algorithmGraph, pivotVertex);
                         for (Vertex neighborVertex : predecessors) {
                             vertices.add(neighborVertex);
-                            edges.add((Edge) algorithmGraph.getEdge(pivotVertex, neighborVertex));
+                            edges.add((Edge) algorithmGraph.getEdge(neighborVertex, pivotVertex));
                         }
                         tempVertex = predecessors;
                     }
@@ -209,6 +211,7 @@ public class JGraphTHandler {
             for(Vertex startVertex : pickedVertices) {
                 List<Vertex> tempVertex = new ArrayList<>();
                 tempVertex.add(startVertex);
+                vertices.add(startVertex);
                 for (int i = steps; i > 0; i--) {
                     for (Vertex pivotVertex : tempVertex) {
                         List<Vertex> successors = Graphs.successorListOf(algorithmGraph, pivotVertex);

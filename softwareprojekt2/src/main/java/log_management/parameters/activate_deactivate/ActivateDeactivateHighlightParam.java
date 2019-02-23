@@ -9,7 +9,7 @@ import lombok.Getter;
 import java.util.List;
 
 /**
- * Parameter object for action ActivateHighlightAction/DeactivateHighlightAction.
+ * Parameter object for action ActivateHighlightAction/ResetVvAction.
  */
 @Data
 public class ActivateDeactivateHighlightParam implements Param {

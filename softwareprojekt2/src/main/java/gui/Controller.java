@@ -13,7 +13,7 @@ import actions.analyse.AnalysisGraphAction;
 import actions.analyse.FilterGraphAction;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
-import actions.deactivate.DeactivateHighlightAction;
+import actions.deactivate.ResetVvAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
@@ -52,7 +52,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
@@ -777,7 +776,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Creates an DeactivateHighlightAction-object and executes the action with the action history.
+     * Creates an ResetVvAction-object and executes the action with the action history.
      */
     @SuppressWarnings("unused")
     public void deactivateHighlight() {
@@ -1430,8 +1429,8 @@ public class Controller implements ObserverSyndrom {
             ActivateHighlightAction activateHighlightAction = new ActivateHighlightAction();
             activateHighlightAction.action();
         } else {
-            DeactivateHighlightAction deactivateHighlightAction = new DeactivateHighlightAction();
-            deactivateHighlightAction.action();
+            ResetVvAction resetVvAction = new ResetVvAction();
+            resetVvAction.action();
         }
     }
 
