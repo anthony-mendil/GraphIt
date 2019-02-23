@@ -12,7 +12,7 @@ import java.util.List;
  * Parameter object for action ActivateHighlightAction/DeactivateHighlightAction.
  */
 @Data
-public class ActivateDeactivateHighlightParam extends Param {
+public class ActivateDeactivateHighlightParam implements Param {
     /**
      * List of vertices, which will highlight/stop highlight.
      */
@@ -28,7 +28,7 @@ public class ActivateDeactivateHighlightParam extends Param {
      * Creates an parameter object of its own class.
      *
      * @param vertices List of selected vertices.
-     * @param edges   List of edges attached to the vertices.
+     * @param edges    List of edges attached to the vertices.
      */
     public ActivateDeactivateHighlightParam(List<Vertex> vertices, List<Edge> edges) {
         this.vertices = vertices;

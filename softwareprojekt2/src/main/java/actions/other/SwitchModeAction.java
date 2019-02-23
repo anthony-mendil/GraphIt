@@ -14,17 +14,11 @@ public class SwitchModeAction extends GraphAction {
      */
     private FunctionMode mode;
     /**
-     * The old function mode.
-     */
-    private FunctionMode oldMode;
-
-    /**
      * Constructor in case the user changes the mode.
      * @param newMode The new mode.
      */
     public SwitchModeAction(FunctionMode newMode) {
         mode = newMode;
-        oldMode = Values.getInstance().getMode();
     }
 
     @Override
@@ -48,6 +42,6 @@ public class SwitchModeAction extends GraphAction {
 
     @Override
     public void undo() {
-
+        //no undo-operation needed
     }
 }

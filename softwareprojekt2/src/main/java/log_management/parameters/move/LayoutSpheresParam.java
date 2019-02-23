@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LayoutSpheresParam extends Param {
+public class LayoutSpheresParam implements Param {
     @Getter
     private List<Sphere> spheres;
 
@@ -39,7 +39,7 @@ public class LayoutSpheresParam extends Param {
      *
      * @param pOldPosition Map of vertices containing their old positions.
      */
-    public LayoutSpheresParam(Map<Sphere,Pair<Pair<Double,Double>,Point2D>> pOldPosition, Map<Vertex,Point2D> pOldVertices) {
+    public LayoutSpheresParam(Map<Sphere, Pair<Pair<Double, Double>, Point2D>> pOldPosition, Map<Vertex, Point2D> pOldVertices) {
         spheres = new ArrayList<>();
         first = new ArrayList<>();
         second = new ArrayList<>();
@@ -52,7 +52,7 @@ public class LayoutSpheresParam extends Param {
             first.add(p.getKey().getKey());
             second.add(p.getKey().getValue());
             positions.add(p.getValue());
-                });
+        });
         pOldVertices.forEach((v, p) -> {
             oldVertices.add(v);
             oldPositions.add(p);
@@ -69,8 +69,8 @@ public class LayoutSpheresParam extends Param {
         }
     }
 
-    public Map<Sphere,Pair<Pair<Double,Double>,Point2D>> getOldPosition() {
-        Map<Sphere,Pair<Pair<Double,Double>,Point2D>> oldPosition = new HashMap<>();
+    public Map<Sphere, Pair<Pair<Double, Double>, Point2D>> getOldPosition() {
+        Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldPosition = new HashMap<>();
         for (int i = 0; i < spheres.size(); i++) {
             oldPosition.put(spheres.get(i), new Pair<>(new Pair<>(first.get(i), second.get(i)), positions.get(i)));
         }

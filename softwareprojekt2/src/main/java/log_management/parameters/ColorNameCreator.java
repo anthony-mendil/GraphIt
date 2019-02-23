@@ -12,13 +12,13 @@ public class ColorNameCreator {
 
     private static ColorNameCreator colorNameCreator;
 
-    private ColorNameCreator() {}
+    private ColorNameCreator() {
+    }
 
     public static ColorNameCreator getInstance() {
         if (colorNameCreator != null) {
             return colorNameCreator;
-        }
-        else {
+        } else {
             colorNameCreator = new ColorNameCreator();
             return colorNameCreator;
         }
@@ -74,7 +74,7 @@ public class ColorNameCreator {
         colors.add(new ColorNames("FireBrick", "Backstein", 0xB2, 0x22, 0x22));
         colors.add(new ColorNames("FloralWhite", "Blütenweiß", 0xFF, 0xFA, 0xF0));
         colors.add(new ColorNames("ForestGreen", "Waldgrün", 0x22, 0x8B, 0x22));
-        colors.add(new ColorNames("Fuchsia", "Magenta", 0xFF, 0x00, 0xFF));
+        colors.add(new ColorNames("Fuchsia", "Fuchsienrot", 0xFF, 0x00, 0xFF));
         colors.add(new ColorNames("Gainsboro", "Gainsboro", 0xDC, 0xDC, 0xDC));
         colors.add(new ColorNames("GhostWhite", "", 0xF8, 0xF8, 0xFF));
         colors.add(new ColorNames("Gold", "Gold", 0xFF, 0xD7, 0x00));
@@ -175,9 +175,9 @@ public class ColorNameCreator {
     /**
      * Get the closest color name from the color list
      *
-     * @param red The red value of the color.
-     * @param green The green value of the color.
-     * @param blue The blue value of the color.
+     * @param red      The red value of the color.
+     * @param green    The green value of the color.
+     * @param blue     The blue value of the color.
      * @param language The language of the gui.
      * @return
      */

@@ -6,13 +6,13 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.List;
+
 /**
  * Parameter object of the action ActivateFadeoutAction/DeactivateFadeoutAction.
  */
 @Data
-public class ActivateDeactivateFadeoutParam extends Param {
+public class ActivateDeactivateFadeoutParam implements Param {
     /**
      * List of vertices to activate/cancel the highlight-option.
      */
@@ -26,8 +26,9 @@ public class ActivateDeactivateFadeoutParam extends Param {
 
     /**
      * Creates an parameter object of its own class.
+     *
      * @param pVertices The list of vertices to work on.
-     * @param pEdges The list of edges to work on.
+     * @param pEdges    The list of edges to work on.
      */
     public ActivateDeactivateFadeoutParam(List<Vertex> pVertices, List<Edge> pEdges) {
         this.vertices = pVertices;

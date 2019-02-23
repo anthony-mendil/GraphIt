@@ -10,10 +10,13 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
+import static log_management.dao.LogDao.GRAPH_FROM_ID2;
+
 /**
  * The graph log_management.dao class. Manages the data access to the graphs.
  */
 public class GraphDao implements Dao<Graph> {
+
 
     @Override
     public Optional<Graph> get(long id) {
@@ -24,7 +27,7 @@ public class GraphDao implements Dao<Graph> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery(GRAPH_FROM_ID2, Graph.class);
         Graph graph = selectAllGraphs.getResultList().get(0);
 
         entityManager.getTransaction().commit();
@@ -38,7 +41,7 @@ public class GraphDao implements Dao<Graph> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery(GRAPH_FROM_ID2, Graph.class);
         List<Graph> list = selectAllGraphs.getResultList();
 
         entityManager.getTransaction().commit();
@@ -64,7 +67,7 @@ public class GraphDao implements Dao<Graph> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery(GRAPH_FROM_ID2, Graph.class);
         Graph graph = selectAllGraphs.getResultList().get(0);
 
         graph.setGxl(DatabaseManager.getInstance().getGxlIo().gxlFromInstance(true));
@@ -79,11 +82,11 @@ public class GraphDao implements Dao<Graph> {
         delete();
     }
 
-    public void delete() {
+    private void delete() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery(GRAPH_FROM_ID2, Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
 
         graphList.forEach(graph -> {
@@ -91,9 +94,7 @@ public class GraphDao implements Dao<Graph> {
             selectAllLogs.setParameter("gid", graph.getId());
             List<Log> logList = selectAllLogs.getResultList();
 
-            logList.forEach(log -> {
-                entityManager.remove(log);
-            });
+            logList.forEach(entityManager::remove);
 
             entityManager.remove(graph);
         });
@@ -106,7 +107,7 @@ public class GraphDao implements Dao<Graph> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery(GRAPH_FROM_ID2, Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
 
         entityManager.getTransaction().commit();
@@ -119,12 +120,12 @@ public class GraphDao implements Dao<Graph> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery(GRAPH_FROM_ID2, Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
 
         entityManager.getTransaction().commit();
         entityManager.close();
 
-        return (graphList.size() == 0);
+        return (graphList.isEmpty());
     }
 }
