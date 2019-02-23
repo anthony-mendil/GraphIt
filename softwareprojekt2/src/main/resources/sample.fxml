@@ -1222,17 +1222,17 @@
                                     </Separator>
                                             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="260.0">
                                                 <children>
-                                                    <CheckBox fx:id="reinforcedBox" mnemonicParsing="false" text="%templateReinforced">
+                                                    <CheckBox fx:id="reinforcedBox" mnemonicParsing="false" selected="true" text="%templateReinforced">
                                                         <VBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                         </VBox.margin>
                                                     </CheckBox>
-                                                    <CheckBox fx:id="extenuatingBox" mnemonicParsing="false" text="%templateExtenuating">
+                                                    <CheckBox fx:id="extenuatingBox" mnemonicParsing="false" selected="true" text="%templateExtenuating">
                                                         <VBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                         </VBox.margin>
                                                     </CheckBox>
-                                                    <CheckBox fx:id="neutralBox" mnemonicParsing="false" text="%templateNeutral">
+                                                    <CheckBox fx:id="neutralBox" mnemonicParsing="false" selected="true" text="%templateNeutral">
                                                         <VBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                         </VBox.margin>

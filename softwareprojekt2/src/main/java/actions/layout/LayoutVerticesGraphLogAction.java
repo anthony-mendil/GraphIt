@@ -99,7 +99,7 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         indicator = true;
         createParameter(oldVertices);
         } else{
-            Map<Vertex,Point2D> oldVertices = ((LayoutVerticesParam)parameters).getOldVertices();
+            Map<Vertex,Point2D> oldVertices = ((LayoutVerticesParam)parameters).getOldVerticesMap();
             for(Map.Entry<Vertex,Point2D> entry : oldVertices.entrySet()){
                 entry.getKey().setCoordinates(oldVertices.get(entry.getKey()));
             }

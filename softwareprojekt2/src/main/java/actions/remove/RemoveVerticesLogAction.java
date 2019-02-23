@@ -20,11 +20,6 @@ import java.util.*;
  */
 public class RemoveVerticesLogAction extends LogAction {
 
-    /**
-     * All vertices which should be removed.
-     */
-    /* Must be set on private or public */
-    private Collection<Vertex> vertices;
 
     /**
      * Removes all passed vertices from the graph.
@@ -44,7 +39,7 @@ public class RemoveVerticesLogAction extends LogAction {
         super(LogEntryName.REMOVE_VERTICES);
         parameters = pParam;
     }
-
+    @SuppressWarnings("unchecked")
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
@@ -75,7 +70,6 @@ public class RemoveVerticesLogAction extends LogAction {
                             Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
                             edg.put(e,vertexPair);
                         }
-                        pickedState.pick(vertex, false);
                         graph.removeVertex(vertex);
                         sp.getVertices().remove(vertex);
                         params.put(vertex, sp);
@@ -84,7 +78,7 @@ public class RemoveVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            if(lockedVertices.size() == pickedState.getPicked().size()){
+            if(!lockedVertices.isEmpty()){
                 helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
                 ActionHistory.getInstance().removeLastEntry();
                 return;
@@ -101,7 +95,7 @@ public class RemoveVerticesLogAction extends LogAction {
             }
         }
         vv.repaint();
-        syndrom.getInstance().getVv2().repaint();
+        Syndrom.getInstance().getVv2().repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
@@ -111,7 +105,6 @@ public class RemoveVerticesLogAction extends LogAction {
     @Override
     public void undo() {
         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction((AddRemoveVerticesParam)parameters);
-        System.out.println(((AddRemoveVerticesParam)parameters).getVertices().entrySet().size());
         addVerticesLogAction.action();
     }
 

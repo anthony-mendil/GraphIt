@@ -52,9 +52,8 @@ public class JGraphTHandler {
      *
      * @param pVertices Given list of vertices.
      * @param pEdges    Given list of edges.
-     * @return The Graph in JGraphT-Type.
      */
-    public void convertGraphToJGraphT(List<Vertex> pVertices, Set<Pair<Vertex, Vertex>> pEdges) {
+    private void convertGraphToJGraphT(List<Vertex> pVertices, Set<Pair<Vertex, Vertex>> pEdges) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         DefaultDirectedGraph<Vertex, Edge> jGraphTGraph = new DefaultDirectedGraph<>(Edge.class);
@@ -87,10 +86,10 @@ public class JGraphTHandler {
     /**
      * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
      */
-    public boolean isAtLeastOnePicked(){
+    private boolean isAtLeastOnePicked(){
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if (pickedState.getPicked().size() < 1) {
+        if (pickedState.getPicked().isEmpty()) {
             HelperFunctions helperFunctions = new HelperFunctions();
             helperFunctions.setActionText("Bitte zuerst mindestens einen Knoten markieren.", true);
             return false;
@@ -104,13 +103,12 @@ public class JGraphTHandler {
      *
      * @return The set of vertices in a cycle.
      */
+    @SuppressWarnings("unchecked")
     public List<List<Vertex>> detectCycles() {
 
         TarjanSimpleCycles tarjanSimpleCycles = new TarjanSimpleCycles(algorithmGraph);
-        List<List<Vertex>> list = tarjanSimpleCycles.findSimpleCycles();
+        return tarjanSimpleCycles.findSimpleCycles();
 
-
-        return list;
     }
 
     /**
@@ -118,12 +116,13 @@ public class JGraphTHandler {
      *
      * @return The list of paths between the vertices.
      */
+    @SuppressWarnings("unchecked")
     public List<GraphPath<Vertex, Edge>> getAllPaths() {
         if(calculateEndpoints()) {
 
             AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
-            List<GraphPath<Vertex, Edge>> paths = pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
-            return paths;
+            return pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
+
         }
         return null;
     }
@@ -133,6 +132,7 @@ public class JGraphTHandler {
      *
      * @return The shortest path between the vertices.
      */
+    @SuppressWarnings("unchecked")
     public GraphPath<Vertex,Edge> getShortestPath() {
         if(calculateEndpoints()) {
             DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
@@ -151,6 +151,7 @@ public class JGraphTHandler {
      *
      * @return The set of vertices in the convergent branch.
      */
+    @SuppressWarnings("unchecked")
     public Set<Vertex> detectConvergentBranches() {
         Set<Vertex> convergentBranches = new HashSet<>();
         for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
@@ -166,6 +167,7 @@ public class JGraphTHandler {
      *
      * @return The set of vertices in the divergent branch.
      */
+    @SuppressWarnings("unchecked")
     public Set<Vertex> detectDivergentBranches() {
         Set<Vertex> divergentBranches = new HashSet<>();
         for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
@@ -208,14 +210,15 @@ public class JGraphTHandler {
      * Returns all predecessors and their edges towards them in
      * the given iterations.
      */
+    @SuppressWarnings("unchecked")
     public Pair<List<Vertex>, List<Edge>> successorIterations(int steps){
         if(isAtLeastOnePicked()) {
             List<Vertex> vertices = new ArrayList<>();
             List<Edge> edges = new ArrayList<>();
-            for(Vertex startVertex : pickedVertices) {
+            for(Vertex sVertex : pickedVertices) {
                 List<Vertex> tempVertex = new ArrayList<>();
-                tempVertex.add(startVertex);
-                vertices.add(startVertex);
+                tempVertex.add(sVertex);
+                vertices.add(sVertex);
                 for (int i = steps; i > 0; i--) {
                     for (Vertex pivotVertex : tempVertex) {
                         List<Vertex> successors = Graphs.successorListOf(algorithmGraph, pivotVertex);
@@ -235,24 +238,25 @@ public class JGraphTHandler {
     /**
      * Detects relation chains.
      */
+    @SuppressWarnings("unchecked")
     public Pair<List<List<Vertex>>,Set<Edge>> detectRelationChains() {
         List<List<Vertex>> relationChains = new LinkedList<>();
-        List<Vertex> InnerVertices = new ArrayList<>();
+        List<Vertex> innerVertices = new ArrayList<>();
         for(Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()){
             if(algorithmGraph.inDegreeOf(vert) == 1 && algorithmGraph.outDegreeOf(vert) == 1){
-                InnerVertices.add(vert);
+                innerVertices.add(vert);
             }
         }
-        while(!InnerVertices.isEmpty()) {
+        while(!innerVertices.isEmpty()) {
             LinkedList<Vertex> potentialChain = new LinkedList<>();
-            Vertex pivotVertex = InnerVertices.get(0);
+            Vertex pivotVertex = innerVertices.get(0);
             Vertex predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph,pivotVertex).get(0);
             Vertex successor = (Vertex) Graphs.successorListOf(algorithmGraph,pivotVertex).get(0);
             potentialChain.add(predecessor);
             potentialChain.add(pivotVertex);
             potentialChain.add(successor);
             while(Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 ){
-                if(!potentialChain.contains(Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
+                if(!potentialChain.contains((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
                     potentialChain.addFirst((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
                     predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
                 }else{
@@ -260,14 +264,14 @@ public class JGraphTHandler {
                 }
             }
             while(Graphs.successorListOf(algorithmGraph, successor).size() == 1 ){
-                if(!potentialChain.contains(Graphs.successorListOf(algorithmGraph, successor).get(0))) {
+                if(!potentialChain.contains((Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0))) {
                     potentialChain.addLast((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0));
                     successor = (Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0);
                 }else{
                     break;
                 }
             }
-            InnerVertices.removeAll(potentialChain);
+            innerVertices.removeAll(potentialChain);
             if(potentialChain.size() > 3) {
                 relationChains.add(potentialChain);
             }
