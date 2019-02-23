@@ -66,22 +66,22 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null && edge == null) {
-                    if(values.getMode() != FunctionMode.TEMPLATE && Syndrom.getInstance().getTemplate().getMaxVertices() != 0 &&
-                            Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size() >= Syndrom.getInstance().getTemplate().getMaxVertices()){
+                    if (values.getMode() != FunctionMode.TEMPLATE && Syndrom.getInstance().getTemplate().getMaxVertices() != 0 &&
+                            Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size() >= Syndrom.getInstance().getTemplate().getMaxVertices()) {
                         helper.setActionText("Es dürfen aufgrund der Vorlageregeln nur maximal " + Syndrom.getInstance().getTemplate().getMaxVertices() + " Symptome gesetzt weren.", true);
                         return;
                     }
-                    if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
+                    if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
                         helper.setActionText("Es dürfen aufgrund der Vorlageregeln keine Symptome hinzugefügt werden.", true);
                     }
-                    if(sp.getLockedMaxAmountVertices() .equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE)  {
+                    if (sp.getLockedMaxAmountVertices().equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE) {
                         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
                         history.execute(addVerticesLogAction);
                         Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
                         PickedState<Vertex> pickedState = vv.getPickedVertexState();
                         pickedState.clear();
                         pickedState.pick(newVertex, true);
-                    }else{
+                    } else {
                         helper.setActionText("Es können aufgrund der Vorlageregeln keine weitere Symptome in die Sphäre gesetzt werden", true);
                     }
                 } else {
@@ -93,15 +93,15 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
 
         if (SwingUtilities.isRightMouseButton(e)) {
-            if (vertex != null) {
-                if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
-                    PickedState<Vertex> vertices = vv.getPickedVertexState();
-                    vertices.clear();
-                    vertices.pick(vertex, true);
-                    contextMenu = new VertexContextMenu(vertex).getContextMenu();
-                    helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
-                }
+
+            if (vertex != null && Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                PickedState<Vertex> vertices = vv.getPickedVertexState();
+                vertices.clear();
+                vertices.pick(vertex, true);
+                contextMenu = new VertexContextMenu(vertex).getContextMenu();
+                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
             }
+
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
         }
@@ -111,7 +111,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
-        if (contextMenu != null){
+        if (contextMenu != null) {
             helper.hideMenu(contextMenu);
         }
 
@@ -166,11 +166,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
 
         if (SwingUtilities.isLeftMouseButton(e) && vert != null && source != null && !source.equals(vert)) {
-            if(values.getMode() == FunctionMode.TEMPLATE ||
+            if (values.getMode() == FunctionMode.TEMPLATE ||
                     Syndrom.getInstance().getTemplate().getMaxEdges() > Syndrom.getInstance().getVv().getGraphLayout().getGraph().getEdges().size()) {
-                    System.out.println(values.getEdgeArrowType().name());
-                    System.out.println(Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed());
-                if(values.getMode() != FunctionMode.TEMPLATE) {
+                if (values.getMode() != FunctionMode.TEMPLATE) {
                     switch (values.getEdgeArrowType()) {
                         case REINFORCED:
                             if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
@@ -195,7 +193,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 Pair<Vertex, Vertex> edge = new Pair<>(source, vert);
                 AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
                 history.execute(addEdgesLogAction);
-            }else{
+            } else {
                 helper.setActionText("Es dürfen nur " + Syndrom.getInstance().getTemplate().getMaxEdges() + " Relation(en) aufgrund der Vorlageregeln gesetzt werden.", true);
             }
         }
@@ -211,7 +209,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             if (points != null) {
 
 
-
                 Point p = e.getPoint();
                 Point2D graphPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(p);
                 Point2D graphDown = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(down);
@@ -221,10 +218,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
                 Layout<Vertex, Edge> layout = vv.getGraphLayout();
                 for (Vertex vertex : pickedState.getPicked()) {
-                    for (Edge edge: vv.getGraphLayout().getGraph().getIncidentEdges(vertex)){
+                    for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(vertex)) {
                         edge.setHasPrio(true);
                     }
-                    if(!vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
+                    if (!vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
                         Point2D vp = layout.transform(vertex);
                         vp.setLocation(vertex.getCoordinates().getX() + dx, vertex.getCoordinates().getY() + dy);
                         layout.setLocation(vertex, vp);
@@ -243,7 +240,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         boolean addNot = false;
         boolean jumpBack = false;
         for (Vertex v : pickedState.getPicked()) {
-            for (Edge edge: vv.getGraphLayout().getGraph().getIncidentEdges(v)){
+            for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(v)) {
                 edge.setHasPrio(false);
             }
             Point2D vp = vv.getRenderContext().getMultiLayerTransformer().transform(v.getCoordinates());
@@ -261,10 +258,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             }
         } else {
             for (Vertex v : pickedState.getPicked()) {
-                if(intersects(v)){
+                if (intersects(v)) {
                     jumpBack = true;
                     break;
-                }else {
+                } else {
                     Point2D point2D = vv.getRenderContext().getMultiLayerTransformer().transform(v
                             .getCoordinates());
                     Sphere s = pickSupport.getSphere(point2D.getX(), point2D.getY());
@@ -280,8 +277,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     }
                 }
             }
-            if(jumpBack){
-                for(Vertex vert : pickedState.getPicked()){
+            if (jumpBack) {
+                for (Vertex vert : pickedState.getPicked()) {
                     vert.setCoordinates(points.get(vert).getKey());
                     layout.setLocation(vert, vert.getCoordinates());
                 }
@@ -289,10 +286,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 Syndrom.getInstance().getVv2().repaint();
                 return;
             }
-            List<Vertex> vertList = new ArrayList<>();
-            vertList.addAll(pickedState.getPicked());
+            List<Vertex> vertList = new ArrayList<>(pickedState.getPicked());
             Vertex pivotVertex = vertList.get(0);
-            if(pivotVertex.getCoordinates() != points.get(pivotVertex).getKey()) {
+            if (pivotVertex.getCoordinates() != points.get(pivotVertex).getKey()) {
                 MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
                 history.execute(moveVerticesLogAction);
             }
@@ -314,16 +310,15 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         //
     }
 
-    public boolean intersects(Vertex v){
+    private boolean intersects(Vertex v) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        for(Vertex vertex : graph.getVertices()){
-            if(vertex != v){
-                if(Math.abs(vertex.getCoordinates().getX() - v.getCoordinates().getX()) < 40
-                        && Math.abs(vertex.getCoordinates().getY() - v.getCoordinates().getY()) < 30 ){
-                    return true;
-                }
+        for (Vertex vertex : graph.getVertices()) {
+            if (vertex != v && Math.abs(vertex.getCoordinates().getX() - v.getCoordinates().getX()) < 40
+                    && Math.abs(vertex.getCoordinates().getY() - v.getCoordinates().getY()) < 30) {
+                return true;
             }
+
         }
         return false;
     }

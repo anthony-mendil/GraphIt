@@ -20,11 +20,6 @@ import java.util.*;
  */
 public class RemoveVerticesLogAction extends LogAction {
 
-    /**
-     * All vertices which should be removed.
-     */
-    /* Must be set on private or public */
-    private Collection<Vertex> vertices;
 
     /**
      * Removes all passed vertices from the graph.
@@ -44,7 +39,7 @@ public class RemoveVerticesLogAction extends LogAction {
         super(LogEntryName.REMOVE_VERTICES);
         parameters = pParam;
     }
-
+    @SuppressWarnings("unchecked")
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
@@ -83,7 +78,7 @@ public class RemoveVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            if(lockedVertices.size() > 0){
+            if(!lockedVertices.isEmpty()){
                 helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
                 ActionHistory.getInstance().removeLastEntry();
                 return;
@@ -100,7 +95,7 @@ public class RemoveVerticesLogAction extends LogAction {
             }
         }
         vv.repaint();
-        syndrom.getInstance().getVv2().repaint();
+        Syndrom.getInstance().getVv2().repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
@@ -115,8 +110,6 @@ public class RemoveVerticesLogAction extends LogAction {
 
 
     public void createParameter(Map<Vertex,Sphere> vertices, Map<Edge,Pair<Vertex,Vertex>> edges) {
-      System.out.println(vertices.size());
-      System.out.println(edges.size());
         parameters = new AddRemoveVerticesParam(vertices, edges);
     }
 }
