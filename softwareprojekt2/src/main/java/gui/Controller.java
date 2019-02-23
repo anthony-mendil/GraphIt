@@ -502,8 +502,8 @@ public class Controller implements ObserverSyndrom {
 
     private Stage mainStage;
 
-    private String currentSize = "";
-    private String currentFont = "";
+    private String currentSize = ""+values.getDefaultSizeVertex();
+    private String currentFont = values.getFontSphere();
 
 
     /**
@@ -944,16 +944,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(editFontSphereLogAction);
     }
 
-    /*@SuppressWarnings("unused")
-    public void sphereFont1() {
-        editFontSphere(TIMES_NEW_ROMAN);
-    }
-
-    @SuppressWarnings("unused")
-    public void sphereFont2() {
-        editFontSphere(COMIC_SANS_MS);
-    }*/
-
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
      */
@@ -961,16 +951,6 @@ public class Controller implements ObserverSyndrom {
         values.setFontVertex(font);
         EditFontVerticesLogAction editFontVertexLogAction = new EditFontVerticesLogAction(font);
         history.execute(editFontVertexLogAction);
-    }
-
-    @SuppressWarnings("unused")
-    public void vertexFont1() {
-        editFontVertex(TIMES_NEW_ROMAN);
-    }
-
-    @SuppressWarnings("unused")
-    public void vertexFont2() {
-        editFontVertex(COMIC_SANS_MS);
     }
 
     public void sphereAutoLayout() {
