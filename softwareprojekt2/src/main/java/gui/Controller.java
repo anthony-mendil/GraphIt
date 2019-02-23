@@ -2091,23 +2091,27 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void optionExitWindow() {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("GraphIt");
-            alert.setHeaderText(null);
-            alert.setContentText("Wollen Sie sicher GraphIt schließen?");
-            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image("/GraphItLogo.png"));
+        ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CLOSE"), ButtonBar.ButtonData.OK_DONE);
+        ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // ... user chose "One"
-                logger.debug("SCHLIEßEN");
-                System.exit(0);
-                Platform.exit();
-            }else {
-                // ... user chose CANCEL or closed the dialog
-                logger.debug("CANCEL");
-            }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey("EXIT_WINDOW_QUESTION"),ok,close);
+        alert.setTitle("GraphIt");
+        alert.setHeaderText(null);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        Optional<ButtonType> result = alert.showAndWait();
+        System.out.println(result.toString());
+
+        if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+            // ... user chose "One"
+            logger.debug("SCHLIEßEN");
+            System.exit(0);
+            Platform.exit();
+        }else{
+            // ... user chose CANCEL or closed the dialog
+            logger.debug("CANCEL");
+        }
+
     }
 
     /**
