@@ -1201,6 +1201,8 @@ public class Controller implements ObserverSyndrom {
             editButton.setDisable(false);
             analysisButton.setDisable(false);
             createButton.setDisable(true);
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
             switchModeAction.action();
     }
@@ -1226,6 +1228,8 @@ public class Controller implements ObserverSyndrom {
 //            analysisNetworkingIndexNumber.setText("" + graphDimensionAction.getNetworkIndex());
 //            analysisStructureIndexNumber.setText("" + graphDimensionAction.getStructureIndex());
 
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
             switchModeAction.action();
     }
@@ -1243,6 +1247,8 @@ public class Controller implements ObserverSyndrom {
             analysisButton.setDisable(false);
             editButton.setDisable(true);
 
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
             switchModeAction.action();
     }
@@ -2044,6 +2050,11 @@ public class Controller implements ObserverSyndrom {
             overViewAccordion.getPanes().add(historyTitledPane);
         } else {
             overViewAccordion.getPanes().remove(historyTitledPane);
+            analysisPredecessor.setSelected(false);
+            analysisSuccessor.setSelected(false);
+            analysisPathCheckBox.setSelected(false);
+            analysisOptions.setSelected(false);
+            filterArrowTypeCheckBox.setSelected(false);
         }
     }
 
@@ -2552,8 +2563,8 @@ public class Controller implements ObserverSyndrom {
         analysisSuccessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisSuccessor, this));
         analysisPredecessor.selectedProperty().addListener(new AnalysisCheckBoxListener(analysisPredecessor, this));
 
-        analysisPathCheckBox.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(analysisPathMenuButton));
-        analysisOptions.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(filterAnalysis));
+        analysisPathCheckBox.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(this, analysisPathCheckBox, analysisPathMenuButton));
+        analysisOptions.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(this, analysisOptions, filterAnalysis));
 
         analysisShortestPath.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
         analysisAllPaths.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
@@ -2644,7 +2655,8 @@ public class Controller implements ObserverSyndrom {
     @FXML public void shortestpath(){
         //Clean up Method needed
         if(analysisPathCheckBox.isSelected()){
-            System.out.println("shortestpath");
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.SHORTESTPATH);
             analysisGraphAction.action();
         }
@@ -2653,7 +2665,8 @@ public class Controller implements ObserverSyndrom {
     @FXML public void allpaths(){
         //Clean up Method needed
         if(analysisPathCheckBox.isSelected()){
-            System.out.println("allpaths");
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.ALLPATHS);
             analysisGraphAction.action();
         }
@@ -2662,7 +2675,8 @@ public class Controller implements ObserverSyndrom {
     @FXML public void chainOfEdges(){
         //Clean up Method needed
         if(analysisOptions.isSelected()){
-            System.out.println("chainofedges");
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.EDGE_CHAINS);
             analysisGraphAction.action();
         }
@@ -2671,7 +2685,8 @@ public class Controller implements ObserverSyndrom {
     @FXML public void convergentBranches(){
         //Clean up Method needed
         if(analysisOptions.isSelected()){
-            System.out.println("convergentbranches");
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CONVERGENT_BRANCHES);
             analysisGraphAction.action();
         }
@@ -2680,7 +2695,8 @@ public class Controller implements ObserverSyndrom {
     @FXML public void divergentBranches(){
         //Clean up Method needed
         if(analysisOptions.isSelected()){
-            System.out.println("divergentbranches");
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.DIVERGENT_BRANCHES);
             analysisGraphAction.action();
         }
@@ -2689,7 +2705,8 @@ public class Controller implements ObserverSyndrom {
     @FXML public void branches(){
         //Clean up Method needed
         if(analysisOptions.isSelected()){
-            System.out.println("branches");
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.BRANCHES);
             analysisGraphAction.action();
         }
@@ -2697,7 +2714,8 @@ public class Controller implements ObserverSyndrom {
 
     @FXML public void analysisCycles(){
         if(analysisOptions.isSelected()){
-            System.out.println("cycles");
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
             AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
             analysisGraphAction.action();
         }
