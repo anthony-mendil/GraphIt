@@ -31,7 +31,7 @@ import java.time.format.DateTimeFormatter;
 public class LogToStringConverter {
 
     private int incrementer = 1;
-    private LoadLanguage lang = new LoadLanguage();
+    private LoadLanguage lang = LoadLanguage.getInstance();
     private Values values = Values.getInstance();
 
     public void resetIncrementer() {
@@ -44,7 +44,7 @@ public class LogToStringConverter {
         try {
             Object[] obj = {incrementer, convertLogEntryName(log.getLogEntryName()), parametersPrint(log.getParameters(), log.getLogEntryName()), log.getTime().format(formatter)};
             incrementer++;
-            return lang.loadLanguagesKey(language, "LOG_STRING", obj);
+            return lang.loadLanguagesKey("LOG_STRING", obj);
 
         } catch (IllegalArgumentException e) {
             throw new IllegalStateException();
@@ -58,7 +58,7 @@ public class LogToStringConverter {
         try {
             Object[] obj = {incrementer, convertLogEntryName(log.getLogEntryName()), parametersPrint(log.getParameters(), log.getLogEntryName()), log.getTime().format(formatter)};
             incrementer++;
-            return lang.loadLanguagesKey(language, "LOG_STRING_PRINT", obj);
+            return lang.loadLanguagesKey("LOG_STRING_PRINT", obj);
 
         } catch (IllegalArgumentException e) {
             throw new IllegalStateException();
@@ -70,71 +70,71 @@ public class LogToStringConverter {
         Language l = values.getGuiLanguage();
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
-                return lang.loadLanguagesKey(l, "ACTIVATE_HIGHLIGHT");
+                return lang.loadLanguagesKey("ACTIVATE_HIGHLIGHT");
             case ACTIVATE_FADEOUT:
-                return lang.loadLanguagesKey(l, "ACTIVATE_FADEOUT");
+                return lang.loadLanguagesKey("ACTIVATE_FADEOUT");
             case ADD_ANCHOR_POINTS:
-                return lang.loadLanguagesKey(l, "ADD_ANCHOR_POINTS");
+                return lang.loadLanguagesKey("ADD_ANCHOR_POINTS");
             case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return lang.loadLanguagesKey(l, "ACTIVATE_ANCHOR_POINTS_FADEOUT");
+                return lang.loadLanguagesKey("ACTIVATE_ANCHOR_POINTS_FADEOUT");
             case ADD_EDGES:
-                return lang.loadLanguagesKey(l, "ADD_EDGES");
+                return lang.loadLanguagesKey("ADD_EDGES");
             case ADD_SPHERE:
-                return lang.loadLanguagesKey(l, "ADD_SPHERE");
+                return lang.loadLanguagesKey("ADD_SPHERE");
             case MOVE_SPHERE:
-                return lang.loadLanguagesKey(l, "MOVE_SPHERE");
+                return lang.loadLanguagesKey("MOVE_SPHERE");
             case ADD_VERTICES:
-                return lang.loadLanguagesKey(l, "ADD_VERTICES");
+                return lang.loadLanguagesKey("ADD_VERTICES");
             case REMOVE_EDGES:
-                return lang.loadLanguagesKey(l, "REMOVE_EDGES");
+                return lang.loadLanguagesKey("REMOVE_EDGES");
             case MOVE_VERTICES:
-                return lang.loadLanguagesKey(l, "MOVE_VERTICES");
+                return lang.loadLanguagesKey("MOVE_VERTICES");
             case REMOVE_SPHERE:
-                return lang.loadLanguagesKey(l, "REMOVE_SPHERE");
+                return lang.loadLanguagesKey("REMOVE_SPHERE");
             case EDIT_EDGES_TYPE:
-                return lang.loadLanguagesKey(l, "EDIT_EDGES_TYPE");
+                return lang.loadLanguagesKey("EDIT_EDGES_TYPE");
             case REMOVE_VERTICES:
-                return lang.loadLanguagesKey(l, "REMOVE_VERTICES");
+                return lang.loadLanguagesKey("REMOVE_VERTICES");
             case EDIT_EDGES_COLOR:
-                return lang.loadLanguagesKey(l, "EDIT_EDGES_COLOR");
+                return lang.loadLanguagesKey("EDIT_EDGES_COLOR");
             case EDIT_FONT_SPHERE:
-                return lang.loadLanguagesKey(l, "EDIT_FONT_SPHERE");
+                return lang.loadLanguagesKey("EDIT_FONT_SPHERE");
             case EDIT_SPHERE_SIZE:
-                return lang.loadLanguagesKey(l, "EDIT_SPHERE_SIZE");
+                return lang.loadLanguagesKey("EDIT_SPHERE_SIZE");
             case EDIT_EDGES_STROKE:
-                return lang.loadLanguagesKey(l, "EDIT_EDGES_STROKE");
+                return lang.loadLanguagesKey("EDIT_EDGES_STROKE");
             case EDIT_SPHERE_COLOR:
-                return lang.loadLanguagesKey(l, "EDIT_SPHERE_COLOR");
+                return lang.loadLanguagesKey("EDIT_SPHERE_COLOR");
             case DEACTIVATE_FADEOUT:
-                return lang.loadLanguagesKey(l, "DEACTIVATE_FADEOUT");
+                return lang.loadLanguagesKey("DEACTIVATE_FADEOUT");
             case EDIT_FONT_VERTICES:
-                return lang.loadLanguagesKey(l, "EDIT_FONT_VERTICES");
+                return lang.loadLanguagesKey("EDIT_FONT_VERTICES");
             case EDIT_VERTICES_FORM:
-                return lang.loadLanguagesKey(l, "EDIT_VERTICES_FORM");
+                return lang.loadLanguagesKey("EDIT_VERTICES_FORM");
             case EDIT_VERTICES_SIZE:
-                return lang.loadLanguagesKey(l, "EDIT_VERTICES_SIZE");
+                return lang.loadLanguagesKey("EDIT_VERTICES_SIZE");
             case REMOVE_ANCHOR_POINTS:
-                return lang.loadLanguagesKey(l, "REMOVE_ANCHOR_POINTS");
+                return lang.loadLanguagesKey("REMOVE_ANCHOR_POINTS");
             case EDIT_SPHERE_FONT_SIZE:
-                return lang.loadLanguagesKey(l, "EDIT_SPHERE_FONT_SIZE");
+                return lang.loadLanguagesKey("EDIT_SPHERE_FONT_SIZE");
             case EDIT_SPHERE_ANNOTATION:
-                return lang.loadLanguagesKey(l, "EDIT_SPHERE_ANNOTATION");
+                return lang.loadLanguagesKey("EDIT_SPHERE_ANNOTATION");
             case EDIT_VERTEX_ANNOTATION:
-                return lang.loadLanguagesKey(l, "EDIT_VERTEX_ANNOTATION");
+                return lang.loadLanguagesKey("EDIT_VERTEX_ANNOTATION");
             case EDIT_VERTICES_FONT_SIZE:
-                return lang.loadLanguagesKey(l, "EDIT_VERTICES_FONT_SIZE");
+                return lang.loadLanguagesKey("EDIT_VERTICES_FONT_SIZE");
             case EDIT_VERTICES_DRAW_COLOR:
-                return lang.loadLanguagesKey(l, "EDIT_VERTICES_DRAW_COLOR");
+                return lang.loadLanguagesKey("EDIT_VERTICES_DRAW_COLOR");
             case EDIT_VERTICES_FILL_COLOR:
-                return lang.loadLanguagesKey(l, "EDIT_VERTICES_FILL_COLOR");
+                return lang.loadLanguagesKey("EDIT_VERTICES_FILL_COLOR");
             case DEACTIVATE_HIGHLIGHT:
-                return lang.loadLanguagesKey(l, "DEACTIVATE_HIGHLIGHT");
+                return lang.loadLanguagesKey("DEACTIVATE_HIGHLIGHT");
             case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return lang.loadLanguagesKey(l, "DEACTIVATE_ANCHOR_POINTS_FADEOUT");
+                return lang.loadLanguagesKey("DEACTIVATE_ANCHOR_POINTS_FADEOUT");
             case EDIT_SPHERES_LAYOUT:
-                return lang.loadLanguagesKey(l, "EDIT_SPHERES_LAYOUT");
+                return lang.loadLanguagesKey("EDIT_SPHERES_LAYOUT");
             case EDIT_VERTICES_LAYOUT:
-                return lang.loadLanguagesKey(l, "EDIT_VERTICES_LAYOUT");
+                return lang.loadLanguagesKey("EDIT_VERTICES_LAYOUT");
             default:
                 throw new IllegalArgumentException();
 

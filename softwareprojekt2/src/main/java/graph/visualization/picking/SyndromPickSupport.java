@@ -36,6 +36,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      *
      * @param vv Source of the current <code>Layout</code>.
      */
+    @SuppressWarnings("unchecked")
     public SyndromPickSupport(VisualizationServer<V, E> vv) {
         super(vv);
         pickSize = 5;
@@ -57,7 +58,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
         try {
             SyndromGraph g = (SyndromGraph) vv.getGraphLayout().getGraph();
-            List<Sphere> list = g.getSpheres();
+            @SuppressWarnings("unchecked") List<Sphere> list = g.getSpheres();
             for (Object aSet : list) {
                 Sphere s = (Sphere) aSet;
                 Shape rec = sphereShapeTransformer.transform(s);
@@ -84,6 +85,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      * @return
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Object getEdge(Layout layout, double x, double y) {
         Point2D ip = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(Layer.VIEW, new Point2D.Double(x, y));
         x = ip.getX();
@@ -102,6 +104,9 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
                     E e = (E) o;
                     javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> pair = getTransformedEdgeShape(e, vv.getRenderContext(), layout);
+                    if(pair==null){
+                        return null;
+                    }
                     Shape edgeShape = pair.getKey().getKey();
                     if (edgeShape == null)
                         continue;
@@ -113,12 +118,12 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                         float cy = 0;
                         float[] f = new float[6];
                         PathIterator pi = new GeneralPath(edgeShape).getPathIterator(null);
-                        if (pi.isDone() == false) {
+                        if (!pi.isDone()) {
                             pi.next();
                             pi.currentSegment(f);
                             cx = f[0];
                             cy = f[1];
-                            if (pi.isDone() == false) {
+                            if (!pi.isDone()) {
                                 pi.currentSegment(f);
                                 cx = f[0];
                                 cy = f[1];
@@ -142,7 +147,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
     }
 
 
-    public javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> getTransformedEdgeShape(E e, RenderContext<V, E> rc, Layout<V, E> layout) {
+    private javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> getTransformedEdgeShape(E e, RenderContext<V, E> rc, Layout<V, E> layout) {
         // code from framework
         Graph<V, E> graph = layout.getGraph();
         Pair<V> endpoints = graph.getEndpoints(e);
@@ -193,10 +198,10 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
             AffineTransform xForm = AffineTransform.getTranslateInstance(x1, y1);
             edgeShape = getNormalEdgeShape(edgeShape, xForm, new Point2D.Double(x1, y1), new Point2D.Double(x2, y2));
         }
-        javafx.util.Pair<Shape, Point2D> pair = new javafx.util.Pair<Shape, Point2D>(edgeShape, new Point2D.Double(x1, y1));
-        javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> pair2 = new javafx.util.Pair<>(pair, arrow);
-        return pair2;
+        javafx.util.Pair<Shape, Point2D> pair = new javafx.util.Pair<>(edgeShape, new Point2D.Double(x1, y1));
+        return new javafx.util.Pair<>(pair, arrow);
     }
+    @SuppressWarnings("unchecked")
 
     private AffineTransform getAffineTransformAnchor(RenderContext<V, E> rc, Vertex vertex, float endX, float endY, Point2D anchorPoint) {
         AffineTransform transform;
@@ -216,7 +221,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         return transform;
     }
 
-    public Shape getNormalEdgeShape(Shape edgeShape, AffineTransform xform, Point2D pointOne, Point2D pointTwo) {
+    private Shape getNormalEdgeShape(Shape edgeShape, AffineTransform xform, Point2D pointOne, Point2D pointTwo) {
         float dx = (float) (pointTwo.getX() - pointOne.getX());
         float dy = (float) (pointTwo.getY() - pointOne.getY());
         float thetaRadians = (float) Math.atan2(dy, dx);

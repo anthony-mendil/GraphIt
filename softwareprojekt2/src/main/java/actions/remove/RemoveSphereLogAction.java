@@ -50,7 +50,7 @@ public class RemoveSphereLogAction extends LogAction {
 
                     if(sp.verticesLocked()){
                     HelperFunctions helper = new HelperFunctions();
-                    helper.setActionText("Eine der Symptome kann aufgrund der Vorlageregeln nicht gelöscht werden.", true);
+                    helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
                     actionHistory.removeLastEntry();
                     return;
                 }
@@ -64,7 +64,7 @@ public class RemoveSphereLogAction extends LogAction {
                 createParameter(sp,vertices);
             }else{
                     HelperFunctions helper = new HelperFunctions();
-                    helper.setActionText("Die Sphäre kann aufgrund der Vorlagereglen nicht gelöscht werden.", true);
+                    helper.setActionText("REMOVE_SPHERE_TEMPLATE_ALERT", true, true);
 
                 }
             }

@@ -54,7 +54,7 @@ public class EditEdgesStrokeLogAction extends LogAction {
                 }
             }
             if(!lockedEdges.isEmpty()){
-                helper.setActionText("Die Linienart der Kante(n) darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+                helper.setActionText( "EDIT_EDGES_STROKE_ALERT", true, true);
             }
             if(lockedEdges.size() == pickedState.getPicked().size()){
                 actionHistory.removeLastEntry();

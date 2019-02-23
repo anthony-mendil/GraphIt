@@ -24,13 +24,12 @@ public class EdgeContextMenu {
     private final ActionHistory history;
     private final Values values;
     private final Edge edge;
-    private LoadLanguage language = new LoadLanguage();
+    private LoadLanguage language = LoadLanguage.getInstance();
 
     public EdgeContextMenu(Edge edge){
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
-        language.changeLanguage(values.getGuiLanguage());
         this.edge = edge;
         setup();
     }

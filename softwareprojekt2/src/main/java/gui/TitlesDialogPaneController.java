@@ -39,13 +39,12 @@ public class TitlesDialogPaneController extends DialogPane{
 
     private ButtonType buttonType = ButtonType.CANCEL;
     private Values values = Values.getInstance();
-    private LoadLanguage language = new LoadLanguage();
+    private LoadLanguage language = LoadLanguage.getInstance();
     private Syndrom syndrom = Syndrom.getInstance();
     private Map<String, String> oldTitle;
     private boolean isNotSame = false;
 
     public void initialize(){
-        language.changeLanguage(values.getGuiLanguage());
         cancel = (Button) titleDialog.lookupButton(CANCEL_TYPE);
         cancel.setText(language.loadLanguagesKey("CANCEL_DIALOG"));
         save = (Button) titleDialog.lookupButton(SAVE_TYPE);

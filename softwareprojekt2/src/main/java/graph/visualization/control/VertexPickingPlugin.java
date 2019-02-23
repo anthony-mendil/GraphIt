@@ -13,6 +13,7 @@ import graph.visualization.picking.SyndromPickSupport;
 import gui.GraphButtonType;
 import gui.Values;
 import gui.VertexContextMenu;
+import gui.properties.LoadLanguage;
 import javafx.scene.control.ContextMenu;
 import javafx.util.Pair;
 
@@ -36,6 +37,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     private ContextMenu contextMenu;
     private int addToSelectionModifiers;
     private ActionHistory history;
+    private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 
     /**
      * create an instance with passed values
@@ -68,11 +70,12 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 if (sp != null && vertex == null && edge == null) {
                     if (values.getMode() != FunctionMode.TEMPLATE && Syndrom.getInstance().getTemplate().getMaxVertices() != 0 &&
                             Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size() >= Syndrom.getInstance().getTemplate().getMaxVertices()) {
-                        helper.setActionText("Es dürfen aufgrund der Vorlageregeln nur maximal " + Syndrom.getInstance().getTemplate().getMaxVertices() + " Symptome gesetzt weren.", true);
+                        Object[] obj = { Syndrom.getInstance().getTemplate().getMaxVertices()};
+                        helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_MAX_COUNT_ALERT", obj), true, false);
                         return;
                     }
                     if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
-                        helper.setActionText("Es dürfen aufgrund der Vorlageregeln keine Symptome hinzugefügt werden.", true);
+                        helper.setActionText("VERTEX_PICKING_TEMPLATE_COUNT_ALERT", true, true);
                     }
                     if (sp.getLockedMaxAmountVertices().equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE) {
                         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
@@ -82,10 +85,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         pickedState.clear();
                         pickedState.pick(newVertex, true);
                     } else {
-                        helper.setActionText("Es können aufgrund der Vorlageregeln keine weitere Symptome in die Sphäre gesetzt werden", true);
+                        helper.setActionText("VERTEX_PICKING_COUNT_ALERT", true, true);
                     }
                 } else {
-                    helper.setActionText("Hinzufügen eines Knoten hier nicht möglich!", true);
+                    helper.setActionText("VERTEX_PICKING_ALERT_ADD", true, true);
                 }
             }
             vv.repaint();
@@ -172,19 +175,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     switch (values.getEdgeArrowType()) {
                         case REINFORCED:
                             if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
-                                helper.setActionText("Verstärkende Relationen sind aufgrund der Vorlageregeln nicht erlaubt", true);
+                                helper.setActionText("EDGES_TYPE_REINFORCED_ALERT", true, true);
                                 return;
                             }
                             break;
                         case EXTENUATING:
                             if (!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()) {
-                                helper.setActionText("Abschwächende Relationen sind aufgrund der Vorlageregelen nicht erlaubt", true);
+                                helper.setActionText("EDGES_TYPE_EXTENUATING_ALERT", true, true);
                                 return;
                             }
                             break;
                         case NEUTRAL:
                             if (!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()) {
-                                helper.setActionText("Unbekannte Relationen sind aufgrund der Vorlageregelen nicht erlaubt.", true);
+                                helper.setActionText("EDGES_TYPE_NEURAL_ALERT", true, true);
                                 return;
                             }
                             break;
@@ -194,7 +197,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(edge);
                 history.execute(addEdgesLogAction);
             } else {
-                helper.setActionText("Es dürfen nur " + Syndrom.getInstance().getTemplate().getMaxEdges() + " Relation(en) aufgrund der Vorlageregeln gesetzt werden.", true);
+                Object[] obj = {Syndrom.getInstance().getTemplate().getMaxEdges()};
+                helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_COUNT2_ALERT", obj), true, false);
             }
         }
         source = null;

@@ -79,7 +79,7 @@ public class RemoveVerticesLogAction extends LogAction {
                 }
             }
             if(!lockedVertices.isEmpty()){
-                helper.setActionText("Die Anzahl der Symptome in der Sphäre sind in den Vorlageregeln festgelegt.",true);
+                helper.setActionText("REMOVE_VERTICES_ALERT",true, true);
                 ActionHistory.getInstance().removeLastEntry();
                 return;
             }
