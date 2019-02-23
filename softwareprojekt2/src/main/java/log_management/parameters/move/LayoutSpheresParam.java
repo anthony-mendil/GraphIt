@@ -47,27 +47,19 @@ public class LayoutSpheresParam implements Param {
         oldVertices = new ArrayList<>();
         oldPositions = new ArrayList<>();
 
+        pOldVertices.forEach((v, p) -> {
+            oldVertices.add(v);
+            oldPositions.add(p);
+        });
         pOldPosition.forEach((s, p) -> {
             spheres.add(s);
             first.add(p.getKey().getKey());
             second.add(p.getKey().getValue());
             positions.add(p.getValue());
         });
-        pOldVertices.forEach((v, p) -> {
-            oldVertices.add(v);
-            oldPositions.add(p);
-        });
+
     }
 
-    @Override
-    public String prettyPrint() {
-        Language language = Values.getInstance().getGuiLanguage();
-        if (language == Language.ENGLISH) {
-            return "The Spheres were automatically positioned or the automatic positioning was undone.";
-        } else {
-            return "Die Sphären wurden automatisch angeordnet oder die automatische Anordnung wurde rückgängig gemacht";
-        }
-    }
 
     public Map<Sphere, Pair<Pair<Double, Double>, Point2D>> getOldPosition() {
         Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldPosition = new HashMap<>();
@@ -83,5 +75,15 @@ public class LayoutSpheresParam implements Param {
             map.put(oldVertices.get(i), oldPositions.get(i));
         }
         return map;
+    }
+
+    @Override
+    public String prettyPrint() {
+        Language language = Values.getInstance().getGuiLanguage();
+        if (language == Language.ENGLISH) {
+            return "The Spheres were automatically positioned or the automatic positioning was undone.";
+        } else {
+            return "Die Sphären wurden automatisch angeordnet oder die automatische Anordnung wurde rückgängig gemacht";
+        }
     }
 }
