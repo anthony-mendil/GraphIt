@@ -85,10 +85,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         pickedState.clear();
                         pickedState.pick(newVertex, true);
                     } else {
-                        helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_COUNT_ALERT"), true);
+                        helper.setActionText("VERTEX_PICKING_COUNT_ALERT", true);
                     }
                 } else {
-                    helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_ALERT_ADD"), true);
+                    helper.setActionText("VERTEX_PICKING_ALERT_ADD", true);
                 }
             }
             vv.repaint();
