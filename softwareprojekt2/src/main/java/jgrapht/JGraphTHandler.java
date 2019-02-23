@@ -10,6 +10,7 @@ import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
 import javafx.util.Pair;
+import lombok.Getter;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
 import org.jgrapht.alg.cycle.TarjanSimpleCycles;
@@ -27,10 +28,12 @@ public class JGraphTHandler {
     /**
      * The start-vertex of the path.
      */
+    @Getter
     private Vertex startVertex;
     /**
      * The end-vertex of the path.
      */
+    @Getter
     private Vertex endVertex;
     /**
      * The graph in JGraphT-form.
@@ -46,8 +49,16 @@ public class JGraphTHandler {
     /**
      * Constructor in case the user changes to analyse-mode and analyses without using a vertex.
      */
-    public JGraphTHandler(List<Vertex> pVertices, Set<Pair<Vertex, Vertex>> pEdges) {
-        convertGraphToJGraphT(pVertices, pEdges);
+    public JGraphTHandler() {
+        Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        for(Edge edge : graph.getEdges()){
+            edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
+            Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
+            edges.add(vertices);
+        }
+        convertGraphToJGraphT(new ArrayList<>(graph.getVertices()), edges);
     }
 
     /**

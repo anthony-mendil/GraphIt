@@ -12,6 +12,10 @@ public enum AnalyseTypeSeveral {
      * Filter-type which will filter the successor-vertices of the selected vertex.
      */
     NEIGHBOUR_SUCCESSOR,
+    /**
+     * Filter-type which will filter the predecessor/successor-vertices of the selected vertex.
+     */
+    NEIGHBOUR_PREDECESSOR_SUCCESSOR,
 //    /**
 //     * Filter-type which will filter the originating edges of the selected vertex.
 //     */

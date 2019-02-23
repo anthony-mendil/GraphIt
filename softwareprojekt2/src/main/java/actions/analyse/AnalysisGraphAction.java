@@ -84,7 +84,7 @@ public class AnalysisGraphAction extends GraphAction{
                 Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
                 edges.add(vertices);
             }
-        JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()), edges);
+        JGraphTHandler jGraphTHandler = new JGraphTHandler();
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
             if(analyseTypeSingle != null) {

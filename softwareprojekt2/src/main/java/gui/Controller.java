@@ -9,8 +9,7 @@ import actions.activate.ActivateFadeoutAction;
 import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
-import actions.analyse.AnalysisGraphAction;
-import actions.analyse.FilterGraphAction;
+import actions.analyse.*;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
 import actions.deactivate.ResetVvAction;
@@ -2534,7 +2533,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisPathCheckBox.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.SHORTESTPATH);
+            AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
             analysisGraphAction.action();
         }
     }
@@ -2544,7 +2543,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisPathCheckBox.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.ALLPATHS);
+            AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
             analysisGraphAction.action();
         }
     }
@@ -2554,7 +2553,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.EDGE_CHAINS);
+            AnalysisGraphEdgeChainsAction analysisGraphAction = new AnalysisGraphEdgeChainsAction();
             analysisGraphAction.action();
         }
     }
@@ -2564,7 +2563,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CONVERGENT_BRANCHES);
+            AnalysisGraphConvergentBranchesAction analysisGraphAction = new AnalysisGraphConvergentBranchesAction();
             analysisGraphAction.action();
         }
     }
@@ -2574,7 +2573,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.DIVERGENT_BRANCHES);
+            AnalysisGraphDivergentBranchesAction analysisGraphAction = new AnalysisGraphDivergentBranchesAction();
             analysisGraphAction.action();
         }
     }
@@ -2584,7 +2583,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.BRANCHES);
+            AnalysisGraphBranchesAction analysisGraphAction = new AnalysisGraphBranchesAction();
             analysisGraphAction.action();
         }
     }
@@ -2593,7 +2592,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
+            AnalysisGraphCyclesAction analysisGraphAction = new AnalysisGraphCyclesAction();
             analysisGraphAction.action();
         }
     }

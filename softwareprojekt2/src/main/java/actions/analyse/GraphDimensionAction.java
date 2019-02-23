@@ -49,7 +49,7 @@ public class GraphDimensionAction extends GraphAction {
             Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
             edges.add(vertices);
         }
-        JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()),edges);
+        JGraphTHandler jGraphTHandler = new JGraphTHandler();
 
 
         /**
