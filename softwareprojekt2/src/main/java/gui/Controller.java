@@ -93,7 +93,7 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.text.MessageFormat;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -417,7 +417,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * The values object that gets all the arguments from the gui for the actions.
      */
-    private Values values;
+    private Values values = Values.getInstance();
 
     /**
      * The syndrom object that is needed to change the form of spheres, symptoms and edges.
@@ -944,7 +944,7 @@ public class Controller implements ObserverSyndrom {
         history.execute(editFontSphereLogAction);
     }
 
-    @SuppressWarnings("unused")
+    /*@SuppressWarnings("unused")
     public void sphereFont1() {
         editFontSphere(TIMES_NEW_ROMAN);
     }
@@ -952,7 +952,7 @@ public class Controller implements ObserverSyndrom {
     @SuppressWarnings("unused")
     public void sphereFont2() {
         editFontSphere(COMIC_SANS_MS);
-    }
+    }*/
 
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
@@ -1475,7 +1475,6 @@ public class Controller implements ObserverSyndrom {
 
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
-        values = Values.getInstance();
 
         values.setCanvas(canvas);
         values.setHBox(textBox);
@@ -1637,18 +1636,18 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void initFonts() {
-        fonts = new ArrayList<>();
         try {
-            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Roboto-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/RobotoSlab-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/AveriaSansLibre-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Kalam-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("/fonts/regular/Mali-Regular.ttf")).deriveFont(Font.PLAIN, 32);
-            fonts.add(roboto);
-            fonts.add(robotoSlab);
-            fonts.add(averiaSansLibre);
-            fonts.add(kalam);
-            fonts.add(mali);
+            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf"));
+            values.setRoboto(roboto);
+            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf"));
+            values.setRobotoSlab(robotoSlab);
+            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf"));
+            values.setAveriaSansLibr(averiaSansLibre);
+            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Kalam-Regular.ttf"));
+            values.setKalam(kalam);
+            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Mali-Regular.ttf"));
+            values.setMali(mali);
+
         } catch (Exception e) {
             logger.error(e.toString());
         }
@@ -1860,9 +1859,7 @@ public class Controller implements ObserverSyndrom {
                         "Kalam",
                         "Mali",
                         "Roboto",
-                        "RobotoSlab",
-                        TIMES_NEW_ROMAN,
-                        COMIC_SANS_MS
+                        "RobotoSlab"
                 );
 
         if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {

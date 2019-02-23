@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.awt.*;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -182,6 +183,12 @@ public class Values {
 
     @Setter(AccessLevel.NONE)
     private final int maxScale = 200;
+
+    private Font roboto;
+    private  Font robotoSlab;
+    private Font averiaSansLibr;
+    private Font kalam;
+    private Font mali;
 
 
 

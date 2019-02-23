@@ -35,7 +35,7 @@ public class EditSphereColorLogAction extends LogAction {
      *
      * @param pEditSphereColorParam The vertices object containing the sphere and color.
      */
-    public EditSphereColorLogAction(EditSphereColorParam pEditSphereColorParam) {
+    private EditSphereColorLogAction(EditSphereColorParam pEditSphereColorParam) {
         super(LogEntryName.EDIT_SPHERE_COLOR);
         parameters = pEditSphereColorParam;
     }
@@ -45,14 +45,12 @@ public class EditSphereColorLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
     if(parameters == null) {
-        Sphere lockedSphere = null;
         for (Sphere sp : pickedState.getPicked()) {
             if(!sp.isLockedStyle()|| values.getMode() == FunctionMode.TEMPLATE) {
                 createParameter(sp, sp.getColor(), color);
                 sp.setColor(color);
             }else{
                 helper.setActionText("Die Farbe der Sphäre darf aufgrund der Vorlageregeln nicht geändert werden.", true);
-                lockedSphere = sp;
             }
         }
     }else{
@@ -62,9 +60,7 @@ public class EditSphereColorLogAction extends LogAction {
         }
         vv.repaint();
         syndrom.getVv2().repaint();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
-     //   JGraphTHandler jGraphTHandler = new JGraphTHandler(graph.getVertices(),);
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
