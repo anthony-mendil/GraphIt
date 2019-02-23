@@ -1,6 +1,6 @@
 package gui;
 
-import actions.analyse.AnalysisGraphAction;
+import actions.analyse.AnalysisGraphNeighborsAction;
 import actions.deactivate.ResetVvAction;
 import graph.algorithmen.AnalyseTypeSeveral;
 import javafx.beans.value.ChangeListener;
@@ -26,11 +26,11 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
         if(!newValue){
             if(!textField.getText().isEmpty()){
                 if(analysisPredecessor.isSelected()){
-                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(textField.getText()));
+                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(textField.getText()));
                     analysisGraphAction.action();
                 }
                 if(analysisSuccessor.isSelected()){
-                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
+                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
                     analysisGraphAction.action();
                 }
             }else{

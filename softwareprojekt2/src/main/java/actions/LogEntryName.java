@@ -136,5 +136,9 @@ public enum LogEntryName {
     /**
      * The log entry will be of this type if deactivate-anchor-points-fadeout-action is executed.
      */
-    DEACTIVATE_ANCHOR_POINTS_FADEOUT
+    DEACTIVATE_ANCHOR_POINTS_FADEOUT,
+    /**
+     * The log entry will be of this type if show-highlighted-action is executed.
+     */
+    SHOW_HIGHLIGHTED,
 }

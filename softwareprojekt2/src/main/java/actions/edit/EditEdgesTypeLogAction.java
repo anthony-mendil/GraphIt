@@ -45,7 +45,7 @@ public class EditEdgesTypeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if(parameters == null) {
-            if(values.getMode() != FunctionMode.TEMPLATE) {
+            if(values.getMode() == FunctionMode.EDIT) {
                 switch (type) {
                     case REINFORCED:
                         if (!template.isReinforcedEdgesAllowed()) {
@@ -72,7 +72,7 @@ public class EditEdgesTypeLogAction extends LogAction {
             Map<Edge,EdgeArrowType> oldEdges = new HashMap<>();
             Map<Edge,EdgeArrowType> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked() ) {
-                if(!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
+                if(!e.isLockedEdgeType() || values.getMode() != FunctionMode.EDIT) {
                     oldEdges.put(e, e.getArrowType());
                     e.setArrowType(type);
                     newEdges.put(e, type);

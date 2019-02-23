@@ -9,8 +9,7 @@ import actions.activate.ActivateFadeoutAction;
 import actions.activate.ActivateHighlightAction;
 import actions.add.AddFadeoutElementAction;
 import actions.add.AddHighlightElementAction;
-import actions.analyse.AnalysisGraphAction;
-import actions.analyse.FilterGraphAction;
+import actions.analyse.*;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import actions.deactivate.DeactivateFadeoutAction;
 import actions.deactivate.ResetVvAction;
@@ -111,11 +110,6 @@ public class Controller implements ObserverSyndrom {
     @FXML private SwingNode canvas;
 
     @FXML private SwingNode satellite;
-
-    /**
-     *
-     */
-    private List<Font> fonts;
 
     /**
      * The swing node that displays the zoom window.
@@ -665,8 +659,6 @@ public class Controller implements ObserverSyndrom {
     private static final String OOF = "*.oof";
     private static final String TXT = "*.txt";
     private static final String GXL_FILE = "GXL files (*.gxl)";
-    private static final String TIMES_NEW_ROMAN = "Times New Roman";
-    private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
 
     private static Logger logger = Logger.getLogger(Controller.class);
@@ -674,6 +666,15 @@ public class Controller implements ObserverSyndrom {
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
     private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
+
+    private ObservableList<String> fonts =
+            FXCollections.observableArrayList(
+                    "AveriaSansLibre",
+                    "Kalam",
+                    "Mali",
+                    "Roboto",
+                    "RobotoSlab"
+            );
 
 
     public void filterEdgeTypeReinforced(){
@@ -717,7 +718,7 @@ public class Controller implements ObserverSyndrom {
     /* ----------------ANALYSE---------------------- */
 
     /**
-     * Creates an AnalysisGraphAction-object and executes the action with the action history.
+     * Creates an AnalysisGraphNeighborsAction-object and executes the action with the action history.
      */
     @SuppressWarnings("unused")
     public void analysisGraph() {
@@ -1749,14 +1750,18 @@ public class Controller implements ObserverSyndrom {
                 currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
             } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                currentFont = newValue;
-                editFontSphere(currentFont);
+                if(fonts.contains(newValue)){
+                    currentFont = newValue;
+                    editFontSphere(currentFont);
+                }
             } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                 currentSize = newValue;
                 editFontSizeVertices(Integer.parseInt(currentSize));
             } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                currentFont = newValue;
-                editFontVertex(currentFont);
+                if(fonts.contains(newValue)){
+                    currentFont = newValue;
+                    editFontVertex(currentFont);
+                }
             }
             root.requestFocus();
         }
@@ -1774,14 +1779,14 @@ public class Controller implements ObserverSyndrom {
             if (newPropertyValue) {
                 if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     currentSize = comboBox.getEditor().getText();
-                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
+                } else if ((comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) && fonts.contains(comboBox.getEditor().getText())) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
                 if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     comboBox.getEditor().setText(currentSize);
                 } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                    comboBox.getEditor().setText(currentFont);
+                        comboBox.getEditor().setText(currentFont);
                 }
             }
         }
@@ -1848,15 +1853,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void loadFontComboBox(ComboBox<String> comboBox) {
-        ObservableList<String> fonts =
-                FXCollections.observableArrayList(
-                        "AveriaSansLibre",
-                        "Kalam",
-                        "Mali",
-                        "Roboto",
-                        "RobotoSlab"
-                );
-
         if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontSphere());
         } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
@@ -2075,12 +2071,24 @@ public class Controller implements ObserverSyndrom {
         if(editMode){
             if(active){
                 overViewAccordion.getPanes().add(historyTitledPane);
+                if(!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()){
+                    edgeArrowReinforced.setDisable(true);
+                }
+                if(!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()){
+                    edgeArrowExtenuating.setDisable(true);
+                }
+                if(!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()){
+                    edgeArrowNeutral.setDisable(true);
+                }
             }else{
                 overViewAccordion.getPanes().remove(historyTitledPane);
             }
         }else{
             if (active) {
                 overViewAccordion.getPanes().add(templateTitledPane);
+                edgeArrowReinforced.setDisable(false);
+                edgeArrowExtenuating.setDisable(false);
+                edgeArrowNeutral.setDisable(false);
             } else {
                 overViewAccordion.getPanes().remove(templateTitledPane);
             }
@@ -2110,7 +2118,6 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setDisable(disable);
     }
 
-    @SuppressWarnings("unused")
     private void optionExitWindow() {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("GraphIt");
@@ -2559,7 +2566,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisPathCheckBox.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.SHORTESTPATH);
+            AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
             analysisGraphAction.action();
         }
     }
@@ -2569,7 +2576,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisPathCheckBox.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.ALLPATHS);
+            AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
             analysisGraphAction.action();
         }
     }
@@ -2579,7 +2586,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.EDGE_CHAINS);
+            AnalysisGraphEdgeChainsAction analysisGraphAction = new AnalysisGraphEdgeChainsAction();
             analysisGraphAction.action();
         }
     }
@@ -2589,7 +2596,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CONVERGENT_BRANCHES);
+            AnalysisGraphConvergentBranchesAction analysisGraphAction = new AnalysisGraphConvergentBranchesAction();
             analysisGraphAction.action();
         }
     }
@@ -2599,7 +2606,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.DIVERGENT_BRANCHES);
+            AnalysisGraphDivergentBranchesAction analysisGraphAction = new AnalysisGraphDivergentBranchesAction();
             analysisGraphAction.action();
         }
     }
@@ -2609,7 +2616,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.BRANCHES);
+            AnalysisGraphBranchesAction analysisGraphAction = new AnalysisGraphBranchesAction();
             analysisGraphAction.action();
         }
     }
@@ -2618,7 +2625,7 @@ public class Controller implements ObserverSyndrom {
         if(analysisOptions.isSelected()){
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
-            AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
+            AnalysisGraphCyclesAction analysisGraphAction = new AnalysisGraphCyclesAction();
             analysisGraphAction.action();
         }
     }
