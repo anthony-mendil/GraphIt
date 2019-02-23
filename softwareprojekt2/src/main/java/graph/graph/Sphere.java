@@ -167,7 +167,6 @@ public class Sphere {
         } else if (Values.getInstance().getGuiLanguage() == Language.ENGLISH) {
             return annotation.get(Language.ENGLISH.name());
         }
-
         return "";
     }
 }
