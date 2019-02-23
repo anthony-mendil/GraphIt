@@ -51,7 +51,7 @@ public class RemoveVerticesLogAction extends LogAction {
             Map<Vertex,Sphere> params = new HashMap<>();
             Map<Edge, Pair<Vertex,Vertex>> edg = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                if(!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) {
+                if(!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
                    Point2D posVertex = vertex.getCoordinates();
                     posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
                     Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());

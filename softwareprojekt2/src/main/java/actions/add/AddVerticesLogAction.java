@@ -31,7 +31,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Map of vertices and the sphere.
      */
-    private Map<Vertex, Sphere> vertices = new HashMap<>();
+    private Map<Vertex, Sphere> vertices;
 
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
@@ -70,7 +70,7 @@ public class AddVerticesLogAction extends LogAction {
                 createParameter(newVertex, sphere);
                 vv.getGraphLayout().setLocation(newVertex, position2D);
             } else {
-                Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam) parameters).getVertices();
+                vertices = ((AddRemoveVerticesParam) parameters).getVertices();
                 List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
                 List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
                 List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getSinkVertexList();

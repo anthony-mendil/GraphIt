@@ -22,7 +22,6 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     private final CheckBox analysisPredecessor;
     private final CheckBox analysisPathCheckBox;
     private final CheckBox analysisOptions;
-    private boolean error = false;
 
     public AnalysisCheckBoxListener(CheckBox pCheckBox, Controller pC){
         checkBox = pCheckBox;
@@ -52,6 +51,7 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                     }
                 }
             }else{
+                disableAllCheckBoxes();
                 checkBox.setSelected(oldValue);
             }
         }else{
@@ -73,6 +73,15 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                 analysisGraphAction.action();
             }
         }
+    }
+
+    private void disableAllCheckBoxes(){
+        analysisSuccessor.setSelected(false);
+        analysisPredecessor.setSelected(false);
+
+        analysisOptions.setSelected(false);
+        analysisPathCheckBox.setSelected(false);
+        amountSymptomTextField.setDisable(false);
     }
 
     /**
