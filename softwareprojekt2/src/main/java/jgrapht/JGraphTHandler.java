@@ -77,7 +77,7 @@ public class JGraphTHandler {
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() != 2) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("JGRAPHT_ALERT", true, true);
+            helperFunctions.setActionText("J_GRAPH_T_ALERT", true, true);
             return false;
         }
         Iterator<Vertex> iterator = pickedState.getPicked().iterator();
@@ -94,7 +94,7 @@ public class JGraphTHandler {
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().isEmpty()) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("JGRAPHT_MARK_ALERT", true, true);
+            helperFunctions.setActionText("J_GRAPH_T_MARK_ALERT", true, true);
             return false;
         }
         pickedVertices = pickedState.getPicked();
@@ -143,7 +143,7 @@ public class JGraphTHandler {
             if(shortestPath == null){
                 HelperFunctions helperFunctions = new HelperFunctions();
                 Object[] obj = {startVertex.getAnnotation().get(Language.GERMAN.name()), endVertex.getAnnotation().get(Language.GERMAN.name())};
-                helperFunctions.setActionText(loadLanguage.loadLanguagesKey("JGRAPHT_COUNT", obj), true, false);
+                helperFunctions.setActionText(loadLanguage.loadLanguagesKey("J_GRAPH_T_COUNT", obj), true, false);
             }
             return shortestPath;
         }
