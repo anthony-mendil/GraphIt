@@ -53,7 +53,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
                     vertex.setDrawColor(color);
                     paramNewVertices.put(vertex, color);
                 }else{
-                    helper.setActionText("EDIT_VERTICES_DRAW_COLOR_ALERT", true);
+                    helper.setActionText("EDIT_VERTICES_DRAW_COLOR_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }

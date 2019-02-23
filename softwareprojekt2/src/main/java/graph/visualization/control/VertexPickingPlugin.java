@@ -71,11 +71,11 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     if (values.getMode() != FunctionMode.TEMPLATE && Syndrom.getInstance().getTemplate().getMaxVertices() != 0 &&
                             Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size() >= Syndrom.getInstance().getTemplate().getMaxVertices()) {
                         Object[] obj = { Syndrom.getInstance().getTemplate().getMaxVertices()};
-                        helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_MAX_COUNT_ALERT", obj), true);
+                        helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_MAX_COUNT_ALERT", obj), true, false);
                         return;
                     }
                     if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
-                        helper.setActionText("VERTEX_PICKING_TEMPLATE_COUNT_ALERT", true);
+                        helper.setActionText("VERTEX_PICKING_TEMPLATE_COUNT_ALERT", true, true);
                     }
                     if (sp.getLockedMaxAmountVertices().equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE) {
                         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
@@ -85,10 +85,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         pickedState.clear();
                         pickedState.pick(newVertex, true);
                     } else {
-                        helper.setActionText("VERTEX_PICKING_COUNT_ALERT", true);
+                        helper.setActionText("VERTEX_PICKING_COUNT_ALERT", true, true);
                     }
                 } else {
-                    helper.setActionText("VERTEX_PICKING_ALERT_ADD", true);
+                    helper.setActionText("VERTEX_PICKING_ALERT_ADD", true, true);
                 }
             }
             vv.repaint();
@@ -175,19 +175,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     switch (values.getEdgeArrowType()) {
                         case REINFORCED:
                             if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
-                                helper.setActionText("EDGES_TYPE_REINFORCED_ALERT", true);
+                                helper.setActionText("EDGES_TYPE_REINFORCED_ALERT", true, true);
                                 return;
                             }
                             break;
                         case EXTENUATING:
                             if (!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()) {
-                                helper.setActionText("EDGES_TYPE_EXTENUATING_ALERT", true);
+                                helper.setActionText("EDGES_TYPE_EXTENUATING_ALERT", true, true);
                                 return;
                             }
                             break;
                         case NEUTRAL:
                             if (!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()) {
-                                helper.setActionText("EDGES_TYPE_NEURAL_ALERT", true);
+                                helper.setActionText("EDGES_TYPE_NEURAL_ALERT", true, true);
                                 return;
                             }
                             break;
@@ -198,7 +198,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 history.execute(addEdgesLogAction);
             } else {
                 Object[] obj = {Syndrom.getInstance().getTemplate().getMaxEdges()};
-                helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_COUNT2_ALERT", obj), true);
+                helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_COUNT2_ALERT", obj), true, false);
             }
         }
         source = null;

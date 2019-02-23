@@ -79,7 +79,7 @@ public class RemoveVerticesLogAction extends LogAction {
                 }
             }
             if(!lockedVertices.isEmpty()){
-                helper.setActionText("REMOVE_VERTICES_ALERT",true);
+                helper.setActionText("REMOVE_VERTICES_ALERT",true, true);
                 ActionHistory.getInstance().removeLastEntry();
                 return;
             }

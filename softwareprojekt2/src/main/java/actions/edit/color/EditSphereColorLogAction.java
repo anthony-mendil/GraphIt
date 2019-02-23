@@ -50,7 +50,7 @@ public class EditSphereColorLogAction extends LogAction {
                 createParameter(sp, sp.getColor(), color);
                 sp.setColor(color);
             }else{
-                helper.setActionText("EDIT_SPHERE_COLOR_ALERT", true);
+                helper.setActionText("EDIT_SPHERE_COLOR_ALERT", true, true);
             }
         }
     }else{

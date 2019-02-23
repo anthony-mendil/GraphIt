@@ -59,7 +59,7 @@ public class EditVerticesSizeLogAction extends LogAction {
                         }
                     }
                 }else{
-                    helper.setActionText("EDIT_VERTICES_SITE_ALERT", true);
+                    helper.setActionText("EDIT_VERTICES_SITE_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }

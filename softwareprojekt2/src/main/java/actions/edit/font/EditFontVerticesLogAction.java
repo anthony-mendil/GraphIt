@@ -56,7 +56,7 @@ public class EditFontVerticesLogAction extends LogAction {
                     vertex.setFont(font);
                     newVertices.put(vertex, font);
                 }else{
-                    helper.setActionText("EDIT_VERTICES_FONT_ALERT", true);
+                    helper.setActionText("EDIT_VERTICES_FONT_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }

@@ -98,7 +98,7 @@ public class EditSphereSizeLogAction extends LogAction {
                         }
                     }
                 } else{
-                    helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true);
+                    helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true, false);
                     lockedSphere = sp;
                 }
             }

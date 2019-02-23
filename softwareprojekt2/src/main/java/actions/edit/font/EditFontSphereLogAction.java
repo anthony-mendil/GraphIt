@@ -50,7 +50,7 @@ public class EditFontSphereLogAction extends LogAction {
                    createParameter(sp, sp.getFont(), font);
                     sp.setFont(font);
                 }else{
-                    helper.setActionText("EDIT_FONT_SPHERE_ALERT", true);
+                    helper.setActionText("EDIT_FONT_SPHERE_ALERT", true, true);
                     sphere = sp;
                 }
             }

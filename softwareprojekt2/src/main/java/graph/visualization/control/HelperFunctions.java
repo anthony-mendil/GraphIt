@@ -91,7 +91,7 @@ public class HelperFunctions {
         service.start();
     }
 
-    public void setActionText(String string, boolean isAlert) {
+    public void setActionText(String string, boolean isAlert, boolean withPlaceHolder) {
         Service<Void> service = new Service<Void>() {
             @Override
             protected Task<Void> createTask() {
@@ -101,7 +101,7 @@ public class HelperFunctions {
                         final CountDownLatch latch = new CountDownLatch(1);
                         Platform.runLater(() -> {
                             try {
-                                String alert = (lang.loadLanguagesKey(string) != null)? lang.loadLanguagesKey(string): string;
+                                String alert = (withPlaceHolder)? lang.loadLanguagesKey(string): string;
                                 values.getCurrentActionText().setText(alert);
                                 Text text = values.getCurrentActionText();
                                 if (isAlert) {
@@ -185,8 +185,7 @@ public class HelperFunctions {
         Stage titleStage = new Stage();
         titleStage.setResizable(false);
         titleStage.setTitle(lang.loadLanguagesKey("CONTEXT_DIALOG_TITLE"));
-        titleStage.getIcons().add(new Image(
-                getClass().getResourceAsStream("/GraphItLogo.png")));
+
 
         DialogPane dialogPane = null;
         try {

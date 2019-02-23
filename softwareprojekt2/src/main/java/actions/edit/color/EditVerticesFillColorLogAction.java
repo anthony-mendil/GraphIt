@@ -57,7 +57,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
                     vertex.setFillColor(color);
                     newVerticesParam.put(vertex, color);
                 }else{
-                    helper.setActionText("EDIT_VERTICES_FILL_COLOR_ALERT", true);
+                    helper.setActionText("EDIT_VERTICES_FILL_COLOR_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }

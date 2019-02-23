@@ -61,7 +61,7 @@ public class EditEdgesColorLogAction extends LogAction {
                 }
             }
             if(!lockedEdges.isEmpty()){
-                helper.setActionText("EDIT_EDGES_COLOR_ALERT", true);
+                helper.setActionText("EDIT_EDGES_COLOR_ALERT", true, true);
             }
             if(pickedState.getPicked().size() == lockedEdges.size()){
                 actionHistory.removeLastEntry();

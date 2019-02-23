@@ -49,19 +49,19 @@ public class EditEdgesTypeLogAction extends LogAction {
                 switch (type) {
                     case REINFORCED:
                         if (!template.isReinforcedEdgesAllowed()) {
-                            helper.setActionText("EDGES_TYPE_REINFORCED_ALERT", true);
+                            helper.setActionText("EDGES_TYPE_REINFORCED_ALERT", true, true);
                             return;
                         }
                         break;
                     case EXTENUATING:
                         if (!template.isExtenuatingEdgesAllowed()) {
-                            helper.setActionText("EDGES_TYPE_EXTENUATING_ALERT", true);
+                            helper.setActionText("EDGES_TYPE_EXTENUATING_ALERT", true, true);
                             return;
                         }
                         break;
                     case NEUTRAL:
                         if (!template.isNeutralEdgesAllowed()) {
-                            helper.setActionText("EDGES_TYPE_NEURAL_ALERT", true);
+                            helper.setActionText("EDGES_TYPE_NEURAL_ALERT", true, true);
                             return;
                         }
                         break;
@@ -81,7 +81,7 @@ public class EditEdgesTypeLogAction extends LogAction {
                 }
             }
             if(!lockedEdges.isEmpty()){
-                helper.setActionText("EDIT_EDGES_TYPE_ACTION", true);
+                helper.setActionText("EDIT_EDGES_TYPE_ACTION", true, true);
             }
             if(lockedEdges.size() == pickedState.getPicked().size()){
                 actionHistory.removeLastEntry();

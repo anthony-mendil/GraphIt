@@ -69,7 +69,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
                     annotation.put(language.name(), text);
                     sp.setAnnotation(annotation);
                 } else{
-                    helper.setActionText("EDIT_SPERE_ANNOTATION_ALERT", true);
+                    helper.setActionText("EDIT_SPERE_ANNOTATION_ALERT", true, true);
                     lockedSpheres.add(sp);
                 }
             }

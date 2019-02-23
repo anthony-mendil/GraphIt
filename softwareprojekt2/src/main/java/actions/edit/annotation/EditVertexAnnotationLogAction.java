@@ -59,7 +59,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     annotation.put(language.name(), text);
                     v.setAnnotation(annotation);
                 }else{
-                    helper.setActionText("EDIT_VERTEX_ANNOTATION_ALERT", true);
+                    helper.setActionText("EDIT_VERTEX_ANNOTATION_ALERT", true, true);
                 }
             }
 

@@ -112,10 +112,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 history.execute(addSphereLogAction);
             }else{
                 Object[] obj = {Syndrom.getInstance().getTemplate().getMaxSpheres()};
-                helper.setActionText(loadLanguage.loadLanguagesKey("SPHERE_PICKING_TEMPLATE_ALERT", obj), true);
+                helper.setActionText(loadLanguage.loadLanguagesKey("SPHERE_PICKING_TEMPLATE_ALERT", obj), true, false);
             }
         } else {
-            helper.setActionText("SPHERE_PICKING_ADD_ALERT", true);
+            helper.setActionText("SPHERE_PICKING_ADD_ALERT", true, true);
         }
     }
 
@@ -138,7 +138,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (sp != null && vert == null && edge == null) {
            if (SwingUtilities.isRightMouseButton(e)) {
                if(sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT){
-                    helper.setActionText("SPHERE_PICKING_ALERT", true);
+                    helper.setActionText("SPHERE_PICKING_ALERT", true, false);
                }
                else if(values.getMode() != FunctionMode.ANALYSE) {
                    spherePickedCoord = sp.getCoordinates();

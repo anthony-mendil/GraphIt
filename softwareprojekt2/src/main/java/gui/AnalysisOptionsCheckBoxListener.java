@@ -105,7 +105,7 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() != 2) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("ANALYSIS_OPTION_ALERT", true);
+            helperFunctions.setActionText("ANALYSIS_OPTION_ALERT", true, true);
             return false;
         }
         return true;
