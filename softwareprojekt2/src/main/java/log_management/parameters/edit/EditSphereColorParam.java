@@ -15,7 +15,7 @@ import java.awt.*;
  * Parameter object of the action EditSphereColorLogAction.
  */
 @Data
-public class EditSphereColorParam extends Param {
+public class EditSphereColorParam implements Param {
     /**
      * The sphere containing its old color.
      */
@@ -34,7 +34,8 @@ public class EditSphereColorParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
-     * @param sphere  The sphere containing its old color.
+     *
+     * @param sphere    The sphere containing its old color.
      * @param pOldColor The old color of the sphere.
      * @param pNewColor The new color of the sphere.
      */
@@ -43,6 +44,7 @@ public class EditSphereColorParam extends Param {
         this.oldColor = pOldColor;
         this.newColor = pNewColor;
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();

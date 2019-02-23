@@ -31,7 +31,7 @@ public class SphereContextMenu {
     private HelperFunctions helperFunctions = new HelperFunctions();
     private Syndrom syndrom = Syndrom.getInstance();
 
-    public SphereContextMenu(Sphere sphere){
+    public SphereContextMenu(Sphere sphere) {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
@@ -41,8 +41,7 @@ public class SphereContextMenu {
     }
 
 
-
-    private void setup(){
+    private void setup() {
         // REMOVE
         MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));
         HelperGui.setImage("/icons2/008-rubbish-bin.png", remove);
@@ -74,7 +73,7 @@ public class SphereContextMenu {
         // COLOR
         MenuItem color = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_COLOR"));
         HelperGui.setImage("/icons2/fill.png", color);
-        color.setOnAction(event ->{
+        color.setOnAction(event -> {
 
             EditSphereColorLogAction editSphereColorLogAction = new EditSphereColorLogAction(values.getFillPaintSphere());
             history.execute(editSphereColorLogAction);
@@ -83,7 +82,7 @@ public class SphereContextMenu {
         // Schriftart
         MenuItem text = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT"));
         HelperGui.setImage("/icons2/font.png", text);
-        text.setOnAction(event ->{
+        text.setOnAction(event -> {
             EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(values.getFontSphere());
             history.execute(editFontSphereLogAction);
         });
@@ -92,20 +91,20 @@ public class SphereContextMenu {
         MenuItem size = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT_SIZE"));
         HelperGui.setImage("/icons2/height.png", size);
 
-        size.setOnAction(event ->{
+        size.setOnAction(event -> {
             EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(values.getFontSizeSphere());
             history.execute(editFontSizeSphereLogAction);
         });
 
         boolean lockedAnnotation = sphere.isLockedAnnotation();
         boolean lockedStyle = sphere.isLockedStyle();
-        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().addAll(annotation, text);
         }
-        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().addAll(color, size);
         }
-        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().add(remove);
         }
 
@@ -117,10 +116,10 @@ public class SphereContextMenu {
         });
     }
 
-    private void checkAnnotation(Map<Language, String> map, Map<String, String> oldAnno, Language lang){
+    private void checkAnnotation(Map<Language, String> map, Map<String, String> oldAnno, Language lang) {
         if (map != null && map.containsKey(lang)) {
             String text = map.get(lang);
-            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0 ){
+            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0) {
                 EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(map.get(lang), lang);
                 history.execute(editSphereAnnotationLogAction);
             }

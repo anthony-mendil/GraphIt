@@ -11,7 +11,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.Map;
  * Parameter object of the action of AddVerticesLogAction/RemoveVerticesLogAction.
  */
 @Data
-public class AddRemoveVerticesParam extends Param {
+public class AddRemoveVerticesParam implements Param {
 
     @Getter
     private List<Vertex> vertexList;
@@ -40,9 +39,10 @@ public class AddRemoveVerticesParam extends Param {
 
     /**
      * Creates an parameter object of its own class.
+     *
      * @param pParameter The set of vertices and their sphere.
      */
-    public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter, Map<Edge,Pair<Vertex,Vertex>> edges) {
+    public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter, Map<Edge, Pair<Vertex, Vertex>> edges) {
         vertexList = new ArrayList<>();
         sphereList = new ArrayList<>();
         pParameter.forEach((v, s) -> {
@@ -52,7 +52,7 @@ public class AddRemoveVerticesParam extends Param {
         startVertexList = new ArrayList<>();
         sinkVertexList = new ArrayList<>();
         edgeList = new ArrayList<>();
-        for(Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edges.entrySet()){
+        for (Map.Entry<Edge, Pair<Vertex, Vertex>> entry : edges.entrySet()) {
             edgeList.add(entry.getKey());
             startVertexList.add(entry.getValue().getKey());
             sinkVertexList.add(entry.getValue().getValue());

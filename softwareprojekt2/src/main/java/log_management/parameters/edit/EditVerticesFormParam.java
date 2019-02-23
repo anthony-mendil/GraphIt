@@ -10,7 +10,6 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.Map;
  * Parameter object of the action EditVerticesFormLogAction.
  */
 @Data
-public class EditVerticesFormParam extends Param {
+public class EditVerticesFormParam implements Param {
     @Getter
     private List<Vertex> oldVertices;
 
@@ -35,10 +34,11 @@ public class EditVerticesFormParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
+     *
      * @param pOldVertices The vertices containing their old shape/annotation.
      * @param pNewVertices The vertices containing their new shape/annotation.
      */
-    public EditVerticesFormParam(Map<Vertex,VertexShapeType> pOldVertices, Map<Vertex,VertexShapeType> pNewVertices) {
+    public EditVerticesFormParam(Map<Vertex, VertexShapeType> pOldVertices, Map<Vertex, VertexShapeType> pNewVertices) {
         oldVertices = new ArrayList<>();
         oldShapeTypes = new ArrayList<>();
         newVertices = new ArrayList<>();
@@ -80,7 +80,7 @@ public class EditVerticesFormParam extends Param {
         return information;
     }
 
-    public Map<Vertex,VertexShapeType> getOldVertices() {
+    public Map<Vertex, VertexShapeType> getOldVertices() {
         Map<Vertex, VertexShapeType> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
             map.put(oldVertices.get(i), oldShapeTypes.get(i));
@@ -88,9 +88,9 @@ public class EditVerticesFormParam extends Param {
         return map;
     }
 
-    public Map<Vertex,VertexShapeType> getNewVertices() {
+    public Map<Vertex, VertexShapeType> getNewVertices() {
         Map<Vertex, VertexShapeType> map = new HashMap<>();
-        for (int i = 0; i <newVertices.size(); i++) {
+        for (int i = 0; i < newVertices.size(); i++) {
             map.put(newVertices.get(i), newShapeTypes.get(i));
         }
         return map;

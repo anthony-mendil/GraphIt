@@ -13,7 +13,7 @@ import lombok.Getter;
  * Parameter object for the action EditFontSphereLogAction.
  */
 @Data
-public class EditFontSphereParam extends Param {
+public class EditFontSphereParam implements Param {
     /**
      * The sphere containing its old annotation-font.
      */
@@ -32,7 +32,8 @@ public class EditFontSphereParam extends Param {
 
     /**
      * Creates a new vertices object of its own class.
-     * @param sphere The sphere containing its old font.
+     *
+     * @param sphere   The sphere containing its old font.
      * @param pOldFont The old font.
      * @param pNewFont The new font.
      */
@@ -41,6 +42,7 @@ public class EditFontSphereParam extends Param {
         this.oldFont = pOldFont;
         this.newFont = pNewFont;
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();

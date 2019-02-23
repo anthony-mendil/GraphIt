@@ -21,7 +21,7 @@ import java.util.Map;
  * Parameter object of the action EditEdgesStrokeLogAction.
  */
 @Data
-public class EditEdgesStrokeParam extends Param {
+public class EditEdgesStrokeParam implements Param {
     @Getter
     private List<Edge> oldEdges;
 
@@ -41,7 +41,7 @@ public class EditEdgesStrokeParam extends Param {
     private List<Vertex> endVertices;
 
 
-    public EditEdgesStrokeParam(Map<Edge,StrokeType> pEdgesOld, Map<Edge,StrokeType> pEdgesNew,
+    public EditEdgesStrokeParam(Map<Edge, StrokeType> pEdgesOld, Map<Edge, StrokeType> pEdgesNew,
                                 List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
         this.startVertices = pStartVertices;
         this.endVertices = pEndVertices;
@@ -89,7 +89,7 @@ public class EditEdgesStrokeParam extends Param {
         return information;
     }
 
-    public Map<Edge,StrokeType> getEdgesOld() {
+    public Map<Edge, StrokeType> getEdgesOld() {
         Map<Edge, StrokeType> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
             map.put(newEdges.get(i), oldStrokeTypes.get(i));
@@ -97,7 +97,7 @@ public class EditEdgesStrokeParam extends Param {
         return map;
     }
 
-    public Map<Edge,StrokeType> getEdgesNew() {
+    public Map<Edge, StrokeType> getEdgesNew() {
         Map<Edge, StrokeType> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
             map.put(newEdges.get(i), newStrokeTypes.get(i));

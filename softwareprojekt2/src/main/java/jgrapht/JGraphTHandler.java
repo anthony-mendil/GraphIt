@@ -7,6 +7,7 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
+import gui.properties.Language;
 import javafx.util.Pair;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
@@ -136,7 +137,10 @@ public class JGraphTHandler {
         if(calculateEndpoints()) {
             DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
             GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
-            if(shortestPath.getVertexList() == null)
+            if(shortestPath == null){
+                HelperFunctions helperFunctions = new HelperFunctions();
+                helperFunctions.setActionText("Es exisitert kein Weg von " + startVertex.getAnnotation().get(Language.GERMAN.name()) + " nach " + endVertex.getAnnotation().get(Language.GERMAN.name()), true);
+            }
             return shortestPath;
         }
         return null;
@@ -248,12 +252,20 @@ public class JGraphTHandler {
             potentialChain.add(pivotVertex);
             potentialChain.add(successor);
             while(Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 ){
-                predecessor = (Vertex)Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
-                potentialChain.addFirst((Vertex)Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
+                if(!potentialChain.contains(Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
+                    potentialChain.addFirst((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
+                    predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
+                }else{
+                    break;
+                }
             }
             while(Graphs.successorListOf(algorithmGraph, successor).size() == 1 ){
-                successor = (Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0);
-                potentialChain.addFirst((Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0));
+                if(!potentialChain.contains(Graphs.successorListOf(algorithmGraph, successor).get(0))) {
+                    potentialChain.addLast((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0));
+                    successor = (Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0);
+                }else{
+                    break;
+                }
             }
             InnerVertices.removeAll(potentialChain);
             if(potentialChain.size() > 3) {
@@ -262,8 +274,11 @@ public class JGraphTHandler {
         }
         Set<Edge> edgesRelationChain = new HashSet<>();
         for(List<Vertex> list : relationChains){
-            for(int i = 0 ; i < list.size(); i++){
+            for(int i = 0 ; i < list.size() - 1; i++){
                 edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(i),list.get(i + 1)));
+            }
+            if(algorithmGraph.getEdge(list.get(list.size()-1), list.get(0)) != null){
+                edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(list.size()-1), list.get(0)));
             }
         }
         return new Pair<>(relationChains,edgesRelationChain);

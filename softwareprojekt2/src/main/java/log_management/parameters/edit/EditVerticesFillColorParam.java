@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.Map;
  * Parameter object of the action EditVerticesFillColorLogAction.
  */
 @Data
-public class EditVerticesFillColorParam extends Param {
+public class EditVerticesFillColorParam implements Param {
     @Getter
     private List<Vertex> oldVertices;
 
@@ -35,10 +34,11 @@ public class EditVerticesFillColorParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
+     *
      * @param pOldVertices The selected vertices containing their old color.
      * @param pNewVertices The selected vertices containing their new color.
      */
-    public EditVerticesFillColorParam(Map<Vertex,Color> pOldVertices, Map<Vertex,Color> pNewVertices) {
+    public EditVerticesFillColorParam(Map<Vertex, Color> pOldVertices, Map<Vertex, Color> pNewVertices) {
         oldVertices = new ArrayList<>();
         oldColors = new ArrayList<>();
         newVertices = new ArrayList<>();
@@ -64,10 +64,10 @@ public class EditVerticesFillColorParam extends Param {
                 information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
                         + "Old fill color: "
                         + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
-                            Language.ENGLISH)
+                        Language.ENGLISH)
                         + ", new fill color: "
                         + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                            Language.ENGLISH) + ". ";
+                        Language.ENGLISH) + ". ";
             }
         } else {
             information += "Veränderte Symptome: ";
@@ -75,16 +75,16 @@ public class EditVerticesFillColorParam extends Param {
                 information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
                         + "Alte Füllfarbe: "
                         + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
-                            Language.GERMAN)
+                        Language.GERMAN)
                         + ", neue Füllfarbe: "
                         + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                            Language.GERMAN) + ". ";
+                        Language.GERMAN) + ". ";
             }
         }
         return information;
     }
 
-    public Map<Vertex,Color> getOldVertices() {
+    public Map<Vertex, Color> getOldVertices() {
         Map<Vertex, Color> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
             map.put(newVertices.get(i), oldColors.get(i));
@@ -92,9 +92,9 @@ public class EditVerticesFillColorParam extends Param {
         return map;
     }
 
-    public Map<Vertex,Color> getNewVertices() {
+    public Map<Vertex, Color> getNewVertices() {
         Map<Vertex, Color> map = new HashMap<>();
-        for (int i = 0; i <newVertices.size(); i++) {
+        for (int i = 0; i < newVertices.size(); i++) {
             map.put(newVertices.get(i), newColors.get(i));
         }
         return map;

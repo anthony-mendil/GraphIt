@@ -1,5 +1,7 @@
 package gui;
 
+import actions.analyse.AnalysisGraphAction;
+import graph.algorithmen.AnalyseTypeSeveral;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
@@ -28,11 +30,11 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
             }
             if(!amountSymptomTextField.getText().isEmpty()){
                 if(checkBox.getId().equals("analysisPredecessor")){
-                    //CALL PREDECESSOR METHOD
-                    System.out.println("PREDECESSOR");
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    analysisGraphAction.action();
                 }else if(checkBox.getId().equals("analysisSuccessor")){
-                    //CALL SUCCESSOR METHOD
-                    System.out.println("SUCCESSOR");
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    analysisGraphAction.action();
                 }
             }
         }else{
