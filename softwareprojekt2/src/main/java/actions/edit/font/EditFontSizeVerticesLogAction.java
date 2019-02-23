@@ -56,7 +56,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
                     vertex.setFontSize(size);
                     newVerticesParam.put(vertex, size);
                 }else{
-                    helper.setActionText("Die Größe der Schrift der/des Knoten darf aufgrund der Vorlageregeln nicht geändert werden.", true);
+                    helper.setActionText("EDIT_VERTICES_FONT_SIZE_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }

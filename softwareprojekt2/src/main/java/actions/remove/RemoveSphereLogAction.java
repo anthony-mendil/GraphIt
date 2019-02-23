@@ -4,13 +4,14 @@ import actions.LogAction;
 import actions.LogEntryName;
 import actions.add.AddSphereLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.SyndromGraph;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.control.HelperFunctions;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Removes a sphere from the syndrom graph.
@@ -41,17 +42,31 @@ public class RemoveSphereLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null){
-            Sphere lockedSphere = null;
+            List<Vertex> vertices = new LinkedList<>();
             PickedState<Sphere> pickedState = vv.getPickedSphereState();
             PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
             for (Sphere sp : pickedState.getPicked()) {
+                if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
+
+                    if(sp.verticesLocked()){
+                    HelperFunctions helper = new HelperFunctions();
+                    helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
+                    actionHistory.removeLastEntry();
+                    return;
+                }
                 for(Vertex v: sp.getVertices()){
+                    vertices.add(v);
                     pickedVertexState.pick(v, false);
                     graph.removeVertex(v);
                 }
                 pickedState.pick(sp, false);
                 graph.removeSphere(sp);
-                createParameter(sp);
+                createParameter(sp,vertices);
+            }else{
+                    HelperFunctions helper = new HelperFunctions();
+                    helper.setActionText("REMOVE_SPHERE_TEMPLATE_ALERT", true, true);
+
+                }
             }
         }else{
             graph.removeSphere(((AddRemoveSphereParam)parameters).getSphere());
@@ -69,7 +84,7 @@ public class RemoveSphereLogAction extends LogAction {
         addSphereLogAction.action();
     }
 
-    public void createParameter(Sphere sphere) {
-        parameters = new AddRemoveSphereParam(sphere);
+    public void createParameter(Sphere sphere, List<Vertex> vertices) {
+        parameters = new AddRemoveSphereParam(sphere, vertices);
     }
 }

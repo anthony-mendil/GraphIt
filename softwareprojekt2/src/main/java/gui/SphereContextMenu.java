@@ -27,7 +27,7 @@ public class SphereContextMenu {
     private final ActionHistory history;
     private final Values values;
     private final Sphere sphere;
-    private LoadLanguage language = new LoadLanguage();
+    private LoadLanguage language = LoadLanguage.getInstance();
     private HelperFunctions helperFunctions = new HelperFunctions();
     private Syndrom syndrom = Syndrom.getInstance();
 
@@ -35,7 +35,6 @@ public class SphereContextMenu {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
-        language.changeLanguage(values.getGuiLanguage());
         this.sphere = sphere;
         setup();
     }

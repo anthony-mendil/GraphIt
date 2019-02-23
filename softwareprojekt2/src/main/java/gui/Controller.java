@@ -70,6 +70,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -1310,23 +1311,8 @@ public class Controller implements ObserverSyndrom {
      * Creates an RemoveSphereLogAction-object and executes the action with the action history.
      */
     public void removeSphere() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        PickedState<Sphere> pickedState = vv.getPickedSphereState();
-        for (Sphere sp : pickedState.getPicked()) {
-            if(sp.verticesLocked()){
-                HelperFunctions helper = new HelperFunctions();
-                helper.setActionText("Eine der Symptome kann aufgrund der Vorlageregeln nicht gelöscht werden.", true);
-                return;
-            }
-            if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
-                values.setGraphButtonType(GraphButtonType.REMOVE_SPHERE);
-                RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-                history.execute(removeSphereLogAction);
-            }else{
-                HelperFunctions helper = new HelperFunctions();
-                helper.setActionText("Die Sphäre kann aufgrund der Vorlagereglen nicht gelöscht werden.", true);
-            }
-        }
+        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
+        history.execute(removeSphereLogAction);
     }
 
     /**
@@ -2101,6 +2087,8 @@ public class Controller implements ObserverSyndrom {
             alert.setTitle("GraphIt");
             alert.setHeaderText(null);
             alert.setContentText("Wollen Sie sicher GraphIt schließen?");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image("/GraphItLogo.png"));
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
