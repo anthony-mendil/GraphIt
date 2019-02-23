@@ -10,13 +10,12 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.*;
-import java.io.Serializable;
 
 /**
  * Parameter object of the action EditSphereColorLogAction.
  */
 @Data
-public class EditSphereColorParam extends Param implements Serializable {
+public class EditSphereColorParam extends Param {
     /**
      * The sphere containing its old color.
      */

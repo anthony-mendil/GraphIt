@@ -1,5 +1,6 @@
 package actions.other;
 
+import actions.ActionHistory;
 import actions.GraphAction;
 import graph.graph.FunctionMode;
 import gui.Values;
@@ -42,6 +43,7 @@ public class SwitchModeAction extends GraphAction {
                 syndrom.setPluggableModeAnalyse();
             }
         }
+        ActionHistory.getInstance().wipe();
     }
 
     @Override

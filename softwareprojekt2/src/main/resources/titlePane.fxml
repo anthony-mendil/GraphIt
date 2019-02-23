@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import gui.TitlesDialogPaneController?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<DialogPane fx:id="titleDialog" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TitlesDialogPaneController">
 
-<DialogPane fx:id="titleDialog" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TitlesDialogPaneController">
-   <content>
-      <VBox minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0">
-         <children>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deutsch" wrappingWidth="150.0" />
-                  <TextField fx:id="german" prefHeight="25.0" prefWidth="230.0" />
-               </children>
+    <content>
+        <VBox minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                  prefHeight="50.0" prefWidth="400.0">
+                <Text fx:id="germanText" strokeType="OUTSIDE" strokeWidth="0.0" text="%german" wrappingWidth="150.0"/>
+                <TextField fx:id="german" prefHeight="25.0" prefWidth="230.0"/>
             </HBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Englisch" wrappingWidth="150.0" />
-                  <TextField fx:id="english" prefHeight="25.0" prefWidth="230.0" />
-               </children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                  prefHeight="50.0" prefWidth="400.0">
+                <Text fx:id="englishText" strokeType="OUTSIDE" strokeWidth="0.0" text="%english" wrappingWidth="150.0"/>
+                <TextField fx:id="english" prefHeight="25.0" prefWidth="230.0"/>
             </HBox>
-            <CheckBox mnemonicParsing="false" text="verschiedene Sprachen aktivieren" />
-            <FlowPane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="400.0">
-               <children>
-                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#close" text="cancel" />
-                  <Button fx:id="save" mnemonicParsing="false" onAction="#save" text="speichern">
-                     <FlowPane.margin>
-                        <Insets right="10.0" />
-                     </FlowPane.margin>
-                  </Button>
-               </children></FlowPane>
-         </children>
-      </VBox>
-   </content>
+            <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="300.0" scaleShape="false">
+                <children>
+                    <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0"  wrappingWidth="436.33087462186813">
+                        <HBox.margin>
+                            <Insets bottom="5.0" right="5.0" top="5.0" left="5.0" />
+                        </HBox.margin>
+                    </Text>
+                </children>
+            </HBox>
+        </VBox>
+    </content>
+
+    <TitlesDialogPaneController fx:constant="SAVE_TYPE" />
+    <TitlesDialogPaneController fx:constant="CANCEL_TYPE" />
 </DialogPane>
+
+

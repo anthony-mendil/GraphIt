@@ -5,14 +5,13 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Parameter object of the action AddAnchorPointsLogAction/RemoveAnchorPointsLogAction.
  */
 @Data
-public class AddRemoveAnchorPointsParam extends Param implements Serializable {
+public class AddRemoveAnchorPointsParam extends Param {
     /**
      * The selected edges.
      */

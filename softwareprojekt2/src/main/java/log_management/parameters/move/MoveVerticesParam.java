@@ -19,7 +19,7 @@ import java.util.Map;
  * Parameter object for the action MoveVerticesLogAction.
  */
 @Data
-public class MoveVerticesParam extends Param implements Serializable {
+public class MoveVerticesParam extends Param {
     @Getter
     private List<Vertex> oldVertices;
 

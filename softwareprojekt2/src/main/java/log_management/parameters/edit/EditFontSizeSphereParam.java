@@ -15,7 +15,7 @@ import java.io.Serializable;
  * Parameter object of the action EditFontSizeSphereLogAction.
  */
 @Data
-public class EditFontSizeSphereParam extends Param implements Serializable {
+public class EditFontSizeSphereParam extends Param {
     /**
      * The sphere containing the annotation.
      */

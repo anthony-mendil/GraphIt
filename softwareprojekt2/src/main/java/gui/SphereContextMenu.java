@@ -1,13 +1,15 @@
 package gui;
 
 import actions.ActionHistory;
+import actions.edit.annotation.EditSphereAnnotationLogAction;
 import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
 import actions.remove.RemoveSphereLogAction;
-import graph.graph.FunctionMode;
-import graph.graph.Sphere;
+import graph.graph.*;
 import graph.visualization.control.HelperFunctions;
+import gui.properties.Language;
+import gui.properties.LoadLanguage;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
@@ -16,7 +18,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import java.util.Optional;
+import java.util.*;
 
 @Data
 public class SphereContextMenu {
@@ -25,11 +27,15 @@ public class SphereContextMenu {
     private final ActionHistory history;
     private final Values values;
     private final Sphere sphere;
+    private LoadLanguage language = new LoadLanguage();
+    private HelperFunctions helperFunctions = new HelperFunctions();
+    private Syndrom syndrom = Syndrom.getInstance();
 
     public SphereContextMenu(Sphere sphere){
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
+        language.changeLanguage(values.getGuiLanguage());
         this.sphere = sphere;
         setup();
     }
@@ -38,7 +44,7 @@ public class SphereContextMenu {
 
     private void setup(){
         // REMOVE
-        MenuItem remove = new MenuItem("Entfernen");
+        MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));
         HelperGui.setImage("/icons2/008-rubbish-bin.png", remove);
 
         remove.setOnAction(event -> {
@@ -47,29 +53,26 @@ public class SphereContextMenu {
         });
 
         // ANNOTATION
-        MenuItem annotation = new MenuItem("Titel");
+        MenuItem annotation = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_TITLE"));
         HelperGui.setImage("/icons2/fancy.png", annotation);
         annotation.setOnAction(event -> {
-            HelperFunctions helperFunctions = new HelperFunctions();
-            Dialog dialog = helperFunctions.getDialog();
+            Dialog<EnumMap<Language, String>> dialog = helperFunctions.getDialog(sphere.getAnnotation());
 
-            dialog.setHeaderText("Titel Sphäre eingeben:");
-            dialog.setContentText("Titel:");
-            dialog.setTitle("Sphäre Titel");
+            dialog.setHeaderText(language.loadLanguagesKey("CONTEXT_DIALOG_HEADER"));
+            dialog.setContentText(language.loadLanguagesKey("CONTEXT_DIALOG_CONTENT"));
+            dialog.setTitle(language.loadLanguagesKey("CONTEXT_DIALOG_SPHERE_TITLE"));
 
-            Optional<String> result = dialog.showAndWait();
+            Optional<EnumMap<Language, String>> result = dialog.showAndWait();
+            Map<String, String> oldAnno = sphere.getAnnotation();
 
-            /*result.ifPresent(title -> {
-                if (title.length() > 100){
-                    title = title.substring(0, 99);
-                }
-                EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(title);
-                history.execute(editSphereAnnotationLogAction);
-            });*/
+            result.ifPresent(map -> {
+                checkAnnotation(map, oldAnno, Language.GERMAN);
+                checkAnnotation(map, oldAnno, Language.ENGLISH);
+            });
         });
 
         // COLOR
-        MenuItem color = new MenuItem("Farbe");
+        MenuItem color = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_COLOR"));
         HelperGui.setImage("/icons2/fill.png", color);
         color.setOnAction(event ->{
 
@@ -78,7 +81,7 @@ public class SphereContextMenu {
         });
 
         // Schriftart
-        MenuItem text = new MenuItem("Schriftart");
+        MenuItem text = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT"));
         HelperGui.setImage("/icons2/font.png", text);
         text.setOnAction(event ->{
             EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(values.getFontSphere());
@@ -86,7 +89,7 @@ public class SphereContextMenu {
         });
 
         // Schriftgröße
-        MenuItem size = new MenuItem("Schriftgröße");
+        MenuItem size = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT_SIZE"));
         HelperGui.setImage("/icons2/height.png", size);
 
         size.setOnAction(event ->{
@@ -113,4 +116,16 @@ public class SphereContextMenu {
             contextMenu.hide();
         });
     }
+
+    private void checkAnnotation(Map<Language, String> map, Map<String, String> oldAnno, Language lang){
+        if (map != null && map.containsKey(lang)) {
+            String text = map.get(lang);
+            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0 ){
+                EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(map.get(lang), lang);
+                history.execute(editSphereAnnotationLogAction);
+            }
+        }
+    }
+
+
 }

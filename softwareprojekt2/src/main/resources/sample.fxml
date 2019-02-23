@@ -58,9 +58,13 @@
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print" />
                 </Menu>
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
-                    <Menu fx:id="languages" mnemonicParsing="false" text="%language">
+                    <Menu fx:id="languages" mnemonicParsing="false" text="%languageGui">
                         <CheckMenuItem fx:id="languageGerman" mnemonicParsing="false" text="%german" />
                         <CheckMenuItem fx:id="languageEnglish" mnemonicParsing="false" text="%english" />
+                    </Menu>
+                    <Menu fx:id="languagesGraph" mnemonicParsing="false" text="%languageGraph">
+                        <CheckMenuItem fx:id="languageGraphGerman" mnemonicParsing="false" text="%german" />
+                        <CheckMenuItem fx:id="languageGraphEnglish" mnemonicParsing="false" text="%english" />
                     </Menu>
                 </Menu>
                 <Menu fx:id="help" mnemonicParsing="false" text="%help">
@@ -826,9 +830,9 @@
                         </Text>
                         <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="425.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.2000732421875" minWidth="10.0" prefWidth="78.20005798339844" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.79994201660156" minWidth="10.0" prefWidth="231.79994201660156" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.2000732421875" minWidth="10.0" prefWidth="114.4" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.79994201660156" minWidth="10.0" prefWidth="214.40002441406247" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -840,12 +844,12 @@
                                         <Tooltip text="%analysisPredecessorTooltip" />
                                     </tooltip>
                                 </CheckBox>
-                                <CheckBox fx:id="analysisSuccessor" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" text="%analysisSuccessor" GridPane.rowIndex="1">
+                                <CheckBox fx:id="analysisSuccessor" mnemonicParsing="false" prefHeight="18.0" prefWidth="119.0" text="%analysisSuccessor" GridPane.rowIndex="1">
                                     <tooltip>
                                         <Tooltip text="%analysisSuccessorTooltip" />
                                     </tooltip>
                                 </CheckBox>
-                                <Text fx:id="analysisSymptomAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisSymptomAmount" wrappingWidth="51.7366943359375" GridPane.columnIndex="1">
+                                <Text fx:id="analysisSymptomAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisSymptomAmount" wrappingWidth="100.5367431640625" GridPane.columnIndex="1">
                                     <GridPane.margin>
                                         <Insets bottom="5.0" right="5.0" top="5.0" />
                                     </GridPane.margin>
@@ -855,15 +859,19 @@
                                         <Tooltip text="%analysisSymptomAmountTooltip" />
                                     </tooltip>
                                 </TextField>
-                        <CheckBox mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text=" " GridPane.columnIndex="2">
+                        <CheckBox fx:id="analysisPathCheckBox" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text=" " GridPane.columnIndex="2">
                            <graphic>
-                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="200.0">
+                              <MenuButton fx:id="analysisPathMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="170.0" text="%analysisPathMenuButton">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" />
+                                  <MenuItem fx:id="analysisShortestPath" mnemonicParsing="false" onAction="#shortestpath" text="%analysisShortestPath" />
+                                    <MenuItem fx:id="analysisAllPaths" mnemonicParsing="false" onAction="#allpaths" text="%analysisAllPaths" />
                                 </items>
                                  <padding>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </padding>
+                                 <tooltip>
+                                    <Tooltip text="%analysisPathToolTip" />
+                                 </tooltip>
                               </MenuButton>
                            </graphic>
                            <GridPane.margin>
@@ -872,7 +880,7 @@
                         </CheckBox>
                             </children>
                             <VBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="5.2" />
+                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                             </VBox.margin>
                         </GridPane>
                     </children>
@@ -894,19 +902,19 @@
                         </Text>
                         <VBox prefHeight="67.0" prefWidth="392.0">
                             <children>
-                                <HBox minWidth="-Infinity" prefHeight="30.0" prefWidth="330.0">
+                                <HBox minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
                                     <VBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </VBox.margin>
                                     <children>
-                                        <CheckBox fx:id="analysisOptions" mnemonicParsing="false" prefHeight="30.0" prefWidth="271.0" text=" ">
+                                        <CheckBox fx:id="analysisOptions" mnemonicParsing="false" prefHeight="30.0" prefWidth="280.0" text=" ">
                                             <graphic>
-                                                <MenuButton fx:id="filterAnalysis" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="205.0" text="%filterChainOfEdges">
+                                                <MenuButton fx:id="filterAnalysis" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="%filterChainOfEdges">
                                                     <items>
-                                          <MenuItem fx:id="convergent1" mnemonicParsing="false" text="%filterChainOfEdges" />
-                                                        <MenuItem fx:id="convergent" mnemonicParsing="false" text="%filterConvergentBranches" />
-                                                        <MenuItem fx:id="divergent" mnemonicParsing="false" text="%filterDivergentBranches" />
-                                                        <MenuItem fx:id="branches" mnemonicParsing="false" text="%filterBranches" />
+                                          <MenuItem fx:id="chainOfEdges" mnemonicParsing="false" onAction="#chainOfEdges" text="%filterChainOfEdges" />
+                                                        <MenuItem fx:id="convergent" mnemonicParsing="false" onAction="#convergentBranches" text="%filterConvergentBranches" />
+                                                        <MenuItem fx:id="divergent" mnemonicParsing="false" onAction="#divergentBranches" text="%filterDivergentBranches" />
+                                                        <MenuItem fx:id="branches" mnemonicParsing="false" onAction="#branches" text="%filterBranches" />
                                                         <MenuItem fx:id="cycles" mnemonicParsing="false" onAction="#analysisCycles" text="%filterCycles" />
                                                     </items>
                                                     <padding>
@@ -923,8 +931,17 @@
                                         </CheckBox>
                                       <CheckBox fx:id="filterArrowTypeCheckBox" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" ">
                                           <graphic>
-                                              <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
+                                              <MenuButton fx:id="analysisArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
                                                   <items>
+                                          <MenuItem fx:id="edgeArrowReinforced1" mnemonicParsing="false" onAction="#edgeReinforced">
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@icons2/005-right-chevron.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
                                                       <MenuItem mnemonicParsing="false">
                                                           <graphic>
                                                               <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -966,6 +983,9 @@
                                     </children>
                                 </HBox>
                             </children>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin>
                         </VBox>
                     </children>
                     <HBox.margin>
@@ -1317,14 +1337,13 @@
                                                            <MenuItem fx:id="logEditEdgesType" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_EDGES_TYPE"> </MenuItem>
                                                            <MenuItem fx:id="logRemoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_SPHERE"> </MenuItem>
                                                            <MenuItem fx:id="logMoveVertices" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_VERTICES"> </MenuItem>
-                                                           <MenuItem fx:id="logRemoveEdge" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
+                                                           <MenuItem fx:id="logRemoveEdges" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
                                                            <MenuItem fx:id="logMoveSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%MOVE_SPHERE"> </MenuItem>
                                                            <MenuItem fx:id="logActivateAnchorPointsFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_ANCHOR_POINTS_FADEOUT"> </MenuItem>
                                                            <MenuItem fx:id="logAddAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_ANCHOR_POINTS"> </MenuItem>
                                                            <MenuItem fx:id="logActivateFadeout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_FADEOUT"> </MenuItem>
                                                            <MenuItem fx:id="logActivateHighlight" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ACTIVATE_HIGHLIGHT"> </MenuItem>
                                                            <MenuItem fx:id="logEditVerticesForm" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_FORM"> </MenuItem>
-                                                           <MenuItem fx:id="logRemoveEdges" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_EDGES"> </MenuItem>
                                                            <MenuItem fx:id="logEditVerticesSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_SIZE"> </MenuItem>
                                                            <MenuItem fx:id="logRemoveAnchorPoints" mnemonicParsing="false" styleClass="analysisMenuItem" text="%REMOVE_ANCHOR_POINTS"> </MenuItem>
                                                            <MenuItem fx:id="logEditSphereFontSize" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_SPHERE_FONT_SIZE"> </MenuItem>

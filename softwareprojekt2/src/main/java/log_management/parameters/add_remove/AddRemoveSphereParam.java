@@ -8,14 +8,12 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
-
 
 /**
  * Parameter object for the action AddSphereLogAction/RemoveSphereLogAction.
  */
 @Data
-public class AddRemoveSphereParam extends Param implements Serializable {
+public class AddRemoveSphereParam extends Param {
     /**
      * The Sphere, which will be added/deleted.
      */

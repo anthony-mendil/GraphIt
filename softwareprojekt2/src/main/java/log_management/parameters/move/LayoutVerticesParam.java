@@ -19,7 +19,7 @@ import java.util.Map;
  * Parameter object for LayoutSphereGraphLogAction, changes the position of the vertices.
  */
 @Data
-public class LayoutVerticesParam extends Param implements Serializable {
+public class LayoutVerticesParam extends Param {
     @Getter
     private List<Vertex> oldVertices;
 

@@ -12,7 +12,7 @@ import java.util.List;
  * Parameter object of the action ActivateFadeoutAction/DeactivateFadeoutAction.
  */
 @Data
-public class ActivateDeactivateFadeoutParam extends Param implements Serializable {
+public class ActivateDeactivateFadeoutParam extends Param {
     /**
      * List of vertices to activate/cancel the highlight-option.
      */

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Parameter object of the action EditSphereSizeLogAction.
  */
 @Data
-public class EditSphereSizeParam extends Param implements Serializable {
+public class EditSphereSizeParam extends Param {
     /**
      * The sphere which size should be changed.
      */

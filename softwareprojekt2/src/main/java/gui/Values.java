@@ -15,6 +15,7 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Defines values for the syndrom. These are default values. The values represent the currently selected values from the
@@ -188,15 +189,15 @@ public class Values {
 
     }
 
-    public HashMap<String, String> getDefaultAnnotationVertex(){
-        HashMap<String, String> annotation = new HashMap<>();
+    public Map<String, String> getDefaultAnnotationVertex(){
+        Map<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(),"Symptom");
         annotation.put(Language.ENGLISH.name(),"Symptom");
         return annotation;
     }
 
-    public HashMap<String, String> getDefaultAnnotationSphere(){
-        HashMap<String, String> annotation = new HashMap<>();
+    public Map<String, String> getDefaultAnnotationSphere(){
+        Map<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(),"Sphäre");
         annotation.put(Language.ENGLISH.name(),"Sphere");
         return annotation;

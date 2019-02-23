@@ -6,14 +6,13 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Parameter object for action ActivateHighlightAction/DeactivateHighlightAction.
  */
 @Data
-public class ActivateDeactivateHighlightParam extends Param implements Serializable {
+public class ActivateDeactivateHighlightParam extends Param {
     /**
      * List of vertices, which will highlight/stop highlight.
      */

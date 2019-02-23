@@ -29,9 +29,9 @@ import java.time.format.DateTimeFormatter;
 
 public class LogToStringConverter {
 
-    private static int incrementer = 1;
+    private  int incrementer = 1;
 
-    public void resetIncrementer(){
+    public  void resetIncrementer(){
         incrementer = 1;
     }
 
@@ -156,7 +156,7 @@ public class LogToStringConverter {
         }
     }
 
-    private String convertLogEntryNameEnglish(LogEntryName logEntryName) throws IllegalArgumentException{
+    private String convertLogEntryNameEnglish(LogEntryName logEntryName) {
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
                 return "Highlighting";
