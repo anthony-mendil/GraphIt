@@ -35,49 +35,55 @@ public class GXLioTest {
 
     private static Logger logger = Logger.getLogger(GXLioTest.class);
 
-    private Sphere makeSphere(Point2D.Double pCoordinates){
-        return factory.createSphere(pCoordinates);
-    }
-
-    private Vertex makeVertex(Point2D.Double pCoordinates){
-        return factory.createVertex(pCoordinates);
-    }
-
-    private Edge makeEdge(){
-        return factory.createEdge();
-    }
-
-//List<Sphere> pSpheres, List<Vertex> pVertices, List<Map<Edge, Pair<Vertex>>> pEdges
-    public void prepareSyndrom() {
+    public GXLio prepareSyndrom() throws IOException, SAXException {
         Syndrom syndrom = graph.graph.Syndrom.getInstance();
         syndrom.generateNew();
-        Sphere s1 = makeSphere(new Point2D.Double(20, 20));
-        Sphere s2 = makeSphere(new Point2D.Double(270, 50));
-        Sphere s3 = makeSphere(new Point2D.Double(520, 20));
-        Sphere s4 = makeSphere(new Point2D.Double(150, 270));
-        Sphere s5 = makeSphere(new Point2D.Double(400, 270));
+        generateGraphElements();
+        Syndrom.getInstance().getVv().getGraphLayout().setGraph(Syndrom.getInstance().getGraph());
+        GXLio gxlio = new GXLio();
+        gxlio.exportGXL(new File("testGraph.gxl"), false);
+        Syndrom.getInstance().generateNew();
+        doc = new GXLDocument(new File("testGraph.gxl"));
+        return gxlio;
+    }
 
-        Vertex v1 = makeVertex(new Point2D.Double(80, 50));
-        Vertex v2 = makeVertex(new Point2D.Double(295, 90));
-        Vertex v3 = makeVertex(new Point2D.Double(365, 120));
+    private void generateGraphElements(){
+        Sphere s1 = factory.createSphere(new Point2D.Double(20, 20));
+        Sphere s2 = factory.createSphere(new Point2D.Double(270, 50));
+        Sphere s3 = factory.createSphere(new Point2D.Double(520, 20));
+        Values.getInstance().setFillPaintSphere(new java.awt.Color(50, 100, 26, 150));
+        Values. getInstance().setFontSizeSphere(24);
+        Sphere s4 = factory.createSphere(new Point2D.Double(150, 270));
+        Sphere s5 = factory.createSphere(new Point2D.Double(400, 270));
+
+        Vertex v1 = factory.createVertex(new Point2D.Double(80, 50));
+        Vertex v2 = factory.createVertex(new Point2D.Double(295, 90));
+        Vertex v3 = factory.createVertex(new Point2D.Double(365, 120));
         v3.setFillColor(new java.awt.Color(0xC84575));
-        Vertex v4 = makeVertex(new Point2D.Double(435, 90));
-        Vertex v5 = makeVertex(new Point2D.Double(650, 50));
+        Vertex v4 = factory.createVertex(new Point2D.Double(435, 90));
+        Vertex v5 = factory.createVertex(new Point2D.Double(650, 50));
         Values.getInstance().setFillPaintVertex(new java.awt.Color(10, 20, 90, 255));
         Values.getInstance().setShapeVertex(VertexShapeType.RECTANGLE);
-        Vertex v6 = makeVertex(new Point2D.Double(220, 320));
-        Vertex v7 = makeVertex(new Point2D.Double(280, 360));
-        Vertex v8 = makeVertex(new Point2D.Double(460, 360));
-        Vertex v9 = makeVertex(new Point2D.Double(520, 320));
+        Vertex v6 = factory.createVertex(new Point2D.Double(220, 320));
+        Vertex v7 = factory.createVertex(new Point2D.Double(280, 380));
+        Vertex v8 = factory.createVertex(new Point2D.Double(460, 380));
+        Vertex v9 = factory.createVertex(new Point2D.Double(520, 320));
 
-        Edge e1 = makeEdge();
-        Edge e2 = makeEdge();
-        Edge e3 = makeEdge();
-        Edge e4 = makeEdge();
-        Edge e5 = makeEdge();
-        Edge e6 = makeEdge();
-        Edge e7 = makeEdge();
-        Edge e8 = makeEdge();
+        Edge e1 = factory.createEdge();
+        Edge e2 = factory.createEdge();
+        Edge e3 = factory.createEdge();
+        e3.setArrowType(EdgeArrowType.NEUTRAL);
+        Edge e4 = factory.createEdge();
+        e3.setArrowType(EdgeArrowType.NEUTRAL);
+        Values.getInstance().setEdgeArrowType(EdgeArrowType.EXTENUATING);
+        Edge e5 = factory.createEdge();
+        Edge e6 = factory.createEdge();
+        e6.setStroke(StrokeType.DASHED);
+        e6.setColor(new java.awt.Color(28, 56, 249, 130));
+        Edge e7 = factory.createEdge();
+        e7.setStroke(StrokeType.DASHED);
+        e7.setColor(new java.awt.Color(28, 56, 249, 130));
+        Edge e8 = factory.createEdge();
 
 
         s1.getVertices().add(v1);
@@ -90,52 +96,12 @@ public class GXLioTest {
         s5.getVertices().add(v8);
         s5.getVertices().add(v9);
 
-
-/*
-        Syndrom.getInstance().getGraph().addSphere(s1.getCoordinates());
-        Syndrom.getInstance().getGraph().addSphere(s2.getCoordinates());
-        Syndrom.getInstance().getGraph().addSphere(s3.getCoordinates());
-        Syndrom.getInstance().getGraph().addSphere(s4.getCoordinates());
-        Syndrom.getInstance().getGraph().addSphere(s5.getCoordinates());
-*/
-
-
         Syndrom.getInstance().getGraph().getSpheres().add(s1);
         Syndrom.getInstance().getGraph().getSpheres().add(s2);
         Syndrom.getInstance().getGraph().getSpheres().add(s3);
         Syndrom.getInstance().getGraph().getSpheres().add(s4);
         Syndrom.getInstance().getGraph().getSpheres().add(s5);
 
-/*
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v1);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v2);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v3);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v4);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v5);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v6);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v7);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v8);
-        Syndrom.getInstance().getVv().getGraphLayout().getGraph().addVertex(v9);
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v1, v1.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v2, v2.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v3, v3.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v4, v4.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v5, v5.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v6, v6.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v7, v7.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v8, v8.getCoordinates());
-        Syndrom.getInstance().getVv().getGraphLayout().setLocation(v9, v9.getCoordinates());
-*/
-        Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
-        SyndromGraph<Vertex, Edge> newGraph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        /*
-        newGraph.getSpheres().add(s1);
-        newGraph.getSpheres().add(s2);
-        newGraph.getSpheres().add(s3);
-        newGraph.getSpheres().add(s4);
-        newGraph.getSpheres().add(s5);
-        */
         Syndrom.getInstance().getGraph().addEdge(e1, v1, v2);
         Syndrom.getInstance().getGraph().addEdge(e2, v5, v4);
         Syndrom.getInstance().getGraph().addEdge(e3, v7, v6);
@@ -144,21 +110,36 @@ public class GXLioTest {
         Syndrom.getInstance().getGraph().addEdge(e6, v7, v3);
         Syndrom.getInstance().getGraph().addEdge(e7, v8, v3);
         Syndrom.getInstance().getGraph().addEdge(e8, v9, v3);
-
-        Syndrom.getInstance().getVv().getGraphLayout().setGraph(Syndrom.getInstance().getGraph());
-
     }
 
     @Test
-    public void testGraph() throws IOException, SAXException {
+    public void testElementNumberOfSyndromGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        Assert.assertEquals(8, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getEdgeCount());
+        Assert.assertEquals(8, Syndrom.getInstance().getGraph().getEdgeCount());
+        Assert.assertEquals(9, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertexCount());
+        Assert.assertEquals(9, Syndrom.getInstance().getGraph().getVertexCount());
+        Assert.assertEquals(5, Syndrom.getInstance().getGraph().getSpheres().size());
+    }
+
+    @Test
+    public void testElementNumberOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom();
-        GXLio gxlio = new GXLio();
-        gxlio.exportGXL(new File("testGraph.gxl"), false);
-        System.out.println("Dok exportiert");
-        GXLDocument doc = new GXLDocument(new File("testGraph.gxl"));
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
         Assert.assertEquals(22, doc.getElement("syndrom").getChildCount());
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Before
     public void prepare(){

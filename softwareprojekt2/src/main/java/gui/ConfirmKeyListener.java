@@ -1,6 +1,7 @@
 package gui;
 
 import actions.analyse.AnalysisGraphAction;
+import actions.deactivate.ResetVvAction;
 import graph.algorithmen.AnalyseTypeSeveral;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
@@ -10,10 +11,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class ConfirmKeyListener implements EventHandler<KeyEvent> {
-    private Controller c;
-    private TextField amountSymptomTextField;
-    private CheckBox analysisSuccessor;
-    private CheckBox analysisPredecessor;
+    private final Controller c;
+    private final TextField amountSymptomTextField;
+    private final CheckBox analysisSuccessor;
+    private final CheckBox analysisPredecessor;
 
 
     public ConfirmKeyListener(Controller pC, TextField pTextField){
@@ -35,6 +36,9 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
                     AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
                 }
+            }else{
+                ResetVvAction resetAction = new ResetVvAction();
+                resetAction.action();
             }
             c.getRoot().requestFocus();
         }
