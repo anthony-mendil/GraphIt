@@ -42,7 +42,7 @@ public class RemoveAnchorPointsLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
 
-        for (Edge e : pickedState.getPicked()) {
+        for (Edge e: pickedState.getPicked()) {
             e.setHasAnchorOut(false);
             e.setHasAnchorIn(false);
             e.setAnchorPoints(new Pair<>(null, null));

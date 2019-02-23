@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.awt.*;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,22 @@ import java.util.Map;
 @Data
 public class Values {
 
+    /**
+     * The default width sphere.
+     */
+    @Setter(AccessLevel.NONE)
+    private final double defaultWidthSphere = 200;
+    /**
+     * The default height of a sphere.
+     */
+    @Setter(AccessLevel.NONE)
+    private final double defaultHeightSphere = 200;
+
+    /**
+     * The default size of a vertex.
+     */
+    @Setter(AccessLevel.NONE)
+    private final int defaultSizeVertex = 50;
     /**
      * The first highlight color for highlighting selection/ picking.
      */
@@ -40,48 +57,17 @@ public class Values {
     @Setter(AccessLevel.NONE)
     private static final StrokeType defaultHighlightStrokeVertex = null;
     /**
+     * The default layout size.
+     */
+    private Dimension defaultLayoutSize = new Dimension(985,540);
+
+    @Setter(AccessLevel.NONE)
+    private Dimension defaultLayoutVVSize = new Dimension(2000,1500);
+    /**
      * The default satellite layout size.
      */
     @Setter(AccessLevel.NONE)
     private static final Dimension defaultSatelliteLayoutSize = null;
-    private static Values instance;
-    /**
-     * The default width sphere.
-     */
-    @Setter(AccessLevel.NONE)
-    private final double defaultWidthSphere = 200;
-    /**
-     * The default height of a sphere.
-     */
-    @Setter(AccessLevel.NONE)
-    private final double defaultHeightSphere = 200;
-    /**
-     * The default size of a vertex.
-     */
-    @Setter(AccessLevel.NONE)
-    private final int defaultSizeVertex = 50;
-    @Setter(AccessLevel.NONE)
-    private final Color anchorHighlight = new Color(204, 0, 0);
-    @Setter(AccessLevel.NONE)
-    private final javafx.scene.text.Font actionTextInfo = javafx.scene.text.Font.font("System Regular", FontWeight
-            .NORMAL, 12);
-    @Setter(AccessLevel.NONE)
-    private final javafx.scene.text.Font actionTextAlert = javafx.scene.text.Font.font("System Regular", FontWeight
-            .EXTRA_BOLD, 14);
-    @Setter(AccessLevel.NONE)
-    private final javafx.scene.paint.Color actionTextColorAlert = javafx.scene.paint.Color.rgb(160, 12, 12, 1);
-    @Setter(AccessLevel.NONE)
-    private final javafx.scene.paint.Color actionTextColorInfo = javafx.scene.paint.Color.BLACK;
-    @Setter(AccessLevel.NONE)
-    private final int minScale = 10;
-    @Setter(AccessLevel.NONE)
-    private final int maxScale = 200;
-    /**
-     * The default layout size.
-     */
-    private Dimension defaultLayoutSize = new Dimension(985, 540);
-    @Setter(AccessLevel.NONE)
-    private Dimension defaultLayoutVVSize = new Dimension(2000, 1500);
     /**
      * The fill paint color.
      */
@@ -101,12 +87,17 @@ public class Values {
     /**
      * The fill paint color of a vertex.
      */
-    private Color fillPaintVertex = new Color(123, 255, 51);
+    private Color fillPaintVertex = new Color(123,255,51);
+
     /**
      * true if the anchor points are highlighted in the gui
      * false if the anchor points are not highlighted in the gui
      */
     private boolean showAnchor = false;
+
+    @Setter(AccessLevel.NONE)
+    private final Color anchorHighlight = new Color(204, 0,0);
+
     /**
      * The draw paint color of a vertex.
      */
@@ -122,7 +113,7 @@ public class Values {
     /**
      * The highlight color for vertices.
      */
-    private Color highlightPaint = new Color(255, 48, 57);
+    private Color highlightPaint = new Color(255,48,57);
     /**
      * The edge paint color of an edge.
      */
@@ -143,26 +134,56 @@ public class Values {
      * The actual graph button type, pressed in the gui.
      */
     private GraphButtonType graphButtonType;
+
     /**
      * The current application mode.
      */
     private FunctionMode mode;
+
     /**
      * The current language of the objects.
      */
     private Language objectLanguage;
+
     /**
      * The current language of the gui.
      */
     private Language guiLanguage = Language.GERMAN;
+
     /**
      * the current language of the graph.
      */
     private Language graphLanguage = Language.GERMAN;
+
+    private static Values instance;
+
     private Text currentActionText = new Text("");
+
     private Node canvas;
+
     private HBox hBox;
+
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.text.Font actionTextInfo =  javafx.scene.text.Font.font("System Regular", FontWeight
+            .NORMAL, 12);
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.text.Font actionTextAlert =  javafx.scene.text.Font.font("System Regular", FontWeight
+            .EXTRA_BOLD, 14);
+
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.paint.Color actionTextColorAlert =  javafx.scene.paint.Color.rgb(160, 12, 12, 1);
+
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.paint.Color actionTextColorInfo =  javafx.scene.paint.Color.BLACK;
+
     private int scale;
+
+    @Setter(AccessLevel.NONE)
+    private final int minScale = 10;
+
+    @Setter(AccessLevel.NONE)
+    private final int maxScale = 200;
+
     private Font roboto;
     private Font robotoSlab;
     private Font averiaSansLibr;
@@ -170,29 +191,30 @@ public class Values {
     private Font mali;
 
 
+
     private Values() {
 
     }
 
-    public static Values getInstance() {
-        if (instance == null) {
+    public Map<String, String> getDefaultAnnotationVertex(){
+        Map<String, String> annotation = new HashMap<>();
+        annotation.put(Language.GERMAN.name(),"Symptom");
+        annotation.put(Language.ENGLISH.name(),"Symptom");
+        return annotation;
+    }
+
+    public Map<String, String> getDefaultAnnotationSphere(){
+        Map<String, String> annotation = new HashMap<>();
+        annotation.put(Language.GERMAN.name(),"Sphäre");
+        annotation.put(Language.ENGLISH.name(),"Sphere");
+        return annotation;
+    }
+
+    public static Values getInstance(){
+        if (instance == null){
             instance = new Values();
         }
         return instance;
-    }
-
-    public Map<String, String> getDefaultAnnotationVertex() {
-        Map<String, String> annotation = new HashMap<>();
-        annotation.put(Language.GERMAN.name(), "Symptom");
-        annotation.put(Language.ENGLISH.name(), "Symptom");
-        return annotation;
-    }
-
-    public Map<String, String> getDefaultAnnotationSphere() {
-        Map<String, String> annotation = new HashMap<>();
-        annotation.put(Language.GERMAN.name(), "Sphäre");
-        annotation.put(Language.ENGLISH.name(), "Sphere");
-        return annotation;
     }
 }
 

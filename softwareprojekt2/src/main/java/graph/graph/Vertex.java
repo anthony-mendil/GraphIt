@@ -159,7 +159,6 @@ public class Vertex {
     public int hashCode() {
         return super.hashCode();
     }
-
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Vertex) {
@@ -174,7 +173,7 @@ public class Vertex {
     public String toString() {
         if (Values.getInstance().getGuiLanguage() == Language.ENGLISH) {
             return annotation.get(Language.ENGLISH.name());
-        } else {
+        } else  {
             return annotation.get(Language.GERMAN.name());
         }
     }

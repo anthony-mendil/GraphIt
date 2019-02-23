@@ -11,12 +11,11 @@ public class FadeOutElementsTransition extends Transition {
     private double frac;
 
 
-    public FadeOutElementsTransition() {
+    public FadeOutElementsTransition(){
         setCycleDuration(Duration.millis(2000));
         setInterpolator(Interpolator.LINEAR);
 
     }
-
     @Override
     protected void interpolate(double frac) {
         this.frac = frac;

@@ -6,12 +6,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import log_management.DatabaseManager;
 import log_management.dao.PersonalEntityManagerFactory;
+import log_management.tables.Log;
 import lombok.Getter;
 import org.apache.log4j.BasicConfigurator;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -26,20 +29,6 @@ public class Main extends Application {
     @Getter
     private Stage primary;
 
-    /**
-     * Starts the application.
-     *
-     * @param args The java command line arguments that is needed to start the application.
-     */
-    public static void main(String[] args) {
-        BasicConfigurator.configure();
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
-
-        launch(args);
-
-        PersonalEntityManagerFactory.getInstance().close();
-    }
 
     /**
      * Loads the gui with a fxml loader, sets the title of the application
@@ -64,5 +53,21 @@ public class Main extends Application {
         controller.setStage(primaryStage);
         System.out.println("pre");
         controller.setButtonShortcuts();
+    }
+
+
+    /**
+     * Starts the application.
+     *
+     * @param args The java command line arguments that is needed to start the application.
+     */
+    public static void main(String[] args) {
+        BasicConfigurator.configure();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+        PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
+
+        launch(args);
+
+        PersonalEntityManagerFactory.getInstance().close();
     }
 }

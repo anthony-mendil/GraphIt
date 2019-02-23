@@ -8,11 +8,9 @@ import javax.swing.*;
 
 public class ZoomMenuItemHandler implements EventHandler<ActionEvent> {
     private Controller c;
-
-    public ZoomMenuItemHandler(Controller c) {
+    public ZoomMenuItemHandler(Controller c){
         this.c = c;
     }
-
     @Override
     public void handle(ActionEvent evt) {
         MenuItem mnItmn = (MenuItem) evt.getSource();

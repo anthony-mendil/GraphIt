@@ -20,7 +20,6 @@ import java.util.Map;
  */
 public class EditVerticesSizeLogAction extends LogAction {
     private SizeChange sizeChange;
-
     /**
      * Changes the size of the vertices.
      */
@@ -28,7 +27,6 @@ public class EditVerticesSizeLogAction extends LogAction {
         super(LogEntryName.EDIT_VERTICES_SIZE);
         this.sizeChange = sizeChange;
     }
-
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
@@ -42,34 +40,34 @@ public class EditVerticesSizeLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        if (parameters == null) {
+        if(parameters == null){
             List<Vertex> lockedVertices = new LinkedList<>();
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
-            Map<Vertex, Integer> oldVertices = new HashMap<>();
-            Map<Vertex, Integer> newVertices = new HashMap<>();
-            for (Vertex vertex : pickedState.getPicked()) {
-                if (!vertex.isLockedStyle()) {
+            Map<Vertex,Integer> oldVertices = new HashMap<>();
+            Map<Vertex,Integer> newVertices = new HashMap<>();
+            for (Vertex vertex: pickedState.getPicked()) {
+                if(!vertex.isLockedStyle()){
                     if (sizeChange == SizeChange.ENLARGE) {
-                        oldVertices.put(vertex, vertex.getSize());
+                        oldVertices.put(vertex,vertex.getSize());
                         vertex.setSize(vertex.getSize() + 5);
-                        newVertices.put(vertex, vertex.getSize());
+                        newVertices.put(vertex,vertex.getSize());
                     } else {
                         if (vertex.getSize() > 45) {
-                            oldVertices.put(vertex, vertex.getSize());
+                            oldVertices.put(vertex,vertex.getSize());
                             vertex.setSize(vertex.getSize() - 5);
-                            newVertices.put(vertex, vertex.getSize());
+                            newVertices.put(vertex,vertex.getSize());
                         }
                     }
-                } else {
+                }else{
                     helper.setActionText("EDIT_VERTICES_SITE_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }
-            createParameter(oldVertices, newVertices);
-        } else {
-            Map<Vertex, Integer> oldVertices = ((EditVerticesSizeParam) parameters).getOldVertices();
-            Map<Vertex, Integer> newVertices = ((EditVerticesSizeParam) parameters).getNewVertices();
-            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
+            createParameter(oldVertices,newVertices);
+        }else{
+            Map<Vertex,Integer> oldVertices = ((EditVerticesSizeParam)parameters).getOldVertices();
+            Map<Vertex,Integer> newVertices = ((EditVerticesSizeParam)parameters).getNewVertices();
+            for(Map.Entry<Vertex,Integer> entry : oldVertices.entrySet()){
                 entry.getKey().setSize(newVertices.get(entry.getKey()));
             }
         }
@@ -85,8 +83,8 @@ public class EditVerticesSizeLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Vertex, Integer> oldVertices = ((EditVerticesSizeParam) parameters).getOldVertices();
-        Map<Vertex, Integer> newVertices = ((EditVerticesSizeParam) parameters).getNewVertices();
+        Map<Vertex,Integer> oldVertices = ((EditVerticesSizeParam)parameters).getOldVertices();
+        Map<Vertex,Integer> newVertices = ((EditVerticesSizeParam)parameters).getNewVertices();
         EditVerticesSizeParam editVerticesSizeParam = new EditVerticesSizeParam(newVertices, oldVertices);
         EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(editVerticesSizeParam);
         editVerticesSizeLogAction.action();
@@ -95,8 +93,8 @@ public class EditVerticesSizeLogAction extends LogAction {
     /**
      * Creates the vertices object.
      */
-    public void createParameter(Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices) {
-        parameters = new EditVerticesSizeParam(oldVertices, newVertices);
+    public void createParameter(Map<Vertex,Integer> oldVertices, Map<Vertex,Integer> newVertices) {
+        parameters = new EditVerticesSizeParam(oldVertices,newVertices);
     }
 
 }

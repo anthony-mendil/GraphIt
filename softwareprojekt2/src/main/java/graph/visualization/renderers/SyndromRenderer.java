@@ -57,7 +57,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             Collection<E> incoming = new ArrayList<>();
             Collection<E> outgoing = new ArrayList<>();
             for (V v : included) {
-                if (!g.getInEdges(v).isEmpty()) {
+                if(!g.getInEdges(v).isEmpty()) {
                     incoming.addAll(g.getInEdges(v));
                 }
                 outgoing.addAll(g.getOutEdges(v));
@@ -74,11 +74,11 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             }
         } else {
             // if not sphere overlaps another one all edges get rendered
-            Collection<E> edges = layout.getGraph().getEdges();
+            Collection<E> edges =  layout.getGraph().getEdges();
             Collection<E> renderLast = new LinkedList<>();
-            for (E e : edges) {
+            for (E e : edges){
                 graph.graph.Edge edge = (graph.graph.Edge) e;
-                if (!edge.isHasPrio()) {
+                if (!edge.isHasPrio()){
                     renderEdge(e, renderContext, layout);
                 } else {
                     renderLast.add(e);

@@ -6,9 +6,7 @@ import actions.edit.color.EditSphereColorLogAction;
 import actions.edit.font.EditFontSizeSphereLogAction;
 import actions.edit.font.EditFontSphereLogAction;
 import actions.remove.RemoveSphereLogAction;
-import graph.graph.FunctionMode;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
+import graph.graph.*;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
@@ -20,9 +18,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Data
 public class SphereContextMenu {

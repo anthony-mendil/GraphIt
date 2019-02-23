@@ -26,14 +26,14 @@ import java.util.Optional;
  */
 public class LogDao implements Dao<Log> {
 
-    public static final String GRAPH_FROM_ID2 = "SELECT g from Graph g where g.id > 0";
     private static final String LOG_FROM_ID = "SELECT l from Log l where l.id = :lid";
     private static final String GRAPH_FROM_ID1 = "SELECT l from Log l where l.graph.id = :gid";
-    private static Logger logger = Logger.getLogger(LogDao.class);
+    public static final String GRAPH_FROM_ID2 =  "SELECT g from Graph g where g.id > 0";
 
+
+    private static Logger logger = Logger.getLogger(LogDao.class);
     /**
      * Returns a logs object, attribute vertices gets converted from string to object with jackson.
-     *
      * @param id The id of the object to get.
      * @return The log object.
      */
@@ -54,7 +54,6 @@ public class LogDao implements Dao<Log> {
 
     /**
      * Returns a list of log objects for the current graph.
-     *
      * @return A list of log objects.
      */
     @Override
@@ -80,10 +79,9 @@ public class LogDao implements Dao<Log> {
 
     /**
      * Returns a string (json) containing all logs from the current graph.
-     *
      * @return A a string (json) containing all logs.
      */
-    public String getAllString() {
+    public String getAllString()  {
         Graph graph = DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null);
         if (graph == null) {
             throw new IllegalStateException();
@@ -107,19 +105,17 @@ public class LogDao implements Dao<Log> {
 
         String logString = null;
         try {
-            Type myType = new TypeToken<List<Log>>() {
-            }.getType();
+            Type myType = new TypeToken<List<Log>>() {}.getType();
             logString = gson.toJson(logList, myType);
         } catch (Exception e) {
             logger.error(e.toString());
         }
 
-        return logString;
+        return  logString;
     }
 
     /**
      * Saves the log object.
-     *
      * @param log The log object to save.
      */
     @Override
@@ -163,11 +159,10 @@ public class LogDao implements Dao<Log> {
 
         deleteAllLogs();
 
-        Type myType = new TypeToken<ArrayList<Log>>() {
-        }.getType();
+        Type myType = new TypeToken<ArrayList<Log>>() {}.getType();
         logs = new Gson().fromJson(oofLogs, myType);
 
-        for (Log log : logs) {
+        for (Log log: logs){
             save(log);
         }
     }
@@ -185,7 +180,6 @@ public class LogDao implements Dao<Log> {
 
     /**
      * Gets all logs of a specific log type.
-     *
      * @param logEntryName The log type.
      * @return A list with all logs of this log type.
      */

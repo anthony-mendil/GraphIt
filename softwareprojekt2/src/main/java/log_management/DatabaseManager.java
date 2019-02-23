@@ -18,36 +18,40 @@ import lombok.Data;
 @Singleton
 public class DatabaseManager implements ObserverSyndrom {
 
-    private static DatabaseManager databaseManager;
     /**
      * The log_management.dao GraphDao object for graphs, for accessing the database.
      */
     private GraphDao graphDao;
+
     /**
      * The log_management.dao LogDao object for logs, for accessing the database.
      */
     private LogDao logDao;
+
     /**
      * The GXLio object to get the GXL string.
      */
     private GXLio gxlIo;
+
     /**
      * The current mode.
      */
     private FunctionMode mode;
 
+    private static DatabaseManager databaseManager;
+
     /**
      * Creates a database manager organizing the database.
      */
-    private DatabaseManager() {
+    private DatabaseManager(){
         graphDao = new GraphDao();
         logDao = new LogDao();
         gxlIo = new GXLio();
         mode = Values.getInstance().getMode();
     }
 
-    public static DatabaseManager getInstance() {
-        if (databaseManager == null) {
+    public static DatabaseManager getInstance(){
+        if (databaseManager == null){
             databaseManager = new DatabaseManager();
         }
         return databaseManager;
@@ -55,7 +59,6 @@ public class DatabaseManager implements ObserverSyndrom {
 
     /**
      * Adds a log to the database (through dao).
-     *
      * @param log The log for the called action.
      */
     public void addEntryDatabase(Log log) {

@@ -14,7 +14,6 @@ import java.awt.*;
  */
 public class VertexFontTransformer<V> implements Transformer<V, Font> {
     private HelperFunctions helperFunctions = new HelperFunctions();
-
     @Override
     public Font transform(V v) {
         Vertex vertex = (Vertex) v;

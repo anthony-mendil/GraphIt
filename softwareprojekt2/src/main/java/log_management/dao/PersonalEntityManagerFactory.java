@@ -11,7 +11,6 @@ public class PersonalEntityManagerFactory {
 
     /**
      * Returns the personal Entity Manager used to access the database.
-     *
      * @return The personal Entity Manager.
      */
     public static EntityManagerFactory getInstance() {

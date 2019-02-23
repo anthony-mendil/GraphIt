@@ -135,7 +135,6 @@ public class Sphere {
 
     /**
      * Checks whether the vertices in the sphere are locked.
-     *
      * @return
      */
     public boolean verticesLocked() {

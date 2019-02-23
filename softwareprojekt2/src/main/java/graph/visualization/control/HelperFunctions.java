@@ -1,5 +1,7 @@
 package graph.visualization.control;
 
+import actions.ActionHistory;
+import actions.edit.annotation.EditSphereAnnotationLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Sphere;
@@ -18,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,15 +29,12 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
-import java.util.EnumMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 public class HelperFunctions {
-    private static Logger logger = Logger.getLogger(HelperFunctions.class);
     private final Values values;
+    private static Logger logger = Logger.getLogger(HelperFunctions.class);
     private LoadLanguage lang = LoadLanguage.getInstance();
 
     public HelperFunctions() {
@@ -101,7 +101,7 @@ public class HelperFunctions {
                         final CountDownLatch latch = new CountDownLatch(1);
                         Platform.runLater(() -> {
                             try {
-                                String alert = (withPlaceHolder) ? lang.loadLanguagesKey(string) : string;
+                                String alert = (withPlaceHolder)? lang.loadLanguagesKey(string): string;
                                 values.getCurrentActionText().setText(alert);
                                 Text text = values.getCurrentActionText();
                                 if (isAlert) {
@@ -224,7 +224,7 @@ public class HelperFunctions {
         return d;
     }
 
-    public Font returnFont(String f) {
+    public Font returnFont(String f){
         java.awt.Font newFont;
         switch (f) {
             case "AveriaSansLibre":

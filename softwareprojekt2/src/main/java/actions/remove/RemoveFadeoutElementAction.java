@@ -17,7 +17,7 @@ public class RemoveFadeoutElementAction extends GraphAction {
         for (Edge e : pickedState.getPicked()) {
             e.setVisible(true);
         }
-        for (Vertex v : vertexPickedState.getPicked()) {
+        for(Vertex v : vertexPickedState.getPicked()){
             v.setVisible(true);
         }
 

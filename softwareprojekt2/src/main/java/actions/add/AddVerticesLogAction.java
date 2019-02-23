@@ -91,7 +91,7 @@ public class AddVerticesLogAction extends LogAction {
             databaseManager.addEntryDatabase(createLog());
             notifyObserverGraph();
         } else {
-            Object[] obj = {template.getMaxVertices()};
+            Object[] obj = { template.getMaxVertices()};
             helper.setActionText(loadLanguage.loadLanguagesKey("ADD_VERTICES_COUNT_ALERT", obj), true, false);
         }
     }

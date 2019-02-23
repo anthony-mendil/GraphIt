@@ -49,10 +49,10 @@ public class EditSphereSizeLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if (parameters == null) {
+        if(parameters == null) {
             Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
-                if (!sp.isLockedStyle()) {
+                if(!sp.isLockedStyle()){
                     if (sizeChange == SizeChange.ENLARGE) {
                         double newHeight = sp.getHeight() + 10;
                         double newWidth = sp.getWidth() + 10;
@@ -71,10 +71,10 @@ public class EditSphereSizeLogAction extends LogAction {
                             }
                         }
                         if (enlarge) {
-                            Pair<Double, Double> oldSize = new Pair<>(sp.getWidth(), sp.getHeight());
+                            Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
                             sp.setHeight(newHeight);
                             sp.setWidth(newWidth);
-                            Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
+                            Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
                             createParameter(sp, oldSize, newSize);
 
                         }
@@ -89,22 +89,22 @@ public class EditSphereSizeLogAction extends LogAction {
                             }
                         }
                         if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
-                            Pair<Double, Double> oldSize = new Pair<>(sp.getWidth(), sp.getHeight());
+                            Pair<Double,Double> oldSize = new Pair<>(sp.getWidth(),sp.getHeight());
                             sp.setHeight(sp.getHeight() - 10);
                             sp.setWidth(sp.getWidth() - 10);
-                            Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
+                            Pair<Double,Double> newSize = new Pair<>(sp.getWidth(),sp.getHeight());
                             createParameter(sp, oldSize, newSize);
 
                         }
                     }
-                } else {
+                } else{
                     helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true, false);
                     lockedSphere = sp;
                 }
             }
-        } else {
-            Pair<Double, Double> newSize = ((EditSphereSizeParam) parameters).getNewSize();
-            Sphere sphere = ((EditSphereSizeParam) parameters).getSphere();
+        }else{
+            Pair<Double,Double> newSize = ((EditSphereSizeParam)parameters).getNewSize();
+            Sphere sphere = ((EditSphereSizeParam)parameters).getSphere();
             sphere.setWidth(newSize.getValue());
             sphere.setHeight(newSize.getKey());
         }
@@ -117,9 +117,9 @@ public class EditSphereSizeLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Pair<Double, Double> oldSize = ((EditSphereSizeParam) parameters).getOldSize();
-        Pair<Double, Double> newSize = ((EditSphereSizeParam) parameters).getNewSize();
-        Sphere sphere = ((EditSphereSizeParam) parameters).getSphere();
+        Pair<Double,Double> oldSize = ((EditSphereSizeParam)parameters).getOldSize();
+        Pair<Double,Double> newSize = ((EditSphereSizeParam)parameters).getNewSize();
+        Sphere sphere = ((EditSphereSizeParam)parameters).getSphere();
         EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, newSize, oldSize);
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
         editSphereSizeLogAction.action();
@@ -128,7 +128,7 @@ public class EditSphereSizeLogAction extends LogAction {
     /**
      * Creates the vertices object.
      */
-    public void createParameter(Sphere sphere, Pair<Double, Double> oldSize, Pair<Double, Double> newSize) {
-        parameters = new EditSphereSizeParam(sphere, oldSize, newSize);
+    public void createParameter(Sphere sphere, Pair<Double,Double> oldSize, Pair<Double,Double> newSize) {
+        parameters = new EditSphereSizeParam(sphere, oldSize,newSize);
     }
 }

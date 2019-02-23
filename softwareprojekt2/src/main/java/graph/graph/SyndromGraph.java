@@ -26,13 +26,14 @@ import java.util.List;
 @Data
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
-     * The object factory for syndrom.
-     */
-    private final transient GraphObjectsFactory graphObjectsFactory;
-    /**
      * List of spheres.
      */
     private transient List<Sphere> spheres = new ArrayList<>();
+
+    /**
+     * The object factory for syndrom.
+     */
+    private final transient GraphObjectsFactory graphObjectsFactory;
 
     /**
      * Creates a new syndrom graph.
@@ -40,6 +41,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     public SyndromGraph() {
         graphObjectsFactory = new GraphObjectsFactory();
     }
+
 
 
     /**
@@ -53,21 +55,21 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     }
 
     @SuppressWarnings("unchecked")
-    public void addEdge(V v1, V v2) {
+    public void addEdge(V v1, V v2){
         Edge edge = graphObjectsFactory.createEdge();
-        addEdge((E) edge, v1, v2);
+        addEdge((E)edge, v1, v2);
     }
 
     /**
      * Adds an edge to the graph, if it already existed once in the past.
      *
      * @param edge The existing edge.
-     * @param v1   The source vertex.
-     * @param v2   The sink vertex.
+     * @param v1 The source vertex.
+     * @param v2 The sink vertex.
      */
     @SuppressWarnings("Unchecked")
-    public void addEdgeExisting(Edge edge, V v1, V v2) {
-        addEdge((E) edge, v1, v2);
+    public void addEdgeExisting(Edge edge, V v1, V v2){
+        addEdge((E)edge, v1, v2);
     }
 
     /**
@@ -86,7 +88,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Adds a vertex to the syndromgraphs and assigns it to the sphere if was existing in the past.
      */
-    public Vertex addVertexExisting(Vertex vertex) {
+    public Vertex addVertexExisting(Vertex vertex){
         SyndromVisualisationViewer vv = Syndrom.getInstance().getVv();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(vertex.getCoordinates().getX(), vertex.getCoordinates().getY());
@@ -98,8 +100,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * Adds a new sphere to the graph.
      *
-     * @param pos The point where the sphere gets placed
      * @return True if the sphere was added to the graph, false if not.
+     * @param pos The point where the sphere gets placed
      */
     public boolean addSphere(Point2D pos) {
         Sphere sphere = graphObjectsFactory.createSphere(pos);

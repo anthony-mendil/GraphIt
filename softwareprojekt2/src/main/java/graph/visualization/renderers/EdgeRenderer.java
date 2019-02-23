@@ -103,7 +103,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                 Vertex first = (Vertex) endP.getFirst();
                 Shape destVertexShape =
                         rc.getVertexShapeTransformer().transform(graph.getEndpoints(e).getSecond());
-                Shape departVertexShape = rc.getVertexShapeTransformer().transform(graph.getEndpoints(e).getFirst());
+                Shape departVertexShape =  rc.getVertexShapeTransformer().transform(graph.getEndpoints(e).getFirst());
 
                 AffineTransform xf = AffineTransform.getTranslateInstance(x2, y2);
                 destVertexShape = xf.createTransformedShape(destVertexShape);
@@ -112,7 +112,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                 departVertexShape = xTransform.createTransformedShape(departVertexShape);
 
 
-                arrowHit = rc.getMultiLayerTransformer().getTransformer(Layer.VIEW).transform(destVertexShape).intersects(deviceRectangle);
+                        arrowHit = rc.getMultiLayerTransformer().getTransformer(Layer.VIEW).transform(destVertexShape).intersects(deviceRectangle);
                 if (arrowHit) {
                     AffineTransform at =
                             edgeArrowRenderingSupport.getArrowTransform(rc, edgeShape, destVertexShape);
@@ -145,24 +145,24 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                         Point2D outAnchor = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, oT);
                         outCoord = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, outCoord);
                         Line2D outLineAngle = new Line2D.Double(outAnchor, outCoord);
-                        outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle, departVertexShape);
+                        outEdgeAngle = edgeArrowRenderingSupport.getArrowTransform(rc, outLineAngle,departVertexShape);
                         if (outEdgeAngle == null) return;
 
-                        Shape tryP = new Ellipse2D.Double(0, 0, 5, 5);
+                        Shape tryP = new Ellipse2D.Double(0,0, 5,5);
                         tryP = outEdgeAngle.createTransformedShape(tryP);
 
                         x1 = (float) tryP.getBounds2D().getCenterX();
                         y1 = (float) tryP.getBounds2D().getCenterY();
                     }
 
-                    if (!edge.isHasAnchorIn()) {
+                    if (!edge.isHasAnchorIn()){
                         EdgeArrowType edgetype = edge.getArrowType();
                         Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map;
                         map = getMap(edgetype, second);
                         Point2D fitPoint = null;
                         ArrayList<ScopePoint> scopePoints = null;
                         if (map != null) {
-                            javafx.util.Pair<Point2D, AffineTransform> pair = getFitPoint(rc, map, at, second, arrow);
+                            javafx.util.Pair<Point2D, AffineTransform> pair = getFitPoint(rc,map, at, second, arrow);
                             fitPoint = pair.getKey();
                             arr = pair.getValue();
                             scopePoints = getUnusedScopePoints(map);
@@ -171,7 +171,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                         if (fitPoint != null) {
                             x2 = (float) fitPoint.getX();
                             y2 = (float) fitPoint.getY();
-                            edge.setAnchorPoints(new javafx.util.Pair<>(edge.getAnchorPoints().getKey(), fitPoint));
+                            edge.setAnchorPoints(new javafx.util.Pair<>(edge.getAnchorPoints().getKey(),fitPoint));
                             arrow = arr.createTransformedShape(arrow);
 
                         } else {
@@ -183,7 +183,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
                             javafx.util.Pair<Point2D, AffineTransform> nextPoint = getNextFreePoint(edgetype, original, second, at, arrow, destVertexShape, rc);
 
-                            if (nextPoint == null) {
+                            if (nextPoint == null){
                                 arrow = ar;
                             } else {
                                 edgeAngle = nextPoint.getValue();
@@ -202,11 +202,11 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                                 throw new IllegalArgumentException();
                             }
                             setMap(edgetype, second, map);
-                            edge.setAnchorPoints(new javafx.util.Pair<>(edge.getAnchorPoints().getKey(), newPoint));
+                            edge.setAnchorPoints(new javafx.util.Pair<>(edge.getAnchorPoints().getKey(),newPoint));
                         }
                     }
 
-                    AffineTransform affineTransform = AffineTransform.getTranslateInstance(x1, y1);
+                    AffineTransform affineTransform =  AffineTransform.getTranslateInstance(x1, y1);
                     dx = x2 - x1;
                     dy = y2 - y1;
                     thetaRadians = (float) Math.atan2(dy, dx);
@@ -216,7 +216,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                     edgeShape = affineTransform.createTransformedShape(oldEdge);
 
                     setPaintEdge(e, rc, g);
-                    drawEdgeArrow(rc, new javafx.util.Pair<>(e, edgeShape), g, arrow, edgeAngle, arr, at, new Point2D.Double(x1, y1));
+                    drawEdgeArrow(rc, new javafx.util.Pair<>(e, edgeShape), g, arrow, edgeAngle, arr, at, new Point2D.Double(x1,y1));
                 }
             }
 
@@ -226,7 +226,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
     }
 
-    private javafx.util.Pair<Point2D, AffineTransform> getPoint(Ellipse2D help, Point2D center, Point2D avoid, Shape arrow1, Shape arrow2, RenderContext<V, E> rc, Shape vertexShape, Shape arrow3) {
+    private javafx.util.Pair<Point2D, AffineTransform>  getPoint(Ellipse2D help, Point2D center, Point2D avoid, Shape arrow1, Shape arrow2, RenderContext<V,E> rc, Shape vertexShape, Shape arrow3) {
         double[] coordinates = new double[6];
         Point2D.Double point;
         Point2D.Double newP = null;
@@ -240,10 +240,10 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             double cy = coordinates[1];
             point = new Point2D.Double(cx, cy);
 
-            pair = getIntersection(point, arrow1, arrow2, center, rc, vertexShape, arrow3);
+            pair = getIntersection(point, arrow1, arrow2, center, rc,vertexShape, arrow3);
 
             double b = angleBetween(new Point2D.Double(center.getX(), center.getY()), avoid, point);
-            if (newP == null) {
+            if (newP == null){
                 newP = point;
                 newPair = pair;
                 isMinus = b < 0;
@@ -253,12 +253,12 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             boolean cMinus = c < 0;
             c = Math.abs(c);
 
-            if (b < c && isMinus == cMinus && pair != null) {
+            if ( b < c && isMinus == cMinus && pair != null){
                 newP = point;
                 newPair = pair;
             }
         }
-        if (pair != null) {
+        if (pair != null){
             return newPair;
         } else {
             return null;
@@ -266,17 +266,17 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     @SuppressWarnings("unchecked")
-    private javafx.util.Pair<Point2D, AffineTransform> getIntersection(Point2D p2, Shape arrow1, Shape arrow2, Point2D center, RenderContext<V, E> rc, Shape vertexShape, Shape arrow3) {
+    private javafx.util.Pair<Point2D, AffineTransform> getIntersection(Point2D p2, Shape arrow1, Shape arrow2, Point2D center, RenderContext<V, E> rc, Shape vertexShape, Shape arrow3){
         Line2D line = new Line2D.Double(p2, center);
 
-        AffineTransform a2 = edgeArrowRenderingSupport.getArrowTransform(rc, line, vertexShape);
+        AffineTransform a2 =  edgeArrowRenderingSupport.getArrowTransform(rc, line, vertexShape);
         if (a2 == null) return null;
 
         Shape s2 = a2.createTransformedShape(arrow2);
 
-        if (!s2.getBounds2D().intersects(arrow1.getBounds2D())) {
-            if (arrow3 != null) {
-                if (!s2.getBounds2D().intersects(arrow3.getBounds2D())) {
+        if (!s2.getBounds2D().intersects(arrow1.getBounds2D())){
+            if (arrow3 != null ){
+                if (!s2.getBounds2D().intersects(arrow3.getBounds2D())){
                     return new javafx.util.Pair<>(p2, a2);
                 }
             } else {
@@ -286,7 +286,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         return null;
     }
 
-    private javafx.util.Pair<Point2D, AffineTransform> getNextFreePoint(EdgeArrowType arrowType, Point2D original, Vertex vertex, AffineTransform at, Shape arrow, Shape vertexShape, RenderContext<V, E> rc) {
+    private javafx.util.Pair<Point2D, AffineTransform> getNextFreePoint(EdgeArrowType arrowType, Point2D original, Vertex vertex, AffineTransform at, Shape arrow, Shape vertexShape, RenderContext<V,E> rc){
         Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> getOtherTypesMap = getOtherTypesMap(arrowType, vertex);
         javafx.util.Pair<Point2D, AffineTransform> first = getFitPoint(rc, getOtherTypesMap.getFirst().getKey(), at, vertex, arrow);
         javafx.util.Pair<Point2D, AffineTransform> second = getFitPoint(rc, getOtherTypesMap.getSecond().getKey(), at, vertex, arrow);
@@ -294,27 +294,27 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         Point2D pointS = second.getKey();
         EdgeArrowTransformer edgeArrowTransformer = new EdgeArrowTransformer();
         Shape f = edgeArrowTransformer.getTransform(getOtherTypesMap.getFirst().getValue());
-        Shape s = edgeArrowTransformer.getTransform(getOtherTypesMap.getSecond().getValue());
+        Shape s =  edgeArrowTransformer.getTransform(getOtherTypesMap.getSecond().getValue());
 
         Rectangle2D bounds = vertexShape.getBounds2D();
         Point2D center = new Point2D.Double(bounds.getCenterX(), bounds.getCenterY());
-        double width = (bounds.getWidth() > bounds.getHeight()) ? bounds.getWidth() : bounds.getHeight();
-        Ellipse2D help = new Ellipse2D.Double(bounds.getCenterX() - ((width + 10) / 2), bounds.getCenterY() - ((width + 10) / 2), width + 10, width + 10);
+        double width = (bounds.getWidth() > bounds.getHeight()) ?bounds.getWidth() : bounds.getHeight();
+        Ellipse2D help = new Ellipse2D.Double(bounds.getCenterX()-((width+10)/2), bounds.getCenterY()-((width+10)/2),width+10, width+10);
 
-        if (pointF == null && pointS == null) {
+        if (pointF == null && pointS == null){
             return null;
-        } else if (pointF != null && pointS == null) {
+        } else if (pointF != null && pointS == null){
             f = first.getValue().createTransformedShape(f);
             javafx.util.Pair<Point2D, AffineTransform> pair = getIntersection(original, f, arrow, center, rc, vertexShape, null);
-            if (pair != null) {
+            if (pair != null){
                 return pair;
             } else {
                 return getPoint(help, center, pointF, f, arrow, rc, vertexShape, null);
             }
-        } else if (pointF == null) {
+        } else if (pointF == null){
             s = second.getValue().createTransformedShape(s);
             javafx.util.Pair<Point2D, AffineTransform> pair = getIntersection(original, s, arrow, center, rc, vertexShape, null);
-            if (pair != null) {
+            if (pair != null){
                 return pair;
             } else {
                 return getPoint(help, center, pointS, s, arrow, rc, vertexShape, null);
@@ -323,7 +323,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             s = second.getValue().createTransformedShape(s);
             f = first.getValue().createTransformedShape(f);
             javafx.util.Pair<Point2D, AffineTransform> pair = getIntersection(original, s, arrow, center, rc, vertexShape, f);
-            if (pair != null) {
+            if (pair != null ){
                 return pair;
             } else {
                 return getPoint(help, center, pointS, s, arrow, rc, vertexShape, f);
@@ -332,13 +332,14 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
+     *
      * @param rc
      * @param pair
      * @param g
      * @param arrow
      * @param edgeAngle AffineTransform for arrow, if the edge having an anchor point
-     * @param arr       AffineTransform from the fitPoint
-     * @param at        AffineTransform for arrow
+     * @param arr AffineTransform from the fitPoint
+     * @param at AffineTransform for arrow
      */
     private void drawEdgeArrow(RenderContext<V, E> rc, javafx.util.Pair<E, Shape> pair, GraphicsDecorator g, Shape arrow, AffineTransform edgeAngle, AffineTransform arr, AffineTransform at, Point2D anchorPoint) {
         E e = pair.getKey();
@@ -350,11 +351,11 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         }
         Edge edge = (Edge) e;
         Values values = Values.getInstance();
-        if (values.isShowAnchor() && edge.isHasAnchorOut()) {
+        if (values.isShowAnchor() && edge.isHasAnchorOut()){
             g.setStroke(new BasicStroke(1.0f));
             double dimension = 15;
-            Shape anchor = new Ellipse2D.Double(-dimension / 2, -dimension / 2, dimension, dimension);
-            AffineTransform anchorTransform = AffineTransform.getTranslateInstance(anchorPoint.getX(), anchorPoint.getY());
+            Shape anchor = new Ellipse2D.Double(-dimension/2,-dimension/2, dimension, dimension);
+            AffineTransform anchorTransform = AffineTransform.getTranslateInstance(anchorPoint.getX(),anchorPoint.getY());
             anchor = anchorTransform.createTransformedShape(anchor);
             g.setPaint(values.getAnchorHighlight());
             g.fill(anchor);
@@ -397,7 +398,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         return scopePoints;
     }
 
-    private javafx.util.Pair<Point2D, AffineTransform> getFitPoint(RenderContext<V, E> rc, Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map, AffineTransform at, Vertex second, Shape arrow) {
+    private javafx.util.Pair<Point2D, AffineTransform> getFitPoint(RenderContext<V,E> rc ,Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> map, AffineTransform at, Vertex second, Shape arrow) {
         Point2D fitPoint = null;
         AffineTransform ar = null;
         for (Map.Entry<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> entry : map.entrySet()) {
@@ -407,7 +408,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             double y2 = (float) arrowTemp.getBounds2D().getCenterY();
             Point2D newPoint = new Point2D.Double(x2, y2);
             Point2D c = second.getCoordinates();
-            c = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, c);
+            c= rc.getMultiLayerTransformer().transform(Layer.LAYOUT, c);
             double angle = angleBetween(c, position, newPoint);
             angle = Math.abs(angle);
             if (angle > 0 && angle <= 45) {
@@ -449,8 +450,8 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         return map;
     }
 
-    private Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> getOtherTypesMap(EdgeArrowType edgeArrowType, Vertex second) {
-        Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> map;
+    private Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>> getOtherTypesMap(EdgeArrowType edgeArrowType, Vertex second){
+        Pair<javafx.util.Pair<Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>>, EdgeArrowType>>  map;
         Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> extenuating = second.getVertexArrowExtenuating();
         Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> reinforced = second.getVertexArrowReinforced();
         Map<ScopePoint, javafx.util.Pair<Point2D, AffineTransform>> neutral = second.getVertexArrowNeutral();

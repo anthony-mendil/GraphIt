@@ -15,7 +15,7 @@ import java.awt.*;
 public class VertexStrokeTransformer<V> implements Transformer<V, Stroke> {
     private SyndromVisualisationViewer syndromVisualisationViewer;
 
-    public VertexStrokeTransformer(SyndromVisualisationViewer syndromVisualisationViewer) {
+    public VertexStrokeTransformer(SyndromVisualisationViewer syndromVisualisationViewer){
         this.syndromVisualisationViewer = syndromVisualisationViewer;
     }
 
@@ -23,7 +23,7 @@ public class VertexStrokeTransformer<V> implements Transformer<V, Stroke> {
     @SuppressWarnings("unchecked")
     public Stroke transform(V v) {
         PickedState<V> vertexPickedState = syndromVisualisationViewer.getPickedVertexState();
-        if (vertexPickedState.isPicked(v)) {
+        if (vertexPickedState.isPicked(v)){
             return new BasicStroke(4);
         } else {
             return new BasicStroke(2);

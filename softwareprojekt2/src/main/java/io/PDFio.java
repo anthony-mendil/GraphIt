@@ -45,11 +45,12 @@ import static org.freehep.graphicsio.pdf.PDFGraphics2D.PAGE_SIZE;
  */
 public class PDFio {
 
-    private static Logger logger = Logger.getLogger(PDFio.class);
     /**
      * The VisualizationViewer object of the current graph.
      */
     private VisualizationViewer vv;
+
+    private static Logger logger = Logger.getLogger(PDFio.class);
 
     /**
      * Constructs a new PDFio object.
@@ -165,7 +166,7 @@ public class PDFio {
     public void printPDF() {
         File file = null;
         try {
-            file = Files.createTempFile("graphit", null).toFile();
+            file=Files.createTempFile("graphit", null).toFile();
             exportPDF(file);
 
             PDDocument pdDocument = PDDocument.load(file);
@@ -174,12 +175,12 @@ public class PDFio {
             printerJob.setJobName(file.getName());
             printerJob.setPageable(new PDFPageable(pdDocument));
             if (printerJob.printDialog()) {
-                printerJob.print();
+                    printerJob.print();
             }
         } catch (IOException | PrinterException e) {
             logger.error(e.toString());
-        } finally {
-            if (file != null) {
+        }finally {
+            if(file!=null){
                 try {
                     Files.delete(file.toPath());
                 } catch (IOException e) {

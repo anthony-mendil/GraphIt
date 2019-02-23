@@ -21,14 +21,14 @@ public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
     float[] dashing = {5.0f};
     private VisualizationViewer vv;
 
-    public EdgeStrokeTransformer(VisualizationViewer vv) {
+    public EdgeStrokeTransformer(VisualizationViewer vv){
         this.vv = vv;
     }
 
     @Override
     public Stroke transform(E e) {
-        Edge edge = (Edge) e;
-        Stroke stroke;
+         Edge edge = (Edge) e;
+         Stroke stroke;
 
         PickedState<E> vertexPickedState = vv.getPickedEdgeState();
         if (vertexPickedState.isPicked(e)) {
@@ -38,37 +38,31 @@ public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
             Stroke dashed = new BasicStroke(4.0f,
                     BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, RenderContext.dashing, 0f);
 
-            if (edge.getStroke() == StrokeType.BASIC || edge.getStroke() == StrokeType.BASIC_WEIGHT) {
+            if (edge.getStroke() == StrokeType.BASIC || edge.getStroke() ==  StrokeType.BASIC_WEIGHT){
                 stroke = basic;
-            } else if (edge.getStroke() == StrokeType.DOTTED_WEIGHT || edge.getStroke() == StrokeType.DOTTED) {
+            } else if (edge.getStroke() == StrokeType.DOTTED_WEIGHT || edge.getStroke() ==  StrokeType.DOTTED){
                 stroke = dotted;
             } else {
                 stroke = dashed;
             }
-        } else {
+        }
+        else {
             switch (edge.getStroke()) {
-                case BASIC:
-                    stroke = new BasicStroke(1);
+                case BASIC: stroke = new BasicStroke(1);
                     break;
-                case BASIC_WEIGHT:
-                    stroke = new BasicStroke(3);
+                case BASIC_WEIGHT:  stroke = new BasicStroke(3);
                     break;
-                case DASHED:
-                    stroke = RenderContext.DASHED;
+                case DASHED:  stroke = RenderContext.DASHED;
                     break;
-                case DASHED_WEIGHT:
-                    stroke = new BasicStroke(3.0f,
-                            BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, RenderContext.dashing, 0f);
+                case DASHED_WEIGHT:  stroke = new BasicStroke(3.0f,
+                        BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, RenderContext.dashing, 0f);
                     break;
-                case DOTTED:
-                    stroke = RenderContext.DOTTED;
+                case DOTTED:  stroke = RenderContext.DOTTED;
                     break;
-                case DOTTED_WEIGHT:
-                    stroke = new BasicStroke(3.0f,
-                            BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, dotting, 0f);
+                case DOTTED_WEIGHT:  stroke =  new BasicStroke(3.0f,
+                        BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, dotting, 0f);
                     break;
-                default:
-                    stroke = new BasicStroke(1);
+                default: stroke = new BasicStroke(1);
                     break;
             }
         }

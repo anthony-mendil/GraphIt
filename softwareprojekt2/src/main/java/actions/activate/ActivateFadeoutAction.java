@@ -28,6 +28,7 @@ import java.awt.*;
 public class ActivateFadeoutAction extends LogAction {
     /**
      * Constructor
+     *
      */
     public ActivateFadeoutAction() {
         super(LogEntryName.ACTIVATE_FADEOUT);
@@ -43,6 +44,7 @@ public class ActivateFadeoutAction extends LogAction {
         super(LogEntryName.ACTIVATE_FADEOUT);
         throw new UnsupportedOperationException();
     }
+
 
 
     /**

@@ -26,7 +26,6 @@ public class EditSphereAnnotationLogAction extends LogAction {
      */
     private String text;
     private Language language;
-
     /**
      * Constructor in case the user changes the annotation of a sphere.
      *
@@ -52,10 +51,10 @@ public class EditSphereAnnotationLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
-        if (parameters == null) {
+        if(parameters == null) {
             Set<Sphere> lockedSpheres = new HashSet<>();
             for (Sphere sp : pickedState.getPicked()) {
-                if (!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     Map<String, String> annotation = sp.getAnnotation();
                     Map<String, String> oldAnnotation = new HashMap<>();
                     annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
@@ -69,15 +68,15 @@ public class EditSphereAnnotationLogAction extends LogAction {
                     }
                     annotation.put(language.name(), text);
                     sp.setAnnotation(annotation);
-                } else {
+                } else{
                     helper.setActionText("EDIT_SPERE_ANNOTATION_ALERT", true, true);
                     lockedSpheres.add(sp);
                 }
             }
-        } else {
-            Sphere sphere = ((EditSphereAnnotationParam) parameters).getNewSphere();
-            String newAnnotation = ((EditSphereAnnotationParam) parameters).getNewAnnotation();
-            Map<String, String> newAnno = new HashMap<>();
+        }else{
+            Sphere sphere = ((EditSphereAnnotationParam)parameters).getNewSphere();
+            String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
+            Map<String,String> newAnno = new HashMap<>();
             newAnno.put(language.name(), newAnnotation);
             sphere.setAnnotation(newAnno);
 
@@ -92,9 +91,9 @@ public class EditSphereAnnotationLogAction extends LogAction {
 
     @Override
     public void undo() {
-        String oldAnnotation = ((EditSphereAnnotationParam) parameters).getOldAnnotation();
-        String newAnnotation = ((EditSphereAnnotationParam) parameters).getNewAnnotation();
-        Sphere sphere = ((EditSphereAnnotationParam) parameters).getNewSphere();
+        String oldAnnotation = ((EditSphereAnnotationParam)parameters).getOldAnnotation();
+        String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
+        Sphere sphere = ((EditSphereAnnotationParam)parameters).getNewSphere();
 
         EditSphereAnnotationParam editSphereAnnotationParam = new EditSphereAnnotationParam(sphere, sphere, newAnnotation, oldAnnotation);
         EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(editSphereAnnotationParam);

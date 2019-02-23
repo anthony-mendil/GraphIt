@@ -31,17 +31,13 @@ import java.util.Set;
 
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
-    private final Values values;
-    private final HelperFunctions helper;
     private Point2D spherePickedCoord = null;
     private Point2D downFirst = null;
     private Map<Integer, Point2D> points = null;
+    private final Values values;
     private ContextMenu contextMenu;
+    private final HelperFunctions helper;
     private LoadLanguage loadLanguage = LoadLanguage.getInstance();
-    /**
-     * The ActionHistory
-     */
-    private ActionHistory history = ActionHistory.getInstance();
 
     /**
      * create an instance with passed values
@@ -52,6 +48,11 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         values = Values.getInstance();
         helper = new HelperFunctions();
     }
+
+    /**
+     * The ActionHistory
+     */
+    private ActionHistory history = ActionHistory.getInstance();
 
     @Override
     @SuppressWarnings("unchecked")
@@ -87,7 +88,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
     }
 
-    private void addSphere(List<Sphere> list, Rectangle2D newRec, Point2D p) {
+    private void addSphere(List<Sphere> list, Rectangle2D newRec, Point2D p){
         boolean addSphere = true;
         for (Sphere sphere : list) {
             double startY = sphere.getCoordinates().getY();
@@ -106,10 +107,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (addSphere) {
             SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
             SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-            if (graph.getSpheres().size() < Syndrom.getInstance().getTemplate().getMaxSpheres() || values.getMode() == FunctionMode.TEMPLATE) {
+            if(graph.getSpheres().size() < Syndrom.getInstance().getTemplate().getMaxSpheres() || values.getMode() == FunctionMode.TEMPLATE) {
                 AddSphereLogAction addSphereLogAction = new AddSphereLogAction(p);
                 history.execute(addSphereLogAction);
-            } else {
+            }else{
                 Object[] obj = {Syndrom.getInstance().getTemplate().getMaxSpheres()};
                 helper.setActionText(loadLanguage.loadLanguagesKey("SPHERE_PICKING_TEMPLATE_ALERT", obj), true, false);
             }
@@ -121,7 +122,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
-        if (contextMenu != null) {
+        if (contextMenu != null){
             helper.hideMenu(contextMenu);
         }
 
@@ -135,16 +136,17 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
 
         if (sp != null && vert == null && edge == null) {
-            if (SwingUtilities.isRightMouseButton(e)) {
-                if (sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT) {
+           if (SwingUtilities.isRightMouseButton(e)) {
+               if(sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT){
                     helper.setActionText("SPHERE_PICKING_ALERT", true, false);
-                } else if (values.getMode() != FunctionMode.ANALYSE) {
-                    spherePickedCoord = sp.getCoordinates();
-                    points = new LinkedHashMap<>();
-                    for (Vertex v : sp.getVertices()) {
-                        points.put(v.getId(), v.getCoordinates());
-                    }
-                }
+               }
+               else if(values.getMode() != FunctionMode.ANALYSE) {
+                   spherePickedCoord = sp.getCoordinates();
+                   points = new LinkedHashMap<>();
+                   for (Vertex v : sp.getVertices()) {
+                       points.put(v.getId(), v.getCoordinates());
+                   }
+               }
             }
             if (!pickedSphereState.isPicked(sp)) {
                 pickedSphereState.clear();
@@ -177,27 +179,27 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     @SuppressWarnings("unchecked")
-    private void setCoordSpheres(SphereShapeTransformer sphereShapeTransformer, List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer vv) {
+    private void setCoordSpheres(SphereShapeTransformer sphereShapeTransformer, List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer vv){
         for (Sphere s : spheres) {
             Shape sShape = sphereShapeTransformer.transform(s);
             boolean move = true;
-            for (Sphere sphere : allSpheres) {
-                if (!s.equals(sphere)) {
+            for (Sphere sphere: allSpheres){
+                if (!s.equals(sphere)){
                     Shape sphereShape = sphereShapeTransformer.transform(sphere);
-                    if (sphereShape.intersects(sShape.getBounds())) {
+                    if (sphereShape.intersects(sShape.getBounds())){
                         move = false;
                     }
                 }
             }
-            if (!move) {
+            if (!move){
                 s.setCoordinates(spherePickedCoord);
-                for (Vertex v : s.getVertices()) {
+                for (Vertex v: s.getVertices()){
                     Point2D vp = points.get(v.getId());
                     v.setCoordinates(vp);
                     vv.getGraphLayout().setLocation(v, vp);
                 }
-            } else {
-                if (spherePickedCoord != s.getCoordinates()) {
+            }else{
+                if(spherePickedCoord != s.getCoordinates()) {
                     MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s, spherePickedCoord, s.getCoordinates());
                     history.execute(moveSphereLogAction);
                 }

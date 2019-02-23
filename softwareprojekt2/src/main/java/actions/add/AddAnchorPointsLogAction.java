@@ -10,15 +10,14 @@ import java.awt.geom.Point2D;
  * Adds an anchor-point to the selected vertex.
  */
 public class AddAnchorPointsLogAction extends LogAction {
-    /**
+	 /**
      * Constructor in the case few anchor-points shall be added.
      * Gets all picked edges through pick support.
      */
-    public AddAnchorPointsLogAction() {
-        super(LogEntryName.ADD_ANCHOR_POINTS);
+    public AddAnchorPointsLogAction(){
+    	super(LogEntryName.ADD_ANCHOR_POINTS);
         throw new UnsupportedOperationException();
     }
-
     /**
      * Constructor in the case only one anchor-point shall be added.
      *

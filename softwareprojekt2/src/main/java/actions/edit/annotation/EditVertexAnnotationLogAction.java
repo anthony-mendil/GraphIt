@@ -23,7 +23,6 @@ public class EditVertexAnnotationLogAction extends LogAction {
      */
     private String text;
     private Language language;
-
     /**
      * Constructor in case the user wants to change the annotation of vertex.
      *
@@ -49,9 +48,9 @@ public class EditVertexAnnotationLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if (parameters == null) {
+        if(parameters == null) {
             for (Vertex v : pickedState.getPicked()) {
-                if (!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                if(!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     Map<String, String> annotation = v.getAnnotation();
                     Map<String, String> oldAnnotation = new HashMap<>();
                     annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
@@ -59,16 +58,16 @@ public class EditVertexAnnotationLogAction extends LogAction {
                     createParameter(v, v.getAnnotation().get(language.name()), text);
                     annotation.put(language.name(), text);
                     v.setAnnotation(annotation);
-                } else {
+                }else{
                     helper.setActionText("EDIT_VERTEX_ANNOTATION_ALERT", true, true);
                 }
             }
 
-        } else {
-            Vertex vertex = ((EditVertexAnnotationParam) parameters).getVertex();
-            String newString = ((EditVertexAnnotationParam) parameters).getNewAnnotation();
-            Map<String, String> newAnnotation = new HashMap<>();
-            newAnnotation.put(language.name(), newString);
+        }else{
+            Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
+            String newString = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
+            Map<String,String> newAnnotation = new HashMap<>();
+            newAnnotation.put(language.name(),newString);
             vertex.setAnnotation(newAnnotation);
         }
         vv.repaint();
@@ -80,10 +79,10 @@ public class EditVertexAnnotationLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Vertex vertex = ((EditVertexAnnotationParam) parameters).getVertex();
-        String oldAnnotation = ((EditVertexAnnotationParam) parameters).getOldAnnotation();
-        String newAnnotation = ((EditVertexAnnotationParam) parameters).getNewAnnotation();
-        EditVertexAnnotationParam editVertexAnnotationParam = new EditVertexAnnotationParam(vertex, newAnnotation, oldAnnotation);
+        Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
+        String oldAnnotation = ((EditVertexAnnotationParam)parameters).getOldAnnotation();
+        String newAnnotation = ((EditVertexAnnotationParam)parameters).getNewAnnotation();
+        EditVertexAnnotationParam editVertexAnnotationParam = new EditVertexAnnotationParam(vertex, newAnnotation,oldAnnotation);
         EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(editVertexAnnotationParam);
         editVertexAnnotationLogAction.action();
     }

@@ -52,29 +52,28 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
         this.neutralArrow = factory.getNeutralEdgeArrow();
     }
 
-    public EdgeArrowTransformer() {
+    public EdgeArrowTransformer(){
         this(5, 10, 10, 0);
     }
 
     @Override
     public Shape transform(Context<Graph<V, E>, E> context) {
         Edge edge = (Edge) context.element;
-        if (edge.getArrowType() == EdgeArrowType.EXTENUATING) {
+        if (edge.getArrowType() == EdgeArrowType.EXTENUATING){
             return extenuatingArrow;
-        } else if (edge.getArrowType() == EdgeArrowType.REINFORCED) {
+        } else if (edge.getArrowType() == EdgeArrowType.REINFORCED){
             return reinforcedArrow;
         } else {
-            return neutralArrow;
+            return  neutralArrow;
         }
     }
-
-    public Shape getTransform(EdgeArrowType type) {
-        if (type == EdgeArrowType.EXTENUATING) {
+    public Shape getTransform(EdgeArrowType type){
+        if (type == EdgeArrowType.EXTENUATING){
             return extenuatingArrow;
-        } else if (type == EdgeArrowType.REINFORCED) {
+        } else if (type == EdgeArrowType.REINFORCED){
             return reinforcedArrow;
         } else {
-            return neutralArrow;
+            return  neutralArrow;
         }
     }
 }

@@ -13,11 +13,11 @@ import java.awt.*;
  */
 public class SphereFillPaintTransformer<S> implements Transformer<S, Paint> {
     @Override
-    public Paint transform(S s) {
-        try {
+    public Paint transform(S s){
+        try{
             Sphere sphere = (Sphere) s;
             return sphere.getColor();
-        } catch (Exception e) {
+        } catch (Exception e){
             throw new IllegalArgumentException();
         }
     }

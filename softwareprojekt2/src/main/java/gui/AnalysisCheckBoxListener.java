@@ -23,7 +23,7 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     private final CheckBox analysisPathCheckBox;
     private final CheckBox analysisOptions;
 
-    public AnalysisCheckBoxListener(CheckBox pCheckBox, Controller pC) {
+    public AnalysisCheckBoxListener(CheckBox pCheckBox, Controller pC){
         checkBox = pCheckBox;
         c = pC;
         amountSymptomTextField = c.getAmountSymptomTextField();
@@ -35,50 +35,52 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
 
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-        if (newValue) {
-            if (isAtLeastOnePicked()) {
+        if(newValue){
+            if(isAtLeastOnePicked()){
                 analysisOptions.setSelected(false);
                 analysisPathCheckBox.setSelected(false);
                 amountSymptomTextField.setDisable(false);
 
-                if (!amountSymptomTextField.getText().isEmpty()) {
-                    if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected()) {
+                if(!amountSymptomTextField.getText().isEmpty()){
+                    if(analysisPredecessor.isSelected() && analysisSuccessor.isSelected()){
                         System.out.println("dew");
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
                         AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
-                    } else if (checkBox.getId().equals("analysisPredecessor")) {
+                    }
+                    else if(checkBox.getId().equals("analysisPredecessor")){
                         AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphNeighborsAction.action();
-                    } else if (checkBox.getId().equals("analysisSuccessor")) {
+                    }else if(checkBox.getId().equals("analysisSuccessor")){
                         AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphNeighborsAction.action();
                     }
                 }
-            } else {
+            }else{
                 disableAllCheckBoxes();
                 checkBox.setSelected(oldValue);
             }
-        } else {
-            if (!analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()) {
+        }else{
+            if(!analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()){
                 amountSymptomTextField.setDisable(true);
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
-            } else if (!analysisSuccessor.isSelected() && analysisPredecessor.isSelected()) {
+            }else if(!analysisSuccessor.isSelected() && analysisPredecessor.isSelected()){
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
                 AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
-            } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()) {
+            }else if(analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()){
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
                 AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
-            } else {
+            }
+            else{
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
@@ -88,7 +90,7 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
         }
     }
 
-    private void disableAllCheckBoxes() {
+    private void disableAllCheckBoxes(){
         analysisSuccessor.setSelected(false);
         analysisPredecessor.setSelected(false);
 
@@ -100,12 +102,12 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     /**
      * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
      */
-    public boolean isAtLeastOnePicked() {
+    public boolean isAtLeastOnePicked(){
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().size() < 1) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("ANALYSIS_ALERT", true, true);
+            helperFunctions.setActionText("Bitte zuerst mindestens einen Knoten markieren.", true, false);
             return false;
         }
         return true;

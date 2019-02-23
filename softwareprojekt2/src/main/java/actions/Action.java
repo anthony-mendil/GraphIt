@@ -14,17 +14,6 @@ public abstract class Action {
     private static LinkedList<ObserverSyndrom> observers = new LinkedList<>();
 
     /**
-     * Attaches the observer so that the observer can observe it.
-     *
-     * @param o The observer to attach.
-     */
-    public static void attach(ObserverSyndrom o) {
-        if (!observers.contains(o)) {
-            observers.add(o);
-        }
-    }
-
-    /**
      * Executes the defined behavior of the action.
      */
     public abstract void action();
@@ -40,21 +29,30 @@ public abstract class Action {
     public abstract void redo();
 
     /**
+     * Attaches the observer so that the observer can observe it.
+     * @param o The observer to attach.
+     */
+    public static void attach(ObserverSyndrom o) {
+        if (!observers.contains(o)){
+            observers.add(o);
+        }
+    }
+
+    /**
      * Notify the observer if the graph changes.
      */
-    protected void notifyObserverGraph() {
-        for (ObserverSyndrom o : observers) {
+    protected void notifyObserverGraph(){
+        for (ObserverSyndrom o: observers) {
             o.updateGraph();
         }
     }
 
     /**
      * Notify the observer if the application changes the mode.
-     *
      * @param mode The new mode.
      */
-    protected void notifyObserverFunctionMode(FunctionMode mode) {
-        for (ObserverSyndrom o : observers) {
+    protected void notifyObserverFunctionMode(FunctionMode mode){
+        for (ObserverSyndrom o: observers) {
             o.updateFunctionMode(mode);
         }
     }
@@ -62,8 +60,8 @@ public abstract class Action {
     /**
      * Notify the observer if a new graph gets loaded.
      */
-    protected void notifyObserverNewGraph() {
-        for (ObserverSyndrom o : observers) {
+    protected void notifyObserverNewGraph(){
+        for (ObserverSyndrom o: observers) {
             o.updateNewGraph();
         }
     }
@@ -71,8 +69,8 @@ public abstract class Action {
     /**
      * Notify the observer if the application is in edit mode.
      */
-    protected void notifyObserverEditMode() {
-        for (ObserverSyndrom o : observers) {
+    protected void notifyObserverEditMode(){
+        for (ObserverSyndrom o: observers) {
             o.updateEditMode();
         }
     }

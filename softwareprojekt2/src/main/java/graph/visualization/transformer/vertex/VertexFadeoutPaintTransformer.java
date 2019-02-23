@@ -17,9 +17,8 @@ public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
     private final FadeOutElementsTransition animation;
     private final Transformer<V, Paint> transformer;
     private final FadeType fadeType;
-
-    public VertexFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<V, Paint> transformer, FadeType fadeType) {
-        this.animation = animation;
+    public VertexFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<V, Paint> transformer, FadeType fadeType){
+        this.animation  = animation;
         this.transformer = transformer;
         this.fadeType = fadeType;
     }
@@ -27,8 +26,8 @@ public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
     @Override
     public Paint transform(V v) {
         Vertex vertex = (Vertex) v;
-        Color color = (Color) transformer.transform(v);
-        double fracValue = (fadeType == FadeType.ACTIVATE) ? 255 - (animation.getFrac() * 255) : animation.getFrac() * 255;
+        Color color = (Color)transformer.transform(v);
+        double fracValue  = (fadeType == FadeType.ACTIVATE) ?  255 - (animation.getFrac()*255) : animation.getFrac()*255;
         return (!vertex.isVisible()) ? new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) fracValue) : color;
     }
 }

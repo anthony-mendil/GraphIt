@@ -6,10 +6,18 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
+import graph.visualization.transformer.vertex.VertexFillPaintTransformer;
 import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
+import javafx.util.Pair;
+import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 /**

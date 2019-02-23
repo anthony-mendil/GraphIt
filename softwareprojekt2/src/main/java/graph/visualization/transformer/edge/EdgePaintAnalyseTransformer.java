@@ -14,11 +14,9 @@ import java.util.ArrayList;
  */
 public class EdgePaintAnalyseTransformer<E> implements Transformer<E, Paint> {
     private ArrayList<Edge> edges;
-
-    public EdgePaintAnalyseTransformer(ArrayList<Edge> edges) {
+    public EdgePaintAnalyseTransformer(ArrayList<Edge> edges){
         this.edges = edges;
     }
-
     @Override
     public Paint transform(E e) {
         Edge edge = (Edge) e;

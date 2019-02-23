@@ -1,5 +1,10 @@
 package test.io;
 
+import java.awt.*;
+
+import java.util.*;
+
+import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.*;
 import gui.Values;
 import io.GXLio;
@@ -9,11 +14,10 @@ import org.freehep.graphicsbase.util.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
-
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 public class GXLioTest {
@@ -75,7 +79,7 @@ public class GXLioTest {
         Vertex v8 = factory.createVertex(new Point2D.Double(555, 420));
         v8.setFont("Mali");
         v8.setFontSize(14);
-        v8.setSize(89);
+        v8.setSize(80);
         Vertex v9 = factory.createVertex(new Point2D.Double(620, 360));
 
         Edge e1 = factory.createEdge();
@@ -138,6 +142,47 @@ public class GXLioTest {
         Assert.assertEquals(22, doc.getElement("syndrom").getChildCount());
     }
 
+    @Test
+    public void testSpheresWidthOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertEquals(200.0, spheres.get(0).getWidth());
+        Assert.assertEquals(300.0, spheres.get(1).getWidth());
+        Assert.assertEquals(200.0, spheres.get(2).getWidth());
+        Assert.assertEquals(200.0, spheres.get(3).getWidth());
+        Assert.assertEquals(200.0, spheres.get(4).getWidth());
+    }
+
+    @Test
+    public void testSpheresHeightOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertEquals(200.0, spheres.get(0).getHeight());
+        Assert.assertEquals(250.0, spheres.get(1).getHeight());
+        Assert.assertEquals(200.0, spheres.get(2).getHeight());
+        Assert.assertEquals(200.0, spheres.get(3).getHeight());
+        Assert.assertEquals(200.0, spheres.get(4).getHeight());
+    }
+
+    @Test
+    public void testVerticesSizeOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Vertex> vertices = new ArrayList();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            vertices.add(v);
+        }
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        vertices.forEach(System.out::println);
+        Assert.assertEquals(50, vertices.get(0).getSize());
+        Assert.assertEquals(50, vertices.get(1).getSize());
+        Assert.assertEquals(120, vertices.get(2).getSize());
+        Assert.assertEquals(50, vertices.get(3).getSize());
+        Assert.assertEquals(50, vertices.get(4).getSize());
+        Assert.assertEquals(50, vertices.get(5).getSize());
+        Assert.assertEquals(80, vertices.get(6).getSize());
+        Assert.assertEquals(80, vertices.get(7).getSize());
+        Assert.assertEquals(50, vertices.get(8).getSize());
+    }
 
     @Before
     public void prepare() {

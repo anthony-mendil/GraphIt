@@ -24,7 +24,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
     private Edge edgeMove = null;
     private boolean isIncoming = false;
-    private int addToSelection = InputEvent.BUTTON1_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK;
+    private int addToSelection = InputEvent.BUTTON1_DOWN_MASK  | InputEvent.SHIFT_DOWN_MASK;
     private ContextMenu contextMenu;
     private HelperFunctions helper = new HelperFunctions();
 
@@ -32,21 +32,21 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
      * create an instance with passed values
      */
     public EdgePickingPlugin() {
-        super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
+        super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK );
     }
 
 
     @SuppressWarnings("unchecked")
     @Override
     public void mousePressed(MouseEvent e) {
-        if (contextMenu != null) {
+        if (contextMenu != null){
             helper.hideMenu(contextMenu);
         }
         down = e.getPoint();
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
-        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) layout.getGraph();
+        SyndromGraph<Vertex, Edge> g =  (SyndromGraph<Vertex, Edge>) layout.getGraph();
         Edge edge = (Edge) pickSupport.getEdge(layout, e.getX(), e.getY());
         Vertex vertex = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
         PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
@@ -66,8 +66,8 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
-    private double getDistance(Point2D pointClick, Point2D pointVertex) {
-        return Math.hypot(pointClick.getX() - pointVertex.getX(), pointClick.getY() - pointVertex.getY());
+    private double getDistance(Point2D pointClick, Point2D pointVertex){
+        return Math.hypot(pointClick.getX()-pointVertex.getX(), pointClick.getY()-pointVertex.getY());
     }
 
     @Override
@@ -85,12 +85,12 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
         if (SwingUtilities.isLeftMouseButton(e) && edgeMove != null) {
-            Vertex endpoint = (isIncoming) ? graph.getEndpoints(edgeMove).getSecond() : graph.getEndpoints(edgeMove).getFirst();
+            Vertex endpoint = (isIncoming) ? graph.getEndpoints(edgeMove).getSecond():graph.getEndpoints(edgeMove).getFirst();
             Point dragged = e.getPoint();
             Point2D draggedPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(dragged);
             draggedPoint = new Point2D.Double(draggedPoint.getX() - endpoint.getCoordinates().getX(), draggedPoint.getY() - endpoint.getCoordinates().getY());
 
-            if (isIncoming) {
+            if (isIncoming){
                 edgeMove.setAnchorPoints(new javafx.util.Pair<>(edgeMove.getAnchorPoints().getKey(), draggedPoint));
                 edgeMove.setHasAnchorIn(true);
             } else {

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import gui.TitlesDialogPaneController?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:id="titleDialog" stylesheets="gui_style.css"
-            xmlns="http://javafx.com/javafx/10.0.1" fx:controller="gui.TitlesDialogPaneController">
+<?import javafx.geometry.Insets?>
+<DialogPane fx:id="titleDialog" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TitlesDialogPaneController">
 
     <content>
         <VBox minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0">
@@ -21,13 +23,11 @@
                 <Text fx:id="englishText" strokeType="OUTSIDE" strokeWidth="0.0" text="%english" wrappingWidth="150.0"/>
                 <TextField fx:id="english" prefHeight="25.0" prefWidth="230.0"/>
             </HBox>
-            <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                  prefHeight="27.0" prefWidth="300.0" scaleShape="false">
+            <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="300.0" scaleShape="false">
                 <children>
-                    <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0"
-                          wrappingWidth="436.33087462186813">
+                    <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0"  wrappingWidth="436.33087462186813">
                         <HBox.margin>
-                            <Insets bottom="5.0" right="5.0" top="5.0" left="5.0"/>
+                            <Insets bottom="5.0" right="5.0" top="5.0" left="5.0" />
                         </HBox.margin>
                     </Text>
                 </children>
@@ -35,8 +35,8 @@
         </VBox>
     </content>
 
-    <TitlesDialogPaneController fx:constant="SAVE_TYPE"/>
-    <TitlesDialogPaneController fx:constant="CANCEL_TYPE"/>
+    <TitlesDialogPaneController fx:constant="SAVE_TYPE" />
+    <TitlesDialogPaneController fx:constant="CANCEL_TYPE" />
 </DialogPane>
 
 

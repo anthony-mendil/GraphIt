@@ -13,7 +13,6 @@ import java.util.Scanner;
  * The OOF importer/exporter.
  */
 public class OOFio {
-    private static Logger logger = Logger.getLogger(OOFio.class);
     /**
      * The log dao object, for accessing the log data.
      */
@@ -26,6 +25,8 @@ public class OOFio {
     public OOFio() {
         // Can handle oof-import/-export now
     }
+
+    private static Logger logger = Logger.getLogger(OOFio.class);
 
     /**
      * Creates an OOF out of the GXL and the JSON.
@@ -89,7 +90,7 @@ public class OOFio {
         }
         GXLio gxlio = new GXLio();
 
-        gxlio.gxlToInstance(gxlFromOOF(oof), true);
+        gxlio.gxlToInstance(gxlFromOOF(oof),true);
 
         DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
 

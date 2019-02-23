@@ -20,7 +20,6 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
     public GeneralPickingPlugin() {
         super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
     }
-
     @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
@@ -31,7 +30,7 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
         Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
 
-        if (sp == null && edge == null && vertex == null) {
+        if (sp == null && edge == null && vertex == null){
             PickedState<Vertex> vertexPickedState = vv.getPickedVertexState();
             PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
             PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
