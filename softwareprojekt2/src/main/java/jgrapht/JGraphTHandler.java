@@ -1,6 +1,5 @@
 package jgrapht;
 
-import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
@@ -11,7 +10,6 @@ import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
 import javafx.util.Pair;
-import lombok.Getter;
 import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
 import org.jgrapht.alg.cycle.TarjanSimpleCycles;
@@ -29,12 +27,10 @@ public class JGraphTHandler {
     /**
      * The start-vertex of the path.
      */
-    @Getter
     private Vertex startVertex;
     /**
      * The end-vertex of the path.
      */
-    @Getter
     private Vertex endVertex;
     /**
      * The graph in JGraphT-form.
@@ -50,16 +46,8 @@ public class JGraphTHandler {
     /**
      * Constructor in case the user changes to analyse-mode and analyses without using a vertex.
      */
-    public JGraphTHandler() {
-        Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        for(Edge edge : graph.getEdges()){
-            edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
-            Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
-            edges.add(vertices);
-        }
-        convertGraphToJGraphT(new ArrayList<>(graph.getVertices()), edges);
+    public JGraphTHandler(List<Vertex> pVertices, Set<Pair<Vertex, Vertex>> pEdges) {
+        convertGraphToJGraphT(pVertices, pEdges);
     }
 
     /**
@@ -256,7 +244,6 @@ public class JGraphTHandler {
      */
     @SuppressWarnings("unchecked")
     public Pair<List<List<Vertex>>,Set<Edge>> detectRelationChains() {
-        Set<Edge> edgesRelationChain = new HashSet<>();
         List<List<Vertex>> relationChains = new LinkedList<>();
         List<Vertex> innerVertices = new ArrayList<>();
         for(Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()){
@@ -293,6 +280,7 @@ public class JGraphTHandler {
                 relationChains.add(potentialChain);
             }
         }
+        Set<Edge> edgesRelationChain = new HashSet<>();
         for(List<Vertex> list : relationChains){
             for(int i = 0 ; i < list.size() - 1; i++){
                 edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(i),list.get(i + 1)));

@@ -43,7 +43,13 @@ public class GraphDimensionAction extends GraphAction {
         /**
          * Using the JGraphTHandler for more complex calculations.
          */
-        JGraphTHandler jGraphTHandler = new JGraphTHandler();
+        Set<Pair<Vertex,Vertex>> edges = new HashSet<>();
+        for(Edge edge : graph.getEdges()){
+            edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
+            Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
+            edges.add(vertices);
+        }
+        JGraphTHandler jGraphTHandler = new JGraphTHandler(new ArrayList<>(graph.getVertices()),edges);
 
 
         /**

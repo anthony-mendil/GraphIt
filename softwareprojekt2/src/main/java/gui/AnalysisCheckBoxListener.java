@@ -1,6 +1,6 @@
 package gui;
 
-import actions.analyse.AnalysisGraphNeighborsAction;
+import actions.analyse.AnalysisGraphAction;
 import actions.deactivate.ResetVvAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.algorithmen.AnalyseTypeSeveral;
@@ -42,20 +42,12 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                 amountSymptomTextField.setDisable(false);
 
                 if(!amountSymptomTextField.getText().isEmpty()){
-                    if(analysisPredecessor.isSelected() && analysisSuccessor.isSelected()){
-                        System.out.println("dew");
-                        ResetVvAction resetAction = new ResetVvAction();
-                        resetAction.action();
-
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    if(checkBox.getId().equals("analysisPredecessor")){
+                        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
-                    }
-                    else if(checkBox.getId().equals("analysisPredecessor")){
-                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                        analysisGraphNeighborsAction.action();
                     }else if(checkBox.getId().equals("analysisSuccessor")){
-                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                        analysisGraphNeighborsAction.action();
+                        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        analysisGraphAction.action();
                     }
                 }
             }else{
@@ -71,21 +63,14 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
-                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
             }else if(analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()){
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
-                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
-            }
-            else{
-                ResetVvAction resetAction = new ResetVvAction();
-                resetAction.action();
-
-                AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                analysisGraphNeighborsAction.action();
             }
         }
     }

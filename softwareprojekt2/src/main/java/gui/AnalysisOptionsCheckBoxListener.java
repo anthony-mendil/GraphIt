@@ -1,6 +1,6 @@
 package gui;
 
-import actions.analyse.*;
+import actions.analyse.AnalysisGraphAction;
 import actions.deactivate.ResetVvAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.algorithmen.AnalyseTypeSingle;
@@ -14,6 +14,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
+
+import java.util.Iterator;
 
 public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> {
     private final Controller c;
@@ -43,7 +45,7 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
             if(menuButton.getText().equals(currentLanguage.loadLanguagesKey("analysisShortestPath"))){
                 if(calculateEndpoints()){
                     disableOtherCheckBoxes();
-                    AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.SHORTESTPATH);
                     analysisGraphAction.action();
                 }else{
                     disableOtherCheckBoxes();
@@ -52,7 +54,7 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
             }else if(menuButton.getText().equals(currentLanguage.loadLanguagesKey("analysisAllPaths"))){
                 if(calculateEndpoints()){
                     disableOtherCheckBoxes();
-                    AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.ALLPATHS);
                     analysisGraphAction.action();
                 }else{
                     disableOtherCheckBoxes();
@@ -60,23 +62,23 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
                 }
             }else if(menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterChainOfEdges"))){
                 disableOtherCheckBoxes();
-                AnalysisGraphEdgeChainsAction analysisGraphAction = new AnalysisGraphEdgeChainsAction();
+                AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.EDGE_CHAINS);
                 analysisGraphAction.action();
             }else if(menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterConvergentBranches"))){
                 disableOtherCheckBoxes();
-                AnalysisGraphConvergentBranchesAction analysisGraphAction = new AnalysisGraphConvergentBranchesAction();
+                AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CONVERGENT_BRANCHES);
                 analysisGraphAction.action();
             }else if(menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterDivergentBranches"))){
                 disableOtherCheckBoxes();
-                AnalysisGraphDivergentBranchesAction analysisGraphAction = new AnalysisGraphDivergentBranchesAction();
+                AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.DIVERGENT_BRANCHES);
                 analysisGraphAction.action();
             }else if(menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterBranches"))){
                 disableOtherCheckBoxes();
-                AnalysisGraphBranchesAction analysisGraphAction = new AnalysisGraphBranchesAction();
+                AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.BRANCHES);
                 analysisGraphAction.action();
             }else if((menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterCycles")))){
                 disableOtherCheckBoxes();
-                AnalysisGraphCyclesAction analysisGraphAction = new AnalysisGraphCyclesAction();
+                AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSingle.CYCLEN);
                 analysisGraphAction.action();
             }
         }else{

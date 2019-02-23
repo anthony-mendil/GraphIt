@@ -1,10 +1,11 @@
 package gui;
 
-import actions.analyse.AnalysisGraphNeighborsAction;
+import actions.analyse.AnalysisGraphAction;
 import actions.deactivate.ResetVvAction;
 import graph.algorithmen.AnalyseTypeSeveral;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -28,11 +29,11 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
         if(event.getCode() == KeyCode.ENTER){
             if(!amountSymptomTextField.getText().isEmpty()){
                 if(analysisPredecessor.isSelected()){
-                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
                 }
                 if(analysisSuccessor.isSelected()){
-                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
                 }
             }else{

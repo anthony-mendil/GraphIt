@@ -171,7 +171,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (SwingUtilities.isLeftMouseButton(e) && vert != null && source != null && !source.equals(vert)) {
             if (values.getMode() == FunctionMode.TEMPLATE ||
                     Syndrom.getInstance().getTemplate().getMaxEdges() > Syndrom.getInstance().getVv().getGraphLayout().getGraph().getEdges().size()) {
-                if (values.getMode() == FunctionMode.EDIT) {
+                if (values.getMode() != FunctionMode.TEMPLATE) {
                     switch (values.getEdgeArrowType()) {
                         case REINFORCED:
                             if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
