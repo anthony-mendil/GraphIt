@@ -1,12 +1,15 @@
 package log_management.parameters.add_remove;
 
 import graph.graph.Sphere;
+import graph.graph.Vertex;
 import gui.Values;
 import gui.properties.Language;
 import log_management.parameters.Param;
 import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
+
+import java.util.List;
 
 
 /**
@@ -19,14 +22,20 @@ public class AddRemoveSphereParam implements Param {
      */
     @Getter
     private Sphere sphere;
+    /**
+     * The list of vertices, that got removed too.
+     */
+    @Getter
+    private List<Vertex> vertices;
 
     /**
      * Creates a parameter object of its own class.
      *
      * @param pSphere The target sphere.
      */
-    public AddRemoveSphereParam(Sphere pSphere) {
+    public AddRemoveSphereParam(Sphere pSphere, List<Vertex> vertices) {
         this.sphere = pSphere;
+        this.vertices = vertices;
     }
 
     @Override
