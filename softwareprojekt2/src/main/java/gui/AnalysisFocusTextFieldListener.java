@@ -1,6 +1,7 @@
 package gui;
 
 import actions.analyse.AnalysisGraphAction;
+import actions.deactivate.ResetVvAction;
 import graph.algorithmen.AnalyseTypeSeveral;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -8,10 +9,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
-    private Controller c;
-    private TextField textField;
-    private CheckBox analysisSuccessor;
-    private CheckBox analysisPredecessor;
+    private final Controller c;
+    private final TextField textField;
+    private final CheckBox analysisSuccessor;
+    private final CheckBox analysisPredecessor;
 
     public AnalysisFocusTextFieldListener(TextField pTextField, Controller pC){
         textField = pTextField;
@@ -32,6 +33,9 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
                     AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
                     analysisGraphAction.action();
                 }
+            }else{
+                ResetVvAction resetAction = new ResetVvAction();
+                resetAction.action();
             }
         }
     }
