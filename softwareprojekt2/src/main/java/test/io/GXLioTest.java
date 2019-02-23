@@ -1,6 +1,10 @@
 package test.io;
+
 import java.awt.*;
+
 import java.util.*;
+
+import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.*;
 import gui.Values;
 import io.GXLio;
@@ -10,11 +14,10 @@ import org.freehep.graphicsbase.util.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
-
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 public class GXLioTest {
