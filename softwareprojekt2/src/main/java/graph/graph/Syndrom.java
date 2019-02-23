@@ -243,14 +243,10 @@ public class Syndrom {
 
     public void setPluggableModeEdit(){
         pluggable.remove(translatingPlugin);
-        pluggable.remove(rotatingPlugin);
-        pluggable.remove(shearingPlugin);
     }
 
     public void setPluggableModeAnalyse(){
         pluggable.add(translatingPlugin);
-        pluggable.add(rotatingPlugin);
-        pluggable.add(shearingPlugin);
     }
 
     public static Syndrom getInstance() {
