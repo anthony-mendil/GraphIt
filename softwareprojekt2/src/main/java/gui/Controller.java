@@ -117,11 +117,6 @@ public class Controller implements ObserverSyndrom {
     @FXML private SwingNode satellite;
 
     /**
-     *
-     */
-    private List<Font> fonts;
-
-    /**
      * The swing node that displays the zoom window.
      */
     private SwingNode zoomWindow;
@@ -669,8 +664,6 @@ public class Controller implements ObserverSyndrom {
     private static final String OOF = "*.oof";
     private static final String TXT = "*.txt";
     private static final String GXL_FILE = "GXL files (*.gxl)";
-    private static final String TIMES_NEW_ROMAN = "Times New Roman";
-    private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
 
     private static Logger logger = Logger.getLogger(Controller.class);
@@ -678,6 +671,15 @@ public class Controller implements ObserverSyndrom {
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
     private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
+
+    private ObservableList<String> fonts =
+            FXCollections.observableArrayList(
+                    "AveriaSansLibre",
+                    "Kalam",
+                    "Mali",
+                    "Roboto",
+                    "RobotoSlab"
+            );
 
 
     public void filterEdgeTypeReinforced(){
@@ -1720,14 +1722,18 @@ public class Controller implements ObserverSyndrom {
                 currentSize = newValue;
                 editFontSizeSphere(Integer.parseInt(currentSize));
             } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                currentFont = newValue;
-                editFontSphere(currentFont);
+                if(fonts.contains(newValue)){
+                    currentFont = newValue;
+                    editFontSphere(currentFont);
+                }
             } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                 currentSize = newValue;
                 editFontSizeVertices(Integer.parseInt(currentSize));
             } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                currentFont = newValue;
-                editFontVertex(currentFont);
+                if(fonts.contains(newValue)){
+                    currentFont = newValue;
+                    editFontVertex(currentFont);
+                }
             }
             root.requestFocus();
         }
@@ -1745,14 +1751,14 @@ public class Controller implements ObserverSyndrom {
             if (newPropertyValue) {
                 if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     currentSize = comboBox.getEditor().getText();
-                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
+                } else if ((comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) && fonts.contains(comboBox.getEditor().getText())) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
                 if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     comboBox.getEditor().setText(currentSize);
                 } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                    comboBox.getEditor().setText(currentFont);
+                        comboBox.getEditor().setText(currentFont);
                 }
             }
         }
@@ -1819,15 +1825,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void loadFontComboBox(ComboBox<String> comboBox) {
-        ObservableList<String> fonts =
-                FXCollections.observableArrayList(
-                        "AveriaSansLibre",
-                        "Kalam",
-                        "Mali",
-                        "Roboto",
-                        "RobotoSlab"
-                );
-
         if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontSphere());
         } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
@@ -2046,12 +2043,24 @@ public class Controller implements ObserverSyndrom {
         if(editMode){
             if(active){
                 overViewAccordion.getPanes().add(historyTitledPane);
+                if(!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()){
+                    edgeArrowReinforced.setDisable(true);
+                }
+                if(!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()){
+                    edgeArrowExtenuating.setDisable(true);
+                }
+                if(!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()){
+                    edgeArrowNeutral.setDisable(true);
+                }
             }else{
                 overViewAccordion.getPanes().remove(historyTitledPane);
             }
         }else{
             if (active) {
                 overViewAccordion.getPanes().add(templateTitledPane);
+                edgeArrowReinforced.setDisable(false);
+                edgeArrowExtenuating.setDisable(false);
+                edgeArrowNeutral.setDisable(false);
             } else {
                 overViewAccordion.getPanes().remove(templateTitledPane);
             }
@@ -2081,7 +2090,6 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setDisable(disable);
     }
 
-    @SuppressWarnings("unused")
     private void optionExitWindow() {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("GraphIt");
