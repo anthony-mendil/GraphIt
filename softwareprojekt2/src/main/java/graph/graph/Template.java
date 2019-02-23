@@ -61,16 +61,17 @@ public class Template {
     /**
      * Creates a new Template object.
      */
-    public Template(int pMaxSpheres,int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
-        maxSpheres=pMaxSpheres;
-        maxVertices=pMaxVertices;
-        maxEdges=pMaxEdges;
-        reinforcedEdgesAllowed=pReinforcedEdgesAllowed;
-        extenuatingEdgesAllowed=pExtenuatingEdgesAllowed;
-        neutralEdgesAllowed=pUnknownEdgesAllowed;
+    public Template(int pMaxSpheres, int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
+        maxSpheres = pMaxSpheres;
+        maxVertices = pMaxVertices;
+        maxEdges = pMaxEdges;
+        reinforcedEdgesAllowed = pReinforcedEdgesAllowed;
+        extenuatingEdgesAllowed = pExtenuatingEdgesAllowed;
+        neutralEdgesAllowed = pUnknownEdgesAllowed;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(maxSpheres);
         stringBuilder.append(" spheres allowed, ");
@@ -78,19 +79,19 @@ public class Template {
         stringBuilder.append(" vertices, ");
         stringBuilder.append(maxEdges);
         stringBuilder.append(" edges allowed");
-        if(reinforcedEdgesAllowed){
+        if (reinforcedEdgesAllowed) {
             stringBuilder.append(", reinforced edges allowed");
-        }else{
+        } else {
             stringBuilder.append(", reinforced edges not allowed");
         }
-        if(extenuatingEdgesAllowed){
+        if (extenuatingEdgesAllowed) {
             stringBuilder.append(", extenuating edges allowed");
-        }else {
+        } else {
             stringBuilder.append(", extenuating edges not allowed");
         }
-        if(neutralEdgesAllowed){
+        if (neutralEdgesAllowed) {
             stringBuilder.append(", unknown edges allowed");
-        }else {
+        } else {
             stringBuilder.append(", unknown edges not allowed");
         }
         return stringBuilder.toString();

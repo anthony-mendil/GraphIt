@@ -10,6 +10,7 @@ import java.awt.event.MouseWheelEvent;
 
 public class SyndromSatelliteScalingGraphMousePlugin extends SatelliteScalingGraphMousePlugin {
     private Values values;
+
     public SyndromSatelliteScalingGraphMousePlugin(ScalingControl scaler, int modifiers) {
         super(scaler, modifiers);
         values = Values.getInstance();
@@ -23,24 +24,24 @@ public class SyndromSatelliteScalingGraphMousePlugin extends SatelliteScalingGra
         int max = values.getMaxScale();
         int scaleNew;
 
-        if(accepted) {
-            VisualizationViewer vv = (VisualizationViewer)e.getSource();
+        if (accepted) {
+            VisualizationViewer vv = (VisualizationViewer) e.getSource();
 
-            if(vv instanceof SatelliteVisualizationViewer) {
+            if (vv instanceof SatelliteVisualizationViewer) {
                 VisualizationViewer vvMaster =
-                        ((SatelliteVisualizationViewer)vv).getMaster();
+                        ((SatelliteVisualizationViewer) vv).getMaster();
 
                 int amount = e.getWheelRotation();
 
-                if(amount > 0 && (scale + 10) < max) {
+                if (amount > 0 && (scale + 10) < max) {
                     scaleNew = scale + 10;
-                    scaler.scale(vvMaster, (float) scaleNew/100, vvMaster.getCenter());
+                    scaler.scale(vvMaster, (float) scaleNew / 100, vvMaster.getCenter());
                     values.setScale(scaleNew);
 
-                } else if(amount < 0 && (scale - 10) > min) {
+                } else if (amount < 0 && (scale - 10) > min) {
                     scaleNew = scale - 10;
 
-                    scaler.scale(vvMaster, (float) scaleNew/100, vvMaster.getCenter());
+                    scaler.scale(vvMaster, (float) scaleNew / 100, vvMaster.getCenter());
                     values.setScale(scaleNew);
                 }
             }

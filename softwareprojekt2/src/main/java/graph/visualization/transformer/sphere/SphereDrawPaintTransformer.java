@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class SphereDrawPaintTransformer<S> implements Transformer<S, Paint> {
     @Override
-    public Paint transform(S s){
+    public Paint transform(S s) {
         return Color.BLACK;
 
     }

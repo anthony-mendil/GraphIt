@@ -19,10 +19,11 @@ public class EditFontSizeSphereLogAction extends LogAction {
      * Temporary size vertices.
      */
     private int size;
+
     /**
      * Constructor in case the user changes the font-size of a sphere annotation.
-     * @param pSize The size of the font.
      *
+     * @param pSize The size of the font.
      */
     public EditFontSizeSphereLogAction(Integer pSize) {
         super(LogEntryName.EDIT_SPHERE_FONT_SIZE);
@@ -43,20 +44,20 @@ public class EditFontSizeSphereLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
-        if(parameters == null) {
+        if (parameters == null) {
             Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
-                if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                if (!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     createParameter(sp, sp.getFontSize(), size);
                     sp.setFontSize(size);
-                }else{
+                } else {
                     helper.setActionText("EDIT_SPHERE_FONT_SIZE_ALERT", true, true);
                     lockedSphere = sp;
                 }
             }
-        }else{
-            Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphere();
-            int newFontSize = ((EditFontSizeSphereParam)parameters).getNewFontSize();
+        } else {
+            Sphere sphere = ((EditFontSizeSphereParam) parameters).getSphere();
+            int newFontSize = ((EditFontSizeSphereParam) parameters).getNewFontSize();
             sphere.setFontSize(newFontSize);
         }
         vv.repaint();
@@ -70,9 +71,9 @@ public class EditFontSizeSphereLogAction extends LogAction {
 
     @Override
     public void undo() {
-        int oldFontSize = ((EditFontSizeSphereParam)parameters).getOldFontSize();
-        int newFontSize = ((EditFontSizeSphereParam)parameters).getNewFontSize();
-        Sphere sphere = ((EditFontSizeSphereParam)parameters).getSphere();
+        int oldFontSize = ((EditFontSizeSphereParam) parameters).getOldFontSize();
+        int newFontSize = ((EditFontSizeSphereParam) parameters).getNewFontSize();
+        Sphere sphere = ((EditFontSizeSphereParam) parameters).getSphere();
         EditFontSizeSphereParam editFontSizeSphereParam = new EditFontSizeSphereParam(sphere, newFontSize, oldFontSize);
         EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(editFontSizeSphereParam);
         editFontSizeSphereLogAction.action();
@@ -80,6 +81,6 @@ public class EditFontSizeSphereLogAction extends LogAction {
 
 
     public void createParameter(Sphere sphere, int oldFontSize, int newFontSize) {
-        parameters = new EditFontSizeSphereParam(sphere,oldFontSize,newFontSize);
+        parameters = new EditFontSizeSphereParam(sphere, oldFontSize, newFontSize);
     }
 }

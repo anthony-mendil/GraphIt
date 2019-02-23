@@ -22,7 +22,7 @@ public class AddHighlightElementAction extends GraphAction {
         for (Edge e : pickedState.getPicked()) {
             e.setHighlighted(true);
         }
-        for(Vertex v : vertexPickedState.getPicked()){
+        for (Vertex v : vertexPickedState.getPicked()) {
             v.setHighlighted(true);
         }
 

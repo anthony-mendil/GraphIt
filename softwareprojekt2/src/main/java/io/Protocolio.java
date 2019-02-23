@@ -15,28 +15,28 @@ import java.util.List;
  * The OOF importer/exporter.
  */
 public class Protocolio {
+    private static Logger logger = Logger.getLogger(Protocolio.class);
+
     /**
      * Creates a new OOFio object.
      */
-    public Protocolio(){
+    public Protocolio() {
         // Can handle protocol-export now
     }
-
-    private static Logger logger= Logger.getLogger(Protocolio.class);
 
     /**
      * Export the current protocol as readable textfile.
      *
      * @param pFile The destination file
      */
-    public void exportAsReadableProtocol(File pFile){
+    public void exportAsReadableProtocol(File pFile) {
         LogDao logDao = new LogDao();
         List<Log> logs = logDao.getAll();
         String protocol = "";
         for (int i = 0; i < logs.size(); i++) {
             protocol += logs.get(i).toStringForTextFile();
         }
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
             bufferedWriter.write(protocol);
         } catch (IOException e) {
             logger.error(e.toString());
@@ -48,10 +48,10 @@ public class Protocolio {
      *
      * @param pFile The destination file
      */
-    public void exportAsUsableProtocol(File pFile){
+    public void exportAsUsableProtocol(File pFile) {
         LogDao logDao = new LogDao();
-        String protocol=logDao.getAllString();
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
+        String protocol = logDao.getAllString();
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
             bufferedWriter.write(protocol);
         } catch (IOException e) {
             logger.error(e.toString());

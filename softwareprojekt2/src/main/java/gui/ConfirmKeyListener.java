@@ -16,7 +16,7 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
     private final CheckBox analysisPredecessor;
 
 
-    public ConfirmKeyListener(Controller pC, TextField pTextField){
+    public ConfirmKeyListener(Controller pC, TextField pTextField) {
         c = pC;
         amountSymptomTextField = pTextField;
         analysisSuccessor = c.getAnalysisSuccessor();
@@ -25,17 +25,17 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER){
-            if(!amountSymptomTextField.getText().isEmpty()){
-                if(analysisPredecessor.isSelected()){
+        if (event.getCode() == KeyCode.ENTER) {
+            if (!amountSymptomTextField.getText().isEmpty()) {
+                if (analysisPredecessor.isSelected()) {
                     AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
                 }
-                if(analysisSuccessor.isSelected()){
+                if (analysisSuccessor.isSelected()) {
                     AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
                 }
-            }else{
+            } else {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
             }

@@ -1,21 +1,21 @@
 package gui;
 
 import actions.ActionHistory;
-import actions.edit.annotation.EditSphereAnnotationLogAction;
 import actions.edit.annotation.EditVertexAnnotationLogAction;
 import actions.edit.color.EditVerticesDrawColorLogAction;
 import actions.edit.color.EditVerticesFillColorLogAction;
 import actions.edit.font.EditFontSizeVerticesLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
 import actions.remove.RemoveVerticesLogAction;
-import graph.graph.*;
+import graph.graph.FunctionMode;
+import graph.graph.Syndrom;
+import graph.graph.Vertex;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import gui.properties.LoadLanguage;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -37,7 +37,7 @@ public class VertexContextMenu {
     private Syndrom syndrom = Syndrom.getInstance();
 
 
-    public VertexContextMenu(Vertex vertex){
+    public VertexContextMenu(Vertex vertex) {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
@@ -45,7 +45,7 @@ public class VertexContextMenu {
         setup();
     }
 
-    private void setup(){
+    private void setup() {
         // REMOVE
         MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));
         HelperGui.setImage("/icons2/008-rubbish-bin.png", remove);
@@ -76,7 +76,7 @@ public class VertexContextMenu {
         // COLOR FILL
         MenuItem color = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FILL_COLOR"));
         HelperGui.setImage("/icons2/fill.png", color);
-        color.setOnAction(event ->{
+        color.setOnAction(event -> {
 
             EditVerticesFillColorLogAction editVerticesFillColorLogAction = new EditVerticesFillColorLogAction(values.getFillPaintVertex());
             history.execute(editVerticesFillColorLogAction);
@@ -85,7 +85,7 @@ public class VertexContextMenu {
         // COLOR STROKE
         MenuItem colorDraw = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_STROKE_COLOR"));
         HelperGui.setImage("/icons2/brush.png", colorDraw);
-        colorDraw.setOnAction(event ->{
+        colorDraw.setOnAction(event -> {
             EditVerticesDrawColorLogAction editVerticesDrawColorLogAction = new EditVerticesDrawColorLogAction(values.getDrawPaintVertex());
             history.execute(editVerticesDrawColorLogAction);
         });
@@ -93,7 +93,7 @@ public class VertexContextMenu {
         // Schriftart
         MenuItem text = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT"));
         HelperGui.setImage("/icons2/font.png", text);
-        text.setOnAction(event ->{
+        text.setOnAction(event -> {
             EditFontVerticesLogAction editFontVerticesLogAction = new EditFontVerticesLogAction(values.getFontVertex());
             history.execute(editFontVerticesLogAction);
         });
@@ -102,20 +102,20 @@ public class VertexContextMenu {
         MenuItem size = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT_SIZE"));
         HelperGui.setImage("/icons2/height.png", size);
 
-        size.setOnAction(event ->{
+        size.setOnAction(event -> {
             EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(values.getFontSizeVertex());
             history.execute(editFontSizeVerticesLogAction);
         });
 
         boolean lockedAnnotation = vertex.isLockedAnnotation();
         boolean lockedStyle = vertex.isLockedStyle();
-        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().addAll(annotation, text);
         }
-        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().addAll(color, colorDraw, size);
         }
-        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().add(remove);
         }
         contextMenu.setAutoHide(true);
@@ -124,10 +124,10 @@ public class VertexContextMenu {
         });
     }
 
-    private void checkAnnotation(Map<Language, String> map, Map<String, String> oldAnno, Language lang){
+    private void checkAnnotation(Map<Language, String> map, Map<String, String> oldAnno, Language lang) {
         if (map != null && map.containsKey(lang)) {
             String text = map.get(lang);
-            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0){
+            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0) {
                 EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(map.get(lang), lang);
                 history.execute(editVertexAnnotationLogAction);
             }

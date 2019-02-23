@@ -8,15 +8,17 @@ import java.awt.*;
 
 public class SphereStrokeTransformer<S> implements Transformer<S, Stroke> {
     private SyndromVisualisationViewer syndromVisualisationViewer;
-    public SphereStrokeTransformer(SyndromVisualisationViewer syndromVisualisationViewer){
+
+    public SphereStrokeTransformer(SyndromVisualisationViewer syndromVisualisationViewer) {
         this.syndromVisualisationViewer = syndromVisualisationViewer;
     }
+
     @Override
     @SuppressWarnings("unchecked")
     public Stroke transform(S s) {
         PickedState<S> spherePickedState = syndromVisualisationViewer.getPickedSphereState();
 
-        if (spherePickedState.isPicked(s)){
+        if (spherePickedState.isPicked(s)) {
             return new BasicStroke(4);
         } else {
             return new BasicStroke(1);

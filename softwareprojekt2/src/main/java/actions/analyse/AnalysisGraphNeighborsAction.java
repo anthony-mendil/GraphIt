@@ -21,9 +21,8 @@ import java.util.*;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * <p>
  * This action finds all predecessors and successors of the selected symptom in x steps.
- *
  */
-public class AnalysisGraphNeighborsAction extends GraphAction{
+public class AnalysisGraphNeighborsAction extends GraphAction {
     /**
      * The mode if either the predecessors/ successors or both should be highlighted.
      */
@@ -58,20 +57,20 @@ public class AnalysisGraphNeighborsAction extends GraphAction{
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
-        if(analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR){
-            Pair<List<Vertex>,List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
+        if (analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR) {
+            Pair<List<Vertex>, List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
             verticesAnalyse.addAll(predecessors.getKey());
             edgesAnalyse.addAll(predecessors.getValue());
-        }else if(analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR){
-            Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
+        } else if (analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR) {
+            Pair<List<Vertex>, List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
             verticesAnalyse.addAll(successors.getKey());
             edgesAnalyse.addAll(successors.getValue());
-        }else{
-            Pair<List<Vertex>,List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
+        } else {
+            Pair<List<Vertex>, List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
             verticesAnalyse.addAll(predecessors.getKey());
             edgesAnalyse.addAll(predecessors.getValue());
 
-            Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
+            Pair<List<Vertex>, List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
             verticesAnalyse.addAll(successors.getKey());
             edgesAnalyse.addAll(successors.getValue());
         }

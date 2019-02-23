@@ -31,15 +31,16 @@ public abstract class GraphAction extends Action {
     /**
      * The actionHistory in case the action needs to delete the latest entry.
      */
-    protected  ActionHistory actionHistory = ActionHistory.getInstance();
+    protected ActionHistory actionHistory = ActionHistory.getInstance();
     /**
      * The loadLanguage to get the right property string
      */
     protected LoadLanguage loadLanguage = LoadLanguage.getInstance();
+
     /**
      * Sets layout, graph, pick support from the current syndrom presentation.
      */
-    public GraphAction(){
+    public GraphAction() {
 
     }
 

@@ -48,34 +48,34 @@ public class AddSphereLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
         if (parameters == null) {
-                graph.addSphere(point2D);
-                Sphere sp = pickSupport.getSphere(point2D.getX(),point2D.getY());
-                createParameter(sp);
-            } else {
-                graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
-                for(Vertex v : ((AddRemoveSphereParam)parameters).getVertices()){
-                    graph.addVertex(v);
-                    Sphere sp = pickSupport.getSphere(v.getCoordinates().getX(), v.getCoordinates().getY());
-                    sp.getVertices().add(v);
-                }
+            graph.addSphere(point2D);
+            Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
+            createParameter(sp);
+        } else {
+            graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
+            for (Vertex v : ((AddRemoveSphereParam) parameters).getVertices()) {
+                graph.addVertex(v);
+                Sphere sp = pickSupport.getSphere(v.getCoordinates().getX(), v.getCoordinates().getY());
+                sp.getVertices().add(v);
             }
-            vv.repaint();
-            syndrom.getVv2().repaint();
+        }
+        vv.repaint();
+        syndrom.getVv2().repaint();
 
-            DatabaseManager databaseManager = DatabaseManager.getInstance();
-            databaseManager.addEntryDatabase(createLog());
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        databaseManager.addEntryDatabase(createLog());
 
-            notifyObserverGraph();
+        notifyObserverGraph();
     }
 
     @Override
     public void undo() {
-        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction((AddRemoveSphereParam)parameters);
+        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction((AddRemoveSphereParam) parameters);
         removeSphereLogAction.action();
     }
 
 
     public void createParameter(Sphere sphere) {
-        parameters = new AddRemoveSphereParam(sphere,new LinkedList<>());
+        parameters = new AddRemoveSphereParam(sphere, new LinkedList<>());
     }
 }

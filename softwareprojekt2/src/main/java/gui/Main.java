@@ -26,6 +26,20 @@ public class Main extends Application {
     @Getter
     private Stage primary;
 
+    /**
+     * Starts the application.
+     *
+     * @param args The java command line arguments that is needed to start the application.
+     */
+    public static void main(String[] args) {
+        BasicConfigurator.configure();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+        PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
+
+        launch(args);
+
+        PersonalEntityManagerFactory.getInstance().close();
+    }
 
     /**
      * Loads the gui with a fxml loader, sets the title of the application
@@ -49,21 +63,5 @@ public class Main extends Application {
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
         controller.setButtonShortcuts();
-    }
-
-
-    /**
-     * Starts the application.
-     *
-     * @param args The java command line arguments that is needed to start the application.
-     */
-    public static void main(String[] args) {
-        BasicConfigurator.configure();
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
-
-        launch(args);
-
-        PersonalEntityManagerFactory.getInstance().close();
     }
 }

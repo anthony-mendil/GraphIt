@@ -23,9 +23,8 @@ import java.util.*;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * <p>
  * This action finds the shortest path between two selected vertices.
- *
  */
-public class AnalysisGraphShortestPathAction extends GraphAction{
+public class AnalysisGraphShortestPathAction extends GraphAction {
     /**
      * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
      * These analyse functions are implemented by JGraphT algorithms and will be processed through the JGraphT Handler.
@@ -50,8 +49,8 @@ public class AnalysisGraphShortestPathAction extends GraphAction{
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
-        GraphPath<Vertex,Edge> shortestPath = jGraphTHandler.getShortestPath();
-        if(shortestPath == null){
+        GraphPath<Vertex, Edge> shortestPath = jGraphTHandler.getShortestPath();
+        if (shortestPath == null) {
             HelperFunctions helperFunctions = new HelperFunctions();
             helperFunctions.setActionText("Es sxistiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true);
         }

@@ -21,9 +21,8 @@ import java.util.*;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * <p>
  * This action finds all extenuating relations.
- *
  */
-public class AnalysisGraphExtenuatingRelationsAction extends GraphAction{
+public class AnalysisGraphExtenuatingRelationsAction extends GraphAction {
 
     /**
      * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
@@ -49,8 +48,8 @@ public class AnalysisGraphExtenuatingRelationsAction extends GraphAction{
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
-        for(Edge edge : graph.getEdges()){
-            if(edge.getArrowType() == EdgeArrowType.EXTENUATING){
+        for (Edge edge : graph.getEdges()) {
+            if (edge.getArrowType() == EdgeArrowType.EXTENUATING) {
                 edgesAnalyse.add(edge);
                 edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
                 verticesAnalyse.add(endPoints.getFirst());

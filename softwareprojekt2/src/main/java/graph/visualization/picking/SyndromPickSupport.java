@@ -26,9 +26,10 @@ import java.util.List;
  */
 public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
+    private static Logger logger = Logger.getLogger(SyndromPickSupport.class);
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
     private BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
-    private static Logger logger = Logger.getLogger(SyndromPickSupport.class);
+
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
      * <code>VisualizationServer</code> is used to access properties of the current visualization (layout, renderer,
@@ -79,6 +80,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      * weswegen wir sie nicht überschreiben konnten. Außerdem wurde der return Wert von getTransformedEdgeShape()
      * geändert.
      * Der restliche Code der Methode wurde nicht verändert und nicht von uns programmiert.
+     *
      * @param layout
      * @param x
      * @param y
@@ -104,7 +106,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
                     E e = (E) o;
                     javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> pair = getTransformedEdgeShape(e, vv.getRenderContext(), layout);
-                    if(pair==null){
+                    if (pair == null) {
                         return null;
                     }
                     Shape edgeShape = pair.getKey().getKey();
@@ -201,6 +203,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         javafx.util.Pair<Shape, Point2D> pair = new javafx.util.Pair<>(edgeShape, new Point2D.Double(x1, y1));
         return new javafx.util.Pair<>(pair, arrow);
     }
+
     @SuppressWarnings("unchecked")
 
     private AffineTransform getAffineTransformAnchor(RenderContext<V, E> rc, Vertex vertex, float endX, float endY, Point2D anchorPoint) {

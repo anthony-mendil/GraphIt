@@ -16,10 +16,10 @@ import java.awt.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SyndromVisualisationViewer<V,E> extends VisualizationViewer<V,E> {
+public class SyndromVisualisationViewer<V, E> extends VisualizationViewer<V, E> {
     @Setter(AccessLevel.NONE)
     private transient PickedState<Sphere> pickedSphereState;
-    private transient Transformer<V,Paint> vertexFontColorTransformer;
+    private transient Transformer<V, Paint> vertexFontColorTransformer;
 
     @SuppressWarnings("unchecked")
     public SyndromVisualisationViewer(VisualizationModel<V, E> model, Dimension preferredSize) {
@@ -28,9 +28,9 @@ public class SyndromVisualisationViewer<V,E> extends VisualizationViewer<V,E> {
         vertexFontColorTransformer = new VertexFontColorTransformer();
     }
 
-    public void setPickedSphereState(PickedState<Sphere> pickedSphereState){
+    public void setPickedSphereState(PickedState<Sphere> pickedSphereState) {
         this.pickedSphereState = pickedSphereState;
-        if(pickEventListener == null) {
+        if (pickEventListener == null) {
             pickEventListener = e -> repaint();
         }
         pickedSphereState.addItemListener(pickEventListener);

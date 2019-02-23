@@ -33,8 +33,8 @@ import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 public class HelperFunctions {
-    private final Values values;
     private static Logger logger = Logger.getLogger(HelperFunctions.class);
+    private final Values values;
     private LoadLanguage lang = LoadLanguage.getInstance();
 
     public HelperFunctions() {
@@ -101,7 +101,7 @@ public class HelperFunctions {
                         final CountDownLatch latch = new CountDownLatch(1);
                         Platform.runLater(() -> {
                             try {
-                                String alert = (withPlaceHolder)? lang.loadLanguagesKey(string): string;
+                                String alert = (withPlaceHolder) ? lang.loadLanguagesKey(string) : string;
                                 values.getCurrentActionText().setText(alert);
                                 Text text = values.getCurrentActionText();
                                 if (isAlert) {
@@ -224,7 +224,7 @@ public class HelperFunctions {
         return d;
     }
 
-    public Font returnFont(String f){
+    public Font returnFont(String f) {
         java.awt.Font newFont;
         switch (f) {
             case "AveriaSansLibre":

@@ -20,9 +20,11 @@ public class EditSphereColorLogAction extends LogAction {
      * temporary vertices for the color.
      */
     private Color color;
+
     /**
      * Constructor in case the user clicks on a sphere to change the color.
      * Gets the sphere through pick support.
+     *
      * @param pColor The color to paint the sphere.
      */
     public EditSphereColorLogAction(Color pColor) {
@@ -44,18 +46,18 @@ public class EditSphereColorLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
-    if(parameters == null) {
-        for (Sphere sp : pickedState.getPicked()) {
-            if(!sp.isLockedStyle()|| values.getMode() == FunctionMode.TEMPLATE) {
-                createParameter(sp, sp.getColor(), color);
-                sp.setColor(color);
-            }else{
-                helper.setActionText("EDIT_SPHERE_COLOR_ALERT", true, true);
+        if (parameters == null) {
+            for (Sphere sp : pickedState.getPicked()) {
+                if (!sp.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
+                    createParameter(sp, sp.getColor(), color);
+                    sp.setColor(color);
+                } else {
+                    helper.setActionText("EDIT_SPHERE_COLOR_ALERT", true, true);
+                }
             }
-        }
-    }else{
-        Sphere sphere = ((EditSphereColorParam)parameters).getSphere();
-        Color newColor = ((EditSphereColorParam)parameters).getNewColor();
+        } else {
+            Sphere sphere = ((EditSphereColorParam) parameters).getSphere();
+            Color newColor = ((EditSphereColorParam) parameters).getNewColor();
             sphere.setColor(newColor);
         }
         vv.repaint();
@@ -68,10 +70,10 @@ public class EditSphereColorLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Color oldColor = ((EditSphereColorParam)parameters).getOldColor();
-        Color newColor = ((EditSphereColorParam)parameters).getNewColor();
-        Sphere sphere  = ((EditSphereColorParam)parameters).getSphere();
-        EditSphereColorParam editSphereColorParam = new EditSphereColorParam(sphere, newColor,oldColor);
+        Color oldColor = ((EditSphereColorParam) parameters).getOldColor();
+        Color newColor = ((EditSphereColorParam) parameters).getNewColor();
+        Sphere sphere = ((EditSphereColorParam) parameters).getSphere();
+        EditSphereColorParam editSphereColorParam = new EditSphereColorParam(sphere, newColor, oldColor);
         EditSphereColorLogAction editSphereColorLogAction = new EditSphereColorLogAction(editSphereColorParam);
         editSphereColorLogAction.action();
 

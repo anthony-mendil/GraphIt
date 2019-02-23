@@ -21,10 +21,12 @@ import java.util.Map;
  */
 public class EditVerticesFormLogAction extends LogAction {
     private VertexShapeType type;
+
     /**
      * Constructor in case the user changes the form of the selected vertices.
      * Gets the picked vertices though pick support.
-     * @param pVertexShapeType  The vertices shape type.
+     *
+     * @param pVertexShapeType The vertices shape type.
      */
     public EditVerticesFormLogAction(VertexShapeType pVertexShapeType) {
         super(LogEntryName.EDIT_VERTICES_FORM);
@@ -45,27 +47,27 @@ public class EditVerticesFormLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if(parameters == null) {
+        if (parameters == null) {
             List<Vertex> lockedVertices = new LinkedList<>();
-            Map<Vertex,VertexShapeType> oldVertices = new HashMap<>();
-            Map<Vertex,VertexShapeType> newVertices = new HashMap<>();
+            Map<Vertex, VertexShapeType> oldVertices = new HashMap<>();
+            Map<Vertex, VertexShapeType> newVertices = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                if(!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
-                     oldVertices.put(vertex, vertex.getShape());
+                if (!vertex.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
+                    oldVertices.put(vertex, vertex.getShape());
                     vertex.setShape(type);
                     newVertices.put(vertex, type);
-                }else{
+                } else {
                     helper.setActionText("EDIT_VERTICES_FORM_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }
             createParameter(oldVertices, newVertices);
-        }else{
-            Map<Vertex,VertexShapeType> oldVertices = ((EditVerticesFormParam)parameters).getOldVertices();
-            Map<Vertex,VertexShapeType> newVertices = ((EditVerticesFormParam)parameters).getNewVertices();
-                for (Map.Entry<Vertex,VertexShapeType> entry : oldVertices.entrySet()){
-                    entry.getKey().setShape(newVertices.get(entry.getKey()));
-                }
+        } else {
+            Map<Vertex, VertexShapeType> oldVertices = ((EditVerticesFormParam) parameters).getOldVertices();
+            Map<Vertex, VertexShapeType> newVertices = ((EditVerticesFormParam) parameters).getNewVertices();
+            for (Map.Entry<Vertex, VertexShapeType> entry : oldVertices.entrySet()) {
+                entry.getKey().setShape(newVertices.get(entry.getKey()));
+            }
         }
         vv.repaint();
         syndrom.getVv2().repaint();
@@ -77,14 +79,14 @@ public class EditVerticesFormLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Vertex,VertexShapeType> oldVertices = ((EditVerticesFormParam)parameters).getOldVertices();
-        Map<Vertex,VertexShapeType> newVertices = ((EditVerticesFormParam)parameters).getNewVertices();
+        Map<Vertex, VertexShapeType> oldVertices = ((EditVerticesFormParam) parameters).getOldVertices();
+        Map<Vertex, VertexShapeType> newVertices = ((EditVerticesFormParam) parameters).getNewVertices();
         EditVerticesFormParam editVerticesFormParam = new EditVerticesFormParam(newVertices, oldVertices);
         EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(editVerticesFormParam);
         editVerticesFormLogAction.action();
     }
 
-    public void createParameter(Map<Vertex,VertexShapeType> oldVertices, Map<Vertex,VertexShapeType> newVertices) {
+    public void createParameter(Map<Vertex, VertexShapeType> oldVertices, Map<Vertex, VertexShapeType> newVertices) {
         parameters = new EditVerticesFormParam(oldVertices, newVertices);
     }
 }

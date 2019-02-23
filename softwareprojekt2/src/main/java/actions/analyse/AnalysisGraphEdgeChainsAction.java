@@ -21,9 +21,8 @@ import java.util.*;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * <p>
  * This Action finds all edge-chains in the graph.
- *
  */
-public class AnalysisGraphEdgeChainsAction extends GraphAction{
+public class AnalysisGraphEdgeChainsAction extends GraphAction {
 
     /**
      * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
@@ -48,9 +47,9 @@ public class AnalysisGraphEdgeChainsAction extends GraphAction{
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
-        Pair<List<List<Vertex>>,Set<Edge>> edgeChains = jGraphTHandler.detectRelationChains();
-        for(List<Vertex> list : edgeChains.getKey()){
-            for(int i = 0 ; i < list.size(); i++){
+        Pair<List<List<Vertex>>, Set<Edge>> edgeChains = jGraphTHandler.detectRelationChains();
+        for (List<Vertex> list : edgeChains.getKey()) {
+            for (int i = 0; i < list.size(); i++) {
                 verticesAnalyse.add(list.get(i));
             }
         }

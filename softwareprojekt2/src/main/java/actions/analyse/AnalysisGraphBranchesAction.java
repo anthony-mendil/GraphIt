@@ -20,9 +20,8 @@ import java.util.*;
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action will find and highlight all branches in the graph.
- *
  */
-public class AnalysisGraphBranchesAction extends GraphAction{
+public class AnalysisGraphBranchesAction extends GraphAction {
 
     /**
      * Constructor in case the user chooses a AnalyseTypeSeveral - analyse option.
@@ -30,7 +29,6 @@ public class AnalysisGraphBranchesAction extends GraphAction{
      * After analysing the graph and finding out the values the action is looking for,
      * the information is displayed or the found vertices/edges get highlighted.
      * The action is applied to all picked vertices/edges or to all objects if nothing is picked.
-     *
      */
     public AnalysisGraphBranchesAction() {
     }

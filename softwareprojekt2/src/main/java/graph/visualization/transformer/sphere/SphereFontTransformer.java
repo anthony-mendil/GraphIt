@@ -17,10 +17,11 @@ import java.io.IOException;
  */
 public class SphereFontTransformer<S> implements Transformer<S, Font> {
     private HelperFunctions helperFunctions = new HelperFunctions();
+
     @Override
     public Font transform(S s) {
         Sphere sphere = (Sphere) s;
-            Font newFont = helperFunctions.returnFont(sphere.getFont());
-            return newFont.deriveFont(Font.PLAIN, sphere.getFontSize());
+        Font newFont = helperFunctions.returnFont(sphere.getFont());
+        return newFont.deriveFont(Font.PLAIN, sphere.getFontSize());
     }
 }

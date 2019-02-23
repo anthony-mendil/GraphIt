@@ -1,4 +1,5 @@
 package graph.algorithmen;
+
 /**
  * Lists all criteria in the analyse-mode treating a single vertex.
  */

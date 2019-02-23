@@ -16,6 +16,6 @@ public class EdgeArrowFillPaintAnchorTransformer<E> implements Transformer<E, Pa
     public Paint transform(E e) {
         Edge edge = (Edge) e;
 
-        return edge.isHasAnchorIn() ? new Color(204, 0,0) : edge.getColor();
+        return edge.isHasAnchorIn() ? new Color(204, 0, 0) : edge.getColor();
     }
 }

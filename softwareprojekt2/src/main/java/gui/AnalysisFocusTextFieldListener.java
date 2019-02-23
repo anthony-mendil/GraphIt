@@ -14,7 +14,7 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
     private final CheckBox analysisSuccessor;
     private final CheckBox analysisPredecessor;
 
-    public AnalysisFocusTextFieldListener(TextField pTextField, Controller pC){
+    public AnalysisFocusTextFieldListener(TextField pTextField, Controller pC) {
         textField = pTextField;
         c = pC;
         analysisSuccessor = c.getAnalysisSuccessor();
@@ -23,17 +23,17 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
 
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-        if(!newValue){
-            if(!textField.getText().isEmpty()){
-                if(analysisPredecessor.isSelected()){
+        if (!newValue) {
+            if (!textField.getText().isEmpty()) {
+                if (analysisPredecessor.isSelected()) {
                     AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(textField.getText()));
                     analysisGraphAction.action();
                 }
-                if(analysisSuccessor.isSelected()){
+                if (analysisSuccessor.isSelected()) {
                     AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
                     analysisGraphAction.action();
                 }
-            }else{
+            } else {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
             }

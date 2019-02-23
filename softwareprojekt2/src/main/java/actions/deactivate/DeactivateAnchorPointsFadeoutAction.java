@@ -25,7 +25,7 @@ public class DeactivateAnchorPointsFadeoutAction extends LogAction {
         super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
     }
 
-    public DeactivateAnchorPointsFadeoutAction(){
+    public DeactivateAnchorPointsFadeoutAction() {
         super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
     }
 

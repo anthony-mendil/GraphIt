@@ -21,9 +21,8 @@ import java.util.*;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * <p>
  * This Action finds all reinforced relations.
- *
  */
-public class AnalysisGraphReinforcedRelationsAction extends GraphAction{
+public class AnalysisGraphReinforcedRelationsAction extends GraphAction {
     /**
      * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
      * These analyse functions are implemented by JGraphT algorithms and will be processed through the JGraphT Handler.
@@ -47,8 +46,8 @@ public class AnalysisGraphReinforcedRelationsAction extends GraphAction{
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
-        for(Edge edge : graph.getEdges()){
-            if(edge.getArrowType() == EdgeArrowType.REINFORCED){
+        for (Edge edge : graph.getEdges()) {
+            if (edge.getArrowType() == EdgeArrowType.REINFORCED) {
                 edgesAnalyse.add(edge);
                 edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
                 verticesAnalyse.add(endPoints.getFirst());

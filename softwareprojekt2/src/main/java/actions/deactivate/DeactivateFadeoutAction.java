@@ -59,7 +59,7 @@ public class DeactivateFadeoutAction extends LogAction {
         FadeType fadeType = FadeType.DEACTIVATE;
 
         Predicate<Context<Graph<Vertex, Edge>, Edge>> predicateEdge = TruePredicate.getInstance();
-        Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex =  TruePredicate.getInstance();
+        Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex = TruePredicate.getInstance();
 
         VertexFadeoutPaintTransformer<Vertex> vertexFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFill, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexVertexDrawFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerDraw, fadeType);

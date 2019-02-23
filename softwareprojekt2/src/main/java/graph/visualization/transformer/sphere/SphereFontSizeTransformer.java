@@ -6,10 +6,10 @@ import org.apache.commons.collections15.Transformer;
 public class SphereFontSizeTransformer<S> implements Transformer<S, Integer> {
     @Override
     public Integer transform(S s) {
-        try{
+        try {
             Sphere sphere = (Sphere) s;
             return sphere.getFontSize();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException();
         }
     }

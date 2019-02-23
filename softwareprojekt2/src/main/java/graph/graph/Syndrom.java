@@ -33,6 +33,14 @@ import java.awt.geom.AffineTransform;
  */
 @Data
 public class Syndrom {
+    private static Syndrom instance;
+    /**
+     * The values set by the gui.
+     */
+    @Setter(AccessLevel.NONE)
+    private final Values values;
+    RotatingGraphMousePlugin rotatingPlugin = new RotatingGraphMousePlugin();
+    ShearingGraphMousePlugin shearingPlugin = new ShearingGraphMousePlugin();
     /**
      * The visualization viewer of syndrom. It contains the layout and graph.
      */
@@ -41,9 +49,7 @@ public class Syndrom {
      * Template rules for the graph/layout.
      */
     private Template template;
-
     private boolean templateIsSet = false;
-
     /**
      * The layout of syndrom.
      */
@@ -180,53 +186,34 @@ public class Syndrom {
      * The renderer of the syndrom graph.
      */
     private SyndromRenderer syndromRenderer;
-
     /**
      * Satellite view for zoom context.
      */
     private SatelliteVisualizationViewer<Vertex, Edge> vv2;
-
     /**
      * Zoom pane, containing the visualization viewer.
      */
     private GraphZoomScrollPane gzsp;
-
     /**
      * For adding/removing graph mouse plugins.
      */
     private PluggableGraphMouse pluggable;
-
     /**
      * The view grid for zoom context.
      */
     private VisualizationServer.Paintable viewGrid;
-
     /**
      * The name of the graph.
      */
     private String graphName;
-
-    /**
-     * The values set by the gui.
-     */
-    @Setter(AccessLevel.NONE)
-    private final Values values;
-
-    private static Syndrom instance;
-
     private SyndromPickSupport pickSupport;
-
     private AbsoluteCrossoverScalingControl scalingControl;
-
     private int scale;
-
     private SpherePickingPlugin spherePickingPlugin = new SpherePickingPlugin();
     private VertexPickingPlugin vertexPickingPlugin = new VertexPickingPlugin();
     private EdgePickingPlugin edgePickingPlugin = new EdgePickingPlugin();
     private GeneralPickingPlugin generalPickingPlugin = new GeneralPickingPlugin();
     private TranslatingGraphMousePlugin translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
-    RotatingGraphMousePlugin rotatingPlugin = new RotatingGraphMousePlugin();
-    ShearingGraphMousePlugin shearingPlugin = new ShearingGraphMousePlugin();
 
     /**
      * The constructor, initialising all attributes.
@@ -241,19 +228,19 @@ public class Syndrom {
         pluggable.add(generalPickingPlugin);
     }
 
-    public void setPluggableModeEdit(){
-        pluggable.remove(translatingPlugin);
-    }
-
-    public void setPluggableModeAnalyse(){
-        pluggable.add(translatingPlugin);
-    }
-
     public static Syndrom getInstance() {
         if (instance == null) {
             instance = new Syndrom();
         }
         return instance;
+    }
+
+    public void setPluggableModeEdit() {
+        pluggable.remove(translatingPlugin);
+    }
+
+    public void setPluggableModeAnalyse() {
+        pluggable.add(translatingPlugin);
     }
 
     public void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv) {

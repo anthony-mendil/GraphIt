@@ -23,6 +23,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
      * The new font size of the vertices.
      */
     private int size;
+
     /**
      * Constructor in case the user changes the font-size of the annotation.
      *
@@ -32,6 +33,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);
         size = pSize;
     }
+
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
@@ -42,29 +44,30 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);
         parameters = pEditFontSizeVerticesParam;
     }
+
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        Map<Vertex,Integer> oldVerticesParam = new HashMap<>();
-        Map<Vertex,Integer> newVerticesParam = new HashMap<>();
-        if(parameters == null){
+        Map<Vertex, Integer> oldVerticesParam = new HashMap<>();
+        Map<Vertex, Integer> newVerticesParam = new HashMap<>();
+        if (parameters == null) {
             List<Vertex> lockedVertices = new LinkedList<>();
-            for (Vertex vertex: pickedState.getPicked()) {
-                if(vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+            for (Vertex vertex : pickedState.getPicked()) {
+                if (vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldVerticesParam.put(vertex, vertex.getFontSize());
                     vertex.setFontSize(size);
                     newVerticesParam.put(vertex, size);
-                }else{
+                } else {
                     helper.setActionText("EDIT_VERTICES_FONT_SIZE_ALERT", true, true);
                     lockedVertices.add(vertex);
                 }
             }
             createParameter(oldVerticesParam, newVerticesParam);
-        }else{
-            Map<Vertex,Integer> oldVertices = ((EditFontSizeVerticesParam)parameters).getOldVertices();
-            Map<Vertex,Integer> newVertices = ((EditFontSizeVerticesParam)parameters).getNewVertices();
-            for(Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()){
+        } else {
+            Map<Vertex, Integer> oldVertices = ((EditFontSizeVerticesParam) parameters).getOldVertices();
+            Map<Vertex, Integer> newVertices = ((EditFontSizeVerticesParam) parameters).getNewVertices();
+            for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
                 Vertex vertex = entry.getKey();
                 vertex.setFontSize(newVertices.get(vertex));
             }
@@ -79,8 +82,8 @@ public class EditFontSizeVerticesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Vertex, Integer> oldVertices = ((EditFontSizeVerticesParam)parameters).getOldVertices();
-        Map<Vertex, Integer> newVertices = ((EditFontSizeVerticesParam)parameters).getNewVertices();
+        Map<Vertex, Integer> oldVertices = ((EditFontSizeVerticesParam) parameters).getOldVertices();
+        Map<Vertex, Integer> newVertices = ((EditFontSizeVerticesParam) parameters).getNewVertices();
         EditFontSizeVerticesParam editFontSizeVerticesParam = new EditFontSizeVerticesParam(newVertices, oldVertices);
         EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(editFontSizeVerticesParam);
         editFontSizeVerticesLogAction.action();

@@ -17,7 +17,7 @@ public class RemoveHighlightElementAction extends GraphAction {
         for (Edge e : pickedState.getPicked()) {
             e.setHighlighted(false);
         }
-        for(Vertex v : vertexPickedState.getPicked()){
+        for (Vertex v : vertexPickedState.getPicked()) {
             v.setHighlighted(false);
         }
 

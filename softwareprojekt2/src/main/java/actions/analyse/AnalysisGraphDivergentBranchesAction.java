@@ -21,9 +21,8 @@ import java.util.*;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * <p>
  * This action finds all divergent branches in the graph.
- *
  */
-public class AnalysisGraphDivergentBranchesAction extends GraphAction{
+public class AnalysisGraphDivergentBranchesAction extends GraphAction {
 
     /**
      * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.

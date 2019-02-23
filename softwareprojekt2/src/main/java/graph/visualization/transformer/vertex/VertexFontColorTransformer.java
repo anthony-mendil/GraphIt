@@ -15,6 +15,7 @@ import java.awt.*;
  */
 public class VertexFontColorTransformer<V> implements Transformer<V, Paint> {
     private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
+
     @Override
     public Paint transform(V v) {
         Vertex vertex = (Vertex) v;

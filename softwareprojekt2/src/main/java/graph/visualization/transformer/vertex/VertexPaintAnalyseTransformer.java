@@ -14,9 +14,11 @@ import java.util.ArrayList;
  */
 public class VertexPaintAnalyseTransformer<V> implements Transformer<V, Paint> {
     private ArrayList<Vertex> vertices;
-    public VertexPaintAnalyseTransformer(ArrayList<Vertex> vertices){
+
+    public VertexPaintAnalyseTransformer(ArrayList<Vertex> vertices) {
         this.vertices = vertices;
     }
+
     @Override
     public Paint transform(V v) {
         Vertex vertex = (Vertex) v;

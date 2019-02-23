@@ -10,10 +10,10 @@ import java.lang.reflect.Type;
 
 public class Point2DSerializer implements JsonSerializer<Point2D> {
     public JsonElement serialize(Point2D position, Type type,
-                                 JsonSerializationContext jsc){
+                                 JsonSerializationContext jsc) {
         JsonObject jo = new JsonObject();
-        jo.addProperty("x",position.getX());
-        jo.addProperty("y",position.getY());
+        jo.addProperty("x", position.getX());
+        jo.addProperty("y", position.getY());
 
         return jo;
     }

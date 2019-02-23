@@ -21,11 +21,11 @@ public class RemoveSphereLogAction extends LogAction {
     /**
      * Removes the passed sphere from the graph.
      * Gets the picked sphere though pick support.
-     *
      */
     public RemoveSphereLogAction() {
         super(LogEntryName.REMOVE_SPHERE);
     }
+
     /**
      * Removes the sphere which is defined in pParam. Also used to implement the undo-method of
      * AddSphereLogAction.
@@ -41,35 +41,35 @@ public class RemoveSphereLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if(parameters == null){
+        if (parameters == null) {
             List<Vertex> vertices = new LinkedList<>();
             PickedState<Sphere> pickedState = vv.getPickedSphereState();
             PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
             for (Sphere sp : pickedState.getPicked()) {
                 if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
 
-                    if(sp.verticesLocked()){
-                    HelperFunctions helper = new HelperFunctions();
-                    helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
-                    actionHistory.removeLastEntry();
-                    return;
-                }
-                for(Vertex v: sp.getVertices()){
-                    vertices.add(v);
-                    pickedVertexState.pick(v, false);
-                    graph.removeVertex(v);
-                }
-                pickedState.pick(sp, false);
-                graph.removeSphere(sp);
-                createParameter(sp,vertices);
-            }else{
+                    if (sp.verticesLocked()) {
+                        HelperFunctions helper = new HelperFunctions();
+                        helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
+                        actionHistory.removeLastEntry();
+                        return;
+                    }
+                    for (Vertex v : sp.getVertices()) {
+                        vertices.add(v);
+                        pickedVertexState.pick(v, false);
+                        graph.removeVertex(v);
+                    }
+                    pickedState.pick(sp, false);
+                    graph.removeSphere(sp);
+                    createParameter(sp, vertices);
+                } else {
                     HelperFunctions helper = new HelperFunctions();
                     helper.setActionText("REMOVE_SPHERE_TEMPLATE_ALERT", true, true);
 
                 }
             }
-        }else{
-            graph.removeSphere(((AddRemoveSphereParam)parameters).getSphere());
+        } else {
+            graph.removeSphere(((AddRemoveSphereParam) parameters).getSphere());
         }
         vv.repaint();
         syndrom.getVv2().repaint();
@@ -80,7 +80,7 @@ public class RemoveSphereLogAction extends LogAction {
 
     @Override
     public void undo() {
-        AddSphereLogAction addSphereLogAction = new AddSphereLogAction((AddRemoveSphereParam)parameters);
+        AddSphereLogAction addSphereLogAction = new AddSphereLogAction((AddRemoveSphereParam) parameters);
         addSphereLogAction.action();
     }
 

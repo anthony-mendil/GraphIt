@@ -29,11 +29,10 @@ import java.util.List;
 
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
+    private final HelperFunctions helper;
     private Vertex source;
-
     private Values values;
     private Map<Vertex, Pair<Point2D, Sphere>> points = null;
-    private final HelperFunctions helper;
     private ContextMenu contextMenu;
     private int addToSelectionModifiers;
     private ActionHistory history;
@@ -70,7 +69,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 if (sp != null && vertex == null && edge == null) {
                     if (values.getMode() != FunctionMode.TEMPLATE && Syndrom.getInstance().getTemplate().getMaxVertices() != 0 &&
                             Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size() >= Syndrom.getInstance().getTemplate().getMaxVertices()) {
-                        Object[] obj = { Syndrom.getInstance().getTemplate().getMaxVertices()};
+                        Object[] obj = {Syndrom.getInstance().getTemplate().getMaxVertices()};
                         helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_MAX_COUNT_ALERT", obj), true, false);
                         return;
                     }

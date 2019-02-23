@@ -33,6 +33,7 @@ public class GraphDimensionAction extends GraphAction {
      */
     @Getter
     private double structureIndex;
+
     /**
      * Computes the data needed for the current graph.
      */
@@ -49,12 +50,12 @@ public class GraphDimensionAction extends GraphAction {
         /**
          * Calculating the indices.
          */
-        scope =(double) (graph.getSpheres().size() + graph.getVertices().size());
-        networkIndex = (double)(2 * graph.getEdges().size())/graph.getVertices().size();
+        scope = (double) (graph.getSpheres().size() + graph.getVertices().size());
+        networkIndex = (double) (2 * graph.getEdges().size()) / graph.getVertices().size();
         structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
-                                         jGraphTHandler.detectConvergentBranches().size() +
-                                         jGraphTHandler.detectDivergentBranches().size() +
-                                         jGraphTHandler.detectCycles().size())/graph.getVertices().size();
+                jGraphTHandler.detectConvergentBranches().size() +
+                jGraphTHandler.detectDivergentBranches().size() +
+                jGraphTHandler.detectCycles().size()) / graph.getVertices().size();
 
     }
 

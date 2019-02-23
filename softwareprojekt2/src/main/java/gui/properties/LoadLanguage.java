@@ -12,27 +12,26 @@ import java.util.ResourceBundle;
  */
 @Data
 public class LoadLanguage {
-    private ResourceBundle resource = ResourceBundle.getBundle("UIResources", new Locale("de"));
-    private Locale de = new Locale("de");
-    private Locale en = new Locale("en");
-    private Language currentResource = Language.GERMAN;
-
     /**
      * Calling this method with the desired language will translate all gui descriptions
      * to that language.
      */
     private static LoadLanguage instance = null;
+    private ResourceBundle resource = ResourceBundle.getBundle("UIResources", new Locale("de"));
+    private Locale de = new Locale("de");
+    private Locale en = new Locale("en");
+    private Language currentResource = Language.GERMAN;
 
-    public static LoadLanguage getInstance(){
-        if (instance == null){
+    public static LoadLanguage getInstance() {
+        if (instance == null) {
             instance = new LoadLanguage();
         }
         return instance;
     }
 
-    public void changeLanguage(Language language){
+    public void changeLanguage(Language language) {
         Locale lang;
-        if (language == Language.GERMAN){
+        if (language == Language.GERMAN) {
             lang = de;
         } else {
             lang = en;
@@ -41,7 +40,7 @@ public class LoadLanguage {
         resource = ResourceBundle.getBundle("UIResources", lang);
     }
 
-    public void changeStringsLanguage(Controller c){
+    public void changeStringsLanguage(Controller c) {
         String templateName = "templateName";
         String templateStyle = "templateStyle";
         String templatePosition = "templatePosition";
@@ -204,11 +203,11 @@ public class LoadLanguage {
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
     }
 
-    public String loadLanguagesKey(String key)  {
+    public String loadLanguagesKey(String key) {
         return resource.getString(key);
     }
 
-    public String loadLanguagesKey(String key, Object[] arr){
+    public String loadLanguagesKey(String key, Object[] arr) {
         MessageFormat form = new MessageFormat(loadLanguagesKey(key));
         return form.format(arr);
     }
