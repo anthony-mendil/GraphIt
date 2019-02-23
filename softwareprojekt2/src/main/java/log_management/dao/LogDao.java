@@ -27,7 +27,8 @@ import java.util.Optional;
 public class LogDao implements Dao<Log> {
 
     private static final String LOG_FROM_ID = "SELECT l from Log l where l.id = :lid";
-    private static final String GRAPH_FROM_ID = "SELECT l from Log l where l.graph.id = :gid";
+    private static final String GRAPH_FROM_ID1 = "SELECT l from Log l where l.graph.id = :gid";
+    public static final String GRAPH_FROM_ID2 =  "SELECT g from Graph g where g.id > 0";
 
 
     private static Logger logger = Logger.getLogger(LogDao.class);
@@ -67,7 +68,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Log> selectLogs = entityManager.createQuery(GRAPH_FROM_ID, Log.class);
+        TypedQuery<Log> selectLogs = entityManager.createQuery(GRAPH_FROM_ID1, Log.class);
         selectLogs.setParameter("gid", graphId);
         List<Log> list = selectLogs.getResultList();
 
@@ -90,7 +91,7 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Log> selectLogs = entityManager.createQuery(GRAPH_FROM_ID, Log.class);
+        TypedQuery<Log> selectLogs = entityManager.createQuery(GRAPH_FROM_ID1, Log.class);
         selectLogs.setParameter("gid", graphId);
         List<Log> logList = selectLogs.getResultList();
 
@@ -139,11 +140,11 @@ public class LogDao implements Dao<Log> {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
 
-        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery("SELECT g from Graph g where g.id > 0", Graph.class);
+        TypedQuery<Graph> selectAllGraphs = entityManager.createQuery(GRAPH_FROM_ID2, Graph.class);
         List<Graph> graphList = selectAllGraphs.getResultList();
 
         graphList.forEach(graph -> {
-            TypedQuery<Log> selectAllLogs = entityManager.createQuery(GRAPH_FROM_ID, Log.class);
+            TypedQuery<Log> selectAllLogs = entityManager.createQuery(GRAPH_FROM_ID1, Log.class);
             selectAllLogs.setParameter("gid", graph.getId());
             List<Log> logList = selectAllLogs.getResultList();
 

@@ -8,14 +8,12 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
-
 
 /**
  * Parameter object of the action EditFontSizeSphereLogAction.
  */
 @Data
-public class EditFontSizeSphereParam extends Param {
+public class EditFontSizeSphereParam implements Param {
     /**
      * The sphere containing the annotation.
      */
@@ -34,7 +32,8 @@ public class EditFontSizeSphereParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
-     * @param pSphere The sphere containing the old annotation.
+     *
+     * @param pSphere      The sphere containing the old annotation.
      * @param pOldFontSize The old font size.
      * @param pNewFontSize The new font size.
      */
@@ -43,6 +42,7 @@ public class EditFontSizeSphereParam extends Param {
         this.oldFontSize = pOldFontSize;
         this.newFontSize = pNewFontSize;
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();

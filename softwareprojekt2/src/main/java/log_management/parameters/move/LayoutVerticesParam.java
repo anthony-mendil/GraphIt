@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.Map;
  * Parameter object for LayoutSphereGraphLogAction, changes the position of the vertices.
  */
 @Data
-public class LayoutVerticesParam extends Param {
+public class LayoutVerticesParam implements Param {
     @Getter
     private List<Vertex> oldVertices;
 

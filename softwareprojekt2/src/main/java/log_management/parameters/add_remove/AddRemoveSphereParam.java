@@ -13,7 +13,7 @@ import lombok.Getter;
  * Parameter object for the action AddSphereLogAction/RemoveSphereLogAction.
  */
 @Data
-public class AddRemoveSphereParam extends Param {
+public class AddRemoveSphereParam implements Param {
     /**
      * The Sphere, which will be added/deleted.
      */
@@ -22,6 +22,7 @@ public class AddRemoveSphereParam extends Param {
 
     /**
      * Creates a parameter object of its own class.
+     *
      * @param pSphere The target sphere.
      */
     public AddRemoveSphereParam(Sphere pSphere) {

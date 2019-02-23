@@ -11,7 +11,7 @@ import java.util.List;
  * Parameter object of the action AddAnchorPointsLogAction/RemoveAnchorPointsLogAction.
  */
 @Data
-public class AddRemoveAnchorPointsParam extends Param {
+public class AddRemoveAnchorPointsParam implements Param {
     /**
      * The selected edges.
      */
@@ -20,10 +20,11 @@ public class AddRemoveAnchorPointsParam extends Param {
 
     /**
      * Creates a parameter object of its own class.
+     *
      * @param pEdges The selected edges.
      */
     public AddRemoveAnchorPointsParam(List<Edge> pEdges) {
-    this.edges = pEdges;
+        this.edges = pEdges;
     }
 
     @Override

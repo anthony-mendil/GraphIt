@@ -8,13 +8,11 @@ import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
-
 /**
  * Parameter object of the action EditSphereAnnotationLogAction.
  */
 @Data
-public class EditSphereAnnotationParam extends Param {
+public class EditSphereAnnotationParam implements Param {
     /**
      * The sphere containing its old annotation.
      */
@@ -39,7 +37,8 @@ public class EditSphereAnnotationParam extends Param {
 
     /**
      * Creates a vertices object of its own class.
-     * @param pSphere The sphere containing its old annotation.
+     *
+     * @param pSphere        The sphere containing its old annotation.
      * @param pOldAnnotation The old annotation.
      * @param pNewAnnotation The new annotation.
      */
@@ -49,6 +48,7 @@ public class EditSphereAnnotationParam extends Param {
         this.oldAnnotation = pOldAnnotation;
         this.newAnnotation = pNewAnnotation;
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();

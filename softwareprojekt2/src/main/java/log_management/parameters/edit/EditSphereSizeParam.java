@@ -6,13 +6,11 @@ import log_management.parameters.Param;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.Serializable;
-
 /**
  * Parameter object of the action EditSphereSizeLogAction.
  */
 @Data
-public class EditSphereSizeParam extends Param {
+public class EditSphereSizeParam implements Param {
     /**
      * The sphere which size should be changed.
      */
@@ -39,11 +37,13 @@ public class EditSphereSizeParam extends Param {
      */
     @Getter
     private Double newHeight;
+
     /**
      * Creates a vertices object of its own class.
+     *
      * @param pSphere The sphere containing its old size.
      */
-    public EditSphereSizeParam(Sphere pSphere, Pair<Double,Double> pOldSize, Pair<Double,Double> pNewSize) {
+    public EditSphereSizeParam(Sphere pSphere, Pair<Double, Double> pOldSize, Pair<Double, Double> pNewSize) {
         this.sphere = pSphere;
         this.oldWidth = pOldSize.getKey();
         this.newWidth = pNewSize.getKey();
@@ -80,10 +80,11 @@ public class EditSphereSizeParam extends Param {
 
     }
 
-    public Pair<Double,Double> getOldSize(){
-        return new Pair<>(oldWidth,oldHeight);
+    public Pair<Double, Double> getOldSize() {
+        return new Pair<>(oldWidth, oldHeight);
     }
-    public Pair<Double,Double> getNewSize(){
-        return new Pair<>(newWidth,newHeight);
+
+    public Pair<Double, Double> getNewSize() {
+        return new Pair<>(newWidth, newHeight);
     }
 }

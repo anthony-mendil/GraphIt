@@ -11,16 +11,13 @@ package graph.graph;/*
  */
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
-import edu.uci.ics.jung.graph.util.EdgeType;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import lombok.Data;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -36,7 +33,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
      * The object factory for syndrom.
      */
-    private final GraphObjectsFactory graphObjectsFactory;
+    private final transient GraphObjectsFactory graphObjectsFactory;
 
     /**
      * Creates a new syndrom graph.
@@ -53,21 +50,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @param pSphere The sphere to assign to.
      * @param pVertex The vertex.
      */
-    public boolean addVertexToSphere(Sphere pSphere, Vertex pVertex) {
-        LinkedList<graph.graph.Vertex> vertices = pSphere.getVertices();
-        boolean added = vertices.add(pVertex);
-        pSphere.setVertices(vertices);
-        return added;
-    }
-
-    /**
-     * Removes a vertex from a sphere.
-     *
-     * @param pSphere The sphere.
-     * @param pVertex The vertex to remove from the sphere.
-     */
-    public void removeVertexFromSphaere(Sphere pSphere, Vertex pVertex) {
-        throw new UnsupportedOperationException();
+    private boolean addVertexToSphere(Sphere pSphere, Vertex pVertex) {
+        return pSphere.getVertices().add(pVertex);
     }
 
     @SuppressWarnings("unchecked")
@@ -83,6 +67,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @param v1 The source vertex.
      * @param v2 The sink vertex.
      */
+    @SuppressWarnings("Unchecked")
     public void addEdgeExisting(Edge edge, V v1, V v2){
         addEdge((E)edge, v1, v2);
     }
@@ -110,7 +95,6 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
         addVertex((V) vertex);
         addVertexToSphere(sp, vertex);
         return vertex;
-
     }
 
     /**
@@ -133,61 +117,5 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
         spheres.remove(pSphere);
     }
 
-    /**
-     * Method for filtering the graph on the criteria.
-     * @param edgeType The edge type to filter for.
-     * @return A filtered list with spheres.
-     */
-    public List<Sphere> getFilteredEdgeType(EdgeType edgeType) {
-        throw new UnsupportedOperationException();
-    }
 
-    /**
-     * Filters the vertices/spheres annotation for a regular expression.
-     * @param regularExpression The regular expression to filter for.
-     * @return A filtered list with spheres.
-     */
-    public List<Sphere> getFilteredEdgeType(String regularExpression) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Filters the vertices for the attribute isVisible=false.
-     * @return A filtered list with spheres.
-     */
-    public List<Sphere> getFilteredEdgeType() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * A map mapping from the dimensions to its values.
-     * @return The dimensions.
-     */
-    public Map<String, Integer> dimensions(){
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Updates a sphere in the graph.
-     * @return True if update was successful, false if not.
-     */
-    public boolean updateSphere(){
-            throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Updates an edge in the graph.
-     * @return True if update was successful, false if not.
-     */
-    public boolean updateEdge(){
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Updates a vertex in the graph.
-     * @return True if update was successful, false if not.
-     */
-    public boolean updateVertex(){
-        throw new UnsupportedOperationException();
-    }
 }

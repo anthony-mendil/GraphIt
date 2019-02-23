@@ -92,6 +92,7 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.text.MessageFormat;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;

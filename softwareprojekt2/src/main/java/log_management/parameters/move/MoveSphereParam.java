@@ -9,13 +9,12 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 
 /**
  * Parameter object of the action MoveSphereLogAction.
  */
 @Data
-public class MoveSphereParam extends Param {
+public class MoveSphereParam implements Param {
     /**
      * The sphere.
      */
@@ -32,8 +31,11 @@ public class MoveSphereParam extends Param {
     @Getter
     private Point2D newPos;
 
+    public static final String Y_IS=" y = ";
+
     /**
      * Creates a vertices object of its own class.
+     *
      * @param pSphere The sphere.
      * @param pOldPos The sphere containing its old position.
      * @param pNewPos The sphere containing its new position.
@@ -43,6 +45,7 @@ public class MoveSphereParam extends Param {
         this.oldPos = pOldPos;
         this.newPos = pNewPos;
     }
+
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
@@ -51,18 +54,18 @@ public class MoveSphereParam extends Param {
             information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". ";
             information += "Old coordinates: x = "
                     + oldPos.getX()
-                    + " y = " + (int) oldPos.getY() + ", ";
+                    + Y_IS + (int) oldPos.getY() + ", ";
             information += "new coordinates: x = "
                     + newPos.getX()
-                    + " y = " + (int) newPos.getY() + ". ";
+                    + Y_IS + (int) newPos.getY() + ". ";
         } else {
             information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". ";
             information += "Alte Koordinaten: x = "
                     + (int) oldPos.getX()
-                    + " y = " + (int) oldPos.getY() + ", ";
+                    + Y_IS + (int) oldPos.getY() + ", ";
             information += "neue Koordinaten: x = "
                     + (int) newPos.getX()
-                    + " y = " +  (int) newPos.getY() + ". ";
+                    + Y_IS + (int) newPos.getY() + ". ";
         }
         return information;
     }
