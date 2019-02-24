@@ -6,15 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import log_management.DatabaseManager;
 import log_management.dao.PersonalEntityManagerFactory;
-import log_management.tables.Log;
 import lombok.Getter;
 import org.apache.log4j.BasicConfigurator;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -51,7 +48,7 @@ public class Main extends Application {
 
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
-        controller.setButtonShortcuts();
+        controller.initButtonShortcuts();
     }
 
 

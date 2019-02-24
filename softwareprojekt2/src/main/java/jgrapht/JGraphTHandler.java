@@ -296,7 +296,7 @@ public class JGraphTHandler {
             for(int i = 0 ; i < list.size() - 1; i++){
                 edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(i),list.get(i + 1)));
             }
-            if(algorithmGraph.getEdge(list.get(list.size()-1), list.get(0)) != null){
+            if(algorithmGraph.getEdge(list.get(list.size()-1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1){
                 edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(list.size()-1), list.get(0)));
             }
         }
