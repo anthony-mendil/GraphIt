@@ -647,6 +647,9 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem logEditVerticesLayout;
     @FXML private MenuItem logAll;
     @FXML private Label infoAnalysis;
+    private Tooltip tooltipInfoAnalysis = new Tooltip();
+    @FXML private Text positionMouseX;
+    @FXML private Text positionMouseY;
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
     private static final String SPHERE_STYLE = "SphereStyle";
@@ -1441,6 +1444,9 @@ public class Controller implements ObserverSyndrom {
         values.setCanvas(canvas);
         values.setHBox(textBox);
         values.setCurrentActionText(currentActionText);
+        values.setPositionMouseX(positionMouseX);
+        values.setPositionMouseY(positionMouseY);
+        //nina
 
         values.setMode(FunctionMode.TEMPLATE);
 
@@ -1510,13 +1516,12 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void initInfoText(){
-        Tooltip tooltip = new Tooltip();
-        tooltip.setPrefWidth(200);
-        tooltip.setText(loadLanguage.loadLanguagesKey("INFO_ANALYSIS"));
-        tooltip.setWrapText(true);
-        tooltip.setAutoFix(false);
-        tooltip.setAutoHide(false);
-        tooltip.setStyle("-fx-background-color:\n" +
+        tooltipInfoAnalysis.setPrefWidth(200);
+        tooltipInfoAnalysis.setText(loadLanguage.loadLanguagesKey("INFO_ANALYSIS"));
+        tooltipInfoAnalysis.setWrapText(true);
+        tooltipInfoAnalysis.setAutoFix(false);
+        tooltipInfoAnalysis.setAutoHide(false);
+        tooltipInfoAnalysis.setStyle("-fx-background-color:\n" +
                 "            #000000,\n" +
                 "            linear-gradient(#7ebcea, #2f4b8f),\n" +
                 "            linear-gradient(#426ab7, #263e75),\n" +
@@ -1524,8 +1529,8 @@ public class Controller implements ObserverSyndrom {
                 "    -fx-text-fill: white;\n" +
                 "    -fx-font-size: 12px;");
 
-        infoAnalysis.setOnMouseMoved(event -> tooltip.show(infoAnalysis,  infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxX() + 15, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxY()));
-        infoAnalysis.setOnMouseExited(event -> tooltip.hide());
+        infoAnalysis.setOnMouseMoved(event -> tooltipInfoAnalysis.show(infoAnalysis,  infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxX() + 15, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxY()));
+        infoAnalysis.setOnMouseExited(event -> tooltipInfoAnalysis.hide());
     }
 
     public void setButtonShortcuts() {

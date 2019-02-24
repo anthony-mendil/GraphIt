@@ -202,6 +202,7 @@ public class LoadLanguage {
         c.getLogAddSphere().setText(loadLanguagesKey("ADD_SPHERE"));
         c.getLogAddEdge().setText(loadLanguagesKey("ADD_EDGES"));
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
+        c.getTooltipInfoAnalysis().setText(loadLanguagesKey("INFO_ANALYSIS"));
     }
 
     public String loadLanguagesKey(String key)  {

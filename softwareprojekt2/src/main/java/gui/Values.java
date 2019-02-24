@@ -163,6 +163,9 @@ public class Values {
 
     private HBox hBox;
 
+    private Text positionMouseX = new Text("");
+    private Text positionMouseY = new Text("");
+
     @Setter(AccessLevel.NONE)
     private final javafx.scene.text.Font actionTextInfo =  javafx.scene.text.Font.font("System Regular", FontWeight
             .NORMAL, 12);

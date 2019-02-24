@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -244,5 +245,12 @@ public class HelperFunctions {
                 break;
         }
         return newFont;
+    }
+
+    public void setMouseLocation(String posX, String posY){
+        Platform.runLater(() -> {
+            values.getPositionMouseX().setText(posX);
+            values.getPositionMouseY().setText(posY);
+        });
     }
 }
