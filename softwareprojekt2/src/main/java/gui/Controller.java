@@ -1123,7 +1123,7 @@ public class Controller implements ObserverSyndrom {
      * Sets the Template values into the fields (usage: importing template)
      */
     private void templateToFields() {
-        Template currentTemplate = Syndrom.getInstance().getTemplate();
+        Template currentTemplate = syndrom.getTemplate();
         if (currentTemplate.getMaxSpheres() != Integer.MAX_VALUE) {
             maxSphereField.setText("" + currentTemplate.getMaxSpheres());
         } else {
@@ -1533,21 +1533,20 @@ public class Controller implements ObserverSyndrom {
         infoAnalysis.setOnMouseExited(event -> tooltipInfoAnalysis.hide());
     }
 
-    public void setButtonShortcuts() {
+    public void initButtonShortcuts() {
         KeyCombination plus = new KeyCodeCombination(KeyCode.PLUS);
         KeyCombination minus = new KeyCodeCombination(KeyCode.MINUS);
         KeyCombination strgZ = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
         KeyCombination strgY = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
         KeyCombination strgD = new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN);
         KeyCombination strgA = new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN);
-        KeyCombination one = new KeyCodeCombination(KeyCode.NUMPAD1);
-        KeyCombination two = new KeyCodeCombination(KeyCode.NUMPAD2);
-        KeyCombination three = new KeyCodeCombination(KeyCode.NUMPAD3);
+        KeyCombination one = new KeyCodeCombination(KeyCode.DIGIT1);
+        KeyCombination two = new KeyCodeCombination(KeyCode.DIGIT2);
+        KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
+        KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
 
-        System.out.println("shortcuts init");
         mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
             if (plus.match(event)) {
-                System.out.println("pressed plus");
                 sphereEnlarge();
                 vertexEnlarge();
             }else if (minus.match(event)) {
@@ -1562,13 +1561,25 @@ public class Controller implements ObserverSyndrom {
                 removeSphere();
                 removeVertices();
             }else if (strgA.match(event)) {
-                //TODO WENN JEMAND WEIß, WIE MAN ALLE KNOTEN AUSWÄHLT MAG DAS HIER HINSCHREIBEN
+                for (Sphere s:syndrom.getGraph().getSpheres()) {
+                    syndrom.getVv().getPickedSphereState().pick(s,true);
+                }
+                for (Vertex v:syndrom.getGraph().getVertices()) {
+                    syndrom.getVv().getPickedVertexState().pick(v,true);
+                }
+                for (Edge e:syndrom.getGraph().getEdges()) {
+                    syndrom.getVv().getPickedEdgeState().pick(e,true);
+                }
             }else if (one.match(event)) {
                 switchModeCreator();
             }else if (two.match(event)) {
                 switchModiAnalysis();
             }else if (three.match(event)) {
                 switchModeEdit();
+            }else if (esc.match(event)){
+                Syndrom.getInstance().getVv().getPickedSphereState().clear();
+                Syndrom.getInstance().getVv().getPickedVertexState().clear();
+                handVertex();
             }
         });
     }

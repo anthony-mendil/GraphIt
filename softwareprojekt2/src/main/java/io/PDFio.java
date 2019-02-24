@@ -174,7 +174,8 @@ public class PDFio {
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             printerJob.setJobName(file.getName());
             printerJob.setPageable(new PDFPageable(pdDocument));
-            if (printerJob.printDialog()) {
+            boolean printSucceeds=printerJob.printDialog();
+            if (printSucceeds) {
                     printerJob.print();
             }
         } catch (IOException | PrinterException e) {
