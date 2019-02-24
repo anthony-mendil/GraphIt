@@ -1088,12 +1088,12 @@
                                 </Menu>
                             </menus>
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="5.0" top="2.0" />
                             </HBox.margin>
                         </MenuBar>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" top="5.0" />
                             </HBox.margin>
                         </Text>
 
@@ -1102,7 +1102,7 @@
                                 <Insets left="5.0" right="5.0" />
                             </padding>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="2.0" top="5.0" />
+                                <Insets bottom="5.0" left="2.0" top="7.0" />
                             </HBox.margin>
                             <tooltip>
                                 <Tooltip text="Zoom" />
@@ -1110,7 +1110,7 @@
                         </Slider>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                             <HBox.margin>
-                                <Insets bottom="2.0" right="10.0" top="2.0" />
+                                <Insets bottom="2.0" right="10.0" top="5.0" />
                             </HBox.margin>
                         </Text>
                     </children>

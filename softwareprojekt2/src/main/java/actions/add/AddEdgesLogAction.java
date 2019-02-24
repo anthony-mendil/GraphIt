@@ -22,6 +22,7 @@ import java.util.Set;
 public class AddEdgesLogAction extends LogAction {
 
     private Pair<Vertex, Vertex> edge;
+
     /**
      * Constructor in case several edges shall be added.
      *
@@ -50,15 +51,15 @@ public class AddEdgesLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if(!template.isLockedEdgesNumber() || graph.getEdges().size() < template.getMaxVertices()){
-            if(parameters == null) {
-                graph.addEdge(edge.getKey(),edge.getValue());
+        if (!template.isLockedEdgesNumber() || graph.getEdges().size() < template.getMaxVertices()) {
+            if (parameters == null) {
+                graph.addEdge(edge.getKey(), edge.getValue());
                 createParameter(edge);
-            }else{
-                List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
-                List<Vertex> startVertices = ((AddRemoveEdgesParam)parameters).getStartVertices();
-                List<Vertex> endVertices = ((AddRemoveEdgesParam)parameters).getEndVertices();
-                for(Edge e : edges){
+            } else {
+                List<Edge> edges = ((AddRemoveEdgesParam) parameters).getEdges();
+                List<Vertex> startVertices = ((AddRemoveEdgesParam) parameters).getStartVertices();
+                List<Vertex> endVertices = ((AddRemoveEdgesParam) parameters).getEndVertices();
+                for (Edge e : edges) {
                     graph.addEdgeExisting(e, startVertices.get(edges.indexOf(e)), endVertices.get(edges.indexOf(e)));
                 }
             }
@@ -68,8 +69,8 @@ public class AddEdgesLogAction extends LogAction {
             DatabaseManager databaseManager = DatabaseManager.getInstance();
             databaseManager.addEntryDatabase(createLog());
             notifyObserverGraph();
-        }else{
-            Object[] obj = {template.getMaxEdges() };
+        } else {
+            Object[] obj = {template.getMaxEdges()};
             helper.setActionText(loadLanguage.loadLanguagesKey("ADD_EDGES_ALERT", obj), true, false);
             actionHistory.removeLastEntry();
         }
@@ -86,17 +87,18 @@ public class AddEdgesLogAction extends LogAction {
     }
 
 
-
-    public void createParameter(Pair<Vertex,Vertex> edge) {
+    public void createParameter(Pair<Vertex, Vertex> edge) {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
         List<Edge> edges = new ArrayList<>();
         Edge toAdd = graph.findEdge(edge.getKey(), edge.getValue());
         edges.add(toAdd);
+        List<Vertex> start = new ArrayList<>();
+        start.add(edge.getKey());
+        List<Vertex> end = new ArrayList<>();
+        end.add(edge.getValue());
 
-        Set<Pair<Vertex, Vertex>> vertices = new HashSet<>();
-        vertices.add(new Pair<>(edge.getKey(),edge.getValue()));
-        parameters = new AddRemoveEdgesParam(edges, vertices);
+        parameters = new AddRemoveEdgesParam(edges, start, end);
     }
 }
