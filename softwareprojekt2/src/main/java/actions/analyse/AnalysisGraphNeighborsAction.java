@@ -66,7 +66,7 @@ public class AnalysisGraphNeighborsAction extends GraphAction{
             Pair<List<Vertex>,List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
             verticesAnalyse.addAll(successors.getKey());
             edgesAnalyse.addAll(successors.getValue());
-        }else{
+        }else if(analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR){
             Pair<List<Vertex>,List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
             verticesAnalyse.addAll(predecessors.getKey());
             edgesAnalyse.addAll(predecessors.getValue());

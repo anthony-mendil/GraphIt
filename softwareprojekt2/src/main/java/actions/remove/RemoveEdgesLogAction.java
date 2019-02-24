@@ -5,6 +5,7 @@ import actions.LogEntryName;
 import actions.add.AddEdgesLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
+import graph.graph.FunctionMode;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
@@ -13,6 +14,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * Removes edges from the syndrom graph.
@@ -41,12 +43,8 @@ public class RemoveEdgesLogAction extends LogAction {
 
 
 
-    public void createParameter(Map<Edge,Pair<Vertex,Vertex>> map) {
-        List<Edge> edges = new ArrayList<>();
-        map.forEach((e, p) -> edges.add(e));
-        Set<Pair<Vertex, Vertex>> vertices = new HashSet<>();
-        map.forEach((e, p) -> vertices.add(p));
-        parameters = new AddRemoveEdgesParam(edges, vertices);
+    public void createParameter(List<Edge> pEdges, List<Vertex> pStart, List<Vertex> pSink) {
+        parameters = new AddRemoveEdgesParam(pEdges, pStart, pSink);
     }
 
     @Override
@@ -55,14 +53,16 @@ public class RemoveEdgesLogAction extends LogAction {
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null) {
-            Map<Edge,Pair<Vertex,Vertex>> edges = new HashMap<>();
+            List<Edge> parameterEdges = new LinkedList<>();
+            List<Vertex> parameterStartEdges = new LinkedList<>();
+            List<Vertex> parameterSinkVertex = new LinkedList<>();
             List<Edge> lockedEdges = new LinkedList<>();
             for (Edge e: pickedState.getPicked()) {
-                if(!e.isLockedEdgeType() && !e.isLockedStyle()){
+                if(!e.isLockedPosition() && !e.isLockedEdgeType() && !e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE){
                     edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
-                    Pair<Vertex,Vertex> verticesJung = new Pair<>(vertices.getFirst(),vertices.getSecond());
-                    edges.put(e,verticesJung);
-                    pickedState.pick(e, false);
+                    parameterEdges.add(e);
+                    parameterStartEdges.add(vertices.getFirst());
+                    parameterSinkVertex.add(vertices.getSecond());
                     graph.removeEdge(e);
                 }else{
                     lockedEdges.add(e);
@@ -75,7 +75,10 @@ public class RemoveEdgesLogAction extends LogAction {
                 actionHistory.removeLastEntry();
                 return;
             }
-            createParameter(edges);
+            for(Edge e : parameterEdges){
+                pickedState.pick(e, false);
+            }
+            createParameter(parameterEdges, parameterStartEdges, parameterSinkVertex);
         }else{
             //Map<Edge,Pair<Vertex,Vertex>> edg = ((AddRemoveEdgesParam)parameters).getEdges();
             //for(Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edg.entrySet()){
@@ -96,8 +99,7 @@ public class RemoveEdgesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        AddRemoveEdgesParam addRemoveEdgesParam = new AddRemoveEdgesParam(((AddRemoveEdgesParam)parameters).getEdges(), ((AddRemoveEdgesParam)parameters).getVertices());
-        AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction(addRemoveEdgesParam);
+        AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction((AddRemoveEdgesParam)parameters);
         addEdgesLogAction.action();
     }
 }

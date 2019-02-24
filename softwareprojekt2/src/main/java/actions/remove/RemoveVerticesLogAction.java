@@ -95,7 +95,7 @@ public class RemoveVerticesLogAction extends LogAction {
             }
         }
         vv.repaint();
-        Syndrom.getInstance().getVv2().repaint();
+        syndrom.getVv2().repaint();
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
