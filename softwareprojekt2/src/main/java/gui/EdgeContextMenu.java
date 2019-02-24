@@ -1,11 +1,15 @@
 package gui;
 
 import actions.ActionHistory;
+import actions.add.AddFadeoutElementAction;
+import actions.add.AddHighlightElementAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
 import actions.remove.RemoveAnchorPointsLogAction;
 import actions.remove.RemoveEdgesLogAction;
+import actions.remove.RemoveFadeoutElementAction;
+import actions.remove.RemoveHighlightElementAction;
 import graph.graph.Edge;
 import graph.graph.FunctionMode;
 import graph.graph.Vertex;
@@ -76,6 +80,42 @@ public class EdgeContextMenu {
             history.execute(removeAnchorPointsLogAction);
         });
 
+        // Highlight
+        MenuItem highlight = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_Highlight"));
+        HelperGui.setImage("/icons2/highlight.png", highlight);
+
+        if (edge.isHighlighted()){
+            highlight.setOnAction(event ->{
+                RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
+                history.execute(removeHighlightElementAction);
+            });
+            highlight.setStyle("-fx-text-fill: #395cab;");
+
+        } else {
+            highlight.setOnAction(event ->{
+                AddHighlightElementAction addHighlightElementAction = new AddHighlightElementAction();
+                history.execute(addHighlightElementAction);
+            });
+        }
+
+        // isVisible
+        MenuItem visible = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_VISIBLE"));
+        HelperGui.setImage("/icons2/eyelash2.png", visible);
+
+        if (!edge.isVisible()){
+            visible.setOnAction(event ->{
+                RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
+                history.execute(removeFadeoutElementAction);
+            });
+            visible.setStyle("-fx-text-fill: #395cab;");
+
+        } else {
+            visible.setOnAction(event ->{
+                AddFadeoutElementAction addFadeoutElementAction = new AddFadeoutElementAction();
+                history.execute(addFadeoutElementAction);
+            });
+        }
+
         boolean lockedEdgeType = edge.isLockedEdgeType();
         boolean lockedStyle = edge.isLockedStyle();
         if (!lockedEdgeType || values.getMode() == FunctionMode.TEMPLATE){
@@ -87,7 +127,7 @@ public class EdgeContextMenu {
         if (!lockedStyle && !lockedEdgeType || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().add(remove);
         }
-        contextMenu.getItems().add(unlink);
+        contextMenu.getItems().addAll(unlink, highlight, visible);
         contextMenu.setAutoHide(true);
         contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
             contextMenu.hide();

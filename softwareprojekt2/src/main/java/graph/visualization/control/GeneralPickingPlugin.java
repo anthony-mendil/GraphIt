@@ -64,7 +64,7 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        //
+        setMousePositionText(e);
     }
 
     @Override

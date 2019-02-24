@@ -52,7 +52,16 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
         float y2 = (float) p2.getY();
 
         // shape of the edge
-        Shape edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
+        Shape edgeShape = null;
+        try{
+            edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
+            if (edgeShape == null){
+                return;
+            }
+        } catch (NullPointerException ex){
+            System.out.println(ex.fillInStackTrace());
+        }
+
 
         boolean edgeHit;
         boolean arrowHit;
@@ -195,6 +204,8 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                             }
 
                             Point2D newPoint = new Point2D.Double(arrow.getBounds2D().getCenterX(), arrow.getBounds2D().getCenterY());
+
+                            ///
 
                             if (scopePoints != null && !scopePoints.isEmpty()) {
                                 map.put(scopePoints.get(scopePoints.size() - 1), new javafx.util.Pair<>(newPoint, at));
