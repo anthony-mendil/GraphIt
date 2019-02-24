@@ -117,7 +117,7 @@ public class Edge {
 
     @Override
     public String toString() {
-        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " -> " +
+        return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " \u2192 " +
                 Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
     }
 

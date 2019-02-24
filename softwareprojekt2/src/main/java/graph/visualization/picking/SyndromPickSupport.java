@@ -159,7 +159,16 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         float y1 = (float) p1.getY();
         float x2 = (float) p2.getX();
         float y2 = (float) p2.getY();
-        Shape edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
+        Shape edgeShape = null;
+        try{
+             edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
+            if (edgeShape == null){
+                return null;
+            }
+        } catch (NullPointerException ex){
+            System.out.println(ex.fillInStackTrace());
+        }
+
         Shape arrow = null;
 
         if (rc.getEdgeArrowPredicate().evaluate(Context.<Graph<V, E>, E>getInstance(graph, e))) {
@@ -190,7 +199,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 y1 = (float) tryP.getBounds2D().getCenterY();
             }
 
-            if (!edge.isHasAnchorIn()) {
+            if (!edge.isHasAnchorIn() && edge.getAnchorPoints().getValue() != null) {
                 x2 = (float) edge.getAnchorPoints().getValue().getX();
                 y2 = (float) edge.getAnchorPoints().getValue().getY();
             }

@@ -39,7 +39,6 @@ public class LogToStringConverter {
     }
 
     public String convert(Log log) {
-        Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         try {
             Object[] obj = {incrementer, convertLogEntryName(log.getLogEntryName()), parametersPrint(log.getParameters(), log.getLogEntryName()), log.getTime().format(formatter)};
@@ -52,7 +51,6 @@ public class LogToStringConverter {
     }
 
     public String convertForTextFile(Log log) {
-        Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try {
@@ -67,7 +65,6 @@ public class LogToStringConverter {
     }
 
     private String convertLogEntryName(LogEntryName logEntryName) {
-        Language l = values.getGuiLanguage();
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
                 return lang.loadLanguagesKey("ACTIVATE_HIGHLIGHT");

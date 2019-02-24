@@ -1,12 +1,17 @@
 package gui;
 
 import actions.ActionHistory;
+import actions.add.AddFadeoutElementAction;
+import actions.add.AddHighlightElementAction;
 import actions.edit.annotation.EditSphereAnnotationLogAction;
 import actions.edit.annotation.EditVertexAnnotationLogAction;
 import actions.edit.color.EditVerticesDrawColorLogAction;
 import actions.edit.color.EditVerticesFillColorLogAction;
 import actions.edit.font.EditFontSizeVerticesLogAction;
 import actions.edit.font.EditFontVerticesLogAction;
+import actions.remove.RemoveAnchorPointsLogAction;
+import actions.remove.RemoveFadeoutElementAction;
+import actions.remove.RemoveHighlightElementAction;
 import actions.remove.RemoveVerticesLogAction;
 import graph.graph.*;
 import graph.visualization.control.HelperFunctions;
@@ -107,6 +112,41 @@ public class VertexContextMenu {
             history.execute(editFontSizeVerticesLogAction);
         });
 
+        // Highlight
+        MenuItem highlight = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_Highlight"));
+        HelperGui.setImage("/icons2/highlight.png", highlight);
+
+        if (vertex.isHighlighted()){
+            highlight.setStyle("-fx-text-fill: #395cab;");
+            highlight.setOnAction(event ->{
+                RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
+                history.execute(removeHighlightElementAction);
+            });
+
+        } else {
+            highlight.setOnAction(event ->{
+                AddHighlightElementAction addHighlightElementAction = new AddHighlightElementAction();
+                history.execute(addHighlightElementAction);
+            });
+        }
+
+        // isVisible
+        MenuItem visible = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_VISIBLE"));
+        HelperGui.setImage("/icons2/eyelash2.png", visible);
+
+        if (!vertex.isVisible()){
+            visible.setStyle("-fx-text-fill: #395cab;");
+            visible.setOnAction(event ->{
+                RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
+                history.execute(removeFadeoutElementAction);
+            });
+
+        } else {
+            visible.setOnAction(event ->{
+                AddFadeoutElementAction addFadeoutElementAction = new AddFadeoutElementAction();
+                history.execute(addFadeoutElementAction);
+            });
+        }
         boolean lockedAnnotation = vertex.isLockedAnnotation();
         boolean lockedStyle = vertex.isLockedStyle();
         if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
@@ -118,6 +158,7 @@ public class VertexContextMenu {
         if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
             contextMenu.getItems().add(remove);
         }
+        contextMenu.getItems().addAll(highlight, visible);
         contextMenu.setAutoHide(true);
         contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
             contextMenu.hide();

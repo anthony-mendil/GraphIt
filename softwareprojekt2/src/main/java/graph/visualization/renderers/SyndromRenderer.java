@@ -86,7 +86,6 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             }
 
             for (E e : renderLast) {
-                System.out.println("hhi");
                 renderEdge(e, renderContext, layout);
             }
         }
