@@ -43,7 +43,6 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
 
                 if(!amountSymptomTextField.getText().isEmpty()){
                     if(analysisPredecessor.isSelected() && analysisSuccessor.isSelected()){
-                        System.out.println("dew");
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
@@ -96,7 +95,9 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
 
         analysisOptions.setSelected(false);
         analysisPathCheckBox.setSelected(false);
-        amountSymptomTextField.setDisable(false);
+        if(analysisPredecessor.isSelected() || analysisSuccessor.isSelected()){
+            amountSymptomTextField.setDisable(false);
+        }
     }
 
     /**

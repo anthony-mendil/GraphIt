@@ -45,24 +45,19 @@
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <MenuBar>
                 <Menu fx:id="fileMenu" mnemonicParsing="false" text="%file">
-                    <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#buttonClicked2" text="%newFile">
+                    <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#openInfoDialogCreateGraph" text="%newFile">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openFile" text="%openFile">
+                    <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openInfoDialogOpenFile" text="%openFile">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#importGXL" text="%gxlImport">
+                    <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#openInfoDialogImportGXL" text="%gxlImport">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                        </accelerator>
-                    </MenuItem>
-                    <MenuItem fx:id="importGxlTemplate" mnemonicParsing="false" onAction="#importGXLWithTemplate" text="%templateImport">
-                        <accelerator>
-                            <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
                     <MenuItem fx:id="saveLocation" mnemonicParsing="false" onAction="#exportOOF" text="%saveAs">
@@ -72,7 +67,7 @@
                     </MenuItem>
                     <Menu fx:id="exportPDF" mnemonicParsing="false" text="%exportAs">
 
-                        <MenuItem mnemonicParsing="false" onAction="#exportPDF" text="PDF">
+                        <MenuItem mnemonicParsing="false" onAction="#openInfoDialogPDF" text="PDF">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                             </accelerator>
@@ -90,7 +85,7 @@
                         <MenuItem fx:id="exportLogs" mnemonicParsing="false" onAction="#exportProtocol" text="%logs" />
 
                     </Menu>
-                    <MenuItem fx:id="print" mnemonicParsing="false" onAction="#printPDF" text="%print">
+                    <MenuItem fx:id="print" mnemonicParsing="false" onAction="#openInfoDialogPrint" text="%print">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
@@ -1064,12 +1059,12 @@
                     <children>
                   <Text fx:id="positionMouseX" strokeType="OUTSIDE" strokeWidth="0.0" text="X: 0.0">
                      <HBox.margin>
-                        <Insets right="5.0" top="5.0" />
+                        <Insets right="5.0" top="7.0" />
                      </HBox.margin>
                   </Text>
                   <Text fx:id="positionMouseY" strokeType="OUTSIDE" strokeWidth="0.0" text="Y: 0.0">
                      <HBox.margin>
-                        <Insets right="5.0" top="5.0" />
+                        <Insets right="5.0" top="7.0" />
                      </HBox.margin>
                   </Text>
                         <MenuBar minWidth="-Infinity">
@@ -1088,12 +1083,12 @@
                                 </Menu>
                             </menus>
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" right="5.0" top="2.0" />
                             </HBox.margin>
                         </MenuBar>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                             <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                <Insets bottom="2.0" left="2.0" top="5.0" />
                             </HBox.margin>
                         </Text>
 
@@ -1102,7 +1097,7 @@
                                 <Insets left="5.0" right="5.0" />
                             </padding>
                             <HBox.margin>
-                                <Insets bottom="5.0" left="2.0" top="5.0" />
+                                <Insets bottom="5.0" left="2.0" top="7.0" />
                             </HBox.margin>
                             <tooltip>
                                 <Tooltip text="Zoom" />
@@ -1110,7 +1105,7 @@
                         </Slider>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                             <HBox.margin>
-                                <Insets bottom="2.0" right="10.0" top="2.0" />
+                                <Insets bottom="2.0" right="10.0" top="5.0" />
                             </HBox.margin>
                         </Text>
                     </children>

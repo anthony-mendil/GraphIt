@@ -86,7 +86,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     }
 
     /**
-     * Adds a vertex to the syndromgraphs and assigns it to the sphere if was existing in the past.
+     * Adds a vertex to the syndromgraph and assigns it to the sphere if it was existing in the past.
      */
     public Vertex addVertexExisting(Vertex vertex){
         SyndromVisualisationViewer vv = Syndrom.getInstance().getVv();

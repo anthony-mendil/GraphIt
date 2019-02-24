@@ -34,6 +34,7 @@ public class ActionHistory {
         current++;
         if(current == MAX_ACTIONS) {
             System.arraycopy(actions,1,actions,0,MAX_ACTIONS-1);
+            current--;
         }
         actions[current] = action;
         actions[current].action();

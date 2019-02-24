@@ -33,6 +33,7 @@ public class GraphDimensionAction extends GraphAction {
      */
     @Getter
     private double structureIndex;
+
     /**
      * Computes the data needed for the current graph.
      */
@@ -43,10 +44,10 @@ public class GraphDimensionAction extends GraphAction {
         /**
          * Using the JGraphTHandler for more complex calculations.
          */
-        Set<Pair<Vertex,Vertex>> edges = new HashSet<>();
-        for(Edge edge : graph.getEdges()){
+        Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
+        for (Edge edge : graph.getEdges()) {
             edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
-            Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
+            Pair<Vertex, Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
             edges.add(vertices);
         }
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
@@ -55,12 +56,12 @@ public class GraphDimensionAction extends GraphAction {
         /**
          * Calculating the indices.
          */
-        scope =(double) (graph.getSpheres().size() + graph.getVertices().size());
-        networkIndex = (double)(2 * graph.getEdges().size())/graph.getVertices().size();
+        scope = (double) (graph.getEdges().size() + graph.getVertices().size());
+        networkIndex = (double) (2 * graph.getEdges().size()) / graph.getVertices().size();
         structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
-                                         jGraphTHandler.detectConvergentBranches().size() +
-                                         jGraphTHandler.detectDivergentBranches().size() +
-                                         jGraphTHandler.detectCycles().size())/graph.getVertices().size();
+                jGraphTHandler.detectConvergentBranches().size() +
+                jGraphTHandler.detectDivergentBranches().size() +
+                jGraphTHandler.detectCycles().size()) / graph.getVertices().size();
 
     }
 
