@@ -2,12 +2,15 @@ package test.io;
 
 import java.awt.*;
 
+import java.time.temporal.ValueRange;
 import java.util.*;
 
+import actions.other.SwitchModeAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.*;
 import gui.Values;
 import io.GXLio;
+import javafx.scene.input.ScrollEvent;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.freehep.graphicsbase.util.Assert;
@@ -22,6 +25,7 @@ import java.util.List;
 
 public class GXLioTest {
 
+    SwitchModeAction sm = new SwitchModeAction(FunctionMode.TEMPLATE);
 
     private static Logger logger = Logger.getLogger(GXLioTest.class);
     GraphObjectsFactory factory = new GraphObjectsFactory();
@@ -31,78 +35,108 @@ public class GXLioTest {
     private Values values;
     private GXLDocument doc = null;
 
-    public GXLio prepareSyndrom() throws IOException, SAXException {
+    private List<Sphere> spheresList = new ArrayList();
+    private List<Vertex> verticesList = new ArrayList();
+    private List<Edge> edgesList = new ArrayList();
+
+    public GXLio prepareSyndrom(boolean pWithTemplate) throws IOException, SAXException {
         Syndrom syndrom = graph.graph.Syndrom.getInstance();
         syndrom.generateNew();
+        Syndrom.getInstance().setTemplate(new Template(25, 50, 75, true, true, true));
         generateGraphElements();
         Syndrom.getInstance().getVv().getGraphLayout().setGraph(Syndrom.getInstance().getGraph());
         GXLio gxlio = new GXLio();
-        gxlio.exportGXL(new File("testGraph.gxl"), false);
+        gxlio.exportGXL(new File("testGraph.gxl"), pWithTemplate);
         Syndrom.getInstance().generateNew();
         doc = new GXLDocument(new File("testGraph.gxl"));
         return gxlio;
     }
 
+
     private void generateGraphElements() {
         Values.getInstance().setFontSizeSphere(10);
         Values.getInstance().setFillPaintSphere(new java.awt.Color(86, 151, 31, 183));
         Sphere s1 = factory.createSphere(new Point2D.Double(20, 20));
+        s1.setLockedAnnotation(true);
         Sphere s2 = factory.createSphere(new Point2D.Double(270, 50));
         s2.setHeight(250.0);
         s2.setWidth(300.0);
+        s2.setLockedAnnotation(true);
+        s2.setLockedVertices(true);
         Sphere s3 = factory.createSphere(new Point2D.Double(620, 20));
         Values.getInstance().setFillPaintSphere(new java.awt.Color(24, 54, 11, 178));
         Values.getInstance().setFontSizeSphere(24);
         Sphere s4 = factory.createSphere(new Point2D.Double(200, 310));
+        s4.setLockedMaxAmountVertices("17");
+        s4.setLockedPosition(true);
         Sphere s5 = factory.createSphere(new Point2D.Double(445, 310));
+        s5.setLockedMaxAmountVertices("5");
+        s5.setLockedPosition(true);
+        s5.setLockedStyle(true);
 
         Values.getInstance().setFontSizeVertex(12);
         Values.getInstance().setShapeVertex(VertexShapeType.CIRCLE);
         Values.getInstance().setFillPaintVertex(new java.awt.Color(88, 88, 219, 220));
         Values.getInstance().setFontVertex("Roboto");
         Vertex v1 = factory.createVertex(new Point2D.Double(80, 80));
+        v1.setLockedStyle(true);
         Vertex v2 = factory.createVertex(new Point2D.Double(340, 140));
         Vertex v3 = factory.createVertex(new Point2D.Double(415, 190));
         v3.setFillColor(new java.awt.Color(0xC80070));
         v3.setSize(120);
         v3.setDrawColor(new java.awt.Color(200,10,10, 203));
+        v3.setLockedStyle(true);
+        v3.setLockedAnnotation(true);
+        v3.setLockedPosition(true);
         Vertex v4 = factory.createVertex(new Point2D.Double(485, 140));
+        v4.setLockedAnnotation(true);
         Vertex v5 = factory.createVertex(new Point2D.Double(740, 80));;
+        v5.setLockedAnnotation(true);
         Values.getInstance().setShapeVertex(VertexShapeType.RECTANGLE);
         Values.getInstance().setFillPaintVertex(new java.awt.Color(11, 19, 90, 220));
         Values.getInstance().setFontSizeVertex(7);
         Vertex v6 = factory.createVertex(new Point2D.Double(220, 360));
+        v6.setLockedStyle(true);
         Vertex v7 = factory.createVertex(new Point2D.Double(280, 420));
         v7.setFont("Mali");
         v7.setFontSize(14);
         v7.setSize(80);
+        v7.setLockedPosition(true);
         Vertex v8 = factory.createVertex(new Point2D.Double(555, 420));
         v8.setFont("Mali");
         v8.setFontSize(14);
         v8.setSize(80);
+        v8.setLockedPosition(true);
         Vertex v9 = factory.createVertex(new Point2D.Double(620, 360));
 
         Values.getInstance().setEdgeArrowType(EdgeArrowType.EXTENUATING);
         Values.getInstance().setStrokeEdge(StrokeType.BASIC);
         Edge e1 = factory.createEdge();
+        e1.setLockedEdgeType(true);
         Edge e2 = factory.createEdge();
         e2.setStroke(StrokeType.BASIC_WEIGHT);
+        e2.setLockedEdgeType(true);
         Values.getInstance().setEdgeArrowType(EdgeArrowType.NEUTRAL);
         Edge e3 = factory.createEdge();
         e3.setStroke(StrokeType.DOTTED_WEIGHT);
+        e3.setLockedStyle(true);
         Edge e4 = factory.createEdge();
+        e4.setLockedPosition(true);
         e4.setStroke(StrokeType.DOTTED);
         Values.getInstance().setEdgeArrowType(EdgeArrowType.REINFORCED);
         Edge e5 = factory.createEdge();
         Edge e6 = factory.createEdge();
         e6.setStroke(StrokeType.DASHED);
         e6.setColor(new java.awt.Color(28, 56, 249, 130));
+        e6.setLockedStyle(true);
         Edge e7 = factory.createEdge();
         e7.setStroke(StrokeType.DASHED);
         e7.setColor(new java.awt.Color(28, 56, 249, 130));
+        e7.setLockedStyle(true);
         Edge e8 = factory.createEdge();
         e8.setStroke(StrokeType.DASHED_WEIGHT);
-
+        e8.setLockedEdgeType(true);
+        e8.setLockedPosition(true);
 
         s1.getVertices().add(v1);
         s2.getVertices().add(v2);
@@ -128,13 +162,52 @@ public class GXLioTest {
         Syndrom.getInstance().getGraph().addEdge(e6, v7, v3);
         Syndrom.getInstance().getGraph().addEdge(e7, v8, v3);
         Syndrom.getInstance().getGraph().addEdge(e8, v9, v3);
+        spheresList = Syndrom.getInstance().getGraph().getSpheres();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            verticesList.add(v);
+        }
+        verticesList.sort(Comparator.comparingInt(Vertex::getId));
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edgesList.add(e);
+        }
+        edgesList.sort(Comparator.comparingInt(Edge::getId));
+    }
+
+    // <--------------       holistic comparision       ------------->
+
+    @Test
+    public void testSphereList() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
+        Assert.assertEquals(spheresList, Syndrom.getInstance().getGraph().getSpheres());
+    }
+
+    @Test
+    public void testVertexList() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
+        List<Vertex> importedVertices = new ArrayList<>();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            importedVertices.add(v);
+        }
+        importedVertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals(verticesList, importedVertices);
+    }
+
+    @Test
+    public void testEdgeList() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
+        List<Edge> importedEdges = new ArrayList<>();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            importedEdges.add(e);
+        }
+        importedEdges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertEquals(edgesList, importedEdges);
     }
 
     // <-------------   number of elements    ------------------>
 
     @Test
     public void testElementNumberOfSyndromGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         Assert.assertEquals(8, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getEdgeCount());
         Assert.assertEquals(8, Syndrom.getInstance().getGraph().getEdgeCount());
         Assert.assertEquals(9, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertexCount());
@@ -143,16 +216,43 @@ public class GXLioTest {
     }
 
     @Test
+    public void testElementNumberWithTemplateOfGXLGraph() throws IOException, SAXException {
+        prepareSyndrom(true);
+        Assert.assertEquals(2, doc.getDocumentElement().getGraphCount());
+    }
+
+
+    @Test
     public void testElementNumberOfGXLGraph() throws IOException, SAXException {
-        prepareSyndrom();
+        prepareSyndrom(false);
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
         Assert.assertEquals(22, doc.getElement("syndrom").getChildCount());
     }
 
-    // <--------------     edges connection    ------------->
+    // <--------------     relations of graph elements    ------------->
+
+    @Test
+    public void testVerticesInSpheresOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(5)), getNodeIDs(spheres.get(0).getVertices()));
+        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(6, 7, 8)), getNodeIDs(spheres.get(1).getVertices()));
+        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(9)), getNodeIDs(spheres.get(2).getVertices()));
+        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(10, 11)), getNodeIDs(spheres.get(3).getVertices()));
+        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(12, 13)), getNodeIDs(spheres.get(4).getVertices()));
+    }
+
+    private ArrayList<Integer> getNodeIDs(LinkedList<Vertex> pVertices){
+        ArrayList<Integer> verticesIDs = new ArrayList<>();
+        for(Vertex v : pVertices){
+            verticesIDs.add(v.getId());
+        }
+        return verticesIDs;
+    }
+
     @Test
     public void testEdgesConnectingRightVerticesOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Edge> edges = new ArrayList();
         for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
             edges.add(e);
@@ -176,12 +276,43 @@ public class GXLioTest {
         Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(7)).getSecond().getId());
     }
 
+    // <-----------    coordinates    --------->
+
+    @Test
+    public void testSpheresCoordinatesOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertEquals(new Point2D.Double(20, 20), spheres.get(0).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(270, 50), spheres.get(1).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(620, 20), spheres.get(2).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(200, 310), spheres.get(3).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(445, 310), spheres.get(4).getCoordinates());
+    }
+
+    @Test
+    public void testVerticesCoordinatesOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Vertex> vertices = new ArrayList();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            vertices.add(v);
+        }
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals(new Point2D.Double(80, 80), vertices.get(0).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(340, 140), vertices.get(1).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(415, 190), vertices.get(2).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(485, 140), vertices.get(3).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(740, 80), vertices.get(4).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(220, 360), vertices.get(5).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(280, 420), vertices.get(6).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(555, 420), vertices.get(7).getCoordinates());
+        Assert.assertEquals(new Point2D.Double(620, 360), vertices.get(8).getCoordinates());
+    }
 
     // <-------------   size    ------------------>
 
     @Test
     public void testSpheresWidthOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
         Assert.assertEquals(200.0, spheres.get(0).getWidth());
         Assert.assertEquals(300.0, spheres.get(1).getWidth());
@@ -192,7 +323,7 @@ public class GXLioTest {
 
     @Test
     public void testSpheresHeightOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
         Assert.assertEquals(200.0, spheres.get(0).getHeight());
         Assert.assertEquals(250.0, spheres.get(1).getHeight());
@@ -203,7 +334,7 @@ public class GXLioTest {
 
     @Test
     public void testVerticesSizeOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Vertex> vertices = new ArrayList();
         for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
             vertices.add(v);
@@ -225,7 +356,7 @@ public class GXLioTest {
 
     @Test
     public void testSpheresFillColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
         Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(0).getColor());
         Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(1).getColor());
@@ -237,7 +368,7 @@ public class GXLioTest {
 
     @Test
     public void testVerticesFillColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Vertex> vertices = new ArrayList();
         for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
             vertices.add(v);
@@ -257,7 +388,7 @@ public class GXLioTest {
 
     @Test
     public void testVerticesDrawColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Vertex> vertices = new ArrayList();
         for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
             vertices.add(v);
@@ -276,7 +407,7 @@ public class GXLioTest {
 
     @Test
     public void testEdgesColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Edge> edges = new ArrayList();
         for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
             edges.add(e);
@@ -292,11 +423,187 @@ public class GXLioTest {
         Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(7).getColor());
     }
 
+    // <----------     sphere locking    ------------>
+
+    @Test
+    public void testSpheresLockedAnnotationOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertTrue(spheres.get(0).isLockedAnnotation());
+        Assert.assertTrue(spheres.get(1).isLockedAnnotation());
+        Assert.assertFalse(spheres.get(2).isLockedAnnotation());
+        Assert.assertFalse(spheres.get(3).isLockedAnnotation());
+        Assert.assertFalse(spheres.get(4).isLockedAnnotation());
+    }
+
+    @Test
+    public void testSpheresLockedVerticesOfGraph() throws IOException, SAXException {
+        sm.action();
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+
+        Assert.assertFalse(spheres.get(0).isLockedVertices());
+        Assert.assertTrue(spheres.get(1).isLockedVertices());
+        Assert.assertFalse(spheres.get(2).isLockedVertices());
+        Assert.assertFalse(spheres.get(3).isLockedVertices());
+        Assert.assertFalse(spheres.get(4).isLockedVertices());
+    }
+
+    @Test
+    public void testSpheresLockedPositionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertFalse(spheres.get(0).isLockedPosition());
+        Assert.assertFalse(spheres.get(1).isLockedPosition());
+        Assert.assertFalse(spheres.get(2).isLockedPosition());
+        Assert.assertTrue(spheres.get(3).isLockedPosition());
+        Assert.assertTrue(spheres.get(4).isLockedPosition());
+    }
+
+    @Test
+    public void testSpheresLockedStyleOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertFalse(spheres.get(0).isLockedStyle());
+        Assert.assertFalse(spheres.get(1).isLockedStyle());
+        Assert.assertFalse(spheres.get(2).isLockedStyle());
+        Assert.assertFalse(spheres.get(3).isLockedStyle());
+        Assert.assertTrue(spheres.get(4).isLockedStyle());
+    }
+
+    @Test
+    public void testSpheresLockedMaxAmountVerticesOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertEquals("", spheres.get(0).getLockedMaxAmountVertices());
+        Assert.assertEquals("", spheres.get(1).getLockedMaxAmountVertices());
+        Assert.assertEquals("", spheres.get(2).getLockedMaxAmountVertices());
+        Assert.assertEquals("17", spheres.get(3).getLockedMaxAmountVertices());
+        Assert.assertEquals("5", spheres.get(4).getLockedMaxAmountVertices());
+    }
+
+
+    // <-------------   vertex locking    ----------->
+
+    @Test
+    public void testVerticesLockedStyleOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Vertex> vertices = new ArrayList();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            vertices.add(v);
+        }
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertTrue(vertices.get(0).isLockedStyle());
+        Assert.assertFalse(vertices.get(1).isLockedStyle());
+        Assert.assertTrue(vertices.get(2).isLockedStyle());
+        Assert.assertFalse(vertices.get(3).isLockedStyle());
+        Assert.assertFalse(vertices.get(4).isLockedStyle());
+        Assert.assertTrue(vertices.get(5).isLockedStyle());
+        Assert.assertFalse(vertices.get(6).isLockedStyle());
+        Assert.assertFalse(vertices.get(7).isLockedStyle());
+        Assert.assertFalse(vertices.get(8).isLockedStyle());
+    }
+
+    @Test
+    public void testVerticesLockedAnnotationOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Vertex> vertices = new ArrayList();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            vertices.add(v);
+        }
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertFalse(vertices.get(0).isLockedAnnotation());
+        Assert.assertFalse(vertices.get(1).isLockedAnnotation());
+        Assert.assertTrue(vertices.get(2).isLockedAnnotation());
+        Assert.assertTrue(vertices.get(3).isLockedAnnotation());
+        Assert.assertTrue(vertices.get(4).isLockedAnnotation());
+        Assert.assertFalse(vertices.get(5).isLockedAnnotation());
+        Assert.assertFalse(vertices.get(6).isLockedAnnotation());
+        Assert.assertFalse(vertices.get(7).isLockedAnnotation());
+        Assert.assertFalse(vertices.get(8).isLockedAnnotation());
+    }
+
+    @Test
+    public void testVerticesLockedPositionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Vertex> vertices = new ArrayList();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            vertices.add(v);
+        }
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertFalse(vertices.get(0).isLockedPosition());
+        Assert.assertFalse(vertices.get(1).isLockedPosition());
+        Assert.assertTrue(vertices.get(2).isLockedPosition());
+        Assert.assertFalse(vertices.get(3).isLockedPosition());
+        Assert.assertFalse(vertices.get(4).isLockedPosition());
+        Assert.assertFalse(vertices.get(5).isLockedPosition());
+        Assert.assertTrue(vertices.get(6).isLockedPosition());
+        Assert.assertTrue(vertices.get(7).isLockedPosition());
+        Assert.assertFalse(vertices.get(8).isLockedPosition());
+    }
+
+    // <--------    edge locking    ---------->
+
+    @Test
+    public void testEdgesLockedStyleOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Edge> edges = new ArrayList();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edges.add(e);
+        }
+        edges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertFalse(edges.get(0).isLockedStyle());
+        Assert.assertFalse(edges.get(1).isLockedStyle());
+        Assert.assertTrue(edges.get(2).isLockedStyle());
+        Assert.assertFalse(edges.get(3).isLockedStyle());
+        Assert.assertFalse(edges.get(4).isLockedStyle());
+        Assert.assertTrue(edges.get(5).isLockedStyle());
+        Assert.assertTrue(edges.get(6).isLockedStyle());
+        Assert.assertFalse(edges.get(7).isLockedStyle());
+    }
+
+    @Test
+    public void testEdgesLockedPositionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Edge> edges = new ArrayList();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edges.add(e);
+        }
+        edges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertFalse(edges.get(0).isLockedPosition());
+        Assert.assertFalse(edges.get(1).isLockedPosition());
+        Assert.assertFalse(edges.get(2).isLockedPosition());
+        Assert.assertTrue(edges.get(3).isLockedPosition());
+        Assert.assertFalse(edges.get(4).isLockedPosition());
+        Assert.assertFalse(edges.get(5).isLockedPosition());
+        Assert.assertFalse(edges.get(6).isLockedPosition());
+        Assert.assertTrue(edges.get(7).isLockedPosition());
+    }
+
+    @Test
+    public void testEdgesLockedEdgeTypeOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
+        ArrayList<Edge> edges = new ArrayList();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edges.add(e);
+        }
+        edges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertTrue(edges.get(0).isLockedEdgeType());
+        Assert.assertTrue(edges.get(1).isLockedEdgeType());
+        Assert.assertFalse(edges.get(2).isLockedEdgeType());
+        Assert.assertFalse(edges.get(3).isLockedEdgeType());
+        Assert.assertFalse(edges.get(4).isLockedEdgeType());
+        Assert.assertFalse(edges.get(5).isLockedEdgeType());
+        Assert.assertFalse(edges.get(6).isLockedEdgeType());
+        Assert.assertTrue(edges.get(7).isLockedEdgeType());
+    }
+
+
     // <-----------     other edge style   ------------------->
 
     @Test
     public void testEdgesArrowTypeOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Edge> edges = new ArrayList();
         for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
             edges.add(e);
@@ -314,7 +621,7 @@ public class GXLioTest {
 
     @Test
     public void testEdgesStrokeTypeOfGraph() throws IOException, SAXException {
-        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
         ArrayList<Edge> edges = new ArrayList();
         for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
             edges.add(e);
