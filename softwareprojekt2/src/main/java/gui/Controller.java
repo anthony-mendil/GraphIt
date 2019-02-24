@@ -59,6 +59,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
@@ -645,6 +646,7 @@ public class Controller implements ObserverSyndrom {
     @FXML private MenuItem logEditSpheresLayout;
     @FXML private MenuItem logEditVerticesLayout;
     @FXML private MenuItem logAll;
+    @FXML private Label infoAnalysis;
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
     private static final String SPHERE_STYLE = "SphereStyle";
@@ -1504,7 +1506,26 @@ public class Controller implements ObserverSyndrom {
         initLanguage();
         initProtocolTree();
         initGraphLanguage();
+        initInfoText();
+    }
 
+    private void initInfoText(){
+        Tooltip tooltip = new Tooltip();
+        tooltip.setPrefWidth(200);
+        tooltip.setText(loadLanguage.loadLanguagesKey("INFO_ANALYSIS"));
+        tooltip.setWrapText(true);
+        tooltip.setAutoFix(false);
+        tooltip.setAutoHide(false);
+        tooltip.setStyle("-fx-background-color:\n" +
+                "            #000000,\n" +
+                "            linear-gradient(#7ebcea, #2f4b8f),\n" +
+                "            linear-gradient(#426ab7, #263e75),\n" +
+                "            linear-gradient(#395cab, #223768);\n" +
+                "    -fx-text-fill: white;\n" +
+                "    -fx-font-size: 12px;");
+
+        infoAnalysis.setOnMouseMoved(event -> tooltip.show(infoAnalysis,  infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxX() + 15, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxY()));
+        infoAnalysis.setOnMouseExited(event -> tooltip.hide());
     }
 
     public void setButtonShortcuts() {
