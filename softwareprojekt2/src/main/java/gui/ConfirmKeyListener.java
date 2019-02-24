@@ -1,7 +1,9 @@
 package gui;
 
 import actions.analyse.AnalysisGraphAction;
+import actions.analyse.AnalysisGraphNeighborsAction;
 import actions.deactivate.ResetVvAction;
+import com.sun.org.glassfish.external.statistics.annotations.Reset;
 import graph.algorithmen.AnalyseTypeSeveral;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
@@ -28,13 +30,27 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
     public void handle(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
             if(!amountSymptomTextField.getText().isEmpty()){
-                if(analysisPredecessor.isSelected()){
-                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                if(analysisPredecessor.isSelected() && analysisSuccessor.isSelected()){
+                    ResetVvAction resetAction = new ResetVvAction();
+                    resetAction.action();
+
+                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
-                }
-                if(analysisSuccessor.isSelected()){
-                    AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                    analysisGraphAction.action();
+                }else{
+                    if(analysisPredecessor.isSelected()){
+                        ResetVvAction resetAction = new ResetVvAction();
+                        resetAction.action();
+
+                        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        analysisGraphAction.action();
+                    }
+                    if(analysisSuccessor.isSelected()){
+                        ResetVvAction resetAction = new ResetVvAction();
+                        resetAction.action();
+
+                        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        analysisGraphAction.action();
+                    }
                 }
             }else{
                 ResetVvAction resetAction = new ResetVvAction();

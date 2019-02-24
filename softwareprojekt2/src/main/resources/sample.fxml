@@ -1064,12 +1064,12 @@
                     <children>
                   <Text fx:id="positionMouseX" strokeType="OUTSIDE" strokeWidth="0.0" text="X: 0.0">
                      <HBox.margin>
-                        <Insets right="5.0" top="5.0" />
+                        <Insets right="5.0" top="7.0" />
                      </HBox.margin>
                   </Text>
                   <Text fx:id="positionMouseY" strokeType="OUTSIDE" strokeWidth="0.0" text="Y: 0.0">
                      <HBox.margin>
-                        <Insets right="5.0" top="5.0" />
+                        <Insets right="5.0" top="7.0" />
                      </HBox.margin>
                   </Text>
                         <MenuBar minWidth="-Infinity">
