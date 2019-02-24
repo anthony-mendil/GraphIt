@@ -160,8 +160,6 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML private MenuItem importGXL;
 
-    @FXML private MenuItem importGxlTemplate;
-
     /**
      * The menuitem under the menu "File.." for saving under a specified location.
      */
@@ -1227,13 +1225,6 @@ public class Controller implements ObserverSyndrom {
             switchModeAction.action();
     }
 
-    /**
-     * Creates an CreateGraphAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void createGraph() {
-        throw new UnsupportedOperationException();
-    }
 
     /**
      * Calls the undo-method from the action history.
@@ -2162,8 +2153,71 @@ public class Controller implements ObserverSyndrom {
             // ... user chose CANCEL or closed the dialog
             logger.debug("CANCEL");
         }
-
     }
+
+    public void openInfoDialogCreateGraph(){
+        openDialogInfo(newFile);
+    }
+
+    public void openInfoDialogPDF(){
+        openDialogInfo(exportPDF);
+    }
+
+    public void openInfoDialogImportGXL(){
+        openDialogInfo(importGXL);
+    }
+
+    public void openInfoDialogOpenFile(){
+        openDialogInfo(openFile);
+    }
+
+    public void openInfoDialogPrint(){
+        openDialogInfo(print);
+    }
+
+    private void openDialogInfo(MenuItem menuItem){
+        String okText = "EXIT_WINDOW_CLOSE_PDF";
+        String cancel = "EXIT_WINDOW_CANCEL_PDF";
+        String info = "";
+        if (menuItem.getId().equals(importGXL.getId())){
+            info = "INFO_DIALOG_IMPORT";
+        } else if (menuItem.getId().equals(openFile.getId())){
+            info = "INFO_DIALOG_OPEN";
+        } else if (menuItem.getId().equals(print.getId())){
+            info = "PRINT_EXPORT_INFO_DIALOG";
+        } else if (menuItem.getId().equals(newFile.getId())){
+            info = "INFO_DIALOG_NEW_FILE";
+        } else if (menuItem.getId().equals(exportPDF.getId())){
+            info = "PDF_EXPORT_INFO_DIALOG";
+        }
+
+        ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey(okText), ButtonBar.ButtonData.OK_DONE);
+        ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey(cancel), ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info),ok,close);
+        alert.setTitle("GraphIt");
+        alert.setHeaderText(null);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("/GraphItLogo.png"));
+
+        Platform.runLater(() -> {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                if (menuItem.getId().equals(importGXL.getId())){
+                    importGXL();
+                } else if (menuItem.getId().equals(openFile.getId())){
+                    openFile();
+                } else if (menuItem.getId().equals(print.getId())){
+                    printPDF();
+                }  else if (menuItem.getId().equals(newFile.getId())){
+                    createGraph();
+                } else if (menuItem.getId().equals(exportPDF.getId())){
+                    exportPDF();
+                }
+            }
+        });
+    }
+
 
     /**
      * SPRACHE ÄNDERN, AUCH IN SPHERE.TOSTRING(), VERTEX.TOSTRING() BEACHTEN
@@ -2227,7 +2281,7 @@ public class Controller implements ObserverSyndrom {
     }
     */
 
-    public void buttonClicked2() {
+    public void createGraph() {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
 
         //optionSaveWindow();
