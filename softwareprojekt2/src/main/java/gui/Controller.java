@@ -112,11 +112,6 @@ public class Controller implements ObserverSyndrom {
     @FXML private SwingNode satellite;
 
     /**
-     *
-     */
-    private List<Font> fonts;
-
-    /**
      * The swing node that displays the zoom window.
      */
     private SwingNode zoomWindow;
@@ -678,6 +673,32 @@ public class Controller implements ObserverSyndrom {
     private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
 
+    private ObservableList<String> fonts =
+            FXCollections.observableArrayList(
+                    "AveriaSansLibre",
+                    "Kalam",
+                    "Mali",
+                    "Roboto",
+                    "RobotoSlab"
+            );
+
+    private ObservableList<String> sizes =
+            FXCollections.observableArrayList(
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "14",
+                    "18",
+                    "24",
+                    "30",
+                    "36",
+                    "48",
+                    "60",
+                    "72",
+                    "96"
+            );
 
     public void filterEdgeTypeReinforced(){
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
@@ -1768,7 +1789,6 @@ public class Controller implements ObserverSyndrom {
             history.execute(editFontSizeSphereLogAction);
         }
 
-
         private ComboBoxValueListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
         }
@@ -1776,17 +1796,25 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
-                currentSize = newValue;
-                editFontSizeSphere(Integer.parseInt(currentSize));
+                if(newValue.chars().allMatch(Character::isDigit) && !newValue.isEmpty()){
+                    currentSize = newValue;
+                    editFontSizeSphere(Integer.parseInt(currentSize));
+                }
             } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                currentFont = newValue;
-                editFontSphere(currentFont);
+                if(fonts.contains(newValue)){
+                    currentFont = newValue;
+                    editFontSphere(currentFont);
+                }
             } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-                currentSize = newValue;
-                editFontSizeVertices(Integer.parseInt(currentSize));
+                if(newValue.chars().allMatch(Character::isDigit) && !newValue.isEmpty()){
+                    currentSize = newValue;
+                    editFontSizeVertices(Integer.parseInt(currentSize));
+                }
             } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                currentFont = newValue;
-                editFontVertex(currentFont);
+                if(fonts.contains(newValue)){
+                    currentFont = newValue;
+                    editFontVertex(currentFont);
+                }
             }
             root.requestFocus();
         }
@@ -1802,9 +1830,9 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) && sizes.contains(comboBox.getEditor().getText())) {
                     currentSize = comboBox.getEditor().getText();
-                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
+                } else if ((comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) && fonts.contains(comboBox.getEditor().getText())) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
@@ -1878,14 +1906,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void loadFontComboBox(ComboBox<String> comboBox) {
-        ObservableList<String> fonts =
-                FXCollections.observableArrayList(
-                        "AveriaSansLibre",
-                        "Kalam",
-                        "Mali",
-                        "Roboto",
-                        "RobotoSlab"
-                );
 
         if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontSphere());
@@ -1901,24 +1921,6 @@ public class Controller implements ObserverSyndrom {
 
 
     private void loadSizeComboBox(ComboBox<String> comboBox) {
-        ObservableList<String> sizes =
-                FXCollections.observableArrayList(
-                        "8",
-                        "9",
-                        "10",
-                        "11",
-                        "12",
-                        "14",
-                        "18",
-                        "24",
-                        "30",
-                        "36",
-                        "48",
-                        "60",
-                        "72",
-                        "96"
-                );
-
         if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeSphere());
         } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
@@ -2151,8 +2153,6 @@ public class Controller implements ObserverSyndrom {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("/GraphItLogo.png"));
         Optional<ButtonType> result = alert.showAndWait();
-        System.out.println(result.toString());
-
         if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
             // ... user chose "One"
             logger.debug("SCHLIEßEN");
