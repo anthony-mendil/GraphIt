@@ -2144,6 +2144,7 @@ public class Controller implements ObserverSyndrom {
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
+        loadFonts(comboBox);
     }
 
 
@@ -2158,15 +2159,37 @@ public class Controller implements ObserverSyndrom {
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
-        comboBox.addEventHandler(ActionEvent.ACTION, new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                final ComboBox tmpComboBox = (ComboBox) event.getSource();
-                String input = (String) tmpComboBox.getSelectionModel().selectedItemProperty().get();
+    }
 
+    private void loadFonts(ComboBox comboBox){
+        ObservableList<Label> fontLabels = FXCollections.observableArrayList();
+        for(String font : fonts){
+            Label fontLabel = new Label(font);
+            fontLabel.addEventHandler(ActionEvent.ACTION, event -> {
+                currentFont = font;
+                if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
+                    editFontSphere(font);
+                } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
+                    editFontVertex(font);
+                }
+            });
+            fontLabels.add(fontLabel);
+        }
+    }
 
-            }
-        });
+    private void loadSizes(ComboBox comboBox){
+        ObservableList<Label> sizeLabels = FXCollections.observableArrayList();
+        for(String size : sizes){
+            Label sizeLabel = new Label(size);
+            sizeLabel.addEventHandler(ActionEvent.ACTION, event -> {
+                currentSize = size;
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
+                    
+                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
+
+                }
+            });
+        }
     }
 
     /**
