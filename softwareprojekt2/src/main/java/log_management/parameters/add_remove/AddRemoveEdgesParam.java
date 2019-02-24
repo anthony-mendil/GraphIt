@@ -43,9 +43,6 @@ public class AddRemoveEdgesParam implements Param {
         this.edges = pEdges;
         this.startVertices = pStart;
         this.endVertices = pSink;
-        System.out.println(pEdges.size());
-        System.out.println(pStart.size());
-        System.out.println(pSink.size());
     }
 
     @Override

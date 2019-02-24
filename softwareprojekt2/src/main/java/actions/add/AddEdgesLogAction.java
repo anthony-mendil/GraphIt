@@ -59,9 +59,6 @@ public class AddEdgesLogAction extends LogAction {
                 List<Edge> edges = ((AddRemoveEdgesParam) parameters).getEdges();
                 List<Vertex> startVertices = ((AddRemoveEdgesParam) parameters).getStartVertices();
                 List<Vertex> endVertices = ((AddRemoveEdgesParam) parameters).getEndVertices();
-                System.out.println(edges.size());
-                System.out.println(startVertices.size());
-                System.out.println(endVertices.size());
                 for (Edge e : edges) {
                     graph.addEdgeExisting(e, startVertices.get(edges.indexOf(e)), endVertices.get(edges.indexOf(e)));
                 }
