@@ -39,16 +39,10 @@ public class AddRemoveEdgesParam implements Param {
      *
      * @param pEdges List of edges and their start/end vertex id.
      */
-    public AddRemoveEdgesParam(List<Edge> pEdges, Set<Pair<Vertex, Vertex>> pVertices) {
+    public AddRemoveEdgesParam(List<Edge> pEdges, List<Vertex> pStart, List<Vertex> pSink) {
         this.edges = pEdges;
-
-        List<Vertex> list1 = new ArrayList();
-        List<Vertex> list2 = new ArrayList();
-        pVertices.forEach(s -> list1.add(s.getKey()));
-        pVertices.forEach(s -> list2.add(s.getValue()));
-
-        this.startVertices = list1;
-        this.endVertices = list2;
+        this.startVertices = pStart;
+        this.endVertices = pSink;
     }
 
     @Override
@@ -74,11 +68,4 @@ public class AddRemoveEdgesParam implements Param {
         }
     }
 
-    public Set<Pair<Vertex, Vertex>> getVertices() {
-        Set<Pair<Vertex, Vertex>> set = new HashSet<>();
-        for (int i = 0; i < startVertices.size(); i++) {
-            set.add(new Pair<>(startVertices.get(i), endVertices.get(i)));
-        }
-        return set;
-    }
 }

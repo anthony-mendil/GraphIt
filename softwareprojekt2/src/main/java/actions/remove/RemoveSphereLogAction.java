@@ -9,6 +9,7 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -59,6 +60,7 @@ public class RemoveSphereLogAction extends LogAction {
                     pickedVertexState.pick(v, false);
                     graph.removeVertex(v);
                 }
+                sp.getVertices().removeAll(vertices);
                 pickedState.pick(sp, false);
                 graph.removeSphere(sp);
                 createParameter(sp,vertices);
@@ -69,7 +71,13 @@ public class RemoveSphereLogAction extends LogAction {
                 }
             }
         }else{
-            graph.removeSphere(((AddRemoveSphereParam)parameters).getSphere());
+            Sphere sp = ((AddRemoveSphereParam)parameters).getSphere();
+            List<Vertex> vertices = ((AddRemoveSphereParam)parameters).getVertices();
+            /*for(Vertex vertex : vertices){
+                graph.removeVertex(vertex);
+                sp.getVertices().remove(vertex);
+            }*/
+            graph.removeSphere(sp);
         }
         vv.repaint();
         syndrom.getVv2().repaint();
