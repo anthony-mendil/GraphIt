@@ -5,10 +5,8 @@ import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.Vertex;
+import edu.uci.ics.jung.visualization.transform.MutableAffineTransformer;
+import graph.graph.*;
 import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.renderers.VertexLabelRenderer;
@@ -26,6 +24,7 @@ import org.freehep.graphics2d.VectorGraphics;
 import org.freehep.graphicsio.pdf.PDFGraphics2D;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.File;
@@ -63,11 +62,12 @@ public class PDFio {
 
 
     private Point2D getMinPoint() {
-        List<Sphere> spheres = Syndrom.getInstance().getGraph().getSpheres();
+        SyndromGraph<Vertex, Edge> graph =  (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        List<Sphere> spheres = graph.getSpheres();
         if (spheres.isEmpty()) {
             return new Point2D(0, 0);
         }
-        Point2D point = new Point2D((float) Values.getInstance().getDefaultLayoutVVSize().getWidth(), (float) Values.getInstance().getDefaultLayoutVVSize().getHeight());
+        Point2D point = new Point2D(spheres.get(0).getCoordinates().getX(), spheres.get(0).getCoordinates().getY());
         for (Sphere sph : spheres) {
             //check x
             if (sph.getCoordinates().getX() < point.getX()) {
@@ -76,6 +76,28 @@ public class PDFio {
             //check y
             if (sph.getCoordinates().getY() < point.getY()) {
                 point = new Point2D(point.getX(), (float) sph.getCoordinates().getY());
+            }
+        }
+        return point;
+    }
+
+    private Point2D getMaxPoint() {
+        SyndromGraph<Vertex, Edge> graph =  (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        List<Sphere> spheres = graph.getSpheres();
+        Point2D p = new Point2D((float) Values.getInstance().getDefaultLayoutVVSize().getWidth(), (float) Values.getInstance().getDefaultLayoutVVSize().getHeight());
+        if (spheres.isEmpty()) {
+            System.out.println("empty");
+            return new Point2D(p.getX(), p.getY());
+        }
+        Point2D point = new Point2D(spheres.get(0).getCoordinates().getX() + spheres.get(0).getWidth(), spheres.get(0).getCoordinates().getY()+spheres.get(0).getHeight());
+        for (Sphere sph : spheres) {
+            //check x
+            if (sph.getCoordinates().getX() > point.getX()) {
+                point = new Point2D((float) sph.getCoordinates().getX() + sph.getWidth(), point.getY());
+            }
+            //check y
+            if (sph.getCoordinates().getY() > point.getY()) {
+                point = new Point2D(point.getX(), (float) sph.getCoordinates().getY() + sph.getHeight());
             }
         }
         return point;
@@ -113,6 +135,53 @@ public class PDFio {
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<>(vv.getGraphLayout(), vv.getGraphLayout().getSize());
         vis.setBackground(Color.WHITE);
         vis.setRenderer(new SyndromRenderer<>());
+        /* vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(
+                Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(),
+                Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(),
+                vv.getCenter()
+        );*/
+
+       /* AffineTransform view = vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform();
+        Point2D min = getMinPoint();
+        System.out.println("min point: "+min);*/
+
+        /*Point2D min = getMinPoint();
+        vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).setTranslate(min.getX(), min.getY());*/
+
+
+        /*System.out.println("maxPoint: "+getMaxPoint());
+        System.out.println("minPoint: "+getMinPoint());
+        Point2D min = getMinPoint();
+        Point2D max = getMaxPoint();
+
+        java.awt.geom.Point2D middle = new java.awt.geom.Point2D.Double((min.getX() + max.getX())/2, (min.getY() + max.getY())/2 );
+
+
+
+        System.out.println("middle: "+middle);
+
+        double distanceX = 2000.0 / Math.abs(min.getX() - max.getX()) ;
+        double distanceY = 1500.0 / Math.abs(min.getY() - max.getY()) ;
+
+        double scale = (distanceX < distanceY) ? distanceX : distanceY;
+        scale = scale - 0.01;
+        System.out.println("scale: "+scale);
+
+        if (distanceX > distanceY) {
+            System.out.println("stanceX");
+        } else {
+            System.out.println("distanceY");
+        }
+
+        //middle = vis.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, middle);
+*/
+
+
+        AffineTransform modelLayoutTransform =
+                new AffineTransform(vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform());
+
+        vis.getRenderContext().getMultiLayerTransformer().setTransformer(Layer.VIEW, new MutableAffineTransformer(modelLayoutTransform));
+
         vis.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).scale(
                 Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleX(),
                 Syndrom.getInstance().getVv().getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getScaleY(),
@@ -174,7 +243,8 @@ public class PDFio {
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             printerJob.setJobName(file.getName());
             printerJob.setPageable(new PDFPageable(pdDocument));
-            if (printerJob.printDialog()) {
+            boolean printSucceeds=printerJob.printDialog();
+            if (printSucceeds) {
                     printerJob.print();
             }
         } catch (IOException | PrinterException e) {

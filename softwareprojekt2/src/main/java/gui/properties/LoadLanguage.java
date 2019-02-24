@@ -53,7 +53,6 @@ public class LoadLanguage {
         c.getNewFile().setText(loadLanguagesKey("newFile"));
         c.getOpenFile().setText(loadLanguagesKey("openFile"));
         c.getImportGXL().setText(loadLanguagesKey("gxlImport"));
-        c.getImportGxlTemplate().setText(loadLanguagesKey("templateImport"));
         c.getSaveLocation().setText(loadLanguagesKey("saveAs"));
         c.getExportPDF().setText(loadLanguagesKey("exportAs"));
         c.getExportGXLWithTemplate().setText(loadLanguagesKey("template"));
