@@ -65,9 +65,9 @@ public class GXLioTest {
         Vertex v3 = factory.createVertex(new Point2D.Double(415, 190));
         v3.setFillColor(new java.awt.Color(0xC80070));
         v3.setSize(120);
+        v3.setDrawColor(new java.awt.Color(200,10,10, 203));
         Vertex v4 = factory.createVertex(new Point2D.Double(485, 140));
-        Vertex v5 = factory.createVertex(new Point2D.Double(740, 80));
-        Values.getInstance().setFillPaintVertex(new java.awt.Color(10, 20, 90, 255));
+        Vertex v5 = factory.createVertex(new Point2D.Double(740, 80));;
         Values.getInstance().setShapeVertex(VertexShapeType.RECTANGLE);
         Values.getInstance().setFillPaintVertex(new java.awt.Color(11, 19, 90, 220));
         Values.getInstance().setFontSizeVertex(7);
@@ -82,13 +82,17 @@ public class GXLioTest {
         v8.setSize(80);
         Vertex v9 = factory.createVertex(new Point2D.Double(620, 360));
 
+        Values.getInstance().setEdgeArrowType(EdgeArrowType.EXTENUATING);
+        Values.getInstance().setStrokeEdge(StrokeType.BASIC);
         Edge e1 = factory.createEdge();
         Edge e2 = factory.createEdge();
+        e2.setStroke(StrokeType.BASIC_WEIGHT);
+        Values.getInstance().setEdgeArrowType(EdgeArrowType.NEUTRAL);
         Edge e3 = factory.createEdge();
-        e3.setArrowType(EdgeArrowType.NEUTRAL);
+        e3.setStroke(StrokeType.DOTTED_WEIGHT);
         Edge e4 = factory.createEdge();
-        e4.setArrowType(EdgeArrowType.NEUTRAL);
-        Values.getInstance().setEdgeArrowType(EdgeArrowType.EXTENUATING);
+        e4.setStroke(StrokeType.DOTTED);
+        Values.getInstance().setEdgeArrowType(EdgeArrowType.REINFORCED);
         Edge e5 = factory.createEdge();
         Edge e6 = factory.createEdge();
         e6.setStroke(StrokeType.DASHED);
@@ -97,6 +101,7 @@ public class GXLioTest {
         e7.setStroke(StrokeType.DASHED);
         e7.setColor(new java.awt.Color(28, 56, 249, 130));
         Edge e8 = factory.createEdge();
+        e8.setStroke(StrokeType.DASHED_WEIGHT);
 
 
         s1.getVertices().add(v1);
@@ -125,6 +130,8 @@ public class GXLioTest {
         Syndrom.getInstance().getGraph().addEdge(e8, v9, v3);
     }
 
+    // <-------------   number of elements    ------------------>
+
     @Test
     public void testElementNumberOfSyndromGraph() throws IOException, SAXException {
         prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
@@ -141,6 +148,36 @@ public class GXLioTest {
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
         Assert.assertEquals(22, doc.getElement("syndrom").getChildCount());
     }
+
+    // <--------------     edges connection    ------------->
+    @Test
+    public void testEdgesConnectingRightVerticesOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Edge> edges = new ArrayList();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edges.add(e);
+        }
+        edges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertEquals(5, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(6, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getSecond().getId());
+        Assert.assertEquals(9, Syndrom.getInstance().getGraph().getEndpoints(edges.get(1)).getFirst().getId());
+        Assert.assertEquals(8, Syndrom.getInstance().getGraph().getEndpoints(edges.get(1)).getSecond().getId());
+        Assert.assertEquals(11, Syndrom.getInstance().getGraph().getEndpoints(edges.get(2)).getFirst().getId());
+        Assert.assertEquals(10, Syndrom.getInstance().getGraph().getEndpoints(edges.get(2)).getSecond().getId());
+        Assert.assertEquals(12, Syndrom.getInstance().getGraph().getEndpoints(edges.get(3)).getFirst().getId());
+        Assert.assertEquals(13, Syndrom.getInstance().getGraph().getEndpoints(edges.get(3)).getSecond().getId());
+        Assert.assertEquals(10, Syndrom.getInstance().getGraph().getEndpoints(edges.get(4)).getFirst().getId());
+        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(4)).getSecond().getId());
+        Assert.assertEquals(11, Syndrom.getInstance().getGraph().getEndpoints(edges.get(5)).getFirst().getId());
+        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(5)).getSecond().getId());  Assert.assertEquals(5, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(12, Syndrom.getInstance().getGraph().getEndpoints(edges.get(6)).getFirst().getId());  Assert.assertEquals(5, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(6)).getSecond().getId());
+        Assert.assertEquals(13, Syndrom.getInstance().getGraph().getEndpoints(edges.get(7)).getFirst().getId());
+        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(7)).getSecond().getId());
+    }
+
+
+    // <-------------   size    ------------------>
 
     @Test
     public void testSpheresWidthOfGraph() throws IOException, SAXException {
@@ -172,7 +209,7 @@ public class GXLioTest {
             vertices.add(v);
         }
         vertices.sort(Comparator.comparingInt(Vertex::getId));
-        vertices.forEach(System.out::println);
+       // vertices.forEach(System.out::println);
         Assert.assertEquals(50, vertices.get(0).getSize());
         Assert.assertEquals(50, vertices.get(1).getSize());
         Assert.assertEquals(120, vertices.get(2).getSize());
@@ -183,6 +220,123 @@ public class GXLioTest {
         Assert.assertEquals(80, vertices.get(7).getSize());
         Assert.assertEquals(50, vertices.get(8).getSize());
     }
+
+    // <-----------    Color    ------------>
+
+    @Test
+    public void testSpheresFillColorOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(0).getColor());
+        Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(1).getColor());
+        Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(2).getColor());
+        Assert.assertEquals(new java.awt.Color(24, 54, 11, 178), spheres.get(3).getColor());
+        Assert.assertEquals(new java.awt.Color(24, 54, 11, 178), spheres.get(4).getColor());
+    }
+
+
+    @Test
+    public void testVerticesFillColorOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Vertex> vertices = new ArrayList();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            vertices.add(v);
+        }
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals(new java.awt.Color(88, 88, 219, 220), vertices.get(0).getFillColor());
+        Assert.assertEquals(new java.awt.Color(88, 88, 219, 220), vertices.get(1).getFillColor());
+        Assert.assertEquals(new java.awt.Color(0xC80070), vertices.get(2).getFillColor());
+        Assert.assertEquals(new java.awt.Color(88, 88, 219, 220), vertices.get(3).getFillColor());
+        Assert.assertEquals(new java.awt.Color(88, 88, 219, 220), vertices.get(4).getFillColor());
+        Assert.assertEquals(new java.awt.Color(11, 19, 90, 220), vertices.get(5).getFillColor());
+        Assert.assertEquals(new java.awt.Color(11, 19, 90, 220), vertices.get(6).getFillColor());
+        Assert.assertEquals(new java.awt.Color(11, 19, 90, 220), vertices.get(7).getFillColor());
+        Assert.assertEquals(new java.awt.Color(11, 19, 90, 220), vertices.get(8).getFillColor());
+
+    }
+
+    @Test
+    public void testVerticesDrawColorOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Vertex> vertices = new ArrayList();
+        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
+            vertices.add(v);
+        }
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(0).getDrawColor());
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(1).getDrawColor());
+        Assert.assertEquals(new java.awt.Color(200,10,10, 203), vertices.get(2).getDrawColor());
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(3).getDrawColor());
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(4).getDrawColor());
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(5).getDrawColor());
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(6).getDrawColor());
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(7).getDrawColor());
+        Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(8).getDrawColor());
+    }
+
+    @Test
+    public void testEdgesColorOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Edge> edges = new ArrayList();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edges.add(e);
+        }
+        edges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(0).getColor());
+        Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(1).getColor());
+        Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(2).getColor());
+        Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(3).getColor());
+        Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(4).getColor());
+        Assert.assertEquals(new java.awt.Color(28, 56, 249, 130), edges.get(5).getColor());
+        Assert.assertEquals(new java.awt.Color(28, 56, 249, 130), edges.get(6).getColor());
+        Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(7).getColor());
+    }
+
+    // <-----------     other edge style   ------------------->
+
+    @Test
+    public void testEdgesArrowTypeOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Edge> edges = new ArrayList();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edges.add(e);
+        }
+        edges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertEquals(EdgeArrowType.EXTENUATING, edges.get(0).getArrowType());
+        Assert.assertEquals(EdgeArrowType.EXTENUATING, edges.get(1).getArrowType());
+        Assert.assertEquals(EdgeArrowType.NEUTRAL, edges.get(2).getArrowType());
+        Assert.assertEquals(EdgeArrowType.NEUTRAL, edges.get(3).getArrowType());
+        Assert.assertEquals(EdgeArrowType.REINFORCED, edges.get(4).getArrowType());
+        Assert.assertEquals(EdgeArrowType.REINFORCED, edges.get(5).getArrowType());
+        Assert.assertEquals(EdgeArrowType.REINFORCED, edges.get(6).getArrowType());
+        Assert.assertEquals(EdgeArrowType.REINFORCED, edges.get(7).getArrowType());
+    }
+
+    @Test
+    public void testEdgesStrokeTypeOfGraph() throws IOException, SAXException {
+        prepareSyndrom().importGXL(new File("testGraph.gxl"), false);
+        ArrayList<Edge> edges = new ArrayList();
+        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
+            edges.add(e);
+        }
+        edges.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertEquals(StrokeType.BASIC, edges.get(0).getStroke());
+        Assert.assertEquals(StrokeType.BASIC_WEIGHT, edges.get(1).getStroke());
+        Assert.assertEquals(StrokeType.DOTTED_WEIGHT, edges.get(2).getStroke());
+        Assert.assertEquals(StrokeType.DOTTED, edges.get(3).getStroke());
+        Assert.assertEquals(StrokeType.BASIC, edges.get(4).getStroke());
+        Assert.assertEquals(StrokeType.DASHED, edges.get(5).getStroke());
+        Assert.assertEquals(StrokeType.DASHED, edges.get(6).getStroke());
+        Assert.assertEquals(StrokeType.DASHED_WEIGHT, edges.get(7).getStroke());
+    }
+
+
+
+
+
+
+
+
 
     @Before
     public void prepare() {
