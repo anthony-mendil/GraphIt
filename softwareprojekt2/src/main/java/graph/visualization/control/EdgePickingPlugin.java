@@ -84,7 +84,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
-        if (SwingUtilities.isLeftMouseButton(e) && edgeMove != null) {
+        if (SwingUtilities.isRightMouseButton(e) && edgeMove != null) {
             Vertex endpoint = (isIncoming) ? graph.getEndpoints(edgeMove).getSecond():graph.getEndpoints(edgeMove).getFirst();
             Point dragged = e.getPoint();
             Point2D draggedPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(dragged);

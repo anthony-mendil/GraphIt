@@ -613,7 +613,7 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Text selectionSphere;
     @FXML
-    private Button handVertex;
+    private Button handSelector;
     @FXML
     private Button addSphere;
     @FXML
@@ -878,6 +878,8 @@ public class Controller implements ObserverSyndrom {
     private static final String TIMES_NEW_ROMAN = "Times New Roman";
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
+    private List<Button> selectionButtons;
+
     private ObservableList<Label> sizeLabels;
     private ObservableList<MenuItem> fontLabels;
     private ObservableList<String> fonts =
@@ -934,9 +936,9 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an AddSphereLogAction-object and executes the action with the action history.
      */
-    @SuppressWarnings("unused")
     public void addSphere() {
-        throw new UnsupportedOperationException();
+        values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
+        setStyleSelectionButtons(addSphere.getId());
     }
 
     /**
@@ -944,10 +946,12 @@ public class Controller implements ObserverSyndrom {
      */
     public void addVertex() {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
+        setStyleSelectionButtons(addVertex.getId());
     }
 
-    public void handVertex() {
+    public void handSelector() {
         values.setGraphButtonType(GraphButtonType.NONE);
+        setStyleSelectionButtons(handSelector.getId());
     }
 
     /* ----------------ANALYSE---------------------- */
@@ -1752,9 +1756,27 @@ public class Controller implements ObserverSyndrom {
         initProtocolTree();
         initGraphLanguage();
         initInfoText();
-
-
+        iniSelectionButtons();
     }
+
+    private void iniSelectionButtons(){
+        selectionButtons = new ArrayList<>();
+        selectionButtons.add(addSphere);
+        selectionButtons.add(addVertex);
+        selectionButtons.add(handSelector);
+        handSelector();
+    }
+
+    private void setStyleSelectionButtons(String id){
+        for(Button b : selectionButtons){
+            if (id.equals(b.getId())){
+                b.getStyleClass().add("buttonSelection");
+            } else {
+                b.getStyleClass().remove("buttonSelection");
+            }
+        }
+    }
+
 
     private void initInfoText() {
         infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
@@ -1824,7 +1846,7 @@ public class Controller implements ObserverSyndrom {
                 syndrom.getVv().getPickedSphereState().clear();
                 syndrom.getVv().getPickedVertexState().clear();
                 syndrom.getVv().getPickedEdgeState().clear();
-                handVertex();
+                handSelector();
             }
         });
     }
@@ -2157,7 +2179,7 @@ public class Controller implements ObserverSyndrom {
             public void handle(KeyEvent event) {
                 comboBox.hide();
                 if(event.getCode() == KeyCode.ENTER){
-                    System.out.println(comboBox.getEditor().getText());
+                    logger.debug(comboBox.getEditor().getText());
                 }
             }
         });
@@ -2629,9 +2651,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(editVerticesSizeLogAction);
     }
 
-    public void addSphereButton() {
-        values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
-    }
 
     /*
      * The event handler that provides the arguments, needed to use the actions after choosing a colour.
