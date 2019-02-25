@@ -2,7 +2,6 @@ package actions.export_import;
 
 import actions.GraphAction;
 import graph.graph.Edge;
-import graph.graph.Syndrom;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import io.GXLio;

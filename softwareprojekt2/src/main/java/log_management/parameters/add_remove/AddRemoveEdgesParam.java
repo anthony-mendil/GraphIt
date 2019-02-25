@@ -11,9 +11,7 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Parameter object for the action AddEdgesLogAction/RemoveEdgesLogAction.
