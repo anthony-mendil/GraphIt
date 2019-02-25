@@ -280,7 +280,7 @@
                     </Text>
                     <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0">
                         <children>
-                            <Button fx:id="handVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                            <Button fx:id="handSelector" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handSelector" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                 <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                 </HBox.margin>
@@ -322,7 +322,7 @@
                         <VBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </VBox.margin>
-                        <Button fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphereButton" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        <Button fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>

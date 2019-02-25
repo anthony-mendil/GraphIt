@@ -32,10 +32,8 @@ public class LoadGraphAction extends GraphAction {
         if (values.getMode() == FunctionMode.TEMPLATE || values.getMode() == FunctionMode.EDIT) {
             syndrom.setPluggableModeEdit();
         } else {
-            // FunctionMode.Analyse
             syndrom.setPluggableModeAnalyse();
         }
-        //System.out.println(gxlGraph);
         notifyObserverGraph();
     }
 
