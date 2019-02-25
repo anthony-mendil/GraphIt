@@ -202,6 +202,7 @@ public class LoadLanguage {
         c.getLogAddEdge().setText(loadLanguagesKey("ADD_EDGES"));
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
         c.getTooltipInfoAnalysis().setText(loadLanguagesKey("INFO_ANALYSIS"));
+        c.getTooltipInfoZoom().setText(loadLanguagesKey("INFO_ZOOM"));
     }
 
     public String loadLanguagesKey(String key)  {

@@ -1,7 +1,10 @@
 package actions.export_import;
 
 import actions.GraphAction;
+import graph.graph.Edge;
 import graph.graph.Syndrom;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
 import io.OOFio;
 
 import java.io.File;
@@ -23,7 +26,8 @@ public class ExportOofAction extends GraphAction {
      */
     public ExportOofAction(File pFile) {
         file = pFile;
-        if (!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        if (!graph.getSpheres().isEmpty()) {
             Syndrom.getInstance().getVv().getPickedSphereState().clear();
         }
     }

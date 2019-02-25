@@ -61,7 +61,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        AggregateLayout<Vertex, Edge> layout =  syndrom.getLayout();
+        AggregateLayout<Vertex, Edge> layout = syndrom.getLayout();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> sphereList = graph.getSpheres();
         if(parameters == null || indicator == true){

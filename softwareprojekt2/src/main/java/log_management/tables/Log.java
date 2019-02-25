@@ -33,8 +33,6 @@ public class Log {
      */
     private LocalDateTime time;
 
-    private LogToStringConverter logToStringConverter = new LogToStringConverter();
-
     /**
      * Gets the id of the log entry.
      *
@@ -130,20 +128,5 @@ public class Log {
      */
     public void setTime(LocalDateTime time) {
         this.time = time;
-    }
-
-    /**
-     * Combines all informations about this log entry into one
-     * readable text.
-     *
-     * @return The formatted information about this log entry.
-     */
-    @Override
-    public String toString() {
-        return logToStringConverter.convert(this);
-    }
-
-    public String toStringForTextFile() {
-        return logToStringConverter.convertForTextFile(this);
     }
 }

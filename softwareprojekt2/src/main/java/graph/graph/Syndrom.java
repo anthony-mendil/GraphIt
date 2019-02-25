@@ -3,19 +3,23 @@ package graph.graph;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.*;
-import edu.uci.ics.jung.visualization.control.*;
+import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
+import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
+import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
+import edu.uci.ics.jung.visualization.control.TranslatingGraphMousePlugin;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import edu.uci.ics.jung.visualization.transform.MutableAffineTransformer;
-import graph.algorithmen.predicates.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.*;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.renderers.VertexLabelRenderer;
-import graph.visualization.transformer.edge.*;
-import graph.visualization.transformer.sphere.*;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeArrowTransformer;
+import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeStrokeTransformer;
 import graph.visualization.transformer.vertex.*;
 import gui.Values;
 import lombok.AccessLevel;
@@ -45,151 +49,10 @@ public class Syndrom {
     private boolean templateIsSet = false;
 
     /**
-     * The layout of syndrom.
-     */
-    private AggregateLayout<Vertex, Edge> layout;
-    /**
-     * The internal state of the syndrom-graph.
-     */
-    private SyndromGraph<Vertex, Edge> graph;
-    /**
-     * Defines a functor that performs a predicates test on edges for filtering the edge types of the edges.
-     */
-    private EdgeArrowPredicate<Vertex, Edge> filterArrow;
-    /**
-     * Defines a functor that performs a predicates test on vertices for filtering the vertices regex.
-     */
-    private VertexAnnotationPredicate<Vertex, Edge> vertexAnnotationPredicate;
-    /**
-     * Defines a functor that performs a predicates test on vertices for filtering the vertex for edge types.
-     */
-    private VertexEdgePredicate<Vertex, Edge> vertexEdgePredicate;
-    /**
-     * Defines a functor that performs a predicates test on vertices for filtering the vertex for visibility.
-     */
-    private VertexIsVisiblePredicate<Vertex, Edge> vertexIsVisiblePredicate;
-    /**
-     * Defines a functor that performs a predicates test on edges for filtering the edge for visibility.
-     */
-    private EdgeIsVisiblePredicate<Vertex, Edge> edgeIsVisiblePredicate;
-    /**
-     * Defines a functor that performs a predicates test where all predicates need to pass.
-     */
-    private CombinesPredicate<Vertex, Edge> combinesPredicate;
-    /**
-     * Defines a functor that transform an edge into its arrow draw color. The input edge is left unchanged.
-     * Its extracting the arrow draw color of an edge.
-     */
-    private EdgeArrowFillPaintTransformer arrowDrawPaint;
-    /**
-     * Defines a functor that transform an edge into its edge arrow fill color. The input edge is left unchanged.
-     * Its extracting the arrow fill color of an edge.
-     */
-    private EdgeArrowFillPaintAnchorTransformer arrowFillPaint;
-    /**
-     * Defines a functor that transform an edge into its edge arrow type. The input edge is left unchanged.
-     * Its extracting the edge arrow type.
-     */
-    private EdgeArrowTransformer edgeArrow;
-    /**
-     * Defines a functor that transform an edge into its edge draw color. The input edge is left unchanged.
-     * Its extracting the draw color of an edge.
-     */
-    private EdgeDrawPaintTransformer edgeDrawPaint;
-    /**
-     * Defines a functor that transform an edge into its edge arrow fill color. The input edge is left unchanged.
-     * Its extracting the arrow fill color of an edge.
-     */
-    private EdgeFillPaintTransformer edgeFillPaint;
-    /**
-     * Defines a functor that transform a edge into its stroke type. The input edge is left unchanged.
-     * Its extracting the stroke type of an edge.
-     */
-    private EdgeStrokeTransformer edgeStroke;
-    /**
-     * Defines a functor that transform a sphere into its draw color. The input sphere is left unchanged.
-     * Its extracting the draw color of a sphere.
-     */
-    private SphereDrawPaintTransformer sphereDrawPaint;
-    /**
-     * Defines a functor that transform a sphere into its fill color. The input sphere is left unchanged.
-     * Its extracting the fill color of a sphere.
-     */
-    private SphereFillPaintTransformer sphereFillPaint;
-    /**
-     * Defines a functor that transform a sphere into its annotation font. The input sphere is left unchanged.
-     * Its extracting the font annotation of a sphere.
-     */
-    private SphereFontTransformer sphereFont;
-    /**
-     * Defines a functor that transform a sphere into its annotation. The input sphere is left unchanged.
-     * Its extracting the annotation of a sphere.
-     */
-    private SphereLabelTransformer sphereLabel;
-    /**
-     * Defines a functor that transform a sphere into its shape. The input sphere is left unchanged.
-     * Its extracting the shape of a sphere.
-     */
-    private SphereShapeTransformer sphereShape;
-    /**
-     * Defines a functor that transform a vertex into its draw color. The input vertex is left unchanged.
-     * Its extracting the draw color of a vertex.
-     */
-    private VertexDrawPaintTransformer vertexDrawPaint;
-    /**
-     * Defines a functor that transform a vertex into its fill color. The input vertex is left unchanged.
-     * Its extracting the fill color of a vertex.
-     */
-    private VertexFillPaintTransformer vertexFillPaint;
-    /**
-     * Defines a functor that transform a vertex into its annotation font. The input vertex is left unchanged.
-     * Its extracting the annotation font of a vertex.
-     */
-    private VertexFontTransformer vertexFont;
-    /**
-     * Defines a functor that transform a vertex into its annotation. The input vertex is left unchanged.
-     * Its extracting the annotation of a vertex.
-     */
-    private VertexLabelTransformer vertexLabel;
-    /**
-     * Defines a functor that transform a vertex into highlight color. The input vertex is left unchanged.
-     * Its extracting the highlight color of a vertex.
-     */
-    private VertexPaintHighlightTransformer vertexPaintHighlight;
-    /**
-     * Defines a functor that transform a vertex into its highlight stroke. The input vertex is left unchanged.
-     * Its extracting the highlight stroke of a vertex.
-     */
-    private VertexStrokeHighlightTransformer vertexStrokeHighlight;
-    /**
-     * Defines a functor that transform a vertex into its shape. The input vertex is left unchanged.
-     * Its extracting the shape of a vertex.
-     */
-    private VertexShapeTransformer vertexShape;
-    /**
-     * Defines a functor that transform a vertex into its stroke. The input vertex is left unchanged.
-     * Its extracting the stroke of a vertex.
-     */
-    private VertexStrokeTransformer vertexStroke;
-    /**
-     * Defines a functor that transform a vertex into tooltip. The input vertex is left unchanged.
-     * Its extracting the tooltip of a vertex.
-     */
-    private VertexToolTipTransformer vertexTooltip;
-    /**
-     * The renderer of the syndrom graph.
-     */
-    private SyndromRenderer syndromRenderer;
-
-    /**
      * Satellite view for zoom context.
      */
     private SatelliteVisualizationViewer<Vertex, Edge> vv2;
 
-    /**
-     * Zoom pane, containing the visualization viewer.
-     */
-    private GraphZoomScrollPane gzsp;
 
     /**
      * For adding/removing graph mouse plugins.
@@ -197,14 +60,11 @@ public class Syndrom {
     private PluggableGraphMouse pluggable;
 
     /**
-     * The view grid for zoom context.
-     */
-    private VisualizationServer.Paintable viewGrid;
-
-    /**
      * The name of the graph.
      */
     private String graphName;
+
+    private AggregateLayout<Vertex, Edge> layout;
 
     /**
      * The values set by the gui.
@@ -213,8 +73,6 @@ public class Syndrom {
     private final Values values;
 
     private static Syndrom instance;
-
-    private SyndromPickSupport pickSupport;
 
     private AbsoluteCrossoverScalingControl scalingControl;
 
@@ -225,8 +83,7 @@ public class Syndrom {
     private EdgePickingPlugin edgePickingPlugin = new EdgePickingPlugin();
     private GeneralPickingPlugin generalPickingPlugin = new GeneralPickingPlugin();
     private TranslatingGraphMousePlugin translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
-    RotatingGraphMousePlugin rotatingPlugin = new RotatingGraphMousePlugin();
-    ShearingGraphMousePlugin shearingPlugin = new ShearingGraphMousePlugin();
+
 
     /**
      * The constructor, initialising all attributes.
@@ -256,9 +113,8 @@ public class Syndrom {
         return instance;
     }
 
-    public void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv) {
-        pickSupport = new SyndromPickSupport(vv);
-        gzsp = new GraphZoomScrollPane(vv);
+    private void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv) {
+        SyndromPickSupport<Vertex, Edge> pickSupport = new SyndromPickSupport<>(vv);
         vv.setBackground(Color.WHITE);
         vv.setRenderer(new SyndromRenderer<>());
         vv.getRenderContext().setPickSupport(pickSupport);
@@ -269,7 +125,7 @@ public class Syndrom {
         this.vv = vv;
     }
 
-    public void setVisualisationViewer2(SatelliteVisualizationViewer<Vertex, Edge> vv2) {
+    private void setVisualisationViewer2(SatelliteVisualizationViewer<Vertex, Edge> vv2) {
         AbsoluteCrossoverScalingControl vv2Scaler = new AbsoluteCrossoverScalingControl();
         scalingControl = vv2Scaler;
         vv2.scaleToLayout(vv2Scaler);
@@ -291,7 +147,7 @@ public class Syndrom {
 
         vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vv.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
-        vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<Edge>(vv));
+        vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>(vv));
 
         vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
@@ -316,7 +172,7 @@ public class Syndrom {
 
 
     public void generateNew() {
-        graph = new SyndromGraph<>();
+        SyndromGraph<Vertex, Edge> graph = new SyndromGraph<>();
         layout = new AggregateLayout<>(new StaticLayout<>(graph));
         final VisualizationModel<Vertex, Edge> visualizationModel =
                 new DefaultVisualizationModel<>(layout, values.getDefaultLayoutVVSize());
@@ -325,7 +181,6 @@ public class Syndrom {
         vv.setGraphLayout(layout);
         setVisualisationViewer(vv);
         vv2 = new SatelliteVisualizationViewer<>(vv, new Dimension(260, 195));
-
         setVisualisationViewer2(vv2);
     }
 }
