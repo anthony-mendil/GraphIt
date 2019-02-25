@@ -210,8 +210,6 @@ public class GXLio {
     }
 
     private void updateVisualisationAndLayout(SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv){
-        Syndrom.getInstance().getLayout().setGraph(newGraph);
-        Syndrom.getInstance().setGraph(newGraph);
         vv.getGraphLayout().setGraph(newGraph);
         vv.repaint();
         Syndrom.getInstance().getVv2().repaint();
@@ -642,7 +640,7 @@ public class GXLio {
      * @param pWord a word containing an unknown amount of numbers.
      * @return the numbers as String contained in the String parameter as entries in the array.
      */
-    private String[] getNumberArrayFromString(String pWord) {
+    public String[] getNumberArrayFromString(String pWord) {
         String word = pWord;
         String[] alphabet = {"2D", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         for (String s : alphabet) {

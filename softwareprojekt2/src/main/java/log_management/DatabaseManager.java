@@ -64,6 +64,7 @@ public class DatabaseManager implements ObserverSyndrom {
     public void addEntryDatabase(Log log) {
         if (mode == FunctionMode.EDIT) {
             updateGraph();
+            System.out.println("saveLog: "+log);
             logDao.save(log);
         }
     }

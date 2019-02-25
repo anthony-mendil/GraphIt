@@ -32,36 +32,57 @@ public class LogToStringConverter {
 
     private int incrementer = 1;
     private LoadLanguage lang = LoadLanguage.getInstance();
-    private Values values = Values.getInstance();
 
-    public void resetIncrementer() {
+    public void resetIncrementer(){
         incrementer = 1;
     }
 
     public String convert(Log log) {
+        Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        try {
-            Object[] obj = {incrementer, convertLogEntryName(log.getLogEntryName()), parametersPrint(log.getParameters(), log.getLogEntryName()), log.getTime().format(formatter)};
-            incrementer++;
-            return lang.loadLanguagesKey("LOG_STRING", obj);
-
-        } catch (IllegalArgumentException e) {
+        if (language == Language.GERMAN) {
+            try {
+                return incrementer++ + "\n" + convertLogEntryName(log.getLogEntryName()) +
+                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + log.getTime().format(formatter);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalStateException();
+            }
+        }
+        else if (language == Language.ENGLISH) {
+            try {
+                return incrementer++ + "\n" + convertLogEntryName(log.getLogEntryName()) +
+                        "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + log.getTime().format(formatter);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException();
+            }
+        }
+        else {
             throw new IllegalStateException();
         }
     }
 
     public String convertForTextFile(Log log) {
+        Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-        try {
-            Object[] obj = {incrementer, convertLogEntryName(log.getLogEntryName()), parametersPrint(log.getParameters(), log.getLogEntryName()), log.getTime().format(formatter)};
-            incrementer++;
-            return lang.loadLanguagesKey("LOG_STRING_PRINT", obj);
-
-        } catch (IllegalArgumentException e) {
+        if (language == Language.GERMAN) {
+            try {
+                return "Nummer des Eintrags: " + incrementer++ + "\n" + "  Typ der Aktion: " + convertLogEntryName(log.getLogEntryName()) +
+                        "\n" + "  Informationen: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "  Zeit: " + log.getTime().format(formatter) + "\n";
+            } catch (IllegalArgumentException e) {
+                throw new IllegalStateException();
+            }
+        }
+        else if (language == Language.ENGLISH) {
+            try {
+                return "Log number: " + incrementer++ + "\n" + "  Type of Action: " + convertLogEntryName(log.getLogEntryName()) +
+                        "\n" + "  Information: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "  Time: " + log.getTime().format(formatter) + "\n";
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException();
+            }
+        }
+        else {
             throw new IllegalStateException();
         }
-
     }
 
     private String convertLogEntryName(LogEntryName logEntryName) {
@@ -134,7 +155,6 @@ public class LogToStringConverter {
                 return lang.loadLanguagesKey("EDIT_VERTICES_LAYOUT");
             default:
                 throw new IllegalArgumentException();
-
         }
     }
 
@@ -213,8 +233,7 @@ public class LogToStringConverter {
                 return gson.fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
             case EDIT_VERTICES_LAYOUT:
                 return gson.fromJson(parameters, LayoutVerticesParam.class).prettyPrint();
-            default:
-                throw new IllegalArgumentException();
+            default: throw new IllegalArgumentException();
         }
     }
 }

@@ -53,19 +53,18 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -91,8 +90,9 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.util.List;
+import java.security.Key;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -850,9 +850,10 @@ public class Controller implements ObserverSyndrom {
     private MenuItem logEditVerticesLayout;
     @FXML
     private MenuItem logAll;
-    @FXML
-    private Label infoAnalysis;
+    @FXML private Label infoAnalysis;
+    @FXML private Label infoZoom;
     private Tooltip tooltipInfoAnalysis = new Tooltip();
+    private Tooltip tooltipInfoZoom = new Tooltip();
     @FXML
     private Text positionMouseX;
     @FXML
@@ -878,13 +879,8 @@ public class Controller implements ObserverSyndrom {
     private static final String TIMES_NEW_ROMAN = "Times New Roman";
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
-
-    private static Logger logger = Logger.getLogger(Controller.class);
-
-    private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
-    private LogEntryName analysisLogEntryName = null;
-    private LoadLanguage loadLanguage;
-
+    private ObservableList<Label> sizeLabels;
+    private ObservableList<MenuItem> fontLabels;
     private ObservableList<String> fonts =
             FXCollections.observableArrayList(
                     "AveriaSansLibre",
@@ -893,7 +889,6 @@ public class Controller implements ObserverSyndrom {
                     "Roboto",
                     "RobotoSlab"
             );
-
     private ObservableList<String> sizes =
             FXCollections.observableArrayList(
                     "8",
@@ -911,6 +906,12 @@ public class Controller implements ObserverSyndrom {
                     "72",
                     "96"
             );
+
+    private static Logger logger = Logger.getLogger(Controller.class);
+
+    private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
+    private LogEntryName analysisLogEntryName = null;
+    private LoadLanguage loadLanguage;
 
     public void filterEdgeTypeReinforced() {
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
@@ -1383,6 +1384,7 @@ public class Controller implements ObserverSyndrom {
     public void printPDF() {
         PrintPDFAction printPDFAction = new PrintPDFAction();
         printPDFAction.action();
+
     }
 
     /* ----------------LAYOUT---------------------- */
@@ -1751,15 +1753,22 @@ public class Controller implements ObserverSyndrom {
         initProtocolTree();
         initGraphLanguage();
         initInfoText();
+
+
     }
 
     private void initInfoText() {
-        tooltipInfoAnalysis.setPrefWidth(200);
-        tooltipInfoAnalysis.setText(loadLanguage.loadLanguagesKey("INFO_ANALYSIS"));
-        tooltipInfoAnalysis.setWrapText(true);
-        tooltipInfoAnalysis.setAutoFix(false);
-        tooltipInfoAnalysis.setAutoHide(false);
-        tooltipInfoAnalysis.setStyle("-fx-background-color:\n" +
+        infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
+        infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
+    }
+
+    private void infoText(Tooltip tooltip, String text, Label label, int x, int y){
+        tooltip.setPrefWidth(200);
+        tooltip.setText(loadLanguage.loadLanguagesKey(text));
+        tooltip.setWrapText(true);
+        tooltip.setAutoFix(false);
+        tooltip.setAutoHide(false);
+        tooltip.setStyle("-fx-background-color:\n" +
                 "            #000000,\n" +
                 "            linear-gradient(#7ebcea, #2f4b8f),\n" +
                 "            linear-gradient(#426ab7, #263e75),\n" +
@@ -1767,8 +1776,8 @@ public class Controller implements ObserverSyndrom {
                 "    -fx-text-fill: white;\n" +
                 "    -fx-font-size: 12px;");
 
-        infoAnalysis.setOnMouseMoved(event -> tooltipInfoAnalysis.show(infoAnalysis, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxX() + 15, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxY()));
-        infoAnalysis.setOnMouseExited(event -> tooltipInfoAnalysis.hide());
+        label.setOnMouseMoved(event -> tooltip.show(label, label.localToScene(label.getBoundsInLocal()).getMaxX() + x, label.localToScene(label.getBoundsInLocal()).getMaxY() + y));
+        label.setOnMouseExited(event -> tooltip.hide());
     }
 
     public void initButtonShortcuts() {
@@ -1798,25 +1807,24 @@ public class Controller implements ObserverSyndrom {
                 removeEdges();
                 removeSphere();
                 removeVertices();
-            }else if (strgA.match(event)) {
-                for (Sphere s:syndrom.getGraph().getSpheres()) {
-                    syndrom.getVv().getPickedSphereState().pick(s,true);
+
+            } else if (strgA.match(event)) {
+                for (Vertex v : syndrom.getGraph().getVertices()) {
+                    syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
-                for (Vertex v:syndrom.getGraph().getVertices()) {
-                    syndrom.getVv().getPickedVertexState().pick(v,true);
+                for (Edge e : graph.getEdges()) {
+                    syndrom.getVv().getPickedEdgeState().pick(e, true);
+
                 }
-                for (Edge e:syndrom.getGraph().getEdges()) {
-                    syndrom.getVv().getPickedEdgeState().pick(e,true);
-                }
-            }else if (one.match(event)) {
+            } else if (one.match(event)) {
                 switchModeCreator();
             } else if (two.match(event)) {
                 switchModiAnalysis();
             } else if (three.match(event)) {
                 switchModeEdit();
-            }else if (esc.match(event)){
-                Syndrom.getInstance().getVv().getPickedSphereState().clear();
-                Syndrom.getInstance().getVv().getPickedVertexState().clear();
+            } else if (esc.match(event)) {
+                syndrom.getVv().getPickedSphereState().clear();
+                syndrom.getVv().getPickedVertexState().clear();
                 handVertex();
             }
         });
@@ -1841,7 +1849,7 @@ public class Controller implements ObserverSyndrom {
         languageGraphGerman.setSelected(true);
     }
 
-    final public static Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+    public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
 
     private void sortFilterLogs() {
         ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
@@ -2002,20 +2010,19 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             comboBox.show();
-
             if (!newValue.matches("[a-zA-Z ]*"))
                 comboBox.getEditor().setText(oldValue);
         }
     }
 
-    private class ComboBoxValueListener implements ChangeListener<String> {
-        private final ComboBox<String> comboBox;
+    public void editFontSizeSphere(int size) {
+        values.setFontSizeSphere(size);
+        EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+        history.execute(editFontSizeSphereLogAction);
+    }
 
-        private void editFontSizeSphere(int size) {
-            values.setFontSizeSphere(size);
-            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-            history.execute(editFontSizeSphereLogAction);
-        }
+    /*private class ComboBoxValueListener implements ChangeListener<String> {
+        private final ComboBox<String> comboBox;
 
         private ComboBoxValueListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
@@ -2046,7 +2053,9 @@ public class Controller implements ObserverSyndrom {
             }
             root.requestFocus();
         }
-    }
+    }*/
+
+
 
     private class ComboBoxFocusListener implements ChangeListener<Boolean> {
         private final ComboBox<String> comboBox;
@@ -2058,9 +2067,9 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) && sizes.contains(comboBox.getEditor().getText())) {
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     currentSize = comboBox.getEditor().getText();
-                } else if ((comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) && fonts.contains(comboBox.getEditor().getText())) {
+                } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
@@ -2072,6 +2081,7 @@ public class Controller implements ObserverSyndrom {
             }
         }
     }
+
 
     private void loadMenuItem() {
         symptomCircle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
@@ -2140,12 +2150,18 @@ public class Controller implements ObserverSyndrom {
         } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontVertex());
         }
-
-        comboBox.setItems(fonts);
+        loadFonts(comboBox);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
-        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
-        loadFonts(comboBox);
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                comboBox.hide();
+                if(event.getCode() == KeyCode.ENTER){
+                    System.out.println(comboBox.getEditor().getText());
+                }
+            }
+        });
     }
 
 
@@ -2155,42 +2171,73 @@ public class Controller implements ObserverSyndrom {
         } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeVertex());
         }
-
         comboBox.setItems(sizes);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
-        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
 
-    private void loadFonts(ComboBox comboBox){
-        ObservableList<Label> fontLabels = FXCollections.observableArrayList();
-        for(String font : fonts){
-            Label fontLabel = new Label(font);
-            fontLabel.addEventHandler(ActionEvent.ACTION, event -> {
-                currentFont = font;
-                if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                    editFontSphere(font);
-                } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                    editFontVertex(font);
+    private void loadFonts(ComboBox comboBox) {
+
+        comboBox.setCellFactory(lv -> {
+            ListCell<MenuItem> cell = new ListCell<MenuItem>() {
+                @Override
+                protected void updateItem(MenuItem item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(empty ? null : item.getText());
+                }
+            };
+
+            cell.setOnMousePressed(e -> {
+                if (!cell.isEmpty()) {
+                    currentFont = cell.getItem().getText();
+                    comboBox.getEditor().setText(currentFont);
+                    editFontSphere(currentFont);
+                    root.requestFocus();
                 }
             });
-            fontLabels.add(fontLabel);
+            return cell ;
+        });
+
+        fontLabels = FXCollections.observableArrayList();
+        for (String font : fonts) {
+            MenuItem fontMenuItem = new MenuItem(font);
+            fontLabels.add(fontMenuItem);
         }
+        comboBox.setItems(fontLabels);
     }
 
-    private void loadSizes(ComboBox comboBox){
-        ObservableList<Label> sizeLabels = FXCollections.observableArrayList();
-        for(String size : sizes){
+    private void loadSizes(ComboBox comboBox) {
+        /*ObservableList<String> sizes =
+                FXCollections.observableArrayList(
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12",
+                        "14",
+                        "18",
+                        "24",
+                        "30",
+                        "36",
+                        "48",
+                        "60",
+                        "72",
+                        "96"
+                );*/
+        sizeLabels = FXCollections.observableArrayList();
+        for (String size : sizes) {
             Label sizeLabel = new Label(size);
             sizeLabel.addEventHandler(ActionEvent.ACTION, event -> {
                 currentSize = size;
                 if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
-                    
+                    editFontSizeSphere(Integer.parseInt(currentSize));
                 } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-
+                    editFontSizeVertices(Integer.parseInt(currentSize));
                 }
             });
+            sizeLabels.add(sizeLabel);
         }
+        comboBox.setItems(sizeLabels);
     }
 
     /**
@@ -2426,46 +2473,46 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    public void openInfoDialogCreateGraph(){
+    public void openInfoDialogCreateGraph() {
         openDialogInfo(newFile);
     }
 
-    public void openInfoDialogPDF(){
+    public void openInfoDialogPDF() {
         openDialogInfo(exportPDF);
     }
 
-    public void openInfoDialogImportGXL(){
+    public void openInfoDialogImportGXL() {
         openDialogInfo(importGXL);
     }
 
-    public void openInfoDialogOpenFile(){
+    public void openInfoDialogOpenFile() {
         openDialogInfo(openFile);
     }
 
-    public void openInfoDialogPrint(){
+    public void openInfoDialogPrint() {
         openDialogInfo(print);
     }
 
-    private void openDialogInfo(MenuItem menuItem){
+    private void openDialogInfo(MenuItem menuItem) {
         String okText = "EXIT_WINDOW_CLOSE_PDF";
         String cancel = "EXIT_WINDOW_CANCEL_PDF";
         String info = "";
-        if (menuItem.getId().equals(importGXL.getId())){
+        if (menuItem.getId().equals(importGXL.getId())) {
             info = "INFO_DIALOG_IMPORT";
-        } else if (menuItem.getId().equals(openFile.getId())){
+        } else if (menuItem.getId().equals(openFile.getId())) {
             info = "INFO_DIALOG_OPEN";
-        } else if (menuItem.getId().equals(print.getId())){
+        } else if (menuItem.getId().equals(print.getId())) {
             info = "PRINT_EXPORT_INFO_DIALOG";
-        } else if (menuItem.getId().equals(newFile.getId())){
+        } else if (menuItem.getId().equals(newFile.getId())) {
             info = "INFO_DIALOG_NEW_FILE";
-        } else if (menuItem.getId().equals(exportPDF.getId())){
+        } else if (menuItem.getId().equals(exportPDF.getId())) {
             info = "PDF_EXPORT_INFO_DIALOG";
         }
 
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey(okText), ButtonBar.ButtonData.OK_DONE);
         ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey(cancel), ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info),ok,close);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info), ok, close);
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -2474,15 +2521,15 @@ public class Controller implements ObserverSyndrom {
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                if (menuItem.getId().equals(importGXL.getId())){
+                if (menuItem.getId().equals(importGXL.getId())) {
                     importGXL();
-                } else if (menuItem.getId().equals(openFile.getId())){
+                } else if (menuItem.getId().equals(openFile.getId())) {
                     openFile();
-                } else if (menuItem.getId().equals(print.getId())){
+                } else if (menuItem.getId().equals(print.getId())) {
                     printPDF();
-                }  else if (menuItem.getId().equals(newFile.getId())){
+                } else if (menuItem.getId().equals(newFile.getId())) {
                     createGraph();
-                } else if (menuItem.getId().equals(exportPDF.getId())){
+                } else if (menuItem.getId().equals(exportPDF.getId())) {
                     exportPDF();
                 }
             }
