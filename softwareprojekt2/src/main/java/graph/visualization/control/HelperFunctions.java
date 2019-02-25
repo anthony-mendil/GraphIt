@@ -1,7 +1,5 @@
 package graph.visualization.control;
 
-import actions.ActionHistory;
-import actions.edit.annotation.EditSphereAnnotationLogAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Sphere;
@@ -20,8 +18,6 @@ import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -30,7 +26,10 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
-import java.util.*;
+import java.util.EnumMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 
 public class HelperFunctions {

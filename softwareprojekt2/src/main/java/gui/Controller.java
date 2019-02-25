@@ -613,7 +613,7 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Text selectionSphere;
     @FXML
-    private Button handVertex;
+    private Button handSelector;
     @FXML
     private Button addSphere;
     @FXML
@@ -878,6 +878,9 @@ public class Controller implements ObserverSyndrom {
     private static final String TIMES_NEW_ROMAN = "Times New Roman";
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
+
+    private List<Button> selectionButtons;
+
     private ObservableList<Label> sizeLabels;
     private ObservableList<MenuItem> fontLabels;
     private ObservableList<String> fonts =
@@ -934,9 +937,9 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an AddSphereLogAction-object and executes the action with the action history.
      */
-    @SuppressWarnings("unused")
     public void addSphere() {
-        throw new UnsupportedOperationException();
+        values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
+        setStyleSelectionButtons(addSphere.getId());
     }
 
     /**
@@ -944,10 +947,12 @@ public class Controller implements ObserverSyndrom {
      */
     public void addVertex() {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
+        setStyleSelectionButtons(addVertex.getId());
     }
 
-    public void handVertex() {
+    public void handSelector() {
         values.setGraphButtonType(GraphButtonType.NONE);
+        setStyleSelectionButtons(handSelector.getId());
     }
 
     /* ----------------ANALYSE---------------------- */
@@ -1758,9 +1763,27 @@ public class Controller implements ObserverSyndrom {
         initProtocolTree();
         initGraphLanguage();
         initInfoText();
-
-
+        iniSelectionButtons();
     }
+
+    private void iniSelectionButtons(){
+        selectionButtons = new ArrayList<>();
+        selectionButtons.add(addSphere);
+        selectionButtons.add(addVertex);
+        selectionButtons.add(handSelector);
+        handSelector();
+    }
+
+    private void setStyleSelectionButtons(String id){
+        for(Button b : selectionButtons){
+            if (id.equals(b.getId())){
+                b.getStyleClass().add("buttonSelection");
+            } else {
+                b.getStyleClass().remove("buttonSelection");
+            }
+        }
+    }
+
 
     private void initInfoText() {
         infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
@@ -1832,7 +1855,7 @@ public class Controller implements ObserverSyndrom {
                 syndrom.getVv().getPickedSphereState().clear();
                 syndrom.getVv().getPickedVertexState().clear();
                 syndrom.getVv().getPickedEdgeState().clear();
-                handVertex();
+                handSelector();
             }
         });
     }
@@ -1998,7 +2021,6 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            comboBox.show();
             if (!newValue.matches("\\d*"))
                 comboBox.getEditor().setText(oldValue);
 
@@ -2016,7 +2038,6 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            comboBox.show();
             if (!newValue.matches("[a-zA-Z ]*"))
                 comboBox.getEditor().setText(oldValue);
         }
@@ -2074,6 +2095,7 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
+                comboBox.show();
                 if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     currentSize = comboBox.getEditor().getText();
                 } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
@@ -2154,19 +2176,30 @@ public class Controller implements ObserverSyndrom {
 
         if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontSphere());
+            currentFont = values.getFontSphere();
         } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontVertex());
+            currentFont = values.getFontVertex();
         }
         loadFonts(comboBox);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
-        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                comboBox.hide();
-                if(event.getCode() == KeyCode.ENTER){
-                    System.out.println(comboBox.getEditor().getText());
+
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            comboBox.hide();
+            if(event.getCode() == KeyCode.ENTER){
+                String tmpFont = comboBox.getEditor().getText();
+                if(fonts.contains(tmpFont)){
+                    if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)){
+                        currentFont = tmpFont;
+                        editFontSphere(tmpFont);
+                    }else if(comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+                        currentFont = tmpFont;
+                        editFontVertex(tmpFont);
+                    }
+
                 }
+                root.requestFocus();
             }
         });
     }
@@ -2175,12 +2208,34 @@ public class Controller implements ObserverSyndrom {
     private void loadSizeComboBox(ComboBox<String> comboBox) {
         if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeSphere());
+            currentSize = "" + values.getFontSizeSphere();
         } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeVertex());
+            currentSize = "" + values.getFontSizeVertex();
         }
-        comboBox.setItems(sizes);
+
+        loadSizes(comboBox);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            comboBox.hide();
+            if(event.getCode() == KeyCode.ENTER){
+                String tmpSize = comboBox.getEditor().getText();
+                if(tmpSize.chars().allMatch(Character::isDigit)){
+                    int size = Integer.parseInt(tmpSize);
+                    if(size > 3 && size <= 96){
+                        if(comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)){
+                            currentSize = tmpSize;
+                            editFontSizeSphere(size);
+                        }else if(comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)){
+                            currentSize = tmpSize;
+                            editFontSizeVertices(size);
+                        }
+                    }
+                }
+                root.requestFocus();
+            }
+        });
     }
 
     private void loadFonts(ComboBox comboBox) {
@@ -2198,53 +2253,58 @@ public class Controller implements ObserverSyndrom {
                 if (!cell.isEmpty()) {
                     currentFont = cell.getItem().getText();
                     comboBox.getEditor().setText(currentFont);
-                    editFontSphere(currentFont);
+                    if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)){
+                        editFontSphere(currentFont);
+                    }else if(comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+                        editFontVertex(currentFont);
+                    }
                     root.requestFocus();
                 }
             });
             return cell ;
         });
 
-        fontLabels = FXCollections.observableArrayList();
+        ObservableList<MenuItem> fontMenuItems = FXCollections.observableArrayList();
         for (String font : fonts) {
             MenuItem fontMenuItem = new MenuItem(font);
-            fontLabels.add(fontMenuItem);
+            fontMenuItems.add(fontMenuItem);
         }
-        comboBox.setItems(fontLabels);
+        comboBox.setItems(fontMenuItems);
     }
 
     private void loadSizes(ComboBox comboBox) {
-        /*ObservableList<String> sizes =
-                FXCollections.observableArrayList(
-                        "8",
-                        "9",
-                        "10",
-                        "11",
-                        "12",
-                        "14",
-                        "18",
-                        "24",
-                        "30",
-                        "36",
-                        "48",
-                        "60",
-                        "72",
-                        "96"
-                );*/
-        sizeLabels = FXCollections.observableArrayList();
-        for (String size : sizes) {
-            Label sizeLabel = new Label(size);
-            sizeLabel.addEventHandler(ActionEvent.ACTION, event -> {
-                currentSize = size;
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
-                    editFontSizeSphere(Integer.parseInt(currentSize));
-                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-                    editFontSizeVertices(Integer.parseInt(currentSize));
+
+        comboBox.setCellFactory(lv -> {
+            ListCell<MenuItem> cell = new ListCell<MenuItem>(){
+                @Override
+                protected void updateItem(MenuItem item, boolean empty){
+                    super.updateItem(item, empty);
+                    setText(empty ? null : item.getText());
+                }
+            };
+
+            cell.setOnMousePressed(e -> {
+                if(!cell.isEmpty()){
+                    currentSize = cell.getItem().getText();
+                    int size = Integer.parseInt(currentSize);
+                    comboBox.getEditor().setText(currentSize);
+                    if(comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)){
+                        editFontSizeSphere(size);
+                    }else if(comboBox.getId().equals((SIZE_SYMPTOM_COMBO_BOX))){
+                        editFontSizeVertices(size);
+                    }
+                    root.requestFocus();
                 }
             });
-            sizeLabels.add(sizeLabel);
+            return cell;
+        });
+
+        ObservableList<MenuItem> sizeMenuItems = FXCollections.observableArrayList();
+        for (String size : sizes) {
+            MenuItem sizeMenuItem = new MenuItem(size);
+            sizeMenuItems.add(sizeMenuItem);
         }
-        comboBox.setItems(sizeLabels);
+        comboBox.setItems(sizeMenuItems);
     }
 
     /**
@@ -2639,9 +2699,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(editVerticesSizeLogAction);
     }
 
-    public void addSphereButton() {
-        values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
-    }
 
     /*
      * The event handler that provides the arguments, needed to use the actions after choosing a colour.

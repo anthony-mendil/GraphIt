@@ -45,6 +45,7 @@ public class GXLio {
     private static final String IS_HIGHLIGHTED="isHighlighted";
     private static final String ANCHORANGLE_OF_SOURCE="anchorAngle of source";
     private static final String ANCHORANGLE_OF_TARGET="anchorAngle of target";
+    private static final String NAME_OF_GRAPH ="name of the graph";
 
 
     private static Logger logger = Logger.getLogger(GXLio.class);
@@ -91,7 +92,7 @@ public class GXLio {
                     maxID = Math.max(maxID, idCounter);
                 }
             }
-            syndrom.setGraphName(gxlGraph.getAttribute("name of the graph"));
+            syndrom.setGraphName(((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue());
             updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());
@@ -422,9 +423,9 @@ public class GXLio {
         GXLDocument doc = new GXLDocument();
         GXLGraph gxlSyndrom = new GXLGraph("syndrom");
         if(syndrom.getGraphName() == null){
-            gxlSyndrom.setAttr("name of the graph", new GXLString("untitled syndrom"));
+            gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString("untitled syndrom"));
         }else {
-            gxlSyndrom.setAttr("name of the graph", new GXLString(syndrom.getGraphName()));
+            gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString(syndrom.getGraphName()));
         }
         for (Sphere s : currentSpheres) {
             gxlSyndrom.add(createSphereNode(s, withTemplate));
