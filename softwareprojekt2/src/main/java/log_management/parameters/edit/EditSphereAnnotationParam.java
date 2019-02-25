@@ -19,34 +19,43 @@ public class EditSphereAnnotationParam implements Param {
     @Getter
     private Sphere sphere;
     /**
-     * The new sphere containing its new annotation.
-     */
-    @Getter
-    private Sphere newSphere;
-    /**
      * The old annotation of the sphere.
      */
     @Getter
-    private String oldAnnotation;
+    private String oldAnnotationEnglish;
 
     /**
      * The new annotation of the sphere.
      */
     @Getter
-    private String newAnnotation;
+    private String newAnnotationEnglish;
+    /**
+     * The old annotation of the sphere.
+     */
+    @Getter
+    private String oldAnnotationGerman;
+
+    /**
+     * The new annotation of the sphere.
+     */
+    @Getter
+    private String newAnnotationGerman;
 
     /**
      * Creates a vertices object of its own class.
      *
      * @param pSphere        The sphere containing its old annotation.
-     * @param pOldAnnotation The old annotation.
-     * @param pNewAnnotation The new annotation.
+     * @param pOldAnnotationEnglish The old annotation.
+     * @param pNewAnnotationEnglish The new annotation.
+     * @param pOldAnnotationGerman  The old annotation.
+     * @param pNewAnnotationGerman  The new annotation.
      */
-    public EditSphereAnnotationParam(Sphere pSphere, Sphere pNewSphere, String pOldAnnotation, String pNewAnnotation) {
+    public EditSphereAnnotationParam(Sphere pSphere, String pOldAnnotationEnglish, String pNewAnnotationEnglish, String pOldAnnotationGerman, String pNewAnnotationGerman) {
         this.sphere = pSphere;
-        this.newSphere = pNewSphere;
-        this.oldAnnotation = pOldAnnotation;
-        this.newAnnotation = pNewAnnotation;
+        this.oldAnnotationEnglish = pOldAnnotationEnglish;
+        this.newAnnotationEnglish = pNewAnnotationEnglish;
+        this.oldAnnotationGerman = pOldAnnotationGerman;
+        this.newAnnotationGerman = pNewAnnotationGerman;
     }
 
     @Override
@@ -55,12 +64,16 @@ public class EditSphereAnnotationParam implements Param {
         String information = "";
         if (language == Language.ENGLISH) {
             information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". "
-                    + "Old annotation: " + oldAnnotation
-                    + ", new annotation: " + newAnnotation + ". ";
+                    + "Old annotation(English): " + oldAnnotationEnglish
+                    + ", new annotation(English): " + newAnnotationEnglish
+                    + "Old annotation(German): " + oldAnnotationGerman
+                    + ", new annotation(German): " + newAnnotationGerman + ". ";
         } else {
             information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". "
-                    + "Alte Beschriftung: "
-                    + ", neue Beschriftung: " + newAnnotation + ". ";
+                    + "Alte Beschriftung(Englisch): " + oldAnnotationEnglish
+                    + ", neue Beschriftung(Englisch): " + newAnnotationEnglish
+                    + "Alte Beschriftung(Deutsch): " + oldAnnotationGerman
+                    + ", neue Beschriftung(Deutsch): " + newAnnotationGerman + ". ";
         }
         return information;
     }
