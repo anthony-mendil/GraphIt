@@ -54,6 +54,6 @@ public class ActivateAnchorPointsFadeoutAction extends LogAction {
 
 
     public void createParameter() {
-        return;
+        //
     }
 }
