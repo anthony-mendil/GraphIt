@@ -20,13 +20,12 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesDrawColorParam implements Param {
-    @Getter
+
     private List<Vertex> oldVertices;
 
     @Getter
     private List<Color> oldColors;
 
-    @Getter
     private List<Vertex> newVertices;
 
     @Getter
@@ -57,31 +56,25 @@ public class EditVerticesDrawColorParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed: ";
+            information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
-                        + "Old draw color: "
-                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
-                        Language.ENGLISH)
-                        + ", new draw color: "
-                        + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.ENGLISH) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old draw color: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i),
+                        Language.ENGLISH)).append(", new draw color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i),
+                        Language.ENGLISH)).append(". ");
             }
         } else {
-            information += "Veränderte Symptome: ";
+            information.append("Veränderte Symptome: ");
+            StringBuilder informationBuilder = new StringBuilder(information.toString());
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
-                        + "Alte Umrandungsfarbe: "
-                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i),
-                        Language.GERMAN)
-                        + ", neue Umrandungsfarbe: "
-                        + ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.GERMAN) + ". ";
+                informationBuilder.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Umrandungsfarbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i),
+                        Language.GERMAN)).append(", neue Umrandungsfarbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i),
+                        Language.GERMAN)).append(". ");
             }
+            information = new StringBuilder(informationBuilder.toString());
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Vertex, Color> getOldVertices() {

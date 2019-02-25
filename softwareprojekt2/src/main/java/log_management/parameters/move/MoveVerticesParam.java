@@ -21,13 +21,11 @@ import static log_management.parameters.move.MoveSphereParam.Y_IS;
  */
 @Data
 public class MoveVerticesParam implements Param {
-    @Getter
     private List<Vertex> oldVertices;
 
     @Getter
     private List<Point2D> oldPositions;
 
-    @Getter
     private List<Vertex> newVertices;
 
     @Getter
@@ -58,31 +56,23 @@ public class MoveVerticesParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptoms: ";
-                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". ";
-                information += "Old coordinates: x = "
-                        + (int) oldPositions.get(i).getX()
-                        + Y_IS + (int) oldPositions.get(i).getY() + ", ";
-                information += ", new Coordinates: x = "
-                        + (int) newPositions.get(i).getX()
-                        + Y_IS + (int) newPositions.get(i).getY() + ". ";
+                information.append("Symptoms: ");
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ");
+                information.append("Old coordinates: x = ").append((int) oldPositions.get(i).getX()).append(Y_IS).append((int) oldPositions.get(i).getY()).append(", ");
+                information.append(", new Coordinates: x = ").append((int) newPositions.get(i).getX()).append(Y_IS).append((int) newPositions.get(i).getY()).append(". ");
             }
         } else {
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += "Symptome: ";
-                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". ";
-                information += "Alte Koordinaten: x = "
-                        + (int) oldPositions.get(i).getX()
-                        + Y_IS + (int) oldPositions.get(i).getY();
-                information += ", neue Koordinaten: x = "
-                        + (int) newPositions.get(i).getX()
-                        + Y_IS + (int) newPositions.get(i).getY() + ". ";
+                information.append("Symptome: ");
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ");
+                information.append("Alte Koordinaten: x = ").append((int) oldPositions.get(i).getX()).append(Y_IS).append((int) oldPositions.get(i).getY());
+                information.append(", neue Koordinaten: x = ").append((int) newPositions.get(i).getX()).append(Y_IS).append((int) newPositions.get(i).getY()).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Vertex, Point2D> getOldVertices() {

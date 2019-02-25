@@ -69,29 +69,25 @@ public class EditEdgesColorParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Relations changed: ";
+            information.append("Relations changed: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
-                information += "Old color: "
-                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.ENGLISH);
-                information += ", new color: "
-                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH) + ". ";
+                information.append(SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
+                information.append("Old color: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.ENGLISH));
+                information.append(", new color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH)).append(". ");
             }
         } else {
-            information += "Geänderte Relationen: ";
+            information.append("Geänderte Relationen: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
-                information += "Alte Farbe: "
-                        + ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.GERMAN);
-                information += ", neue Farbe: "
-                        + ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN) + ". ";
+                information.append(SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
+                        new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
+                information.append("Alte Farbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.GERMAN));
+                information.append(", neue Farbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN)).append(". ");
             }
         }
-        return information;
+        return information.toString();
 
     }
 
