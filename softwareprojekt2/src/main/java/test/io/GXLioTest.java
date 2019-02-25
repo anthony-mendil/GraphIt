@@ -3,6 +3,7 @@ package test.io;
 import actions.other.SwitchModeAction;
 import graph.graph.*;
 import gui.Values;
+import gui.properties.Language;
 import io.GXLio;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
@@ -66,12 +67,22 @@ public class GXLioTest {
         s2.setWidth(300.0);
         s2.setLockedAnnotation(true);
         s2.setLockedVertices(true);
+        Map<String, String>  annotation2 = s2.getAnnotation();
+        annotation2.put(Language.GERMAN.name(),"Sphäre Nummer 1");
+        s2.setAnnotation(annotation2);
         Sphere s3 = factory.createSphere(new Point2D.Double(620, 20));
+        Map<String, String>  annotation3 = s3.getAnnotation();
+        annotation3.put(Language.ENGLISH.name(),"Sphere number 2");
+        s3.setAnnotation(annotation3);
         values.setFillPaintSphere(new java.awt.Color(24, 54, 11, 178));
         values.setFontSizeSphere(24);
         Sphere s4 = factory.createSphere(new Point2D.Double(200, 310));
         s4.setLockedMaxAmountVertices("17");
         s4.setLockedPosition(true);
+        Map<String, String>  annotation4 = s4.getAnnotation();
+        annotation4.put(Language.GERMAN.name(),"Sphäre Nummer 3");
+        annotation4.put(Language.ENGLISH.name(),"Sphere number 3");
+        s4.setAnnotation(annotation4);
         Sphere s5 = factory.createSphere(new Point2D.Double(445, 310));
         s5.setLockedMaxAmountVertices("5");
         s5.setLockedPosition(true);
@@ -259,7 +270,7 @@ public class GXLioTest {
     public void testElementNumberOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom(false);
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
-        Assert.assertEquals(22, doc.getElement(syndromName).getChildCount());
+        Assert.assertEquals(23, doc.getElement(syndromName).getChildCount());
     }
 
     /**
@@ -376,6 +387,43 @@ public class GXLioTest {
         Assert.assertEquals(new Point2D.Double(280, 420), vertices.get(6).getCoordinates());
         Assert.assertEquals(new Point2D.Double(555, 420), vertices.get(7).getCoordinates());
         Assert.assertEquals(new Point2D.Double(620, 360), vertices.get(8).getCoordinates());
+    }
+
+    // <---------     annotation    ---------->
+
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the width-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testSpheresAnnotaionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
+        Assert.assertEquals("Sphere 0", convertMapToList(spheres.get(0).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 0", convertMapToList(spheres.get(0).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 1", convertMapToList(spheres.get(1).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 1", convertMapToList(spheres.get(1).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 2", convertMapToList(spheres.get(2).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 2", convertMapToList(spheres.get(2).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 3", convertMapToList(spheres.get(3).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 3", convertMapToList(spheres.get(3).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 4", convertMapToList(spheres.get(4).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 4", convertMapToList(spheres.get(4).getAnnotation()).get(3));
+    }
+
+
+    /**
+     * This is a helper Method that rturns the values of the passed map as list.
+     */
+    private ArrayList<String> convertMapToList(Map<String, String> pHashMap){
+        ArrayList<String> list = new ArrayList<>();
+        for(Map.Entry map : pHashMap.entrySet()){
+            list.add((String) map.getKey());
+            list.add((String) map.getValue());
+        }
+        return list;
     }
 
     // <-------------   size    ------------------>
