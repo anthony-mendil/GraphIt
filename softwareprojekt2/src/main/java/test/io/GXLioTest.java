@@ -53,6 +53,9 @@ public class GXLioTest {
         return gxlio;
     }
 
+    /**
+     * This method creates some spheres, vertices and edges with different values for some of their attributes.
+     */
     private void generateGraphElements() {
         values.setFontSizeSphere(10);
         values.setFillPaintSphere(new java.awt.Color(86, 151, 31, 183));
@@ -171,6 +174,11 @@ public class GXLioTest {
 
     // <---------   name of graph   ------------>
 
+    /**
+     * This method tests if the name of a graph is exported and imported correctly.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testGraphName() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -180,6 +188,12 @@ public class GXLioTest {
 
     // <--------------       holistic comparision       ------------->
 
+    /**
+     * This method tests, if the list of spheres contained in the graph belonging to the syndrom after importing a gxl-File
+     * is equal to the list of spheres of the graph that gets imported.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSphereList() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -187,6 +201,12 @@ public class GXLioTest {
         Assert.assertEquals(spheresList, g.getSpheres());
     }
 
+    /**
+     * This method tests, if the list of vertices contained in the graph belonging to the syndrom after importing a gxl-File
+     * is equal to the list of vertices of the graph that is imported.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVertexList() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -196,6 +216,12 @@ public class GXLioTest {
         Assert.assertEquals(verticesList, importedVertices);
     }
 
+    /**
+     * This method tests, if the list of edges contained in the graph belonging to the syndrom after importing a gxl-File
+     * is equal to the list of edges of the graph that is imported.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgeList() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -207,6 +233,12 @@ public class GXLioTest {
 
     // <-------------   number of elements    ------------------>
 
+    /**
+     * This method tests, if the number of spheres, vertices and edges is correct after the import of a gxl File.
+     * Correct in this sense means that it is identical to the number of spheres, vertices and edges of the graph that gets exported.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testElementNumberOfSyndromGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -216,18 +248,30 @@ public class GXLioTest {
         Assert.assertEquals(5, g.getSpheres().size());
     }
 
-    @Test
-    public void testElementNumberWithTemplateOfGXLGraph() throws IOException, SAXException {
-        prepareSyndrom(true);
-        Assert.assertEquals(2, doc.getDocumentElement().getGraphCount());
-    }
-
-
+    /**
+     * This method tests if the GXLGraph-Oject created from the File that is created by the emport of a graph
+     * contains only one GXLGraph (the exported syndrom) and if this graph contains the right amount of childs.
+     * Childs in this sense are spheres, vertices and edges.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testElementNumberOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom(false);
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
         Assert.assertEquals(22, doc.getElement(syndromName).getChildCount());
+    }
+
+    /**
+     * This method tests if the GXLGraph-Oject created from the File that is created by the emport of a graph
+     * contains two GXLGraphs. One of them represents the syndromgraph and the other GXLGraph contains the rules of the template.
+     * @throws IOException
+     * @throws SAXException
+     */
+    @Test
+    public void testElementNumberWithTemplateOfGXLGraph() throws IOException, SAXException {
+        prepareSyndrom(true);
+        Assert.assertEquals(2, doc.getDocumentElement().getGraphCount());
     }
 
     // <--------------     relations of graph elements    ------------->
