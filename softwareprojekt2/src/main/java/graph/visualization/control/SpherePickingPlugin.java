@@ -65,12 +65,15 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
 
         if (SwingUtilities.isLeftMouseButton(e)) {
-
-            if (values.getGraphButtonType() == GraphButtonType.ADD_SPHERE && sp == null && vertex == null) {
-                List<Sphere> list = graph.getSpheres();
-                Rectangle2D newRec = new Rectangle2D.Double(p.getX(), p.getY(), values.getDefaultWidthSphere(),
-                        values.getDefaultHeightSphere());
-                addSphere(list, newRec, p);
+            if (values.getGraphButtonType() == GraphButtonType.ADD_SPHERE ) {
+                if (vertex == null && sp == null){
+                    List<Sphere> list = graph.getSpheres();
+                    Rectangle2D newRec = new Rectangle2D.Double(p.getX(), p.getY(), values.getDefaultWidthSphere(),
+                            values.getDefaultHeightSphere());
+                    addSphere(list, newRec, p);
+                } else {
+                    helper.setActionText("SPHERE_PICKING_ADD_ALERT", true, true);
+                }
             }
         } else {
             if (vertex == null && sp != null) {
