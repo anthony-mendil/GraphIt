@@ -2176,14 +2176,7 @@ public class Controller implements ObserverSyndrom {
         loadFonts(comboBox);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
-<<<<<<< HEAD
-        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                comboBox.hide();
-                if(event.getCode() == KeyCode.ENTER){
-                    logger.debug(comboBox.getEditor().getText());
-=======
+
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             comboBox.hide();
             if(event.getCode() == KeyCode.ENTER){
@@ -2196,7 +2189,7 @@ public class Controller implements ObserverSyndrom {
                         currentFont = tmpFont;
                         editFontVertex(tmpFont);
                     }
->>>>>>> 48dd2bd7796819271d65069fb5c1bbe4c27db528
+
                 }
                 root.requestFocus();
             }
