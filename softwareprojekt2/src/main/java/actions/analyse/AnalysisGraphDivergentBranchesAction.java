@@ -48,6 +48,6 @@ public class AnalysisGraphDivergentBranchesAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

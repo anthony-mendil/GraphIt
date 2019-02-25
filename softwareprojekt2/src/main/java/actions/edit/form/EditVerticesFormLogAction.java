@@ -36,7 +36,7 @@ public class EditVerticesFormLogAction extends LogAction {
      *
      * @param pEditVerticesFormParam The vertices object that contains every vertices that is needed.
      */
-    public EditVerticesFormLogAction(EditVerticesFormParam pEditVerticesFormParam) {
+    private EditVerticesFormLogAction(EditVerticesFormParam pEditVerticesFormParam) {
         super(LogEntryName.EDIT_VERTICES_FORM);
         parameters = pEditVerticesFormParam;
     }

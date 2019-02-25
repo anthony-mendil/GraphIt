@@ -2,8 +2,6 @@ package actions.deactivate;
 
 import actions.LogAction;
 import actions.LogEntryName;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
@@ -13,8 +11,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.transformer.FadeOutElementsTransition;
 import graph.visualization.transformer.edge.EdgeFadeoutPaintTransformer;
 import graph.visualization.transformer.vertex.VertexFadeoutPaintTransformer;
-import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
-import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.Transformer;
 import org.apache.commons.collections15.functors.TruePredicate;
 
@@ -29,16 +25,6 @@ public class DeactivateFadeoutAction extends LogAction {
      * Constructor in case the user wants to make every vertex and edge visible again.
      */
     public DeactivateFadeoutAction() {
-        super(LogEntryName.DEACTIVATE_FADEOUT);
-    }
-
-    /**
-     * Makes the vertices and edges visible. Also used to implement the undo-method of
-     * ActivateFadeoutAction.
-     *
-     * @param pParam The vertices object that contains every vertices that is needed.
-     */
-    public DeactivateFadeoutAction(ActivateDeactivateFadeoutParam pParam) {
         super(LogEntryName.DEACTIVATE_FADEOUT);
     }
 
@@ -57,9 +43,6 @@ public class DeactivateFadeoutAction extends LogAction {
         Transformer<Edge, Paint> oldEdgeArrowTransformer = rc.getArrowFillPaintTransformer();
 
         FadeType fadeType = FadeType.DEACTIVATE;
-
-        Predicate<Context<Graph<Vertex, Edge>, Edge>> predicateEdge = TruePredicate.getInstance();
-        Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex =  TruePredicate.getInstance();
 
         VertexFadeoutPaintTransformer<Vertex> vertexFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFill, fadeType);
         VertexFadeoutPaintTransformer<Vertex> vertexVertexDrawFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerDraw, fadeType);

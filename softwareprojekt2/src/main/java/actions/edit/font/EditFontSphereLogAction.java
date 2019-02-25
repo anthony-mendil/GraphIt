@@ -34,7 +34,7 @@ public class EditFontSphereLogAction extends LogAction {
      *
      * @param pEditFontSphereParam The EditFontSphereParam object containing the new font and the sphere.
      */
-    public EditFontSphereLogAction(EditFontSphereParam pEditFontSphereParam) {
+    private EditFontSphereLogAction(EditFontSphereParam pEditFontSphereParam) {
         super(LogEntryName.EDIT_FONT_SPHERE);
         parameters = pEditFontSphereParam;
     }
@@ -44,14 +44,12 @@ public class EditFontSphereLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         if(parameters == null) {
-            Sphere sphere = null;
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                    createParameter(sp, sp.getFont(), font);
                     sp.setFont(font);
                 }else{
                     helper.setActionText("EDIT_FONT_SPHERE_ALERT", true, true);
-                    sphere = sp;
                 }
             }
         }else{

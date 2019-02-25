@@ -55,11 +55,6 @@ public class AddSphereLogAction extends LogAction {
                 createParameter(sp);
             } else {
                 graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
-                /*for(Vertex v : ((AddRemoveSphereParam)parameters).getVertices()){
-                    graph.addVertexExisting(v);
-                    Sphere sp = pickSupport.getSphere(v.getCoordinates().getX(), v.getCoordinates().getY());
-                    sp.getVertices().add(v);
-                }*/
             }
             vv.repaint();
             syndrom.getVv2().repaint();

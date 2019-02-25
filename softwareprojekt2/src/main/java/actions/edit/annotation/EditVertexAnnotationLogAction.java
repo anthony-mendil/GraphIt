@@ -39,7 +39,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
      *
      * @param pEditVertexAnnotationParam The vertices object containing the new vertex annotation.
      */
-    public EditVertexAnnotationLogAction(EditVertexAnnotationParam pEditVertexAnnotationParam) {
+    private EditVertexAnnotationLogAction(EditVertexAnnotationParam pEditVertexAnnotationParam) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);
         parameters = pEditVertexAnnotationParam;
     }
@@ -52,8 +52,6 @@ public class EditVertexAnnotationLogAction extends LogAction {
             for (Vertex v : pickedState.getPicked()) {
                 if(!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     Map<String, String> annotation = v.getAnnotation();
-                    Map<String, String> oldAnnotation = new HashMap<>();
-                    annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
 
                     createParameter(v, v.getAnnotation().get(language.name()), text);
                     annotation.put(language.name(), text);

@@ -30,6 +30,6 @@ public class RemoveFadeoutElementAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

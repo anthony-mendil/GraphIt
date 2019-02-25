@@ -31,7 +31,7 @@ public class EditEdgesStrokeLogAction extends LogAction {
      *
      * @param pEditEdgesStrokeParam The vertices object that contains every vertices that is needed.
      */
-    public EditEdgesStrokeLogAction(EditEdgesStrokeParam pEditEdgesStrokeParam) {
+    private EditEdgesStrokeLogAction(EditEdgesStrokeParam pEditEdgesStrokeParam) {
         super(LogEntryName.EDIT_EDGES_STROKE);
         parameters = pEditEdgesStrokeParam;
     }

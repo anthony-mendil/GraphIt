@@ -10,6 +10,7 @@ import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
 import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,10 +29,10 @@ public class ShowAnalysisResultAction extends LogAction {
     /**
      * Constructor in case the user annuls all/several highlighted vertices.
      */
-    public ShowAnalysisResultAction(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
+    public ShowAnalysisResultAction(List<Vertex> pVertices, List<Edge> pEdges) {
         super(LogEntryName.SHOW_HIGHLIGHTED);
-        this.vertices = vertices;
-        this.edges = edges;
+        vertices = new ArrayList<>(pVertices);
+        edges = new ArrayList<>(pEdges);
     }
 
 
@@ -55,9 +56,6 @@ public class ShowAnalysisResultAction extends LogAction {
      */
     @Override
     public void undo() {
-    }
-
-
-    public void createParameter() {
+        //no undo operation for this action
     }
 }

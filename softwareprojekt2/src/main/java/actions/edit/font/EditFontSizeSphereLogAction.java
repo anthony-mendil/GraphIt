@@ -34,7 +34,7 @@ public class EditFontSizeSphereLogAction extends LogAction {
      *
      * @param pEditFontSizeSphereParam The EditFontSizeSphereParam object containing the font size and the sphere.
      */
-    public EditFontSizeSphereLogAction(EditFontSizeSphereParam pEditFontSizeSphereParam) {
+    private EditFontSizeSphereLogAction(EditFontSizeSphereParam pEditFontSizeSphereParam) {
         super(LogEntryName.EDIT_SPHERE_FONT_SIZE);
         parameters = pEditFontSizeSphereParam;
     }
@@ -44,14 +44,12 @@ public class EditFontSizeSphereLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         if(parameters == null) {
-            Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     createParameter(sp, sp.getFontSize(), size);
                     sp.setFontSize(size);
                 }else{
                     helper.setActionText("EDIT_SPHERE_FONT_SIZE_ALERT", true, true);
-                    lockedSphere = sp;
                 }
             }
         }else{

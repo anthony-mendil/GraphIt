@@ -38,7 +38,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
      * @param pEditFontSizeVerticesParam The EditFontSizeVerticesParam object containing
      *                                   the new font sizes of the Vertices.
      */
-    public EditFontSizeVerticesLogAction(EditFontSizeVerticesParam pEditFontSizeVerticesParam) {
+    private EditFontSizeVerticesLogAction(EditFontSizeVerticesParam pEditFontSizeVerticesParam) {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);
         parameters = pEditFontSizeVerticesParam;
     }

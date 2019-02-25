@@ -14,8 +14,6 @@ public class CreateGraphAction extends GraphAction {
     private String graphName;
     private Controller controller;
 
-    //@Inject
-    //private DatabaseManager databaseManager;
 
     /**
      * Constructor in case the user creates a new graph.
@@ -48,6 +46,6 @@ public class CreateGraphAction extends GraphAction {
 
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

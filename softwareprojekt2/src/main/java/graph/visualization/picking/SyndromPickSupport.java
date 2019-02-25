@@ -29,6 +29,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
     private BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
     private static Logger logger = Logger.getLogger(SyndromPickSupport.class);
+
     /**
      * Creates a <code>SyndromPickSupport</code> for the <code>vv</code> VisualizationServer. The
      * <code>VisualizationServer</code> is used to access properties of the current visualization (layout, renderer,
@@ -79,10 +80,6 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      * weswegen wir sie nicht überschreiben konnten. Außerdem wurde der return Wert von getTransformedEdgeShape()
      * geändert.
      * Der restliche Code der Methode wurde nicht verändert und nicht von uns programmiert.
-     * @param layout
-     * @param x
-     * @param y
-     * @return
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -104,7 +101,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
                     E e = (E) o;
                     javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> pair = getTransformedEdgeShape(e, vv.getRenderContext(), layout);
-                    if(pair==null){
+                    if (pair == null) {
                         return null;
                     }
                     Shape edgeShape = pair.getKey().getKey();
@@ -160,24 +157,24 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         float x2 = (float) p2.getX();
         float y2 = (float) p2.getY();
         Shape edgeShape = null;
-        try{
-             edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
-            if (edgeShape == null){
+        try {
+            edgeShape = rc.getEdgeShapeTransformer().transform(Context.getInstance(graph, e));
+            if (edgeShape == null) {
                 return null;
             }
-        } catch (NullPointerException ex){
-            System.out.println(ex.fillInStackTrace());
+        } catch (NullPointerException ex) {
+            logger.error(ex.toString());
         }
 
         Shape arrow = null;
 
-        if (rc.getEdgeArrowPredicate().evaluate(Context.<Graph<V, E>, E>getInstance(graph, e))) {
+        if (rc.getEdgeArrowPredicate().evaluate(Context.getInstance(graph, e))) {
             Vertex second = (Vertex) graph.getEndpoints(e).getSecond();
             Vertex first = (Vertex) graph.getEndpoints(e).getFirst();
-            arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
+            arrow = rc.getEdgeArrowTransformer().transform(Context.getInstance(graph, e));
             Edge edge = (Edge) e;
-            AffineTransform edgeAngle = null;
-            AffineTransform outEdgeAngle = null;
+            AffineTransform edgeAngle;
+            AffineTransform outEdgeAngle;
             Point2D in = edge.getAnchorPoints().getValue();
             Point2D out = edge.getAnchorPoints().getKey();
             if (edge.isHasAnchorIn() && in != null) {
@@ -210,6 +207,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         javafx.util.Pair<Shape, Point2D> pair = new javafx.util.Pair<>(edgeShape, new Point2D.Double(x1, y1));
         return new javafx.util.Pair<>(pair, arrow);
     }
+
     @SuppressWarnings("unchecked")
 
     private AffineTransform getAffineTransformAnchor(RenderContext<V, E> rc, Vertex vertex, float endX, float endY, Point2D anchorPoint) {

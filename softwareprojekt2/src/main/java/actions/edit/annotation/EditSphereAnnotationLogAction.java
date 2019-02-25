@@ -13,9 +13,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereAnnotationParam;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Changes the annotation of a selected sphere.
@@ -42,7 +40,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
      *
      * @param pEditSphereAnnotationParam The param object containing the sphere and annotation to change to.
      */
-    public EditSphereAnnotationLogAction(EditSphereAnnotationParam pEditSphereAnnotationParam) {
+    private EditSphereAnnotationLogAction(EditSphereAnnotationParam pEditSphereAnnotationParam) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
         parameters = pEditSphereAnnotationParam;
     }
@@ -52,12 +50,11 @@ public class EditSphereAnnotationLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         if(parameters == null) {
-            Set<Sphere> lockedSpheres = new HashSet<>();
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     Map<String, String> annotation = sp.getAnnotation();
                     Map<String, String> oldAnnotation = new HashMap<>();
-                    annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
+                    annotation.forEach(oldAnnotation::put);
 
                     Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(), sp.getWidth(),
                             sp.getHeight(), oldAnnotation, sp.getFont(), sp.getFontSize());
@@ -70,7 +67,6 @@ public class EditSphereAnnotationLogAction extends LogAction {
                     sp.setAnnotation(annotation);
                 } else{
                     helper.setActionText("EDIT_SPERE_ANNOTATION_ALERT", true, true);
-                    lockedSpheres.add(sp);
                 }
             }
         }else{
