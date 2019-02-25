@@ -21,12 +21,14 @@ import org.apache.commons.collections15.functors.TruePredicate;
 public class FilterGraphAction extends GraphAction {
     private Predicate<Context<Graph<Vertex, Edge>, Edge>> predicateEdge;
     private Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex;
+
     /**
      * Constructor in case the user filters the graph on the criteria.
+     *
      * @param edgeType The edge type to filter for.
      */
     public FilterGraphAction(EdgeArrowType edgeType, boolean toDo) {
-        if (toDo){
+        if (toDo) {
             predicateEdge = new EdgeArrowPredicate<>(edgeType);
             predicateVertex = TruePredicate.getInstance();
         } else {
@@ -37,10 +39,11 @@ public class FilterGraphAction extends GraphAction {
 
     /**
      * Filters the vertices/spheres regex for a regular expression.
+     *
      * @param regularExpression The regular expression to filter for.
      */
     public FilterGraphAction(String regularExpression, boolean toDo) {
-        if (toDo && regularExpression != null){
+        if (toDo && regularExpression != null) {
             predicateVertex = new VertexAnnotationPredicate<>(regularExpression);
             predicateEdge = TruePredicate.getInstance();
         } else {
@@ -53,7 +56,7 @@ public class FilterGraphAction extends GraphAction {
      * Filters the vertices for the attribute isVisible=false.
      */
     public FilterGraphAction(boolean toDo) {
-        if (toDo){
+        if (toDo) {
             predicateVertex = new VertexIsVisiblePredicate<>();
             predicateEdge = new EdgeIsVisiblePredicate<>();
         } else {

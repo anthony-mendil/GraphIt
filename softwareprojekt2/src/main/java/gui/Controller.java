@@ -2461,14 +2461,16 @@ public class Controller implements ObserverSyndrom {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("/GraphItLogo.png"));
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-            // ... user chose "One"
-            logger.debug("SCHLIEßEN");
-            System.exit(0);
-            Platform.exit();
-        } else {
-            // ... user chose CANCEL or closed the dialog
-            logger.debug("CANCEL");
+        if (result.isPresent()) {
+            if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                // ... user chose "One"
+                logger.debug("SCHLIEßEN");
+                System.exit(0);
+                Platform.exit();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                logger.debug("CANCEL");
+            }
         }
     }
 
