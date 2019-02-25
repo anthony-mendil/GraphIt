@@ -90,6 +90,7 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.security.Key;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -877,13 +878,8 @@ public class Controller implements ObserverSyndrom {
     private static final String TIMES_NEW_ROMAN = "Times New Roman";
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
-
-    private static Logger logger = Logger.getLogger(Controller.class);
-
-    private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
-    private LogEntryName analysisLogEntryName = null;
-    private LoadLanguage loadLanguage;
-
+    private ObservableList<Label> sizeLabels;
+    private ObservableList<MenuItem> fontLabels;
     private ObservableList<String> fonts =
             FXCollections.observableArrayList(
                     "AveriaSansLibre",
@@ -892,7 +888,6 @@ public class Controller implements ObserverSyndrom {
                     "Roboto",
                     "RobotoSlab"
             );
-
     private ObservableList<String> sizes =
             FXCollections.observableArrayList(
                     "8",
@@ -910,6 +905,12 @@ public class Controller implements ObserverSyndrom {
                     "72",
                     "96"
             );
+
+    private static Logger logger = Logger.getLogger(Controller.class);
+
+    private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
+    private LogEntryName analysisLogEntryName = null;
+    private LoadLanguage loadLanguage;
 
     public void filterEdgeTypeReinforced() {
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
@@ -1750,6 +1751,8 @@ public class Controller implements ObserverSyndrom {
         initProtocolTree();
         initGraphLanguage();
         initInfoText();
+
+
     }
 
     private void initInfoText() {
@@ -2001,20 +2004,19 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             comboBox.show();
-
             if (!newValue.matches("[a-zA-Z ]*"))
                 comboBox.getEditor().setText(oldValue);
         }
     }
 
-    private class ComboBoxValueListener implements ChangeListener<String> {
-        private final ComboBox<String> comboBox;
+    public void editFontSizeSphere(int size) {
+        values.setFontSizeSphere(size);
+        EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+        history.execute(editFontSizeSphereLogAction);
+    }
 
-        private void editFontSizeSphere(int size) {
-            values.setFontSizeSphere(size);
-            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-            history.execute(editFontSizeSphereLogAction);
-        }
+    /*private class ComboBoxValueListener implements ChangeListener<String> {
+        private final ComboBox<String> comboBox;
 
         private ComboBoxValueListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
@@ -2045,7 +2047,9 @@ public class Controller implements ObserverSyndrom {
             }
             root.requestFocus();
         }
-    }
+    }*/
+
+
 
     private class ComboBoxFocusListener implements ChangeListener<Boolean> {
         private final ComboBox<String> comboBox;
@@ -2057,9 +2061,9 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) && sizes.contains(comboBox.getEditor().getText())) {
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     currentSize = comboBox.getEditor().getText();
-                } else if ((comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) && fonts.contains(comboBox.getEditor().getText())) {
+                } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
@@ -2071,6 +2075,7 @@ public class Controller implements ObserverSyndrom {
             }
         }
     }
+
 
     private void loadMenuItem() {
         symptomCircle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
@@ -2139,12 +2144,18 @@ public class Controller implements ObserverSyndrom {
         } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontVertex());
         }
-
-        comboBox.setItems(fonts);
+        loadFonts(comboBox);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
-        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
-        loadFonts(comboBox);
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                comboBox.hide();
+                if(event.getCode() == KeyCode.ENTER){
+                    System.out.println(comboBox.getEditor().getText());
+                }
+            }
+        });
     }
 
 
@@ -2154,42 +2165,73 @@ public class Controller implements ObserverSyndrom {
         } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeVertex());
         }
-
         comboBox.setItems(sizes);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
-        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
     }
 
     private void loadFonts(ComboBox comboBox) {
-        ObservableList<Label> fontLabels = FXCollections.observableArrayList();
-        for (String font : fonts) {
-            Label fontLabel = new Label(font);
-            fontLabel.addEventHandler(ActionEvent.ACTION, event -> {
-                currentFont = font;
-                if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                    editFontSphere(font);
-                } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                    editFontVertex(font);
+
+        comboBox.setCellFactory(lv -> {
+            ListCell<MenuItem> cell = new ListCell<MenuItem>() {
+                @Override
+                protected void updateItem(MenuItem item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(empty ? null : item.getText());
+                }
+            };
+
+            cell.setOnMousePressed(e -> {
+                if (!cell.isEmpty()) {
+                    currentFont = cell.getItem().getText();
+                    comboBox.getEditor().setText(currentFont);
+                    editFontSphere(currentFont);
+                    root.requestFocus();
                 }
             });
-            fontLabels.add(fontLabel);
+            return cell ;
+        });
+
+        fontLabels = FXCollections.observableArrayList();
+        for (String font : fonts) {
+            MenuItem fontMenuItem = new MenuItem(font);
+            fontLabels.add(fontMenuItem);
         }
+        comboBox.setItems(fontLabels);
     }
 
     private void loadSizes(ComboBox comboBox) {
-        ObservableList<Label> sizeLabels = FXCollections.observableArrayList();
+        /*ObservableList<String> sizes =
+                FXCollections.observableArrayList(
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12",
+                        "14",
+                        "18",
+                        "24",
+                        "30",
+                        "36",
+                        "48",
+                        "60",
+                        "72",
+                        "96"
+                );*/
+        sizeLabels = FXCollections.observableArrayList();
         for (String size : sizes) {
             Label sizeLabel = new Label(size);
             sizeLabel.addEventHandler(ActionEvent.ACTION, event -> {
                 currentSize = size;
                 if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
-
+                    editFontSizeSphere(Integer.parseInt(currentSize));
                 } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-
+                    editFontSizeVertices(Integer.parseInt(currentSize));
                 }
             });
+            sizeLabels.add(sizeLabel);
         }
+        comboBox.setItems(sizeLabels);
     }
 
     /**
