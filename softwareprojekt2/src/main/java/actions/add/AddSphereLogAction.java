@@ -14,6 +14,7 @@ import log_management.parameters.add_remove.AddRemoveSphereParam;
 
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Adds a sphere to the graph.
@@ -55,11 +56,12 @@ public class AddSphereLogAction extends LogAction {
                 createParameter(sp);
             } else {
                 graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
-                /*for(Vertex v : ((AddRemoveSphereParam)parameters).getVertices()){
+                List<Vertex> vertices = ((AddRemoveSphereParam)parameters).getVertices();
+                for(Vertex v : vertices){
                     graph.addVertexExisting(v);
                     Sphere sp = pickSupport.getSphere(v.getCoordinates().getX(), v.getCoordinates().getY());
                     sp.getVertices().add(v);
-                }*/
+                }
             }
             vv.repaint();
             syndrom.getVv2().repaint();

@@ -2,9 +2,7 @@ package actions.analyse;
 
 import actions.GraphAction;
 import graph.graph.Edge;
-import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 
@@ -26,20 +24,15 @@ public class AnalysisGraphEdgeChainsAction extends GraphAction {
      */
     @Override
     public void action() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-        ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
         Pair<List<List<Vertex>>, Set<Edge>> edgeChains = jGraphTHandler.detectRelationChains();
         for (List<Vertex> list : edgeChains.getKey()) {
-            for (int i = 0; i < list.size(); i++) {
-                verticesAnalyse.add(list.get(i));
-            }
+            verticesAnalyse.addAll(list);
         }
-        edgesAnalyse.addAll(edgeChains.getValue());
+        ArrayList<Edge> edgesAnalyse = new ArrayList<>(edgeChains.getValue());
 
         ShowAnalysisResultAction showAnalysisResultAction = new ShowAnalysisResultAction(verticesAnalyse, edgesAnalyse);
         showAnalysisResultAction.action();
@@ -50,6 +43,6 @@ public class AnalysisGraphEdgeChainsAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

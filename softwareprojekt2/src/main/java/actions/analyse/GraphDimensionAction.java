@@ -69,7 +69,7 @@ public class GraphDimensionAction extends GraphAction {
      */
     @Override
     public void action() {
-        return;
+        //no undo operation for this action
     }
 
     /**
@@ -77,6 +77,6 @@ public class GraphDimensionAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

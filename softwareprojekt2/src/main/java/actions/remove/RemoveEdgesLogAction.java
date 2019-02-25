@@ -23,7 +23,6 @@ public class RemoveEdgesLogAction extends LogAction {
     /**
      * Removes all passed edges from the graph.
      * Gets the picked edges through pick support.
-     *
      */
     public RemoveEdgesLogAction() {
         super(LogEntryName.REMOVE_EDGES);
@@ -41,7 +40,6 @@ public class RemoveEdgesLogAction extends LogAction {
     }
 
 
-
     public void createParameter(List<Edge> pEdges, List<Vertex> pStart, List<Vertex> pSink) {
         parameters = new AddRemoveEdgesParam(pEdges, pStart, pSink);
     }
@@ -51,40 +49,37 @@ public class RemoveEdgesLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        if(parameters == null) {
+        if (parameters == null) {
             List<Edge> parameterEdges = new LinkedList<>();
             List<Vertex> parameterStartEdges = new LinkedList<>();
             List<Vertex> parameterSinkVertex = new LinkedList<>();
             List<Edge> lockedEdges = new LinkedList<>();
-            for (Edge e: pickedState.getPicked()) {
-                if(!e.isLockedPosition() && !e.isLockedEdgeType() && !e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE){
+            for (Edge e : pickedState.getPicked()) {
+                if (!e.isLockedPosition() && !e.isLockedEdgeType() && !e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
                     parameterEdges.add(e);
                     parameterStartEdges.add(vertices.getFirst());
                     parameterSinkVertex.add(vertices.getSecond());
                     graph.removeEdge(e);
-                }else{
+                } else {
                     lockedEdges.add(e);
                 }
             }
-            if(!lockedEdges.isEmpty()){
+            if (!lockedEdges.isEmpty()) {
                 helper.setActionText("REMOVE_EDGES_ALERT", true, true);
             }
-            if(lockedEdges.size() == pickedState.getPicked().size()){
+            if (lockedEdges.size() == pickedState.getPicked().size()) {
                 actionHistory.removeLastEntry();
                 return;
             }
-            for(Edge e : parameterEdges){
+            for (Edge e : parameterEdges) {
                 pickedState.pick(e, false);
             }
             createParameter(parameterEdges, parameterStartEdges, parameterSinkVertex);
-        }else{
-            //Map<Edge,Pair<Vertex,Vertex>> edg = ((AddRemoveEdgesParam)parameters).getEdges();
-            //for(Map.Entry<Edge,Pair<Vertex,Vertex>> entry : edg.entrySet()){
-            //    graph.removeEdge(entry.getKey());
-            List<Edge> edges = ((AddRemoveEdgesParam)parameters).getEdges();
-            edges.forEach(e -> graph.removeEdge(e));
-            //}
+        } else {
+            List<Edge> edges = ((AddRemoveEdgesParam) parameters).getEdges();
+            edges.forEach(graph::removeEdge);
+
         }
 
         vv.repaint();
@@ -98,7 +93,7 @@ public class RemoveEdgesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction((AddRemoveEdgesParam)parameters);
+        AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction((AddRemoveEdgesParam) parameters);
         addEdgesLogAction.action();
     }
 }

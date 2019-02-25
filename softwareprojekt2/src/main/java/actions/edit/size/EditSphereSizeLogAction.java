@@ -5,7 +5,6 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.transformer.sphere.SphereShapeTransformer;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
@@ -22,6 +21,7 @@ public class EditSphereSizeLogAction extends LogAction {
      * The option of the change of the sphere-size.(either shrink or enlarge)
      */
     private SizeChange sizeChange;
+    @SuppressWarnings("unchecked")
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer();
 
     /**
@@ -29,7 +29,7 @@ public class EditSphereSizeLogAction extends LogAction {
      *
      * @param parameters The vertices object containing the sphere and size.
      */
-    public EditSphereSizeLogAction(EditSphereSizeParam parameters) {
+    private EditSphereSizeLogAction(EditSphereSizeParam parameters) {
         super(LogEntryName.EDIT_SPHERE_SIZE);
         this.parameters = parameters;
     }
@@ -50,13 +50,11 @@ public class EditSphereSizeLogAction extends LogAction {
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if(parameters == null) {
-            Sphere lockedSphere = null;
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedStyle()){
                     if (sizeChange == SizeChange.ENLARGE) {
                         double newHeight = sp.getHeight() + 10;
                         double newWidth = sp.getWidth() + 10;
-                        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
                         double x = sp.getCoordinates().getX();
                         double y = sp.getCoordinates().getY();
                         boolean enlarge = true;
@@ -80,7 +78,6 @@ public class EditSphereSizeLogAction extends LogAction {
                         }
                     } else {
                         boolean add = true;
-                        SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<Sphere>();
                         Shape sphereShape = sphereShapeTransformer.transform(sp);
                         for (Vertex v : sp.getVertices()) {
                             if (!sphereShape.contains(v.getCoordinates())) {
@@ -99,7 +96,6 @@ public class EditSphereSizeLogAction extends LogAction {
                     }
                 } else{
                     helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true, false);
-                    lockedSphere = sp;
                 }
             }
         }else{

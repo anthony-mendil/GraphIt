@@ -1,12 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.embed.swing.SwingNode?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.input.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
 <BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -1011,72 +1045,79 @@
         </VBox>
     </top>
     <bottom>
-        <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css">
+        <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" BorderPane.alignment="TOP_CENTER">
             <buttons>
-                <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1497.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css">
-                    <children>
-                        <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="436.33087462186813">
-                            <HBox.margin>
-                                <Insets bottom="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
+            <HBox fx:id="hBoxActionBox" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="2480.0">
+               <children>
+                      <HBox fx:id="textBox" centerShape="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1410.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css" HBox.hgrow="ALWAYS">
+                          <children>
+                              <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+                                  <HBox.margin>
+                                      <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
+                                  </HBox.margin>
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                              </Text>
+                          </children>
+                      </HBox>
+                      <HBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="1017.0">
+                          <children>
+                        <Text fx:id="positionMouseX" strokeType="OUTSIDE" strokeWidth="0.0" text="X: 0.0" textAlignment="RIGHT" wrappingWidth="80.0">
+                           <HBox.margin>
+                              <Insets right="5.0" top="7.0" />
+                           </HBox.margin>
                         </Text>
-                    </children>
-                </HBox>
-                <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="317.0">
-                    <children>
-                  <Text fx:id="positionMouseX" strokeType="OUTSIDE" strokeWidth="0.0" text="X: 0.0">
-                     <HBox.margin>
-                        <Insets right="5.0" top="7.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text fx:id="positionMouseY" strokeType="OUTSIDE" strokeWidth="0.0" text="Y: 0.0">
-                     <HBox.margin>
-                        <Insets right="5.0" top="7.0" />
-                     </HBox.margin>
-                  </Text>
-                        <MenuBar minWidth="-Infinity">
-                            <menus>
-                                <Menu fx:id="prozent" mnemonicParsing="false" text="100%">
-                                    <items>
-                                        <MenuItem fx:id="zoomMenuItem200" mnemonicParsing="false" text="200%" />
-                                        <MenuItem fx:id="zoomMenuItem175" mnemonicParsing="false" text="175%" />
-                                        <MenuItem fx:id="zoomMenuItem150" mnemonicParsing="false" text="150%" />
-                                        <MenuItem fx:id="zoomMenuItem125" mnemonicParsing="false" text="125%" />
-                                        <MenuItem fx:id="zoomMenuItem100" mnemonicParsing="false" text="100%" />
-                                        <MenuItem fx:id="zoomMenuItem75" mnemonicParsing="false" text="75%" />
-                                        <MenuItem fx:id="zoomMenuItem50" mnemonicParsing="false" text="50%" />
-                                        <MenuItem fx:id="zoomMenuItem25" mnemonicParsing="false" text="25%" />
-                                    </items>
-                                </Menu>
-                            </menus>
-                            <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" right="5.0" top="2.0" />
-                            </HBox.margin>
-                        </MenuBar>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
-                            <HBox.margin>
-                                <Insets bottom="2.0" left="2.0" top="5.0" />
-                            </HBox.margin>
+                        <Text fx:id="positionMouseY" strokeType="OUTSIDE" strokeWidth="0.0" text="Y: 0.0" textAlignment="RIGHT" wrappingWidth="80.0">
+                           <HBox.margin>
+                              <Insets right="5.0" top="7.0" />
+                           </HBox.margin>
                         </Text>
-
-                        <Slider fx:id="zoomSlider" cacheShape="false" focusTraversable="false" prefHeight="14.0" prefWidth="200.0">
-                            <padding>
-                                <Insets left="5.0" right="5.0" />
-                            </padding>
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="2.0" top="7.0" />
-                            </HBox.margin>
-                            <tooltip>
-                                <Tooltip text="Zoom" />
-                            </tooltip>
-                        </Slider>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+">
-                            <HBox.margin>
-                                <Insets bottom="2.0" right="10.0" top="5.0" />
-                            </HBox.margin>
-                        </Text>
-                    </children>
-                </HBox>
+                              <MenuBar minWidth="-Infinity" styleClass="buttonbar" stylesheets="@gui_style.css">
+                                  <menus>
+                                      <Menu fx:id="prozent" mnemonicParsing="false" text="100%">
+                                          <items>
+                                              <MenuItem fx:id="zoomMenuItem200" mnemonicParsing="false" text="200%" />
+                                              <MenuItem fx:id="zoomMenuItem175" mnemonicParsing="false" text="175%" />
+                                              <MenuItem fx:id="zoomMenuItem150" mnemonicParsing="false" text="150%" />
+                                              <MenuItem fx:id="zoomMenuItem125" mnemonicParsing="false" text="125%" />
+                                              <MenuItem fx:id="zoomMenuItem100" mnemonicParsing="false" text="100%" />
+                                              <MenuItem fx:id="zoomMenuItem75" mnemonicParsing="false" text="75%" />
+                                              <MenuItem fx:id="zoomMenuItem50" mnemonicParsing="false" text="50%" />
+                                              <MenuItem fx:id="zoomMenuItem25" mnemonicParsing="false" text="25%" />
+                                          </items>
+                                      </Menu>
+                                  </menus>
+                                  <HBox.margin>
+                                      <Insets bottom="2.0" left="2.0" right="5.0" top="2.0" />
+                                  </HBox.margin>
+                              </MenuBar>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                  <HBox.margin>
+                                      <Insets bottom="2.0" left="2.0" top="5.0" />
+                                  </HBox.margin>
+                              </Text>
+            
+                                    <Slider fx:id="zoomSlider" cacheShape="false" focusTraversable="false" minWidth="-Infinity" prefHeight="14.0" prefWidth="200.0">
+                                  <padding>
+                                      <Insets left="5.0" right="5.0" />
+                                  </padding>
+                                  <HBox.margin>
+                                      <Insets bottom="5.0" left="2.0" top="7.0" />
+                                  </HBox.margin>
+                                  <tooltip>
+                                      <Tooltip text="Zoom" />
+                                  </tooltip>
+                              </Slider>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                                  <HBox.margin>
+                                      <Insets bottom="2.0" right="10.0" top="5.0" />
+                                  </HBox.margin>
+                              </Text>
+                          </children>
+                      </HBox>
+               </children>
+            </HBox>
             </buttons>
             <BorderPane.margin>
                 <Insets />

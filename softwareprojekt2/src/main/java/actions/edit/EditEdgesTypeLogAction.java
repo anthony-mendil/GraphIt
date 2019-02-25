@@ -7,14 +7,12 @@ import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
 import log_management.parameters.edit.EditEdgesTypeParam;
-import lombok.Data;
 
 import java.util.*;
 
 /**
  * Changes the EdgeType from a collection of edges.
  */
-@Data
 public class EditEdgesTypeLogAction extends LogAction {
     /**
      * Temporary variable for the new arrow-type.
@@ -26,7 +24,7 @@ public class EditEdgesTypeLogAction extends LogAction {
      *
      * @param pParam The EditEdgesTypeParam object, containing all edges where to change the edge type.
      */
-    public EditEdgesTypeLogAction(EditEdgesTypeParam pParam) {
+    private EditEdgesTypeLogAction(EditEdgesTypeParam pParam) {
         super(LogEntryName.EDIT_EDGES_TYPE);
         parameters = pParam;
     }

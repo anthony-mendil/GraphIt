@@ -38,7 +38,7 @@ public class EditVerticesFillColorLogAction extends LogAction {
      *
      * @param pEditVerticesFillColorParam The EditVertexAnnotationParam object containing the new vertex annotation.
      */
-    public EditVerticesFillColorLogAction(EditVerticesFillColorParam pEditVerticesFillColorParam) {
+    private EditVerticesFillColorLogAction(EditVerticesFillColorParam pEditVerticesFillColorParam) {
         super(LogEntryName.EDIT_VERTICES_FILL_COLOR);
         parameters = pEditVerticesFillColorParam;
     }

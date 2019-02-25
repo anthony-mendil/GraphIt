@@ -71,11 +71,6 @@ public class RemoveSphereLogAction extends LogAction {
             }
         }else{
             Sphere sp = ((AddRemoveSphereParam)parameters).getSphere();
-            List<Vertex> vertices = ((AddRemoveSphereParam)parameters).getVertices();
-            /*for(Vertex vertex : vertices){
-                graph.removeVertex(vertex);
-                sp.getVertices().remove(vertex);
-            }*/
             graph.removeSphere(sp);
         }
         vv.repaint();

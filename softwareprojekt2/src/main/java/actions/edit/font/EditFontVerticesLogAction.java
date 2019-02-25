@@ -37,7 +37,7 @@ public class EditFontVerticesLogAction extends LogAction {
      *
      * @param pEditFontVerticesParam The vertices object that contains every vertices that is needed.
      */
-    public EditFontVerticesLogAction(EditFontVerticesParam pEditFontVerticesParam) {
+    private EditFontVerticesLogAction(EditFontVerticesParam pEditFontVerticesParam) {
         super(LogEntryName.EDIT_FONT_VERTICES);
         parameters = pEditFontVerticesParam;
     }
