@@ -53,19 +53,18 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -91,8 +90,8 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -1804,26 +1803,27 @@ public class Controller implements ObserverSyndrom {
                 removeEdges();
                 removeSphere();
                 removeVertices();
-            }else if (strgA.match(event)) {
-                SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
-                for (Sphere s: graph.getSpheres()) {
-                    syndrom.getVv().getPickedSphereState().pick(s,true);
+
+            } else if (strgA.match(event)) {
+                for (Sphere s : syndrom.getGraph().getSpheres()) {
+                    syndrom.getVv().getPickedSphereState().pick(s, true);
                 }
-                for (Vertex v:graph.getVertices()) {
-                    syndrom.getVv().getPickedVertexState().pick(v,true);
+                for (Vertex v : syndrom.getGraph().getVertices()) {
+                    syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
-                for (Edge e: graph.getEdges()) {
-                    syndrom.getVv().getPickedEdgeState().pick(e,true);
+                for (Edge e : syndrom.getGraph().getEdges()) {
+                    syndrom.getVv().getPickedEdgeState().pick(e, true);
+
                 }
-            }else if (one.match(event)) {
+            } else if (one.match(event)) {
                 switchModeCreator();
             } else if (two.match(event)) {
                 switchModiAnalysis();
             } else if (three.match(event)) {
                 switchModeEdit();
-            }else if (esc.match(event)){
-                Syndrom.getInstance().getVv().getPickedSphereState().clear();
-                Syndrom.getInstance().getVv().getPickedVertexState().clear();
+            } else if (esc.match(event)) {
+                syndrom.getVv().getPickedSphereState().clear();
+                syndrom.getVv().getPickedVertexState().clear();
                 handVertex();
             }
         });
@@ -2152,6 +2152,7 @@ public class Controller implements ObserverSyndrom {
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
+        loadFonts(comboBox);
     }
 
 
@@ -2166,15 +2167,37 @@ public class Controller implements ObserverSyndrom {
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
-        comboBox.addEventHandler(ActionEvent.ACTION, new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                final ComboBox tmpComboBox = (ComboBox) event.getSource();
-                String input = (String) tmpComboBox.getSelectionModel().selectedItemProperty().get();
+    }
 
+    private void loadFonts(ComboBox comboBox) {
+        ObservableList<Label> fontLabels = FXCollections.observableArrayList();
+        for (String font : fonts) {
+            Label fontLabel = new Label(font);
+            fontLabel.addEventHandler(ActionEvent.ACTION, event -> {
+                currentFont = font;
+                if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
+                    editFontSphere(font);
+                } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
+                    editFontVertex(font);
+                }
+            });
+            fontLabels.add(fontLabel);
+        }
+    }
 
-            }
-        });
+    private void loadSizes(ComboBox comboBox) {
+        ObservableList<Label> sizeLabels = FXCollections.observableArrayList();
+        for (String size : sizes) {
+            Label sizeLabel = new Label(size);
+            sizeLabel.addEventHandler(ActionEvent.ACTION, event -> {
+                currentSize = size;
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
+
+                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
+
+                }
+            });
+        }
     }
 
     /**
@@ -2410,46 +2433,46 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    public void openInfoDialogCreateGraph(){
+    public void openInfoDialogCreateGraph() {
         openDialogInfo(newFile);
     }
 
-    public void openInfoDialogPDF(){
+    public void openInfoDialogPDF() {
         openDialogInfo(exportPDF);
     }
 
-    public void openInfoDialogImportGXL(){
+    public void openInfoDialogImportGXL() {
         openDialogInfo(importGXL);
     }
 
-    public void openInfoDialogOpenFile(){
+    public void openInfoDialogOpenFile() {
         openDialogInfo(openFile);
     }
 
-    public void openInfoDialogPrint(){
+    public void openInfoDialogPrint() {
         openDialogInfo(print);
     }
 
-    private void openDialogInfo(MenuItem menuItem){
+    private void openDialogInfo(MenuItem menuItem) {
         String okText = "EXIT_WINDOW_CLOSE_PDF";
         String cancel = "EXIT_WINDOW_CANCEL_PDF";
         String info = "";
-        if (menuItem.getId().equals(importGXL.getId())){
+        if (menuItem.getId().equals(importGXL.getId())) {
             info = "INFO_DIALOG_IMPORT";
-        } else if (menuItem.getId().equals(openFile.getId())){
+        } else if (menuItem.getId().equals(openFile.getId())) {
             info = "INFO_DIALOG_OPEN";
-        } else if (menuItem.getId().equals(print.getId())){
+        } else if (menuItem.getId().equals(print.getId())) {
             info = "PRINT_EXPORT_INFO_DIALOG";
-        } else if (menuItem.getId().equals(newFile.getId())){
+        } else if (menuItem.getId().equals(newFile.getId())) {
             info = "INFO_DIALOG_NEW_FILE";
-        } else if (menuItem.getId().equals(exportPDF.getId())){
+        } else if (menuItem.getId().equals(exportPDF.getId())) {
             info = "PDF_EXPORT_INFO_DIALOG";
         }
 
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey(okText), ButtonBar.ButtonData.OK_DONE);
         ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey(cancel), ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info),ok,close);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info), ok, close);
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -2458,15 +2481,15 @@ public class Controller implements ObserverSyndrom {
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                if (menuItem.getId().equals(importGXL.getId())){
+                if (menuItem.getId().equals(importGXL.getId())) {
                     importGXL();
-                } else if (menuItem.getId().equals(openFile.getId())){
+                } else if (menuItem.getId().equals(openFile.getId())) {
                     openFile();
-                } else if (menuItem.getId().equals(print.getId())){
+                } else if (menuItem.getId().equals(print.getId())) {
                     printPDF();
-                }  else if (menuItem.getId().equals(newFile.getId())){
+                } else if (menuItem.getId().equals(newFile.getId())) {
                     createGraph();
-                } else if (menuItem.getId().equals(exportPDF.getId())){
+                } else if (menuItem.getId().equals(exportPDF.getId())) {
                     exportPDF();
                 }
             }
