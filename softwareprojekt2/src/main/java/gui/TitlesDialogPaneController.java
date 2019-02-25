@@ -70,17 +70,14 @@ public class TitlesDialogPaneController extends DialogPane{
         english.setText(old.get(Language.ENGLISH.name()));
         oldTitle = old;
 
-        german.textProperty().addListener(event -> {
-            save.setDisable(setDisable());
-        });
+        german.textProperty().addListener(event -> save.setDisable(setDisable()));
     }
 
     private boolean setDisable(){
-        return avoidSameAnnotationTwice(german.getText()) || avoidSameAnnotationTwice(english.getText());
+        return avoidSameAnnotationTwice(german.getText().trim()) || avoidSameAnnotationTwice(english.getText().trim());
     }
 
     private boolean avoidSameAnnotationTwice(String com){
-        com = com.trim();
         SyndromGraph<Vertex, Edge> graph = ( SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         for (Sphere s : graph.getSpheres()){
             for (Map.Entry<String, String> entry : s.getAnnotation().entrySet()){
