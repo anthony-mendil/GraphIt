@@ -1,28 +1,21 @@
 package actions.analyse;
 
 import actions.GraphAction;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
-import graph.algorithmen.AnalyseTypeSeveral;
-import graph.algorithmen.AnalyseTypeSingle;
 import graph.graph.Edge;
-import graph.graph.EdgeArrowType;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
-import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
-import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
-import org.jgrapht.GraphPath;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action will find and highlight all branches in the graph.
- *
  */
-public class AnalysisGraphBranchesAction extends GraphAction{
+public class AnalysisGraphBranchesAction extends GraphAction {
 
     /**
      * Analyses the graph on the given criteria. All the

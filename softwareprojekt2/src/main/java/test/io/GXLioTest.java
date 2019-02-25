@@ -169,6 +169,15 @@ public class GXLioTest {
         edgesList.sort(Comparator.comparingInt(Edge::getId));
     }
 
+    // <---------   name of graph   ------------>
+
+    @Test
+    public void testGraphName() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        Assert.assertEquals("untitled syndrom", syndrom.getGraphName());
+    }
+
+
     // <--------------       holistic comparision       ------------->
 
     @Test
