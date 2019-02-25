@@ -73,7 +73,7 @@ public class EditEdgesColorParam implements Param {
         if (language == Language.ENGLISH) {
             information.append("Relations changed: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information.append(SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
+                information.append(SyndromObjectPrinter.edgePrintEnglish(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Old color: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.ENGLISH));
                 information.append(", new color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH)).append(". ");
@@ -81,7 +81,7 @@ public class EditEdgesColorParam implements Param {
         } else {
             information.append("Geänderte Relationen: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information.append(SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
+                information.append(SyndromObjectPrinter.edgePrintGerman(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Alte Farbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.GERMAN));
                 information.append(", neue Farbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN)).append(". ");

@@ -73,7 +73,7 @@ public class EditEdgesTypeParam implements Param {
         if (language == Language.ENGLISH) {
             information.append("Relations changed: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information.append(SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
+                information.append(SyndromObjectPrinter.edgePrintEnglish(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Old arrow type: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.ENGLISH));
                 information.append(", new arrow type: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH)).append(". ");
@@ -81,7 +81,7 @@ public class EditEdgesTypeParam implements Param {
         } else {
             information.append("Geänderte Relationen: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information.append(SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
+                information.append(SyndromObjectPrinter.edgePrintGerman(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Alte Pfeilspitze: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.GERMAN));
                 information.append(", neue Pfeilspitze: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN)).append(". ");

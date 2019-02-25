@@ -54,13 +54,13 @@ public class AddRemoveEdgesParam implements Param {
         if (language == Language.ENGLISH) {
             StringBuilder list = new StringBuilder("Relations: ");
             for (int i = 0; i < edges.size(); i++) {
-                list.append(SyndromObjectPrinter.edgePrintEnglish(edges.get(i), verticesList.get(i))).append(". ");
+                list.append(SyndromObjectPrinter.edgePrintEnglish( verticesList.get(i))).append(". ");
             }
             return list.toString();
         } else {
             StringBuilder list = new StringBuilder("Relationen: ");
             for (int i = 0; i < edges.size(); i++) {
-                list.append(SyndromObjectPrinter.edgePrintGerman(edges.get(i), verticesList.get(i))).append(". ");
+                list.append(SyndromObjectPrinter.edgePrintGerman(verticesList.get(i))).append(". ");
             }
             return list.toString();
         }
