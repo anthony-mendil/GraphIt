@@ -166,7 +166,7 @@ public class PDFio {
 
 
         VectorGraphics vectorGraphics;
-        Dimension graphicsDimension = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth()-300, (int) Syndrom.getInstance().getVv().getBounds().getHeight()-200);
+        Dimension graphicsDimension = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth()-350, (int) Syndrom.getInstance().getVv().getBounds().getHeight()-350);
 
         vectorGraphics = new PDFGraphics2D(pOutputStream, graphicsDimension);
         Properties properties = new Properties();
