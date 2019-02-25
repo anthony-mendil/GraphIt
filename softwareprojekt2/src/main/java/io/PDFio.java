@@ -110,7 +110,8 @@ public class PDFio {
      * @return the dimension of the graph
      */
     protected Dimension getGraphDimension() {
-        List<Sphere> spheres = Syndrom.getInstance().getGraph().getSpheres();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        List<Sphere> spheres = graph.getSpheres();
         Dimension dimension = new Dimension(0, 0);
         for (Sphere sph : spheres) {
             //check x
