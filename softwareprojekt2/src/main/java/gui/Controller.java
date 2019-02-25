@@ -1541,24 +1541,30 @@ public class Controller implements ObserverSyndrom {
      * Creates an RemoveEdgesLogAction-object and executes the action with the action history.
      */
     public void removeEdges() {
-        RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction();
-        history.execute(removeEdgesLogAction);
+        if (!syndrom.getVv().getPickedEdgeState().getPicked().isEmpty()) {
+
+            RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction();
+        history.execute(removeEdgesLogAction);}
     }
 
     /**
      * Creates an RemoveSphereLogAction-object and executes the action with the action history.
      */
     public void removeSphere() {
-        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        history.execute(removeSphereLogAction);
+        if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
+            RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
+            history.execute(removeSphereLogAction);
+        }
     }
 
     /**
      * Creates an RemoveVerticesLogAction-object and executes the action with the action history.
      */
     public void removeVertices() {
-        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
-        history.execute(removeVerticesLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+
+            RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
+        history.execute(removeVerticesLogAction);}
 
     }
 
@@ -1790,6 +1796,7 @@ public class Controller implements ObserverSyndrom {
         KeyCombination two = new KeyCodeCombination(KeyCode.DIGIT2);
         KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
         KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        KeyCombination entf = new KeyCodeCombination(KeyCode.DELETE);
 
         mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
             if (plus.match(event)) {
@@ -1802,10 +1809,11 @@ public class Controller implements ObserverSyndrom {
                 executeUndo();
             } else if (strgY.match(event)) {
                 executeRedo();
-            } else if (strgD.match(event)) {
+            } else if (entf.match(event)||strgD.match(event)) {
+
                 removeEdges();
-                removeSphere();
                 removeVertices();
+                removeSphere();
 
             } else if (strgA.match(event)) {
                 for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
