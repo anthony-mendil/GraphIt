@@ -1,23 +1,16 @@
 package actions.analyse;
 
 import actions.GraphAction;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
-import graph.algorithmen.AnalyseTypeSeveral;
-import graph.algorithmen.AnalyseTypeSingle;
 import graph.graph.Edge;
-import graph.graph.EdgeArrowType;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
-import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
-import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
 import gui.properties.Language;
-import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 import org.jgrapht.GraphPath;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
@@ -54,9 +47,10 @@ public class AnalysisGraphShortestPathAction extends GraphAction{
         if(shortestPath == null){
             HelperFunctions helperFunctions = new HelperFunctions();
             helperFunctions.setActionText("Es sxistiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true, false);
+        }else{
+            verticesAnalyse.addAll(shortestPath.getVertexList());
+            edgesAnalyse.addAll(shortestPath.getEdgeList());
         }
-        verticesAnalyse.addAll(shortestPath.getVertexList());
-        edgesAnalyse.addAll(shortestPath.getEdgeList());
 
 
         ShowAnalysisResultAction showAnalysisResultAction = new ShowAnalysisResultAction(verticesAnalyse, edgesAnalyse);
