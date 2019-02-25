@@ -1382,6 +1382,7 @@ public class Controller implements ObserverSyndrom {
     public void printPDF() {
         PrintPDFAction printPDFAction = new PrintPDFAction();
         printPDFAction.action();
+
     }
 
     /* ----------------LAYOUT---------------------- */
@@ -1798,9 +1799,6 @@ public class Controller implements ObserverSyndrom {
                 removeSphere();
                 removeVertices();
             } else if (strgA.match(event)) {
-                for (Sphere s : syndrom.getGraph().getSpheres()) {
-                    syndrom.getVv().getPickedSphereState().pick(s, true);
-                }
                 for (Vertex v : syndrom.getGraph().getVertices()) {
                     syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
@@ -1840,7 +1838,7 @@ public class Controller implements ObserverSyndrom {
         languageGraphGerman.setSelected(true);
     }
 
-    final public static Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+    public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
 
     private void sortFilterLogs() {
         ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
