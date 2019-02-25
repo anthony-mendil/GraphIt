@@ -1,29 +1,20 @@
 package actions.analyse;
 
 import actions.GraphAction;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
-import graph.algorithmen.AnalyseTypeSeveral;
-import graph.algorithmen.AnalyseTypeSingle;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.transformer.edge.EdgePaintAnalyseTransformer;
-import graph.visualization.transformer.vertex.VertexPaintAnalyseTransformer;
-import javafx.util.Pair;
-import jgrapht.JGraphTHandler;
-import org.jgrapht.GraphPath;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * <p>
  * This action finds all extenuating relations.
- *
  */
-public class AnalysisGraphExtenuatingRelationsAction extends GraphAction{
+public class AnalysisGraphExtenuatingRelationsAction extends GraphAction {
 
     /**
      * Analyses the graph on the given criteria. All the
@@ -37,8 +28,8 @@ public class AnalysisGraphExtenuatingRelationsAction extends GraphAction{
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
-        for(Edge edge : graph.getEdges()){
-            if(edge.getArrowType() == EdgeArrowType.EXTENUATING){
+        for (Edge edge : graph.getEdges()) {
+            if (edge.getArrowType() == EdgeArrowType.EXTENUATING) {
                 edgesAnalyse.add(edge);
                 edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
                 verticesAnalyse.add(endPoints.getFirst());
