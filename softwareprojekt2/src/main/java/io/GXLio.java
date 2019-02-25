@@ -91,7 +91,7 @@ public class GXLio {
                     maxID = Math.max(maxID, idCounter);
                 }
             }
-            syndrom.setGraphName(gxlGraph.getAttribute("name of the graph"));
+            syndrom.setGraphName(((GXLString) gxlGraph.getAttr("name of the graph").getValue()).getValue());
             updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());

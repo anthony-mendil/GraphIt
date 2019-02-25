@@ -15,7 +15,7 @@ import java.util.List;
  * AnalyseTypeSeveral selections. Unlike the AnalyseTypeSingle. Here is only one type selectable.
  * </p>
  */
-public class EvaluationGraphAction extends GraphAction{
+public class EvaluationGraphAction extends GraphAction {
 
     /**
      * Constructor in case the user chooses a AnalyseTypeSeveral - analyse option.
@@ -26,7 +26,7 @@ public class EvaluationGraphAction extends GraphAction{
      * are shown as vertices labels.
      *
      * @param pAnalyseTypeSeveral A list of AnalyseTypeSeveral, several types can be analysed at once.
-     * @param edgeType The edge type.
+     * @param edgeType            The edge type.
      */
     public EvaluationGraphAction(List<AnalyseTypeSeveral> pAnalyseTypeSeveral, EdgeType edgeType) {
         throw new UnsupportedOperationException();
@@ -39,6 +39,7 @@ public class EvaluationGraphAction extends GraphAction{
      * or the found vertices/edges get highlighted.
      * The action is applied to all picked vertices/edges or to all objects if nothing is picked and statistics
      * are shown shown as vertices labels.
+     *
      * @param pAnalyseTypeSingle The analyse type, one type can be analysed at once.
      */
     public EvaluationGraphAction(AnalyseTypeSingle pAnalyseTypeSingle) {
