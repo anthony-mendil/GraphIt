@@ -64,8 +64,7 @@ public class SphereContextMenu {
             Map<String, String> oldAnno = sphere.getAnnotation();
 
             result.ifPresent(map -> {
-                checkAnnotation(map, oldAnno, Language.GERMAN);
-                checkAnnotation(map, oldAnno, Language.ENGLISH);
+                checkAnnotation(map);
             });
         });
 
@@ -115,11 +114,12 @@ public class SphereContextMenu {
         });
     }
 
-    private void checkAnnotation(Map<Language, String> map, Map<String, String> oldAnno, Language lang) {
-        if (map != null && map.containsKey(lang)) {
-            String text = map.get(lang);
-            if (!oldAnno.get(lang.name()).equals(text) && text.length() > 0) {
-                EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(map.get(lang), lang);
+    private void checkAnnotation(Map<Language, String> map) {
+        if (map != null) {
+            String textGerman = map.get(Language.GERMAN);
+            String textEnglish = map.get(Language.ENGLISH);
+            if (textGerman.length() > 0 && textEnglish.length() > 0) {
+                EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(map);
                 history.execute(editSphereAnnotationLogAction);
             }
         }

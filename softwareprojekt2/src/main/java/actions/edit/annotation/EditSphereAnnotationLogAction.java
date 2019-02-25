@@ -24,17 +24,16 @@ public class EditSphereAnnotationLogAction extends LogAction {
     /**
      * The new annotation of the sphere.
      */
-    private String text;
+    private Map<Language,String> text;
     private Language language;
     /**
      * Constructor in case the user changes the annotation of a sphere.
      *
      * @param pText The new sphere annotation.
      */
-    public EditSphereAnnotationLogAction(String pText, Language language) {
+    public EditSphereAnnotationLogAction(Map<Language,String> pText) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
         text = pText;
-        this.language = language;
     }
 
     /**
@@ -55,29 +54,22 @@ public class EditSphereAnnotationLogAction extends LogAction {
             Set<Sphere> lockedSpheres = new HashSet<>();
             for (Sphere sp : pickedState.getPicked()) {
                 if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                    createParameter(sp, sp.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH), sp.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
                     Map<String, String> annotation = sp.getAnnotation();
-                    Map<String, String> oldAnnotation = new HashMap<>();
-                    annotation.forEach((s1, s2) -> oldAnnotation.put(s1, s2));
-
-                    Sphere spWithOldValues = new Sphere(sp.getId(), sp.getColor(), sp.getCoordinates(), sp.getWidth(),
-                            sp.getHeight(), oldAnnotation, sp.getFont(), sp.getFontSize());
-                    createParameter(spWithOldValues, sp, oldAnnotation.get(language.name()), text);
-                    if (annotation.get(language.name()) != null) {
-                        annotation.remove(language.name());
-                        sp.setAnnotation(annotation);
-                    }
-                    annotation.put(language.name(), text);
+                    annotation.put(Language.GERMAN.name(), text.get(Language.GERMAN));
+                    annotation.put(Language.ENGLISH.name(), text.get(Language.ENGLISH));
                     sp.setAnnotation(annotation);
                 } else{
                     helper.setActionText("EDIT_SPERE_ANNOTATION_ALERT", true, true);
                     lockedSpheres.add(sp);
+                    actionHistory.removeLastEntry();
                 }
             }
         }else{
-            Sphere sphere = ((EditSphereAnnotationParam)parameters).getNewSphere();
-            String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
+            Sphere sphere = ((EditSphereAnnotationParam)parameters).getSphere();
             Map<String,String> newAnno = new HashMap<>();
-            newAnno.put(language.name(), newAnnotation);
+            newAnno.put(Language.ENGLISH.name(), ((EditSphereAnnotationParam)parameters).getNewAnnotationEnglish());
+            newAnno.put(Language.GERMAN.name(), ((EditSphereAnnotationParam)parameters).getNewAnnotationGerman());
             sphere.setAnnotation(newAnno);
 
         }
@@ -91,16 +83,18 @@ public class EditSphereAnnotationLogAction extends LogAction {
 
     @Override
     public void undo() {
-        String oldAnnotation = ((EditSphereAnnotationParam)parameters).getOldAnnotation();
-        String newAnnotation = ((EditSphereAnnotationParam)parameters).getNewAnnotation();
-        Sphere sphere = ((EditSphereAnnotationParam)parameters).getNewSphere();
+        String oldAnnotationDe = ((EditSphereAnnotationParam)parameters).getOldAnnotationEnglish();
+        String newAnnotationDe = ((EditSphereAnnotationParam)parameters).getNewAnnotationEnglish();
+        String oldAnnotationEn = ((EditSphereAnnotationParam)parameters).getOldAnnotationEnglish();
+        String newAnnotationEn = ((EditSphereAnnotationParam)parameters).getNewAnnotationEnglish();
+        Sphere sphere = ((EditSphereAnnotationParam)parameters).getSphere();
 
-        EditSphereAnnotationParam editSphereAnnotationParam = new EditSphereAnnotationParam(sphere, sphere, newAnnotation, oldAnnotation);
+        EditSphereAnnotationParam editSphereAnnotationParam = new EditSphereAnnotationParam(sphere, newAnnotationEn, oldAnnotationEn, newAnnotationDe, oldAnnotationDe);
         EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(editSphereAnnotationParam);
         editSphereAnnotationLogAction.action();
     }
 
-    public void createParameter(Sphere sphere, Sphere newSphere, String oldAnnotation, String newAnnotation) {
-        parameters = new EditSphereAnnotationParam(sphere, newSphere, oldAnnotation, newAnnotation);
+    public void createParameter(Sphere sphere, String oldAnnotationEn, String newAnnotationEn, String oldAnnotationDe, String newAnnotationDe) {
+        parameters = new EditSphereAnnotationParam(sphere, oldAnnotationEn, newAnnotationEn, oldAnnotationDe, newAnnotationDe);
     }
 }
