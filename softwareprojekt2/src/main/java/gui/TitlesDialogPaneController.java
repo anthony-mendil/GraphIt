@@ -51,15 +51,6 @@ public class TitlesDialogPaneController extends DialogPane{
         save.setText(language.loadLanguagesKey("SAVE_DIALOG"));
         cancel.setOnMouseClicked(event -> close());
 
-        german.setOnMouseExited(event -> {
-            if (!avoidSameAnnotationTwice(german.getText()) && !avoidSameAnnotationTwice(english.getText())){
-                save.setDisable(false);
-            } else {
-                save.setDisable(true);
-            }
-
-        });
-
         EventHandler<KeyEvent> fireOnEnter = event -> {
             if (KeyCode.ENTER.equals(event.getCode()) && (event.getTarget() instanceof Button)) {
                 ((Button) event.getTarget()).fire();
@@ -78,9 +69,18 @@ public class TitlesDialogPaneController extends DialogPane{
         german.setText(old.get(Language.GERMAN.name()));
         english.setText(old.get(Language.ENGLISH.name()));
         oldTitle = old;
+
+        german.textProperty().addListener(event -> {
+            save.setDisable(setDisable());
+        });
+    }
+
+    private boolean setDisable(){
+        return avoidSameAnnotationTwice(german.getText()) || avoidSameAnnotationTwice(english.getText());
     }
 
     private boolean avoidSameAnnotationTwice(String com){
+        com = com.trim();
         SyndromGraph<Vertex, Edge> graph = ( SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         for (Sphere s : graph.getSpheres()){
             for (Map.Entry<String, String> entry : s.getAnnotation().entrySet()){
