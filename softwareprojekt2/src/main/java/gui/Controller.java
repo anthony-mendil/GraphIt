@@ -90,7 +90,6 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.security.Key;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -1809,12 +1808,11 @@ public class Controller implements ObserverSyndrom {
                 removeVertices();
 
             } else if (strgA.match(event)) {
-                for (Vertex v : syndrom.getGraph().getVertices()) {
+                for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
                     syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
-                for (Edge e : graph.getEdges()) {
+                for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
-
                 }
             } else if (one.match(event)) {
                 switchModeCreator();
@@ -1825,6 +1823,7 @@ public class Controller implements ObserverSyndrom {
             } else if (esc.match(event)) {
                 syndrom.getVv().getPickedSphereState().clear();
                 syndrom.getVv().getPickedVertexState().clear();
+                syndrom.getVv().getPickedEdgeState().clear();
                 handVertex();
             }
         });
