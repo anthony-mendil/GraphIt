@@ -1805,13 +1805,14 @@ public class Controller implements ObserverSyndrom {
                 removeVertices();
 
             } else if (strgA.match(event)) {
-                for (Sphere s : syndrom.getGraph().getSpheres()) {
+                SyndromGraph<Vertex, Edge> graph =  (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+                for (Sphere s : graph.getSpheres()) {
                     syndrom.getVv().getPickedSphereState().pick(s, true);
                 }
-                for (Vertex v : syndrom.getGraph().getVertices()) {
+                for (Vertex v : graph.getVertices()) {
                     syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
-                for (Edge e : syndrom.getGraph().getEdges()) {
+                for (Edge e : graph.getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
 
                 }
