@@ -62,21 +62,21 @@ public class AddRemoveVerticesParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Relations: ";
+            information.append("Relations: ");
             for (int i = 0; i < vertexList.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintEnglish(vertexList.get(i)) + ". ";
-                information += "In sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i)) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(vertexList.get(i))).append(". ");
+                information.append("In sphere: ").append(SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i))).append(". ");
             }
         } else {
-            information += "Relationen: ";
+            information.append("Relationen: ");
             for (int i = 0; i < vertexList.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintGerman(vertexList.get(i)) + ". ";
-                information += "In Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphereList.get(i)) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintGerman(vertexList.get(i))).append(". ");
+                information.append("In Sphäre: ").append(SyndromObjectPrinter.spherePrintGerman(sphereList.get(i))).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Vertex, Sphere> getVertices() {
@@ -86,5 +86,4 @@ public class AddRemoveVerticesParam implements Param {
         }
         return map;
     }
-
 }

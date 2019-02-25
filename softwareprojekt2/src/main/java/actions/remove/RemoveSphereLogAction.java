@@ -9,7 +9,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
-import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.util.LinkedList;
 import java.util.List;

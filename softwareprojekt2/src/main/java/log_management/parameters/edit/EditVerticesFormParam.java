@@ -20,13 +20,11 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesFormParam implements Param {
-    @Getter
     private List<Vertex> oldVertices;
 
     @Getter
     private List<VertexShapeType> oldShapeTypes;
 
-    @Getter
     private List<Vertex> newVertices;
 
     @Getter
@@ -57,27 +55,19 @@ public class EditVerticesFormParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed: ";
+            information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
-                        + "Old shape: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)
-                        + ", new shape: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old shape: ").append(EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)).append(", new shape: ").append(EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language)).append(". ");
             }
         } else {
-            information += "Veränderte Symptome: ";
+            information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
-                        + "Alte Form: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)
-                        + ", neue Form: "
-                        + EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Form: ").append(EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)).append(", neue Form: ").append(EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language)).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Vertex, VertexShapeType> getOldVertices() {

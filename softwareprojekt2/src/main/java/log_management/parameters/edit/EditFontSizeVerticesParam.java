@@ -18,13 +18,11 @@ import java.util.Map;
  */
 @Data
 public class EditFontSizeVerticesParam implements Param {
-    @Getter
     private List<Vertex> oldVertices;
 
     @Getter
     private List<Integer> oldFontSize;
 
-    @Getter
     private List<Vertex> newVertices;
 
     @Getter
@@ -55,23 +53,19 @@ public class EditFontSizeVerticesParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed: ";
+            information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
-                        + "Old font size: " + oldFontSize.get(i)
-                        + ", new font size: " + newFontSize.get(i) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old font size: ").append(oldFontSize.get(i)).append(", new font size: ").append(newFontSize.get(i)).append(". ");
             }
         } else {
-            information += "Veränderte Symptome: ";
+            information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
-                        + "Alte Schriftgröße: " + oldFontSize.get(i)
-                        + ", neue Schriftgröße: " + newFontSize.get(i) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Schriftgröße: ").append(oldFontSize.get(i)).append(", neue Schriftgröße: ").append(newFontSize.get(i)).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Vertex, Integer> getOldVertices() {

@@ -18,13 +18,11 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesSizeParam implements Param {
-    @Getter
     private List<Vertex> oldVertices;
 
     @Getter
     private List<Integer> oldSizes;
 
-    @Getter
     private List<Vertex> newVertices;
 
     @Getter
@@ -55,23 +53,19 @@ public class EditVerticesSizeParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed: ";
+            information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
-                        + "Old size: " + oldSizes.get(i)
-                        + ", new size: " + newSizes.get(i) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old size: ").append(oldSizes.get(i)).append(", new size: ").append(newSizes.get(i)).append(". ");
             }
         } else {
-            information += "Veränderte Symptome: ";
+            information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
-                        + "Alte Größe: " + oldSizes.get(i)
-                        + ", neue Größe: " + newSizes.get(i) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Größe: ").append(oldSizes.get(i)).append(", neue Größe: ").append(newSizes.get(i)).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Vertex, Integer> getOldVertices() {

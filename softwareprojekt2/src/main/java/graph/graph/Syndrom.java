@@ -2,7 +2,10 @@ package graph.graph;
 
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
-import edu.uci.ics.jung.visualization.*;
+import edu.uci.ics.jung.visualization.DefaultVisualizationModel;
+import edu.uci.ics.jung.visualization.Layer;
+import edu.uci.ics.jung.visualization.VisualizationModel;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
 import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
 import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;

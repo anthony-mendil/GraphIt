@@ -195,7 +195,7 @@ public class PDFio {
         createPDF(byteArrayOutputStream);
         byte[] pdfBytes = byteArrayOutputStream.toByteArray();
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(pdfBytes);
-        PDFPrinterGui pdfPrinterGui = new PDFPrinterGui(byteArrayInputStream);
+        new PDFPrinterGui(byteArrayInputStream);
 
 
     }
