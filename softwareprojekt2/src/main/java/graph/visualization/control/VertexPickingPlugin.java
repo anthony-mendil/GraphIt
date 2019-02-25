@@ -5,6 +5,7 @@ import actions.add.AddEdgesLogAction;
 import actions.add.AddVerticesLogAction;
 import actions.move.MoveVerticesLogAction;
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractGraphMousePlugin;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
@@ -133,7 +134,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 vertexPickedState.pick(vert, true);
             }
             if (SwingUtilities.isRightMouseButton(e) && vert != null) {
-                if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+                if (values.getMode() != FunctionMode.ANALYSE) {
                     Object[] pickedArray = vertexPickedState.getPicked().toArray();
                     points = new LinkedHashMap<>();
                     for (Object aPickedArray : pickedArray) {
@@ -161,7 +162,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Vertex vert = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (SwingUtilities.isRightMouseButton(e) && points != null) {
-            setVerticesCoord(pickedState, vv, layout, pickSupport);
+            setVerticesCoordinate(pickedState, vv, layout, pickSupport);
             points = null;
             down = null;
             vv.repaint();
@@ -240,9 +241,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
-    private void setVerticesCoord(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport pickSupport) {
+    private boolean calculateAddNot(PickedState<Vertex> pickedState, SyndromPickSupport<Vertex, Edge> pickSupport, VisualizationViewer<Vertex, Edge> vv){
         boolean addNot = false;
-        boolean jumpBack = false;
         for (Vertex v : pickedState.getPicked()) {
             for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(v)) {
                 edge.setHasPrio(false);
@@ -253,6 +253,13 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 addNot = true;
             }
         }
+        return addNot;
+    }
+
+    private void setVerticesCoordinate(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport pickSupport) {
+        boolean addNot = calculateAddNot(pickedState, pickSupport, vv);
+        boolean jumpBack = false;
+
         if (addNot) {
             for (Vertex v : pickedState.getPicked()) {
                 Point2D vp = new Point2D.Double(points.get(v).getKey().getX(), points.get(v)
