@@ -916,7 +916,7 @@
                                     <children>
                                         <Label fx:id="infoAnalysis">
                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" styleClass="info-box">
+                                                <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="info-box">
                                                     <image>
                                                         <Image url="@icons2/info-circle-solid.png" />
                                                     </image>
@@ -1213,11 +1213,20 @@
                                                           <SwingNode fx:id="satellite" StackPane.alignment="CENTER" />
                                                       </children>
                                                       <VBox.margin>
-                                                          <Insets />
+                                                          <Insets bottom="5.0" />
                                                       </VBox.margin>
                                                   </StackPane>
                                        </children>
                                     </VBox>
+                                    <Label fx:id="infoZoom">
+                                       <graphic>
+                                          <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="info-box">
+                                             <image>
+                                                <Image url="@icons2/info-circle-solid.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Label>
                                         </children>
                                     </VBox>
                                 </content>

@@ -850,9 +850,10 @@ public class Controller implements ObserverSyndrom {
     private MenuItem logEditVerticesLayout;
     @FXML
     private MenuItem logAll;
-    @FXML
-    private Label infoAnalysis;
+    @FXML private Label infoAnalysis;
+    @FXML private Label infoZoom;
     private Tooltip tooltipInfoAnalysis = new Tooltip();
+    private Tooltip tooltipInfoZoom = new Tooltip();
     @FXML
     private Text positionMouseX;
     @FXML
@@ -1756,12 +1757,17 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void initInfoText() {
-        tooltipInfoAnalysis.setPrefWidth(200);
-        tooltipInfoAnalysis.setText(loadLanguage.loadLanguagesKey("INFO_ANALYSIS"));
-        tooltipInfoAnalysis.setWrapText(true);
-        tooltipInfoAnalysis.setAutoFix(false);
-        tooltipInfoAnalysis.setAutoHide(false);
-        tooltipInfoAnalysis.setStyle("-fx-background-color:\n" +
+        infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
+        infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
+    }
+
+    private void infoText(Tooltip tooltip, String text, Label label, int x, int y){
+        tooltip.setPrefWidth(200);
+        tooltip.setText(loadLanguage.loadLanguagesKey(text));
+        tooltip.setWrapText(true);
+        tooltip.setAutoFix(false);
+        tooltip.setAutoHide(false);
+        tooltip.setStyle("-fx-background-color:\n" +
                 "            #000000,\n" +
                 "            linear-gradient(#7ebcea, #2f4b8f),\n" +
                 "            linear-gradient(#426ab7, #263e75),\n" +
@@ -1769,8 +1775,8 @@ public class Controller implements ObserverSyndrom {
                 "    -fx-text-fill: white;\n" +
                 "    -fx-font-size: 12px;");
 
-        infoAnalysis.setOnMouseMoved(event -> tooltipInfoAnalysis.show(infoAnalysis, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxX() + 15, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxY()));
-        infoAnalysis.setOnMouseExited(event -> tooltipInfoAnalysis.hide());
+        label.setOnMouseMoved(event -> tooltip.show(label, label.localToScene(label.getBoundsInLocal()).getMaxX() + x, label.localToScene(label.getBoundsInLocal()).getMaxY() + y));
+        label.setOnMouseExited(event -> tooltip.hide());
     }
 
     public void initButtonShortcuts() {
@@ -1800,15 +1806,18 @@ public class Controller implements ObserverSyndrom {
                 removeEdges();
                 removeSphere();
                 removeVertices();
+
             } else if (strgA.match(event)) {
-                for (Sphere s : syndrom.getGraph().getSpheres()) {
+                SyndromGraph<Vertex, Edge> graph =  (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+                for (Sphere s : graph.getSpheres()) {
                     syndrom.getVv().getPickedSphereState().pick(s, true);
                 }
-                for (Vertex v : syndrom.getGraph().getVertices()) {
+                for (Vertex v : graph.getVertices()) {
                     syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
-                for (Edge e : syndrom.getGraph().getEdges()) {
+                for (Edge e : graph.getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
+
                 }
             } else if (one.match(event)) {
                 switchModeCreator();

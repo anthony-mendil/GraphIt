@@ -1,5 +1,6 @@
 package io;
 
+import log_management.LogToStringConverter;
 import log_management.dao.LogDao;
 import log_management.tables.Log;
 import org.apache.log4j.Logger;
@@ -23,6 +24,7 @@ public class Protocolio {
     }
 
     private static Logger logger= Logger.getLogger(Protocolio.class);
+    private LogToStringConverter logToStringConverter = new LogToStringConverter();
 
     /**
      * Export the current protocol as readable textfile.
@@ -32,12 +34,12 @@ public class Protocolio {
     public void exportAsReadableProtocol(File pFile){
         LogDao logDao = new LogDao();
         List<Log> logs = logDao.getAll();
-        String protocol = "";
-        for (int i = 0; i < logs.size(); i++) {
-            protocol += logs.get(i).toStringForTextFile();
+        StringBuilder protocol = new StringBuilder();
+        for (Log log : logs) {
+            protocol.append(logToStringConverter.convertForTextFile(log));
         }
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
-            bufferedWriter.write(protocol);
+            bufferedWriter.write(protocol.toString());
         } catch (IOException e) {
             logger.error(e.toString());
         }

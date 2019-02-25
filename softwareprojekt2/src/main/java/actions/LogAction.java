@@ -68,6 +68,8 @@ public abstract class LogAction extends GraphAction {
         } catch (Exception e) {
             logger.error(e.toString());
         }
+
+        System.out.println("paramString: "+paramString);
         log.setParameters(paramString);
         return log;
     }
