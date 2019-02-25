@@ -276,6 +276,11 @@ public class GXLioTest {
 
     // <--------------     relations of graph elements    ------------->
 
+    /**
+     * This method tests if the spheres that are created by importing the specified gxl-File contain the right vertices.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesInSpheresOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -288,6 +293,11 @@ public class GXLioTest {
         Assert.assertEquals(new ArrayList<>(Arrays.asList(12, 13)), getNodeIDs(spheres.get(4).getVertices()));
     }
 
+    /**
+     * This is a helper method that returns the IDs of the vertices that are passed to this method as list.
+     * @param pVertices a list of vertices those IDs are of interest
+     * @return the IDs of vertices contained in the passed list a list of Integers.
+     */
     private ArrayList<Integer> getNodeIDs(LinkedList<Vertex> pVertices){
         ArrayList<Integer> verticesIDs = new ArrayList<>();
         for(Vertex v : pVertices){
@@ -296,6 +306,11 @@ public class GXLioTest {
         return verticesIDs;
     }
 
+    /**
+     * This method tests if the edges that are created by importing the specified gxl-File connect the right vertices.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgesConnectingRightVerticesOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -324,6 +339,11 @@ public class GXLioTest {
 
     // <-----------    coordinates    --------->
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the coordinates-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresCoordinatesOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -336,6 +356,11 @@ public class GXLioTest {
         Assert.assertEquals(new Point2D.Double(445, 310), spheres.get(4).getCoordinates());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the coordinates-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesCoordinatesOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -355,6 +380,11 @@ public class GXLioTest {
 
     // <-------------   size    ------------------>
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the width-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresWidthOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -367,6 +397,11 @@ public class GXLioTest {
         Assert.assertEquals(200.0, spheres.get(4).getWidth());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the height-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresHeightOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -379,6 +414,11 @@ public class GXLioTest {
         Assert.assertEquals(200.0, spheres.get(4).getHeight());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the size-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesSizeOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -399,6 +439,11 @@ public class GXLioTest {
 
     // <-----------    Color    ------------>
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the fillColor-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresFillColorOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -411,7 +456,11 @@ public class GXLioTest {
         Assert.assertEquals(new java.awt.Color(24, 54, 11, 178), spheres.get(4).getColor());
     }
 
-
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the fillColor-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesFillColorOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -430,6 +479,11 @@ public class GXLioTest {
 
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the drawColor-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesDrawColorOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -447,6 +501,11 @@ public class GXLioTest {
         Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(8).getDrawColor());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the color-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgesColorOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -465,6 +524,11 @@ public class GXLioTest {
 
     // <----------     sphere locking    ------------>
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedAnnotation-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresLockedAnnotationOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -477,6 +541,11 @@ public class GXLioTest {
         Assert.assertFalse(spheres.get(4).isLockedAnnotation());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedVertices-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresLockedVerticesOfGraph() throws IOException, SAXException {
         sm.action();
@@ -491,6 +560,11 @@ public class GXLioTest {
         Assert.assertFalse(spheres.get(4).isLockedVertices());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresLockedPositionOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -503,6 +577,11 @@ public class GXLioTest {
         Assert.assertTrue(spheres.get(4).isLockedPosition());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresLockedStyleOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -515,6 +594,11 @@ public class GXLioTest {
         Assert.assertTrue(spheres.get(4).isLockedStyle());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the maxAmountVertices-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testSpheresLockedMaxAmountVerticesOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -530,6 +614,11 @@ public class GXLioTest {
 
     // <-------------   vertex locking    ----------->
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesLockedStyleOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -547,6 +636,11 @@ public class GXLioTest {
         Assert.assertFalse(vertices.get(8).isLockedStyle());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedAnnotaion-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesLockedAnnotationOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -564,6 +658,11 @@ public class GXLioTest {
         Assert.assertFalse(vertices.get(8).isLockedAnnotation());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testVerticesLockedPositionOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -583,6 +682,11 @@ public class GXLioTest {
 
     // <--------    edge locking    ---------->
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgesLockedStyleOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -599,6 +703,11 @@ public class GXLioTest {
         Assert.assertFalse(edges.get(7).isLockedStyle());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgesLockedPositionOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -615,6 +724,11 @@ public class GXLioTest {
         Assert.assertTrue(edges.get(7).isLockedPosition());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedEdgeType-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgesLockedEdgeTypeOfGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
@@ -634,6 +748,11 @@ public class GXLioTest {
 
     // <-----------     other edge style   ------------------->
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the arrowType-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgesArrowTypeOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
@@ -650,6 +769,11 @@ public class GXLioTest {
         Assert.assertEquals(EdgeArrowType.REINFORCED, edges.get(7).getArrowType());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the stroke-attribute.
+     * @throws IOException
+     * @throws SAXException
+     */
     @Test
     public void testEdgesStrokeTypeOfGraph() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
