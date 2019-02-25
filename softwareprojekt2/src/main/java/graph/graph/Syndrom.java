@@ -3,19 +3,23 @@ package graph.graph;
 import edu.uci.ics.jung.algorithms.layout.AggregateLayout;
 import edu.uci.ics.jung.algorithms.layout.StaticLayout;
 import edu.uci.ics.jung.visualization.*;
-import edu.uci.ics.jung.visualization.control.*;
+import edu.uci.ics.jung.visualization.control.AbsoluteCrossoverScalingControl;
+import edu.uci.ics.jung.visualization.control.PluggableGraphMouse;
+import edu.uci.ics.jung.visualization.control.SatelliteVisualizationViewer;
+import edu.uci.ics.jung.visualization.control.TranslatingGraphMousePlugin;
 import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import edu.uci.ics.jung.visualization.transform.MutableAffineTransformer;
-import graph.algorithmen.predicates.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.*;
 import graph.visualization.picking.SyndromPickSupport;
 import graph.visualization.renderers.EdgeRenderer;
 import graph.visualization.renderers.SyndromRenderer;
 import graph.visualization.renderers.VertexLabelRenderer;
-import graph.visualization.transformer.edge.*;
-import graph.visualization.transformer.sphere.*;
+import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeArrowTransformer;
+import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
+import graph.visualization.transformer.edge.EdgeStrokeTransformer;
 import graph.visualization.transformer.vertex.*;
 import gui.Values;
 import lombok.AccessLevel;
@@ -45,19 +49,10 @@ public class Syndrom {
     private boolean templateIsSet = false;
 
     /**
-     * The layout of syndrom.
-     */
-    private AggregateLayout<Vertex, Edge> layout;
-
-    /**
      * Satellite view for zoom context.
      */
     private SatelliteVisualizationViewer<Vertex, Edge> vv2;
 
-    /**
-     * Zoom pane, containing the visualization viewer.
-     */
-    private GraphZoomScrollPane gzsp;
 
     /**
      * For adding/removing graph mouse plugins.
@@ -69,6 +64,8 @@ public class Syndrom {
      */
     private String graphName;
 
+    private AggregateLayout<Vertex, Edge> layout;
+
     /**
      * The values set by the gui.
      */
@@ -76,8 +73,6 @@ public class Syndrom {
     private final Values values;
 
     private static Syndrom instance;
-
-    private SyndromPickSupport pickSupport;
 
     private AbsoluteCrossoverScalingControl scalingControl;
 
@@ -119,8 +114,7 @@ public class Syndrom {
     }
 
     private void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv) {
-        pickSupport = new SyndromPickSupport(vv);
-        gzsp = new GraphZoomScrollPane(vv);
+        SyndromPickSupport<Vertex, Edge> pickSupport = new SyndromPickSupport<>(vv);
         vv.setBackground(Color.WHITE);
         vv.setRenderer(new SyndromRenderer<>());
         vv.getRenderContext().setPickSupport(pickSupport);
@@ -153,7 +147,7 @@ public class Syndrom {
 
         vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vv.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
-        vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<Edge>(vv));
+        vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>(vv));
 
         vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
@@ -187,7 +181,6 @@ public class Syndrom {
         vv.setGraphLayout(layout);
         setVisualisationViewer(vv);
         vv2 = new SatelliteVisualizationViewer<>(vv, new Dimension(260, 195));
-
         setVisualisationViewer2(vv2);
     }
 }

@@ -52,7 +52,7 @@ public class LayoutVerticesGraphLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        AggregateLayout<Vertex, Edge> layout =  syndrom.getLayout();
+        AggregateLayout<Vertex, Edge> layout = syndrom.getLayout();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if(parameters == null || indicator == true){
             Map<Vertex,Point2D> oldVertices = new HashMap<>();
