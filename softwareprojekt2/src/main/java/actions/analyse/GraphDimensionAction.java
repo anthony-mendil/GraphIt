@@ -9,7 +9,6 @@ import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 

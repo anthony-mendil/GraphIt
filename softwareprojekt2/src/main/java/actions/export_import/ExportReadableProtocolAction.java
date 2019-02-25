@@ -1,7 +1,9 @@
 package actions.export_import;
 
 import actions.GraphAction;
-import graph.graph.Syndrom;
+import graph.graph.Edge;
+import graph.graph.SyndromGraph;
+import graph.graph.Vertex;
 import io.Protocolio;
 
 import java.io.File;
@@ -23,8 +25,9 @@ public class ExportReadableProtocolAction extends GraphAction {
      */
     public ExportReadableProtocolAction(File pFile) {
         file=pFile;
-        if(!Syndrom.getInstance().getGraph().getSpheres().isEmpty()) {
-            Syndrom.getInstance().getVv().getPickedSphereState().clear();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        if(!graph.getSpheres().isEmpty()) {
+            syndrom.getVv().getPickedSphereState().clear();
         }
     }
 

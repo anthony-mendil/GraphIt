@@ -613,7 +613,7 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Text selectionSphere;
     @FXML
-    private Button handVertex;
+    private Button handSelector;
     @FXML
     private Button addSphere;
     @FXML
@@ -849,9 +849,10 @@ public class Controller implements ObserverSyndrom {
     private MenuItem logEditVerticesLayout;
     @FXML
     private MenuItem logAll;
-    @FXML
-    private Label infoAnalysis;
+    @FXML private Label infoAnalysis;
+    @FXML private Label infoZoom;
     private Tooltip tooltipInfoAnalysis = new Tooltip();
+    private Tooltip tooltipInfoZoom = new Tooltip();
     @FXML
     private Text positionMouseX;
     @FXML
@@ -878,12 +879,10 @@ public class Controller implements ObserverSyndrom {
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
 
 
-    private static Logger logger = Logger.getLogger(Controller.class);
+    private List<Button> selectionButtons;
 
-    private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
-    private LogEntryName analysisLogEntryName = null;
-    private LoadLanguage loadLanguage;
-
+    private ObservableList<Label> sizeLabels;
+    private ObservableList<MenuItem> fontLabels;
     private ObservableList<String> fonts =
             FXCollections.observableArrayList(
                     "AveriaSansLibre",
@@ -892,7 +891,6 @@ public class Controller implements ObserverSyndrom {
                     "Roboto",
                     "RobotoSlab"
             );
-
     private ObservableList<String> sizes =
             FXCollections.observableArrayList(
                     "8",
@@ -910,6 +908,12 @@ public class Controller implements ObserverSyndrom {
                     "72",
                     "96"
             );
+
+    private static Logger logger = Logger.getLogger(Controller.class);
+
+    private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
+    private LogEntryName analysisLogEntryName = null;
+    private LoadLanguage loadLanguage;
 
     public void filterEdgeTypeReinforced() {
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
@@ -933,9 +937,9 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an AddSphereLogAction-object and executes the action with the action history.
      */
-    @SuppressWarnings("unused")
     public void addSphere() {
-        throw new UnsupportedOperationException();
+        values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
+        setStyleSelectionButtons(addSphere.getId());
     }
 
     /**
@@ -943,10 +947,12 @@ public class Controller implements ObserverSyndrom {
      */
     public void addVertex() {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
+        setStyleSelectionButtons(addVertex.getId());
     }
 
-    public void handVertex() {
+    public void handSelector() {
         values.setGraphButtonType(GraphButtonType.NONE);
+        setStyleSelectionButtons(handSelector.getId());
     }
 
     /* ----------------ANALYSE---------------------- */
@@ -1382,6 +1388,7 @@ public class Controller implements ObserverSyndrom {
     public void printPDF() {
         PrintPDFAction printPDFAction = new PrintPDFAction();
         printPDFAction.action();
+
     }
 
     /* ----------------LAYOUT---------------------- */
@@ -1539,24 +1546,30 @@ public class Controller implements ObserverSyndrom {
      * Creates an RemoveEdgesLogAction-object and executes the action with the action history.
      */
     public void removeEdges() {
-        RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction();
-        history.execute(removeEdgesLogAction);
+        if (!syndrom.getVv().getPickedEdgeState().getPicked().isEmpty()) {
+
+            RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction();
+        history.execute(removeEdgesLogAction);}
     }
 
     /**
      * Creates an RemoveSphereLogAction-object and executes the action with the action history.
      */
     public void removeSphere() {
-        RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
-        history.execute(removeSphereLogAction);
+        if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
+            RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
+            history.execute(removeSphereLogAction);
+        }
     }
 
     /**
      * Creates an RemoveVerticesLogAction-object and executes the action with the action history.
      */
     public void removeVertices() {
-        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
-        history.execute(removeVerticesLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+
+            RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
+        history.execute(removeVerticesLogAction);}
 
     }
 
@@ -1750,15 +1763,40 @@ public class Controller implements ObserverSyndrom {
         initProtocolTree();
         initGraphLanguage();
         initInfoText();
+        iniSelectionButtons();
     }
 
+    private void iniSelectionButtons(){
+        selectionButtons = new ArrayList<>();
+        selectionButtons.add(addSphere);
+        selectionButtons.add(addVertex);
+        selectionButtons.add(handSelector);
+        handSelector();
+    }
+
+    private void setStyleSelectionButtons(String id){
+        for(Button b : selectionButtons){
+            if (id.equals(b.getId())){
+                b.getStyleClass().add("buttonSelection");
+            } else {
+                b.getStyleClass().remove("buttonSelection");
+            }
+        }
+    }
+
+
     private void initInfoText() {
-        tooltipInfoAnalysis.setPrefWidth(200);
-        tooltipInfoAnalysis.setText(loadLanguage.loadLanguagesKey("INFO_ANALYSIS"));
-        tooltipInfoAnalysis.setWrapText(true);
-        tooltipInfoAnalysis.setAutoFix(false);
-        tooltipInfoAnalysis.setAutoHide(false);
-        tooltipInfoAnalysis.setStyle("-fx-background-color:\n" +
+        infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
+        infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
+    }
+
+    private void infoText(Tooltip tooltip, String text, Label label, int x, int y){
+        tooltip.setPrefWidth(200);
+        tooltip.setText(loadLanguage.loadLanguagesKey(text));
+        tooltip.setWrapText(true);
+        tooltip.setAutoFix(false);
+        tooltip.setAutoHide(false);
+        tooltip.setStyle("-fx-background-color:\n" +
                 "            #000000,\n" +
                 "            linear-gradient(#7ebcea, #2f4b8f),\n" +
                 "            linear-gradient(#426ab7, #263e75),\n" +
@@ -1766,8 +1804,8 @@ public class Controller implements ObserverSyndrom {
                 "    -fx-text-fill: white;\n" +
                 "    -fx-font-size: 12px;");
 
-        infoAnalysis.setOnMouseMoved(event -> tooltipInfoAnalysis.show(infoAnalysis, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxX() + 15, infoAnalysis.localToScene(infoAnalysis.getBoundsInLocal()).getMaxY()));
-        infoAnalysis.setOnMouseExited(event -> tooltipInfoAnalysis.hide());
+        label.setOnMouseMoved(event -> tooltip.show(label, label.localToScene(label.getBoundsInLocal()).getMaxX() + x, label.localToScene(label.getBoundsInLocal()).getMaxY() + y));
+        label.setOnMouseExited(event -> tooltip.hide());
     }
 
     public void initButtonShortcuts() {
@@ -1781,6 +1819,7 @@ public class Controller implements ObserverSyndrom {
         KeyCombination two = new KeyCodeCombination(KeyCode.DIGIT2);
         KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
         KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        KeyCombination entf = new KeyCodeCombination(KeyCode.DELETE);
 
         mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
             if (plus.match(event)) {
@@ -1793,18 +1832,17 @@ public class Controller implements ObserverSyndrom {
                 executeUndo();
             } else if (strgY.match(event)) {
                 executeRedo();
-            } else if (strgD.match(event)) {
+            } else if (entf.match(event)||strgD.match(event)) {
+
                 removeEdges();
-                removeSphere();
                 removeVertices();
+                removeSphere();
+
             } else if (strgA.match(event)) {
-                for (Sphere s : syndrom.getGraph().getSpheres()) {
-                    syndrom.getVv().getPickedSphereState().pick(s, true);
-                }
-                for (Vertex v : syndrom.getGraph().getVertices()) {
+                for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
                     syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
-                for (Edge e : syndrom.getGraph().getEdges()) {
+                for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
                 }
             } else if (one.match(event)) {
@@ -1816,7 +1854,8 @@ public class Controller implements ObserverSyndrom {
             } else if (esc.match(event)) {
                 syndrom.getVv().getPickedSphereState().clear();
                 syndrom.getVv().getPickedVertexState().clear();
-                handVertex();
+                syndrom.getVv().getPickedEdgeState().clear();
+                handSelector();
             }
         });
     }
@@ -1840,7 +1879,7 @@ public class Controller implements ObserverSyndrom {
         languageGraphGerman.setSelected(true);
     }
 
-    final public static Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+    public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
 
     private void sortFilterLogs() {
         ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
@@ -1982,7 +2021,6 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            comboBox.show();
             if (!newValue.matches("\\d*"))
                 comboBox.getEditor().setText(oldValue);
 
@@ -2000,21 +2038,19 @@ public class Controller implements ObserverSyndrom {
 
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            comboBox.show();
-
             if (!newValue.matches("[a-zA-Z ]*"))
                 comboBox.getEditor().setText(oldValue);
         }
     }
 
-    private class ComboBoxValueListener implements ChangeListener<String> {
-        private final ComboBox<String> comboBox;
+    public void editFontSizeSphere(int size) {
+        values.setFontSizeSphere(size);
+        EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+        history.execute(editFontSizeSphereLogAction);
+    }
 
-        private void editFontSizeSphere(int size) {
-            values.setFontSizeSphere(size);
-            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-            history.execute(editFontSizeSphereLogAction);
-        }
+    /*private class ComboBoxValueListener implements ChangeListener<String> {
+        private final ComboBox<String> comboBox;
 
         private ComboBoxValueListener(ComboBox<String> pComboBox) {
             this.comboBox = pComboBox;
@@ -2045,7 +2081,9 @@ public class Controller implements ObserverSyndrom {
             }
             root.requestFocus();
         }
-    }
+    }*/
+
+
 
     private class ComboBoxFocusListener implements ChangeListener<Boolean> {
         private final ComboBox<String> comboBox;
@@ -2057,9 +2095,10 @@ public class Controller implements ObserverSyndrom {
         @Override
         public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
             if (newPropertyValue) {
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX) && sizes.contains(comboBox.getEditor().getText())) {
+                comboBox.show();
+                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                     currentSize = comboBox.getEditor().getText();
-                } else if ((comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) && fonts.contains(comboBox.getEditor().getText())) {
+                } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
                     currentFont = comboBox.getEditor().getText();
                 }
             } else {
@@ -2071,6 +2110,7 @@ public class Controller implements ObserverSyndrom {
             }
         }
     }
+
 
     private void loadMenuItem() {
         symptomCircle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
@@ -2136,60 +2176,135 @@ public class Controller implements ObserverSyndrom {
 
         if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontSphere());
+            currentFont = values.getFontSphere();
         } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontVertex());
+            currentFont = values.getFontVertex();
         }
-
-        comboBox.setItems(fonts);
+        loadFonts(comboBox);
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.getEditor().textProperty().addListener(new OnlyLettersSpacesComboBoxListener(comboBox));
-        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
-        loadFonts(comboBox);
+
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            comboBox.hide();
+            if(event.getCode() == KeyCode.ENTER){
+                String tmpFont = comboBox.getEditor().getText();
+                if(fonts.contains(tmpFont)){
+                    if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)){
+                        currentFont = tmpFont;
+                        editFontSphere(tmpFont);
+                    }else if(comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+                        currentFont = tmpFont;
+                        editFontVertex(tmpFont);
+                    }
+
+                }
+                root.requestFocus();
+            }
+        });
     }
 
 
     private void loadSizeComboBox(ComboBox<String> comboBox) {
         if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeSphere());
+            currentSize = "" + values.getFontSizeSphere();
         } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
             comboBox.getEditor().setText("" + values.getFontSizeVertex());
+            currentSize = "" + values.getFontSizeVertex();
         }
 
-        comboBox.setItems(sizes);
+        loadSizes(comboBox);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
-        comboBox.getSelectionModel().selectedItemProperty().addListener(new ComboBoxValueListener(comboBox));
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            comboBox.hide();
+            if(event.getCode() == KeyCode.ENTER){
+                String tmpSize = comboBox.getEditor().getText();
+                if(tmpSize.chars().allMatch(Character::isDigit)){
+                    int size = Integer.parseInt(tmpSize);
+                    if(size > 3 && size <= 96){
+                        if(comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)){
+                            currentSize = tmpSize;
+                            editFontSizeSphere(size);
+                        }else if(comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)){
+                            currentSize = tmpSize;
+                            editFontSizeVertices(size);
+                        }
+                    }
+                }
+                root.requestFocus();
+            }
+        });
     }
 
     private void loadFonts(ComboBox comboBox) {
-        ObservableList<Label> fontLabels = FXCollections.observableArrayList();
-        for (String font : fonts) {
-            Label fontLabel = new Label(font);
-            fontLabel.addEventHandler(ActionEvent.ACTION, event -> {
-                currentFont = font;
-                if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                    editFontSphere(font);
-                } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                    editFontVertex(font);
+
+        comboBox.setCellFactory(lv -> {
+            ListCell<MenuItem> cell = new ListCell<MenuItem>() {
+                @Override
+                protected void updateItem(MenuItem item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(empty ? null : item.getText());
+                }
+            };
+
+            cell.setOnMousePressed(e -> {
+                if (!cell.isEmpty()) {
+                    currentFont = cell.getItem().getText();
+                    comboBox.getEditor().setText(currentFont);
+                    if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)){
+                        editFontSphere(currentFont);
+                    }else if(comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+                        editFontVertex(currentFont);
+                    }
+                    root.requestFocus();
                 }
             });
-            fontLabels.add(fontLabel);
+            return cell ;
+        });
+
+        ObservableList<MenuItem> fontMenuItems = FXCollections.observableArrayList();
+        for (String font : fonts) {
+            MenuItem fontMenuItem = new MenuItem(font);
+            fontMenuItems.add(fontMenuItem);
         }
+        comboBox.setItems(fontMenuItems);
     }
 
     private void loadSizes(ComboBox comboBox) {
-        ObservableList<Label> sizeLabels = FXCollections.observableArrayList();
-        for (String size : sizes) {
-            Label sizeLabel = new Label(size);
-            sizeLabel.addEventHandler(ActionEvent.ACTION, event -> {
-                currentSize = size;
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
 
-                } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
+        comboBox.setCellFactory(lv -> {
+            ListCell<MenuItem> cell = new ListCell<MenuItem>(){
+                @Override
+                protected void updateItem(MenuItem item, boolean empty){
+                    super.updateItem(item, empty);
+                    setText(empty ? null : item.getText());
+                }
+            };
 
+            cell.setOnMousePressed(e -> {
+                if(!cell.isEmpty()){
+                    currentSize = cell.getItem().getText();
+                    int size = Integer.parseInt(currentSize);
+                    comboBox.getEditor().setText(currentSize);
+                    if(comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)){
+                        editFontSizeSphere(size);
+                    }else if(comboBox.getId().equals((SIZE_SYMPTOM_COMBO_BOX))){
+                        editFontSizeVertices(size);
+                    }
+                    root.requestFocus();
                 }
             });
+            return cell;
+        });
+
+        ObservableList<MenuItem> sizeMenuItems = FXCollections.observableArrayList();
+        for (String size : sizes) {
+            MenuItem sizeMenuItem = new MenuItem(size);
+            sizeMenuItems.add(sizeMenuItem);
         }
+        comboBox.setItems(sizeMenuItems);
     }
 
     /**
@@ -2414,14 +2529,16 @@ public class Controller implements ObserverSyndrom {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("/GraphItLogo.png"));
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-            // ... user chose "One"
-            logger.debug("SCHLIEßEN");
-            System.exit(0);
-            Platform.exit();
-        } else {
-            // ... user chose CANCEL or closed the dialog
-            logger.debug("CANCEL");
+        if (result.isPresent()) {
+            if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                // ... user chose "One"
+                logger.debug("SCHLIEßEN");
+                System.exit(0);
+                Platform.exit();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                logger.debug("CANCEL");
+            }
         }
     }
 
@@ -2582,9 +2699,6 @@ public class Controller implements ObserverSyndrom {
         history.execute(editVerticesSizeLogAction);
     }
 
-    public void addSphereButton() {
-        values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
-    }
 
     /*
      * The event handler that provides the arguments, needed to use the actions after choosing a colour.

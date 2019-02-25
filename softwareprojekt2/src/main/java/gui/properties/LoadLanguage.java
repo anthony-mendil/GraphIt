@@ -77,7 +77,7 @@ public class LoadLanguage {
         c.getFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutElement"));
         c.getDeleteFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutDeleteElement"));
         c.getSelection().setText(loadLanguagesKey("selectorHand"));
-        c.getHandVertex().getTooltip().setText(loadLanguagesKey("selectorHandTooltip"));
+        c.getHandSelector().getTooltip().setText(loadLanguagesKey("selectorHandTooltip"));
         c.getSelectionSphere().setText(loadLanguagesKey("sectionSphere"));
         c.getAddSphere().getTooltip().setText(loadLanguagesKey("addSphereTooltip"));
         c.getDeleteSphere().getTooltip().setText(loadLanguagesKey("deleteSphereTooltip"));
@@ -202,6 +202,7 @@ public class LoadLanguage {
         c.getLogAddEdge().setText(loadLanguagesKey("ADD_EDGES"));
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
         c.getTooltipInfoAnalysis().setText(loadLanguagesKey("INFO_ANALYSIS"));
+        c.getTooltipInfoZoom().setText(loadLanguagesKey("INFO_ZOOM"));
     }
 
     public String loadLanguagesKey(String key)  {

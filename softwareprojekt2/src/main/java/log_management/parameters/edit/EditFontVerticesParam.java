@@ -19,13 +19,11 @@ import java.util.Map;
  */
 @Data
 public class EditFontVerticesParam implements Param {
-    @Getter
     private List<Vertex> oldVertices;
 
     @Getter
     private List<String> oldFonts;
 
-    @Getter
     private List<Vertex> newVertices;
 
     @Getter
@@ -56,23 +54,19 @@ public class EditFontVerticesParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Symptoms changed: ";
+            information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i)) + ". "
-                        + "Old font: " + oldFonts.get(i)
-                        + ", new font: " + newFonts.get(i) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old font: ").append(oldFonts.get(i)).append(", new font: ").append(newFonts.get(i)).append(". ");
             }
         } else {
-            information += "Veränderte Symptome: ";
+            information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information += SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i)) + ". "
-                        + "Alte Schriftart: " + oldFonts.get(i)
-                        + ", neue Schriftart: " + newFonts.get(i) + ". ";
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Schriftart: ").append(oldFonts.get(i)).append(", neue Schriftart: ").append(newFonts.get(i)).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Vertex, String> getOldVertices() {

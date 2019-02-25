@@ -11,9 +11,7 @@ import lombok.Data;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Parameter object for the action AddEdgesLogAction/RemoveEdgesLogAction.
@@ -54,17 +52,17 @@ public class AddRemoveEdgesParam implements Param {
 
         Language language = Values.getInstance().getGuiLanguage();
         if (language == Language.ENGLISH) {
-            String list = "Relations: ";
+            StringBuilder list = new StringBuilder("Relations: ");
             for (int i = 0; i < edges.size(); i++) {
-                list += SyndromObjectPrinter.edgePrintEnglish(edges.get(i), verticesList.get(i)) + ". ";
+                list.append(SyndromObjectPrinter.edgePrintEnglish( verticesList.get(i))).append(". ");
             }
-            return list;
+            return list.toString();
         } else {
-            String list = "Relationen: ";
+            StringBuilder list = new StringBuilder("Relationen: ");
             for (int i = 0; i < edges.size(); i++) {
-                list += SyndromObjectPrinter.edgePrintGerman(edges.get(i), verticesList.get(i)) + ". ";
+                list.append(SyndromObjectPrinter.edgePrintGerman(verticesList.get(i))).append(". ");
             }
-            return list;
+            return list.toString();
         }
     }
 

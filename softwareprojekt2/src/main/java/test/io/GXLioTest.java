@@ -1,61 +1,65 @@
 package test.io;
 
-import java.awt.*;
-
-import java.time.temporal.ValueRange;
-import java.util.*;
-
 import actions.other.SwitchModeAction;
-import edu.uci.ics.jung.algorithms.layout.Layout;
 import graph.graph.*;
 import gui.Values;
+import gui.properties.Language;
 import io.GXLio;
-import javafx.scene.input.ScrollEvent;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.freehep.graphicsbase.util.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.*;
 import java.util.List;
 
 
 public class GXLioTest {
 
-    SwitchModeAction sm = new SwitchModeAction(FunctionMode.TEMPLATE);
-
-    private static Logger logger = Logger.getLogger(GXLioTest.class);
-    GraphObjectsFactory factory = new GraphObjectsFactory();
     /**
      * The values to use.
      */
-    private Values values;
+    private Values values = Values.getInstance();
+    private SwitchModeAction sm = new SwitchModeAction(FunctionMode.TEMPLATE);
+    private static Logger logger = Logger.getLogger(GXLioTest.class);
+    private GraphObjectsFactory factory = new GraphObjectsFactory();
     private GXLDocument doc = null;
+    private List<Sphere> spheresList = new ArrayList<>();
+    private List<Vertex> verticesList = new ArrayList<>();
+    private List<Edge> edgesList = new ArrayList<>();
+    private SyndromGraph<Vertex, Edge> graph = new SyndromGraph<>();
+    private Syndrom syndrom = Syndrom.getInstance();
+    private String nameTestGraph = "testGraph.gxl";
+    private String syndromName = "syndrom";
+    private GXLio gxlio = new GXLio();
 
-    private List<Sphere> spheresList = new ArrayList();
-    private List<Vertex> verticesList = new ArrayList();
-    private List<Edge> edgesList = new ArrayList();
-
-    public GXLio prepareSyndrom(boolean pWithTemplate) throws IOException, SAXException {
-        Syndrom syndrom = graph.graph.Syndrom.getInstance();
+    private GXLio prepareSyndrom(boolean pWithTemplate) throws IOException, SAXException {
+        // generate new graph and set as actual graph
         syndrom.generateNew();
-        Syndrom.getInstance().setTemplate(new Template(25, 50, 75, true, true, true));
+        syndrom.setTemplate(new Template(25, 50, 75, true, true, true));
         generateGraphElements();
-        Syndrom.getInstance().getVv().getGraphLayout().setGraph(Syndrom.getInstance().getGraph());
-        GXLio gxlio = new GXLio();
-        gxlio.exportGXL(new File("testGraph.gxl"), pWithTemplate);
-        Syndrom.getInstance().generateNew();
-        doc = new GXLDocument(new File("testGraph.gxl"));
+        syndrom.getVv().getGraphLayout().setGraph(graph);
+        // export graph
+
+        gxlio.exportGXL(new File(nameTestGraph), pWithTemplate);
+        // generate new clean syndrom
+        syndrom.generateNew();
+        doc = new GXLDocument(new File(nameTestGraph));
         return gxlio;
     }
 
-
+    /**
+     * This method creates some spheres, vertices and edges with different values for some of their attributes.
+     */
     private void generateGraphElements() {
-        Values.getInstance().setFontSizeSphere(10);
-        Values.getInstance().setFillPaintSphere(new java.awt.Color(86, 151, 31, 183));
+        values.setFontSizeSphere(10);
+        values.setFillPaintSphere(new java.awt.Color(86, 151, 31, 183));
         Sphere s1 = factory.createSphere(new Point2D.Double(20, 20));
         s1.setLockedAnnotation(true);
         Sphere s2 = factory.createSphere(new Point2D.Double(270, 50));
@@ -63,21 +67,31 @@ public class GXLioTest {
         s2.setWidth(300.0);
         s2.setLockedAnnotation(true);
         s2.setLockedVertices(true);
+        Map<String, String>  annotation2 = s2.getAnnotation();
+        annotation2.put(Language.GERMAN.name(),"Sphäre Nummer 1");
+        s2.setAnnotation(annotation2);
         Sphere s3 = factory.createSphere(new Point2D.Double(620, 20));
-        Values.getInstance().setFillPaintSphere(new java.awt.Color(24, 54, 11, 178));
-        Values.getInstance().setFontSizeSphere(24);
+        Map<String, String>  annotation3 = s3.getAnnotation();
+        annotation3.put(Language.ENGLISH.name(),"Sphere number 2");
+        s3.setAnnotation(annotation3);
+        values.setFillPaintSphere(new java.awt.Color(24, 54, 11, 178));
+        values.setFontSizeSphere(24);
         Sphere s4 = factory.createSphere(new Point2D.Double(200, 310));
         s4.setLockedMaxAmountVertices("17");
         s4.setLockedPosition(true);
+        Map<String, String>  annotation4 = s4.getAnnotation();
+        annotation4.put(Language.GERMAN.name(),"Sphäre Nummer 3");
+        annotation4.put(Language.ENGLISH.name(),"Sphere number 3");
+        s4.setAnnotation(annotation4);
         Sphere s5 = factory.createSphere(new Point2D.Double(445, 310));
         s5.setLockedMaxAmountVertices("5");
         s5.setLockedPosition(true);
         s5.setLockedStyle(true);
 
-        Values.getInstance().setFontSizeVertex(12);
-        Values.getInstance().setShapeVertex(VertexShapeType.CIRCLE);
-        Values.getInstance().setFillPaintVertex(new java.awt.Color(88, 88, 219, 220));
-        Values.getInstance().setFontVertex("Roboto");
+        values.setFontSizeVertex(12);
+        values.setShapeVertex(VertexShapeType.CIRCLE);
+        values.setFillPaintVertex(new java.awt.Color(88, 88, 219, 220));
+        values.setFontVertex("Roboto");
         Vertex v1 = factory.createVertex(new Point2D.Double(80, 80));
         v1.setLockedStyle(true);
         Vertex v2 = factory.createVertex(new Point2D.Double(340, 140));
@@ -90,11 +104,11 @@ public class GXLioTest {
         v3.setLockedPosition(true);
         Vertex v4 = factory.createVertex(new Point2D.Double(485, 140));
         v4.setLockedAnnotation(true);
-        Vertex v5 = factory.createVertex(new Point2D.Double(740, 80));;
+        Vertex v5 = factory.createVertex(new Point2D.Double(740, 80));
         v5.setLockedAnnotation(true);
-        Values.getInstance().setShapeVertex(VertexShapeType.RECTANGLE);
-        Values.getInstance().setFillPaintVertex(new java.awt.Color(11, 19, 90, 220));
-        Values.getInstance().setFontSizeVertex(7);
+        values.setShapeVertex(VertexShapeType.RECTANGLE);
+        values.setFillPaintVertex(new java.awt.Color(11, 19, 90, 220));
+        values.setFontSizeVertex(7);
         Vertex v6 = factory.createVertex(new Point2D.Double(220, 360));
         v6.setLockedStyle(true);
         Vertex v7 = factory.createVertex(new Point2D.Double(280, 420));
@@ -109,21 +123,21 @@ public class GXLioTest {
         v8.setLockedPosition(true);
         Vertex v9 = factory.createVertex(new Point2D.Double(620, 360));
 
-        Values.getInstance().setEdgeArrowType(EdgeArrowType.EXTENUATING);
-        Values.getInstance().setStrokeEdge(StrokeType.BASIC);
+        values.setEdgeArrowType(EdgeArrowType.EXTENUATING);
+        values.setStrokeEdge(StrokeType.BASIC);
         Edge e1 = factory.createEdge();
         e1.setLockedEdgeType(true);
         Edge e2 = factory.createEdge();
         e2.setStroke(StrokeType.BASIC_WEIGHT);
         e2.setLockedEdgeType(true);
-        Values.getInstance().setEdgeArrowType(EdgeArrowType.NEUTRAL);
+        values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         Edge e3 = factory.createEdge();
         e3.setStroke(StrokeType.DOTTED_WEIGHT);
         e3.setLockedStyle(true);
         Edge e4 = factory.createEdge();
         e4.setLockedPosition(true);
         e4.setStroke(StrokeType.DOTTED);
-        Values.getInstance().setEdgeArrowType(EdgeArrowType.REINFORCED);
+        values.setEdgeArrowType(EdgeArrowType.REINFORCED);
         Edge e5 = factory.createEdge();
         Edge e6 = factory.createEdge();
         e6.setStroke(StrokeType.DASHED);
@@ -148,100 +162,153 @@ public class GXLioTest {
         s5.getVertices().add(v8);
         s5.getVertices().add(v9);
 
-        Syndrom.getInstance().getGraph().getSpheres().add(s1);
-        Syndrom.getInstance().getGraph().getSpheres().add(s2);
-        Syndrom.getInstance().getGraph().getSpheres().add(s3);
-        Syndrom.getInstance().getGraph().getSpheres().add(s4);
-        Syndrom.getInstance().getGraph().getSpheres().add(s5);
+        graph.getSpheres().add(s1);
+        graph.getSpheres().add(s2);
+        graph.getSpheres().add(s3);
+        graph.getSpheres().add(s4);
+        graph.getSpheres().add(s5);
 
-        Syndrom.getInstance().getGraph().addEdge(e1, v1, v2);
-        Syndrom.getInstance().getGraph().addEdge(e2, v5, v4);
-        Syndrom.getInstance().getGraph().addEdge(e3, v7, v6);
-        Syndrom.getInstance().getGraph().addEdge(e4, v8, v9);
-        Syndrom.getInstance().getGraph().addEdge(e5, v6, v3);
-        Syndrom.getInstance().getGraph().addEdge(e6, v7, v3);
-        Syndrom.getInstance().getGraph().addEdge(e7, v8, v3);
-        Syndrom.getInstance().getGraph().addEdge(e8, v9, v3);
-        spheresList = Syndrom.getInstance().getGraph().getSpheres();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            verticesList.add(v);
-        }
+        graph.addEdge(e1, v1, v2);
+        graph.addEdge(e2, v5, v4);
+        graph.addEdge(e3, v7, v6);
+        graph.addEdge(e4, v8, v9);
+        graph.addEdge(e5, v6, v3);
+        graph.addEdge(e6, v7, v3);
+        graph.addEdge(e7, v8, v3);
+        graph.addEdge(e8, v9, v3);
+        spheresList = graph.getSpheres();
+        verticesList.addAll(graph.getVertices());
         verticesList.sort(Comparator.comparingInt(Vertex::getId));
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edgesList.add(e);
-        }
+        edgesList.addAll(graph.getEdges());
         edgesList.sort(Comparator.comparingInt(Edge::getId));
     }
 
-    // <--------------       holistic comparision       ------------->
+    // <---------   name of graph   ------------>
 
+    /**
+     * This method tests if the name of a graph is exported and imported correctly.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
-    public void testSphereList() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        Assert.assertEquals(spheresList, Syndrom.getInstance().getGraph().getSpheres());
+    public void testGraphName() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        Assert.assertEquals("untitled syndrom", syndrom.getGraphName());
     }
 
+
+    // <--------------       holistic comparision       ------------->
+
+    /**
+     * This method tests, if the list of spheres contained in the graph belonging to the syndrom after importing a gxl-File
+     * is equal to the list of spheres of the graph that gets imported.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testSphereList() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        Assert.assertEquals(spheresList, g.getSpheres());
+    }
+
+    /**
+     * This method tests, if the list of vertices contained in the graph belonging to the syndrom after importing a gxl-File
+     * is equal to the list of vertices of the graph that is imported.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVertexList() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        List<Vertex> importedVertices = new ArrayList<>();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            importedVertices.add(v);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        List<Vertex> importedVertices = new ArrayList<>(g.getVertices());
         importedVertices.sort(Comparator.comparingInt(Vertex::getId));
         Assert.assertEquals(verticesList, importedVertices);
     }
 
+    /**
+     * This method tests, if the list of edges contained in the graph belonging to the syndrom after importing a gxl-File
+     * is equal to the list of edges of the graph that is imported.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgeList() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        List<Edge> importedEdges = new ArrayList<>();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            importedEdges.add(e);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        List<Edge> importedEdges = new ArrayList<>(g.getEdges());
         importedEdges.sort(Comparator.comparingInt(Edge::getId));
         Assert.assertEquals(edgesList, importedEdges);
     }
 
     // <-------------   number of elements    ------------------>
 
+    /**
+     * This method tests, if the number of spheres, vertices and edges is correct after the import of a gxl File.
+     * Correct in this sense means that it is identical to the number of spheres, vertices and edges of the graph that gets exported.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testElementNumberOfSyndromGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        Assert.assertEquals(8, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getEdgeCount());
-        Assert.assertEquals(8, Syndrom.getInstance().getGraph().getEdgeCount());
-        Assert.assertEquals(9, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertexCount());
-        Assert.assertEquals(9, Syndrom.getInstance().getGraph().getVertexCount());
-        Assert.assertEquals(5, Syndrom.getInstance().getGraph().getSpheres().size());
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        Assert.assertEquals(8, g.getEdgeCount());
+        Assert.assertEquals(9, g.getVertexCount());
+        Assert.assertEquals(5, g.getSpheres().size());
     }
 
+    /**
+     * This method tests if the GXLGraph-Oject created from the File that is created by the emport of a graph
+     * contains only one GXLGraph (the exported syndrom) and if this graph contains the right amount of childs.
+     * Childs in this sense are spheres, vertices and edges.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testElementNumberOfGXLGraph() throws IOException, SAXException {
+        prepareSyndrom(false);
+        Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
+        Assert.assertEquals(23, doc.getElement(syndromName).getChildCount());
+    }
+
+    /**
+     * This method tests if the GXLGraph-Oject created from the File that is created by the emport of a graph
+     * contains two GXLGraphs. One of them represents the syndromgraph and the other GXLGraph contains the rules of the template.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testElementNumberWithTemplateOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom(true);
         Assert.assertEquals(2, doc.getDocumentElement().getGraphCount());
     }
 
-
-    @Test
-    public void testElementNumberOfGXLGraph() throws IOException, SAXException {
-        prepareSyndrom(false);
-        Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
-        Assert.assertEquals(22, doc.getElement("syndrom").getChildCount());
-    }
-
     // <--------------     relations of graph elements    ------------->
 
+    /**
+     * This method tests if the spheres that are created by importing the specified gxl-File contain the right vertices.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesInSpheresOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
-        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(5)), getNodeIDs(spheres.get(0).getVertices()));
-        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(6, 7, 8)), getNodeIDs(spheres.get(1).getVertices()));
-        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(9)), getNodeIDs(spheres.get(2).getVertices()));
-        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(10, 11)), getNodeIDs(spheres.get(3).getVertices()));
-        Assert.assertEquals(new ArrayList<Integer>(Arrays.asList(12, 13)), getNodeIDs(spheres.get(4).getVertices()));
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
+        Assert.assertEquals(new ArrayList<>(Collections.singletonList(5)), getNodeIDs(spheres.get(0).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Arrays.asList(6, 7, 8)), getNodeIDs(spheres.get(1).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Collections.singletonList(9)), getNodeIDs(spheres.get(2).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Arrays.asList(10, 11)), getNodeIDs(spheres.get(3).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Arrays.asList(12, 13)), getNodeIDs(spheres.get(4).getVertices()));
     }
 
+    /**
+     * This is a helper method that returns the IDs of the vertices that are passed to this method as list.
+     * @param pVertices a list of vertices those IDs are of interest
+     * @return the IDs of vertices contained in the passed list a list of Integers.
+     */
     private ArrayList<Integer> getNodeIDs(LinkedList<Vertex> pVertices){
         ArrayList<Integer> verticesIDs = new ArrayList<>();
         for(Vertex v : pVertices){
@@ -250,38 +317,49 @@ public class GXLioTest {
         return verticesIDs;
     }
 
+    /**
+     * This method tests if the edges that are created by importing the specified gxl-File connect the right vertices.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgesConnectingRightVerticesOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Edge> edges = new ArrayList();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edges.add(e);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
-        Assert.assertEquals(5, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getFirst().getId());
-        Assert.assertEquals(6, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getSecond().getId());
-        Assert.assertEquals(9, Syndrom.getInstance().getGraph().getEndpoints(edges.get(1)).getFirst().getId());
-        Assert.assertEquals(8, Syndrom.getInstance().getGraph().getEndpoints(edges.get(1)).getSecond().getId());
-        Assert.assertEquals(11, Syndrom.getInstance().getGraph().getEndpoints(edges.get(2)).getFirst().getId());
-        Assert.assertEquals(10, Syndrom.getInstance().getGraph().getEndpoints(edges.get(2)).getSecond().getId());
-        Assert.assertEquals(12, Syndrom.getInstance().getGraph().getEndpoints(edges.get(3)).getFirst().getId());
-        Assert.assertEquals(13, Syndrom.getInstance().getGraph().getEndpoints(edges.get(3)).getSecond().getId());
-        Assert.assertEquals(10, Syndrom.getInstance().getGraph().getEndpoints(edges.get(4)).getFirst().getId());
-        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(4)).getSecond().getId());
-        Assert.assertEquals(11, Syndrom.getInstance().getGraph().getEndpoints(edges.get(5)).getFirst().getId());
-        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(5)).getSecond().getId());  Assert.assertEquals(5, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getFirst().getId());
-        Assert.assertEquals(12, Syndrom.getInstance().getGraph().getEndpoints(edges.get(6)).getFirst().getId());  Assert.assertEquals(5, Syndrom.getInstance().getGraph().getEndpoints(edges.get(0)).getFirst().getId());
-        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(6)).getSecond().getId());
-        Assert.assertEquals(13, Syndrom.getInstance().getGraph().getEndpoints(edges.get(7)).getFirst().getId());
-        Assert.assertEquals(7, Syndrom.getInstance().getGraph().getEndpoints(edges.get(7)).getSecond().getId());
+        Assert.assertEquals(5, g.getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(6, g.getEndpoints(edges.get(0)).getSecond().getId());
+        Assert.assertEquals(9, g.getEndpoints(edges.get(1)).getFirst().getId());
+        Assert.assertEquals(8, g.getEndpoints(edges.get(1)).getSecond().getId());
+        Assert.assertEquals(11, g.getEndpoints(edges.get(2)).getFirst().getId());
+        Assert.assertEquals(10, g.getEndpoints(edges.get(2)).getSecond().getId());
+        Assert.assertEquals(12,g.getEndpoints(edges.get(3)).getFirst().getId());
+        Assert.assertEquals(13, g.getEndpoints(edges.get(3)).getSecond().getId());
+        Assert.assertEquals(10, g.getEndpoints(edges.get(4)).getFirst().getId());
+        Assert.assertEquals(7, g.getEndpoints(edges.get(4)).getSecond().getId());
+        Assert.assertEquals(11, g.getEndpoints(edges.get(5)).getFirst().getId());
+        Assert.assertEquals(7, g.getEndpoints(edges.get(5)).getSecond().getId());
+        Assert.assertEquals(5, g.getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(12, g.getEndpoints(edges.get(6)).getFirst().getId());
+        Assert.assertEquals(5, g.getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(7, g.getEndpoints(edges.get(6)).getSecond().getId());
+        Assert.assertEquals(13, g.getEndpoints(edges.get(7)).getFirst().getId());
+        Assert.assertEquals(7, g.getEndpoints(edges.get(7)).getSecond().getId());
     }
 
     // <-----------    coordinates    --------->
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the coordinates-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresCoordinatesOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertEquals(new Point2D.Double(20, 20), spheres.get(0).getCoordinates());
         Assert.assertEquals(new Point2D.Double(270, 50), spheres.get(1).getCoordinates());
         Assert.assertEquals(new Point2D.Double(620, 20), spheres.get(2).getCoordinates());
@@ -289,13 +367,16 @@ public class GXLioTest {
         Assert.assertEquals(new Point2D.Double(445, 310), spheres.get(4).getCoordinates());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the coordinates-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesCoordinatesOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Vertex> vertices = new ArrayList();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            vertices.add(v);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
         Assert.assertEquals(new Point2D.Double(80, 80), vertices.get(0).getCoordinates());
         Assert.assertEquals(new Point2D.Double(340, 140), vertices.get(1).getCoordinates());
@@ -308,12 +389,55 @@ public class GXLioTest {
         Assert.assertEquals(new Point2D.Double(620, 360), vertices.get(8).getCoordinates());
     }
 
+    // <---------     annotation    ---------->
+
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the width-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testSpheresAnnotaionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
+        Assert.assertEquals("Sphere 0", convertMapToList(spheres.get(0).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 0", convertMapToList(spheres.get(0).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 1", convertMapToList(spheres.get(1).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 1", convertMapToList(spheres.get(1).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 2", convertMapToList(spheres.get(2).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 2", convertMapToList(spheres.get(2).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 3", convertMapToList(spheres.get(3).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 3", convertMapToList(spheres.get(3).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 4", convertMapToList(spheres.get(4).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 4", convertMapToList(spheres.get(4).getAnnotation()).get(3));
+    }
+
+
+    /**
+     * This is a helper Method that rturns the values of the passed map as list.
+     */
+    private ArrayList<String> convertMapToList(Map<String, String> pHashMap){
+        ArrayList<String> list = new ArrayList<>();
+        for(Map.Entry map : pHashMap.entrySet()){
+            list.add((String) map.getKey());
+            list.add((String) map.getValue());
+        }
+        return list;
+    }
+
     // <-------------   size    ------------------>
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the width-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresWidthOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertEquals(200.0, spheres.get(0).getWidth());
         Assert.assertEquals(300.0, spheres.get(1).getWidth());
         Assert.assertEquals(200.0, spheres.get(2).getWidth());
@@ -321,10 +445,16 @@ public class GXLioTest {
         Assert.assertEquals(200.0, spheres.get(4).getWidth());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the height-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresHeightOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertEquals(200.0, spheres.get(0).getHeight());
         Assert.assertEquals(250.0, spheres.get(1).getHeight());
         Assert.assertEquals(200.0, spheres.get(2).getHeight());
@@ -332,13 +462,16 @@ public class GXLioTest {
         Assert.assertEquals(200.0, spheres.get(4).getHeight());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the size-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesSizeOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Vertex> vertices = new ArrayList();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            vertices.add(v);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
        // vertices.forEach(System.out::println);
         Assert.assertEquals(50, vertices.get(0).getSize());
@@ -354,10 +487,16 @@ public class GXLioTest {
 
     // <-----------    Color    ------------>
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the fillColor-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresFillColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(0).getColor());
         Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(1).getColor());
         Assert.assertEquals(new java.awt.Color(86, 151, 31, 183), spheres.get(2).getColor());
@@ -365,14 +504,16 @@ public class GXLioTest {
         Assert.assertEquals(new java.awt.Color(24, 54, 11, 178), spheres.get(4).getColor());
     }
 
-
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the fillColor-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesFillColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Vertex> vertices = new ArrayList();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            vertices.add(v);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
         Assert.assertEquals(new java.awt.Color(88, 88, 219, 220), vertices.get(0).getFillColor());
         Assert.assertEquals(new java.awt.Color(88, 88, 219, 220), vertices.get(1).getFillColor());
@@ -386,13 +527,16 @@ public class GXLioTest {
 
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the drawColor-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesDrawColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Vertex> vertices = new ArrayList();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            vertices.add(v);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
         Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(0).getDrawColor());
         Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(1).getDrawColor());
@@ -405,13 +549,16 @@ public class GXLioTest {
         Assert.assertEquals(Values.getInstance().getDrawPaintVertex(), vertices.get(8).getDrawColor());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the color-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgesColorOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Edge> edges = new ArrayList();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edges.add(e);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
         Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(0).getColor());
         Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(1).getColor());
@@ -425,10 +572,16 @@ public class GXLioTest {
 
     // <----------     sphere locking    ------------>
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedAnnotation-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresLockedAnnotationOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertTrue(spheres.get(0).isLockedAnnotation());
         Assert.assertTrue(spheres.get(1).isLockedAnnotation());
         Assert.assertFalse(spheres.get(2).isLockedAnnotation());
@@ -436,11 +589,17 @@ public class GXLioTest {
         Assert.assertFalse(spheres.get(4).isLockedAnnotation());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedVertices-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresLockedVerticesOfGraph() throws IOException, SAXException {
         sm.action();
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
 
         Assert.assertFalse(spheres.get(0).isLockedVertices());
         Assert.assertTrue(spheres.get(1).isLockedVertices());
@@ -449,10 +608,16 @@ public class GXLioTest {
         Assert.assertFalse(spheres.get(4).isLockedVertices());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresLockedPositionOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertFalse(spheres.get(0).isLockedPosition());
         Assert.assertFalse(spheres.get(1).isLockedPosition());
         Assert.assertFalse(spheres.get(2).isLockedPosition());
@@ -460,10 +625,16 @@ public class GXLioTest {
         Assert.assertTrue(spheres.get(4).isLockedPosition());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresLockedStyleOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertFalse(spheres.get(0).isLockedStyle());
         Assert.assertFalse(spheres.get(1).isLockedStyle());
         Assert.assertFalse(spheres.get(2).isLockedStyle());
@@ -471,10 +642,16 @@ public class GXLioTest {
         Assert.assertTrue(spheres.get(4).isLockedStyle());
     }
 
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the maxAmountVertices-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testSpheresLockedMaxAmountVerticesOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Sphere> spheres = (ArrayList<Sphere>) Syndrom.getInstance().getGraph().getSpheres();
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
         Assert.assertEquals("", spheres.get(0).getLockedMaxAmountVertices());
         Assert.assertEquals("", spheres.get(1).getLockedMaxAmountVertices());
         Assert.assertEquals("", spheres.get(2).getLockedMaxAmountVertices());
@@ -485,13 +662,16 @@ public class GXLioTest {
 
     // <-------------   vertex locking    ----------->
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesLockedStyleOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Vertex> vertices = new ArrayList();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            vertices.add(v);
-        }
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
         Assert.assertTrue(vertices.get(0).isLockedStyle());
         Assert.assertFalse(vertices.get(1).isLockedStyle());
@@ -504,13 +684,16 @@ public class GXLioTest {
         Assert.assertFalse(vertices.get(8).isLockedStyle());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedAnnotaion-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesLockedAnnotationOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Vertex> vertices = new ArrayList();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            vertices.add(v);
-        }
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
         Assert.assertFalse(vertices.get(0).isLockedAnnotation());
         Assert.assertFalse(vertices.get(1).isLockedAnnotation());
@@ -523,13 +706,16 @@ public class GXLioTest {
         Assert.assertFalse(vertices.get(8).isLockedAnnotation());
     }
 
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testVerticesLockedPositionOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Vertex> vertices = new ArrayList();
-        for(Vertex v : Syndrom.getInstance().getGraph().getVertices()){
-            vertices.add(v);
-        }
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
         Assert.assertFalse(vertices.get(0).isLockedPosition());
         Assert.assertFalse(vertices.get(1).isLockedPosition());
@@ -544,13 +730,16 @@ public class GXLioTest {
 
     // <--------    edge locking    ---------->
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgesLockedStyleOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Edge> edges = new ArrayList();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edges.add(e);
-        }
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
         Assert.assertFalse(edges.get(0).isLockedStyle());
         Assert.assertFalse(edges.get(1).isLockedStyle());
@@ -562,13 +751,16 @@ public class GXLioTest {
         Assert.assertFalse(edges.get(7).isLockedStyle());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgesLockedPositionOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Edge> edges = new ArrayList();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edges.add(e);
-        }
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
         Assert.assertFalse(edges.get(0).isLockedPosition());
         Assert.assertFalse(edges.get(1).isLockedPosition());
@@ -580,13 +772,16 @@ public class GXLioTest {
         Assert.assertTrue(edges.get(7).isLockedPosition());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedEdgeType-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgesLockedEdgeTypeOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File("testGraph.gxl"), true);
-        ArrayList<Edge> edges = new ArrayList();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edges.add(e);
-        }
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
         Assert.assertTrue(edges.get(0).isLockedEdgeType());
         Assert.assertTrue(edges.get(1).isLockedEdgeType());
@@ -601,13 +796,16 @@ public class GXLioTest {
 
     // <-----------     other edge style   ------------------->
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the arrowType-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgesArrowTypeOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Edge> edges = new ArrayList();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edges.add(e);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
         Assert.assertEquals(EdgeArrowType.EXTENUATING, edges.get(0).getArrowType());
         Assert.assertEquals(EdgeArrowType.EXTENUATING, edges.get(1).getArrowType());
@@ -619,13 +817,16 @@ public class GXLioTest {
         Assert.assertEquals(EdgeArrowType.REINFORCED, edges.get(7).getArrowType());
     }
 
+    /**
+     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the stroke-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     @Test
     public void testEdgesStrokeTypeOfGraph() throws IOException, SAXException {
-        prepareSyndrom(false).importGXL(new File("testGraph.gxl"), false);
-        ArrayList<Edge> edges = new ArrayList();
-        for(Edge e : Syndrom.getInstance().getGraph().getEdges()){
-            edges.add(e);
-        }
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
         Assert.assertEquals(StrokeType.BASIC, edges.get(0).getStroke());
         Assert.assertEquals(StrokeType.BASIC_WEIGHT, edges.get(1).getStroke());
@@ -641,14 +842,10 @@ public class GXLioTest {
 
 
 
-
-
-
-
     @Before
     public void prepare() {
         doc = new GXLDocument();
-        GXLGraph gxlGraph = new GXLGraph("syndrom");
+        GXLGraph gxlGraph = new GXLGraph(syndromName);
         GXLNode sphere0 = new GXLNode("0");
         java.awt.Color fillPaint = new java.awt.Color(255, 0, 0, 255);
         String paintDescription = getPaintDescription(fillPaint);
@@ -701,7 +898,7 @@ public class GXLioTest {
         logger.info("Ich bin das GXLDokument: " + doc);
         int numberOfGraphs = doc.getDocumentElement().getGraphCount();
         Assert.assertEquals(1, numberOfGraphs);
-        int numberOfElementsInTheGraph = doc.getElement("syndrom").getChildCount();
+        int numberOfElementsInTheGraph = doc.getElement(syndromName).getChildCount();
         Assert.assertEquals(15, numberOfElementsInTheGraph);
     }
 
@@ -712,7 +909,7 @@ public class GXLioTest {
         GXLNode sphere0 = (GXLNode) doc.getElement("0");
         java.awt.Color expectedColor = new Color(255, 0, 0, 255);
         String sphereColorDescription = ((GXLString) sphere0.getAttr("color").getValue()).getValue();
-        String[] colorArray = getNumberArrayFromString(sphereColorDescription);
+        String[] colorArray = gxlio.getNumberArrayFromString(sphereColorDescription);
         java.awt.Color sphereColor = new Color(Integer.parseInt(colorArray[0]), Integer.parseInt(colorArray[1]),
                 Integer.parseInt(colorArray[2]), Integer.parseInt(colorArray[3]));
         logger.info("Beschreibung der erwarteten Farbe: " + getPaintDescription(expectedColor));
@@ -725,7 +922,7 @@ public class GXLioTest {
     public void testCoordinates() {
         GXLNode vertex0 = (GXLNode) doc.getElement("3");
         String coordinatesDescription = ((GXLString) vertex0.getAttr("coordinates").getValue()).getValue();
-        String[] coordinatesArray = getNumberArrayFromString(coordinatesDescription);
+        String[] coordinatesArray = gxlio.getNumberArrayFromString(coordinatesDescription);
         Assert.assertEquals(250.0, Double.parseDouble(coordinatesArray[0]), 0.0);
         Assert.assertEquals(500.0, Double.parseDouble(coordinatesArray[1]), 0.0);
     }
@@ -749,61 +946,8 @@ public class GXLioTest {
      * @param color the color that need to be describted
      * @return the description of the color as a String
      */
-    public String getPaintDescription(Color color) {
+    private String getPaintDescription(Color color) {
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
     }
-
-
-    /**
-     * Converts a String that contains an unknown amount of numbers into a String array.
-     * Each entry of the array contains a number as String.
-     * It is not generally clear of wich concrete type this number is.
-     *
-     * @param pWord a word containing an unknown amount of numbers.
-     * @return the numbers as String contained in the String parameter as entries in the array.
-     */
-    public String[] getNumberArrayFromString(String pWord) {
-        String word = pWord;
-        String[] alphabet = {"2D", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-        for (String s : alphabet) {
-            word = word.replaceAll(s, "");
-            word = word.replaceAll(s.toUpperCase(), "");
-        }
-        int numberOFDots = 0;
-        while (word.charAt(numberOFDots) == '.') {
-            numberOFDots++;
-        }
-        word = word.substring(numberOFDots);
-        word = word.substring(1, word.length() - 1);
-        if (word.contains("=")) {
-            word = word.substring(1);
-            word = word.replaceAll(",", "");
-            return word.split("=");
-        }
-        word = word.trim();
-        return word.split(",");
-    }
-
-/*
-    @Test
-    public void testPrepareTestsWithoutTemplate(){
-        prepareTests();
-        System.out.println("Die Anzahl der Sphären im Graphen beträgt: " + syndrom.getGraph().getSpheres().size());
-        controller.exportGXL();
-
-        System.out.println("Die Anzahl der Sphären im Graphen beträgt: " + syndrom.getGraph().getSpheres().size());
-        controller.importGXL();
-        System.out.println("Die Anzahl der Sphären im Graphen beträgt: " + syndrom.getGraph().getSpheres().size());
-        Assert.assertEquals(1, syndrom.getGraph().getSpheres().size());
-    }
-
-    @Test
-    public void testPrepareTestsWithTemplate(){
-        prepareTests();
-        controller.exportGXLWithTemplate();
-        controller.importGXLWithTemplate();
-    }
-
-    */
 }

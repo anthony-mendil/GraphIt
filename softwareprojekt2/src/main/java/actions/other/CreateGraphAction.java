@@ -25,6 +25,7 @@ public class CreateGraphAction extends GraphAction {
     public CreateGraphAction(String pGraphName, Controller controller) {
        super();
        this.controller = controller;
+       this.graphName=pGraphName;
     }
 
     @Override
@@ -41,6 +42,7 @@ public class CreateGraphAction extends GraphAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         Action.attach(databaseManager);
         Action.attach(controller);
+        syndrom.setGraphName(graphName);
         notifyObserverNewGraph();
     }
 

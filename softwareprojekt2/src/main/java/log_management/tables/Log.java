@@ -1,7 +1,6 @@
 package log_management.tables;
 
 import actions.LogEntryName;
-import log_management.LogToStringConverter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -32,8 +31,6 @@ public class Log {
      * The time, in which the action got called.-
      */
     private LocalDateTime time;
-
-    private LogToStringConverter logToStringConverter = new LogToStringConverter();
 
     /**
      * Gets the id of the log entry.
@@ -130,20 +127,5 @@ public class Log {
      */
     public void setTime(LocalDateTime time) {
         this.time = time;
-    }
-
-    /**
-     * Combines all informations about this log entry into one
-     * readable text.
-     *
-     * @return The formatted information about this log entry.
-     */
-    @Override
-    public String toString() {
-        return logToStringConverter.convert(this);
-    }
-
-    public String toStringForTextFile() {
-        return logToStringConverter.convertForTextFile(this);
     }
 }

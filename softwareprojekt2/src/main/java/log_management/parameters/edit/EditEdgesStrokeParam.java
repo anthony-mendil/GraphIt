@@ -64,29 +64,25 @@ public class EditEdgesStrokeParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Relations changed: ";
+            information.append("Relations changed: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
-                information += "Old stroke type: "
-                        + EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.ENGLISH);
-                information += ", new stroke type: "
-                        + EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.ENGLISH) + ". ";
+                information.append(SyndromObjectPrinter.edgePrintEnglish(
+                        new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
+                information.append("Old stroke type: ").append(EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.ENGLISH));
+                information.append(", new stroke type: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.ENGLISH)).append(". ");
             }
         } else {
-            information += "Geänderte Relationen: ";
+            information.append("Geänderte Relationen: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
-                information += "Alte Linienart: "
-                        + EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.GERMAN);
-                information += ", neue Linienart: "
-                        + EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.GERMAN) + ". ";
+                information.append(SyndromObjectPrinter.edgePrintGerman(
+                        new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
+                information.append("Alte Linienart: ").append(EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.GERMAN));
+                information.append(", neue Linienart: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.GERMAN)).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Edge, StrokeType> getEdgesOld() {

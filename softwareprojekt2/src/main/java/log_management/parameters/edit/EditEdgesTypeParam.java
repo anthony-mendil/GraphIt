@@ -69,29 +69,25 @@ public class EditEdgesTypeParam implements Param {
     @Override
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
-        String information = "";
+        StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information += "Relations changed: ";
+            information.append("Relations changed: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += SyndromObjectPrinter.edgePrintEnglish(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
-                information += "Old arrow type: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.ENGLISH);
-                information += ", new arrow type: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH) + ". ";
+                information.append(SyndromObjectPrinter.edgePrintEnglish(
+                        new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
+                information.append("Old arrow type: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.ENGLISH));
+                information.append(", new arrow type: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH)).append(". ");
             }
         } else {
-            information += "Geänderte Relationen: ";
+            information.append("Geänderte Relationen: ");
             for (int i = 0; i < oldEdges.size(); i++) {
-                information += SyndromObjectPrinter.edgePrintGerman(oldEdges.get(i),
-                        new Pair<>(startVertices.get(i), endVertices.get(i))) + ". ";
-                information += "Alte Pfeilspitze: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.GERMAN);
-                information += ", neue Pfeilspitze: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN) + ". ";
+                information.append(SyndromObjectPrinter.edgePrintGerman(
+                        new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
+                information.append("Alte Pfeilspitze: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.GERMAN));
+                information.append(", neue Pfeilspitze: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN)).append(". ");
             }
         }
-        return information;
+        return information.toString();
     }
 
     public Map<Edge, EdgeArrowType> getEdgesOldEdgeType() {

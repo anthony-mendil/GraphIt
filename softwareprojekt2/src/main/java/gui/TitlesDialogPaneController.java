@@ -8,7 +8,10 @@ import javafx.animation.Animation;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -51,15 +54,6 @@ public class TitlesDialogPaneController extends DialogPane{
         save.setText(language.loadLanguagesKey("SAVE_DIALOG"));
         cancel.setOnMouseClicked(event -> close());
 
-        german.setOnMouseExited(event -> {
-            if (!avoidSameAnnotationTwice(german.getText()) && !avoidSameAnnotationTwice(english.getText())){
-                save.setDisable(false);
-            } else {
-                save.setDisable(true);
-            }
-
-        });
-
         EventHandler<KeyEvent> fireOnEnter = event -> {
             if (KeyCode.ENTER.equals(event.getCode()) && (event.getTarget() instanceof Button)) {
                 ((Button) event.getTarget()).fire();
@@ -78,6 +72,12 @@ public class TitlesDialogPaneController extends DialogPane{
         german.setText(old.get(Language.GERMAN.name()));
         english.setText(old.get(Language.ENGLISH.name()));
         oldTitle = old;
+
+        german.textProperty().addListener(event -> save.setDisable(setDisable()));
+    }
+
+    private boolean setDisable(){
+        return avoidSameAnnotationTwice(german.getText().trim()) || avoidSameAnnotationTwice(english.getText().trim());
     }
 
     private boolean avoidSameAnnotationTwice(String com){
