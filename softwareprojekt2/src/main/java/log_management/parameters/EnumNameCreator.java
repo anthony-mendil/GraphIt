@@ -8,6 +8,10 @@ import gui.properties.Language;
 
 public class EnumNameCreator {
 
+    private EnumNameCreator(){
+        throw new IllegalStateException("utility class");
+    }
+
     public static String edgeArrowTypeTranslator(EdgeArrowType edgeArrowType, Language language) {
         if (language == Language.ENGLISH) {
             switch (edgeArrowType) {
@@ -32,18 +36,16 @@ public class EnumNameCreator {
 
     public static String vertexShapeTypeTranslator(VertexShapeType vertexShapeType, Language language) {
         if (language == Language.ENGLISH) {
-            switch (vertexShapeType) {
-                case CIRCLE:
-                    return "Circle";
-                default:
-                    return "Rectangle";
+            if (vertexShapeType == VertexShapeType.CIRCLE){
+                return "Circle";
+            } else {
+                return "Rectangle";
             }
         } else {
-            switch (vertexShapeType) {
-                case CIRCLE:
-                    return "Kreis";
-                default:
-                    return "Rechteck";
+            if (vertexShapeType == VertexShapeType.CIRCLE){
+                return "Kreis";
+            } else {
+                return "Rechteck";
             }
         }
     }
@@ -84,18 +86,16 @@ public class EnumNameCreator {
 
     public static String sizeChangeTransaltor(SizeChange sizeChange, Language language) {
         if (language == Language.ENGLISH) {
-            switch (sizeChange) {
-                case ENLARGE:
-                    return "Enlarged";
-                default:
-                    return "Shrunk";
+            if (sizeChange == SizeChange.ENLARGE){
+                return "Enlarged";
+            } else {
+                return "Shrunk";
             }
         } else {
-            switch (sizeChange) {
-                case ENLARGE:
-                    return "Vergrößert";
-                default:
-                    return "Verkleinert";
+            if (sizeChange == SizeChange.ENLARGE){
+                return "Vergrößert";
+            } else {
+                return "Verkleinert";
             }
         }
     }

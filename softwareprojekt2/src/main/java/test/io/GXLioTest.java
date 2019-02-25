@@ -3,6 +3,7 @@ package test.io;
 import actions.other.SwitchModeAction;
 import graph.graph.*;
 import gui.Values;
+import gui.properties.Language;
 import io.GXLio;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
@@ -66,12 +67,22 @@ public class GXLioTest {
         s2.setWidth(300.0);
         s2.setLockedAnnotation(true);
         s2.setLockedVertices(true);
+        Map<String, String>  annotation2 = s2.getAnnotation();
+        annotation2.put(Language.GERMAN.name(),"Sphäre Nummer 1");
+        s2.setAnnotation(annotation2);
         Sphere s3 = factory.createSphere(new Point2D.Double(620, 20));
+        Map<String, String>  annotation3 = s3.getAnnotation();
+        annotation3.put(Language.ENGLISH.name(),"Sphere number 2");
+        s3.setAnnotation(annotation3);
         values.setFillPaintSphere(new java.awt.Color(24, 54, 11, 178));
         values.setFontSizeSphere(24);
         Sphere s4 = factory.createSphere(new Point2D.Double(200, 310));
         s4.setLockedMaxAmountVertices("17");
         s4.setLockedPosition(true);
+        Map<String, String>  annotation4 = s4.getAnnotation();
+        annotation4.put(Language.GERMAN.name(),"Sphäre Nummer 3");
+        annotation4.put(Language.ENGLISH.name(),"Sphere number 3");
+        s4.setAnnotation(annotation4);
         Sphere s5 = factory.createSphere(new Point2D.Double(445, 310));
         s5.setLockedMaxAmountVertices("5");
         s5.setLockedPosition(true);
@@ -176,8 +187,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the name of a graph is exported and imported correctly.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testGraphName() throws IOException, SAXException {
@@ -191,8 +202,8 @@ public class GXLioTest {
     /**
      * This method tests, if the list of spheres contained in the graph belonging to the syndrom after importing a gxl-File
      * is equal to the list of spheres of the graph that gets imported.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSphereList() throws IOException, SAXException {
@@ -204,8 +215,8 @@ public class GXLioTest {
     /**
      * This method tests, if the list of vertices contained in the graph belonging to the syndrom after importing a gxl-File
      * is equal to the list of vertices of the graph that is imported.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVertexList() throws IOException, SAXException {
@@ -219,8 +230,8 @@ public class GXLioTest {
     /**
      * This method tests, if the list of edges contained in the graph belonging to the syndrom after importing a gxl-File
      * is equal to the list of edges of the graph that is imported.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgeList() throws IOException, SAXException {
@@ -236,8 +247,8 @@ public class GXLioTest {
     /**
      * This method tests, if the number of spheres, vertices and edges is correct after the import of a gxl File.
      * Correct in this sense means that it is identical to the number of spheres, vertices and edges of the graph that gets exported.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testElementNumberOfSyndromGraph() throws IOException, SAXException {
@@ -252,21 +263,21 @@ public class GXLioTest {
      * This method tests if the GXLGraph-Oject created from the File that is created by the emport of a graph
      * contains only one GXLGraph (the exported syndrom) and if this graph contains the right amount of childs.
      * Childs in this sense are spheres, vertices and edges.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testElementNumberOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom(false);
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
-        Assert.assertEquals(22, doc.getElement(syndromName).getChildCount());
+        Assert.assertEquals(23, doc.getElement(syndromName).getChildCount());
     }
 
     /**
      * This method tests if the GXLGraph-Oject created from the File that is created by the emport of a graph
      * contains two GXLGraphs. One of them represents the syndromgraph and the other GXLGraph contains the rules of the template.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testElementNumberWithTemplateOfGXLGraph() throws IOException, SAXException {
@@ -278,8 +289,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres that are created by importing the specified gxl-File contain the right vertices.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesInSpheresOfGraph() throws IOException, SAXException {
@@ -308,8 +319,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the edges that are created by importing the specified gxl-File connect the right vertices.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgesConnectingRightVerticesOfGraph() throws IOException, SAXException {
@@ -341,8 +352,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the coordinates-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresCoordinatesOfGraph() throws IOException, SAXException {
@@ -358,8 +369,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the coordinates-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesCoordinatesOfGraph() throws IOException, SAXException {
@@ -378,12 +389,49 @@ public class GXLioTest {
         Assert.assertEquals(new Point2D.Double(620, 360), vertices.get(8).getCoordinates());
     }
 
+    // <---------     annotation    ---------->
+
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the width-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testSpheresAnnotaionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
+        Assert.assertEquals("Sphere 0", convertMapToList(spheres.get(0).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 0", convertMapToList(spheres.get(0).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 1", convertMapToList(spheres.get(1).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 1", convertMapToList(spheres.get(1).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 2", convertMapToList(spheres.get(2).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 2", convertMapToList(spheres.get(2).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 3", convertMapToList(spheres.get(3).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 3", convertMapToList(spheres.get(3).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 4", convertMapToList(spheres.get(4).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 4", convertMapToList(spheres.get(4).getAnnotation()).get(3));
+    }
+
+
+    /**
+     * This is a helper Method that rturns the values of the passed map as list.
+     */
+    private ArrayList<String> convertMapToList(Map<String, String> pHashMap){
+        ArrayList<String> list = new ArrayList<>();
+        for(Map.Entry map : pHashMap.entrySet()){
+            list.add((String) map.getKey());
+            list.add((String) map.getValue());
+        }
+        return list;
+    }
+
     // <-------------   size    ------------------>
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the width-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresWidthOfGraph() throws IOException, SAXException {
@@ -399,8 +447,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the height-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresHeightOfGraph() throws IOException, SAXException {
@@ -416,8 +464,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the size-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesSizeOfGraph() throws IOException, SAXException {
@@ -441,8 +489,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the fillColor-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresFillColorOfGraph() throws IOException, SAXException {
@@ -458,8 +506,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the fillColor-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesFillColorOfGraph() throws IOException, SAXException {
@@ -481,8 +529,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the drawColor-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesDrawColorOfGraph() throws IOException, SAXException {
@@ -503,8 +551,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the color-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgesColorOfGraph() throws IOException, SAXException {
@@ -526,8 +574,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedAnnotation-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresLockedAnnotationOfGraph() throws IOException, SAXException {
@@ -543,8 +591,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedVertices-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresLockedVerticesOfGraph() throws IOException, SAXException {
@@ -562,8 +610,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresLockedPositionOfGraph() throws IOException, SAXException {
@@ -579,8 +627,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresLockedStyleOfGraph() throws IOException, SAXException {
@@ -596,8 +644,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the maxAmountVertices-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testSpheresLockedMaxAmountVerticesOfGraph() throws IOException, SAXException {
@@ -616,8 +664,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesLockedStyleOfGraph() throws IOException, SAXException {
@@ -638,8 +686,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedAnnotaion-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesLockedAnnotationOfGraph() throws IOException, SAXException {
@@ -660,8 +708,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testVerticesLockedPositionOfGraph() throws IOException, SAXException {
@@ -684,8 +732,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedStyle-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgesLockedStyleOfGraph() throws IOException, SAXException {
@@ -705,8 +753,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgesLockedPositionOfGraph() throws IOException, SAXException {
@@ -726,8 +774,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedEdgeType-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgesLockedEdgeTypeOfGraph() throws IOException, SAXException {
@@ -750,8 +798,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the arrowType-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgesArrowTypeOfGraph() throws IOException, SAXException {
@@ -771,8 +819,8 @@ public class GXLioTest {
 
     /**
      * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the stroke-attribute.
-     * @throws IOException
-     * @throws SAXException
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
     public void testEdgesStrokeTypeOfGraph() throws IOException, SAXException {

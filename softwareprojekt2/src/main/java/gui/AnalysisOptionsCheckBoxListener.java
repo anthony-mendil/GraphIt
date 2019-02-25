@@ -15,8 +15,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
 
-import java.util.Iterator;
-
 public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> {
     private final Controller c;
     private final MenuButton menuButton;

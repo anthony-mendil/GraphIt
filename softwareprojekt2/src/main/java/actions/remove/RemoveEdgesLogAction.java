@@ -9,12 +9,11 @@ import graph.graph.FunctionMode;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Removes edges from the syndrom graph.

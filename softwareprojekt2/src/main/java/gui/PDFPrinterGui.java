@@ -23,7 +23,6 @@ public class PDFPrinterGui {
     public void print(InputStream pInputStream) {
         try {
             PDDocument pdDocument = PDDocument.load(pInputStream);
-
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             printerJob.setJobName("GraphIt-Graph");
             printerJob.setPageable(new PDFPageable(pdDocument));

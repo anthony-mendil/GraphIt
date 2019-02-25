@@ -12,7 +12,6 @@ import actions.remove.RemoveFadeoutElementAction;
 import actions.remove.RemoveHighlightElementAction;
 import graph.graph.Edge;
 import graph.graph.FunctionMode;
-import graph.graph.Vertex;
 import gui.properties.LoadLanguage;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;

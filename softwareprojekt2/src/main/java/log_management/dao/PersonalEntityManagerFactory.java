@@ -4,6 +4,10 @@ import javax.persistence.EntityManagerFactory;
 
 public class PersonalEntityManagerFactory {
 
+    private PersonalEntityManagerFactory(){
+        throw new IllegalStateException("utility class");
+    }
+
     /**
      * Manages the access to the database.
      */
