@@ -1381,6 +1381,7 @@ public class Controller implements ObserverSyndrom {
     public void printPDF() {
         PrintPDFAction printPDFAction = new PrintPDFAction();
         printPDFAction.action();
+
     }
 
     /* ----------------LAYOUT---------------------- */
@@ -1805,16 +1806,11 @@ public class Controller implements ObserverSyndrom {
                 removeVertices();
 
             } else if (strgA.match(event)) {
-                SyndromGraph<Vertex, Edge> graph =  (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-                for (Sphere s : graph.getSpheres()) {
-                    syndrom.getVv().getPickedSphereState().pick(s, true);
-                }
-                for (Vertex v : graph.getVertices()) {
+                for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
                     syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
-                for (Edge e : graph.getEdges()) {
+                for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
-
                 }
             } else if (one.match(event)) {
                 switchModeCreator();
@@ -1825,6 +1821,7 @@ public class Controller implements ObserverSyndrom {
             } else if (esc.match(event)) {
                 syndrom.getVv().getPickedSphereState().clear();
                 syndrom.getVv().getPickedVertexState().clear();
+                syndrom.getVv().getPickedEdgeState().clear();
                 handVertex();
             }
         });
@@ -1849,7 +1846,7 @@ public class Controller implements ObserverSyndrom {
         languageGraphGerman.setSelected(true);
     }
 
-    final public static Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+    public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
 
     private void sortFilterLogs() {
         ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
@@ -2497,14 +2494,16 @@ public class Controller implements ObserverSyndrom {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("/GraphItLogo.png"));
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-            // ... user chose "One"
-            logger.debug("SCHLIEßEN");
-            System.exit(0);
-            Platform.exit();
-        } else {
-            // ... user chose CANCEL or closed the dialog
-            logger.debug("CANCEL");
+        if (result.isPresent()) {
+            if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                // ... user chose "One"
+                logger.debug("SCHLIEßEN");
+                System.exit(0);
+                Platform.exit();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                logger.debug("CANCEL");
+            }
         }
     }
 

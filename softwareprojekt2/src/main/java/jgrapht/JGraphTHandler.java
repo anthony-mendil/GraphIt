@@ -53,9 +53,9 @@ public class JGraphTHandler {
         Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        for(Edge edge : graph.getEdges()){
+        for (Edge edge : graph.getEdges()) {
             edu.uci.ics.jung.graph.util.Pair<Vertex> jungPair = graph.getEndpoints(edge);
-            Pair<Vertex,Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
+            Pair<Vertex, Vertex> vertices = new Pair<>(jungPair.getFirst(), jungPair.getSecond());
             edges.add(vertices);
         }
         convertGraphToJGraphT(new ArrayList<>(graph.getVertices()), edges);
@@ -100,7 +100,7 @@ public class JGraphTHandler {
     /**
      * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
      */
-    private boolean isAtLeastOnePicked(){
+    private boolean isAtLeastOnePicked() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().isEmpty()) {
@@ -132,7 +132,7 @@ public class JGraphTHandler {
      */
     @SuppressWarnings("unchecked")
     public List<GraphPath<Vertex, Edge>> getAllPaths() {
-        if(calculateEndpoints()) {
+        if (calculateEndpoints()) {
 
             AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
             return pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
@@ -147,11 +147,11 @@ public class JGraphTHandler {
      * @return The shortest path between the vertices.
      */
     @SuppressWarnings("unchecked")
-    public GraphPath<Vertex,Edge> getShortestPath() {
-        if(calculateEndpoints()) {
+    public GraphPath<Vertex, Edge> getShortestPath() {
+        if (calculateEndpoints()) {
             DijkstraShortestPath shortestPathFinder = new DijkstraShortestPath(algorithmGraph);
             GraphPath<Vertex, Edge> shortestPath = shortestPathFinder.getPath(startVertex, endVertex);
-            if(shortestPath == null){
+            if (shortestPath == null) {
                 HelperFunctions helperFunctions = new HelperFunctions();
                 Object[] obj = {startVertex.getAnnotation().get(Language.GERMAN.name()), endVertex.getAnnotation().get(Language.GERMAN.name())};
                 helperFunctions.setActionText(loadLanguage.loadLanguagesKey("J_GRAPH_T_COUNT", obj), true, false);
@@ -197,11 +197,11 @@ public class JGraphTHandler {
      * Returns all predecessors and their edges towards them in
      * the given iterations.
      */
-    public Pair<List<Vertex>, List<Edge>> predecessorsIterations(int steps){
-        if(isAtLeastOnePicked()) {
+    public Pair<List<Vertex>, List<Edge>> predecessorsIterations(int steps) {
+        if (isAtLeastOnePicked()) {
             List<Vertex> vertices = new ArrayList<>();
             List<Edge> edges = new ArrayList<>();
-            for(Vertex startVertex : pickedVertices) {
+            for (Vertex startVertex : pickedVertices) {
                 List<Vertex> tempVertex = new ArrayList<>();
                 tempVertex.add(startVertex);
                 vertices.add(startVertex);
@@ -226,11 +226,11 @@ public class JGraphTHandler {
      * the given iterations.
      */
     @SuppressWarnings("unchecked")
-    public Pair<List<Vertex>, List<Edge>> successorIterations(int steps){
-        if(isAtLeastOnePicked()) {
+    public Pair<List<Vertex>, List<Edge>> successorIterations(int steps) {
+        if (isAtLeastOnePicked()) {
             List<Vertex> vertices = new ArrayList<>();
             List<Edge> edges = new ArrayList<>();
-            for(Vertex sVertex : pickedVertices) {
+            for (Vertex sVertex : pickedVertices) {
                 List<Vertex> tempVertex = new ArrayList<>();
                 tempVertex.add(sVertex);
                 vertices.add(sVertex);
@@ -254,53 +254,53 @@ public class JGraphTHandler {
      * Detects relation chains.
      */
     @SuppressWarnings("unchecked")
-    public Pair<List<List<Vertex>>,Set<Edge>> detectRelationChains() {
+    public Pair<List<List<Vertex>>, Set<Edge>> detectRelationChains() {
         List<List<Vertex>> relationChains = new LinkedList<>();
         List<Vertex> innerVertices = new ArrayList<>();
-        for(Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()){
-            if(algorithmGraph.inDegreeOf(vert) == 1 && algorithmGraph.outDegreeOf(vert) == 1){
+        for (Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()) {
+            if (algorithmGraph.inDegreeOf(vert) == 1 && algorithmGraph.outDegreeOf(vert) == 1) {
                 innerVertices.add(vert);
             }
         }
-        while(!innerVertices.isEmpty()) {
+        while (!innerVertices.isEmpty()) {
             LinkedList<Vertex> potentialChain = new LinkedList<>();
             Vertex pivotVertex = innerVertices.get(0);
-            Vertex predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph,pivotVertex).get(0);
-            Vertex successor = (Vertex) Graphs.successorListOf(algorithmGraph,pivotVertex).get(0);
+            Vertex predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, pivotVertex).get(0);
+            Vertex successor = (Vertex) Graphs.successorListOf(algorithmGraph, pivotVertex).get(0);
             potentialChain.add(predecessor);
             potentialChain.add(pivotVertex);
             potentialChain.add(successor);
-            while(Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 ){
-                if(!potentialChain.contains((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
+            while (Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1) {
+                if (!potentialChain.contains((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
                     potentialChain.addFirst((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
                     predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
-                }else{
+                } else {
                     break;
                 }
             }
-            while(Graphs.successorListOf(algorithmGraph, successor).size() == 1 ){
-                if(!potentialChain.contains((Vertex)Graphs.successorListOf(algorithmGraph, successor).get(0))) {
+            while (Graphs.successorListOf(algorithmGraph, successor).size() == 1) {
+                if (!potentialChain.contains((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0))) {
                     potentialChain.addLast((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0));
                     successor = (Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0);
-                }else{
+                } else {
                     break;
                 }
             }
             innerVertices.removeAll(potentialChain);
-            if(potentialChain.size() > 3) {
+            if (potentialChain.size() > 3) {
                 relationChains.add(potentialChain);
             }
         }
         Set<Edge> edgesRelationChain = new HashSet<>();
-        for(List<Vertex> list : relationChains){
-            for(int i = 0 ; i < list.size() - 1; i++){
-                edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(i),list.get(i + 1)));
+        for (List<Vertex> list : relationChains) {
+            for (int i = 0; i < list.size() - 1; i++) {
+                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
             }
-            if(algorithmGraph.getEdge(list.get(list.size()-1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1){
-                edgesRelationChain.add((Edge)algorithmGraph.getEdge(list.get(list.size()-1), list.get(0)));
+            if (algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1) {
+                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
             }
         }
-        return new Pair<>(relationChains,edgesRelationChain);
+        return new Pair<>(relationChains, edgesRelationChain);
     }
 
 }

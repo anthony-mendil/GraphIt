@@ -91,6 +91,7 @@ public class GXLio {
                     maxID = Math.max(maxID, idCounter);
                 }
             }
+            syndrom.setGraphName(((GXLString) gxlGraph.getAttr("name of the graph").getValue()).getValue());
             updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());
@@ -420,6 +421,11 @@ public class GXLio {
 
         GXLDocument doc = new GXLDocument();
         GXLGraph gxlSyndrom = new GXLGraph("syndrom");
+        if(syndrom.getGraphName() == null){
+            gxlSyndrom.setAttr("name of the graph", new GXLString("untitled syndrom"));
+        }else {
+            gxlSyndrom.setAttr("name of the graph", new GXLString(syndrom.getGraphName()));
+        }
         for (Sphere s : currentSpheres) {
             gxlSyndrom.add(createSphereNode(s, withTemplate));
         }
