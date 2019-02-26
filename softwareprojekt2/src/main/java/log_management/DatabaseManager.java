@@ -11,6 +11,8 @@ import log_management.tables.Graph;
 import log_management.tables.Log;
 import lombok.Data;
 
+import java.io.ByteArrayInputStream;
+
 /**
  * The database manager, for managing the database access.
  */
@@ -98,6 +100,11 @@ public class DatabaseManager implements ObserverSyndrom {
         Graph graph = new Graph();
         graph.setGxl(gxlIo.gxlFromInstance(true));
         graphDao.save(graph);
+    }
+
+    @Override
+    public void showPrint(ByteArrayInputStream byteArrayInputStream) {
+        //
     }
 
     public String getGxlFromDatabase() {

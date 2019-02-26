@@ -21,11 +21,11 @@ public class SyndromVisualisationViewer<V,E> extends VisualizationViewer<V,E> {
     private transient PickedState<Sphere> pickedSphereState;
     private transient Transformer<V,Paint> vertexFontColorTransformer;
 
-    @SuppressWarnings("unchecked")
+
     public SyndromVisualisationViewer(VisualizationModel<V, E> model, Dimension preferredSize) {
         super(model, preferredSize);
         pickedSphereState = new MultiPickedState<>();
-        vertexFontColorTransformer = new VertexFontColorTransformer();
+        vertexFontColorTransformer = new VertexFontColorTransformer<>();
     }
 
     public void setPickedSphereState(PickedState<Sphere> pickedSphereState){

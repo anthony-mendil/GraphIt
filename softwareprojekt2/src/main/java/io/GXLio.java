@@ -428,7 +428,7 @@ public class GXLio {
             gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString(syndrom.getGraphName()));
         }
         for (Sphere s : currentSpheres) {
-            gxlSyndrom.add(createSphereNode(s, withTemplate));
+             gxlSyndrom.add(createSphereNode(s, withTemplate));
         }
         for (Sphere s : currentSpheres) {
             for (Vertex v : s.getVertices()) {
