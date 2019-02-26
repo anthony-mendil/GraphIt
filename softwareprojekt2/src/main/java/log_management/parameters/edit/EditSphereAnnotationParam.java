@@ -66,13 +66,13 @@ public class EditSphereAnnotationParam implements Param {
             information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere) + ". "
                     + "Old annotation(English): " + oldAnnotationEnglish
                     + ", new annotation(English): " + newAnnotationEnglish
-                    + "Old annotation(German): " + oldAnnotationGerman
+                    + ", old annotation(German): " + oldAnnotationGerman
                     + ", new annotation(German): " + newAnnotationGerman + ". ";
         } else {
             information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere) + ". "
                     + "Alte Beschriftung(Englisch): " + oldAnnotationEnglish
                     + ", neue Beschriftung(Englisch): " + newAnnotationEnglish
-                    + "Alte Beschriftung(Deutsch): " + oldAnnotationGerman
+                    + ", alte Beschriftung(Deutsch): " + oldAnnotationGerman
                     + ", neue Beschriftung(Deutsch): " + newAnnotationGerman + ". ";
         }
         return information;
