@@ -99,7 +99,6 @@ import java.util.concurrent.CountDownLatch;
  * Contains most of the gui elements, calls most of the actions and acts as interface between
  * the gui and the internal components of the application.
  */
-@Singleton
 @Data
 public class Controller implements ObserverSyndrom {
 
@@ -913,17 +912,6 @@ public class Controller implements ObserverSyndrom {
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
     private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
-
-    private Controller(){
-
-    }
-
-    public  Controller getInstance() {
-        if (instance == null) {
-            instance = new Controller();
-        }
-        return instance;
-    }
 
     public void filterEdgeTypeReinforced() {
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
