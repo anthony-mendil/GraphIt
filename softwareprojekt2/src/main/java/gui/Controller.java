@@ -56,9 +56,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.print.PageLayout;
+import javafx.print.Printer;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -76,9 +79,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import javafx.stage.*;
+import javafx.stage.Window;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.LogToStringConverter;
@@ -86,10 +88,17 @@ import log_management.dao.LogDao;
 import log_management.tables.Log;
 import lombok.Data;
 import org.apache.log4j.Logger;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
+import sun.print.RasterPrinterJob;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -3177,5 +3186,137 @@ public class Controller implements ObserverSyndrom {
             }
         };
         service.start();
+    }
+
+
+
+    @Override
+    public void showPrint(ByteArrayInputStream byteArrayInputStream) {
+        printDialog(byteArrayInputStream);
+        /*openDialogInfo(print, byteArrayInputStream);
+
+        Image img = new Image(byteArrayInputStream);
+        ImageView imageView = new ImageView();
+        imageView.setImage(img);
+        Node node = (Node)imageView;
+
+
+            System.out.println("hihi");
+
+            javafx.print.PrinterJob job = javafx.print.PrinterJob.createPrinterJob();
+            JFrame f = new JFrame();
+
+            if (job != null && job.showPrintDialog(mainStage)){
+                boolean success = job.printPage(node);
+                if (success) {
+                    job.endJob();
+                }
+            }
+*/
+
+
+
+            /*PDDocument pdDocument = PDDocument.load(byteArrayInputStream);
+            PrinterJob printerJob = RasterPrinterJob.getPrinterJob();
+            printerJob.setJobName("GraphIt-Graph");
+            printerJob.setPageable(new PDFPageable(pdDocument));
+            boolean printSucceeds = printerJob.printDialog();
+
+            if (printSucceeds) {
+                printerJob.print();
+                mainStage.toFront();
+            }*/
+
+    }
+
+    private void printDialo(ByteArrayInputStream byteArrayInputStream){
+        Printer printer = Printer.getDefaultPrinter();
+        Image img = new Image(byteArrayInputStream);
+        ImageView imageView = new ImageView();
+        imageView.setImage(img);
+        Node node = (Node)imageView;
+
+        Stage s = new Stage();
+        s.initOwner(mainStage.getScene().getWindow());
+
+        s.initStyle(StageStyle.TRANSPARENT);
+        s.setX(0);
+        s.setY(0);
+        s.setWidth(1);
+        s.setHeight(1);
+        s.initModality(Modality.WINDOW_MODAL);
+        s.setAlwaysOnTop(true);
+
+        //s.show();
+        s.show();
+
+        Stage stage = (Stage) mainStage.getScene().getWindow();
+        javafx.print.PrinterJob job = javafx.print.PrinterJob.createPrinterJob();
+        job.showPrintDialog(s.getOwner());
+
+        job.endJob();
+        s.hide();
+        if (job != null && job.showPrintDialog(stage)) {
+
+            boolean success = job.printPage(imageView);
+            if (success) {
+                job.endJob();
+            }
+        }
+
+
+    }
+
+    private void printDialog(ByteArrayInputStream byteArrayInputStream) {
+        DialogPane alert = new DialogPane( );
+        ButtonType b1 = new ButtonType("print");
+        alert.getButtonTypes().add(b1);
+        Dialog d = new Dialog<>();
+        d.setDialogPane(alert);
+
+        Stage stage = (Stage) alert.getScene().getWindow();
+        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        stage.setAlwaysOnTop(true);
+        stage.toFront();
+
+        Button buttonOK = (Button) alert.lookupButton(b1);
+        alert.setOnMouseClicked(event -> {
+            Image img = new Image(byteArrayInputStream);
+            ImageView imageView = new ImageView();
+            imageView.setImage(img);
+            Node node = (Node)imageView;
+            javafx.print.PrinterJob job = javafx.print.PrinterJob.createPrinterJob();
+
+
+
+            Stage s = new Stage();
+            s.initOwner(buttonOK.getScene().getWindow());
+            s.initStyle(StageStyle.TRANSPARENT);
+            s.setX(0);
+            s.setY(0);
+            s.setWidth(1);
+            s.setHeight(1);
+            s.initModality(Modality.WINDOW_MODAL);
+            //s.show();
+            s.show();
+            //boolean ok = job.showPrintDialog(w);
+
+            job.showPrintDialog(s);
+            s.hide();
+
+            if (job != null && job.showPrintDialog(s)){
+                boolean success = job.printPage(node);
+                if (success) {
+                    job.endJob();
+                }
+            }
+
+
+        });
+        d.setTitle("GraphIt");
+        d.setHeaderText(null);
+
+        d.showAndWait();
+
     }
 }

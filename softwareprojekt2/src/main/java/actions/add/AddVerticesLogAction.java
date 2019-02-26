@@ -73,7 +73,6 @@ public class AddVerticesLogAction extends LogAction {
                 List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getSinkVertexList();
 
                 for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
-                    entry.getValue().getVertices().add(entry.getKey());
                     Vertex vertex = entry.getKey();
                     graph.addVertexExisting(vertex);
                     vv.getGraphLayout().setLocation(vertex, vertex.getCoordinates());
