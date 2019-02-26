@@ -51,7 +51,9 @@
 \newcommand{\three}{\stepcounter{three}0\thethree}
 \newcommand\s{\rule{0pt}{4ex}}        
 \newcommand{\cb}[1]{{\textcolor{blue}{#1}}}
-\newcommand*{\hint}{\textcolor{blue}{Hinweise}}
+\newcommand*{\hint}{\paragraph{\textcolor{blue}{Hinweise}}}
+\newcommand*{\condition}{\paragraph{Voraussetzung}$\;$ \vspace{0.2cm}\\}
+\newcommand*{\actions}{\paragraph{Vorgehen}}
 
 \usepackage{geometry}
 \usepackage{hyperref}
@@ -282,14 +284,14 @@
 		\subsubsection{Sphären layouten}
 		\newpage
 		\subsubsection{Symptom hinzufügen}
-		\paragraph{Voraussetzung}
-		Ein Syndromansatz mit mindestens einer Sphäre ist im Programm geöffnet. \\
-		\paragraph{Vorgehen}
+		\condition 	
+		Ein Syndromansatz mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions
 		\begin{enumerate}
 			\item In der Menüleiste den Button \textit{Symptom hinzufügen} durch einen Klick aktivieren.
 			\item Auf die gewünschte Position innerhalb einer Sphäre drücken, wo sich kein(e) anderes Symptom/ Relation befindet, klicken.
 		\end{enumerate}
-		\paragraph{\hint}
+		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich ein Symptom auf einen anderem Symptom hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
 			\item Es ist nicht möglich ein Symptom außerhalb einer Sphäre hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
