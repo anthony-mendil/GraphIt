@@ -35,6 +35,7 @@ import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
+import com.jfoenix.controls.JFXTextField;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -91,9 +92,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.text.DecimalFormat;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -264,7 +269,7 @@ public class Controller implements ObserverSyndrom {
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
      */
     @FXML
-    private TextField maxSphereField;
+    private JFXTextField maxSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of symptoms in the graph".
@@ -1419,6 +1424,7 @@ public class Controller implements ObserverSyndrom {
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
         switchModeAction.action();
+        root.requestFocus();
     }
 
     /**
@@ -1437,15 +1443,16 @@ public class Controller implements ObserverSyndrom {
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
 
-
-        analysisScopeNumber.setText("" + graphDimensionAction.getScope());
-        analysisNetworkingIndexNumber.setText("" + graphDimensionAction.getNetworkIndex());
-        analysisStructureIndexNumber.setText("" + graphDimensionAction.getStructureIndex());
+        DecimalFormat format = new DecimalFormat("####.##");
+        analysisScopeNumber.setText("" + format.format(graphDimensionAction.getScope()));
+        analysisNetworkingIndexNumber.setText("" + format.format(graphDimensionAction.getNetworkIndex()));
+        analysisStructureIndexNumber.setText("" + format.format(graphDimensionAction.getStructureIndex()));
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
         switchModeAction.action();
+        root.requestFocus();
     }
 
     /**
@@ -1460,11 +1467,11 @@ public class Controller implements ObserverSyndrom {
         createButton.setDisable(false);
         analysisButton.setDisable(false);
         editButton.setDisable(true);
-
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
         switchModeAction.action();
+        root.requestFocus();
     }
 
 
@@ -1622,11 +1629,11 @@ public class Controller implements ObserverSyndrom {
         int ret = Integer.MAX_VALUE;
         int cont = getValidatedContent(pTextField);
         if (cont == -1) {
-            pTextField.setStyle("-fx-background-color: white");
+            pTextField.setStyle("-fx-background-color: transparent");
         } else if (cont == -2) {
             pTextField.setStyle("-fx-background-color: rgba(255,0,0,0.25)");
         } else {
-            pTextField.setStyle("-fx-background-color: white");
+            pTextField.setStyle("-fx-background-color: transparent");
             ret = cont;
         }
         return ret;
@@ -2353,6 +2360,7 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
             treeViewUpdate();
+            loadTables();
             sortFilterLogs();
         }
 
@@ -2721,14 +2729,20 @@ public class Controller implements ObserverSyndrom {
 
         if (!spheres.isEmpty()) {
             loadSpheresTable(spheres);
+        }else{
+            sphereTableView.getItems().clear();
         }
 
         if (!vertices.isEmpty()) {
             loadVerticesTable(vertices);
+        }else{
+            symptomTableView.getItems().clear();
         }
 
         if (!edges.isEmpty()) {
             loadEdgesTable(edges);
+        }else{
+            edgeTableView.getItems().clear();
         }
     }
 
@@ -3119,6 +3133,7 @@ public class Controller implements ObserverSyndrom {
                         Platform.runLater(() -> {
                             try {
                                 treeViewUpdate();
+                                loadTables();
                             } finally {
                                 latch.countDown();
                             }
@@ -3146,6 +3161,7 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         treeViewUpdate();
+        loadTables();
     }
 
     private void filterLogs(LogEntryName entryName) {
@@ -3163,9 +3179,26 @@ public class Controller implements ObserverSyndrom {
                                 TreeItem<Object> rootItem = new TreeItem<>();
                                 List<Log> filterLog = (entryName == null) ? logDao.getAll() : logDao.getLogType(entryName);
                                 for (Log log : filterLog) {
-                                    String s = logToStringConverter.convert(log);
-                                    TreeItem<Object> logItem = new TreeItem<>(s);
-                                    rootItem.getChildren().add(logItem);
+                                    String time = logToStringConverter.convert(log);
+                                    String index = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(index, "");
+                                    time = time.trim();
+                                    String name = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(name,"");
+                                    time = time.trim();
+                                    String parameter = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(parameter, "");
+                                    time = time.trim();
+                                    TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
+                                    TreeItem<Object> logTime = new TreeItem<>(time);
+                                    TreeItem<Object> logInformation = new TreeItem<>(parameter);
+                                    // string list converter mit parameter
+                                    /*for(String s : list<String>){
+                                        TreeItem<Object> entry = new TreeItem<>(s);
+                                        logInformation.getChildren().add(entry);
+                                    }*/
+                                    logIndexName.getChildren().addAll(logTime, logInformation);
+                                    rootItem.getChildren().add(logIndexName);
                                 }
                                 rootItem.setExpanded(true);
                                 protocol.setRoot(rootItem);

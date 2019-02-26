@@ -47,7 +47,6 @@ public class LoadLanguage {
         String templatePosition = "templatePosition";
         String analysisSuccessor = "analysisSuccessor";
         String sectionSymptom = "sectionSymptom";
-        String analysisSymptomAmountTooltip = "analysisSymptomAmountTooltip";
         String sectionEdge = "sectionEdge";
         c.getFileMenu().setText(loadLanguagesKey("file"));
         c.getNewFile().setText(loadLanguagesKey("newFile"));
@@ -122,8 +121,8 @@ public class LoadLanguage {
         c.getAnalysisSuccessor().getTooltip().setText(loadLanguagesKey("analysisSuccessorTooltip"));
         c.getAnalysisPredecessor().setText(loadLanguagesKey("analysisPredecessor"));
         c.getAnalysisSuccessor().setText(loadLanguagesKey(analysisSuccessor));
-        c.getAnalysisSymptomAmount().setText(loadLanguagesKey("analysisSymptomAmount"));
-        c.getAmountSymptomTextField().setPromptText(loadLanguagesKey(analysisSymptomAmountTooltip));
+        c.getAmountSymptomTextField().setPromptText(loadLanguagesKey("analysisSymptomAmount"));
+        c.getAmountSymptomTextField().getTooltip().setText(loadLanguagesKey("analysisSymptomAmountTooltip"));
         c.getAnalysisPathMenuButton().setText(loadLanguagesKey("analysisPathMenuButton"));
         c.getAnalysisPathMenuButton().getTooltip().setText(loadLanguagesKey("analysisPathToolTip"));
         c.getAnalysisShortestPath().setText(loadLanguagesKey("analysisShortestPath"));

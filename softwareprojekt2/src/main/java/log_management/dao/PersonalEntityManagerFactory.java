@@ -2,6 +2,9 @@ package log_management.dao;
 
 import javax.persistence.EntityManagerFactory;
 
+/**
+ * The entity manager factory used by everyone to create an entity manager.
+ */
 public class PersonalEntityManagerFactory {
 
     private PersonalEntityManagerFactory(){
@@ -21,6 +24,10 @@ public class PersonalEntityManagerFactory {
         return entityManagerFactory;
     }
 
+    /**
+     * Sets the entity manager factory.
+     * @param initialEntityManagerFactory The entity manager factory.
+     */
     public static void setEntityManagerFactory(EntityManagerFactory initialEntityManagerFactory) {
         entityManagerFactory = initialEntityManagerFactory;
     }

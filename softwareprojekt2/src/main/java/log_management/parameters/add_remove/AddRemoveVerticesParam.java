@@ -22,25 +22,40 @@ import java.util.Map;
 @Data
 public class AddRemoveVerticesParam implements Param {
 
+    /**
+     * The list of vertices.
+     */
     @Getter
     private List<Vertex> vertexList;
 
+    /**
+     * The list of spheres.
+     */
     @Getter
     private List<Sphere> sphereList;
 
+    /**
+     * The start vertices of the edges.
+     */
     @Getter
     private List<Vertex> startVertexList;
 
+    /**
+     * The end vertices of the edges.
+     */
     @Getter
     private List<Vertex> sinkVertexList;
 
+    /**
+     * The edges.
+     */
     @Getter
     private List<Edge> edgeList;
 
     /**
-     * Creates an parameter object of its own class.
-     *
-     * @param pParameter The set of vertices and their sphere.
+     * Creates a parameter object of its own class.
+     * @param pParameter The vertices and the spheres they are positioned in.
+     * @param edges The edges as well as their start and end vertices.
      */
     public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter, Map<Edge, Pair<Vertex, Vertex>> edges) {
         vertexList = new ArrayList<>();
@@ -67,18 +82,22 @@ public class AddRemoveVerticesParam implements Param {
             information.append("Relations: ");
             for (int i = 0; i < vertexList.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintEnglish(vertexList.get(i))).append(". ");
-                information.append("In sphere: ").append(SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i))).append(". ");
+                information.append("In sphere: ").append(SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i))).append("; ");
             }
         } else {
             information.append("Relationen: ");
             for (int i = 0; i < vertexList.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintGerman(vertexList.get(i))).append(". ");
-                information.append("In Sphäre: ").append(SyndromObjectPrinter.spherePrintGerman(sphereList.get(i))).append(". ");
+                information.append("In Sphäre: ").append(SyndromObjectPrinter.spherePrintGerman(sphereList.get(i))).append("; ");
             }
         }
         return information.toString();
     }
 
+    /**
+     * Gets the vertices and their spheres.
+     * @return The vertices and their spheres.
+     */
     public Map<Vertex, Sphere> getVertices() {
         Map<Vertex, Sphere> map = new HashMap<>();
         for (int i = 0; i < vertexList.size(); i++) {

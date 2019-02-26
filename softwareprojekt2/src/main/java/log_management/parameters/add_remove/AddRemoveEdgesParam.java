@@ -19,28 +19,33 @@ import java.util.List;
 @Data
 public class AddRemoveEdgesParam implements Param {
     /**
-     * The set of edges(pair describes the respective start-vertex and sink-vertex) bound to their edge-type.
+     * The edges added/removed.
      */
     @Getter
     private List<Edge> edges;
 
-    //@Getter
-    //private Set<Pair<Vertex,Vertex>> vertices;
-
+    /**
+     * The start vertices of the edges.
+     */
     @Getter
     private List<Vertex> startVertices;
 
+    /**
+     * The end vertices of th edges.
+     */
+    @Getter
     private List<Vertex> endVertices;
 
     /**
-     * Creates an parameter object of its own class.
-     *
-     * @param pEdges List of edges and their start/end vertex id.
+     * Creates a parameter object of its own class.
+     * @param pEdges The edges.
+     * @param pStart The start vertices of the edges.
+     * @param pEnd The end vertices of the edges.
      */
-    public AddRemoveEdgesParam(List<Edge> pEdges, List<Vertex> pStart, List<Vertex> pSink) {
+    public AddRemoveEdgesParam(List<Edge> pEdges, List<Vertex> pStart, List<Vertex> pEnd) {
         this.edges = pEdges;
         this.startVertices = pStart;
-        this.endVertices = pSink;
+        this.endVertices = pEnd;
     }
 
     @Override
@@ -54,13 +59,13 @@ public class AddRemoveEdgesParam implements Param {
         if (language == Language.ENGLISH) {
             StringBuilder list = new StringBuilder("Relations: ");
             for (int i = 0; i < edges.size(); i++) {
-                list.append(SyndromObjectPrinter.edgePrintEnglish( verticesList.get(i))).append(". ");
+                list.append(SyndromObjectPrinter.edgePrintEnglish( verticesList.get(i))).append("; ");
             }
             return list.toString();
         } else {
             StringBuilder list = new StringBuilder("Relationen: ");
             for (int i = 0; i < edges.size(); i++) {
-                list.append(SyndromObjectPrinter.edgePrintGerman(verticesList.get(i))).append(". ");
+                list.append(SyndromObjectPrinter.edgePrintGerman(verticesList.get(i))).append("; ");
             }
             return list.toString();
         }

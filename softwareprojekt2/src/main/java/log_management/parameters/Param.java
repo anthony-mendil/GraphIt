@@ -6,9 +6,9 @@ package log_management.parameters;
 public interface Param {
 
     /**
-     * A to-string method for pretty printing.
+     * Method for pretty printing of parameters.
      *
      * @return A pretty string.
      */
-    public String prettyPrint();
+    String prettyPrint();
 }

@@ -102,6 +102,11 @@ public class DatabaseManager implements ObserverSyndrom {
         graphDao.save(graph);
     }
 
+    @Override
+    public void showPrint(ByteArrayInputStream byteArrayInputStream) {
+        //
+    }
+
     public String getGxlFromDatabase() {
         return graphDao.gxlFromDatabase();
     }

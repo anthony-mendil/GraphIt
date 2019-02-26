@@ -26,12 +26,26 @@ import java.util.Optional;
  */
 public class LogDao implements Dao<Log> {
 
+    /**
+     * Sql query to get a log with a specific id.
+     */
     private static final String LOG_FROM_ID = "SELECT l from Log l where l.id = :lid";
+
+    /**
+     * Sql query to get a graph with a specific id.
+     */
     private static final String GRAPH_FROM_ID1 = "SELECT l from Log l where l.graph.id = :gid";
-    public static final String GRAPH_FROM_ID2 =  "SELECT g from Graph g where g.id > 0";
 
+    /**
+     * Sql query to get all graphs from the database.
+     */
+    private static final String GRAPH_FROM_ID2 =  "SELECT g from Graph g where g.id > 0";
 
+    /**
+     * The logger for this class.
+     */
     private static Logger logger = Logger.getLogger(LogDao.class);
+
     /**
      * Returns a logs object, attribute vertices gets converted from string to object with jackson.
      * @param id The id of the object to get.
@@ -136,6 +150,9 @@ public class LogDao implements Dao<Log> {
         entityManager.close();
     }
 
+    /**
+     * Deletes all logs from the database.
+     */
     private void deleteAllLogs() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
@@ -154,6 +171,10 @@ public class LogDao implements Dao<Log> {
         entityManager.close();
     }
 
+    /**
+     * Saves the logs out of a json string into the the database.
+     * @param oofLogs The list of logs as json string.
+     */
     public void saveLogs(String oofLogs) {
         ArrayList<Log> logs;
 
@@ -203,6 +224,4 @@ public class LogDao implements Dao<Log> {
 
         return list;
     }
-
-
 }

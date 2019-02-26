@@ -10,6 +10,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.lang.reflect.Type;
 
+/**
+ * Json serializer class for pair.
+ */
 public class PairSerializer implements JsonSerializer<Pair> {
     @Override
     public JsonElement serialize(Pair pair, Type type,

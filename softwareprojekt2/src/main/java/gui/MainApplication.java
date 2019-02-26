@@ -65,6 +65,8 @@ public class MainApplication extends Application {
         primStage.setMaximized(true);
         controller.setStage(primStage);
         controller.initButtonShortcuts();
+        controller.getRoot().requestFocus();
+
         primaryStage.show();
     }
 }
