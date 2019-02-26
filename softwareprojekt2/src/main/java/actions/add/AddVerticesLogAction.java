@@ -28,10 +28,6 @@ public class AddVerticesLogAction extends LogAction {
      * The sphere of the Vertex.
      */
     private Sphere sphere;
-    /**
-     * Map of vertices and the sphere.
-     */
-    private Map<Vertex, Sphere> vertices = new HashMap<>();
 
     /**
      * Adds all vertices that are defined in pParam. Also used to implement the undo-method of
@@ -70,6 +66,7 @@ public class AddVerticesLogAction extends LogAction {
                 createParameter(newVertex, sphere);
                 vv.getGraphLayout().setLocation(newVertex, position2D);
             } else {
+                Map<Vertex,Sphere> vertices;
                 vertices = ((AddRemoveVerticesParam) parameters).getVertices();
                 List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
                 List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
@@ -104,7 +101,8 @@ public class AddVerticesLogAction extends LogAction {
 
 
     public void createParameter(Vertex vertex, Sphere sphere) {
-        vertices.put(vertex, sphere);
-        parameters = new AddRemoveVerticesParam(vertices, new HashMap<>());
+        HashMap<Vertex, Sphere> vertexSphereHashMap = new HashMap<>();
+        vertexSphereHashMap.put(vertex, sphere);
+        parameters = new AddRemoveVerticesParam(vertexSphereHashMap, new HashMap<>());
     }
 }

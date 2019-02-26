@@ -11,6 +11,7 @@ import org.apache.log4j.BasicConfigurator;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -35,7 +36,7 @@ public class MainApplication extends Application {
      * @param primaryStage The window of the application.
      * @throws Exception If the loading of the fxml fileMenu fails.
      */
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
         BorderPane borderPane = loader.load();
@@ -49,6 +50,7 @@ public class MainApplication extends Application {
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
         controller.initButtonShortcuts();
+        controller.getRoot().requestFocus();
 
         primaryStage.show();
     }

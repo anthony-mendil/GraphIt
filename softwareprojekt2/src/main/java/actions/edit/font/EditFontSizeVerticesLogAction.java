@@ -51,7 +51,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         if(parameters == null){
             List<Vertex> lockedVertices = new LinkedList<>();
             for (Vertex vertex: pickedState.getPicked()) {
-                if(vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                if(!vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldVerticesParam.put(vertex, vertex.getFontSize());
                     vertex.setFontSize(size);
                     newVerticesParam.put(vertex, size);
