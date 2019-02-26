@@ -138,7 +138,6 @@ public class LoadLanguage {
         c.getCycles().setText(loadLanguagesKey("filterCycles"));
         c.getOverViewTitledPane().setText(loadLanguagesKey("treeView"));
         c.getFilterEdgeType().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
-        c.getShowFadedOutObjects().setText(loadLanguagesKey("toolbarFadeout"));
         c.getTemplateTitledPane().setText(loadLanguagesKey("toolbarTemplate"));
         c.getFilterAnalysis().setText(loadLanguagesKey("filterChainOfEdges"));
         c.getTemplateMaxSphere().setText(loadLanguagesKey("templateMaxSphere"));

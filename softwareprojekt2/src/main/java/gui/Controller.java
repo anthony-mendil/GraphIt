@@ -327,13 +327,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private TextField regularExpressionField;
 
-    /**
-     * Nina
-     * The checkbox that filters the overview after fadedout objects.
-     */
-    @FXML
-    private CheckBox showFadedOutObjects;
-
     /* Sphere */
     /**
      * The colorpicker for changing the background color of sphere.
@@ -3002,7 +2995,6 @@ public class Controller implements ObserverSyndrom {
         neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox, this));
         treeViewArrowType.selectedProperty().addListener(new TemplateCheckBoxListener(treeViewArrowType, this));
         regularExpressionBox.selectedProperty().addListener(new TemplateCheckBoxListener(regularExpressionBox, this));
-        showFadedOutObjects.selectedProperty().addListener(new TemplateCheckBoxListener(showFadedOutObjects, this));
     }
 
     private void loadAnalysisElements() {
