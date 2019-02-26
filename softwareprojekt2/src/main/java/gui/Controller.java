@@ -1415,6 +1415,7 @@ public class Controller implements ObserverSyndrom {
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
         switchModeAction.action();
+        root.requestFocus();
     }
 
     /**
@@ -1442,6 +1443,7 @@ public class Controller implements ObserverSyndrom {
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.ANALYSE);
         switchModeAction.action();
+        root.requestFocus();
     }
 
     /**
@@ -1461,6 +1463,7 @@ public class Controller implements ObserverSyndrom {
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
         switchModeAction.action();
+        root.requestFocus();
     }
 
 
