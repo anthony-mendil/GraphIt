@@ -884,10 +884,13 @@
                                         <Tooltip text="%analysisSuccessorTooltip" />
                                     </tooltip>
                                 </JFXCheckBox>
-                                <JFXTextField fx:id="amountSymptomTextField" disable="true" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="%analysisSymptomAmount" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <JFXTextField fx:id="amountSymptomTextField" disable="true" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" promptText="%analysisSymptomAmount" GridPane.columnIndex="1">
                                     <tooltip>
                                         <Tooltip text="%analysisSymptomAmountTooltip" />
                                     </tooltip>
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
                                 </JFXTextField>
                         <JFXCheckBox fx:id="analysisPathCheckBox" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text=" " GridPane.columnIndex="2">
                            <graphic>
