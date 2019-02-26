@@ -1,0 +1,405 @@
+\documentclass[enabledeprecatedfontcommands,fontsize=11pt,paper=a4,twoside]{scrartcl}
+
+\newcommand*{\red}{\textcolor{red}}
+\newcommand*{\blue}{\textcolor{blue}}
+
+\newcommand{\grad}{\ensuremath{^{\circ}} }
+\renewcommand{\strut}{\vrule width 0pt height5mm depth2mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[final]{pdfpages}
+% obere Seitenränder gestalten können
+\usepackage{fancyhdr}
+\usepackage{moreverb}
+% Graphiken als jpg, png etc. einbinden können
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+% Floats Objekte mit [H] festsetzen
+\usepackage{float}
+% setzt URL's schön mit \url{http://bla.laber.com/~mypage}
+\usepackage{url}
+% Externe PDF's einbinden können
+\usepackage{pdflscape}
+% Verweise innerhalb des Dokuments schick mit " ... auf Seite ... "
+% automatisch versehen. Dazu \vref{labelname} benutzen
+\usepackage[ngerman]{varioref}
+\usepackage[ngerman]{babel}
+\usepackage{ngerman}
+% Bibliographie
+\usepackage{bibgerm}
+\usepackage{svg}
+% Tabellen
+\usepackage{tabularx}
+\usepackage{supertabular}
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue,
+            citecolor=blue, urlcolor=blue, hyperfigures=true,
+            pdftex=true]{hyperref}
+\usepackage{bookmark}
+
+
+
+\newcounter{one}
+\newcounter{two}[one]
+\newcounter{three}[two]
+
+\newcommand{\tone}{0\theone}
+\newcommand{\ttwo}{0\thetwo}
+\newcommand{\tthree}{0\thetree}
+\newcommand{\one}{\stepcounter{one}0\theone}
+\newcommand{\two}{\stepcounter{two}0\thetwo}
+\newcommand{\three}{\stepcounter{three}0\thethree}
+\newcommand\s{\rule{0pt}{4ex}}        
+\newcommand{\cb}[1]{{\textcolor{blue}{#1}}}
+\newcommand*{\hint}{\textcolor{blue}{Hinweise}}
+
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{pdfpages} 
+\usepackage{colortbl}
+%\usepackage{graphicx}   
+%\usepackage[utf8x]{inputenc}
+\usepackage{fmtcount}
+\usepackage[ngerman]{babel}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+%
+
+%
+
+%
+
+%
+
+\definecolor{dartmouthgreen}{rgb}{0.05, 0.5, 0.06}
+\definecolor{color}{rgb}{0.67, 0.88, 0.69}
+\definecolor{todo}{rgb}{1.0, 0.41, 0.71}
+\definecolor{sort}{rgb}{0.45, 0.76, 0.98}
+\definecolor{prob}{rgb}{0.74, 0.83, 0.9}
+\definecolor{anw}{rgb}{0.94, 0.86, 0.51}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{setspace} 
+\hypersetup{
+	colorlinks = true,
+	linkbordercolor = {white},
+	linkcolor=dartmouthgreen,          % color of internal links (change box color with linkbordercolor)
+	citecolor=red,        % color of links to bibliography
+	filecolor=magenta,      % color of file links
+	urlcolor=cyan 
+}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=20mm,
+	right=20mm,
+	top=2cm,
+	bottom=4cm,
+	footskip=4cm
+}
+
+
+\addtolength{\headwidth}{20mm}
+\addtolength{\headheight}{2\baselineskip}
+\addtolength{\headheight}{0.61pt}
+
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{\vbox to 0pt{\rule{\headwidth}{0.2pt}}}
+\setlength{\headsep}{30pt}
+
+
+\hyphenation{Arbeits-paket}
+
+% Damit Latex nicht zu lange Zeilen produziert:
+%\sloppy
+%Uneinheitlicher unterer Seitenrand:
+%\raggedbottom
+
+% Kein Erstzeileneinzug beim Absatzanfang
+% Sieht aber nur gut aus, wenn man zwischen Absätzen viel Platz einbaut
+%\setlength{\parindent}{0ex}
+
+% Abstand zwischen zwei Absätzen
+%\setlength{\parskip}{1ex}
+
+% Seitenränder für Korrekturen verändern
+%\addtolength{\evensidemargin}{-1cm}
+%\addtolength{\oddsidemargin}{1cm}
+
+%\bibliographystyle{gerapali}
+
+% Lustige Header auf den Seiten
+  \pagestyle{fancy}
+  \setlength{\headheight}{70.55003pt}
+  \fancyhead{}
+  \fancyhead[LO,RE]{Software--Projekt 2\\ WiSe 2018/2019
+  \\Architekturbeschreibung}
+  \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
+
+%
+% Und jetzt geht das Dokument los....
+%
+
+\begin{document}
+
+% Lustige Header nur auf dieser Seite
+  \thispagestyle{fancy}
+  \fancyhead[LO,RE]{ }
+  \fancyhead[LE,RO]{Universität Bremen\\FB 3 -- Informatik\\
+  Prof. Dr. Rainer Koschke \\TutorIn: Marcel Steinbeck}
+  \fancyfoot[C]{}
+
+% Start Titelseite
+  \vspace{3cm}
+
+  \begin{minipage}[H]{\textwidth}
+  \begin{center}
+  \bf
+  \Large
+  Software--Projekt 2 WiSe 2018/2019\\
+  \smallskip
+  \small
+  VAK 03-BA-901.02\\
+  \vspace{3cm}
+  \end{center}
+  \end{minipage}
+  \begin{minipage}[H]{\textwidth}
+  \begin{center}
+  \vspace{1cm}
+  \bf
+  \Large Benutzerhandbuch\\
+  \vspace{2cm}
+  \includegraphics[width=3.0in]{logo_graphit.png}
+
+  
+  \end{center}
+ 
+  \end{minipage}
+  \vfill
+  \begin{minipage}[H]{\textwidth}
+  \begin{center}
+  \sf
+  \begin{tabular}{lr}
+  Anthony Mendil & antmen@tzi.de \\
+  Bastian Rexhäuser & brexhaeu@tzi.de\\
+  Clement Phung & clement1@tzi.de \\
+  Jacky Philipp Mach & machja@tzi.de \\
+  Jonah Jaeger & jjaeger@tzi.de \\
+  Nina Unterberg & nin\_unt@tzi.de \\
+  \end{tabular}
+  \\ ~
+  \vspace{2cm}
+  \\
+  \it Abgabe: 10. März 2019 --- Version 1.0\\ ~
+  \end{center}
+  \end{minipage}
+
+% Ende Titelseite
+
+% Start Leerseite
+
+\newpage
+
+  \thispagestyle{fancy}
+  \fancyhead{}
+  \fancyhead[LO,RE]{Software--Projekt \\  2018/2019
+  \\Benutzerhandbuch}
+  
+  \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\~}
+  \fancyfoot{}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \tableofcontents
+
+\newpage
+
+  \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Einführung}
+	\subsection{Adressierte Leser}
+	\subsection{Verwandte Dokumente}
+	\subsection{Konventionen}
+	\subsection{Informationen über die Verwendung des Dokuments}
+
+\begin{itemize}
+	\item screenshot auf windows	
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Installation und Starten des Programms} \label{sec:installation}
+
+	\subsection{Installationsvoraussetzungen}
+
+	Zur Nutzung müssen auf dem Nutzercomputer zwei \blue{Programme} installiert sein.
+
+	\subsubsection{Java 11}
+	\subsubsection{Maven}
+	Das weiß Jonah
+
+	\subsection{Installationsanweisungen}
+	\subsection{Starten des Programms}
+\section{Benutzeroberfläche}
+	\subsection{Tasten-/ Mausbelegungen}
+	\subsection{Übersicht}
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\section{Übersicht} \label{sec:uebersicht}
+\begin{itemize}
+	\item aufzählung der modi und grundlegende erklärung
+\end{itemize}
+
+
+\section{Instruktionen zur Nutzung des Programms} \label{sec:nutzung}
+	\subsection{Auswahl von Graphelementen}
+		\subsubsection{Eines Elements}
+		\subsubsection{Mehrerer Elemente}
+	\subsection{Editierung des Graphen}
+		\paragraph{\blue{Hinweis}}
+		\begin{itemize}
+			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer im Bearbeiter-/ Erstellermodus befindet und er somit die Berechtigung hat den Graphen zu editieren.
+		\end{itemize}
+		\subsubsection{Undo}
+		\subsubsection{Redo}
+		\subsubsection{Sphäre hinzufügen}		
+		\subsubsection{Sphäre entfernen}
+		\subsubsection{Sphäre verschieben}
+		\subsubsection{Größe der Sphäre verändern}
+		\subsubsection{Farbe ändern der Sphäre}
+		\subsubsection{Titel der Sphäre ändern}
+		\subsubsection{Contextmenü einer Sphäre öffnen/ benutzen}
+		\subsubsection{Schriftart-/ größe der Beschriftung der Sphäre ändern}
+		\subsubsection{Sphären layouten}
+		\newpage
+		\subsubsection{Symptom hinzufügen}
+		\paragraph{Voraussetzung}
+		Ein Syndromansatz mit mindestens einer Sphäre ist im Programm geöffnet. \\
+		\paragraph{Vorgehen}
+		\begin{enumerate}
+			\item In der Menüleiste den Button \textit{Symptom hinzufügen} durch einen Klick aktivieren.
+			\item Auf die gewünschte Position innerhalb einer Sphäre drücken, wo sich kein(e) anderes Symptom/ Relation befindet, klicken.
+		\end{enumerate}
+		\paragraph{\hint}
+		\begin{itemize}
+			\item Es ist nicht möglich ein Symptom auf einen anderem Symptom hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom außerhalb einer Sphäre hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf einer Relation hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		
+		\end{itemize}
+		\newpage
+		\subsubsection{Symptom entfernen}
+		\subsubsection{Symptom verschieben}
+		\subsubsection{Größe eines Symptoms verändern}
+		\subsubsection{Füllfarbe eines Symptoms verändern}
+		\subsubsection{Randfarbe eines Symptoms verändern}
+		\subsubsection{Titel eines Symptoms ändern}
+		\subsubsection{Form eines Symptoms verändern}
+		\subsubsection{Schriftart-/ größe der Beschriftung eines Symptoms ändern}
+		\subsubsection{Symptome layouten}
+			
+		\subsubsection{Relation hinzufügen}
+		\subsubsection{Relation entfernen}
+		\subsubsection{Ankerpunkte einblenden}
+		\subsubsection{Ankerpunkte hinzufügen}
+		\subsubsection{Ankerpunkte entfernen}
+		\subsubsection{Farbe einer Relation verändern}
+		\subsubsection{Type einer Relation verändern}
+		
+		\subsubsection{Graphelemente hervorheben}
+		\subsubsection{Graphelemente Hervorhebung hinzufügen}
+		\subsubsection{Graphelemente Hervorhebung entfernen}
+		
+		\subsubsection{Graphelemente ausblenden/ einblenden}
+		\subsubsection{Graphelemente Fadeout hinzufügen}
+		\subsubsection{Graphelemente Fadeout entfernen}
+		
+		\subsubsection{Contextmenü}
+	
+	\subsection{Übersichtsleiste}
+		\subsubsection{Filtern}
+		\subsubsection{Elemente auswählen}
+		\subsubsection{Contextmenü öffnen}
+		
+	\subsection{Zoom}
+		\subsubsection{Zoom}
+		\subsubsection{Zoom.Kontext}
+	\subsection{Allgemeine Einstellungen}
+		\subsubsection{Sprache der Benutzeroberfläche}
+		\subsubsection{Sprache der Beschriftung der Graphelement}
+	\subsection{Import/ Öffnen}
+		\subsubsection{Neue Datei}
+		\subsubsection{Datei öffnen}
+		\subsubsection{GXL}
+		\subsubsection{oof}
+	\subsection{Export/ Speichern}
+		\subsubsection{Speichern unter}
+		\subsubsection{GXL}
+		\subsubsection{oof}
+		\subsubsection{Pdf}
+		\subsubsection{Verlaufsprotokoll}
+	\subsection{Drucken}
+	\subsection{Analysefunktionen}
+		\subsubsection{Graphmaße}
+		\subsubsection{Vorgänger/ Nachfolger von Symptom(en) hervorheben}
+		\subsubsection{Kürzester Pfad zw. Symptomen}
+		\subsubsection{Alle Pfade zw. Symptomen}
+		\subsubsection{Pfeilketten}
+		\subsubsection{Konvergente Verzweigungen}
+		\subsubsection{Divergente Verzweigungen}
+		\subsubsection{Zyklen}
+		\subsubsection{Alle Relationen eines Typs hervorheben}		
+	\subsection{Verlauf}
+		\subsubsection{Anzeigen}
+		\subsubsection{Filtern}
+	\subsection{Vorlage}
+		\subsubsection{Element spezifische Vorlagereglen}
+		\subsubsection{Graph spezifische Vorlagereglen}
+		\subsubsection{Vorlage erstellen}
+		\subsubsection{Vorlage verwenden}
+		\subsubsection{Vorlage exportieren}
+	\subsection{Dialogfenster}
+	\newpage
+	\section{Fehlermeldungen} \label{sec:fehlermeldungen}
+	
+	%die verschiedenen Fehlermeldungen, die der Nutzer bekommen kann erklären als subsec
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Warnhinweise} \label{sec:warnhinweise}
+	
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{FAQ}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Anhang} \label{sec:anhang}	
+	\subsection{Glossar}
+	
+	\begin{description}
+		\item[Syndromansatz] Graph bla bla
+	\end{description}
+	
+	\subsection{Abbildungsverzeichnis}
+	\listoffigures
+	
+
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
