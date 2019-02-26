@@ -99,10 +99,13 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -1444,10 +1447,10 @@ public class Controller implements ObserverSyndrom {
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
 
-
-        analysisScopeNumber.setText("" + graphDimensionAction.getScope());
-        analysisNetworkingIndexNumber.setText("" + graphDimensionAction.getNetworkIndex());
-        analysisStructureIndexNumber.setText("" + graphDimensionAction.getStructureIndex());
+        DecimalFormat format = new DecimalFormat("####.##");
+        analysisScopeNumber.setText("" + format.format(graphDimensionAction.getScope()));
+        analysisNetworkingIndexNumber.setText("" + format.format(graphDimensionAction.getNetworkIndex()));
+        analysisStructureIndexNumber.setText("" + format.format(graphDimensionAction.getStructureIndex()));
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
