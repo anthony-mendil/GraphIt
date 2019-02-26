@@ -11,10 +11,6 @@ import log_management.json_deserializers.PairDeserializer;
 import log_management.json_deserializers.Point2DDeserializer;
 import log_management.json_serializers.PairSerializer;
 import log_management.json_serializers.Point2DSerializer;
-import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
-import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
-import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
-import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 import log_management.parameters.add_remove.AddRemoveEdgesParam;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
@@ -167,14 +163,6 @@ public class LogToStringConverter {
         Gson gson = gsonBuilder.create();
 
         switch (logEntryName) {
-            case ACTIVATE_HIGHLIGHT:
-                return gson.fromJson(parameters, ActivateDeactivateHighlightParam.class).prettyPrint();
-            case ACTIVATE_FADEOUT:
-                return gson.fromJson(parameters, ActivateDeactivateFadeoutParam.class).prettyPrint();
-            case ADD_ANCHOR_POINTS:
-                return gson.fromJson(parameters, AddRemoveAnchorPointsParam.class).prettyPrint();
-            case ACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return gson.fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
             case ADD_EDGES:
                 return gson.fromJson(parameters, AddRemoveEdgesParam.class).prettyPrint();
             case ADD_SPHERE:
@@ -205,16 +193,12 @@ public class LogToStringConverter {
                 return gson.fromJson(parameters, EditEdgesStrokeParam.class).prettyPrint();
             case EDIT_SPHERE_COLOR:
                 return gson.fromJson(parameters, EditSphereColorParam.class).prettyPrint();
-            case DEACTIVATE_FADEOUT:
-                return gson.fromJson(parameters, ActivateDeactivateFadeoutParam.class).prettyPrint();
             case EDIT_FONT_VERTICES:
                 return gson.fromJson(parameters, EditFontVerticesParam.class).prettyPrint();
             case EDIT_VERTICES_FORM:
                 return gson.fromJson(parameters, EditVerticesFormParam.class).prettyPrint();
             case EDIT_VERTICES_SIZE:
                 return gson.fromJson(parameters, EditVerticesSizeParam.class).prettyPrint();
-            case REMOVE_ANCHOR_POINTS:
-                return gson.fromJson(parameters, AddRemoveAnchorPointsParam.class).prettyPrint();
             case EDIT_SPHERE_FONT_SIZE:
                 return gson.fromJson(parameters, EditFontSizeSphereParam.class).prettyPrint();
             case EDIT_SPHERE_ANNOTATION:
@@ -227,10 +211,6 @@ public class LogToStringConverter {
                 return gson.fromJson(parameters, EditVerticesDrawColorParam.class).prettyPrint();
             case EDIT_VERTICES_FILL_COLOR:
                 return gson.fromJson(parameters, EditVerticesFillColorParam.class).prettyPrint();
-            case DEACTIVATE_HIGHLIGHT:
-                return gson.fromJson(parameters, ActivateDeactivateHighlightParam.class).prettyPrint();
-            case DEACTIVATE_ANCHOR_POINTS_FADEOUT:
-                return gson.fromJson(parameters, ActivateDeactivateAnchorPointsFadeoutParam.class).prettyPrint();
             case EDIT_VERTICES_LAYOUT:
                 return gson.fromJson(parameters, LayoutVerticesParam.class).prettyPrint();
             default: throw new IllegalArgumentException();

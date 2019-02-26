@@ -1,5 +1,6 @@
 package actions.activate;
 
+import actions.GraphAction;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
@@ -8,30 +9,18 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import gui.Values;
-import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
+import log_management.tables.Graph;
 
 /**
  * All existing anchor-points fadeout and are no longer visible for the user.
  */
-public class ActivateAnchorPointsFadeoutAction extends LogAction {
+public class ActivateAnchorPointsFadeoutAction extends GraphAction {
 
     /**
      * Constructor in case all/several anchor-points shall fadeout. The action is applied to all picked edges/anchor
      * points.
      */
-    public ActivateAnchorPointsFadeoutAction() {
-        super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
-    }
-
-    /**
-     * Fadeout all anchor points defined in ActivateAnchorPointsFadeoutParam. Also used to implement the undo-method of
-     * DeactivateAnchorPointsFadeoutAction.
-     *
-     * @param pActivateAnchorPointsFadeoutParam The used parameter object containing the anchor points to fade out.
-     */
-    public ActivateAnchorPointsFadeoutAction(ActivateDeactivateAnchorPointsFadeoutParam pActivateAnchorPointsFadeoutParam) {
-        super(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT);
-    }
+    public ActivateAnchorPointsFadeoutAction() {}
 
     @Override
     public void action() {
@@ -48,12 +37,6 @@ public class ActivateAnchorPointsFadeoutAction extends LogAction {
 
     @Override
     public void undo() {
-        DeactivateAnchorPointsFadeoutAction deactivateAnchorPointsFadeoutAction = new DeactivateAnchorPointsFadeoutAction();
-        deactivateAnchorPointsFadeoutAction.action();
-    }
-
-
-    public void createParameter() {
-        //
+        // no undo operation for this action.
     }
 }
