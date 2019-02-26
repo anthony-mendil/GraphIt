@@ -3131,6 +3131,7 @@ public class Controller implements ObserverSyndrom {
                         Platform.runLater(() -> {
                             try {
                                 treeViewUpdate();
+                                loadTables();
                             } finally {
                                 latch.countDown();
                             }
