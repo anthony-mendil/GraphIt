@@ -56,7 +56,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.print.PageLayout;
 import javafx.print.Printer;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -80,7 +79,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.*;
-import javafx.stage.Window;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.LogToStringConverter;
@@ -88,17 +86,11 @@ import log_management.dao.LogDao;
 import log_management.tables.Log;
 import lombok.Data;
 import org.apache.log4j.Logger;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.printing.PDFPageable;
-import sun.print.RasterPrinterJob;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -1243,6 +1235,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an ExportGxlAction-object and executes the action with the action history.
      */
     public void exportGXL() {
+        rulesTemplate();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1257,6 +1250,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
      */
     public void exportGXLWithTemplate() {
+        rulesTemplate();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1297,6 +1291,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an ExportOofAction-object and executes the action with the action history.
      */
     public void exportOOF() {
+        rulesTemplate();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);

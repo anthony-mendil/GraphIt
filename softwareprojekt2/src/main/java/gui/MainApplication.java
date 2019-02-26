@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -20,13 +21,33 @@ import java.util.ResourceBundle;
  */
 public class MainApplication extends Application {
 
+    private Stage primStage;
+    private Scene scene;
+    private Controller controller;
 
     @Override
     public void init() throws Exception {
+        notifyPreloader(new Preloader.ProgressNotification(0.1));
         BasicConfigurator.configure();
+        notifyPreloader(new Preloader.ProgressNotification(0.2));
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+        notifyPreloader(new Preloader.ProgressNotification(0.3));
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
+        notifyPreloader(new Preloader.ProgressNotification(0.4));
+
+        ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
+        notifyPreloader(new Preloader.ProgressNotification(0.5));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
+        notifyPreloader(new Preloader.ProgressNotification(0.6));
+        BorderPane borderPane = loader.load();
+        notifyPreloader(new Preloader.ProgressNotification(0.7));
+        scene = new Scene(borderPane);
+        notifyPreloader(new Preloader.ProgressNotification(0.8));
+
+        controller = loader.getController();
+        notifyPreloader(new Preloader.ProgressNotification(0.9));
         super.init();
+        notifyPreloader(new Preloader.ProgressNotification(1));
     }
 
     /**
@@ -37,20 +58,13 @@ public class MainApplication extends Application {
      * @throws Exception If the loading of the fxml fileMenu fails.
      */
     public void start(Stage primaryStage) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
-        BorderPane borderPane = loader.load();
-        primaryStage.setTitle("Syndromansatz");
-
-        Scene scene = new Scene(borderPane);
-        primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image("/GraphItLogo.png"));
-        primaryStage.setMaximized(true);
-
-        Controller controller = loader.getController();
-        controller.setStage(primaryStage);
+        primStage=primaryStage;
+        primStage.setTitle("Syndromansatz");
+        primStage.setScene(scene);
+        primStage.getIcons().add(new Image("/GraphItLogo.png"));
+        primStage.setMaximized(true);
+        controller.setStage(primStage);
         controller.initButtonShortcuts();
-
         primaryStage.show();
     }
 }
