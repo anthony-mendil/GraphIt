@@ -2365,6 +2365,7 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
             treeViewUpdate();
+            loadTables();
             sortFilterLogs();
         }
 
@@ -2733,14 +2734,20 @@ public class Controller implements ObserverSyndrom {
 
         if (!spheres.isEmpty()) {
             loadSpheresTable(spheres);
+        }else{
+            sphereTableView.getItems().clear();
         }
 
         if (!vertices.isEmpty()) {
             loadVerticesTable(vertices);
+        }else{
+            symptomTableView.getItems().clear();
         }
 
         if (!edges.isEmpty()) {
             loadEdgesTable(edges);
+        }else{
+            edgeTableView.getItems().clear();
         }
     }
 
@@ -3159,6 +3166,7 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         treeViewUpdate();
+        loadTables();
     }
 
     private void filterLogs(LogEntryName entryName) {
