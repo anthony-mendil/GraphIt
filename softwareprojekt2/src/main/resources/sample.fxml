@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
 <?import javafx.embed.swing.SwingNode?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.CheckMenuItem?>
-<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -109,7 +109,7 @@
             </MenuBar>
             <ToolBar prefHeight="40.0" scaleShape="false">
                 <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="318.0">
-                    <Button fx:id="createButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeCreator" prefHeight="23.0" prefWidth="26.0">
+                    <JFXButton fx:id="createButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeCreator" prefHeight="23.0" prefWidth="26.0">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/024-pencil-1.png" />
@@ -121,8 +121,8 @@
                         <tooltip>
                             <Tooltip text="%toolbarCreatorMode" />
                         </tooltip>
-                    </Button>
-                    <Button fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis" prefHeight="23.0" prefWidth="26.0">
+                    </JFXButton>
+                    <JFXButton fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis" prefHeight="23.0" prefWidth="26.0">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/027-vision.png" />
@@ -134,8 +134,8 @@
                         <tooltip>
                             <Tooltip text="%toolbarAnalysisMode" />
                         </tooltip>
-                    </Button>
-                    <Button fx:id="editButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeEdit" prefHeight="23.0" prefWidth="26.0">
+                    </JFXButton>
+                    <JFXButton fx:id="editButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeEdit" prefHeight="23.0" prefWidth="26.0">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/027-vision.png" />
@@ -147,7 +147,7 @@
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
-                    </Button>
+                    </JFXButton>
                     <Separator fx:id="toolBarSeparator1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                         <HBox.margin>
                             <Insets />
@@ -156,7 +156,7 @@
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </padding>
                     </Separator>
-                    <Button fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
+                    <JFXButton fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/006-reply.png" />
@@ -168,8 +168,8 @@
                         <tooltip>
                             <Tooltip text="%toolbarUndo" />
                         </tooltip>
-                    </Button>
-                    <Button fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
+                    </JFXButton>
+                    <JFXButton fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/001-share.png" />
@@ -181,7 +181,7 @@
                         <tooltip>
                             <Tooltip text="%toolbarRedo" />
                         </tooltip>
-                    </Button>
+                    </JFXButton>
                     <Separator focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="29.0" prefWidth="10.0">
                         <padding>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -200,7 +200,7 @@
                             <Tooltip text="%toolbarHighlight" />
                         </tooltip>
                     </ToggleButton>
-                    <Button fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -212,8 +212,8 @@
                         <tooltip>
                             <Tooltip text="%toolbarHighlightElement" />
                         </tooltip>
-                    </Button>
-                    <Button fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    </JFXButton>
+                    <JFXButton fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -225,7 +225,7 @@
                         <tooltip>
                             <Tooltip text="%toolbarNotHighlightElements" />
                         </tooltip>
-                    </Button>
+                    </JFXButton>
                     <ToggleButton fx:id="fadeout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -239,7 +239,7 @@
                             <Tooltip text="%toolbarFadeout" />
                         </tooltip>
                     </ToggleButton>
-                    <Button fx:id="fadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="fadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -251,8 +251,8 @@
                         <tooltip>
                             <Tooltip text="%toolbarFadeoutElement" />
                         </tooltip>
-                    </Button>
-                    <Button fx:id="deleteFadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    </JFXButton>
+                    <JFXButton fx:id="deleteFadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -266,7 +266,7 @@
                         <tooltip>
                             <Tooltip text="%toolbarFadeoutDeleteElement" />
                         </tooltip>
-                    </Button>
+                    </JFXButton>
                 </HBox>
             </ToolBar>
             <HBox prefHeight="58.0" prefWidth="621.0">
@@ -281,7 +281,7 @@
                     </Text>
                     <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0">
                         <children>
-                            <Button fx:id="handSelector" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handSelector" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                            <JFXButton fx:id="handSelector" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handSelector" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                 <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                 </HBox.margin>
@@ -298,7 +298,7 @@
                                 <tooltip>
                                     <Tooltip text="%selectorHandTooltip" />
                                 </tooltip>
-                            </Button>
+                            </JFXButton>
                         </children>
                         <VBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -323,7 +323,7 @@
                         <VBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </VBox.margin>
-                        <Button fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        <JFXButton fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -338,13 +338,13 @@
                             <tooltip>
                                 <Tooltip text="%addSphereTooltip" />
                             </tooltip>
-                        </Button>
+                        </JFXButton>
                         <Separator orientation="VERTICAL" prefHeight="4.0">
                             <HBox.margin>
                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                             </HBox.margin>
                         </Separator>
-                        <Button fx:id="deleteSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        <JFXButton fx:id="deleteSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -358,8 +358,8 @@
                             <tooltip>
                                 <Tooltip text="%deleteSphereTooltip" />
                             </tooltip>
-                        </Button>
-                        <Button fx:id="sphereEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        </JFXButton>
+                        <JFXButton fx:id="sphereEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -373,8 +373,8 @@
                             <tooltip>
                                 <Tooltip text="%sizeChangeSphereTooltip" />
                             </tooltip>
-                        </Button>
-                        <Button fx:id="sphereShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        </JFXButton>
+                        <JFXButton fx:id="sphereShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -388,22 +388,22 @@
                             <tooltip>
                                 <Tooltip text="%sizeMinusChangeSphereTooltip" />
                             </tooltip>
-                        </Button>
-                        <ColorPicker fx:id="sphereBackgroundColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editSphereColor" prefHeight="30.0" prefWidth="46.0">
+                        </JFXButton>
+                        <JFXColorPicker fx:id="sphereBackgroundColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editSphereColor" prefHeight="30.0" prefWidth="30.0" styleClass="colorpicker" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
                             <tooltip>
                                 <Tooltip text="%sphereColourTooltip" />
                             </tooltip>
-                        </ColorPicker>
+                        </JFXColorPicker>
 
                         <Separator orientation="VERTICAL" prefHeight="4.0">
                             <HBox.margin>
                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                             </HBox.margin>
                         </Separator>
-                        <ComboBox fx:id="fontSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="%font">
+                        <ComboBox fx:id="fontSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="%font" styleClass="combobox" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -411,7 +411,7 @@
                                 <Tooltip text="%sphereFontTooltip" />
                             </tooltip>
                         </ComboBox>
-                        <ComboBox fx:id="sizeSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="%fontSize">
+                        <ComboBox fx:id="sizeSphereComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="%fontSize" styleClass="combobox" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -419,7 +419,7 @@
                                 <Tooltip text="%sphereFontSizeTooltip" />
                             </tooltip>
                         </ComboBox>
-                        <Button fx:id="sphereAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        <JFXButton fx:id="sphereAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sphereAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -433,7 +433,7 @@
                             <tooltip>
                                 <Tooltip text="%toolbarLayout" />
                             </tooltip>
-                        </Button>
+                        </JFXButton>
                     </HBox>
                 </VBox>
                 <Separator fx:id="separator1" orientation="VERTICAL" prefHeight="200.0">
@@ -450,7 +450,7 @@
                         </Text>
                         <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="550.0">
                             <children>
-                                <Button fx:id="addVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <JFXButton fx:id="addVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -467,13 +467,13 @@
                                     <tooltip>
                                         <Tooltip text="%addSymptomTooltip" />
                                     </tooltip>
-                                </Button>
+                                </JFXButton>
                                 <Separator orientation="VERTICAL" prefHeight="4.0">
                                     <HBox.margin>
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </HBox.margin>
                                 </Separator>
-                                <Button fx:id="deleteVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeVertices" prefHeight="30.0" prefWidth="30.0">
+                                <JFXButton fx:id="deleteVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeVertices" prefHeight="30.0" prefWidth="30.0">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -487,8 +487,8 @@
                                     <tooltip>
                                         <Tooltip text="%deleteSymptom" />
                                     </tooltip>
-                                </Button>
-                                <Button fx:id="vertexEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                </JFXButton>
+                                <JFXButton fx:id="vertexEnlarge" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexEnlarge" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -502,8 +502,8 @@
                                     <tooltip>
                                         <Tooltip text="%enlargeSymptom" />
                                     </tooltip>
-                                </Button>
-                                <Button fx:id="vertexShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                </JFXButton>
+                                <JFXButton fx:id="vertexShrink" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#vertexShrink" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -517,8 +517,8 @@
                                     <tooltip>
                                         <Tooltip text="%shrinkSymptom" />
                                     </tooltip>
-                                </Button>
-                                <ColorPicker fx:id="symptomBackground" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesFillColor" prefHeight="30.0" prefWidth="46.0">
+                                </JFXButton>
+                                <JFXColorPicker fx:id="symptomBackground" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesFillColor" prefHeight="30.0" prefWidth="30.0" styleClass="colorpicker" stylesheets="@gui_style.css">
 
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -526,16 +526,16 @@
                                     <tooltip>
                                         <Tooltip text="%symptomBackgroundColourTooltip" />
                                     </tooltip>
-                                </ColorPicker>
-                                <ColorPicker fx:id="symptomBorder" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesDrawColor" prefHeight="30.0" prefWidth="46.0">
+                                </JFXColorPicker>
+                                <JFXColorPicker fx:id="symptomBorder" minHeight="-Infinity" minWidth="-Infinity" onAction="#editVerticesDrawColor" prefHeight="30.0" prefWidth="30.0" styleClass="colorpicker" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
                                     <tooltip>
                                         <Tooltip text="%symptomBorderColourTooltip" />
                                     </tooltip>
-                                </ColorPicker>
-                                <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                                </JFXColorPicker>
+                                <MenuButton fx:id="sphereFormMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="menubutton" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -570,7 +570,7 @@
                                         </ImageView>
                                     </graphic>
                                 </MenuButton>
-                                <Button fx:id="verticesAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verticesAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <JFXButton fx:id="verticesAutoLayout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verticesAutoLayout" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -584,13 +584,13 @@
                                     <tooltip>
                                         <Tooltip text="%toolbarLayout" />
                                     </tooltip>
-                                </Button>
+                                </JFXButton>
                                 <Separator orientation="VERTICAL" prefHeight="4.0">
                                     <HBox.margin>
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </HBox.margin>
                                 </Separator>
-                                <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="%font">
+                                <ComboBox fx:id="fontSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" promptText="%font" styleClass="combobox" stylesheets="@gui_style.css">
                                     <tooltip>
                                         <Tooltip text="%symptomFontTooltip" />
                                     </tooltip>
@@ -598,7 +598,7 @@
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
                                 </ComboBox>
-                                <ComboBox fx:id="sizeSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="%fontSize">
+                                <ComboBox fx:id="sizeSymptomComboBox" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="77.0" promptText="%fontSize" styleClass="combobox" stylesheets="@gui_style.css">
                                     <tooltip>
                                         <Tooltip text="%symptomFontSizeTooltip" />
                                     </tooltip>
@@ -650,7 +650,7 @@
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </HBox.margin>
                                 </Separator>
-                                <Button fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
+                                <JFXButton fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -664,8 +664,8 @@
                                     <tooltip>
                                         <Tooltip text="%deleteEdge" />
                                     </tooltip>
-                                </Button>
-                                <Button fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
+                                </JFXButton>
+                                <JFXButton fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -679,21 +679,21 @@
                                     <tooltip>
                                         <Tooltip text="%edgeAnchorPointDelete" />
                                     </tooltip>
-                                </Button>
+                                </JFXButton>
                                 <Separator orientation="VERTICAL" prefHeight="4.0">
                                     <HBox.margin>
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </HBox.margin>
                                 </Separator>
-                                <ColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editEdgesColor" prefHeight="30.0" prefWidth="46.0">
+                                <JFXColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editEdgesColor" prefHeight="30.0" prefWidth="30.0" styleClass="colorpicker" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
                                     <tooltip>
                                         <Tooltip text="%edgeColour" />
                                     </tooltip>
-                                </ColorPicker>
-                                <MenuButton fx:id="edgeStrokeMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeStrokeBasic" prefHeight="30.0" prefWidth="50.0">
+                                </JFXColorPicker>
+                                <MenuButton fx:id="edgeStrokeMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeStrokeBasic" prefHeight="30.0" prefWidth="50.0" styleClass="menubutton" stylesheets="@gui_style.css">
                                     <graphic>
                                         <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -764,7 +764,7 @@
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
                                 </MenuButton>
-                                <MenuButton fx:id="edgeArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                                <MenuButton fx:id="edgeArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="menubutton" stylesheets="@gui_style.css">
                                     <graphic>
                                         <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -896,7 +896,7 @@
                                 </TextField>
                         <CheckBox fx:id="analysisPathCheckBox" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text=" " GridPane.columnIndex="2">
                            <graphic>
-                              <MenuButton fx:id="analysisPathMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="170.0" text="%analysisPathMenuButton">
+                              <MenuButton fx:id="analysisPathMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="170.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%analysisPathMenuButton">
                                 <items>
                                   <MenuItem fx:id="analysisShortestPath" mnemonicParsing="false" onAction="#shortestpath" text="%analysisShortestPath" />
                                     <MenuItem fx:id="analysisAllPaths" mnemonicParsing="false" onAction="#allpaths" text="%analysisAllPaths" />
@@ -957,7 +957,7 @@
                                     <children>
                                         <CheckBox fx:id="analysisOptions" mnemonicParsing="false" prefHeight="30.0" prefWidth="280.0" text=" ">
                                             <graphic>
-                                                <MenuButton fx:id="filterAnalysis" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="%filterChainOfEdges">
+                                                <MenuButton fx:id="filterAnalysis" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%filterChainOfEdges">
                                                     <items>
                                           <MenuItem fx:id="chainOfEdges" mnemonicParsing="false" onAction="#chainOfEdges" text="%filterChainOfEdges" />
                                                         <MenuItem fx:id="convergent" mnemonicParsing="false" onAction="#convergentBranches" text="%filterConvergentBranches" />
@@ -979,7 +979,7 @@
                                         </CheckBox>
                                       <CheckBox fx:id="filterArrowTypeCheckBox" mnemonicParsing="false" prefHeight="28.0" prefWidth="79.0" text=" ">
                                           <graphic>
-                                              <MenuButton fx:id="analysisArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4">
+                                              <MenuButton fx:id="analysisArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4" styleClass="menubutton" stylesheets="@gui_style.css">
                                                   <items>
                                           <MenuItem fx:id="edgeArrowReinforced1" mnemonicParsing="false" onAction="#edgeReinforced">
                                              <graphic>
@@ -1073,7 +1073,7 @@
                               <Insets right="5.0" top="7.0" />
                            </HBox.margin>
                         </Text>
-                              <MenuBar minWidth="-Infinity" styleClass="buttonbar" stylesheets="@gui_style.css">
+                              <MenuBar minWidth="-Infinity" styleClass="actionmenubar" stylesheets="@gui_style.css">
                                   <menus>
                                       <Menu fx:id="prozent" mnemonicParsing="false" text="100%">
                                           <items>
@@ -1140,10 +1140,10 @@
                                         <children>
                                             <CheckBox fx:id="treeViewArrowType" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="">
                                                 <VBox.margin>
-                                                    <Insets bottom="7.0" top="2.0" />
+                                                    <Insets bottom="7.0" left="3.0" top="2.0" />
                                                 </VBox.margin>
                                                 <graphic>
-                                                    <MenuButton fx:id="filterEdgeType" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0">
+                                                    <MenuButton fx:id="filterEdgeType" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="menubutton" stylesheets="@gui_style.css">
                                                         <graphic>
                                                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                                 <image>
@@ -1189,19 +1189,17 @@
                                                     </MenuButton>
                                                 </graphic>
                                             </CheckBox>
-                                            <CheckBox fx:id="regularExpressionBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="131.0" text="">
+                                            <CheckBox fx:id="regularExpressionBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="260.0" text=" ">
                                                 <graphic>
-                                                    <TextField fx:id="regularExpressionField" prefHeight="25.0" prefWidth="104.0">
+                                                    <TextField fx:id="regularExpressionField" prefHeight="25.0" prefWidth="235.0">
                                                         <padding>
                                                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                                         </padding>
                                                     </TextField>
                                                 </graphic>
-                                            </CheckBox>
-                                            <CheckBox fx:id="showFadedOutObjects" mnemonicParsing="false" prefHeight="18.0" prefWidth="350.0" text="%toolbarFadeout">
-                                                <VBox.margin>
-                                                    <Insets bottom="2.0" top="5.0" />
-                                                </VBox.margin>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="3.0" />
+                                       </VBox.margin>
                                             </CheckBox>
             
                                             <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
@@ -1380,7 +1378,7 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </HBox.margin>
                                        <children>
-                                           <Button fx:id="syncButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#synAnalysis" prefHeight="30.0" prefWidth="30.0">
+                                           <JFXButton fx:id="syncButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#synAnalysis" prefHeight="30.0" prefWidth="30.0">
                                                <graphic>
                                                    <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                                        <Image url="@icons2/sync-alt-solid.png" />
@@ -1392,9 +1390,9 @@
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
-                                           </Button>
+                                           </JFXButton>
       
-                                                   <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="240.0" text="%LOG_ALL">
+                                                   <MenuButton fx:id="filterLogType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="240.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%LOG_ALL">
                                                        <items>
                                                            <MenuItem fx:id="logAll" mnemonicParsing="false" styleClass="analysisMenuItem" text="%LOG_ALL"> </MenuItem>
                                                            <MenuItem fx:id="logAddSphere" mnemonicParsing="false" styleClass="analysisMenuItem" text="%ADD_SPHERE"> </MenuItem>

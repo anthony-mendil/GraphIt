@@ -1,8 +1,11 @@
 package log_management.parameters.edit;
 
 import graph.graph.Sphere;
+import gui.Values;
+import gui.properties.Language;
 import javafx.util.Pair;
 import log_management.parameters.Param;
+import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
 import lombok.Getter;
 
@@ -53,31 +56,18 @@ public class EditSphereSizeParam implements Param {
 
     @Override
     public String prettyPrint() {
-        /*
         Language language = Values.getInstance().getGuiLanguage();
         String information = "";
-        if (enlarge) {
-            if (language == Language.ENGLISH) {
-                information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
-                        + " New width: " + (sphere.getWidth() + 10) +", New height: " + (sphere.getHeight() + 10);
-            } else {
-                information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
-                        + " Neue Breite: " + (sphere.getWidth() + 10) + ", Neue Höhe: " + (sphere.getHeight() + 10);
-            }
-            return information;
+        if (language == Language.ENGLISH) {
+            information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
+                    + "Old size " + oldWidth
+                    + ", new size: " + newWidth;
+        } else {
+            information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
+                    + "Alte Größe: " + oldWidth
+                    + ", neue Größe: " + newWidth;
         }
-        else {
-            if (language == Language.ENGLISH) {
-                information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
-                        + " New width: " + (sphere.getWidth() - 10) +", New height: " + (sphere.getHeight() - 10);
-            } else {
-                information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
-                        + " Neue Breite: " + (sphere.getWidth() - 10) + ", Neue Höhe: " + (sphere.getHeight() - 10);
-            }
-            return information;
-            */
-        return "";
-
+        return information;
     }
 
     public Pair<Double, Double> getOldSize() {
