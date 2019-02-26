@@ -3,6 +3,7 @@ package test.io;
 import actions.other.SwitchModeAction;
 import graph.graph.*;
 import gui.Values;
+import gui.properties.Language;
 import io.GXLio;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
@@ -14,6 +15,7 @@ import org.xml.sax.SAXException;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -41,7 +43,7 @@ public class GXLioTest {
     private GXLio prepareSyndrom(boolean pWithTemplate) throws IOException, SAXException {
         // generate new graph and set as actual graph
         syndrom.generateNew();
-        syndrom.setTemplate(new Template(25, 50, 75, true, true, true));
+        syndrom.setTemplate(new Template(25, 50, 75, true, false, true));
         generateGraphElements();
         syndrom.getVv().getGraphLayout().setGraph(graph);
         // export graph
@@ -66,16 +68,28 @@ public class GXLioTest {
         s2.setWidth(300.0);
         s2.setLockedAnnotation(true);
         s2.setLockedVertices(true);
+        Map<String, String>  annotation2 = s2.getAnnotation();
+        annotation2.put(Language.GERMAN.name(),"Sphäre Nummer 1");
+        s2.setAnnotation(annotation2);
         Sphere s3 = factory.createSphere(new Point2D.Double(620, 20));
+        Map<String, String>  annotation3 = s3.getAnnotation();
+        annotation3.put(Language.ENGLISH.name(),"Sphere number 2");
+        s3.setAnnotation(annotation3);
         values.setFillPaintSphere(new java.awt.Color(24, 54, 11, 178));
         values.setFontSizeSphere(24);
         Sphere s4 = factory.createSphere(new Point2D.Double(200, 310));
         s4.setLockedMaxAmountVertices("17");
         s4.setLockedPosition(true);
+        Map<String, String>  annotation4 = s4.getAnnotation();
+        annotation4.put(Language.GERMAN.name(),"Sphäre Nummer 3");
+        annotation4.put(Language.ENGLISH.name(),"Sphere number 3");
+        s4.setAnnotation(annotation4);
+        s4.setFont("Kalam");
         Sphere s5 = factory.createSphere(new Point2D.Double(445, 310));
         s5.setLockedMaxAmountVertices("5");
         s5.setLockedPosition(true);
         s5.setLockedStyle(true);
+        s5.setFont("Kalam");
 
         values.setFontSizeVertex(12);
         values.setShapeVertex(VertexShapeType.CIRCLE);
@@ -91,6 +105,10 @@ public class GXLioTest {
         v3.setLockedStyle(true);
         v3.setLockedAnnotation(true);
         v3.setLockedPosition(true);
+        Map<String, String>  annotationV3 = v3.getAnnotation();
+        annotationV3.put(Language.GERMAN.name(),"Symptom Nummer 7");
+        annotationV3.put(Language.ENGLISH.name(),"Symptom number 7");
+        v3.setAnnotation(annotationV3);
         Vertex v4 = factory.createVertex(new Point2D.Double(485, 140));
         v4.setLockedAnnotation(true);
         Vertex v5 = factory.createVertex(new Point2D.Double(740, 80));
@@ -100,11 +118,17 @@ public class GXLioTest {
         values.setFontSizeVertex(7);
         Vertex v6 = factory.createVertex(new Point2D.Double(220, 360));
         v6.setLockedStyle(true);
+        Map<String, String>  annotationV6 = v6.getAnnotation();
+        annotationV6.put(Language.GERMAN.name(),"Symptom Nummer 10");
+        v6.setAnnotation(annotationV6);
         Vertex v7 = factory.createVertex(new Point2D.Double(280, 420));
         v7.setFont("Mali");
         v7.setFontSize(14);
         v7.setSize(80);
         v7.setLockedPosition(true);
+        Map<String, String>  annotationV7 = v7.getAnnotation();
+        annotationV7.put(Language.ENGLISH.name(),"Symptom number 11");
+        v7.setAnnotation(annotationV7);
         Vertex v8 = factory.createVertex(new Point2D.Double(555, 420));
         v8.setFont("Mali");
         v8.setFontSize(14);
@@ -259,7 +283,7 @@ public class GXLioTest {
     public void testElementNumberOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom(false);
         Assert.assertEquals(1, doc.getDocumentElement().getGraphCount());
-        Assert.assertEquals(22, doc.getElement(syndromName).getChildCount());
+        Assert.assertEquals(23, doc.getElement(syndromName).getChildCount());
     }
 
     /**
@@ -272,6 +296,74 @@ public class GXLioTest {
     public void testElementNumberWithTemplateOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom(true);
         Assert.assertEquals(2, doc.getDocumentElement().getGraphCount());
+    }
+
+    // <--------    template    --------->
+
+    /**
+     * This method tests if the template belonging to the syndrom that is created from the File that is created by the emport of a graph
+     * contains the correct number vulues for the attributes that are numbers.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testNumberAttributesInTemplateWithTemplateOfGXLGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        Assert.assertEquals(25, syndrom.getTemplate().getMaxSpheres());
+        Assert.assertEquals(50, syndrom.getTemplate().getMaxVertices());
+        Assert.assertEquals(75, syndrom.getTemplate().getMaxEdges());
+    }
+
+    /**
+     * This method tests if the template graph contains the right number of attributes.
+     * This attributes are the attributes that can be seen in the two tests below this test method.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testAttributeNumberOfGXLTemplate() throws IOException, SAXException {
+        prepareSyndrom(true);
+        GXLDocument doc = new GXLDocument(new File(nameTestGraph));
+        GXLGraph templateGraph = (GXLGraph) doc.getElement("template");
+        Assert.assertEquals(6, templateGraph.getAttrCount());
+    }
+
+    /**
+     * This method tests if the template belonging to the syndrom that is created from the File that is created by the emport of a graph
+     * contains the correct boolean vulues for the attributes that are booleans.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testBooleanAttributesInTemplateWithTemplateOfGXLGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        Assert.assertEquals(true, syndrom.getTemplate().isReinforcedEdgesAllowed());
+        Assert.assertEquals(false, syndrom.getTemplate().isExtenuatingEdgesAllowed());
+        Assert.assertEquals(true, syndrom.getTemplate().isNeutralEdgesAllowed());
+    }
+
+    /**
+     * This method tests if a NullPointerException is thrown when a gxl File without any template data is tried to be imported as a gxl with template.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test(expected = NullPointerException.class)
+    public void testException_ImportWithTemplate_After_ExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), true);
+    }
+
+    /**
+     * This method tests if a NullPointerException is thrown when a method call oocurs on a empty GXLGraph element.
+     * The element below is empty because the export creates a gxl File without a graph with the name "template".
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test(expected = NullPointerException.class)
+    public void testException_searchForGXLTemplate_After_ExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
+        prepareSyndrom(false);
+        GXLDocument doc = new GXLDocument(new File(nameTestGraph));
+        GXLGraph templateGraph = (GXLGraph) doc.getElement("template");
+        templateGraph.getGraphElementCount();
     }
 
     // <--------------     relations of graph elements    ------------->
@@ -376,6 +468,72 @@ public class GXLioTest {
         Assert.assertEquals(new Point2D.Double(280, 420), vertices.get(6).getCoordinates());
         Assert.assertEquals(new Point2D.Double(555, 420), vertices.get(7).getCoordinates());
         Assert.assertEquals(new Point2D.Double(620, 360), vertices.get(8).getCoordinates());
+    }
+
+    // <---------     annotation    ---------->
+
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the annotation-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testSpheresAnnotaionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
+        Assert.assertEquals("Sphere 0", convertMapToList(spheres.get(0).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 0", convertMapToList(spheres.get(0).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 1", convertMapToList(spheres.get(1).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 1", convertMapToList(spheres.get(1).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 2", convertMapToList(spheres.get(2).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 2", convertMapToList(spheres.get(2).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere number 3", convertMapToList(spheres.get(3).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre Nummer 3", convertMapToList(spheres.get(3).getAnnotation()).get(3));
+        Assert.assertEquals( "Sphere 4", convertMapToList(spheres.get(4).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 4", convertMapToList(spheres.get(4).getAnnotation()).get(3));
+    }
+
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the annotation-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testVerticesAnnotaionOfGraph() throws IOException, SAXException {
+        prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals("Symptom 5", convertMapToList(vertices.get(0).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 5", convertMapToList(vertices.get(0).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 6", convertMapToList(vertices.get(1).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 6", convertMapToList(vertices.get(1).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom number 7", convertMapToList(vertices.get(2).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom Nummer 7", convertMapToList(vertices.get(2).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom Nummer 7", convertMapToList(vertices.get(2).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 8", convertMapToList(vertices.get(3).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 8", convertMapToList(vertices.get(3).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 9", convertMapToList(vertices.get(4).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 9", convertMapToList(vertices.get(4).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 10", convertMapToList(vertices.get(5).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom Nummer 10", convertMapToList(vertices.get(5).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom number 11", convertMapToList(vertices.get(6).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 11", convertMapToList(vertices.get(6).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 12", convertMapToList(vertices.get(7).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 12", convertMapToList(vertices.get(7).getAnnotation()).get(3));
+    }
+
+    /**
+     * This is a helper Method that rturns the values of the passed map as list.
+     */
+    private ArrayList<String> convertMapToList(Map<String, String> pHashMap){
+        ArrayList<String> list = new ArrayList<>();
+        for(Map.Entry map : pHashMap.entrySet()){
+            list.add((String) map.getKey());
+            list.add((String) map.getValue());
+        }
+        return list;
     }
 
     // <-------------   size    ------------------>
@@ -520,6 +678,111 @@ public class GXLioTest {
         Assert.assertEquals(new java.awt.Color(28, 56, 249, 130), edges.get(5).getColor());
         Assert.assertEquals(new java.awt.Color(28, 56, 249, 130), edges.get(6).getColor());
         Assert.assertEquals(Values.getInstance().getEdgePaint(), edges.get(7).getColor());
+    }
+
+    // <---------     shape    ------------->
+
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the shape-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testVerticesShapeOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals(VertexShapeType.CIRCLE, vertices.get(0).getShape());
+        Assert.assertEquals(VertexShapeType.CIRCLE, vertices.get(1).getShape());
+        Assert.assertEquals(VertexShapeType.CIRCLE, vertices.get(2).getShape());
+        Assert.assertEquals(VertexShapeType.CIRCLE, vertices.get(3).getShape());
+        Assert.assertEquals(VertexShapeType.CIRCLE, vertices.get(4).getShape());
+        Assert.assertEquals(VertexShapeType.RECTANGLE, vertices.get(5).getShape());
+        Assert.assertEquals(VertexShapeType.RECTANGLE, vertices.get(6).getShape());
+        Assert.assertEquals(VertexShapeType.RECTANGLE, vertices.get(7).getShape());
+        Assert.assertEquals(VertexShapeType.RECTANGLE, vertices.get(8).getShape());
+    }
+
+
+    // <------------    font style     -------------->
+
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the font-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testSpheresFontOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
+        Assert.assertEquals(values.getFontSphere(), spheres.get(0).getFont());
+        Assert.assertEquals(values.getFontSphere(), spheres.get(1).getFont());
+        Assert.assertEquals(values.getFontSphere(), spheres.get(2).getFont());
+        Assert.assertEquals("Kalam", spheres.get(3).getFont());
+        Assert.assertEquals("Kalam", spheres.get(4).getFont());
+    }
+
+    /**
+     * This method tests if the spheres of the graph that is created by importing the specified gxl file have the right value for the fontSize-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testSpheresFontSizeOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
+        Assert.assertEquals(10, spheres.get(0).getFontSize());
+        Assert.assertEquals(10, spheres.get(1).getFontSize());
+        Assert.assertEquals(10, spheres.get(2).getFontSize());
+        Assert.assertEquals(24, spheres.get(3).getFontSize());
+        Assert.assertEquals(24, spheres.get(4).getFontSize());
+    }
+
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the font-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testVerticesFontOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals("Roboto", vertices.get(0).getFont());
+        Assert.assertEquals("Roboto", vertices.get(1).getFont());
+        Assert.assertEquals("Roboto", vertices.get(2).getFont());
+        Assert.assertEquals("Roboto", vertices.get(3).getFont());
+        Assert.assertEquals("Roboto", vertices.get(4).getFont());
+        Assert.assertEquals("Roboto", vertices.get(5).getFont());
+        Assert.assertEquals("Mali", vertices.get(6).getFont());
+        Assert.assertEquals("Mali", vertices.get(7).getFont());
+        Assert.assertEquals("Roboto", vertices.get(8).getFont());
+    }
+
+    /**
+     * This method tests if the vertices of the graph that is created by importing the specified gxl file have the right value for the fontSize-attribute.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test
+    public void testVerticesFontSizeOfGraph() throws IOException, SAXException {
+        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
+        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        ArrayList<Vertex> vertices= new ArrayList<>(g.getVertices());
+        vertices.sort(Comparator.comparingInt(Vertex::getId));
+        Assert.assertEquals(12, vertices.get(0).getFontSize());
+        Assert.assertEquals(12, vertices.get(1).getFontSize());
+        Assert.assertEquals(12, vertices.get(2).getFontSize());
+        Assert.assertEquals(12, vertices.get(3).getFontSize());
+        Assert.assertEquals(12, vertices.get(4).getFontSize());
+        Assert.assertEquals(7, vertices.get(5).getFontSize());
+        Assert.assertEquals(14, vertices.get(6).getFontSize());
+        Assert.assertEquals(14, vertices.get(7).getFontSize());
+        Assert.assertEquals(7, vertices.get(8).getFontSize());
     }
 
     // <----------     sphere locking    ------------>

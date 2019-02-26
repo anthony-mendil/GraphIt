@@ -16,6 +16,7 @@ import graph.graph.ScopePoint;
 import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeArrowTransformer;
 import gui.Values;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +36,9 @@ import java.util.Map;
 public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
 
+    private static Logger logger = Logger.getLogger(EdgeRenderer.class);
     @Override
+    @SuppressWarnings("unchecked")
     protected void drawSimpleEdge(RenderContext<V, E> rc, Layout<V, E> layout, E e) {
         // code from framework
         GraphicsDecorator g = rc.getGraphicsContext();
@@ -59,7 +62,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
                 return;
             }
         } catch (NullPointerException ex){
-            System.out.println(ex.fillInStackTrace());
+            logger.error(e.toString());
         }
 
 
@@ -105,7 +108,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
             // see if arrows are too small to bother drawing
             if (scalex < .3 || scaley < .3) return;
 
-            if (rc.getEdgeArrowPredicate().evaluate(Context.<Graph<V, E>, E>getInstance(graph, e))) {
+            if (rc.getEdgeArrowPredicate().evaluate(Context.getInstance(graph, e))) {
 
                 Pair<V> endP = graph.getEndpoints(e);
                 Vertex second = (Vertex) endP.getSecond();
@@ -123,13 +126,12 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
                         arrowHit = rc.getMultiLayerTransformer().getTransformer(Layer.VIEW).transform(destVertexShape).intersects(deviceRectangle);
                 if (arrowHit) {
-                    AffineTransform at =
-                            edgeArrowRenderingSupport.getArrowTransform(rc, edgeShape, destVertexShape);
+                    AffineTransform at = edgeArrowRenderingSupport.getArrowTransform(rc, edgeShape, destVertexShape);
                     if (at == null) return;
-                    Shape arrow = rc.getEdgeArrowTransformer().transform(Context.<Graph<V, E>, E>getInstance(graph, e));
+                    Shape arrow = rc.getEdgeArrowTransformer().transform(Context.getInstance(graph, e));
                     Edge edge = (Edge) e;
                     AffineTransform edgeAngle = null;
-                    AffineTransform outEdgeAngle = null;
+                    AffineTransform outEdgeAngle;
                     AffineTransform arr = null;
 
                     Point2D an = edge.getAnchorPoints().getValue();
@@ -237,6 +239,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
     }
 
+    @SuppressWarnings("unchecked")
     private javafx.util.Pair<Point2D, AffineTransform>  getPoint(Ellipse2D help, Point2D center, Point2D avoid, Shape arrow1, Shape arrow2, RenderContext<V,E> rc, Shape vertexShape, Shape arrow3) {
         double[] coordinates = new double[6];
         Point2D.Double point;
@@ -344,13 +347,6 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
     /**
      *
-     * @param rc
-     * @param pair
-     * @param g
-     * @param arrow
-     * @param edgeAngle AffineTransform for arrow, if the edge having an anchor point
-     * @param arr AffineTransform from the fitPoint
-     * @param at AffineTransform for arrow
      */
     private void drawEdgeArrow(RenderContext<V, E> rc, javafx.util.Pair<E, Shape> pair, GraphicsDecorator g, Shape arrow, AffineTransform edgeAngle, AffineTransform arr, AffineTransform at, Point2D anchorPoint) {
         E e = pair.getKey();

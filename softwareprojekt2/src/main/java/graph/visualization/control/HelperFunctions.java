@@ -88,6 +88,7 @@ public class HelperFunctions {
                 };
             }
         };
+        logger.debug("started sidemenu");
         service.start();
     }
 
@@ -101,7 +102,7 @@ public class HelperFunctions {
                         final CountDownLatch latch = new CountDownLatch(1);
                         Platform.runLater(() -> {
                             try {
-                                String alert = (withPlaceHolder)? lang.loadLanguagesKey(string): string;
+                                String alert = (withPlaceHolder) ? lang.loadLanguagesKey(string) : string;
                                 values.getCurrentActionText().setText(alert);
                                 Text text = values.getCurrentActionText();
                                 if (isAlert) {
@@ -224,7 +225,7 @@ public class HelperFunctions {
         return d;
     }
 
-    public Font returnFont(String f){
+    public Font returnFont(String f) {
         java.awt.Font newFont;
         switch (f) {
             case "AveriaSansLibre":
@@ -246,7 +247,7 @@ public class HelperFunctions {
         return newFont;
     }
 
-    public void setMouseLocation(String posX, String posY){
+    void setMouseLocation(String posX, String posY) {
         Platform.runLater(() -> {
             values.getPositionMouseX().setText(posX);
             values.getPositionMouseY().setText(posY);

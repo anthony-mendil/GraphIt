@@ -5,6 +5,7 @@ import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Defines a functor that transform a vertex into highlight color. The input vertex is left unchanged.
@@ -14,9 +15,11 @@ import java.util.ArrayList;
  */
 public class VertexPaintAnalyseTransformer<V> implements Transformer<V, Paint> {
     private ArrayList<Vertex> vertices;
-    public VertexPaintAnalyseTransformer(ArrayList<Vertex> vertices){
-        this.vertices = vertices;
+
+    public VertexPaintAnalyseTransformer(List<Vertex> pVertices) {
+        vertices = new ArrayList<>(pVertices);
     }
+
     @Override
     public Paint transform(V v) {
         Vertex vertex = (Vertex) v;

@@ -9,11 +9,15 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
+import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
+import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.awt.geom.Point2D;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Adds a sphere to the graph.
@@ -54,13 +58,11 @@ public class AddSphereLogAction extends LogAction {
                 Sphere sp = pickSupport.getSphere(point2D.getX(),point2D.getY());
                 createParameter(sp);
             } else {
-                graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
-                /*for(Vertex v : ((AddRemoveSphereParam)parameters).getVertices()){
-                    graph.addVertexExisting(v);
-                    Sphere sp = pickSupport.getSphere(v.getCoordinates().getX(), v.getCoordinates().getY());
-                    sp.getVertices().add(v);
-                }*/
-            }
+            graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
+            AddRemoveVerticesParam addRemoveVerticesParam = ((AddRemoveSphereParam) parameters).getAddRemoveVerticesParam();
+            AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(addRemoveVerticesParam);
+            addVerticesLogAction.action();
+               }
             vv.repaint();
             syndrom.getVv2().repaint();
 
@@ -78,6 +80,6 @@ public class AddSphereLogAction extends LogAction {
 
 
     public void createParameter(Sphere sphere) {
-        parameters = new AddRemoveSphereParam(sphere,new LinkedList<>());
+        parameters = new AddRemoveSphereParam(sphere,new LinkedList<>(), new AddRemoveVerticesParam( new HashMap<>(), new HashMap<>()));
     }
 }

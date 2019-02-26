@@ -2,9 +2,7 @@ package actions.analyse;
 
 import actions.GraphAction;
 import graph.graph.Edge;
-import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import jgrapht.JGraphTHandler;
@@ -26,7 +24,7 @@ public class AnalysisGraphShortestPathAction extends GraphAction {
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
      */
     public AnalysisGraphShortestPathAction() {
-
+        //can analyse shortest path now
     }
 
     /**
@@ -35,8 +33,6 @@ public class AnalysisGraphShortestPathAction extends GraphAction {
      */
     @Override
     public void action() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
@@ -61,6 +57,6 @@ public class AnalysisGraphShortestPathAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

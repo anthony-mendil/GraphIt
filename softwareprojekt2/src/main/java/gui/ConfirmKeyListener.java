@@ -17,7 +17,7 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
     private final CheckBox analysisPredecessor;
 
 
-    public ConfirmKeyListener(Controller pC, TextField pTextField){
+    ConfirmKeyListener(Controller pC, TextField pTextField) {
         c = pC;
         amountSymptomTextField = pTextField;
         analysisSuccessor = c.getAnalysisSuccessor();
@@ -26,23 +26,23 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER){
-            if(!amountSymptomTextField.getText().isEmpty()){
-                if(analysisPredecessor.isSelected() && analysisSuccessor.isSelected()){
+        if (event.getCode() == KeyCode.ENTER) {
+            if (!amountSymptomTextField.getText().isEmpty()) {
+                if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected()) {
                     ResetVvAction resetAction = new ResetVvAction();
                     resetAction.action();
 
                     AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
-                }else{
-                    if(analysisPredecessor.isSelected()){
+                } else {
+                    if (analysisPredecessor.isSelected()) {
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
                         AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
                     }
-                    if(analysisSuccessor.isSelected()){
+                    if (analysisSuccessor.isSelected()) {
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
@@ -50,7 +50,7 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
                         analysisGraphAction.action();
                     }
                 }
-            }else{
+            } else {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
             }

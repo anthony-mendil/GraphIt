@@ -35,7 +35,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
      *
      * @param pEditVerticesDrawColorParam The parameter object that contains every parameter that is needed.
      */
-    public EditVerticesDrawColorLogAction(EditVerticesDrawColorParam pEditVerticesDrawColorParam) {
+    private EditVerticesDrawColorLogAction(EditVerticesDrawColorParam pEditVerticesDrawColorParam) {
         super(LogEntryName.EDIT_VERTICES_DRAW_COLOR);
         parameters = pEditVerticesDrawColorParam;
     }

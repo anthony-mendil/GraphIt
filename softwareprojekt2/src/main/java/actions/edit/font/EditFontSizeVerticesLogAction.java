@@ -38,7 +38,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
      * @param pEditFontSizeVerticesParam The EditFontSizeVerticesParam object containing
      *                                   the new font sizes of the Vertices.
      */
-    public EditFontSizeVerticesLogAction(EditFontSizeVerticesParam pEditFontSizeVerticesParam) {
+    private EditFontSizeVerticesLogAction(EditFontSizeVerticesParam pEditFontSizeVerticesParam) {
         super(LogEntryName.EDIT_VERTICES_FONT_SIZE);
         parameters = pEditFontSizeVerticesParam;
     }
@@ -51,7 +51,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         if(parameters == null){
             List<Vertex> lockedVertices = new LinkedList<>();
             for (Vertex vertex: pickedState.getPicked()) {
-                if(vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                if(!vertex.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldVerticesParam.put(vertex, vertex.getFontSize());
                     vertex.setFontSize(size);
                     newVerticesParam.put(vertex, size);

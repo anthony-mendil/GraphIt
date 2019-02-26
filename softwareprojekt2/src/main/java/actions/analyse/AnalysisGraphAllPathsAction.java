@@ -31,7 +31,7 @@ public class AnalysisGraphAllPathsAction extends GraphAction {
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
         List<GraphPath<Vertex, Edge>> allPaths;
         allPaths = jGraphTHandler.getAllPaths();
-        if (allPaths.size() == 0) {
+        if (allPaths.isEmpty()) {
             HelperFunctions helperFunctions = new HelperFunctions();
             helperFunctions.setActionText("Es sxistiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true, false);
 
@@ -50,6 +50,6 @@ public class AnalysisGraphAllPathsAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

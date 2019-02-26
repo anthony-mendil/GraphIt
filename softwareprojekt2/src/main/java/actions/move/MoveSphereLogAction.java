@@ -36,7 +36,7 @@ public class MoveSphereLogAction extends LogAction {
      *
      * @param pParam The MoveSphereParam object, containing the sphere and the position data.
      */
-    public MoveSphereLogAction(MoveSphereParam pParam) {
+    private MoveSphereLogAction(MoveSphereParam pParam) {
         super(LogEntryName.MOVE_SPHERE);
         parameters = pParam;
     }
@@ -55,6 +55,7 @@ public class MoveSphereLogAction extends LogAction {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if(parameters == null) {
@@ -62,12 +63,13 @@ public class MoveSphereLogAction extends LogAction {
             sphere.setCoordinates(position);
             createParameter(sphere, oldPosition, position);
         }else{
-            Sphere sphere = ((MoveSphereParam)parameters).getSphere();
+            sphere = ((MoveSphereParam)parameters).getSphere();
             Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
             Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
                 sphere.setCoordinates(newPos);
                 Double dX = newPos.getX() - oldPos.getX();
                 Double dY = newPos.getY() - oldPos.getY();
+
                 for(Vertex vertex : sphere.getVertices()) {
                     Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dX, vertex.getCoordinates()
                             .getY() + dY);
@@ -86,7 +88,7 @@ public class MoveSphereLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Sphere sphere = ((MoveSphereParam)parameters).getSphere();
+        sphere = ((MoveSphereParam)parameters).getSphere();
         Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
         Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
         MoveSphereParam moveSphereParam = new MoveSphereParam(sphere, newPos, oldPos);

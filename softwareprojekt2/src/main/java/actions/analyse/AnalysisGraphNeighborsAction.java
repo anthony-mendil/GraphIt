@@ -3,9 +3,7 @@ package actions.analyse;
 import actions.GraphAction;
 import graph.algorithmen.AnalyseTypeSeveral;
 import graph.graph.Edge;
-import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
-import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 
@@ -45,8 +43,6 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
      */
     @Override
     public void action() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
@@ -79,6 +75,6 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
      */
     @Override
     public void undo() {
-        return;
+        //no undo operation for this action
     }
 }

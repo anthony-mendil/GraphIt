@@ -8,7 +8,6 @@ import graph.graph.Sphere;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.move.MoveVerticesParam;
@@ -38,7 +37,7 @@ public class MoveVerticesLogAction extends LogAction {
      *
      * @param pParam The MoveVerticesParam contains all vertices which should be removed.
      */
-    public MoveVerticesLogAction(MoveVerticesParam pParam) {
+    private MoveVerticesLogAction(MoveVerticesParam pParam) {
         super(LogEntryName.MOVE_VERTICES);
         parameters = pParam;
     }
@@ -58,7 +57,6 @@ public class MoveVerticesLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         if (parameters == null){
            Map<Vertex,Point2D> oldVertices = new HashMap<>();

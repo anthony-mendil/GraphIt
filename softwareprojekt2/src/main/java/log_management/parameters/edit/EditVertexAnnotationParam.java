@@ -22,25 +22,44 @@ public class EditVertexAnnotationParam implements Param {
      * The new vertex and it's new annotation.
      */
     @Getter
-    private String newAnnotation;
+    private String newAnnotationEnglish;
     /**
      * The old annotation of the vertex.
      */
     @Getter
-    private String oldAnnotation;
+    private String oldAnnotationEnglish;
+    /**
+     * The new vertex and it's new annotation.
+     */
+    @Getter
+    private String newAnnotationGerman;
+    /**
+     * The old annotation of the vertex.
+     */
+    @Getter
+    private String oldAnnotationGerman;
+    /**
+     * The current language of the Vertex.
+     */
+    @Getter
+    private String language;
 
 
     /**
      * Creates a vertices object of its own class.
      *
      * @param pVertex        The vertex containing its old annotation.
-     * @param pOldAnnotation The old annotation.
-     * @param pNewAnnotation The new annotation.
+     * @param pOldAnnotationEnglish The old annotation in english.
+     * @param pNewAnnotationEnglish The new annotation in english.
+     * @param pOldAnnotationGerman  The old annotation in german.
+     * @param pOldAnnotationGerman  The new annotation in german.
      */
-    public EditVertexAnnotationParam(Vertex pVertex, String pOldAnnotation, String pNewAnnotation) {
+    public EditVertexAnnotationParam(Vertex pVertex, String pOldAnnotationEnglish, String pNewAnnotationEnglish, String pOldAnnotationGerman, String pNewAnnotationGerman) {
         this.vertex = pVertex;
-        this.oldAnnotation = pOldAnnotation;
-        this.newAnnotation = pNewAnnotation;
+        this.oldAnnotationEnglish = pOldAnnotationEnglish;
+        this.newAnnotationEnglish = pNewAnnotationEnglish;
+        this.oldAnnotationGerman = pOldAnnotationGerman;
+        this.newAnnotationGerman = pNewAnnotationGerman;
     }
 
     @Override
@@ -49,12 +68,16 @@ public class EditVertexAnnotationParam implements Param {
         String information = "";
         if (language == Language.ENGLISH) {
             information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
-                    + "Old annotation: " + oldAnnotation
-                    + ", new annotation: " + newAnnotation + ". ";
+                    + "Old annotation(English): " + oldAnnotationEnglish
+                    + ", new annotation(English): " + newAnnotationEnglish
+                     + ", old annotation(German): " + oldAnnotationGerman
+                    + ", new annotation(German): " + newAnnotationGerman + ". ";
         } else {
             information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
-                    + "Alte Beschriftung: " + oldAnnotation
-                    + ", neue Beschriftung: " + newAnnotation + ". ";
+                    + "Alte Beschriftung(Englisch): " + oldAnnotationEnglish
+                    + ", neue Beschriftung(Englisch): " + newAnnotationEnglish
+                    + ", alte Beschriftung(Deutsch): " + oldAnnotationGerman
+                    + ", neue Beschriftung(Deutsch): " + newAnnotationGerman + ". ";
         }
         return information;
     }

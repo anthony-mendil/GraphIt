@@ -10,12 +10,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
-    private final Controller c;
     private final TextField textField;
     private final CheckBox analysisSuccessor;
     private final CheckBox analysisPredecessor;
 
-    public AnalysisFocusTextFieldListener(TextField pTextField, Controller pC){
+    AnalysisFocusTextFieldListener(TextField pTextField, Controller pC) {
+        final Controller c;
         textField = pTextField;
         c = pC;
         analysisSuccessor = c.getAnalysisSuccessor();
@@ -24,25 +24,25 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
 
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-        if(!newValue){
-            if(!textField.getText().isEmpty()){
-                if(analysisSuccessor.isSelected() && analysisPredecessor.isSelected()){
+        if (!newValue) {
+            if (!textField.getText().isEmpty()) {
+                if (analysisSuccessor.isSelected() && analysisPredecessor.isSelected()) {
                     ResetVvAction resetAction = new ResetVvAction();
                     resetAction.action();
 
                     AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(textField.getText()));
                     analysisGraphAction.action();
-                }else{
-                    if(analysisPredecessor.isSelected()){
+                } else {
+                    if (analysisPredecessor.isSelected()) {
                         AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(textField.getText()));
                         analysisGraphAction.action();
                     }
-                    if(analysisSuccessor.isSelected()){
+                    if (analysisSuccessor.isSelected()) {
                         AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
                         analysisGraphAction.action();
                     }
                 }
-            }else{
+            } else {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
             }

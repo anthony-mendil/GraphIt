@@ -48,8 +48,4 @@ public class DeactivateAnchorPointsFadeoutAction extends LogAction {
         activateAnchorPointsFadeoutAction.action();
     }
 
-
-    public void createParameter() {
-        return;
-    }
 }
