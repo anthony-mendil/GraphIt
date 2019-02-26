@@ -1433,6 +1433,14 @@
                                                    </MenuButton>
                                        </children>
                                     </HBox>
+                                    <TableView prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="indexLogCol" prefWidth="75.0" text="Index" />
+                                        <TableColumn fx:id="nameLogCol" prefWidth="75.0" text="Name" />
+                                          <TableColumn fx:id="timeLogCol" prefWidth="75.0" text="Zeit" />
+                                          <TableColumn fx:id="informationLogCol" prefWidth="75.0" text="Informationen" />
+                                      </columns>
+                                    </TableView>
 
                                           <TreeView fx:id="protocol" prefHeight="633.0" prefWidth="275.0">
                                        <VBox.margin>
