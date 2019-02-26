@@ -17,7 +17,7 @@ public class FirstPreloader extends Preloader {
         bar = new ProgressBar();
         BorderPane p = new BorderPane();
         p.setCenter(bar);
-        Scene sz=new Scene(p, 300, 150);
+        Scene sz = new Scene(p, 300, 150);
         return sz;
     }
 
@@ -40,3 +40,4 @@ public class FirstPreloader extends Preloader {
             stage.hide();
         }
     }
+}
