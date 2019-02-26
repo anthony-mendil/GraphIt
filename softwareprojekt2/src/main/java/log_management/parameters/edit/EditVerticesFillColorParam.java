@@ -62,14 +62,14 @@ public class EditVerticesFillColorParam implements Param {
             for (int i = 0; i < oldVertices.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old fill color: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i),
                         Language.ENGLISH)).append(", new fill color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.ENGLISH)).append(". ");
+                        Language.ENGLISH)).append("; ");
             }
         } else {
             information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Füllfarbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i),
                         Language.GERMAN)).append(", neue Füllfarbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.GERMAN)).append(". ");
+                        Language.GERMAN)).append("; ");
             }
         }
         return information.toString();

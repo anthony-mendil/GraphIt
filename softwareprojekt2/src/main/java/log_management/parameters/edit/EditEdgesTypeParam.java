@@ -22,29 +22,48 @@ import java.util.Map;
  */
 @Data
 public class EditEdgesTypeParam implements Param {
+    /**
+     * The old edges.
+     */
     @Getter
     private List<Edge> oldEdges;
 
+    /**
+     * The old arrow types of the edges.
+     */
     @Getter
     private List<EdgeArrowType> oldArrowTypes;
 
+    /**
+     * The new edges.
+     */
     @Getter
     private List<Edge> newEdges;
 
+    /**
+     * The new arrow types of the edges.
+     */
     @Getter
     private List<EdgeArrowType> newArrowTypes;
 
+    /**
+     * The start vertices of the edges.
+     */
     @Getter
     private List<Vertex> startVertices;
 
+    /**
+     * The end vertices of the edges.
+     */
     @Getter
     private List<Vertex> endVertices;
 
     /**
-     * Creates a new vertices object of its own class.
-     *
-     * @param pOldEdges The set of edges containing their old edge-types.
-     * @param pNewEdges The set of edges containing their new edge-types.
+     * Creates a parameter object of its own class.
+     * @param pOldEdges The old edges and their arrow types.
+     * @param pNewEdges The new edges and their arrow types.
+     * @param pStartVertices The start vertices of the edges.
+     * @param pEndVertices The end vertices of the edges.
      */
     public EditEdgesTypeParam(Map<Edge, EdgeArrowType> pOldEdges, Map<Edge, EdgeArrowType> pNewEdges,
                               List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
@@ -76,7 +95,7 @@ public class EditEdgesTypeParam implements Param {
                 information.append(SyndromObjectPrinter.edgePrintEnglish(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Old arrow type: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.ENGLISH));
-                information.append(", new arrow type: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH)).append(". ");
+                information.append(", new arrow type: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.ENGLISH)).append("; ");
             }
         } else {
             information.append("Geänderte Relationen: ");
@@ -84,12 +103,16 @@ public class EditEdgesTypeParam implements Param {
                 information.append(SyndromObjectPrinter.edgePrintGerman(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Alte Pfeilspitze: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldArrowTypes.get(i), Language.GERMAN));
-                information.append(", neue Pfeilspitze: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN)).append(". ");
+                information.append(", neue Pfeilspitze: ").append(EnumNameCreator.edgeArrowTypeTranslator(newArrowTypes.get(i), Language.GERMAN)).append("; ");
             }
         }
         return information.toString();
     }
 
+    /**
+     * Gets the old edges and their arrow types.
+     * @return The old edges and their arrow types.
+     */
     public Map<Edge, EdgeArrowType> getEdgesOldEdgeType() {
         Map<Edge, EdgeArrowType> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
@@ -98,6 +121,10 @@ public class EditEdgesTypeParam implements Param {
         return map;
     }
 
+    /**
+     * Gets the new edges and their arrow types.
+     * @return The new edges and their arrow types.
+     */
     public Map<Edge, EdgeArrowType> getEdgesNewEdgeType() {
         Map<Edge, EdgeArrowType> map = new HashMap<>();
         for (int i = 0; i < newEdges.size(); i++) {
