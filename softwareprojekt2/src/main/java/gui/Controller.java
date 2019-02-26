@@ -35,6 +35,7 @@ import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
+import com.jfoenix.controls.JFXTextField;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -98,10 +99,13 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
@@ -272,7 +276,7 @@ public class Controller implements ObserverSyndrom {
      * The textfield for setting the template rule "maximum numbers of spheres in the graph".
      */
     @FXML
-    private TextField maxSphereField;
+    private JFXTextField maxSphereField;
 
     /**
      * The textfield for setting the template rule "maximum numbers of symptoms in the graph".
@@ -1443,10 +1447,10 @@ public class Controller implements ObserverSyndrom {
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
 
-
-        analysisScopeNumber.setText("" + graphDimensionAction.getScope());
-        analysisNetworkingIndexNumber.setText("" + graphDimensionAction.getNetworkIndex());
-        analysisStructureIndexNumber.setText("" + graphDimensionAction.getStructureIndex());
+        DecimalFormat format = new DecimalFormat("####.##");
+        analysisScopeNumber.setText("" + format.format(graphDimensionAction.getScope()));
+        analysisNetworkingIndexNumber.setText("" + format.format(graphDimensionAction.getNetworkIndex()));
+        analysisStructureIndexNumber.setText("" + format.format(graphDimensionAction.getStructureIndex()));
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1630,11 +1634,11 @@ public class Controller implements ObserverSyndrom {
         int ret = Integer.MAX_VALUE;
         int cont = getValidatedContent(pTextField);
         if (cont == -1) {
-            pTextField.setStyle("-fx-background-color: white");
+            pTextField.setStyle("-fx-background-color: transparent");
         } else if (cont == -2) {
             pTextField.setStyle("-fx-background-color: rgba(255,0,0,0.25)");
         } else {
-            pTextField.setStyle("-fx-background-color: white");
+            pTextField.setStyle("-fx-background-color: transparent");
             ret = cont;
         }
         return ret;
@@ -3127,6 +3131,7 @@ public class Controller implements ObserverSyndrom {
                         Platform.runLater(() -> {
                             try {
                                 treeViewUpdate();
+                                loadTables();
                             } finally {
                                 latch.countDown();
                             }

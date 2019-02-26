@@ -251,7 +251,8 @@ public class JGraphTHandler {
     }
 
     /**
-     * Detects relation chains.
+     * Detects relation chains. This algorithm is created by Clement Phung and Jonah Jaeger. No unnamed help
+     * has been used.
      */
     @SuppressWarnings("unchecked")
     public Pair<List<List<Vertex>>, Set<Edge>> detectRelationChains() {
@@ -265,12 +266,10 @@ public class JGraphTHandler {
         while (!innerVertices.isEmpty()) {
             LinkedList<Vertex> potentialChain = new LinkedList<>();
             Vertex pivotVertex = innerVertices.get(0);
-            Vertex predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, pivotVertex).get(0);
-            Vertex successor = (Vertex) Graphs.successorListOf(algorithmGraph, pivotVertex).get(0);
-            potentialChain.add(predecessor);
+            Vertex predecessor = pivotVertex;
+            Vertex successor = pivotVertex;
             potentialChain.add(pivotVertex);
-            potentialChain.add(successor);
-            while (Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1) {
+            while (Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 && Graphs.successorListOf(algorithmGraph, predecessor).size() == 1) {
                 if (!potentialChain.contains((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
                     potentialChain.addFirst((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
                     predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
@@ -278,7 +277,7 @@ public class JGraphTHandler {
                     break;
                 }
             }
-            while (Graphs.successorListOf(algorithmGraph, successor).size() == 1) {
+            while (Graphs.successorListOf(algorithmGraph, successor).size() == 1 && Graphs.predecessorListOf(algorithmGraph, successor).size() == 1) {
                 if (!potentialChain.contains((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0))) {
                     potentialChain.addLast((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0));
                     successor = (Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0);
@@ -289,6 +288,7 @@ public class JGraphTHandler {
             innerVertices.removeAll(potentialChain);
             if (potentialChain.size() > 3) {
                 relationChains.add(potentialChain);
+                potentialChain.forEach((s) -> System.out.println(s.getId()));
             }
         }
         Set<Edge> edgesRelationChain = new HashSet<>();
