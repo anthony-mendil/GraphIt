@@ -35,6 +35,7 @@ import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
+import com.google.inject.Singleton;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -98,13 +99,18 @@ import java.util.concurrent.CountDownLatch;
  * Contains most of the gui elements, calls most of the actions and acts as interface between
  * the gui and the internal components of the application.
  */
+@Singleton
 @Data
 public class Controller implements ObserverSyndrom {
 
 
     /* General Stuff */
 
+    private Controller instance;
+
+
     /**
+     *
      * The swing node that displays the JUNG-graph and allows to interact with it.
      */
     @FXML
@@ -907,6 +913,17 @@ public class Controller implements ObserverSyndrom {
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
     private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
+
+    private Controller(){
+
+    }
+
+    public  Controller getInstance() {
+        if (instance == null) {
+            instance = new Controller();
+        }
+        return instance;
+    }
 
     public void filterEdgeTypeReinforced() {
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
