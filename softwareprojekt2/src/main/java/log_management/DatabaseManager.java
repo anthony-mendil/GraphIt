@@ -115,4 +115,8 @@ public class DatabaseManager implements ObserverSyndrom {
         return graphDao.isEmpty();
     }
 
+    @Override
+    public void showPrint(ByteArrayInputStream byteArrayInputStream) {
+        //TODO
+    }
 }

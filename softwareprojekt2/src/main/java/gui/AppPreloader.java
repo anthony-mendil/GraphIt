@@ -2,10 +2,13 @@ package gui;
 
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Preloader;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 
 public class AppPreloader extends Preloader {
@@ -13,13 +16,14 @@ public class AppPreloader extends Preloader {
     JFXProgressBar bar;
     Stage stage;
 
-    private Scene createPreloaderScene() {
+    private Scene createPreloaderScene() throws IOException {
         bar = new JFXProgressBar(0);
         bar.getProgress();
         bar.setPrefHeight(10);
-        BorderPane p = new BorderPane();
+        BorderPane p = new FXMLLoader(getClass().getResource("/preloader.fxml")).load();
         p.setCenter(bar);
-        return new Scene(p, 300, 150);
+        Scene sz = new Scene(p);
+        return sz;
     }
 
     @Override
