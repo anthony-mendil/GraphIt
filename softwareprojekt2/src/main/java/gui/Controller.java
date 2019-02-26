@@ -35,6 +35,7 @@ import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
 import actions.remove.*;
 import actions.template.RulesTemplateAction;
+import com.google.inject.Singleton;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
@@ -104,7 +105,11 @@ public class Controller implements ObserverSyndrom {
 
     /* General Stuff */
 
+    private Controller instance;
+
+
     /**
+     *
      * The swing node that displays the JUNG-graph and allows to interact with it.
      */
     @FXML
@@ -326,13 +331,6 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private TextField regularExpressionField;
-
-    /**
-     * Nina
-     * The checkbox that filters the overview after fadedout objects.
-     */
-    @FXML
-    private CheckBox showFadedOutObjects;
 
     /* Sphere */
     /**
@@ -3002,7 +3000,6 @@ public class Controller implements ObserverSyndrom {
         neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox, this));
         treeViewArrowType.selectedProperty().addListener(new TemplateCheckBoxListener(treeViewArrowType, this));
         regularExpressionBox.selectedProperty().addListener(new TemplateCheckBoxListener(regularExpressionBox, this));
-        showFadedOutObjects.selectedProperty().addListener(new TemplateCheckBoxListener(showFadedOutObjects, this));
     }
 
     private void loadAnalysisElements() {
