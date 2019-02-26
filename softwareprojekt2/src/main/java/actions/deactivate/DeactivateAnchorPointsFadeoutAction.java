@@ -1,5 +1,6 @@
 package actions.deactivate;
 
+import actions.GraphAction;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.activate.ActivateAnchorPointsFadeoutAction;
@@ -8,26 +9,14 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer;
 import gui.Values;
-import log_management.parameters.activate_deactivate.ActivateDeactivateAnchorPointsFadeoutParam;
+import log_management.tables.Graph;
 
 /**
  * Makes the selected anchor-points visible again.
  */
-public class DeactivateAnchorPointsFadeoutAction extends LogAction {
+public class DeactivateAnchorPointsFadeoutAction extends GraphAction {
 
-    /**
-     * Makes all selected anchor-points visible again. Also used to implement the
-     * undo-method of ActivateAnchorPointsFadeoutAction.
-     *
-     * @param pParam The vertices object that contains every vertices that is needed.
-     */
-    public DeactivateAnchorPointsFadeoutAction(ActivateDeactivateAnchorPointsFadeoutParam pParam) {
-        super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
-    }
-
-    public DeactivateAnchorPointsFadeoutAction(){
-        super(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT);
-    }
+    public DeactivateAnchorPointsFadeoutAction(){}
 
     @Override
     public void action() {
@@ -44,8 +33,7 @@ public class DeactivateAnchorPointsFadeoutAction extends LogAction {
 
     @Override
     public void undo() {
-        ActivateAnchorPointsFadeoutAction activateAnchorPointsFadeoutAction = new ActivateAnchorPointsFadeoutAction();
-        activateAnchorPointsFadeoutAction.action();
+        // no undo operation for this action.
     }
 
 }

@@ -11,11 +11,9 @@ import org.freehep.graphicsbase.util.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -24,22 +22,75 @@ import java.util.List;
 public class GXLioTest {
 
     /**
-     * The values to use.
+     * The values to use when creating new elements of the graph.
      */
     private Values values = Values.getInstance();
-    private SwitchModeAction sm = new SwitchModeAction(FunctionMode.TEMPLATE);
+
+    /**
+     * The logger sed to document the behaviour of this testclass.
+     */
     private static Logger logger = Logger.getLogger(GXLioTest.class);
+
+    /**
+     * The factory used to create elements of the graph. These are object of the type Sphere, Vertex and Edge.
+     */
     private GraphObjectsFactory factory = new GraphObjectsFactory();
+
+    /**
+     * The GXLDocument that is created from the file with the name below.
+     */
     private GXLDocument doc = null;
-    private List<Sphere> spheresList = new ArrayList<>();
-    private List<Vertex> verticesList = new ArrayList<>();
-    private List<Edge> edgesList = new ArrayList<>();
-    private SyndromGraph<Vertex, Edge> graph = new SyndromGraph<>();
-    private Syndrom syndrom = Syndrom.getInstance();
+
+    /**
+     * The name of the gxl file.
+     */
     private String nameTestGraph = "testGraph.gxl";
+
+    /**
+     * The syndrom instance of the application containing the graph that gets exported.
+     */
+    private Syndrom syndrom = Syndrom.getInstance();
+
+    /**
+     * The graph that gets exported.
+     */
+    private SyndromGraph<Vertex, Edge> graph = new SyndromGraph<>();
+
+    /**
+     * The list of spheres that belong to the graph those data gets exported.
+     */
+    private List<Sphere> spheresList = new ArrayList<>();
+
+    /**
+     * The list of vertices that belong to the graph those data gets exported.
+     */
+    private List<Vertex> verticesList = new ArrayList<>();
+
+    /**
+     * The list of edges that belong to the graph those data gets exported.
+     */
+    private List<Edge> edgesList = new ArrayList<>();
+
+    /**
+     * The name of the GXLGraph element that descripes the data of the exported syndromgraph.
+     */
     private String syndromName = "syndrom";
+
+    /**
+     * The instance of the class GXLio that is used to tests the functionality of the class by calling its methods.
+     */
     private GXLio gxlio = new GXLio();
 
+    /**
+     * This method is called before each test method.
+     * It generates a new syndrom, sets a template and some graaph elements to this syndrom / the graph of the syndrom,
+     * exports the graph data, generates a new graph again to make sure the old graph data gets deleted from the system
+     * and then initialises the GXLDocument attribute in this class. The last step also loads the graph data from the gxl into the system,
+     * @param pWithTemplate
+     * @return the attribute of this test that is of type GXLio.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
     private GXLio prepareSyndrom(boolean pWithTemplate) throws IOException, SAXException {
         // generate new graph and set as actual graph
         syndrom.generateNew();
@@ -826,7 +877,6 @@ public class GXLioTest {
      */
     @Test
     public void testSpheresLockedVerticesOfGraph() throws IOException, SAXException {
-        sm.action();
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
