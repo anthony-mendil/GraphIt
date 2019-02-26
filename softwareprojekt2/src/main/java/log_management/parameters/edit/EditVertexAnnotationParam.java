@@ -70,13 +70,13 @@ public class EditVertexAnnotationParam implements Param {
             information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
                     + "Old annotation(English): " + oldAnnotationEnglish
                     + ", new annotation(English): " + newAnnotationEnglish
-                     + "Old annotation(German): " + oldAnnotationGerman
+                     + ", old annotation(German): " + oldAnnotationGerman
                     + ", new annotation(German): " + newAnnotationGerman + ". ";
         } else {
             information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
                     + "Alte Beschriftung(Englisch): " + oldAnnotationEnglish
                     + ", neue Beschriftung(Englisch): " + newAnnotationEnglish
-                    + "Alte Beschriftung(Deutsch): " + oldAnnotationGerman
+                    + ", alte Beschriftung(Deutsch): " + oldAnnotationGerman
                     + ", neue Beschriftung(Deutsch): " + newAnnotationGerman + ". ";
         }
         return information;
