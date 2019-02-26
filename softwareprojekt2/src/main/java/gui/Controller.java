@@ -1471,7 +1471,6 @@ public class Controller implements ObserverSyndrom {
         createButton.setDisable(false);
         analysisButton.setDisable(false);
         editButton.setDisable(true);
-
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
@@ -3184,9 +3183,26 @@ public class Controller implements ObserverSyndrom {
                                 TreeItem<Object> rootItem = new TreeItem<>();
                                 List<Log> filterLog = (entryName == null) ? logDao.getAll() : logDao.getLogType(entryName);
                                 for (Log log : filterLog) {
-                                    String s = logToStringConverter.convert(log);
-                                    TreeItem<Object> logItem = new TreeItem<>(s);
-                                    rootItem.getChildren().add(logItem);
+                                    String time = logToStringConverter.convert(log);
+                                    String index = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(index, "");
+                                    time = time.trim();
+                                    String name = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(name,"");
+                                    time = time.trim();
+                                    String parameter = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(parameter, "");
+                                    time = time.trim();
+                                    TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
+                                    TreeItem<Object> logTime = new TreeItem<>(time);
+                                    TreeItem<Object> logInformation = new TreeItem<>(parameter);
+                                    // string list converter mit parameter
+                                    /*for(String s : list<String>){
+                                        TreeItem<Object> entry = new TreeItem<>(s);
+                                        logInformation.getChildren().add(entry);
+                                    }*/
+                                    logIndexName.getChildren().addAll(logTime, logInformation);
+                                    rootItem.getChildren().add(logIndexName);
                                 }
                                 rootItem.setExpanded(true);
                                 protocol.setRoot(rootItem);
