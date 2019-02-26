@@ -1,41 +1,21 @@
 package actions.remove;
 
-import actions.LogAction;
-import actions.LogEntryName;
+import actions.GraphAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
-import log_management.parameters.add_remove.AddRemoveAnchorPointsParam;
 
 /**
  * Removes anchor-points from the syndrom graph.
  */
-public class RemoveAnchorPointsLogAction extends LogAction {
+public class RemoveAnchorPointsLogAction extends GraphAction {
     /**
      * Removes all anchor-points of every (picked) edge.
      * Gets the picked edges through pick support.
      */
-    public RemoveAnchorPointsLogAction() {
-        super(LogEntryName.REMOVE_ANCHOR_POINTS);
-    }
-
-    /**
-     * Removes all anchor-points that are defined in pParam. Also used to implement the undo-method of
-     * AddAnchorPointsLogAction.
-     *
-     * @param pParam The AddAnchorPointsParam, containing all edges (with anchor points) to remove.
-     */
-    public RemoveAnchorPointsLogAction(AddRemoveAnchorPointsParam pParam) {
-        super(LogEntryName.REMOVE_ANCHOR_POINTS);
-        throw new UnsupportedOperationException();
-    }
-
-
-    public void createParameter() {
-        throw new UnsupportedOperationException();
-    }
+    public RemoveAnchorPointsLogAction() {}
 
     @Override
     public void action() {
@@ -53,6 +33,6 @@ public class RemoveAnchorPointsLogAction extends LogAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        // no undo operation for this action.
     }
 }

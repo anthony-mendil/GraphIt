@@ -8,6 +8,9 @@ import com.google.gson.JsonSerializer;
 import java.awt.geom.Point2D;
 import java.lang.reflect.Type;
 
+/**
+ * Json deserializer for points2D.
+ */
 public class Point2DSerializer implements JsonSerializer<Point2D> {
     public JsonElement serialize(Point2D position, Type type,
                                  JsonSerializationContext jsc){

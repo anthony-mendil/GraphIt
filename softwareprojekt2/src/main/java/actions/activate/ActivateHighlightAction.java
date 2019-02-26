@@ -1,36 +1,21 @@
 package actions.activate;
 
-import actions.LogAction;
-import actions.LogEntryName;
+import actions.GraphAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeHighlightTransformer;
 import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
-import log_management.parameters.activate_deactivate.ActivateDeactivateHighlightParam;
 
 /**
  * Highlights the chosen vertices and the attached edges.
  */
-public class ActivateHighlightAction extends LogAction {
+public class ActivateHighlightAction extends GraphAction {
 
     /**
      * Constructor in case several/all vertices shall be highlighted.
      */
-    public ActivateHighlightAction() {
-        super(LogEntryName.ACTIVATE_HIGHLIGHT);
-    }
-
-    /**
-     * Highlight all vertices passed by ActivateHighlightParam. Also used to implement the undo-method of
-     * ResetVvAction.
-     *
-     * @param pActivateDeactivateHighlightParam The parameter object containing all vertices to highlight
-     */
-    public ActivateHighlightAction(ActivateDeactivateHighlightParam pActivateDeactivateHighlightParam) {
-        super(LogEntryName.ACTIVATE_HIGHLIGHT);
-        throw new UnsupportedOperationException();
-    }
+    public ActivateHighlightAction() {}
 
     /**
      * Highlights chosen vertices and edges and adds the log to the database.
@@ -54,11 +39,6 @@ public class ActivateHighlightAction extends LogAction {
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
-    }
-
-
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+        // no undo operation for this action.
     }
 }

@@ -68,7 +68,7 @@ public class DeactivateFadeoutAction extends LogAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        // no undo operation for this action.
     }
 
 

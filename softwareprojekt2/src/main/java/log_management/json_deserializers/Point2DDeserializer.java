@@ -5,6 +5,9 @@ import com.google.gson.*;
 import java.awt.geom.Point2D;
 import java.lang.reflect.Type;
 
+/**
+ * Json deserializer for points2D.
+ */
 public class Point2DDeserializer implements JsonDeserializer<Point2D>{
 
     @Override

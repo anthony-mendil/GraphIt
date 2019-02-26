@@ -10,13 +10,15 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-import static log_management.dao.LogDao.GRAPH_FROM_ID2;
-
 /**
  * The graph log_management.dao class. Manages the data access to the graphs.
  */
 public class GraphDao implements Dao<Graph> {
 
+    /**
+     * Sql query to get all graphs from the database.
+     */
+    private static final String GRAPH_FROM_ID2 =  "SELECT g from Graph g where g.id > 0";
 
     @Override
     public Optional<Graph> get(long id) {
@@ -63,6 +65,9 @@ public class GraphDao implements Dao<Graph> {
         entityManager.close();
     }
 
+    /**
+     * Updates the graph in the database.
+     */
     public void update() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
@@ -82,6 +87,9 @@ public class GraphDao implements Dao<Graph> {
         delete();
     }
 
+    /**
+     * Deletes the graph in the database.
+     */
     private void delete() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
@@ -103,6 +111,10 @@ public class GraphDao implements Dao<Graph> {
         entityManager.close();
     }
 
+    /**
+     * Gets the gxl representation of the graph from th database.
+     * @return The gxl of the graph.
+     */
     public String gxlFromDatabase() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();
@@ -116,6 +128,10 @@ public class GraphDao implements Dao<Graph> {
         return graphList.get(0).getGxl();
     }
 
+    /**
+     * Evaluates if the database is empty.
+     * @return True if the database is empty.
+     */
     public boolean isEmpty() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();

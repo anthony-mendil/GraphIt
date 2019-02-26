@@ -1,7 +1,6 @@
 package actions.activate;
 
-import actions.LogAction;
-import actions.LogEntryName;
+import actions.GraphAction;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.RenderContext;
@@ -15,7 +14,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.transformer.FadeOutElementsTransition;
 import graph.visualization.transformer.edge.EdgeFadeoutPaintTransformer;
 import graph.visualization.transformer.vertex.VertexFadeoutPaintTransformer;
-import log_management.parameters.activate_deactivate.ActivateDeactivateFadeoutParam;
 import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.Transformer;
 
@@ -25,27 +23,12 @@ import java.awt.*;
  * The chosen vertices and all edges attached to them fadeout and will no longer be visible.
  */
 
-public class ActivateFadeoutAction extends LogAction {
+public class ActivateFadeoutAction extends GraphAction {
     /**
      * Constructor
      *
      */
-    public ActivateFadeoutAction() {
-        super(LogEntryName.ACTIVATE_FADEOUT);
-    }
-
-    /**
-     * Fadeout all vertices/edges defined in ActivateFadeoutParam. Also used to implement the undo-method of
-     * DeactivateFadeoutAction.
-     *
-     * @param pActivateDeactivateFadeoutParam The parameter object containing all vertices/edges to fadeout
-     */
-    public ActivateFadeoutAction(ActivateDeactivateFadeoutParam pActivateDeactivateFadeoutParam) {
-        super(LogEntryName.ACTIVATE_FADEOUT);
-        throw new UnsupportedOperationException();
-    }
-
-
+    public ActivateFadeoutAction() {}
 
     /**
      * Chosen vertices and edges fadeout and adds the log to the database.
@@ -105,11 +88,6 @@ public class ActivateFadeoutAction extends LogAction {
      */
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
-    }
-
-
-    public void createParameter() {
-        throw new UnsupportedOperationException();
+        // no undo operation for this action.
     }
 }
