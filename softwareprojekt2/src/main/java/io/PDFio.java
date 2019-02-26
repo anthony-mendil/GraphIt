@@ -166,8 +166,13 @@ public class PDFio {
 
 
         VectorGraphics vectorGraphics;
-        Dimension graphicsDimension = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth()-350, (int) Syndrom.getInstance().getVv().getBounds().getHeight()-350);
+        Dimension graphicsDimension;
+        if (Toolkit.getDefaultToolkit().getScreenSize().getWidth()>=1920){
+            graphicsDimension = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth(), (int) Syndrom.getInstance().getVv().getBounds().getHeight());
 
+        }else {
+            graphicsDimension = new Dimension((int) Syndrom.getInstance().getVv().getBounds().getWidth() - 350, (int) Syndrom.getInstance().getVv().getBounds().getHeight() - 350);
+        }
         vectorGraphics = new PDFGraphics2D(pOutputStream, graphicsDimension);
         Properties properties = new Properties();
         properties.setProperty(ORIENTATION, LANDSCAPE);
