@@ -428,18 +428,15 @@ public class GXLio {
             gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString(syndrom.getGraphName()));
         }
         for (Sphere s : currentSpheres) {
-            System.out.println("Sphere id: " + s.getId());
-            gxlSyndrom.add(createSphereNode(s, withTemplate));
+             gxlSyndrom.add(createSphereNode(s, withTemplate));
         }
         for (Sphere s : currentSpheres) {
             for (Vertex v : s.getVertices()) {
-                System.out.println("Vertex id: " + v.getId());
                 GXLNode singleNodeInSphere = createVertexNode(s, v, withTemplate);
                 gxlSyndrom.add(singleNodeInSphere);
             }
         }
         for (Edge e : theGraph.getEdges()) {
-            System.out.println("Edge id: " + e.getId());
             gxlSyndrom.add(createEdge(theGraph, e, withTemplate));
         }
         doc.getDocumentElement().add(gxlSyndrom);
