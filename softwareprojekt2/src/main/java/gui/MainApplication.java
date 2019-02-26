@@ -50,6 +50,7 @@ public class MainApplication extends Application {
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
         controller.initButtonShortcuts();
+        controller.getRoot().requestFocus();
 
         primaryStage.show();
     }

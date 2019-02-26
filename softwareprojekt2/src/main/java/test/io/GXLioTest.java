@@ -298,6 +298,21 @@ public class GXLioTest {
         Assert.assertEquals(2, doc.getDocumentElement().getGraphCount());
     }
 
+    /**
+     * This method tests if a GXLValidationException is thrown when a method call oocurs on a GXLGraph that would lead
+     * to an invalid GXLDocument. The document would not be valid any longer after the method call, because two GXLElements would have the same id.
+     * This is not allowed in GXL notation.
+     * @throws IOException if the File can*t be created or the file that is specified for the import can't be found.
+     * @throws SAXException if their occurs any problem parsing the document
+     */
+    @Test(expected = GXLValidationException.class)
+    public void testException_addElementToGXLGraphThatAlreadyContainsThisID() throws IOException, SAXException {
+        prepareSyndrom(true);
+        GXLElement dublicateIDElement = new GXLNode("1");
+        doc.getElement("syndrom").add(dublicateIDElement);
+    }
+
+
     // <--------    template    --------->
 
     /**
