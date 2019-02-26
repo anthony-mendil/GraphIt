@@ -40,4 +40,3 @@ public class FirstPreloader extends Preloader {
             stage.hide();
         }
     }
-}
