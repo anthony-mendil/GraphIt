@@ -78,6 +78,8 @@ public class RemoveSphereLogAction extends LogAction {
             }
         } else {
             Sphere sp = ((AddRemoveSphereParam) parameters).getSphere();
+            RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction(((AddRemoveSphereParam) parameters).getAddRemoveVerticesParam());
+            removeVerticesLogAction.action();
             graph.removeSphere(sp);
         }
         vv.repaint();
