@@ -126,7 +126,6 @@ public class LoadLanguage {
         c.getAnalysisPathMenuButton().getTooltip().setText(loadLanguagesKey("analysisPathToolTip"));
         c.getAnalysisShortestPath().setText(loadLanguagesKey("analysisShortestPath"));
         c.getAnalysisAllPaths().setText(loadLanguagesKey("analysisAllPaths"));
-        c.getFilterArrowTypeCheckBox().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
         c.getAnalysisOption().setText(loadLanguagesKey("analysisOptions"));
         c.getAnalysisOptions().getTooltip().setText(loadLanguagesKey("analysisOptionsTooltip"));
         c.getChainOfEdges().setText(loadLanguagesKey("filterChainOfEdges"));

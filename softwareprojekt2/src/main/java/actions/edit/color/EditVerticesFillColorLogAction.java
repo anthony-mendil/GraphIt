@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Changes the color of a single/several vertices.
+ * Changes the fill-color of a single/several vertices.
  */
 public class EditVerticesFillColorLogAction extends LogAction {
     /**
-     * Temporary vertices for the color;
+     * The new color.
      */
     private Color color;
     /**
@@ -87,6 +87,11 @@ public class EditVerticesFillColorLogAction extends LogAction {
         editVerticesFillColorLogAction.action();
     }
 
+    /**
+     * Creates a new parameter-object for this action.
+     * @param oldVertices   The old vertices and their old color.
+     * @param newVertices   The new vertices and thier new color.
+     */
     public void createParameter(Map<Vertex,Color> oldVertices, Map<Vertex,Color> newVertices) {
         parameters = new EditVerticesFillColorParam(oldVertices, newVertices);
     }

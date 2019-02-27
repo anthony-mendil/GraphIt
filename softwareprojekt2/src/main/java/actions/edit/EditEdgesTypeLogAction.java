@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class EditEdgesTypeLogAction extends LogAction {
     /**
-     * Temporary variable for the new arrow-type.
+     * The new arrow-type.
      */
     private EdgeArrowType type;
 
@@ -111,7 +111,11 @@ public class EditEdgesTypeLogAction extends LogAction {
         editEdgesTypeLogAction.action();
     }
 
-
+    /**
+     * Creates a new parameter-object of this action.
+     * @param oldEdges The old edges and their old arrow-type.
+     * @param newEdges The new edges and their new arrow-type.
+     */
     public void createParameter(Map<Edge,EdgeArrowType> oldEdges, Map<Edge,EdgeArrowType> newEdges) {
         List<Vertex> starts = new ArrayList<>();
         List<Vertex> ends = new ArrayList<>();

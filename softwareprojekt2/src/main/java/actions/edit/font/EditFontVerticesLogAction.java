@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Changes the font of annotations.
+ * Changes the font of the annotations of vertices.
  */
 public class EditFontVerticesLogAction extends LogAction {
     /**
@@ -85,6 +85,11 @@ public class EditFontVerticesLogAction extends LogAction {
         editFontVerticesLogAction.action();
     }
 
+    /**
+     * Creates a new parameter-object of this action.
+     * @param oldVertices   The old vertices and their old font.
+     * @param newVertices   The new vertices and their new font.
+     */
     public void createParameter(Map<Vertex,String> oldVertices, Map<Vertex,String> newVertices) {
         parameters = new EditFontVerticesParam(oldVertices, newVertices);
     }

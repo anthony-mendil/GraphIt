@@ -17,9 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Changes the color of a single/several vertices.
+ * Changes the color of the edge of a single/several vertices.
  */
 public class EditVerticesDrawColorLogAction extends LogAction {
+    /**
+     * The new color of the vertices.
+     */
     private Color color;
     /**
      * Constructor in case the user changes the color of a single/multiple vertices.
@@ -83,6 +86,11 @@ public class EditVerticesDrawColorLogAction extends LogAction {
         editVerticesDrawColorLogAction.action();
     }
 
+    /**
+     * Creates the parameter object for this action.
+     * @param oldVertices   The old vertices and their old color.
+     * @param newVertices   The new vertices and their new Color.
+     */
     public void createParameter(Map<Vertex, Color> oldVertices, Map<Vertex, Color> newVertices) {
         parameters = new EditVerticesDrawColorParam(oldVertices, newVertices);
     }

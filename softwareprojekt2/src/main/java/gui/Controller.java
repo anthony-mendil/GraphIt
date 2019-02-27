@@ -674,10 +674,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private MenuItem analysisAllPaths;
     @FXML
-    private CheckBox filterArrowTypeCheckBox;
-    @FXML
-    private MenuButton analysisArrowMenuButton;
-    @FXML
     private Text analysisOption;
     @FXML
     private CheckBox analysisOptions;
@@ -858,6 +854,7 @@ public class Controller implements ObserverSyndrom {
     private Text positionMouseX;
     @FXML
     private Text positionMouseY;
+
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
     private static final String SPHERE_STYLE = "SphereStyle";
@@ -2425,7 +2422,6 @@ public class Controller implements ObserverSyndrom {
             analysisSuccessor.setSelected(false);
             analysisPathCheckBox.setSelected(false);
             analysisOptions.setSelected(false);
-            filterArrowTypeCheckBox.setSelected(false);
         }
     }
 
@@ -2995,7 +2991,6 @@ public class Controller implements ObserverSyndrom {
 
         analysisPathCheckBox.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(this, analysisPathCheckBox, analysisPathMenuButton));
         analysisOptions.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(this, analysisOptions, filterAnalysis));
-
         analysisShortestPath.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
         analysisAllPaths.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
 
