@@ -42,10 +42,8 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
                 if(!handSelector.isSelected() && !addVertex.isSelected()){
                     toggleButton.setSelected(true);
                 }
-            }else if(toggleButton.getId().equals("addVertex")){
-                if(!handSelector.isSelected() && !addSphere.isSelected()){
-                    toggleButton.setSelected(true);
-                }
+            }else if(toggleButton.getId().equals("addVertex") &&!handSelector.isSelected() && !addSphere.isSelected()){
+                toggleButton.setSelected(true);
             }
         }
     }

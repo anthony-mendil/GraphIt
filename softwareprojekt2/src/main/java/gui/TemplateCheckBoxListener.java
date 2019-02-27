@@ -12,7 +12,6 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     private CheckBox treeViewArrowType;
     private CheckBox regularExpressionBox;
     private Controller c;
-    private static Logger logger = Logger.getLogger(TemplateCheckBoxListener.class);
 
     private void regularExpressionBoxChecked(boolean newValue){
         regularExpressionBox.setSelected(newValue);

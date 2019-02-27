@@ -84,3 +84,7 @@
 .toolbar-button{
     -jfx-button-type: RAISED;
 }
+
+.jfx-progress-bar > .bar {
+    -fx-background-color: rgb(28,172,172);
+}

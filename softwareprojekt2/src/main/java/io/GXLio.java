@@ -182,7 +182,7 @@ public class GXLio {
 
         updateVisualisationAndLayout(newGraph, vv);
     }
- 
+
     private void updateSystemDataOfSpheresAndVertices(List<Map<Sphere, List<Vertex>>> spheresWithVertices, SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv){
         for (Map<Sphere, List<Vertex>> m : spheresWithVertices) {
             for (Map.Entry<Sphere, List<Vertex>> e : m.entrySet()) {
@@ -269,7 +269,8 @@ public class GXLio {
         annotation.put(Language.ENGLISH.name(), ((GXLString) elem.getAttr(ANNOTATION).getValue()).getValue().split(U00A6)[0]);
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr(FONT_SIZE).getValue()).getIntValue();
-        Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
+        Pair<Double> size = new Pair<>(width, height);
+        Sphere newSphere = new Sphere(id, paint, coordinates, size, annotation, font, fontSize);
         if (withTemplate) {
             boolean isLockedPosition = ((GXLBool) elem.getAttr(IS_LOCKED_POSITION).getValue()).getBooleanValue();
             newSphere.setLockedPosition(isLockedPosition);
@@ -328,7 +329,9 @@ public class GXLio {
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr(FONT_SIZE).getValue()).getIntValue();
         boolean isHighlighted = ((GXLBool) elem.getAttr(IS_HIGHLIGHTED).getValue()).getBooleanValue();
-        Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
+        Pair<Color> colors = new Pair<>(paint, drawPaint);
+        Pair<Integer> sizes = new Pair<>(size, fontSize);
+        Vertex newVertex = new Vertex(id, colors, coordinates, shape, annotation, sizes, font);
         newVertex.setVisible(isVisible);
         newVertex.setHighlighted(isHighlighted);
         if (withTemplate) {
@@ -671,8 +674,8 @@ public class GXLio {
      */
     public void exportGXL(File pFile, boolean pExportWithRules) {
         String gxl = gxlFromInstance(pExportWithRules);
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
-            bufferedWriter.write(gxl);
+        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)) {
+            writer.write(gxl);
         } catch (IOException e) {
             logger.error(e.toString());
         }
