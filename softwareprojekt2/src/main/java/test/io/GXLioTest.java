@@ -257,7 +257,7 @@ public class GXLioTest {
     @Test
     public void testGraphName() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
-        Assert.assertEquals("untitled syndrom", syndrom.getGraphName());
+        Assert.assertEquals("UntitledGraph", syndrom.getGraphName());
     }
 
 

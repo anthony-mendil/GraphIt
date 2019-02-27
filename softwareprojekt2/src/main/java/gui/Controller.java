@@ -91,6 +91,7 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -1012,8 +1013,10 @@ public class Controller implements ObserverSyndrom {
      * Creates an EditEdgesStrokeLogAction-object and executes the action with the action history.
      */
     private void editEdgesStroke(StrokeType stroke) {
-        EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(stroke);
-        history.execute(editEdgesStrokeLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(stroke);
+            history.execute(editEdgesStrokeLogAction);
+        }
     }
 
     public void edgeStrokeBasic() {
@@ -1050,8 +1053,10 @@ public class Controller implements ObserverSyndrom {
      * Creates an EditEdgesTypeLogAction-object and executes the action with the action history.
      */
     private void editEdgesType(EdgeArrowType type) {
-        EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(type);
-        history.execute(editEdgesTypeLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(type);
+            history.execute(editEdgesTypeLogAction);
+        }
     }
 
     public void edgeReinforced() {
@@ -1095,8 +1100,10 @@ public class Controller implements ObserverSyndrom {
     public void editEdgesColor() {
         Color color = convertToAWT(edgeColour.getValue());
         Values.getInstance().setEdgePaint(color);
-        EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(color);
-        history.execute(editEdgesColorLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(color);
+            history.execute(editEdgesColorLogAction);
+        }
     }
 
     public void anchorPointsEdge() {
@@ -1120,8 +1127,10 @@ public class Controller implements ObserverSyndrom {
     public void editSphereColor() {
         Color color = convertToAWT(sphereBackgroundColour.getValue());
         Values.getInstance().setFillPaintSphere(color);
-        EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
-        history.execute(colorLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
+            history.execute(colorLogAction);
+        }
     }
 
     private Color convertToAWT(javafx.scene.paint.Color fx) {
@@ -1146,8 +1155,10 @@ public class Controller implements ObserverSyndrom {
     public void editVerticesDrawColor() {
         Color color = convertToAWT(symptomBorder.getValue());
         Values.getInstance().setDrawPaintVertex(color);
-        EditVerticesDrawColorLogAction colorLogAction = new EditVerticesDrawColorLogAction(color);
-        history.execute(colorLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditVerticesDrawColorLogAction colorLogAction = new EditVerticesDrawColorLogAction(color);
+            history.execute(colorLogAction);
+        }
     }
 
     /**
@@ -1156,8 +1167,10 @@ public class Controller implements ObserverSyndrom {
     public void editVerticesFillColor() {
         Color color = convertToAWT(symptomBackground.getValue());
         Values.getInstance().setFillPaintVertex(color);
-        EditVerticesFillColorLogAction colorLogAction = new EditVerticesFillColorLogAction(color);
-        history.execute(colorLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditVerticesFillColorLogAction colorLogAction = new EditVerticesFillColorLogAction(color);
+            history.execute(colorLogAction);
+        }
     }
 
     /* ......font..... */
@@ -1169,8 +1182,10 @@ public class Controller implements ObserverSyndrom {
      */
     private void editFontSphere(String font) {
         values.setFontSphere(font);
-        EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
-        history.execute(editFontSphereLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
+            history.execute(editFontSphereLogAction);
+        }
     }
 
     /**
@@ -1178,18 +1193,26 @@ public class Controller implements ObserverSyndrom {
      */
     private void editFontVertex(String font) {
         values.setFontVertex(font);
-        EditFontVerticesLogAction editFontVertexLogAction = new EditFontVerticesLogAction(font);
-        history.execute(editFontVertexLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditFontVerticesLogAction editFontVertexLogAction = new EditFontVerticesLogAction(font);
+            history.execute(editFontVertexLogAction);
+        }
     }
 
     public void sphereAutoLayout() {
-        LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
-        history.execute(layoutSphereGraphLogAction);
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        if(!graph.getSpheres().isEmpty()){
+            LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
+            history.execute(layoutSphereGraphLogAction);
+        }
     }
 
     public void verticesAutoLayout() {
-        LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
-        history.execute(layoutVerticesGraphLogAction);
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        if(!graph.getVertices().isEmpty()){
+            LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
+            history.execute(layoutVerticesGraphLogAction);
+        }
     }
 
 
@@ -1199,8 +1222,10 @@ public class Controller implements ObserverSyndrom {
     @SuppressWarnings("unused")
     public void editFontSizeVertices(int size) {
         values.setFontSizeVertex(size);
-        EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
-        history.execute(editFontSizeVerticesLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
+            history.execute(editFontSizeVerticesLogAction);
+        }
     }
 
     /* ......form..... */
@@ -1210,8 +1235,10 @@ public class Controller implements ObserverSyndrom {
      */
     private void editVerticesForm(VertexShapeType type) {
         values.setShapeVertex(type);
-        EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(type);
-        history.execute(editVerticesFormLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditVerticesFormLogAction editVerticesFormLogAction = new EditVerticesFormLogAction(type);
+            history.execute(editVerticesFormLogAction);
+        }
     }
 
     public void verticesCircle() {
@@ -1229,19 +1256,19 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportGXL() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
         }
@@ -1253,19 +1280,19 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportPDF() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
         }
@@ -1273,19 +1300,19 @@ public class Controller implements ObserverSyndrom {
 
     public void exportProtocol() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
             exportReadableProtocolAction.action();
         }
@@ -1297,19 +1324,19 @@ public class Controller implements ObserverSyndrom {
     public void exportOOF() {
         rulesTemplate();
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
@@ -1321,14 +1348,14 @@ public class Controller implements ObserverSyndrom {
      */
     public void openFile() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ImportOofAction importOofAction = new ImportOofAction(file);
             importOofAction.action();
             zoomSlider.setValue(100);
@@ -1344,14 +1371,14 @@ public class Controller implements ObserverSyndrom {
      */
     public void importGXL() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             zoomSlider.setValue(100);
@@ -2060,8 +2087,10 @@ public class Controller implements ObserverSyndrom {
 
     public void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
-        EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-        history.execute(editFontSizeSphereLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+            history.execute(editFontSizeSphereLogAction);
+        }
     }
 
     /*private class ComboBoxValueListener implements ChangeListener<String> {
@@ -2687,7 +2716,7 @@ public class Controller implements ObserverSyndrom {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
 
         //optionSaveWindow();
-        CreateGraphAction action = new CreateGraphAction("First Graph", this);
+        CreateGraphAction action = new CreateGraphAction("UntitledGraph", this);
         action.action();
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
@@ -2695,23 +2724,31 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void sphereEnlarge() {
-        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
-        history.execute(editSphereSizeLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
+            history.execute(editSphereSizeLogAction);
+        }
     }
 
     public void sphereShrink() {
-        EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
-        history.execute(editSphereSizeLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
+            history.execute(editSphereSizeLogAction);
+        }
     }
 
     public void vertexEnlarge() {
-        EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.ENLARGE);
-        history.execute(editVerticesSizeLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.ENLARGE);
+            history.execute(editVerticesSizeLogAction);
+        }
     }
 
     public void vertexShrink() {
-        EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.SHRINK);
-        history.execute(editVerticesSizeLogAction);
+        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+            EditVerticesSizeLogAction editVerticesSizeLogAction = new EditVerticesSizeLogAction(SizeChange.SHRINK);
+            history.execute(editVerticesSizeLogAction);
+        }
     }
 
 
@@ -3156,9 +3193,9 @@ public class Controller implements ObserverSyndrom {
                         Platform.runLater(() -> {
                             try {
                                 treeViewUpdate();
-                                loadTables();
                                 updateUndoRedoButton();
                             } finally {
+                                loadTables();
                                 latch.countDown();
                             }
                         });
