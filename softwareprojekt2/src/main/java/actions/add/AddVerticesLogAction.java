@@ -67,7 +67,7 @@ public class AddVerticesLogAction extends LogAction {
                 createParameter(newVertex, sphere);
                 vv.getGraphLayout().setLocation(newVertex, position2D);
             } else {
-                Map<Vertex,Sphere> vertices;
+                Map<Vertex, Sphere> vertices;
                 vertices = ((AddRemoveVerticesParam) parameters).getVertices();
                 List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
                 List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
@@ -89,7 +89,7 @@ public class AddVerticesLogAction extends LogAction {
             databaseManager.addEntryDatabase(createLog());
             notifyObserverGraph();
         } else {
-            Object[] obj = { template.getMaxVertices()};
+            Object[] obj = {template.getMaxVertices()};
             helper.setActionText(loadLanguage.loadLanguagesKey("ADD_VERTICES_COUNT_ALERT", obj), true, false);
         }
     }
@@ -102,6 +102,7 @@ public class AddVerticesLogAction extends LogAction {
 
     /**
      * Creates the parameter object for this action.
+     *
      * @param vertex The vertex, which will be added.
      * @param sphere The sphere in which the vertex should be.
      */

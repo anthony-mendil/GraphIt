@@ -111,7 +111,6 @@ public class Controller implements ObserverSyndrom {
     private File lastUsedFilePath;
 
     /**
-     *
      * The swing node that displays the JUNG-graph and allows to interact with it.
      */
     @FXML
@@ -843,8 +842,10 @@ public class Controller implements ObserverSyndrom {
     private MenuItem logEditVerticesLayout;
     @FXML
     private MenuItem logAll;
-    @FXML private Label infoAnalysis;
-    @FXML private Label infoZoom;
+    @FXML
+    private Label infoAnalysis;
+    @FXML
+    private Label infoZoom;
     private Tooltip tooltipInfoAnalysis = new Tooltip();
     private Tooltip tooltipInfoZoom = new Tooltip();
     @FXML
@@ -1201,7 +1202,7 @@ public class Controller implements ObserverSyndrom {
 
     public void sphereAutoLayout() {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
-        if(!graph.getSpheres().isEmpty()){
+        if (!graph.getSpheres().isEmpty()) {
             LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
             history.execute(layoutSphereGraphLogAction);
         }
@@ -1209,7 +1210,7 @@ public class Controller implements ObserverSyndrom {
 
     public void verticesAutoLayout() {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
-        if(!graph.getVertices().isEmpty()){
+        if (!graph.getVertices().isEmpty()) {
             LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
             history.execute(layoutVerticesGraphLogAction);
         }
@@ -1256,19 +1257,19 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportGXL() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
+        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
-        if (syndrom.getGraphName()!=null){
+        if (syndrom.getGraphName() != null) {
             fileChooser.setInitialFileName(syndrom.getGraphName());
-        }else{
+        } else {
             fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file.getParentFile();
+            lastUsedFilePath = file.getParentFile();
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
         }
@@ -1280,19 +1281,19 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportPDF() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
+        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
-        if (syndrom.getGraphName()!=null){
+        if (syndrom.getGraphName() != null) {
             fileChooser.setInitialFileName(syndrom.getGraphName());
-        }else{
+        } else {
             fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file.getParentFile();
+            lastUsedFilePath = file.getParentFile();
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
         }
@@ -1300,19 +1301,19 @@ public class Controller implements ObserverSyndrom {
 
     public void exportProtocol() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
+        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
-        if (syndrom.getGraphName()!=null){
+        if (syndrom.getGraphName() != null) {
             fileChooser.setInitialFileName(syndrom.getGraphName());
-        }else{
+        } else {
             fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file.getParentFile();
+            lastUsedFilePath = file.getParentFile();
             ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
             exportReadableProtocolAction.action();
         }
@@ -1324,19 +1325,19 @@ public class Controller implements ObserverSyndrom {
     public void exportOOF() {
         rulesTemplate();
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
+        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
-        if (syndrom.getGraphName()!=null){
+        if (syndrom.getGraphName() != null) {
             fileChooser.setInitialFileName(syndrom.getGraphName());
-        }else{
+        } else {
             fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file.getParentFile();
+            lastUsedFilePath = file.getParentFile();
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
@@ -1348,14 +1349,14 @@ public class Controller implements ObserverSyndrom {
      */
     public void openFile() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
+        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file.getParentFile();
+            lastUsedFilePath = file.getParentFile();
             ImportOofAction importOofAction = new ImportOofAction(file);
             importOofAction.action();
             zoomSlider.setValue(100);
@@ -1371,14 +1372,14 @@ public class Controller implements ObserverSyndrom {
      */
     public void importGXL() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
+        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file.getParentFile();
+            lastUsedFilePath = file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             zoomSlider.setValue(100);
@@ -1499,13 +1500,13 @@ public class Controller implements ObserverSyndrom {
         satellite.setContent(syndrom.getVv2());
         updateUndoRedoButton();
 
-        if(!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()){
+        if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
             edgeArrowReinforced.setDisable(true);
         }
-        if(!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()){
+        if (!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()) {
             edgeArrowNeutral.setDisable(true);
         }
-        if(!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()){
+        if (!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()) {
             edgeArrowExtenuating.setDisable(true);
         }
 
@@ -1599,7 +1600,8 @@ public class Controller implements ObserverSyndrom {
         if (!syndrom.getVv().getPickedEdgeState().getPicked().isEmpty()) {
 
             RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction();
-        history.execute(removeEdgesLogAction);}
+            history.execute(removeEdgesLogAction);
+        }
     }
 
     /**
@@ -1619,7 +1621,8 @@ public class Controller implements ObserverSyndrom {
         if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
 
             RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
-        history.execute(removeVerticesLogAction);}
+            history.execute(removeVerticesLogAction);
+        }
 
     }
 
@@ -1816,7 +1819,7 @@ public class Controller implements ObserverSyndrom {
         updateUndoRedoButton();
     }
 
-    private void iniSelectionButtons(){
+    private void iniSelectionButtons() {
         handSelector.selectedProperty().addListener(new ToggleButtonListener(this, handSelector));
         addSphere.selectedProperty().addListener(new ToggleButtonListener(this, addSphere));
         addVertex.selectedProperty().addListener(new ToggleButtonListener(this, addVertex));
@@ -1829,7 +1832,7 @@ public class Controller implements ObserverSyndrom {
         infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
     }
 
-    private void infoText(Tooltip tooltip, String text, Label label, int x, int y){
+    private void infoText(Tooltip tooltip, String text, Label label, int x, int y) {
         tooltip.setPrefWidth(200);
         tooltip.setText(loadLanguage.loadLanguagesKey(text));
         tooltip.setWrapText(true);
@@ -1873,12 +1876,12 @@ public class Controller implements ObserverSyndrom {
                 executeRedo();
             } else if (entf.match(event) || strgD.match(event)) {
 
-                    removeEdges();
-                    syndrom.getVv().getPickedEdgeState().clear();
-                    removeVertices();
-                    syndrom.getVv().getPickedVertexState().clear();
-                    removeSphere();
-                    syndrom.getVv().getPickedSphereState().clear();
+                removeEdges();
+                syndrom.getVv().getPickedEdgeState().clear();
+                removeVertices();
+                syndrom.getVv().getPickedVertexState().clear();
+                removeSphere();
+                syndrom.getVv().getPickedSphereState().clear();
 
             } else if (strgA.match(event)) {
                 for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
@@ -1961,7 +1964,7 @@ public class Controller implements ObserverSyndrom {
         HelperFunctions helper = new HelperFunctions();
         treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<TreeItem<Object>>) (observable, oldValue, newValue) -> {
             if (newValue != null) {
-                helper.pickElement( newValue.getValue());
+                helper.pickElement(newValue.getValue());
             }
         });
 
@@ -2128,7 +2131,6 @@ public class Controller implements ObserverSyndrom {
     }*/
 
 
-
     private class ComboBoxFocusListener implements ChangeListener<Boolean> {
         private final ComboBox<String> comboBox;
 
@@ -2231,13 +2233,13 @@ public class Controller implements ObserverSyndrom {
 
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             comboBox.hide();
-            if(event.getCode() == KeyCode.ENTER){
+            if (event.getCode() == KeyCode.ENTER) {
                 String tmpFont = comboBox.getEditor().getText();
-                if(fonts.contains(tmpFont)){
-                    if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)){
+                if (fonts.contains(tmpFont)) {
+                    if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
                         currentFont = tmpFont;
                         editFontSphere(tmpFont);
-                    }else if(comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+                    } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
                         currentFont = tmpFont;
                         editFontVertex(tmpFont);
                     }
@@ -2263,15 +2265,15 @@ public class Controller implements ObserverSyndrom {
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             comboBox.hide();
-            if(event.getCode() == KeyCode.ENTER){
+            if (event.getCode() == KeyCode.ENTER) {
                 String tmpSize = comboBox.getEditor().getText();
-                if(tmpSize.chars().allMatch(Character::isDigit)){
+                if (tmpSize.chars().allMatch(Character::isDigit)) {
                     int size = Integer.parseInt(tmpSize);
-                    if(size > 3 && size <= 96){
-                        if(comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)){
+                    if (size > 3 && size <= 96) {
+                        if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
                             currentSize = tmpSize;
                             editFontSizeSphere(size);
-                        }else if(comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)){
+                        } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
                             currentSize = tmpSize;
                             editFontSizeVertices(size);
                         }
@@ -2297,15 +2299,15 @@ public class Controller implements ObserverSyndrom {
                 if (!cell.isEmpty()) {
                     currentFont = cell.getItem().getText();
                     comboBox.getEditor().setText(currentFont);
-                    if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)){
+                    if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
                         editFontSphere(currentFont);
-                    }else if(comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+                    } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
                         editFontVertex(currentFont);
                     }
                     root.requestFocus();
                 }
             });
-            return cell ;
+            return cell;
         });
 
         ObservableList<MenuItem> fontMenuItems = FXCollections.observableArrayList();
@@ -2319,22 +2321,22 @@ public class Controller implements ObserverSyndrom {
     private void loadSizes(ComboBox comboBox) {
 
         comboBox.setCellFactory(lv -> {
-            ListCell<MenuItem> cell = new ListCell<MenuItem>(){
+            ListCell<MenuItem> cell = new ListCell<MenuItem>() {
                 @Override
-                protected void updateItem(MenuItem item, boolean empty){
+                protected void updateItem(MenuItem item, boolean empty) {
                     super.updateItem(item, empty);
                     setText(empty ? null : item.getText());
                 }
             };
 
             cell.setOnMousePressed(e -> {
-                if(!cell.isEmpty()){
+                if (!cell.isEmpty()) {
                     currentSize = cell.getItem().getText();
                     int size = Integer.parseInt(currentSize);
                     comboBox.getEditor().setText(currentSize);
-                    if(comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)){
+                    if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
                         editFontSizeSphere(size);
-                    }else if(comboBox.getId().equals((SIZE_SYMPTOM_COMBO_BOX))){
+                    } else if (comboBox.getId().equals((SIZE_SYMPTOM_COMBO_BOX))) {
                         editFontSizeVertices(size);
                     }
                     root.requestFocus();
@@ -2772,19 +2774,19 @@ public class Controller implements ObserverSyndrom {
 
         if (!spheres.isEmpty()) {
             loadSpheresTable(spheres);
-        }else{
+        } else {
             sphereTableView.getItems().clear();
         }
 
         if (!vertices.isEmpty()) {
             loadVerticesTable(vertices);
-        }else{
+        } else {
             symptomTableView.getItems().clear();
         }
 
         if (!edges.isEmpty()) {
             loadEdgesTable(edges);
-        }else{
+        } else {
             edgeTableView.getItems().clear();
         }
     }
@@ -3082,19 +3084,19 @@ public class Controller implements ObserverSyndrom {
         cycles.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
     }
 
-    private void updateUndoRedoButton(){
-        if(history.isLast()){
+    private void updateUndoRedoButton() {
+        if (history.isLast()) {
             redoButton.setDisable(true);
             root.requestFocus();
-        }else{
+        } else {
             redoButton.setDisable(false);
             root.requestFocus();
         }
 
-        if(history.getCurrent() < 0){
+        if (history.getCurrent() < 0) {
             undoButton.setDisable(true);
             root.requestFocus();
-        }else{
+        } else {
             undoButton.setDisable(false);
             root.requestFocus();
         }
@@ -3246,14 +3248,14 @@ public class Controller implements ObserverSyndrom {
                                     time = time.replaceFirst(index, "");
                                     time = time.trim();
                                     String name = time.substring(0, time.indexOf("\n"));
-                                    time = time.replaceFirst(name,"");
+                                    time = time.replaceFirst(name, "");
                                     time = time.trim();
                                     String parameter = time.substring(0, time.indexOf("\n"));
                                     time = time.replace(parameter, "");
                                     time = time.trim();
                                     TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
                                     TreeItem<Object> logTime = new TreeItem<>(time);
-                                    
+
                                     TreeItem<Object> logInformation;
                                     if (parameter.contains(";")) {
                                         logInformation = new TreeItem<>(extractStart(parameter));

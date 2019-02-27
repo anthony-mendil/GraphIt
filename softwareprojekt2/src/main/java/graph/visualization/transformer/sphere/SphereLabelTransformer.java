@@ -12,11 +12,11 @@ import org.apache.commons.collections15.Transformer;
  */
 public class SphereLabelTransformer<S> implements Transformer<S, String> {
     @Override
-    public String transform(S s){
-        try{
+    public String transform(S s) {
+        try {
             Sphere sphere = (Sphere) s;
             return sphere.getAnnotation().get(Values.getInstance().getGraphLanguage().name());
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException();
         }
     }

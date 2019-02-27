@@ -5,11 +5,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class HelperGui {
-    private HelperGui(){
+    private HelperGui() {
         throw new IllegalStateException("utility class");
     }
 
-    public static void setImage(String imageString, MenuItem menuItem){
+    public static void setImage(String imageString, MenuItem menuItem) {
         Image image = new Image(imageString);
         ImageView iconRemove = new ImageView();
         iconRemove.setImage(image);

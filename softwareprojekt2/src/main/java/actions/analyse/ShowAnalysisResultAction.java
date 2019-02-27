@@ -28,6 +28,7 @@ public class ShowAnalysisResultAction extends LogAction {
 
     /**
      * Constructor in case the user annuls all/several highlighted vertices.
+     *
      * @param pVertices The list of vertices, that should be highlighted.
      * @param pEdges    The lis of edges, that should be highlighted.
      */

@@ -47,9 +47,9 @@ public class MoveSphereLogAction extends LogAction {
      * @param newPos  The new position to put the sphere.
      * @param pSphere The sphere to move.
      */
-    public MoveSphereLogAction(Sphere pSphere,Point2D oldPos, Point2D newPos) {
+    public MoveSphereLogAction(Sphere pSphere, Point2D oldPos, Point2D newPos) {
         super(LogEntryName.MOVE_SPHERE);
-        oldPosition = new Point2D.Double(oldPos.getX(),oldPos.getY());
+        oldPosition = new Point2D.Double(oldPos.getX(), oldPos.getY());
         sphere = pSphere;
         position = newPos;
     }
@@ -58,25 +58,25 @@ public class MoveSphereLogAction extends LogAction {
     @SuppressWarnings("unchecked")
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        if(parameters == null) {
+        if (parameters == null) {
             sphere.setVertices(sphere.getVertices());
             sphere.setCoordinates(position);
             createParameter(sphere, oldPosition, position);
-        }else{
-            sphere = ((MoveSphereParam)parameters).getSphere();
-            Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
-            Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
-                sphere.setCoordinates(newPos);
-                Double dX = newPos.getX() - oldPos.getX();
-                Double dY = newPos.getY() - oldPos.getY();
+        } else {
+            sphere = ((MoveSphereParam) parameters).getSphere();
+            Point2D oldPos = ((MoveSphereParam) parameters).getOldPos();
+            Point2D newPos = ((MoveSphereParam) parameters).getNewPos();
+            sphere.setCoordinates(newPos);
+            Double dX = newPos.getX() - oldPos.getX();
+            Double dY = newPos.getY() - oldPos.getY();
 
-                for(Vertex vertex : sphere.getVertices()) {
-                    Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dX, vertex.getCoordinates()
-                            .getY() + dY);
-                    vertex.setCoordinates(point);
-                    Layout layout = vv.getGraphLayout();
-                    layout.setLocation(vertex, point);
-                }
+            for (Vertex vertex : sphere.getVertices()) {
+                Point2D point = new Point2D.Double(vertex.getCoordinates().getX() + dX, vertex.getCoordinates()
+                        .getY() + dY);
+                vertex.setCoordinates(point);
+                Layout layout = vv.getGraphLayout();
+                layout.setLocation(vertex, point);
+            }
 
         }
         vv.repaint();
@@ -88,9 +88,9 @@ public class MoveSphereLogAction extends LogAction {
 
     @Override
     public void undo() {
-        sphere = ((MoveSphereParam)parameters).getSphere();
-        Point2D oldPos = ((MoveSphereParam)parameters).getOldPos();
-        Point2D newPos = ((MoveSphereParam)parameters).getNewPos();
+        sphere = ((MoveSphereParam) parameters).getSphere();
+        Point2D oldPos = ((MoveSphereParam) parameters).getOldPos();
+        Point2D newPos = ((MoveSphereParam) parameters).getNewPos();
         MoveSphereParam moveSphereParam = new MoveSphereParam(sphere, newPos, oldPos);
         MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(moveSphereParam);
         moveSphereLogAction.action();

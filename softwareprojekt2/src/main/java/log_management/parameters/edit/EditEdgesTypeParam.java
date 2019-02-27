@@ -60,10 +60,11 @@ public class EditEdgesTypeParam implements Param {
 
     /**
      * Creates a parameter object of its own class.
-     * @param pOldEdges The old edges and their arrow types.
-     * @param pNewEdges The new edges and their arrow types.
+     *
+     * @param pOldEdges      The old edges and their arrow types.
+     * @param pNewEdges      The new edges and their arrow types.
      * @param pStartVertices The start vertices of the edges.
-     * @param pEndVertices The end vertices of the edges.
+     * @param pEndVertices   The end vertices of the edges.
      */
     public EditEdgesTypeParam(Map<Edge, EdgeArrowType> pOldEdges, Map<Edge, EdgeArrowType> pNewEdges,
                               List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
@@ -111,6 +112,7 @@ public class EditEdgesTypeParam implements Param {
 
     /**
      * Gets the old edges and their arrow types.
+     *
      * @return The old edges and their arrow types.
      */
     public Map<Edge, EdgeArrowType> getEdgesOldEdgeType() {
@@ -123,6 +125,7 @@ public class EditEdgesTypeParam implements Param {
 
     /**
      * Gets the new edges and their arrow types.
+     *
      * @return The new edges and their arrow types.
      */
     public Map<Edge, EdgeArrowType> getEdgesNewEdgeType() {

@@ -12,8 +12,10 @@ public class SwitchModeAction extends GraphAction {
      * The function mode to change to.
      */
     private FunctionMode mode;
+
     /**
      * Constructor in case the user changes the mode.
+     *
      * @param newMode The new mode.
      */
     public SwitchModeAction(FunctionMode newMode) {
@@ -26,10 +28,9 @@ public class SwitchModeAction extends GraphAction {
         if (mode == FunctionMode.EDIT) {
             notifyObserverEditMode();
             syndrom.setGraphMouseModeEdit();
-        }
-        else {
+        } else {
             notifyObserverFunctionMode(mode);
-            if (mode == FunctionMode.TEMPLATE){
+            if (mode == FunctionMode.TEMPLATE) {
                 syndrom.setGraphMouseModeEdit();
             } else {
                 // mode ==  FunctionMode.ANALYSE

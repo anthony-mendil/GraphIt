@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * SyndromPickSupport extends the ShapePickSupport with the option to pick spheres and arrows from edges.
  */
-public class SyndromPickSupport<V, E> extends ShapePickSupport {
+public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
 
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
     private BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
@@ -198,7 +198,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
             }
 
             Point2D point = getSecondAnchorIn(edge, x2, y2);
-            x2 =(float) point.getX();
+            x2 = (float) point.getX();
             y2 = (float) point.getY();
 
             AffineTransform xForm = AffineTransform.getTranslateInstance(x1, y1);
@@ -208,7 +208,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
         return new javafx.util.Pair<>(pair, arrow);
     }
 
-    private Point2D getSecondAnchorIn(Edge edge, float x2, float y2){
+    private Point2D getSecondAnchorIn(Edge edge, float x2, float y2) {
         if (!edge.isHasAnchorIn() && edge.getAnchorPoints().getValue() != null) {
             x2 = (float) edge.getAnchorPoints().getValue().getX();
             y2 = (float) edge.getAnchorPoints().getValue().getY();

@@ -84,12 +84,12 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
-        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         Point2D p = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
-        Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+        Vertex vertex = pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
 
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (values.getGraphButtonType() == GraphButtonType.ADD_SPHERE) {
@@ -117,9 +117,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
     /**
      * containing the logic if a sphere can be added at a certain point
-     * @param list a list containing all the spheres
+     *
+     * @param list   a list containing all the spheres
      * @param newRec the shape of the potential new sphere
-     * @param p the point where to add the sphere
+     * @param p      the point where to add the sphere
      */
     private void addSphere(List<Sphere> list, Rectangle2D newRec, Point2D p) {
         boolean addSphere = calculateOverlapSpheres(list, newRec);
@@ -140,7 +141,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
     /**
      * calculate if the potential new sphere overlaps with another one
-     * @param list the list containing all spheres
+     *
+     * @param list   the list containing all spheres
      * @param newRec the shape of the potential new sphere
      * @return if the potential new sphere overlaps another one
      */
@@ -169,16 +171,16 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (contextMenu != null) {
             helper.hideMenu(contextMenu);
         }
-        SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
-        Vertex vert = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+        Vertex vert = pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), e.getX(), e.getY());
 
         down = e.getPoint();
         PickedState<Sphere> pickedSphereState = vv.getPickedSphereState();
 
-        if (sp != null && vert == null && edge == null ) {
+        if (sp != null && vert == null && edge == null) {
             if (SwingUtilities.isRightMouseButton(e)) {
                 if (sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT) {
                     helper.setActionText("SPHERE_PICKING_ALERT", true, true);
@@ -198,9 +200,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
     /**
      * sets the 'old' vertices position to a list, for getting them back, if the new add- point is not valid
+     *
      * @param sp the sphere, containing the vertices
      */
-    private void setVerticesPositionToPoints(Sphere sp){
+    private void setVerticesPositionToPoints(Sphere sp) {
         points = new LinkedHashMap<>();
         for (Vertex v : sp.getVertices()) {
             points.put(v.getId(), v.getCoordinates());
@@ -246,12 +249,13 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
     /**
      * calculates if the sphere which been moved, overlaps with another one
-     * @param allSpheres  list containing all the spheres
-     * @param s the sphere
-     * @param sShape the shape of the sphere
+     *
+     * @param allSpheres list containing all the spheres
+     * @param s          the sphere
+     * @param sShape     the shape of the sphere
      * @return if the sphere can be moved
      */
-    private boolean calculateMove(List<Sphere> allSpheres, Sphere s, Shape sShape){
+    private boolean calculateMove(List<Sphere> allSpheres, Sphere s, Shape sShape) {
         boolean move = true;
         for (Sphere sphere : allSpheres) {
             if (!s.equals(sphere)) {

@@ -41,9 +41,9 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
      * After processing and finding out the values the action is looking for, the information is displayed
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
+     *
      * @param analyseType The selected mode: successor/predecessor/both
      * @param amountSteps The amount of iterations that should be calculated.
-     *
      */
     public AnalysisGraphNeighborsAction(AnalyseType analyseType, int amountSteps) {
         this.analyseType = analyseType;

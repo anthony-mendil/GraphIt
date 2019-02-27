@@ -31,7 +31,7 @@ public class MoveSphereParam implements Param {
     @Getter
     private Point2D newPos;
 
-    public static final String Y_IS=" y = ";
+    public static final String Y_IS = " y = ";
 
     /**
      * Creates a vertices object of its own class.

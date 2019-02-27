@@ -83,6 +83,7 @@ public class Edge {
      * defines whether the edge has priority by rendering or not
      */
     private boolean hasPriority = false;
+
     /**
      * Creates an edge between two vertices.
      *

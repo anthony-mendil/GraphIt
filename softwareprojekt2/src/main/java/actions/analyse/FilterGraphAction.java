@@ -33,7 +33,7 @@ public class FilterGraphAction extends GraphAction {
      * Constructor in case the user filters the graph on the criteria.
      *
      * @param edgeType The edge type to filter for.
-     * @param doFilter     Indicator, if it should be filtered or not.
+     * @param doFilter Indicator, if it should be filtered or not.
      */
     public FilterGraphAction(EdgeArrowType edgeType, boolean doFilter) {
         if (doFilter) {
@@ -49,7 +49,7 @@ public class FilterGraphAction extends GraphAction {
      * Filters the vertices/spheres regex for a regular expression.
      *
      * @param regularExpression The regular expression to filter for.
-     * @param doFilter              Indicator, if it should be filtered or not.
+     * @param doFilter          Indicator, if it should be filtered or not.
      */
     public FilterGraphAction(String regularExpression, boolean doFilter) {
         if (doFilter && regularExpression != null) {
@@ -63,7 +63,8 @@ public class FilterGraphAction extends GraphAction {
 
     /**
      * Filters the vertices for the attribute isVisible=false.
-     * @param doFilter     Indicator, if it should be filtered or not.
+     *
+     * @param doFilter Indicator, if it should be filtered or not.
      */
     public FilterGraphAction(boolean doFilter) {
         if (doFilter) {

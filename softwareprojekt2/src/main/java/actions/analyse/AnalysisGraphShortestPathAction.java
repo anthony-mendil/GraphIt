@@ -26,6 +26,7 @@ public class AnalysisGraphShortestPathAction extends GraphAction {
      */
     @Getter
     private ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
+
     /**
      * Analyses the graph on the given criteria. All the
      * calculated edges and vertices will be highlighted.

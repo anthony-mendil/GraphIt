@@ -52,6 +52,7 @@ public class HelperFunctions {
 
     /**
      * hides the passed ContextMenu
+     *
      * @param contextMenu the ContextMenu to hide
      */
     void hideMenu(ContextMenu contextMenu) {
@@ -80,7 +81,8 @@ public class HelperFunctions {
 
     /**
      * shows the ContextMenu on a passed point
-     * @param point the point
+     *
+     * @param point       the point
      * @param contextMenu the context menu to show
      */
     void showSideMenu(Point2D point, ContextMenu contextMenu) {
@@ -112,8 +114,9 @@ public class HelperFunctions {
 
     /**
      * shows a alert with a passed text
-     * @param string the alert text
-     * @param isAlert defined whether the text is an alert or info
+     *
+     * @param string          the alert text
+     * @param isAlert         defined whether the text is an alert or info
      * @param withPlaceHolder defined whether the passed text is a normal string or if its a placeholder an has to be
      *                        loaded from a properties file
      */
@@ -154,6 +157,7 @@ public class HelperFunctions {
 
     /**
      * picks a passed object if its an instance of edge/ sphere/ vertex
+     *
      * @param object the object to pick
      */
     public void pickElement(Object object) {
@@ -181,6 +185,7 @@ public class HelperFunctions {
 
     /**
      * creates the context menu to a passed object if its an instance of vertex/ sphere/ edge
+     *
      * @param object the object to show the context menu too
      * @return the context menu
      */
@@ -201,6 +206,7 @@ public class HelperFunctions {
 
     /**
      * creates the title dialog
+     *
      * @param old the old annotation of the object (sphere/ vertex)
      * @return the title dialog
      */
@@ -261,6 +267,7 @@ public class HelperFunctions {
 
     /**
      * returns the font to a passed string
+     *
      * @param f the string to get the font to
      * @return the font
      */
@@ -288,6 +295,7 @@ public class HelperFunctions {
 
     /**
      * sets the passed position to values
+     *
      * @param posX the x position
      * @param posY the y position
      */
@@ -300,6 +308,7 @@ public class HelperFunctions {
 
     /**
      * Checks whether the vertices in the sphere are locked.
+     *
      * @return true: locked vertices, false: no locked vertices
      */
     public boolean verticesLocked(Sphere sp) {

@@ -12,6 +12,7 @@ public interface Dao<T> {
 
     /**
      * Gets a specific object from T.
+     *
      * @param id The id of the object to get.
      * @return The optional object for T.
      */
@@ -19,18 +20,21 @@ public interface Dao<T> {
 
     /**
      * Gets all objects from T.
+     *
      * @return A List of all found objects.
      */
     List<T> getAll();
 
     /**
      * Save an object T.
+     *
      * @param t The object to save.
      */
     void save(T t);
 
     /**
      * Deletes the object.
+     *
      * @param id The id of the object to delete.
      */
     void delete(int id);

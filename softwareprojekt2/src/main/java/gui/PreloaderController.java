@@ -10,7 +10,7 @@ public class PreloaderController {
     @FXML
     private JFXProgressBar progressbar;
 
-    public void setProgressbarProgress(double progress){
+    public void setProgressbarProgress(double progress) {
         progressbar.setProgress(progress);
     }
 }

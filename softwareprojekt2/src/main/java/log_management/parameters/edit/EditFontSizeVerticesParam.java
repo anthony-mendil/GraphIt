@@ -44,6 +44,7 @@ public class EditFontSizeVerticesParam implements Param {
 
     /**
      * Creates a vertices object of its own class.
+     *
      * @param pOldVertices The old vertices and their font sizes.
      * @param pNewVertices The new vertices and their font sizes.
      */
@@ -87,6 +88,7 @@ public class EditFontSizeVerticesParam implements Param {
 
     /**
      * Gets the old vertices and their font sizes.
+     *
      * @return The old vertices and their font sizes.
      */
     public Map<Vertex, Integer> getOldVertices() {
@@ -99,6 +101,7 @@ public class EditFontSizeVerticesParam implements Param {
 
     /**
      * Gets the new vertices and their font sizes.
+     *
      * @return The new vertices and their font sizes.
      */
     public Map<Vertex, Integer> getNewVertices() {

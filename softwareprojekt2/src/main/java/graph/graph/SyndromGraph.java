@@ -55,21 +55,21 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     }
 
     @SuppressWarnings("unchecked")
-    public void addEdge(V v1, V v2){
+    public void addEdge(V v1, V v2) {
         Edge edge = graphObjectsFactory.createEdge();
-        addEdge((E)edge, v1, v2);
+        addEdge((E) edge, v1, v2);
     }
 
     /**
      * Adds an edge to the graph, if it already existed once in the past.
      *
      * @param edge The existing edge.
-     * @param v1 The source vertex.
-     * @param v2 The sink vertex.
+     * @param v1   The source vertex.
+     * @param v2   The sink vertex.
      */
     @SuppressWarnings("unchecked")
-    public void addEdgeExisting(Edge edge, V v1, V v2){
-        addEdge((E)edge, v1, v2);
+    public void addEdgeExisting(Edge edge, V v1, V v2) {
+        addEdge((E) edge, v1, v2);
     }
 
     /**
@@ -90,7 +90,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * Adds a vertex to the SyndromGraph and assigns it to the sphere if it was existing in the past.
      */
     @SuppressWarnings("unchecked")
-    public void addVertexExisting(Vertex vertex){
+    public void addVertexExisting(Vertex vertex) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(vertex.getCoordinates().getX(), vertex.getCoordinates().getY());
@@ -100,7 +100,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
 
     /**
      * Adds a new sphere to the graph.
-     *@param pos The point where the sphere gets placed
+     *
+     * @param pos The point where the sphere gets placed
      */
     public void addSphere(Point2D pos) {
         Sphere sphere = graphObjectsFactory.createSphere(pos);
@@ -109,6 +110,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
 
     /**
      * Removes a sphere from the graph.
+     *
      * @param pSphere The sphere to remove.
      */
     public void removeSphere(Sphere pSphere) {

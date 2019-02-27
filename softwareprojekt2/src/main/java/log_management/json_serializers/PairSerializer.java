@@ -19,11 +19,9 @@ public class PairSerializer implements JsonSerializer<Pair> {
                                  JsonSerializationContext jsc) {
 
 
-
-
         JsonObject jo = new JsonObject();
-        jo.addProperty("xFirst", ((Point2D)pair.getKey()).getX());
-        jo.addProperty("yFirst", ((Point2D)pair.getValue()).getY());
+        jo.addProperty("xFirst", ((Point2D) pair.getKey()).getX());
+        jo.addProperty("yFirst", ((Point2D) pair.getValue()).getY());
 
         if (pair.getValue() instanceof Point2D) {
             jo.addProperty("xSecond", ((Point2D) pair.getKey()).getX());

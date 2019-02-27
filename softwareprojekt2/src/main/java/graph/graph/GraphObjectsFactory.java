@@ -34,26 +34,29 @@ public class GraphObjectsFactory {
 
     /**
      * sets the object counter to specific value
+     *
      * @param id the id
      */
-    public void setObjectCounter(int id){
+    public void setObjectCounter(int id) {
         objectCounter = id;
     }
 
     /**
      * Creates a new edge with the values set in values.
+     *
      * @return A new edge object.
      */
     public Edge createEdge() {
-       int id = objectCounter++;
-       Color color = values.getEdgePaint();
-       StrokeType stroke = values.getStrokeEdge();
-       EdgeArrowType arrowType = values.getEdgeArrowType();
-       return new Edge(id, color, stroke, arrowType,true, false, false);
+        int id = objectCounter++;
+        Color color = values.getEdgePaint();
+        StrokeType stroke = values.getStrokeEdge();
+        EdgeArrowType arrowType = values.getEdgeArrowType();
+        return new Edge(id, color, stroke, arrowType, true, false, false);
     }
 
     /**
      * Creates a new vertex with the values set in values.
+     *
      * @return A new vertex object.
      */
     public Vertex createVertex(Point2D position) {
@@ -62,8 +65,8 @@ public class GraphObjectsFactory {
         Color drawPaint = values.getDrawPaintVertex();
         Map<String, String> annotation = values.getDefaultAnnotationVertex();
         Map<String, String> vertexAnnotation = new HashMap<>();
-        for (Map.Entry<String, String> entry: annotation.entrySet()) {
-            vertexAnnotation.put(entry.getKey(), entry.getValue()+" "+id);
+        for (Map.Entry<String, String> entry : annotation.entrySet()) {
+            vertexAnnotation.put(entry.getKey(), entry.getValue() + " " + id);
         }
         String font = values.getFontVertex();
         int fontSize = values.getFontSizeVertex();
@@ -78,6 +81,7 @@ public class GraphObjectsFactory {
 
     /**
      * Creates a new sphere with the values set in values.
+     *
      * @param position The position of the new sphere.
      * @return A new sphere object.
      */
@@ -89,11 +93,11 @@ public class GraphObjectsFactory {
         Pair<Double> size = new Pair<>(width, height);
         Map<String, String> annotation = values.getDefaultAnnotationSphere();
         Map<String, String> sphereAnnotation = new HashMap<>();
-        for (Map.Entry<String, String> entry: annotation.entrySet()) {
-            sphereAnnotation.put(entry.getKey(), entry.getValue()+" "+id);
+        for (Map.Entry<String, String> entry : annotation.entrySet()) {
+            sphereAnnotation.put(entry.getKey(), entry.getValue() + " " + id);
         }
         String font = values.getFontSphere();
         int fontSize = values.getFontSizeSphere();
-        return new Sphere(id, fillPaint, position,size, sphereAnnotation, font, fontSize);
+        return new Sphere(id, fillPaint, position, size, sphereAnnotation, font, fontSize);
     }
 }

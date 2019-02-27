@@ -15,7 +15,8 @@ public class ActivateHighlightAction extends GraphAction {
     /**
      * Constructor in case several/all vertices shall be highlighted.
      */
-    public ActivateHighlightAction() {}
+    public ActivateHighlightAction() {
+    }
 
     /**
      * Highlights chosen vertices and edges and adds the log to the database.

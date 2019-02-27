@@ -48,7 +48,7 @@ public class EditVertexAnnotationParam implements Param {
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pVertex        The vertex containing its old annotation.
+     * @param pVertex               The vertex containing its old annotation.
      * @param pOldAnnotationEnglish The old annotation in english.
      * @param pNewAnnotationEnglish The new annotation in english.
      * @param pOldAnnotationGerman  The old annotation in german.
@@ -70,7 +70,7 @@ public class EditVertexAnnotationParam implements Param {
             information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
                     + "Old annotation(English): " + oldAnnotationEnglish
                     + ", new annotation(English): " + newAnnotationEnglish
-                     + ". Old annotation(German): " + oldAnnotationGerman
+                    + ". Old annotation(German): " + oldAnnotationGerman
                     + ", new annotation(German): " + newAnnotationGerman + ". ";
         } else {
             information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "

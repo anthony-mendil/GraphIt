@@ -34,19 +34,19 @@ public class ActionHistory {
      */
     public void execute(Action action) {
         current++;
-        if(current == MAX_ACTIONS) {
-            System.arraycopy(actions,1,actions,0,MAX_ACTIONS-1);
+        if (current == MAX_ACTIONS) {
+            System.arraycopy(actions, 1, actions, 0, MAX_ACTIONS - 1);
             current--;
         }
         actions[current] = action;
         actions[current].action();
-        for(int i = current+1; i< MAX_ACTIONS; i++){
+        for (int i = current + 1; i < MAX_ACTIONS; i++) {
             actions[i] = null;
         }
     }
 
-    public static ActionHistory getInstance(){
-        if (history == null){
+    public static ActionHistory getInstance() {
+        if (history == null) {
             history = new ActionHistory();
         }
         return history;
@@ -56,24 +56,24 @@ public class ActionHistory {
      * Undo for a current action.
      */
     public void undo() {
-            if (current >= 0) {
-                actions[current].undo();
-                current--;
-            }else{
-                logger.info("Can't undo further more actions.");
-            }
+        if (current >= 0) {
+            actions[current].undo();
+            current--;
+        } else {
+            logger.info("Can't undo further more actions.");
+        }
     }
 
     /**
      * Redo for a current action.
      */
     public void redo() {
-        try{
-            if(actions[current+1] != null) {
+        try {
+            if (actions[current + 1] != null) {
                 current++;
                 actions[current].action();
             }
-        }catch(UnsupportedOperationException e){
+        } catch (UnsupportedOperationException e) {
             logger.info("Can't redo the latest action.");
         }
     }
@@ -81,8 +81,8 @@ public class ActionHistory {
     /**
      * Removes the last action from the ActionHistory.
      */
-    public void removeLastEntry(){
-        if(current >= 0) {
+    public void removeLastEntry() {
+        if (current >= 0) {
             actions[current] = null;
             current--;
         }
@@ -91,12 +91,12 @@ public class ActionHistory {
     /**
      * Wipes the existing ActionHistory.
      */
-    public void wipe(){
+    public void wipe() {
         actions = new Action[MAX_ACTIONS];
         current = -1;
     }
 
-    public boolean isLast(){
-        return actions[current+1] == null;
+    public boolean isLast() {
+        return actions[current + 1] == null;
     }
 }

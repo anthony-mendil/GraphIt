@@ -60,10 +60,11 @@ public class EditEdgesStrokeParam implements Param {
 
     /**
      * Creates a parameter object of its own class.
-     * @param pEdgesOld The old edges and their stroke types.
-     * @param pEdgesNew The new edges and their stroke types.
+     *
+     * @param pEdgesOld      The old edges and their stroke types.
+     * @param pEdgesNew      The new edges and their stroke types.
      * @param pStartVertices The start vertices of the edges.
-     * @param pEndVertices The end vertices of the edges.
+     * @param pEndVertices   The end vertices of the edges.
      */
     public EditEdgesStrokeParam(Map<Edge, StrokeType> pEdgesOld, Map<Edge, StrokeType> pEdgesNew,
                                 List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
@@ -117,6 +118,7 @@ public class EditEdgesStrokeParam implements Param {
 
     /**
      * Gets the old edges and their stroke types.
+     *
      * @return The old edges and their stroke types.
      */
     public Map<Edge, StrokeType> getEdgesOld() {
@@ -129,6 +131,7 @@ public class EditEdgesStrokeParam implements Param {
 
     /**
      * Gets the new edges and their stroke types.
+     *
      * @return The new edges and their stroke types.
      */
     public Map<Edge, StrokeType> getEdgesNew() {

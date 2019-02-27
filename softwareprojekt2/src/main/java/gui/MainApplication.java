@@ -23,7 +23,7 @@ public class MainApplication extends Application {
 
     private Scene scene;
     private Controller controller;
-    private double loadingProgress=0;
+    private double loadingProgress = 0;
 
     @Override
     public void init() throws Exception {

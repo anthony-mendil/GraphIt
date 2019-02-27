@@ -51,7 +51,7 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
         double minWidth;
 
         minWidth = (stringWidth < 160) ? stringWidth : 160;
-        width = (vsf.transform(v) < minWidth + 15) ?  minWidth + 15 : vsf.transform(v);
+        width = (vsf.transform(v) < minWidth + 15) ? minWidth + 15 : vsf.transform(v);
 
         double height = metrics.getHeight() + 5;
         RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
@@ -59,7 +59,7 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
         String title = renderHelperFunction.breakAnnotation(width, label, fontMetrics);
 
         int stringsLenght = title.split("\n").length;
-        double minHeight = stringsLenght* height;
+        double minHeight = stringsLenght * height;
         height = (1 + (vsf.transform(v) * 0.01)) * height;
 
         if (height < minHeight) {
@@ -70,13 +70,13 @@ public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V>
             float arcSize = (float) Math.min(height, width) / 2;
             RoundRectangle2D round = new RoundRectangle2D.Float();
             round.setRoundRect(-(width / 2), -(height / 2),
-                    width+font.getSize(), height, arcSize, arcSize);
+                    width + font.getSize(), height, arcSize, arcSize);
             return round;
 
 
         } else {
-            height = height + stringsLenght*(font.getSize()*(0.5));
-            width = width + stringsLenght*(font.getSize()*0.5);
+            height = height + stringsLenght * (font.getSize() * (0.5));
+            width = width + stringsLenght * (font.getSize() * 0.5);
             double hOffset = -(width / 2);
             double vOffset = -(height / 2);
             return new Ellipse2D.Double(hOffset, vOffset, width, height);

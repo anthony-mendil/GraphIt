@@ -8,7 +8,6 @@ import log_management.DatabaseManager;
 
 /**
  * Creates a new graph.
- *
  */
 public class CreateGraphAction extends GraphAction {
     private String graphName;
@@ -21,9 +20,9 @@ public class CreateGraphAction extends GraphAction {
      * @param pGraphName The name of the graph.
      */
     public CreateGraphAction(String pGraphName, Controller controller) {
-       super();
-       this.controller = controller;
-       this.graphName=pGraphName;
+        super();
+        this.controller = controller;
+        this.graphName = pGraphName;
     }
 
     @Override

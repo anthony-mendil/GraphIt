@@ -6,18 +6,18 @@ import edu.uci.ics.jung.visualization.control.SatelliteTranslatingGraphMousePlug
 
 import java.awt.event.InputEvent;
 
-public class SatelliteGraphMouse  extends ModalSatelliteGraphMouse implements
+public class SatelliteGraphMouse extends ModalSatelliteGraphMouse implements
         ModalGraphMouse {
 
     /**
      * the satellite graph mouse (zoom)
      */
-    public SatelliteGraphMouse(){
+    public SatelliteGraphMouse() {
         super();
     }
 
     @Override
-    public void loadPlugins(){
+    public void loadPlugins() {
         translatingPlugin = new SatelliteTranslatingGraphMousePlugin(InputEvent.BUTTON1_DOWN_MASK);
         add(translatingPlugin);
     }

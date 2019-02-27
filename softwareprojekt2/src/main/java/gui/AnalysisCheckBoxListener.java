@@ -77,7 +77,7 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
 
                 AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
-            } else if (!amountSymptomTextField.getText().isEmpty()){
+            } else if (!amountSymptomTextField.getText().isEmpty()) {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 

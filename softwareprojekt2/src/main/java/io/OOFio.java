@@ -71,7 +71,7 @@ public class OOFio {
         GXLio gxlio = new GXLio();
         String oof = createOOF(gxlio.gxlFromInstance(true), logDao.getAllString());
         try (OutputStreamWriter writer =
-                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)){
+                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)) {
             writer.write(oof);
         } catch (IOException e) {
             logger.error(e.toString());
@@ -92,7 +92,7 @@ public class OOFio {
         }
         GXLio gxlio = new GXLio();
 
-        gxlio.gxlToInstance(gxlFromOOF(oof),true);
+        gxlio.gxlToInstance(gxlFromOOF(oof), true);
 
         DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
 

@@ -58,10 +58,10 @@ public class Values {
     /**
      * The default layout size.
      */
-    private Dimension defaultLayoutSize = new Dimension(985,540);
+    private Dimension defaultLayoutSize = new Dimension(985, 540);
 
     @Setter(AccessLevel.NONE)
-    private Dimension defaultLayoutVVSize = new Dimension(2000,1500);
+    private Dimension defaultLayoutVVSize = new Dimension(2000, 1500);
     /**
      * The default satellite layout size.
      */
@@ -86,7 +86,7 @@ public class Values {
     /**
      * The fill paint color of a vertex.
      */
-    private Color fillPaintVertex = new Color(123,255,51);
+    private Color fillPaintVertex = new Color(123, 255, 51);
 
     /**
      * true if the anchor points are highlighted in the gui
@@ -95,7 +95,7 @@ public class Values {
     private boolean showAnchor = false;
 
     @Setter(AccessLevel.NONE)
-    private final Color anchorHighlight = new Color(204, 0,0);
+    private final Color anchorHighlight = new Color(204, 0, 0);
 
     /**
      * The draw paint color of a vertex.
@@ -112,7 +112,7 @@ public class Values {
     /**
      * The highlight color for vertices.
      */
-    private Color highlightPaint = new Color(255,48,57);
+    private Color highlightPaint = new Color(255, 48, 57);
     /**
      * The edge paint color of an edge.
      */
@@ -166,17 +166,17 @@ public class Values {
     private Text positionMouseY = new Text("");
 
     @Setter(AccessLevel.NONE)
-    private final javafx.scene.text.Font actionTextInfo =  javafx.scene.text.Font.font("System Regular", FontWeight
+    private final javafx.scene.text.Font actionTextInfo = javafx.scene.text.Font.font("System Regular", FontWeight
             .NORMAL, 12);
     @Setter(AccessLevel.NONE)
-    private final javafx.scene.text.Font actionTextAlert =  javafx.scene.text.Font.font("System Regular", FontWeight
+    private final javafx.scene.text.Font actionTextAlert = javafx.scene.text.Font.font("System Regular", FontWeight
             .EXTRA_BOLD, 14);
 
     @Setter(AccessLevel.NONE)
-    private final javafx.scene.paint.Color actionTextColorAlert =  javafx.scene.paint.Color.rgb(160, 12, 12, 1);
+    private final javafx.scene.paint.Color actionTextColorAlert = javafx.scene.paint.Color.rgb(160, 12, 12, 1);
 
     @Setter(AccessLevel.NONE)
-    public static final javafx.scene.paint.Color actionTextColorInfo =  javafx.scene.paint.Color.BLACK;
+    public static final javafx.scene.paint.Color actionTextColorInfo = javafx.scene.paint.Color.BLACK;
 
     private int scale;
 
@@ -193,27 +193,26 @@ public class Values {
     private Font mali;
 
 
-
     private Values() {
 
     }
 
-    public Map<String, String> getDefaultAnnotationVertex(){
+    public Map<String, String> getDefaultAnnotationVertex() {
         Map<String, String> annotation = new HashMap<>();
-        annotation.put(Language.GERMAN.name(),"Symptom");
-        annotation.put(Language.ENGLISH.name(),"Symptom");
+        annotation.put(Language.GERMAN.name(), "Symptom");
+        annotation.put(Language.ENGLISH.name(), "Symptom");
         return annotation;
     }
 
-    public Map<String, String> getDefaultAnnotationSphere(){
+    public Map<String, String> getDefaultAnnotationSphere() {
         Map<String, String> annotation = new HashMap<>();
-        annotation.put(Language.GERMAN.name(),"Sphäre");
-        annotation.put(Language.ENGLISH.name(),"Sphere");
+        annotation.put(Language.GERMAN.name(), "Sphäre");
+        annotation.put(Language.ENGLISH.name(), "Sphere");
         return annotation;
     }
 
-    public static Values getInstance(){
-        if (instance == null){
+    public static Values getInstance() {
+        if (instance == null) {
             instance = new Values();
         }
         return instance;

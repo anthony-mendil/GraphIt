@@ -73,7 +73,7 @@ public class AnalysisTest {
         syndrom.getVv().getGraphLayout().setGraph(graph);
     }
 
-    private void generateGraphElements(){
+    private void generateGraphElements() {
         values.setFontSizeSphere(10);
         values.setFillPaintSphere(new java.awt.Color(86, 151, 31, 183));
 
@@ -122,25 +122,26 @@ public class AnalysisTest {
         graph.addVertexExisting(v10);
 
         //relationChain
-        graph.addEdgeExisting(e1,v1,v2);
-        graph.addEdgeExisting(e2,v2,v3);
-        graph.addEdgeExisting(e3,v3,v4);
-        graph.addEdgeExisting(e4,v4,v5);
+        graph.addEdgeExisting(e1, v1, v2);
+        graph.addEdgeExisting(e2, v2, v3);
+        graph.addEdgeExisting(e3, v3, v4);
+        graph.addEdgeExisting(e4, v4, v5);
         //cycle
-        graph.addEdgeExisting(e5,v5,v6);
-        graph.addEdgeExisting(e6,v6,v7);
-        graph.addEdgeExisting(e7,v7,v5);
+        graph.addEdgeExisting(e5, v5, v6);
+        graph.addEdgeExisting(e6, v6, v7);
+        graph.addEdgeExisting(e7, v7, v5);
 
-        graph.addEdgeExisting(e8,v1,v8);
-        graph.addEdgeExisting(e9,v1,v9);
-        graph.addEdgeExisting(e10,v8,v9);
-        graph.addEdgeExisting(e11,v8,v10);
-        graph.addEdgeExisting(e12,v9,v10);
+        graph.addEdgeExisting(e8, v1, v8);
+        graph.addEdgeExisting(e9, v1, v9);
+        graph.addEdgeExisting(e10, v8, v9);
+        graph.addEdgeExisting(e11, v8, v10);
+        graph.addEdgeExisting(e12, v9, v10);
 
 
     }
+
     @Test
-    public void testSetup(){
-        
+    public void testSetup() {
+
     }
 }

@@ -46,7 +46,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) layout.getGraph();
         Edge edge = (Edge) pickSupport.getEdge(layout, e.getX(), e.getY());
-        Vertex vertex = (Vertex) (pickSupport).getVertex(layout, e.getX(), e.getY());
+        Vertex vertex = (pickSupport).getVertex(layout, e.getX(), e.getY());
         PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
         int addToSelection = InputEvent.BUTTON1_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK;
         if (edge != null && vertex == null) {
@@ -67,7 +67,8 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
 
     /**
      * calculates the distance between two points
-     * @param pointClick the first point
+     *
+     * @param pointClick  the first point
      * @param pointVertex the second point
      * @return the distance
      */
@@ -111,7 +112,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Point2D point = e.getPoint();
-        Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
+        Vertex vertex = pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
 
         if (SwingUtilities.isRightMouseButton(e)) {

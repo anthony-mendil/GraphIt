@@ -22,7 +22,7 @@ public class AddFadeoutElementAction extends GraphAction {
         for (Edge e : pickedState.getPicked()) {
             e.setVisible(false);
         }
-        for(Vertex v : vertexPickedState.getPicked()){
+        for (Vertex v : vertexPickedState.getPicked()) {
             v.setVisible(false);
         }
 
@@ -32,6 +32,6 @@ public class AddFadeoutElementAction extends GraphAction {
 
     @Override
     public void undo() {
-      //There is no undo operation for this action.
+        //There is no undo operation for this action.
     }
 }

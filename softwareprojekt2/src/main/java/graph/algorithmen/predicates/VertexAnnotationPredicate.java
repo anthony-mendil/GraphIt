@@ -33,7 +33,7 @@ public class VertexAnnotationPredicate<V, E> implements Predicate<Context<Graph<
      * @param regex The regular expression to filter for.
      */
     public VertexAnnotationPredicate(String regex) {
-        this.regex = "(.*)"+regex+"(.*)";
+        this.regex = "(.*)" + regex + "(.*)";
     }
 
     @Override

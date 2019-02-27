@@ -18,7 +18,7 @@ public class GraphDao implements Dao<Graph> {
     /**
      * Sql query to get all graphs from the database.
      */
-    private static final String GRAPH_FROM_ID2 =  "SELECT g from Graph g where g.id > 0";
+    private static final String GRAPH_FROM_ID2 = "SELECT g from Graph g where g.id > 0";
 
     @Override
     public Optional<Graph> get(long id) {
@@ -113,6 +113,7 @@ public class GraphDao implements Dao<Graph> {
 
     /**
      * Gets the gxl representation of the graph from th database.
+     *
      * @return The gxl of the graph.
      */
     public String gxlFromDatabase() {
@@ -130,6 +131,7 @@ public class GraphDao implements Dao<Graph> {
 
     /**
      * Evaluates if the database is empty.
+     *
      * @return True if the database is empty.
      */
     public boolean isEmpty() {

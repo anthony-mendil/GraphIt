@@ -62,10 +62,11 @@ public class EditEdgesColorParam implements Param {
 
     /**
      * Creates a parameter object of its own class.
-     * @param pEdgesOld The old edges and their old colors.
-     * @param pEdgesNew The new edges and their new colors.
+     *
+     * @param pEdgesOld      The old edges and their old colors.
+     * @param pEdgesNew      The new edges and their new colors.
      * @param pStartVertices The start vertices of the edges.
-     * @param pEndVertices The end vertices of the edges.
+     * @param pEndVertices   The end vertices of the edges.
      */
     public EditEdgesColorParam(Map<Edge, Color> pEdgesOld, Map<Edge, Color> pEdgesNew,
                                List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
@@ -120,6 +121,7 @@ public class EditEdgesColorParam implements Param {
 
     /**
      * Gets the old edges and their colors.
+     *
      * @return The old edges and their colors.
      */
     public Map<Edge, Color> getEdgesOld() {
@@ -132,6 +134,7 @@ public class EditEdgesColorParam implements Param {
 
     /**
      * Gets the new edges and their colors.
+     *
      * @return The new edges and their colors.
      */
     public Map<Edge, Color> getEdgesNew() {

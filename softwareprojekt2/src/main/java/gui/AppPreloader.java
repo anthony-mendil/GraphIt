@@ -22,7 +22,7 @@ public class AppPreloader extends Preloader {
 
         BorderPane p = fxmlLoader.load();
         pc = fxmlLoader.getController();
-        Scene sz =new Scene(p);
+        Scene sz = new Scene(p);
         sz.getStylesheets().add("/gui_style.css");
         stage.getIcons().add(new Image("/GraphItLogo.png"));
         stage.setScene(sz);

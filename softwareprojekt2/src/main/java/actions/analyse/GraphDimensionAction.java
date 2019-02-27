@@ -60,14 +60,14 @@ public class GraphDimensionAction extends GraphAction {
          */
         DecimalFormat format = new DecimalFormat("####.##");
 
-        scope = format.format( graph.getEdges().size() + (long) graph.getVertices().size());
-        if(!graph.getVertices().isEmpty()) {
-            networkIndex = format.format((double)2 * graph.getEdges().size() / graph.getVertices().size());
-            structureIndex = format.format((double)(jGraphTHandler.detectRelationChains().getKey().size() +
+        scope = format.format(graph.getEdges().size() + (long) graph.getVertices().size());
+        if (!graph.getVertices().isEmpty()) {
+            networkIndex = format.format((double) 2 * graph.getEdges().size() / graph.getVertices().size());
+            structureIndex = format.format((double) (jGraphTHandler.detectRelationChains().getKey().size() +
                     jGraphTHandler.detectConvergentBranches().size() +
                     jGraphTHandler.detectDivergentBranches().size() +
-                    jGraphTHandler.detectCycles().size() )/ graph.getVertices().size());
-        }else{
+                    jGraphTHandler.detectCycles().size()) / graph.getVertices().size());
+        } else {
             networkIndex = "NaN";
             structureIndex = "NaN";
         }

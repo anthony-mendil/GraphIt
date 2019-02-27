@@ -17,11 +17,11 @@ public class Protocolio {
     /**
      * Creates a new OOFio object.
      */
-    public Protocolio(){
+    public Protocolio() {
         // Can handle protocol-export now
     }
 
-    private static Logger logger= Logger.getLogger(Protocolio.class);
+    private static Logger logger = Logger.getLogger(Protocolio.class);
     private LogToStringConverter logToStringConverter = new LogToStringConverter();
 
     /**
@@ -29,14 +29,14 @@ public class Protocolio {
      *
      * @param pFile The destination file
      */
-    public void exportAsReadableProtocol(File pFile){
+    public void exportAsReadableProtocol(File pFile) {
         LogDao logDao = new LogDao();
         List<Log> logs = logDao.getAll();
         StringBuilder protocol = new StringBuilder();
         for (Log log : logs) {
             protocol.append(logToStringConverter.convertForTextFile(log));
         }
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
             bufferedWriter.write(protocol.toString());
         } catch (IOException e) {
             logger.error(e.toString());
@@ -48,11 +48,11 @@ public class Protocolio {
      *
      * @param pFile The destination file
      */
-    public void exportAsUsableProtocol(File pFile){
+    public void exportAsUsableProtocol(File pFile) {
         LogDao logDao = new LogDao();
-        String protocol=logDao.getAllString();
+        String protocol = logDao.getAllString();
         try (OutputStreamWriter writer =
-                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)){
+                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)) {
             writer.write(protocol);
         } catch (IOException e) {
             logger.error(e.toString());
