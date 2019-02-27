@@ -12,7 +12,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSphereParam;
 
 /**
- * Changes the font of annotations.
+ * Changes the font of the annotation of the selected sphere.
  */
 public class EditFontSphereLogAction extends LogAction {
     /**
@@ -75,6 +75,12 @@ public class EditFontSphereLogAction extends LogAction {
         editFontSphereLogAction.action();
     }
 
+    /**
+     * Creates a new parameter-object of this action.
+     * @param sphere    The sphere.
+     * @param oldFont   The old font of the sphere.
+     * @param newFont   The new font of the sphere.
+     */
     public void createParameter(Sphere  sphere, String oldFont, String newFont) {
         parameters = new EditFontSphereParam(sphere, oldFont, newFont);
     }

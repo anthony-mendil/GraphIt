@@ -17,6 +17,9 @@ import java.util.Map;
  * Changes the size of a vertex or vertices.
  */
 public class EditVerticesSizeLogAction extends LogAction {
+    /**
+     * Indicator whether the vertices will shrink or enlarge.
+     */
     private SizeChange sizeChange;
     /**
      * Changes the size of the vertices.
@@ -87,7 +90,9 @@ public class EditVerticesSizeLogAction extends LogAction {
     }
 
     /**
-     * Creates the vertices object.
+     * Creates the parameter-object for this action.
+     * @param oldVertices The old vertices and their old size.
+     * @param newVertices The new vertices and their new size.
      */
     public void createParameter(Map<Vertex,Integer> oldVertices, Map<Vertex,Integer> newVertices) {
         parameters = new EditVerticesSizeParam(oldVertices,newVertices);

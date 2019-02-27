@@ -51,7 +51,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * creates the parameters for the action
+     * Creates the parameter-object for this action.
      * @param oldSpheres a list containing the old spheres (position) and its width/height
      * @param oldVertices a list containing the old vertices (position) and its position
      */
@@ -60,7 +60,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * finding the smallest x/ y
+     * Finding the smallest x/ y.
      * @param sphereList a list of the spheres
      * @return the point with the smallest y/ x
      */
@@ -69,7 +69,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
         double y = 20;
         for (Sphere s : sphereList) {
             Point2D point2D = s.getCoordinates();
-            if (point2D.getY() < y) {
+            if (point2D.getY() < y || point2D.getY() == y && point2D.getX() < x) {
                 x = point2D.getX();
                 y = point2D.getY();
             }
@@ -119,7 +119,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * finds the max/min height of a sphere
+     * Finds the max/min height of a sphere.
      * @param sphereList a list containing all spheres
      * @param oldSphereMap the old spheres map (parameters)
      * @return the max height and min height
@@ -142,7 +142,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * finds the max/min y position of a sphere
+     * Finds the max/min y position of a sphere.
      * @param sphereList a list containing all spheres
      * @param oldSphereMap the old spheres map (parameters)
      * @return the min/ max Y position
@@ -166,7 +166,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     *
+     * Layouts the spheres.
      * @param sphereRows the spheres sorted in rows according to its poition
      * @param x the current x value
      * @param size the height/ width value
@@ -178,7 +178,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
             double xCoordinate = x;
 
             for (Sphere s : sphereRow) {
-                double dx = xCoordinate - s.getCoordinates().getX();
+                double dx = xCoordinate;// - s.getCoordinates().getX();
                 double dy = yCoordinate - s.getCoordinates().getY();
                 s.setHeight(size);
                 s.setWidth(size);
@@ -200,7 +200,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * sorts the spheres in rows according to ist current coordinates
+     * Sorts the spheres in rows according to ist current coordinates.
      * @param sphereRows the list, which will be containing the spheres sorted in rows
      * @param sphereList a list, containing all spheres
      * @param maxI the max iteration value
@@ -223,7 +223,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * sets the position of the vertices to the layout
+     * Sets the position of the vertices to the layout.
      * @param layout the current layout
      * @param graph the current graph
      */
@@ -248,7 +248,11 @@ public class LayoutSphereGraphLogAction extends LogAction {
         }
     }
 
-    private static final  Comparator<Sphere> sphereCompare = Comparator.comparingInt(sphere -> (int) sphere.getCoordinates().getX());
+    /**
+     * Defines a comparator for the spheres.
+     */
+    private static final  Comparator<Sphere> sphereCompare = Comparator.comparingDouble(sphere -> sphere.getCoordinates().getX());
+
 
     @Override
     public void undo() {

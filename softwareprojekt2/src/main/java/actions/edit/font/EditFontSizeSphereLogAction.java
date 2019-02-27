@@ -12,11 +12,11 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditFontSizeSphereParam;
 
 /**
- * Changes the font-size of annotations of a sphere.
+ * Changes the font-size of the annotation of the sphere.
  */
 public class EditFontSizeSphereLogAction extends LogAction {
     /**
-     * Temporary size vertices.
+     * The new size of the vertices.
      */
     private int size;
     /**
@@ -76,7 +76,12 @@ public class EditFontSizeSphereLogAction extends LogAction {
         editFontSizeSphereLogAction.action();
     }
 
-
+    /**
+     * Creates the parameter-object for this action.
+     * @param sphere        The selected sphere.
+     * @param oldFontSize   The old font-size of the annotation.
+     * @param newFontSize   The new font-size of the annotation.
+     */
     public void createParameter(Sphere sphere, int oldFontSize, int newFontSize) {
         parameters = new EditFontSizeSphereParam(sphere,oldFontSize,newFontSize);
     }

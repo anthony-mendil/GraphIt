@@ -15,12 +15,12 @@ import java.awt.*;
 
 
 /**
- * Changes the color of the selected sphere and also the vertices which belongs to it.
+ * Changes the color of the selected sphereit.
  */
 
 public class EditSphereColorLogAction extends LogAction {
     /**
-     * temporary vertices for the color.
+     * The new color.
      */
     private Color color;
     /**
@@ -80,7 +80,12 @@ public class EditSphereColorLogAction extends LogAction {
 
     }
 
-
+    /**
+     * Creates a new parameter-object of this action.
+     * @param sphere    The sphere, that gets a new color.
+     * @param oldColor  The old color of the sphere.
+     * @param newColor  The new color of the sphere.
+     */
     public void createParameter(Sphere sphere, Color oldColor, Color newColor) {
         parameters = new EditSphereColorParam(sphere, oldColor, newColor);
     }
