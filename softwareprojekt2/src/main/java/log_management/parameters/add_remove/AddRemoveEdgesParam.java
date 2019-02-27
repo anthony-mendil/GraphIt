@@ -37,7 +37,7 @@ public class AddRemoveEdgesParam implements Param {
     private List<Vertex> endVertices;
 
     /**
-     * Creates a param object of its own class.
+     * Creates a parameter object of its own class.
      * @param pEdges The edges.
      * @param pStart The start vertices of the edges.
      * @param pEnd The end vertices of the edges.
@@ -59,13 +59,13 @@ public class AddRemoveEdgesParam implements Param {
         if (language == Language.ENGLISH) {
             StringBuilder list = new StringBuilder("Relations: ");
             for (int i = 0; i < edges.size(); i++) {
-                list.append(SyndromObjectPrinter.edgePrintEnglish( verticesList.get(i))).append(". ");
+                list.append(SyndromObjectPrinter.edgePrintEnglish( verticesList.get(i))).append("; ");
             }
             return list.toString();
         } else {
             StringBuilder list = new StringBuilder("Relationen: ");
             for (int i = 0; i < edges.size(); i++) {
-                list.append(SyndromObjectPrinter.edgePrintGerman(verticesList.get(i))).append(". ");
+                list.append(SyndromObjectPrinter.edgePrintGerman(verticesList.get(i))).append("; ");
             }
             return list.toString();
         }

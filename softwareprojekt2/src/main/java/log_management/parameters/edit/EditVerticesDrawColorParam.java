@@ -62,7 +62,7 @@ public class EditVerticesDrawColorParam implements Param {
             for (int i = 0; i < oldVertices.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old draw color: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i),
                         Language.ENGLISH)).append(", new draw color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.ENGLISH)).append(". ");
+                        Language.ENGLISH)).append("; ");
             }
         } else {
             information.append("Veränderte Symptome: ");
@@ -70,7 +70,7 @@ public class EditVerticesDrawColorParam implements Param {
             for (int i = 0; i < oldVertices.size(); i++) {
                 informationBuilder.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Umrandungsfarbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i),
                         Language.GERMAN)).append(", neue Umrandungsfarbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i),
-                        Language.GERMAN)).append(". ");
+                        Language.GERMAN)).append("; ");
             }
             information = new StringBuilder(informationBuilder.toString());
         }

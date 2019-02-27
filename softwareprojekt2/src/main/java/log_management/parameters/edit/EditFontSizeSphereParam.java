@@ -33,7 +33,7 @@ public class EditFontSizeSphereParam implements Param {
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pSphere      The sphere containing the old annotation.
+     * @param pSphere      The sphere.
      * @param pOldFontSize The old font size.
      * @param pNewFontSize The new font size.
      */

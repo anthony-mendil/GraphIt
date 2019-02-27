@@ -57,12 +57,16 @@ public class EditVerticesSizeParam implements Param {
         if (language == Language.ENGLISH) {
             information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old size: ").append(oldSizes.get(i)).append(", new size: ").append(newSizes.get(i)).append(". ");
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ")
+                        .append("Old size: ").append(oldSizes.get(i)).append(", new size: ")
+                        .append(newSizes.get(i)).append("; ");
             }
         } else {
             information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Größe: ").append(oldSizes.get(i)).append(", neue Größe: ").append(newSizes.get(i)).append(". ");
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ")
+                        .append("Alte Größe: ").append(oldSizes.get(i)).append(", neue Größe: ")
+                        .append(newSizes.get(i)).append("; ");
             }
         }
         return information.toString();

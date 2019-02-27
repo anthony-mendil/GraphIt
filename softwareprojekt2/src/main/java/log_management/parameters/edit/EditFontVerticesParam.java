@@ -58,12 +58,16 @@ public class EditFontVerticesParam implements Param {
         if (language == Language.ENGLISH) {
             information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old font: ").append(oldFonts.get(i)).append(", new font: ").append(newFonts.get(i)).append(". ");
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ")
+                        .append("Old font: ").append(oldFonts.get(i)).append(", new font: ")
+                        .append(newFonts.get(i)).append("; ");
             }
         } else {
             information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Schriftart: ").append(oldFonts.get(i)).append(", neue Schriftart: ").append(newFonts.get(i)).append(". ");
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ")
+                        .append("Alte Schriftart: ").append(oldFonts.get(i)).append(", neue Schriftart: ")
+                        .append(newFonts.get(i)).append("; ");
             }
         }
         return information.toString();

@@ -57,7 +57,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.print.PageLayout;
 import javafx.print.Printer;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -81,7 +80,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.*;
-import javafx.stage.Window;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.LogToStringConverter;
@@ -89,14 +87,9 @@ import log_management.dao.LogDao;
 import log_management.tables.Log;
 import lombok.Data;
 import org.apache.log4j.Logger;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.printing.PDFPageable;
-import sun.print.RasterPrinterJob;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.text.DecimalFormat;
@@ -1247,6 +1240,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an ExportGxlAction-object and executes the action with the action history.
      */
     public void exportGXL() {
+        rulesTemplate();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1261,6 +1255,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
      */
     public void exportGXLWithTemplate() {
+        rulesTemplate();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1301,6 +1296,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an ExportOofAction-object and executes the action with the action history.
      */
     public void exportOOF() {
+        rulesTemplate();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1471,7 +1467,6 @@ public class Controller implements ObserverSyndrom {
         createButton.setDisable(false);
         analysisButton.setDisable(false);
         editButton.setDisable(true);
-
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
@@ -2365,6 +2360,7 @@ public class Controller implements ObserverSyndrom {
             loadLanguage.changeStringsLanguage(controller);
             values.setGuiLanguage(language);
             treeViewUpdate();
+            loadTables();
             sortFilterLogs();
         }
 
@@ -2733,14 +2729,20 @@ public class Controller implements ObserverSyndrom {
 
         if (!spheres.isEmpty()) {
             loadSpheresTable(spheres);
+        }else{
+            sphereTableView.getItems().clear();
         }
 
         if (!vertices.isEmpty()) {
             loadVerticesTable(vertices);
+        }else{
+            symptomTableView.getItems().clear();
         }
 
         if (!edges.isEmpty()) {
             loadEdgesTable(edges);
+        }else{
+            edgeTableView.getItems().clear();
         }
     }
 
@@ -3159,6 +3161,7 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateNewGraph() {
         treeViewUpdate();
+        loadTables();
     }
 
     private void filterLogs(LogEntryName entryName) {
@@ -3176,9 +3179,38 @@ public class Controller implements ObserverSyndrom {
                                 TreeItem<Object> rootItem = new TreeItem<>();
                                 List<Log> filterLog = (entryName == null) ? logDao.getAll() : logDao.getLogType(entryName);
                                 for (Log log : filterLog) {
-                                    String s = logToStringConverter.convert(log);
-                                    TreeItem<Object> logItem = new TreeItem<>(s);
-                                    rootItem.getChildren().add(logItem);
+                                    String time = logToStringConverter.convert(log);
+                                    String index = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(index, "");
+                                    time = time.trim();
+                                    String name = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(name,"");
+                                    time = time.trim();
+                                    String parameter = time.substring(0, time.indexOf("\n"));
+                                    time = time.replaceFirst(parameter, "");
+                                    time = time.trim();
+                                    TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
+                                    TreeItem<Object> logTime = new TreeItem<>(time);
+
+
+                                    //TreeItem<Object> logInformation = new TreeItem<>(parameter);
+
+                                    // Ich probiere was aus (Anthony)
+                                    TreeItem<Object> logInformation = null;
+                                    if (parameter.contains(";")) {
+                                        logInformation = new TreeItem<>(extractStart(parameter));
+                                        List<String> entries = evaluateEntries(parameter);
+                                        for (String s : entries) {
+                                            TreeItem<Object> entry = new TreeItem<>(s);
+                                            logInformation.getChildren().add(entry);
+                                        }
+                                    } else {
+                                        logInformation = new TreeItem<>(parameter);
+                                    }
+                                    // ende des probierens
+
+                                    logIndexName.getChildren().addAll(logTime, logInformation);
+                                    rootItem.getChildren().add(logIndexName);
                                 }
                                 rootItem.setExpanded(true);
                                 protocol.setRoot(rootItem);
@@ -3196,6 +3228,25 @@ public class Controller implements ObserverSyndrom {
         service.start();
     }
 
+    private String extractStart(String parameters) {
+        int indexOfDoublePoint = parameters.indexOf(':');
+        //Vielleicht einer weniger?
+        String start = parameters.substring(0, indexOfDoublePoint);
+        return start;
+    }
+
+    private List<String> evaluateEntries(String parameters) {
+        String localParameters = new String(parameters);
+        int indexOfDoublePoint = parameters.indexOf(':');
+        //vielleicht einer mehr?
+        localParameters = localParameters.substring(indexOfDoublePoint);
+        String[] strings = localParameters.split(";");
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < strings.length - 1; i++) {
+            list.add(strings[i].trim());
+        }
+        return list;
+    }
 
 
     @Override

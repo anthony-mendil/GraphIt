@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        LauncherImpl.launchApplication(MainApplication.class, AppPreloader.class, args);
+        LauncherImpl.launchApplication(MainApplication.class, null, args);
 
         PersonalEntityManagerFactory.getInstance().close();
     }

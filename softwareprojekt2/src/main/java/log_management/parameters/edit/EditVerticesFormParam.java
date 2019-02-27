@@ -59,12 +59,17 @@ public class EditVerticesFormParam implements Param {
         if (language == Language.ENGLISH) {
             information.append("Symptoms changed: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ").append("Old shape: ").append(EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)).append(", new shape: ").append(EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language)).append(". ");
+                information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ")
+                        .append("Old shape: ").append(EnumNameCreator
+                        .vertexShapeTypeTranslator(oldShapeTypes.get(i), language)).
+                        append(", new shape: ").append(EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language)).append("; ");
             }
         } else {
             information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Form: ").append(EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)).append(", neue Form: ").append(EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language)).append(". ");
+                information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ")
+                        .append("Alte Form: ").append(EnumNameCreator.vertexShapeTypeTranslator(oldShapeTypes.get(i), language)).append(", neue Form: ").
+                        append(EnumNameCreator.vertexShapeTypeTranslator(newShapeTypes.get(i), language)).append("; ");
             }
         }
         return information.toString();
