@@ -2,7 +2,6 @@ package actions;
 
 import graph.graph.FunctionMode;
 
-import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
 
 /**

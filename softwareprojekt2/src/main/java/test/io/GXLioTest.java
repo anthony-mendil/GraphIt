@@ -1,6 +1,5 @@
 package test.io;
 
-import actions.other.SwitchModeAction;
 import graph.graph.*;
 import gui.Values;
 import gui.properties.Language;
@@ -11,6 +10,7 @@ import org.freehep.graphicsbase.util.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.File;

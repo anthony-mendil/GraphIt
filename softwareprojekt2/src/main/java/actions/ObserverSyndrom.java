@@ -2,8 +2,6 @@ package actions;
 
 import graph.graph.FunctionMode;
 
-import java.io.ByteArrayInputStream;
-
 /**
  * Observer interface, for observing components.
  */

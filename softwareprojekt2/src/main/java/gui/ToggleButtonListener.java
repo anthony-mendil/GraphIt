@@ -3,7 +3,6 @@ package gui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 
 public class ToggleButtonListener implements ChangeListener<Boolean> {

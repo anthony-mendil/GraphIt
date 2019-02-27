@@ -11,8 +11,6 @@ import log_management.tables.Graph;
 import log_management.tables.Log;
 import lombok.Data;
 
-import java.io.ByteArrayInputStream;
-
 /**
  * The database manager, for managing the database access.
  */
