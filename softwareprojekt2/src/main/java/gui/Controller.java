@@ -3190,12 +3190,8 @@ public class Controller implements ObserverSyndrom {
                                     time = time.trim();
                                     TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
                                     TreeItem<Object> logTime = new TreeItem<>(time);
-
-
-                                    //TreeItem<Object> logInformation = new TreeItem<>(parameter);
-
-                                    // Ich probiere was aus (Anthony)
-                                    TreeItem<Object> logInformation = null;
+                                    
+                                    TreeItem<Object> logInformation;
                                     if (parameter.contains(";")) {
                                         logInformation = new TreeItem<>(extractStart(parameter));
                                         List<String> entries = evaluateEntries(parameter);
@@ -3206,7 +3202,6 @@ public class Controller implements ObserverSyndrom {
                                     } else {
                                         logInformation = new TreeItem<>(parameter);
                                     }
-                                    // ende des probierens
 
                                     logIndexName.getChildren().addAll(logTime, logInformation);
                                     rootItem.getChildren().add(logIndexName);
@@ -3229,7 +3224,6 @@ public class Controller implements ObserverSyndrom {
 
     private String extractStart(String parameters) {
         int indexOfDoublePoint = parameters.indexOf(':');
-        //Vielleicht einer weniger?
         String start = parameters.substring(0, indexOfDoublePoint);
         return start;
     }
@@ -3237,12 +3231,15 @@ public class Controller implements ObserverSyndrom {
     private List<String> evaluateEntries(String parameters) {
         String localParameters = new String(parameters);
         int indexOfDoublePoint = parameters.indexOf(':');
-        //vielleicht einer mehr?
         localParameters = localParameters.substring(indexOfDoublePoint);
         String[] strings = localParameters.split(";");
         List<String> list = new ArrayList<>();
         for (int i = 0; i < strings.length - 1; i++) {
-            list.add(strings[i].trim());
+            if (i == 0) {
+                list.add(strings[i].substring(1).trim());
+            } else {
+                list.add(strings[i].trim());
+            }
         }
         return list;
     }
