@@ -426,7 +426,7 @@ public class GXLio {
         GXLDocument doc = new GXLDocument();
         GXLGraph gxlSyndrom = new GXLGraph("syndrom");
         if(syndrom.getGraphName() == null){
-            gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString("untitled syndrom"));
+            gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString("UntitledGraph"));
         }else {
             gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString(syndrom.getGraphName()));
         }
