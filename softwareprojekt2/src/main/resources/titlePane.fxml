@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<DialogPane fx:id="titleDialog" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1"
+<DialogPane fx:id="titleDialog" stylesheets="gui_style.css"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TitlesDialogPaneController">
 
     <content>
