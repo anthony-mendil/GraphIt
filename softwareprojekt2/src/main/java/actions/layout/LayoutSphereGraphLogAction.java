@@ -69,7 +69,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
         double y = 20;
         for (Sphere s : sphereList) {
             Point2D point2D = s.getCoordinates();
-            if (point2D.getY() < y) {
+            if (point2D.getY() < y || point2D.getY() == y && point2D.getX() < x) {
                 x = point2D.getX();
                 y = point2D.getY();
             }
@@ -178,7 +178,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
             double xCoordinate = x;
 
             for (Sphere s : sphereRow) {
-                double dx = xCoordinate - s.getCoordinates().getX();
+                double dx = xCoordinate;// - s.getCoordinates().getX();
                 double dy = yCoordinate - s.getCoordinates().getY();
                 s.setHeight(size);
                 s.setWidth(size);
@@ -248,7 +248,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
         }
     }
 
-    private static final  Comparator<Sphere> sphereCompare = Comparator.comparingInt(sphere -> (int) sphere.getCoordinates().getX());
+    private static final  Comparator<Sphere> sphereCompare = Comparator.comparingDouble(sphere -> sphere.getCoordinates().getX());
 
     @Override
     public void undo() {
