@@ -1854,9 +1854,7 @@ public class Controller implements ObserverSyndrom {
         }
 
 
-        historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
-            filterLogs(analysisLogEntryName);
-        });
+        historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> filterLogs(analysisLogEntryName));
     }
 
     private void initLanguage() {
@@ -1871,7 +1869,7 @@ public class Controller implements ObserverSyndrom {
         HelperFunctions helper = new HelperFunctions();
         treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<TreeItem<Object>>) (observable, oldValue, newValue) -> {
             if (newValue != null) {
-                helper.pickElement(((TreeItem<Object>) newValue).getValue());
+                helper.pickElement( newValue.getValue());
             }
         });
 
@@ -3168,8 +3166,7 @@ public class Controller implements ObserverSyndrom {
 
     private String extractStart(String parameters) {
         int indexOfDoublePoint = parameters.indexOf(':');
-        String start = parameters.substring(0, indexOfDoublePoint);
-        return start;
+        return parameters.substring(0, indexOfDoublePoint);
     }
 
     private List<String> evaluateEntries(String parameters) {
