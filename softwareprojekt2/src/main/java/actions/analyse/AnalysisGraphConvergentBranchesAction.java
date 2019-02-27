@@ -13,8 +13,8 @@ import java.util.Set;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * <p>
- * This action calculates all convergent branches in the graph.
+ * This action calculates all convergent branches in the graph. An convergent branch, is a vertex,
+ * which have an degree of at least two of outgoing relations.
  */
 public class AnalysisGraphConvergentBranchesAction extends GraphAction {
 

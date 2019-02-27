@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * <p>
- * This Action finds and highlights all the neutral
+ * This Action finds and highlights all the neutral relations.
  */
 public class AnalysisGraphNeutralRelationsAction extends GraphAction {
 

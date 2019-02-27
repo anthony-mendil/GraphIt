@@ -12,8 +12,8 @@ import java.util.Set;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * <p>
- * This Action finds all edge-chains in the graph.
+ * This Action finds all edge-chains in the graph. An edge-chain is an chain of relations,
+ * with a size of three vertices, which none of them is a branch.
  */
 public class AnalysisGraphEdgeChainsAction extends GraphAction {
 

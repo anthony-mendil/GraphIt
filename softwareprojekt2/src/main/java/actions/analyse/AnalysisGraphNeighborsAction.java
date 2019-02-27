@@ -12,8 +12,7 @@ import java.util.List;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * <p>
- * This action finds all predecessors and successors of the selected symptom in x steps.
+ * This action finds all predecessors and successors of the selected symptom in the given steps.
  */
 public class AnalysisGraphNeighborsAction extends GraphAction {
     /**
@@ -23,14 +22,17 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
     /**
      * The amount of successors/predecessors of a specific vertex.
      */
-    private int amountSteps = 0;
+    private int amountSteps;
 
     /**
-     * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
+     * Constructor in case the user chooses a AnalyseType - neighbor option.
      * These analyse functions are implemented by JGraphT algorithms and will be processed through the JGraphT Handler.
      * After processing and finding out the values the action is looking for, the information is displayed
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
+     * @param analyseTypeSeveral The selected mode: successor/predecessor/both
+     * @param amountSteps The amount of iterations that should be calculated.
+     *
      */
     public AnalysisGraphNeighborsAction(AnalyseTypeSeveral analyseTypeSeveral, int amountSteps) {
         this.analyseTypeSeveral = analyseTypeSeveral;

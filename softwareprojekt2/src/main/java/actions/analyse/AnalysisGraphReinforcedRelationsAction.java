@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * This Action finds and highlights all the neutral relations.
+ * This Action finds and highlights all the reinforced relations.
  */
-public class AnalysisGraphNeutralRelationsAction extends GraphAction {
+public class AnalysisGraphReinforcedRelationsAction extends GraphAction {
 
     /**
      * Analyses the graph on the given criteria. All the
@@ -28,7 +28,7 @@ public class AnalysisGraphNeutralRelationsAction extends GraphAction {
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
         for (Edge edge : graph.getEdges()) {
-            if (edge.getArrowType() == EdgeArrowType.NEUTRAL) {
+            if (edge.getArrowType() == EdgeArrowType.REINFORCED) {
                 edgesAnalyse.add(edge);
                 edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
                 verticesAnalyse.add(endPoints.getFirst());
