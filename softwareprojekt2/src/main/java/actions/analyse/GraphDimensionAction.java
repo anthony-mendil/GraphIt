@@ -15,7 +15,7 @@ import java.util.Set;
 
 /**
  * Displays some useful data in matter of the dimension of the graph (scope, networking index, structural index). The
- * information is displayed in the gui.
+ * information is displayed in the gui. Pls look in the website for the formula of the indices.
  */
 public class GraphDimensionAction extends GraphAction {
     /**
@@ -29,15 +29,17 @@ public class GraphDimensionAction extends GraphAction {
     @Getter
     private String networkIndex;
     /**
-     * The structureindex.
+     * The structureIndex.
      */
     @Getter
     private String structureIndex;
 
+
     /**
-     * Computes the data needed for the current graph.
+     * Does the processing/calculating stuff.
      */
-    public GraphDimensionAction() {
+    @Override
+    public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
@@ -54,14 +56,14 @@ public class GraphDimensionAction extends GraphAction {
 
 
         /**
-         * Calculating the indices.
+         * Calculating the indices. Dividing by zero is not so useful.
          */
         DecimalFormat format = new DecimalFormat("####.##");
 
         scope = format.format(graph.getEdges().size() + graph.getVertices().size());
         if(graph.getVertices().size() > 0) {
             networkIndex = format.format(2 * graph.getEdges().size() /
-                                                graph.getVertices().size());
+                    graph.getVertices().size());
             structureIndex = format.format(jGraphTHandler.detectRelationChains().getKey().size() +
                     jGraphTHandler.detectConvergentBranches().size() +
                     jGraphTHandler.detectDivergentBranches().size() +
@@ -73,15 +75,7 @@ public class GraphDimensionAction extends GraphAction {
     }
 
     /**
-     * There os no undo operation for this.
-     */
-    @Override
-    public void action() {
-        //no undo operation for this action
-    }
-
-    /**
-     * There is no redo operation
+     * There is no undo operation
      */
     @Override
     public void undo() {

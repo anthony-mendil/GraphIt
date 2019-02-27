@@ -12,20 +12,9 @@ import java.util.ArrayList;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * <p>
  * This action finds the shortest path between two selected vertices.
  */
 public class AnalysisGraphShortestPathAction extends GraphAction {
-    /**
-     * Constructor in case the user chooses a AnalyseTypeSingle - analyse option.
-     * These analyse functions are implemented by JGraphT algorithms and will be processed through the JGraphT Handler.
-     * After processing and finding out the values the action is looking for, the information is displayed
-     * or the found vertices/ edges get highlighted.
-     * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
-     */
-    public AnalysisGraphShortestPathAction() {
-        //can analyse shortest path now
-    }
 
     /**
      * Analyses the graph on the given criteria. All the

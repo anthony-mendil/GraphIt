@@ -10,14 +10,10 @@ import graph.visualization.transformer.vertex.VertexFillPaintTransformer;
 
 
 /**
- * Cancels the highlight-option of the selected vertices.
+ * Cancels the highlight-option of the selected vertices. And refreshes
+ * all vertices and relations.
  */
 public class ResetVvAction extends GraphAction {
-
-    /**
-     * Constructor in case the user annuls all/several highlighted vertices.
-     */
-    public ResetVvAction() {}
 
     @Override
     public void action() {

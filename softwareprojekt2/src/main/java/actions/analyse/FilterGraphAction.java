@@ -26,6 +26,7 @@ public class FilterGraphAction extends GraphAction {
      * Constructor in case the user filters the graph on the criteria.
      *
      * @param edgeType The edge type to filter for.
+     * @param toDo     Indicator, if it should be filtered or not.
      */
     public FilterGraphAction(EdgeArrowType edgeType, boolean toDo) {
         if (toDo) {
@@ -41,6 +42,7 @@ public class FilterGraphAction extends GraphAction {
      * Filters the vertices/spheres regex for a regular expression.
      *
      * @param regularExpression The regular expression to filter for.
+     * @param toDo              Indicator, if it should be filtered or not.
      */
     public FilterGraphAction(String regularExpression, boolean toDo) {
         if (toDo && regularExpression != null) {
@@ -54,6 +56,7 @@ public class FilterGraphAction extends GraphAction {
 
     /**
      * Filters the vertices for the attribute isVisible=false.
+     * @param toDo     Indicator, if it should be filtered or not.
      */
     public FilterGraphAction(boolean toDo) {
         if (toDo) {
@@ -81,6 +84,6 @@ public class FilterGraphAction extends GraphAction {
 
     @Override
     public void undo() {
-        // nothing to do
+        // no undo for this action.
     }
 }

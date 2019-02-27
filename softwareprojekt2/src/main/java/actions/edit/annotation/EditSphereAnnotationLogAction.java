@@ -20,10 +20,9 @@ import java.util.Map;
  */
 public class EditSphereAnnotationLogAction extends LogAction {
     /**
-     * The new annotation of the sphere.
+     * The new annotation of the sphere in english and german.
      */
     private Map<Language,String> text;
-    private Language language;
     /**
      * Constructor in case the user changes the annotation of a sphere.
      *
@@ -33,11 +32,10 @@ public class EditSphereAnnotationLogAction extends LogAction {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
         text = pText;
     }
-
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
-     * @param pEditSphereAnnotationParam The param object containing the sphere and annotation to change to.
+     * @param pEditSphereAnnotationParam The param object containing the sphere and it's new annotation.
      */
     private EditSphereAnnotationLogAction(EditSphereAnnotationParam pEditSphereAnnotationParam) {
         super(LogEntryName.EDIT_SPHERE_ANNOTATION);
@@ -90,6 +88,14 @@ public class EditSphereAnnotationLogAction extends LogAction {
         editSphereAnnotationLogAction.action();
     }
 
+    /**
+     * Creates a parameter-object for the action.
+     * @param sphere            The sphere, that needs a new annotation.
+     * @param oldAnnotationEn   The old annotation in english.
+     * @param newAnnotationEn   The new annotation in english
+     * @param oldAnnotationDe   The old annotation in german.
+     * @param newAnnotationDe   The new annotation in german.
+     */
     public void createParameter(Sphere sphere, String oldAnnotationEn, String newAnnotationEn, String oldAnnotationDe, String newAnnotationDe) {
         parameters = new EditSphereAnnotationParam(sphere, oldAnnotationEn, newAnnotationEn, oldAnnotationDe, newAnnotationDe);
     }

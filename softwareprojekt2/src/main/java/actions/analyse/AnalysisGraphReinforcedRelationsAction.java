@@ -2,21 +2,18 @@ package actions.analyse;
 
 import actions.GraphAction;
 import graph.graph.Edge;
+import graph.graph.EdgeArrowType;
 import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
-import jgrapht.JGraphTHandler;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Set;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * This action calculates all convergent branches in the graph. An convergent branch, is a vertex,
- * which have an degree of at least two of outgoing relations.
+ * This Action finds and highlights all the reinforced relations.
  */
-public class AnalysisGraphConvergentBranchesAction extends GraphAction {
+public class AnalysisGraphReinforcedRelationsAction extends GraphAction {
 
     /**
      * Analyses the graph on the given criteria. All the
@@ -27,17 +24,16 @@ public class AnalysisGraphConvergentBranchesAction extends GraphAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
-        JGraphTHandler jGraphTHandler = new JGraphTHandler();
         ArrayList<Edge> edgesAnalyse = new ArrayList<>();
         ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
-
-        Set<Vertex> convergentBranches = jGraphTHandler.detectConvergentBranches();
-        for (Vertex vertex : convergentBranches) {
-            Collection<Edge> predecessors = graph.getInEdges(vertex);
-            edgesAnalyse.addAll(predecessors);
+        for (Edge edge : graph.getEdges()) {
+            if (edge.getArrowType() == EdgeArrowType.REINFORCED) {
+                edgesAnalyse.add(edge);
+                edu.uci.ics.jung.graph.util.Pair<Vertex> endPoints = graph.getEndpoints(edge);
+                verticesAnalyse.add(endPoints.getFirst());
+            }
         }
-        verticesAnalyse.addAll(convergentBranches);
 
         ShowAnalysisResultAction showAnalysisResultAction = new ShowAnalysisResultAction(verticesAnalyse, edgesAnalyse);
         showAnalysisResultAction.action();

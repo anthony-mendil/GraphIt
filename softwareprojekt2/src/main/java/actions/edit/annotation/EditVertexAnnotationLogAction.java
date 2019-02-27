@@ -91,6 +91,14 @@ public class EditVertexAnnotationLogAction extends LogAction {
         editVertexAnnotationLogAction.action();
     }
 
+    /**
+     * Creates a parameter object for thea action.
+     * @param vertex                The selected vertex.
+     * @param oldAnnotationEnglish
+     * @param newAnnotationEnglish
+     * @param oldAnnotationGerman
+     * @param newAnnotationGerman
+     */
     public void createParameter(Vertex vertex, String oldAnnotationEnglish, String newAnnotationEnglish, String oldAnnotationGerman, String newAnnotationGerman) {
         parameters = new EditVertexAnnotationParam(vertex, oldAnnotationEnglish, newAnnotationEnglish, oldAnnotationGerman, newAnnotationGerman);
     }

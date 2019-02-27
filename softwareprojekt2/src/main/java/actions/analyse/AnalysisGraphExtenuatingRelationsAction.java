@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * <p>
- * This action finds all extenuating relations.
+ * This action finds all extenuating relations and their start vertex.
  */
 public class AnalysisGraphExtenuatingRelationsAction extends GraphAction {
 
