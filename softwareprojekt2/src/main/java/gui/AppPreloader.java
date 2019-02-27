@@ -2,6 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Preloader;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -13,17 +14,12 @@ import java.io.IOException;
 
 public class AppPreloader extends Preloader {
 
-    JFXProgressBar bar;
+    @FXML JFXProgressBar progressBar;
     Stage stage;
 
     private Scene createPreloaderScene() throws IOException {
-        bar = new JFXProgressBar(0);
-        bar.getProgress();
-        bar.setPrefHeight(10);
         BorderPane p = new FXMLLoader(getClass().getResource("/preloader.fxml")).load();
-        p.setCenter(bar);
-        Scene sz = new Scene(p);
-        return sz;
+        return new Scene(p);
     }
 
     @Override
@@ -43,16 +39,16 @@ public class AppPreloader extends Preloader {
 
     @Override
     public void handleProgressNotification(ProgressNotification pn) {
-        bar.setProgress(pn.getProgress());
-        System.out.println("aProgress " + bar.getProgress());
+        progressBar.setProgress(pn.getProgress());
+        System.out.println("aProgress " + progressBar.getProgress());
     }
 
     @Override
     public void handleApplicationNotification(PreloaderNotification arg0) {
         if (arg0 instanceof ProgressNotification) {
             ProgressNotification pn= (ProgressNotification) arg0;
-            bar.setProgress(pn.getProgress());
-            System.out.println("bProgress " + bar.getProgress());
+            progressBar.setProgress(pn.getProgress());
+            System.out.println("bProgress " + progressBar.getProgress());
         }
     }
 }
