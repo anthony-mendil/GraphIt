@@ -60,7 +60,7 @@ public class GraphDimensionAction extends GraphAction {
          */
         DecimalFormat format = new DecimalFormat("####.##");
 
-        scope = format.format(graph.getEdges().size() + graph.getVertices().size());
+        scope = format.format((long) graph.getEdges().size() + graph.getVertices().size());
         if(graph.getVertices().size() > 0) {
             networkIndex = format.format(2 * graph.getEdges().size() /
                     graph.getVertices().size());
