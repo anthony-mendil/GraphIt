@@ -10,7 +10,7 @@
         <properties>
             <property name="javax.persistence.schema-generation.database.action"
                       value="create"/>
-            <property name="hibernate.connection.url" value="jdbc:h2:~/GraphItDatabase"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:~/.graphit/GraphItDatabase"/>
             <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
             <property name="hibernate.connection.username" value=""/>
             <property name="hibernate.connection.password" value=""/>

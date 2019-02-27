@@ -1866,6 +1866,7 @@ public class Controller implements ObserverSyndrom {
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
+                rulesTemplate();
                 event.consume();
                 optionExitWindow();
             }

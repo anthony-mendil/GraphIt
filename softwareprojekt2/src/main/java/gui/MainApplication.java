@@ -23,31 +23,34 @@ public class MainApplication extends Application {
 
     private Scene scene;
     private Controller controller;
+    private double loadingProgress=0;
+
+    private void addLoadingProgress(int msBeforeProgress, double addedProgress) throws InterruptedException {
+        Thread.sleep(msBeforeProgress);
+        loadingProgress += addedProgress;
+        notifyPreloader(new Preloader.ProgressNotification(loadingProgress));
+    }
 
     @Override
     public void init() throws Exception {
-        notifyPreloader(new Preloader.ProgressNotification(0.1));
+        addLoadingProgress(20,0.1);
         BasicConfigurator.configure();
-        notifyPreloader(new Preloader.ProgressNotification(0.2));
+        addLoadingProgress(20,0.15);
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        notifyPreloader(new Preloader.ProgressNotification(0.3));
+        addLoadingProgress(20,0.1);
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
-        notifyPreloader(new Preloader.ProgressNotification(0.4));
+        addLoadingProgress(20,0.1);
 
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
-        notifyPreloader(new Preloader.ProgressNotification(0.5));
+        addLoadingProgress(20,0.1);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
-        notifyPreloader(new Preloader.ProgressNotification(0.6));
+        addLoadingProgress(20,0.15);
         BorderPane borderPane = loader.load();
-        notifyPreloader(new Preloader.ProgressNotification(0.7));
+        addLoadingProgress(20,0.1);
         scene = new Scene(borderPane);
-        notifyPreloader(new Preloader.ProgressNotification(0.8));
-
+        addLoadingProgress(20,0.1);
         controller = loader.getController();
-        notifyPreloader(new Preloader.ProgressNotification(0.9));
-        super.init();
-        notifyPreloader(new Preloader.ProgressNotification(1));
-        Thread.sleep(10);
+        addLoadingProgress(20,0.1);
     }
 
     /**
