@@ -5,10 +5,8 @@ import log_management.dao.LogDao;
 import log_management.tables.Log;
 import org.apache.log4j.Logger;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
@@ -53,8 +51,9 @@ public class Protocolio {
     public void exportAsUsableProtocol(File pFile){
         LogDao logDao = new LogDao();
         String protocol=logDao.getAllString();
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))){
-            bufferedWriter.write(protocol);
+        try (OutputStreamWriter writer =
+                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)){
+            writer.write(protocol);
         } catch (IOException e) {
             logger.error(e.toString());
         }

@@ -1,32 +1,31 @@
 package gui;
 
-import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Preloader;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
-
 
 public class AppPreloader extends Preloader {
 
-    @FXML JFXProgressBar progressBar;
-    Stage stage;
-
-    private Scene createPreloaderScene() throws IOException {
-        BorderPane p = new FXMLLoader(getClass().getResource("/preloader.fxml")).load();
-        return new Scene(p);
-    }
+    private Stage stage;
+    private PreloaderController pc;
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage pStage) throws Exception {
+        stage = pStage;
         stage.initStyle(StageStyle.UNDECORATED);
-        this.stage = stage;
-        stage.setScene(createPreloaderScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/preloader.fxml"));
+
+        BorderPane p = fxmlLoader.load();
+        pc = fxmlLoader.getController();
+        Scene sz =new Scene(p);
+        sz.getStylesheets().add("/gui_style.css");
+        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        stage.setScene(sz);
         stage.show();
     }
 
@@ -39,16 +38,16 @@ public class AppPreloader extends Preloader {
 
     @Override
     public void handleProgressNotification(ProgressNotification pn) {
-        progressBar.setProgress(pn.getProgress());
-        System.out.println("aProgress " + progressBar.getProgress());
+        pc.setProgressbarProgress(pn.getProgress());
+        System.out.println("aProgress " + pc.getProgressbar().getProgress());
     }
 
     @Override
     public void handleApplicationNotification(PreloaderNotification arg0) {
         if (arg0 instanceof ProgressNotification) {
-            ProgressNotification pn= (ProgressNotification) arg0;
-            progressBar.setProgress(pn.getProgress());
-            System.out.println("bProgress " + progressBar.getProgress());
+            ProgressNotification pn = (ProgressNotification) arg0;
+            pc.setProgressbarProgress(pn.getProgress());
+            System.out.println("bProgress " + pc.getProgressbar().getProgress());
         }
     }
 }

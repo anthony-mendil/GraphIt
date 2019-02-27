@@ -5,6 +5,7 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,16 @@ import java.util.Set;
  */
 public class AnalysisGraphEdgeChainsAction extends GraphAction {
 
-
+    /**
+     * The set of edges calculated as a result.
+     */
+    @Getter
+    private ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+    /**
+     * The set of vertices calculated as a result.
+     */
+    @Getter
+    private ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
     /**
      * Analyses the graph on the given criteria. All the
      * calculated edges and vertices will be highlighted.
@@ -26,13 +36,11 @@ public class AnalysisGraphEdgeChainsAction extends GraphAction {
     public void action() {
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-        ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
         Pair<List<List<Vertex>>, Set<Edge>> edgeChains = jGraphTHandler.detectRelationChains();
         for (List<Vertex> list : edgeChains.getKey()) {
             verticesAnalyse.addAll(list);
         }
-        ArrayList<Edge> edgesAnalyse = new ArrayList<>(edgeChains.getValue());
 
         ShowAnalysisResultAction showAnalysisResultAction = new ShowAnalysisResultAction(verticesAnalyse, edgesAnalyse);
         showAnalysisResultAction.action();

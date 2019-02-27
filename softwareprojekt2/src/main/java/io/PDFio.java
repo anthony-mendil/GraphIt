@@ -16,6 +16,8 @@ import graph.visualization.transformer.edge.EdgeFillPaintTransformer;
 import graph.visualization.transformer.edge.EdgeStrokeTransformer;
 import graph.visualization.transformer.vertex.*;
 import gui.PDFPrinterGui;
+import gui.Values;
+import javafx.geometry.Point2D;
 import org.apache.log4j.Logger;
 import org.freehep.graphics2d.VectorGraphics;
 import org.freehep.graphicsio.pdf.PDFGraphics2D;

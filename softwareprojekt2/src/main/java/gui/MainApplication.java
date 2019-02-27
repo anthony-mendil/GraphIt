@@ -47,6 +47,7 @@ public class MainApplication extends Application {
         notifyPreloader(new Preloader.ProgressNotification(0.9));
         super.init();
         notifyPreloader(new Preloader.ProgressNotification(1));
+        Thread.sleep(10);
     }
 
     /**

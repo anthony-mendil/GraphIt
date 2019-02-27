@@ -19,8 +19,15 @@ import org.apache.commons.collections15.functors.TruePredicate;
  * vertices.
  */
 public class FilterGraphAction extends GraphAction {
+    /**
+     * Predicate for the edges.
+     */
     private Predicate<Context<Graph<Vertex, Edge>, Edge>> predicateEdge;
+    /**
+     * Predicate for the vertices.
+     */
     private Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex;
+
 
     /**
      * Constructor in case the user filters the graph on the criteria.
