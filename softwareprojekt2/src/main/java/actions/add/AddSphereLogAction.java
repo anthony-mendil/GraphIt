@@ -78,8 +78,11 @@ public class AddSphereLogAction extends LogAction {
         removeSphereLogAction.action();
     }
 
-
+    /**
+     * Creates the parameter object for this action.
+     * @param sphere The sphere, that should be saved in the parameter.
+     */
     public void createParameter(Sphere sphere) {
-        parameters = new AddRemoveSphereParam(sphere,new LinkedList<>(), new AddRemoveVerticesParam( new HashMap<>(), new HashMap<>()));
+        parameters = new AddRemoveSphereParam(sphere, new AddRemoveVerticesParam( new HashMap<>(), new HashMap<>()));
     }
 }

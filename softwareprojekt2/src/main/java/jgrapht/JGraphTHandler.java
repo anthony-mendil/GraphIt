@@ -288,7 +288,6 @@ public class JGraphTHandler {
             innerVertices.removeAll(potentialChain);
             if (potentialChain.size() > 3) {
                 relationChains.add(potentialChain);
-                potentialChain.forEach((s) -> System.out.println(s.getId()));
             }
         }
         Set<Edge> edgesRelationChain = new HashSet<>();

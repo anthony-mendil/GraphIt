@@ -1,6 +1,5 @@
 package gui;
 
-import actions.analyse.AnalysisGraphAction;
 import actions.analyse.AnalysisGraphNeighborsAction;
 import actions.deactivate.ResetVvAction;
 import graph.algorithmen.AnalyseTypeSeveral;
@@ -39,14 +38,14 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
-                        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
                     }
                     if (analysisSuccessor.isSelected()) {
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
-                        AnalysisGraphAction analysisGraphAction = new AnalysisGraphAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
                     }
                 }

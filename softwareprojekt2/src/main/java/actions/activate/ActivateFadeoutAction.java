@@ -25,7 +25,7 @@ import java.awt.*;
 
 public class ActivateFadeoutAction extends GraphAction {
     /**
-     * Constructor
+     * Constructor for this action.
      *
      */
     public ActivateFadeoutAction() {}

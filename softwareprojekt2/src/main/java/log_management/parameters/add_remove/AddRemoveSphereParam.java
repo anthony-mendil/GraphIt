@@ -23,11 +23,6 @@ public class AddRemoveSphereParam implements Param {
     @Getter
     private Sphere sphere;
     /**
-     * The list of vertices, that got removed too.
-     */
-    @Getter
-    private List<Vertex> vertices;
-    /**
      * The vertices, that got deleted too.
      */
     @Getter
@@ -37,9 +32,8 @@ public class AddRemoveSphereParam implements Param {
      *
      * @param pSphere The target sphere.
      */
-    public AddRemoveSphereParam(Sphere pSphere, List<Vertex> vertices, AddRemoveVerticesParam addRemoveVerticesParam) {
+    public AddRemoveSphereParam(Sphere pSphere, AddRemoveVerticesParam addRemoveVerticesParam) {
         this.sphere = pSphere;
-        this.vertices = vertices;
         this.addRemoveVerticesParam = addRemoveVerticesParam;
     }
 

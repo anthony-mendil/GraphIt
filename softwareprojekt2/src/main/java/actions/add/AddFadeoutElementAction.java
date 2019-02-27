@@ -30,11 +30,8 @@ public class AddFadeoutElementAction extends GraphAction {
         syndrom.getVv2().repaint();
     }
 
-    /**
-     * There is no undo operation of this method.
-     */
     @Override
     public void undo() {
-      //
+      //There is no undo operation fot this action.
     }
 }

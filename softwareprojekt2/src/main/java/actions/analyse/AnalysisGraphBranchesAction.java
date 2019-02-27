@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * This action will find and highlight all branches in the graph.
+ * This action will finds and highlight all branches in the graph.
  */
 public class AnalysisGraphBranchesAction extends GraphAction {
 

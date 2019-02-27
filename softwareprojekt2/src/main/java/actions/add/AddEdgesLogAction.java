@@ -84,7 +84,10 @@ public class AddEdgesLogAction extends LogAction {
         removeEdgesLogAction.action();
     }
 
-
+    /**
+     * Creates the parameter object for this action.
+     * @param edge The edge of this action.
+     */
     public void createParameter(Pair<Vertex, Vertex> edge) {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();

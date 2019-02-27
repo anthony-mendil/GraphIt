@@ -99,7 +99,11 @@ public class AddVerticesLogAction extends LogAction {
         removeVerticesLogAction.action();
     }
 
-
+    /**
+     * Creates the parameter object for this action.
+     * @param vertex The vertex, which will be added.
+     * @param sphere The sphere in which the vertex should be.
+     */
     public void createParameter(Vertex vertex, Sphere sphere) {
         HashMap<Vertex, Sphere> vertexSphereHashMap = new HashMap<>();
         vertexSphereHashMap.put(vertex, sphere);

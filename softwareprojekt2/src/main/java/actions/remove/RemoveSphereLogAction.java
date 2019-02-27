@@ -69,7 +69,7 @@ public class RemoveSphereLogAction extends LogAction {
                     sp.getVertices().removeAll(vertices);
                     pickedState.pick(sp, false);
                     graph.removeSphere(sp);
-                    createParameter(sp, vertices, addRemoveVerticesParam);
+                    createParameter(sp, addRemoveVerticesParam);
                 } else {
                     HelperFunctions helper = new HelperFunctions();
                     helper.setActionText("REMOVE_SPHERE_TEMPLATE_ALERT", true, true);
@@ -95,7 +95,7 @@ public class RemoveSphereLogAction extends LogAction {
         addSphereLogAction.action();
     }
 
-    public void createParameter(Sphere sphere, List<Vertex> vertices, AddRemoveVerticesParam addRemoveVerticesParam) {
-        parameters = new AddRemoveSphereParam(sphere, vertices, addRemoveVerticesParam);
+    public void createParameter(Sphere sphere, AddRemoveVerticesParam addRemoveVerticesParam) {
+        parameters = new AddRemoveSphereParam(sphere, addRemoveVerticesParam);
     }
 }
