@@ -6,6 +6,7 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,16 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
      * The amount of successors/predecessors of a specific vertex.
      */
     private int amountSteps;
+    /**
+     * The set of edges calculated as a result.
+     */
+    @Getter
+    private ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+    /**
+     * The set of vertices calculated as a result.
+     */
+    @Getter
+    private ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
     /**
      * Constructor in case the user chooses a AnalyseType - neighbor option.
@@ -47,8 +58,6 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
     public void action() {
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-        ArrayList<Edge> edgesAnalyse = new ArrayList<>();
-        ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
         if (analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR) {
             Pair<List<Vertex>, List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);

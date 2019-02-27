@@ -65,11 +65,8 @@ public class SphereContextMenu {
             dialog.setTitle(language.loadLanguagesKey("CONTEXT_DIALOG_SPHERE_TITLE"));
 
             Optional<EnumMap<Language, String>> result = dialog.showAndWait();
-            Map<String, String> oldAnno = sphere.getAnnotation();
 
-            result.ifPresent(map -> {
-                checkAnnotation(map);
-            });
+            result.ifPresent(this::checkAnnotation);
         });
 
         // COLOR
@@ -113,9 +110,7 @@ public class SphereContextMenu {
         contextMenu.setAutoHide(true);
         contextMenu.setHideOnEscape(true);
 
-        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
-            contextMenu.hide();
-        });
+        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> contextMenu.hide());
     }
 
     private void checkAnnotation(Map<Language, String> map) {

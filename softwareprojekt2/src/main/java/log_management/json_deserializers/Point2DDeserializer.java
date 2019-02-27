@@ -12,7 +12,7 @@ public class Point2DDeserializer implements JsonDeserializer<Point2D>{
 
     @Override
     public Point2D deserialize(JsonElement json, Type type,
-                               JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                               JsonDeserializationContext jsonDeserializationContext) {
 
         JsonObject jsonObject = json.getAsJsonObject();
 

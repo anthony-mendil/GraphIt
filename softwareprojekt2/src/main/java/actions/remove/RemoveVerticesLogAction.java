@@ -78,6 +78,7 @@ public class RemoveVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
+            pickedState.clear();
             if(!lockedVertices.isEmpty()){
                 helper.setActionText("REMOVE_VERTICES_ALERT",true, true);
                 ActionHistory.getInstance().removeLastEntry();

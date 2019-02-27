@@ -128,8 +128,6 @@ public class EdgeContextMenu {
         }
         contextMenu.getItems().addAll(unlink, highlight, visible);
         contextMenu.setAutoHide(true);
-        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
-            contextMenu.hide();
-        });
+        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> contextMenu.hide());
     }
 }

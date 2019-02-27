@@ -85,7 +85,7 @@ public class Syndrom {
     private VertexPickingPlugin vertexPickingPlugin = new VertexPickingPlugin();
     private EdgePickingPlugin edgePickingPlugin = new EdgePickingPlugin();
     private GeneralPickingPlugin generalPickingPlugin = new GeneralPickingPlugin();
-    private TranslatingGraphMousePlugin translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
+    private TranslatingGraphMousePlugin translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_DOWN_MASK);
 
 
     /**

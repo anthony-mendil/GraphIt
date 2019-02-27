@@ -107,6 +107,7 @@ public class Controller implements ObserverSyndrom {
 
     private Controller instance;
 
+    private File lastUsedFilePath;
 
     /**
      *
@@ -564,7 +565,7 @@ public class Controller implements ObserverSyndrom {
 
     private Stage mainStage;
 
-    private String currentSize = "" + values.getDefaultSizeVertex();
+    private String currentSize = "" + Values.DEFAULT_SIZE_VERTEX;
     private String currentFont = values.getFontSphere();
 
 
@@ -1227,12 +1228,20 @@ public class Controller implements ObserverSyndrom {
      * Creates an ExportGxlAction-object and executes the action with the action history.
      */
     public void exportGXL() {
-        rulesTemplate();
         FileChooser fileChooser = new FileChooser();
+        if(lastUsedFilePath!=null){
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        if (syndrom.getGraphName()!=null){
+            fileChooser.setInitialFileName(syndrom.getGraphName());
+        }else{
+            fileChooser.setInitialFileName("Untitled SyndromGraph");
+        }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
+            lastUsedFilePath=file;
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
         }
@@ -1244,22 +1253,40 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportPDF() {
         FileChooser fileChooser = new FileChooser();
+        if(lastUsedFilePath!=null){
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        if (syndrom.getGraphName()!=null){
+            fileChooser.setInitialFileName(syndrom.getGraphName());
+        }else{
+            fileChooser.setInitialFileName("Untitled SyndromGraph");
+        }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File exportDialog = fileChooser.showSaveDialog(mainStage);
-        if (exportDialog != null) {
-            ExportPdfAction exportPdfAction = new ExportPdfAction(exportDialog);
+        File file = fileChooser.showSaveDialog(mainStage);
+        if (file != null) {
+            lastUsedFilePath=file;
+            ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
         }
     }
 
     public void exportProtocol() {
         FileChooser fileChooser = new FileChooser();
+        if(lastUsedFilePath!=null){
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        if (syndrom.getGraphName()!=null){
+            fileChooser.setInitialFileName(syndrom.getGraphName());
+        }else{
+            fileChooser.setInitialFileName("Untitled SyndromGraph");
+        }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File exportDialog = fileChooser.showSaveDialog(mainStage);
-        if (exportDialog != null) {
-            ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(exportDialog);
+        File file = fileChooser.showSaveDialog(mainStage);
+        if (file != null) {
+            lastUsedFilePath=file;
+            ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
             exportReadableProtocolAction.action();
         }
     }
@@ -1270,10 +1297,19 @@ public class Controller implements ObserverSyndrom {
     public void exportOOF() {
         rulesTemplate();
         FileChooser fileChooser = new FileChooser();
+        if(lastUsedFilePath!=null){
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        if (syndrom.getGraphName()!=null){
+            fileChooser.setInitialFileName(syndrom.getGraphName());
+        }else{
+            fileChooser.setInitialFileName("Untitled SyndromGraph");
+        }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
+            lastUsedFilePath=file;
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
@@ -1285,11 +1321,15 @@ public class Controller implements ObserverSyndrom {
      */
     public void openFile() {
         FileChooser fileChooser = new FileChooser();
+        if(lastUsedFilePath!=null){
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File dialog = fileChooser.showOpenDialog(mainStage);
-        if (dialog != null) {
-            ImportOofAction importOofAction = new ImportOofAction(dialog);
+        File file = fileChooser.showOpenDialog(mainStage);
+        if (file != null) {
+            lastUsedFilePath=file;
+            ImportOofAction importOofAction = new ImportOofAction(file);
             importOofAction.action();
             zoomSlider.setValue(100);
             canvas.setContent(syndrom.getVv());
@@ -1304,10 +1344,14 @@ public class Controller implements ObserverSyndrom {
      */
     public void importGXL() {
         FileChooser fileChooser = new FileChooser();
+        if(lastUsedFilePath!=null){
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
+            lastUsedFilePath=file;
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             zoomSlider.setValue(100);
@@ -1798,11 +1842,14 @@ public class Controller implements ObserverSyndrom {
                 executeUndo();
             } else if (strgY.match(event)) {
                 executeRedo();
-            } else if (entf.match(event)||strgD.match(event)) {
+            } else if (entf.match(event) || strgD.match(event)) {
 
-                removeEdges();
-                removeVertices();
-                removeSphere();
+                    removeEdges();
+                    syndrom.getVv().getPickedEdgeState().clear();
+                    removeVertices();
+                    syndrom.getVv().getPickedVertexState().clear();
+                    removeSphere();
+                    syndrom.getVv().getPickedSphereState().clear();
 
             } else if (strgA.match(event)) {
                 for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
@@ -1822,6 +1869,7 @@ public class Controller implements ObserverSyndrom {
                 syndrom.getVv().getPickedVertexState().clear();
                 syndrom.getVv().getPickedEdgeState().clear();
                 handSelector();
+                handSelector.setSelected(true);
             }
         });
     }
@@ -1868,9 +1916,7 @@ public class Controller implements ObserverSyndrom {
         }
 
 
-        historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
-            filterLogs(analysisLogEntryName);
-        });
+        historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> filterLogs(analysisLogEntryName));
     }
 
     private void initLanguage() {
@@ -1885,7 +1931,7 @@ public class Controller implements ObserverSyndrom {
         HelperFunctions helper = new HelperFunctions();
         treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<TreeItem<Object>>) (observable, oldValue, newValue) -> {
             if (newValue != null) {
-                helper.pickElement(((TreeItem<Object>) newValue).getValue());
+                helper.pickElement( newValue.getValue());
             }
         });
 
@@ -1915,15 +1961,15 @@ public class Controller implements ObserverSyndrom {
 
     private void initFonts() {
         try {
-            Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Roboto-Regular.ttf"));
+            Font roboto = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/regular/Roboto-Regular.ttf"));
             values.setRoboto(roboto);
-            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/RobotoSlab-Regular.ttf"));
+            Font robotoSlab = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/regular/RobotoSlab-Regular.ttf"));
             values.setRobotoSlab(robotoSlab);
-            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/AveriaSansLibre-Regular.ttf"));
+            Font averiaSansLibre = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/regular/AveriaSansLibre-Regular.ttf"));
             values.setAveriaSansLibr(averiaSansLibre);
-            Font kalam = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Kalam-Regular.ttf"));
+            Font kalam = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/regular/Kalam-Regular.ttf"));
             values.setKalam(kalam);
-            Font mali = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/regular/Mali-Regular.ttf"));
+            Font mali = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/regular/Mali-Regular.ttf"));
             values.setMali(mali);
 
         } catch (Exception e) {
@@ -3182,8 +3228,7 @@ public class Controller implements ObserverSyndrom {
 
     private String extractStart(String parameters) {
         int indexOfDoublePoint = parameters.indexOf(':');
-        String start = parameters.substring(0, indexOfDoublePoint);
-        return start;
+        return parameters.substring(0, indexOfDoublePoint);
     }
 
     private List<String> evaluateEntries(String parameters) {

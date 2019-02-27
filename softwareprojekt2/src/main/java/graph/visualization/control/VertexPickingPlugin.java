@@ -147,7 +147,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                     vv.repaint();
                     Syndrom.getInstance().getVv2().repaint();
                 }
-            } else if (e.getModifiers() == InputEvent.BUTTON1_MASK && vert != null) {
+            } else if (e.getModifiersEx() == InputEvent.BUTTON1_DOWN_MASK && vert != null) {
                 source = vert;
             }
         }

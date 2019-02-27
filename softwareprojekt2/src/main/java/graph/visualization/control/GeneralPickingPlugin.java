@@ -20,7 +20,7 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
     private HelperFunctions helper = new HelperFunctions();
 
     public GeneralPickingPlugin() {
-        super(InputEvent.BUTTON3_MASK | InputEvent.BUTTON1_MASK);
+        super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
     }
     @Override
     @SuppressWarnings("unchecked")
