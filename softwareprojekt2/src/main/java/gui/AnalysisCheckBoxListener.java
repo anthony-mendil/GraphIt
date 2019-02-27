@@ -65,19 +65,19 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                 amountSymptomTextField.setDisable(true);
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
-            } else if (!analysisSuccessor.isSelected() && analysisPredecessor.isSelected()) {
+            } else if (!analysisSuccessor.isSelected() && analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty()) {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
                 AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
-            } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()) {
+            } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty()) {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
                 AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
-            } else {
+            } else if (!amountSymptomTextField.getText().isEmpty()){
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
@@ -90,7 +90,6 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     private void disableAllCheckBoxes() {
         analysisSuccessor.setSelected(false);
         analysisPredecessor.setSelected(false);
-
         analysisOptions.setSelected(false);
         analysisPathCheckBox.setSelected(false);
         if (analysisPredecessor.isSelected() || analysisSuccessor.isSelected()) {
