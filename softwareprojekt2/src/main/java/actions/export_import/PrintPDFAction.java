@@ -7,8 +7,6 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import io.PDFio;
 
-import java.io.ByteArrayInputStream;
-
 /**
  * Prints the current graph visualization as a PDF file.
  */

@@ -57,11 +57,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.print.Printer;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -79,7 +77,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.LogToStringConverter;
@@ -90,15 +90,10 @@ import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.text.DecimalFormat;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-
-import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  * Contains most of the gui elements, calls most of the actions and acts as interface between
