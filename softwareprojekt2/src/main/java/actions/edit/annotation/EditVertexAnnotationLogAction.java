@@ -94,10 +94,10 @@ public class EditVertexAnnotationLogAction extends LogAction {
     /**
      * Creates a parameter object for thea action.
      * @param vertex                The selected vertex.
-     * @param oldAnnotationEnglish
-     * @param newAnnotationEnglish
-     * @param oldAnnotationGerman
-     * @param newAnnotationGerman
+     * @param oldAnnotationEnglish  The old annotation in english.
+     * @param newAnnotationEnglish  The new annotation in english.
+     * @param oldAnnotationGerman   The old annotation in german.
+     * @param newAnnotationGerman   The new annotation in german.
      */
     public void createParameter(Vertex vertex, String oldAnnotationEnglish, String newAnnotationEnglish, String oldAnnotationGerman, String newAnnotationGerman) {
         parameters = new EditVertexAnnotationParam(vertex, oldAnnotationEnglish, newAnnotationEnglish, oldAnnotationGerman, newAnnotationGerman);

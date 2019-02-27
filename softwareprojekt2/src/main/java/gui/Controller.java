@@ -614,9 +614,9 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Text selectionSphere;
     @FXML
-    private Button handSelector;
+    private ToggleButton handSelector;
     @FXML
-    private Button addSphere;
+    private ToggleButton addSphere;
     @FXML
     private Button deleteSphere;
     @FXML
@@ -628,7 +628,7 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Text selectionSymptom;
     @FXML
-    private Button addVertex;
+    private ToggleButton addVertex;
     @FXML
     private Button deleteVertex;
     @FXML
@@ -937,7 +937,6 @@ public class Controller implements ObserverSyndrom {
      */
     public void addSphere() {
         values.setGraphButtonType(GraphButtonType.ADD_SPHERE);
-        setStyleSelectionButtons(addSphere.getId());
     }
 
     /**
@@ -945,12 +944,10 @@ public class Controller implements ObserverSyndrom {
      */
     public void addVertex() {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
-        setStyleSelectionButtons(addVertex.getId());
     }
 
     public void handSelector() {
         values.setGraphButtonType(GraphButtonType.NONE);
-        setStyleSelectionButtons(handSelector.getId());
     }
 
     /* ----------------ANALYSE---------------------- */
@@ -1738,21 +1735,10 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void iniSelectionButtons(){
-        selectionButtons = new ArrayList<>();
-        selectionButtons.add(addSphere);
-        selectionButtons.add(addVertex);
-        selectionButtons.add(handSelector);
+        handSelector.selectedProperty().addListener(new ToggleButtonListener(this, handSelector));
+        addSphere.selectedProperty().addListener(new ToggleButtonListener(this, addSphere));
+        addVertex.selectedProperty().addListener(new ToggleButtonListener(this, addVertex));
         handSelector();
-    }
-
-    private void setStyleSelectionButtons(String id){
-        for(Button b : selectionButtons){
-            if (id.equals(b.getId())){
-                b.getStyleClass().add("buttonSelection");
-            } else {
-                b.getStyleClass().remove("buttonSelection");
-            }
-        }
     }
 
 

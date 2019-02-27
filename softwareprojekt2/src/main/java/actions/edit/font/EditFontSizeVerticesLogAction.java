@@ -86,6 +86,11 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         editFontSizeVerticesLogAction.action();
     }
 
+    /**
+     * Creates a new parameter-object of this action.
+     * @param oldVertices   The old vertices and their new font-size.
+     * @param newVertices   The new vertices and their new font-size.
+     */
     public void createParameter(Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices) {
         parameters = new EditFontSizeVerticesParam(oldVertices, newVertices);
     }

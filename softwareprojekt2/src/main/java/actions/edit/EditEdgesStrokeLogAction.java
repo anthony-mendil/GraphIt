@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class EditEdgesStrokeLogAction extends LogAction {
     /**
-     * Temporary variable for the new stroke-type of the edge.
+     * The new stroke-type of the edge.
      */
     private StrokeType stroke;
     /**
@@ -86,6 +86,11 @@ public class EditEdgesStrokeLogAction extends LogAction {
         editEdgesStrokeLogAction.action();
     }
 
+    /**
+     * Creates a new parameter-object of this action.
+     * @param oldEdges The old edges and their old stroke-type.
+     * @param newEdges The new edges and theit new stroke-type.
+     */
     public void createParameter(Map<Edge,StrokeType> oldEdges, Map<Edge,StrokeType> newEdges) {
         List<Vertex> starts = new ArrayList<>();
         List<Vertex> ends = new ArrayList<>();

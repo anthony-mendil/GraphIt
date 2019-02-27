@@ -92,6 +92,11 @@ public class EditEdgesColorLogAction extends LogAction {
         editEdgesColorLogAction.action();
     }
 
+    /**
+     * Creates a parameter-object of the parameters used in this action.
+     * @param oldEdge   The map of old edges and the color.
+     * @param newEdge   The map of new edges and the color.
+     */
     public void createParameter(Map<Edge,Color> oldEdge, Map<Edge,Color> newEdge) {
         List<Vertex> starts = new ArrayList<>();
         List<Vertex> ends = new ArrayList<>();
