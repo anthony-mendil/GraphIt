@@ -993,7 +993,7 @@
                <children>
                       <HBox fx:id="textBox" centerShape="false" minHeight="-Infinity" prefHeight="30.4" prefWidth="1410.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css" HBox.hgrow="ALWAYS">
                           <children>
-                              <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="500.0">
+                              <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                                   <HBox.margin>
                                       <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
                                   </HBox.margin>
@@ -1130,6 +1130,9 @@
                                                         </tooltip>
                                                     </MenuButton>
                                                 </graphic>
+                                       <tooltip>
+                                          <Tooltip text="%treeViewEdgeTypeTooltip" />
+                                       </tooltip>
                                             </JFXCheckBox>
                                             <JFXCheckBox fx:id="regularExpressionBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="260.0" text=" ">
                                                 <graphic>
@@ -1137,11 +1140,17 @@
                                                         <padding>
                                                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                                         </padding>
+                                             <tooltip>
+                                                <Tooltip text="%regularExpressionTooltip" />
+                                             </tooltip>
                                                     </JFXTextField>
                                                 </graphic>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="3.0" />
                                        </VBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="%regularExpressionTooltip" />
+                                       </tooltip>
                                             </JFXCheckBox>
             
                                             <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
@@ -1213,16 +1222,25 @@
                                                         <padding>
                                                             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                                         </padding>
+                                             <tooltip>
+                                                <Tooltip text="%toolbarsphereField" />
+                                             </tooltip>
                                                     </JFXTextField>
                                                     <JFXTextField fx:id="maxSymptomField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                         <padding>
                                                             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                                         </padding>
+                                             <tooltip>
+                                                <Tooltip text="%toolbarsymptomField" />
+                                             </tooltip>
                                                     </JFXTextField>
                                                     <JFXTextField fx:id="maxEdgesField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                         <padding>
                                                             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                                         </padding>
+                                             <tooltip>
+                                                <Tooltip text="%toolbaredgeField" />
+                                             </tooltip>
                                                     </JFXTextField>
                                                 </children>
                                                 <VBox.margin>
