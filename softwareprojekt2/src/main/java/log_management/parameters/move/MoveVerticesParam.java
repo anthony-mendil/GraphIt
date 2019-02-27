@@ -58,15 +58,15 @@ public class MoveVerticesParam implements Param {
         Language language = Values.getInstance().getGuiLanguage();
         StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
+            information.append("Symptoms: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append("Symptoms: ");
                 information.append(SyndromObjectPrinter.vertexPrintEnglish(oldVertices.get(i))).append(". ");
                 information.append("Old coordinates: x = ").append((int) oldPositions.get(i).getX()).append(Y_IS).append((int) oldPositions.get(i).getY()).append(", ");
                 information.append(", new Coordinates: x = ").append((int) newPositions.get(i).getX()).append(Y_IS).append((int) newPositions.get(i).getY()).append("; ");
             }
         } else {
+            information.append("Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
-                information.append("Symptome: ");
                 information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ");
                 information.append("Alte Koordinaten: x = ").append((int) oldPositions.get(i).getX()).append(Y_IS).append((int) oldPositions.get(i).getY());
                 information.append(", neue Koordinaten: x = ").append((int) newPositions.get(i).getX()).append(Y_IS).append((int) newPositions.get(i).getY()).append("; ");

@@ -79,13 +79,13 @@ public class AddRemoveVerticesParam implements Param {
         Language language = Values.getInstance().getGuiLanguage();
         StringBuilder information = new StringBuilder();
         if (language == Language.ENGLISH) {
-            information.append("Relations: ");
+            information.append("Symptoms: ");
             for (int i = 0; i < vertexList.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintEnglish(vertexList.get(i))).append(". ");
                 information.append("In sphere: ").append(SyndromObjectPrinter.spherePrintEnglish(sphereList.get(i))).append("; ");
             }
         } else {
-            information.append("Relationen: ");
+            information.append("Symptome: ");
             for (int i = 0; i < vertexList.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintGerman(vertexList.get(i))).append(". ");
                 information.append("In Sphäre: ").append(SyndromObjectPrinter.spherePrintGerman(sphereList.get(i))).append("; ");
