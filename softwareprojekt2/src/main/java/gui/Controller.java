@@ -1373,6 +1373,9 @@ public class Controller implements ObserverSyndrom {
         editButton.setDisable(false);
         analysisButton.setDisable(false);
         createButton.setDisable(true);
+        edgeArrowReinforced.setDisable(false);
+        edgeArrowNeutral.setDisable(false);
+        edgeArrowExtenuating.setDisable(false);
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
@@ -1422,6 +1425,17 @@ public class Controller implements ObserverSyndrom {
         analysisButton.setDisable(false);
         editButton.setDisable(true);
         satellite.setContent(syndrom.getVv2());
+
+        if(!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()){
+            edgeArrowReinforced.setDisable(true);
+        }
+        if(!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()){
+            edgeArrowNeutral.setDisable(true);
+        }
+        if(!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()){
+            edgeArrowExtenuating.setDisable(true);
+        }
+
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
