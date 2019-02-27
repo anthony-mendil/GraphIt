@@ -564,7 +564,7 @@ public class Controller implements ObserverSyndrom {
 
     private Stage mainStage;
 
-    private String currentSize = "" + values.getDefaultSizeVertex();
+    private String currentSize = "" + Values.DEFAULT_SIZE_VERTEX;
     private String currentFont = values.getFontSphere();
 
 

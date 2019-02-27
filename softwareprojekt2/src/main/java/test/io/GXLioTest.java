@@ -357,7 +357,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test(expected = GXLValidationException.class)
-    public void testException_addElementToGXLGraphThatAlreadyContainsThisID() throws IOException, SAXException {
+    public void testExceptionAddElementToGXLGraphThatAlreadyContainsThisID() throws IOException, SAXException {
         prepareSyndrom(true);
         GXLElement dublicateIDElement = new GXLNode("1");
         doc.getElement("syndrom").add(dublicateIDElement);
@@ -414,7 +414,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test(expected = NullPointerException.class)
-    public void testException_ImportWithTemplate_After_ExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
+    public void testExceptionImportWithTemplateAfterExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), true);
     }
 
@@ -425,7 +425,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test(expected = NullPointerException.class)
-    public void testException_searchForGXLTemplate_After_ExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
+    public void testExceptionSearchForGXLTemplateAfterExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
         prepareSyndrom(false);
         GXLDocument doc = new GXLDocument(new File(nameTestGraph));
         GXLGraph templateGraph = (GXLGraph) doc.getElement("template");

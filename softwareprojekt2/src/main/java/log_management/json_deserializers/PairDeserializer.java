@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 public class PairDeserializer implements JsonDeserializer<Pair> {
     @Override
     public Pair deserialize(JsonElement json, Type type,
-                               JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                               JsonDeserializationContext jsonDeserializationContext) {
 
         JsonObject jsonObject = json.getAsJsonObject();
         JsonElement xFirst = jsonObject.get("xFirst");

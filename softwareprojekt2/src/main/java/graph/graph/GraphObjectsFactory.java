@@ -66,7 +66,7 @@ public class GraphObjectsFactory {
         String font = values.getFontVertex();
         int fontSize = values.getFontSizeVertex();
         VertexShapeType shape = values.getShapeVertex();
-        int size = values.getDefaultSizeVertex();
+        int size = Values.DEFAULT_SIZE_VERTEX;
         return new Vertex(id, fillPaint, position, shape,
                 vertexAnnotation, drawPaint, size, font, fontSize);
     }
@@ -80,8 +80,8 @@ public class GraphObjectsFactory {
     public Sphere createSphere(Point2D position) {
         int id = objectCounter++;
         Color fillPaint = values.getFillPaintSphere();
-        double width = values.getDefaultWidthSphere();
-        double height = values.getDefaultHeightSphere();
+        double width = Values.DEFAULT_WIDTH_SPHERE;
+        double height = Values.DEFAULT_HEIGHT_SPHERE;
         Map<String, String> annotation = values.getDefaultAnnotationSphere();
         Map sphereAnnotation = new HashMap();
         for (Map.Entry<String, String> entry: annotation.entrySet()) {
