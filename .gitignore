@@ -11,3 +11,4 @@
 *.idea/modules.xml
 *.idea/libraries/*
 *.out
+*.iml
