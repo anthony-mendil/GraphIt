@@ -1789,11 +1789,14 @@ public class Controller implements ObserverSyndrom {
                 executeUndo();
             } else if (strgY.match(event)) {
                 executeRedo();
-            } else if (entf.match(event)||strgD.match(event)) {
+            } else if (entf.match(event) || strgD.match(event)) {
 
-                removeEdges();
-                removeVertices();
-                removeSphere();
+                    removeEdges();
+                    syndrom.getVv().getPickedEdgeState().clear();
+                    removeVertices();
+                    syndrom.getVv().getPickedVertexState().clear();
+                    removeSphere();
+                    syndrom.getVv().getPickedSphereState().clear();
 
             } else if (strgA.match(event)) {
                 for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {

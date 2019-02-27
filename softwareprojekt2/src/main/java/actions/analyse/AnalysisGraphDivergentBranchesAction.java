@@ -6,6 +6,7 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import jgrapht.JGraphTHandler;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,8 +18,16 @@ import java.util.Set;
  * which has in degree of at least two of incoming relations.
  */
 public class AnalysisGraphDivergentBranchesAction extends GraphAction {
-
-
+    /**
+     * The set of edges calculated as a result.
+     */
+    @Getter
+    private ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+    /**
+     * The set of vertices calculated as a result.
+     */
+    @Getter
+    private ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
     /**
      * Analyses the graph on the given criteria. All the
      * calculated edges and vertices will be highlighted.
@@ -29,8 +38,6 @@ public class AnalysisGraphDivergentBranchesAction extends GraphAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-        ArrayList<Edge> edgesAnalyse = new ArrayList<>();
-        ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
         Set<Vertex> divergentBranches = jGraphTHandler.detectDivergentBranches();
         for (Vertex vertex : divergentBranches) {

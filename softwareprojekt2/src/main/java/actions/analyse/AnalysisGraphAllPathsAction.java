@@ -6,6 +6,7 @@ import graph.graph.Vertex;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import jgrapht.JGraphTHandler;
+import lombok.Getter;
 import org.jgrapht.GraphPath;
 
 import java.util.ArrayList;
@@ -16,7 +17,16 @@ import java.util.List;
  * This action finds all disjunctive paths between two selected vertices.
  */
 public class AnalysisGraphAllPathsAction extends GraphAction {
-
+    /**
+     * The set of edges calculated as a result.
+     */
+    @Getter
+    private ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+    /**
+     * The set of vertices calculated as a result.
+     */
+    @Getter
+    private ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
     /**
      * Analyses the graph on the given criteria. All the
@@ -26,8 +36,6 @@ public class AnalysisGraphAllPathsAction extends GraphAction {
     public void action() {
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-        ArrayList<Edge> edgesAnalyse = new ArrayList<>();
-        ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
         List<GraphPath<Vertex, Edge>> allPaths;
         allPaths = jGraphTHandler.getAllPaths();
         if (allPaths.isEmpty()) {
@@ -39,7 +47,6 @@ public class AnalysisGraphAllPathsAction extends GraphAction {
             verticesAnalyse.addAll(path.getVertexList());
             edgesAnalyse.addAll(path.getEdgeList());
         }
-
         ShowAnalysisResultAction showAnalysisResultAction = new ShowAnalysisResultAction(verticesAnalyse, edgesAnalyse);
         showAnalysisResultAction.action();
     }

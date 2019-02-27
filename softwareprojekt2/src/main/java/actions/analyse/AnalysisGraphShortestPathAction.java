@@ -6,6 +6,7 @@ import graph.graph.Vertex;
 import graph.visualization.control.HelperFunctions;
 import gui.properties.Language;
 import jgrapht.JGraphTHandler;
+import lombok.Getter;
 import org.jgrapht.GraphPath;
 
 import java.util.ArrayList;
@@ -15,7 +16,16 @@ import java.util.ArrayList;
  * This action finds the shortest path between two selected vertices.
  */
 public class AnalysisGraphShortestPathAction extends GraphAction {
-
+    /**
+     * The set of edges calculated as a result.
+     */
+    @Getter
+    private ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+    /**
+     * The set of vertices calculated as a result.
+     */
+    @Getter
+    private ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
     /**
      * Analyses the graph on the given criteria. All the
      * calculated edges and vertices will be highlighted.
@@ -24,8 +34,6 @@ public class AnalysisGraphShortestPathAction extends GraphAction {
     public void action() {
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-        ArrayList<Edge> edgesAnalyse = new ArrayList<>();
-        ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
         GraphPath<Vertex, Edge> shortestPath = jGraphTHandler.getShortestPath();
         if (shortestPath == null) {
