@@ -31,6 +31,7 @@
 .actionmenubar{
     -fx-background-color: #6699cc;
 }
+
 .combobox{
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
     -fx-border-width: 0;
@@ -65,8 +66,8 @@
 
 .toggle-button:selected {
     -fx-background-color: #b3e5fc;
+    -fx-effect: dropshadow(gaussian,rgba(0, 0, 0, 0.26), 5, 0.05, 0, 1 )
 }
-
 
 .analysisMenuItem .label {
     -fx-font-size: 9;
@@ -74,6 +75,14 @@
 
 .analysisMenuItem {
     -fx-font-size: 9;
+}
+
+.jfx-tool-bar{
+    -fx-effect: none;
+}
+
+.toolbar-button{
+    -jfx-button-type: RAISED;
 }
 
 .jfx-progress-bar > .bar {

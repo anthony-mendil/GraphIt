@@ -57,11 +57,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.print.Printer;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -79,7 +77,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.LogToStringConverter;
@@ -90,7 +90,6 @@ import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.*;
 import java.util.List;
@@ -566,7 +565,7 @@ public class Controller implements ObserverSyndrom {
 
     private Stage mainStage;
 
-    private String currentSize = "" + values.getDefaultSizeVertex();
+    private String currentSize = "" + Values.DEFAULT_SIZE_VERTEX;
     private String currentFont = values.getFontSphere();
 
 
@@ -1829,11 +1828,14 @@ public class Controller implements ObserverSyndrom {
                 executeUndo();
             } else if (strgY.match(event)) {
                 executeRedo();
-            } else if (entf.match(event)||strgD.match(event)) {
+            } else if (entf.match(event) || strgD.match(event)) {
 
-                removeEdges();
-                removeVertices();
-                removeSphere();
+                    removeEdges();
+                    syndrom.getVv().getPickedEdgeState().clear();
+                    removeVertices();
+                    syndrom.getVv().getPickedVertexState().clear();
+                    removeSphere();
+                    syndrom.getVv().getPickedSphereState().clear();
 
             } else if (strgA.match(event)) {
                 for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
@@ -1900,9 +1902,7 @@ public class Controller implements ObserverSyndrom {
         }
 
 
-        historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> {
-            filterLogs(analysisLogEntryName);
-        });
+        historyTitledPane.expandedProperty().addListener((obs, wasExpanded, isNowExpanded) -> filterLogs(analysisLogEntryName));
     }
 
     private void initLanguage() {
@@ -1917,7 +1917,7 @@ public class Controller implements ObserverSyndrom {
         HelperFunctions helper = new HelperFunctions();
         treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<TreeItem<Object>>) (observable, oldValue, newValue) -> {
             if (newValue != null) {
-                helper.pickElement(((TreeItem<Object>) newValue).getValue());
+                helper.pickElement( newValue.getValue());
             }
         });
 
@@ -3193,6 +3193,7 @@ public class Controller implements ObserverSyndrom {
                                     }
 
                                     logIndexName.getChildren().addAll(logTime, logInformation);
+                                    logIndexName.setExpanded(true);
                                     rootItem.getChildren().add(logIndexName);
                                 }
                                 rootItem.setExpanded(true);
@@ -3213,8 +3214,7 @@ public class Controller implements ObserverSyndrom {
 
     private String extractStart(String parameters) {
         int indexOfDoublePoint = parameters.indexOf(':');
-        String start = parameters.substring(0, indexOfDoublePoint);
-        return start;
+        return parameters.substring(0, indexOfDoublePoint);
     }
 
     private List<String> evaluateEntries(String parameters) {
@@ -3231,136 +3231,5 @@ public class Controller implements ObserverSyndrom {
             }
         }
         return list;
-    }
-
-
-    @Override
-    public void showPrint(ByteArrayInputStream byteArrayInputStream) {
-        printDialog(byteArrayInputStream);
-        /*openDialogInfo(print, byteArrayInputStream);
-
-        Image img = new Image(byteArrayInputStream);
-        ImageView imageView = new ImageView();
-        imageView.setImage(img);
-        Node node = (Node)imageView;
-
-
-            System.out.println("hihi");
-
-            javafx.print.PrinterJob job = javafx.print.PrinterJob.createPrinterJob();
-            JFrame f = new JFrame();
-
-            if (job != null && job.showPrintDialog(mainStage)){
-                boolean success = job.printPage(node);
-                if (success) {
-                    job.endJob();
-                }
-            }
-*/
-
-
-
-            /*PDDocument pdDocument = PDDocument.load(byteArrayInputStream);
-            PrinterJob printerJob = RasterPrinterJob.getPrinterJob();
-            printerJob.setJobName("GraphIt-Graph");
-            printerJob.setPageable(new PDFPageable(pdDocument));
-            boolean printSucceeds = printerJob.printDialog();
-
-            if (printSucceeds) {
-                printerJob.print();
-                mainStage.toFront();
-            }*/
-
-    }
-
-    private void printDialo(ByteArrayInputStream byteArrayInputStream){
-        Printer printer = Printer.getDefaultPrinter();
-        Image img = new Image(byteArrayInputStream);
-        ImageView imageView = new ImageView();
-        imageView.setImage(img);
-        Node node = (Node)imageView;
-
-        Stage s = new Stage();
-        s.initOwner(mainStage.getScene().getWindow());
-
-        s.initStyle(StageStyle.TRANSPARENT);
-        s.setX(0);
-        s.setY(0);
-        s.setWidth(1);
-        s.setHeight(1);
-        s.initModality(Modality.WINDOW_MODAL);
-        s.setAlwaysOnTop(true);
-
-        //s.show();
-        s.show();
-
-        Stage stage = (Stage) mainStage.getScene().getWindow();
-        javafx.print.PrinterJob job = javafx.print.PrinterJob.createPrinterJob();
-        job.showPrintDialog(s.getOwner());
-
-        job.endJob();
-        s.hide();
-        if (job != null && job.showPrintDialog(stage)) {
-
-            boolean success = job.printPage(imageView);
-            if (success) {
-                job.endJob();
-            }
-        }
-
-
-    }
-
-    private void printDialog(ByteArrayInputStream byteArrayInputStream) {
-        DialogPane alert = new DialogPane( );
-        ButtonType b1 = new ButtonType("print");
-        alert.getButtonTypes().add(b1);
-        Dialog d = new Dialog<>();
-        d.setDialogPane(alert);
-
-        Stage stage = (Stage) alert.getScene().getWindow();
-        stage.getIcons().add(new Image("/GraphItLogo.png"));
-        stage.setAlwaysOnTop(true);
-        stage.toFront();
-
-        Button buttonOK = (Button) alert.lookupButton(b1);
-        alert.setOnMouseClicked(event -> {
-            Image img = new Image(byteArrayInputStream);
-            ImageView imageView = new ImageView();
-            imageView.setImage(img);
-            Node node = (Node)imageView;
-            javafx.print.PrinterJob job = javafx.print.PrinterJob.createPrinterJob();
-
-
-
-            Stage s = new Stage();
-            s.initOwner(buttonOK.getScene().getWindow());
-            s.initStyle(StageStyle.TRANSPARENT);
-            s.setX(0);
-            s.setY(0);
-            s.setWidth(1);
-            s.setHeight(1);
-            s.initModality(Modality.WINDOW_MODAL);
-            //s.show();
-            s.show();
-            //boolean ok = job.showPrintDialog(w);
-
-            job.showPrintDialog(s);
-            s.hide();
-
-            if (job != null && job.showPrintDialog(s)){
-                boolean success = job.printPage(node);
-                if (success) {
-                    job.endJob();
-                }
-            }
-
-
-        });
-        d.setTitle("GraphIt");
-        d.setHeaderText(null);
-
-        d.showAndWait();
-
     }
 }

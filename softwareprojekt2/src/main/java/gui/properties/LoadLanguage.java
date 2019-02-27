@@ -69,7 +69,7 @@ public class LoadLanguage {
         c.getUndoButton().getTooltip().setText(loadLanguagesKey("toolbarUndo"));
         c.getRedoButton().getTooltip().setText(loadLanguagesKey("toolbarRedo"));
         c.getHighlight().getTooltip().setText(loadLanguagesKey("toolbarHighlight"));
-        c.getHighlightElements().getTooltip().setText(loadLanguagesKey("toolbarHighlight"));
+        c.getHighlightElements().getTooltip().setText(loadLanguagesKey("toolbarHighlightElement"));
         c.getDehighlightElements().getTooltip().setText(loadLanguagesKey("toolbarNotHighlightElements"));
         c.getFadeout().getTooltip().setText(loadLanguagesKey("toolbarFadeout"));
         c.getFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutElement"));
@@ -135,8 +135,13 @@ public class LoadLanguage {
         c.getCycles().setText(loadLanguagesKey("filterCycles"));
         c.getOverViewTitledPane().setText(loadLanguagesKey("treeView"));
         c.getFilterEdgeType().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
+        c.getRegularExpressionBox().getTooltip().setText(loadLanguagesKey("regularExpressionTooltip"));
+        c.getRegularExpressionField().getTooltip().setText(loadLanguagesKey("regularExpressionTooltip"));
         c.getTemplateTitledPane().setText(loadLanguagesKey("toolbarTemplate"));
         c.getFilterAnalysis().setText(loadLanguagesKey("filterChainOfEdges"));
+        c.getMaxSphereField().getTooltip().setText(loadLanguagesKey("toolbarsphereField"));
+        c.getMaxSymptomField().getTooltip().setText(loadLanguagesKey("toolbarsymptomField"));
+        c.getMaxEdgesField().getTooltip().setText(loadLanguagesKey("toolbaredgeField"));
         c.getTemplateMaxSphere().setText(loadLanguagesKey("templateMaxSphere"));
         c.getTemplateMaxSymptom().setText(loadLanguagesKey("templateMaxSymptom"));
         c.getTemplateMaxEdge().setText(loadLanguagesKey("templateMaxEdge"));

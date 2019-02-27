@@ -59,7 +59,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
 
         try {
             SyndromGraph g = (SyndromGraph) vv.getGraphLayout().getGraph();
-            @SuppressWarnings("unchecked") List<Sphere> list = g.getSpheres();
+            List list = g.getSpheres();
             for (Object aSet : list) {
                 Sphere s = (Sphere) aSet;
                 Shape rec = sphereShapeTransformer.transform(s);

@@ -19,8 +19,8 @@ public class SyndromSatelliteScalingGraphMousePlugin extends SatelliteScalingGra
     public void mouseWheelMoved(MouseWheelEvent e) {
         boolean accepted = checkModifiers(e);
         int scale = values.getScale();
-        int min = values.getMinScale();
-        int max = values.getMaxScale();
+        int min = Values.MIN_SCALE;
+        int max = Values.MAX_SCALE;
         int scaleNew;
 
         if(accepted) {

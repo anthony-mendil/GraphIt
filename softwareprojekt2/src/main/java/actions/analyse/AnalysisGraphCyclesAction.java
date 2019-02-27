@@ -6,6 +6,7 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import jgrapht.JGraphTHandler;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,16 @@ import java.util.List;
  * This action finds all cycles in the graph.
  */
 public class AnalysisGraphCyclesAction extends GraphAction {
-
+    /**
+     * The set of edges calculated as a result.
+     */
+    @Getter
+    private ArrayList<Edge> edgesAnalyse = new ArrayList<>();
+    /**
+     * The set of vertices calculated as a result.
+     */
+    @Getter
+    private ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
 
     /**
      * Analyses the graph on the given criteria. All the
@@ -27,9 +37,6 @@ public class AnalysisGraphCyclesAction extends GraphAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-        ArrayList<Edge> edgesAnalyse = new ArrayList<>();
-        ArrayList<Vertex> verticesAnalyse = new ArrayList<>();
-
 
         List<List<Vertex>> listCylces = jGraphTHandler.detectCycles();
         for (List<Vertex> list : listCylces) {

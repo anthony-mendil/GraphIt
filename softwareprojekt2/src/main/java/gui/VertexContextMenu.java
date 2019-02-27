@@ -69,11 +69,8 @@ public class VertexContextMenu {
             dialog.setTitle(language.loadLanguagesKey("CONTEXT_DIALOG_VERTEX_TITLE"));
 
             Optional<EnumMap<Language, String>> result = dialog.showAndWait();
-            Map<String, String> oldAnno = vertex.getAnnotation();
 
-            result.ifPresent(map -> {
-                checkAnnotation(map);
-            });
+            result.ifPresent(this::checkAnnotation);
         });
 
         // COLOR FILL
@@ -158,9 +155,7 @@ public class VertexContextMenu {
         }
         contextMenu.getItems().addAll(highlight, visible);
         contextMenu.setAutoHide(true);
-        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
-            contextMenu.hide();
-        });
+        contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> contextMenu.hide());
     }
 
     private void checkAnnotation(Map<Language, String> map){
