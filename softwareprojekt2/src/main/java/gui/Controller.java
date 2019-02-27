@@ -185,8 +185,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private MenuItem exportPDF;
     @FXML
-    private MenuItem exportGXLWithTemplate;
-    @FXML
     private MenuItem exportLogs;
 
     /**
@@ -676,10 +674,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private MenuItem analysisAllPaths;
     @FXML
-    private CheckBox filterArrowTypeCheckBox;
-    @FXML
-    private MenuButton analysisArrowMenuButton;
-    @FXML
     private Text analysisOption;
     @FXML
     private CheckBox analysisOptions;
@@ -860,6 +854,7 @@ public class Controller implements ObserverSyndrom {
     private Text positionMouseX;
     @FXML
     private Text positionMouseY;
+
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
     private static final String SPHERE_STYLE = "SphereStyle";
@@ -1251,21 +1246,6 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    /**
-     * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
-     */
-    public void exportGXLWithTemplate() {
-        rulesTemplate();
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(mainStage);
-        if (file != null) {
-            ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
-            exportTemplateGxlAction.action();
-        }
-
-    }
 
     /**
      * Creates an ExportPdfAction-object and executes the action with the action history.
@@ -1345,25 +1325,6 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportGxlAction-object
-     * and executes the action with the action history.
-     */
-    public void importGXLWithTemplate() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(mainStage);
-        if (file != null) {
-            ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
-            importTemplateGxlAction.action();
-            zoomSlider.setValue(100);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
-        }
-        templateToFields();
-    }
-
-    /**
      * Sets the Template values into the fields (usage: importing template)
      */
     private void templateToFields() {
@@ -1424,6 +1385,7 @@ public class Controller implements ObserverSyndrom {
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
         switchModeAction.action();
+        satellite.setContent(syndrom.getVv2());
         root.requestFocus();
     }
 
@@ -1446,6 +1408,7 @@ public class Controller implements ObserverSyndrom {
         analysisScopeNumber.setText(graphDimensionAction.getScope());
         analysisNetworkingIndexNumber.setText(graphDimensionAction.getNetworkIndex());
         analysisStructureIndexNumber.setText(graphDimensionAction.getStructureIndex());
+        satellite.setContent(syndrom.getVv2());
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1466,6 +1429,7 @@ public class Controller implements ObserverSyndrom {
         createButton.setDisable(false);
         analysisButton.setDisable(false);
         editButton.setDisable(true);
+        satellite.setContent(syndrom.getVv2());
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
@@ -2458,7 +2422,6 @@ public class Controller implements ObserverSyndrom {
             analysisSuccessor.setSelected(false);
             analysisPathCheckBox.setSelected(false);
             analysisOptions.setSelected(false);
-            filterArrowTypeCheckBox.setSelected(false);
         }
     }
 
@@ -3028,7 +2991,6 @@ public class Controller implements ObserverSyndrom {
 
         analysisPathCheckBox.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(this, analysisPathCheckBox, analysisPathMenuButton));
         analysisOptions.selectedProperty().addListener(new AnalysisOptionsCheckBoxListener(this, analysisOptions, filterAnalysis));
-
         analysisShortestPath.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
         analysisAllPaths.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(analysisPathMenuButton));
 

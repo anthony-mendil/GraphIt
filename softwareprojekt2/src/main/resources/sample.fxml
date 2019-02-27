@@ -73,11 +73,6 @@
                                 <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem fx:id="exportGXLWithTemplate" mnemonicParsing="false" onAction="#exportGXLWithTemplate" text="%template">
-                            <accelerator>
-                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                            </accelerator>
-                        </MenuItem>
                         <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
@@ -975,57 +970,6 @@
                                                 <Tooltip text="%analysisOptionsTooltip" />
                                             </tooltip>
                                         </JFXCheckBox>
-                                      <JFXCheckBox fx:id="filterArrowTypeCheckBox" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" text=" ">
-                                          <graphic>
-                                              <MenuButton fx:id="analysisArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.4" prefWidth="50.4" styleClass="menubutton" stylesheets="@gui_style.css">
-                                                  <items>
-                                          <MenuItem fx:id="edgeArrowReinforced1" mnemonicParsing="false" onAction="#edgeReinforced">
-                                             <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@icons2/005-right-chevron.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </MenuItem>
-                                                      <MenuItem mnemonicParsing="false">
-                                                          <graphic>
-                                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                                  <image>
-                                                                      <Image url="@icons2/014-question.png" />
-                                                                  </image>
-                                                              </ImageView>
-                                                          </graphic>
-                                                      </MenuItem>
-                                                      <MenuItem mnemonicParsing="false">
-                                                          <graphic>
-                                                              <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                                  <image>
-                                                                      <Image url="@icons2/015-circle.png" />
-                                                                  </image>
-                                                              </ImageView>
-                                                          </graphic>
-                                                      </MenuItem>
-                                                  </items>
-                                                  <graphic>
-                                                      <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                          <image>
-                                                              <Image url="@icons2/005-right-chevron.png" />
-                                                          </image>
-                                                      </ImageView>
-                                                  </graphic>
-                                                  <padding>
-                                                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                                  </padding>
-                                              </MenuButton>
-                                          </graphic>
-                                          <tooltip>
-                                              <Tooltip text="%treeViewEdgeTypeTooltip" />
-                                          </tooltip>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                                      </JFXCheckBox>
                                     </children>
                                 </HBox>
                             </children>
@@ -1043,13 +987,13 @@
         </VBox>
     </top>
     <bottom>
-        <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="27.0" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" BorderPane.alignment="TOP_CENTER">
+        <ButtonBar fx:id="currentActionBox" focusTraversable="false" prefHeight="30.4" prefWidth="616.0" styleClass="buttonbar" stylesheets="@gui_style.css" BorderPane.alignment="TOP_CENTER">
             <buttons>
-            <HBox fx:id="hBoxActionBox" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="2480.0">
+            <HBox fx:id="hBoxActionBox" alignment="TOP_RIGHT" prefHeight="30.4" prefWidth="2480.0">
                <children>
-                      <HBox fx:id="textBox" centerShape="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1410.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css" HBox.hgrow="ALWAYS">
+                      <HBox fx:id="textBox" centerShape="false" minHeight="-Infinity" prefHeight="30.4" prefWidth="1410.0" scaleShape="false" styleClass="buttonbar" stylesheets="@gui_style.css" HBox.hgrow="ALWAYS">
                           <children>
-                              <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+                              <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="500.0">
                                   <HBox.margin>
                                       <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
                                   </HBox.margin>
