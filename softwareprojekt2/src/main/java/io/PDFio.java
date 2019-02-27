@@ -194,15 +194,12 @@ public class PDFio {
     /**
      * Starts the dialog to export the current graph visualization as PDF.
      */
-    public ByteArrayInputStream printPDF() {
+    public void printPDF() {
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         createPDF(byteArrayOutputStream);
         byte[] pdfBytes = byteArrayOutputStream.toByteArray();
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(pdfBytes);
-        return byteArrayInputStream;
-        //new PDFPrinterGui(byteArrayInputStream);
-
-
+        new PDFPrinterGui(byteArrayInputStream);
     }
 }
