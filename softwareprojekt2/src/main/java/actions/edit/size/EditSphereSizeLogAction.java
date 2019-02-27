@@ -21,6 +21,9 @@ public class EditSphereSizeLogAction extends LogAction {
      * The option of the change of the sphere-size.(either shrink or enlarge)
      */
     private SizeChange sizeChange;
+    /**
+     * Transforms the size of the sphere.
+     */
     @SuppressWarnings("unchecked")
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer();
 
@@ -122,7 +125,10 @@ public class EditSphereSizeLogAction extends LogAction {
     }
 
     /**
-     * Creates the vertices object.
+     * Creates the parameter-object for this action.
+     * @param sphere The selected sphere.
+     * @param oldSize The old size of the sphere.
+     * @param newSize The new size of the sphere.
      */
     public void createParameter(Sphere sphere, Pair<Double,Double> oldSize, Pair<Double,Double> newSize) {
         parameters = new EditSphereSizeParam(sphere, oldSize,newSize);

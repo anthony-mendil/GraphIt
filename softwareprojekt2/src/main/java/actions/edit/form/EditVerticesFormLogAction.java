@@ -20,6 +20,9 @@ import java.util.Map;
  * Changes the form of the selected vertices.
  */
 public class EditVerticesFormLogAction extends LogAction {
+    /**
+     * The new vertex-shape-type.
+     */
     private VertexShapeType type;
     /**
      * Constructor in case the user changes the form of the selected vertices.
@@ -84,6 +87,11 @@ public class EditVerticesFormLogAction extends LogAction {
         editVerticesFormLogAction.action();
     }
 
+    /**
+     * Creates a new parameter-object of this action.
+     * @param oldVertices   The old vertices and their old shape.
+     * @param newVertices   Thew new vertices and thier new shape.
+     */
     public void createParameter(Map<Vertex,VertexShapeType> oldVertices, Map<Vertex,VertexShapeType> newVertices) {
         parameters = new EditVerticesFormParam(oldVertices, newVertices);
     }
