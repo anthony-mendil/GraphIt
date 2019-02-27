@@ -25,32 +25,26 @@ public class MainApplication extends Application {
     private Controller controller;
     private double loadingProgress=0;
 
-    private void addLoadingProgress(int msBeforeProgress, double addedProgress) throws InterruptedException {
-        Thread.sleep(msBeforeProgress);
-        loadingProgress += addedProgress;
-        notifyPreloader(new Preloader.ProgressNotification(loadingProgress));
-    }
-
     @Override
     public void init() throws Exception {
-        addLoadingProgress(20,0.1);
+        notifyPreloader(new Preloader.ProgressNotification(0));
         BasicConfigurator.configure();
-        addLoadingProgress(20,0.15);
+        notifyPreloader(new Preloader.ProgressNotification(0.14));
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        addLoadingProgress(20,0.1);
+        notifyPreloader(new Preloader.ProgressNotification(0.28));
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
-        addLoadingProgress(20,0.1);
+        notifyPreloader(new Preloader.ProgressNotification(0.42));
 
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
-        addLoadingProgress(20,0.1);
+        notifyPreloader(new Preloader.ProgressNotification(0.56));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
-        addLoadingProgress(20,0.15);
+        notifyPreloader(new Preloader.ProgressNotification(0.70));
         BorderPane borderPane = loader.load();
-        addLoadingProgress(20,0.1);
+        notifyPreloader(new Preloader.ProgressNotification(0.84));
         scene = new Scene(borderPane);
-        addLoadingProgress(20,0.1);
+        notifyPreloader(new Preloader.ProgressNotification(0.92));
         controller = loader.getController();
-        addLoadingProgress(20,0.1);
+        notifyPreloader(new Preloader.ProgressNotification(1));
     }
 
     /**
