@@ -22,7 +22,7 @@ public class AddEdgesLogAction extends LogAction {
     private Pair<Vertex, Vertex> edge;
 
     /**
-     * Constructor in case several edges shall be added.
+     * Constructor in case one edge shall be added.
      *
      * @param pPair A pair of vertices that gets a new edge between them
      */

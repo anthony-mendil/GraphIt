@@ -1,15 +1,11 @@
 package actions.activate;
 
 import actions.GraphAction;
-import actions.LogAction;
-import actions.LogEntryName;
-import actions.deactivate.DeactivateAnchorPointsFadeoutAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintTransformer;
 import gui.Values;
-import log_management.tables.Graph;
 
 /**
  * All existing anchor-points fadeout and are no longer visible for the user.

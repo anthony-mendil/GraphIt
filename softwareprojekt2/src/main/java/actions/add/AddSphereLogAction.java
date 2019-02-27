@@ -9,25 +9,23 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
-import gui.properties.Language;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
 import java.awt.geom.Point2D;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+
 
 /**
- * Adds a sphere to the graph.
+ * Adds a/multiple sphere/s to the graph.
  */
 public class AddSphereLogAction extends LogAction {
 
     private Point2D point2D;
 
     /**
-     * Constructor in case the user clicks somewhere on blank space to create a sphere.
+     * Constructor in case the user clicks somewhere on a blank space to create a sphere.
      *
      * @param pPoint2D The point where to add the sphere and it refers to the upper left corner of the sphere.
      */

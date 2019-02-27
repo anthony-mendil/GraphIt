@@ -35,7 +35,7 @@ public class ActivateHighlightAction extends GraphAction {
     }
 
     /**
-     * Undoes the performed highlight-action.
+     * No undo operation for this action.
      */
     @Override
     public void undo() {

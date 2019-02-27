@@ -1443,10 +1443,9 @@ public class Controller implements ObserverSyndrom {
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
 
-        DecimalFormat format = new DecimalFormat("####.##");
-        analysisScopeNumber.setText("" + format.format(graphDimensionAction.getScope()));
-        analysisNetworkingIndexNumber.setText("" + format.format(graphDimensionAction.getNetworkIndex()));
-        analysisStructureIndexNumber.setText("" + format.format(graphDimensionAction.getStructureIndex()));
+        analysisScopeNumber.setText(graphDimensionAction.getScope());
+        analysisNetworkingIndexNumber.setText(graphDimensionAction.getNetworkIndex());
+        analysisStructureIndexNumber.setText(graphDimensionAction.getStructureIndex());
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();

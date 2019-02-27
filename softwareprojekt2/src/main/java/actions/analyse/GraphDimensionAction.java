@@ -9,6 +9,7 @@ import javafx.util.Pair;
 import jgrapht.JGraphTHandler;
 import lombok.Getter;
 
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,17 +22,17 @@ public class GraphDimensionAction extends GraphAction {
      * The scope.
      */
     @Getter
-    private double scope;
+    private String scope;
     /**
      * The networkIndex.
      */
     @Getter
-    private double networkIndex;
+    private String networkIndex;
     /**
      * The structureindex.
      */
     @Getter
-    private double structureIndex;
+    private String structureIndex;
 
     /**
      * Computes the data needed for the current graph.
@@ -55,13 +56,20 @@ public class GraphDimensionAction extends GraphAction {
         /**
          * Calculating the indices.
          */
-        scope = (double) (graph.getEdges().size() + graph.getVertices().size());
-        networkIndex = (double) (2 * graph.getEdges().size()) / graph.getVertices().size();
-        structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
-                jGraphTHandler.detectConvergentBranches().size() +
-                jGraphTHandler.detectDivergentBranches().size() +
-                jGraphTHandler.detectCycles().size()) / graph.getVertices().size();
+        DecimalFormat format = new DecimalFormat("####.##");
 
+        scope = format.format(graph.getEdges().size() + graph.getVertices().size());
+        if(graph.getVertices().size() > 0) {
+            networkIndex = format.format(2 * graph.getEdges().size() /
+                                                graph.getVertices().size());
+            structureIndex = format.format(jGraphTHandler.detectRelationChains().getKey().size() +
+                    jGraphTHandler.detectConvergentBranches().size() +
+                    jGraphTHandler.detectDivergentBranches().size() +
+                    jGraphTHandler.detectCycles().size() / graph.getVertices().size());
+        }else{
+            networkIndex = "NaN";
+            structureIndex = "NaN";
+        }
     }
 
     /**

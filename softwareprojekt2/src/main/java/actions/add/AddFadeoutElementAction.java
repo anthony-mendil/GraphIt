@@ -7,7 +7,7 @@ import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 
 /**
- * Highlights an element of the graph. This action will not be logged so
+ * Fades out an element of the graph. This action will not be logged so
  * therefore there would not be an implementation of the undo and the createParameters()
  * method.
  */
@@ -32,6 +32,6 @@ public class AddFadeoutElementAction extends GraphAction {
 
     @Override
     public void undo() {
-      //There is no undo operation fot this action.
+      //There is no undo operation for this action.
     }
 }
