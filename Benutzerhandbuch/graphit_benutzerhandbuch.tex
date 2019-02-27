@@ -53,7 +53,7 @@
 \newcommand{\cb}[1]{{\textcolor{blue}{#1}}}
 \newcommand*{\hint}{\paragraph{\textcolor{blue}{Hinweise}}}
 \newcommand*{\condition}{\paragraph{Voraussetzung}$\;$ \vspace{0.2cm}\\}
-\newcommand*{\actions}{\paragraph{Vorgehen}}
+\newcommand*{\actions}{\paragraph{Vorgehen} $\;$\vspace{0.2cm}\\}
 
 \usepackage{geometry}
 \usepackage{hyperref}
@@ -278,30 +278,188 @@ Mit diesem Handbuch wird die Bedienung der Software GraphIT beschrieben. Diese A
 		\end{itemize}
 		\subsubsection{Undo}
 		\subsubsection{Redo}
-		\subsubsection{Sphäre hinzufügen}		
+		\subsubsection{Sphäre hinzufügen}	
+		\condition 	
+		Das Programm ist gestartet.
+		\actions
+		\begin{enumerate}
+			\item In der Menüleiste den Button \textit{Sphäre hinzufügen} durch einen Links-Klick aktivieren.
+			\item Den Cursor auf die gewünschte Position bewegen, an der sich keine andere Sphäre befindet, und auf die linke Maustaste klicken.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich eine Sphäre auf einer anderen Sphäre hinzuzufügen. Wird dies versucht, wird keine neue Sphäre hinzugefügt und es erscheint eine Fehlermeldung.
+	\item Es ist nicht möglich eine Sphäre hinzuzufügen, wenn die Anzahl an Sphären im Graphen bereits der maximalen Anzahl an Sphären, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Bearbeitermodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+	\end{itemize}
 		\subsubsection{Sphäre entfernen}
+			\condition 	
+		Ein Syndromansatz mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		Alternative 1:
+		\begin{enumerate}
+			\item Die Sphäre, die gelöscht werden soll mit einem Links-Klick auswählen.
+			\item Die /textit{Entfernen}-Teste der Tastatur drücken.
+		\end{enumerate}
+		Alternative 2:
+			\begin{enumerate}
+			\item Die Sphäre, die gelöscht werden soll mit einem Links-Klick auswählen.
+			\item In der Menüleiste einen Links-Klick auf den Button \textit{Sphäre löschen} ausführen.
+		\end{enumerate}
+		Alernative 3:
+		\begin{enumerate}
+			\item Mit einem Rechts-Klick auf die Sphäre, die gelöscht werden soll, das Kontextmenü öffnen. 
+			\item In diesem Kontextmenü ganz unten die \textit{Entfernen}-Option mit einem Links-Klick auswählen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Wird eine Sphäre gelöscht, so werden automatisch auch alle Symptome entfernt, die zu dieser Sphäre gehören. Damit werden dann auch alle Relationen gelöscht, die in einem dieser Symptome einmünden oder von einem dieser Symptome ausgehen.
+			\item Es ist nicht möglich eine Sphäre zu löschen, wenn der Titel und/oder die Position und/oder der Style der zu löschende Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Sphäre verschieben}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		\begin{enumerate}
+			\item Die Sphäre, die verschoben werden soll mit einem Rechts-Klick auswählen.
+			\item Die (rechte) Taste gedrückt halten und den Cursor an eine Zielstelle bewegen, an der sich keine andere Sphäre befindet. Beim Bewegen des Cursors bewegt sich die Sphäre bereits mit. 
+			\item Die rechte Maustaste loslassen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich eine Sphäre zu verschieben, wenn sich an der Zielposition bereits eine andere Sphäre befindet. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich eine Sphäre im Bearbeitermodus zu verschieben, wenn die Position dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Größe der Sphäre verändern}
-		\subsubsection{Farbe ändern der Sphäre}
-		\subsubsection{Titel der Sphäre ändern}
-		\subsubsection{Contextmenü einer Sphäre öffnen/ benutzen}
-		\subsubsection{Schriftart-/ größe der Beschriftung der Sphäre ändern}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		Alternative 1:
+		\begin{enumerate}
+			\item Die Sphäre, deren Größe verändert werden soll werden soll, mit einem Links-Klick auswählen.
+			\item So oft die \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste der Tastatur drücken bis die Sphäre die gewünschte Größe hat. \\(Nicht die \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste des Nummernblocks)
+		\end{enumerate}
+		Alternative 2:
+			\begin{enumerate}
+			\item Die Sphäre, die gelöscht werden soll mit einem Links-Klick auswählen.
+			\item In der Menüleiste so oft  Links-Klick auf den Button \textit{Sphäre vergrößern}/\textit{Sphäre verkleinern} ausführen bis die Sphäre die gewünschte Größe hat.. 
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Eine Sphäre kann nicht mehr verkleinert werden, wenn sie bereits ihre minimale Größe hat.
+			\item Eine Sphäre kann nicht weiter vergrößert werden, wenn die Vergrößerung zu einer Überlappung von zwei Sphären führen würde.
+			\end{itemize}
+		\subsubsection{Farbe der Sphäre ändern}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		Alternative 1:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken.
+			\item Mit einem Rechts-Klick auf die Sphäre, deren Farbe geändert werden soll, ihr Kontextmenü öffnen.
+			\item im Kontextmenü den Punkt \textit{Farbe} auswählen.
+		\end{enumerate}
+		Alternative 2:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken.
+			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
+			 \item Mit einem Rechts-Klick auf die Sphäre, deren Farbe geändert werden soll, ihr Kontextmenü öffnen.
+			\item im Kontextmenü den Punkt \textit{Farbe} auswählen.
+		\end{enumerate}
+		Alternative 3:
+		\begin{enumerate}
+			\item Die Sphäre, deren Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken.
+			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem Lnks-Klick auswählen.
+		\end{enumerate}
+		Alternative 4:
+			\begin{enumerate}
+			\item Die Sphäre, deren Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken.
+			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Die Bedienung des Farbwahl-Fensters, zu dem man über \textit{Custom Color} gelangt, ist im Kapiel -----XXX------ beschrieben.
+			\item Es ist nicht möglich die Farbe einer Sphäre zu ändern, wenn der Style dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+	\end{itemize}	
+	\subsubsection{Titel der Sphäre ändern}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		\begin{enumerate}
+			\item Die Sphäre, deren Titel geändert werden soll mit einem Rechts-Klick anklicken, sodass sich ihr Kontext-Menü öffnet.
+			\item Im Kontextmenü ganz oben \textit{Titel} mit einem Links-Klick auswählen. 
+			\item In dem sich öffnenden Fenster für die gewünschten Sprache(n) den nuen Titel in die dafür vorgesehenen Felder eingeben.
+			\item Die Änderung des Titels mit einem Links-Klick auf die \textit{Speichern}-Schaltfläche abschließen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Der Titel einer Sphäre darf kein Semikolon enthalten.
+			\item 
+Es ist nicht möglich den Titel einer Sphäre zu ändern, wenn der Titel dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+		\end{itemize}
+		\subsubsection{Contextmenü einer Sphäre öffnen/benutzen}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		Alternative 1:
+		\begin{enumerate}
+			\item Auf einer Sphäre einen Rechts-Klick ausführen.
+			\item im sich öffnenden Kontextmenü die gewünschte Option mit einem Links-Klick auswählen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist egal, ob eine die Späre, deren Kontextmenü geöffnet werden soll, vor dem Rechts-Klick auf diese Sphäre ausgewählt worden ist oder nicht.
+		\end{itemize}
+		\subsubsection{Schriftart/-größe der Beschriftung der Sphäre ändern}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		Alternative 1:
+		\begin{enumerate}
+			\item Die Sphäre, für die die Schriftart/-größe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe der Sphäre angezeigt wird.
+			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung der Sphäre haben soll.
+		\end{enumerate}
+		Alternative 2:
+			\begin{enumerate}
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe der Sphäre angezeigt wird.
+			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung der Sphäre haben soll.
+			\item Mit einem Rechts-Klick auf die Sphäre klicken, deren Schriftart/-größe geändert werden soll.
+			\item In dem sich öffnenden Kontextmenü die Option \textit{Schriftart}/\textit{Schriftgröße} auswählen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Die Schriftart/-größe kann nicht geändert
+			\item Es ist nicht möglich die Schriftart/-größe einer Sphäre zu ändern, wenn der Style dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+			\end{itemize}
 		\subsubsection{Sphären layouten}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		\begin{enumerate}
+			\item In der Menüleiste im Bereich Sphären auf den \textit{Automatische Anordnung}.Button mit Links-Klick klicken.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich eine Sphäre zu löschen, wenn der Titel und/oder die Position und/oder der Style der zu löschende Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+			\end{itemize}
 		\newpage
 		\subsubsection{Symptom hinzufügen}
 		\condition 	
-		Ein Syndromansatz mit mindestens einer Sphäre ist im Programm geöffnet. 
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
 		\actions
 		\begin{enumerate}
-			\item In der Menüleiste den Button \textit{Symptom hinzufügen} durch einen Klick aktivieren.
-			\item Auf die gewünschte Position innerhalb einer Sphäre drücken, wo sich kein(e) anderes Symptom/ Relation befindet, klicken.
+			\item In der Menüleiste den Button \textit{Symptom hinzufügen} durch einen Links-Klick aktivieren.
+			\item Den Cursor auf die gewünschte Position innerhalb einer Sphäre bewegen, an der sich kein(e) andere(s) Symptom / Relation befindet, und auf die linke Maustaste klicken.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich ein Symptom auf einen anderem Symptom hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
 			\item Es ist nicht möglich ein Symptom außerhalb einer Sphäre hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
 			\item Es ist nicht möglich ein Symptom auf einer Relation hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
-		
+			\item Es ist nicht möglich ein Symptom hinzuzufügen, wenn die Anzahl an Symptomen im Graphen bereits der maximalen Anzahl an Symptomen, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Bearbeitermodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom hinzuzufügen, wenn die Anzahl an Symptomen in der Sphäre, in der man ein Symptom hinzufügen möchte, bereits der maximalen Anzahl an Symptomen für diese Sphäre, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Barbeiterodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.		
 		\end{itemize}
 		\newpage
 		\subsubsection{Symptom entfernen}
