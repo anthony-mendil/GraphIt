@@ -23,31 +23,28 @@ public class MainApplication extends Application {
 
     private Scene scene;
     private Controller controller;
+    private double loadingProgress=0;
 
     @Override
     public void init() throws Exception {
-        notifyPreloader(new Preloader.ProgressNotification(0.1));
+        notifyPreloader(new Preloader.ProgressNotification(0));
         BasicConfigurator.configure();
-        notifyPreloader(new Preloader.ProgressNotification(0.2));
+        notifyPreloader(new Preloader.ProgressNotification(0.14));
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-        notifyPreloader(new Preloader.ProgressNotification(0.3));
+        notifyPreloader(new Preloader.ProgressNotification(0.28));
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
-        notifyPreloader(new Preloader.ProgressNotification(0.4));
+        notifyPreloader(new Preloader.ProgressNotification(0.42));
 
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
-        notifyPreloader(new Preloader.ProgressNotification(0.5));
+        notifyPreloader(new Preloader.ProgressNotification(0.56));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);
-        notifyPreloader(new Preloader.ProgressNotification(0.6));
+        notifyPreloader(new Preloader.ProgressNotification(0.70));
         BorderPane borderPane = loader.load();
-        notifyPreloader(new Preloader.ProgressNotification(0.7));
+        notifyPreloader(new Preloader.ProgressNotification(0.84));
         scene = new Scene(borderPane);
-        notifyPreloader(new Preloader.ProgressNotification(0.8));
-
+        notifyPreloader(new Preloader.ProgressNotification(0.92));
         controller = loader.getController();
-        notifyPreloader(new Preloader.ProgressNotification(0.9));
-        super.init();
         notifyPreloader(new Preloader.ProgressNotification(1));
-        Thread.sleep(10);
     }
 
     /**
