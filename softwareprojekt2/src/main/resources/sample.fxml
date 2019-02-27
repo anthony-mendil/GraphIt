@@ -104,7 +104,7 @@
             </MenuBar>
             <JFXToolbar minHeight="-Infinity" prefHeight="30.0" scaleShape="false">
                 <HBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="318.0">
-                    <JFXButton fx:id="createButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeCreator" prefHeight="23.0" prefWidth="26.0">
+                    <JFXButton fx:id="createButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeCreator" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/024-pencil-1.png" />
@@ -117,7 +117,7 @@
                             <Tooltip text="%toolbarCreatorMode" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis" prefHeight="23.0" prefWidth="26.0">
+                    <JFXButton fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/027-vision.png" />
@@ -130,7 +130,7 @@
                             <Tooltip text="%toolbarAnalysisMode" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="editButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeEdit" prefHeight="23.0" prefWidth="26.0">
+                    <JFXButton fx:id="editButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeEdit" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/027-vision.png" />
@@ -151,7 +151,7 @@
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </padding>
                     </Separator>
-                    <JFXButton fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0">
+                    <JFXButton fx:id="undoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeUndo" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/006-reply.png" />
@@ -164,7 +164,7 @@
                             <Tooltip text="%toolbarUndo" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0">
+                    <JFXButton fx:id="redoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#executeRedo" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/001-share.png" />
@@ -195,7 +195,7 @@
                             <Tooltip text="%toolbarHighlight" />
                         </tooltip>
                     </ToggleButton>
-                    <JFXButton fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="highlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -208,7 +208,7 @@
                             <Tooltip text="%toolbarHighlightElement" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="dehighlightElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -234,7 +234,7 @@
                             <Tooltip text="%toolbarFadeout" />
                         </tooltip>
                     </ToggleButton>
-                    <JFXButton fx:id="fadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="fadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -247,7 +247,7 @@
                             <Tooltip text="%toolbarFadeoutElement" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="deleteFadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="button1" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="deleteFadeoutElements" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
