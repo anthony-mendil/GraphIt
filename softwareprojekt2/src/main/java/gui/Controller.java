@@ -1241,7 +1241,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
         }
@@ -1265,7 +1265,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
         }
@@ -1285,7 +1285,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
             exportReadableProtocolAction.action();
         }
@@ -1309,7 +1309,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
@@ -1328,7 +1328,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ImportOofAction importOofAction = new ImportOofAction(file);
             importOofAction.action();
             zoomSlider.setValue(100);
@@ -1351,7 +1351,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             zoomSlider.setValue(100);
