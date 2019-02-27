@@ -30,8 +30,7 @@ public class PrintPDFAction extends GraphAction {
     @Override
     public void action() {
         PDFio pdfio = new PDFio(Syndrom.getInstance().getVv());
-        ByteArrayInputStream byteArrayInputStream = pdfio.printPDF();
-        notifyObserverPrintJob(byteArrayInputStream);
+        pdfio.printPDF();
     }
 
     /**

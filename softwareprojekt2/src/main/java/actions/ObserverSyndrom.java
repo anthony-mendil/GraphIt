@@ -27,6 +27,4 @@ public interface ObserverSyndrom {
      * Calls if a new graph was created or imported.
      */
     void updateNewGraph();
-
-    void showPrint(ByteArrayInputStream byteArrayInputStream);
 }

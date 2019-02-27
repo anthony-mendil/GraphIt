@@ -179,7 +179,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (sp != null && vert == null && edge == null ) {
             if (SwingUtilities.isRightMouseButton(e)) {
                 if (sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT) {
-                    helper.setActionText("SPHERE_PICKING_ALERT", true, false);
+                    helper.setActionText("SPHERE_PICKING_ALERT", true, true);
                 } else if (values.getMode() != FunctionMode.ANALYSE) {
                     spherePickedCoordinate = sp.getCoordinates();
                     setVerticesPositionToPoints(sp);

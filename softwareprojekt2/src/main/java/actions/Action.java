@@ -75,10 +75,4 @@ public abstract class Action {
             o.updateEditMode();
         }
     }
-
-    protected  void notifyObserverPrintJob(ByteArrayInputStream byteArrayInputStream){
-        for (ObserverSyndrom o: observers) {
-            o.showPrint(byteArrayInputStream);
-        }
-    }
 }
