@@ -1909,13 +1909,10 @@ public class Controller implements ObserverSyndrom {
     public void setStage(Stage pStage) {
         mainStage = pStage;
 
-        mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                rulesTemplate();
-                event.consume();
-                optionExitWindow();
-            }
+        mainStage.setOnCloseRequest(event -> {
+            rulesTemplate();
+            event.consume();
+            optionExitWindow();
         });
     }
 
@@ -2010,11 +2007,9 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-
     ChangeListener<Number> changeZoom = new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
             if (zoomSlider.isValueChanging()) {
                 int value = newValue.intValue();
                 int oldV = oldValue.intValue();
@@ -2026,10 +2021,8 @@ public class Controller implements ObserverSyndrom {
                     }
                 });
             }
-
         }
     };
-
 
     ChangeListener<Number> widthListener = new ChangeListener<Number>() {
         @Override
@@ -3244,13 +3237,13 @@ public class Controller implements ObserverSyndrom {
                                 List<Log> filterLog = (entryName == null) ? logDao.getAll() : logDao.getLogType(entryName);
                                 for (Log log : filterLog) {
                                     String time = logToStringConverter.convert(log);
-                                    String index = time.substring(0, time.indexOf("\n"));
+                                    String index = time.substring(0, time.indexOf('\n'));
                                     time = time.replaceFirst(index, "");
                                     time = time.trim();
-                                    String name = time.substring(0, time.indexOf("\n"));
+                                    String name = time.substring(0, time.indexOf('\n'));
                                     time = time.replaceFirst(name, "");
                                     time = time.trim();
-                                    String parameter = time.substring(0, time.indexOf("\n"));
+                                    String parameter = time.substring(0, time.indexOf('\n'));
                                     time = time.replace(parameter, "");
                                     time = time.trim();
                                     TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
@@ -3294,7 +3287,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private List<String> evaluateEntries(String parameters) {
-        String localParameters = new String(parameters);
+        String localParameters = parameters;
         int indexOfDoublePoint = parameters.indexOf(':');
         localParameters = localParameters.substring(indexOfDoublePoint);
         String[] strings = localParameters.split(";");

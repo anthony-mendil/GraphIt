@@ -400,8 +400,8 @@ public class GXLioTest {
     @Test
     public void testAttributeNumberOfGXLTemplate() throws IOException, SAXException {
         prepareSyndrom(true);
-        GXLDocument doc = new GXLDocument(new File(nameTestGraph));
-        GXLGraph templateGraph = (GXLGraph) doc.getElement("template");
+        GXLDocument document = new GXLDocument(new File(nameTestGraph));
+        GXLGraph templateGraph = (GXLGraph) document.getElement("template");
         Assert.assertEquals(6, templateGraph.getAttrCount());
     }
 
@@ -441,8 +441,8 @@ public class GXLioTest {
     @Test(expected = NullPointerException.class)
     public void testExceptionSearchForGXLTemplateAfterExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
         prepareSyndrom(false);
-        GXLDocument doc = new GXLDocument(new File(nameTestGraph));
-        GXLGraph templateGraph = (GXLGraph) doc.getElement("template");
+        GXLDocument gxlDocument = new GXLDocument(new File(nameTestGraph));
+        GXLGraph templateGraph = (GXLGraph) gxlDocument.getElement("template");
         templateGraph.getGraphElementCount();
     }
 
@@ -673,7 +673,6 @@ public class GXLioTest {
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
-        // vertices.forEach(System.out::println);
         Assert.assertEquals(50, vertices.get(0).getSize());
         Assert.assertEquals(50, vertices.get(1).getSize());
         Assert.assertEquals(120, vertices.get(2).getSize());

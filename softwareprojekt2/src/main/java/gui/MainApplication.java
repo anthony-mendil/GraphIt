@@ -23,7 +23,6 @@ public class MainApplication extends Application {
 
     private Scene scene;
     private Controller controller;
-    private double loadingProgress = 0;
 
     @Override
     public void init() throws Exception {
@@ -34,7 +33,6 @@ public class MainApplication extends Application {
         notifyPreloader(new Preloader.ProgressNotification(0.28));
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
         notifyPreloader(new Preloader.ProgressNotification(0.42));
-
         ResourceBundle bundle = ResourceBundle.getBundle("UIResources", new Locale("de"));
         notifyPreloader(new Preloader.ProgressNotification(0.56));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample.fxml"), bundle);

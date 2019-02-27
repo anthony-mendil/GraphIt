@@ -64,9 +64,9 @@ public class EditVertexAnnotationParam implements Param {
 
     @Override
     public String prettyPrint() {
-        Language language = Values.getInstance().getGuiLanguage();
+        Language lang = Values.getInstance().getGuiLanguage();
         String information = "";
-        if (language == Language.ENGLISH) {
+        if (lang == Language.ENGLISH) {
             information += "Symptom: " + SyndromObjectPrinter.vertexPrintGerman(vertex) + ". "
                     + "Old annotation(English): " + oldAnnotationEnglish
                     + ", new annotation(English): " + newAnnotationEnglish
