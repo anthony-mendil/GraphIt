@@ -3,11 +3,10 @@ package graph.graph;
 import lombok.Data;
 
 /**
- * Represents a template, which can be created by the creator(Ersteller).
+ * Represents a template, which can be created by the creator.
  */
 @Data
 public class Template {
-
 
     /**
      * Indicator, whether the number of spheres is locked.
@@ -21,7 +20,7 @@ public class Template {
      * Indicator, whether the number of Edges is locked.
      */
     private boolean lockedEdgesNumber = false;
-    //Graphelement options:
+
     /**
      * The maximum number of spheres allowed to exist in the graph. This is defined in the template.
      */
@@ -37,7 +36,6 @@ public class Template {
      */
     private int maxEdges;
 
-    //Edgetype options:
     /**
      * Allows the user to use reinforced arrows.
      */
@@ -54,7 +52,7 @@ public class Template {
     private boolean neutralEdgesAllowed;
 
     /**
-     * Indicator whether the tickbox is ticked in one of them.(No use atm)
+     * Indicator whether the checkbox is selected in one of them.(No use atm)
      */
     private boolean set;
 
@@ -95,5 +93,4 @@ public class Template {
         }
         return stringBuilder.toString();
     }
-
 }

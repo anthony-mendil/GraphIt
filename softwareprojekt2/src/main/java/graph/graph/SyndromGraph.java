@@ -14,6 +14,7 @@ import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.picking.SyndromPickSupport;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 /**
  * The syndrom graph. Its extending the directed sparse graph with spheres and anchor points.
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
@@ -42,16 +44,14 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
         graphObjectsFactory = new GraphObjectsFactory();
     }
 
-
-
     /**
      * Assigns a vertex to a sphere.
      *
      * @param pSphere The sphere to assign to.
      * @param pVertex The vertex.
      */
-    private boolean addVertexToSphere(Sphere pSphere, Vertex pVertex) {
-        return pSphere.getVertices().add(pVertex);
+    private void addVertexToSphere(Sphere pSphere, Vertex pVertex) {
+        pSphere.getVertices().add(pVertex);
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @param v1 The source vertex.
      * @param v2 The sink vertex.
      */
-    @SuppressWarnings("Unchecked")
+    @SuppressWarnings("unchecked")
     public void addEdgeExisting(Edge edge, V v1, V v2){
         addEdge((E)edge, v1, v2);
     }
@@ -78,6 +78,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * @param pSphere The sphere to assign to.
      * @return True if the vertex was added to the graph, false if not.
      */
+    @SuppressWarnings("unchecked")
     public Vertex addVertex(Point2D pos, Sphere pSphere) {
         Vertex vertex = graphObjectsFactory.createVertex(pos);
         addVertex((V) vertex);
@@ -86,36 +87,31 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     }
 
     /**
-     * Adds a vertex to the syndromgraph and assigns it to the sphere if it was existing in the past.
+     * Adds a vertex to the SyndromGraph and assigns it to the sphere if it was existing in the past.
      */
-    public Vertex addVertexExisting(Vertex vertex){
-        SyndromVisualisationViewer vv = Syndrom.getInstance().getVv();
-        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+    @SuppressWarnings("unchecked")
+    public void addVertexExisting(Vertex vertex){
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(vertex.getCoordinates().getX(), vertex.getCoordinates().getY());
         addVertex((V) vertex);
         addVertexToSphere(sp, vertex);
-        return vertex;
     }
 
     /**
      * Adds a new sphere to the graph.
-     *
-     * @return True if the sphere was added to the graph, false if not.
-     * @param pos The point where the sphere gets placed
+     *@param pos The point where the sphere gets placed
      */
-    public boolean addSphere(Point2D pos) {
+    public void addSphere(Point2D pos) {
         Sphere sphere = graphObjectsFactory.createSphere(pos);
-        return spheres.add(sphere);
+        spheres.add(sphere);
     }
 
     /**
      * Removes a sphere from the graph.
-     *
      * @param pSphere The sphere to remove.
      */
     public void removeSphere(Sphere pSphere) {
         spheres.remove(pSphere);
     }
-
-
 }

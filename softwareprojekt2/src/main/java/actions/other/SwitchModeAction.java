@@ -25,15 +25,15 @@ public class SwitchModeAction extends GraphAction {
         values.setMode(mode);
         if (mode == FunctionMode.EDIT) {
             notifyObserverEditMode();
-            syndrom.setPluggableModeEdit();
+            syndrom.setGraphMouseModeEdit();
         }
         else {
             notifyObserverFunctionMode(mode);
             if (mode == FunctionMode.TEMPLATE){
-                syndrom.setPluggableModeEdit();
+                syndrom.setGraphMouseModeEdit();
             } else {
                 // mode ==  FunctionMode.ANALYSE
-                syndrom.setPluggableModeAnalyse();
+                syndrom.setGraphMouseModeAnalyse();
             }
         }
         ActionHistory.getInstance().wipe();

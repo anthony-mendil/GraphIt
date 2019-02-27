@@ -48,8 +48,7 @@ public class RemoveSphereLogAction extends LogAction {
             PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
             for (Sphere sp : pickedState.getPicked()) {
                 if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
-
-                    if (sp.verticesLocked()) {
+                    if (helper.verticesLocked(sp)) {
                         HelperFunctions helper = new HelperFunctions();
                         helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
                         actionHistory.removeLastEntry();

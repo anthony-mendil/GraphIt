@@ -42,24 +42,17 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        //
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        //
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        setMousePositionText(e);
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //
+    /**
+     * translates the mouse position the layout coordinates and writs it into the Values class
+     * @param e the mouse event
+     */
+    @SuppressWarnings("unchecked")
+    private void setMousePositionText(MouseEvent e){
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
+        Point2D position = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
+        double x = (double) Math.round(position.getX()*100)/100;
+        double y = (double) Math.round(position.getY()*100)/100;
+        helper.setMouseLocation("X: "+x, "Y: "+y);
     }
 
     @Override
@@ -72,12 +65,23 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
         setMousePositionText(e);
     }
 
-    @SuppressWarnings("unchecked")
-    private void setMousePositionText(MouseEvent e){
-        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
-        Point2D position = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
-        double x = (double) Math.round(position.getX()*100)/100;
-        double y = (double) Math.round(position.getY()*100)/100;
-        helper.setMouseLocation("X: "+x, "Y: "+y);
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        setMousePositionText(e);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //
     }
 }

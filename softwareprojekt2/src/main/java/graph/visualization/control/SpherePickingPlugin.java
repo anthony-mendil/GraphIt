@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * the sphere picking plugin, implements mouse interactions on the spheres
+ */
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     /**
@@ -82,7 +85,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
-        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         Point2D p = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
@@ -110,7 +113,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         }
         vv.repaint();
         Syndrom.getInstance().getVv2().repaint();
-
     }
 
     /**
@@ -168,7 +170,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             helper.hideMenu(contextMenu);
         }
         SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
-        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Sphere sp = pickSupport.getSphere(e.getX(), e.getY());
         Vertex vert = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), e.getX(), e.getY());
@@ -209,23 +211,20 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     @SuppressWarnings("unchecked")
     public void mouseReleased(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e) && spherePickedCoordinate != null) {
-            SyndromVisualisationViewer vv = (SyndromVisualisationViewer) e.getSource();
+            SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
             PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
             Set<Sphere> spheres = spherePickedState.getPicked();
-            SyndromGraph graph = (SyndromGraph) vv.getGraphLayout().getGraph();
+            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             List<Sphere> allSpheres = graph.getSpheres();
-
             setCoordinateSpheres(allSpheres, spheres, vv);
             spherePickedCoordinate = null;
             points = null;
             vv.repaint();
-
             Syndrom.getInstance().getVv2().repaint();
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private void setCoordinateSpheres(List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer vv) {
+    private void setCoordinateSpheres(List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer<Vertex, Edge> vv) {
         for (Sphere s : spheres) {
             Shape sShape = sphereShapeTransformer.transform(s);
             boolean move = calculateMove(allSpheres, s, sShape);
@@ -243,7 +242,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 }
             }
         }
-
     }
 
     /**

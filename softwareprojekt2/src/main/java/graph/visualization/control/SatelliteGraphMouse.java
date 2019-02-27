@@ -9,6 +9,9 @@ import java.awt.event.InputEvent;
 public class SatelliteGraphMouse  extends ModalSatelliteGraphMouse implements
         ModalGraphMouse {
 
+    /**
+     * the satellite graph mouse (zoom)
+     */
     public SatelliteGraphMouse(){
         super();
     }

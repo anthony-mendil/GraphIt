@@ -60,8 +60,8 @@ public class GraphDimensionAction extends GraphAction {
          */
         DecimalFormat format = new DecimalFormat("####.##");
 
-        scope = format.format( graph.getEdges().size() + graph.getVertices().size());
-        if(graph.getVertices().size() > 0) {
+        scope = format.format( graph.getEdges().size() + (long) graph.getVertices().size());
+        if(!graph.getVertices().isEmpty()) {
             networkIndex = format.format((double)2 * graph.getEdges().size() / graph.getVertices().size());
             structureIndex = format.format((double)(jGraphTHandler.detectRelationChains().getKey().size() +
                     jGraphTHandler.detectConvergentBranches().size() +

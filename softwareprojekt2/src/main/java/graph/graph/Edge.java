@@ -38,20 +38,20 @@ public class Edge {
     @NonNull
     private EdgeArrowType arrowType;
     /**
-     * Defines whether the edge has an anchor point or not on its vertex.
+     * Defines whether the edge has an anchor point (incoming) or not on its vertex.
      */
     @NonNull
     private boolean hasAnchorIn;
-
+    /**
+     * Defines whether the edge has an anchor point (outgoing) or not on its vertex.
+     */
     @NonNull
     private boolean hasAnchorOut;
-
     /**
-     * first: ausgehender Ankerpunkt
-     * second: mündender Ankerpunkt
+     * first: outgoing anchor point
+     * second: incoming anchor point
      */
     private Pair<Point2D, Point2D> anchorPoints = new Pair<>(null, null);
-
     /**
      * Defines whether a edge is visible or not.
      */
@@ -79,9 +79,10 @@ public class Edge {
     @Getter
     @Setter
     private boolean lockedPosition = false;
-
-    private boolean hasPrio = false;
-
+    /**
+     * defines whether the edge has priority by rendering or not
+     */
+    private boolean hasPriority = false;
     /**
      * Creates an edge between two vertices.
      *
@@ -120,5 +121,4 @@ public class Edge {
         return Syndrom.getInstance().getVv().getGraphLayout().getGraph().getSource(this) + " \u2192 " +
                 Syndrom.getInstance().getVv().getGraphLayout().getGraph().getDest(this);
     }
-
 }

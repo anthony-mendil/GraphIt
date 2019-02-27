@@ -1,6 +1,9 @@
 package log_management.json_deserializers;
 
-import com.google.gson.*;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.util.Pair;
 
 import java.awt.geom.AffineTransform;

@@ -31,10 +31,10 @@ public class CreateGraphAction extends GraphAction {
     public void action() {
         syndrom.generateNew();
         if (values.getMode() == FunctionMode.TEMPLATE || values.getMode() == FunctionMode.EDIT) {
-            syndrom.setPluggableModeEdit();
+            syndrom.setGraphMouseModeEdit();
         } else {
             // FunctionMode.Analyse
-            syndrom.setPluggableModeAnalyse();
+            syndrom.setGraphMouseModeAnalyse();
         }
         actionHistory.wipe();
         DatabaseManager databaseManager = DatabaseManager.getInstance();

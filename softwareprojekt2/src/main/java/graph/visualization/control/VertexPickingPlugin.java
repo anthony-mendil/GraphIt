@@ -28,16 +28,49 @@ import java.awt.geom.Point2D;
 import java.util.*;
 import java.util.List;
 
+/**
+ * the vertex picking plugin, implements mouse interactions on the vertices
+ */
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
+    /**
+     * the source vertex for adding edge
+     */
     private Vertex source;
 
+    /**
+     * the values instance
+     */
     private Values values;
+
+    /**
+     * a map, with vertices and its old position/ sphere
+     */
     private Map<Vertex, Pair<Point2D, Sphere>> points = null;
+
+    /**
+     * an instance of the helper functions
+     */
     private final HelperFunctions helper;
+
+    /**
+     * a context menu (vertex context menu)
+     */
     private ContextMenu contextMenu;
+
+    /**
+     * defines the add to selection modifier (SHIFT)
+     */
     private int addToSelectionModifiers;
+
+    /**
+     * an instance of the action history
+     */
     private ActionHistory history;
+
+    /**
+     * the class where to get the current strings (according to the selected language)
+     */
     private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 
     /**
@@ -50,6 +83,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         history = ActionHistory.getInstance();
     }
 
+    /**
+     * create an instance with passed values
+     */
     private VertexPickingPlugin(int selectionModifiers, int addToSelectionModifiers) {
         super(selectionModifiers);
         this.addToSelectionModifiers = addToSelectionModifiers;
@@ -66,48 +102,51 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
 
-        if (SwingUtilities.isLeftMouseButton(e)) {
-            if (values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
+        if (SwingUtilities.isLeftMouseButton(e) && values.getGraphButtonType() == GraphButtonType.ADD_VERTEX) {
                 if (sp != null && vertex == null && edge == null) {
-                    if (values.getMode() != FunctionMode.TEMPLATE && Syndrom.getInstance().getTemplate().getMaxVertices() != 0 &&
-                            Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size() >= Syndrom.getInstance().getTemplate().getMaxVertices()) {
-                        Object[] obj = { Syndrom.getInstance().getTemplate().getMaxVertices()};
-                        helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_MAX_COUNT_ALERT", obj), true, false);
-                        return;
-                    }
-                    if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
-                        helper.setActionText("VERTEX_PICKING_TEMPLATE_COUNT_ALERT", true, true);
-                    }
-                    if (sp.getLockedMaxAmountVertices().equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE) {
-                        AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
-                        history.execute(addVerticesLogAction);
-                        Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
-                        PickedState<Vertex> pickedState = vv.getPickedVertexState();
-                        pickedState.clear();
-                        pickedState.pick(newVertex, true);
-                    } else {
-                        helper.setActionText("VERTEX_PICKING_COUNT_ALERT", true, true);
-                    }
+                    leftMouseClicked(sp, pickSupport, e, vv);
                 } else {
                     helper.setActionText("VERTEX_PICKING_ALERT_ADD", true, true);
                 }
-            }
-            vv.repaint();
-            Syndrom.getInstance().getVv2().repaint();
         }
 
         if (SwingUtilities.isRightMouseButton(e)) {
+            rightMouseClicked(vertex, vv, e);
+        }
+        vv.repaint();
+        Syndrom.getInstance().getVv2().repaint();
+    }
 
-            if (vertex != null && Values.getInstance().getMode() != FunctionMode.ANALYSE) {
-                PickedState<Vertex> vertices = vv.getPickedVertexState();
-                vertices.clear();
-                vertices.pick(vertex, true);
-                contextMenu = new VertexContextMenu(vertex).getContextMenu();
-                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
-            }
+    private void leftMouseClicked(Sphere sp, SyndromPickSupport<Vertex, Edge> pickSupport, MouseEvent e, SyndromVisualisationViewer<Vertex, Edge> vv){
+        Syndrom syndrom = Syndrom.getInstance();
+        if (values.getMode() != FunctionMode.TEMPLATE && syndrom.getTemplate().getMaxVertices() != 0 &&
+                syndrom.getVv().getGraphLayout().getGraph().getVertices().size() >= syndrom.getTemplate().getMaxVertices()) {
+            Object[] obj = { Syndrom.getInstance().getTemplate().getMaxVertices()};
+            helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_MAX_COUNT_ALERT", obj), true, false);
+            return;
+        }
+        if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
+            helper.setActionText("VERTEX_PICKING_TEMPLATE_COUNT_ALERT", true, true);
+        }
+        if (sp.getLockedMaxAmountVertices().equals("") || sp.getVertices().size() < Integer.parseInt(sp.getLockedMaxAmountVertices()) || values.getMode() == FunctionMode.TEMPLATE) {
+            AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
+            history.execute(addVerticesLogAction);
+            Vertex newVertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+            PickedState<Vertex> pickedState = vv.getPickedVertexState();
+            pickedState.clear();
+            pickedState.pick(newVertex, true);
+        } else {
+            helper.setActionText("VERTEX_PICKING_COUNT_ALERT", true, true);
+        }
+    }
 
-            vv.repaint();
-            Syndrom.getInstance().getVv2().repaint();
+    private void rightMouseClicked(Vertex vertex, SyndromVisualisationViewer<Vertex, Edge> vv, MouseEvent e){
+        if (vertex != null && Values.getInstance().getMode() != FunctionMode.ANALYSE) {
+            PickedState<Vertex> vertices = vv.getPickedVertexState();
+            vertices.clear();
+            vertices.pick(vertex, true);
+            contextMenu = new VertexContextMenu(vertex).getContextMenu();
+            helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
         }
     }
 
@@ -224,7 +263,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 Layout<Vertex, Edge> layout = vv.getGraphLayout();
                 for (Vertex vertex : pickedState.getPicked()) {
                     for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(vertex)) {
-                        edge.setHasPrio(true);
+                        edge.setHasPriority(true);
                     }
                     if (!vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
                         Point2D vp = layout.transform(vertex);
@@ -245,7 +284,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         boolean addNot = false;
         for (Vertex v : pickedState.getPicked()) {
             for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(v)) {
-                edge.setHasPrio(false);
+                edge.setHasPriority(false);
             }
             Point2D vp = vv.getRenderContext().getMultiLayerTransformer().transform(v.getCoordinates());
             Sphere sp = pickSupport.getSphere(vp.getX(), vp.getY());
@@ -306,6 +345,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
+    private boolean intersects(Vertex v) {
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        for (Vertex vertex : graph.getVertices()) {
+            if (vertex != v && Math.abs(vertex.getCoordinates().getX() - v.getCoordinates().getX()) < 40
+                    && Math.abs(vertex.getCoordinates().getY() - v.getCoordinates().getY()) < 30) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
     @Override
     public void mouseMoved(MouseEvent e) {
         //
@@ -319,18 +371,5 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     @Override
     public void mouseExited(MouseEvent e) {
         //
-    }
-
-    private boolean intersects(Vertex v) {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        for (Vertex vertex : graph.getVertices()) {
-            if (vertex != v && Math.abs(vertex.getCoordinates().getX() - v.getCoordinates().getX()) < 40
-                    && Math.abs(vertex.getCoordinates().getY() - v.getCoordinates().getY()) < 30) {
-                return true;
-            }
-
-        }
-        return false;
     }
 }

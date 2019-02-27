@@ -5,7 +5,6 @@ import graph.graph.Syndrom;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
-import org.apache.log4j.Logger;
 
 public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     private CheckBox checkBox;

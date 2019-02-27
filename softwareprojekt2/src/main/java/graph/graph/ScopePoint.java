@@ -6,23 +6,35 @@ package graph.graph;
  */
 public enum ScopePoint {
     /**
-     * The first quarter.
+     * The first scope.
      */
     POS_1,
     /**
-     * The second quarter.
+     * The second scope.
      */
     POS_2,
     /**
-     * The third quarter.
+     * The third scope.
      */
     POS_3,
     /**
-     * The fourth quarter.
+     * The fourth scope.
      */
     POS_4,
+    /**
+     * the fifth scope
+     */
     POS_5,
+    /**
+     * the sixth scope
+     */
     POS_6,
+    /**
+     * the seventh scope
+     */
     POS_7,
+    /**
+     * the eighth scope
+     */
     POS_8
 }

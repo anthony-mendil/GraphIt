@@ -6,7 +6,6 @@ import net.sourceforge.gxl.GXLDocument;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;

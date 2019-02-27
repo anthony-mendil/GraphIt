@@ -97,6 +97,6 @@ public class ActionHistory {
     }
 
     public boolean isLast(){
-        return actions[current+1] == null ? true : false;
+        return actions[current+1] == null;
     }
 }

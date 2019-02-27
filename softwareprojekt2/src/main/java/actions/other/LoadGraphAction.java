@@ -30,9 +30,9 @@ public class LoadGraphAction extends GraphAction {
         GXLio gxLio = new GXLio();
         gxLio.gxlToInstance(gxlGraph,true);
         if (values.getMode() == FunctionMode.TEMPLATE || values.getMode() == FunctionMode.EDIT) {
-            syndrom.setPluggableModeEdit();
+            syndrom.setGraphMouseModeEdit();
         } else {
-            syndrom.setPluggableModeAnalyse();
+            syndrom.setGraphMouseModeAnalyse();
         }
         notifyObserverGraph();
     }

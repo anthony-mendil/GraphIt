@@ -2,7 +2,7 @@ package gui;
 
 import actions.analyse.AnalysisGraphNeighborsAction;
 import actions.deactivate.ResetVvAction;
-import graph.algorithmen.AnalyseTypeSeveral;
+import graph.algorithmen.AnalyseType;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
@@ -29,15 +29,15 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
                     ResetVvAction resetAction = new ResetVvAction();
                     resetAction.action();
 
-                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(textField.getText()));
+                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(textField.getText()));
                     analysisGraphAction.action();
                 } else {
                     if (analysisPredecessor.isSelected()) {
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(textField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(textField.getText()));
                         analysisGraphAction.action();
                     }
                     if (analysisSuccessor.isSelected()) {
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
                         analysisGraphAction.action();
                     }
                 }

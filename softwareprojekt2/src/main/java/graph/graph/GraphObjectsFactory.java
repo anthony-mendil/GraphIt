@@ -22,7 +22,6 @@ public class GraphObjectsFactory {
     /**
      * The global objects counter for the ids for the graph objects.
      */
-
     private int objectCounter;
 
     /**
@@ -33,6 +32,10 @@ public class GraphObjectsFactory {
         objectCounter = 0;
     }
 
+    /**
+     * sets the object counter to specific value
+     * @param id the id
+     */
     public void setObjectCounter(int id){
         objectCounter = id;
     }
@@ -42,13 +45,11 @@ public class GraphObjectsFactory {
      * @return A new edge object.
      */
     public Edge createEdge() {
-
        int id = objectCounter++;
        Color color = values.getEdgePaint();
        StrokeType stroke = values.getStrokeEdge();
        EdgeArrowType arrowType = values.getEdgeArrowType();
-       boolean isVisible = true;
-       return new Edge(id, color, stroke, arrowType,isVisible, false, false);
+       return new Edge(id, color, stroke, arrowType,true, false, false);
     }
 
     /**
@@ -60,7 +61,7 @@ public class GraphObjectsFactory {
         Color fillPaint = values.getFillPaintVertex();
         Color drawPaint = values.getDrawPaintVertex();
         Map<String, String> annotation = values.getDefaultAnnotationVertex();
-        Map vertexAnnotation = new HashMap();
+        Map<String, String> vertexAnnotation = new HashMap<>();
         for (Map.Entry<String, String> entry: annotation.entrySet()) {
             vertexAnnotation.put(entry.getKey(), entry.getValue()+" "+id);
         }
@@ -87,7 +88,7 @@ public class GraphObjectsFactory {
         double height = Values.DEFAULT_HEIGHT_SPHERE;
         Pair<Double> size = new Pair<>(width, height);
         Map<String, String> annotation = values.getDefaultAnnotationSphere();
-        Map sphereAnnotation = new HashMap();
+        Map<String, String> sphereAnnotation = new HashMap<>();
         for (Map.Entry<String, String> entry: annotation.entrySet()) {
             sphereAnnotation.put(entry.getKey(), entry.getValue()+" "+id);
         }

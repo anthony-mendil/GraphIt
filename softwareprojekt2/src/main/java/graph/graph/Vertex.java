@@ -129,13 +129,12 @@ public class Vertex {
      *
      * @param id          The identification of the vertex.
      * @param colors      The colors for the vertex (getFirst() - fillColor, getSecond() - drawColor)
-     * @param coordinates The cooridnates of the vertex.
+     * @param coordinates The coordinates of the vertex.
      * @param shape       The shape of the vertex.
      * @param annotation  The annotation of the vertex.
      * @param font        The font of the annotation of the vertex.
      * @param sizes       The sizes for the vertex (getFirst() - shapeSize, getSecond() - fontSize)
      */
-
     public Vertex(int id, edu.uci.ics.jung.graph.util.Pair<Color> colors, Point2D coordinates, VertexShapeType shape, Map<String, String>
             annotation, edu.uci.ics.jung.graph.util.Pair<Integer> sizes, String font) {
         this.id = id;
@@ -165,7 +164,6 @@ public class Vertex {
         }
         return false;
     }
-
 
     @Override
     public String toString() {

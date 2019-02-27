@@ -1,7 +1,7 @@
 package actions.analyse;
 
 import actions.GraphAction;
-import graph.algorithmen.AnalyseTypeSeveral;
+import graph.algorithmen.AnalyseType;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import javafx.util.Pair;
@@ -19,7 +19,7 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
     /**
      * The mode if either the predecessors/ successors or both should be highlighted.
      */
-    private AnalyseTypeSeveral analyseTypeSeveral;
+    private AnalyseType analyseType;
     /**
      * The amount of successors/predecessors of a specific vertex.
      */
@@ -41,12 +41,12 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
      * After processing and finding out the values the action is looking for, the information is displayed
      * or the found vertices/ edges get highlighted.
      * The action is applied to all picked vertices/ edges or to all objects if nothing is picked.
-     * @param analyseTypeSeveral The selected mode: successor/predecessor/both
+     * @param analyseType The selected mode: successor/predecessor/both
      * @param amountSteps The amount of iterations that should be calculated.
      *
      */
-    public AnalysisGraphNeighborsAction(AnalyseTypeSeveral analyseTypeSeveral, int amountSteps) {
-        this.analyseTypeSeveral = analyseTypeSeveral;
+    public AnalysisGraphNeighborsAction(AnalyseType analyseType, int amountSteps) {
+        this.analyseType = analyseType;
         this.amountSteps = amountSteps;
     }
 
@@ -59,15 +59,15 @@ public class AnalysisGraphNeighborsAction extends GraphAction {
 
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
 
-        if (analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR) {
+        if (analyseType == AnalyseType.NEIGHBOUR_PREDECESSOR) {
             Pair<List<Vertex>, List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
             verticesAnalyse.addAll(predecessors.getKey());
             edgesAnalyse.addAll(predecessors.getValue());
-        } else if (analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR) {
+        } else if (analyseType == AnalyseType.NEIGHBOUR_SUCCESSOR) {
             Pair<List<Vertex>, List<Edge>> successors = jGraphTHandler.successorIterations(amountSteps);
             verticesAnalyse.addAll(successors.getKey());
             edgesAnalyse.addAll(successors.getValue());
-        } else if (analyseTypeSeveral == AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR) {
+        } else if (analyseType == AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR) {
             Pair<List<Vertex>, List<Edge>> predecessors = jGraphTHandler.predecessorsIterations(amountSteps);
             verticesAnalyse.addAll(predecessors.getKey());
             edgesAnalyse.addAll(predecessors.getValue());
