@@ -28,7 +28,7 @@ public class ColorNameCreator {
      * Initialize the color list.
      */
     private ArrayList<ColorNames> createColorList() {
-        ArrayList<ColorNames> colors = new ArrayList<ColorNames>();
+        ArrayList<ColorNames> colors = new ArrayList<>();
         colors.add(new ColorNames("AliceBlue", "Eisfarben", 0xF0, 0xF8, 0xFF));
         colors.add(new ColorNames("AntiqueWhite", "Antikweiß", 0xFA, 0xEB, 0xD7));
         colors.add(new ColorNames("Aqua", "Wasserfarben", 0x00, 0xFF, 0xFF));

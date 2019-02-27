@@ -7,13 +7,10 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
-import gui.properties.Language;
-import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 

@@ -7,8 +7,6 @@ import graph.graph.SyndromGraph;
 import graph.graph.Vertex;
 import io.PDFio;
 
-import java.io.ByteArrayInputStream;
-
 /**
  * Prints the current graph visualization as a PDF file.
  */
@@ -30,8 +28,7 @@ public class PrintPDFAction extends GraphAction {
     @Override
     public void action() {
         PDFio pdfio = new PDFio(Syndrom.getInstance().getVv());
-        ByteArrayInputStream byteArrayInputStream = pdfio.printPDF();
-        notifyObserverPrintJob(byteArrayInputStream);
+        pdfio.printPDF();
     }
 
     /**

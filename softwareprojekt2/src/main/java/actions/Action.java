@@ -2,7 +2,6 @@ package actions;
 
 import graph.graph.FunctionMode;
 
-import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
 
 /**
@@ -73,12 +72,6 @@ public abstract class Action {
     protected void notifyObserverEditMode(){
         for (ObserverSyndrom o: observers) {
             o.updateEditMode();
-        }
-    }
-
-    protected  void notifyObserverPrintJob(ByteArrayInputStream byteArrayInputStream){
-        for (ObserverSyndrom o: observers) {
-            o.showPrint(byteArrayInputStream);
         }
     }
 }

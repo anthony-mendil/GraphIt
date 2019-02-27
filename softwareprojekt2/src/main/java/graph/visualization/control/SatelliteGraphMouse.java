@@ -15,7 +15,7 @@ public class SatelliteGraphMouse  extends ModalSatelliteGraphMouse implements
 
     @Override
     public void loadPlugins(){
-        translatingPlugin = new SatelliteTranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
+        translatingPlugin = new SatelliteTranslatingGraphMousePlugin(InputEvent.BUTTON1_DOWN_MASK);
         add(translatingPlugin);
     }
 }

@@ -28,18 +28,18 @@ public class Values {
      * The default width sphere.
      */
     @Setter(AccessLevel.NONE)
-    private final double defaultWidthSphere = 200;
+    public static final double DEFAULT_WIDTH_SPHERE = 200;
     /**
      * The default height of a sphere.
      */
     @Setter(AccessLevel.NONE)
-    private final double defaultHeightSphere = 200;
+    public static final double DEFAULT_HEIGHT_SPHERE = 200;
 
     /**
      * The default size of a vertex.
      */
     @Setter(AccessLevel.NONE)
-    private final int defaultSizeVertex = 50;
+    public static final int DEFAULT_SIZE_VERTEX = 50;
     /**
      * The first highlight color for highlighting selection/ picking.
      */
@@ -176,15 +176,15 @@ public class Values {
     private final javafx.scene.paint.Color actionTextColorAlert =  javafx.scene.paint.Color.rgb(160, 12, 12, 1);
 
     @Setter(AccessLevel.NONE)
-    private final javafx.scene.paint.Color actionTextColorInfo =  javafx.scene.paint.Color.BLACK;
+    public static final javafx.scene.paint.Color actionTextColorInfo =  javafx.scene.paint.Color.BLACK;
 
     private int scale;
 
     @Setter(AccessLevel.NONE)
-    private final int minScale = 10;
+    public static final int MIN_SCALE = 10;
 
     @Setter(AccessLevel.NONE)
-    private final int maxScale = 200;
+    public static final int MAX_SCALE = 200;
 
     private Font roboto;
     private Font robotoSlab;

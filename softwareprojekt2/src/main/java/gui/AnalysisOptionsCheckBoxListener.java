@@ -3,7 +3,6 @@ package gui;
 import actions.analyse.*;
 import actions.deactivate.ResetVvAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.algorithmen.AnalyseTypeSingle;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;

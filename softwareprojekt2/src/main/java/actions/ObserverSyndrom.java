@@ -2,8 +2,6 @@ package actions;
 
 import graph.graph.FunctionMode;
 
-import java.io.ByteArrayInputStream;
-
 /**
  * Observer interface, for observing components.
  */
@@ -27,6 +25,4 @@ public interface ObserverSyndrom {
      * Calls if a new graph was created or imported.
      */
     void updateNewGraph();
-
-    void showPrint(ByteArrayInputStream byteArrayInputStream);
 }

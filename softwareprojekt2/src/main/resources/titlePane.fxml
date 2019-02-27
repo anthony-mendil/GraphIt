@@ -10,7 +10,7 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TitlesDialogPaneController">
 
     <content>
-        <VBox minHeight="-Infinity" prefHeight="150.0" prefWidth="400.0">
+        <VBox minHeight="-Infinity" prefHeight="130.0" prefWidth="400.0">
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                   prefHeight="50.0" prefWidth="400.0">
                 <Text fx:id="germanText" strokeType="OUTSIDE" strokeWidth="0.0" text="%german" wrappingWidth="150.0"/>

@@ -92,8 +92,8 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
             if (values.getGraphButtonType() == GraphButtonType.ADD_SPHERE) {
                 if (vertex == null && sp == null) {
                     List<Sphere> list = graph.getSpheres();
-                    Rectangle2D newRec = new Rectangle2D.Double(p.getX(), p.getY(), values.getDefaultWidthSphere(),
-                            values.getDefaultHeightSphere());
+                    Rectangle2D newRec = new Rectangle2D.Double(p.getX(), p.getY(), Values.DEFAULT_WIDTH_SPHERE,
+                            Values.DEFAULT_HEIGHT_SPHERE);
                     addSphere(list, newRec, p);
                 } else {
                     helper.setActionText("SPHERE_PICKING_ADD_ALERT", true, true);
@@ -179,7 +179,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         if (sp != null && vert == null && edge == null ) {
             if (SwingUtilities.isRightMouseButton(e)) {
                 if (sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT) {
-                    helper.setActionText("SPHERE_PICKING_ALERT", true, false);
+                    helper.setActionText("SPHERE_PICKING_ALERT", true, true);
                 } else if (values.getMode() != FunctionMode.ANALYSE) {
                     spherePickedCoordinate = sp.getCoordinates();
                     setVerticesPositionToPoints(sp);

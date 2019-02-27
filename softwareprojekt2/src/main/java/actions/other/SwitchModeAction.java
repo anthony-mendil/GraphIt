@@ -3,7 +3,6 @@ package actions.other;
 import actions.ActionHistory;
 import actions.GraphAction;
 import graph.graph.FunctionMode;
-import gui.Values;
 
 /**
  * Changes the mode either to "Ersteller"/"Bearbeiter"/ "Auswerter".
