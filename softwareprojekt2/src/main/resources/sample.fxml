@@ -73,11 +73,6 @@
                                 <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem fx:id="exportGXLWithTemplate" mnemonicParsing="false" onAction="#exportGXLWithTemplate" text="%template">
-                            <accelerator>
-                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                            </accelerator>
-                        </MenuItem>
                         <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />

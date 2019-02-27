@@ -43,7 +43,8 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Adds a vertex at given point.
      *
-     * @param point Point of the mouse event where the vertex should be added.
+     * @param point  Point of the mouse event where the vertex should be added.
+     * @param sphere The Sphere in which the vertex shall be set.
      */
     public AddVerticesLogAction(Point2D point, Sphere sphere) {
         super(LogEntryName.ADD_VERTICES);

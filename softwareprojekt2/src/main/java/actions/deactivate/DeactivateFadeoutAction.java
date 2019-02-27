@@ -71,8 +71,4 @@ public class DeactivateFadeoutAction extends LogAction {
         // no undo operation for this action.
     }
 
-
-    public void createParameter() {
-        throw new UnsupportedOperationException();
-    }
 }

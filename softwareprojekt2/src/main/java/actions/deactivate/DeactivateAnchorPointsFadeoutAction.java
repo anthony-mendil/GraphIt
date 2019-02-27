@@ -1,22 +1,16 @@
 package actions.deactivate;
 
 import actions.GraphAction;
-import actions.LogAction;
-import actions.LogEntryName;
-import actions.activate.ActivateAnchorPointsFadeoutAction;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.transformer.edge.EdgeArrowFillPaintAnchorTransformer;
 import gui.Values;
-import log_management.tables.Graph;
 
 /**
  * Makes the selected anchor-points visible again.
  */
 public class DeactivateAnchorPointsFadeoutAction extends GraphAction {
-
-    public DeactivateAnchorPointsFadeoutAction(){}
 
     @Override
     public void action() {

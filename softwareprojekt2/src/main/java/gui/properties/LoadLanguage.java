@@ -54,7 +54,6 @@ public class LoadLanguage {
         c.getImportGXL().setText(loadLanguagesKey("gxlImport"));
         c.getSaveLocation().setText(loadLanguagesKey("saveAs"));
         c.getExportPDF().setText(loadLanguagesKey("exportAs"));
-        c.getExportGXLWithTemplate().setText(loadLanguagesKey("template"));
         c.getExportLogs().setText(loadLanguagesKey("logs"));
         c.getPrint().setText(loadLanguagesKey("print"));
         c.getOptions().setText(loadLanguagesKey("options"));
@@ -200,6 +199,9 @@ public class LoadLanguage {
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
         c.getTooltipInfoAnalysis().setText(loadLanguagesKey("INFO_ANALYSIS"));
         c.getTooltipInfoZoom().setText(loadLanguagesKey("INFO_ZOOM"));
+        c.getLanguageGraphGerman().setText(loadLanguagesKey("german"));
+        c.getLanguageGraphEnglish().setText(loadLanguagesKey("english"));
+        c.getLanguagesGraph().setText(loadLanguagesKey("languageGraph"));
     }
 
     public String loadLanguagesKey(String key)  {

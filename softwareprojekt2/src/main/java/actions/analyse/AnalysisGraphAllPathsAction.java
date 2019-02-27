@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
- * This action finds all different paths between two selected vertices.
+ * This action finds all disjunctive paths between two selected vertices.
  */
 public class AnalysisGraphAllPathsAction extends GraphAction {
 

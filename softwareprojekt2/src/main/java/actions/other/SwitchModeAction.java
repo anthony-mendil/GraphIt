@@ -23,7 +23,7 @@ public class SwitchModeAction extends GraphAction {
 
     @Override
     public void action() {
-        Values.getInstance().setMode(mode);
+        values.setMode(mode);
         if (mode == FunctionMode.EDIT) {
             notifyObserverEditMode();
             syndrom.setPluggableModeEdit();

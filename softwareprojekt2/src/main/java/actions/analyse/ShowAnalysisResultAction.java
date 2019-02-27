@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- * Cancels the highlight-option of the selected vertices.
+ * Highlights the result of the calculation.
  */
 public class ShowAnalysisResultAction extends LogAction {
     /**
@@ -28,6 +28,8 @@ public class ShowAnalysisResultAction extends LogAction {
 
     /**
      * Constructor in case the user annuls all/several highlighted vertices.
+     * @param pVertices The list of vertices, that should be highlighted.
+     * @param pEdges    The lis of edges, that should be highlighted.
      */
     public ShowAnalysisResultAction(List<Vertex> pVertices, List<Edge> pEdges) {
         super(LogEntryName.SHOW_HIGHLIGHTED);
