@@ -276,7 +276,7 @@
                     </Text>
                     <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0">
                         <children>
-                            <JFXButton fx:id="handSelector" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handSelector" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                            <ToggleButton fx:id="handSelector" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handSelector" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" selected="true" styleClass="button1" stylesheets="@gui_style.css">
                                 <HBox.margin>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                 </HBox.margin>
@@ -293,7 +293,7 @@
                                 <tooltip>
                                     <Tooltip text="%selectorHandTooltip" />
                                 </tooltip>
-                            </JFXButton>
+                            </ToggleButton>
                         </children>
                         <VBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -318,7 +318,7 @@
                         <VBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </VBox.margin>
-                        <JFXButton fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        <ToggleButton fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
@@ -333,7 +333,7 @@
                             <tooltip>
                                 <Tooltip text="%addSphereTooltip" />
                             </tooltip>
-                        </JFXButton>
+                        </ToggleButton>
                         <Separator orientation="VERTICAL" prefHeight="4.0">
                             <HBox.margin>
                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -445,7 +445,7 @@
                         </Text>
                         <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="550.0">
                             <children>
-                                <JFXButton fx:id="addVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <ToggleButton fx:id="addVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
@@ -462,7 +462,7 @@
                                     <tooltip>
                                         <Tooltip text="%addSymptomTooltip" />
                                     </tooltip>
-                                </JFXButton>
+                                </ToggleButton>
                                 <Separator orientation="VERTICAL" prefHeight="4.0">
                                     <HBox.margin>
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
