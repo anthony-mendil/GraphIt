@@ -60,11 +60,11 @@ public class EditSphereSizeParam implements Param {
         String information = "";
         if (language == Language.ENGLISH) {
             information += "Sphere: " + SyndromObjectPrinter.spherePrintEnglish(sphere)
-                    + "Old size " + oldWidth
+                    + ". Old size " + oldWidth
                     + ", new size: " + newWidth;
         } else {
             information += "Sphäre: " + SyndromObjectPrinter.spherePrintGerman(sphere)
-                    + "Alte Größe: " + oldWidth
+                    + ". Alte Größe: " + oldWidth
                     + ", neue Größe: " + newWidth;
         }
         return information;

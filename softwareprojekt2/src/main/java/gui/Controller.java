@@ -3189,7 +3189,7 @@ public class Controller implements ObserverSyndrom {
                                     time = time.replaceFirst(name,"");
                                     time = time.trim();
                                     String parameter = time.substring(0, time.indexOf("\n"));
-                                    time = time.replaceFirst(parameter, "");
+                                    time = time.replace(parameter, "");
                                     time = time.trim();
                                     TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
                                     TreeItem<Object> logTime = new TreeItem<>(time);
