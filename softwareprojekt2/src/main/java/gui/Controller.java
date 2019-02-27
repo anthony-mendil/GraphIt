@@ -1417,6 +1417,10 @@ public class Controller implements ObserverSyndrom {
         editButton.setDisable(false);
         analysisButton.setDisable(false);
         createButton.setDisable(true);
+        edgeArrowReinforced.setDisable(false);
+        edgeArrowNeutral.setDisable(false);
+        edgeArrowExtenuating.setDisable(false);
+        updateUndoRedoButton();
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.TEMPLATE);
@@ -1466,6 +1470,18 @@ public class Controller implements ObserverSyndrom {
         analysisButton.setDisable(false);
         editButton.setDisable(true);
         satellite.setContent(syndrom.getVv2());
+        updateUndoRedoButton();
+
+        if(!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()){
+            edgeArrowReinforced.setDisable(true);
+        }
+        if(!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()){
+            edgeArrowNeutral.setDisable(true);
+        }
+        if(!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()){
+            edgeArrowExtenuating.setDisable(true);
+        }
+
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
@@ -1694,7 +1710,6 @@ public class Controller implements ObserverSyndrom {
     public void initialize() {
         initFonts();
         rulesTemplate();
-
         syndrom = Syndrom.getInstance();
         history = ActionHistory.getInstance();
 
@@ -1771,6 +1786,7 @@ public class Controller implements ObserverSyndrom {
         initGraphLanguage();
         initInfoText();
         iniSelectionButtons();
+        updateUndoRedoButton();
     }
 
     private void iniSelectionButtons(){
@@ -3029,6 +3045,24 @@ public class Controller implements ObserverSyndrom {
         cycles.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterAnalysis));
     }
 
+    private void updateUndoRedoButton(){
+        if(history.isLast()){
+            redoButton.setDisable(true);
+            root.requestFocus();
+        }else{
+            redoButton.setDisable(false);
+            root.requestFocus();
+        }
+
+        if(history.getCurrent() < 0){
+            undoButton.setDisable(true);
+            root.requestFocus();
+        }else{
+            undoButton.setDisable(false);
+            root.requestFocus();
+        }
+    }
+
     @FXML
     public void shortestpath() {
         //Clean up Method needed
@@ -3123,6 +3157,7 @@ public class Controller implements ObserverSyndrom {
                             try {
                                 treeViewUpdate();
                                 loadTables();
+                                updateUndoRedoButton();
                             } finally {
                                 latch.countDown();
                             }
@@ -3151,6 +3186,7 @@ public class Controller implements ObserverSyndrom {
     public void updateNewGraph() {
         treeViewUpdate();
         loadTables();
+        updateUndoRedoButton();
     }
 
     private void filterLogs(LogEntryName entryName) {

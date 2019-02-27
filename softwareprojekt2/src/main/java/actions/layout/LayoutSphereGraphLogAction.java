@@ -178,7 +178,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
             double xCoordinate = x;
 
             for (Sphere s : sphereRow) {
-                double dx = xCoordinate;// - s.getCoordinates().getX();
+                double dx = xCoordinate;
                 double dy = yCoordinate - s.getCoordinates().getY();
                 s.setHeight(size);
                 s.setWidth(size);

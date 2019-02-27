@@ -1,6 +1,7 @@
 package actions;
 
 import com.google.inject.Singleton;
+import lombok.Getter;
 import org.apache.log4j.Logger;
 
 /**
@@ -21,6 +22,7 @@ public class ActionHistory {
     /**
      * The current action in actions.
      */
+    @Getter
     private int current = -1;
     private static Logger logger = Logger.getLogger(ActionHistory.class);
     private static ActionHistory history;
@@ -92,5 +94,9 @@ public class ActionHistory {
     public void wipe(){
         actions = new Action[MAX_ACTIONS];
         current = -1;
+    }
+
+    public boolean isLast(){
+        return actions[current+1] == null ? true : false;
     }
 }
