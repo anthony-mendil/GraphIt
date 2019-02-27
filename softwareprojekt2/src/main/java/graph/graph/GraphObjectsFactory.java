@@ -1,5 +1,6 @@
 package graph.graph;
 
+import edu.uci.ics.jung.graph.util.Pair;
 import gui.Values;
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -67,8 +68,10 @@ public class GraphObjectsFactory {
         int fontSize = values.getFontSizeVertex();
         VertexShapeType shape = values.getShapeVertex();
         int size = Values.DEFAULT_SIZE_VERTEX;
-        return new Vertex(id, fillPaint, position, shape,
-                vertexAnnotation, drawPaint, size, font, fontSize);
+        Pair<Color> colors = new Pair<>(fillPaint, drawPaint);
+        Pair<Integer> sizes = new Pair<>(size, fontSize);
+        return new Vertex(id, colors, position, shape,
+                vertexAnnotation, sizes, font);
     }
 
 
@@ -82,6 +85,7 @@ public class GraphObjectsFactory {
         Color fillPaint = values.getFillPaintSphere();
         double width = Values.DEFAULT_WIDTH_SPHERE;
         double height = Values.DEFAULT_HEIGHT_SPHERE;
+        Pair<Double> size = new Pair<>(width, height);
         Map<String, String> annotation = values.getDefaultAnnotationSphere();
         Map sphereAnnotation = new HashMap();
         for (Map.Entry<String, String> entry: annotation.entrySet()) {
@@ -89,6 +93,6 @@ public class GraphObjectsFactory {
         }
         String font = values.getFontSphere();
         int fontSize = values.getFontSizeSphere();
-        return new Sphere(id, fillPaint, position, width, height, sphereAnnotation, font, fontSize);
+        return new Sphere(id, fillPaint, position,size, sphereAnnotation, font, fontSize);
     }
 }

@@ -128,27 +128,25 @@ public class Vertex {
      * Creates a new vertex.
      *
      * @param id          The identification of the vertex.
-     * @param fillColor   The inner colour of the vertex.
+     * @param colors      The colors for the vertex (getFirst() - fillColor, getSecond() - drawColor)
      * @param coordinates The cooridnates of the vertex.
      * @param shape       The shape of the vertex.
      * @param annotation  The annotation of the vertex.
-     * @param drawColor   The colour of the boundary.
-     * @param size        The size of the vertex.
      * @param font        The font of the annotation of the vertex.
-     * @param fontSize    The font size of the annotation of the vertex.
+     * @param sizes       The sizes for the vertex (getFirst() - shapeSize, getSecond() - fontSize)
      */
 
-    public Vertex(int id, Color fillColor, Point2D coordinates, VertexShapeType shape, Map<String, String>
-            annotation, Color drawColor, int size, String font, int fontSize) {
+    public Vertex(int id, edu.uci.ics.jung.graph.util.Pair<Color> colors, Point2D coordinates, VertexShapeType shape, Map<String, String>
+            annotation, edu.uci.ics.jung.graph.util.Pair<Integer> sizes, String font) {
         this.id = id;
-        this.fillColor = fillColor;
+        this.fillColor = colors.getFirst();
         this.coordinates = coordinates;
         this.shape = shape;
-        this.drawColor = drawColor;
-        this.size = size;
+        this.drawColor = colors.getSecond();
+        this.size = sizes.getFirst();
         this.annotation = annotation;
         this.font = font;
-        this.fontSize = fontSize;
+        this.fontSize = sizes.getSecond();
         vertexArrowExtenuating = new EnumMap<>(ScopePoint.class);
         vertexArrowNeutral = new EnumMap<>(ScopePoint.class);
         vertexArrowReinforced = new EnumMap<>(ScopePoint.class);
