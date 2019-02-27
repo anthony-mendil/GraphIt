@@ -83,7 +83,7 @@ public class LayoutSpheresParam implements Param {
         if (language == Language.ENGLISH) {
             return "The Spheres were automatically positioned or the automatic positioning was undone.";
         } else {
-            return "Die Sphären wurden automatisch angeordnet oder die automatische Anordnung wurde rückgängig gemacht";
+            return "Die Sphären wurden automatisch angeordnet oder die automatische Anordnung wurde rückgängig gemacht.";
         }
     }
 }

@@ -39,15 +39,13 @@ public class AppPreloader extends Preloader {
     @Override
     public void handleProgressNotification(ProgressNotification pn) {
         pc.setProgressbarProgress(pn.getProgress());
-        System.out.println("aProgress " + pc.getProgressbar().getProgress());
     }
 
     @Override
-    public void handleApplicationNotification(PreloaderNotification arg0) {
-        if (arg0 instanceof ProgressNotification) {
-            ProgressNotification pn = (ProgressNotification) arg0;
+    public void handleApplicationNotification(PreloaderNotification pln) {
+        if (pln instanceof ProgressNotification) {
+            ProgressNotification pn = (ProgressNotification) pln;
             pc.setProgressbarProgress(pn.getProgress());
-            System.out.println("bProgress " + pc.getProgressbar().getProgress());
         }
     }
 }

@@ -91,6 +91,7 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -1255,19 +1256,19 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportGXL() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
         }
@@ -1279,19 +1280,19 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportPDF() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
         }
@@ -1299,19 +1300,19 @@ public class Controller implements ObserverSyndrom {
 
     public void exportProtocol() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
             exportReadableProtocolAction.action();
         }
@@ -1323,19 +1324,19 @@ public class Controller implements ObserverSyndrom {
     public void exportOOF() {
         rulesTemplate();
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName()!=null){
             fileChooser.setInitialFileName(syndrom.getGraphName());
         }else{
-            fileChooser.setInitialFileName("Untitled SyndromGraph");
+            fileChooser.setInitialFileName("UntitledGraph");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
@@ -1347,14 +1348,14 @@ public class Controller implements ObserverSyndrom {
      */
     public void openFile() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ImportOofAction importOofAction = new ImportOofAction(file);
             importOofAction.action();
             zoomSlider.setValue(100);
@@ -1370,14 +1371,14 @@ public class Controller implements ObserverSyndrom {
      */
     public void importGXL() {
         FileChooser fileChooser = new FileChooser();
-        if(lastUsedFilePath!=null){
+        if(lastUsedFilePath!=null && Files.exists(lastUsedFilePath.toPath())){
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
         if (file != null) {
-            lastUsedFilePath=file;
+            lastUsedFilePath=file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             zoomSlider.setValue(100);
@@ -1908,6 +1909,7 @@ public class Controller implements ObserverSyndrom {
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
+                rulesTemplate();
                 event.consume();
                 optionExitWindow();
             }
@@ -2714,7 +2716,7 @@ public class Controller implements ObserverSyndrom {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
 
         //optionSaveWindow();
-        CreateGraphAction action = new CreateGraphAction("First Graph", this);
+        CreateGraphAction action = new CreateGraphAction("UntitledGraph", this);
         action.action();
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
