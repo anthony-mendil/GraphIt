@@ -84,6 +84,7 @@ import log_management.LogToStringConverter;
 import log_management.dao.LogDao;
 import log_management.tables.Log;
 import lombok.Data;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
 import javax.swing.*;
@@ -1276,6 +1277,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
@@ -1300,6 +1302,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
@@ -1344,7 +1347,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            syndrom.setGraphName(file.getName());
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
@@ -2674,6 +2677,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
 
         Platform.runLater(() -> {
