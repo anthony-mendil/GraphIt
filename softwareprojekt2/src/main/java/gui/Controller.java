@@ -79,7 +79,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import log_management.DatabaseManager;
 import log_management.LogToStringConverter;
@@ -1261,9 +1260,9 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName());
+            fileChooser.setInitialFileName(syndrom.getGraphName()+".gxl");
         } else {
-            fileChooser.setInitialFileName("UntitledGraph");
+            fileChooser.setInitialFileName("UntitledGraph.gxl");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1285,9 +1284,9 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName());
+            fileChooser.setInitialFileName(syndrom.getGraphName()+".pdf");
         } else {
-            fileChooser.setInitialFileName("UntitledGraph");
+            fileChooser.setInitialFileName("UntitledGraph.pdf");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1305,9 +1304,9 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName());
+            fileChooser.setInitialFileName(syndrom.getGraphName()+".txt");
         } else {
-            fileChooser.setInitialFileName("UntitledGraph");
+            fileChooser.setInitialFileName("UntitledGraph.txt");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -1329,14 +1328,15 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName());
+            fileChooser.setInitialFileName(syndrom.getGraphName()+".oof");
         } else {
-            fileChooser.setInitialFileName("UntitledGraph");
+            fileChooser.setInitialFileName("UntitledGraph.oof");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
+            syndrom.setGraphName(file.getName());
             lastUsedFilePath = file.getParentFile();
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
