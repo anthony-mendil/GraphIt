@@ -3183,12 +3183,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void updateUndoRedoButton() {
-        if (history.isLast()) {
-            redoButton.setDisable(true);
-        } else {
-            redoButton.setDisable(false);
-            redoButton.setFocusTraversable(false);
-        }
+        redoButton.setDisable(history.isLast());
         undoButton.setDisable(history.getCurrent() < 0);
     }
 
