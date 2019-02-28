@@ -81,6 +81,8 @@
 %
 
 \definecolor{dartmouthgreen}{rgb}{0.05, 0.5, 0.06}
+\definecolor{ghostwhite}{rgb}{0.97, 0.97, 1.0}
+\definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
 \definecolor{color}{rgb}{0.67, 0.88, 0.69}
 \definecolor{todo}{rgb}{1.0, 0.41, 0.71}
 \definecolor{sort}{rgb}{0.45, 0.76, 0.98}
@@ -265,6 +267,22 @@ Mit diesem Handbuch wird die Bedienung der Software GraphIT beschrieben. Diese A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Benutzeroberfläche}
 	\subsection{Tasten-/ Mausbelegungen}
+	
+	\begin{tabular} {|p{8cm}|p{8cm}|}
+		\hline
+		\rowcolor{glaucous}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\textcolor{ghostwhite}{Maus-/ Tastenbelegungen}}} } \\ \hline\hline 
+		%\rowcolor{glaucous}\multicolumn{2}{|l|}{\parbox{16cm}{\textcolor{ghostwhite}{Maus-/ Tastenbelegungen} }} } \\ \hline\hline 
+		\multicolumn{2}{|l|}{\parbox{16cm}{Bei JavaFX handelt es sich um ein Framework, das die Erstellung von graphischen Benutzeroberflächen unterstützt. Besonders im Vergleich zu anderen Oberflächegestaltungsframeworks und -sprachen ist, dass die mit JavaFX erstellten Oberflächen sehr interaktiv sein können. JavaFX stellt außerdem Swing-Nodes zur Verfügung, in welche Swing-Komponenten eingefügt werden können. Damit stellt die Verwendung dieses Frameworks die Voraussetzung für den Einsatz von dem auf Swing basierenden JUNG-Framework dar.} }\rule{0pt}{10ex}\\ [7ex] \hline
+		\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
+		(o) Die Verwendung von JUNG ist uns zwar nicht vorgeschrieben worden, wird von uns jedoch angestrebt. Da (wie eben beschrieben) JavaFX benötigt wird, um vom JUNG-Framework Gebrauch machen zu können, und wir die GUI auch auf eine andere Weise realisieren könnten - und somit auch in diesem Punkt eher flexibel sind - kommen wir insgesamt auf eine mittlere Flexibilität. &
+		(--) Der Einsatz von JavaFX wird uns mit an Sicherheit grenzender Wahrscheinlichkeit nicht untersagt werden (sodass die GUI weiterhin damit umgesetzt werden kann) und Swing-Node, das die Basis für JUNG ist, wird weiterhin auf JavaFX basieren.\\
+		\hline
+		\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
+		\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Teile unseres Systems - in erster Linie den Aufbau der GUI - mittels JavaFX realisieren. } }\\ \hline
+	\end{tabular}
+	
+	
+	
 	\subsection{Übersicht}
 	
 \newpage	
