@@ -83,6 +83,7 @@ public class TitlesDialogPaneController extends DialogPane {
         oldTitle = old;
 
         german.textProperty().addListener(event -> save.setDisable(setDisable()));
+        english.textProperty().addListener(event -> save.setDisable(setDisable()));
     }
 
     private boolean setDisable() {
