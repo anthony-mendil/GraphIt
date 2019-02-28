@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 
 /**
@@ -84,19 +83,23 @@ public class OOFio {
      * @param pFile The file to import
      */
     public void importOOF(File pFile) {
-        String oof = "";
-        try (Scanner scanner = new Scanner(pFile)) {
-            oof = scanner.useDelimiter("\\A").next();
-        } catch (FileNotFoundException e) {
+        StringBuilder oof = new StringBuilder();
+        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                new FileInputStream(pFile), StandardCharsets.UTF_8))){
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                oof.append(line);
+            }
+        } catch (Exception e) {
             logger.error(e.toString());
         }
         GXLio gxlio = new GXLio();
 
-        gxlio.gxlToInstance(gxlFromOOF(oof), true);
+        gxlio.gxlToInstance(gxlFromOOF(oof.toString()), true);
 
-        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
+        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof.toString()));
 
-        DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof));
+        DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof.toString()));
     }
 
 }

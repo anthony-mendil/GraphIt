@@ -109,7 +109,7 @@ public class GXLio {
 
     private void makeGraphElemt(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         switch (((GXLString) pElem.getAttr("TYPE").getValue()).getValue()) {
-            case "Sphäre":
+            case "Sphaere":
                 makeSphere(pSpheresWithVertices, pElem, pWithTemplate);
                 break;
             case "Node":
@@ -461,7 +461,7 @@ public class GXLio {
 
     private GXLNode createSphereNode(Sphere s, boolean withTemplate) {
         GXLNode sphere = new GXLNode(s.getId() + "");
-        sphere.setAttr("TYPE", new GXLString("Sphäre"));
+        sphere.setAttr("TYPE", new GXLString("Sphaere"));
         Color color = s.getColor();
         sphere.setAttr(FILL_PAINT, new GXLString(getPaintDescription(color)));
         sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
@@ -688,14 +688,16 @@ public class GXLio {
      */
 
     public void importGXL(File pFile, boolean pImportWithRules) {
-        try (Scanner scanner = new Scanner(pFile)) {
-            String gxl = scanner.useDelimiter("\\A").next();
-            gxlToInstance(gxl, pImportWithRules);
-        } catch (FileNotFoundException e) {
+        StringBuilder gxl = new StringBuilder();
+        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                new FileInputStream(pFile), StandardCharsets.UTF_8))){
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                gxl.append(line);
+            }
+        } catch (Exception e) {
             logger.error(e.toString());
         }
-
+        gxlToInstance(gxl.toString(), pImportWithRules);
     }
-
-
 }
