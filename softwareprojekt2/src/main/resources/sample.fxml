@@ -113,7 +113,7 @@
                     <JFXButton fx:id="editButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeEdit" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/027-vision.png" />
+                                <Image url="@icons2/024-pencil-1.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -126,7 +126,7 @@
                     <JFXButton fx:id="createButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeCreator" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/024-pencil-1.png" />
+                                <Image url="@icons2/001-sketch.png" />
                             </ImageView>
                         </graphic>
                         <HBox.margin>
@@ -194,7 +194,7 @@
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlight.png" />
+                                <Image url="@icons2/005-highlighter.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -207,7 +207,7 @@
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlight.png" />
+                                <Image url="@icons2/006-highlighter-1.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -220,7 +220,7 @@
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlight.png" />
+                                <Image url="@icons2/007-highlighter-2.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -233,7 +233,7 @@
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/eyelash2.png" />
+                                <Image url="@icons2/006-secret.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -246,7 +246,7 @@
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/eyelash2.png" />
+                                <Image url="@icons2/005-hide-2.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -260,7 +260,7 @@
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@icons2/eyelash2.png" />
+                                    <Image url="@icons2/007-hide-3.png" />
                                 </image>
                             </ImageView>
                         </graphic>
