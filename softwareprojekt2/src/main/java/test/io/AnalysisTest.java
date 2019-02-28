@@ -21,7 +21,7 @@ public class AnalysisTest {
     /**
      * The logger sed to document the behaviour of this testclass.
      */
-    private static Logger logger = Logger.getLogger(GXLioTest.class);
+    private ArrayList<Vertex> shortestPath = new ArrayList<>();
 
     /**
      * The factory used to create elements of the graph. These are object of the type Sphere, Vertex and Edge.
@@ -83,6 +83,7 @@ public class AnalysisTest {
         Sphere s2 = factory.createSphere(new Point2D.Double(660, 116));
         Sphere s3 = factory.createSphere(new Point2D.Double(1101, 116));
         Sphere s4 = factory.createSphere(new Point2D.Double(660, 470));
+
         Vertex v1 = factory.createVertex(new Point2D.Double(260, 241));
         Vertex v2 = factory.createVertex(new Point2D.Double(334, 159));
         Vertex v3 = factory.createVertex(new Point2D.Double(721, 157));
@@ -139,6 +140,12 @@ public class AnalysisTest {
         graph.addEdgeExisting(e11, v8, v10);
         graph.addEdgeExisting(e12, v9, v10);
 
+        //initializing shortest path
+        shortestPath.add(v1);
+        shortestPath.add(v8);
+        shortestPath.add(v10);
+        //shortestPath.sort();
+
 
     }
 
@@ -154,15 +161,33 @@ public class AnalysisTest {
     }
 
     @Test
-    public void testScopeIndex(){
+    public void testScopeIndex() {
         setupSyndrom();
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
         Assert.assertEquals("22", graphDimensionAction.getScope());
+    }
 
     @Test
-    public void testSetup() {
-        //
+    public void testNetworkIndex() {
+        setupSyndrom();
+        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+        graphDimensionAction.action();
+        Assert.assertEquals("2,4", graphDimensionAction.getNetworkIndex());
+    }
+
+    @Test
+    public void testStructureIndex() {
+        setupSyndrom();
+        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+        graphDimensionAction.action();
+        Assert.assertEquals("0,7", graphDimensionAction.getStructureIndex());
+    }
+
+    @Test
+    public void testShortestPath() {
 
     }
+
+
 }
