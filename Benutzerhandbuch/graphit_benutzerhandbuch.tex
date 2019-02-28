@@ -348,7 +348,6 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich eine Sphäre auf einer anderen Sphäre hinzuzufügen. Wird dies versucht, wird keine neue Sphäre hinzugefügt und es erscheint eine Fehlermeldung.
-	\item Es ist nicht möglich eine Sphäre hinzuzufügen, wenn die Anzahl an Sphären im Graphen bereits der maximalen Anzahl an Sphären, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Bearbeitermodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
 	\end{itemize}
 		\subsubsection{Sphäre entfernen}
 			\condition 	
@@ -372,7 +371,6 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\hint
 		\begin{itemize}
 			\item Wird eine Sphäre gelöscht, so werden automatisch auch alle Symptome entfernt, die zu dieser Sphäre gehören. Damit werden dann auch alle Relationen gelöscht, die in einem dieser Symptome einmünden oder von einem dieser Symptome ausgehen.
-			\item Es ist nicht möglich eine Sphäre zu löschen, wenn der Titel und/oder die Position und/oder der Style der zu löschende Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
 		\end{itemize}
 		\subsubsection{Sphäre verschieben}
 				\condition 	
@@ -386,7 +384,6 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich eine Sphäre zu verschieben, wenn sich an der Zielposition bereits eine andere Sphäre befindet. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich eine Sphäre im Bearbeitermodus zu verschieben, wenn die Position dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
 		\end{itemize}
 		\subsubsection{Größe der Sphäre verändern}
 				\condition 	
@@ -439,7 +436,6 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\hint
 		\begin{itemize}
 			\item Die Bedienung des Farbwahl-Fensters, zu dem man über \textit{Custom Color} gelangt, ist im Kapiel -----XXX------ beschrieben.
-			\item Es ist nicht möglich die Farbe einer Sphäre zu ändern, wenn der Style dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
 	\end{itemize}	
 	\subsubsection{Titel der Sphäre ändern}
 				\condition 	
@@ -454,8 +450,6 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\hint
 		\begin{itemize}
 			\item Der Titel einer Sphäre darf kein Semikolon enthalten.
-			\item 
-Es ist nicht möglich den Titel einer Sphäre zu ändern, wenn der Titel dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
 		\end{itemize}
 		\subsubsection{Contextmenü einer Sphäre öffnen/benutzen}
 				\condition 	
@@ -489,8 +483,7 @@ Es ist nicht möglich den Titel einer Sphäre zu ändern, wenn der Titel dieser 
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Die Schriftart/-größe kann nicht geändert
-			\item Es ist nicht möglich die Schriftart/-größe einer Sphäre zu ändern, wenn der Style dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich die Schriftart/-größe einer Sphäre zu ändern, wenn der Style dieser Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Schriftart/-größe nicht geändert und es erscheint eine Fehlermeldung.
 			\end{itemize}
 		\subsubsection{Sphären layouten}
 				\condition 	
@@ -514,30 +507,312 @@ Es ist nicht möglich den Titel einer Sphäre zu ändern, wenn der Titel dieser 
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich ein Symptom auf einen anderem Symptom hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich ein Symptom außerhalb einer Sphäre hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich ein Symptom auf einer Relation hinzuzufügen. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich ein Symptom hinzuzufügen, wenn die Anzahl an Symptomen im Graphen bereits der maximalen Anzahl an Symptomen, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Bearbeitermodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich ein Symptom hinzuzufügen, wenn die Anzahl an Symptomen in der Sphäre, in der man ein Symptom hinzufügen möchte, bereits der maximalen Anzahl an Symptomen für diese Sphäre, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Barbeiterodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.		
+			\item Es ist nicht möglich, ein Symptom auf einen anderem Symptom hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf einer Relation hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom hinzuzufügen, wenn die Anzahl an Symptomen im Graphen bereits der maximalen Anzahl an Symptomen, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Bearbeitermodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom hinzuzufügen, wenn die Anzahl an Symptomen in der Sphäre, in der man ein Symptom hinzufügen möchte, bereits der maximalen Anzahl an Symptomen für diese Sphäre, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Barbeiterodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.	
 		\end{itemize}
 		\newpage
 		\subsubsection{Symptom entfernen}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das gelöscht werden soll mit einem Links-Klick auswählen. 
+			\item Die \textit{Entfernen}-Taste der Tastatur drücken.
+		\end{enumerate}
+		Alternative 2:
+		\begin{enumerate}
+			\item Das Symptom, das gelöscht werden soll mit einem Links-Klick auswählen. 
+			\item In der Menüleiste den \textit{Symptom löschen}-Button durch einen Links-Klick auslösen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom zu löschen, wenn der Titel und/oder die Position und/oder der Style dieses Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird das Symptom nicht gelöscht und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Symptom verschieben}
+					\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird das Symtom nicht verschoben und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Größe eines Symptoms verändern}
+					\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item Das Symptom, dessen Größe verändert werden soll, mit einem Links-Klick auswählen. 
+			\item Die \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste der Tastatur so oft drücken bis das Symptom die gewünschte Größe erreicht hat. \\
+			(Nicht die  \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste des Nummernblocks)
+		\end{enumerate}
+				Alternative 2:
+		\begin{enumerate}
+			\item Das Symptom, dessen Größe verändert werden soll, mit einem Links-Klick auswählen. 
+			\item  In der Menüleiste den \textit{Symptom vergrößern}- / \textit{Symptom verkleinern}-Button klicken so oft drücken bis das Symptom die gewünschte Größe erreicht hat.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom zu verkleinern, wenn es bereits seine minimale Größe hat.
+			\item Es ist nicht möglich, ein Symptom zu vergrößern  / verkleinern, wenn die Größe des Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird die Größe des Symptoms nicht geändert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom zu vergrößern, wenn die Vergrößerung eine Überlappung mit anderen Symptomen zufolge hätte.
+		\end{itemize}
 		\subsubsection{Füllfarbe eines Symptoms verändern}
+		\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
+			\item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
+			\item im Kontextmenü den Punkt \textit{Füllfarbe} auswählen.
+		\end{enumerate}
+		Alternative 2:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
+			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
+			 \item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
+			\item im Kontextmenü den Punkt \textit{Füllfarbe} auswählen.
+		\end{enumerate}
+		Alternative 3:
+		\begin{enumerate}
+			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
+			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem Lnks-Klick auswählen.
+		\end{enumerate}
+		Alternative 4:
+			\begin{enumerate}
+			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
+			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Die Bedienung des Farbwahl-Fensters, zu dem man über \textit{Custom Color} gelangt, ist im Kapiel -----XXX------ beschrieben.
+			\item Es ist nicht möglich die Farbe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+	\end{itemize}	
 		\subsubsection{Randfarbe eines Symptoms verändern}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randfarbe des Symptoms verändern} klicken.
+			\item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
+			\item im Kontextmenü den Punkt \textit{Randfarbe} auswählen.
+		\end{enumerate}
+		Alternative 2:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randgrundfarbe des Symptoms verändern} klicken.
+			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
+			 \item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
+			\item im Kontextmenü den Punkt \textit{Randfarbe} auswählen.
+		\end{enumerate}
+		Alternative 3:
+		\begin{enumerate}
+			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randfarbe des Symptoms verändern} klicken.
+			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem Lnks-Klick auswählen.
+		\end{enumerate}
+		Alternative 4:
+			\begin{enumerate}
+			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randfarbe des Symptoms verändern} klicken.
+			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Die Bedienung des Farbwahl-Fensters, zu dem man über \textit{Custom Color} gelangt, ist im Kapiel -----XXX------ beschrieben.
+			\item Es ist nicht möglich die Farbe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+	\end{itemize}	
 		\subsubsection{Titel eines Symptoms ändern}
-		\subsubsection{Form eines Symptoms verändern}
-		\subsubsection{Schriftart-/ größe der Beschriftung eines Symptoms ändern}
-		\subsubsection{Symptome layouten}
+						\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions  
+		\begin{enumerate}
+			\item Das Symptom, dessen Titel geändert werden soll mit einem Rechts-Klick anklicken, sodass sich dessen Kontext-Menü öffnet.
+			\item Im Kontextmenü ganz oben \textit{Titel} mit einem Links-Klick auswählen. 
+			\item In dem sich öffnenden Fenster für die gewünschten Sprache(n) den nuen Titel in die dafür vorgesehenen Felder eingeben.
+			\item Die Änderung des Titels mit einem Links-Klick auf die \textit{Speichern}-Schaltfläche abschließen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Der Titel eines Symptoms darf kein Semikolon enthalten.
+			\item 
+Es ist nicht möglich den Titel eines Symptoms zu ändern, wenn der Titel dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird der Titel nicht geändert und es erscheint eine Fehlermeldung.
+		\end{itemize}
+		\subsubsection{Contextmenü eines Symptoms öffnen/benutzen}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions  
+		Alternative 1:
+		\begin{enumerate}
+			\item Auf einem Symptom einen Rechts-Klick ausführen.
+			\item im sich öffnenden Kontextmenü die gewünschte Option mit einem Links-Klick auswählen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist egal, ob eine das Symptom, dessen Kontextmenü geöffnet werden soll, vor dem Rechts-Klick auf dieses Symptom ausgewählt worden ist oder nicht.
+		\end{itemize}
+		\subsubsection{Schriftart/-größe der Beschriftung des Symptoms ändern}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions  
+		Alternative 1:
+		\begin{enumerate}
+			\item Das Symptom, für das die Schriftart/-größe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe des Symptoms angezeigt wird.
+			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
+		\end{enumerate}
+		Alternative 2:
+			\begin{enumerate}
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe des Symptoms angezeigt wird.
+			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
+			\item Mit einem Rechts-Klick auf das Symptom klicken, dessen Schriftart/-größe geändert werden soll.
+			\item In dem sich öffnenden Kontextmenü die Option \textit{Schriftart}/\textit{Schriftgröße} auswählen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich die Schriftart/-größe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Schriftart/-größe nicht geändert und es erscheint eine Fehlermeldung.
+			\end{itemize}
+			\subsubsection{Form eines Symptoms verändern}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, dessen Form geändert werden soll mit einem Rechts-Klick auswählen. 
+			\item In der Menüleiste den Button \textit{Form des Symptoms verändern} anklicken.
+			\item In dem sich öffnenden Drop-Down-Menü die Form auswählen, die das Symptom haben soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, die Form eines Symptoms zu ändern, wenn der Style dieses Symptoms in den Vorlage-Regeln gelockt wurde. Wird dies versucht, wird die Form des Symtoms nicht geändert und es erscheint eine Fehlermeldung.
+		\end{itemize}
+		\subsubsection{Sphären layouten}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
+		\actions  
+		\begin{enumerate}
+			\item In der Menüleiste im Bereich Symptom auf den \textit{Automatische Anordnung}.Button mit Links-Klick klicken.
+		\end{enumerate}
+		\newpage
 			
 		\subsubsection{Relation hinzufügen}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Relation entfernen}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Ankerpunkte einblenden}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Ankerpunkte hinzufügen}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Ankerpunkte entfernen}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Farbe einer Relation verändern}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		\end{itemize}
 		\subsubsection{Type einer Relation verändern}
+							\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\begin{enumerate}
+			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+		\end{itemize}
+		\newpage
 		
 		\subsubsection{Graphelemente hervorheben}
 		\subsubsection{Graphelemente Hervorhebung hinzufügen}
