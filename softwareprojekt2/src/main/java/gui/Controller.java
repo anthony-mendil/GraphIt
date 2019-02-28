@@ -2804,7 +2804,11 @@ public class Controller implements ObserverSyndrom {
 
 
     public void loadTables() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+
+        if (vv == null){
+            return ;
+        }
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
         Collection<Vertex> vertices = graph.getVertices();
