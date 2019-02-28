@@ -174,6 +174,14 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private MenuItem saveLocation;
+    @FXML
+    private Menu importAs;
+    @FXML
+    private MenuItem templateGXLImport;
+    @FXML
+    private MenuItem templateGXLExport;
+    @FXML
+    private MenuItem closeApplication;
 
     /**
      * The menuitem under the menu "File.. &gt; Export as.." for exporting the fileMenu as pdf.
@@ -219,7 +227,8 @@ public class Controller implements ObserverSyndrom {
     private MenuItem languageGuiGraphGerman;
     @FXML
     private MenuItem languageGuiGraphEnglish;
-
+    @FXML
+    private Menu advancedLanguageOptions;
 
     /**
      * The menuitem under the menu "Help" for opening the documention.
@@ -1786,8 +1795,6 @@ public class Controller implements ObserverSyndrom {
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
-        analysisMode(false);
-        createButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         overViewAccordion.setExpandedPane(overViewTitledPane);
 
@@ -1846,7 +1853,13 @@ public class Controller implements ObserverSyndrom {
         initGraphLanguage();
         initInfoText();
         iniSelectionButtons();
+
+        //IMMER AM ENDE BITTEEEEEEEE
         updateUndoRedoButton();
+        analysisMode(false);
+        createOrEditMode(true, true);
+        createButton.setDisable(true);
+        switchModeEdit();
     }
 
     private void iniSelectionButtons() {
@@ -2603,16 +2616,16 @@ public class Controller implements ObserverSyndrom {
 
     private void showUserGuide() {
         FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/UserGuidePane.fxml"));
-        AnchorPane ap = null;
+        BorderPane bp;
         try {
-            ap = userGuideLoader.load();
+            bp = userGuideLoader.load();
         } catch (IOException e) {
             logger.error(e.toString());
             return;
         }
         Stage userGuideStage = new Stage();
         userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
-        userGuideStage.setScene(new Scene(ap));
+        userGuideStage.setScene(new Scene(bp));
         userGuideStage.setTitle("GraphIt Tutorial");
         UserGuidePaneController ugpc = userGuideLoader.getController();
         ugpc.initContent();
@@ -3266,9 +3279,12 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateGraph() {
         Platform.runLater(() -> {
-            treeViewUpdate();
-            updateUndoRedoButton();
-            loadTables();
+            try{
+                treeViewUpdate();
+                updateUndoRedoButton();
+                loadTables();
+            }catch (Exception e){
+            }
         });
     }
 
