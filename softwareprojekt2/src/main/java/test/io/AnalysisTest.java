@@ -1,6 +1,9 @@
 package test.io;
 
+import actions.analyse.AnalysisGraphAllPathsAction;
+import actions.analyse.AnalysisGraphShortestPathAction;
 import actions.analyse.GraphDimensionAction;
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import gui.Values;
 import net.sourceforge.gxl.GXLDocument;
@@ -10,6 +13,7 @@ import org.junit.Test;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class AnalysisTest {
@@ -19,14 +23,29 @@ public class AnalysisTest {
     private Values values = Values.getInstance();
 
     /**
-     * The logger sed to document the behaviour of this testclass.
-     */
-    private ArrayList<Vertex> shortestPath = new ArrayList<>();
-
-    /**
      * The factory used to create elements of the graph. These are object of the type Sphere, Vertex and Edge.
      */
     private GraphObjectsFactory factory = new GraphObjectsFactory();
+
+    /**
+     * The list of vertices of the shortest path in the graph.
+     */
+    private ArrayList<Vertex> shortestPathVertices = new ArrayList<>();
+
+    /**
+     * The list of edges of the shortest path in the graph.
+     */
+    private ArrayList<Edge> shortestPathEdges = new ArrayList<>();
+
+    /**
+     * The start-vertex of the shortest path.
+     */
+    private Vertex vPathStart;
+
+    /**
+     * The sink-vertex of the shortest path.
+     */
+    private Vertex vPathSink;
 
     /**
      * The GXLDocument that is created from the file with the name below.
@@ -141,10 +160,19 @@ public class AnalysisTest {
         graph.addEdgeExisting(e12, v9, v10);
 
         //initializing shortest path
-        shortestPath.add(v1);
-        shortestPath.add(v8);
-        shortestPath.add(v10);
-        //shortestPath.sort();
+        shortestPathVertices.add(v1);
+        shortestPathVertices.add(v8);
+        shortestPathVertices.add(v10);
+
+        shortestPathEdges.add(e8);
+        shortestPathEdges.add(e11);
+
+        vPathStart = v1;
+        vPathSink = v10;
+
+        //initializing all paths
+
+        //allPathVertices.add(v1);
 
 
     }
@@ -186,7 +214,31 @@ public class AnalysisTest {
 
     @Test
     public void testShortestPath() {
+        setupSyndrom();
+        PickedState<Vertex> pickedState = syndrom.getVv().getPickedVertexState();
+        //Picking the vertices.
+        pickedState.pick(vPathStart, true);
+        pickedState.pick(vPathSink, true);
+        AnalysisGraphShortestPathAction analysisGraphShortestPathAction = new AnalysisGraphShortestPathAction();
+        analysisGraphShortestPathAction.action();
+        List<Vertex> verticesList = analysisGraphShortestPathAction.getVerticesAnalyse();
+        verticesList.sort(Comparator.comparingInt(Vertex::getId));
+        List<Edge> edgesList = analysisGraphShortestPathAction.getEdgesAnalyse();
+        edgesList.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertEquals(shortestPathVertices,verticesList);
+        Assert.assertEquals(shortestPathEdges, edgesList);
+    }
 
+    @Test
+    public void testAllPaths(){
+        setupSyndrom();
+        PickedState<Vertex> pickedState = syndrom.getVv().getPickedVertexState();
+        //Picking the vertices.
+        pickedState.pick(vPathStart, true);
+        pickedState.pick(vPathSink, true);
+        AnalysisGraphAllPathsAction analysisGraphAllPathsAction = new AnalysisGraphAllPathsAction();
+        analysisGraphAllPathsAction.action();
+        List<Vertex> verticesList = analysisGraphAllPathsAction.getVerticesAnalyse();
     }
 
 
