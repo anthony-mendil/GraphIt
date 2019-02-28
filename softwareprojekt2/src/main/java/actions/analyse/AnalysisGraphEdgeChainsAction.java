@@ -42,6 +42,7 @@ public class AnalysisGraphEdgeChainsAction extends GraphAction {
         for (List<Vertex> list : edgeChains.getKey()) {
             verticesAnalyse.addAll(list);
         }
+        edgesAnalyse = new ArrayList<>(edgeChains.getValue());
 
         ShowAnalysisResultAction showAnalysisResultAction = new ShowAnalysisResultAction(verticesAnalyse, edgesAnalyse);
         showAnalysisResultAction.action();

@@ -1,4 +1,4 @@
-package test.io;
+package io;
 
 import graph.graph.*;
 import gui.Values;
