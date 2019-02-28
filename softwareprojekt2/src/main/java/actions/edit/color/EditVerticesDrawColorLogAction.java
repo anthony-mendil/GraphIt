@@ -64,6 +64,10 @@ public class EditVerticesDrawColorLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
+            if(lockedVertices.size() > 0 && lockedVertices.size() == pickedStateVertex.getPicked().size()){
+                actionHistory.removeLastEntry();
+                return;
+            }
             createParameter(paramOldVertices, paramNewVertices);
         } else {
             Map<Vertex, Color> oldVertices = ((EditVerticesDrawColorParam) parameters).getOldVertices();

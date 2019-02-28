@@ -69,6 +69,8 @@ public class RemoveSphereLogAction extends LogAction {
                 } else {
                     HelperFunctions helper = new HelperFunctions();
                     helper.setActionText("REMOVE_SPHERE_TEMPLATE_ALERT", true, true);
+                    actionHistory.removeLastEntry();
+                    return;
 
                 }
             }

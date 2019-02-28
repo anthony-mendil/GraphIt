@@ -65,6 +65,7 @@ public class EditVertexAnnotationLogAction extends LogAction {
             }
             if (lockedVertices.size() == pickedState.getPicked().size() && !lockedVertices.isEmpty()) {
                 actionHistory.removeLastEntry();
+                return;
             }
         } else {
             Vertex vertex = ((EditVertexAnnotationParam) parameters).getVertex();

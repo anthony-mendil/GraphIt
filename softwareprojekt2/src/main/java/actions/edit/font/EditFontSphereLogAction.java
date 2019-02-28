@@ -51,6 +51,8 @@ public class EditFontSphereLogAction extends LogAction {
                     sp.setFont(font);
                 } else {
                     helper.setActionText("EDIT_FONT_SPHERE_ALERT", true, true);
+                    actionHistory.removeLastEntry();
+                    return;
                 }
             }
         } else {

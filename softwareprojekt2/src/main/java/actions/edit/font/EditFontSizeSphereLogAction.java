@@ -51,6 +51,8 @@ public class EditFontSizeSphereLogAction extends LogAction {
                     sp.setFontSize(size);
                 } else {
                     helper.setActionText("EDIT_SPHERE_FONT_SIZE_ALERT", true, true);
+                    actionHistory.removeLastEntry();
+                    return;
                 }
             }
         } else {

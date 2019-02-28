@@ -1126,8 +1126,8 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void removeAnchor() {
-        RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
-        removeAnchorPointsLogAction.action();
+        RemoveAnchorPointsAction removeAnchorPointsAction = new RemoveAnchorPointsAction();
+        removeAnchorPointsAction.action();
     }
 
     /**

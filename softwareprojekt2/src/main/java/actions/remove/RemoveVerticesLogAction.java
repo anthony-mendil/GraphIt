@@ -79,12 +79,14 @@ public class RemoveVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            pickedState.clear();
             if (!lockedVertices.isEmpty()) {
                 helper.setActionText("REMOVE_VERTICES_ALERT", true, true);
-                ActionHistory.getInstance().removeLastEntry();
+            }
+            if(lockedVertices.size() > 0 && lockedVertices.size() == pickedState.getPicked().size()){
+                actionHistory.removeLastEntry();
                 return;
             }
+            pickedState.clear();
             createParameter(params, edg);
         } else {
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam) parameters).getVertices();

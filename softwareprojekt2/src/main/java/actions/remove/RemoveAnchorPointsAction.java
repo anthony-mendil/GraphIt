@@ -10,12 +10,12 @@ import javafx.util.Pair;
 /**
  * Removes anchor-points from the syndrom graph.
  */
-public class RemoveAnchorPointsLogAction extends GraphAction {
+public class RemoveAnchorPointsAction extends GraphAction {
     /**
      * Removes all anchor-points of every (picked) edge.
      * Gets the picked edges through pick support.
      */
-    public RemoveAnchorPointsLogAction() {
+    public RemoveAnchorPointsAction() {
     }
 
     @Override
