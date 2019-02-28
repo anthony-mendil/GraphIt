@@ -630,7 +630,7 @@ public class GXLio {
      * @param color the color that need to be describted
      * @return the description of the color as a String
      */
-    private String getPaintDescription(Color color) {
+    public String getPaintDescription(Color color) {
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
     }
