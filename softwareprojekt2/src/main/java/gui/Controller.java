@@ -2843,6 +2843,9 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadSpheresTable(List<Sphere> spheres) {
+        if(spheres == null){
+            return;
+        }
         sphereCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>) data -> {
             String name = "";
             if (values.getGuiLanguage() == Language.GERMAN) {
@@ -2932,6 +2935,10 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadVerticesTable(Collection<Vertex> vertices) {
+        if(vertices == null){
+            return;
+        }
+
         symptomCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>) data -> {
             String name = "";
             if (values.getGuiLanguage() == Language.GERMAN) {
@@ -2994,6 +3001,9 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadEdgesTable(Collection<Edge> edges) {
+        if(edges == null){
+            return;
+        }
         edgeCol.setCellValueFactory(data -> {
             String name = data.getValue().toString();
             return new ReadOnlyStringWrapper(name);
@@ -3236,30 +3246,11 @@ public class Controller implements ObserverSyndrom {
 
     @Override
     public void updateGraph() {
-        Service<Void> service = new Service<Void>() {
-            @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>() {
-                    @Override
-                    protected Void call() throws Exception {
-                        final CountDownLatch latch = new CountDownLatch(1);
-                        Platform.runLater(() -> {
-                            try {
-                                treeViewUpdate();
-                                updateUndoRedoButton();
-                                loadTables();
-                            } finally {
-                                latch.countDown();
-                            }
-                        });
-                        latch.await();
-                        return null;
-                    }
-                };
-            }
-        };
-        service.start();
-
+        Platform.runLater(() -> {
+            treeViewUpdate();
+            updateUndoRedoButton();
+            loadTables();
+        });
     }
 
     @Override
