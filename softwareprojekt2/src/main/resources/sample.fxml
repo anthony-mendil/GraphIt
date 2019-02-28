@@ -136,7 +136,7 @@
                             <Tooltip text="%toolbarCreatorMode" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModiAnalysis" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="analysisButton" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchModeAnalysis" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
                         <graphic>
                             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                 <Image url="@icons2/027-vision.png" />
@@ -1330,6 +1330,18 @@
                                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                                     </VBox.margin>
                                                 </Accordion>
+                                    <Label fx:id="infoAnalysis1">
+                                       <graphic>
+                                          <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="info-box">
+                                             <image>
+                                                <Image url="@icons2/info-circle-solid.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <VBox.margin>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" />
+                                       </VBox.margin>
+                                    </Label>
                                             </children>
                                         </VBox>
                                     </content>

@@ -1208,7 +1208,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void sphereAutoLayout() {
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if (!graph.getSpheres().isEmpty()) {
             LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
             history.execute(layoutSphereGraphLogAction);
@@ -1216,7 +1216,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void verticesAutoLayout() {
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if (!graph.getVertices().isEmpty()) {
             LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
             history.execute(layoutVerticesGraphLogAction);
@@ -1456,6 +1456,8 @@ public class Controller implements ObserverSyndrom {
         edgeArrowReinforced.setDisable(false);
         edgeArrowNeutral.setDisable(false);
         edgeArrowExtenuating.setDisable(false);
+        verticesAutoLayout.setDisable(false);
+        sphereAutoLayout.setDisable(false);
         updateUndoRedoButton();
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1469,7 +1471,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an SwitchModeAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
-    public void switchModiAnalysis() {
+    public void switchModeAnalysis() {
         values.setGraphButtonType(GraphButtonType.NONE);
         createOrEditMode(false, false);
         createOrEditMode(false, true);
@@ -1508,14 +1510,31 @@ public class Controller implements ObserverSyndrom {
         satellite.setContent(syndrom.getVv2());
         updateUndoRedoButton();
 
-        if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
+        if (!syndrom.getTemplate().isReinforcedEdgesAllowed()) {
             edgeArrowReinforced.setDisable(true);
         }
-        if (!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()) {
+        if (!syndrom.getTemplate().isNeutralEdgesAllowed()) {
             edgeArrowNeutral.setDisable(true);
         }
-        if (!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()) {
+        if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
             edgeArrowExtenuating.setDisable(true);
+        }
+        if(!(syndrom == null)){
+            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+            if(!(graph == null)){
+                for(Sphere s : graph.getSpheres()){
+                    if(s.isLockedPosition()){
+                        sphereAutoLayout.setDisable(true);
+                        break;
+                    }
+                }
+            }
+            for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
+                if(v.isLockedPosition()){
+                    verticesAutoLayout.setDisable(true);
+                    break;
+                }
+            }
         }
 
         ResetVvAction resetAction = new ResetVvAction();
@@ -1902,9 +1921,9 @@ public class Controller implements ObserverSyndrom {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
                 }
             } else if (two.match(event)) {
-                switchModiAnalysis();
+                switchModeCreator();
             } else if (three.match(event)) {
-                switchModiAnalysis();
+                switchModeAnalysis();
             } else if (one.match(event)) {
                 switchModeEdit();
             } else if (esc.match(event)) {
@@ -2700,7 +2719,7 @@ public class Controller implements ObserverSyndrom {
      */
     //@SuppressWarnings("unchecked")
     public void treeViewUpdate() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
 
