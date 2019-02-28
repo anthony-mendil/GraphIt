@@ -958,7 +958,7 @@ Für die Tests für den Verlauf und die Übersicht erstellen wir vorerst mit \te
 \item Ändern der Umrandungsfarbe von \texttt{Symptom 2} zu \texttt{Goldrute} 
 \item Ändern der Füllfarbe von \texttt{Symptom 2} zu \texttt{Schiefergrau} 
 \item Ändern der Form von \texttt{Symptom 2} zu rechteckig
-\item \texttt{Symptom 2} einmal vergrößern (18)
+\item \texttt{Symptom 2} einmal vergrößern
 \item Sphären automatisch anordnen
 \item Symptome automatisch anordnen
 \item die Sphäre bewegen 
@@ -1028,24 +1028,280 @@ Test negativ.
 \includegraphics[height=8cm]{verlaufUpdateButton.PNG}
 \end{center}
 \subsubsection{Fazit}
-Die Software arbeitet wie erwartet.
+Die Software arbeitet wie erwartet. //
 
-\subsectiont{}{\dotfill\ok\leer\leer}
+Nun betätigen wir den Button zum rückgängig machen der letzten Aktion drei mal. Dadurch sollte das vorherige Löschend der Elemente wieder rückgängig gemacht werden. Auf diesem Graph soll im folgenden die Übersicht getestet werden.
+\begin{center}
+\includegraphics[height=5cm]{graphFuerUebersicht.PNG}
+\end{center}
+
+\subsectiont{Anzeige der kompletten Übersicht}{\dotfill\ok\leer\leer}
+Der Bearbeiter öffnet in der Seitenleiste die Übersicht. Es wird erwartet, dass diese vollständig und korrekt ist. 
 \subsubsection{Notizen}
-1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um  \\
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 10:16 \\
 Test negativ. 
 \begin{center}
-\includegraphics[height=10cm]{3_42.PNG}
+\includegraphics[height=10cm]{kompletteUebersicht.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{}{\dotfill\ok\leer\leer}
+\subsectiont{Relation in der Übersicht auswählen}{\dotfill\ok\leer\leer}
+Der Bearbeiter macht einen Linksklick in der Übersicht auf die Relation von \texttt{Symptom 1} zu \texttt{Dinkelberry}. Es wird erwartet, dass die entsprechende Relation im Graphen ausgewählt wird. 
 \subsubsection{Notizen}
-1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um  \\
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 10:49 \\
 Test negativ. 
 \begin{center}
-\includegraphics[height=10cm]{3_42.PNG}
+\includegraphics[height=10cm]{relationAnklicken.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Anzeigen ausschließlich verstärkender Relationen}{\dotfill\ok\leer\leer}
+Standardmäßig sind in der Seitenleiste im Drop-Down Menü zum Filtern von Relationen bereits verstärkende Relationen ausgewählt. Der Bearbeiter klickt also lediglich auf die daneben liegende Checkbox. Hierbei wird erwartet, dass die abschwächende Relation von \texttt{Symptom 1} zu \texttt{Dinkelberry} nicht mehr angezeigt wird.
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 10:58 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=10cm]{relationFiltern.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Textsuche}{\dotfill\ok\leer\leer}
+Der Bearbeiter gibt im Textfeld in der Seitenleiste \texttt{Dink} ein. Hierbei wird erwartet, dass nur noch das Symptom \texttt{Dinkelberry} angezeigt wird.
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 11:03 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=10cm]{textsuche.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Zoom Auswahl}{\dotfill\ok\leer\leer}
+Der Bearbeiter klickt auf das Feld für die Auswahl des Zooms und drückt auf \texttt{75\%}. Hierbei wird erwartet, dass die Ansicht des Graphen entsprechend verkleinert wird. Ebenso sollte sich der rechts daneben liegende Balken entsprechend verändern. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 11:10 \\
+Test negativ. \\
+Vor dem Klicken:
+\begin{center}
+\includegraphics[height=17cm]{zoom75vorher.PNG}
+\end{center}
+Nach dem Klicken: 
+\begin{center}
+\includegraphics[height=17cm]{zoom75nachher.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Zoom Bar}{\dotfill\ok\leer\leer}
+Der Bearbeiter stellt in der Zoom Bar den Zoom auf \texttt{93\%}. Hierbei wird erwartet, dass die Ansicht des Graphen entsprechend verkleinert wird. Ebenso sollte die links daneben liegende Anzeige aktualisiert werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 11:25 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=17cm]{zoomBar.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Zoom Kontext}{\dotfill\ok\leer\leer}
+Der Bearbeiter bewegt den Zoom Kontext nach oben und leicht nach links. Hierbei wird erwartet, dass die Ansicht des Graphen entsprechend verschoben wird. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 11:34 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=17cm]{zoomKontext.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Ändern der Relationsart einer Relation über die Übersicht}{\dotfill\ok\leer\leer}
+Vorerst wird oben in der Kopfleiste unter \texttt{Relation} verstärkende Relationen eingestellt. Anschließend macht der Bearbeiter einen Rechtsklick in der Übersicht auf die Relation von \texttt{Symptom 1} zu \texttt{Dinkelberry} und drückt auf Pfeilspitze. Hierbei wird erwartet, dass sich die Relationsart der Relation entsprechend ändert.
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 11:52 \\
+Test negativ. \\
+Vor dem Klicken auf \texttt{Pfeilspitze}:
+\begin{center}
+\includegraphics[height=17cm]{relationArtVorher.PNG}
+\end{center}
+Nach dem Klicken auf \texttt{Pfeilspitze}: 
+\begin{center}
+\includegraphics[height=17cm]{relationArtNachher.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Änderung der Füllfarbe eines Symptoms über die Übersicht}{\dotfill\ok\leer\leer}
+Vorerst wird oben in de Kopfleiste unter \texttt{Symptom} die Füllfarbe zu einen orange-rot gewechselt. Anschließend macht der Bearbeiter einen Rechtsklick in der Übersicht auf das Symptom \texttt{Symptom 1} und drückt auf \texttt{Füllfarbe}. Hierbei wird erwartet, dass sich die Füllfarbe des Symptoms entsprechend ändert.  
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 12:05 \\
+Test negativ. \\
+Vor dem Klicken auf \texttt{Füllfarbe}:
+\begin{center}
+\includegraphics[height=16cm]{farbeSymptomUebersichtVorher.PNG}
+\end{center}
+Nach dem Klicken auf \texttt{Füllfarbe}: 
+\begin{center}
+\includegraphics[height=16cm]{farbeSymptomUebersichtNachher.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Löschen einer Sphäre über die Übersicht}{\dotfill\ok\leer\leer}
+Der Bearbeiter macht einen Rechtsklick in der Übersicht auf \texttt{Gesellschaft} und drückt auf \texttt{Entfernen}. Hierbei wird erwartet, dass die Sphäre inklusive ihrer Symptome und der Relation entfernt wird. Ebenso darf die Sphäre in der Übersicht nicht mehr angezeigt werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 12:18 \\
+Test negativ. \\
+Vor dem Klicken auf \texttt{Entfernen}:
+\begin{center}
+\includegraphics[height=16cm]{sphareMitRechtsklickLoeschenVorher.PNG}
+\end{center}
+Nach dem Klicken auf \texttt{Entfernen}: 
+\begin{center}
+\includegraphics[height=16cm]{sphareMitRechsklickLoeschen.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet. \\
+
+Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären, Symptome und Relationen die zu erstellen sind, sind aus folgender Abbildung zu entnehmen: 
+\begin{center}
+\includegraphics[height=10cm, angle=90]{analysezuErstellenderGraph.PNG}
+\end{center}
+
+\section{Analyse-Modus}
+
+hi
+
+\subsectiont{Korrektes Berechnen und Anzeigen des Graphmaß, des Vernetzungsindex und des Strukurindex}{\dotfill\ok\leer\leer}
+Der Bearbeiter muss nichts tun. Es wird erwartet, das links in der Kopfleiste die korrekten Werte angezeigt werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 12:53 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analyseStrukturindexetc.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Vorgänger von einem Symptom}{\dotfill\ok\leer\leer}
+Der Bearbeiter wählt \texttt{Symptom 35} aus und aktiviert in der Kopfleiste \texttt{Vorgänger}. Anschließend gibt er in dem Textfeld daneben \texttt{3} ein. Hierbei wird erwartet, dass alle Symptome hervorgehoben werden, von denen man über maximal drei Relationen zu dem ausgewählten Symptom kommt. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 13:02 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysevorgaenger.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Nachfolger von einem Symptom}{\dotfill\ok\leer\leer}
+Der Bearbeiter deaktiviert in der Kopfleiste \texttt{Vorgänger}, aktiviert \texttt{Nachfolger} und gibt im Textfeld \texttt{2} ein. Hierbei wird erwartet, dass alle Symptome hervorgehoben werden, zu denen man über maximal zwei Relationen von dem ausgewählten Symptom kommt. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 13:24 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysenachfolger.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Nachfolger und Vorgänger eines Symptoms}{\dotfill\ok\leer\leer}
+Der Bearbeiter aktiviert in der Kopfleiste wieder \texttt{Vorgänger}. Nun sind beide, \texttt{Vorgänger} und \texttt{Nachfolger}, aktiviert und im Textfeld steht \texttt{2}. Hierbei wird erwartet, dass sowohl alle Symptome, zu denen man über maximal zwei Relationen von dem ausgewählten Symptom kommt, als auch alle von denen man über maximal drei Relationen zu dem ausgewählten Symptom kommt, hervorgehoben werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 13:33 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysevorgaengerUndNachfolger.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Kürzester Weg von einem Symptom zu \\einem anderen (Weg existiert)}{\dotfill\ok\leer\leer}
+Der Bearbeiter deselektiert alle momentan ausgewählten Symptome. Anschließend wählt er \texttt{Symptom 6} und \texttt{Symptom 36} aus und aktiviert \texttt{Kürzester Weg}. Hierbei wird erwartet, dass der kürzeste Weg von \texttt{Symptom 6} nach \texttt{Symptom 36} inklusive aller auf dem Weg liegenden Symptome hervorgehoben wird. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 13:54 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysekuerzersterWegExistiert.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Kürzester Weg von einem Symptom zu \\einem anderen (Weg existiert nicht)}{\dotfill\ok\leer\leer}
+Der Bearbeiter wählt \texttt{Symptom 36} und \texttt{Symptom 6} aus und aktiviert \texttt{Kürzester Weg}. Hierbei wird erwartet, dass kein Weg angezeigt wird, da kein Weg von \texttt{Symptom 36} nach \texttt{Symptom 6} existiert. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 14:11 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysekuerzesterWegExistiertNicht.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Alle Wege von einem Symptom zu einem anderen}{\dotfill\ok\leer\leer}
+Der Bearbeiter deselektiert alle momentan ausgewählten Symptome. Anschließend wählt er \texttt{Symptom 5} und \texttt{Symptom 12} aus und aktiviert \texttt{Alle Wege}. Hierbei wird erwartet, dass alle Wege von \texttt{Symptom 5} nach \texttt{Symptom 12} inklusive aller auf den Wegen liegenden Symptome hervorgehoben werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 14:30 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysealleWege.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Pfeilketten}{\dotfill\ok\leer\leer}
+Der Bearbeiter deselektiert alle momentan ausgewählten Symptome. Anschließend aktiviert er in der Kopfleiste \texttt{Pfeilketten}. Hierbei wird erwartet, dass alle Pfeilketten hervorgehoben werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 15.29 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysepfeilketten.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Konvergente Verzweigungen}{\dotfill\ok\leer\leer}
+Der Bearbeiter aktiviert er in der Kopfleiste \texttt{Konvergente Verzweigungen}. Hierbei wird erwartet, dass alle konvergenten Verzweigungen hervorgehoben werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 15:35 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysekonvergenteVerzweigungen.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Divergente Verzweigungen}{\dotfill\ok\leer\leer}
+Der Bearbeiter aktiviert er in der Kopfleiste \texttt{Divergente Verzweigungen}. Hierbei wird erwartet, dass alle divergenten Verzweigungen hervorgehoben werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 15:39 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysedivergenteVerzweigungen.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Verzweigungen}{\dotfill\ok\leer\leer}
+Der Bearbeiter aktiviert er in der Kopfleiste \texttt{Verzweigungen}. Hierbei wird erwartet, dass alle Verzweigungen hervorgehoben werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 15:41 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analyseverzweigungen.PNG}
+\end{center}
+\subsubsection{Fazit}
+Die Software arbeitet wie erwartet.
+
+\subsectiont{Zyklen}{\dotfill\ok\leer\leer}
+Der Bearbeiter aktiviert er in der Kopfleiste \texttt{Zyklen}. Hierbei wird erwartet, dass alle Zyklen hervorgehoben werden. 
+\subsubsection{Notizen}
+1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 15:43 \\
+Test negativ. 
+\begin{center}
+\includegraphics[height=12cm, angle=90]{analysezyklen.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
