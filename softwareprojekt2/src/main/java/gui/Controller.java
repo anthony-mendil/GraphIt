@@ -2584,16 +2584,16 @@ public class Controller implements ObserverSyndrom {
 
     private void showUserGuide() {
         FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/UserGuidePane.fxml"));
-        AnchorPane ap = null;
+        BorderPane bp;
         try {
-            ap = userGuideLoader.load();
+            bp = userGuideLoader.load();
         } catch (IOException e) {
             logger.error(e.toString());
             return;
         }
         Stage userGuideStage = new Stage();
         userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
-        userGuideStage.setScene(new Scene(ap));
+        userGuideStage.setScene(new Scene(bp));
         userGuideStage.setTitle("GraphIt Tutorial");
         UserGuidePaneController ugpc = userGuideLoader.getController();
         ugpc.initContent();

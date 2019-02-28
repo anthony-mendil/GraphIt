@@ -16,7 +16,7 @@ public class FileHandler {
             logger.error(e.toString());
         }
     }
-    static String FileToString(File pFile){
+    public static String FileToString(File pFile){
         StringBuilder oof = new StringBuilder();
         try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
                 new FileInputStream(pFile), StandardCharsets.UTF_8))){
