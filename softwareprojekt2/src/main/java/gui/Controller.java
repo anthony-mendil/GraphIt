@@ -1013,7 +1013,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an EditEdgesStrokeLogAction-object and executes the action with the action history.
      */
     private void editEdgesStroke(StrokeType stroke) {
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedEdgeState().getPicked().isEmpty()) {
             EditEdgesStrokeLogAction editEdgesStrokeLogAction = new EditEdgesStrokeLogAction(stroke);
             history.execute(editEdgesStrokeLogAction);
         }
@@ -1053,7 +1053,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an EditEdgesTypeLogAction-object and executes the action with the action history.
      */
     private void editEdgesType(EdgeArrowType type) {
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedEdgeState().getPicked().isEmpty()) {
             EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(type);
             history.execute(editEdgesTypeLogAction);
         }
@@ -1100,7 +1100,7 @@ public class Controller implements ObserverSyndrom {
     public void editEdgesColor() {
         Color color = convertToAWT(edgeColour.getValue());
         Values.getInstance().setEdgePaint(color);
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedEdgeState().getPicked().isEmpty()) {
             EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(color);
             history.execute(editEdgesColorLogAction);
         }
@@ -1127,7 +1127,7 @@ public class Controller implements ObserverSyndrom {
     public void editSphereColor() {
         Color color = convertToAWT(sphereBackgroundColour.getValue());
         Values.getInstance().setFillPaintSphere(color);
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
             EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
             history.execute(colorLogAction);
         }
@@ -1182,7 +1182,7 @@ public class Controller implements ObserverSyndrom {
      */
     private void editFontSphere(String font) {
         values.setFontSphere(font);
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
             EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
             history.execute(editFontSphereLogAction);
         }
@@ -2083,7 +2083,7 @@ public class Controller implements ObserverSyndrom {
 
     public void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
             EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
             history.execute(editFontSizeSphereLogAction);
         }
@@ -2719,14 +2719,14 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void sphereEnlarge() {
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
             EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.ENLARGE);
             history.execute(editSphereSizeLogAction);
         }
     }
 
     public void sphereShrink() {
-        if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
+        if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
             EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(SizeChange.SHRINK);
             history.execute(editSphereSizeLogAction);
         }

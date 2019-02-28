@@ -1,13 +1,12 @@
 package actions;
 
-import com.google.inject.Singleton;
+
 import lombok.Getter;
 import org.apache.log4j.Logger;
 
 /**
  * A bounded history of actions.
  */
-@Singleton
 public class ActionHistory {
     /**
      * Upper bound of actions.
