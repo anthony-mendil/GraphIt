@@ -54,6 +54,12 @@
 \newcommand*{\hint}{\paragraph{\textcolor{blue}{Hinweise}}}
 \newcommand*{\condition}{\paragraph{Voraussetzung}$\;$ \vspace{0.2cm}\\}
 \newcommand*{\actions}{\paragraph{Vorgehen} $\;$\vspace{0.2cm}\\}
+\newcommand*{\hdot}{\\ \hdashline[1pt/5pt]}
+\newcommand*{\hdo}{.............}
+
+
+
+
 
 \usepackage{geometry}
 \usepackage{hyperref}
@@ -88,8 +94,10 @@
 \definecolor{sort}{rgb}{0.45, 0.76, 0.98}
 \definecolor{prob}{rgb}{0.74, 0.83, 0.9}
 \definecolor{anw}{rgb}{0.94, 0.86, 0.51}
+\usepackage{arydshln}
 \usepackage{amsmath}
 \usepackage{tabularx}
+\usepackage{longtable}
 \usepackage{setspace} 
 \hypersetup{
 	colorlinks = true,
@@ -270,20 +278,98 @@ Mit diesem Handbuch wird die Bedienung der Software GraphIT beschrieben. Diese A
 	
 	\begin{tabular} {|p{8cm}|p{8cm}|}
 		\hline
-		\rowcolor{glaucous}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\textcolor{ghostwhite}{Maus-/ Tastenbelegungen}}} } \\ \hline\hline 
-		%\rowcolor{glaucous}\multicolumn{2}{|l|}{\parbox{16cm}{\textcolor{ghostwhite}{Maus-/ Tastenbelegungen} }} } \\ \hline\hline 
-		\multicolumn{2}{|l|}{\parbox{16cm}{Bei JavaFX handelt es sich um ein Framework, das die Erstellung von graphischen Benutzeroberflächen unterstützt. Besonders im Vergleich zu anderen Oberflächegestaltungsframeworks und -sprachen ist, dass die mit JavaFX erstellten Oberflächen sehr interaktiv sein können. JavaFX stellt außerdem Swing-Nodes zur Verfügung, in welche Swing-Komponenten eingefügt werden können. Damit stellt die Verwendung dieses Frameworks die Voraussetzung für den Einsatz von dem auf Swing basierenden JUNG-Framework dar.} }\rule{0pt}{10ex}\\ [7ex] \hline
-		\textbf{Flexibilität}  & \textbf{Veränderlichkeit} \\
-		(o) Die Verwendung von JUNG ist uns zwar nicht vorgeschrieben worden, wird von uns jedoch angestrebt. Da (wie eben beschrieben) JavaFX benötigt wird, um vom JUNG-Framework Gebrauch machen zu können, und wir die GUI auch auf eine andere Weise realisieren könnten - und somit auch in diesem Punkt eher flexibel sind - kommen wir insgesamt auf eine mittlere Flexibilität. &
-		(--) Der Einsatz von JavaFX wird uns mit an Sicherheit grenzender Wahrscheinlichkeit nicht untersagt werden (sodass die GUI weiterhin damit umgesetzt werden kann) und Swing-Node, das die Basis für JUNG ist, wird weiterhin auf JavaFX basieren.\\
-		\hline
-		\multicolumn{2}{|l|} {\textbf{Auswirkungen}} \\
-		\multicolumn{2}{|l|} {\parbox{16cm}{Wir werden Teile unseres Systems - in erster Linie den Aufbau der GUI - mittels JavaFX realisieren. } }\\ \hline
+		\rowcolor{glaucous}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\textcolor{ghostwhite}{Maus-/ Tastenbelegungen}}} } \\ \hline\hline 	
+		 Drucken	& Ctrl + P \\ \hline
 	\end{tabular}
 	
 	
 	
-	\subsection{Übersicht}
+	\subsection{\blue{Übersicht}}
+	1\hdo..Sphäre hinzufügen -Button \\
+	2\hdo..Auswahl -Button \\
+	3\hdo..Sphäre entfernen \\
+	4\hdo..Sphäre vergrößern \\
+	5\hdo..Sphäre verkleinern \\
+	6\hdo..Sphäre Füllfarbe verändern  \\
+	7\hdo..Sphäre Schriftart verändern  \\
+	8\hdo..Sphäre Schriftgröße verändern \\
+	9\hdo..Sphäre layouten \\
+	10\hdo  Symptom hinzufügen \\
+	11\hdo  Symptom entfernen \\
+	12\hdo  Symptom vergrößern \\
+	13\hdo  Symptom verkleinern \\
+	14\hdo  Symptom Füllfarbe verändern \\
+	15\hdo  Symptom Randfarbe verändern \\
+	16\hdo  Symptom Form verändern \\
+	17\hdo  Symptome layouten \\
+	18\hdo  Symptome Schriftart verändern \\
+	19\hdo  Symptome Schriftgröße verändern \\
+	20\hdo  Ankerpunkte einblenden \\
+	21\hdo  Relation entfernen \\
+	22\hdo  Relation Ankerpunkte entfernen \\
+	23\hdo  Relation Farbe verändern \\
+	24\hdo  Relation Kantenart  verändern \\
+	25\hdo  Relation Typ verändern \\
+	26\hdo  nach Relationstyp filtern \\
+	27\hdo  nach Regex filtern \\
+	28\hdo  Übersichtsleiste \\
+	29\hdo  Zoom Fenster  \\
+	30\hdo  Vorlage\\
+	31\hdo  Maximale Anzahl von Graph- Elementen\\
+	34\hdo  Relationen erlauben \\
+	35\hdo Sperrende Elemente auswählen \\
+	36\hdo Zoom-leiste \\
+	37\hdo aktuelle Mausposition \\
+	38\hdo Bearbeiter Modus\\
+	39\hdo Ersteller Modus\\
+	40\hdo Analyse Modus\\
+	41\hdo Undo/ rückgängig machen\\
+	42\hdo redo/ wiederholen\\
+	43\hdo gehighlighte Elemente ein-/ausblenden\\
+	44\hdo Element highlighten\\
+	45\hdo Element aus dem Highlight entfernen\\
+	46\hdo Elemente ein-/ausblenden\\
+	47\hdo Element zum Fadeout hinzufügen\\
+	48\hdo Element aus Fadeout entfernen\\
+	49\hdo Neue Datei hinzufügen\\
+	50\hdo Datei öffnen\\
+	51\hdo GXL importieren\\
+	52\hdo Speichern unter\\
+	53\hdo Exportieren als PDF/ GXL/ Verlaufsprotokoll\\
+	54\hdo Drucken\\
+	55\hdo Sprache Benutzeroberfläche\\
+	56\hdo Sprache des Graphen\\
+	57\hdo Dokumentation\\
+	58\hdo über uns \\
+	59\hdo Graphmaße\\
+	60\hdo Vorgänger/ Nachfolger\\
+	61\hdo Anzahl\\
+	62\hdo Kürzester Weg/ alle Wege\\
+	63\hdo Analyse-Optionen: Pfeilketten, Konvergente/ Divergente Verzweigungen, Verzweigungen,\\ 		
+		\hspace*{1.7cm} Zyklen\\
+	64\hdo Verlaufsübersicht\\
+	65\hdo Liste der Logs synchronisieren\\
+	66\hdo Filtern nach dem Verlaufstyp\\
+	
+	\begin{landscape}
+		\begin{figure}
+			\centering
+			\includegraphics[width=22cm]{overview.png}
+			\caption{Übersicht über den Ersteller Modus}
+			\label{fig:label}
+		\end{figure}
+	\end{landscape}
+	\begin{landscape}
+		\begin{figure}
+		\centering
+		\includegraphics[width=22cm]{overview.png}
+		\caption{Übersicht über den Analyse Modus}
+		\label{fig:label}
+		\end{figure}
+	\end{landscape}
+
+	
+
 	
 \newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
