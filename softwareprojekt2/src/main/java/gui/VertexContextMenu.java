@@ -127,7 +127,7 @@ public class VertexContextMenu {
 
         // isVisible
         MenuItem visible = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_VISIBLE"));
-        HelperGui.setImage("/icons2/eyelash2.png", visible);
+        HelperGui.setImage("/icons2/005-hide-2.png", visible);
 
         if (!vertex.isVisible()) {
             visible.setStyle("-fx-text-fill: #395cab;");
