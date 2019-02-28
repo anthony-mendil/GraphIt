@@ -212,6 +212,14 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private CheckMenuItem languageEnglish;
 
+    @FXML
+    private Menu languagesGuiGraph;
+    @FXML
+    private MenuItem languageGuiGraphGerman;
+    @FXML
+    private MenuItem languageGuiGraphEnglish;
+
+
     /**
      * The menuitem under the menu "Help" for opening the documention.
      */
@@ -1923,6 +1931,15 @@ public class Controller implements ObserverSyndrom {
         languageGraphGerman.setSelected(true);
     }
 
+    public void loadLanguageGuiGraphGerman(){
+        languageGerman.setSelected(true);
+        languageGraphGerman.setSelected(true);
+    }
+    public void loadLanguageGuiGraphEnglish(){
+        languageEnglish.setSelected(true);
+        languageGraphEnglish.setSelected(true);
+    }
+
     public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
 
     private void sortFilterLogs() {
@@ -3189,8 +3206,8 @@ public class Controller implements ObserverSyndrom {
                             try {
                                 treeViewUpdate();
                                 updateUndoRedoButton();
-                            } finally {
                                 loadTables();
+                            } finally {
                                 latch.countDown();
                             }
                         });
