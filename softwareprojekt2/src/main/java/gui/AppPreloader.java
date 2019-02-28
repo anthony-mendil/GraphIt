@@ -19,7 +19,6 @@ public class AppPreloader extends Preloader {
         stage = pStage;
         stage.initStyle(StageStyle.UNDECORATED);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/preloader.fxml"));
-
         BorderPane p = fxmlLoader.load();
         pc = fxmlLoader.getController();
         Scene sz = new Scene(p);
