@@ -688,16 +688,7 @@ public class GXLio {
      */
 
     public void importGXL(File pFile, boolean pImportWithRules) {
-        StringBuilder gxl = new StringBuilder();
-        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                new FileInputStream(pFile), StandardCharsets.UTF_8))){
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                gxl.append(line);
-            }
-        } catch (Exception e) {
-            logger.error(e.toString());
-        }
-        gxlToInstance(gxl.toString(), pImportWithRules);
+        String gxl = FileHandler.FileToString(pFile);
+        gxlToInstance(gxl, pImportWithRules);
     }
 }

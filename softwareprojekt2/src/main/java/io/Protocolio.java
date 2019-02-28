@@ -5,10 +5,7 @@ import log_management.dao.LogDao;
 import log_management.tables.Log;
 import org.apache.log4j.Logger;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 
@@ -38,11 +35,7 @@ public class Protocolio {
         for (Log log : logs) {
             protocol.append(logToStringConverter.convertForTextFile(log));
         }
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
-            bufferedWriter.write(protocol.toString());
-        } catch (IOException e) {
-            logger.error(e.toString());
-        }
+        FileHandler.StringToFile(protocol.toString(),pFile);
     }
 
 

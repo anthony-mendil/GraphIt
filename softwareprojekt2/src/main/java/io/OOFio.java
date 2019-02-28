@@ -5,8 +5,7 @@ import log_management.DatabaseManager;
 import log_management.dao.LogDao;
 import org.apache.log4j.Logger;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.File;
 
 
 /**
@@ -69,12 +68,7 @@ public class OOFio {
     public void exportAsOOF(File pFile) {
         GXLio gxlio = new GXLio();
         String oof = createOOF(gxlio.gxlFromInstance(true), logDao.getAllString());
-        try (OutputStreamWriter writer =
-                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)) {
-            writer.write(oof);
-        } catch (IOException e) {
-            logger.error(e.toString());
-        }
+        FileHandler.StringToFile(oof, pFile);
     }
 
     /**
@@ -83,23 +77,15 @@ public class OOFio {
      * @param pFile The file to import
      */
     public void importOOF(File pFile) {
-        StringBuilder oof = new StringBuilder();
-        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                new FileInputStream(pFile), StandardCharsets.UTF_8))){
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                oof.append(line);
-            }
-        } catch (Exception e) {
-            logger.error(e.toString());
-        }
+        String oof=FileHandler.FileToString(pFile);
+
         GXLio gxlio = new GXLio();
 
-        gxlio.gxlToInstance(gxlFromOOF(oof.toString()), true);
+        gxlio.gxlToInstance(gxlFromOOF(oof), true);
 
-        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof.toString()));
+        DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
 
-        DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof.toString()));
+        DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof));
     }
 
 }
