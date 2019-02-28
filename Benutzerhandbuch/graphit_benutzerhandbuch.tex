@@ -54,6 +54,7 @@
 \newcommand*{\hint}{\paragraph{\textcolor{blue}{Hinweise}}}
 \newcommand*{\condition}{\paragraph{Voraussetzung}$\;$ \vspace{0.2cm}\\}
 \newcommand*{\actions}{\paragraph{Vorgehen} $\;$\vspace{0.2cm}\\}
+\newcommand*{\action}{\paragraph{Vorgehen}}
 \newcommand*{\hdot}{\\ \hdashline[1pt/5pt]}
 \newcommand*{\hdo}{.............}
 
@@ -99,6 +100,8 @@
 \usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{setspace} 
+\usepackage{graphicx}
+\usepackage{subfigure}
 \hypersetup{
 	colorlinks = true,
 	linkbordercolor = {white},
@@ -438,18 +441,76 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 \section{Instruktionen zur Nutzung des Programms} \label{sec:nutzung}
 	\subsection{Auswahl von Graphelementen} \label{pick}
 		\subsubsection{Eines Elements}
-		\subsubsection{Mehrerer Elemente} 
-	\subsection{Editierung des Graphen}\label{edit}
-		\paragraph{\blue{Hinweis}}
+		\condition
+		Es muss ein Syndromansatz mit mindestens einem Element (eine Sphäre/ ein Symptom/ eine Relation), welches ausgewählt werden soll, existieren. 
+		\actions
+		Alternative 1: 
+		\begin{enumerate}
+			\item In der Menüleiste den Button \textit{Auswahl} durch einen Links-Klick aktivieren. 
+			\item Den Cursor auf das Element bewegen und die linke Maustaste klicken. 
+		\end{enumerate}
+		Alternative 2: 
+		\begin{enumerate}
+			\item In der Übersichtleiste das auszuwählende Element durch einen Links-Klick auswählen. 
+		\end{enumerate}
+		\hint
 		\begin{itemize}
-			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer im Bearbeiter-/ Erstellermodus befindet und er somit die Berechtigung hat den Graphen zu editieren.
+			\item Eine Relation kann manchmal etwas schwierig auszuwählen sein, da die Kanten vergleichsweise relativ dünn sind. 
 		\end{itemize}
-		\subsubsection{Undo}
-		\subsubsection{Redo}
+	
+		\begin{figure}[ht!]
+			\centering
+			\subfigure[Alternative 1]{
+				\includegraphics[width=0.4\columnwidth, keepaspectratio]{pick.png} 
+			}
+			\subfigure[Alternative 2]{
+				\includegraphics[width=0.4\columnwidth, keepaspectratio]{pick2.png} 
+			}
+			
+		\end{figure}	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 	
+	
+		\newpage
+		\subsubsection{Mehrerer Elemente}
+		\condition
+		Es muss ein Syndromansatz mit mindestens zwei Elemente (Sphären/ Symptome/ Relationen), welches ausgewählt werden soll, existieren. 
+		\action
+		\begin{enumerate}
+			\item Auf der Tastatur den die Taste \texttt{Shift} gedrückt halten 
+			\item Den Cursor auf das Element bewegen, welches zur Auswahl hinzugefügt werden soll und die linke Maustaste klicken. 
+			\item Die \texttt{Shift} Taste solange gedrückt halten, wie Elemente der Auswahl hinzugefügt werden soll
+			\item Die \texttt{Shift} Taste loslassen
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+			\item Verschiedene Arten (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. \\ 
+		\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+	\subsection{Editierung des Graphen}\label{edit}
+		\hint
+		\begin{itemize}
+			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer im \\
+			Bearbeiter-/ Erstellermodus befindet und er somit die Berechtigung hat den Graphen zu editieren.
+		\end{itemize}
+		\subsubsection{Undo/ Redo}
+		Mit Undo/ Redo sind Aktionen auf dem Graphen wieder rückgängig zu machen oder rückgängig gemachte Aktionen erneut ausführbar. 
+		\condition
+		Es ist eine Aktions- Historie verfügbar. Beispiel: Es wurde ein Graph neu erstellt und eine Sphäre hinzugefügt. 	
+		\action
+		\begin{enumerate}
+			\item Den Undo- Button durch einen Link-Klick auswählen. 
+			\item Der Redo- Button sollte nun ebenfalls klickbar sein. Um die vorherige Aktion wieder auszuführen den Redo- Button klicken. 
+		\end{enumerate}			
+		\hint
+		\begin{itemize}
+			\item Gibt es keine Aktions- Historie, d.h. es wurde gerade ein neuer Graph erstellt/ importiert oder der Modus gewechselt, dann sind die Buttons nicht anklickbar. Ansonsten sind die Buttons klickbar.
+		\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Sphäre hinzufügen}	
 		\condition 	
 		Das Programm ist gestartet.
 		\actions
+		Alternative 1: 
 		\begin{enumerate}
 			\item In der Menüleiste den Button \textit{Sphäre hinzufügen} durch einen Links-Klick aktivieren.
 			\item Den Cursor auf die gewünschte Position bewegen, an der sich keine andere Sphäre befindet, und auf die linke Maustaste klicken.
@@ -457,8 +518,10 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich eine Sphäre auf einer anderen Sphäre hinzuzufügen. Wird dies versucht, wird keine neue Sphäre hinzugefügt und es erscheint eine Fehlermeldung.
-	\item Es ist nicht möglich eine Sphäre hinzuzufügen, wenn die Anzahl an Sphären im Graphen bereits der maximalen Anzahl an Sphären, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Bearbeitermodus ist. Wird dies versucht, wird kein neues Symtom hinzugefügt und es erscheint eine Fehlermeldung.
+	\item Es ist nicht möglich eine Sphäre hinzuzufügen, wenn die Anzahl an Sphären im Graphen bereits der maximalen Anzahl an Sphären, die im Erstellermodus in den Vorlage-Regeln festgelegt wurde, entspricht und man im Bearbeitermodus ist. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
 	\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Sphäre entfernen}
 			\condition 	
 		Ein Syndromansatz mit mindestens einer Sphäre ist im Programm geöffnet. 
@@ -466,7 +529,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		Alternative 1:
 		\begin{enumerate}
 			\item Die Sphäre, die gelöscht werden soll mit einem Links-Klick auswählen.
-			\item Die /textit{Entfernen}-Teste der Tastatur drücken.
+			\item Die \textit{Entfernen}-Teste der Tastatur drücken.
 		\end{enumerate}
 		Alternative 2:
 			\begin{enumerate}
@@ -639,14 +702,52 @@ Es ist nicht möglich den Titel einer Sphäre zu ändern, wenn der Titel dieser 
 		\subsubsection{Form eines Symptoms verändern}
 		\subsubsection{Schriftart-/ größe der Beschriftung eines Symptoms ändern}
 		\subsubsection{Symptome layouten}
-			
+		
+		\newpage
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Relation hinzufügen}
+		\condition
+		\action
+		\hint
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Relation entfernen}
+		\condition
+		\action
+		\hint
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Ankerpunkte einblenden}
+		\condition
+		\action
+		\hint
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Ankerpunkte hinzufügen}
+		\condition
+		\action
+		\hint
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Ankerpunkte entfernen}
+		\condition
+		\action
+		\hint
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Farbe einer Relation verändern}
+		\condition
+		\action
+		\hint
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Type einer Relation verändern}
+		\condition
+		\action
+		\hint
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		
 		\subsubsection{Graphelemente hervorheben}
 		\subsubsection{Graphelemente Hervorhebung hinzufügen}
