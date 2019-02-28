@@ -56,8 +56,10 @@ import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -72,10 +74,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -90,6 +89,7 @@ import org.apache.log4j.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
@@ -1803,7 +1803,7 @@ public class Controller implements ObserverSyndrom {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
 
-        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("New Graph", this) : new LoadGraphAction(this);
+        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("UntitledGraph", this) : new LoadGraphAction(this);
 
 
         action.action();
@@ -1898,11 +1898,11 @@ public class Controller implements ObserverSyndrom {
                 for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
                 }
-            } else if (one.match(event)) {
-                switchModeCreator();
             } else if (two.match(event)) {
                 switchModiAnalysis();
             } else if (three.match(event)) {
+                switchModiAnalysis();
+            } else if (one.match(event)) {
                 switchModeEdit();
             } else if (esc.match(event)) {
                 syndrom.getVv().getPickedSphereState().clear();
@@ -2574,6 +2574,34 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setDisable(disable);
     }
 
+    private void showUserGuide() {
+        FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/UserGuidePane.fxml"));
+        AnchorPane ap = null;
+        try {
+            ap = userGuideLoader.load();
+        } catch (IOException e) {
+            logger.error(e.toString());
+            return;
+        }
+        Stage userGuideStage = new Stage();
+        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
+        userGuideStage.setScene(new Scene(ap));
+        userGuideStage.setTitle("GraphIt Tutorial");
+        UserGuidePaneController ugpc = userGuideLoader.getController();
+        ugpc.initContent();
+
+        KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        userGuideStage.getScene().setOnKeyPressed((KeyEvent event) -> {
+                    if (esc.match(event)) {
+                        userGuideStage.hide();
+                    }
+                });
+        userGuideStage.setResizable(false);
+        userGuideStage.show();
+
+
+    }
+
     @SuppressWarnings("unused")
     private void optionExitWindow() {
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CLOSE"), ButtonBar.ButtonData.OK_DONE);
@@ -2583,7 +2611,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
@@ -2641,7 +2669,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
 
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
