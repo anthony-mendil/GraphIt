@@ -26,6 +26,7 @@ public class AppPreloader extends Preloader {
         sz.getStylesheets().add("/gui_style.css");
         stage.getIcons().add(new Image("/GraphItLogo.png"));
         stage.setScene(sz);
+        stage.setTitle("GraphIt");
         stage.show();
     }
 
