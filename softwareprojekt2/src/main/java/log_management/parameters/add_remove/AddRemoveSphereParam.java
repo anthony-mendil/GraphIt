@@ -29,8 +29,7 @@ public class AddRemoveSphereParam implements Param {
      * Creates a parameter object of its own class.
      *
      * @param pSphere                The sphere.
-     * @param vertices               The vertices.
-     * @param addRemoveVerticesParam
+     * @param addRemoveVerticesParam The vertices added/removed in the process.
      */
     public AddRemoveSphereParam(Sphere pSphere, AddRemoveVerticesParam addRemoveVerticesParam) {
         this.sphere = pSphere;
