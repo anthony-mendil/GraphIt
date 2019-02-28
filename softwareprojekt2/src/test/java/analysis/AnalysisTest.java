@@ -1,4 +1,4 @@
-package test.io;
+package analysis;
 
 import actions.analyse.AnalysisGraphAllPathsAction;
 import actions.analyse.AnalysisGraphShortestPathAction;
@@ -7,7 +7,6 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import gui.Values;
 import net.sourceforge.gxl.GXLDocument;
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
