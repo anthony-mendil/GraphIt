@@ -491,6 +491,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\begin{itemize}
 			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer im \\
 			Bearbeiter-/ Erstellermodus befindet und er somit die Berechtigung hat den Graphen zu editieren.
+			\item Es wird vorausgesetzt, dass die Aktionen nicht durch die Vorlageregeln verhindert werden. D.h. das der Bearbeiter auf alle Elemente des Graphen freien Zugriff hat und alle Eigenschaften veränderbar sind.
 		\end{itemize}
 		\subsubsection{Undo/ Redo}
 		Mit Undo/ Redo sind Aktionen auf dem Graphen wieder rückgängig zu machen oder rückgängig gemachte Aktionen erneut ausführbar. 
@@ -703,52 +704,161 @@ Es ist nicht möglich den Titel einer Sphäre zu ändern, wenn der Titel dieser 
 		\subsubsection{Schriftart-/ größe der Beschriftung eines Symptoms ändern}
 		\subsubsection{Symptome layouten}
 		
-		\newpage
-		
+		\newpage	
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Relation hinzufügen}
 		\condition
+		Um eine Relation hinzufügen zu können, müssen mindestens 2 Symptome im Syndromansatz existieren. 
 		\action
+		\begin{enumerate}
+			\item Auf ein Symptom klicken und die Maustaste gedrückt halten.
+			\item Die Maus zu einem zweiten Symptom bewegen. 
+			\item Die Maustaste auf einem anderem Symptom loslassen. 
+		\end{enumerate}
 		\hint
+		\begin{itemize}
+			\item Die Darstellung (Farbe, Kantenart, Typ) der Relation wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. 
+			\item Es können nur Relationen zwischen zwei Symptomen hinzugefügt werden. 
+			\item Ein Symptom kann keine Relation auf sich selber haben.
+			\item Die Ankerpunkte der Relationen (von dem ausgehenden/ eingehenden Symptom) werden automatisch gesetzt und können manuell durch den Benutzer im Nachhinein verändert werden. 
+			\item Die Pfeile von Relationen des gleichen Typs werden dabei in einem bestimmten Bereich zusammengefasst dargestellt. 
+			\item Pfeilspitzen verschiedenen Types sollen sich nicht überlappen.
+		\end{itemize}
+	
+		\begin{figure}[ht!]
+			\centering
+			\subfigure[Alternative 1]{
+				\includegraphics[width=0.4\columnwidth, keepaspectratio]{edge.png} 
+			}			
+		\end{figure}
 		
+		\newpage
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Relation entfernen}
 		\condition
-		\action
-		\hint
+		Es muss mindestens eine Relation in dem Syndromansatz existieren. 
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item Die Relation, die gelöscht werden soll mit einem Links-Klick auswählen.
+			\item Die \textit{Entfernen}-Taste der Tastatur drücken.
+		\end{enumerate}
+		Alternative 2:
+		\begin{enumerate}
+			\item Die Relation, welche gelöscht werden soll mit einem Links-Klick auswählen.
+			\item In der Menüleiste einen Links-Klick auf den Button \textit{Relation entfernen} ausführen.
+		\end{enumerate}
+		Alternative 3:
+		\begin{enumerate}
+			\item Mit einem Rechts-Klick auf die Relation, welche gelöscht werden soll, das Kontextmenü öffnen. 
+			\item In diesem Kontextmenü die \textit{Entfernen}-Option mit einem Links-Klick auswählen.
+		\end{enumerate}
+	
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Ankerpunkte einblenden}
+		\subsubsection{Ankerpunkte ein-/ ausblenden}
+		Ankerpunkte bezeichnen die Postion, wo die Relation in einem Symptom mündet/ von ihm ausgeht. Bei der Erstellung einer Relation werdend diese automatisch gesetzt und sind veränderbar. Das bedeutet, dass wenn ein Symptom bewegt wird, sich die Postion der Mündung/Ausgang der Relation in/aus das Symptom entsprechend anpasst und bewegt. Um das zu verhindert, können die Ankerpunkte manuell besetzt werden. Diese sind dann fest, d.h. auch beim Bewegen eines Symptoms bleibt die Position der Mündung/ Ausgang bestehen.
 		\condition
+			Es muss mindestens eine Relation im Syndromansatz existieren und mindestens ein Ankerpunkt gesetzt sein. 
 		\action
+			\begin{enumerate}
+				\item In der Menüleiste den Button Ankerpunkte ein-/ausblenden durch einen Links- Klick aktivieren.
+				\item Zum Ausblenden den Button durch einen Links- Klick deaktivieren. 
+			\end{enumerate}
 		\hint
+		\begin{itemize}
+			\item Die Ankerpunkte werden beim Einblenden rot eingefärbt. 
+		\end{itemize}
+		\begin{figure}[ht!]
+			\centering
+			\subfigure[Alternative 1]{
+				\includegraphics[width=0.4\columnwidth, keepaspectratio]{anchor.png} 
+			}			
+		\end{figure}
 		
+		\newpage
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Ankerpunkte hinzufügen}
 		\condition
+			Es muss mindestens eine Relation im Syndromansatz existieren.
 		\action
+			\begin{enumerate}
+				\item Die Kante durch einen Rechts- Klick auswählen und gedrückt halten.
+				\item Befindet sich die Position der Maus beim Klick näher am Symptom, in welches die Relation mündet, wird der Ankerpunkt der Mündung der Relation gesetzt. Befindet sich die Postion der Maus beim Klick näher am Symptom, von dem die Kante ausgeht, wird der Ankerpunkt für den Ausgang der Kante gesetzt. 
+				\item Die Kante in die gewünschte Richtung bewegen. Die Mündung/ der Ausgang der Kante wandert entsprechend mit. 
+				\item Wenn die gewünschte Position erreicht ist, die gedrückte Maustaste loslassen. 
+			\end{enumerate}
+			\begin{figure}[ht!]
+			\centering
+			\subfigure[Alternative 1]{
+				\includegraphics[width=0.3\columnwidth, keepaspectratio]{add_anchor.png} 
+			}			
+		\end{figure}
 		\hint
+		\begin{itemize}
+			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt.
+		\end{itemize}
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Ankerpunkte entfernen}
 		\condition
+		Es muss mindestens eine Relation im Syndromansatz existieren.
 		\action
+		\begin{enumerate}
+			\item Die gewünschte Relation durch einen Link- Klick auswählen. 
+			\item In der Menüleiste einen Links-Klick auf den Button \textit{Ankerpunkt entfernen} ausführen.
+		\end{enumerate}
 		\hint
+		\begin{itemize}
+			\item Beim Entfernen der Ankerpunkte werden immer (wenn gesetzt) Ankerpunkte entfernt.\\
+		\end{itemize}
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Farbe einer Relation verändern}
 		\condition
-		\action
-		\hint
+		Es muss mindestens eine Relation im Syndromansatz existieren.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Farbe der Relation verändern} klicken.
+			\item Mit einem Rechts-Klick auf die Relation, deren Farbe geändert werden soll, ihr Kontextmenü öffnen.
+			\item im Kontextmenü den Punkt \textit{Farbe} auswählen.
+		\end{enumerate}
+		Alternative 2:
+		\begin{enumerate}
+			\item Die Relation, deren Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste einen Links-Klick auf den Button \textit{Farbe der Relation verändern} ausführen.
+			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem auswählen.
+		\end{enumerate}	
 		
+		\newpage
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Type einer Relation verändern}
-		\condition
-		\action
+			\condition
+		Es muss mindestens eine Relation im Syndromansatz existieren.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Typ der Relation verändern} klicken.
+			\item Mit einem Rechts-Klick auf die Relation, deren Typ geändert werden soll, ihr Kontextmenü öffnen.
+			\item Im Kontextmenü den Punkt \textit{Typ} auswählen.
+		\end{enumerate}
+		Alternative 2:
+		\begin{enumerate}
+			\item Die Relation, deren Typ geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste einen Links-Klick auf den Button \textit{Typ der Relation verändern} ausführen.
+			\item Aus dem Drop-Down einen Typ per Links- Klick auswählen. 
+		\end{enumerate}	
 		\hint
+		\begin{itemize}
+			\item Die normale Pfeilspitze stellt die verstärkende Beziehung von Relationen im Syndromansatz dar
+			\item Die kreisförmige Pfeilspitze stellt die abschwächend Beziehung von Relationen im Syndromansatz dar
+			\item Die Pfeilspitze mit dem Fragezeichen stellt die neutrale Beziehung von Relationen im Syndromansatz dar
+		\end{itemize}
+		
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		
+		\newpage
 		\subsubsection{Graphelemente hervorheben}
 		\subsubsection{Graphelemente Hervorhebung hinzufügen}
 		\subsubsection{Graphelemente Hervorhebung entfernen}
