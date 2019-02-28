@@ -3,11 +3,10 @@ package graph.graph;
 import lombok.Data;
 
 /**
- * Represents a template, which can be created by the creator(Ersteller).
+ * Represents a template, which can be created by the creator.
  */
 @Data
 public class Template {
-
 
     /**
      * Indicator, whether the number of spheres is locked.
@@ -21,7 +20,7 @@ public class Template {
      * Indicator, whether the number of Edges is locked.
      */
     private boolean lockedEdgesNumber = false;
-    //Graphelement options:
+
     /**
      * The maximum number of spheres allowed to exist in the graph. This is defined in the template.
      */
@@ -37,7 +36,6 @@ public class Template {
      */
     private int maxEdges;
 
-    //Edgetype options:
     /**
      * Allows the user to use reinforced arrows.
      */
@@ -54,23 +52,24 @@ public class Template {
     private boolean neutralEdgesAllowed;
 
     /**
-     * Indicator whether the tickbox is ticked in one of them.(No use atm)
+     * Indicator whether the checkbox is selected in one of them.(No use atm)
      */
     private boolean set;
 
     /**
      * Creates a new Template object.
      */
-    public Template(int pMaxSpheres,int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
-        maxSpheres=pMaxSpheres;
-        maxVertices=pMaxVertices;
-        maxEdges=pMaxEdges;
-        reinforcedEdgesAllowed=pReinforcedEdgesAllowed;
-        extenuatingEdgesAllowed=pExtenuatingEdgesAllowed;
-        neutralEdgesAllowed=pUnknownEdgesAllowed;
+    public Template(int pMaxSpheres, int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
+        maxSpheres = pMaxSpheres;
+        maxVertices = pMaxVertices;
+        maxEdges = pMaxEdges;
+        reinforcedEdgesAllowed = pReinforcedEdgesAllowed;
+        extenuatingEdgesAllowed = pExtenuatingEdgesAllowed;
+        neutralEdgesAllowed = pUnknownEdgesAllowed;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(maxSpheres);
         stringBuilder.append(" spheres allowed, ");
@@ -78,22 +77,21 @@ public class Template {
         stringBuilder.append(" vertices, ");
         stringBuilder.append(maxEdges);
         stringBuilder.append(" edges allowed");
-        if(reinforcedEdgesAllowed){
+        if (reinforcedEdgesAllowed) {
             stringBuilder.append(", reinforced edges allowed");
-        }else{
+        } else {
             stringBuilder.append(", reinforced edges not allowed");
         }
-        if(extenuatingEdgesAllowed){
+        if (extenuatingEdgesAllowed) {
             stringBuilder.append(", extenuating edges allowed");
-        }else {
+        } else {
             stringBuilder.append(", extenuating edges not allowed");
         }
-        if(neutralEdgesAllowed){
+        if (neutralEdgesAllowed) {
             stringBuilder.append(", unknown edges allowed");
-        }else {
+        } else {
             stringBuilder.append(", unknown edges not allowed");
         }
         return stringBuilder.toString();
     }
-
 }

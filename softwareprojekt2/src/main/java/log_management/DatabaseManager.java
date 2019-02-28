@@ -43,15 +43,15 @@ public class DatabaseManager implements ObserverSyndrom {
     /**
      * Creates a database manager organizing the database.
      */
-    private DatabaseManager(){
+    private DatabaseManager() {
         graphDao = new GraphDao();
         logDao = new LogDao();
         gxlIo = new GXLio();
         mode = Values.getInstance().getMode();
     }
 
-    public static DatabaseManager getInstance(){
-        if (databaseManager == null){
+    public static DatabaseManager getInstance() {
+        if (databaseManager == null) {
             databaseManager = new DatabaseManager();
         }
         return databaseManager;
@@ -59,6 +59,7 @@ public class DatabaseManager implements ObserverSyndrom {
 
     /**
      * Adds a log to the database (through dao).
+     *
      * @param log The log for the called action.
      */
     public void addEntryDatabase(Log log) {
@@ -99,11 +100,6 @@ public class DatabaseManager implements ObserverSyndrom {
         graph.setGxl(gxlIo.gxlFromInstance(true));
         graphDao.save(graph);
     }
-
-//    @Override
-//    public void showPrint(ByteArrayInputStream byteArrayInputStream) {
-//        //
-//    }
 
     public String getGxlFromDatabase() {
         return graphDao.gxlFromDatabase();

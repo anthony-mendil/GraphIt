@@ -19,6 +19,7 @@ public class EditFontSphereLogAction extends LogAction {
      * The new font.
      */
     private String font;
+
     /**
      * Constructor in case the user wants to change the font.
      *
@@ -43,18 +44,18 @@ public class EditFontSphereLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
-        if(parameters == null) {
+        if (parameters == null) {
             for (Sphere sp : pickedState.getPicked()) {
-                if(!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                   createParameter(sp, sp.getFont(), font);
+                if (!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                    createParameter(sp, sp.getFont(), font);
                     sp.setFont(font);
-                }else{
+                } else {
                     helper.setActionText("EDIT_FONT_SPHERE_ALERT", true, true);
                 }
             }
-        }else{
-            Sphere sphere = ((EditFontSphereParam)parameters).getSphere();
-            String newFont = ((EditFontSphereParam)parameters).getNewFont();
+        } else {
+            Sphere sphere = ((EditFontSphereParam) parameters).getSphere();
+            String newFont = ((EditFontSphereParam) parameters).getNewFont();
             sphere.setFont(newFont);
         }
         vv.repaint();
@@ -67,9 +68,9 @@ public class EditFontSphereLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Sphere sphere = ((EditFontSphereParam)parameters).getSphere();
-        String oldFont = ((EditFontSphereParam)parameters).getOldFont();
-        String newFont = ((EditFontSphereParam)parameters).getNewFont();
+        Sphere sphere = ((EditFontSphereParam) parameters).getSphere();
+        String oldFont = ((EditFontSphereParam) parameters).getOldFont();
+        String newFont = ((EditFontSphereParam) parameters).getNewFont();
         EditFontSphereParam editFontSphereParam = new EditFontSphereParam(sphere, newFont, oldFont);
         EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(editFontSphereParam);
         editFontSphereLogAction.action();
@@ -77,11 +78,12 @@ public class EditFontSphereLogAction extends LogAction {
 
     /**
      * Creates a new parameter-object of this action.
-     * @param sphere    The sphere.
-     * @param oldFont   The old font of the sphere.
-     * @param newFont   The new font of the sphere.
+     *
+     * @param sphere  The sphere.
+     * @param oldFont The old font of the sphere.
+     * @param newFont The new font of the sphere.
      */
-    public void createParameter(Sphere  sphere, String oldFont, String newFont) {
+    public void createParameter(Sphere sphere, String oldFont, String newFont) {
         parameters = new EditFontSphereParam(sphere, oldFont, newFont);
     }
 }

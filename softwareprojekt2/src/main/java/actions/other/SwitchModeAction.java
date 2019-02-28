@@ -12,8 +12,10 @@ public class SwitchModeAction extends GraphAction {
      * The function mode to change to.
      */
     private FunctionMode mode;
+
     /**
      * Constructor in case the user changes the mode.
+     *
      * @param newMode The new mode.
      */
     public SwitchModeAction(FunctionMode newMode) {
@@ -25,15 +27,14 @@ public class SwitchModeAction extends GraphAction {
         values.setMode(mode);
         if (mode == FunctionMode.EDIT) {
             notifyObserverEditMode();
-            syndrom.setPluggableModeEdit();
-        }
-        else {
+            syndrom.setGraphMouseModeEdit();
+        } else {
             notifyObserverFunctionMode(mode);
-            if (mode == FunctionMode.TEMPLATE){
-                syndrom.setPluggableModeEdit();
+            if (mode == FunctionMode.TEMPLATE) {
+                syndrom.setGraphMouseModeEdit();
             } else {
                 // mode ==  FunctionMode.ANALYSE
-                syndrom.setPluggableModeAnalyse();
+                syndrom.setGraphMouseModeAnalyse();
             }
         }
         ActionHistory.getInstance().wipe();

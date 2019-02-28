@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -160,5 +159,10 @@ public class AnalysisTest {
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
         Assert.assertEquals("22", graphDimensionAction.getScope());
+
+    @Test
+    public void testSetup() {
+        //
+
     }
 }

@@ -44,7 +44,7 @@ public class EditSphereAnnotationParam implements Param {
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pSphere        The sphere containing its old annotation.
+     * @param pSphere               The sphere containing its old annotation.
      * @param pOldAnnotationEnglish The old annotation.
      * @param pNewAnnotationEnglish The new annotation.
      * @param pOldAnnotationGerman  The old annotation.

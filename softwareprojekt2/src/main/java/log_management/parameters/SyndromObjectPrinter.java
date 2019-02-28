@@ -6,7 +6,7 @@ import gui.properties.Language;
 
 public class SyndromObjectPrinter {
 
-    private SyndromObjectPrinter(){
+    private SyndromObjectPrinter() {
         throw new IllegalStateException("utility class");
     }
 

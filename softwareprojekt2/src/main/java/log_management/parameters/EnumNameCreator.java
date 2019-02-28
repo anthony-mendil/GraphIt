@@ -8,7 +8,7 @@ import gui.properties.Language;
 
 public class EnumNameCreator {
 
-    private EnumNameCreator(){
+    private EnumNameCreator() {
         throw new IllegalStateException("utility class");
     }
 
@@ -36,13 +36,13 @@ public class EnumNameCreator {
 
     public static String vertexShapeTypeTranslator(VertexShapeType vertexShapeType, Language language) {
         if (language == Language.ENGLISH) {
-            if (vertexShapeType == VertexShapeType.CIRCLE){
+            if (vertexShapeType == VertexShapeType.CIRCLE) {
                 return "Circle";
             } else {
                 return "Rectangle";
             }
         } else {
-            if (vertexShapeType == VertexShapeType.CIRCLE){
+            if (vertexShapeType == VertexShapeType.CIRCLE) {
                 return "Kreis";
             } else {
                 return "Rechteck";
@@ -86,13 +86,13 @@ public class EnumNameCreator {
 
     public static String sizeChangeTransaltor(SizeChange sizeChange, Language language) {
         if (language == Language.ENGLISH) {
-            if (sizeChange == SizeChange.ENLARGE){
+            if (sizeChange == SizeChange.ENLARGE) {
                 return "Enlarged";
             } else {
                 return "Shrunk";
             }
         } else {
-            if (sizeChange == SizeChange.ENLARGE){
+            if (sizeChange == SizeChange.ENLARGE) {
                 return "Vergrößert";
             } else {
                 return "Verkleinert";

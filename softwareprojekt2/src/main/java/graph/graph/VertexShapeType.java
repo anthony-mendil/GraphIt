@@ -9,9 +9,7 @@ public enum VertexShapeType {
      */
     RECTANGLE,
     /**
-     *
      * A circle as a shape.
      */
     CIRCLE,
-
 }

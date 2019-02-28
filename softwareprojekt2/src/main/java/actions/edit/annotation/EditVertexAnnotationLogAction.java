@@ -23,13 +23,14 @@ public class EditVertexAnnotationLogAction extends LogAction {
     /**
      * The annotation of the vertex.
      */
-    private Map<Language,String> text;
+    private Map<Language, String> text;
+
     /**
      * Constructor in case the user wants to change the annotation of vertex.
      *
      * @param pText The new vertex annotation.
      */
-    public EditVertexAnnotationLogAction(Map<Language,String> pText) {
+    public EditVertexAnnotationLogAction(Map<Language, String> pText) {
         super(LogEntryName.EDIT_VERTEX_ANNOTATION);
         text = pText;
     }
@@ -48,28 +49,28 @@ public class EditVertexAnnotationLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if(parameters == null) {
+        if (parameters == null) {
             List<Vertex> lockedVertices = new ArrayList<>();
             for (Vertex v : pickedState.getPicked()) {
-                if(!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
+                if (!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     createParameter(v, v.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH), v.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
                     Map<String, String> annotation = v.getAnnotation();
                     annotation.put(Language.GERMAN.name(), text.get(Language.GERMAN));
                     annotation.put(Language.ENGLISH.name(), text.get(Language.ENGLISH));
                     v.setAnnotation(annotation);
-                }else{
+                } else {
                     helper.setActionText("EDIT_VERTEX_ANNOTATION_ALERT", true, true);
                     lockedVertices.add(v);
                 }
             }
-            if(lockedVertices.size() == pickedState.getPicked().size() && !lockedVertices.isEmpty()){
+            if (lockedVertices.size() == pickedState.getPicked().size() && !lockedVertices.isEmpty()) {
                 actionHistory.removeLastEntry();
             }
-        }else{
-            Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
-            Map<String,String> newAnnotation = new HashMap<>();
-            newAnnotation.put(Language.ENGLISH.name(),(((EditVertexAnnotationParam)parameters).getNewAnnotationEnglish()));
-            newAnnotation.put(Language.GERMAN.name(), ((EditVertexAnnotationParam)parameters).getNewAnnotationGerman());
+        } else {
+            Vertex vertex = ((EditVertexAnnotationParam) parameters).getVertex();
+            Map<String, String> newAnnotation = new HashMap<>();
+            newAnnotation.put(Language.ENGLISH.name(), (((EditVertexAnnotationParam) parameters).getNewAnnotationEnglish()));
+            newAnnotation.put(Language.GERMAN.name(), ((EditVertexAnnotationParam) parameters).getNewAnnotationGerman());
             vertex.setAnnotation(newAnnotation);
         }
         vv.repaint();
@@ -81,11 +82,11 @@ public class EditVertexAnnotationLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Vertex vertex = ((EditVertexAnnotationParam)parameters).getVertex();
-        String oldAnnotationEn = ((EditVertexAnnotationParam)parameters).getOldAnnotationEnglish();
-        String newAnnotationEn = ((EditVertexAnnotationParam)parameters).getNewAnnotationEnglish();
-        String oldAnnotationDe = ((EditVertexAnnotationParam)parameters).getOldAnnotationGerman();
-        String newAnnotationDe = ((EditVertexAnnotationParam)parameters).getNewAnnotationGerman();
+        Vertex vertex = ((EditVertexAnnotationParam) parameters).getVertex();
+        String oldAnnotationEn = ((EditVertexAnnotationParam) parameters).getOldAnnotationEnglish();
+        String newAnnotationEn = ((EditVertexAnnotationParam) parameters).getNewAnnotationEnglish();
+        String oldAnnotationDe = ((EditVertexAnnotationParam) parameters).getOldAnnotationGerman();
+        String newAnnotationDe = ((EditVertexAnnotationParam) parameters).getNewAnnotationGerman();
         EditVertexAnnotationParam editVertexAnnotationParam = new EditVertexAnnotationParam(vertex, newAnnotationEn, oldAnnotationEn, newAnnotationDe, oldAnnotationDe);
         EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(editVertexAnnotationParam);
         editVertexAnnotationLogAction.action();
@@ -93,11 +94,12 @@ public class EditVertexAnnotationLogAction extends LogAction {
 
     /**
      * Creates a parameter object for thea action.
-     * @param vertex                The selected vertex.
-     * @param oldAnnotationEnglish  The old annotation in english.
-     * @param newAnnotationEnglish  The new annotation in english.
-     * @param oldAnnotationGerman   The old annotation in german.
-     * @param newAnnotationGerman   The new annotation in german.
+     *
+     * @param vertex               The selected vertex.
+     * @param oldAnnotationEnglish The old annotation in english.
+     * @param newAnnotationEnglish The new annotation in english.
+     * @param oldAnnotationGerman  The old annotation in german.
+     * @param newAnnotationGerman  The new annotation in german.
      */
     public void createParameter(Vertex vertex, String oldAnnotationEnglish, String newAnnotationEnglish, String oldAnnotationGerman, String newAnnotationGerman) {
         parameters = new EditVertexAnnotationParam(vertex, oldAnnotationEnglish, newAnnotationEnglish, oldAnnotationGerman, newAnnotationGerman);

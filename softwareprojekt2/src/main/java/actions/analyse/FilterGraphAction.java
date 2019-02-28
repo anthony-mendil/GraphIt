@@ -33,10 +33,10 @@ public class FilterGraphAction extends GraphAction {
      * Constructor in case the user filters the graph on the criteria.
      *
      * @param edgeType The edge type to filter for.
-     * @param toDo     Indicator, if it should be filtered or not.
+     * @param doFilter Indicator, if it should be filtered or not.
      */
-    public FilterGraphAction(EdgeArrowType edgeType, boolean toDo) {
-        if (toDo) {
+    public FilterGraphAction(EdgeArrowType edgeType, boolean doFilter) {
+        if (doFilter) {
             predicateEdge = new EdgeArrowPredicate<>(edgeType);
             predicateVertex = TruePredicate.getInstance();
         } else {
@@ -49,10 +49,10 @@ public class FilterGraphAction extends GraphAction {
      * Filters the vertices/spheres regex for a regular expression.
      *
      * @param regularExpression The regular expression to filter for.
-     * @param toDo              Indicator, if it should be filtered or not.
+     * @param doFilter          Indicator, if it should be filtered or not.
      */
-    public FilterGraphAction(String regularExpression, boolean toDo) {
-        if (toDo && regularExpression != null) {
+    public FilterGraphAction(String regularExpression, boolean doFilter) {
+        if (doFilter && regularExpression != null) {
             predicateVertex = new VertexAnnotationPredicate<>(regularExpression);
             predicateEdge = TruePredicate.getInstance();
         } else {
@@ -63,10 +63,11 @@ public class FilterGraphAction extends GraphAction {
 
     /**
      * Filters the vertices for the attribute isVisible=false.
-     * @param toDo     Indicator, if it should be filtered or not.
+     *
+     * @param doFilter Indicator, if it should be filtered or not.
      */
-    public FilterGraphAction(boolean toDo) {
-        if (toDo) {
+    public FilterGraphAction(boolean doFilter) {
+        if (doFilter) {
             predicateVertex = new VertexIsVisiblePredicate<>();
             predicateEdge = new EdgeIsVisiblePredicate<>();
         } else {

@@ -34,18 +34,18 @@ public class GXLio {
      */
     private int maxID = -1;
 
-    private static final String FILL_PAINT="fillPaint";
-    private static final String ANNOTATION="annotation";
-    private static final String U00A6="\u00A6";
-    private static final String FONT_SIZE="fontSize";
-    private static final String IS_LOCKED_POSITION="isLockedPosition";
-    private static final String IS_LOCKED_ANNOTATION="isLockedAnnotation";
-    private static final String IS_LOCKED_STYLE="isLockedStyle";
-    private static final String IS_VISIBLE="isVisible";
-    private static final String IS_HIGHLIGHTED="isHighlighted";
-    private static final String ANCHORANGLE_OF_SOURCE="anchorAngle of source";
-    private static final String ANCHORANGLE_OF_TARGET="anchorAngle of target";
-    private static final String NAME_OF_GRAPH ="name of the graph";
+    private static final String FILL_PAINT = "fillPaint";
+    private static final String ANNOTATION = "annotation";
+    private static final String U00A6 = "\u00A6";
+    private static final String FONT_SIZE = "fontSize";
+    private static final String IS_LOCKED_POSITION = "isLockedPosition";
+    private static final String IS_LOCKED_ANNOTATION = "isLockedAnnotation";
+    private static final String IS_LOCKED_STYLE = "isLockedStyle";
+    private static final String IS_VISIBLE = "isVisible";
+    private static final String IS_HIGHLIGHTED = "isHighlighted";
+    private static final String ANCHORANGLE_OF_SOURCE = "anchorAngle of source";
+    private static final String ANCHORANGLE_OF_TARGET = "anchorAngle of target";
+    private static final String NAME_OF_GRAPH = "name of the graph";
 
 
     private static Logger logger = Logger.getLogger(GXLio.class);
@@ -71,7 +71,7 @@ public class GXLio {
             // At first a document needs to be imported into the system. Thereby it is important that the document selected by the user has a valid structure.
             GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes(StandardCharsets.UTF_8)));
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
-            if(gxlGraph==null){
+            if (gxlGraph == null) {
                 logger.error("Error on empty Syndrom GXLGraph");
                 return;
             }
@@ -84,11 +84,11 @@ public class GXLio {
             // This counter is needed as the documents elements not always will have successive ids. This fact is a result from the users possibility to delete elements after creating them before he/she exports the graph. This leads to gaps in the row of ids.
             int foundElements = 0;
             searchForTemplate(doc, withTemplate);
-            int elementCount=gxlGraph.getGraphElementCount();
+            int elementCount = gxlGraph.getGraphElementCount();
             for (int idCounter = 0; foundElements < elementCount; idCounter++) {
                 if (doc.containsID(idCounter + "")) {
                     foundElements++;
-                    makeGraphElemt(vertices, spheresWithVertices, edgeAndVertices, doc.getElement( idCounter + ""), withTemplate);
+                    makeGraphElemt(vertices, spheresWithVertices, edgeAndVertices, doc.getElement(idCounter + ""), withTemplate);
                     maxID = Math.max(maxID, idCounter);
                 }
             }
@@ -100,15 +100,15 @@ public class GXLio {
     }
 
 
-    private void searchForTemplate(GXLDocument pDoc, boolean pWithTemplate){
+    private void searchForTemplate(GXLDocument pDoc, boolean pWithTemplate) {
         if (pWithTemplate) {
             GXLGraph gxlTemplate = (GXLGraph) pDoc.getElement("template");
             initializeTemplateValues(gxlTemplate);
         }
     }
 
-    private void makeGraphElemt(List<Vertex> pVertices,  List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate){
-        switch(((GXLString) pElem.getAttr("TYPE").getValue()).getValue()){
+    private void makeGraphElemt(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
+        switch (((GXLString) pElem.getAttr("TYPE").getValue()).getValue()) {
             case "Sphäre":
                 makeSphere(pSpheresWithVertices, pElem, pWithTemplate);
                 break;
@@ -124,14 +124,14 @@ public class GXLio {
         }
     }
 
-    private void makeSphere(List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, GXLAttributedElement pElem, boolean pWithTemplate){
+    private void makeSphere(List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         Sphere newSphere = convertGXLElementToSphere(pElem, pWithTemplate);
         Map<Sphere, List<Vertex>> map = new HashMap<>();
         map.put(newSphere, new ArrayList<>());
         pSpheresWithVertices.add(map);
     }
 
-    private void makeVertex(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, GXLAttributedElement pElem, boolean pWithTemplate){
+    private void makeVertex(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         Vertex newVertex = convertGXLElementToVertex(pElem, pWithTemplate);
         int sphereID = Integer.parseInt(((GXLString) pElem.getAttr("ID of the sphere containing this node:").getValue()).getValue());
         for (Map<Sphere, List<Vertex>> m : pSpheresWithVertices) {
@@ -144,7 +144,7 @@ public class GXLio {
         pVertices.add(newVertex);
     }
 
-    private void makeEdge(List<Vertex> pVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate){
+    private void makeEdge(List<Vertex> pVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         Edge newEdge = convertGXLElemToEdge(pElem, pWithTemplate);
         // The edge generated from the description in the gxl document is add to the list of all edges together with its source and target vertex.
         GXLEdge currentEdge = (GXLEdge) pElem;
@@ -159,7 +159,7 @@ public class GXLio {
                 target = v;
             }
         }
-        if(source==null||target==null){
+        if (source == null || target == null) {
             logger.error("Error on creating Edge");
             return;
         }
@@ -169,7 +169,7 @@ public class GXLio {
         pEdgeAndVertices.add(entry);
     }
 
-    private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices){
+    private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices) {
         // Getting the objects that are needed to get the spheres, vertices and edges out of the lists into our system.
         syndrom.generateNew();
         Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
@@ -182,8 +182,8 @@ public class GXLio {
 
         updateVisualisationAndLayout(newGraph, vv);
     }
- 
-    private void updateSystemDataOfSpheresAndVertices(List<Map<Sphere, List<Vertex>>> spheresWithVertices, SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv){
+
+    private void updateSystemDataOfSpheresAndVertices(List<Map<Sphere, List<Vertex>>> spheresWithVertices, SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv) {
         for (Map<Sphere, List<Vertex>> m : spheresWithVertices) {
             for (Map.Entry<Sphere, List<Vertex>> e : m.entrySet()) {
                 for (Vertex currentVertex : e.getValue()) {
@@ -200,7 +200,7 @@ public class GXLio {
         }
     }
 
-    private void updateSystemDataOfEdges(List<Map<Edge, Pair<Vertex>>> edgeAndVertices, SyndromGraph<Vertex, Edge> newGraph){
+    private void updateSystemDataOfEdges(List<Map<Edge, Pair<Vertex>>> edgeAndVertices, SyndromGraph<Vertex, Edge> newGraph) {
         for (Map<Edge, Pair<Vertex>> m : edgeAndVertices) {
             for (Map.Entry<Edge, Pair<Vertex>> e : m.entrySet()) {
                 Edge edge = e.getKey();
@@ -210,7 +210,7 @@ public class GXLio {
         }
     }
 
-    private void updateVisualisationAndLayout(SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv){
+    private void updateVisualisationAndLayout(SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv) {
         vv.getGraphLayout().setGraph(newGraph);
         vv.repaint();
         Syndrom.getInstance().getVv2().repaint();
@@ -269,7 +269,8 @@ public class GXLio {
         annotation.put(Language.ENGLISH.name(), ((GXLString) elem.getAttr(ANNOTATION).getValue()).getValue().split(U00A6)[0]);
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr(FONT_SIZE).getValue()).getIntValue();
-        Sphere newSphere = new Sphere(id, paint, coordinates, width, height, annotation, font, fontSize);
+        Pair<Double> size = new Pair<>(width, height);
+        Sphere newSphere = new Sphere(id, paint, coordinates, size, annotation, font, fontSize);
         if (withTemplate) {
             boolean isLockedPosition = ((GXLBool) elem.getAttr(IS_LOCKED_POSITION).getValue()).getBooleanValue();
             newSphere.setLockedPosition(isLockedPosition);
@@ -328,7 +329,9 @@ public class GXLio {
         String font = ((GXLString) elem.getAttr("font").getValue()).getValue();
         int fontSize = ((GXLInt) elem.getAttr(FONT_SIZE).getValue()).getIntValue();
         boolean isHighlighted = ((GXLBool) elem.getAttr(IS_HIGHLIGHTED).getValue()).getBooleanValue();
-        Vertex newVertex = new Vertex(id, paint, coordinates, shape, annotation, drawPaint, size, font, fontSize);
+        Pair<Color> colors = new Pair<>(paint, drawPaint);
+        Pair<Integer> sizes = new Pair<>(size, fontSize);
+        Vertex newVertex = new Vertex(id, colors, coordinates, shape, annotation, sizes, font);
         newVertex.setVisible(isVisible);
         newVertex.setHighlighted(isHighlighted);
         if (withTemplate) {
@@ -422,13 +425,13 @@ public class GXLio {
 
         GXLDocument doc = new GXLDocument();
         GXLGraph gxlSyndrom = new GXLGraph("syndrom");
-        if(syndrom.getGraphName() == null){
-            gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString("untitled syndrom"));
-        }else {
+        if (syndrom.getGraphName() == null) {
+            gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString("UntitledGraph"));
+        } else {
             gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString(syndrom.getGraphName()));
         }
         for (Sphere s : currentSpheres) {
-             gxlSyndrom.add(createSphereNode(s, withTemplate));
+            gxlSyndrom.add(createSphereNode(s, withTemplate));
         }
         for (Sphere s : currentSpheres) {
             for (Vertex v : s.getVertices()) {
@@ -456,7 +459,7 @@ public class GXLio {
         return content;
     }
 
-    private GXLNode createSphereNode(Sphere s, boolean withTemplate){
+    private GXLNode createSphereNode(Sphere s, boolean withTemplate) {
         GXLNode sphere = new GXLNode(s.getId() + "");
         sphere.setAttr("TYPE", new GXLString("Sphäre"));
         Color color = s.getColor();
@@ -464,10 +467,10 @@ public class GXLio {
         sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
         sphere.setAttr("width", new GXLString("" + s.getWidth()));
         sphere.setAttr("height", new GXLString("" + s.getHeight()));
-        StringBuilder annotationContent=new StringBuilder();
+        StringBuilder annotationContent = new StringBuilder();
         for (String partOfAnnotation : s.getAnnotation().keySet()) {
-                annotationContent.append(s.getAnnotation().get(partOfAnnotation));
-                annotationContent.append(U00A6);
+            annotationContent.append(s.getAnnotation().get(partOfAnnotation));
+            annotationContent.append(U00A6);
         }
 
         sphere.setAttr(ANNOTATION, new GXLString(annotationContent.toString()));
@@ -506,7 +509,7 @@ public class GXLio {
         gxlSphere.setAttr("lockedMaxAmountVertices", new GXLString(sphere.getLockedMaxAmountVertices()));
     }
 
-    private GXLNode createVertexNode(Sphere s, Vertex v, boolean withTemplate){
+    private GXLNode createVertexNode(Sphere s, Vertex v, boolean withTemplate) {
         GXLNode singleNodeInSphere = new GXLNode(v.getId() + "");
         singleNodeInSphere.setAttr("TYPE", new GXLString("Node"));
         Color color = v.getFillColor();
@@ -515,9 +518,9 @@ public class GXLio {
         singleNodeInSphere.setAttr("shape", new GXLString("" + v.getShape()));
         StringBuilder nodeAnnotationContent = new StringBuilder();
         for (String partOfNodeAnnotation : v.getAnnotation().keySet()) {
-                nodeAnnotationContent.append(v.getAnnotation().get(partOfNodeAnnotation));
-                nodeAnnotationContent.append(U00A6);
-            }
+            nodeAnnotationContent.append(v.getAnnotation().get(partOfNodeAnnotation));
+            nodeAnnotationContent.append(U00A6);
+        }
 
         singleNodeInSphere.setAttr(ANNOTATION, new GXLString(nodeAnnotationContent.toString()));
         Color drawPaint = v.getDrawColor();
@@ -553,7 +556,7 @@ public class GXLio {
         gxlNode.setAttr(IS_LOCKED_STYLE, new GXLBool(vertex.isLockedStyle()));
     }
 
-    private GXLEdge createEdge(SyndromGraph<Vertex, Edge> theGraph, Edge e, boolean withTemplate){
+    private GXLEdge createEdge(SyndromGraph<Vertex, Edge> theGraph, Edge e, boolean withTemplate) {
         Pair<Vertex> verticesOfEdge = theGraph.getEndpoints(e);
         GXLEdge edge = new GXLEdge(verticesOfEdge.getFirst().getId() + "", verticesOfEdge.getSecond().getId() + "");
         edge.setID(e.getId() + "");
@@ -671,8 +674,8 @@ public class GXLio {
      */
     public void exportGXL(File pFile, boolean pExportWithRules) {
         String gxl = gxlFromInstance(pExportWithRules);
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
-            bufferedWriter.write(gxl);
+        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)) {
+            writer.write(gxl);
         } catch (IOException e) {
             logger.error(e.toString());
         }

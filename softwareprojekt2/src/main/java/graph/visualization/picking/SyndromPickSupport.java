@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * SyndromPickSupport extends the ShapePickSupport with the option to pick spheres and arrows from edges.
  */
-public class SyndromPickSupport<V, E> extends ShapePickSupport {
+public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
 
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
     private BasicEdgeArrowRenderingSupport edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport();
@@ -79,7 +79,8 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
      * Die Methode benutzt eine weitere Methode getTransformedEdgeShape(). Diese ist in der genannten Klasse private,
      * weswegen wir sie nicht überschreiben konnten. Außerdem wurde der return Wert von getTransformedEdgeShape()
      * geändert.
-     * Der restliche Code der Methode wurde nicht verändert und nicht von uns programmiert.
+     * Der restliche Code der Methode wurde nicht verändert und nicht von uns programmiert. Deswegen haben wir hier
+     * auch keinen Einfluss auf den von sonarqube generierten issue (complexity)
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -196,16 +197,23 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport {
                 y1 = (float) tryP.getBounds2D().getCenterY();
             }
 
-            if (!edge.isHasAnchorIn() && edge.getAnchorPoints().getValue() != null) {
-                x2 = (float) edge.getAnchorPoints().getValue().getX();
-                y2 = (float) edge.getAnchorPoints().getValue().getY();
-            }
+            Point2D point = getSecondAnchorIn(edge, x2, y2);
+            x2 = (float) point.getX();
+            y2 = (float) point.getY();
 
             AffineTransform xForm = AffineTransform.getTranslateInstance(x1, y1);
             edgeShape = getNormalEdgeShape(edgeShape, xForm, new Point2D.Double(x1, y1), new Point2D.Double(x2, y2));
         }
         javafx.util.Pair<Shape, Point2D> pair = new javafx.util.Pair<>(edgeShape, new Point2D.Double(x1, y1));
         return new javafx.util.Pair<>(pair, arrow);
+    }
+
+    private Point2D getSecondAnchorIn(Edge edge, float x2, float y2) {
+        if (!edge.isHasAnchorIn() && edge.getAnchorPoints().getValue() != null) {
+            x2 = (float) edge.getAnchorPoints().getValue().getX();
+            y2 = (float) edge.getAnchorPoints().getValue().getY();
+        }
+        return new Point2D.Float(x2, y2);
     }
 
     @SuppressWarnings("unchecked")

@@ -44,6 +44,7 @@ public class LayoutVerticesGraphLogAction extends LogAction {
 
     /**
      * Creates a parameter-object for this action.
+     *
      * @param oldVertices The map of vertices and their old position.
      */
     public void createParameter(Map<Vertex, Point2D> oldVertices) {
@@ -88,7 +89,8 @@ public class LayoutVerticesGraphLogAction extends LogAction {
 
     /**
      * Layouts the graph.
-     * @param graph The graph.
+     *
+     * @param graph  The graph.
      * @param layout The layout.
      */
     private void layoutGraph(SyndromGraph<Vertex, Edge> graph, AggregateLayout<Vertex, Edge> layout) {
@@ -110,9 +112,10 @@ public class LayoutVerticesGraphLogAction extends LogAction {
 
     /**
      * Calculates the layout for each sphere.
-     * @param s The sphere.
+     *
+     * @param s        The sphere.
      * @param vertices The vertices of the sphere.
-     * @param graph The current graph.
+     * @param graph    The current graph.
      * @return A new SubGraph. (for the sphere)
      */
     private SyndromGraph<Vertex, Edge> layoutSphere(Sphere s, List<Vertex> vertices, SyndromGraph<Vertex, Edge> graph) {

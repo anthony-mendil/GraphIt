@@ -40,8 +40,7 @@ public class AnalysisGraphAllPathsAction extends GraphAction {
         allPaths = jGraphTHandler.getAllPaths();
         if (allPaths.isEmpty()) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Es sxistiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true, false);
-
+            helperFunctions.setActionText("Es existiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true, false);
         }
         for (GraphPath<Vertex, Edge> path : allPaths) {
             verticesAnalyse.addAll(path.getVertexList());

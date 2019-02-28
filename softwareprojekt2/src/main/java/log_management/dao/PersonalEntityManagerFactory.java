@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
  */
 public class PersonalEntityManagerFactory {
 
-    private PersonalEntityManagerFactory(){
+    private PersonalEntityManagerFactory() {
         throw new IllegalStateException("utility class");
     }
 
@@ -18,6 +18,7 @@ public class PersonalEntityManagerFactory {
 
     /**
      * Returns the personal Entity Manager used to access the database.
+     *
      * @return The personal Entity Manager.
      */
     public static EntityManagerFactory getInstance() {
@@ -26,6 +27,7 @@ public class PersonalEntityManagerFactory {
 
     /**
      * Sets the entity manager factory.
+     *
      * @param initialEntityManagerFactory The entity manager factory.
      */
     public static void setEntityManagerFactory(EntityManagerFactory initialEntityManagerFactory) {

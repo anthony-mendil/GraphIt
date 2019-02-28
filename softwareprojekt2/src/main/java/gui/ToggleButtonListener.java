@@ -12,7 +12,7 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
     private ToggleButton addSphere;
     private ToggleButton addVertex;
 
-    public ToggleButtonListener(Controller pC, ToggleButton pToggleButton){
+    public ToggleButtonListener(Controller pC, ToggleButton pToggleButton) {
         toggleButton = pToggleButton;
         c = pC;
         handSelector = c.getHandSelector();
@@ -22,30 +22,28 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
 
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-        if(newValue){
-            if(toggleButton.getId().equals("handSelector")){
+        if (newValue) {
+            if (toggleButton.getId().equals("handSelector")) {
                 addSphere.setSelected(false);
                 addVertex.setSelected(false);
-            }else if(toggleButton.getId().equals("addSphere")){
+            } else if (toggleButton.getId().equals("addSphere")) {
                 handSelector.setSelected(false);
                 addVertex.setSelected(false);
-            }else if(toggleButton.getId().equals("addVertex")){
+            } else if (toggleButton.getId().equals("addVertex")) {
                 handSelector.setSelected(false);
                 addSphere.setSelected(false);
             }
-        }else{
-            if(toggleButton.getId().equals("handSelector")){
-                if(!addSphere.isSelected() && !addVertex.isSelected()){
+        } else {
+            if (toggleButton.getId().equals("handSelector")) {
+                if (!addSphere.isSelected() && !addVertex.isSelected()) {
                     toggleButton.setSelected(true);
                 }
-            }else if(toggleButton.getId().equals("addSphere")){
-                if(!handSelector.isSelected() && !addVertex.isSelected()){
+            } else if (toggleButton.getId().equals("addSphere")) {
+                if (!handSelector.isSelected() && !addVertex.isSelected()) {
                     toggleButton.setSelected(true);
                 }
-            }else if(toggleButton.getId().equals("addVertex")){
-                if(!handSelector.isSelected() && !addSphere.isSelected()){
-                    toggleButton.setSelected(true);
-                }
+            } else if (toggleButton.getId().equals("addVertex") && !handSelector.isSelected() && !addSphere.isSelected()) {
+                toggleButton.setSelected(true);
             }
         }
     }

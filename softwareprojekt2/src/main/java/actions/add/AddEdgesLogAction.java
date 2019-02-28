@@ -86,6 +86,7 @@ public class AddEdgesLogAction extends LogAction {
 
     /**
      * Creates the parameter object for this action.
+     *
      * @param edge The edge of this action.
      */
     public void createParameter(Pair<Vertex, Vertex> edge) {

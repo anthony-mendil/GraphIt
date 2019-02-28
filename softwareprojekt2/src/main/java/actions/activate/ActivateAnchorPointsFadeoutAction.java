@@ -16,7 +16,8 @@ public class ActivateAnchorPointsFadeoutAction extends GraphAction {
      * Constructor in case all/several anchor-points shall fadeout. The action is applied to all picked edges/anchor
      * points.
      */
-    public ActivateAnchorPointsFadeoutAction() {}
+    public ActivateAnchorPointsFadeoutAction() {
+    }
 
     @Override
     public void action() {

@@ -27,12 +27,14 @@ public class EditEdgesColorLogAction extends LogAction {
     /**
      * Constructor in case the user changes the color of all/several edges.
      * Gets the picked edges through pick support.
+     *
      * @param pColor The color to paint the edges.
      */
     public EditEdgesColorLogAction(Color pColor) {
         super(LogEntryName.EDIT_EDGES_COLOR);
         color = pColor;
     }
+
     /**
      * Constructor which will be used to realize the undo-method of itself.
      *
@@ -42,35 +44,36 @@ public class EditEdgesColorLogAction extends LogAction {
         super(LogEntryName.EDIT_EDGES_COLOR);
         parameters = pEditEdgesColorParam;
     }
+
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Edge> pickedState = vv.getPickedEdgeState();
-        if(parameters == null) {
+        if (parameters == null) {
             List<Edge> lockedEdges = new LinkedList<>();
-            Map<Edge,Color> oldEdges = new HashMap<>();
-            Map<Edge,Color> newEdges = new HashMap<>();
+            Map<Edge, Color> oldEdges = new HashMap<>();
+            Map<Edge, Color> newEdges = new HashMap<>();
             for (Edge e : pickedState.getPicked()) {
                 if (!e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldEdges.put(e, e.getColor());
                     e.setColor(color);
                     newEdges.put(e, color);
-                }else{
+                } else {
                     lockedEdges.add(e);
                 }
             }
-            if(!lockedEdges.isEmpty()){
+            if (!lockedEdges.isEmpty()) {
                 helper.setActionText("EDIT_EDGES_COLOR_ALERT", true, true);
             }
-            if(pickedState.getPicked().size() == lockedEdges.size()){
+            if (pickedState.getPicked().size() == lockedEdges.size()) {
                 actionHistory.removeLastEntry();
                 return;
             }
-                createParameter(oldEdges, newEdges);
-        }else {
-            Map<Edge,Color> oldEdges = ((EditEdgesColorParam) parameters).getEdgesOld();
-            Map<Edge,Color> newEdges = ((EditEdgesColorParam) parameters).getEdgesNew();
-            for (Map.Entry<Edge,Color> entry : oldEdges.entrySet()) {
+            createParameter(oldEdges, newEdges);
+        } else {
+            Map<Edge, Color> oldEdges = ((EditEdgesColorParam) parameters).getEdgesOld();
+            Map<Edge, Color> newEdges = ((EditEdgesColorParam) parameters).getEdgesNew();
+            for (Map.Entry<Edge, Color> entry : oldEdges.entrySet()) {
                 entry.getKey().setColor(newEdges.get(entry.getKey()));
             }
         }
@@ -83,21 +86,22 @@ public class EditEdgesColorLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Edge,Color> edgesOld = ((EditEdgesColorParam)parameters).getEdgesOld();
-        Map<Edge,Color> edgesNew = ((EditEdgesColorParam)parameters).getEdgesNew();
-        List<Vertex> starts = ((EditEdgesColorParam)parameters).getStartVertices();
-        List<Vertex> ends = ((EditEdgesColorParam)parameters).getEndVertices();
-        EditEdgesColorParam editEdgesColorParam = new EditEdgesColorParam(edgesNew,edgesOld, starts, ends);
+        Map<Edge, Color> edgesOld = ((EditEdgesColorParam) parameters).getEdgesOld();
+        Map<Edge, Color> edgesNew = ((EditEdgesColorParam) parameters).getEdgesNew();
+        List<Vertex> starts = ((EditEdgesColorParam) parameters).getStartVertices();
+        List<Vertex> ends = ((EditEdgesColorParam) parameters).getEndVertices();
+        EditEdgesColorParam editEdgesColorParam = new EditEdgesColorParam(edgesNew, edgesOld, starts, ends);
         EditEdgesColorLogAction editEdgesColorLogAction = new EditEdgesColorLogAction(editEdgesColorParam);
         editEdgesColorLogAction.action();
     }
 
     /**
      * Creates a parameter-object of the parameters used in this action.
-     * @param oldEdge   The map of old edges and the color.
-     * @param newEdge   The map of new edges and the color.
+     *
+     * @param oldEdge The map of old edges and the color.
+     * @param newEdge The map of new edges and the color.
      */
-    public void createParameter(Map<Edge,Color> oldEdge, Map<Edge,Color> newEdge) {
+    public void createParameter(Map<Edge, Color> oldEdge, Map<Edge, Color> newEdge) {
         List<Vertex> starts = new ArrayList<>();
         List<Vertex> ends = new ArrayList<>();
 
@@ -110,6 +114,6 @@ public class EditEdgesColorLogAction extends LogAction {
             ends.add(vertices.getSecond());
         });
 
-        parameters = new EditEdgesColorParam(oldEdge,newEdge, starts, ends);
+        parameters = new EditEdgesColorParam(oldEdge, newEdge, starts, ends);
     }
 }

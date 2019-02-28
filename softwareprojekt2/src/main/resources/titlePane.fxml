@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<DialogPane fx:id="titleDialog" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1"
+<DialogPane fx:id="titleDialog" stylesheets="gui_style.css"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TitlesDialogPaneController">
 
     <content>
@@ -21,11 +21,13 @@
                 <Text fx:id="englishText" strokeType="OUTSIDE" strokeWidth="0.0" text="%english" wrappingWidth="150.0"/>
                 <TextField fx:id="english" prefHeight="25.0" prefWidth="230.0"/>
             </HBox>
-            <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="300.0" scaleShape="false">
+            <HBox fx:id="textBox" centerShape="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                  prefHeight="27.0" prefWidth="300.0" scaleShape="false">
                 <children>
-                    <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0"  wrappingWidth="436.33087462186813">
+                    <Text fx:id="currentActionText" strokeType="OUTSIDE" strokeWidth="0.0"
+                          wrappingWidth="436.33087462186813">
                         <HBox.margin>
-                            <Insets bottom="5.0" right="5.0" top="5.0" left="5.0" />
+                            <Insets bottom="5.0" right="5.0" top="5.0" left="5.0"/>
                         </HBox.margin>
                     </Text>
                 </children>
@@ -33,8 +35,8 @@
         </VBox>
     </content>
 
-    <TitlesDialogPaneController fx:constant="SAVE_TYPE" />
-    <TitlesDialogPaneController fx:constant="CANCEL_TYPE" />
+    <TitlesDialogPaneController fx:constant="SAVE_TYPE"/>
+    <TitlesDialogPaneController fx:constant="CANCEL_TYPE"/>
 </DialogPane>
 
 

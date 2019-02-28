@@ -78,7 +78,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
             Collection<E> renderLast = new LinkedList<>();
             for (E e : edges) {
                 graph.graph.Edge edge = (graph.graph.Edge) e;
-                if (!edge.isHasPrio()) {
+                if (!edge.isHasPriority()) {
                     renderEdge(e, renderContext, layout);
                 } else {
                     renderLast.add(e);

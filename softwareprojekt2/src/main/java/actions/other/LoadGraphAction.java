@@ -12,6 +12,7 @@ import log_management.DatabaseManager;
  */
 public class LoadGraphAction extends GraphAction {
     private Controller controller;
+
     /**
      * Loads an existing graph from a file to syndrom.
      */
@@ -28,11 +29,11 @@ public class LoadGraphAction extends GraphAction {
         Action.attach(databaseManager);
         Action.attach(controller);
         GXLio gxLio = new GXLio();
-        gxLio.gxlToInstance(gxlGraph,true);
+        gxLio.gxlToInstance(gxlGraph, true);
         if (values.getMode() == FunctionMode.TEMPLATE || values.getMode() == FunctionMode.EDIT) {
-            syndrom.setPluggableModeEdit();
+            syndrom.setGraphMouseModeEdit();
         } else {
-            syndrom.setPluggableModeAnalyse();
+            syndrom.setGraphMouseModeAnalyse();
         }
         notifyObserverGraph();
     }

@@ -2,7 +2,7 @@ package gui;
 
 import actions.analyse.AnalysisGraphNeighborsAction;
 import actions.deactivate.ResetVvAction;
-import graph.algorithmen.AnalyseTypeSeveral;
+import graph.algorithmen.AnalyseType;
 import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -31,21 +31,21 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
                     ResetVvAction resetAction = new ResetVvAction();
                     resetAction.action();
 
-                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                     analysisGraphAction.action();
                 } else {
                     if (analysisPredecessor.isSelected()) {
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
                     }
                     if (analysisSuccessor.isSelected()) {
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
                     }
                 }

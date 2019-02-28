@@ -60,10 +60,11 @@ public class EditEdgesStrokeParam implements Param {
 
     /**
      * Creates a parameter object of its own class.
-     * @param pEdgesOld The old edges and their stroke types.
-     * @param pEdgesNew The new edges and their stroke types.
+     *
+     * @param pEdgesOld      The old edges and their stroke types.
+     * @param pEdgesNew      The new edges and their stroke types.
      * @param pStartVertices The start vertices of the edges.
-     * @param pEndVertices The end vertices of the edges.
+     * @param pEndVertices   The end vertices of the edges.
      */
     public EditEdgesStrokeParam(Map<Edge, StrokeType> pEdgesOld, Map<Edge, StrokeType> pEdgesNew,
                                 List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
@@ -95,7 +96,10 @@ public class EditEdgesStrokeParam implements Param {
                 information.append(SyndromObjectPrinter.edgePrintEnglish(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Old stroke type: ").append(EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.ENGLISH));
-                information.append(", new stroke type: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.ENGLISH)).append("; ");
+                information.append(", new stroke type: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.ENGLISH)).append(". ");
+                information.append("Type of relation: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.ENGLISH));
+                information.append("; ");
             }
         } else {
             information.append("Geänderte Relationen: ");
@@ -103,7 +107,10 @@ public class EditEdgesStrokeParam implements Param {
                 information.append(SyndromObjectPrinter.edgePrintGerman(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Alte Linienart: ").append(EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.GERMAN));
-                information.append(", neue Linienart: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.GERMAN)).append("; ");
+                information.append(", neue Linienart: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.GERMAN)).append(". ");
+                information.append("Relationsart: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.GERMAN));
+                information.append("; ");
             }
         }
         return information.toString();
@@ -111,6 +118,7 @@ public class EditEdgesStrokeParam implements Param {
 
     /**
      * Gets the old edges and their stroke types.
+     *
      * @return The old edges and their stroke types.
      */
     public Map<Edge, StrokeType> getEdgesOld() {
@@ -123,6 +131,7 @@ public class EditEdgesStrokeParam implements Param {
 
     /**
      * Gets the new edges and their stroke types.
+     *
      * @return The new edges and their stroke types.
      */
     public Map<Edge, StrokeType> getEdgesNew() {

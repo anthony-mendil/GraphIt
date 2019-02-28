@@ -44,6 +44,7 @@ public abstract class LogAction extends GraphAction {
 
     /**
      * Creates an action in the program, which will also be persisted into in the database.
+     *
      * @param nLogEntryName The name of the log entry.
      */
     public LogAction(LogEntryName nLogEntryName) {

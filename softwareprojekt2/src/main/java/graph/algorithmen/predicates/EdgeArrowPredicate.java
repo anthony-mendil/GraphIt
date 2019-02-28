@@ -33,7 +33,7 @@ public class EdgeArrowPredicate<V, E> implements Predicate<Context<Graph<V, E>, 
 
     @Override
     public boolean evaluate(Context<Graph<V, E>, E> graphEContext) {
-        Edge e = (Edge)graphEContext.element;
+        Edge e = (Edge) graphEContext.element;
         return e.getArrowType() == edgeArrowType;
     }
 }

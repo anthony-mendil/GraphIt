@@ -15,17 +15,18 @@ import java.awt.geom.Point2D;
  * The SphereRenderer renders all spheres from the syndrom graph.
  */
 public class SphereRenderer {
-    private SphereDrawPaintTransformer<Sphere> sphereDrawPaintTransformer =  new SphereDrawPaintTransformer<>();
-    private SphereFillPaintTransformer<Sphere> sphereFillPaintTransformer =  new SphereFillPaintTransformer<>();
+    private SphereDrawPaintTransformer<Sphere> sphereDrawPaintTransformer = new SphereDrawPaintTransformer<>();
+    private SphereFillPaintTransformer<Sphere> sphereFillPaintTransformer = new SphereFillPaintTransformer<>();
     private SphereFontTransformer<Sphere> sphereFontTransformer = new SphereFontTransformer<>();
     private SphereLabelTransformer<Sphere> sphereLabelTransformer = new SphereLabelTransformer<>();
-    private SphereShapeTransformer<Sphere> sphereShapeTransformer =  new SphereShapeTransformer<>();
+    private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
     private SphereFontSizeTransformer<Sphere> sphereSphereFontSizeTransformer = new SphereFontSizeTransformer<>();
     private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
 
     /**
      * Renders the given sphere.
-     * @param pRc The renderContext implemented in JUNG.
+     *
+     * @param pRc     The renderContext implemented in JUNG.
      * @param pSphere The sphere that should be rendered.
      */
     public void paintSphere(RenderContext pRc, Sphere pSphere) {
@@ -49,35 +50,34 @@ public class SphereRenderer {
         FontMetrics fontMetrics = g2d.getFontMetrics();
         String annotation = sphereLabelTransformer.transform(pSphere);
         int width = fontMetrics.stringWidth(annotation);
-        double sphereWidth =  sphereShape.getBounds().getWidth();
+        double sphereWidth = sphereShape.getBounds().getWidth();
 
-        if (width+10 > sphereWidth){
-            if ((width/2)+10 > sphereWidth){
-                annotation = renderHelperFunction.shrinkAnnotation(sphereWidth,pSphere.getHeight(), annotation, fontMetrics);
+        if (width + 10 > sphereWidth) {
+            if ((width / 2) + 10 > sphereWidth) {
+                annotation = renderHelperFunction.shrinkAnnotation(sphereWidth, pSphere.getHeight(), annotation, fontMetrics);
             } else {
                 annotation = renderHelperFunction.breakAnnotation(sphereWidth, annotation, fontMetrics);
             }
         }
-        int i =1;
-        for (String line : annotation.split("\n")){
+        int i = 1;
+        for (String line : annotation.split("\n")) {
             Point2D point2D = getAnchorPoint(sphereShape, sphereShape.getBounds().getLocation(), fontMetrics.stringWidth(line));
-            g2d.drawString(line, (float) point2D.getX(), (float) point2D.getY()+sphereSphereFontSizeTransformer.transform
-                    (pSphere)*i++);
+            g2d.drawString(line, (float) point2D.getX(), (float) point2D.getY() + sphereSphereFontSizeTransformer.transform
+                    (pSphere) * i++);
         }
     }
 
 
-
-    public Point2D getAnchorPoint(Shape sphereShape, Point2D p, int width){
+    public Point2D getAnchorPoint(Shape sphereShape, Point2D p, int width) {
         double sWidth = sphereShape.getBounds().getWidth();
         double x = p.getX();
         double labelX;
 
-        if (width+10 < (sWidth)){
-            labelX = (x + sWidth/2) - ((double) width/2);
+        if (width + 10 < (sWidth)) {
+            labelX = (x + sWidth / 2) - ((double) width / 2);
         } else {
-            labelX = x+5;
+            labelX = x + 5;
         }
-        return new Point2D.Double(labelX, p.getY()+3);
+        return new Point2D.Double(labelX, p.getY() + 3);
     }
 }

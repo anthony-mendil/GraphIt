@@ -2,7 +2,7 @@
     -fx-background-color: #6699cc;
 }
 
-.menubutton{
+.menubutton {
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-background-radius: 0;
@@ -19,7 +19,7 @@
     -fx-background-color: black;
 }
 
-.jfx-text-field{
+.jfx-text-field {
     -jfx-focus-color: #6699cc;
 }
 
@@ -28,21 +28,22 @@
     -jfx-unchecked-color: black;
 }
 
-.actionmenubar{
+.actionmenubar {
     -fx-background-color: #6699cc;
 }
 
-.combobox{
+.combobox {
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
     -fx-border-width: 0;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
 }
-.combo-box .arrow-button{
+
+.combo-box .arrow-button {
     -fx-background-color: transparent;
 }
 
-.colorpicker{
+.colorpicker {
     -fx-color-label-visible: false;
     -fx-effect: none;
 }
@@ -57,7 +58,7 @@
     -fx-prefer-width: 30;
 }
 
-.toggle-button{
+.toggle-button {
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-background-radius: 0;
@@ -66,7 +67,7 @@
 
 .toggle-button:selected {
     -fx-background-color: #b3e5fc;
-    -fx-effect: dropshadow(gaussian,rgba(0, 0, 0, 0.26), 5, 0.05, 0, 1 )
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 5, 0.05, 0, 1)
 }
 
 .analysisMenuItem .label {
@@ -77,10 +78,14 @@
     -fx-font-size: 9;
 }
 
-.jfx-tool-bar{
+.jfx-tool-bar {
     -fx-effect: none;
 }
 
-.toolbar-button{
+.toolbar-button {
     -jfx-button-type: RAISED;
+}
+
+.jfx-progress-bar > .bar {
+    -fx-background-color: rgb(28, 172, 172);
 }

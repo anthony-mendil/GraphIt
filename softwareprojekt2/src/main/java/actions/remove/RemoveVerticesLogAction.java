@@ -39,59 +39,60 @@ public class RemoveVerticesLogAction extends LogAction {
         super(LogEntryName.REMOVE_VERTICES);
         parameters = pParam;
     }
+
     @SuppressWarnings("unchecked")
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport) vv.getPickSupport();
-        if(parameters == null) {
+        if (parameters == null) {
             List<Vertex> lockedVertices = new LinkedList<>();
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
-            Map<Vertex,Sphere> params = new HashMap<>();
-            Map<Edge, Pair<Vertex,Vertex>> edg = new HashMap<>();
+            Map<Vertex, Sphere> params = new HashMap<>();
+            Map<Edge, Pair<Vertex, Vertex>> edg = new HashMap<>();
             for (Vertex vertex : pickedState.getPicked()) {
-                if(!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
-                   Point2D posVertex = vertex.getCoordinates();
+                if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
+                    Point2D posVertex = vertex.getCoordinates();
                     posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
                     Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
-                    if(sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE){
+                    if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
                         lockedVertices.add(vertex);
-                    }else {
+                    } else {
                         Collection<Edge> inList = graph.getInEdges(vertex);
                         Collection<Edge> outList = graph.getOutEdges(vertex);
-                        for(Edge e : inList){
+                        for (Edge e : inList) {
                             edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
-                            Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
-                            edg.put(e,vertexPair);
+                            Pair<Vertex, Vertex> vertexPair = new Pair<>(vertices.getFirst(), vertices.getSecond());
+                            edg.put(e, vertexPair);
                         }
-                        for(Edge e : outList){
+                        for (Edge e : outList) {
                             edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
-                            Pair<Vertex,Vertex> vertexPair = new Pair<>(vertices.getFirst(),vertices.getSecond());
-                            edg.put(e,vertexPair);
+                            Pair<Vertex, Vertex> vertexPair = new Pair<>(vertices.getFirst(), vertices.getSecond());
+                            edg.put(e, vertexPair);
                         }
                         graph.removeVertex(vertex);
                         sp.getVertices().remove(vertex);
                         params.put(vertex, sp);
                     }
-                }else{
+                } else {
                     lockedVertices.add(vertex);
                 }
             }
             pickedState.clear();
-            if(!lockedVertices.isEmpty()){
-                helper.setActionText("REMOVE_VERTICES_ALERT",true, true);
+            if (!lockedVertices.isEmpty()) {
+                helper.setActionText("REMOVE_VERTICES_ALERT", true, true);
                 ActionHistory.getInstance().removeLastEntry();
                 return;
             }
             createParameter(params, edg);
-        } else{
-            Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam)parameters).getVertices();
-            for(Map.Entry<Vertex, Sphere> entry : vertices.entrySet()){
+        } else {
+            Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam) parameters).getVertices();
+            for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
                 graph.removeVertex(entry.getKey());
                 Point2D posVertex = entry.getKey().getCoordinates();
                 posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
-                Sphere sp = pickSupport.getSphere(posVertex.getX(),posVertex.getY());
+                Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
                 sp.getVertices().remove(entry.getKey());
             }
         }
@@ -105,12 +106,12 @@ public class RemoveVerticesLogAction extends LogAction {
 
     @Override
     public void undo() {
-        AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction((AddRemoveVerticesParam)parameters);
+        AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction((AddRemoveVerticesParam) parameters);
         addVerticesLogAction.action();
     }
 
 
-    public void createParameter(Map<Vertex,Sphere> vertices, Map<Edge,Pair<Vertex,Vertex>> edges) {
+    public void createParameter(Map<Vertex, Sphere> vertices, Map<Edge, Pair<Vertex, Vertex>> edges) {
         parameters = new AddRemoveVerticesParam(vertices, edges);
     }
 }

@@ -23,16 +23,16 @@ public class LoadLanguage {
      */
     private static LoadLanguage instance = null;
 
-    public static LoadLanguage getInstance(){
-        if (instance == null){
+    public static LoadLanguage getInstance() {
+        if (instance == null) {
             instance = new LoadLanguage();
         }
         return instance;
     }
 
-    public void changeLanguage(Language language){
+    public void changeLanguage(Language language) {
         Locale lang;
-        if (language == Language.GERMAN){
+        if (language == Language.GERMAN) {
             lang = de;
         } else {
             lang = en;
@@ -41,7 +41,7 @@ public class LoadLanguage {
         resource = ResourceBundle.getBundle("UIResources", lang);
     }
 
-    public void changeStringsLanguage(Controller c){
+    public void changeStringsLanguage(Controller c) {
         String templateName = "templateName";
         String templateStyle = "templateStyle";
         String templatePosition = "templatePosition";
@@ -209,11 +209,11 @@ public class LoadLanguage {
         c.getLanguagesGraph().setText(loadLanguagesKey("languageGraph"));
     }
 
-    public String loadLanguagesKey(String key)  {
+    public String loadLanguagesKey(String key) {
         return resource.getString(key);
     }
 
-    public String loadLanguagesKey(String key, Object[] arr){
+    public String loadLanguagesKey(String key, Object[] arr) {
         MessageFormat form = new MessageFormat(loadLanguagesKey(key));
         return form.format(arr);
     }

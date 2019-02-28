@@ -28,10 +28,19 @@ import java.awt.geom.Point2D;
 import java.util.*;
 import java.util.List;
 
+/**
+ * the vertex picking plugin, implements mouse interactions on the vertices
+ */
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
+    /**
+     * the source vertex for adding edge
+     */
     private Vertex source;
 
+    /**
+     * the values instance
+     */
     private Values values;
     private Map<Vertex, Pair<Point2D, Sphere>> points = null;
     private final HelperFunctions helper;
@@ -224,7 +233,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                 Layout<Vertex, Edge> layout = vv.getGraphLayout();
                 for (Vertex vertex : pickedState.getPicked()) {
                     for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(vertex)) {
-                        edge.setHasPrio(true);
+                        edge.setHasPriority(true);
                     }
                     if (!vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
                         Point2D vp = layout.transform(vertex);
@@ -245,7 +254,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         boolean addNot = false;
         for (Vertex v : pickedState.getPicked()) {
             for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(v)) {
-                edge.setHasPrio(false);
+                edge.setHasPriority(false);
             }
             Point2D vp = vv.getRenderContext().getMultiLayerTransformer().transform(v.getCoordinates());
             Sphere sp = pickSupport.getSphere(vp.getX(), vp.getY());
@@ -306,6 +315,19 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
+    private boolean intersects(Vertex v) {
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        for (Vertex vertex : graph.getVertices()) {
+            if (vertex != v && Math.abs(vertex.getCoordinates().getX() - v.getCoordinates().getX()) < 40
+                    && Math.abs(vertex.getCoordinates().getY() - v.getCoordinates().getY()) < 30) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
     @Override
     public void mouseMoved(MouseEvent e) {
         //
@@ -319,18 +341,5 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     @Override
     public void mouseExited(MouseEvent e) {
         //
-    }
-
-    private boolean intersects(Vertex v) {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-        for (Vertex vertex : graph.getVertices()) {
-            if (vertex != v && Math.abs(vertex.getCoordinates().getX() - v.getCoordinates().getX()) < 40
-                    && Math.abs(vertex.getCoordinates().getY() - v.getCoordinates().getY()) < 30) {
-                return true;
-            }
-
-        }
-        return false;
     }
 }

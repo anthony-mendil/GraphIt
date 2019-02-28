@@ -34,9 +34,8 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
     }
 
-
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public void mousePressed(MouseEvent e) {
         if (contextMenu != null) {
             helper.hideMenu(contextMenu);
@@ -47,7 +46,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         Layout<Vertex, Edge> layout = vv.getGraphLayout();
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) layout.getGraph();
         Edge edge = (Edge) pickSupport.getEdge(layout, e.getX(), e.getY());
-        Vertex vertex = (Vertex) pickSupport.getVertex(layout, e.getX(), e.getY());
+        Vertex vertex = (pickSupport).getVertex(layout, e.getX(), e.getY());
         PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
         int addToSelection = InputEvent.BUTTON1_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK;
         if (edge != null && vertex == null) {
@@ -66,6 +65,13 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
+    /**
+     * calculates the distance between two points
+     *
+     * @param pointClick  the first point
+     * @param pointVertex the second point
+     * @return the distance
+     */
     private double getDistance(Point2D pointClick, Point2D pointVertex) {
         return Math.hypot(pointClick.getX() - pointVertex.getX(), pointClick.getY() - pointVertex.getY());
     }
@@ -75,7 +81,6 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         edgeMove = null;
     }
 
-
     /**
      * out------>in
      */
@@ -84,7 +89,6 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     public void mouseDragged(MouseEvent e) {
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer) e.getSource();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
-
         if (SwingUtilities.isRightMouseButton(e) && edgeMove != null) {
             Vertex endpoint = (isIncoming) ? graph.getEndpoints(edgeMove).getSecond() : graph.getEndpoints(edgeMove).getFirst();
             Point dragged = e.getPoint();
@@ -103,27 +107,12 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-        //
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        //
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //
-    }
-
-    @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
         SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Point2D point = e.getPoint();
-        Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
+        Vertex vertex = pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
 
         if (SwingUtilities.isRightMouseButton(e)) {
@@ -138,5 +127,20 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
             vv.repaint();
             Syndrom.getInstance().getVv2().repaint();
         }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //
     }
 }

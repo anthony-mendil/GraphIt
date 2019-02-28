@@ -26,21 +26,35 @@ import org.apache.log4j.Logger;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
-import java.util.EnumMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * a class with helper functions
+ */
 public class HelperFunctions {
+    /**
+     * the values instance
+     */
     private final Values values;
+    /**
+     * the logger for the class
+     */
     private static Logger logger = Logger.getLogger(HelperFunctions.class);
+    /**
+     * the LoadLanguage class, to get the strings in the right language
+     */
     private LoadLanguage lang = LoadLanguage.getInstance();
 
     public HelperFunctions() {
         values = Values.getInstance();
     }
 
+    /**
+     * hides the passed ContextMenu
+     *
+     * @param contextMenu the ContextMenu to hide
+     */
     void hideMenu(ContextMenu contextMenu) {
         Service<Void> service = new Service<Void>() {
             @Override
@@ -65,6 +79,12 @@ public class HelperFunctions {
         service.start();
     }
 
+    /**
+     * shows the ContextMenu on a passed point
+     *
+     * @param point       the point
+     * @param contextMenu the context menu to show
+     */
     void showSideMenu(Point2D point, ContextMenu contextMenu) {
         Service<Void> service = new Service<Void>() {
             @Override
@@ -88,10 +108,18 @@ public class HelperFunctions {
                 };
             }
         };
-        logger.debug("started sidemenu");
+        logger.debug("started context menu");
         service.start();
     }
 
+    /**
+     * shows a alert with a passed text
+     *
+     * @param string          the alert text
+     * @param isAlert         defined whether the text is an alert or info
+     * @param withPlaceHolder defined whether the passed text is a normal string or if its a placeholder an has to be
+     *                        loaded from a properties file
+     */
     public void setActionText(String string, boolean isAlert, boolean withPlaceHolder) {
         Service<Void> service = new Service<Void>() {
             @Override
@@ -127,6 +155,11 @@ public class HelperFunctions {
         service.start();
     }
 
+    /**
+     * picks a passed object if its an instance of edge/ sphere/ vertex
+     *
+     * @param object the object to pick
+     */
     public void pickElement(Object object) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
@@ -150,6 +183,12 @@ public class HelperFunctions {
         vv.repaint();
     }
 
+    /**
+     * creates the context menu to a passed object if its an instance of vertex/ sphere/ edge
+     *
+     * @param object the object to show the context menu too
+     * @return the context menu
+     */
     public ContextMenu openContextMenu(Object object) {
         ContextMenu contextMenu = null;
         if (object instanceof Sphere) {
@@ -165,7 +204,12 @@ public class HelperFunctions {
         return contextMenu;
     }
 
-
+    /**
+     * creates the title dialog
+     *
+     * @param old the old annotation of the object (sphere/ vertex)
+     * @return the title dialog
+     */
     public Dialog<EnumMap<Language, String>> getDialog(Map<String, String> old) {
         String a;
         switch (values.getGuiLanguage()) {
@@ -187,7 +231,6 @@ public class HelperFunctions {
         titleStage.setResizable(false);
         titleStage.setTitle(lang.loadLanguagesKey("CONTEXT_DIALOG_TITLE"));
 
-
         DialogPane dialogPane = null;
         try {
             dialogPane = fxmlLoader.load();
@@ -199,24 +242,23 @@ public class HelperFunctions {
         c.setPrompt(old);
 
         Dialog<EnumMap<Language, String>> d = new Dialog<>();
-
         d.setDialogPane(dialogPane);
         d.setResultConverter(button -> {
             if (button == TitlesDialogPaneController.SAVE_TYPE) {
                 EnumMap<Language, String> map = new EnumMap<>(Language.class);
-
                 String germanTitle = c.getGerman().getText();
+                germanTitle = germanTitle.replace(";", "");
                 if (germanTitle.length() > 100) {
                     germanTitle = germanTitle.substring(0, 99);
                 }
                 map.put(Language.GERMAN, germanTitle);
 
                 String englishTitle = c.getEnglish().getText();
+                englishTitle = englishTitle.replace(";", "");
                 if (englishTitle.length() > 100) {
                     englishTitle = englishTitle.substring(0, 99);
                 }
                 map.put(Language.ENGLISH, englishTitle);
-
                 return map;
             } else {
                 return null;
@@ -225,6 +267,12 @@ public class HelperFunctions {
         return d;
     }
 
+    /**
+     * returns the font to a passed string
+     *
+     * @param f the string to get the font to
+     * @return the font
+     */
     public Font returnFont(String f) {
         java.awt.Font newFont;
         switch (f) {
@@ -247,10 +295,31 @@ public class HelperFunctions {
         return newFont;
     }
 
+    /**
+     * sets the passed position to values
+     *
+     * @param posX the x position
+     * @param posY the y position
+     */
     void setMouseLocation(String posX, String posY) {
         Platform.runLater(() -> {
             values.getPositionMouseX().setText(posX);
             values.getPositionMouseY().setText(posY);
         });
+    }
+
+    /**
+     * Checks whether the vertices in the sphere are locked.
+     *
+     * @return true: locked vertices, false: no locked vertices
+     */
+    public boolean verticesLocked(Sphere sp) {
+        LinkedList<Vertex> vertices = sp.getVertices();
+        for (Vertex vertex : vertices) {
+            if (vertex.isLockedPosition() || vertex.isLockedAnnotation() || vertex.isLockedStyle()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -24,9 +24,9 @@ public class ExportReadableProtocolAction extends GraphAction {
      * @param pFile The destination of the protocol-file
      */
     public ExportReadableProtocolAction(File pFile) {
-        file=pFile;
+        file = pFile;
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-        if(!graph.getSpheres().isEmpty()) {
+        if (!graph.getSpheres().isEmpty()) {
             syndrom.getVv().getPickedSphereState().clear();
         }
     }
@@ -36,7 +36,7 @@ public class ExportReadableProtocolAction extends GraphAction {
      */
     @Override
     public void action() {
-        Protocolio protocolio=new Protocolio();
+        Protocolio protocolio = new Protocolio();
         protocolio.exportAsReadableProtocol(file);
     }
 

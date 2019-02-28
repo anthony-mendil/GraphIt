@@ -22,6 +22,7 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
     public GeneralPickingPlugin() {
         super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
     }
+
     @Override
     @SuppressWarnings("unchecked")
     public void mouseClicked(MouseEvent e) {
@@ -32,7 +33,7 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
         Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
 
-        if (sp == null && edge == null && vertex == null){
+        if (sp == null && edge == null && vertex == null) {
             PickedState<Vertex> vertexPickedState = vv.getPickedVertexState();
             PickedState<Edge> edgePickedState = vv.getPickedEdgeState();
             PickedState<Sphere> spherePickedState = vv.getPickedSphereState();
@@ -40,6 +41,35 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
             edgePickedState.clear();
             spherePickedState.clear();
         }
+    }
+
+    /**
+     * translates the mouse position the layout coordinates and writs it into the Values class
+     *
+     * @param e the mouse event
+     */
+    @SuppressWarnings("unchecked")
+    private void setMousePositionText(MouseEvent e) {
+        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
+        Point2D position = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
+        double x = (double) Math.round(position.getX() * 100) / 100;
+        double y = (double) Math.round(position.getY() * 100) / 100;
+        helper.setMouseLocation("X: " + x, "Y: " + y);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        setMousePositionText(e);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        setMousePositionText(e);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        setMousePositionText(e);
     }
 
     @Override
@@ -53,31 +83,7 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        setMousePositionText(e);
-    }
-
-    @Override
     public void mouseExited(MouseEvent e) {
         //
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        setMousePositionText(e);
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        setMousePositionText(e);
-    }
-
-    @SuppressWarnings("unchecked")
-    private void setMousePositionText(MouseEvent e){
-        SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
-        Point2D position = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(e.getPoint());
-        double x = (double) Math.round(position.getX()*100)/100;
-        double y = (double) Math.round(position.getY()*100)/100;
-        helper.setMouseLocation("X: "+x, "Y: "+y);
     }
 }

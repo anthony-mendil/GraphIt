@@ -5,16 +5,14 @@ import graph.graph.Syndrom;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
-import org.apache.log4j.Logger;
 
 public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     private CheckBox checkBox;
     private CheckBox treeViewArrowType;
     private CheckBox regularExpressionBox;
     private Controller c;
-    private static Logger logger = Logger.getLogger(TemplateCheckBoxListener.class);
 
-    private void regularExpressionBoxChecked(boolean newValue){
+    private void regularExpressionBoxChecked(boolean newValue) {
         regularExpressionBox.setSelected(newValue);
         if (newValue) {
             treeViewArrowType.setSelected(false);
@@ -23,7 +21,7 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
         filterGraphAction.action();
     }
 
-    private void treeViewArrowTypeBoxChecked(boolean newValue){
+    private void treeViewArrowTypeBoxChecked(boolean newValue) {
         treeViewArrowType.setSelected(newValue);
         if (newValue) {
             regularExpressionBox.setSelected(false);
@@ -33,7 +31,7 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
         filterGraphAction.action();
     }
 
-    TemplateCheckBoxListener(CheckBox pCheckBox, Controller c){
+    TemplateCheckBoxListener(CheckBox pCheckBox, Controller c) {
         checkBox = pCheckBox;
         this.c = c;
         treeViewArrowType = c.getTreeViewArrowType();
@@ -41,7 +39,7 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     }
 
     @Override
-    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         switch (checkBox.getId()) {
             case "reinforcedBox":
                 Syndrom.getInstance().getTemplate().setReinforcedEdgesAllowed(newValue);
@@ -52,11 +50,14 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
             case "extenuatingBox":
                 Syndrom.getInstance().getTemplate().setExtenuatingEdgesAllowed(newValue);
                 break;
-            case "treeViewArrowType": treeViewArrowTypeBoxChecked(newValue);
+            case "treeViewArrowType":
+                treeViewArrowTypeBoxChecked(newValue);
                 break;
-            case "regularExpressionBox": regularExpressionBoxChecked(newValue);
+            case "regularExpressionBox":
+                regularExpressionBoxChecked(newValue);
                 break;
-            default: throw new IllegalArgumentException();
+            default:
+                throw new IllegalArgumentException();
         }
     }
 }

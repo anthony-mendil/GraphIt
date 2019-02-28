@@ -3,7 +3,7 @@ package gui;
 import actions.analyse.AnalysisGraphNeighborsAction;
 import actions.deactivate.ResetVvAction;
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.algorithmen.AnalyseTypeSeveral;
+import graph.algorithmen.AnalyseType;
 import graph.graph.Edge;
 import graph.graph.Syndrom;
 import graph.graph.Vertex;
@@ -46,13 +46,13 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                         ResetVvAction resetAction = new ResetVvAction();
                         resetAction.action();
 
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphAction.action();
                     } else if (checkBox.getId().equals("analysisPredecessor")) {
-                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphNeighborsAction.action();
                     } else if (checkBox.getId().equals("analysisSuccessor")) {
-                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphNeighborsAction.action();
                     }
                 }
@@ -69,19 +69,19 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
-                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
             } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty()) {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
-                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphAction.action();
-            } else if (!amountSymptomTextField.getText().isEmpty()){
+            } else if (!amountSymptomTextField.getText().isEmpty()) {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
 
-                AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseTypeSeveral.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                 analysisGraphNeighborsAction.action();
             }
         }

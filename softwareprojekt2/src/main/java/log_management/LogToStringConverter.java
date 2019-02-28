@@ -29,7 +29,7 @@ public class LogToStringConverter {
     private int incrementer = 1;
     private LoadLanguage lang = LoadLanguage.getInstance();
 
-    public void resetIncrementer(){
+    public void resetIncrementer() {
         incrementer = 1;
     }
 
@@ -43,16 +43,14 @@ public class LogToStringConverter {
             } catch (IllegalArgumentException e) {
                 throw new IllegalStateException();
             }
-        }
-        else if (language == Language.ENGLISH) {
+        } else if (language == Language.ENGLISH) {
             try {
                 return incrementer++ + "\n" + convertLogEntryName(log.getLogEntryName()) +
                         "\n" + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + log.getTime().format(formatter);
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
             }
-        }
-        else {
+        } else {
             throw new IllegalStateException();
         }
     }
@@ -67,16 +65,14 @@ public class LogToStringConverter {
             } catch (IllegalArgumentException e) {
                 throw new IllegalStateException();
             }
-        }
-        else if (language == Language.ENGLISH) {
+        } else if (language == Language.ENGLISH) {
             try {
                 return "Log number: " + incrementer++ + "\n" + "  Type of Action: " + convertLogEntryName(log.getLogEntryName()) +
                         "\n" + "  Information: " + parametersPrint(log.getParameters(), log.getLogEntryName()) + "\n" + "  Time: " + log.getTime().format(formatter) + "\n";
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
             }
-        }
-        else {
+        } else {
             throw new IllegalStateException();
         }
     }
@@ -213,7 +209,8 @@ public class LogToStringConverter {
                 return gson.fromJson(parameters, EditVerticesFillColorParam.class).prettyPrint();
             case EDIT_VERTICES_LAYOUT:
                 return gson.fromJson(parameters, LayoutVerticesParam.class).prettyPrint();
-            default: throw new IllegalArgumentException();
+            default:
+                throw new IllegalArgumentException();
         }
     }
 }

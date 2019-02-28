@@ -6,6 +6,7 @@ import gui.Values;
 import gui.properties.Language;
 import javafx.util.Pair;
 import log_management.parameters.ColorNameCreator;
+import log_management.parameters.EnumNameCreator;
 import log_management.parameters.Param;
 import log_management.parameters.SyndromObjectPrinter;
 import lombok.Data;
@@ -61,10 +62,11 @@ public class EditEdgesColorParam implements Param {
 
     /**
      * Creates a parameter object of its own class.
-     * @param pEdgesOld The old edges and their old colors.
-     * @param pEdgesNew The new edges and their new colors.
+     *
+     * @param pEdgesOld      The old edges and their old colors.
+     * @param pEdgesNew      The new edges and their new colors.
      * @param pStartVertices The start vertices of the edges.
-     * @param pEndVertices The end vertices of the edges.
+     * @param pEndVertices   The end vertices of the edges.
      */
     public EditEdgesColorParam(Map<Edge, Color> pEdgesOld, Map<Edge, Color> pEdgesNew,
                                List<Vertex> pStartVertices, List<Vertex> pEndVertices) {
@@ -96,7 +98,10 @@ public class EditEdgesColorParam implements Param {
                 information.append(SyndromObjectPrinter.edgePrintEnglish(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Old color: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.ENGLISH));
-                information.append(", new color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH)).append("; ");
+                information.append(", new color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH)).append(". ");
+                information.append("Type of relation: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.ENGLISH));
+                information.append("; ");
             }
         } else {
             information.append("Geänderte Relationen: ");
@@ -104,7 +109,10 @@ public class EditEdgesColorParam implements Param {
                 information.append(SyndromObjectPrinter.edgePrintGerman(
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Alte Farbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.GERMAN));
-                information.append(", neue Farbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN)).append("; ");
+                information.append(", neue Farbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN)).append(". ");
+                information.append("Relationsart: "
+                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.GERMAN));
+                information.append("; ");
             }
         }
         return information.toString();
@@ -113,6 +121,7 @@ public class EditEdgesColorParam implements Param {
 
     /**
      * Gets the old edges and their colors.
+     *
      * @return The old edges and their colors.
      */
     public Map<Edge, Color> getEdgesOld() {
@@ -125,6 +134,7 @@ public class EditEdgesColorParam implements Param {
 
     /**
      * Gets the new edges and their colors.
+     *
      * @return The new edges and their colors.
      */
     public Map<Edge, Color> getEdgesNew() {

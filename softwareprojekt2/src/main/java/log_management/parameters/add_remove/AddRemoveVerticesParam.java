@@ -54,8 +54,9 @@ public class AddRemoveVerticesParam implements Param {
 
     /**
      * Creates a parameter object of its own class.
+     *
      * @param pParameter The vertices and the spheres they are positioned in.
-     * @param edges The edges as well as their start and end vertices.
+     * @param edges      The edges as well as their start and end vertices.
      */
     public AddRemoveVerticesParam(Map<Vertex, Sphere> pParameter, Map<Edge, Pair<Vertex, Vertex>> edges) {
         vertexList = new ArrayList<>();
@@ -96,6 +97,7 @@ public class AddRemoveVerticesParam implements Param {
 
     /**
      * Gets the vertices and their spheres.
+     *
      * @return The vertices and their spheres.
      */
     public Map<Vertex, Sphere> getVertices() {

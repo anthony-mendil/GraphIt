@@ -41,7 +41,7 @@ public class VertexContextMenu {
     private Syndrom syndrom = Syndrom.getInstance();
 
 
-    public VertexContextMenu(Vertex vertex){
+    public VertexContextMenu(Vertex vertex) {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
         values = Values.getInstance();
@@ -49,7 +49,7 @@ public class VertexContextMenu {
         setup();
     }
 
-    private void setup(){
+    private void setup() {
         // REMOVE
         MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));
         HelperGui.setImage("/icons2/008-rubbish-bin.png", remove);
@@ -76,7 +76,7 @@ public class VertexContextMenu {
         // COLOR FILL
         MenuItem color = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FILL_COLOR"));
         HelperGui.setImage("/icons2/fill.png", color);
-        color.setOnAction(event ->{
+        color.setOnAction(event -> {
 
             EditVerticesFillColorLogAction editVerticesFillColorLogAction = new EditVerticesFillColorLogAction(values.getFillPaintVertex());
             history.execute(editVerticesFillColorLogAction);
@@ -85,7 +85,7 @@ public class VertexContextMenu {
         // COLOR STROKE
         MenuItem colorDraw = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_STROKE_COLOR"));
         HelperGui.setImage("/icons2/brush.png", colorDraw);
-        colorDraw.setOnAction(event ->{
+        colorDraw.setOnAction(event -> {
             EditVerticesDrawColorLogAction editVerticesDrawColorLogAction = new EditVerticesDrawColorLogAction(values.getDrawPaintVertex());
             history.execute(editVerticesDrawColorLogAction);
         });
@@ -93,7 +93,7 @@ public class VertexContextMenu {
         // Schriftart
         MenuItem text = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT"));
         HelperGui.setImage("/icons2/font.png", text);
-        text.setOnAction(event ->{
+        text.setOnAction(event -> {
             EditFontVerticesLogAction editFontVerticesLogAction = new EditFontVerticesLogAction(values.getFontVertex());
             history.execute(editFontVerticesLogAction);
         });
@@ -102,7 +102,7 @@ public class VertexContextMenu {
         MenuItem size = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_FONT_SIZE"));
         HelperGui.setImage("/icons2/height.png", size);
 
-        size.setOnAction(event ->{
+        size.setOnAction(event -> {
             EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(values.getFontSizeVertex());
             history.execute(editFontSizeVerticesLogAction);
         });
@@ -111,15 +111,15 @@ public class VertexContextMenu {
         MenuItem highlight = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_Highlight"));
         HelperGui.setImage("/icons2/highlight.png", highlight);
 
-        if (vertex.isHighlighted()){
+        if (vertex.isHighlighted()) {
             highlight.setStyle("-fx-text-fill: #395cab;");
-            highlight.setOnAction(event ->{
+            highlight.setOnAction(event -> {
                 RemoveHighlightElementAction removeHighlightElementAction = new RemoveHighlightElementAction();
                 history.execute(removeHighlightElementAction);
             });
 
         } else {
-            highlight.setOnAction(event ->{
+            highlight.setOnAction(event -> {
                 AddHighlightElementAction addHighlightElementAction = new AddHighlightElementAction();
                 history.execute(addHighlightElementAction);
             });
@@ -129,28 +129,28 @@ public class VertexContextMenu {
         MenuItem visible = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_VISIBLE"));
         HelperGui.setImage("/icons2/eyelash2.png", visible);
 
-        if (!vertex.isVisible()){
+        if (!vertex.isVisible()) {
             visible.setStyle("-fx-text-fill: #395cab;");
-            visible.setOnAction(event ->{
+            visible.setOnAction(event -> {
                 RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
                 history.execute(removeFadeoutElementAction);
             });
 
         } else {
-            visible.setOnAction(event ->{
+            visible.setOnAction(event -> {
                 AddFadeoutElementAction addFadeoutElementAction = new AddFadeoutElementAction();
                 history.execute(addFadeoutElementAction);
             });
         }
         boolean lockedAnnotation = vertex.isLockedAnnotation();
         boolean lockedStyle = vertex.isLockedStyle();
-        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().addAll(annotation, text);
         }
-        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedStyle || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().addAll(color, colorDraw, size);
         }
-        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE){
+        if (!lockedStyle && !lockedAnnotation || values.getMode() == FunctionMode.TEMPLATE) {
             contextMenu.getItems().add(remove);
         }
         contextMenu.getItems().addAll(highlight, visible);
@@ -158,11 +158,11 @@ public class VertexContextMenu {
         contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> contextMenu.hide());
     }
 
-    private void checkAnnotation(Map<Language, String> map){
+    private void checkAnnotation(Map<Language, String> map) {
         if (map != null) {
             String textGerman = map.get(Language.GERMAN);
             String textEnglish = map.get(Language.ENGLISH);
-            if (textGerman.length() > 0 && textEnglish.length() > 0){
+            if (textGerman.length() > 0 && textEnglish.length() > 0) {
                 EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(map);
                 history.execute(editVertexAnnotationLogAction);
             }

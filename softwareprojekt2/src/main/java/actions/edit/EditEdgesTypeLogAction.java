@@ -42,8 +42,8 @@ public class EditEdgesTypeLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-        if(parameters == null) {
-            if(values.getMode() != FunctionMode.TEMPLATE) {
+        if (parameters == null) {
+            if (values.getMode() != FunctionMode.TEMPLATE) {
                 switch (type) {
                     case REINFORCED:
                         if (!template.isReinforcedEdgesAllowed()) {
@@ -67,29 +67,29 @@ public class EditEdgesTypeLogAction extends LogAction {
             }
             List<Edge> lockedEdges = new LinkedList<>();
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
-            Map<Edge,EdgeArrowType> oldEdges = new HashMap<>();
-            Map<Edge,EdgeArrowType> newEdges = new HashMap<>();
-            for (Edge e : pickedState.getPicked() ) {
-                if(!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
+            Map<Edge, EdgeArrowType> oldEdges = new HashMap<>();
+            Map<Edge, EdgeArrowType> newEdges = new HashMap<>();
+            for (Edge e : pickedState.getPicked()) {
+                if (!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
                     oldEdges.put(e, e.getArrowType());
                     e.setArrowType(type);
                     newEdges.put(e, type);
-                }else{
+                } else {
                     lockedEdges.add(e);
                 }
             }
-            if(!lockedEdges.isEmpty()){
+            if (!lockedEdges.isEmpty()) {
                 helper.setActionText("EDIT_EDGES_TYPE_ACTION", true, true);
             }
-            if(lockedEdges.size() == pickedState.getPicked().size()){
+            if (lockedEdges.size() == pickedState.getPicked().size()) {
                 actionHistory.removeLastEntry();
                 return;
             }
-            createParameter(oldEdges,newEdges);
-        }else{
-            Map<Edge,EdgeArrowType> oldEdges = ((EditEdgesTypeParam)parameters).getEdgesOldEdgeType();
-            Map<Edge,EdgeArrowType> newEdges = ((EditEdgesTypeParam)parameters).getEdgesNewEdgeType();
-            for(Map.Entry<Edge,EdgeArrowType> entry : oldEdges.entrySet()){
+            createParameter(oldEdges, newEdges);
+        } else {
+            Map<Edge, EdgeArrowType> oldEdges = ((EditEdgesTypeParam) parameters).getEdgesOldEdgeType();
+            Map<Edge, EdgeArrowType> newEdges = ((EditEdgesTypeParam) parameters).getEdgesNewEdgeType();
+            for (Map.Entry<Edge, EdgeArrowType> entry : oldEdges.entrySet()) {
                 entry.getKey().setArrowType(newEdges.get(entry.getKey()));
             }
         }
@@ -102,21 +102,22 @@ public class EditEdgesTypeLogAction extends LogAction {
 
     @Override
     public void undo() {
-        Map<Edge,EdgeArrowType> oldEdges = ((EditEdgesTypeParam)parameters).getEdgesOldEdgeType();
-        Map<Edge,EdgeArrowType> newEdges = ((EditEdgesTypeParam)parameters).getEdgesNewEdgeType();
-        List<Vertex> starts = ((EditEdgesTypeParam)parameters).getStartVertices();
-        List<Vertex> ends = ((EditEdgesTypeParam)parameters).getEndVertices();
-        EditEdgesTypeParam editEdgesTypeParam = new EditEdgesTypeParam(oldEdges,newEdges, starts, ends);
+        Map<Edge, EdgeArrowType> oldEdges = ((EditEdgesTypeParam) parameters).getEdgesOldEdgeType();
+        Map<Edge, EdgeArrowType> newEdges = ((EditEdgesTypeParam) parameters).getEdgesNewEdgeType();
+        List<Vertex> starts = ((EditEdgesTypeParam) parameters).getStartVertices();
+        List<Vertex> ends = ((EditEdgesTypeParam) parameters).getEndVertices();
+        EditEdgesTypeParam editEdgesTypeParam = new EditEdgesTypeParam(oldEdges, newEdges, starts, ends);
         EditEdgesTypeLogAction editEdgesTypeLogAction = new EditEdgesTypeLogAction(editEdgesTypeParam);
         editEdgesTypeLogAction.action();
     }
 
     /**
      * Creates a new parameter-object of this action.
+     *
      * @param oldEdges The old edges and their old arrow-type.
      * @param newEdges The new edges and their new arrow-type.
      */
-    public void createParameter(Map<Edge,EdgeArrowType> oldEdges, Map<Edge,EdgeArrowType> newEdges) {
+    public void createParameter(Map<Edge, EdgeArrowType> oldEdges, Map<Edge, EdgeArrowType> newEdges) {
         List<Vertex> starts = new ArrayList<>();
         List<Vertex> ends = new ArrayList<>();
 

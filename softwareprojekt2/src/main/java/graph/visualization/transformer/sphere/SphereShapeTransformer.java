@@ -15,11 +15,11 @@ import java.awt.geom.Rectangle2D;
 public class SphereShapeTransformer<S> implements Transformer<S, Shape> {
     @Override
     public Shape transform(S s) {
-        try{
+        try {
             Sphere sphere = (Sphere) s;
             return new Rectangle2D.Double(sphere.getCoordinates().getX(), sphere.getCoordinates().getY(), sphere
                     .getWidth(), sphere.getHeight());
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException();
         }
     }

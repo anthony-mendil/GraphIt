@@ -133,12 +133,11 @@ public class JGraphTHandler {
     @SuppressWarnings("unchecked")
     public List<GraphPath<Vertex, Edge>> getAllPaths() {
         if (calculateEndpoints()) {
-
             AllDirectedPaths pathFinder = new AllDirectedPaths<>(algorithmGraph);
             return pathFinder.getAllPaths(startVertex, endVertex, true, Syndrom.getInstance().getVv().getGraphLayout().getGraph().getVertices().size());
 
         }
-        return null;
+        return new ArrayList<>();
     }
 
     /**
@@ -201,10 +200,10 @@ public class JGraphTHandler {
         if (isAtLeastOnePicked()) {
             List<Vertex> vertices = new ArrayList<>();
             List<Edge> edges = new ArrayList<>();
-            for (Vertex startVertex : pickedVertices) {
+            for (Vertex startV : pickedVertices) {
                 List<Vertex> tempVertex = new ArrayList<>();
-                tempVertex.add(startVertex);
-                vertices.add(startVertex);
+                tempVertex.add(startV);
+                vertices.add(startV);
                 for (int i = steps; i > 0; i--) {
                     for (Vertex pivotVertex : tempVertex) {
                         List<Vertex> predecessors = Graphs.predecessorListOf(algorithmGraph, pivotVertex);

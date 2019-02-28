@@ -6,6 +6,7 @@ import log_management.dao.LogDao;
 import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
@@ -69,8 +70,9 @@ public class OOFio {
     public void exportAsOOF(File pFile) {
         GXLio gxlio = new GXLio();
         String oof = createOOF(gxlio.gxlFromInstance(true), logDao.getAllString());
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pFile))) {
-            bufferedWriter.write(oof);
+        try (OutputStreamWriter writer =
+                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)) {
+            writer.write(oof);
         } catch (IOException e) {
             logger.error(e.toString());
         }
@@ -90,7 +92,7 @@ public class OOFio {
         }
         GXLio gxlio = new GXLio();
 
-        gxlio.gxlToInstance(gxlFromOOF(oof),true);
+        gxlio.gxlToInstance(gxlFromOOF(oof), true);
 
         DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
 

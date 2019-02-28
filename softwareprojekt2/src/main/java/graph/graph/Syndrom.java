@@ -49,6 +49,9 @@ public class Syndrom {
      */
     private Template template;
 
+    /**
+     * true if a template is set
+     */
     private boolean templateIsSet = false;
 
     /**
@@ -56,17 +59,19 @@ public class Syndrom {
      */
     private SatelliteVisualizationViewer<Vertex, Edge> vv2;
 
-
     /**
      * For adding/removing graph mouse plugins.
      */
-    private PluggableGraphMouse pluggable;
+    private PluggableGraphMouse graphMouse;
 
     /**
      * The name of the graph.
      */
     private String graphName;
 
+    /**
+     * the layout of the syndrom
+     */
     private AggregateLayout<Vertex, Edge> layout;
 
     /**
@@ -75,16 +80,39 @@ public class Syndrom {
     @Setter(AccessLevel.NONE)
     private final Values values;
 
+    /**
+     * the syndrom instance
+     */
     private static Syndrom instance;
 
+    /**
+     * the scaling control (zoom)
+     */
     private AbsoluteCrossoverScalingControl scalingControl;
 
-    private int scale;
-
+    /**
+     * the sphere picking plugin, implements mouse interactions on the spheres
+     */
     private SpherePickingPlugin spherePickingPlugin = new SpherePickingPlugin();
+
+    /**
+     * the vertex picking plugin, implements mouse interactions on the vertices
+     */
     private VertexPickingPlugin vertexPickingPlugin = new VertexPickingPlugin();
+
+    /**
+     * the edge picking plugin, implements mouse interactions on the edges
+     */
     private EdgePickingPlugin edgePickingPlugin = new EdgePickingPlugin();
+
+    /**
+     * the general picking plugin, implements general mouse interactions
+     */
     private GeneralPickingPlugin generalPickingPlugin = new GeneralPickingPlugin();
+
+    /**
+     * the translating plugin
+     */
     private TranslatingGraphMousePlugin translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_DOWN_MASK);
 
 
@@ -94,21 +122,26 @@ public class Syndrom {
     @SuppressWarnings("unchecked")
     private Syndrom() {
         values = Values.getInstance();
-        pluggable = new PluggableGraphMouse();
-        pluggable.add(spherePickingPlugin);
-        pluggable.add(vertexPickingPlugin);
-        pluggable.add(edgePickingPlugin);
-        pluggable.add(generalPickingPlugin);
+        graphMouse = new PluggableGraphMouse();
+        graphMouse.add(spherePickingPlugin);
+        graphMouse.add(vertexPickingPlugin);
+        graphMouse.add(edgePickingPlugin);
+        graphMouse.add(generalPickingPlugin);
     }
 
-    public void setPluggableModeEdit(){
-        pluggable.remove(translatingPlugin);
+    public void setGraphMouseModeEdit() {
+        graphMouse.remove(translatingPlugin);
     }
 
-    public void setPluggableModeAnalyse(){
-        pluggable.add(translatingPlugin);
+    public void setGraphMouseModeAnalyse() {
+        graphMouse.add(translatingPlugin);
     }
 
+    /**
+     * get instance for the singleton class
+     *
+     * @return the syndrom instance
+     */
     public static Syndrom getInstance() {
         if (instance == null) {
             instance = new Syndrom();
@@ -116,22 +149,33 @@ public class Syndrom {
         return instance;
     }
 
+    /**
+     * sets the visualisation viewer with all its settings
+     *
+     * @param vv the visualisation viewer
+     */
+    @SuppressWarnings("unchecked")
     private void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv) {
         SyndromPickSupport<Vertex, Edge> pickSupport = new SyndromPickSupport<>(vv);
         vv.setBackground(Color.WHITE);
         vv.setRenderer(new SyndromRenderer<>());
         vv.getRenderContext().setPickSupport(pickSupport);
-        vv.setGraphMouse(pluggable);
+        vv.setGraphMouse(graphMouse);
         setRenderer(vv);
         vv.getRenderContext().setVertexShapeTransformer(new VertexShapeTransformer<>());
         vv.getRenderContext().setVertexStrokeTransformer(new VertexStrokeTransformer<>(vv));
         this.vv = vv;
     }
 
+    /**
+     * sets the visualisation viewer 2 (satellite view) with all its settings
+     *
+     * @param vv2 the satellite visualisation viewer
+     */
     private void setVisualisationViewer2(SatelliteVisualizationViewer<Vertex, Edge> vv2) {
-        AbsoluteCrossoverScalingControl vv2Scaler = new AbsoluteCrossoverScalingControl();
-        scalingControl = vv2Scaler;
-        vv2.scaleToLayout(vv2Scaler);
+        AbsoluteCrossoverScalingControl control = new AbsoluteCrossoverScalingControl();
+        scalingControl = control;
+        vv2.scaleToLayout(control);
         vv2.setRenderer(new SyndromRenderer<>());
         setRenderer(vv2);
         vv2.getRenderContext().setVertexShapeTransformer(new VertexShapeVV2Transformer<>());
@@ -139,22 +183,23 @@ public class Syndrom {
         this.vv2 = vv2;
     }
 
+    /**
+     * sets all the necessary transformer to a visualisation viewer
+     *
+     * @param vv the visualisation viewer
+     */
     private void setRenderer(VisualizationViewer<Vertex, Edge> vv) {
         vv.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
         vv.getRenderContext().setVertexFontTransformer(new VertexFontTransformer<>());
         vv.getRenderContext().setVertexDrawPaintTransformer(new VertexDrawPaintTransformer<>());
         vv.getRenderContext().setVertexLabelTransformer(new VertexLabelTransformer<>());
-
         vv.getRenderContext().setVertexLabelRenderer(new DefaultVertexLabelRenderer(Color.black));
         vv.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
-
         vv.getRenderContext().setEdgeDrawPaintTransformer(new EdgeFillPaintTransformer<>());
         vv.getRenderContext().setEdgeArrowTransformer(new EdgeArrowTransformer<>(5, 10, 10, 0));
         vv.getRenderContext().setEdgeStrokeTransformer(new EdgeStrokeTransformer<>(vv));
-
         vv.getRenderContext().setArrowFillPaintTransformer(new EdgeArrowFillPaintTransformer<>());
         vv.getRenderContext().setArrowDrawPaintTransformer(new EdgeArrowFillPaintTransformer<>());
-
         vv.getGraphLayout().setGraph(new SyndromGraph<>());
         EdgeRenderer<Vertex, Edge> edgeRenderer = new EdgeRenderer<>();
         VertexLabelRenderer<Vertex, Edge> vertexLabelRenderer = new VertexLabelRenderer<>();
@@ -162,10 +207,13 @@ public class Syndrom {
         vv.getRenderer().setEdgeRenderer(edgeRenderer);
     }
 
+    /**
+     * scales the visualisation viewer (zoom) to a specific value
+     *
+     * @param value the value to scale to
+     */
     public void scale(int value) {
-        scale = value;
         scalingControl.scale(vv, (float) value / 100, vv.getCenter());
-
         if (value <= 100) {
             AffineTransform modelLayoutTransform =
                     new AffineTransform(vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform());
@@ -173,7 +221,9 @@ public class Syndrom {
         }
     }
 
-
+    /**
+     * generates a new setting for the syndrom instance (graph, layout etc.)
+     */
     public void generateNew() {
         SyndromGraph<Vertex, Edge> graph = new SyndromGraph<>();
         layout = new AggregateLayout<>(new StaticLayout<>(graph));
