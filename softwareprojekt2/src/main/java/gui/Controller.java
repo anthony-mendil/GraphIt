@@ -174,6 +174,14 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private MenuItem saveLocation;
+    @FXML
+    private Menu importAs;
+    @FXML
+    private MenuItem templateGXLImport;
+    @FXML
+    private MenuItem templateGXLExport;
+    @FXML
+    private MenuItem closeApplication;
 
     /**
      * The menuitem under the menu "File.. &gt; Export as.." for exporting the fileMenu as pdf.
@@ -219,7 +227,8 @@ public class Controller implements ObserverSyndrom {
     private MenuItem languageGuiGraphGerman;
     @FXML
     private MenuItem languageGuiGraphEnglish;
-
+    @FXML
+    private Menu advancedLanguageOptions;
 
     /**
      * The menuitem under the menu "Help" for opening the documention.

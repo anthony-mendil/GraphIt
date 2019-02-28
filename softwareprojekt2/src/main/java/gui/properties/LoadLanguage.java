@@ -51,11 +51,14 @@ public class LoadLanguage {
         c.getFileMenu().setText(loadLanguagesKey("file"));
         c.getNewFile().setText(loadLanguagesKey("newFile"));
         c.getOpenFile().setText(loadLanguagesKey("openFile"));
-        c.getImportGXL().setText(loadLanguagesKey("gxlImport"));
         c.getSaveLocation().setText(loadLanguagesKey("saveAs"));
+        c.getImportAs().setText(loadLanguagesKey("importAs"));
+        c.getTemplateGXLImport().setText(loadLanguagesKey("template"));
+        c.getTemplateGXLExport().setText(loadLanguagesKey("template"));
         c.getExportPDF().setText(loadLanguagesKey("exportAs"));
         c.getExportLogs().setText(loadLanguagesKey("logs"));
         c.getPrint().setText(loadLanguagesKey("print"));
+        c.getCloseApplication().setText(loadLanguagesKey("closeApplication"));
         c.getOptions().setText(loadLanguagesKey("options"));
         c.getLanguages().setText(loadLanguagesKey("languageGui"));
         c.getLanguageGerman().setText(loadLanguagesKey("german"));
@@ -210,6 +213,7 @@ public class LoadLanguage {
         c.getLanguagesGuiGraph().setText(loadLanguagesKey("languageGuiGraph"));
         c.getLanguageGuiGraphGerman().setText(loadLanguagesKey("german"));
         c.getLanguageGuiGraphEnglish().setText(loadLanguagesKey("english"));
+        c.getAdvancedLanguageOptions().setText(loadLanguagesKey("advancedLanguageOptions"));
     }
 
     public String loadLanguagesKey(String key) {
