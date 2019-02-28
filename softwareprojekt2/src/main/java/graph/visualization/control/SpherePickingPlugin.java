@@ -269,11 +269,15 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     @Override
+    public void mouseMoved(MouseEvent e) {
+        //
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public void mouseDragged(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
             SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
-
             if (spherePickedCoordinate != null) {
                 Point p = e.getPoint();
                 Point2D graphPoint = vv.getRenderContext().getMultiLayerTransformer().inverseTransform(p);
@@ -301,11 +305,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 Syndrom.getInstance().getVv2().repaint();
             }
         }
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        //
     }
 
     @Override

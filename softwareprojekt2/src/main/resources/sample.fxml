@@ -913,8 +913,8 @@
                                     <graphic>
                                         <MenuButton fx:id="analysisPathMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%analysisPathMenuButton">
                                             <items>
-                                                <MenuItem fx:id="analysisShortestPath" mnemonicParsing="false" onAction="#shortestpath" text="%analysisShortestPath" />
-                                                <MenuItem fx:id="analysisAllPaths" mnemonicParsing="false" onAction="#allpaths" text="%analysisAllPaths" />
+                                                <MenuItem fx:id="analysisShortestPath" mnemonicParsing="false" onAction="#shortestPath" text="%analysisShortestPath" />
+                                                <MenuItem fx:id="analysisAllPaths" mnemonicParsing="false" onAction="#allPaths" text="%analysisAllPaths" />
                                             </items>
                                             <padding>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />

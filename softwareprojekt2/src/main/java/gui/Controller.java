@@ -1854,6 +1854,31 @@ public class Controller implements ObserverSyndrom {
         initInfoText();
         iniSelectionButtons();
 
+        symptomCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>) data -> {
+            String name = "";
+            if (values.getGuiLanguage() == Language.GERMAN) {
+                name = data.getValue().getAnnotation().get(Language.GERMAN.name());
+            } else if (values.getGuiLanguage() == Language.ENGLISH) {
+                name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
+            }
+            return new ReadOnlyStringWrapper(name);
+        });
+
+        sphereCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>) data -> {
+            String name = "";
+            if (values.getGuiLanguage() == Language.GERMAN) {
+                name = data.getValue().getAnnotation().get(Language.GERMAN.name());
+            } else if (values.getGuiLanguage() == Language.ENGLISH) {
+                name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
+            }
+            return new ReadOnlyStringWrapper(name);
+        });
+
+        edgeCol.setCellValueFactory(data -> {
+            String name = data.getValue().toString();
+            return new ReadOnlyStringWrapper(name);
+        });
+
         //IMMER AM ENDE BITTEEEEEEEE
         updateUndoRedoButton();
         analysisMode(false);
@@ -2008,15 +2033,15 @@ public class Controller implements ObserverSyndrom {
 
     private void initLanguage() {
         loadLanguage = LoadLanguage.getInstance();
-        languageEnglish.selectedProperty().addListener(new LanguageListener(languageEnglish, this));
-        languageGerman.selectedProperty().addListener(new LanguageListener(languageGerman, this));
         languageEnglish.setSelected(false);
         languageGerman.setSelected(true);
+        languageEnglish.selectedProperty().addListener(new LanguageListener(languageEnglish, this));
+        languageGerman.selectedProperty().addListener(new LanguageListener(languageGerman, this));
     }
 
     private void initTree() {
         HelperFunctions helper = new HelperFunctions();
-        treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<TreeItem<Object>>) (observable, oldValue, newValue) -> {
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 helper.pickElement(newValue.getValue());
             }
@@ -2878,15 +2903,7 @@ public class Controller implements ObserverSyndrom {
         if(spheres == null){
             return;
         }
-        sphereCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>) data -> {
-            String name = "";
-            if (values.getGuiLanguage() == Language.GERMAN) {
-                name = data.getValue().getAnnotation().get(Language.GERMAN.name());
-            } else if (values.getGuiLanguage() == Language.ENGLISH) {
-                name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
-            }
-            return new ReadOnlyStringWrapper(name);
-        });
+
 
         // ==== MAX AMOUNT (TEXT FIELD)
         maxAmountSphereCol.setCellValueFactory(new PropertyValueFactory<>("lockedMaxAmountVertices"));
@@ -2971,15 +2988,7 @@ public class Controller implements ObserverSyndrom {
             return;
         }
 
-        symptomCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>) data -> {
-            String name = "";
-            if (values.getGuiLanguage() == Language.GERMAN) {
-                name = data.getValue().getAnnotation().get(Language.GERMAN.name());
-            } else if (values.getGuiLanguage() == Language.ENGLISH) {
-                name = data.getValue().getAnnotation().get(Language.ENGLISH.name());
-            }
-            return new ReadOnlyStringWrapper(name);
-        });
+
 
         setSymptomRadioButtonTableColumn(titleSymptomCol, VERTEX_TITLE);
         setSymptomRadioButtonTableColumn(positionSymptomCol, VERTEX_POSITION);
@@ -3036,10 +3045,6 @@ public class Controller implements ObserverSyndrom {
         if(edges == null){
             return;
         }
-        edgeCol.setCellValueFactory(data -> {
-            String name = data.getValue().toString();
-            return new ReadOnlyStringWrapper(name);
-        });
 
         setEdgeRadioButtonTableColumn(positionEdgeCol, EDGE_POSITION);
         setEdgeRadioButtonTableColumn(styleEdgeCol, EDGE_STYLE);
@@ -3180,23 +3185,15 @@ public class Controller implements ObserverSyndrom {
     private void updateUndoRedoButton() {
         if (history.isLast()) {
             redoButton.setDisable(true);
-            root.requestFocus();
         } else {
             redoButton.setDisable(false);
-            root.requestFocus();
+            redoButton.setFocusTraversable(false);
         }
-
-        if (history.getCurrent() < 0) {
-            undoButton.setDisable(true);
-            root.requestFocus();
-        } else {
-            undoButton.setDisable(false);
-            root.requestFocus();
-        }
+        undoButton.setDisable(history.getCurrent() < 0);
     }
 
     @FXML
-    public void shortestpath() {
+    public void shortestPath() {
         //Clean up Method needed
         if (analysisPathCheckBox.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
@@ -3207,7 +3204,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     @FXML
-    public void allpaths() {
+    public void allPaths() {
         //Clean up Method needed
         if (analysisPathCheckBox.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
