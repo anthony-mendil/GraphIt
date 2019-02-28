@@ -81,7 +81,7 @@ public class EdgeContextMenu {
 
         // Highlight
         MenuItem highlight = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_Highlight"));
-        HelperGui.setImage("/icons2/highlight.png", highlight);
+        HelperGui.setImage("/icons2/002-marker.png", highlight);
 
         if (edge.isHighlighted()) {
             highlight.setOnAction(event -> {
@@ -99,7 +99,7 @@ public class EdgeContextMenu {
 
         // isVisible
         MenuItem visible = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_VISIBLE"));
-        HelperGui.setImage("/icons2/eyelash2.png", visible);
+        HelperGui.setImage("/icons2/005-hide-2.png", visible);
 
         if (!edge.isVisible()) {
             visible.setOnAction(event -> {
