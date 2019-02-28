@@ -56,8 +56,10 @@ import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -72,10 +74,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -85,11 +84,13 @@ import log_management.LogToStringConverter;
 import log_management.dao.LogDao;
 import log_management.tables.Log;
 import lombok.Data;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
@@ -211,6 +212,14 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private CheckMenuItem languageEnglish;
+
+    @FXML
+    private Menu languagesGuiGraph;
+    @FXML
+    private MenuItem languageGuiGraphGerman;
+    @FXML
+    private MenuItem languageGuiGraphEnglish;
+
 
     /**
      * The menuitem under the menu "Help" for opening the documention.
@@ -1200,7 +1209,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void sphereAutoLayout() {
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if (!graph.getSpheres().isEmpty()) {
             LayoutSphereGraphLogAction layoutSphereGraphLogAction = new LayoutSphereGraphLogAction();
             history.execute(layoutSphereGraphLogAction);
@@ -1208,7 +1217,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     public void verticesAutoLayout() {
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) Syndrom.getInstance().getVv().getGraphLayout().getGraph();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if (!graph.getVertices().isEmpty()) {
             LayoutVerticesGraphLogAction layoutVerticesGraphLogAction = new LayoutVerticesGraphLogAction();
             history.execute(layoutVerticesGraphLogAction);
@@ -1268,6 +1277,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
@@ -1292,6 +1302,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
@@ -1336,7 +1347,7 @@ public class Controller implements ObserverSyndrom {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
         if (file != null) {
-            syndrom.setGraphName(file.getName());
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
@@ -1448,6 +1459,8 @@ public class Controller implements ObserverSyndrom {
         edgeArrowReinforced.setDisable(false);
         edgeArrowNeutral.setDisable(false);
         edgeArrowExtenuating.setDisable(false);
+        verticesAutoLayout.setDisable(false);
+        sphereAutoLayout.setDisable(false);
         updateUndoRedoButton();
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1461,7 +1474,7 @@ public class Controller implements ObserverSyndrom {
      * Creates an SwitchModeAction-object for changing to the analyse mode
      * and executes the action with action history.
      */
-    public void switchModiAnalysis() {
+    public void switchModeAnalysis() {
         values.setGraphButtonType(GraphButtonType.NONE);
         createOrEditMode(false, false);
         createOrEditMode(false, true);
@@ -1500,14 +1513,31 @@ public class Controller implements ObserverSyndrom {
         satellite.setContent(syndrom.getVv2());
         updateUndoRedoButton();
 
-        if (!Syndrom.getInstance().getTemplate().isReinforcedEdgesAllowed()) {
+        if (!syndrom.getTemplate().isReinforcedEdgesAllowed()) {
             edgeArrowReinforced.setDisable(true);
         }
-        if (!Syndrom.getInstance().getTemplate().isNeutralEdgesAllowed()) {
+        if (!syndrom.getTemplate().isNeutralEdgesAllowed()) {
             edgeArrowNeutral.setDisable(true);
         }
-        if (!Syndrom.getInstance().getTemplate().isExtenuatingEdgesAllowed()) {
+        if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
             edgeArrowExtenuating.setDisable(true);
+        }
+        if(!(syndrom == null)){
+            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+            if(!(graph == null)){
+                for(Sphere s : graph.getSpheres()){
+                    if(s.isLockedPosition()){
+                        sphereAutoLayout.setDisable(true);
+                        break;
+                    }
+                }
+            }
+            for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
+                if(v.isLockedPosition()){
+                    verticesAutoLayout.setDisable(true);
+                    break;
+                }
+            }
         }
 
         ResetVvAction resetAction = new ResetVvAction();
@@ -1795,7 +1825,7 @@ public class Controller implements ObserverSyndrom {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
 
-        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("New Graph", this) : new LoadGraphAction(this);
+        GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("UntitledGraph", this) : new LoadGraphAction(this);
 
 
         action.action();
@@ -1862,6 +1892,9 @@ public class Controller implements ObserverSyndrom {
         KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
         KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
         KeyCombination entf = new KeyCodeCombination(KeyCode.DELETE);
+        KeyCombination strgH = new KeyCodeCombination(KeyCode.H, KeyCombination.CONTROL_DOWN);
+        KeyCombination fOne = new KeyCodeCombination(KeyCode.F1);
+
 
         mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
             if (plus.match(event)) {
@@ -1890,11 +1923,11 @@ public class Controller implements ObserverSyndrom {
                 for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
                 }
-            } else if (one.match(event)) {
-                switchModeCreator();
             } else if (two.match(event)) {
-                switchModiAnalysis();
+                switchModeCreator();
             } else if (three.match(event)) {
+                switchModeAnalysis();
+            } else if (one.match(event)) {
                 switchModeEdit();
             } else if (esc.match(event)) {
                 syndrom.getVv().getPickedSphereState().clear();
@@ -1902,6 +1935,8 @@ public class Controller implements ObserverSyndrom {
                 syndrom.getVv().getPickedEdgeState().clear();
                 handSelector();
                 handSelector.setSelected(true);
+            } else if(strgH.match(event)||fOne.match(event)){
+                showUserGuide();
             }
         });
     }
@@ -1921,6 +1956,15 @@ public class Controller implements ObserverSyndrom {
         languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(languageGraphGerman, this));
         languageGraphEnglish.setSelected(false);
         languageGraphGerman.setSelected(true);
+    }
+
+    public void loadLanguageGuiGraphGerman(){
+        languageGerman.setSelected(true);
+        languageGraphGerman.setSelected(true);
+    }
+    public void loadLanguageGuiGraphEnglish(){
+        languageEnglish.setSelected(true);
+        languageGraphEnglish.setSelected(true);
     }
 
     public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
@@ -2557,6 +2601,34 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setDisable(disable);
     }
 
+    private void showUserGuide() {
+        FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/UserGuidePane.fxml"));
+        AnchorPane ap = null;
+        try {
+            ap = userGuideLoader.load();
+        } catch (IOException e) {
+            logger.error(e.toString());
+            return;
+        }
+        Stage userGuideStage = new Stage();
+        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
+        userGuideStage.setScene(new Scene(ap));
+        userGuideStage.setTitle("GraphIt Tutorial");
+        UserGuidePaneController ugpc = userGuideLoader.getController();
+        ugpc.initContent();
+
+        KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        userGuideStage.getScene().setOnKeyPressed((KeyEvent event) -> {
+                    if (esc.match(event)) {
+                        userGuideStage.hide();
+                    }
+                });
+        userGuideStage.setResizable(false);
+        userGuideStage.show();
+
+
+    }
+
     @SuppressWarnings("unused")
     private void optionExitWindow() {
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CLOSE"), ButtonBar.ButtonData.OK_DONE);
@@ -2566,7 +2638,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
@@ -2624,7 +2696,8 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
 
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
@@ -2650,7 +2723,7 @@ public class Controller implements ObserverSyndrom {
      */
     //@SuppressWarnings("unchecked")
     public void treeViewUpdate() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
 
@@ -2759,7 +2832,11 @@ public class Controller implements ObserverSyndrom {
 
 
     public void loadTables() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+
+        if (vv == null){
+            return ;
+        }
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
         Collection<Vertex> vertices = graph.getVertices();
@@ -2785,6 +2862,9 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadSpheresTable(List<Sphere> spheres) {
+        if(spheres == null){
+            return;
+        }
         sphereCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Sphere, Map<String, String>>, ObservableValue<String>>) data -> {
             String name = "";
             if (values.getGuiLanguage() == Language.GERMAN) {
@@ -2874,6 +2954,10 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadVerticesTable(Collection<Vertex> vertices) {
+        if(vertices == null){
+            return;
+        }
+
         symptomCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>) data -> {
             String name = "";
             if (values.getGuiLanguage() == Language.GERMAN) {
@@ -2936,6 +3020,9 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadEdgesTable(Collection<Edge> edges) {
+        if(edges == null){
+            return;
+        }
         edgeCol.setCellValueFactory(data -> {
             String name = data.getValue().toString();
             return new ReadOnlyStringWrapper(name);
@@ -3178,30 +3265,11 @@ public class Controller implements ObserverSyndrom {
 
     @Override
     public void updateGraph() {
-        Service<Void> service = new Service<Void>() {
-            @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>() {
-                    @Override
-                    protected Void call() throws Exception {
-                        final CountDownLatch latch = new CountDownLatch(1);
-                        Platform.runLater(() -> {
-                            try {
-                                treeViewUpdate();
-                                updateUndoRedoButton();
-                            } finally {
-                                loadTables();
-                                latch.countDown();
-                            }
-                        });
-                        latch.await();
-                        return null;
-                    }
-                };
-            }
-        };
-        service.start();
-
+        Platform.runLater(() -> {
+            treeViewUpdate();
+            updateUndoRedoButton();
+            loadTables();
+        });
     }
 
     @Override

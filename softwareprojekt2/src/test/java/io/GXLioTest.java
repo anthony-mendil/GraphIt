@@ -3,7 +3,6 @@ package io;
 import graph.graph.*;
 import gui.Values;
 import gui.properties.Language;
-import io.GXLio;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.freehep.graphicsbase.util.Assert;
@@ -1163,7 +1162,11 @@ public class GXLioTest {
         Assert.assertEquals(StrokeType.DASHED_WEIGHT, edges.get(7).getStroke());
     }
 
-
+    public void testColorDescription(){
+        java.awt.Color color = new Color(11, 22, 33, 100);
+        Assert.assertEquals("java.awt.Color[r=11,g=22,b=33,a=100]", gxlio.getPaintDescription(color));
+    }
+/*
     @Before
     public void prepare() {
         doc = new GXLDocument();
@@ -1267,9 +1270,10 @@ public class GXLioTest {
      *
      * @param color the color that need to be describted
      * @return the description of the color as a String
-     */
+     *
     private String getPaintDescription(Color color) {
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
     }
+    */
 }

@@ -207,6 +207,9 @@ public class LoadLanguage {
         c.getLanguageGraphGerman().setText(loadLanguagesKey("german"));
         c.getLanguageGraphEnglish().setText(loadLanguagesKey("english"));
         c.getLanguagesGraph().setText(loadLanguagesKey("languageGraph"));
+        c.getLanguagesGuiGraph().setText(loadLanguagesKey("languageGuiGraph"));
+        c.getLanguageGuiGraphGerman().setText(loadLanguagesKey("german"));
+        c.getLanguageGuiGraphEnglish().setText(loadLanguagesKey("english"));
     }
 
     public String loadLanguagesKey(String key) {

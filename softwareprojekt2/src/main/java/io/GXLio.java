@@ -109,7 +109,7 @@ public class GXLio {
 
     private void makeGraphElemt(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         switch (((GXLString) pElem.getAttr("TYPE").getValue()).getValue()) {
-            case "Sphäre":
+            case "Sphaere":
                 makeSphere(pSpheresWithVertices, pElem, pWithTemplate);
                 break;
             case "Node":
@@ -461,7 +461,7 @@ public class GXLio {
 
     private GXLNode createSphereNode(Sphere s, boolean withTemplate) {
         GXLNode sphere = new GXLNode(s.getId() + "");
-        sphere.setAttr("TYPE", new GXLString("Sphäre"));
+        sphere.setAttr("TYPE", new GXLString("Sphaere"));
         Color color = s.getColor();
         sphere.setAttr(FILL_PAINT, new GXLString(getPaintDescription(color)));
         sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
@@ -630,7 +630,7 @@ public class GXLio {
      * @param color the color that need to be describted
      * @return the description of the color as a String
      */
-    private String getPaintDescription(Color color) {
+    public String getPaintDescription(Color color) {
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
     }
@@ -688,14 +688,7 @@ public class GXLio {
      */
 
     public void importGXL(File pFile, boolean pImportWithRules) {
-        try (Scanner scanner = new Scanner(pFile)) {
-            String gxl = scanner.useDelimiter("\\A").next();
-            gxlToInstance(gxl, pImportWithRules);
-        } catch (FileNotFoundException e) {
-            logger.error(e.toString());
-        }
-
+        String gxl = FileHandler.FileToString(pFile);
+        gxlToInstance(gxl, pImportWithRules);
     }
-
-
 }

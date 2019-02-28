@@ -96,6 +96,10 @@ public class ActionHistory {
     }
 
     public boolean isLast() {
-        return actions[current + 1] == null;
+        if(current < MAX_ACTIONS - 1) {
+            return actions[current + 1] == null;
+        }else{
+            return false;
+        }
     }
 }

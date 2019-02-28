@@ -5,9 +5,7 @@ import log_management.DatabaseManager;
 import log_management.dao.LogDao;
 import org.apache.log4j.Logger;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
+import java.io.File;
 
 
 /**
@@ -70,12 +68,7 @@ public class OOFio {
     public void exportAsOOF(File pFile) {
         GXLio gxlio = new GXLio();
         String oof = createOOF(gxlio.gxlFromInstance(true), logDao.getAllString());
-        try (OutputStreamWriter writer =
-                     new OutputStreamWriter(new FileOutputStream(pFile), StandardCharsets.UTF_8)) {
-            writer.write(oof);
-        } catch (IOException e) {
-            logger.error(e.toString());
-        }
+        FileHandler.StringToFile(oof, pFile);
     }
 
     /**
@@ -84,12 +77,8 @@ public class OOFio {
      * @param pFile The file to import
      */
     public void importOOF(File pFile) {
-        String oof = "";
-        try (Scanner scanner = new Scanner(pFile)) {
-            oof = scanner.useDelimiter("\\A").next();
-        } catch (FileNotFoundException e) {
-            logger.error(e.toString());
-        }
+        String oof=FileHandler.FileToString(pFile);
+
         GXLio gxlio = new GXLio();
 
         gxlio.gxlToInstance(gxlFromOOF(oof), true);
