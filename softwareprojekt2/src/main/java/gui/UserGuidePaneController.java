@@ -9,11 +9,10 @@ import java.io.File;
 public class UserGuidePaneController {
     @FXML
     private WebView webview;
-    private WebEngine webEngine;
     private File htmlFile=new File("");
 
     public void initContent(){
-        webEngine= webview.getEngine();
-        webEngine.loadContent("<html><h1>Hello</h1><h2>Hello</h2></html>");
+        WebEngine webEngine= webview.getEngine();
+        webEngine.load("http://www.informatik.uni-bremen.de/st/Lehre/swpII_1819/");
     }
 }
