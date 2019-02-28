@@ -1786,8 +1786,6 @@ public class Controller implements ObserverSyndrom {
         sphereBackgroundColour.setValue(convertFromAWT(Values.getInstance().getFillPaintSphere()));
         symptomBorder.setValue(convertFromAWT(Values.getInstance().getDrawPaintVertex()));
         symptomBackground.setValue(convertFromAWT(Values.getInstance().getFillPaintVertex()));
-        analysisMode(false);
-        createButton.setDisable(true);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         overViewAccordion.setExpandedPane(overViewTitledPane);
 
@@ -1846,7 +1844,13 @@ public class Controller implements ObserverSyndrom {
         initGraphLanguage();
         initInfoText();
         iniSelectionButtons();
+
+        //IMMER AM ENDE BITTEEEEEEEE
         updateUndoRedoButton();
+        analysisMode(false);
+        createOrEditMode(true, true);
+        createButton.setDisable(true);
+        switchModeEdit();
     }
 
     private void iniSelectionButtons() {
@@ -3266,9 +3270,12 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateGraph() {
         Platform.runLater(() -> {
-            treeViewUpdate();
-            updateUndoRedoButton();
-            loadTables();
+            try{
+                treeViewUpdate();
+                updateUndoRedoButton();
+                loadTables();
+            }catch (Exception e){
+            }
         });
     }
 
