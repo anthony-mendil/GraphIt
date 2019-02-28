@@ -230,6 +230,7 @@ public class HelperFunctions {
         Stage titleStage = new Stage();
         titleStage.setResizable(false);
         titleStage.setTitle(lang.loadLanguagesKey("CONTEXT_DIALOG_TITLE"));
+        titleStage.centerOnScreen();
 
         DialogPane dialogPane = null;
         try {

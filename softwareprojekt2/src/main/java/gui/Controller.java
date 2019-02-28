@@ -862,9 +862,12 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Label infoAnalysis;
     @FXML
+    private Label infoTemplate;
+    @FXML
     private Label infoZoom;
     private Tooltip tooltipInfoAnalysis = new Tooltip();
     private Tooltip tooltipInfoZoom = new Tooltip();
+    private Tooltip tooltipInfoTemplate = new Tooltip();
     @FXML
     private Text positionMouseX;
     @FXML
@@ -1285,6 +1288,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1310,6 +1314,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1331,6 +1336,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
@@ -1355,6 +1361,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1375,6 +1382,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ImportOofAction importOofAction = new ImportOofAction(file);
@@ -1398,6 +1406,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
@@ -1898,6 +1907,7 @@ public class Controller implements ObserverSyndrom {
     private void initInfoText() {
         infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
         infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
+        infoText(tooltipInfoTemplate, "INFO_TEMPLATE", infoTemplate, 15,-80);
     }
 
     private void infoText(Tooltip tooltip, String text, Label label, int x, int y) {
@@ -2662,6 +2672,7 @@ public class Controller implements ObserverSyndrom {
                     }
                 });
         userGuideStage.setResizable(false);
+        userGuideStage.centerOnScreen();
         userGuideStage.show();
 
 
@@ -2676,6 +2687,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.centerOnScreen();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
@@ -2734,6 +2746,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.centerOnScreen();
         stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
 
