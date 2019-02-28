@@ -1,9 +1,8 @@
-package test.io;
+package io;
 
 import graph.graph.*;
 import gui.Values;
 import gui.properties.Language;
-import io.GXLio;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.freehep.graphicsbase.util.Assert;
