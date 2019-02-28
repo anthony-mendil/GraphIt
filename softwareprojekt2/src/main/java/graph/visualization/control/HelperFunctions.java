@@ -247,12 +247,14 @@ public class HelperFunctions {
             if (button == TitlesDialogPaneController.SAVE_TYPE) {
                 EnumMap<Language, String> map = new EnumMap<>(Language.class);
                 String germanTitle = c.getGerman().getText();
+                germanTitle = germanTitle.replace(";", "");
                 if (germanTitle.length() > 100) {
                     germanTitle = germanTitle.substring(0, 99);
                 }
                 map.put(Language.GERMAN, germanTitle);
 
                 String englishTitle = c.getEnglish().getText();
+                englishTitle = englishTitle.replace(";", "");
                 if (englishTitle.length() > 100) {
                     englishTitle = englishTitle.substring(0, 99);
                 }
