@@ -19,12 +19,11 @@ public class AppPreloader extends Preloader {
         stage = pStage;
         stage.initStyle(StageStyle.UNDECORATED);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/preloader.fxml"));
-
         BorderPane p = fxmlLoader.load();
         pc = fxmlLoader.getController();
         Scene sz = new Scene(p);
         sz.getStylesheets().add("/gui_style.css");
-        stage.getIcons().add(new Image("/GraphItLogo.png"));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
         stage.setScene(sz);
         stage.setTitle("GraphIt");
         stage.show();
