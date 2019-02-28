@@ -1,13 +1,18 @@
-package test.io;
+package analysis;
 
+import actions.analyse.AnalysisGraphAllPathsAction;
+import actions.analyse.AnalysisGraphShortestPathAction;
+import actions.analyse.GraphDimensionAction;
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import gui.Values;
 import net.sourceforge.gxl.GXLDocument;
-import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class AnalysisTest {
@@ -17,14 +22,29 @@ public class AnalysisTest {
     private Values values = Values.getInstance();
 
     /**
-     * The logger sed to document the behaviour of this testclass.
-     */
-    private static Logger logger = Logger.getLogger(GXLioTest.class);
-
-    /**
      * The factory used to create elements of the graph. These are object of the type Sphere, Vertex and Edge.
      */
     private GraphObjectsFactory factory = new GraphObjectsFactory();
+
+    /**
+     * The list of vertices of the shortest path in the graph.
+     */
+    private ArrayList<Vertex> shortestPathVertices = new ArrayList<>();
+
+    /**
+     * The list of edges of the shortest path in the graph.
+     */
+    private ArrayList<Edge> shortestPathEdges = new ArrayList<>();
+
+    /**
+     * The start-vertex of the shortest path.
+     */
+    private Vertex vPathStart;
+
+    /**
+     * The sink-vertex of the shortest path.
+     */
+    private Vertex vPathSink;
 
     /**
      * The GXLDocument that is created from the file with the name below.
@@ -81,6 +101,7 @@ public class AnalysisTest {
         Sphere s2 = factory.createSphere(new Point2D.Double(660, 116));
         Sphere s3 = factory.createSphere(new Point2D.Double(1101, 116));
         Sphere s4 = factory.createSphere(new Point2D.Double(660, 470));
+
         Vertex v1 = factory.createVertex(new Point2D.Double(260, 241));
         Vertex v2 = factory.createVertex(new Point2D.Double(334, 159));
         Vertex v3 = factory.createVertex(new Point2D.Double(721, 157));
@@ -110,16 +131,16 @@ public class AnalysisTest {
         graph.getSpheres().add(s3);
         graph.getSpheres().add(s4);
 
-        graph.addVertexExisting(v1);
-        graph.addVertexExisting(v2);
-        graph.addVertexExisting(v3);
-        graph.addVertexExisting(v4);
-        graph.addVertexExisting(v5);
-        graph.addVertexExisting(v6);
-        graph.addVertexExisting(v7);
-        graph.addVertexExisting(v8);
-        graph.addVertexExisting(v9);
-        graph.addVertexExisting(v10);
+        s1.getVertices().add(v1);
+        s1.getVertices().add(v2);
+        s2.getVertices().add(v3);
+        s2.getVertices().add(v4);
+        s3.getVertices().add(v5);
+        s3.getVertices().add(v6);
+        s3.getVertices().add(v7);
+        s4.getVertices().add(v8);
+        s4.getVertices().add(v9);
+        s4.getVertices().add(v10);
 
         //relationChain
         graph.addEdgeExisting(e1, v1, v2);
@@ -137,11 +158,87 @@ public class AnalysisTest {
         graph.addEdgeExisting(e11, v8, v10);
         graph.addEdgeExisting(e12, v9, v10);
 
+        //initializing shortest path
+        shortestPathVertices.add(v1);
+        shortestPathVertices.add(v8);
+        shortestPathVertices.add(v10);
 
+        shortestPathEdges.add(e8);
+        shortestPathEdges.add(e11);
+
+        vPathStart = v1;
+        vPathSink = v10;
+
+        //initializing all paths
+
+        //allPathVertices.add(v1);
+
+
+    }
+
+    /**
+     * Tests the setup, if it differs from the implemented graph.
+     */
+    @Test
+    public void testSetup() {
+        setupSyndrom();
+        Assert.assertEquals(4, graph.getSpheres().size());
+        Assert.assertEquals(10, graph.getVertices().size());
+        Assert.assertEquals(12, graph.getEdges().size());
     }
 
     @Test
-    public void testSetup() {
-        //
+    public void testScopeIndex() {
+        setupSyndrom();
+        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+        graphDimensionAction.action();
+        Assert.assertEquals("22", graphDimensionAction.getScope());
     }
+
+    @Test
+    public void testNetworkIndex() {
+        setupSyndrom();
+        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+        graphDimensionAction.action();
+        Assert.assertEquals("2,4", graphDimensionAction.getNetworkIndex());
+    }
+
+    @Test
+    public void testStructureIndex() {
+        setupSyndrom();
+        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+        graphDimensionAction.action();
+        Assert.assertEquals("0,7", graphDimensionAction.getStructureIndex());
+    }
+
+    @Test
+    public void testShortestPath() {
+        setupSyndrom();
+        PickedState<Vertex> pickedState = syndrom.getVv().getPickedVertexState();
+        //Picking the vertices.
+        pickedState.pick(vPathStart, true);
+        pickedState.pick(vPathSink, true);
+        AnalysisGraphShortestPathAction analysisGraphShortestPathAction = new AnalysisGraphShortestPathAction();
+        analysisGraphShortestPathAction.action();
+        List<Vertex> verticesList = analysisGraphShortestPathAction.getVerticesAnalyse();
+        verticesList.sort(Comparator.comparingInt(Vertex::getId));
+        List<Edge> edgesList = analysisGraphShortestPathAction.getEdgesAnalyse();
+        edgesList.sort(Comparator.comparingInt(Edge::getId));
+        Assert.assertEquals(shortestPathVertices,verticesList);
+        Assert.assertEquals(shortestPathEdges, edgesList);
+    }
+
+    @Test
+    public void testAllPaths(){
+        setupSyndrom();
+        PickedState<Vertex> pickedState = syndrom.getVv().getPickedVertexState();
+        //Picking the vertices.
+        pickedState.pick(vPathStart, true);
+        pickedState.pick(vPathSink, true);
+        AnalysisGraphAllPathsAction analysisGraphAllPathsAction = new AnalysisGraphAllPathsAction();
+        analysisGraphAllPathsAction.action();
+        List<Vertex> verticesList = analysisGraphAllPathsAction.getVerticesAnalyse();
+    }
+
+
 }
