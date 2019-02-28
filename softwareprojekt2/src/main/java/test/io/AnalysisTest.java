@@ -1,9 +1,11 @@
 package test.io;
 
+import actions.analyse.GraphDimensionAction;
 import graph.graph.*;
 import gui.Values;
 import net.sourceforge.gxl.GXLDocument;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
@@ -74,7 +76,7 @@ public class AnalysisTest {
         syndrom.getVv().getGraphLayout().setGraph(graph);
     }
 
-    private void generateGraphElements(){
+    private void generateGraphElements() {
         values.setFontSizeSphere(10);
         values.setFillPaintSphere(new java.awt.Color(86, 151, 31, 183));
 
@@ -111,37 +113,52 @@ public class AnalysisTest {
         graph.getSpheres().add(s3);
         graph.getSpheres().add(s4);
 
-        graph.addVertexExisting(v1);
-        graph.addVertexExisting(v2);
-        graph.addVertexExisting(v3);
-        graph.addVertexExisting(v4);
-        graph.addVertexExisting(v5);
-        graph.addVertexExisting(v6);
-        graph.addVertexExisting(v7);
-        graph.addVertexExisting(v8);
-        graph.addVertexExisting(v9);
-        graph.addVertexExisting(v10);
+        s1.getVertices().add(v1);
+        s1.getVertices().add(v2);
+        s2.getVertices().add(v3);
+        s2.getVertices().add(v4);
+        s3.getVertices().add(v5);
+        s3.getVertices().add(v6);
+        s3.getVertices().add(v7);
+        s4.getVertices().add(v8);
+        s4.getVertices().add(v9);
+        s4.getVertices().add(v10);
 
         //relationChain
-        graph.addEdgeExisting(e1,v1,v2);
-        graph.addEdgeExisting(e2,v2,v3);
-        graph.addEdgeExisting(e3,v3,v4);
-        graph.addEdgeExisting(e4,v4,v5);
+        graph.addEdgeExisting(e1, v1, v2);
+        graph.addEdgeExisting(e2, v2, v3);
+        graph.addEdgeExisting(e3, v3, v4);
+        graph.addEdgeExisting(e4, v4, v5);
         //cycle
-        graph.addEdgeExisting(e5,v5,v6);
-        graph.addEdgeExisting(e6,v6,v7);
-        graph.addEdgeExisting(e7,v7,v5);
+        graph.addEdgeExisting(e5, v5, v6);
+        graph.addEdgeExisting(e6, v6, v7);
+        graph.addEdgeExisting(e7, v7, v5);
 
-        graph.addEdgeExisting(e8,v1,v8);
-        graph.addEdgeExisting(e9,v1,v9);
-        graph.addEdgeExisting(e10,v8,v9);
-        graph.addEdgeExisting(e11,v8,v10);
-        graph.addEdgeExisting(e12,v9,v10);
+        graph.addEdgeExisting(e8, v1, v8);
+        graph.addEdgeExisting(e9, v1, v9);
+        graph.addEdgeExisting(e10, v8, v9);
+        graph.addEdgeExisting(e11, v8, v10);
+        graph.addEdgeExisting(e12, v9, v10);
 
 
     }
+
+    /**
+     * Tests the setup, if it differs from the implemented graph.
+     */
     @Test
-    public void testSetup(){
-        
+    public void testSetup() {
+        setupSyndrom();
+        Assert.assertEquals(4, graph.getSpheres().size());
+        Assert.assertEquals(10, graph.getVertices().size());
+        Assert.assertEquals(12, graph.getEdges().size());
+    }
+
+    @Test
+    public void testScopeIndex(){
+        setupSyndrom();
+        GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
+        graphDimensionAction.action();
+        Assert.assertEquals("22", graphDimensionAction.getScope());
     }
 }
