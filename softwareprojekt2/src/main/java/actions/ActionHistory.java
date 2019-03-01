@@ -116,10 +116,7 @@ public class ActionHistory {
     public boolean isLast() {
         if (current < MAX_ACTIONS - 1) {
             return actions[current + 1] == null;
-        } else if (current == MAX_ACTIONS - 1) {
-            return true;
-        } else {
-            return false;
         }
-    }
+            return current == MAX_ACTIONS - 1;
+        }
 }

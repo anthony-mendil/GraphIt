@@ -1485,7 +1485,11 @@ public class Controller implements ObserverSyndrom {
         label.setOnMouseExited(event -> tooltip.hide());
     }
 
-    public void initButtonShortcuts() {
+    void initButtonShortcuts() {
+        mainStage.getScene().setOnKeyPressed(Controller.this::match);
+    }
+
+    private void match(KeyEvent event){
         KeyCombination plus = new KeyCodeCombination(KeyCode.PLUS);
         KeyCombination minus = new KeyCodeCombination(KeyCode.MINUS);
         KeyCombination strgZ = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
@@ -1498,60 +1502,48 @@ public class Controller implements ObserverSyndrom {
         KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
         KeyCombination entf = new KeyCodeCombination(KeyCode.DELETE);
 
+        if (plus.match(event)) {
+            sphereEnlarge();
+            vertexEnlarge();
+        } else if (minus.match(event)) {
+            sphereShrink();
+            vertexShrink();
+        } else if (strgZ.match(event)) {
+            executeUndo();
+        } else if (strgY.match(event)) {
+            executeRedo();
+        } else if (entf.match(event) || strgD.match(event)) {
 
-        mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
-            if (plus.match(event)) {
-                sphereEnlarge();
-                vertexEnlarge();
-            }
-            if (minus.match(event)) {
-                sphereShrink();
-                vertexShrink();
-            }
-            if (strgZ.match(event)) {
-                executeUndo();
-            }
-            if (strgY.match(event)) {
-                executeRedo();
-            }
-            if (entf.match(event) || strgD.match(event)) {
+            removeEdges();
+            syndrom.getVv().getPickedEdgeState().clear();
+            removeVertices();
+            syndrom.getVv().getPickedVertexState().clear();
+            removeSphere();
+            syndrom.getVv().getPickedSphereState().clear();
 
-                removeEdges();
-                syndrom.getVv().getPickedEdgeState().clear();
-                removeVertices();
-                syndrom.getVv().getPickedVertexState().clear();
-                removeSphere();
-                syndrom.getVv().getPickedSphereState().clear();
-
+        } else if (strgA.match(event)) {
+            for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
+                syndrom.getVv().getPickedVertexState().pick(v, true);
             }
-            if (strgA.match(event)) {
-                for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
-                    syndrom.getVv().getPickedVertexState().pick(v, true);
-                }
-                for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
-                    syndrom.getVv().getPickedEdgeState().pick(e, true);
-                }
+            for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
+                syndrom.getVv().getPickedEdgeState().pick(e, true);
             }
-            if (two.match(event)) {
-                switchModeCreator();
-            }
-            if (three.match(event)) {
-                switchModeAnalysis();
-            }
-            if (one.match(event)) {
-                switchModeEdit();
-            }
-            if (esc.match(event)) {
-                syndrom.getVv().getPickedSphereState().clear();
-                syndrom.getVv().getPickedVertexState().clear();
-                syndrom.getVv().getPickedEdgeState().clear();
-                handSelector();
-                handSelector.setSelected(true);
-            }
-        });
+        } else if (two.match(event)) {
+            switchModeCreator();
+        } else if (three.match(event)) {
+            switchModeAnalysis();
+        } else if (one.match(event)) {
+            switchModeEdit();
+        } else if (esc.match(event)) {
+            syndrom.getVv().getPickedSphereState().clear();
+            syndrom.getVv().getPickedVertexState().clear();
+            syndrom.getVv().getPickedEdgeState().clear();
+            handSelector();
+            handSelector.setSelected(true);
+        }
     }
 
-    public void setStage(Stage pStage) {
+    void setStage(Stage pStage) {
         mainStage = pStage;
 
         mainStage.setOnCloseRequest(event -> {

@@ -63,7 +63,7 @@ public class EditFontSizeVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            if(lockedVertices.size() > 0 && lockedVertices.size() == pickedState.getPicked().size()){
+            if(!lockedVertices.isEmpty() && lockedVertices.size() == pickedState.getPicked().size()){
                 actionHistory.removeLastEntry();
                 return;
             }
