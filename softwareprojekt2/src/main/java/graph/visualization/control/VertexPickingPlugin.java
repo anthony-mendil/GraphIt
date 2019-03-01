@@ -94,7 +94,6 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //SyndromVisualisationViewer sv = (SyndromVisualisationViewer) e.getSource();
         @SuppressWarnings("unchecked") SyndromVisualisationViewer<Vertex, Edge> vv = (SyndromVisualisationViewer<Vertex, Edge>) e.getSource();
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Point2D point = e.getPoint();
