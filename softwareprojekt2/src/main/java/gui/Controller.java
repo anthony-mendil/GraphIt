@@ -134,9 +134,11 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Menu importAs;
     @FXML
-    private MenuItem templateGXLImport;
+    private Menu exportAs;
     @FXML
-    private MenuItem templateGXLExport;
+    private MenuItem importTemplateGXL;
+    @FXML
+    private MenuItem exportTemplateGXL;
     @FXML
     private MenuItem closeApplication;
 
@@ -933,6 +935,30 @@ public class Controller implements ObserverSyndrom {
             exportGxlAction.action();
         }
     }
+    /**
+     * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
+     */
+    public void exportTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        if (syndrom.getGraphName() != null) {
+            fileChooser.setInitialFileName(syndrom.getGraphName() + ".gxl");
+        } else {
+            fileChooser.setInitialFileName("UntitledGraph.gxl");
+        }
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
+        if (file != null) {
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
+            lastUsedFilePath = file.getParentFile();
+            ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
+            exportTemplateGxlAction.action();
+        }
+    }
 
 
     /**
@@ -1053,6 +1079,28 @@ public class Controller implements ObserverSyndrom {
             satellite.setContent(syndrom.getVv2());
         }
     }
+    /**
+     * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportTemplateGxlAction-object
+     * and executes the action with the action history.
+     */
+    public void importTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showOpenDialog(mainStage);
+        mainStage.centerOnScreen();
+        if (file != null) {
+            lastUsedFilePath = file.getParentFile();
+            ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
+            importTemplateGxlAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
+    }
 
     /**
      * Sets the Template values into the fields (usage: importing template)
@@ -1167,7 +1215,7 @@ public class Controller implements ObserverSyndrom {
         if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
             edgeArrowExtenuating.setDisable(true);
         }
-        if (syndrom != null) {
+
             SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
             if (graph != null) {
                 for (Sphere s : graph.getSpheres()) {
@@ -1183,7 +1231,7 @@ public class Controller implements ObserverSyndrom {
                     break;
                 }
             }
-        }
+
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1496,6 +1544,7 @@ public class Controller implements ObserverSyndrom {
         KeyCombination strgY = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
         KeyCombination strgD = new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN);
         KeyCombination strgA = new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN);
+        KeyCombination strgF = new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN);
         KeyCombination one = new KeyCodeCombination(KeyCode.DIGIT1);
         KeyCombination two = new KeyCodeCombination(KeyCode.DIGIT2);
         KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
@@ -1538,8 +1587,13 @@ public class Controller implements ObserverSyndrom {
             syndrom.getVv().getPickedSphereState().clear();
             syndrom.getVv().getPickedVertexState().clear();
             syndrom.getVv().getPickedEdgeState().clear();
+            regularExpressionBox.setSelected(false);
             handSelector();
+            handSelector.requestFocus();
             handSelector.setSelected(true);
+        } else if (strgF.match(event)){
+            regularExpressionBox.setSelected(true);
+            regularExpressionField.requestFocus();
         }
     }
 
@@ -1547,7 +1601,6 @@ public class Controller implements ObserverSyndrom {
         mainStage = pStage;
 
         mainStage.setOnCloseRequest(event -> {
-            rulesTemplate();
             event.consume();
             optionExitWindow();
         });
@@ -1654,46 +1707,37 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    ChangeListener<Number> changeZoom = new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            if (zoomSlider.isValueChanging()) {
-                int value = newValue.intValue();
-                int oldV = oldValue.intValue();
+    ChangeListener<Number> changeZoom =  (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+        if (zoomSlider.isValueChanging()) {
+            int value = newValue.intValue();
+            int oldV = oldValue.intValue();
 
-                SwingUtilities.invokeLater(() -> {
-                    if (value != 0 && oldV != value) {
-                        values.setScale(value);
-                        syndrom.scale(value);
-                    }
-                });
-            }
+            SwingUtilities.invokeLater(() -> {
+                if (value != 0 && oldV != value) {
+                    values.setScale(value);
+                    syndrom.scale(value);
+                }
+            });
         }
     };
 
-    ChangeListener<Number> widthListener = new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            if (canvas.getContent() != null) {
-                SwingUtilities.invokeLater(() -> {
-                    SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-                    vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
-                });
-            }
+    ChangeListener<Number> widthListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue)-> {
+        if (canvas.getContent() != null) {
+            SwingUtilities.invokeLater(() -> {
+                SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+                vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
+            });
         }
     };
 
-    ChangeListener<Number> heightListener = new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            if (canvas.getContent() != null) {
-                SwingUtilities.invokeLater(() -> {
-                    VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
-                    Dimension old = vv.getPreferredSize();
-                    old.setSize(old.getWidth(), newValue.intValue());
-                    vv.setPreferredSize(old);
-                });
-            }
+    ChangeListener<Number> heightListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+        if (canvas.getContent() != null) {
+            SwingUtilities.invokeLater(() -> {
+                VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+                Dimension old = vv.getPreferredSize();
+                old.setSize(old.getWidth(), newValue.intValue());
+                vv.setPreferredSize(old);
+            });
         }
     };
 
@@ -2000,7 +2044,9 @@ public class Controller implements ObserverSyndrom {
 
     }
 
+    @FXML
     private void optionExitWindow() {
+        rulesTemplate();
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CLOSE"), ButtonBar.ButtonData.OK_DONE);
         ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
 
@@ -2028,16 +2074,21 @@ public class Controller implements ObserverSyndrom {
         openDialogInfo(newFile);
     }
 
-    public void openInfoDialogPDF() {
-        openDialogInfo(exportPDF);
+    public void openInfoDialogOpenFile() {
+        openDialogInfo(openFile);
     }
+
+    public void openInfoDialogImportTemplateGXL() {
+        openDialogInfo(importTemplateGXL);
+    }
+
 
     public void openInfoDialogImportGXL() {
         openDialogInfo(importGXL);
     }
 
-    public void openInfoDialogOpenFile() {
-        openDialogInfo(openFile);
+    public void openInfoDialogPDF() {
+        openDialogInfo(exportPDF);
     }
 
     public void openInfoDialogPrint() {
@@ -2049,6 +2100,8 @@ public class Controller implements ObserverSyndrom {
         String cancel = "EXIT_WINDOW_CANCEL_PDF";
         String info = "";
         if (menuItem.getId().equals(importGXL.getId())) {
+            info = "INFO_DIALOG_IMPORT";
+        } else if (menuItem.getId().equals(importTemplateGXL.getId())) {
             info = "INFO_DIALOG_IMPORT";
         } else if (menuItem.getId().equals(openFile.getId())) {
             info = "INFO_DIALOG_OPEN";
@@ -2076,6 +2129,8 @@ public class Controller implements ObserverSyndrom {
             if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                 if (menuItem.getId().equals(importGXL.getId())) {
                     importGXL();
+                } else if (menuItem.getId().equals(importTemplateGXL.getId())) {
+                    importTemplateGXL();
                 } else if (menuItem.getId().equals(openFile.getId())) {
                     openFile();
                 } else if (menuItem.getId().equals(print.getId())) {

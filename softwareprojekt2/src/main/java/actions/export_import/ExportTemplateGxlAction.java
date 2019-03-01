@@ -11,7 +11,7 @@ import java.io.File;
 /**
  * Exports a GXL file with the current syndrom graph.
  */
-public class ExportGxlAction extends GraphAction {
+public class ExportTemplateGxlAction extends GraphAction {
 
     /**
      * The File the gxl get's written into
@@ -23,7 +23,7 @@ public class ExportGxlAction extends GraphAction {
      *
      * @param pFile The destination of the gxl-file
      */
-    public ExportGxlAction(File pFile) {
+    public ExportTemplateGxlAction(File pFile) {
         file = pFile;
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if (!graph.getSpheres().isEmpty()) {
@@ -37,7 +37,7 @@ public class ExportGxlAction extends GraphAction {
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
-        gxlio.exportGXL(file, false);
+        gxlio.exportGXL(file, true);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ExportGxlAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the gxl export
+     * Disables the redo-funktion for the templategxl export
      */
     @Override
     public void redo() {
