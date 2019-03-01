@@ -1946,8 +1946,6 @@ public class Controller implements ObserverSyndrom {
         KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
         KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
         KeyCombination entf = new KeyCodeCombination(KeyCode.DELETE);
-        KeyCombination strgH = new KeyCodeCombination(KeyCode.H, KeyCombination.CONTROL_DOWN);
-        KeyCombination fOne = new KeyCodeCombination(KeyCode.F1);
 
 
         mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
@@ -1989,8 +1987,6 @@ public class Controller implements ObserverSyndrom {
                 syndrom.getVv().getPickedEdgeState().clear();
                 handSelector();
                 handSelector.setSelected(true);
-            } else if (strgH.match(event) || fOne.match(event)) {
-                showUserGuide();
             }
         });
     }
@@ -2515,6 +2511,7 @@ public class Controller implements ObserverSyndrom {
         vBoxAnalysisOption.setDisable(disable);
     }
 
+    @FXML
     private void showUserGuide() {
         FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/UserGuidePane.fxml"));
         BorderPane bp;
