@@ -2157,33 +2157,6 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    private class ComboBoxFocusListener implements ChangeListener<Boolean> {
-        private final ComboBox<String> comboBox;
-
-        private ComboBoxFocusListener(ComboBox<String> pComboBox) {
-            this.comboBox = pComboBox;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-            if (newPropertyValue) {
-                comboBox.show();
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-                    currentSize = comboBox.getEditor().getText();
-                } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                    currentFont = comboBox.getEditor().getText();
-                }
-            } else {
-                if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-                    comboBox.getEditor().setText(currentSize);
-                } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                    comboBox.getEditor().setText(currentFont);
-                }
-            }
-        }
-    }
-
-
     private void loadMenuItem() {
         symptomCircle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
         symptomRectangle.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(sphereFormMenuButton));
