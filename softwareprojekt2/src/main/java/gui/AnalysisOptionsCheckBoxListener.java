@@ -14,13 +14,39 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
 
+/**
+ * Listens to the changes, which checkbox is selected and handles that only the successor and predecessor option
+ * can be selected at the same time. Also calls the actions accordingly to the selected checkboxes and their associated
+ * menubuttons.
+ */
 public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> {
-    private final MenuButton menuButton;
+    /**
+     * The checkbox that the listener is assigned to.
+     */
     private final CheckBox checkBox;
+    /**
+     * The associated menubutton to the checkbox.
+     */
+    private final MenuButton menuButton;
+    /**
+     * The checkbox for the analysis successor option.
+     */
     private final CheckBox analysisSuccessor;
+    /**
+     * The checkbox for the analysis predecessor option.
+     */
     private final CheckBox analysisPredecessor;
+    /**
+     * The checkbox for the analysis path options.
+     */
     private final CheckBox analysisPathCheckBox;
+    /**
+     * The checkbox for the general analysis options.
+     */
     private final CheckBox analysisOptions;
+    /**
+     * The language object for changing the descriptions of the gui elements accordingly to the current language.
+     */
     private final LoadLanguage currentLanguage;
 
     AnalysisOptionsCheckBoxListener(Controller pC, CheckBox pCheckBox, MenuButton pMenuButton) {
@@ -35,6 +61,15 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
         currentLanguage = LoadLanguage.getInstance();
     }
 
+    /**
+     * Gets called after the checkbox was selected or deselected.
+     * When called, it determines what checkbox it is and calls the associated actions accordingly.
+     * It also deselects every other analysis option.
+     *
+     * @param observable Is the checkbox selected or not.
+     * @param oldValue   Was it selected before or not.
+     * @param newValue   Is it selected now or not.
+     */
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (newValue) {
@@ -84,6 +119,10 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
         }
     }
 
+    /**
+     * Disables all other checkboxes, because only successor and predecessor can be selected at the same time in the
+     * analysis-mode.
+     */
     private void disableOtherCheckBoxes() {
         analysisSuccessor.setSelected(false);
         analysisPredecessor.setSelected(false);

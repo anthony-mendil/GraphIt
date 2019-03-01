@@ -9,21 +9,52 @@ import graph.graph.Syndrom;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
+import gui.properties.LoadLanguage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
+/**
+ * Listens to changes of the analysis checkboxes.
+ * If a checkbox is selected, the selected action of the associated menubutton will be called.
+ * The AnalysisCheckBoxListener functions only for the successor and predecessor analysis checkbox.
+ */
 public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
+    /**
+     * The checkbox that the listener is assigned to.
+     */
     private final CheckBox checkBox;
+    /**
+     * The textfield for the successor/predecessor option.
+     */
     private final TextField amountSymptomTextField;
+    /**
+     * The checkbox for the analysis successor option.
+     */
     private final CheckBox analysisSuccessor;
+    /**
+     * The checkbox for the analysis predecessor option.
+     */
     private final CheckBox analysisPredecessor;
+    /**
+     * The checkbox for the analysis path options.
+     */
     private final CheckBox analysisPathCheckBox;
+    /**
+     * The checkbox for the general analysis options.
+     */
     private final CheckBox analysisOptions;
+    /**
+     * The controller that contains most of the gui elements and functions.
+     */
+    private final Controller c;
+    /**
+     * The language object for changing the descriptions of the gui elements accordingly to the current language.
+     */
+    private LoadLanguage language;
 
     AnalysisCheckBoxListener(CheckBox pCheckBox, Controller pC) {
-        final Controller c;
         checkBox = pCheckBox;
         c = pC;
         amountSymptomTextField = c.getAmountSymptomTextField();
@@ -31,8 +62,18 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
         analysisSuccessor = c.getAnalysisSuccessor();
         analysisPathCheckBox = c.getAnalysisPathCheckBox();
         analysisOptions = c.getAnalysisOptions();
+        language = c.getLoadLanguage();
     }
 
+    /**
+     * Gets called after the checkbox was selected or deselected.
+     * When called, it checks which checkbox was selected and if the other is also selected.
+     * Accordingly which checkbox is selected, the associated action will be called.
+     *
+     * @param observable Is the checkbox selected.
+     * @param oldValue   Was it selected before or not.
+     * @param newValue   Is it selected now or not.
+     */
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (newValue) {
@@ -42,12 +83,8 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                 amountSymptomTextField.setDisable(false);
 
                 if (!amountSymptomTextField.getText().isEmpty()) {
-                    if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected()) {
-                        ResetVvAction resetAction = new ResetVvAction();
-                        resetAction.action();
-
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                        analysisGraphAction.action();
+                    if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected() && isAtLeastOnePicked()) {
+                        analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
                     } else if (checkBox.getId().equals("analysisPredecessor")) {
                         AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
                         analysisGraphNeighborsAction.action();
@@ -65,28 +102,28 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
                 amountSymptomTextField.setDisable(true);
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
-            } else if (!analysisSuccessor.isSelected() && analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty()) {
-                ResetVvAction resetAction = new ResetVvAction();
-                resetAction.action();
-
-                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                analysisGraphAction.action();
-            } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty()) {
-                ResetVvAction resetAction = new ResetVvAction();
-                resetAction.action();
-
-                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                analysisGraphAction.action();
-            } else if (!amountSymptomTextField.getText().isEmpty()) {
-                ResetVvAction resetAction = new ResetVvAction();
-                resetAction.action();
-
-                AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                analysisGraphNeighborsAction.action();
+            } else if (!analysisSuccessor.isSelected() && analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
+                analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR);
+            } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
+                analysisOption(AnalyseType.NEIGHBOUR_SUCCESSOR);
+            } else if (!amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
+                analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
             }
         }
     }
 
+    private void analysisOption(AnalyseType type) {
+        ResetVvAction resetAction = new ResetVvAction();
+        resetAction.action();
+
+        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(type, Integer.parseInt(amountSymptomTextField.getText()));
+        analysisGraphNeighborsAction.action();
+    }
+
+    /**
+     * Disables all other checkboxes, because only successor and predecessor can be selected at the same time in the
+     * analysis-mode.
+     */
     private void disableAllCheckBoxes() {
         analysisSuccessor.setSelected(false);
         analysisPredecessor.setSelected(false);
@@ -98,14 +135,16 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     }
 
     /**
-     * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
+     * It checks if at least one vertex is picked.
+     * If not, it will show an alert that at least one vertex has to be picked.
      */
     private boolean isAtLeastOnePicked() {
+        language = c.getLoadLanguage();
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         PickedState<Vertex> pickedState = vv.getPickedVertexState();
         if (pickedState.getPicked().isEmpty()) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Bitte zuerst mindestens einen Knoten markieren.", true, false);
+            helperFunctions.setActionText(language.loadLanguagesKey("ANALYSIS_ALERT"), true, false);
             return false;
         }
         return true;
