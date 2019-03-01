@@ -92,7 +92,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -1278,7 +1277,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportGXL() {
         FileChooser fileChooser = new FileChooser();
-        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
@@ -1304,7 +1303,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void exportPDF() {
         FileChooser fileChooser = new FileChooser();
-        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
@@ -1326,7 +1325,7 @@ public class Controller implements ObserverSyndrom {
 
     public void exportProtocol() {
         FileChooser fileChooser = new FileChooser();
-        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
@@ -1351,7 +1350,7 @@ public class Controller implements ObserverSyndrom {
     public void exportOOF() {
         rulesTemplate();
         FileChooser fileChooser = new FileChooser();
-        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
@@ -1377,7 +1376,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void openFile() {
         FileChooser fileChooser = new FileChooser();
-        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
@@ -1401,7 +1400,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void importGXL() {
         FileChooser fileChooser = new FileChooser();
-        if (lastUsedFilePath != null && Files.exists(lastUsedFilePath.toPath())) {
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
@@ -1952,14 +1951,18 @@ public class Controller implements ObserverSyndrom {
             if (plus.match(event)) {
                 sphereEnlarge();
                 vertexEnlarge();
-            } else if (minus.match(event)) {
+            }
+            if (minus.match(event)) {
                 sphereShrink();
                 vertexShrink();
-            } else if (strgZ.match(event)) {
+            }
+            if (strgZ.match(event)) {
                 executeUndo();
-            } else if (strgY.match(event)) {
+            }
+            if (strgY.match(event)) {
                 executeRedo();
-            } else if (entf.match(event) || strgD.match(event)) {
+            }
+            if (entf.match(event) || strgD.match(event)) {
 
                 removeEdges();
                 syndrom.getVv().getPickedEdgeState().clear();
@@ -1968,20 +1971,25 @@ public class Controller implements ObserverSyndrom {
                 removeSphere();
                 syndrom.getVv().getPickedSphereState().clear();
 
-            } else if (strgA.match(event)) {
+            }
+            if (strgA.match(event)) {
                 for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
                     syndrom.getVv().getPickedVertexState().pick(v, true);
                 }
                 for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
                     syndrom.getVv().getPickedEdgeState().pick(e, true);
                 }
-            } else if (two.match(event)) {
+            }
+            if (two.match(event)) {
                 switchModeCreator();
-            } else if (three.match(event)) {
+            }
+            if (three.match(event)) {
                 switchModeAnalysis();
-            } else if (one.match(event)) {
+            }
+            if (one.match(event)) {
                 switchModeEdit();
-            } else if (esc.match(event)) {
+            }
+            if (esc.match(event)) {
                 syndrom.getVv().getPickedSphereState().clear();
                 syndrom.getVv().getPickedVertexState().clear();
                 syndrom.getVv().getPickedEdgeState().clear();
@@ -2622,34 +2630,6 @@ public class Controller implements ObserverSyndrom {
         treeView.setShowRoot(false);
     }
 
-
-    /*
-     * Uses the provided swingnode to display the zoom window on it.
-     *
-     * @param swingNode The swingnode, that the fxml fileMenu provides.
-
-    private void createSwingZoomWindow(final SwingNode swingNode) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-            }
-        });
-    }
-    */
-
-    /*
-     * Uses the provided swingnode to display the graph canvas on it.
-     *
-     * @param swingNode The swingnode, that the fxml fileMenu provides.
-
-    private void createSwingCanvas(final SwingNode swingNode) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-            }
-        });
-    }
-    */
 
     public void createGraph() {
         //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
