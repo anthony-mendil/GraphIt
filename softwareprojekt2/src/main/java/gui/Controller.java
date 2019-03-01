@@ -134,6 +134,8 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Menu importAs;
     @FXML
+    private Menu exportAs;
+    @FXML
     private MenuItem importTemplateGXL;
     @FXML
     private MenuItem exportTemplateGXL;
