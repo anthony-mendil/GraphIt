@@ -1167,7 +1167,7 @@ public class Controller implements ObserverSyndrom {
         if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
             edgeArrowExtenuating.setDisable(true);
         }
-        if (syndrom != null) {
+
             SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
             if (graph != null) {
                 for (Sphere s : graph.getSpheres()) {
@@ -1183,7 +1183,7 @@ public class Controller implements ObserverSyndrom {
                     break;
                 }
             }
-        }
+
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1654,46 +1654,37 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    ChangeListener<Number> changeZoom = new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            if (zoomSlider.isValueChanging()) {
-                int value = newValue.intValue();
-                int oldV = oldValue.intValue();
+    ChangeListener<Number> changeZoom =  (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+        if (zoomSlider.isValueChanging()) {
+            int value = newValue.intValue();
+            int oldV = oldValue.intValue();
 
-                SwingUtilities.invokeLater(() -> {
-                    if (value != 0 && oldV != value) {
-                        values.setScale(value);
-                        syndrom.scale(value);
-                    }
-                });
-            }
+            SwingUtilities.invokeLater(() -> {
+                if (value != 0 && oldV != value) {
+                    values.setScale(value);
+                    syndrom.scale(value);
+                }
+            });
         }
     };
 
-    ChangeListener<Number> widthListener = new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            if (canvas.getContent() != null) {
-                SwingUtilities.invokeLater(() -> {
-                    SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-                    vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
-                });
-            }
+    ChangeListener<Number> widthListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue)-> {
+        if (canvas.getContent() != null) {
+            SwingUtilities.invokeLater(() -> {
+                SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+                vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
+            });
         }
     };
 
-    ChangeListener<Number> heightListener = new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            if (canvas.getContent() != null) {
-                SwingUtilities.invokeLater(() -> {
-                    VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
-                    Dimension old = vv.getPreferredSize();
-                    old.setSize(old.getWidth(), newValue.intValue());
-                    vv.setPreferredSize(old);
-                });
-            }
+    ChangeListener<Number> heightListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+        if (canvas.getContent() != null) {
+            SwingUtilities.invokeLater(() -> {
+                VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+                Dimension old = vv.getPreferredSize();
+                old.setSize(old.getWidth(), newValue.intValue());
+                vv.setPreferredSize(old);
+            });
         }
     };
 
