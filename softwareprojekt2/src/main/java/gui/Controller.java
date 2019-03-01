@@ -1933,10 +1933,8 @@ public class Controller implements ObserverSyndrom {
         label.setOnMouseExited(event -> tooltip.hide());
     }
 
-    public void initButtonShortcuts() {
-        mainStage.getScene().setOnKeyPressed((KeyEvent event) -> {
-            match(event);
-        });
+    void initButtonShortcuts() {
+        mainStage.getScene().setOnKeyPressed(Controller.this::match);
     }
 
     private void match(KeyEvent event){
@@ -1993,7 +1991,7 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    public void setStage(Stage pStage) {
+    void setStage(Stage pStage) {
         mainStage = pStage;
 
         mainStage.setOnCloseRequest(event -> {
