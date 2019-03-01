@@ -1047,10 +1047,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 			\item Die Pfeilspitze mit dem Fragezeichen stellt die neutrale Beziehung von Relationen im Syndromansatz dar
 		\end{itemize}
 		
-		
+				\newpage
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\newpage
-
 		\subsubsection{Graphelemente hervorheben}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. 
@@ -1071,6 +1069,9 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 					\item Um die Hervorhebung zu aktivieren / sichtbar zu machen den Button \textit{Hervorgehobene Elemente aktivieren} in der Menüleiste anklicken. Durch einen erneuten Klick auf diesen Button wird die Hervorhebung wieder deaktiviert. Dabei kann dieser \textit{Hervorgehobene Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
 					\item Es können mehrere Symptome und Relationen ausgewählt werden, die anschließend durch Klicken des \textit{Elemente hervorheben}-Button hervorgehoben werden, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden.
 		\end{itemize}
+		
+			\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Graphelemente zur Hervorhebung hinzufügen}
 				\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente hervorgehoben und eines noch nicht hervorgehoben.
@@ -1080,6 +1081,9 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\begin{itemize}
 					\item Die bereits hervorgehoben Elemente bleiben hervorgehoben.
 		\end{itemize}
+		
+			\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Graphelemente aus der Hervorhebung entfernen}
 			\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente hervorgehoben.
@@ -1100,9 +1104,69 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 					\item Die bereits hervorgehoben Elemente, die nicht vor Klicken des \textit{Hervorhebung von Elementen entfernen}-Buttons ausgewählt wurden, bleiben hervorgehoben.
 					\item Im Kontextmenü von hervorgehobenen Elementen wird der Option \textit{Hervorhebung}  ausgegraut angezeit, was verdeutlicht, dass dieses Element aktuell hervorgehoben ist und dass ein erneutes Klicken auf diese Schaltfläche die Hervorhebung aufhebt.
 		\end{itemize}
+
+	\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Graphelemente ausblenden/einblenden}
+				\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet.
+		\actions
+			\begin{enumerate}
+				\item In der Menüleiste den Button \textit{Ausgeblendete Elemente aktivieren} mit einem Links-Klick aktivieren.
+			\end{enumerate}
+		\hint
+		\begin{itemize}
+					\item Die als ausgeblendet eingestellten Elemente werden (visuell) ausgeblendet. 
+					\item Ist ein Symptom als ausgeblendet eingestellt und wird der \textit{Ausgeblendete Elemente aktivieren}-Button aktiviert, so werden auch die Relationen, die zu diesem Symptom hinführen und von diesem ausgehen ausgeblendet. Sie werden zusammen mit dem Symptom beim erneuten Klicken dieses Buttons wieder eingeblendet.
+					\item Durch erneutes Klicken des \textit{Ausgeblendete Elemente aktivieren}-Buttons wird die (visuelle) Ausblendung der Elemente aufgehoben. Die Elemente sind aber noch insofern im System gespeichert (und werden nicht aus diesem gelöscht), als dass sie durch erneutes Klicken des \textit{Ausgeblendete Elemente aktivieren}-Buttons wieder (visuell) sichtbar werden.
+		\end{itemize}
+		
+			\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Graphelemente Fadeout hinzufügen}
+	\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet. 
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item Das Symptom / die Relation, das / die ausgeblendet werden soll, mit einem Links-Klick auswählen. 
+			\item In der Menüleiste den Button \textit{Elemente ausblenden} klicken.
+		\end{enumerate}
+				Alternative 2:
+		\begin{enumerate}
+			\item Im Kontextmenü des Graphelements, das ausgeblendet werden soll, die Option \textit{Sichtbarkeit} mit einem Links-Klick auswählen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+					\item Es können lediglich Symptome und Relationen und somit keine Sphären ausgeblendet werden. 
+					\item Wird ein Symptom ausgeblendet, so auch die Relationen, die zu diesem Symptom führen und von diesem ausgehen ausgeblendet.
+					\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell bereits als ausgeblendet ist, passiert nichts.
+					\item Um die Ausblendung zu aktivieren / sichtbar zu machen den Button \textit{Ausgeblendete Elemente aktivieren} in der Menüleiste anklicken (siehe vorangegangenes Kapitel). Durch einen erneuten Klick auf diesen Button wird die Ausblendung wieder deaktiviert. Dabei kann dieser \textit{Ausgeblendete Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
+					\item Es können mehrere Symptome und Relationen ausgewählt werden, die anschließend durch Klicken des \textit{Elemente ausblenden}-Button ausgeblendet werden, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden.
+		\end{itemize}
+		
+			\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Graphelemente Fadeout entfernen}
+			\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente als ausgeblendet eingestellt.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+			\item Das Symptom / die Relation, das / die aktuell als ausgeblendet eingestellt ist und dessen / deren Ausblendung aufgehoben werden soll, mit einem Links-Klick auswählen. 
+			\item In der Menüleiste den Button \textit{Ausblendung von Elementen entfernen} klicken.
+		\end{enumerate}
+				Alternative 2:
+		\begin{enumerate}
+			\item Im Kontextmenü des Graphelements, das aktuell als ausgeblendet eingestellt ist und dessen Ausblendung aufgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klck auswählen.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+				\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell nicht ausgeblendet ist, passiert nichts.
+					\item Es können mehrere Symptome und Relationen ausgewählt werden, deren Ausblendung anschließend durch Klicken des \textit{Ausblendung von Elementen entfernen}-Buttons aufgehoben wird, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden, deren Ausblendung aufgehoben werden soll.
+					\item Die bereits als ausgeblendet eingestellten Elemente, die nicht vor Klicken des \textit{Ausblendung von Elementen entfernen}-Buttons ausgewählt wurden, bleiben als ausgeblendet eingestellt.
+					\item Im Kontextmenü von als ausgeblendet eingestellten Elementen wird die Option \textit{Sichtbarkeit} in blauer Schrift angezeigt, was verdeutlicht, dass dieses Element aktuell als ausgeblendet eingestellt ist und dass ein erneutes Klicken auf diese Schaltfläche die Ausblendung aufhebt.
+		\end{itemize}
 		
 		\subsubsection{Contextmenü}
 	
