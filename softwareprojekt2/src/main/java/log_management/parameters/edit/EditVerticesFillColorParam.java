@@ -20,22 +20,32 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesFillColorParam implements Param {
-
+    /**
+     * The old vertices.
+     */
+    @Getter
     private List<Vertex> oldVertices;
-
+    /**
+     * The old fill colors of the vertices.
+     */
     @Getter
     private List<Color> oldColors;
-
+    /**
+     * The new vertices.
+     */
+    @Getter
     private List<Vertex> newVertices;
-
+    /**
+     * The new fill colors of the vertices.
+     */
     @Getter
     private List<Color> newColors;
 
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pOldVertices The selected vertices containing their old color.
-     * @param pNewVertices The selected vertices containing their new color.
+     * @param pOldVertices The vertices and their old fill color.
+     * @param pNewVertices The vertices and their new fill color.
      */
     public EditVerticesFillColorParam(Map<Vertex, Color> pOldVertices, Map<Vertex, Color> pNewVertices) {
         oldVertices = new ArrayList<>();
@@ -75,6 +85,11 @@ public class EditVerticesFillColorParam implements Param {
         return information.toString();
     }
 
+    /**
+     * Gets the old vertices and their old fill colors.
+     *
+     * @return The old vertices and their old fill colors.
+     */
     public Map<Vertex, Color> getOldVertices() {
         Map<Vertex, Color> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
@@ -83,6 +98,11 @@ public class EditVerticesFillColorParam implements Param {
         return map;
     }
 
+    /**
+     * Gets the new vertices and their new fill colors.
+     *
+     * @return The new vertices and their new fill colors.
+     */
     public Map<Vertex, Color> getNewVertices() {
         Map<Vertex, Color> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {

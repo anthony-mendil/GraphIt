@@ -17,27 +17,25 @@ import lombok.Data;
 @Data
 @Singleton
 public class DatabaseManager implements ObserverSyndrom {
-
     /**
      * The log_management.dao GraphDao object for graphs, for accessing the database.
      */
     private GraphDao graphDao;
-
     /**
      * The log_management.dao LogDao object for logs, for accessing the database.
      */
     private LogDao logDao;
-
     /**
      * The GXLio object to get the GXL string.
      */
     private GXLio gxlIo;
-
     /**
      * The current mode.
      */
     private FunctionMode mode;
-
+    /**
+     * The instance of this class.
+     */
     private static DatabaseManager databaseManager;
 
     /**
@@ -50,6 +48,11 @@ public class DatabaseManager implements ObserverSyndrom {
         mode = Values.getInstance().getMode();
     }
 
+    /**
+     * Gets the instance of this class.
+     *
+     * @return The instance of thi class.
+     */
     public static DatabaseManager getInstance() {
         if (databaseManager == null) {
             databaseManager = new DatabaseManager();
@@ -69,12 +72,22 @@ public class DatabaseManager implements ObserverSyndrom {
         }
     }
 
+    /**
+     * Saves the graph in teh database (through dao).
+     *
+     * @param gxl The gxl of the graph.
+     */
     public void saveOofGraph(String gxl) {
         Graph graph = new Graph();
         graph.setGxl(gxl);
         graphDao.save(graph);
     }
 
+    /**
+     * Saves the logs in the database (through dao).
+     *
+     * @param oofLogs The logs of the graph.
+     */
     public void saveOofLogs(String oofLogs) {
         logDao.saveLogs(oofLogs);
     }
@@ -101,10 +114,20 @@ public class DatabaseManager implements ObserverSyndrom {
         graphDao.save(graph);
     }
 
+    /**
+     * Gets the gxl graph from the database (through dao).
+     *
+     * @return The gxl graph from the database as string.
+     */
     public String getGxlFromDatabase() {
         return graphDao.gxlFromDatabase();
     }
 
+    /**
+     * Determines if the graph table in the database is empty (through dao).
+     *
+     * @return True if the graph table in the database is empty.
+     */
     public boolean databaseEmpty() {
         return graphDao.isEmpty();
     }

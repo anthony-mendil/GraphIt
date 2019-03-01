@@ -6,15 +6,25 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Used to get a color name a color.
+ * Used to get a color name.
  */
 public class ColorNameCreator {
 
+    /**
+     * The color name creator.
+     */
     private static ColorNameCreator colorNameCreator;
 
-    private ColorNameCreator() {
-    }
+    /**
+     * Creates an instance of this class.
+     */
+    private ColorNameCreator() {}
 
+    /**
+     * Gets the instance of this class.
+     *
+     * @return The instance of this class.
+     */
     public static ColorNameCreator getInstance() {
         if (colorNameCreator != null) {
             return colorNameCreator;
@@ -179,7 +189,7 @@ public class ColorNameCreator {
      * @param green    The green value of the color.
      * @param blue     The blue value of the color.
      * @param language The language of the gui.
-     * @return
+     * @return The color name.
      */
     private String getColorNameRgb(int red, int green, int blue, Language language) {
         ArrayList<ColorNames> colors = createColorList();
@@ -207,6 +217,12 @@ public class ColorNameCreator {
         }
     }
 
+    /**
+     * Determines the name of a color depending on the language.
+     * @param color The color.
+     * @param language The language.
+     * @return The color name.
+     */
     public String getColorName(Color color, Language language) {
         return getColorNameRgb(color.getRed(), color.getGreen(),
                 color.getBlue(), language);
@@ -216,15 +232,36 @@ public class ColorNameCreator {
      * Used to lookup color name. Stores english and german name.
      */
     public class ColorNames {
-
+        /**
+         * The red value.
+         */
         private int red;
+        /**
+         * The green value.
+         */
         private int green;
+        /**
+         * The blue value.
+         */
         private int blue;
-
+        /**
+         * The german name.
+         */
         private String germanName;
-
+        /**
+         * The english name.
+         */
         private String englishName;
 
+        /**
+         * Creates an instance of this class.
+         *
+         * @param englishName The english name.
+         * @param germanName The german name.
+         * @param red The red value.
+         * @param green The green value.
+         * @param blue The blue value.
+         */
         public ColorNames(String englishName, String germanName, int red, int green, int blue) {
             this.red = red;
             this.green = green;
@@ -233,15 +270,33 @@ public class ColorNameCreator {
             this.englishName = englishName;
         }
 
+        /**
+         * Calculates the mean squared error.
+         *
+         * @param pixRed The red value.
+         * @param pixGreen The green value.
+         * @param pixBlue The blue value.
+         * @return The mean squared error.
+         */
         public int calculate(int pixRed, int pixGreen, int pixBlue) {
             return (((pixRed - red) * (pixRed - red) + (pixGreen - green) * (pixGreen - green) + (pixBlue - blue)
                     * (pixBlue - blue)) / 3);
         }
 
+        /**
+         * Gets the english name of the color.
+         *
+         * @return The english name.
+         */
         public String getEnglishName() {
             return englishName;
         }
 
+        /**
+         * Gets the german name of the color.
+         *
+         * @return The german name of the color.
+         */
         public String getGermanName() {
             return germanName;
         }

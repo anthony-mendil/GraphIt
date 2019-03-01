@@ -20,21 +20,32 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesFormParam implements Param {
+    /**
+     * The old vertices.
+     */
+    @Getter
     private List<Vertex> oldVertices;
-
+    /**
+     * The old shape types of the vertices.
+     */
     @Getter
     private List<VertexShapeType> oldShapeTypes;
-
+    /**
+     * The new vertices.
+     */
+    @Getter
     private List<Vertex> newVertices;
-
+    /**
+     * The new shape types of the vertices.
+     */
     @Getter
     private List<VertexShapeType> newShapeTypes;
 
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pOldVertices The vertices containing their old shape/annotation.
-     * @param pNewVertices The vertices containing their new shape/annotation.
+     * @param pOldVertices The vertices and their old shapes.
+     * @param pNewVertices The vertices and their new shapes.
      */
     public EditVerticesFormParam(Map<Vertex, VertexShapeType> pOldVertices, Map<Vertex, VertexShapeType> pNewVertices) {
         oldVertices = new ArrayList<>();
@@ -75,6 +86,11 @@ public class EditVerticesFormParam implements Param {
         return information.toString();
     }
 
+    /**
+     * Gets the old vertices and their old shape types.
+     *
+     * @return The old vertices and their old shape types.
+     */
     public Map<Vertex, VertexShapeType> getOldVertices() {
         Map<Vertex, VertexShapeType> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
@@ -83,6 +99,11 @@ public class EditVerticesFormParam implements Param {
         return map;
     }
 
+    /**
+     * Gets the new vertices and their new shape types.
+     *
+     * @return The new vertices and their new shape types.
+     */
     public Map<Vertex, VertexShapeType> getNewVertices() {
         Map<Vertex, VertexShapeType> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {

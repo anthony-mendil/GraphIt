@@ -1,17 +1,29 @@
 package log_management.parameters;
 
 import graph.graph.EdgeArrowType;
-import graph.graph.SizeChange;
 import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
 import gui.properties.Language;
 
+/**
+ * Creates names of the enums for pretty printing.
+ */
 public class EnumNameCreator {
 
+    /**
+     * Throws an exception if tried to create.
+     */
     private EnumNameCreator() {
         throw new IllegalStateException("utility class");
     }
 
+    /**
+     * Determines the pretty string for the arrow type depending on the language.
+     *
+     * @param edgeArrowType The arrow type.
+     * @param language The language.
+     * @return The pretty string for the arrow type.
+     */
     public static String edgeArrowTypeTranslator(EdgeArrowType edgeArrowType, Language language) {
         if (language == Language.ENGLISH) {
             switch (edgeArrowType) {
@@ -34,6 +46,13 @@ public class EnumNameCreator {
         }
     }
 
+    /**
+     * Determines the pretty string for the shape type depending on the language.
+     *
+     * @param vertexShapeType The shape type.
+     * @param language The language.
+     * @return The pretty string for the shape type.
+     */
     public static String vertexShapeTypeTranslator(VertexShapeType vertexShapeType, Language language) {
         if (language == Language.ENGLISH) {
             if (vertexShapeType == VertexShapeType.CIRCLE) {
@@ -50,6 +69,13 @@ public class EnumNameCreator {
         }
     }
 
+    /**
+     * Determines the pretty string for the stroke type depending on the language.
+     *
+     * @param strokeType The stroke type.
+     * @param language The language.
+     * @return The pretty string for the stroke type.
+     */
     public static String strokeTypeTranslator(StrokeType strokeType, Language language) {
         if (language == Language.ENGLISH) {
             switch (strokeType) {
@@ -80,22 +106,6 @@ public class EnumNameCreator {
                     return "Durchgezogen (dick)";
                 default:
                     return "Gestrichelt";
-            }
-        }
-    }
-
-    public static String sizeChangeTransaltor(SizeChange sizeChange, Language language) {
-        if (language == Language.ENGLISH) {
-            if (sizeChange == SizeChange.ENLARGE) {
-                return "Enlarged";
-            } else {
-                return "Shrunk";
-            }
-        } else {
-            if (sizeChange == SizeChange.ENLARGE) {
-                return "Vergrößert";
-            } else {
-                return "Verkleinert";
             }
         }
     }

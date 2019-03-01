@@ -60,21 +60,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -86,14 +88,13 @@ import log_management.tables.Log;
 import lombok.Data;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -862,9 +863,12 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Label infoAnalysis;
     @FXML
+    private Label infoTemplate;
+    @FXML
     private Label infoZoom;
     private Tooltip tooltipInfoAnalysis = new Tooltip();
     private Tooltip tooltipInfoZoom = new Tooltip();
+    private Tooltip tooltipInfoTemplate = new Tooltip();
     @FXML
     private Text positionMouseX;
     @FXML
@@ -1278,13 +1282,14 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName()+".gxl");
+            fileChooser.setInitialFileName(syndrom.getGraphName() + ".gxl");
         } else {
             fileChooser.setInitialFileName("UntitledGraph.gxl");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1303,13 +1308,14 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName()+".pdf");
+            fileChooser.setInitialFileName(syndrom.getGraphName() + ".pdf");
         } else {
             fileChooser.setInitialFileName("UntitledGraph.pdf");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1324,13 +1330,14 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName()+".txt");
+            fileChooser.setInitialFileName(syndrom.getGraphName() + ".txt");
         } else {
             fileChooser.setInitialFileName("UntitledGraph.txt");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
@@ -1348,13 +1355,14 @@ public class Controller implements ObserverSyndrom {
             fileChooser.setInitialDirectory(lastUsedFilePath);
         }
         if (syndrom.getGraphName() != null) {
-            fileChooser.setInitialFileName(syndrom.getGraphName()+".oof");
+            fileChooser.setInitialFileName(syndrom.getGraphName() + ".oof");
         } else {
             fileChooser.setInitialFileName("UntitledGraph.oof");
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1375,6 +1383,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ImportOofAction importOofAction = new ImportOofAction(file);
@@ -1398,6 +1407,7 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
+        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
@@ -1531,18 +1541,18 @@ public class Controller implements ObserverSyndrom {
         if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
             edgeArrowExtenuating.setDisable(true);
         }
-        if(!(syndrom == null)){
+        if (!(syndrom == null)) {
             SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-            if(!(graph == null)){
-                for(Sphere s : graph.getSpheres()){
-                    if(s.isLockedPosition()){
+            if (!(graph == null)) {
+                for (Sphere s : graph.getSpheres()) {
+                    if (s.isLockedPosition()) {
                         sphereAutoLayout.setDisable(true);
                         break;
                     }
                 }
             }
             for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
-                if(v.isLockedPosition()){
+                if (v.isLockedPosition()) {
                     verticesAutoLayout.setDisable(true);
                     break;
                 }
@@ -1826,8 +1836,13 @@ public class Controller implements ObserverSyndrom {
         edgeColour.setValue(convertFromAWT(Values.getInstance().getEdgePaint()));
         textBox.prefHeightProperty().bind(currentActionBox.prefHeightProperty());
 
-        OneTimeStackPaneListener onetime = new OneTimeStackPaneListener();
-        overviewStackPane.widthProperty().addListener(onetime);
+        overviewStackPane.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                overviewStackPane.setMinWidth(0);
+                overviewStackPane.widthProperty().removeListener(this);
+            }
+        });
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
@@ -1898,6 +1913,7 @@ public class Controller implements ObserverSyndrom {
     private void initInfoText() {
         infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
         infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
+        infoText(tooltipInfoTemplate, "INFO_TEMPLATE", infoTemplate, 15, -80);
     }
 
     private void infoText(Tooltip tooltip, String text, Label label, int x, int y) {
@@ -1973,7 +1989,7 @@ public class Controller implements ObserverSyndrom {
                 syndrom.getVv().getPickedEdgeState().clear();
                 handSelector();
                 handSelector.setSelected(true);
-            } else if(strgH.match(event)||fOne.match(event)){
+            } else if (strgH.match(event) || fOne.match(event)) {
                 showUserGuide();
             }
         });
@@ -1990,17 +2006,18 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void initGraphLanguage() {
-        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(languageGraphEnglish, this));
-        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(languageGraphGerman, this));
+        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(this,languageGraphEnglish));
+        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(this,languageGraphGerman));
         languageGraphEnglish.setSelected(false);
         languageGraphGerman.setSelected(true);
     }
 
-    public void loadLanguageGuiGraphGerman(){
+    public void loadLanguageGuiGraphGerman() {
         languageGerman.setSelected(true);
         languageGraphGerman.setSelected(true);
     }
-    public void loadLanguageGuiGraphEnglish(){
+
+    public void loadLanguageGuiGraphEnglish() {
         languageEnglish.setSelected(true);
         languageGraphEnglish.setSelected(true);
     }
@@ -2132,37 +2149,6 @@ public class Controller implements ObserverSyndrom {
         }
     };
 
-    private class OnlyNumberComboBoxListener implements ChangeListener<String> {
-        private final ComboBox<String> comboBox;
-
-        private OnlyNumberComboBoxListener(ComboBox<String> pComboBox) {
-            this.comboBox = pComboBox;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (!newValue.matches("\\d*"))
-                comboBox.getEditor().setText(oldValue);
-
-            if (comboBox.getEditor().getText().length() > 3)
-                comboBox.getEditor().setText(comboBox.getEditor().getText(0, 3));
-        }
-    }
-
-    private class OnlyLettersSpacesComboBoxListener implements ChangeListener<String> {
-        private final ComboBox<String> comboBox;
-
-        private OnlyLettersSpacesComboBoxListener(ComboBox<String> pComboBox) {
-            this.comboBox = pComboBox;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (!newValue.matches("[a-zA-Z ]*"))
-                comboBox.getEditor().setText(oldValue);
-        }
-    }
-
     public void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
@@ -2170,41 +2156,6 @@ public class Controller implements ObserverSyndrom {
             history.execute(editFontSizeSphereLogAction);
         }
     }
-
-    /*private class ComboBoxValueListener implements ChangeListener<String> {
-        private final ComboBox<String> comboBox;
-
-        private ComboBoxValueListener(ComboBox<String> pComboBox) {
-            this.comboBox = pComboBox;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
-                if (newValue.chars().allMatch(Character::isDigit) && !newValue.isEmpty()) {
-                    currentSize = newValue;
-                    editFontSizeSphere(Integer.parseInt(currentSize));
-                }
-            } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                if (fonts.contains(newValue)) {
-                    currentFont = newValue;
-                    editFontSphere(currentFont);
-                }
-            } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-                if (newValue.chars().allMatch(Character::isDigit) && !newValue.isEmpty()) {
-                    currentSize = newValue;
-                    editFontSizeVertices(Integer.parseInt(currentSize));
-                }
-            } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                if (fonts.contains(newValue)) {
-                    currentFont = newValue;
-                    editFontVertex(currentFont);
-                }
-            }
-            root.requestFocus();
-        }
-    }*/
-
 
     private class ComboBoxFocusListener implements ChangeListener<Boolean> {
         private final ComboBox<String> comboBox;
@@ -2249,9 +2200,9 @@ public class Controller implements ObserverSyndrom {
         filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
-        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.REINFORCED));
-        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.EXTENUATING));
-        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.NEUTRAL));
+        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.REINFORCED));
+        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.EXTENUATING));
+        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.NEUTRAL));
 
         for (MenuItem item : filterLogType.getItems()) {
             item.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterLogType));
@@ -2428,42 +2379,6 @@ public class Controller implements ObserverSyndrom {
         comboBox.setItems(sizeMenuItems);
     }
 
-    /**
-     * The event handler that replace the images visible in the menubutton to the latest selected image.
-     */
-    private class MenuItemHandler implements EventHandler<ActionEvent> {
-
-        private final MenuButton menuButton;
-
-        MenuItemHandler(MenuButton pMenuButton) {
-            menuButton = pMenuButton;
-        }
-
-        @Override
-        public void handle(ActionEvent evt) {
-            MenuItem mnItm = (MenuItem) evt.getSource();
-            ImageView newImage = (ImageView) mnItm.getGraphic();
-            ImageView currentImage = (ImageView) menuButton.getGraphic();
-            currentImage.setImage(newImage.getImage());
-        }
-    }
-
-    private class AnalysisItemHandler implements EventHandler<ActionEvent> {
-
-        private final MenuButton menuButton;
-
-        AnalysisItemHandler(MenuButton pMenuButton) {
-            menuButton = pMenuButton;
-        }
-
-        @Override
-        public void handle(ActionEvent evt) {
-            MenuItem mnItm = (MenuItem) evt.getSource();
-            String newText = mnItm.getText();
-            menuButton.setText(newText);
-        }
-    }
-
     private class LanguageListener implements ChangeListener<Boolean> {
         private CheckMenuItem checkMenuItem;
         private Controller controller;
@@ -2477,7 +2392,7 @@ public class Controller implements ObserverSyndrom {
             sortFilterLogs();
         }
 
-        LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
+        private LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
             this.checkMenuItem = checkMenuItem;
             this.controller = controller;
         }
@@ -2491,45 +2406,6 @@ public class Controller implements ObserverSyndrom {
                 languageGerman.setSelected(false);
                 changeLanguage(Language.ENGLISH);
             }
-        }
-    }
-
-    private class LanguageGraphListener implements ChangeListener<Boolean> {
-        private CheckMenuItem checkMenuItem;
-
-        private void changeLanguage(Language language) {
-            values.setGraphLanguage(language);
-            ChangeGraphLanguageAction changeGraphLanguageAction = new ChangeGraphLanguageAction();
-            changeGraphLanguageAction.action();
-        }
-
-        LanguageGraphListener(CheckMenuItem checkMenuItem, Controller controller) {
-            this.checkMenuItem = checkMenuItem;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if (checkMenuItem.getId().equals("languageGraphGerman") && newValue) {
-                languageGraphEnglish.setSelected(false);
-                changeLanguage(Language.GERMAN);
-            } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue) {
-                languageGraphGerman.setSelected(false);
-                changeLanguage(Language.ENGLISH);
-            }
-        }
-    }
-
-    private class FilterTypeHandler implements EventHandler<ActionEvent> {
-        private final EdgeArrowType type;
-
-        FilterTypeHandler(EdgeArrowType type) {
-            this.type = type;
-        }
-
-        @Override
-        public void handle(ActionEvent evt) {
-            FilterGraphAction filterGraphAction = new FilterGraphAction(type, treeViewArrowType.isSelected());
-            filterGraphAction.action();
         }
     }
 
@@ -2657,11 +2533,12 @@ public class Controller implements ObserverSyndrom {
 
         KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
         userGuideStage.getScene().setOnKeyPressed((KeyEvent event) -> {
-                    if (esc.match(event)) {
-                        userGuideStage.hide();
-                    }
-                });
+            if (esc.match(event)) {
+                userGuideStage.hide();
+            }
+        });
         userGuideStage.setResizable(false);
+        userGuideStage.centerOnScreen();
         userGuideStage.show();
 
 
@@ -2676,6 +2553,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.centerOnScreen();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
@@ -2734,6 +2612,7 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.centerOnScreen();
         stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
 
@@ -2857,23 +2736,11 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-
-    /*
-     * The event handler that provides the arguments, needed to use the actions after choosing a colour.
-
-    private class ColorPickerHandler implements EventHandler<Event> {
-        @Override
-        public void handle(Event evt) {
-        }
-    }
-     */
-
-
     public void loadTables() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
 
-        if (vv == null){
-            return ;
+        if (vv == null) {
+            return;
         }
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
@@ -2900,7 +2767,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadSpheresTable(List<Sphere> spheres) {
-        if(spheres == null){
+        if (spheres == null) {
             return;
         }
 
@@ -2984,10 +2851,9 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadVerticesTable(Collection<Vertex> vertices) {
-        if(vertices == null){
+        if (vertices == null) {
             return;
         }
-
 
 
         setSymptomRadioButtonTableColumn(titleSymptomCol, VERTEX_TITLE);
@@ -3042,7 +2908,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void loadEdgesTable(Collection<Edge> edges) {
-        if(edges == null){
+        if (edges == null) {
             return;
         }
 
@@ -3109,14 +2975,6 @@ public class Controller implements ObserverSyndrom {
         zoomMenuItem200.setOnAction(zoomHandler);
     }
 
-    private class OneTimeStackPaneListener implements ChangeListener<Number> {
-        @Override
-        public void changed(ObservableValue<? extends Number> arg0, Number oldPropertyValue, Number newPropertyValue) {
-            overviewStackPane.setMinWidth(0);
-            overviewStackPane.widthProperty().removeListener(this);
-        }
-    }
-
     private void loadTemplateTextFields() {
 
         maxSphereField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSphereField));
@@ -3127,22 +2985,6 @@ public class Controller implements ObserverSyndrom {
         maxSphereField.focusedProperty().addListener(focusTFListener);
         maxSymptomField.focusedProperty().addListener(focusTFListener);
         maxEdgesField.focusedProperty().addListener(focusTFListener);
-    }
-
-    private class OnlyNumberTextFieldListener implements ChangeListener<String> {
-        private TextField textField;
-
-        OnlyNumberTextFieldListener(TextField pTextField) {
-            textField = pTextField;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (!newValue.matches("\\d*"))
-                textField.setText(oldValue);
-
-
-        }
     }
 
     private class FocusTemplateTextFieldListener implements ChangeListener<Boolean> {
@@ -3183,12 +3025,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void updateUndoRedoButton() {
-        if (history.isLast()) {
-            redoButton.setDisable(true);
-        } else {
-            redoButton.setDisable(false);
-            redoButton.setFocusTraversable(false);
-        }
+        redoButton.setDisable(history.isLast());
         undoButton.setDisable(history.getCurrent() < 0);
     }
 
@@ -3276,11 +3113,11 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateGraph() {
         Platform.runLater(() -> {
-            try{
+            try {
                 treeViewUpdate();
                 updateUndoRedoButton();
                 loadTables();
-            }catch (Exception e){
+            } catch (Exception e) {
             }
         });
     }

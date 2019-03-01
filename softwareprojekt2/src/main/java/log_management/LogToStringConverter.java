@@ -25,14 +25,28 @@ import java.awt.geom.Point2D;
 import java.time.format.DateTimeFormatter;
 
 public class LogToStringConverter {
-
+    /**
+     * The incrementer for the log entries.
+     */
     private int incrementer = 1;
+    /**
+     * The language.
+     */
     private LoadLanguage lang = LoadLanguage.getInstance();
 
+    /**
+     * Resets the incrementer of the log entries.
+     */
     public void resetIncrementer() {
         incrementer = 1;
     }
 
+    /**
+     * Pretty printing of a log entry for the history.
+     *
+     * @param log The log entry.
+     * @return The pretty printed log entry.
+     */
     public String convert(Log log) {
         Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -55,6 +69,12 @@ public class LogToStringConverter {
         }
     }
 
+    /**
+     * Pretty printing of a log entry for exporting the protocol.
+     *
+     * @param log The log entry.
+     * @return The pretty printed log entry.
+     */
     public String convertForTextFile(Log log) {
         Language language = Values.getInstance().getGuiLanguage();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -77,6 +97,13 @@ public class LogToStringConverter {
         }
     }
 
+    /**
+     * Transforms the entry name of the log into a more readable
+     * string depending on the current language.
+     *
+     * @param logEntryName The entry name of the log entry.
+     * @return A pretty log entry name.
+     */
     private String convertLogEntryName(LogEntryName logEntryName) {
         switch (logEntryName) {
             case ACTIVATE_HIGHLIGHT:
@@ -150,6 +177,14 @@ public class LogToStringConverter {
         }
     }
 
+    /**
+     * Translates the json string into an specific param object and performs
+     * a pretty print on it.
+     *
+     * @param parameters The parameters.
+     * @param logEntryName The entry name of the log entry.
+     * @return The pretty parameter string.
+     */
     private String parametersPrint(String parameters, LogEntryName logEntryName) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Point2D.class, new Point2DSerializer());

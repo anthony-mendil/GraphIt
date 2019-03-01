@@ -19,17 +19,21 @@ import java.util.Map;
  */
 @Data
 public class LayoutVerticesParam implements Param {
-
+    /**
+     * The old vertices.
+     */
     @Getter
     private List<Vertex> oldVertices;
-
+    /**
+     * The old positions of the vertices.
+     */
     @Getter
     private List<Point2D> oldPositions;
 
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pOldVertices Map of vertices containing their old positions.
+     * @param pOldVertices Map of vertices and their old positions.
      */
     public LayoutVerticesParam(Map<Vertex, Point2D> pOldVertices) {
         oldVertices = new ArrayList<>();
@@ -51,6 +55,11 @@ public class LayoutVerticesParam implements Param {
         }
     }
 
+    /**
+     * Gets the old vertices and their old positions.
+     *
+     * @return The old vertices and their old positions.
+     */
     public Map<Vertex, Point2D> getOldVerticesMap() {
         Map<Vertex, Point2D> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {

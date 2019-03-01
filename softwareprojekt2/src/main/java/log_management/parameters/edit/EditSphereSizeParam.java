@@ -44,7 +44,9 @@ public class EditSphereSizeParam implements Param {
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pSphere The sphere containing its old size.
+     * @param pSphere  The sphere.
+     * @param pOldSize The old size.
+     * @param pNewSize The new size.
      */
     public EditSphereSizeParam(Sphere pSphere, Pair<Double, Double> pOldSize, Pair<Double, Double> pNewSize) {
         this.sphere = pSphere;
@@ -70,10 +72,20 @@ public class EditSphereSizeParam implements Param {
         return information;
     }
 
+    /**
+     * Gets the old size.
+     *
+     * @return The old size.
+     */
     public Pair<Double, Double> getOldSize() {
         return new Pair<>(oldWidth, oldHeight);
     }
 
+    /**
+     * Gets the new size.
+     *
+     * @return The new size.
+     */
     public Pair<Double, Double> getNewSize() {
         return new Pair<>(newWidth, newHeight);
     }

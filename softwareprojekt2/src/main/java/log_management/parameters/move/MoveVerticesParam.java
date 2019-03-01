@@ -21,21 +21,32 @@ import static log_management.parameters.move.MoveSphereParam.Y_IS;
  */
 @Data
 public class MoveVerticesParam implements Param {
+    /**
+     * The old vertices.
+     */
+    @Getter
     private List<Vertex> oldVertices;
-
+    /**
+     * The old positions of the vertices.
+     */
     @Getter
     private List<Point2D> oldPositions;
-
+    /**
+     * The new vertices.
+     */
+    @Getter
     private List<Vertex> newVertices;
-
+    /**
+     * The new positions of the vertices.
+     */
     @Getter
     private List<Point2D> newPositions;
 
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pOldVertices The set of old vertices and their position.
-     * @param pNewVertices The set of new vertices and their position.
+     * @param pOldVertices The old vertices and their old positions.
+     * @param pNewVertices The new vertices and their new position.
      */
     public MoveVerticesParam(Map<Vertex, Point2D> pOldVertices, Map<Vertex, Point2D> pNewVertices) {
         oldVertices = new ArrayList<>();
@@ -75,6 +86,11 @@ public class MoveVerticesParam implements Param {
         return information.toString();
     }
 
+    /**
+     * Gets the old vertices and their old positions.
+     *
+     * @return The old vertices and their old positions.
+     */
     public Map<Vertex, Point2D> getOldVertices() {
         Map<Vertex, Point2D> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
@@ -83,6 +99,11 @@ public class MoveVerticesParam implements Param {
         return map;
     }
 
+    /**
+     * Gets the new vertices and their new positions.
+     *
+     * @return The new vertices and their new positions.
+     */
     public Map<Vertex, Point2D> getNewVertices() {
         Map<Vertex, Point2D> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {
