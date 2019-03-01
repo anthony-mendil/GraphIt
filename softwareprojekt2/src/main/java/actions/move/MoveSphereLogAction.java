@@ -46,6 +46,7 @@ public class MoveSphereLogAction extends LogAction {
      *
      * @param newPos  The new position to put the sphere.
      * @param pSphere The sphere to move.
+     * @param oldPos  The old position of the sphere.
      */
     public MoveSphereLogAction(Sphere pSphere, Point2D oldPos, Point2D newPos) {
         super(LogEntryName.MOVE_SPHERE);
@@ -96,7 +97,12 @@ public class MoveSphereLogAction extends LogAction {
         moveSphereLogAction.action();
     }
 
-
+    /**
+     * Creats a parameter-object for this action.
+     * @param sphere
+     * @param oldPosition
+     * @param newPosition
+     */
     public void createParameter(Sphere sphere, Point2D oldPosition, Point2D newPosition) {
         parameters = new MoveSphereParam(sphere, oldPosition, newPosition);
     }

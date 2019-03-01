@@ -6,7 +6,7 @@ import actions.add.AddHighlightElementAction;
 import actions.edit.EditEdgesStrokeLogAction;
 import actions.edit.EditEdgesTypeLogAction;
 import actions.edit.color.EditEdgesColorLogAction;
-import actions.remove.RemoveAnchorPointsLogAction;
+import actions.remove.RemoveAnchorPointsAction;
 import actions.remove.RemoveEdgesLogAction;
 import actions.remove.RemoveFadeoutElementAction;
 import actions.remove.RemoveHighlightElementAction;
@@ -75,8 +75,8 @@ public class EdgeContextMenu {
         MenuItem unlink = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_EDGE_ARROW_REMOVE"));
         HelperGui.setImage("/icons2/unlink.png", unlink);
         unlink.setOnAction(event -> {
-            RemoveAnchorPointsLogAction removeAnchorPointsLogAction = new RemoveAnchorPointsLogAction();
-            history.execute(removeAnchorPointsLogAction);
+            RemoveAnchorPointsAction removeAnchorPointsAction = new RemoveAnchorPointsAction();
+            history.execute(removeAnchorPointsAction);
         });
 
         // Highlight

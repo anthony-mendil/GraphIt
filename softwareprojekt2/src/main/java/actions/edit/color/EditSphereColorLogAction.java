@@ -56,6 +56,8 @@ public class EditSphereColorLogAction extends LogAction {
                     sp.setColor(color);
                 } else {
                     helper.setActionText("EDIT_SPHERE_COLOR_ALERT", true, true);
+                    actionHistory.removeLastEntry();
+                    return;
                 }
             }
         } else {

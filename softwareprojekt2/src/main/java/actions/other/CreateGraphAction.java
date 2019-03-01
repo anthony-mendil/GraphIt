@@ -18,6 +18,7 @@ public class CreateGraphAction extends GraphAction {
      * Constructor in case the user creates a new graph.
      *
      * @param pGraphName The name of the graph.
+     * @param controller The unique controller bound to the syndrom.
      */
     public CreateGraphAction(String pGraphName, Controller controller) {
         super();

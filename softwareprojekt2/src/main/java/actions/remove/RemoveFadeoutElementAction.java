@@ -6,6 +6,9 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 
+/**
+ * Removes the fadeout of the picked elements.
+ */
 public class RemoveFadeoutElementAction extends GraphAction {
 
     @Override

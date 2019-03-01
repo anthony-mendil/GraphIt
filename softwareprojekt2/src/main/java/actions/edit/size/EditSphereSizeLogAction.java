@@ -11,6 +11,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.edit.EditSphereSizeParam;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -51,10 +52,12 @@ public class EditSphereSizeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         PickedState<Sphere> pickedState = vv.getPickedSphereState();
+        PickedState<Vertex> pickedState1 = vv.getPickedVertexState();
+        pickedState1.clear();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if (parameters == null) {
             for (Sphere sp : pickedState.getPicked()) {
-                if (!sp.isLockedStyle()) {
+                if (!sp.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     if (sizeChange == SizeChange.ENLARGE) {
                         double newHeight = sp.getHeight() + 10;
                         double newWidth = sp.getWidth() + 10;
@@ -67,8 +70,8 @@ public class EditSphereSizeLogAction extends LogAction {
                         for (Sphere s : graph.getSpheres()) {
                             Shape sphereShape = sphereShapeTransformer.transform(s);
                             if (!s.equals(sp) && sphereShape.intersects(newShape)) {
-                                enlarge = false;
-                                break;
+                                actionHistory.removeLastEntry();
+                                return;
                             }
                         }
                         if (enlarge) {
@@ -83,9 +86,9 @@ public class EditSphereSizeLogAction extends LogAction {
                         boolean add = true;
                         Shape sphereShape = sphereShapeTransformer.transform(sp);
                         for (Vertex v : sp.getVertices()) {
-                            if (!sphereShape.contains(v.getCoordinates())) {
-                                add = false;
-                                break;
+                            if (!sphereShape.contains(new Point2D.Double(v.getCoordinates().getX() + 10, v.getCoordinates().getY() + 10))) {
+                                actionHistory.removeLastEntry();
+                                return;
                             }
                         }
                         if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
@@ -95,10 +98,14 @@ public class EditSphereSizeLogAction extends LogAction {
                             Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
                             createParameter(sp, oldSize, newSize);
 
+                        }else{
+                            actionHistory.removeLastEntry();
                         }
                     }
-                } else {
+                }else {
                     helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true, false);
+                    actionHistory.removeLastEntry();
+                    return;
                 }
             }
         } else {

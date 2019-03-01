@@ -43,27 +43,8 @@ public class EditEdgesTypeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if (parameters == null) {
-            if (values.getMode() != FunctionMode.TEMPLATE) {
-                switch (type) {
-                    case REINFORCED:
-                        if (!template.isReinforcedEdgesAllowed()) {
-                            helper.setActionText("EDGES_TYPE_REINFORCED_ALERT", true, true);
-                            return;
-                        }
-                        break;
-                    case EXTENUATING:
-                        if (!template.isExtenuatingEdgesAllowed()) {
-                            helper.setActionText("EDGES_TYPE_EXTENUATING_ALERT", true, true);
-                            return;
-                        }
-                        break;
-                    case NEUTRAL:
-                        if (!template.isNeutralEdgesAllowed()) {
-                            helper.setActionText("EDGES_TYPE_NEURAL_ALERT", true, true);
-                            return;
-                        }
-                        break;
-                }
+            if (values.getMode() != FunctionMode.TEMPLATE || !isAllowedEdit(type)) {
+                    return;
             }
             List<Edge> lockedEdges = new LinkedList<>();
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
@@ -131,5 +112,34 @@ public class EditEdgesTypeLogAction extends LogAction {
         });
 
         parameters = new EditEdgesTypeParam(oldEdges, newEdges, starts, ends);
+    }
+
+    /**
+     * Checks whether the edit of the edge arrow-type is allowed or not.
+     * @param type The new type of the relations.
+     * @return  The indicator, if it is allowed.
+     */
+    private boolean isAllowedEdit(EdgeArrowType type){
+        switch (type) {
+            case REINFORCED:
+                if (!template.isReinforcedEdgesAllowed()) {
+                    helper.setActionText("EDGES_TYPE_REINFORCED_ALERT", true, true);
+                    return false;
+                }
+                break;
+            case EXTENUATING:
+                if (!template.isExtenuatingEdgesAllowed()) {
+                    helper.setActionText("EDGES_TYPE_EXTENUATING_ALERT", true, true);
+                    return false;
+                }
+                break;
+            case NEUTRAL:
+                if (!template.isNeutralEdgesAllowed()) {
+                    helper.setActionText("EDGES_TYPE_NEURAL_ALERT", true, true);
+                    return false;
+                }
+                break;
+        }
+        return true;
     }
 }
