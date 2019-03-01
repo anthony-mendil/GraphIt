@@ -209,6 +209,7 @@ public class LoadLanguage {
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
         c.getTooltipInfoAnalysis().setText(loadLanguagesKey("INFO_ANALYSIS"));
         c.getTooltipInfoZoom().setText(loadLanguagesKey("INFO_ZOOM"));
+        c.getTooltipInfoTemplate().setText(loadLanguagesKey("INFO_TEMPLATE"));
         c.getLanguageGraphGerman().setText(loadLanguagesKey(german));
         c.getLanguageGraphEnglish().setText(loadLanguagesKey(english));
         c.getLanguagesGraph().setText(loadLanguagesKey("languageGraph"));
