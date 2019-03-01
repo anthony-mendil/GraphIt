@@ -3,7 +3,6 @@ package io;
 import log_management.LogToStringConverter;
 import log_management.dao.LogDao;
 import log_management.tables.Log;
-import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.List;

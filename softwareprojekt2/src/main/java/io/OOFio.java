@@ -3,7 +3,6 @@ package io;
 import com.google.inject.Inject;
 import log_management.DatabaseManager;
 import log_management.dao.LogDao;
-import org.apache.log4j.Logger;
 
 import java.io.File;
 
