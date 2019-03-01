@@ -17,5 +17,4 @@ public class VertexFillPaintTransformer<V> implements Transformer<V, Paint> {
         Vertex vertex = (Vertex) v;
         return vertex.getFillColor();
     }
-
 }
