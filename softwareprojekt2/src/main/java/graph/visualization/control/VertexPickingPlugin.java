@@ -272,9 +272,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
                 Layout<Vertex, Edge> layout = vv.getGraphLayout();
                 for (Vertex vertex : pickedState.getPicked()) {
-                    for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(vertex)) {
-                        edge.setHasPriority(true);
-                    }
+                    setPriority(vv,vertex);
                     if (!vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
                         Point2D vp = layout.transform(vertex);
                         vp.setLocation(vertex.getCoordinates().getX() + dx, vertex.getCoordinates().getY() + dy);
@@ -376,6 +374,17 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
         if (pivotVertex.getCoordinates() != points.get(pivotVertex).getKey()) {
             MoveVerticesLogAction moveVerticesLogAction = new MoveVerticesLogAction(pickedState.getPicked(), points);
             history.execute(moveVerticesLogAction);
+        }
+    }
+
+    /**
+     * Sets the priority for the edge.
+     * @param vv     The visualisationViewer of the snydrom.
+     * @param vertex The targeted vertex.
+     */
+    private void setPriority(SyndromVisualisationViewer<Vertex, Edge> vv, Vertex vertex){
+        for (Edge edge : vv.getGraphLayout().getGraph().getIncidentEdges(vertex)) {
+            edge.setHasPriority(true);
         }
     }
 
