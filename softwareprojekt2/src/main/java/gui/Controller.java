@@ -59,14 +59,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -92,8 +92,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -107,71 +107,28 @@ public class Controller implements ObserverSyndrom {
     /* General Stuff */
 
     private Controller instance;
-
     private File lastUsedFilePath;
-
-    /**
-     * The swing node that displays the JUNG-graph and allows to interact with it.
-     */
     @FXML
     private SwingNode canvas;
-
     @FXML
     private SwingNode satellite;
-
-    /**
-     * The swing node that displays the zoom window.
-     */
     private SwingNode zoomWindow;
-
-    /**
-     * The tilted pane that contains the treeview object and filter options.
-     */
     private TitledPane tiltedPane;
-
-    /**
-     * The treeview displays the overview of the graph that also allows the user to edit the graph
-     * through it.
-     */
     @FXML
     private TreeView<Object> treeView;
-
-    /**
-     * The text that displays the current action.
-     */
     private Text actionText;
-
-    /**
-     * The slider that allows the user to zoom out or in.
-     */
     @FXML
     private Slider zoomSlider;
-
     @FXML
     private Menu fileMenu;
 
     /* Menu Bar */
-    /**
-     * The menuitem under the menu "File.." for creating a new fileMenu.
-     */
     @FXML
     private MenuItem newFile;
-
-    /**
-     * The menuitem under the menu "File.." for opening a fileMenu.
-     */
     @FXML
     private MenuItem openFile;
-
-    /**
-     * The menuitem under the menu "File.." for importing a GXL fileMenu.
-     */
     @FXML
     private MenuItem importGXL;
-
-    /**
-     * The menuitem under the menu "File.." for saving under a specified location.
-     */
     @FXML
     private MenuItem saveLocation;
     @FXML
@@ -183,17 +140,10 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private MenuItem closeApplication;
 
-    /**
-     * The menuitem under the menu "File.. &gt; Export as.." for exporting the fileMenu as pdf.
-     */
     @FXML
     private MenuItem exportPDF;
     @FXML
     private MenuItem exportLogs;
-
-    /**
-     * The menuitem under the menu "File.." for printing the fileMenu.
-     */
     @FXML
     private MenuItem print;
     @FXML
@@ -202,25 +152,16 @@ public class Controller implements ObserverSyndrom {
     private Menu languages;
     @FXML
     private Menu help;
-
     @FXML
     private Menu languagesGraph;
     @FXML
     private CheckMenuItem languageGraphGerman;
     @FXML
     private CheckMenuItem languageGraphEnglish;
-    /**
-     * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to german.
-     */
     @FXML
     private CheckMenuItem languageGerman;
-
-    /**
-     * The menuitem under the menu "Options &gt; Language" for changing the language of the gui to english.
-     */
     @FXML
     private CheckMenuItem languageEnglish;
-
     @FXML
     private Menu languagesGuiGraph;
     @FXML
@@ -229,246 +170,90 @@ public class Controller implements ObserverSyndrom {
     private MenuItem languageGuiGraphEnglish;
     @FXML
     private Menu advancedLanguageOptions;
-
-    /**
-     * The menuitem under the menu "Help" for opening the documention.
-     */
     @FXML
     private MenuItem documentation;
     @FXML
     private MenuItem about;
-
-    /**
-     * The button to undo an action.
-     */
     @FXML
     private Button undoButton;
-
-    /**
-     * The button to redo an action.
-     */
     @FXML
     private Button redoButton;
-
-    /**
-     * The separator between redo/undo and edit/analysis mode
-     */
     @FXML
     private Separator toolBarSeparator1;
-
-    /**
-     * The button to change the gui layout to create-mode
-     */
     @FXML
     private Button createButton;
-
-    /**
-     * The button to change the gui layout to analysis-mode
-     */
     @FXML
     private Button analysisButton;
-
-    /**
-     * The button to change the gui layout to edit-mode
-     */
     @FXML
     private Button editButton;
 
     /* Template Options */
-
-    /**
-     * The textfield for setting the template rule "maximum numbers of spheres in the graph".
-     */
     @FXML
     private JFXTextField maxSphereField;
-
-    /**
-     * The textfield for setting the template rule "maximum numbers of symptoms in the graph".
-     */
     @FXML
     private TextField maxSymptomField;
-
-    /**
-     * The textfield for setting the template rule "maximum numbers of edges in the graph".
-     */
     @FXML
     private TextField maxEdgesField;
-
-    /**
-     * The checkbox for setting the template rule "allowing reinforced edges".
-     */
     @FXML
     private CheckBox reinforcedBox;
-
-    /**
-     * The checkbox for setting the template rule "allowing extenuating edges".
-     */
     @FXML
     private CheckBox extenuatingBox;
-
-    /**
-     * The checkbox for setting the template rule "allowing neutral edges".
-     */
     @FXML
     private CheckBox neutralBox;
-
-    /**
-     * The textfield that sets the amount of predecessor/successor symptoms in the analysis/interpreter mode.
-     */
     @FXML
     private TextField amountSymptomTextField;
-
-    /**
-     * The menuitem under "analysis" that shows convergent and divergent branches.
-     */
     @FXML
     private MenuItem branches;
-
-    /**
-     * The menuitem under "analysis" that shows cycles in the graph.
-     */
     @FXML
     private MenuItem cycles;
-
-    /**
-     * The checkbox that allows to filter the overview after arrow types.
-     */
     @FXML
     private CheckBox treeViewArrowType;
-
-    /**
-     * The checkbox that allows to filter the overview after regular expressions.
-     */
     @FXML
     private CheckBox regularExpressionBox;
-
-    /**
-     * The textfield that gets the argument to filter the overview after regular expressions.
-     */
     @FXML
     private TextField regularExpressionField;
 
     /* Sphere */
-    /**
-     * The colorpicker for changing the background color of sphere.
-     */
     @FXML
     private ColorPicker sphereBackgroundColour;
-
-    /**
-     * The combobox for changing the font of the symptom text.
-     */
     @FXML
     private ComboBox<String> fontSphereComboBox;
-
-    /**
-     * The colorpicker for changing the background color for a symptom.
-     */
     @FXML
     private ColorPicker symptomBackground;
-
-    /**
-     * The colorpicker for changing the border color for a symptom.
-     */
     @FXML
     private ColorPicker symptomBorder;
-
-    /**
-     * The menubutton for changing the form of a symptom.
-     */
     @FXML
     private MenuButton sphereFormMenuButton;
-
-    /**
-     * The menuitem for changing the form of a symptom to a circle.
-     */
     @FXML
     private MenuItem symptomCircle;
-
-    /**
-     * The menuitem for changing the form of a symptom to a rectangle.
-     */
     @FXML
     private MenuItem symptomRectangle;
-
-    /**
-     * The combobox for changing the font of the symptom text.
-     */
     @FXML
     private ComboBox<String> fontSymptomComboBox;
-
-    /**
-     * The colorpicker for changing the color of edges.
-     */
     @FXML
     private ColorPicker edgeColour;
-
-    /**
-     * The menubutton for changing the stroke type of edges.
-     */
     @FXML
     private MenuButton edgeStrokeMenuButton;
-
-    /**
-     * The menuitem for changing the stroke type to the dashed stroke type.
-     */
     @FXML
     private MenuItem edgeStrokeDashed;
-
-    /**
-     * The menuitem for changing the stroke type to the dashed weighted stroke type.
-     */
     @FXML
     private MenuItem edgeStrokeDashedWeight;
-
-    /**
-     * The menuitem for changing the stroke type to the dotted stroke type.
-     */
     @FXML
     private MenuItem edgeStrokeDotted;
-
-    /**
-     * The menuitem for changing the stroke type to the dotted weighted stroke type.
-     */
     @FXML
     private MenuItem edgeStrokeDottedWeight;
-
-    /**
-     * The menuitem for changing the stroke type to the basic stroke type.
-     */
     @FXML
     private MenuItem edgeStrokeBasic;
-
-    /**
-     * The menuitem for changing the stroke type to the basic weighted stroke type.
-     */
     @FXML
     private MenuItem edgeStrokeBasicWeight;
-
-    /**
-     * The menubutton for changing the arrow type of edges.
-     */
     @FXML
     private MenuButton edgeArrowMenuButton;
-
-    /**
-     * The menuitem for changing the arrow type of edges to reinforced.
-     */
     @FXML
     private MenuItem edgeArrowReinforced;
-
-    /**
-     * The menuitem for changing the arrow type of edges to extenuating.
-     */
     @FXML
     private MenuItem edgeArrowExtenuating;
-
-    /**
-     * The menuitem for changing the arrow type of edges to neutral.
-     */
     @FXML
     private MenuItem edgeArrowNeutral;
-
     @FXML
     private Text currentActionText;
     /* Internal */
@@ -496,105 +281,43 @@ public class Controller implements ObserverSyndrom {
     private ActionHistory history;
 
     //Analysis GUI
-
-    /**
-     * The vbox that contains all graph information in the analysis mode.
-     */
     @FXML
     private VBox vBoxGraphStats;
-
-    /**
-     * A separator for the vboxes in analysis mode.
-     */
     @FXML
     private Separator separator3;
-
-    /**
-     * A separator for the vboxes in analysis mode.
-     */
     @FXML
     private Separator separator4;
-
-    /**
-     * The vbox that contains analysis options for symptoms.
-     */
     @FXML
     private VBox vBoxAnalysisSymptom;
-
-    /**
-     * The vbox that contains analysis options for the graph.
-     */
     @FXML
     private VBox vBoxAnalysisOption;
 
     //Edit GUI
-
-    /**
-     * A separator for the vboxes in edit mode.
-     */
     @FXML
     private Separator separator0;
-
-    /**
-     * A separator for the vboxes in edit mode.
-     */
     @FXML
     private Separator separator1;
-
-    /**
-     * A separator for the vboxes in edit mode.
-     */
     @FXML
     private Separator separator2;
-
-    /**
-     * The vbox that contains the select button in edit mode.
-     */
     @FXML
     private VBox vBoxSelect;
-
-    /**
-     * The vbox that contains sphere options in edit mode.
-     */
     @FXML
     private VBox vBoxEditSphere;
-
-    /**
-     * The vbox that ocntains symptom options in edit mode.
-     */
     @FXML
     private VBox vBoxEditSymptom;
-
-    /**
-     * The vbox that contains edge options in edit mode.
-     */
     @FXML
     private VBox vBoxEditEdge;
-
     @FXML
     private SwingNode swing;
-
     @FXML
     private ScrollPane paneSwingNode;
-
     @FXML
     private BorderPane root;
-
     private Stage mainStage;
-
     private String currentSize = "" + Values.DEFAULT_SIZE_VERTEX;
     private String currentFont = values.getFontSphere();
-
-
-    /**
-     * The combobox for changing the size of the sphere text.
-     */
     @FXML
     private ComboBox<String> sizeSphereComboBox;
-
-    /**
-     * The combobox for changing the size of the symptom text.
-     */
     @FXML
     private ComboBox<String> sizeSymptomComboBox;
 
@@ -732,9 +455,6 @@ public class Controller implements ObserverSyndrom {
     private TableColumn<Sphere, Boolean> styleSphereCol;
     @FXML
     private TableColumn<Sphere, Boolean> verticesSphereCol;
-    /**
-     * The tablecolumn for setting the template rule "maximum numbers of symptoms in the sphere".
-     */
     @FXML
     private TableColumn<Sphere, String> maxAmountSphereCol;
     @FXML
@@ -893,10 +613,7 @@ public class Controller implements ObserverSyndrom {
     private static final String GXL_FILE = "GXL files (*.gxl)";
     private static final String TIMES_NEW_ROMAN = "Times New Roman";
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
-
-
     private List<Button> selectionButtons;
-
     private ObservableList<Label> sizeLabels;
     private ObservableList<MenuItem> fontLabels;
     private ObservableList<String> fonts =
@@ -926,10 +643,10 @@ public class Controller implements ObserverSyndrom {
             );
 
     private static Logger logger = Logger.getLogger(Controller.class);
-
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
     private LogEntryName analysisLogEntryName = null;
     private LoadLanguage loadLanguage;
+
 
     public void filterEdgeTypeReinforced() {
         filterEdgeArrowType = EdgeArrowType.REINFORCED;
@@ -943,7 +660,6 @@ public class Controller implements ObserverSyndrom {
         filterEdgeArrowType = EdgeArrowType.NEUTRAL;
     }
 
-    @SuppressWarnings("unused")
     public Text getCurrentActionText() {
         return currentActionText;
     }
@@ -966,66 +682,6 @@ public class Controller implements ObserverSyndrom {
 
     public void handSelector() {
         values.setGraphButtonType(GraphButtonType.NONE);
-    }
-
-    /* ----------------ANALYSE---------------------- */
-
-    /**
-     * Creates an AnalysisGraphAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void analysisGraph() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates an EvaluationGraphAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void evaluationGraph() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates an FilterGraphAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void filterGraph() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates an GraphDimensionAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void graphDimension() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates an SelectionAnalysisGraphAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void selectionAnalysisGraph() {
-        throw new UnsupportedOperationException();
-    }
-
-    /* ----------------DEACTIVATE---------------------- */
-
-    /**
-     * Creates an DeactivateFadeoutAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void deactivateFadeout() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates an ResetVvAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void deactivateHighlight() {
-        throw new UnsupportedOperationException();
     }
 
     /* ----------------EDIT---------------------- */
@@ -1093,24 +749,6 @@ public class Controller implements ObserverSyndrom {
     public void edgeNeutral() {
         values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         editEdgesType(EdgeArrowType.NEUTRAL);
-    }
-
-    /* ......regex..... */
-
-    /**
-     * Creates an EditSphereAnnotationLogAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void editSphereAnnotation() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Creates an EditVertexAnnotationLogAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void editVertexAnnotation() {
-        throw new UnsupportedOperationException();
     }
 
     /* ......color..... */
@@ -1240,7 +878,6 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates an EditFontVerticesLogAction-object and executes the action with the action history.
      */
-    @SuppressWarnings("unused")
     public void editFontSizeVertices(int size) {
         values.setFontSizeVertex(size);
         if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
@@ -1451,16 +1088,6 @@ public class Controller implements ObserverSyndrom {
 
     }
 
-    /* ----------------LAYOUT---------------------- */
-
-    /**
-     * Creates an LayoutSphereGraphLogAction-object and executes the action with the action history.
-     */
-    @SuppressWarnings("unused")
-    public void layoutGraph() {
-        throw new UnsupportedOperationException();
-    }
-
     /* ----------------OTHER---------------------- */
 
     /**
@@ -1580,65 +1207,6 @@ public class Controller implements ObserverSyndrom {
         history.redo();
     }
 
-    /**
-     * Opens the documentation about the application.
-     */
-    @SuppressWarnings("unused")
-    public void openDocumentation() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Zooms in or out of the graph canvas while using the slider.
-     */
-    @SuppressWarnings("unused")
-    public void zoomGraphCanvas() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Shows the current used action.
-     */
-    @SuppressWarnings("unused")
-    public void currentAction() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Opens a dialog window after pressing "open fileMenu", "import gxl" or "create new graph", that asks if the user wants to
-     * export their current opened fileMenu.
-     */
-    @SuppressWarnings("unused")
-    private void openExportConfirmationDialogWindow() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Opens a dialog window after pressing "create new graph", that allows the user to name the
-     * graph.
-     */
-    @SuppressWarnings("unused")
-    private void openNewGraphTextInputDialogWindow() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Opens a fileMenu search window after pressing "open fileMenu" or "import gxl".
-     */
-    @SuppressWarnings("unused")
-    private void openSearchFileChooserWindow() {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Opens a directory window to save the fileMenu under the desired location after pressing "saving under..".
-     */
-    @SuppressWarnings("unused")
-    private void openSaveUnderChooserWindow() {
-        throw new UnsupportedOperationException();
-    }
-
-
     /* ----------------REMOVE---------------------- */
 
     /**
@@ -1646,7 +1214,6 @@ public class Controller implements ObserverSyndrom {
      */
     public void removeEdges() {
         if (!syndrom.getVv().getPickedEdgeState().getPicked().isEmpty()) {
-
             RemoveEdgesLogAction removeEdgesLogAction = new RemoveEdgesLogAction();
             history.execute(removeEdgesLogAction);
         }
@@ -1667,11 +1234,9 @@ public class Controller implements ObserverSyndrom {
      */
     public void removeVertices() {
         if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
-
             RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
             history.execute(removeVerticesLogAction);
         }
-
     }
 
     /* ----------------TEMPLATE---------------------- */
@@ -1732,14 +1297,6 @@ public class Controller implements ObserverSyndrom {
         return ret;
     }
 
-    /**
-     * Deletes all Rules that were set before.
-     */
-    @SuppressWarnings("unused")
-    public void deleteTemplateRules() {
-        throw new UnsupportedOperationException();
-    }
-
     public void highlight() {
         if (highlight.isSelected()) {
             ActivateHighlightAction activateHighlightAction = new ActivateHighlightAction();
@@ -1782,9 +1339,6 @@ public class Controller implements ObserverSyndrom {
 
     /* ----------------INTERNAL---------------------- */
 
-    /**
-     * Loads the swingnodes and sets the event handlers for menuitems and color pickers.
-     */
     public void initialize() {
         initFonts();
         rulesTemplate();
@@ -1796,7 +1350,6 @@ public class Controller implements ObserverSyndrom {
         values.setCurrentActionText(currentActionText);
         values.setPositionMouseX(positionMouseX);
         values.setPositionMouseY(positionMouseY);
-        //nina
 
         values.setMode(FunctionMode.TEMPLATE);
 
@@ -1893,7 +1446,6 @@ public class Controller implements ObserverSyndrom {
             return new ReadOnlyStringWrapper(name);
         });
 
-        //IMMER AM ENDE BITTEEEEEEEE
         updateUndoRedoButton();
         analysisMode(false);
         createOrEditMode(true, true);
@@ -2010,8 +1562,8 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void initGraphLanguage() {
-        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(this,languageGraphEnglish));
-        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(this,languageGraphGerman));
+        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(this, languageGraphEnglish));
+        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(this, languageGraphGerman));
         languageGraphEnglish.setSelected(false);
         languageGraphGerman.setSelected(true);
     }
@@ -2177,48 +1729,48 @@ public class Controller implements ObserverSyndrom {
         filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
-        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.REINFORCED));
-        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.EXTENUATING));
-        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.NEUTRAL));
+        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this, EdgeArrowType.REINFORCED));
+        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this, EdgeArrowType.EXTENUATING));
+        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this, EdgeArrowType.NEUTRAL));
 
         for (MenuItem item : filterLogType.getItems()) {
             item.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterLogType));
         }
 
-        logAddSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_SPHERE));
-        logAddVertex.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_VERTICES));
-        logAddEdge.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_EDGES));
-        logEditFontVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_FONT_VERTICES));
-        logDeactivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.DEACTIVATE_FADEOUT));
-        logEditSphereColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_COLOR));
-        logEditEdgesStroke.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_EDGES_STROKE));
-        logEditSphereSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_SIZE));
-        logEditFontSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_FONT_SPHERE));
-        logEditEdgesColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_EDGES_COLOR));
-        logRemoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_VERTICES));
-        logEditEdgesType.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_EDGES_TYPE));
-        logRemoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_SPHERE));
-        logMoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.MOVE_VERTICES));
-        logMoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.MOVE_SPHERE));
-        logActivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT));
-        logAddAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_ANCHOR_POINTS));
-        logActivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ACTIVATE_FADEOUT));
-        logActivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ACTIVATE_HIGHLIGHT));
-        logEditVerticesForm.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_FORM));
-        logRemoveEdges.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_EDGES));
-        logEditVerticesSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_SIZE));
-        logRemoveAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_ANCHOR_POINTS));
-        logEditSphereFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_FONT_SIZE));
-        logEditSphereAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_ANNOTATION));
-        logEditVertexAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTEX_ANNOTATION));
-        logEditVerticesFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_FONT_SIZE));
-        logEditVerticesDrawColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_DRAW_COLOR));
-        logEditVerticesFillColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_FILL_COLOR));
-        logDeactivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.DEACTIVATE_HIGHLIGHT));
-        logDeactivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT));
-        logEditSpheresLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERES_LAYOUT));
-        logEditVerticesLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_LAYOUT));
-        logAll.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,null));
+        logAddSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.ADD_SPHERE));
+        logAddVertex.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.ADD_VERTICES));
+        logAddEdge.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.ADD_EDGES));
+        logEditFontVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_FONT_VERTICES));
+        logDeactivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.DEACTIVATE_FADEOUT));
+        logEditSphereColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_SPHERE_COLOR));
+        logEditEdgesStroke.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_EDGES_STROKE));
+        logEditSphereSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_SPHERE_SIZE));
+        logEditFontSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_FONT_SPHERE));
+        logEditEdgesColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_EDGES_COLOR));
+        logRemoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.REMOVE_VERTICES));
+        logEditEdgesType.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_EDGES_TYPE));
+        logRemoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.REMOVE_SPHERE));
+        logMoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.MOVE_VERTICES));
+        logMoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.MOVE_SPHERE));
+        logActivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT));
+        logAddAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.ADD_ANCHOR_POINTS));
+        logActivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.ACTIVATE_FADEOUT));
+        logActivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.ACTIVATE_HIGHLIGHT));
+        logEditVerticesForm.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_VERTICES_FORM));
+        logRemoveEdges.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.REMOVE_EDGES));
+        logEditVerticesSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_VERTICES_SIZE));
+        logRemoveAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.REMOVE_ANCHOR_POINTS));
+        logEditSphereFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_SPHERE_FONT_SIZE));
+        logEditSphereAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_SPHERE_ANNOTATION));
+        logEditVertexAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_VERTEX_ANNOTATION));
+        logEditVerticesFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_VERTICES_FONT_SIZE));
+        logEditVerticesDrawColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_VERTICES_DRAW_COLOR));
+        logEditVerticesFillColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_VERTICES_FILL_COLOR));
+        logDeactivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.DEACTIVATE_HIGHLIGHT));
+        logDeactivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT));
+        logEditSpheresLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_SPHERES_LAYOUT));
+        logEditVerticesLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, LogEntryName.EDIT_VERTICES_LAYOUT));
+        logAll.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this, null));
     }
 
     public void loadFontComboBox(ComboBox<String> comboBox) {
@@ -2426,29 +1978,6 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    @SuppressWarnings("unused")
-    private void disableEditMode(Boolean disable) {
-        separator1.setDisable(disable);
-        separator2.setDisable(disable);
-        vBoxEditSphere.setDisable(disable);
-        vBoxEditSymptom.setDisable(disable);
-        vBoxEditEdge.setDisable(disable);
-        redoButton.setDisable(disable);
-        undoButton.setDisable(disable);
-        toolBarSeparator1.setDisable(disable);
-        zoomSlider.setDisable(disable);
-        overViewAccordion.setDisable(disable);
-    }
-
-    @SuppressWarnings("unused")
-    private void disableAnalysisMode(Boolean disable) {
-        vBoxGraphStats.setDisable(disable);
-        separator3.setDisable(disable);
-        separator4.setDisable(disable);
-        vBoxAnalysisSymptom.setDisable(disable);
-        vBoxAnalysisOption.setDisable(disable);
-    }
-
     @FXML
     private void showUserGuide() {
         FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/UserGuidePane.fxml"));
@@ -2479,7 +2008,6 @@ public class Controller implements ObserverSyndrom {
 
     }
 
-    @SuppressWarnings("unused")
     private void optionExitWindow() {
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CLOSE"), ButtonBar.ButtonData.OK_DONE);
         ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -2493,12 +2021,12 @@ public class Controller implements ObserverSyndrom {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                // ... user chose "One"
+                //user chose "One"
                 logger.debug("SCHLIEßEN");
                 System.exit(0);
                 Platform.exit();
             } else {
-                // ... user chose CANCEL or closed the dialog
+                //user chose CANCEL or closed the dialog
                 logger.debug("CANCEL");
             }
         }
@@ -2569,11 +2097,6 @@ public class Controller implements ObserverSyndrom {
         });
     }
 
-
-    /**
-     * SPRACHE ÄNDERN, AUCH IN SPHERE.TOSTRING(), VERTEX.TOSTRING() BEACHTEN
-     */
-    //@SuppressWarnings("unchecked")
     public void treeViewUpdate() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
@@ -2605,9 +2128,6 @@ public class Controller implements ObserverSyndrom {
 
 
     public void createGraph() {
-        //values.setDefaultLayoutSize(new Dimension(root.getCenter().layoutXProperty().intValue()-50, root.getCenter().layoutYProperty().intValue()-50));
-
-        //optionSaveWindow();
         CreateGraphAction action = new CreateGraphAction("UntitledGraph", this);
         action.action();
         canvas.setContent(syndrom.getVv());
@@ -2933,7 +2453,6 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     public void shortestPath() {
-        //Clean up Method needed
         if (analysisPathCheckBox.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
@@ -2944,7 +2463,6 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     public void allPaths() {
-        //Clean up Method needed
         if (analysisPathCheckBox.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
@@ -2955,7 +2473,6 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     public void chainOfEdges() {
-        //Clean up Method needed
         if (analysisOptions.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
@@ -2966,7 +2483,6 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     public void convergentBranches() {
-        //Clean up Method needed
         if (analysisOptions.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
@@ -2977,7 +2493,6 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     public void divergentBranches() {
-        //Clean up Method needed
         if (analysisOptions.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
@@ -2988,7 +2503,6 @@ public class Controller implements ObserverSyndrom {
 
     @FXML
     public void branches() {
-        //Clean up Method needed
         if (analysisOptions.isSelected()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
@@ -3015,9 +2529,9 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateGraph() {
         Platform.runLater(() -> {
-                treeViewUpdate();
-                updateUndoRedoButton();
-                loadTables();
+            treeViewUpdate();
+            updateUndoRedoButton();
+            loadTables();
 
         });
     }
