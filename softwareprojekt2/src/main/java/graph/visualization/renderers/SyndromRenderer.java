@@ -41,7 +41,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     public void render(RenderContext<V, E> renderContext, Layout<V, E> layout) {
         SyndromGraph<V, E> g = (SyndromGraph<V, E>) layout.getGraph();
         PickedState<Sphere> pickedState = Syndrom.getInstance().getVv().getPickedSphereState();
-        Collection<E> renderEdges = new ArrayList<>();
+
         Sphere sp = null;
         boolean overlapped = isOverlapped(pickedState, g);
 
@@ -52,26 +52,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
 
         // if a sphere overlaps another one all incoming and outgoing edges get detected
         if (overlapped) {
-            sp = pickedState.getPicked().iterator().next();
-            Collection<V> included = (Collection<V>) sp.getVertices();
-            Collection<E> incoming = new ArrayList<>();
-            Collection<E> outgoing = new ArrayList<>();
-            for (V v : included) {
-                if (!g.getInEdges(v).isEmpty()) {
-                    incoming.addAll(g.getInEdges(v));
-                }
-                outgoing.addAll(g.getOutEdges(v));
-            }
-
-            for (E e : layout.getGraph().getEdges()) {
-                if (!incoming.contains(e) && !outgoing.contains(e)) {
-                    renderEdges.add(e);
-                }
-            }
-
-            for (E e : renderEdges) {
-                renderEdge(e, renderContext, layout);
-            }
+            sp = ifOverlapping(pickedState, layout, g, renderContext);
         } else {
             // if not sphere overlaps another one all edges get rendered
             Collection<E> edges = layout.getGraph().getEdges();
@@ -99,6 +80,47 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         }
     }
 
+    /**
+     * renders all edge, which are not incoming/ outgoing the the overlapping sphere
+     * @param pickedState the current PickedState of the spheres
+     * @param layout the layout
+     * @param g the current graph
+     * @param renderContext the RenderContext
+     * @return the overlapping sphere
+     */
+    @SuppressWarnings("unchecked")
+    private Sphere ifOverlapping(PickedState<Sphere> pickedState, Layout<V, E> layout, SyndromGraph<V, E> g, RenderContext<V, E> renderContext){
+        Collection<E> renderEdges = new ArrayList<>();
+        Sphere sp = pickedState.getPicked().iterator().next();
+        Collection<V> included = (Collection<V>) sp.getVertices();
+        Collection<E> incoming = new ArrayList<>();
+        Collection<E> outgoing = new ArrayList<>();
+        for (V v : included) {
+            if (!g.getInEdges(v).isEmpty()) {
+                incoming.addAll(g.getInEdges(v));
+            }
+            outgoing.addAll(g.getOutEdges(v));
+        }
+
+        for (E e : layout.getGraph().getEdges()) {
+            if (!incoming.contains(e) && !outgoing.contains(e)) {
+                renderEdges.add(e);
+            }
+        }
+
+        for (E e : renderEdges) {
+            renderEdge(e, renderContext, layout);
+        }
+        return sp;
+    }
+
+    /**
+     * renders all objects and the overlapping sphere
+     * @param sp the overlapping sphere
+     * @param g the current graph
+     * @param renderContext the render context
+     * @param layout the layout
+     */
     @SuppressWarnings("unchecked")
     private void renderObjectsSphere(Sphere sp, SyndromGraph<V, E> g, RenderContext<V, E> renderContext, Layout<V, E> layout) {
         sphaerenRenderer.paintSphere(renderContext, sp);
@@ -120,6 +142,12 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         renderVertices(collection, renderContext, layout);
     }
 
+    /**
+     * renders the passed vertices
+     * @param vertices the vertices
+     * @param renderContext the render context
+     * @param layout the current graph layout
+     */
     private void renderVertices(Collection<V> vertices, RenderContext<V, E> renderContext, Layout<V, E> layout) {
         try {
             for (V v : vertices) {
@@ -137,6 +165,12 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         }
     }
 
+    /**
+     * renders the passed edge
+     * @param e the edge
+     * @param renderContext the render context
+     * @param layout the current graph layout
+     */
     private void renderEdge(E e, RenderContext<V, E> renderContext, Layout<V, E> layout) {
         try {
             renderEdge(
@@ -152,6 +186,11 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         }
     }
 
+    /**
+     * renders all spheres passed
+     * @param spheres the spheres
+     * @param renderContext the render context
+     */
     private void renderSpheres(ArrayList<Sphere> spheres, RenderContext<V, E> renderContext) {
         try {
             for (Sphere sphere : spheres) {
@@ -162,6 +201,12 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         }
     }
 
+    /**
+     * detects if the picked sphere is overlapping another pne
+     * @param pickedState the current picked state
+     * @param g the current graph
+     * @return true if the picked sphere is overlapping another one
+     */
     private boolean isOverlapped(PickedState<Sphere> pickedState, SyndromGraph<V, E> g) {
         boolean overlapped = false;
         for (Sphere s : pickedState.getPicked()) {
@@ -178,6 +223,10 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
         return overlapped;
     }
 
+    /**
+     * clears some vertex attributes before rendering
+     * @param g the graph 
+     */
     private void clearVertexForRender(SyndromGraph<V, E> g) {
         for (V v : g.getVertices()) {
             graph.graph.Vertex vertex = (graph.graph.Vertex) v;
