@@ -25,8 +25,6 @@ public class OOFio {
         // Can handle oof-import/-export now
     }
 
-    private static Logger logger = Logger.getLogger(OOFio.class);
-
     /**
      * Creates an OOF out of the GXL and the JSON.
      *
@@ -68,7 +66,7 @@ public class OOFio {
     public void exportAsOOF(File pFile) {
         GXLio gxlio = new GXLio();
         String oof = createOOF(gxlio.gxlFromInstance(true), logDao.getAllString());
-        FileHandler.StringToFile(oof, pFile);
+        FileHandler.stringToFile(oof, pFile);
     }
 
     /**
@@ -77,7 +75,7 @@ public class OOFio {
      * @param pFile The file to import
      */
     public void importOOF(File pFile) {
-        String oof=FileHandler.FileToString(pFile);
+        String oof=FileHandler.fileToString(pFile);
 
         GXLio gxlio = new GXLio();
 

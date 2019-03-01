@@ -16,6 +16,8 @@ public class LoadLanguage {
     private Locale de = new Locale("de");
     private Locale en = new Locale("en");
     private Language currentResource = Language.GERMAN;
+    private String german = "german";
+    private String english = "english";
 
     /**
      * Calling this method with the desired language will translate all gui descriptions
@@ -61,8 +63,8 @@ public class LoadLanguage {
         c.getCloseApplication().setText(loadLanguagesKey("closeApplication"));
         c.getOptions().setText(loadLanguagesKey("options"));
         c.getLanguages().setText(loadLanguagesKey("languageGui"));
-        c.getLanguageGerman().setText(loadLanguagesKey("german"));
-        c.getLanguageEnglish().setText(loadLanguagesKey("english"));
+        c.getLanguageGerman().setText(loadLanguagesKey(german));
+        c.getLanguageEnglish().setText(loadLanguagesKey(english));
         c.getHelp().setText(loadLanguagesKey("help"));
         c.getDocumentation().setText(loadLanguagesKey("documentation"));
         c.getAbout().setText(loadLanguagesKey("aboutUs"));
@@ -207,12 +209,12 @@ public class LoadLanguage {
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
         c.getTooltipInfoAnalysis().setText(loadLanguagesKey("INFO_ANALYSIS"));
         c.getTooltipInfoZoom().setText(loadLanguagesKey("INFO_ZOOM"));
-        c.getLanguageGraphGerman().setText(loadLanguagesKey("german"));
-        c.getLanguageGraphEnglish().setText(loadLanguagesKey("english"));
+        c.getLanguageGraphGerman().setText(loadLanguagesKey(german));
+        c.getLanguageGraphEnglish().setText(loadLanguagesKey(english));
         c.getLanguagesGraph().setText(loadLanguagesKey("languageGraph"));
         c.getLanguagesGuiGraph().setText(loadLanguagesKey("languageGuiGraph"));
-        c.getLanguageGuiGraphGerman().setText(loadLanguagesKey("german"));
-        c.getLanguageGuiGraphEnglish().setText(loadLanguagesKey("english"));
+        c.getLanguageGuiGraphGerman().setText(loadLanguagesKey(german));
+        c.getLanguageGuiGraphEnglish().setText(loadLanguagesKey(english));
         c.getAdvancedLanguageOptions().setText(loadLanguagesKey("advancedLanguageOptions"));
     }
 

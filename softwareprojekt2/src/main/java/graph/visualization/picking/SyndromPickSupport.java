@@ -60,8 +60,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
         try {
             SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
             List<Sphere> list = g.getSpheres();
-            for (Object aSet : list) {
-                Sphere s = (Sphere) aSet;
+            for (Sphere s : list) {
                 Shape rec = sphereShapeTransformer.transform(s);
                 rec = vv.getRenderContext().getMultiLayerTransformer().transform(Layer.LAYOUT, rec);
                 if (rec.contains(x, y)) {

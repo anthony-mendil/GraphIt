@@ -29,7 +29,6 @@ import actions.edit.size.EditVerticesSizeLogAction;
 import actions.export_import.*;
 import actions.layout.LayoutSphereGraphLogAction;
 import actions.layout.LayoutVerticesGraphLogAction;
-import actions.other.ChangeGraphLanguageAction;
 import actions.other.CreateGraphAction;
 import actions.other.LoadGraphAction;
 import actions.other.SwitchModeAction;
@@ -60,14 +59,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -88,13 +87,14 @@ import log_management.tables.Log;
 import lombok.Data;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -1541,9 +1541,9 @@ public class Controller implements ObserverSyndrom {
         if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
             edgeArrowExtenuating.setDisable(true);
         }
-        if (!(syndrom == null)) {
+        if (syndrom != null) {
             SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-            if (!(graph == null)) {
+            if (graph != null) {
                 for (Sphere s : graph.getSpheres()) {
                     if (s.isLockedPosition()) {
                         sphereAutoLayout.setDisable(true);
@@ -3113,12 +3113,10 @@ public class Controller implements ObserverSyndrom {
     @Override
     public void updateGraph() {
         Platform.runLater(() -> {
-            try {
                 treeViewUpdate();
                 updateUndoRedoButton();
                 loadTables();
-            } catch (Exception e) {
-            }
+
         });
     }
 

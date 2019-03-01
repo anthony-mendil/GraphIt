@@ -225,7 +225,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
 
     /**
      * clears some vertex attributes before rendering
-     * @param g the graph 
+     * @param g the graph
      */
     private void clearVertexForRender(SyndromGraph<V, E> g) {
         for (V v : g.getVertices()) {
