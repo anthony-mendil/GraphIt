@@ -23,7 +23,15 @@ public class ActionHistory {
      */
     @Getter
     private int current = -1;
+
+    /**
+     * The logger of the action history.
+     */
     private static Logger logger = Logger.getLogger(ActionHistory.class);
+
+    /**
+     * The action history itself.
+     */
     private static ActionHistory history;
 
     /**
@@ -44,6 +52,10 @@ public class ActionHistory {
         }
     }
 
+    /**
+     * Returning the unique instance of the action history.
+     * @return
+     */
     public static ActionHistory getInstance() {
         if (history == null) {
             history = new ActionHistory();
@@ -95,6 +107,10 @@ public class ActionHistory {
         current = -1;
     }
 
+    /**
+     * Checks, whether the action has reached the upper bound.
+     * @return
+     */
     public boolean isLast() {
         if(current < MAX_ACTIONS - 1) {
             return actions[current + 1] == null;

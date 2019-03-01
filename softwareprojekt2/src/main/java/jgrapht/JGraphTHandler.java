@@ -262,6 +262,24 @@ public class JGraphTHandler {
                 innerVertices.add(vert);
             }
         }
+        growPotentailChains(innerVertices, relationChains);
+        Set<Edge> edgesRelationChain = new HashSet<>();
+        for (List<Vertex> list : relationChains) {
+            for (int i = 0; i < list.size() - 1; i++) {
+                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
+            }
+            if (algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1) {
+                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
+            }
+        }
+        return new Pair<>(relationChains, edgesRelationChain);
+    }
+
+    /**
+     * Inner algorithm for the relation chain algorithm. Potential relation chains will be build
+     * and eventually added to the list of relation chains.
+     */
+    public void growPotentailChains(List<Vertex> innerVertices, List<List<Vertex>> relationChains) {
         while (!innerVertices.isEmpty()) {
             LinkedList<Vertex> potentialChain = new LinkedList<>();
             Vertex pivotVertex = innerVertices.get(0);
@@ -289,16 +307,7 @@ public class JGraphTHandler {
                 relationChains.add(potentialChain);
             }
         }
-        Set<Edge> edgesRelationChain = new HashSet<>();
-        for (List<Vertex> list : relationChains) {
-            for (int i = 0; i < list.size() - 1; i++) {
-                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
-            }
-            if (algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1) {
-                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
-            }
-        }
-        return new Pair<>(relationChains, edgesRelationChain);
     }
+
 
 }

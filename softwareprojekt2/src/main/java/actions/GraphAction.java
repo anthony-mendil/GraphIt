@@ -41,7 +41,7 @@ public abstract class GraphAction extends Action {
      * Sets layout, graph, pick support from the current syndrom presentation.
      */
     public GraphAction() {
-
+        //standard constructor for javaDoc.
     }
 
     @Override

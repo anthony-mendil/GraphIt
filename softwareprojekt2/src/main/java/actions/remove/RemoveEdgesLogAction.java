@@ -39,7 +39,12 @@ public class RemoveEdgesLogAction extends LogAction {
         parameters = pParam;
     }
 
-
+    /**
+     * Creates a new parameter object of this action.
+     * @param pEdges    The list of edges.
+     * @param pStart    The list of start-vertices.
+     * @param pSink     The list of sink-vertices.
+     */
     public void createParameter(List<Edge> pEdges, List<Vertex> pStart, List<Vertex> pSink) {
         parameters = new AddRemoveEdgesParam(pEdges, pStart, pSink);
     }
@@ -65,16 +70,10 @@ public class RemoveEdgesLogAction extends LogAction {
                     lockedEdges.add(e);
                 }
             }
-            if (!lockedEdges.isEmpty()) {
-                helper.setActionText("REMOVE_EDGES_ALERT", true, true);
-            }
-            if (lockedEdges.size() == pickedState.getPicked().size()) {
-                actionHistory.removeLastEntry();
+            if(checkTemplateRules(lockedEdges, pickedState)){
                 return;
             }
-            for (Edge e : parameterEdges) {
-                pickedState.pick(e, false);
-            }
+            pickedState.clear();
             createParameter(parameterEdges, parameterStartEdges, parameterSinkVertex);
         } else {
             List<Edge> edges = ((AddRemoveEdgesParam) parameters).getEdges();
@@ -95,5 +94,22 @@ public class RemoveEdgesLogAction extends LogAction {
     public void undo() {
         AddEdgesLogAction addEdgesLogAction = new AddEdgesLogAction((AddRemoveEdgesParam) parameters);
         addEdgesLogAction.action();
+    }
+
+    /**
+     * Checks whether the template rules allow this action.
+     * @param lockedEdges The list of locked vertices.
+     * @param pickedState The set of the picked elements
+     * @return  The indicator, if the action is allowed.
+     */
+    private boolean checkTemplateRules(List<Edge> lockedEdges, PickedState<Edge> pickedState){
+        if (!lockedEdges.isEmpty()) {
+            helper.setActionText("REMOVE_EDGES_ALERT", true, true);
+        }
+        if (lockedEdges.size() == pickedState.getPicked().size()) {
+            actionHistory.removeLastEntry();
+            return true;
+        }
+    return false;
     }
 }

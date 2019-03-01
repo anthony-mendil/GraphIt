@@ -241,6 +241,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
                         layout.setLocation(vertex, vp);
                         vertex.setCoordinates(vp);
                     }
+                    else{
+                        helper.setActionText(loadLanguage.loadLanguagesKey("VERTEX_PICKING_ALERT"), true, false);
+                    }
                 }
 
                 down = p;

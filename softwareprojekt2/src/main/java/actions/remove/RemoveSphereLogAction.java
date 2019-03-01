@@ -48,10 +48,7 @@ public class RemoveSphereLogAction extends LogAction {
             PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
             for (Sphere sp : pickedState.getPicked()) {
                 if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
-                    if (helper.verticesLocked(sp)) {
-                        HelperFunctions helper = new HelperFunctions();
-                        helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
-                        actionHistory.removeLastEntry();
+                    if(!allowedSphereRemove(sp)){
                         return;
                     }
                     pickedVertexState.clear();
@@ -93,7 +90,22 @@ public class RemoveSphereLogAction extends LogAction {
         addSphereLogAction.action();
     }
 
+    /**
+     * Creates a parameter object for this action.
+     * @param sphere                    The sphere.
+     * @param addRemoveVerticesParam    The vertices and their edges, that got removed too.
+     */
     public void createParameter(Sphere sphere, AddRemoveVerticesParam addRemoveVerticesParam) {
         parameters = new AddRemoveSphereParam(sphere, addRemoveVerticesParam);
+    }
+
+    private boolean allowedSphereRemove(Sphere sp){
+        if (helper.verticesLocked(sp)) {
+            HelperFunctions helper = new HelperFunctions();
+            helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
+            actionHistory.removeLastEntry();
+            return false;
+        }
+        return true;
     }
 }

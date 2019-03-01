@@ -71,6 +71,7 @@ public class EditVerticesSizeLogAction extends LogAction {
             }
             createParameter(oldVertices, newVertices);
         } else {
+
             Map<Vertex, Integer> oldVertices = ((EditVerticesSizeParam) parameters).getOldVertices();
             Map<Vertex, Integer> newVertices = ((EditVerticesSizeParam) parameters).getNewVertices();
             for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {

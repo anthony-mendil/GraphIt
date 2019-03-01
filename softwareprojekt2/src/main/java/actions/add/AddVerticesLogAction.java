@@ -69,18 +69,13 @@ public class AddVerticesLogAction extends LogAction {
             } else {
                 Map<Vertex, Sphere> vertices;
                 vertices = ((AddRemoveVerticesParam) parameters).getVertices();
-                List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
-                List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
-                List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getSinkVertexList();
 
                 for (Map.Entry<Vertex, Sphere> entry : vertices.entrySet()) {
                     Vertex vertex = entry.getKey();
                     graph.addVertexExisting(vertex);
                     vv.getGraphLayout().setLocation(vertex, vertex.getCoordinates());
                 }
-                for (int i = 0; i < edgeList.size(); i++) {
-                    graph.addEdgeExisting(edgeList.get(i), startVertices.get(i), sinkVertices.get(i));
-                }
+                addEdgesToGraph();
             }
             vv.repaint();
             syndrom.getVv2().repaint();
@@ -111,5 +106,19 @@ public class AddVerticesLogAction extends LogAction {
         HashMap<Vertex, Sphere> vertexSphereHashMap = new HashMap<>();
         vertexSphereHashMap.put(vertex, sphere);
         parameters = new AddRemoveVerticesParam(vertexSphereHashMap, new HashMap<>());
+    }
+
+    /**
+     * Adds all the removed edges back to the graph.
+     */
+    private void addEdgesToGraph(){
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
+        List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
+        List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getSinkVertexList();
+        for (int i = 0; i < edgeList.size(); i++) {
+            graph.addEdgeExisting(edgeList.get(i), startVertices.get(i), sinkVertices.get(i));
+        }
     }
 }
