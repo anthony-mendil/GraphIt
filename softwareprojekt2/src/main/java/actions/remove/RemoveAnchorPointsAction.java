@@ -8,15 +8,10 @@ import graph.visualization.SyndromVisualisationViewer;
 import javafx.util.Pair;
 
 /**
- * Removes anchor-points from the syndrom graph.
+ * Removes all anchor-points of every (picked) edge.
+ * Gets the picked edges through pick support.
  */
-public class RemoveAnchorPointsLogAction extends GraphAction {
-    /**
-     * Removes all anchor-points of every (picked) edge.
-     * Gets the picked edges through pick support.
-     */
-    public RemoveAnchorPointsLogAction() {
-    }
+public class RemoveAnchorPointsAction extends GraphAction {
 
     @Override
     public void action() {

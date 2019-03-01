@@ -8,8 +8,8 @@ import org.apache.commons.collections15.Transformer;
 import java.awt.*;
 
 /**
- * Defines a functor that transform a vertex into its fill color. The input vertex is left unchanged.
- * Its extracting the fill color of a vertex.
+ * Defines a functor that transform a vertex into its fade out color. The input vertex is left unchanged.
+ * Its extracting the fade out color of a vertex.
  *
  * @param <V> The vertex type.
  */
@@ -18,6 +18,12 @@ public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
     private final Transformer<V, Paint> transformer;
     private final FadeType fadeType;
 
+    /**
+     *
+     * @param animation
+     * @param transformer
+     * @param fadeType
+     */
     public VertexFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<V, Paint> transformer, FadeType fadeType) {
         this.animation = animation;
         this.transformer = transformer;

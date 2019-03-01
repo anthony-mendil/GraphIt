@@ -6,6 +6,9 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 
+/**
+ * Removes the highlight of the picked elements.
+ */
 public class RemoveHighlightElementAction extends GraphAction {
 
     @Override

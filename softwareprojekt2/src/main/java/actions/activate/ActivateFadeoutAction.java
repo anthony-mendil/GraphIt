@@ -24,11 +24,6 @@ import java.awt.*;
  */
 
 public class ActivateFadeoutAction extends GraphAction {
-    /**
-     * Constructor for this action.
-     */
-    public ActivateFadeoutAction() {
-    }
 
     /**
      * Chosen vertices and edges fadeout and adds the log to the database.

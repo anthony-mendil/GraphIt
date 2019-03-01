@@ -5,6 +5,7 @@ import actions.LogEntryName;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.SizeChange;
+import graph.graph.Sphere;
 import graph.graph.Vertex;
 import graph.visualization.SyndromVisualisationViewer;
 import log_management.DatabaseManager;
@@ -43,6 +44,8 @@ public class EditVerticesSizeLogAction extends LogAction {
     @Override
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Sphere> pickedState1 = vv.getPickedSphereState();
+        pickedState1.clear();
         if (parameters == null) {
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
             Map<Vertex, Integer> oldVertices = new HashMap<>();
@@ -60,12 +63,15 @@ public class EditVerticesSizeLogAction extends LogAction {
                             newVertices.put(vertex, vertex.getSize());
                         }
                     }
-                } else {
+                }else {
                     helper.setActionText("EDIT_VERTICES_SITE_ALERT", true, true);
+                    actionHistory.removeLastEntry();
+                    return;
                 }
             }
             createParameter(oldVertices, newVertices);
         } else {
+
             Map<Vertex, Integer> oldVertices = ((EditVerticesSizeParam) parameters).getOldVertices();
             Map<Vertex, Integer> newVertices = ((EditVerticesSizeParam) parameters).getNewVertices();
             for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {

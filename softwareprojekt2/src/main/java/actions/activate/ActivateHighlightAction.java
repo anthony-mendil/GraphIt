@@ -12,11 +12,6 @@ import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
  */
 public class ActivateHighlightAction extends GraphAction {
 
-    /**
-     * Constructor in case several/all vertices shall be highlighted.
-     */
-    public ActivateHighlightAction() {
-    }
 
     /**
      * Highlights chosen vertices and edges and adds the log to the database.

@@ -3,7 +3,7 @@ package actions.other;
 import actions.GraphAction;
 
 /**
- * Changes the mode either to "Ersteller"/"Bearbeiter"/ "Auswerter".
+ * Changes the language to either german or english.
  */
 public class ChangeGraphLanguageAction extends GraphAction {
 
@@ -15,6 +15,6 @@ public class ChangeGraphLanguageAction extends GraphAction {
 
     @Override
     public void undo() {
-        //
+        //There is no undo operation for this action.
     }
 }

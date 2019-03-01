@@ -14,8 +14,15 @@ import java.util.List;
  * @param <E> The edge type
  */
 public class EdgePaintAnalyseTransformer<E> implements Transformer<E, Paint> {
+    /**
+     * the list of edges
+     */
     private ArrayList<Edge> edges;
 
+    /**
+     * the list of edges, need to get highlighted
+     * @param pEdges list of edges
+     */
     public EdgePaintAnalyseTransformer(List<Edge> pEdges) {
         edges = new ArrayList<>(pEdges);
     }

@@ -3,6 +3,7 @@ package actions;
 
 import lombok.Getter;
 import org.apache.log4j.Logger;
+import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 
 /**
  * A bounded history of actions.
@@ -23,7 +24,15 @@ public class ActionHistory {
      */
     @Getter
     private int current = -1;
+
+    /**
+     * The logger of the action history.
+     */
     private static Logger logger = Logger.getLogger(ActionHistory.class);
+
+    /**
+     * The action history itself.
+     */
     private static ActionHistory history;
 
     /**
@@ -44,6 +53,11 @@ public class ActionHistory {
         }
     }
 
+    /**
+     * Returning the unique instance of the action history.
+     *
+     * @return
+     */
     public static ActionHistory getInstance() {
         if (history == null) {
             history = new ActionHistory();
@@ -68,7 +82,7 @@ public class ActionHistory {
      */
     public void redo() {
         try {
-            if (actions[current + 1] != null) {
+            if (current < MAX_ACTIONS - 1 && actions[current + 1] != null) {
                 current++;
                 actions[current].action();
             }
@@ -95,10 +109,17 @@ public class ActionHistory {
         current = -1;
     }
 
+    /**
+     * Checks, whether the action has reached the upper bound.
+     *
+     * @return If the action was the last one.
+     */
     public boolean isLast() {
-        if(current < MAX_ACTIONS - 1) {
+        if (current < MAX_ACTIONS - 1) {
             return actions[current + 1] == null;
-        }else{
+        } else if (current == MAX_ACTIONS - 1) {
+            return true;
+        } else {
             return false;
         }
     }

@@ -79,12 +79,10 @@ public class RemoveVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            pickedState.clear();
-            if (!lockedVertices.isEmpty()) {
-                helper.setActionText("REMOVE_VERTICES_ALERT", true, true);
-                ActionHistory.getInstance().removeLastEntry();
+            if (checkTemplateRules(lockedVertices, pickedState)) {
                 return;
             }
+            pickedState.clear();
             createParameter(params, edg);
         } else {
             Map<Vertex, Sphere> vertices = ((AddRemoveVerticesParam) parameters).getVertices();
@@ -104,14 +102,37 @@ public class RemoveVerticesLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+
     @Override
     public void undo() {
         AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction((AddRemoveVerticesParam) parameters);
         addVerticesLogAction.action();
     }
 
-
+    /**
+     * Creates a parameter-object for this action.
+     *
+     * @param vertices The vertices and their sphere, in which they were.
+     * @param edges    The edges, that got deleted too.
+     */
     public void createParameter(Map<Vertex, Sphere> vertices, Map<Edge, Pair<Vertex, Vertex>> edges) {
         parameters = new AddRemoveVerticesParam(vertices, edges);
+    }
+
+    /**
+     * Checks whether the template rules allow this action.
+     * @param lockedEdges The list of locked vertices.
+     * @param pickedState The set of the picked elements
+     * @return  The indicator, if the action is allowed.
+     */
+    private boolean checkTemplateRules(List<Vertex> lockedEdges, PickedState<Vertex> pickedState){
+        if (!lockedEdges.isEmpty()) {
+            helper.setActionText("REMOVE_EDGES_ALERT", true, true);
+        }
+        if (lockedEdges.size() == pickedState.getPicked().size()) {
+            actionHistory.removeLastEntry();
+            return true;
+        }
+        return false;
     }
 }

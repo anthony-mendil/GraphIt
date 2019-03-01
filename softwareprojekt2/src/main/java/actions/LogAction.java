@@ -52,6 +52,10 @@ public abstract class LogAction extends GraphAction {
         time = LocalDateTime.now();
     }
 
+    /**
+     * Creats a log for the executed action. This action can be displayed in the edit mode.
+     * @return  The string of the log.
+     */
     public Log createLog() {
         Log log = new Log();
         log.setGraph(DatabaseManager.getInstance().getGraphDao().get(-1).orElse(null));

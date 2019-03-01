@@ -62,6 +62,10 @@ public class EditFontVerticesLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
+            if(lockedVertices.size() > 0 && lockedVertices.size() == pickedState.getPicked().size()){
+                actionHistory.removeLastEntry();
+                return;
+            }
             createParameter(oldVertices, newVertices);
         } else {
             Map<Vertex, String> oldVertices = ((EditFontVerticesParam) parameters).getOldVertices();

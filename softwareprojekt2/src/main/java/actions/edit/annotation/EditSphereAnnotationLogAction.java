@@ -59,6 +59,7 @@ public class EditSphereAnnotationLogAction extends LogAction {
                 } else {
                     helper.setActionText("EDIT_SPERE_ANNOTATION_ALERT", true, true);
                     actionHistory.removeLastEntry();
+                    return;
                 }
             }
         } else {

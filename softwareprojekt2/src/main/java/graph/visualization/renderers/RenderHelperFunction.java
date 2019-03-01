@@ -1,13 +1,32 @@
 package graph.visualization.renderers;
 
+import edu.uci.ics.jung.graph.util.Pair;
+
 import java.awt.*;
 
+/**
+ * helper functions for rendering
+ */
 public class RenderHelperFunction {
+
+    /**
+     * returns white/ black depending of the colors brightness
+     * @param drawColor the color
+     * @return black or white
+     */
     public Color getLuminanceColor(Paint drawColor) {
         double luminance = (0.2126 * ((Color) drawColor).getRed() + 0.7152 * ((Color) drawColor).getGreen() + 0.0722 * ((Color) drawColor).getGreen());
         return luminance > 127 ? new Color(20, 20, 20) : new Color(245, 245, 245);
     }
 
+    /**
+     *
+     * @param sphereWidth the shape width
+     * @param sphereHeight the shape height
+     * @param annotation the sphere annotation
+     * @param fontMetrics the font metrics
+     * @return the new formatted string, so it fits into the shape
+     */
     String shrinkAnnotation(double sphereWidth, double sphereHeight, String annotation, FontMetrics
             fontMetrics) {
         String[] lines = breakAnnotation(sphereWidth, annotation, fontMetrics).split("\n");
@@ -30,6 +49,13 @@ public class RenderHelperFunction {
         return label.toString();
     }
 
+    /**
+     * breaks the annotation so it fits into the shape
+     * @param sphereWidth the shape width
+     * @param annotation the title
+     * @param fontMetrics the font metrics
+     * @return the new formatted label fitting into the shape
+     */
     public String breakAnnotation(double sphereWidth, String annotation, FontMetrics fontMetrics) {
         StringBuilder label = new StringBuilder();
         StringBuilder lengthLabel = new StringBuilder();
@@ -43,24 +69,9 @@ public class RenderHelperFunction {
                 }
 
             } else {
-                if (fontMetrics.stringWidth(line) + 10 >= sphereWidth) {
-                    char[] chars = line.toCharArray();
-                    if (i != 0) {
-                        lengthLabel.append(" ");
-                    }
-                    for (char c : chars) {
-                        if (fontMetrics.stringWidth(lengthLabel.toString() + c) + 10 < sphereWidth) {
-                            lengthLabel.append(c);
-                        } else {
-                            label.append(lengthLabel).append("\n");
-                            lengthLabel.delete(0, lengthLabel.length()).append(c);
-                        }
-                    }
-                } else {
-                    label.append(lengthLabel);
-                    lengthLabel.delete(0, lengthLabel.length());
-                    lengthLabel.append("\n").append(line).append(" ");
-                }
+                Pair<StringBuilder> stringBuilders = stringToBigForShapeWidth(fontMetrics, line, sphereWidth, i, lengthLabel, label);
+                lengthLabel = stringBuilders.getFirst();
+                label = stringBuilders.getSecond();
             }
             i++;
         }
@@ -68,5 +79,37 @@ public class RenderHelperFunction {
             label.append(lengthLabel);
         }
         return label.toString();
+    }
+
+    /**
+     * splits and rebuild the string label, if he string length is higher than the shape length
+     * @param fontMetrics the font metrics
+     * @param line the line to break
+     * @param sphereWidth the shape width
+     * @param i the counter
+     * @param lengthLabel StringBuilder
+     * @param label StringBuilder
+     * @return the new line
+     */
+    private Pair<StringBuilder> stringToBigForShapeWidth(FontMetrics fontMetrics, String line, double sphereWidth, int i, StringBuilder lengthLabel, StringBuilder label){
+        if (fontMetrics.stringWidth(line) + 10 >= sphereWidth) {
+            char[] chars = line.toCharArray();
+            if (i != 0) {
+                lengthLabel.append(" ");
+            }
+            for (char c : chars) {
+                if (fontMetrics.stringWidth(lengthLabel.toString() + c) + 10 < sphereWidth) {
+                    lengthLabel.append(c);
+                } else {
+                    label.append(lengthLabel).append("\n");
+                    lengthLabel.delete(0, lengthLabel.length()).append(c);
+                }
+            }
+        } else {
+            label.append(lengthLabel);
+            lengthLabel.delete(0, lengthLabel.length());
+            lengthLabel.append("\n").append(line).append(" ");
+        }
+        return new Pair<>(lengthLabel, label);
     }
 }
