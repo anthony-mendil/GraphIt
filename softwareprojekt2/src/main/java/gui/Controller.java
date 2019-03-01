@@ -72,7 +72,6 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -89,7 +88,6 @@ import log_management.tables.Log;
 import lombok.Data;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -2008,8 +2006,8 @@ public class Controller implements ObserverSyndrom {
     }
 
     private void initGraphLanguage() {
-        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(languageGraphEnglish, this));
-        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(languageGraphGerman, this));
+        languageGraphEnglish.selectedProperty().addListener(new LanguageGraphListener(this,languageGraphEnglish));
+        languageGraphGerman.selectedProperty().addListener(new LanguageGraphListener(this,languageGraphGerman));
         languageGraphEnglish.setSelected(false);
         languageGraphGerman.setSelected(true);
     }
@@ -2202,9 +2200,9 @@ public class Controller implements ObserverSyndrom {
         filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
-        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.REINFORCED));
-        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.EXTENUATING));
-        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(EdgeArrowType.NEUTRAL));
+        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.REINFORCED));
+        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.EXTENUATING));
+        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this,EdgeArrowType.NEUTRAL));
 
         for (MenuItem item : filterLogType.getItems()) {
             item.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterLogType));
@@ -2381,42 +2379,6 @@ public class Controller implements ObserverSyndrom {
         comboBox.setItems(sizeMenuItems);
     }
 
-    /**
-     * The event handler that replace the images visible in the menubutton to the latest selected image.
-     */
-    private class MenuItemHandler implements EventHandler<ActionEvent> {
-
-        private final MenuButton menuButton;
-
-        MenuItemHandler(MenuButton pMenuButton) {
-            menuButton = pMenuButton;
-        }
-
-        @Override
-        public void handle(ActionEvent evt) {
-            MenuItem mnItm = (MenuItem) evt.getSource();
-            ImageView newImage = (ImageView) mnItm.getGraphic();
-            ImageView currentImage = (ImageView) menuButton.getGraphic();
-            currentImage.setImage(newImage.getImage());
-        }
-    }
-
-    private class AnalysisItemHandler implements EventHandler<ActionEvent> {
-
-        private final MenuButton menuButton;
-
-        AnalysisItemHandler(MenuButton pMenuButton) {
-            menuButton = pMenuButton;
-        }
-
-        @Override
-        public void handle(ActionEvent evt) {
-            MenuItem mnItm = (MenuItem) evt.getSource();
-            String newText = mnItm.getText();
-            menuButton.setText(newText);
-        }
-    }
-
     private class LanguageListener implements ChangeListener<Boolean> {
         private CheckMenuItem checkMenuItem;
         private Controller controller;
@@ -2430,7 +2392,7 @@ public class Controller implements ObserverSyndrom {
             sortFilterLogs();
         }
 
-        LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
+        private LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
             this.checkMenuItem = checkMenuItem;
             this.controller = controller;
         }
@@ -2444,45 +2406,6 @@ public class Controller implements ObserverSyndrom {
                 languageGerman.setSelected(false);
                 changeLanguage(Language.ENGLISH);
             }
-        }
-    }
-
-    private class LanguageGraphListener implements ChangeListener<Boolean> {
-        private CheckMenuItem checkMenuItem;
-
-        private void changeLanguage(Language language) {
-            values.setGraphLanguage(language);
-            ChangeGraphLanguageAction changeGraphLanguageAction = new ChangeGraphLanguageAction();
-            changeGraphLanguageAction.action();
-        }
-
-        LanguageGraphListener(CheckMenuItem checkMenuItem, Controller controller) {
-            this.checkMenuItem = checkMenuItem;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if (checkMenuItem.getId().equals("languageGraphGerman") && newValue) {
-                languageGraphEnglish.setSelected(false);
-                changeLanguage(Language.GERMAN);
-            } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue) {
-                languageGraphGerman.setSelected(false);
-                changeLanguage(Language.ENGLISH);
-            }
-        }
-    }
-
-    private class FilterTypeHandler implements EventHandler<ActionEvent> {
-        private final EdgeArrowType type;
-
-        FilterTypeHandler(EdgeArrowType type) {
-            this.type = type;
-        }
-
-        @Override
-        public void handle(ActionEvent evt) {
-            FilterGraphAction filterGraphAction = new FilterGraphAction(type, treeViewArrowType.isSelected());
-            filterGraphAction.action();
         }
     }
 
@@ -3052,14 +2975,6 @@ public class Controller implements ObserverSyndrom {
         zoomMenuItem200.setOnAction(zoomHandler);
     }
 
-    private class OneTimeStackPaneListener implements ChangeListener<Number> {
-        @Override
-        public void changed(ObservableValue<? extends Number> arg0, Number oldPropertyValue, Number newPropertyValue) {
-            overviewStackPane.setMinWidth(0);
-            overviewStackPane.widthProperty().removeListener(this);
-        }
-    }
-
     private void loadTemplateTextFields() {
 
         maxSphereField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSphereField));
@@ -3070,22 +2985,6 @@ public class Controller implements ObserverSyndrom {
         maxSphereField.focusedProperty().addListener(focusTFListener);
         maxSymptomField.focusedProperty().addListener(focusTFListener);
         maxEdgesField.focusedProperty().addListener(focusTFListener);
-    }
-
-    private class OnlyNumberTextFieldListener implements ChangeListener<String> {
-        private TextField textField;
-
-        OnlyNumberTextFieldListener(TextField pTextField) {
-            textField = pTextField;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (!newValue.matches("\\d*"))
-                textField.setText(oldValue);
-
-
-        }
     }
 
     private class FocusTemplateTextFieldListener implements ChangeListener<Boolean> {
