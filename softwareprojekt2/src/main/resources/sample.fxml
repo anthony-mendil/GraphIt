@@ -246,7 +246,7 @@
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/006-secret.png" />
+                                <Image url="@icons2/fadeout.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -259,7 +259,7 @@
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/005-hide-2.png" />
+                                <Image url="@icons2/fadeoutAdd.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
@@ -273,7 +273,7 @@
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@icons2/007-hide-3.png" />
+                                    <Image url="@icons2/fadeoutDelete.png" />
                                 </image>
                             </ImageView>
                         </graphic>
