@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * Imports a GXL file that includes a graph in gxl notation.
  */
-public class ImportGxlAction extends GraphAction {
+public class ImportTemplateGxlAction extends GraphAction {
 
     /**
      * The File the gxl get's taken from
@@ -22,7 +22,7 @@ public class ImportGxlAction extends GraphAction {
      *
      * @param pFile The File that the GXL is imported from.
      */
-    public ImportGxlAction(File pFile) {
+    public ImportTemplateGxlAction(File pFile) {
         file = pFile;
     }
 
@@ -32,7 +32,7 @@ public class ImportGxlAction extends GraphAction {
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
-        gxlio.importGXL(file, false);
+        gxlio.importGXL(file, true);
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         Action.attach(databaseManager);
         notifyObserverNewGraph();
@@ -47,7 +47,7 @@ public class ImportGxlAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the gxl export
+     * Disables the redo-funktion for the templategxl export
      */
     @Override
     public void redo() {

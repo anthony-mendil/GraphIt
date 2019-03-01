@@ -134,9 +134,11 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Menu importAs;
     @FXML
-    private MenuItem templateGXLImport;
+    private Menu exportAs;
     @FXML
-    private MenuItem templateGXLExport;
+    private MenuItem importTemplateGXL;
+    @FXML
+    private MenuItem exportTemplateGXL;
     @FXML
     private MenuItem closeApplication;
 
@@ -933,6 +935,30 @@ public class Controller implements ObserverSyndrom {
             exportGxlAction.action();
         }
     }
+    /**
+     * Creates an ExportTemplateGxlAction-object and executes the action with the action history.
+     */
+    public void exportTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        if (syndrom.getGraphName() != null) {
+            fileChooser.setInitialFileName(syndrom.getGraphName() + ".gxl");
+        } else {
+            fileChooser.setInitialFileName("UntitledGraph.gxl");
+        }
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showSaveDialog(mainStage);
+        mainStage.centerOnScreen();
+        if (file != null) {
+            syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
+            lastUsedFilePath = file.getParentFile();
+            ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
+            exportTemplateGxlAction.action();
+        }
+    }
 
 
     /**
@@ -1048,6 +1074,28 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
+            zoomSlider.setValue(100);
+            canvas.setContent(syndrom.getVv());
+            satellite.setContent(syndrom.getVv2());
+        }
+    }
+    /**
+     * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportTemplateGxlAction-object
+     * and executes the action with the action history.
+     */
+    public void importTemplateGXL() {
+        FileChooser fileChooser = new FileChooser();
+        if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
+            fileChooser.setInitialDirectory(lastUsedFilePath);
+        }
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File file = fileChooser.showOpenDialog(mainStage);
+        mainStage.centerOnScreen();
+        if (file != null) {
+            lastUsedFilePath = file.getParentFile();
+            ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
+            importTemplateGxlAction.action();
             zoomSlider.setValue(100);
             canvas.setContent(syndrom.getVv());
             satellite.setContent(syndrom.getVv2());
@@ -1496,6 +1544,7 @@ public class Controller implements ObserverSyndrom {
         KeyCombination strgY = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
         KeyCombination strgD = new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN);
         KeyCombination strgA = new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN);
+        KeyCombination strgF = new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN);
         KeyCombination one = new KeyCodeCombination(KeyCode.DIGIT1);
         KeyCombination two = new KeyCodeCombination(KeyCode.DIGIT2);
         KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
@@ -1538,8 +1587,13 @@ public class Controller implements ObserverSyndrom {
             syndrom.getVv().getPickedSphereState().clear();
             syndrom.getVv().getPickedVertexState().clear();
             syndrom.getVv().getPickedEdgeState().clear();
+            regularExpressionBox.setSelected(false);
             handSelector();
+            handSelector.requestFocus();
             handSelector.setSelected(true);
+        } else if (strgF.match(event)){
+            regularExpressionBox.setSelected(true);
+            regularExpressionField.requestFocus();
         }
     }
 
@@ -1547,7 +1601,6 @@ public class Controller implements ObserverSyndrom {
         mainStage = pStage;
 
         mainStage.setOnCloseRequest(event -> {
-            rulesTemplate();
             event.consume();
             optionExitWindow();
         });
@@ -1991,7 +2044,9 @@ public class Controller implements ObserverSyndrom {
 
     }
 
+    @FXML
     private void optionExitWindow() {
+        rulesTemplate();
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CLOSE"), ButtonBar.ButtonData.OK_DONE);
         ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
 
@@ -2019,16 +2074,21 @@ public class Controller implements ObserverSyndrom {
         openDialogInfo(newFile);
     }
 
-    public void openInfoDialogPDF() {
-        openDialogInfo(exportPDF);
+    public void openInfoDialogOpenFile() {
+        openDialogInfo(openFile);
     }
+
+    public void openInfoDialogImportTemplateGXL() {
+        openDialogInfo(importTemplateGXL);
+    }
+
 
     public void openInfoDialogImportGXL() {
         openDialogInfo(importGXL);
     }
 
-    public void openInfoDialogOpenFile() {
-        openDialogInfo(openFile);
+    public void openInfoDialogPDF() {
+        openDialogInfo(exportPDF);
     }
 
     public void openInfoDialogPrint() {
@@ -2040,6 +2100,8 @@ public class Controller implements ObserverSyndrom {
         String cancel = "EXIT_WINDOW_CANCEL_PDF";
         String info = "";
         if (menuItem.getId().equals(importGXL.getId())) {
+            info = "INFO_DIALOG_IMPORT";
+        } else if (menuItem.getId().equals(importTemplateGXL.getId())) {
             info = "INFO_DIALOG_IMPORT";
         } else if (menuItem.getId().equals(openFile.getId())) {
             info = "INFO_DIALOG_OPEN";
@@ -2067,6 +2129,8 @@ public class Controller implements ObserverSyndrom {
             if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                 if (menuItem.getId().equals(importGXL.getId())) {
                     importGXL();
+                } else if (menuItem.getId().equals(importTemplateGXL.getId())) {
+                    importTemplateGXL();
                 } else if (menuItem.getId().equals(openFile.getId())) {
                     openFile();
                 } else if (menuItem.getId().equals(print.getId())) {
