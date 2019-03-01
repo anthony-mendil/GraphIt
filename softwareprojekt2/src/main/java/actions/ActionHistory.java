@@ -3,7 +3,6 @@ package actions;
 
 import lombok.Getter;
 import org.apache.log4j.Logger;
-import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 
 /**
  * A bounded history of actions.
