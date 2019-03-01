@@ -688,7 +688,7 @@ public class GXLio {
      */
 
     public void importGXL(File pFile, boolean pImportWithRules) {
-        String gxl = FileHandler.FileToString(pFile);
+        String gxl = FileHandler.fileToString(pFile);
         gxlToInstance(gxl, pImportWithRules);
     }
 }

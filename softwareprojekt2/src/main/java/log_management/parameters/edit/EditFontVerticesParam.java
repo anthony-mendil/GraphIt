@@ -32,8 +32,8 @@ public class EditFontVerticesParam implements Param {
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pOldVertices The vertices containing their old font.
-     * @param pNewVertices The vertices containing their new font.
+     * @param pOldVertices The vertices and their old font.
+     * @param pNewVertices The vertices and their new font.
      */
     public EditFontVerticesParam(Map<Vertex, String> pOldVertices, Map<Vertex, String> pNewVertices) {
         oldVertices = new ArrayList<>();

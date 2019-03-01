@@ -35,7 +35,7 @@ public class EditSphereColorParam implements Param {
     /**
      * Creates a vertices object of its own class.
      *
-     * @param sphere    The sphere containing its old color.
+     * @param sphere    The sphere.
      * @param pOldColor The old color of the sphere.
      * @param pNewColor The new color of the sphere.
      */

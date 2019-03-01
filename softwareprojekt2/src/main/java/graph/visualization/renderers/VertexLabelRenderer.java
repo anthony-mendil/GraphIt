@@ -15,6 +15,11 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
+/**
+ * Renderer for the vertex label
+ * @param <V> the vertex type
+ * @param <E> the edge type
+ */
 public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
     private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
 
@@ -22,6 +27,14 @@ public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
         super(Position.CNTR);
     }
 
+    /**
+     * the renderer for the vertex label. If the vertex is less than 160, then the title is adjusted to a length of 160
+     * characters, otherwise to the width of the vertex.
+     * @param rc the render context
+     * @param layout the layout
+     * @param v the vertex
+     * @param label the label string
+     */
     @Override
     public void labelVertex(RenderContext<V, E> rc, Layout<V, E> layout, V v, String label) {
         if (!rc.getVertexIncludePredicate().evaluate(Context.getInstance(layout.getGraph(), v))) {
@@ -37,12 +50,6 @@ public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
         String title = rc.getVertexLabelTransformer().transform(v);
         int stringWidth = fontMetrics.stringWidth(title);
 
-        // falls die größe kleiner als die länge des textes, dann text auf 160 breite und größe passt sich an
-        //
-        // falls die Größe größer als die länge des textes, dann text auf die breite des shape -20
-        // moin
-
-
         String annotation;
         if (vertexShape.getBounds2D().getWidth() < stringWidth) {
             annotation = renderHelperFunction.shrinkAnnotation(160, vertexShape.getBounds2D().getHeight(), title, fontMetrics);
@@ -57,7 +64,6 @@ public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
         vertexShape = xform.createTransformedShape(vertexShape);
         double sumHeight = annotation.split("\n").length * height;
 
-
         int i = 0;
         for (String line : annotation.split("\n")) {
             Point2D anchor = getAnchorPoint(new Point2D.Double(vertexShape.getBounds2D().getCenterX(), vertexShape.getBounds2D().getCenterY()), fontMetrics.stringWidth(line), sumHeight);
@@ -67,9 +73,15 @@ public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
             gD.drawString(line, (float) anchor.getX(), (float) (anchor.getY() + (height * i++) + font.getSize()));
             gD.setPaint(oldColor);
         }
-
     }
 
+    /**
+     * returns the anchor point of the label
+     * @param p the center point of the vertex shape
+     * @param width the width of the vertex
+     * @param height the height of the vertex
+     * @return the anchor point of the label
+     */
     private Point2D getAnchorPoint(Point2D p, int width, double height) {
         double labelX = p.getX() - ((double) width / 2);
         double y = p.getY() - height / 2;

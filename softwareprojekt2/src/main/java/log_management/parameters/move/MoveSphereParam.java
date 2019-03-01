@@ -31,14 +31,17 @@ public class MoveSphereParam implements Param {
     @Getter
     private Point2D newPos;
 
+    /**
+     * The string put before the y-value when pretty printing this object.
+     */
     public static final String Y_IS = " y = ";
 
     /**
      * Creates a vertices object of its own class.
      *
      * @param pSphere The sphere.
-     * @param pOldPos The sphere containing its old position.
-     * @param pNewPos The sphere containing its new position.
+     * @param pOldPos The old position.
+     * @param pNewPos The new position.
      */
     public MoveSphereParam(Sphere pSphere, Point2D pOldPos, Point2D pNewPos) {
         this.sphere = pSphere;

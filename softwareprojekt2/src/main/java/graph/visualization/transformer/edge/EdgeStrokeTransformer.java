@@ -5,6 +5,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.Edge;
 import graph.graph.StrokeType;
+import graph.graph.Vertex;
 import org.apache.commons.collections15.Transformer;
 
 import java.awt.*;
@@ -17,11 +18,15 @@ import java.awt.*;
  */
 public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
 
-    float[] dotting = {1.0f, 4.0f};
-    float[] dashing = {5.0f};
-    private VisualizationViewer vv;
+    private float[] dotting = {1.0f, 4.0f};
+    private VisualizationViewer<Vertex, Edge> vv;
 
-    public EdgeStrokeTransformer(VisualizationViewer vv) {
+    /**
+     * Transforms the stroke of the edge, if its picked, the stroke is bigger
+     * the current visualisation viewer.
+     * @param vv the visualisation viewer
+     */
+    public EdgeStrokeTransformer(VisualizationViewer<Vertex, Edge> vv) {
         this.vv = vv;
     }
 
@@ -30,8 +35,8 @@ public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
         Edge edge = (Edge) e;
         Stroke stroke;
 
-        PickedState<E> vertexPickedState = vv.getPickedEdgeState();
-        if (vertexPickedState.isPicked(e)) {
+        PickedState<Edge> vertexPickedState = vv.getPickedEdgeState();
+        if (vertexPickedState.isPicked(edge)) {
             Stroke basic = new BasicStroke(4);
             Stroke dotted = new BasicStroke(4.0f,
                     BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1.0f, dotting, 0f);

@@ -48,13 +48,14 @@ public class EditVertexAnnotationParam implements Param {
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pVertex               The vertex containing its old annotation.
+     * @param pVertex               The vertex.
      * @param pOldAnnotationEnglish The old annotation in english.
      * @param pNewAnnotationEnglish The new annotation in english.
      * @param pOldAnnotationGerman  The old annotation in german.
-     * @param pOldAnnotationGerman  The new annotation in german.
+     * @param pNewAnnotationGerman  The new annotation in german.
      */
-    public EditVertexAnnotationParam(Vertex pVertex, String pOldAnnotationEnglish, String pNewAnnotationEnglish, String pOldAnnotationGerman, String pNewAnnotationGerman) {
+    public EditVertexAnnotationParam(Vertex pVertex, String pOldAnnotationEnglish, String pNewAnnotationEnglish,
+                                     String pOldAnnotationGerman, String pNewAnnotationGerman) {
         this.vertex = pVertex;
         this.oldAnnotationEnglish = pOldAnnotationEnglish;
         this.newAnnotationEnglish = pNewAnnotationEnglish;

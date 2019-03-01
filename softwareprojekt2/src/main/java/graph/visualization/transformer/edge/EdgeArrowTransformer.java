@@ -33,11 +33,6 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
     private Shape neutralArrow;
 
     /**
-     * The SyndromArrowFactory to get the right arrow shapes.
-     */
-    private SyndromArrowFactory factory;
-
-    /**
      * Creates an edge arrow transformer. The radius, width, length and notch depth will be set.
      *
      * @param radius     The radius of the neutral arrow.
@@ -46,7 +41,7 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
      * @param notchDepth The notch depth of the reinforced arrow.
      */
     public EdgeArrowTransformer(int radius, float width, float length, float notchDepth) {
-        factory = new SyndromArrowFactory();
+        SyndromArrowFactory factory = new SyndromArrowFactory();
         this.reinforcedArrow = factory.getReinforcingEdgeArrow(width, length, notchDepth);
         this.extenuatingArrow = factory.getExtenuatingEdgeArrow(radius);
         this.neutralArrow = factory.getNeutralEdgeArrow();
@@ -68,6 +63,11 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
         }
     }
 
+    /**
+     * returns the shape depending on the arrow type
+     * @param type the type of the edge
+     * @return the depending shape
+     */
     public Shape getTransform(EdgeArrowType type) {
         if (type == EdgeArrowType.EXTENUATING) {
             return extenuatingArrow;

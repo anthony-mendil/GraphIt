@@ -18,21 +18,32 @@ import java.util.Map;
  */
 @Data
 public class EditVerticesSizeParam implements Param {
+    /**
+     * The old vertices.
+     */
+    @Getter
     private List<Vertex> oldVertices;
-
+    /**
+     * The old sizes of the vertices.
+     */
     @Getter
     private List<Integer> oldSizes;
-
+    /**
+     * The new vertices.
+     */
+    @Getter
     private List<Vertex> newVertices;
-
+    /**
+     * The new sizes of the vertices.
+     */
     @Getter
     private List<Integer> newSizes;
 
     /**
      * Creates a vertices object of its own class.
      *
-     * @param pOldVertices The vertices containing their old size.
-     * @param pNewVertices The vertices containing their new size.
+     * @param pOldVertices The vertices and their old size.
+     * @param pNewVertices The vertices and their new size.
      */
     public EditVerticesSizeParam(Map<Vertex, Integer> pOldVertices, Map<Vertex, Integer> pNewVertices) {
         oldVertices = new ArrayList<>();
@@ -72,6 +83,11 @@ public class EditVerticesSizeParam implements Param {
         return information.toString();
     }
 
+    /**
+     * Gets the old vertices and their old sizes.
+     *
+     * @return The old vertices and their old sizes.
+     */
     public Map<Vertex, Integer> getOldVertices() {
         Map<Vertex, Integer> map = new HashMap<>();
         for (int i = 0; i < oldVertices.size(); i++) {
@@ -80,6 +96,11 @@ public class EditVerticesSizeParam implements Param {
         return map;
     }
 
+    /**
+     * Gets the new vertices and their new sizes.
+     *
+     * @return The new vertices and their new sizes.
+     */
     public Map<Vertex, Integer> getNewVertices() {
         Map<Vertex, Integer> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {

@@ -19,8 +19,6 @@ public class Protocolio {
     public Protocolio() {
         // Can handle protocol-export now
     }
-
-    private static Logger logger = Logger.getLogger(Protocolio.class);
     private LogToStringConverter logToStringConverter = new LogToStringConverter();
 
     /**
@@ -35,7 +33,7 @@ public class Protocolio {
         for (Log log : logs) {
             protocol.append(logToStringConverter.convertForTextFile(log));
         }
-        FileHandler.StringToFile(protocol.toString(),pFile);
+        FileHandler.stringToFile(protocol.toString(),pFile);
     }
 
 

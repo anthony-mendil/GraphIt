@@ -30,7 +30,7 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
         SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
         Point2D point = e.getPoint();
         Sphere sp = pickSupport.getSphere(point.getX(), point.getY());
-        Vertex vertex = (Vertex) pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
+        Vertex vertex = pickSupport.getVertex(vv.getGraphLayout(), point.getX(), point.getY());
         Edge edge = (Edge) pickSupport.getEdge(vv.getGraphLayout(), point.getX(), point.getY());
 
         if (sp == null && edge == null && vertex == null) {

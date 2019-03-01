@@ -39,6 +39,7 @@ public class VertexAnnotationPredicate<V, E> implements Predicate<Context<Graph<
     @Override
     public boolean evaluate(Context<Graph<V, E>, V> graphVContext) {
         Vertex vertex = (Vertex) graphVContext.element;
+
         Pattern pattern = Pattern.compile(regex);
         Language lang = Values.getInstance().getGraphLanguage();
         String annotation = vertex.getAnnotation().get(lang.toString());

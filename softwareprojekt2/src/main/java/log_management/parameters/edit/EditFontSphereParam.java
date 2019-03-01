@@ -33,7 +33,7 @@ public class EditFontSphereParam implements Param {
     /**
      * Creates a new vertices object of its own class.
      *
-     * @param sphere   The sphere containing its old font.
+     * @param sphere   The sphere.
      * @param pOldFont The old font.
      * @param pNewFont The new font.
      */
