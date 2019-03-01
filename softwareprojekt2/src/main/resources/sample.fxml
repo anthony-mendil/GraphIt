@@ -201,79 +201,79 @@
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </padding>
                     </Separator>
-                    <ToggleButton fx:id="highlight" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                    <ToggleButton fx:id="highlight" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/005-highlighter.png" />
+                                <Image url="@icons2/highlight.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
                             <Tooltip text="%toolbarHighlight" />
                         </tooltip>
                     </ToggleButton>
-                    <JFXButton fx:id="highlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="highlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/006-highlighter-1.png" />
+                                <Image url="@icons2/highlightAdd.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
                             <Tooltip text="%toolbarHighlightElement" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="dehighlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="dehighlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/007-highlighter-2.png" />
+                                <Image url="@icons2/highlightDelete.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
                             <Tooltip text="%toolbarNotHighlightElements" />
                         </tooltip>
                     </JFXButton>
-                    <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                    <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0"  stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/006-secret.png" />
+                                <Image url="@icons2/fadeout.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
                             <Tooltip text="%toolbarFadeout" />
                         </tooltip>
                     </ToggleButton>
-                    <JFXButton fx:id="fadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="fadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0"  stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/005-hide-2.png" />
+                                <Image url="@icons2/fadeoutAdd.png" />
                             </ImageView>
                         </graphic>
                         <tooltip>
                             <Tooltip text="%toolbarFadeoutElement" />
                         </tooltip>
                     </JFXButton>
-                    <JFXButton fx:id="deleteFadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" styleClass="toolbar-button" stylesheets="@gui_style.css">
+                    <JFXButton fx:id="deleteFadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
                         <graphic>
                             <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@icons2/007-hide-3.png" />
+                                    <Image url="@icons2/fadeoutDelete.png" />
                                 </image>
                             </ImageView>
                         </graphic>

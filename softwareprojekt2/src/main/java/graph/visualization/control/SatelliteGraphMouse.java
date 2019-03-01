@@ -18,11 +18,11 @@ public class SatelliteGraphMouse extends ModalSatelliteGraphMouse implements
 
     /**
      * InputEvent.BUTTON1_MASK is deprecated, but if you replace it with BUTTON1_DOWN_MASK it will not work anymore.
+     * so work around: 1 << 4
      */
     @Override
-    @SuppressWarnings("deprecated")
     public void loadPlugins() {
-        translatingPlugin = new SatelliteTranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);
+        translatingPlugin = new SatelliteTranslatingGraphMousePlugin( 1 << 4);
         add(translatingPlugin);
     }
 }
