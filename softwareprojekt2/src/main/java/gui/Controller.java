@@ -2024,7 +2024,7 @@ public class Controller implements ObserverSyndrom {
 
     public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
 
-    private void sortFilterLogs() {
+    public void sortFilterLogs() {
         ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
         f.sort(menuItemCompare);
         filterLogType.getItems().removeAll(f);
@@ -2208,40 +2208,40 @@ public class Controller implements ObserverSyndrom {
             item.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterLogType));
         }
 
-        logAddSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ADD_SPHERE));
-        logAddVertex.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ADD_VERTICES));
-        logAddEdge.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ADD_EDGES));
-        logEditFontVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_FONT_VERTICES));
-        logDeactivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.DEACTIVATE_FADEOUT));
-        logEditSphereColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_SPHERE_COLOR));
-        logEditEdgesStroke.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_EDGES_STROKE));
-        logEditSphereSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_SPHERE_SIZE));
-        logEditFontSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_FONT_SPHERE));
-        logEditEdgesColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_EDGES_COLOR));
-        logRemoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_VERTICES));
-        logEditEdgesType.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_EDGES_TYPE));
-        logRemoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_SPHERE));
-        logMoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.MOVE_VERTICES));
-        logMoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.MOVE_SPHERE));
-        logActivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT));
-        logAddAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ADD_ANCHOR_POINTS));
-        logActivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ACTIVATE_FADEOUT));
-        logActivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.ACTIVATE_HIGHLIGHT));
-        logEditVerticesForm.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_FORM));
-        logRemoveEdges.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_EDGES));
-        logEditVerticesSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_SIZE));
-        logRemoveAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.REMOVE_ANCHOR_POINTS));
-        logEditSphereFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_SPHERE_FONT_SIZE));
-        logEditSphereAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_SPHERE_ANNOTATION));
-        logEditVertexAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTEX_ANNOTATION));
-        logEditVerticesFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_FONT_SIZE));
-        logEditVerticesDrawColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_DRAW_COLOR));
-        logEditVerticesFillColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_FILL_COLOR));
-        logDeactivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.DEACTIVATE_HIGHLIGHT));
-        logDeactivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT));
-        logEditSpheresLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_SPHERES_LAYOUT));
-        logEditVerticesLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(LogEntryName.EDIT_VERTICES_LAYOUT));
-        logAll.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(null));
+        logAddSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_SPHERE));
+        logAddVertex.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_VERTICES));
+        logAddEdge.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_EDGES));
+        logEditFontVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_FONT_VERTICES));
+        logDeactivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.DEACTIVATE_FADEOUT));
+        logEditSphereColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_COLOR));
+        logEditEdgesStroke.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_EDGES_STROKE));
+        logEditSphereSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_SIZE));
+        logEditFontSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_FONT_SPHERE));
+        logEditEdgesColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_EDGES_COLOR));
+        logRemoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_VERTICES));
+        logEditEdgesType.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_EDGES_TYPE));
+        logRemoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_SPHERE));
+        logMoveVertices.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.MOVE_VERTICES));
+        logMoveSphere.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.MOVE_SPHERE));
+        logActivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ACTIVATE_ANCHOR_POINTS_FADEOUT));
+        logAddAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ADD_ANCHOR_POINTS));
+        logActivateFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ACTIVATE_FADEOUT));
+        logActivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.ACTIVATE_HIGHLIGHT));
+        logEditVerticesForm.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_FORM));
+        logRemoveEdges.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_EDGES));
+        logEditVerticesSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_SIZE));
+        logRemoveAnchorPoints.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.REMOVE_ANCHOR_POINTS));
+        logEditSphereFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_FONT_SIZE));
+        logEditSphereAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERE_ANNOTATION));
+        logEditVertexAnnotation.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTEX_ANNOTATION));
+        logEditVerticesFontSize.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_FONT_SIZE));
+        logEditVerticesDrawColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_DRAW_COLOR));
+        logEditVerticesFillColor.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_FILL_COLOR));
+        logDeactivateHighlight.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.DEACTIVATE_HIGHLIGHT));
+        logDeactivateAnchorPointsFadeout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.DEACTIVATE_ANCHOR_POINTS_FADEOUT));
+        logEditSpheresLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_SPHERES_LAYOUT));
+        logEditVerticesLayout.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,LogEntryName.EDIT_VERTICES_LAYOUT));
+        logAll.addEventHandler(ActionEvent.ACTION, new AnalysisTypeHandler(this,null));
     }
 
     public void loadFontComboBox(ComboBox<String> comboBox) {
@@ -2377,49 +2377,6 @@ public class Controller implements ObserverSyndrom {
             sizeMenuItems.add(sizeMenuItem);
         }
         comboBox.setItems(sizeMenuItems);
-    }
-
-    private class LanguageListener implements ChangeListener<Boolean> {
-        private CheckMenuItem checkMenuItem;
-        private Controller controller;
-
-        private void changeLanguage(Language language) {
-            loadLanguage.changeLanguage(language);
-            loadLanguage.changeStringsLanguage(controller);
-            values.setGuiLanguage(language);
-            treeViewUpdate();
-            loadTables();
-            sortFilterLogs();
-        }
-
-        private LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
-            this.checkMenuItem = checkMenuItem;
-            this.controller = controller;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if (checkMenuItem.getId().equals("languageGerman") && newValue) {
-                languageEnglish.setSelected(false);
-                changeLanguage(Language.GERMAN);
-            } else if (checkMenuItem.getId().equals("languageEnglish") && newValue) {
-                languageGerman.setSelected(false);
-                changeLanguage(Language.ENGLISH);
-            }
-        }
-    }
-
-    private class AnalysisTypeHandler implements EventHandler<ActionEvent> {
-        private final LogEntryName type;
-
-        AnalysisTypeHandler(LogEntryName type) {
-            this.type = type;
-        }
-
-        @Override
-        public void handle(ActionEvent evt) {
-            filterLogs(type);
-        }
     }
 
     private void analysisMode(Boolean active) {
@@ -2981,19 +2938,14 @@ public class Controller implements ObserverSyndrom {
         maxSymptomField.textProperty().addListener(new OnlyNumberTextFieldListener(maxSymptomField));
         maxEdgesField.textProperty().addListener(new OnlyNumberTextFieldListener(maxEdgesField));
 
-        FocusTemplateTextFieldListener focusTFListener = new FocusTemplateTextFieldListener();
-        maxSphereField.focusedProperty().addListener(focusTFListener);
-        maxSymptomField.focusedProperty().addListener(focusTFListener);
-        maxEdgesField.focusedProperty().addListener(focusTFListener);
-    }
-
-    private class FocusTemplateTextFieldListener implements ChangeListener<Boolean> {
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+        ChangeListener<Boolean> focusTFListener = (observable, oldValue, newValue) -> {
             if (!newValue) {
                 rulesTemplate();
             }
-        }
+        };
+        maxSphereField.focusedProperty().addListener(focusTFListener);
+        maxSymptomField.focusedProperty().addListener(focusTFListener);
+        maxEdgesField.focusedProperty().addListener(focusTFListener);
     }
 
     private void loadTemplateCheckBox() {
@@ -3137,7 +3089,7 @@ public class Controller implements ObserverSyndrom {
         updateUndoRedoButton();
     }
 
-    private void filterLogs(LogEntryName entryName) {
+    public void filterLogs(LogEntryName entryName) {
         analysisLogEntryName = entryName;
         logToStringConverter.resetIncrementer();
         Service<Void> service = new Service<Void>() {
