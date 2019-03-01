@@ -5,11 +5,30 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ToggleButton;
 
+/**
+ * Listens to the selected toggle buttons and handles that only one toggle button can be selected.
+ * Also at least one toggle button must be active.
+ */
 public class ToggleButtonListener implements ChangeListener<Boolean> {
+    /**
+     * The toggle button that the listener is assigned to.
+     */
     private ToggleButton toggleButton;
+    /**
+     * The controller that contains most of the gui elements and functions.
+     */
     private Controller c;
+    /**
+     * The toggle button for the selecting action.
+     */
     private ToggleButton handSelector;
+    /**
+     * The toggle button for the add sphere action.
+     */
     private ToggleButton addSphere;
+    /**
+     * The toggle button for the add vertex action.
+     */
     private ToggleButton addVertex;
 
     public ToggleButtonListener(Controller pC, ToggleButton pToggleButton) {
@@ -20,6 +39,13 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
         addVertex = c.getAddVertex();
     }
 
+    /**
+     * Determines the current toggle button and turns off all the other toggle buttons accordingly to the current one.
+     *
+     * @param observable Is the toggle button selected or not.
+     * @param oldValue   Was it selected before or not.
+     * @param newValue   Is it selected now or not.
+     */
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (newValue) {
