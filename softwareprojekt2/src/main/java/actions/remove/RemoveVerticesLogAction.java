@@ -1,6 +1,5 @@
 package actions.remove;
 
-import actions.ActionHistory;
 import actions.LogAction;
 import actions.LogEntryName;
 import actions.add.AddVerticesLogAction;

@@ -13,8 +13,10 @@ import org.xml.sax.SAXException;
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class provides methods to exports a GXL-Representation from a graph
