@@ -56,11 +56,7 @@ public class EditEdgesStrokeLogAction extends LogAction {
                     lockedEdges.add(e);
                 }
             }
-            if (!lockedEdges.isEmpty()) {
-                helper.setActionText("EDIT_EDGES_STROKE_ALERT", true, true);
-            }
-            if (lockedEdges.size() == pickedState.getPicked().size()) {
-                actionHistory.removeLastEntry();
+            if(checkTemplateRules(lockedEdges, pickedState)){
                 return;
             }
             createParameter(oldEdges, newEdges);
@@ -107,8 +103,23 @@ public class EditEdgesStrokeLogAction extends LogAction {
             starts.add(vertices.getFirst());
             ends.add(vertices.getSecond());
         });
-
-
         parameters = new EditEdgesStrokeParam(oldEdges, newEdges, starts, ends);
+    }
+
+    /**
+     * Checks whether the template rules allow this action.
+     * @param lockedEdges The list of locked edges.
+     * @param pickedState The set of the picked elements
+     * @return  The indicator, if the action is allowed.
+     */
+    private boolean checkTemplateRules(List<Edge> lockedEdges, PickedState<Edge> pickedState){
+        if (!lockedEdges.isEmpty()) {
+            helper.setActionText("EDIT_EDGES_STROKE_ALERT", true, true);
+        }
+        if (lockedEdges.size() == pickedState.getPicked().size()) {
+            actionHistory.removeLastEntry();
+            return true;
+        }
+        return false;
     }
 }
