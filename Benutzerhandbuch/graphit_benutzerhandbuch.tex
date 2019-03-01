@@ -1288,10 +1288,36 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 				\item Die gewünschte Sprache in diesem Menü mit einem Links-Klick auswählen.
 		\end{enumerate}
 	 	
-							\newpage
+		
+				\newpage
 					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Import / Öffnen} \label{import}
-	Beim Öffnen und Laden von Dateien geht es stehts darum, Daten in das System zu holen. Diese Daten werden dann in der Anwendung verarbeitet.
+	\subsection{Dateiformate für den Export/Import und das Speichern/Öffnen} 
+Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwendung sichern zu können. Diese Daten können zu einem späteren Zeitpunkt wieder in das System geladen werden, in dem die entsprechenden Dateien wieder importiert / geöffnet werden.\\
+In der Benutzung unserer Anwendung sind dabei die folgenden Datei-Formate von Relevanz: 
+\begin{itemize}
+\item .oof-Format
+\item .gxl-Format
+\item .txt-Format
+\item .pdf-Format
+\end{itemize}
+
+	\subsubsection{OOF}
+	Dieses Datei-Format dient der gemeinsamen Speicherung des Protokolls der Nutzerinteraktionen und einem Syndrom. Diese beiden Informationen werden in diesem Format nicht vermischt. Sie bilden vielmehr einzelne, voneinander getrennte Abschnitte in der entsprechenden Datei mit einer .oof-Kennung. Durch dieses Datei-Format können Graphen an einem Computer erstellt und diese an einem anderen Computer zusammen mit dem Protokoll der Nutzerinteraktionen zur Erstellung dieses Graphen ausgewertet werden.
+	
+	\subsubsection{GXL}
+	Dieses Datei-Format (Graph eXchange Language) dient der Speicherung vom Graphen außerhalb unserer Anwendung. Die gespeicherte Datei kann entweder lediglich eine Beschreibung des Graphen als solchen in GXL-Notation beinhalten oder zusätzlich Informationen zu den Vorlage-Regeln speichern. Dies ermöglicht es, einen Graphen zu erstellen und diesen zu einem späteren Zeitpunkt auf dem selben oder auch einem anderen Computer wieder in unser System zu laden. Letzteres ist insbesondere dann von Nutzen, wenn ein Graph mit Regeln für die Bearbeitung erstellt wurde und im Anschluss von anderen Personen gemäß der Regeln der Vorlage bearbeitet werden soll.
+	
+	\subsubsection{TXT}
+	Dieses Format dient dazu ein Protokoll der Nutzerinteraktionen zu exportieren. Dies ermöglicht es, den Erstellungsprozess eines Syndroms im Nachhinein analysieren zu können.
+	
+	\subsubsection{PDF}
+	Dieses Format dient dazu, die Darstellung eines Syndroms außerhalb der Anwendung sichern zu können. Mit diesem Format kann die ein Syndrom in seiner visualisierten Form auch außerhalb des System (zum Beispiel in einem Webbrowser) betrachtet werden. 
+	
+
+		\newpage
+					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{Neue Datei / Öffnen / Importieren} \label{import}
+	Beim Öffnen und Importieren von Dateien geht es stets darum, Daten in das System zu holen. Diese Daten werden dann in der Anwendung verarbeitet.
 	
 		\subsubsection{Neue Datei}
 		\condition 	
@@ -1332,22 +1358,62 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\begin{itemize}
 				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei geöffnet werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei geöffnet und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten und kann exportiert / gespeichert werden.
 		\end{itemize}
-				
-							\newpage
+
+				\newpage
 					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{GXL}
-		
-							\newpage
+	\subsubsection{Importieren als  Vorlage}
+		\condition 	
+		Das Programm ist geöffnet.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken.
+				\item Die Taste gedrückt halten und dabei zusätzlich die \textit{I}-Taste der Tastatur drücken.
+		\end{enumerate}				
+		Alternative 2:
+		\begin{enumerate}
+				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Importieren als...} bewegen
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage} und \textit{GXL} anbietet.
+				\item In diesem Menü die Option \textit{Vorlage} mit einem Links-Klick auswählen.
+		\end{enumerate}		
+		\hint
+		\begin{itemize}
+				\item Bei dieser Variante des Imports wird ein Graph mit Bearbeitungsregeln importiert.
+				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei importiert werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei importiert und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten und kann exportiert / gespeichert werden. Nach Klicken auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem die gewünschte Datei ausgewählt werden kann. Diese kann mit einem Links-Klick auf \textit{Öffnen} importiert werden. Auch an dieser Stelle kann der Import noch mit einem Klick auf den \textit{Abbrechen}-Button verhindert werden.
+		\end{itemize}
+
+					\newpage
 					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{oof}
+	\subsubsection{Importieren als GXL}
+		\condition 	
+		Das Programm ist geöffnet.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Zusätzlich die \textit{Shift}-Taste drücken und ebenfalls gedrückt halten.
+				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{I}-Taste der Tastatur drücken.
+		\end{enumerate}				
+		Alternative 2:
+		\begin{enumerate}
+				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Importieren als...} bewegen
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage} und \textit{GXL} anbietet.
+				\item In diesem Menü die Option \textit{GXL} mit einem Links-Klick auswählen.
+		\end{enumerate}		
+		\hint
+		\begin{itemize}
+				\item Bei dieser Variante des Imports wird ein Graph ohne Bearbeitungsregeln importiert selbst wenn in der importierten Datei Bearbeitungsregeln enthalten sind.
+				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei importiert werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei importiert und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten und kann exportiert / gespeichert werden. Nach Klicken auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem die gewünschte Datei ausgewählt werden kann. Diese kann mit einem Links-Klick auf \textit{Öffnen} importiert werden. Auch an dieser Stelle kann der Import noch mit einem Klick auf den \textit{Abbrechen}-Button verhindert werden.
+		\end{itemize}
 		
-		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Export/ Speichern} \label{export}
-Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwendung sichern zu können. Diese Daten können zu einem späteren Zeitpunkt wieder in das System geladen werden, in dem die entsprechenden Dateien wieder importiert / geöffnet werden. 
-	
-	
+		\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Speichern / Exportieren} \label{export}
+	Beim Speichern und Exportieren von Dateien geht es stets darum, Daten aus dem System an dessen Umgebung zu übermitteln. Diese Daten werden dann außerhalb der Anwendung gespeichet und können zu einem späteren Zeitpunkt wieder in das System importiert werden.
+
+	\newpage
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Speichern unter}
 		\condition 	
@@ -1369,17 +1435,106 @@ Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwend
 				\item Bei den gespeicherten Daten handelt es sich sowohl um das Protokoll der Nutzerinteraktionen als auch um den aktuellen Graphen. Diese Informationen werden gemeinsam im .oof-Format (einem system eigenen Datei-Format) gespeichert.
 		\end{itemize}
 		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{GXL}
+				\newpage
+					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsubsection{Exportieren als Vorlage}
+		\condition 	
+		Das Programm ist geöffnet.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Zusätzlich die \textit{E}-Taste der Tastatur drücken.
+		\end{enumerate}				
+		Alternative 2:
+		\begin{enumerate}
+				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In diesem Menü die Option \textit{Vorlage} mit einem Links-Klick auswählen.
+		\end{enumerate}		
+		\hint
+		\begin{itemize}
+				\item Bei dieser Variante des Exports wird ein Graph mit Bearbeitungsregeln exportiert.
+				\item Es erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. In dem Feld neben dem Text \textit{Dateiname:} kann der Name angegeben werden unter dem die Vorlage gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+		\end{itemize}
 		
 							\newpage
 					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{oof}
+		\subsubsection{Exportieren als GXL}
+		\condition 	
+		Das Programm ist geöffnet.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Zusätzlich die \textit{Shift}-Taste drücken und ebenfalls gedrückt halten.
+				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{E}-Taste der Tastatur drücken
+		\end{enumerate}				
+		Alternative 2:
+		\begin{enumerate}
+				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In diesem Menü die Option \textit{GXL} mit einem Links-Klick auswählen.
+		\end{enumerate}		
+		\hint
+		\begin{itemize}
+				\item Bei dieser Variante des Exports wird ein Graph ohne Bearbeitungsregeln exportiert (selbst wenn Regeln in der Anwendung eingegeben wurden).
+				\item Es erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. In dem Feld neben dem Text \textit{Dateiname:} kann der Name angegeben werden unter dem der Graph gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+		\end{itemize}
 		
 							\newpage
 					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Pdf}
+				\condition 	
+		Das Programm ist geöffnet.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Zusätzlich die \textit{Shift}-Taste drücken und ebenfalls gedrückt halten.
+				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{E}-Taste der Tastatur drücken
+		\end{enumerate}				
+		Alternative 2:
+		\begin{enumerate}
+				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In diesem Menü die Option \textit{GXL} mit einem Links-Klick auswählen.
+		\end{enumerate}		
+		\hint
+		\begin{itemize}
+				\item Bei dieser Variante des Exports wird ein Graph ohne Bearbeitungsregeln exportiert (selbst wenn Regeln in der Anwendung eingegeben wurden).
+				\item Es erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. In dem Feld neben dem Text \textit{Dateiname:} kann der Name angegeben werden unter dem der Graph gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+		\end{itemize}
+		
+							\newpage
+					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsubsection{oof}
+		\condition 	
+		Das Programm ist geöffnet.
+		\actions
+		Alternative 1:
+		\begin{enumerate}
+				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Zusätzlich die \textit{Shift}-Taste drücken und ebenfalls gedrückt halten.
+				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{E}-Taste der Tastatur drücken
+		\end{enumerate}				
+		Alternative 2:
+		\begin{enumerate}
+				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In diesem Menü die Option \textit{GXL} mit einem Links-Klick auswählen.
+		\end{enumerate}		
+		\hint
+		\begin{itemize}
+				\item Bei dieser Variante des Exports wird ein Graph ohne Bearbeitungsregeln exportiert (selbst wenn Regeln in der Anwendung eingegeben wurden).
+				\item Es erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. In dem Feld neben dem Text \textit{Dateiname:} kann der Name angegeben werden unter dem der Graph gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+		\end{itemize}
+
+
 		
 		
 		
