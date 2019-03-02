@@ -36,7 +36,7 @@ public class ImportGxlAction extends GraphAction {
     public void action() {
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file, false);
-        templateFound=gxlio.templateFoundFlag;
+        templateFound=gxlio.isTemplateFoundFlag();
         if(templateFound){
             return;
         }
