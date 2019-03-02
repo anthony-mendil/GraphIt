@@ -83,7 +83,7 @@ public class GXLio {
                 return;
             }
             if(gxlTemplate!=null){
-                System.out.println("tff: "+templateFoundFlag);
+                logger.debug("tff: "+templateFoundFlag);
                 if(!withTemplate&&!templateFoundFlag){
                     logger.info("Template found but not used");
                     templateFoundFlag=true;
