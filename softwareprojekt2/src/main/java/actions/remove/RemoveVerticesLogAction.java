@@ -19,7 +19,6 @@ import java.util.*;
  */
 public class RemoveVerticesLogAction extends LogAction {
 
-
     /**
      * Removes all passed vertices from the graph.
      * Gets the picked vertices through pick support.
@@ -50,34 +49,7 @@ public class RemoveVerticesLogAction extends LogAction {
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
             Map<Vertex, Sphere> params = new HashMap<>();
             Map<Edge, Pair<Vertex, Vertex>> edg = new HashMap<>();
-            for (Vertex vertex : pickedState.getPicked()) {
-                if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
-                    Point2D posVertex = vertex.getCoordinates();
-                    posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
-                    Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
-                    if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
-                        lockedVertices.add(vertex);
-                    } else {
-                        Collection<Edge> inList = graph.getInEdges(vertex);
-                        Collection<Edge> outList = graph.getOutEdges(vertex);
-                        for (Edge e : inList) {
-                            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
-                            Pair<Vertex, Vertex> vertexPair = new Pair<>(vertices.getFirst(), vertices.getSecond());
-                            edg.put(e, vertexPair);
-                        }
-                        for (Edge e : outList) {
-                            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
-                            Pair<Vertex, Vertex> vertexPair = new Pair<>(vertices.getFirst(), vertices.getSecond());
-                            edg.put(e, vertexPair);
-                        }
-                        graph.removeVertex(vertex);
-                        sp.getVertices().remove(vertex);
-                        params.put(vertex, sp);
-                    }
-                } else {
-                    lockedVertices.add(vertex);
-                }
-            }
+            removeVertices(params, lockedVertices, edg,  pickedState,  vv,  pickSupport);
             if (checkTemplateRules(lockedVertices, pickedState)) {
                 return;
             }
@@ -101,6 +73,41 @@ public class RemoveVerticesLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+    private void removeVertices(Map<Vertex, Sphere> params, List<Vertex> lockedVertices, Map<Edge, Pair<Vertex, Vertex>> edg, PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, SyndromPickSupport<Vertex, Edge> pickSupport){
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        for (Vertex vertex : pickedState.getPicked()) {
+            if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
+                Point2D posVertex = vertex.getCoordinates();
+                posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
+                Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
+                if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
+                    lockedVertices.add(vertex);
+                } else {
+                    Collection<Edge> inList = graph.getInEdges(vertex);
+                    Collection<Edge> outList = graph.getOutEdges(vertex);
+                    para( inList, outList,  graph,  edg);
+                    graph.removeVertex(vertex);
+                    sp.getVertices().remove(vertex);
+                    params.put(vertex, sp);
+                }
+            } else {
+                lockedVertices.add(vertex);
+            }
+        }
+    }
+
+    private void para( Collection<Edge> inList, Collection<Edge> outList, SyndromGraph<Vertex,Edge> graph, Map<Edge, Pair<Vertex, Vertex>> edg){
+        for (Edge e : inList) {
+            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+            Pair<Vertex, Vertex> vertexPair = new Pair<>(vertices.getFirst(), vertices.getSecond());
+            edg.put(e, vertexPair);
+        }
+        for (Edge e : outList) {
+            edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
+            Pair<Vertex, Vertex> vertexPair = new Pair<>(vertices.getFirst(), vertices.getSecond());
+            edg.put(e, vertexPair);
+        }
+    }
 
     @Override
     public void undo() {

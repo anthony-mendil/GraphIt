@@ -91,6 +91,9 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     @SuppressWarnings("unchecked")
     private Sphere ifOverlapping(PickedState<Sphere> pickedState, Layout<V, E> layout, SyndromGraph<V, E> g, RenderContext<V, E> renderContext){
         Collection<E> renderEdges = new ArrayList<>();
+        if (!pickedState.getPicked().iterator().hasNext()){
+            throw new IllegalStateException();
+        }
         Sphere sp = pickedState.getPicked().iterator().next();
         Collection<V> included = (Collection<V>) sp.getVertices();
         Collection<E> incoming = new ArrayList<>();

@@ -50,15 +50,7 @@ public class EditEdgesTypeLogAction extends LogAction {
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
             Map<Edge, EdgeArrowType> oldEdges = new HashMap<>();
             Map<Edge, EdgeArrowType> newEdges = new HashMap<>();
-            for (Edge e : pickedState.getPicked()) {
-                if (!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
-                    oldEdges.put(e, e.getArrowType());
-                    e.setArrowType(type);
-                    newEdges.put(e, type);
-                } else {
-                    lockedEdges.add(e);
-                }
-            }
+            setType(pickedState, oldEdges, newEdges, lockedEdges);
             if (!lockedEdges.isEmpty()) {
                 helper.setActionText("EDIT_EDGES_TYPE_ACTION", true, true);
             }
@@ -79,6 +71,18 @@ public class EditEdgesTypeLogAction extends LogAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+    }
+
+    private void setType(PickedState<Edge> pickedState, Map<Edge, EdgeArrowType> oldEdges,  Map<Edge, EdgeArrowType> newEdges, List<Edge> lockedEdges){
+        for (Edge e : pickedState.getPicked()) {
+            if (!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
+                oldEdges.put(e, e.getArrowType());
+                e.setArrowType(type);
+                newEdges.put(e, type);
+            } else {
+                lockedEdges.add(e);
+            }
+        }
     }
 
     @Override

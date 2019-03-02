@@ -59,14 +59,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -89,8 +89,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -2232,7 +2232,7 @@ public class Controller implements ObserverSyndrom {
             return;
         }
         Stage userGuideStage = new Stage();
-        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
+        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
         userGuideStage.setScene(new Scene(bp));
         userGuideStage.setTitle("GraphIt Tutorial");
         UserGuidePaneController ugpc = userGuideLoader.getController();
@@ -2265,7 +2265,7 @@ public class Controller implements ObserverSyndrom {
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
@@ -2355,7 +2355,7 @@ public class Controller implements ObserverSyndrom {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
         stage.setResizable(false);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
         Platform.runLater(() -> {

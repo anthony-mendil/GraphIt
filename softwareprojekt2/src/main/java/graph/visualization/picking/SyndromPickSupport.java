@@ -184,11 +184,11 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
         Graph<V, E> graph = layout.getGraph();
         Pair<V> endpoints = graph.getEndpoints(e);
         V v1 = endpoints.getFirst();
-        V v2 = endpoints.getSecond();
         Point2D p1 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v1));
-        Point2D p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v2));
+        V v2 = endpoints.getSecond();
         float x1 = (float) p1.getX();
         float y1 = (float) p1.getY();
+        Point2D p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v2));
         float x2 = (float) p2.getX();
         float y2 = (float) p2.getY();
         Shape edgeShape = null;

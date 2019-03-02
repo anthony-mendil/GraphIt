@@ -303,9 +303,13 @@ public class JGraphTHandler {
                 }
             }
             innerVertices.removeAll(potentialChain);
-            if (potentialChain.size() > 3) {
-                relationChains.add(potentialChain);
-            }
+            sizeChains(potentialChain,  relationChains);
+        }
+    }
+
+    private void sizeChains(LinkedList<Vertex> potentialChain, List<List<Vertex>> relationChains){
+        if (potentialChain.size() > 3) {
+            relationChains.add(potentialChain);
         }
     }
 

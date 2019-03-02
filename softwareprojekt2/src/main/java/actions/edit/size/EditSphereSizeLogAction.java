@@ -59,50 +59,11 @@ public class EditSphereSizeLogAction extends LogAction {
             for (Sphere sp : pickedState.getPicked()) {
                 if (!sp.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     if (sizeChange == SizeChange.ENLARGE) {
-                        double newHeight = sp.getHeight() + 10;
-                        double newWidth = sp.getWidth() + 10;
-                        double x = sp.getCoordinates().getX();
-                        double y = sp.getCoordinates().getY();
-                        boolean enlarge = true;
-
-                        Rectangle2D newShape = new Rectangle2D.Double(x, y, newWidth, newHeight);
-
-                        for (Sphere s : graph.getSpheres()) {
-                            Shape sphereShape = sphereShapeTransformer.transform(s);
-                            if (!s.equals(sp) && sphereShape.intersects(newShape)) {
-                                actionHistory.removeLastEntry();
-                                return;
-                            }
-                        }
-                        if (enlarge) {
-                            Pair<Double, Double> oldSize = new Pair<>(sp.getWidth(), sp.getHeight());
-                            sp.setHeight(newHeight);
-                            sp.setWidth(newWidth);
-                            Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
-                            createParameter(sp, oldSize, newSize);
-
-                        }
+                        doEnlarge(sp, graph);
                     } else {
-                        boolean add = true;
-                        Shape sphereShape = sphereShapeTransformer.transform(sp);
-                        for (Vertex v : sp.getVertices()) {
-                            if (!sphereShape.contains(new Point2D.Double(v.getCoordinates().getX() + 10, v.getCoordinates().getY() + 10))) {
-                                actionHistory.removeLastEntry();
-                                return;
-                            }
-                        }
-                        if (add && sp.getHeight() > 20 && sp.getWidth() > 20) {
-                            Pair<Double, Double> oldSize = new Pair<>(sp.getWidth(), sp.getHeight());
-                            sp.setHeight(sp.getHeight() - 10);
-                            sp.setWidth(sp.getWidth() - 10);
-                            Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
-                            createParameter(sp, oldSize, newSize);
-
-                        }else{
-                            actionHistory.removeLastEntry();
-                        }
+                        doShrink(sp);
                     }
-                }else {
+                } else {
                     helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true, false);
                     actionHistory.removeLastEntry();
                     return;
@@ -129,6 +90,49 @@ public class EditSphereSizeLogAction extends LogAction {
         EditSphereSizeParam editSphereSizeParam = new EditSphereSizeParam(sphere, newSize, oldSize);
         EditSphereSizeLogAction editSphereSizeLogAction = new EditSphereSizeLogAction(editSphereSizeParam);
         editSphereSizeLogAction.action();
+    }
+
+    private void doShrink(Sphere sp){
+        Shape sphereShape = sphereShapeTransformer.transform(sp);
+        for (Vertex v : sp.getVertices()) {
+            if (!sphereShape.contains(new Point2D.Double(v.getCoordinates().getX() + 10, v.getCoordinates().getY() + 10))) {
+                actionHistory.removeLastEntry();
+                return;
+            }
+        }
+        if (sp.getHeight() > 20 && sp.getWidth() > 20) {
+            Pair<Double, Double> oldSize = new Pair<>(sp.getWidth(), sp.getHeight());
+            sp.setHeight(sp.getHeight() - 10);
+            sp.setWidth(sp.getWidth() - 10);
+            Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
+            createParameter(sp, oldSize, newSize);
+
+        } else {
+            actionHistory.removeLastEntry();
+        }
+    }
+
+    private void doEnlarge(Sphere sp, SyndromGraph<Vertex, Edge> graph){
+        double newHeight = sp.getHeight() + 10;
+        double newWidth = sp.getWidth() + 10;
+        double x = sp.getCoordinates().getX();
+        double y = sp.getCoordinates().getY();
+
+        Rectangle2D newShape = new Rectangle2D.Double(x, y, newWidth, newHeight);
+
+        for (Sphere s : graph.getSpheres()) {
+            Shape sphereShape = sphereShapeTransformer.transform(s);
+            if (!s.equals(sp) && sphereShape.intersects(newShape)) {
+                actionHistory.removeLastEntry();
+                return;
+            }
+        }
+
+        Pair<Double, Double> oldSize = new Pair<>(sp.getWidth(), sp.getHeight());
+        sp.setHeight(newHeight);
+        sp.setWidth(newWidth);
+        Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
+        createParameter(sp, oldSize, newSize);
     }
 
     /**

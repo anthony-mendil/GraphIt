@@ -6,7 +6,6 @@ import gui.properties.Language;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.freehep.graphicsbase.util.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
