@@ -6,6 +6,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import gui.properties.Language;
+import lombok.Getter;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -52,6 +53,9 @@ public class GXLio {
 
     private static Logger logger = Logger.getLogger(GXLio.class);
 
+    @Getter
+    private boolean templateFoundFlag;
+
     /**
      * Constructor of class GXLio.
      * Creates a new GXLio object.
@@ -73,9 +77,22 @@ public class GXLio {
             // At first a document needs to be imported into the system. Thereby it is important that the document selected by the user has a valid structure.
             GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes(StandardCharsets.UTF_8)));
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
+            GXLGraph gxlTemplate = (GXLGraph) doc.getElement("template");
             if (gxlGraph == null) {
                 logger.error("Error on empty Syndrom GXLGraph");
                 return;
+            }
+            if(gxlTemplate!=null){
+                templateFoundFlag=true;
+                if(!withTemplate){
+                    logger.info("Template found but not used");
+                    return;
+                }
+            }else{
+                if (withTemplate){
+                    logger.error("Error on empty Template GXLGraph");
+                    return;
+                }
             }
             // The list of all vertices descripted in the document. Elements are added to this list when ever a gxl element that describes a vertex was found reading the gxl document and the java object from this gxl description was created.
             List<Vertex> vertices = new ArrayList<>();
@@ -85,7 +102,9 @@ public class GXLio {
             List<Map<Edge, Pair<Vertex>>> edgeAndVertices = new ArrayList<>();
             // This counter is needed as the documents elements not always will have successive ids. This fact is a result from the users possibility to delete elements after creating them before he/she exports the graph. This leads to gaps in the row of ids.
             int foundElements = 0;
-            searchForTemplate(doc, withTemplate);
+            if(withTemplate){
+                initializeTemplateValues(gxlTemplate);
+            }
             int elementCount = gxlGraph.getGraphElementCount();
             for (int idCounter = 0; foundElements < elementCount; idCounter++) {
                 if (doc.containsID(idCounter + "")) {
@@ -98,14 +117,6 @@ public class GXLio {
             updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());
-        }
-    }
-
-
-    private void searchForTemplate(GXLDocument pDoc, boolean pWithTemplate) {
-        if (pWithTemplate) {
-            GXLGraph gxlTemplate = (GXLGraph) pDoc.getElement("template");
-            initializeTemplateValues(gxlTemplate);
         }
     }
 

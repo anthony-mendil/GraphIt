@@ -57,7 +57,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -262,6 +261,9 @@ public class Controller implements ObserverSyndrom {
      */
     private LogDao logDao = new LogDao();
 
+    /**
+     * The logtostringconverter object that converts the log to strings to display the protocol.
+     */
     private LogToStringConverter logToStringConverter = new LogToStringConverter();
 
     /**
@@ -313,7 +315,13 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private BorderPane root;
     private Stage mainStage;
+    /**
+     * The current selected size.
+     */
     private String currentSize = "" + Values.DEFAULT_SIZE_VERTEX;
+    /**
+     * The current selected font.
+     */
     private String currentFont = values.getFontSphere();
     @FXML
     private ComboBox<String> sizeSphereComboBox;
@@ -324,6 +332,7 @@ public class Controller implements ObserverSyndrom {
     private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
     private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
     private static final String FONT_SPHERE_COMBO_BOX = "fontSphereComboBox";
+
     @FXML
     private Menu prozent;
     @FXML
@@ -612,9 +621,21 @@ public class Controller implements ObserverSyndrom {
     private static final String GXL_FILE = "GXL files (*.gxl)";
     private static final String TIMES_NEW_ROMAN = "Times New Roman";
     private static final String COMIC_SANS_MS = "Comic Sans Ms";
-    private List<Button> selectionButtons;
-    private ObservableList<Label> sizeLabels;
-    private ObservableList<MenuItem> fontLabels;
+    private static final String IMPORT_GXL = "importGXL";
+    private static final String IMPORT_TEMPLATE_GXL = "importTemplateGXL";
+    private static final String OPEN_FILE = "openFile";
+    private static final String PRINT_FILE = "print";
+    private static final String NEW_FILE = "newFile";
+    private static final String EXPORT_PDF = "exportPDF";
+
+    /**
+     * Our application logo.
+     */
+    private static final String APPLICATION_LOGO = "/GraphItLogo.png";
+
+    /**
+     * The list of all fonts.
+     */
     private ObservableList<String> fonts =
             FXCollections.observableArrayList(
                     "AveriaSansLibre",
@@ -623,6 +644,10 @@ public class Controller implements ObserverSyndrom {
                     "Roboto",
                     "RobotoSlab"
             );
+
+    /**
+     * The list of all font sizes.
+     */
     private ObservableList<String> sizes =
             FXCollections.observableArrayList(
                     "8",
@@ -641,9 +666,24 @@ public class Controller implements ObserverSyndrom {
                     "96"
             );
 
+    /**
+     * The logger which logs every exception.
+     */
     private static Logger logger = Logger.getLogger(Controller.class);
+
+    /**
+     * The current edge arrow type to filter by.
+     */
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
+
+    /**
+     * The current log entry to filter by.
+     */
     private LogEntryName analysisLogEntryName = null;
+
+    /**
+     * The loadlanguage object to change the gui and graph language.
+     */
     private LoadLanguage loadLanguage;
 
 
@@ -943,7 +983,7 @@ public class Controller implements ObserverSyndrom {
      *
      * @param size The desired font size.
      */
-    private void editFontSizeVertices(int size) {
+    void editFontSizeVertices(int size) {
         values.setFontSizeVertex(size);
         if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
             EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
@@ -1136,11 +1176,16 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
-            zoomSlider.setValue(100);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
+            if (importGxlAction.templateFound) {
+                //TODO DIALOG, WENN TEMPLATE ALS GXL (ohne template) IMPORTIERT WIRD
+            } else {
+                zoomSlider.setValue(100);
+                canvas.setContent(syndrom.getVv());
+                satellite.setContent(syndrom.getVv2());
+            }
         }
     }
+
     /**
      * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportTemplateGxlAction-object
      * and executes the action with the action history.
@@ -1152,9 +1197,13 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
             importTemplateGxlAction.action();
-            zoomSlider.setValue(100);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
+            if (!importTemplateGxlAction.templateFound) {
+                //TODO DIALOG, WENN GXL (ohne template) ALS TEMPLATE IMPORTIERT WIRD
+            } else {
+                zoomSlider.setValue(100);
+                canvas.setContent(syndrom.getVv());
+                satellite.setContent(syndrom.getVv2());
+            }
         }
     }
 
@@ -1504,9 +1553,9 @@ public class Controller implements ObserverSyndrom {
 
         loadSizeComboBox(sizeSphereComboBox);
         loadSizeComboBox(sizeSymptomComboBox);
-        loadMenuItem();
         loadFontComboBox(fontSphereComboBox);
         loadFontComboBox(fontSymptomComboBox);
+        loadMenuItem();
         loadTemplateTextFields();
         loadTemplateCheckBox();
         loadAnalysisElements();
@@ -1663,7 +1712,6 @@ public class Controller implements ObserverSyndrom {
         KeyCombination three = new KeyCodeCombination(KeyCode.DIGIT3);
         KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
         KeyCombination entf = new KeyCodeCombination(KeyCode.DELETE);
-
         if (plus.match(event)) {
             sphereEnlarge();
             vertexEnlarge();
@@ -1806,27 +1854,7 @@ public class Controller implements ObserverSyndrom {
         });
 
 
-        treeView.setOnMouseClicked(e -> {
-            if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
-                if (e.getButton() == MouseButton.SECONDARY) {
-                    Node node = e.getPickResult().getIntersectedNode();
-                    if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                        TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
-                        Object val = selected.getValue();
-
-                        ContextMenu contextMenu = helper.openContextMenu(val);
-                        if (contextMenu != null) {
-                            treeView.setContextMenu(contextMenu);
-                            contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
-                        }
-                    } else {
-                        treeView.setContextMenu(null);
-                    }
-                } else if (treeView.getContextMenu() != null) {
-                    treeView.getContextMenu().hide();
-                }
-            }
-        });
+        treeView.setOnMouseClicked(new TreeViewMouseHandler(this, helper));
     }
 
     /**
@@ -1897,7 +1925,7 @@ public class Controller implements ObserverSyndrom {
      * Changes the font size of the sphere accordingly to the given argument.
      * @param size The desired size.
      */
-    private void editFontSizeSphere(int size) {
+    void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
             EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
@@ -2020,25 +2048,7 @@ public class Controller implements ObserverSyndrom {
         loadSizes(comboBox);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
-        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            comboBox.hide();
-            if (event.getCode() == KeyCode.ENTER) {
-                String tmpSize = comboBox.getEditor().getText();
-                if (tmpSize.chars().allMatch(Character::isDigit)) {
-                    int size = Integer.parseInt(tmpSize);
-                    if (size > 3 && size <= 96) {
-                        if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
-                            currentSize = tmpSize;
-                            editFontSizeSphere(size);
-                        } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-                            currentSize = tmpSize;
-                            editFontSizeVertices(size);
-                        }
-                    }
-                }
-                root.requestFocus();
-            }
-        });
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, new ConfirmKeyComboBoxListener(this,comboBox));
     }
 
     /**
@@ -2140,6 +2150,16 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
+     * Reloads the comboboxes of the font and font size options
+     */
+    void reloadComboBox(){
+        fontSphereComboBox.getEditor().setText(values.getFontSphere());
+        fontSymptomComboBox.getEditor().setText(values.getFontVertex());
+        sizeSphereComboBox.getEditor().setText(""+values.getFontSizeSphere());
+        sizeSymptomComboBox.getEditor().setText(""+values.getFontSizeVertex());
+    }
+
+    /**
      * Shows or Hides the analyis gui accordingly to the given argument.
      * @param active Determines if it will be shown or hidden.
      */
@@ -2233,6 +2253,7 @@ public class Controller implements ObserverSyndrom {
         }
         Stage userGuideStage = new Stage();
         userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
+
         userGuideStage.setScene(new Scene(bp));
         userGuideStage.setTitle("GraphIt Tutorial");
         UserGuidePaneController ugpc = userGuideLoader.getController();
@@ -2329,20 +2350,29 @@ public class Controller implements ObserverSyndrom {
     private void openDialogInfo(MenuItem menuItem) {
         String okText = "EXIT_WINDOW_CLOSE_PDF";
         String cancel = "EXIT_WINDOW_CANCEL_PDF";
-        String info = "";
+        String info;
         String s = menuItem.getId();
-        if (importGXL.getId().equals(s)) {
-            info = "INFO_DIALOG_IMPORT";
-        } else if (importTemplateGXL.getId().equals(s)) {
-            info = "INFO_DIALOG_IMPORT";
-        } else if (openFile.getId().equals(s)) {
-            info = "INFO_DIALOG_OPEN";
-        } else if (print.getId().equals(s)) {
-            info = "PRINT_EXPORT_INFO_DIALOG";
-        } else if (newFile.getId().equals(s)) {
-            info = "INFO_DIALOG_NEW_FILE";
-        } else if (exportPDF.getId().equals(s)) {
-            info = "PDF_EXPORT_INFO_DIALOG";
+        switch (s) {
+            case IMPORT_GXL:
+                info = "INFO_DIALOG_IMPORT";
+                break;
+            case IMPORT_TEMPLATE_GXL:
+                info = "INFO_DIALOG_IMPORT";
+                break;
+            case OPEN_FILE:
+                info = "INFO_DIALOG_OPEN";
+                break;
+            case PRINT_FILE:
+                info = "PRINT_EXPORT_INFO_DIALOG";
+                break;
+            case NEW_FILE:
+                info = "INFO_DIALOG_NEW_FILE";
+                break;
+            case EXPORT_PDF:
+                info = "PDF_EXPORT_INFO_DIALOG";
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
 
         ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey(okText), ButtonBar.ButtonData.OK_DONE);
@@ -2351,28 +2381,37 @@ public class Controller implements ObserverSyndrom {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info), ok, close);
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
-        alert.getDialogPane().getScene().getWindow().sizeToScene();
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
+
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                if (menuItem.getId().equals(importGXL.getId())) {
-                    importGXL();
-                } else if (menuItem.getId().equals(importTemplateGXL.getId())) {
-                    importTemplateGXL();
-                } else if (menuItem.getId().equals(openFile.getId())) {
-                    openFile();
-                } else if (menuItem.getId().equals(print.getId())) {
-                    printPDF();
-                } else if (menuItem.getId().equals(newFile.getId())) {
-                    createGraph();
-                } else if (menuItem.getId().equals(exportPDF.getId())) {
-                    exportPDF();
+                switch (menuItem.getId()) {
+                    case IMPORT_GXL:
+                        importGXL();
+                        break;
+                    case IMPORT_TEMPLATE_GXL:
+                        importTemplateGXL();
+                        break;
+                    case OPEN_FILE:
+                        openFile();
+                        break;
+                    case PRINT_FILE:
+                        printPDF();
+                        break;
+                    case NEW_FILE:
+                        createGraph();
+                        break;
+                    case EXPORT_PDF:
+                        exportPDF();
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
                 }
             }
         });
@@ -2936,7 +2975,6 @@ public class Controller implements ObserverSyndrom {
             @Override
             protected Task<Void> createTask() {
                 return new Task<Void>() {
-                    @SuppressWarnings("unchecked")
                     @Override
                     protected Void call() throws Exception {
                         final CountDownLatch latch = new CountDownLatch(1);
@@ -2944,36 +2982,7 @@ public class Controller implements ObserverSyndrom {
                             try {
                                 TreeItem<Object> rootItem = new TreeItem<>();
                                 List<Log> filterLog = (entryName == null) ? logDao.getAll() : logDao.getLogType(entryName);
-                                for (Log log : filterLog) {
-                                    String time = logToStringConverter.convert(log);
-                                    String index = time.substring(0, time.indexOf('\n'));
-                                    time = time.replaceFirst(index, "");
-                                    time = time.trim();
-                                    String name = time.substring(0, time.indexOf('\n'));
-                                    time = time.replaceFirst(name, "");
-                                    time = time.trim();
-                                    String parameter = time.substring(0, time.indexOf('\n'));
-                                    time = time.replace(parameter, "");
-                                    time = time.trim();
-                                    TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
-                                    TreeItem<Object> logTime = new TreeItem<>(time);
-
-                                    TreeItem<Object> logInformation;
-                                    if (parameter.contains(";")) {
-                                        logInformation = new TreeItem<>(extractStart(parameter));
-                                        List<String> entries = evaluateEntries(parameter);
-                                        for (String s : entries) {
-                                            TreeItem<Object> entry = new TreeItem<>(s);
-                                            logInformation.getChildren().add(entry);
-                                        }
-                                    } else {
-                                        logInformation = new TreeItem<>(parameter);
-                                    }
-
-                                    logIndexName.getChildren().addAll(logTime, logInformation);
-                                    logIndexName.setExpanded(true);
-                                    rootItem.getChildren().add(logIndexName);
-                                }
+                                loadFilterLogs(filterLog, rootItem);
                                 rootItem.setExpanded(true);
                                 protocol.setRoot(rootItem);
                                 protocol.setShowRoot(false);
@@ -2988,6 +2997,46 @@ public class Controller implements ObserverSyndrom {
             }
         };
         service.start();
+    }
+
+    /**
+     * Formats and loads the logs to the log overview.
+     *
+     * @param filterLog The list of logs.
+     * @param rootItem The treeitem that the logs should be loaded to.
+     */
+    @SuppressWarnings("unchecked")
+    private void loadFilterLogs(List<Log> filterLog, TreeItem<Object> rootItem){
+        for (Log log : filterLog) {
+            String time = logToStringConverter.convert(log);
+            String index = time.substring(0, time.indexOf('\n'));
+            time = time.replaceFirst(index, "");
+            time = time.trim();
+            String name = time.substring(0, time.indexOf('\n'));
+            time = time.replaceFirst(name, "");
+            time = time.trim();
+            String parameter = time.substring(0, time.indexOf('\n'));
+            time = time.replace(parameter, "");
+            time = time.trim();
+            TreeItem<Object> logIndexName = new TreeItem<>(index + ": " + name);
+            TreeItem<Object> logTime = new TreeItem<>(time);
+
+            TreeItem<Object> logInformation;
+            if (parameter.contains(";")) {
+                logInformation = new TreeItem<>(extractStart(parameter));
+                List<String> entries = evaluateEntries(parameter);
+                for (String s : entries) {
+                    TreeItem<Object> entry = new TreeItem<>(s);
+                    logInformation.getChildren().add(entry);
+                }
+            } else {
+                logInformation = new TreeItem<>(parameter);
+            }
+
+            logIndexName.getChildren().addAll(logTime, logInformation);
+            logIndexName.setExpanded(true);
+            rootItem.getChildren().add(logIndexName);
+        }
     }
 
     /**

@@ -24,7 +24,9 @@ import java.util.Map;
 @Data
 public class Values {
 
+
     public static final String LOGO_MAIN="/GraphItLogo.png";
+
     /**
      * The default width sphere.
      */

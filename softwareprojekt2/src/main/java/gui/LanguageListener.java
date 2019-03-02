@@ -48,9 +48,10 @@ public class LanguageListener implements ChangeListener<Boolean> {
         controller.treeViewUpdate();
         controller.loadTables();
         controller.sortFilterLogs();
+        controller.reloadComboBox();
     }
 
-    public LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
+    LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
         this.checkMenuItem = checkMenuItem;
         this.controller = controller;
         loadLanguage = controller.getLoadLanguage();

@@ -15,10 +15,6 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
      */
     private ToggleButton toggleButton;
     /**
-     * The controller that contains most of the gui elements and functions.
-     */
-    private Controller c;
-    /**
      * The toggle button for the selecting action.
      */
     private ToggleButton handSelector;
@@ -31,12 +27,11 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
      */
     private ToggleButton addVertex;
 
-    public ToggleButtonListener(Controller pC, ToggleButton pToggleButton) {
+    ToggleButtonListener(Controller pC, ToggleButton pToggleButton) {
         toggleButton = pToggleButton;
-        c = pC;
-        handSelector = c.getHandSelector();
-        addSphere = c.getAddSphere();
-        addVertex = c.getAddVertex();
+        handSelector = pC.getHandSelector();
+        addSphere = pC.getAddSphere();
+        addVertex = pC.getAddVertex();
     }
 
     /**
@@ -49,27 +44,39 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (newValue) {
-            if (toggleButton.getId().equals("handSelector")) {
-                addSphere.setSelected(false);
-                addVertex.setSelected(false);
-            } else if (toggleButton.getId().equals("addSphere")) {
-                handSelector.setSelected(false);
-                addVertex.setSelected(false);
-            } else if (toggleButton.getId().equals("addVertex")) {
-                handSelector.setSelected(false);
-                addSphere.setSelected(false);
+            switch (toggleButton.getId()) {
+                case "handSelector":
+                    addSphere.setSelected(false);
+                    addVertex.setSelected(false);
+                    break;
+                case "addSphere":
+                    handSelector.setSelected(false);
+                    addVertex.setSelected(false);
+                    break;
+                case "addVertex":
+                    handSelector.setSelected(false);
+                    addSphere.setSelected(false);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
         } else {
-            if (toggleButton.getId().equals("handSelector")) {
-                if (!addSphere.isSelected() && !addVertex.isSelected()) {
+            switch (toggleButton.getId()) {
+                case "handSelector":
+                    if (!addSphere.isSelected() && !addVertex.isSelected()) {
+                        toggleButton.setSelected(true);
+                    }
+                    break;
+                case "addSphere":
+                    if (!handSelector.isSelected() && !addVertex.isSelected()) {
+                        toggleButton.setSelected(true);
+                    }
+                    break;
+                case "addVertex":
                     toggleButton.setSelected(true);
-                }
-            } else if (toggleButton.getId().equals("addSphere")) {
-                if (!handSelector.isSelected() && !addVertex.isSelected()) {
-                    toggleButton.setSelected(true);
-                }
-            } else if (toggleButton.getId().equals("addVertex") && !handSelector.isSelected() && !addSphere.isSelected()) {
-                toggleButton.setSelected(true);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
         }
     }
