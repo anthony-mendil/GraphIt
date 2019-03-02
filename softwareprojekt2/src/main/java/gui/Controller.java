@@ -946,7 +946,7 @@ public class Controller implements ObserverSyndrom {
      *
      * @param size The desired font size.
      */
-    public void editFontSizeVertices(int size) {
+    private void editFontSizeVertices(int size) {
         values.setFontSizeVertex(size);
         if (!syndrom.getVv().getPickedVertexState().getPicked().isEmpty()) {
             EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(size);
@@ -1025,15 +1025,14 @@ public class Controller implements ObserverSyndrom {
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showSaveDialog(mainStage);
-        return file;
+        return fileChooser.showSaveDialog(mainStage);
     }
 
     /**
      * Opens up a file chooser that the user can use to determine the desired saving path and export the graph
      * as PDF file.
      */
-    public void exportPDF() {
+    private void exportPDF() {
         FileChooser fileChooser = new FileChooser();
         if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
@@ -1110,7 +1109,7 @@ public class Controller implements ObserverSyndrom {
      * Opens the selected OOF-fileMenu after choosing it in the fileMenu chooser, creates an ImportOofAction-object
      * and executes the action with the action history.
      */
-    public void openFile() {
+    private void openFile() {
         FileChooser fileChooser = new FileChooser();
         if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
@@ -1134,7 +1133,7 @@ public class Controller implements ObserverSyndrom {
      * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportGxlAction-object
      * and executes the action with the action history.
      */
-    public void importGXL() {
+    private void importGXL() {
         File file = openGXLImportWindow();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
@@ -1149,7 +1148,7 @@ public class Controller implements ObserverSyndrom {
      * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportTemplateGxlAction-object
      * and executes the action with the action history.
      */
-    public void importTemplateGXL() {
+    private void importTemplateGXL() {
         File file = openGXLImportWindow();
         mainStage.centerOnScreen();
         if (file != null) {
@@ -1174,8 +1173,7 @@ public class Controller implements ObserverSyndrom {
         }
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(GXL_FILE, GXL);
         fileChooser.getExtensionFilters().add(extensionFilter);
-        File file = fileChooser.showOpenDialog(mainStage);
-        return file;
+        return fileChooser.showOpenDialog(mainStage);
     }
 
     /**
@@ -1206,7 +1204,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Prints the graph as PDF.
      */
-    public void printPDF() {
+    private void printPDF() {
         PrintPDFAction printPDFAction = new PrintPDFAction();
         printPDFAction.action();
 
@@ -1481,6 +1479,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Initializes the whole gui with the desired functions.
      */
+    @SuppressWarnings("unchecked")
     public void initialize() {
         initFonts();
         rulesTemplate();
@@ -1612,7 +1611,7 @@ public class Controller implements ObserverSyndrom {
     private void initInfoText() {
         infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
         infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
-        infoText(tooltipInfoTemplate, "INFO_TEMPLATE", infoTemplate, 15, -80);
+        infoText(tooltipInfoTemplate, "INFO_TEMPLATE", infoTemplate, 14, -80);
     }
 
     /**
@@ -1679,14 +1678,12 @@ public class Controller implements ObserverSyndrom {
         } else if (strgY.match(event)) {
             executeRedo();
         } else if (entf.match(event) || strgD.match(event)) {
-
             removeEdges();
             syndrom.getVv().getPickedEdgeState().clear();
             removeVertices();
             syndrom.getVv().getPickedVertexState().clear();
             removeSphere();
             syndrom.getVv().getPickedSphereState().clear();
-
         } else if (strgA.match(event)) {
             for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
                 syndrom.getVv().getPickedVertexState().pick(v, true);
@@ -1762,7 +1759,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Sorts the filter log menu.
      */
-    public void sortFilterLogs() {
+    void sortFilterLogs() {
         ArrayList<MenuItem> f = new ArrayList<>(filterLogType.getItems());
         f.sort(menuItemCompare);
         filterLogType.getItems().removeAll(f);
@@ -1903,7 +1900,7 @@ public class Controller implements ObserverSyndrom {
      * Changes the font size of the sphere accordingly to the given argument.
      * @param size The desired size.
      */
-    public void editFontSizeSphere(int size) {
+    private void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
             EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
@@ -1978,7 +1975,7 @@ public class Controller implements ObserverSyndrom {
      * Initializes the font comboboxes accordingly to the specific combobox for sphere or symptom.
      * @param comboBox The specific combobox.
      */
-    public void loadFontComboBox(ComboBox<String> comboBox) {
+    private void loadFontComboBox(ComboBox<String> comboBox) {
 
         if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
             comboBox.getEditor().setText(values.getFontSphere());
@@ -2051,16 +2048,10 @@ public class Controller implements ObserverSyndrom {
      * Initializes the menu for the font comboboxes for sphere and symptom.
      * @param comboBox The specific combobox.
      */
+    @SuppressWarnings("unchecked")
     private void loadFonts(ComboBox comboBox) {
-
         comboBox.setCellFactory(lv -> {
-            ListCell<MenuItem> cell = new ListCell<MenuItem>() {
-                @Override
-                protected void updateItem(MenuItem item, boolean empty) {
-                    super.updateItem(item, empty);
-                    setText(empty ? null : item.getText());
-                }
-            };
+            ListCell<MenuItem> cell = fontSizeMenuItem(comboBox);
 
             cell.setOnMousePressed(e -> {
                 if (!cell.isEmpty()) {
@@ -2076,29 +2067,18 @@ public class Controller implements ObserverSyndrom {
             });
             return cell;
         });
-
-        ObservableList<MenuItem> fontMenuItems = FXCollections.observableArrayList();
-        for (String font : fonts) {
-            MenuItem fontMenuItem = new MenuItem(font);
-            fontMenuItems.add(fontMenuItem);
-        }
-        comboBox.setItems(fontMenuItems);
+        loadMenuItems(comboBox);
     }
 
     /**
      * Initializes the menu for the size comboboxes for sphere and symptom.
      * @param comboBox The specific combobox.
      */
+    @SuppressWarnings("unchecked")
     private void loadSizes(ComboBox comboBox) {
 
         comboBox.setCellFactory(lv -> {
-            ListCell<MenuItem> cell = new ListCell<MenuItem>() {
-                @Override
-                protected void updateItem(MenuItem item, boolean empty) {
-                    super.updateItem(item, empty);
-                    setText(empty ? null : item.getText());
-                }
-            };
+            ListCell<MenuItem> cell = fontSizeMenuItem(comboBox);
 
             cell.setOnMousePressed(e -> {
                 if (!cell.isEmpty()) {
@@ -2115,13 +2095,51 @@ public class Controller implements ObserverSyndrom {
             });
             return cell;
         });
+        loadMenuItems(comboBox);
+    }
 
-        ObservableList<MenuItem> sizeMenuItems = FXCollections.observableArrayList();
-        for (String size : sizes) {
-            MenuItem sizeMenuItem = new MenuItem(size);
-            sizeMenuItems.add(sizeMenuItem);
+    /**
+     * Initializes the menu for the font and font size combobox.
+     * @param comboBox The combobox that the menu should be initialized to.
+     */
+    @SuppressWarnings("unchecked")
+    private void loadMenuItems(ComboBox comboBox){
+        ObservableList<MenuItem> menuItems = FXCollections.observableArrayList();
+        if(comboBox.getId().equals((SIZE_SPHERE_COMBO_BOX)) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)){
+            for (String size : sizes) {
+                MenuItem sizeMenuItem = new MenuItem(size);
+                menuItems.add(sizeMenuItem);
+            }
+        }else if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+            for (String font : fonts) {
+                MenuItem fontMenuItem = new MenuItem(font);
+                menuItems.add(fontMenuItem);
+            }
         }
-        comboBox.setItems(sizeMenuItems);
+        comboBox.setItems(menuItems);
+    }
+
+    /**
+     * Creates the menuitems for the font and font size combobox.
+     * @param comboBox The combobox that the menuitems belong to.
+     * @return A listcell of menuitems for the comboboxes.
+     */
+    private ListCell<MenuItem> fontSizeMenuItem(ComboBox comboBox){
+        ListCell<MenuItem> cell = new ListCell<MenuItem>() {
+            @Override
+            protected void updateItem(MenuItem item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getText());
+            }
+        };
+
+        cell.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                comboBox.getEditor().setText(cell.getItem().getText());
+            }
+        });
+
+        return cell;
     }
 
     /**
@@ -2315,17 +2333,18 @@ public class Controller implements ObserverSyndrom {
         String okText = "EXIT_WINDOW_CLOSE_PDF";
         String cancel = "EXIT_WINDOW_CANCEL_PDF";
         String info = "";
-        if (menuItem.getId().equals(importGXL.getId())) {
+        String s = menuItem.getId();
+        if (importGXL.getId().equals(s)) {
             info = "INFO_DIALOG_IMPORT";
-        } else if (menuItem.getId().equals(importTemplateGXL.getId())) {
+        } else if (importTemplateGXL.getId().equals(s)) {
             info = "INFO_DIALOG_IMPORT";
-        } else if (menuItem.getId().equals(openFile.getId())) {
+        } else if (openFile.getId().equals(s)) {
             info = "INFO_DIALOG_OPEN";
-        } else if (menuItem.getId().equals(print.getId())) {
+        } else if (print.getId().equals(s)) {
             info = "PRINT_EXPORT_INFO_DIALOG";
-        } else if (menuItem.getId().equals(newFile.getId())) {
+        } else if (newFile.getId().equals(s)) {
             info = "INFO_DIALOG_NEW_FILE";
-        } else if (menuItem.getId().equals(exportPDF.getId())) {
+        } else if (exportPDF.getId().equals(s)) {
             info = "PDF_EXPORT_INFO_DIALOG";
         }
 
@@ -2396,7 +2415,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Creates a new graph.
      */
-    public void createGraph() {
+    private void createGraph() {
         CreateGraphAction action = new CreateGraphAction("UntitledGraph", this);
         action.action();
         canvas.setContent(syndrom.getVv());
@@ -2911,13 +2930,14 @@ public class Controller implements ObserverSyndrom {
      * Filter the logs accordingly to the given argument.
      * @param entryName The desired log.
      */
-    public void filterLogs(LogEntryName entryName) {
+    void filterLogs(LogEntryName entryName) {
         analysisLogEntryName = entryName;
         logToStringConverter.resetIncrementer();
         Service<Void> service = new Service<Void>() {
             @Override
             protected Task<Void> createTask() {
                 return new Task<Void>() {
+                    @SuppressWarnings("unchecked")
                     @Override
                     protected Void call() throws Exception {
                         final CountDownLatch latch = new CountDownLatch(1);
