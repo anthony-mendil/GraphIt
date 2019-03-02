@@ -19,7 +19,7 @@ public class FilterTypeHandler implements EventHandler<ActionEvent> {
      */
     private final Controller c;
 
-    public FilterTypeHandler(Controller pC, EdgeArrowType type) {
+    FilterTypeHandler(Controller pC, EdgeArrowType type) {
         c = pC;
         this.type = type;
     }
