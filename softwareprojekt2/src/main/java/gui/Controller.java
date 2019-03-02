@@ -70,7 +70,10 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -1172,7 +1175,25 @@ public class Controller implements ObserverSyndrom {
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             if (importGxlAction.templateFound) {
-                //TODO DIALOG, WENN TEMPLATE ALS GXL (ohne template) IMPORTIERT WIRD
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Vorlage gefunden");
+                alert.setHeaderText(null);
+                alert.setContentText("Die ausgewählte GXL-Datei enthält Vorlage-Eigenschaften. " +
+                        "Möchten Sie die GXL-Datei als Vorlage importieren?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK){
+                    ImportTemplateGxlAction importTemplateGxlAction= new ImportTemplateGxlAction(file);
+                    importTemplateGxlAction.action();
+                    zoomSlider.setValue(100);
+                    canvas.setContent(syndrom.getVv());
+                    satellite.setContent(syndrom.getVv2());
+                } else {
+                    importGxlAction.action();
+                    zoomSlider.setValue(100);
+                    canvas.setContent(syndrom.getVv());
+                    satellite.setContent(syndrom.getVv2());
+                }
             } else {
                 zoomSlider.setValue(100);
                 canvas.setContent(syndrom.getVv());
@@ -1193,7 +1214,11 @@ public class Controller implements ObserverSyndrom {
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
             importTemplateGxlAction.action();
             if (!importTemplateGxlAction.templateFound) {
-                //TODO DIALOG, WENN GXL (ohne template) ALS TEMPLATE IMPORTIERT WIRD
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Ungültige Vorlage");
+                alert.setHeaderText(null);
+                alert.setContentText("Die ausgewählte GXL-Datei ist keine gültige Vorlage!");
+                alert.showAndWait();
             } else {
                 zoomSlider.setValue(100);
                 canvas.setContent(syndrom.getVv());

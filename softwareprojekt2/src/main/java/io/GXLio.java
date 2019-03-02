@@ -83,11 +83,13 @@ public class GXLio {
                 return;
             }
             if(gxlTemplate!=null){
-                templateFoundFlag=true;
-                if(!withTemplate){
+                System.out.println("tff: "+templateFoundFlag);
+                if(!withTemplate&&!templateFoundFlag){
                     logger.info("Template found but not used");
+                    templateFoundFlag=true;
                     return;
                 }
+                templateFoundFlag=true;
             }else{
                 if (withTemplate){
                     logger.error("Error on empty Template GXLGraph");
