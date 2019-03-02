@@ -43,7 +43,7 @@ public class EditEdgesTypeLogAction extends LogAction {
     public void action() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if (parameters == null) {
-            if (values.getMode() != FunctionMode.TEMPLATE || !isAllowedEdit(type)) {
+            if (values.getMode() != FunctionMode.TEMPLATE && !isAllowedEdit(type)) {
                     return;
             }
             List<Edge> lockedEdges = new LinkedList<>();
