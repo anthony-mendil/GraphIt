@@ -14,7 +14,7 @@ public class OnlyNumberComboBoxListener implements ChangeListener<String> {
      */
     private final ComboBox<String> comboBox;
 
-    public OnlyNumberComboBoxListener(ComboBox<String> pComboBox) {
+    OnlyNumberComboBoxListener(ComboBox<String> pComboBox) {
         this.comboBox = pComboBox;
     }
 

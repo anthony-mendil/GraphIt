@@ -14,7 +14,7 @@ public class OnlyNumberTextFieldListener implements ChangeListener<String> {
      */
     private TextField textField;
 
-    public OnlyNumberTextFieldListener(TextField pTextField) {
+    OnlyNumberTextFieldListener(TextField pTextField) {
         textField = pTextField;
     }
 

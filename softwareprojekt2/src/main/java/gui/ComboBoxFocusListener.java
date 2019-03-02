@@ -35,7 +35,7 @@ public class ComboBoxFocusListener implements ChangeListener<Boolean> {
      */
     private final Values values;
 
-    public ComboBoxFocusListener(ComboBox<String> pComboBox) {
+    ComboBoxFocusListener(ComboBox<String> pComboBox) {
         this.comboBox = pComboBox;
         values = Values.getInstance();
     }
@@ -56,14 +56,21 @@ public class ComboBoxFocusListener implements ChangeListener<Boolean> {
         if (newValue) {
             comboBox.show();
         } else {
-            if (comboBox.getId().equals(SIZE_SPHERE_COMBO_BOX)) {
-                comboBox.getEditor().setText("" + values.getFontSizeSphere());
-            } else if (comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
-                comboBox.getEditor().setText("" + values.getFontSizeVertex());
-            } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX)) {
-                comboBox.getEditor().setText("" + values.getFontSphere());
-            } else if (comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
-                comboBox.getEditor().setText(values.getFontVertex());
+            switch (comboBox.getId()) {
+                case SIZE_SPHERE_COMBO_BOX:
+                    comboBox.getEditor().setText("" + values.getFontSizeSphere());
+                    break;
+                case SIZE_SYMPTOM_COMBO_BOX:
+                    comboBox.getEditor().setText("" + values.getFontSizeVertex());
+                    break;
+                case FONT_SPHERE_COMBO_BOX:
+                    comboBox.getEditor().setText("" + values.getFontSphere());
+                    break;
+                case FONT_SYMPTOM_COMBO_BOX:
+                    comboBox.getEditor().setText(values.getFontVertex());
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
         }
     }

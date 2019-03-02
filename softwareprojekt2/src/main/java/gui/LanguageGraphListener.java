@@ -30,7 +30,7 @@ public class LanguageGraphListener implements ChangeListener<Boolean> {
         changeGraphLanguageAction.action();
     }
 
-    public LanguageGraphListener(Controller pC, CheckMenuItem checkMenuItem) {
+    LanguageGraphListener(Controller pC, CheckMenuItem checkMenuItem) {
         c = pC;
         this.checkMenuItem = checkMenuItem;
     }
