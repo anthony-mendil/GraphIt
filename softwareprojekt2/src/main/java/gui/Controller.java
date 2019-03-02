@@ -58,23 +58,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.input.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -91,8 +88,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -1174,11 +1171,16 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
-            zoomSlider.setValue(100);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
+            if (importGxlAction.templateFound) {
+                //TODO DIALOG, WENN TEMPLATE ALS GXL (ohne template) IMPORTIERT WIRD
+            } else {
+                zoomSlider.setValue(100);
+                canvas.setContent(syndrom.getVv());
+                satellite.setContent(syndrom.getVv2());
+            }
         }
     }
+
     /**
      * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportTemplateGxlAction-object
      * and executes the action with the action history.
@@ -1190,9 +1192,13 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
             importTemplateGxlAction.action();
-            zoomSlider.setValue(100);
-            canvas.setContent(syndrom.getVv());
-            satellite.setContent(syndrom.getVv2());
+            if (!importTemplateGxlAction.templateFound) {
+                //TODO DIALOG, WENN GXL (ohne template) ALS TEMPLATE IMPORTIERT WIRD
+            } else {
+                zoomSlider.setValue(100);
+                canvas.setContent(syndrom.getVv());
+                satellite.setContent(syndrom.getVv2());
+            }
         }
     }
 
@@ -2370,10 +2376,10 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.sizeToScene();
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();
