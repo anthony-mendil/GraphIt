@@ -38,6 +38,7 @@ public class ImportGxlAction extends GraphAction {
         gxlio.importGXL(file, false);
         templateFound=gxlio.isTemplateFoundFlag();
         if(templateFound){
+            System.out.println("tf: "+templateFound);
             return;
         }
         DatabaseManager databaseManager = DatabaseManager.getInstance();
