@@ -2,8 +2,10 @@ package actions.export_import;
 
 import actions.Action;
 import actions.GraphAction;
+import graph.visualization.picking.SyndromPickSupport;
 import io.GXLio;
 import log_management.DatabaseManager;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -17,7 +19,7 @@ public class ImportGxlAction extends GraphAction {
      */
     private File file;
 
-    public boolean templateFound;
+    private static Logger logger = Logger.getLogger(ImportGxlAction.class);
 
     /**
      * Action handling for importing the graph as GXL file.
@@ -36,9 +38,9 @@ public class ImportGxlAction extends GraphAction {
     public void action() {
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file, false);
-        templateFound=gxlio.isTemplateFoundFlag();
+        boolean templateFound=gxlio.isTemplateFoundFlag();
         if(templateFound){
-            System.out.println("tf: "+templateFound);
+            logger.debug("tf: "+templateFound);
             return;
         }
         DatabaseManager databaseManager = DatabaseManager.getInstance();

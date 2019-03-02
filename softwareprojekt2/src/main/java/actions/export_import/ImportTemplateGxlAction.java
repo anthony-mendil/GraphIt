@@ -17,8 +17,6 @@ public class ImportTemplateGxlAction extends GraphAction {
      */
     private File file;
 
-    public boolean templateFound;
-
     /**
      * Action handling for importing the graph as GXL file.
      *
@@ -29,13 +27,21 @@ public class ImportTemplateGxlAction extends GraphAction {
     }
 
     /**
+     * Disables the undo-funktion for the gxl export
+     */
+    @Override
+    public void undo() {
+        //there is no undo/redo operation for io
+    }
+
+    /**
      * Executes the defined behavior of the action.
      */
     @Override
     public void action() {
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file, true);
-        templateFound=gxlio.isTemplateFoundFlag();
+        boolean templateFound=gxlio.isTemplateFoundFlag();
         if(!templateFound){
             return;
         }
@@ -43,14 +49,6 @@ public class ImportTemplateGxlAction extends GraphAction {
         Action.attach(databaseManager);
         notifyObserverNewGraph();
 
-    }
-
-    /**
-     * Disables the undo-funktion for the gxl export
-     */
-    @Override
-    public void undo() {
-        //there is no undo/redo operation for io
     }
 
     /**
