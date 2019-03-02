@@ -2217,7 +2217,7 @@ public class Controller implements ObserverSyndrom {
             return;
         }
         Stage userGuideStage = new Stage();
-        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
+        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
         userGuideStage.setScene(new Scene(bp));
         userGuideStage.setTitle("GraphIt Tutorial");
         UserGuidePaneController ugpc = userGuideLoader.getController();
@@ -2250,7 +2250,7 @@ public class Controller implements ObserverSyndrom {
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
@@ -2336,9 +2336,10 @@ public class Controller implements ObserverSyndrom {
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.sizeToScene();
         stage.centerOnScreen();
         stage.setResizable(false);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
 
         Platform.runLater(() -> {
             Optional<ButtonType> result = alert.showAndWait();

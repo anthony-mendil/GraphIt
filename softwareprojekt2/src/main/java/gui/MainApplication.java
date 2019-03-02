@@ -55,7 +55,7 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream(Values.getInstance().getLOGO_MAIN())));
         primaryStage.setMaximized(true);
         controller.setStage(primaryStage);
         controller.initButtonShortcuts();

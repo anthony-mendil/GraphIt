@@ -11,6 +11,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
@@ -24,6 +25,8 @@ import java.util.Map;
 @Data
 public class Values {
 
+    @Getter
+    private String LOGO_MAIN="/GraphItLogo.png";
     /**
      * The default width sphere.
      */
