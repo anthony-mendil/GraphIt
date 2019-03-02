@@ -9,18 +9,25 @@ import java.awt.print.PrinterJob;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * TODO
+ */
 public class PDFPrinterGui {
 
     private static Logger logger = Logger.getLogger(PDFPrinterGui.class);
 
     /**
-     *
+     * TODO
      */
     public PDFPrinterGui(InputStream pInputStream) {
         print(pInputStream);
     }
 
-    public void print(InputStream pInputStream) {
+    /**
+     * TODO
+     * @param pInputStream
+     */
+    private void print(InputStream pInputStream) {
         try {
             PDDocument pdDocument = PDDocument.load(pInputStream);
             PrinterJob printerJob = PrinterJob.getPrinterJob();

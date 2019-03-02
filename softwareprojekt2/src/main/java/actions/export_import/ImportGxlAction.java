@@ -2,9 +2,9 @@ package actions.export_import;
 
 import actions.Action;
 import actions.GraphAction;
-import graph.visualization.picking.SyndromPickSupport;
 import io.GXLio;
 import log_management.DatabaseManager;
+import lombok.Getter;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -19,6 +19,9 @@ public class ImportGxlAction extends GraphAction {
      */
     private File file;
 
+    @Getter
+    private boolean templateFound;
+
     private static Logger logger = Logger.getLogger(ImportGxlAction.class);
 
     /**
@@ -30,7 +33,6 @@ public class ImportGxlAction extends GraphAction {
         file = pFile;
     }
 
-
     /**
      * Executes the defined behavior of the action.
      */
@@ -38,7 +40,7 @@ public class ImportGxlAction extends GraphAction {
     public void action() {
         GXLio gxlio = new GXLio();
         gxlio.importGXL(file, false);
-        boolean templateFound=gxlio.isTemplateFoundFlag();
+        templateFound=gxlio.isTemplateFoundFlag();
         if(templateFound){
             logger.debug("tf: "+templateFound);
             return;

@@ -74,7 +74,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
             Map<Vertex, Color> newVertices = ((EditVerticesDrawColorParam) parameters).getNewVertices();
             for (Map.Entry<Vertex, Color> entry : oldVertices.entrySet()) {
                 Vertex target = entry.getKey();
-                target.setDrawColor((Color) newVertices.get(target));
+                target.setDrawColor(newVertices.get(target));
             }
         }
         vv.repaint();

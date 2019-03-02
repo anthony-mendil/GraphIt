@@ -21,7 +21,6 @@ public class EditFontSizeVerticesParam implements Param {
     /**
      * The old vertices.
      */
-    @Getter
     private List<Vertex> oldVertices;
 
     /**
@@ -33,7 +32,6 @@ public class EditFontSizeVerticesParam implements Param {
     /**
      * The new vertices.
      */
-    @Getter
     private List<Vertex> newVertices;
 
     /**

@@ -97,8 +97,7 @@ public class EditEdgesStrokeParam implements Param {
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Old stroke type: ").append(EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.ENGLISH));
                 information.append(", new stroke type: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.ENGLISH)).append(". ");
-                information.append("Type of relation: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.ENGLISH));
+                information.append("Type of relation: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.ENGLISH));
                 information.append("; ");
             }
         } else {
@@ -108,8 +107,7 @@ public class EditEdgesStrokeParam implements Param {
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Alte Linienart: ").append(EnumNameCreator.strokeTypeTranslator(oldStrokeTypes.get(i), Language.GERMAN));
                 information.append(", neue Linienart: ").append(EnumNameCreator.strokeTypeTranslator(newStrokeTypes.get(i), Language.GERMAN)).append(". ");
-                information.append("Relationsart: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.GERMAN));
+                information.append("Relationsart: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.GERMAN));
                 information.append("; ");
             }
         }

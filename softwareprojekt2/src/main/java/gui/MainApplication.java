@@ -50,9 +50,8 @@ public class MainApplication extends Application {
      * and the window size.
      *
      * @param primaryStage The window of the application.
-     * @throws Exception If the loading of the fxml fileMenu fails.
      */
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("Syndromansatz");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));

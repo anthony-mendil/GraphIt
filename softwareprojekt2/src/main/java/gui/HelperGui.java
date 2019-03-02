@@ -4,12 +4,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class HelperGui {
+class HelperGui {
     private HelperGui() {
         throw new IllegalStateException("utility class");
     }
 
-    public static void setImage(String imageString, MenuItem menuItem) {
+    static void setImage(String imageString, MenuItem menuItem) {
         Image image = new Image(imageString);
         ImageView iconRemove = new ImageView();
         iconRemove.setImage(image);
@@ -17,6 +17,4 @@ public class HelperGui {
         iconRemove.setFitHeight(15);
         menuItem.setGraphic(iconRemove);
     }
-
-
 }

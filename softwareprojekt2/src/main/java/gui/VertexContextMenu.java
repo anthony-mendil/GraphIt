@@ -31,16 +31,40 @@ import java.util.Optional;
 
 @Data
 public class VertexContextMenu {
+    /**
+     * the context menu
+     */
     @Setter(AccessLevel.NONE)
     private final ContextMenu contextMenu;
+    /**
+     * a instance of action history
+     */
     private final ActionHistory history;
+    /**
+     * a instance of values
+     */
     private final Values values;
+    /**
+     * the vertex the context menu belongs to
+     */
     private final Vertex vertex;
+    /**
+     * a instance of helper function
+     */
     private HelperFunctions helperFunctions = new HelperFunctions();
+    /**
+     * a instance of load language
+     */
     private LoadLanguage language = LoadLanguage.getInstance();
+    /**
+     * a syndrom instance
+     */
     private Syndrom syndrom = Syndrom.getInstance();
 
-
+    /**
+     * creates a vertex context menu
+     * @param vertex the vertex
+     */
     public VertexContextMenu(Vertex vertex) {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
@@ -49,6 +73,9 @@ public class VertexContextMenu {
         setup();
     }
 
+    /**
+     * creates the context menu
+     */
     private void setup() {
         // REMOVE
         MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));
@@ -158,6 +185,10 @@ public class VertexContextMenu {
         contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> contextMenu.hide());
     }
 
+    /**
+     * checks the annotation and creates a edit vertex annotation action
+     * @param map the map containing the annotations
+     */
     private void checkAnnotation(Map<Language, String> map) {
         if (map != null) {
             String textGerman = map.get(Language.GERMAN);
