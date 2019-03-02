@@ -166,9 +166,9 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Menu languagesGuiGraph;
     @FXML
-    private MenuItem languageGuiGraphGerman;
+    private CheckMenuItem languageGuiGraphGerman;
     @FXML
-    private MenuItem languageGuiGraphEnglish;
+    private CheckMenuItem languageGuiGraphEnglish;
     @FXML
     private Menu advancedLanguageOptions;
     @FXML
@@ -1809,16 +1809,20 @@ public class Controller implements ObserverSyndrom {
      * Changes the gui and graph language to german.
      */
     public void loadLanguageGuiGraphGerman() {
-        languageGerman.setSelected(true);
-        languageGraphGerman.setSelected(true);
+            languageGuiGraphEnglish.setSelected(false);
+            languageGuiGraphGerman.setSelected(true);
+            languageGerman.setSelected(true);
+            languageGraphGerman.setSelected(true);
     }
 
     /**
      * Changes the gui and graph language to english.
      */
     public void loadLanguageGuiGraphEnglish() {
-        languageEnglish.setSelected(true);
-        languageGraphEnglish.setSelected(true);
+            languageGuiGraphGerman.setSelected(false);
+            languageGuiGraphEnglish.setSelected(true);
+            languageEnglish.setSelected(true);
+            languageGraphEnglish.setSelected(true);
     }
 
     /**
