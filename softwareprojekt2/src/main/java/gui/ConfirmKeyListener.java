@@ -50,35 +50,41 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            if (!amountSymptomTextField.getText().isEmpty()) {
-                if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected()) {
-                    ResetVvAction resetAction = new ResetVvAction();
-                    resetAction.action();
-
-                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                    analysisGraphAction.action();
-                } else {
-                    if (analysisPredecessor.isSelected()) {
-                        ResetVvAction resetAction = new ResetVvAction();
-                        resetAction.action();
-
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                        analysisGraphAction.action();
-                    }
-                    if (analysisSuccessor.isSelected()) {
-                        ResetVvAction resetAction = new ResetVvAction();
-                        resetAction.action();
-
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                        analysisGraphAction.action();
-                    }
-                }
-            } else {
-                ResetVvAction resetAction = new ResetVvAction();
-                resetAction.action();
-            }
+            checkBoxBehavior();
             c.getRoot().requestFocus();
         }
     }
 
+    /**
+     * Initializes the behavior of the checkboxes for key events.
+     */
+    private void checkBoxBehavior() {
+        if (!amountSymptomTextField.getText().isEmpty()) {
+            if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected()) {
+                ResetVvAction resetAction = new ResetVvAction();
+                resetAction.action();
+
+                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                analysisGraphAction.action();
+            } else {
+                if (analysisPredecessor.isSelected()) {
+                    ResetVvAction resetAction = new ResetVvAction();
+                    resetAction.action();
+
+                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    analysisGraphAction.action();
+                }
+                if (analysisSuccessor.isSelected()) {
+                    ResetVvAction resetAction = new ResetVvAction();
+                    resetAction.action();
+
+                    AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+                    analysisGraphAction.action();
+                }
+            }
+        } else {
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+        }
+    }
 }

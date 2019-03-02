@@ -78,37 +78,48 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (newValue) {
             if (isAtLeastOnePicked()) {
-                analysisOptions.setSelected(false);
-                analysisPathCheckBox.setSelected(false);
-                amountSymptomTextField.setDisable(false);
-
-                if (!amountSymptomTextField.getText().isEmpty()) {
-                    if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected() && isAtLeastOnePicked()) {
-                        analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
-                    } else if (checkBox.getId().equals("analysisPredecessor")) {
-                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                        analysisGraphNeighborsAction.action();
-                    } else if (checkBox.getId().equals("analysisSuccessor")) {
-                        AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
-                        analysisGraphNeighborsAction.action();
-                    }
-                }
+                selectedAnalysisCheckBox();
             } else {
                 disableAllCheckBoxes();
                 checkBox.setSelected(oldValue);
             }
         } else {
-            if (!analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()) {
-                amountSymptomTextField.setDisable(true);
-                ResetVvAction resetAction = new ResetVvAction();
-                resetAction.action();
-            } else if (!analysisSuccessor.isSelected() && analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
-                analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR);
-            } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
-                analysisOption(AnalyseType.NEIGHBOUR_SUCCESSOR);
-            } else if (!amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
-                analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
-            }
+            deselectedAnalysisCheckBox();
+        }
+    }
+
+    /**
+     * Initializes the behavior between the successor and predecessor checkbox after one of them got deselected.
+     */
+    private void deselectedAnalysisCheckBox() {
+        if (!analysisSuccessor.isSelected() && !analysisPredecessor.isSelected()) {
+            amountSymptomTextField.setDisable(true);
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+        } else if (!analysisSuccessor.isSelected() && analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
+            analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR);
+        } else if (analysisSuccessor.isSelected() && !analysisPredecessor.isSelected() && !amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
+            analysisOption(AnalyseType.NEIGHBOUR_SUCCESSOR);
+        } else if (!amountSymptomTextField.getText().isEmpty() && isAtLeastOnePicked()) {
+            analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
+        }
+    }
+
+    /**
+     * Initializes the behavior between the successor and predecessor checkbox after one of them got selected.
+     */
+    private void selectedAnalysisCheckBox() {
+        analysisOptions.setSelected(false);
+        analysisPathCheckBox.setSelected(false);
+        amountSymptomTextField.setDisable(false);
+        if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected() && isAtLeastOnePicked() && !amountSymptomTextField.getText().isEmpty()) {
+            analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
+        } else if (checkBox.getId().equals("analysisPredecessor") && !amountSymptomTextField.getText().isEmpty()) {
+            AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_PREDECESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+            analysisGraphNeighborsAction.action();
+        } else if (checkBox.getId().equals("analysisSuccessor") && !amountSymptomTextField.getText().isEmpty()) {
+            AnalysisGraphNeighborsAction analysisGraphNeighborsAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(amountSymptomTextField.getText()));
+            analysisGraphNeighborsAction.action();
         }
     }
 

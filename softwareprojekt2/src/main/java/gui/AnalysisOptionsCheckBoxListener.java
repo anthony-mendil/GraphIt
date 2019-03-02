@@ -49,6 +49,14 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
      */
     private final LoadLanguage currentLanguage;
 
+    private static final String SHORTEST_PATH = "analysisShortestPath";
+    private static final String ALL_PATHS = "analysisAllPaths";
+    private static final String CHAIN_OF_EDGES = "filterChainOfEdges";
+    private static final String CONVERGENT_BRANCHES = "filterConvergentBranches";
+    private static final String DIVERGENT_BRANCHES = "filterDivergentBranches";
+    private static final String BRANCHES = "filterBranches";
+    private static final String CYCLES = "filterCycles";
+
     AnalysisOptionsCheckBoxListener(Controller pC, CheckBox pCheckBox, MenuButton pMenuButton) {
         final Controller c;
         c = pC;
@@ -74,41 +82,28 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (newValue) {
             //Activate Current Selected Analysis Option
-            if (menuButton.getText().equals(currentLanguage.loadLanguagesKey("analysisShortestPath"))) {
-                if (calculateEndpoints()) {
-                    disableOtherCheckBoxes();
-                    AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
-                    analysisGraphAction.action();
-                } else {
-                    disableOtherCheckBoxes();
-                    checkBox.setSelected(oldValue);
-                }
-            } else if (menuButton.getText().equals(currentLanguage.loadLanguagesKey("analysisAllPaths"))) {
-                if (calculateEndpoints()) {
-                    disableOtherCheckBoxes();
-                    AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
-                    analysisGraphAction.action();
-                } else {
-                    disableOtherCheckBoxes();
-                    checkBox.setSelected(oldValue);
-                }
-            } else if (menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterChainOfEdges"))) {
+            String s = menuButton.getText();
+            if (currentLanguage.loadLanguagesKey(SHORTEST_PATH).equals(s)) {
+                shortestPath(oldValue);
+            } else if (currentLanguage.loadLanguagesKey(ALL_PATHS).equals(s)) {
+                allPaths(oldValue);
+            } else if (currentLanguage.loadLanguagesKey(CHAIN_OF_EDGES).equals(s)) {
                 disableOtherCheckBoxes();
                 AnalysisGraphEdgeChainsAction analysisGraphAction = new AnalysisGraphEdgeChainsAction();
                 analysisGraphAction.action();
-            } else if (menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterConvergentBranches"))) {
+            } else if (currentLanguage.loadLanguagesKey(CONVERGENT_BRANCHES).equals(s)) {
                 disableOtherCheckBoxes();
                 AnalysisGraphConvergentBranchesAction analysisGraphAction = new AnalysisGraphConvergentBranchesAction();
                 analysisGraphAction.action();
-            } else if (menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterDivergentBranches"))) {
+            } else if (currentLanguage.loadLanguagesKey(DIVERGENT_BRANCHES).equals(s)) {
                 disableOtherCheckBoxes();
                 AnalysisGraphDivergentBranchesAction analysisGraphAction = new AnalysisGraphDivergentBranchesAction();
                 analysisGraphAction.action();
-            } else if (menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterBranches"))) {
+            } else if (currentLanguage.loadLanguagesKey(BRANCHES).equals(s)) {
                 disableOtherCheckBoxes();
                 AnalysisGraphBranchesAction analysisGraphAction = new AnalysisGraphBranchesAction();
                 analysisGraphAction.action();
-            } else if ((menuButton.getText().equals(currentLanguage.loadLanguagesKey("filterCycles")))) {
+            } else if (currentLanguage.loadLanguagesKey(CYCLES).equals(s)) {
                 disableOtherCheckBoxes();
                 AnalysisGraphCyclesAction analysisGraphAction = new AnalysisGraphCyclesAction();
                 analysisGraphAction.action();
@@ -116,6 +111,40 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
         } else {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
+        }
+    }
+
+    /**
+     * Calculates the shortest path between two selected symptoms, highlights them and change the behaviour of the
+     * checkboxes accordingly to it.
+     *
+     * @param oldValue The old value of the checkbox.
+     */
+    private void shortestPath(Boolean oldValue) {
+        if (calculateEndpoints()) {
+            disableOtherCheckBoxes();
+            AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
+            analysisGraphAction.action();
+        } else {
+            disableOtherCheckBoxes();
+            checkBox.setSelected(oldValue);
+        }
+    }
+
+    /**
+     * Calculates all paths between two selected symptoms, highlights them and change the behaviour of the checkboxes
+     * accordingly to it.
+     *
+     * @param oldValue The old value of the checkbox.
+     */
+    private void allPaths(Boolean oldValue) {
+        if (calculateEndpoints()) {
+            disableOtherCheckBoxes();
+            AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
+            analysisGraphAction.action();
+        } else {
+            disableOtherCheckBoxes();
+            checkBox.setSelected(oldValue);
         }
     }
 
