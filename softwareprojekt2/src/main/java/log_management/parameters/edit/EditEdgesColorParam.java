@@ -99,8 +99,7 @@ public class EditEdgesColorParam implements Param {
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Old color: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.ENGLISH));
                 information.append(", new color: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.ENGLISH)).append(". ");
-                information.append("Type of relation: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.ENGLISH));
+                information.append("Type of relation: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.ENGLISH));
                 information.append("; ");
             }
         } else {
@@ -110,8 +109,7 @@ public class EditEdgesColorParam implements Param {
                         new Pair<>(startVertices.get(i), endVertices.get(i)))).append(". ");
                 information.append("Alte Farbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i), Language.GERMAN));
                 information.append(", neue Farbe: ").append(ColorNameCreator.getInstance().getColorName(newColors.get(i), Language.GERMAN)).append(". ");
-                information.append("Relationsart: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.GERMAN));
+                information.append("Relationsart: ").append(EnumNameCreator.edgeArrowTypeTranslator(oldEdges.get(i).getArrowType(), Language.GERMAN));
                 information.append("; ");
             }
         }

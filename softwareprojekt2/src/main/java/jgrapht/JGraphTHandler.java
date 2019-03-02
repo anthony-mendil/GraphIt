@@ -38,7 +38,7 @@ public class JGraphTHandler {
     /**
      * The graph in JGraphT-form.
      */
-    private DefaultDirectedGraph algorithmGraph;
+    private DefaultDirectedGraph<Vertex, Edge> algorithmGraph;
     /**
      * The list of selected vertices.
      */
@@ -168,7 +168,7 @@ public class JGraphTHandler {
     @SuppressWarnings("unchecked")
     public Set<Vertex> detectConvergentBranches() {
         Set<Vertex> convergentBranches = new HashSet<>();
-        for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
+        for (Vertex vertex : algorithmGraph.vertexSet()) {
             if (algorithmGraph.inDegreeOf(vertex) > 1) {
                 convergentBranches.add(vertex);
             }
@@ -184,7 +184,7 @@ public class JGraphTHandler {
     @SuppressWarnings("unchecked")
     public Set<Vertex> detectDivergentBranches() {
         Set<Vertex> divergentBranches = new HashSet<>();
-        for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
+        for (Vertex vertex : algorithmGraph.vertexSet()) {
             if (algorithmGraph.outDegreeOf(vertex) > 1) {
                 divergentBranches.add(vertex);
             }
@@ -209,7 +209,7 @@ public class JGraphTHandler {
                         List<Vertex> predecessors = Graphs.predecessorListOf(algorithmGraph, pivotVertex);
                         for (Vertex neighborVertex : predecessors) {
                             vertices.add(neighborVertex);
-                            edges.add((Edge) algorithmGraph.getEdge(neighborVertex, pivotVertex));
+                            edges.add(algorithmGraph.getEdge(neighborVertex, pivotVertex));
                         }
                         tempVertex = predecessors;
                     }
@@ -238,7 +238,7 @@ public class JGraphTHandler {
                         List<Vertex> successors = Graphs.successorListOf(algorithmGraph, pivotVertex);
                         for (Vertex neighborVertex : successors) {
                             vertices.add(neighborVertex);
-                            edges.add((Edge) algorithmGraph.getEdge(pivotVertex, neighborVertex));
+                            edges.add(algorithmGraph.getEdge(pivotVertex, neighborVertex));
                         }
                         tempVertex = successors;
                     }
@@ -257,7 +257,7 @@ public class JGraphTHandler {
     public Pair<List<List<Vertex>>, Set<Edge>> detectRelationChains() {
         List<List<Vertex>> relationChains = new LinkedList<>();
         List<Vertex> innerVertices = new ArrayList<>();
-        for (Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()) {
+        for (Vertex vert : algorithmGraph.vertexSet()) {
             if (algorithmGraph.inDegreeOf(vert) == 1 && algorithmGraph.outDegreeOf(vert) == 1) {
                 innerVertices.add(vert);
             }
@@ -266,10 +266,10 @@ public class JGraphTHandler {
         Set<Edge> edgesRelationChain = new HashSet<>();
         for (List<Vertex> list : relationChains) {
             for (int i = 0; i < list.size() - 1; i++) {
-                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
+                edgesRelationChain.add( algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
             }
             if (algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1) {
-                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
+                edgesRelationChain.add( algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
             }
         }
         return new Pair<>(relationChains, edgesRelationChain);
@@ -279,7 +279,7 @@ public class JGraphTHandler {
      * Inner algorithm for the relation chain algorithm. Potential relation chains will be build
      * and eventually added to the list of relation chains.
      */
-    public void growPotentailChains(List<Vertex> innerVertices, List<List<Vertex>> relationChains) {
+    private void growPotentailChains(List<Vertex> innerVertices, List<List<Vertex>> relationChains) {
         while (!innerVertices.isEmpty()) {
             LinkedList<Vertex> potentialChain = new LinkedList<>();
             Vertex pivotVertex = innerVertices.get(0);
@@ -287,17 +287,17 @@ public class JGraphTHandler {
             Vertex successor = pivotVertex;
             potentialChain.add(pivotVertex);
             while (Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 && Graphs.successorListOf(algorithmGraph, predecessor).size() == 1) {
-                if (!potentialChain.contains((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
-                    potentialChain.addFirst((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
-                    predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
+                if (!potentialChain.contains(Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
+                    potentialChain.addFirst(Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
+                    predecessor = Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
                 } else {
                     break;
                 }
             }
             while (Graphs.successorListOf(algorithmGraph, successor).size() == 1 && Graphs.predecessorListOf(algorithmGraph, successor).size() == 1) {
-                if (!potentialChain.contains((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0))) {
-                    potentialChain.addLast((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0));
-                    successor = (Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0);
+                if (!potentialChain.contains(Graphs.successorListOf(algorithmGraph, successor).get(0))) {
+                    potentialChain.addLast(Graphs.successorListOf(algorithmGraph, successor).get(0));
+                    successor = Graphs.successorListOf(algorithmGraph, successor).get(0);
                 } else {
                     break;
                 }

@@ -21,7 +21,6 @@ public class EditVerticesSizeParam implements Param {
     /**
      * The old vertices.
      */
-    @Getter
     private List<Vertex> oldVertices;
     /**
      * The old sizes of the vertices.
@@ -31,7 +30,6 @@ public class EditVerticesSizeParam implements Param {
     /**
      * The new vertices.
      */
-    @Getter
     private List<Vertex> newVertices;
     /**
      * The new sizes of the vertices.
