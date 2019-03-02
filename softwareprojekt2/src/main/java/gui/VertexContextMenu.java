@@ -31,8 +31,14 @@ import java.util.Optional;
 
 @Data
 public class VertexContextMenu {
+    /**
+     *
+     */
     @Setter(AccessLevel.NONE)
     private final ContextMenu contextMenu;
+    /**
+     *
+     */
     private final ActionHistory history;
     private final Values values;
     private final Vertex vertex;

@@ -1179,7 +1179,7 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
-            if (importGxlAction.templateFound) {
+            if (importGxlAction.isTemplateFound()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Vorlage gefunden");
                 alert.setHeaderText(null);
@@ -1218,7 +1218,7 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
             importTemplateGxlAction.action();
-            if (!importTemplateGxlAction.templateFound) {
+            if (!importTemplateGxlAction.isTemplateFound()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ungültige Vorlage");
                 alert.setHeaderText(null);

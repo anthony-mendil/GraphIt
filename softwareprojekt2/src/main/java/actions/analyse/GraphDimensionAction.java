@@ -43,7 +43,7 @@ public class GraphDimensionAction extends GraphAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
 
-        /**
+        /*
          * Using the JGraphTHandler for more complex calculations.
          */
         Set<Pair<Vertex, Vertex>> edges = new HashSet<>();
@@ -54,8 +54,7 @@ public class GraphDimensionAction extends GraphAction {
         }
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
 
-
-        /**
+        /*
          * Calculating the indices. Dividing by zero is not so useful.
          */
         DecimalFormat format = new DecimalFormat("####.##");

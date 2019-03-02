@@ -99,9 +99,9 @@ public class MoveSphereLogAction extends LogAction {
 
     /**
      * Creats a parameter-object for this action.
-     * @param sphere
-     * @param oldPosition
-     * @param newPosition
+     * @param sphere the sphere
+     * @param oldPosition the old position of the sphere
+     * @param newPosition the new position of the sphere
      */
     public void createParameter(Sphere sphere, Point2D oldPosition, Point2D newPosition) {
         parameters = new MoveSphereParam(sphere, oldPosition, newPosition);

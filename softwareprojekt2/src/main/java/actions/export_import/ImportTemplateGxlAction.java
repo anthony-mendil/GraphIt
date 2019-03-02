@@ -4,6 +4,7 @@ import actions.Action;
 import actions.GraphAction;
 import io.GXLio;
 import log_management.DatabaseManager;
+import lombok.Getter;
 
 import java.io.File;
 
@@ -16,6 +17,9 @@ public class ImportTemplateGxlAction extends GraphAction {
      * The File the gxl get's taken from
      */
     private File file;
+
+    @Getter
+    private boolean templateFound;
 
     /**
      * Action handling for importing the graph as GXL file.

@@ -35,15 +35,12 @@ public class AnalysisGraphEdgeChainsAction extends GraphAction {
      */
     @Override
     public void action() {
-
         JGraphTHandler jGraphTHandler = new JGraphTHandler();
-
         Pair<List<List<Vertex>>, Set<Edge>> edgeChains = jGraphTHandler.detectRelationChains();
         for (List<Vertex> list : edgeChains.getKey()) {
             verticesAnalyse.addAll(list);
         }
         edgesAnalyse = new ArrayList<>(edgeChains.getValue());
-
         ShowAnalysisResultAction showAnalysisResultAction = new ShowAnalysisResultAction(verticesAnalyse, edgesAnalyse);
         showAnalysisResultAction.action();
     }

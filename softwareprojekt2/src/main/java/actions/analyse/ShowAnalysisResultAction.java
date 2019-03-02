@@ -32,7 +32,7 @@ public class ShowAnalysisResultAction extends LogAction {
      * @param pVertices The list of vertices, that should be highlighted.
      * @param pEdges    The lis of edges, that should be highlighted.
      */
-    public ShowAnalysisResultAction(List<Vertex> pVertices, List<Edge> pEdges) {
+    ShowAnalysisResultAction(List<Vertex> pVertices, List<Edge> pEdges) {
         super(LogEntryName.SHOW_HIGHLIGHTED);
         vertices = new ArrayList<>(pVertices);
         edges = new ArrayList<>(pEdges);
