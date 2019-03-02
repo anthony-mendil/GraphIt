@@ -104,8 +104,13 @@ public class GXLio {
 
     private void searchForTemplate(GXLDocument pDoc, boolean pWithTemplate) {
         if (pWithTemplate) {
+           // try{
             GXLGraph gxlTemplate = (GXLGraph) pDoc.getElement("template");
             initializeTemplateValues(gxlTemplate);
+        //}
+            //catch(){
+
+            //}
         }
     }
 

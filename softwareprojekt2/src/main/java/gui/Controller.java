@@ -2354,7 +2354,6 @@ public class Controller implements ObserverSyndrom {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info), ok, close);
         alert.setTitle("GraphIt");
         alert.setHeaderText(null);
-        alert.getDialogPane().getScene().getWindow().sizeToScene();
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
         stage.setResizable(false);
