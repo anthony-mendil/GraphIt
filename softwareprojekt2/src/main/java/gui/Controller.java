@@ -629,6 +629,11 @@ public class Controller implements ObserverSyndrom {
     private static final String EXPORT_PDF = "exportPDF";
 
     /**
+     * Our application logo.
+     */
+    private static final String APPLICATION_LOGO = "/GraphItLogo.png";
+
+    /**
      * The list of all fonts.
      */
     private ObservableList<String> fonts =
@@ -2247,7 +2252,7 @@ public class Controller implements ObserverSyndrom {
             return;
         }
         Stage userGuideStage = new Stage();
-        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
+        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
         userGuideStage.setScene(new Scene(bp));
         userGuideStage.setTitle("GraphIt Tutorial");
         UserGuidePaneController ugpc = userGuideLoader.getController();
@@ -2280,7 +2285,7 @@ public class Controller implements ObserverSyndrom {
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
@@ -2378,7 +2383,7 @@ public class Controller implements ObserverSyndrom {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
         stage.setResizable(false);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream(values.getLOGO_MAIN())));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
         Platform.runLater(() -> {

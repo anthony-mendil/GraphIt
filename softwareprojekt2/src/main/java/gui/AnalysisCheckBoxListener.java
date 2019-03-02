@@ -112,6 +112,11 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
         }
     }
 
+    /**
+     * Filters the graph accordingly to the given argument as option.
+     *
+     * @param type The desired filter option.
+     */
     private void analysisOption(AnalyseType type) {
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();

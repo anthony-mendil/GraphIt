@@ -14,7 +14,7 @@ public class OnlyLettersSpacesComboBoxListener implements ChangeListener<String>
      */
     private final ComboBox<String> comboBox;
 
-    public OnlyLettersSpacesComboBoxListener(ComboBox<String> pComboBox) {
+    OnlyLettersSpacesComboBoxListener(ComboBox<String> pComboBox) {
         this.comboBox = pComboBox;
     }
 

@@ -15,7 +15,7 @@ public class ZoomMenuItemHandler implements EventHandler<ActionEvent> {
      */
     private Controller c;
 
-    public ZoomMenuItemHandler(Controller c) {
+    ZoomMenuItemHandler(Controller c) {
         this.c = c;
     }
 
