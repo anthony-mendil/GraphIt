@@ -435,10 +435,11 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 
 \newpage
 \section{Instruktionen zur Nutzung des Programms} \label{sec:nutzung}
+
 		\subsection{Auswahl von Graphelementen} \label{pick}
 	\subsubsection{Eines Elements}
 	\condition
-	Es muss ein Syndromansatz mit mindestens einem Element (eine Sphäre/ ein Symptom/ eine Relation), welches ausgewählt werden soll, existieren. 
+	Es muss ein Syndrom mit mindestens einem Element (eine Sphäre/ ein Symptom/ eine Relation), welches ausgewählt werden soll, existiert. 
 	\actions
 	Alternative 1: 
 	\begin{enumerate}
@@ -452,6 +453,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 	\hint
 	\begin{itemize}
 		\item Eine Relation kann manchmal etwas schwierig auszuwählen sein, da die Kanten vergleichsweise relativ dünn sind. 
+		\item Die Nutzung der eben angesprochenen Übersichtsleiste wird im übernächstes Unterkapitel noch genauer beschrieben.
 	\end{itemize}
 	
 	\begin{figure}[ht!]
@@ -469,18 +471,71 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 	\newpage
 	\subsubsection{Mehrerer Elemente}
 	\condition
-	Es muss ein Syndromansatz mit mindestens zwei Elemente (Sphären/ Symptome/ Relationen), welches ausgewählt werden soll, existieren. 
+	Es muss ein Syndrom mit mindestens zwei Elemente (Sphären/ Symptome/ Relationen), welches ausgewählt werden soll, existieren. 
 	\action
 	\begin{enumerate}
+		\item In der Menüleiste den Button \textit{Auswahl} durch einen Links-Klick aktivieren. 
 		\item Auf der Tastatur den die Taste \texttt{Shift} gedrückt halten 
-		\item Den Cursor auf das Element bewegen, welches zur Auswahl hinzugefügt werden soll und die linke Maustaste klicken. 
-		\item Die \texttt{Shift} Taste solange gedrückt halten, wie Elemente der Auswahl hinzugefügt werden soll
+		\item Den Cursor auf das Element bewegen, welches zur Auswahl hinzugefügt werden soll, und die linke Maustaste klicken. 
+		\item Die \texttt{Shift} Taste solange gedrückt halten, wie Elemente der Auswahl hinzugefügt werden sollen.
 		\item Die \texttt{Shift} Taste loslassen
 	\end{enumerate}
 	\hint
 	\begin{itemize}
 		\item Verschiedene Arten (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. \\ 
 	\end{itemize}
+	
+		\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsection{Nutzung der Übersichtsleiste} \label{overwiew}
+		Die Übersichtsleiste befindet sich am linken Rand der Anwendung. Über diese Leiste kann ein Element des Syndroms sowohl ausgewählt als auch dessen Eigenschaften verändert werden. Des weiteren kann es als zusätzliche Hilfe herangezogen werden, um die Struktur des Syndroms zu untersuchen. So kann über diese Leiste (zusätzlich zur visuellen Darstellung des Syndroms) ermittelt werden, welche Sphäre, welche Symptome enthält und welche Symptome durch Relationen verbunden sind. In diesem Fenster ist auch ein Filter integriert, mit dem man die Beschriftung von Symptomen und die Relationstypen der Relationen filtern kann.
+
+		\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsection{Navigation durch die Übersichtsleiste}		
+	\condition
+	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
+	\action
+	\begin{enumerate}
+		\item In der Übersichtsleiste den Titel der Sphäre, zu der man die ihr zugeordneten Symptome angezeigt bekommen möchte, mit einem Doppelklick auswählen. 
+		\item Zum Schließen der Liste der Symptome dieser Sphäre einen erneuten Doppelklick auf den Titel dieser Sphäre ausführen oder einen Doppelklick auf den Titel des Symptoms ausführen, zu dem man die Liste der Relationen, die von ihm ausgehen, angezeigt bekommen möchte. 
+		\item Durch einen Doppelklick auf den Titel eines Symptoms, zu dem die Liste der Relationen, die von diesem Symptom ausgehen, bereits angezeigt werden, kann die Liste wieder ausgeblendet / eingeklappt werden.	\end{enumerate}
+	\hint
+	\begin{itemize}
+		\item Ist in der Übersichtsleiste kein Pfeil vor dem Titel einer Sphäre vorhanden, so enthält sie keine Symptome.
+		\item Istin der Übersichtsleiste kein Pfeil vor dem Titel eines Symptoms vorhanden, so gehen keine Relationen von diesem Symptom aus.
+	\end{itemize}
+		
+				\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\subsection{Auswahl eines Graphelements über die Übersichtsleiste}		
+	\condition
+	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
+	\action
+	\begin{enumerate}
+		\item In der Übersichtsleiste auf die eben beschriebene Weise bis zu der gewünschten Tiefe (nur Sphären, Symptome zu einer Sphäre, Relationen zu einem Symptom) navigieren. Dort das gewünschte Element wahlweise mit einem einfachen Links-Klick oder einem Doppelklick auswählen.
+		\end{enumerate}
+	\hint
+	\begin{itemize}
+		\item Das jeweils aktuell in der Übersichtsleiste ausgewählte Element wird auch in der (visuellen) Darstellung des Syndroms im Hauptfenster ausgewählt.
+	\end{itemize}
+		
+				\newpage
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsubsection{Filtern (über die Übersichtsleiste)}
+				\subsection{Auswahl eines Graphelements über die Übersichtsleiste}		
+	\condition
+	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
+	\action
+	\begin{enumerate}
+		\item In der Übersichtsleiste auf die eben beschriebene Weise bis zu der gewünschten Tiefe (nur Sphären, Symptome zu einer Sphäre, Relationen zu einem Symptom) navigieren. Dort das gewünschte Element wahlweise mit einem einfachen Links-Klick oder einem Doppelklick auswählen.
+		\end{enumerate}
+	\hint
+	\begin{itemize}
+		\item Das jeweils aktuell in der Übersichtsleiste ausgewählte Element wird auch in der (visuellen) Darstellung des Syndroms im Hauptfenster ausgewählt.
+	\end{itemize}		
+	
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Editierung des Graphen}\label{edit}
 
@@ -499,8 +554,23 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 			\item Den Undo- Button durch einen Link-Klick auswählen. 
 			\item Der Redo- Button sollte nun ebenfalls klickbar sein. Um die vorherige Aktion wieder auszuführen den Redo- Button klicken. 
 		\end{enumerate}			
+					
+				\newpage
+					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsubsection{Contextmenü öffnen}
+		\condition 	
+		Ein Syndrom mit mindestens einer Sphäre und beliebig vielen weiteren Graphelementen ist im Programm geöffnet.
+		\actions
+		\begin{enumerate}
+				\item Das Graphelement, dessen Kontextmenü geöffnet werden soll, mit einem Rechts-Klick selektieren.
+		\end{enumerate}
+		\hint
+		\begin{itemize}
+				\item Es kann nur das Kontextmenü eines Graphelements zur Zeit geöffnet werden.
+	 	\end{itemize}	
+	 	
+		\subsection{Sphären}
 		
-		\newpage	
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Sphäre hinzufügen}	
 		\condition 	
@@ -663,6 +733,9 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 			\end{itemize}
 		
 				\newpage	
+				
+				\subsection{Symptome}
+				
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Symptom hinzufügen}
 		\condition 	
@@ -896,6 +969,9 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 
 			
 			\newpage	
+			
+			\subsection{Relationen}
+			
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Relation hinzufügen}
 		\condition
@@ -1071,6 +1147,9 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\end{itemize}
 		
 			\newpage
+			
+			subsection{Hervorheben und Ausblenden (symptome und Relationen)}
+			
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Graphelemente zur Hervorhebung hinzufügen}
 				\condition 	
@@ -1166,42 +1245,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 					\item Es können mehrere Symptome und Relationen ausgewählt werden, deren Ausblendung anschließend durch Klicken des \textit{Ausblendung von Elementen entfernen}-Buttons aufgehoben wird, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden, deren Ausblendung aufgehoben werden soll.
 					\item Die bereits als ausgeblendet eingestellten Elemente, die nicht vor Klicken des \textit{Ausblendung von Elementen entfernen}-Buttons ausgewählt wurden, bleiben als ausgeblendet eingestellt.
 					\item Im Kontextmenü von als ausgeblendet eingestellten Elementen wird die Option \textit{Sichtbarkeit} in blauer Schrift angezeigt, was verdeutlicht, dass dieses Element aktuell als ausgeblendet eingestellt ist und dass ein erneutes Klicken auf diese Schaltfläche die Ausblendung aufhebt.
-		\end{itemize}
-		
-		\subsubsection{Contextmenü}
-	\subsection{Übersichtsleiste} \label{overwiew}
-		\subsubsection{Filtern}
-		
-				
-			\newpage
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Elemente auswählen}
-		\condition 	
-		Ein Syndrom mit mindestens einer Sphäre und beliebig vielen weiteren Graphelementen ist im Programm geöffnet.
-		\actions
-		\begin{enumerate}
-				\item In der Menü-Leiste den Button \textit{Auswählen} mit einem Links-Klick auswählen.
-				\item Das gewünschte Element mit einem Links-Klick auswählen. 
-				\item Die \textit{Shift}-Taste gedrückt halten und jeweils mit einem Links-Klick auf die Elemente, die in die Auswahl aufgenommen werden sollen, diese selektieren.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-				\item Es können beliebig viele Symptome und Relationen und maximal eine Sphäre in die Selektion aufgenommen werden.
-	 	\end{itemize}
-					
-				\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Contextmenü öffnen}
-		\condition 	
-		Ein Syndrom mit mindestens einer Sphäre und beliebig vielen weiteren Graphelementen ist im Programm geöffnet.
-		\actions
-		\begin{enumerate}
-				\item Das Graphelement, dessen Kontextmenü geöffnet werden soll, mit einem Rechts-Klick selektieren.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-				\item Es kann nur das Kontextmenü eines Graphelements zur Zeit geöffnet werden.
-	 	\end{itemize}		
+		\end{itemize}	
 		
 				\newpage
 					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1506,7 +1550,7 @@ In der Benutzung unserer Anwendung sind dabei die folgenden Datei-Formate von Re
 		\hint
 		\begin{itemize}
 				\item Bei dieser Variante des Exports wird die visuelle Darstellung eines Syndroms exportiert.
-				\Es erscheint ein Fenster, das darauf hinweist, dass nur der sichtbare Bereih des Syndroms als PDF exportiert wird. Durch Klicken auf \textit{Abbrechen} kann der Export-Vorgang abgebrochen werden. Klickt man auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. 
+				\item Es erscheint ein Fenster, das darauf hinweist, dass nur der sichtbare Bereih des Syndroms als PDF exportiert wird. Durch Klicken auf \textit{Abbrechen} kann der Export-Vorgang abgebrochen werden. Klickt man auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. 
 				\item In diesem Fenster den gewünschten Speicherort auswählen. In dem Feld neben dem Text \textit{Dateiname:} kann in diesem Fenster der Name angegeben werden unter dem eine PDF des Graphen gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
 		\end{itemize}
 		
