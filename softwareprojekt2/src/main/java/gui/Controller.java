@@ -603,6 +603,8 @@ public class Controller implements ObserverSyndrom {
     private Text positionMouseX;
     @FXML
     private Text positionMouseY;
+    @FXML
+    private Button syncButton;
 
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";

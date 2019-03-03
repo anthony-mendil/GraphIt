@@ -1,50 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.embed.swing.SwingNode?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.input.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
 <BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" stylesheets="gui_style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <MenuBar focusTraversable="false">
                 <Menu fx:id="fileMenu" mnemonicParsing="false" text="%file">
-                    <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#openInfoDialogCreateGraph"
-                              text="%newFile">
+                    <MenuItem fx:id="newFile" mnemonicParsing="false" onAction="#openInfoDialogCreateGraph" text="%newFile">
                         <accelerator>
-                            <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                            <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <SeparatorMenuItem mnemonicParsing="false"/>
-                    <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openInfoDialogOpenFile"
-                              text="%openFile">
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openInfoDialogOpenFile" text="%openFile">
                         <accelerator>
-                            <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                            <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
                     <MenuItem fx:id="saveLocation" mnemonicParsing="false" onAction="#exportOOF" text="%saveAs">
                         <accelerator>
-                            <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                            <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <SeparatorMenuItem mnemonicParsing="false" />
                     <Menu fx:id="importAs" mnemonicParsing="false" text="%importAs">
                         <items>
                             <MenuItem fx:id="importTemplateGXL" mnemonicParsing="false" onAction="#openInfoDialogImportTemplateGXL" text="%template">
                                 <accelerator>
-                                    <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP"
-                                                        shortcut="UP"/>
+                                    <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                 </accelerator>
                             </MenuItem>
-                            <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#openInfoDialogImportGXL"
-                                      text="GXL">
+                            <MenuItem fx:id="importGXL" mnemonicParsing="false" onAction="#openInfoDialogImportGXL" text="GXL">
                                 <accelerator>
-                                    <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN"
-                                                        shortcut="UP"/>
+                                    <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                 </accelerator>
                             </MenuItem>
                         </items>
@@ -52,62 +81,56 @@
                     <Menu fx:id="exportAs" mnemonicParsing="false" text="%exportAs">
                         <MenuItem fx:id="exportTemplateGXL" mnemonicParsing="false" onAction="#exportTemplateGXL" text="%template">
                             <accelerator>
-                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP"
-                                                    shortcut="UP"/>
+                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
                         <MenuItem fx:id="exportGXL" mnemonicParsing="false" onAction="#exportGXL" text="GXL">
                             <accelerator>
-                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN"
-                                                    shortcut="UP"/>
+                                <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
 
                         <MenuItem fx:id="exportPDF" mnemonicParsing="false" onAction="#openInfoDialogPDF" text="PDF">
                             <accelerator>
-                                <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN"
-                                                    shortcut="UP"/>
+                                <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
                         <MenuItem fx:id="exportLogs" mnemonicParsing="false" onAction="#exportProtocol" text="%logs">
                             <accelerator>
-                                <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="UP"
-                                                    shortcut="UP"/>
+                                <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
 
                     </Menu>
-                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem fx:id="print" mnemonicParsing="false" onAction="#openInfoDialogPrint" text="%print">
                         <accelerator>
-                            <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                            <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem fx:id="closeApplication" mnemonicParsing="false" onAction="#optionExitWindow" text="%closeApplication">
                         <accelerator>
-                            <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                            <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
                 </Menu>
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
                     <Menu fx:id="languagesGuiGraph" mnemonicParsing="false" text="%languageGuiGraph">
                         <items>
-                            <CheckMenuItem fx:id="languageGuiGraphGerman" mnemonicParsing="false"
-                                      onAction="#loadLanguageGuiGraphGerman" text="%german"/>
-                            <CheckMenuItem fx:id="languageGuiGraphEnglish" mnemonicParsing="false"
-                                      onAction="#loadLanguageGuiGraphEnglish" text="%english"/>
+                            <CheckMenuItem fx:id="languageGuiGraphGerman" mnemonicParsing="false" onAction="#loadLanguageGuiGraphGerman" text="%german" />
+                            <CheckMenuItem fx:id="languageGuiGraphEnglish" mnemonicParsing="false" onAction="#loadLanguageGuiGraphEnglish" text="%english" />
                         </items>
                     </Menu>
                     <Menu fx:id="advancedLanguageOptions" mnemonicParsing="false" text="%advancedLanguageOptions">
                         <items>
                             <Menu fx:id="languages" mnemonicParsing="false" text="%languageGui">
-                                <CheckMenuItem fx:id="languageGerman" mnemonicParsing="false" text="%german"/>
-                                <CheckMenuItem fx:id="languageEnglish" mnemonicParsing="false" text="%english"/>
+                                <CheckMenuItem fx:id="languageGerman" mnemonicParsing="false" text="%german" />
+                                <CheckMenuItem fx:id="languageEnglish" mnemonicParsing="false" text="%english" />
                             </Menu>
                             <Menu fx:id="languagesGraph" mnemonicParsing="false" text="%languageGraph">
-                                <CheckMenuItem fx:id="languageGraphGerman" mnemonicParsing="false" text="%german"/>
-                                <CheckMenuItem fx:id="languageGraphEnglish" mnemonicParsing="false" text="%english"/>
+                                <CheckMenuItem fx:id="languageGraphGerman" mnemonicParsing="false" text="%german" />
+                                <CheckMenuItem fx:id="languageGraphEnglish" mnemonicParsing="false" text="%english" />
                             </Menu>
                         </items>
                     </Menu>
@@ -115,10 +138,10 @@
                 <Menu fx:id="help" mnemonicParsing="false" text="%help">
                     <MenuItem fx:id="documentation" mnemonicParsing="false" onAction="#showUserGuide" text="%documentation">
                         <accelerator>
-                            <KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP"/>
+                            <KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="about" mnemonicParsing="false" text="%aboutUs"/>
+                    <MenuItem fx:id="about" mnemonicParsing="false" text="%aboutUs" />
                 </Menu>
             </MenuBar>
             <JFXToolbar minHeight="-Infinity" prefHeight="30.0" scaleShape="false">
@@ -240,7 +263,7 @@
                             <Tooltip text="%toolbarNotHighlightElements" />
                         </tooltip>
                     </JFXButton>
-                    <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0"  stylesheets="@gui_style.css">
+                    <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -253,7 +276,7 @@
                             <Tooltip text="%toolbarFadeout" />
                         </tooltip>
                     </ToggleButton>
-                    <JFXButton fx:id="fadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0"  stylesheets="@gui_style.css">
+                    <JFXButton fx:id="fadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </HBox.margin>
@@ -1376,7 +1399,7 @@
                                                                 </ImageView>
                                                             </graphic>
                                                             <tooltip>
-                                                                <Tooltip text="%toolbarCreatorMode" />
+                                                                <Tooltip text="%reloadButton" />
                                                             </tooltip>
                                                             <HBox.margin>
                                                                 <Insets right="5.0" />
@@ -1421,7 +1444,7 @@
                                                                 <MenuItem fx:id="logEditVerticesLayout" mnemonicParsing="false" styleClass="analysisMenuItem" text="%EDIT_VERTICES_LAYOUT" />
                                                             </items>
                                                             <tooltip>
-                                                                <Tooltip text="" />
+                                                                <Tooltip text="%LOG_TYPE" />
                                                             </tooltip>
                                                         </MenuButton>
                                                     </children>

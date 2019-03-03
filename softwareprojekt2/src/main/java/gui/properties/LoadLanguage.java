@@ -217,6 +217,8 @@ public class LoadLanguage {
         c.getLanguageGuiGraphGerman().setText(loadLanguagesKey(german));
         c.getLanguageGuiGraphEnglish().setText(loadLanguagesKey(english));
         c.getAdvancedLanguageOptions().setText(loadLanguagesKey("advancedLanguageOptions"));
+        c.getSyncButton().getTooltip().setText(loadLanguagesKey("reloadButton"));
+        c.getFilterLogType().getTooltip().setText(loadLanguagesKey("LOG_TYPE"));
     }
 
     public String loadLanguagesKey(String key) {
