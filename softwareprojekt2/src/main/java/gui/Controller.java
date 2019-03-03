@@ -1193,7 +1193,7 @@ public class Controller implements ObserverSyndrom {
                 stage.setResizable(false);
                 stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK){
+                if (result.get() == ButtonType.OK){
                     ImportTemplateGxlAction importTemplateGxlAction= new ImportTemplateGxlAction(file);
                     importTemplateGxlAction.action();
                     zoomSlider.setValue(100);
@@ -1212,6 +1212,7 @@ public class Controller implements ObserverSyndrom {
                 satellite.setContent(syndrom.getVv2());
             }
         }
+        templateToFields();
     }
 
     /**
@@ -1225,7 +1226,7 @@ public class Controller implements ObserverSyndrom {
             lastUsedFilePath = file.getParentFile();
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
             importTemplateGxlAction.action();
-            if (!importTemplateGxlAction.templateFound) {
+            if (!importTemplateGxlAction.isTemplateFound()) {
                 ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("OKAY"), ButtonBar.ButtonData.OK_DONE);
                 Alert alert = new Alert(Alert.AlertType.ERROR, loadLanguage.loadLanguagesKey("ERROR_GXL_NOT_TEMPLATE"), ok);
                 alert.setTitle("GraphIt");
@@ -1241,6 +1242,7 @@ public class Controller implements ObserverSyndrom {
                 satellite.setContent(syndrom.getVv2());
             }
         }
+        templateToFields();
     }
 
     /**
