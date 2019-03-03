@@ -2,6 +2,7 @@
 
 \newcommand*{\red}{\textcolor{red}}
 \newcommand*{\blue}{\textcolor{blue}}
+\newcommand*{\bbe}{\textcolor{bbe}}
 
 \newcommand{\grad}{\ensuremath{^{\circ}} }
 \renewcommand{\strut}{\vrule width 0pt height5mm depth2mm}
@@ -57,6 +58,11 @@
 \newcommand*{\action}{\paragraph{Vorgehen}}
 \newcommand*{\hdot}{\\ \hdashline[1pt/5pt]}
 \newcommand*{\hdo}{.............}
+\newcommand*{\aOne}{\textcolor{bbe}{Alternative 1:}}
+\newcommand*{\aTwo}{\textcolor{bbe}{Alternative 2:}}
+\newcommand*{\aThree}{\textcolor{bbe}{Alternative 3:}}
+\newcommand*{\aFour}{\textcolor{bbe}{Alternative 4:}}
+
 
 
 \usepackage{geometry}
@@ -94,6 +100,7 @@
 \definecolor{anw}{rgb}{0.94, 0.86, 0.51}
 \definecolor{ghostwhite}{rgb}{0.97, 0.97, 1.0}
 \definecolor{glaucous}{rgb}{0.38, 0.51, 0.71}
+\definecolor{bbe}{rgb}{0.13, 0.67, 0.8}
 \usepackage{amsmath}
 \usepackage{tabularx}
 \usepackage{setspace} 
@@ -125,6 +132,18 @@
 \renewcommand{\headrule}{\vbox to 0pt{\rule{\headwidth}{0.2pt}}}
 \setlength{\headsep}{30pt}
 
+
+\let\tempone\itemize
+\let\temptwo\enditemize
+\renewenvironment{itemize}{\tempone\addtolength{\itemsep}{-10.0pt}}{\temptwo}
+
+\let\origenumerate\enumerate
+\let\origendenumerate\endenumerate
+\renewenvironment{enumerate}{\origenumerate \addtolength{\itemsep}{-10.0pt}}{\origendenumerate}
+
+%\addtolength{\itemsep}{-10.0pt}
+%\setitemize{itemsep=-10.0pt}
+%\setenumerate{itemsep=-10.0pt}
 
 \hyphenation{Arbeits-paket}
 
@@ -453,12 +472,12 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\condition
 	Es muss ein Syndrom mit mindestens einem Element (eine Sphäre/ ein Symptom/ eine Relation), welches ausgewählt werden soll, existieren. 
 	\actions
-	Alternative 1: 
+	\aOne 
 	\begin{enumerate}
 		\item In der Menüleiste den Button \textit{Auswahl} durch einen Links-Klick aktivieren. 
 		\item Den Cursor auf das Element bewegen und die linke Maustaste klicken. 
 	\end{enumerate}
-	Alternative 2: 
+	\aTwo
 	\begin{enumerate}
 		\item In der Übersichtleiste das auszuwählende Element durch einen Links-Klick auswählen. 
 	\end{enumerate}
@@ -466,6 +485,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\begin{itemize}
 		\item Eine Relation kann manchmal etwas schwierig auszuwählen sein, da die Kanten vergleichsweise relativ dünn sind. 
 		\item Die Nutzung der eben angesprochenen Übersichtsleiste wird in einem folgenden Unterkapitel (\ref{overwiew}) noch genauer beschrieben.
+		\item Ausgewählte Elemente werden in der Visualisierung durch einen dickere Umrandung hervorgehoben.
 	\end{itemize}
 	
 	\begin{figure}[ht!]
@@ -494,7 +514,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\end{enumerate}
 	\hint
 	\begin{itemize}
-		\item Verschiedene Arten (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. \\ 
+		\item Verschiedene Arten (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. \\
 	\end{itemize}
 
 	\subsubsection{Auswahl löschen}
@@ -516,73 +536,75 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsubsection{Navigation}		
+\subsubsection{Navigation}		
 	\condition
 	Es muss ein Syndrom mit mindestens einer Sphäre im Programm geöffnet sein, damit die Übersichtsleiste nicht leer ist. 
 	\action
 	\begin{enumerate}
-		\item In der Übersichtsleiste die Sphäre, zu der man die ihre zugeordneten Symptome angezeigt bekommen möchte, mit einem Doppelklick auswählen. 
-		\item Zum Schließen der Liste der Symptome dieser Sphäre einen erneuten Doppelklick auf den Titel dieser Sphäre ausführen oder einen Doppelklick auf den Titel des Symptoms ausführen, zu dem man die Liste der Relationen, die von ihm ausgehen, angezeigt bekommen möchte. 
-		\item Durch einen Doppelklick auf den Titel eines Symptoms, zu dem die Liste der Relationen, die von diesem Symptom ausgehen, bereits angezeigt werden, kann die Liste wieder ausgeblendet / eingeklappt werden.	\end{enumerate}
+		\item In der Übersichtsleiste die Sphäre, zu der man die ihre zugeordneten Symptome angezeigt bekommen möchte, ausklappen. 
+		\item Zum Schließen der Liste der Symptome die Sphäre einklappen. 
+		\item Alternativ ein Symptom ausklappen, um die Liste der Relationen, die von ihm ausgehen, angezeigt zu bekommen. 
+	\end{enumerate}
 	\hint
 	\begin{itemize}
-		\item Die Elemente eines Syndroms werden durch ihre Bezeichnung in der Übersichtleiste repräsentiert. Die Relationen werden durch ihr ausgehendes/ eingebendes Symptom identifiziert. 
-		\item Ist in der Übersichtsleiste kein Pfeil vor dem Titel einer Sphäre vorhanden, so enthält sie keine Symptome.
-		\item Istin der Übersichtsleiste kein Pfeil vor dem Titel eines Symptoms vorhanden, so gehen keine Relationen von diesem Symptom aus.
+		\item Element in der Übersichtsleiste können entweder durch einen Doppelklick der linken Maustaste oder durch einen Links-Klick auf das danebenstehende Pfeilsymbol ausgeklappt/ eingeklappt werden. 
+		\item Ist in der Übersichtsleiste kein Pfeil vor einem Eintrag eingeblendet, so lässt sich dieses nicht ein-/ausklappen.
+		\item Die Elemente eines Syndroms werden durch ihre Bezeichnung in der Übersichtleiste repräsentiert. Die Relationen werden durch ihr ausgehendes/ eingebendes Symptom identifiziert.\\
 	\end{itemize}
 		 
-				\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				\subsubsection{Auswahl eines Graphelements über die Übersichtsleiste}		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Auswahl von Graphelementen}		
 	\condition
-	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
+	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit die Übersichtsleiste nicht leer ist. 
 	\action
 	\begin{enumerate}
 		\item In der Übersichtsleiste auf die eben beschriebene Weise bis zu der gewünschten Tiefe (nur Sphären, Symptome zu einer Sphäre, Relationen zu einem Symptom) navigieren. Dort das gewünschte Element wahlweise mit einem einfachen Links-Klick oder einem Doppelklick auswählen.
 		\end{enumerate}
 	\hint
 	\begin{itemize}
-		\item Das jeweils aktuell in der Übersichtsleiste ausgewählte Element wird auch in der (visuellen) Darstellung des Syndroms im Hauptfenster ausgewählt.
+		\item Das jeweils aktuell in der Übersichtsleiste ausgewählte Element wird auch in der (visuellen) Darstellung des Syndroms ausgewählt.\\
 	\end{itemize}
 		
-				\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Filtern (über die Übersichtsleiste)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Filtern}
 	\condition
-	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
-	\action
-	Filtern der Relationstypen:
+	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit die Übersichtsleiste nicht leer ist. 
+	\actions
+	\bbe{Filtern der Relationstypen:}
 	\begin{enumerate}
-			\item In der Übersichtsleiste einen Links-Klick in die Check-Box neben dem \textit{Nach der Pfeilspitze der Relation filtern}-Button ausführen, sodass dort ein Haken erscheint.
+		\item In der Übersichtsleiste einen Links-Klick in die Check-Box neben dem \textit{Nach der Pfeilspitze der Relation filtern}-Button ausführen, sodass dort ein Häkchen gesetzt ist.
 		\item In der Übersichtsleiste einen Links-Klick auf den Button \textit{Nach der Pfeilspitze der Relation filtern} das Drop-Down-Menü dieses Buttons öffnen.
-		\item In diesem Drop-Down-Menü, den Relationstyp, der gefiltert werden soll, mit einem Links-Klick auswählen. Hinweis: Der ausgewählte Relationstyp wird weiterhin im Graphen angezeigt. Die Relationen der anderen beiden Relationstypen werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Relationen in der Übersichtsleiste.
+		\item In dem Drop-Down-Menü, den Relationstyp, der gefiltert werden soll, mit einem Links-Klick auswählen.
 		\item Um wieder die Relationen aller Relationstypen einzublenden, erneut einen Links-Klick in die Check-Box neben dem \textit{Nach der Pfeilspitze der Relation filtern}-Button ausführen, sodass der Haken in dieser Box verschwindet.
-		\end{enumerate}
-		Filtern der Relationstypen:
+	\end{enumerate}
+	\bbe{Filtern der Symptome durch einen regulären Ausdruck:}
 		\begin{enumerate}
-			\item In der Übersichtsleiste einen Links-Klick in die Check-Box neben dem \textit{Nach regulären Ausdrücken filtern}-Feld ausführen, sodass dort ein Haken erscheint.
-		\item In der Übersichtsleiste einen Links-Klick in das Feld \textit{Nach regulären Ausdrücken filtern} klicken.
-		\item Über die Computertastatur einen Suchbegriff eingeben, nach dem der Ttel von Symptomen gefiltert werden soll. Hinweis: Die Symptome, deren Titel den Suchbegriff enthalten,
-	werden weiterhin im Graphen angezeigt. Die übrigen Symptome werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Symptome in der Übersichtsleiste.
-		\item Um wieder alle Symptome einzublenden, erneut einen Links-Klick in die Check-Box neben dem \textit{Nach regüulären Ausdrücken filtern}-Feld ausführen, sodass der Haken in dieser Box verschwindet.
+		\item In der Übersichtsleiste einen Links-Klick in die Check-Box neben dem \textit{Nach regulären Ausdrücken filtern}-Feld ausführen, sodass dort ein ein Häkchen gesetzt ist.
+		\item In der Übersichtsleiste einen Links-Klick in das Feld \textit{Nach regulären Ausdrücken filtern} ausführen.
+		\item Über die Computertastatur einen Suchbegriff eingeben, nach dem der Titel von Symptomen gefiltert werden soll. 
+		\item Um wieder alle Symptome einzublenden, erneut einen Links-Klick in die Check-Box neben dem \textit{Nach regulären Ausdrücken filtern}-Feld ausführen, sodass der Haken in dieser Box verschwindet.
 		\end{enumerate}
 	\hint
 	\begin{itemize}
+		\item Der ausgewählte Relationstyp wird weiterhin im Graphen angezeigt. Die Relationen der anderen beiden Relationstypen werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Relationen in der Übersichtsleiste.
+		\item Die Symptome, deren Titel den Suchbegriff enthalten, werden weiterhin im Graphen angezeigt. Die übrigen Symptome werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Symptome in der Übersichtsleiste.
+		\item In das Feld \textit{Nach regulären Ausdrücken filtern} können auch alle Form von regulären Ausdrücken eingegeben werden, z.B. \textbackslash d um nach Zahlen zu filtern)
 		\item In beiden Filtervorgängen könne die ersten beiden Schritte auch in umgekehrter Reihenfolge durchgeführt werden.
-		\item Die Filter können beliebig kombiniert werden.
-		\item Das Ergebnis der Filterung schlägt sich sowohl in der Liste der Graphelemente in der Übersichtsleiste nieder als auch in der visuellen Darstellung des Syndroms im Hauptfenster.
+		\item Das Ergebnis der Filterung schlägt sich sowohl in der Liste der Graphelemente in der Übersichtsleiste nieder als auch in der visuellen Darstellung des Syndroms.\\
 	\end{itemize}		
-	
-	
+		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Editierung des Graphen - Allgemein}\label{edit}
 
-		\hint
+		\red{\textbf{Hinweise}}
 		\begin{itemize}
 			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer im \\
 			Bearbeiter-/ Erstellermodus befindet und er somit die Berechtigung hat den Graphen zu editieren.
 			\item Es wird vorausgesetzt, dass die Aktionen nicht durch die Vorlageregeln verhindert werden. D.h. das der Bearbeiter auf alle Elemente des Graphen freien Zugriff hat und alle Eigenschaften veränderbar sind.
+			\item \bbe{Alle Aktionen die im folgenden beschrieben sind und sich auf die Editierung von Graphelementen beziehen sind auch auf eine Auswahl von mehreren Graphelementen ausführbar!}
 		\end{itemize}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Undo/ Redo}
 		Mit Undo/ Redo sind Aktionen auf dem Graphen wieder rückgängig zu machen oder rückgängig gemachte Aktionen erneut ausführbar. 
 		\condition
@@ -591,31 +613,35 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\begin{enumerate}
 			\item Den Undo- Button durch einen Link-Klick auswählen. 
 			\item Der Redo- Button sollte nun ebenfalls klickbar sein. Um die vorherige Aktion wieder auszuführen den Redo- Button klicken. 
-		\end{enumerate}			
+		\end{enumerate}	
+		\hint
+		\begin{itemize}
+			\item Die Aktions- Historie wird nach dem Wechsel in einen anderen Funktionsmodus oder nach dem Öffnen/ Importieren eines neuen Graphen gelöscht. \\ 
+		\end{itemize}		
 					
 				\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Tontextmenü öffnen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Kontextmenü öffnen}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre und beliebig vielen weiteren Graphelementen ist im Programm geöffnet.
-		\actions
+		\action
 		\begin{enumerate}
 				\item Das Graphelement, dessen Kontextmenü geöffnet werden soll, mit einem Rechts-Klick selektieren.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-				\item Es kann nur das Kontextmenü eines Graphelements zur Zeit geöffnet werden.
-				\item Die Kontextmenüs von Sphären, Symptomen und Relationen unterscheiden sich.
-				\item Das Kontextmenü lässt sich an zwei verschieden Stellen öffen: Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. Im ersten Fall lässt es sich durch einen Rechts-Klick auf das dargestellte Graphelement und im Kontextmenü durch einen Rechts-Klick auf den Namen des entsprechenden Graphelements in der Übersichtsleiste.
-	 	\end{itemize}	
-	 	
-		\subsection{Editierung der Sphären} \label{sphere}
+				\item Es kann nur das Kontextmenü eines Graphelements zur jedem Zeitpunkt geöffnet werden.
+				\item Die Kontextmenüs von Sphären, Symptomen und Relationen unterscheiden sich in ihrem Funktionsumfang.
+				\item \bbe{Das Kontextmenü lässt sich an zwei verschieden Stellen öffen:} Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. In beiden Fallen lässt es sich durch einen Rechts-Klick auf das entsprechende Element öffnen. \\
+	 	\end{itemize}	 	
 		
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Sphäre hinzufügen}	
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Editierung der Sphären} \label{sphere}	
+\subsubsection{Sphäre hinzufügen}	
 		\condition 	
 		Das Programm ist gestartet.
-		\actions
+		\action
 		\begin{enumerate}
 			\item In der Menüleiste den Button \textit{Sphäre hinzufügen} durch einen Links-Klick aktivieren.
 			\item Den Cursor auf die gewünschte Position bewegen, an der sich keine andere Sphäre befindet, und auf die linke Maustaste klicken.
@@ -623,39 +649,40 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich eine Sphäre auf einer anderen Sphäre hinzuzufügen. Wird dies versucht, wird keine neue Sphäre hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Die Darstellung (Farbe, Kantenart, Typ) der Sphäre wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. \\
 	\end{itemize}
 	
-			\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Sphäre entfernen}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Sphäre entfernen}
 			\condition 	
 		Ein Syndromansatz mit mindestens einer Sphäre ist im Programm geöffnet. 
 		\actions  
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item Die Sphäre, die gelöscht werden soll mit einem Links-Klick auswählen.
-			\item Die \textit{Entfernen}-Teste der Tastatur drücken.
+			\item Die \textit{Entfernen}-Taste auf der Tastatur drücken.
 		\end{enumerate}
-		Alternative 2:
+	\newpage
+		\hspace{-0.4cm}\aTwo
 			\begin{enumerate}
 			\item Die Sphäre, die gelöscht werden soll mit einem Links-Klick auswählen.
 			\item In der Menüleiste einen Links-Klick auf den Button \textit{Sphäre löschen} ausführen.
 		\end{enumerate}
-		Alernative 3:
+		\aThree
 		\begin{enumerate} 
 			\item In diesem Kontextmenü der zu löschenden Sphäre die \textit{Entfernen}-Option mit einem Links-Klick auswählen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Wird eine Sphäre gelöscht, so werden automatisch auch alle Symptome entfernt, die zu dieser Sphäre gehören. Damit werden dann auch alle Relationen gelöscht, die in einem dieser Symptome einmünden oder von einem dieser Symptome ausgehen.
+			\item Wird eine Sphäre gelöscht, so werden automatisch auch alle Symptome entfernt, die zu dieser Sphäre gehören. Damit werden dann auch alle Relationen gelöscht, die in einem dieser Symptome einmünden oder von einem dieser Symptome ausgehen.\\
 		\end{itemize}
-		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Sphäre verschieben}
-				\condition 	
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Sphäre verschieben}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
-		\actions  
+		\action  
 		\begin{enumerate}
 			\item Die Sphäre, die verschoben werden soll mit einem Rechts-Klick auswählen.
 			\item Die (rechte) Taste gedrückt halten und den Cursor an eine Zielstelle bewegen, an der sich keine andere Sphäre befindet. Beim Bewegen des Cursors bewegt sich die Sphäre bereits mit. 
@@ -663,59 +690,55 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich, eine Sphäre zu verschieben, wenn sich an der Zielposition bereits eine andere Sphäre befindet. Wird dies versucht, wird die Sphäre nicht verschoben und es erscheint eine Fehlermeldung.
+			\item Es ist nicht möglich, eine Sphäre zu verschieben, wenn sich an der Zielposition bereits eine andere Sphäre befindet. Wird dies versucht, wird die Sphäre nicht verschoben und es erscheint eine Fehlermeldung.\\
 		\end{itemize}
-		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Größe der Sphäre verändern}
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Größe einer Sphäre verändern}
 				\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
 		\actions  
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item Die Sphäre, deren Größe verändert werden soll, mit einem Links-Klick auswählen.
 			\item So oft die \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste der Tastatur drücken bis die Sphäre die gewünschte Größe hat. \\(Nicht die \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste des Nummernblocks)
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 			\begin{enumerate}
 			\item Die Sphäre, deren Größe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste so oft  Links-Klick auf den Button \textit{Sphäre vergrößern}/\textit{Sphäre verkleinern} ausführen bis die Sphäre die gewünschte Größe hat.. 
+			\item In der Menüleiste so oft  Links-Klick auf den Button \textit{Sphäre vergrößern}/\textit{Sphäre verkleinern} ausführen bis die Sphäre die gewünschte Größe erreicht hat. 
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Eine Sphäre kann nicht mehr verkleinert werden, wenn sie bereits ihre minimale Größe hat.
-			\item Eine Sphäre kann nicht weiter vergrößert werden, wenn die Vergrößerung zu einer Überlappung von zwei Sphären führen würde.
-			\end{itemize}
-			
-					\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Farbe der Sphäre ändern}
-				\condition 	
+			\item Eine Sphäre kann nicht mehr verkleinert werden, wenn sie bereits ihre minimale Größe erreicht hat oder ein Symptom sich durch die Verkleinerung außerhalb der Sphäre befinden würde.
+			\item Eine Sphäre kann nicht weiter vergrößert werden, wenn die Vergrößerung zu einer Überlappung von zwei Sphären führen würde.\\
+		\end{itemize}
+				
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Farbe einer Sphäre ändern}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
 		\actions  
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken und eine Farbe auswählen.
 			\item Das Kontextmenü der Sphäre, deren Farbe geändert werden soll, öffnen und dort den Punkt \textit{Farbe} auswählen.
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
 			\item Die Sphäre, deren Farbe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken.
-			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem Lnks-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe der Sphäre verändern} klicken und eine Farbe auswählen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Wenn die gewünschte Farbe nicht in dem sich öffnenden Fenster enthalten ist, lässt sich ein weiteres Farbwahl-Fenster durch einen Links-Klick auf \textit{Custom Color} öffnen. Dessen Bedienung ist im Kapiel -----XXX------ beschrieben.
+			\item Wenn die gewünschte Farbe nicht in dem sich öffnenden Fenster enthalten ist, lässt sich ein weiteres Farbwahl-Fenster durch einen Links-Klick auf \textit{Custom Color} öffnen. Die Bedienung des Color Pickers ist im Kapiel \nameref{colorpicker} beschrieben.\\
 	\end{itemize}	
 	
-			\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-	\subsubsection{Titel der Sphäre ändern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Titel einer Sphäre ändern}
 				\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
-		\actions  
+		\action  
 		\begin{enumerate}
 			\item Das Kontextmenü der Sphäre, deren Titel geändert werden soll, öffnen und dort die \textit{Titel}-Option mit einem Links-Klick auswählen. 
 			\item In dem sich öffnenden Fenster für die gewünschten Sprache(n) den neuen Titel in die dafür vorgesehenen Felder eingeben.
@@ -723,64 +746,48 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Der Titel einer Sphäre darf kein Semikolon enthalten.
-		\end{itemize}
-		\subsubsection{Contextmenü einer Sphäre öffnen/benutzen}
-				\condition 	
+			\item Der Titel einer Sphäre darf kein Semikolon enthalten und nicht leer sein.
+			\item Doppelte Bezeichnungen sind in einem Syndrom nicht erlaubt. Bei Eingabe eines doppelt vorkommenden Titels erscheint in dem Dialogfenster eine Fehlermeldung und der \textit{Speichern} -Button ist nicht mehr auswählbar bis der Titel entsprechend geändert wurde. \\
+		\end{itemize}	
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5			
+\subsubsection{Schriftart/-größe der Beschriftung einer Sphäre ändern}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
 		\actions  
-		Alternative 1:
-		\begin{enumerate}
-			\item Auf einer Sphäre einen Rechts-Klick ausführen.
-			\item Im sich öffnenden Kontextmenü die gewünschte Option mit einem Links-Klick auswählen.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-			\item Es ist egal, ob eine die Späre, deren Kontextmenü geöffnet werden soll, vor dem Rechts-Klick auf diese Sphäre mit einem Links-Klick ausgewählt worden ist oder nicht.
-		\end{itemize}
-		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Schriftart/-größe der Beschriftung der Sphäre ändern}
-				\condition 	
-		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
-		\actions  
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item Die Sphäre, für die die Schriftart/-größe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe der Sphäre angezeigt wird.
-			\item In dem Drop-Down-Menü die Schriftart/-größe auswählen, die die Beschriftung der Sphäre haben soll.
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die Schriftart/-größe von Sphären angezeigt wird.
+			\item In dem Drop-Down-Menü die Schriftart/-größe auswählen, welche die Beschriftung der Sphäre haben soll.
 		\end{enumerate}
-		Alternative 2:
-			\begin{enumerate}
-			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe der Sphäre angezeigt wird.
-			\item In dem Drop-Down-Menü die Schriftart/-größe auswählen, die die Beschriftung der Sphäre haben soll.
-			\item Das Kontextmenü der Sphäre öffnen, deren Schriftart/-größe geändert werden soll und dort die Option \textit{Schriftart}/\textit{Schriftgröße} auswählen.
+		\aTwo
+		\begin{enumerate}
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die aktuelle Schriftart/-größe der Sphäre angezeigt wird.
+			\item In dem Drop-Down-Menü die Schriftart/-größe auswählen, indem die Schriftart/-größe von Sphären angezeigt wird.
+			\item Das Kontextmenü der Sphäre öffnen, deren Schriftart/-größe geändert werden soll und dort die Option \textit{Schriftart}/\textit{Schriftgröße} auswählen. \\
 		\end{enumerate}
-		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 		\subsubsection{Sphären layouten}
-				\condition 	
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
-		\actions  
+		\action  
 		\begin{enumerate}
 			\item In der Menüleiste im Bereich Sphären auf den \textit{Automatische Anordnung}-Button mit Links-Klick klicken.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich das Sphäre zu löschen, wenn die Position von mindestens einer Sphäre im Erstellermodus in den Vorlage-Regeln gelocked wurde.
-			\end{itemize}
-		
-				\newpage	
+			\item Wenn die Position von einer Sphäre aufgrund der Vorlageregeln gesperrt ist, dann steht dem Bearbeiter diese Funktion nicht mehr zur Verfügung. \\
+		\end{itemize}		
+			
 				
-				\subsection{Editierung der Symptome} \label{symptom}
-				
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsection{Editierung der Symptome} \label{symptom}
 		\subsubsection{Symptom hinzufügen}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
-		\actions
+		\action
 		\begin{enumerate}
 			\item In der Menüleiste den Button \textit{Symptom hinzufügen} durch einen Links-Klick aktivieren.
 			\item Den Cursor auf die gewünschte Position innerhalb einer Sphäre bewegen, an der sich kein(e) andere(s) Symptom / Relation befindet, und auf die linke Maustaste klicken.
@@ -790,232 +797,158 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 			\item Es ist nicht möglich, ein Symptom auf einen anderem Symptom hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
 			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
 			\item Es ist nicht möglich ein Symptom auf einer Relation hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
+			\item Die Darstellung (Farbe, Kantenart, Typ) des Symptoms wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. \\
 		\end{itemize}
 
-		\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Symptom entfernen}
-				\condition 	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Symptom entfernen}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
 		\actions
+		\aOne
 		\begin{enumerate}
-			\item Das Symptom, das gelöscht werden soll mit einem Links-Klick auswählen. 
+			\item Das Symptom, welches gelöscht werden soll mit einem Links-Klick auswählen. 
 			\item Die \textit{Entfernen}-Taste der Tastatur drücken.
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-			\item Das Symptom, das gelöscht werden soll mit einem Links-Klick auswählen. 
+			\item Das Symptom, welches gelöscht werden soll mit einem Links-Klick auswählen. 
 			\item In der Menüleiste den \textit{Symptom löschen}-Button durch einen Links-Klick auslösen.
 		\end{enumerate}
+		\aThree
+			\begin{enumerate} 
+				\item In dem Kontextmenü des zu löschenden Symptoms die \textit{Entfernen}-Option mit einem Links-Klick auswählen.
+			\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich, ein Symptom zu löschen, wenn der Titel und/oder die Position und/oder der Style dieses Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird das Symptom nicht gelöscht und es erscheint eine Fehlermeldung.
+			\item Beim Löschen eines Symptoms werden auch alle von dem Symptom ausgehenden Kanten gelöscht. \\
 		\end{itemize}
 		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Symptom verschieben}
-					\condition 	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Symptom verschieben}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
-		\actions
+		\action
 		\begin{enumerate}
-			\item Das Symptom, das verschoben werden soll mit einem Rechts-Klick auswählen. 
+			\item Das Symptom, welches verschoben werden soll mit einem Rechts-Klick auswählen. 
 			\item Die rechte Maustaste gedrückt halten und den Cursor an die Stelle bewegen, an der es platziert werden soll.
+			\item Die rechte Maustaste loslassen. 
 		\end{enumerate}
 		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich, ein Symptom auf die Position eines anderen Symptoms zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
 			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre zu platzieren. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich ein Symptom auf eine Relation zu verschieben. Wird dies versucht, wird das Symptom an seiner ursprünglichen Stelle platziert und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird das Symtom nicht verschoben und es erscheint eine Fehlermeldung.
 		\end{itemize}
 		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Größe eines Symptoms verändern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Größe eines Symptoms verändern}
 					\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item Das Symptom, dessen Größe verändert werden soll, mit einem Links-Klick auswählen. 
-			\item Die \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste der Tastatur so oft drücken bis das Symptom die gewünschte Größe erreicht hat. \\
-			(Nicht die  \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste des Nummernblocks)
+			\item Die \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste der Tastatur so oft drücken bis das Symptom die gewünschte Größe erreicht hat. (Nicht die  \glqq\textit{+}\grqq- / \glqq\textit{-}\grqq-Taste des Nummernblocks)
 		\end{enumerate}
-				Alternative 2:
+		\aTwo
 		\begin{enumerate}
 			\item Das Symptom, dessen Größe verändert werden soll, mit einem Links-Klick auswählen. 
 			\item  In der Menüleiste den \textit{Symptom vergrößern}- / \textit{Symptom verkleinern}-Button klicken so oft drücken bis das Symptom die gewünschte Größe erreicht hat.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich, ein Symptom zu verkleinern, wenn es bereits seine minimale Größe hat.
-			\item Es ist nicht möglich, ein Symptom zu vergrößern  / verkleinern, wenn die Größe des Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird die Größe des Symptoms nicht geändert und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich ein Symptom zu vergrößern, wenn die Vergrößerung eine Überlappung mit anderen Symptomen zufolge hätte.
+			\item Es ist nicht möglich, ein Symptom zu verkleinern, wenn es bereits seine minimale Größe hat oder die Beschriftung die aktuelle Größe mindestens erfordert. \\
 		\end{itemize}
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Füllfarbe/ Randfarbe eines Symptoms verändern}
+		\condition 	
+		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
+		\actions
+		\aOne
+		\begin{enumerate}
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern}/ \textit{Randfarbe des Symptoms verändern} klicken und eine Farbe auswählen.
+			\item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
+			\item In dem Kontextmenü den Punkt \textit{Füllfarbe}/ \textit{Randfarbe} auswählen.
+		\end{enumerate}		
+		\aTwo
+		\begin{enumerate}
+			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
+			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern}/ \textit{Randfarbe des Symptoms verändern} klicken.
+			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem Links-Klick auswählen.
+		\end{enumerate}
 		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Füllfarbe eines Symptoms verändern}
-		\condition 	
-		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
-		\actions
-		Alternative 1:
-		\begin{enumerate}
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
-			\item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
-			\item im Kontextmenü den Punkt \textit{Füllfarbe} auswählen.
-		\end{enumerate}
-		Alternative 2:
-		\begin{enumerate}
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
-			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
-			 \item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
-			\item im Kontextmenü den Punkt \textit{Füllfarbe} auswählen.
-		\end{enumerate}
-		Alternative 3:
-		\begin{enumerate}
-			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
-			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem Lnks-Klick auswählen.
-		\end{enumerate}
-		Alternative 4:
-			\begin{enumerate}
-			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern} klicken.
-			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
-		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Die Bedienung des Farbwahl-Fensters, zu dem man über \textit{Custom Color} gelangt, ist im Kapiel -----XXX------ beschrieben.
-			\item Es ist nicht möglich die Farbe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
-	\end{itemize}	
-	
-			\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Randfarbe eines Symptoms verändern}
-				\condition 	
-		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
-		\actions
-		Alternative 1:
-		\begin{enumerate}
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randfarbe des Symptoms verändern} klicken.
-			\item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
-			\item im Kontextmenü den Punkt \textit{Randfarbe} auswählen.
-		\end{enumerate}
-		Alternative 2:
-		\begin{enumerate}
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randgrundfarbe des Symptoms verändern} klicken.
-			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
-			 \item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
-			\item im Kontextmenü den Punkt \textit{Randfarbe} auswählen.
-		\end{enumerate}
-		Alternative 3:
-		\begin{enumerate}
-			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randfarbe des Symptoms verändern} klicken.
-			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem Lnks-Klick auswählen.
-		\end{enumerate}
-		Alternative 4:
-			\begin{enumerate}
-			\item Das Symptom, dessen Farbe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Randfarbe des Symptoms verändern} klicken.
-			\item In dem sich öffnenden Fenster \textit{Costom Color} mit einem Lnks-Klick auswählen und in dem sich öffnenden Farbwahl-Fenster eine Farbe einstellen und diese mit der \textit{Enter}-Taste bestätigen.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-			\item Die Bedienung des Farbwahl-Fensters, zu dem man über \textit{Custom Color} gelangt, ist im Kapiel -----XXX------ beschrieben.
-			\item Es ist nicht möglich die Farbe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
-	\end{itemize}	
-	
-					\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Titel eines Symptoms ändern}
+			\item Die Bedienung des Farbwahl-Fensters ist im Kapitel \nameref{colorpicker} beschrieben. \\
+		\end{itemize}		
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsubsection{Titel eines Symptoms ändern}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
-		\actions  
+		\action 
 		\begin{enumerate}
-			\item Das Symptom, dessen Titel geändert werden soll mit einem Rechts-Klick anklicken, sodass sich dessen Kontext-Menü öffnet.
+			\item Das Symptom, dessen Titel geändert werden soll mit einem Rechts-Klick anklicken, sodass sich dessen Kontextmenü öffnet.
 			\item Im Kontextmenü ganz oben \textit{Titel} mit einem Links-Klick auswählen. 
-			\item In dem sich öffnenden Fenster für die gewünschten Sprache(n) den nuen Titel in die dafür vorgesehenen Felder eingeben.
+			\item In dem sich öffnenden Fenster für die gewünschten Sprache(n) den neuen Titel in die dafür vorgesehenen Felder eingeben.
 			\item Die Änderung des Titels mit einem Links-Klick auf die \textit{Speichern}-Schaltfläche abschließen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Der Titel eines Symptoms darf kein Semikolon enthalten.
+			\item Der Titel eines Symptoms darf kein Semikolon enthalten und nicht leer sein. 
+			\item Doppelte Bezeichnungen sind in einem Syndrom nicht erlaubt. Bei Eingabe eines doppelt vorkommenden Titels erscheint in einem Dialogfenster eine Fehlermeldung und der \textit{Speichern} -Button ist nicht mehr auswählbar bis die Eingabe entsprechend geändert wurde. \\
 		\end{itemize}
-		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Contextmenü eines Symptoms öffnen/benutzen}
-				\condition 	
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Schriftart/-größe der Beschriftung eines Symptoms ändern}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
 		\actions  
-		\begin{enumerate}
-			\item Auf einem Symptom einen Rechts-Klick ausführen.
-			\item im sich öffnenden Kontextmenü die gewünschte Option mit einem Links-Klick auswählen.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-			\item Es ist egal, ob eine das Symptom, dessen Kontextmenü geöffnet werden soll, vor dem Rechts-Klick auf dieses Symptom ausgewählt worden ist oder nicht.
-		\end{itemize}
-		
-				\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Schriftart/-größe der Beschriftung des Symptoms ändern}
-				\condition 	
-		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
-		\actions  
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item Das Symptom, für das die Schriftart/-größe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe des Symptoms angezeigt wird.
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die Schirftart/ -größe von Symptomen angezeigt wird. 
 			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 			\begin{enumerate}
-			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem de aktuelle Schriftart/-größe des Symptoms angezeigt wird.
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die Schirftart/ -größe von Symptomen angezeigt wird. 
 			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
 			\item Mit einem Rechts-Klick auf das Symptom klicken, dessen Schriftart/-größe geändert werden soll.
 			\item In dem sich öffnenden Kontextmenü die Option \textit{Schriftart}/\textit{Schriftgröße} auswählen.
 		\end{enumerate}
-		\hint
-		\begin{itemize}
-			\item Es ist nicht möglich die Schriftart/-größe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Schriftart/-größe nicht geändert und es erscheint eine Fehlermeldung.
-			\end{itemize}
 			
-							\newpage	
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-			\subsubsection{Form eines Symptoms verändern}
-							\condition 	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Form eines Symptoms verändern}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome enthält, ist im Programm geöffnet. 
-		\actions
+		\action
 		\begin{enumerate}
 			\item Das Symptom, dessen Form geändert werden soll mit einem Rechts-Klick auswählen. 
 			\item In der Menüleiste den Button \textit{Form des Symptoms verändern} anklicken.
-			\item In dem sich öffnenden Drop-Down-Menü die Form auswählen, die das Symptom haben soll.
+			\item In dem sich öffnenden Drop-Down-Menü die Form auswählen, die das Symptom haben soll. \\
+		\end{enumerate}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+		\subsubsection{Symptome layouten}
+		\condition 	
+		Ein Syndrom mit mindestens zwei Symptome und durch eine Relation verbunden sind, ist im Programm geöffnet. 
+		\action 
+		\begin{enumerate}
+			\item In der Menüleiste im Bereich Symptom den \textit{Automatische Anordnung} Button mit Links-Klick klicken.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich, die Form eines Symptoms zu ändern, wenn der Style dieses Symptoms in den Vorlage-Regeln gelockt wurde. Wird dies versucht, wird die Form des Symtoms nicht geändert und es erscheint eine Fehlermeldung.
-		\end{itemize}
-		\subsubsection{Symptome layouten}
-				\condition 	
-		Ein Syndrom mit mindestens zwei Symptome, die in derselben oder in zwei verschiedenen Sphären enthalten sind und durch eine Relation verbunden sind, ist im Programm geöffnet. 
-		\actions  
-		\begin{enumerate}
-			\item In der Menüleiste im Bereich Symptom auf den \textit{Automatische Anordnung}.Button mit Links-Klick klicken.
-		\end{enumerate}
-
+			\item Wurde bei einem der Symptome die Position durch die Vorlageregeln gelockt, ist der \textit{Automatische Anordnung} Button nicht mehr auswählbar.
+			\item Es gibt nicht nur ein mögliches Layout für die gleiche Menge an Symptomen. Es können verschiedene Layouts berechnet werden. Bei erneuten Klick auf den \textit{Automatische Anordnung} Button wird sich deswegen das Layout/ die Anordnung der Symptome verändern. \\
+		\end{itemize}	
 			
-			\newpage	
-			
-		\subsection{Editierung der Relationen} \label{relations}
-			
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsection{Editierung der Relationen} \label{relations}
 		\subsubsection{Relation hinzufügen}
 		\condition
-		Um eine Relation hinzufügen zu können, müssen mindestens 2 Symptome im Syndromansatz existieren. 
+		Um eine Relation hinzufügen zu können, müssen mindestens 2 Symptome im Syndrom existieren. 
 		\action
 		\begin{enumerate}
 			\item Auf ein Symptom klicken und die Maustaste gedrückt halten.
@@ -1034,42 +967,40 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		
 		\begin{figure}[ht!]
 			\centering
-			\subfigure[Alternative 1]{
+			\subfigure[Relationen]{
 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{edge.png} 
 			}			
 		\end{figure}
 		
-		\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Relation entfernen}
 		\condition
-		Es muss mindestens eine Relation in dem Syndromansatz existieren. 
+		Es muss mindestens eine Relation in dem Syndrom existieren. 
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item Die Relation, die gelöscht werden soll mit einem Links-Klick auswählen.
-			\item Die \textit{Entfernen}-Taste der Tastatur drücken.
+			\item Die \textit{Entfernen}-Taste auf der Tastatur drücken.
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
 			\item Die Relation, welche gelöscht werden soll mit einem Links-Klick auswählen.
 			\item In der Menüleiste einen Links-Klick auf den Button \textit{Relation entfernen} ausführen.
 		\end{enumerate}
-		Alternative 3:
+		\aThree
 		\begin{enumerate}
 			\item Mit einem Rechts-Klick auf die Relation, welche gelöscht werden soll, das Kontextmenü öffnen. 
-			\item In diesem Kontextmenü die \textit{Entfernen}-Option mit einem Links-Klick auswählen.
+			\item In diesem Kontextmenü die \textit{Entfernen}-Option mit einem Links-Klick auswählen. \\
 		\end{enumerate}
 		
-		
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Ankerpunkte ein-/ ausblenden}
-		Ankerpunkte bezeichnen die Postion, wo die Relation in einem Symptom mündet/ von ihm ausgeht. Bei der Erstellung einer Relation werdend diese automatisch gesetzt und sind veränderbar. Das bedeutet, dass wenn ein Symptom bewegt wird, sich die Postion der Mündung/Ausgang der Relation in/aus das Symptom entsprechend anpasst und bewegt. Um das zu verhindert, können die Ankerpunkte manuell besetzt werden. Diese sind dann fest, d.h. auch beim Bewegen eines Symptoms bleibt die Position der Mündung/ Ausgang bestehen.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Ankerpunkte ein-/ ausblenden}
+		Ankerpunkte bezeichnen die Postion, wo die Relation in einem Symptom mündet/ von ihm ausgeht. Bei der Erstellung einer Relation werden diese automatisch gesetzt und sind veränderbar. Das bedeutet, dass wenn ein Symptom bewegt wird, sich die Postion der Mündung/Ausgang der Relation in/aus das Symptom entsprechend anpasst und bewegt. Um das zu verhindert, können die Ankerpunkte manuell gesetzt werden. Diese sind dann fest, d.h. auch beim Bewegen eines Symptoms bleibt die Position der Mündung/ des Ausgangs bestehen.
 		\condition
 		Es muss mindestens eine Relation im Syndromansatz existieren und mindestens ein Ankerpunkt gesetzt sein. 
 		\action
 		\begin{enumerate}
-			\item In der Menüleiste den Button Ankerpunkte ein-/ausblenden durch einen Links- Klick aktivieren.
+			\item In der Menüleiste den Button \textit{Ankerpunkte ein-/ausblenden} durch einen Links- Klick aktivieren.
 			\item Zum Ausblenden den Button durch einen Links- Klick deaktivieren. 
 		\end{enumerate}
 		\hint
@@ -1078,20 +1009,20 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{itemize}
 		\begin{figure}[ht!]
 			\centering
-			\subfigure[Alternative 1]{
+			\subfigure[Ankerpunkte]{
 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{anchor.png} 
 			}			
 		\end{figure}
 		
 		\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Ankerpunkte hinzufügen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Ankerpunkte hinzufügen}
 		\condition
 		Es muss mindestens eine Relation im Syndromansatz existieren.
 		\action
 		\begin{enumerate}
 			\item Die Kante durch einen Rechts- Klick auswählen und gedrückt halten.
-			\item Befindet sich die Position der Maus beim Klick näher am Symptom, in welches die Relation mündet, wird der Ankerpunkt der Mündung der Relation gesetzt. Befindet sich die Postion der Maus beim Klick näher am Symptom, von dem die Kante ausgeht, wird der Ankerpunkt für den Ausgang der Kante gesetzt. 
+			\item Befindet sich die Position der Maus beim Klick näher am Symptom, in welches die Relation mündet, wird der Ankerpunkt der Mündung der Relation gesetzt. Befindet sich die Position der Maus beim Klick näher am Symptom, von dem die Kante ausgeht, wird der Ankerpunkt für den Ausgang der Kante gesetzt. 
 			\item Die Kante in die gewünschte Richtung bewegen. Die Mündung/ der Ausgang der Kante wandert entsprechend mit. 
 			\item Wenn die gewünschte Position erreicht ist, die gedrückte Maustaste loslassen. 
 		\end{enumerate}
@@ -1103,11 +1034,11 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{figure}
 		\hint
 		\begin{itemize}
-			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt.
+			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt. \\
 		\end{itemize}
 		
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Ankerpunkte entfernen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Ankerpunkte entfernen}
 		\condition
 		Es muss mindestens eine Relation im Syndromansatz existieren.
 		\action
@@ -1117,40 +1048,40 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Beim Entfernen der Ankerpunkte werden immer (wenn gesetzt) Ankerpunkte entfernt.\\
+			\item Beim Entfernen der Ankerpunkte werden immer (wenn gesetzt) beide Ankerpunkte entfernt.\\
 		\end{itemize}
 		
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Farbe einer Relation verändern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Farbe einer Relation verändern}
 		\condition
 		Es muss mindestens eine Relation im Syndromansatz existieren.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Farbe der Relation verändern} klicken.
-			\item Mit einem Rechts-Klick auf die Relation, deren Farbe geändert werden soll, ihr Kontextmenü öffnen.
-			\item im Kontextmenü den Punkt \textit{Farbe} auswählen.
+			\item Mit einem Rechts-Klick auf die Relation, deren Farbe geändert werden soll, das Kontextmenü öffnen.
+			\item Im Kontextmenü den Punkt \textit{Relationsfarbe} auswählen.
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
 			\item Die Relation, deren Farbe geändert werden soll, mit einem Links-Klick auswählen.
 			\item In der Menüleiste mit der linken Maustaste einen Links-Klick auf den Button \textit{Farbe der Relation verändern} ausführen.
-			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem auswählen.
+			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem auswählen. \\
 		\end{enumerate}	
 		
-		\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Type einer Relation verändern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Type einer Relation verändern}
 		\condition
 		Es muss mindestens eine Relation im Syndromansatz existieren.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
 			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Typ der Relation verändern} klicken.
-			\item Mit einem Rechts-Klick auf die Relation, deren Typ geändert werden soll, ihr Kontextmenü öffnen.
+			\item Aus dem Drop-Down-Menü den gewünschten Typ per Links- Klick auswählen.
+			\item Mit einem Rechts-Klick auf die Relation, deren Typ geändert werden soll, das Kontextmenü öffnen.
 			\item Im Kontextmenü den Punkt \textit{Typ} auswählen.
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
 			\item Die Relation, deren Typ geändert werden soll, mit einem Links-Klick auswählen.
 			\item In der Menüleiste mit der linken Maustaste einen Links-Klick auf den Button \textit{Typ der Relation verändern} ausführen.
@@ -1158,13 +1089,12 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}	
 		\hint
 		\begin{itemize}
-			\item Die normale Pfeilspitze stellt die verstärkende Beziehung von Relationen im Syndromansatz dar
-			\item Die kreisförmige Pfeilspitze stellt die abschwächend Beziehung von Relationen im Syndromansatz dar
-			\item Die Pfeilspitze mit dem Fragezeichen stellt die neutrale Beziehung von Relationen im Syndromansatz dar
+			\item Die normale Pfeilspitze stellt die verstärkende Beziehung von Relationen im Syndromansatz dar.
+			\item Die kreisförmige Pfeilspitze stellt die abschwächend Beziehung von Relationen im Syndromansatz dar.
+			\item Die Pfeilspitze mit dem Fragezeichen stellt die neutrale Beziehung von Relationen im Syndromansatz dar.
 		\end{itemize}
 		
-				\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Graphelemente hervorheben}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. 
@@ -1645,8 +1575,18 @@ In der Benutzung unserer Anwendung sind dabei die folgenden Datei-Formate von Re
 		\subsubsection{Graph spezifische Vorlagereglen}
 		\subsubsection{Vorlage erstellen}
 		\subsubsection{Vorlage verwenden}
+			 Es ist nicht möglich, ein Symptom zu löschen, wenn der Titel und/oder die Position und/oder der Style dieses Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird das Symptom nicht gelöscht und es erscheint eine Fehlermeldung.
+			 
+			 Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird das Symtom nicht verschoben und es erscheint eine Fehlermeldung.
+			 
+			  Es ist nicht möglich, ein Symptom zu vergrößern/ verkleinern, wenn die Größe des Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird die Größe des Symptoms nicht geändert und es erscheint eine Fehlermeldung.
+			  
+			  Es ist nicht möglich die Farbe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
+			  
+			  Es ist nicht möglich die Schriftart/-größe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Schriftart/-größe nicht geändert und es erscheint eine Fehlermeldung.
 		\subsubsection{Vorlage exportieren}
 	\subsection{Dialogfenster} \label{dialog}
+		\subsubsection{Color Picker} \label{colorpicker}
 	\newpage
 	\section{Fehlermeldungen} \label{fehlermeldungen}
 	
