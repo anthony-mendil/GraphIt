@@ -19,6 +19,8 @@ public class ImportTemplateGxlAction extends GraphAction {
 
     public boolean templateFound;
 
+    private GXLio gxlio;
+
     /**
      * Action handling for importing the graph as GXL file.
      *
@@ -26,6 +28,7 @@ public class ImportTemplateGxlAction extends GraphAction {
      */
     public ImportTemplateGxlAction(File pFile) {
         file = pFile;
+        gxlio = new GXLio();
     }
 
     /**
@@ -33,7 +36,6 @@ public class ImportTemplateGxlAction extends GraphAction {
      */
     @Override
     public void action() {
-        GXLio gxlio = new GXLio();
         gxlio.importGXL(file, true);
         templateFound=gxlio.isTemplateFoundFlag();
         if(!templateFound){

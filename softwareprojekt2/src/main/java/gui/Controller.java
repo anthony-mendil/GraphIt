@@ -1180,12 +1180,15 @@ public class Controller implements ObserverSyndrom {
             ImportGxlAction importGxlAction = new ImportGxlAction(file);
             importGxlAction.action();
             if (importGxlAction.templateFound) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Vorlage gefunden");
+                ButtonType yes = new ButtonType(loadLanguage.loadLanguagesKey("YES"), ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType(loadLanguage.loadLanguagesKey("NO"), ButtonBar.ButtonData.CANCEL_CLOSE);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey("INFO_TEMPLATE_GXL"), yes, no);
+                alert.setTitle("GraphIt");
                 alert.setHeaderText(null);
-                alert.setContentText("Die ausgewählte GXL-Datei enthält Vorlage-Eigenschaften. " +
-                        "Möchten Sie die GXL-Datei als Vorlage importieren?");
-
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.centerOnScreen();
+                stage.setResizable(false);
+                stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK){
                     ImportTemplateGxlAction importTemplateGxlAction= new ImportTemplateGxlAction(file);
@@ -1198,6 +1201,7 @@ public class Controller implements ObserverSyndrom {
                     zoomSlider.setValue(100);
                     canvas.setContent(syndrom.getVv());
                     satellite.setContent(syndrom.getVv2());
+                    treeViewUpdate();
                 }
             } else {
                 zoomSlider.setValue(100);
@@ -1219,10 +1223,14 @@ public class Controller implements ObserverSyndrom {
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
             importTemplateGxlAction.action();
             if (!importTemplateGxlAction.templateFound) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ungültige Vorlage");
+                ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("OKAY"), ButtonBar.ButtonData.OK_DONE);
+                Alert alert = new Alert(Alert.AlertType.ERROR, loadLanguage.loadLanguagesKey("ERROR_GXL_NOT_TEMPLATE"), ok);
+                alert.setTitle("GraphIt");
                 alert.setHeaderText(null);
-                alert.setContentText("Die ausgewählte GXL-Datei ist keine gültige Vorlage!");
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.centerOnScreen();
+                stage.setResizable(false);
+                stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 alert.showAndWait();
             } else {
                 zoomSlider.setValue(100);
