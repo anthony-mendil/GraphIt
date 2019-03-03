@@ -235,5 +235,6 @@ public class Syndrom {
         setVisualisationViewer(vv);
         vv2 = new SatelliteVisualizationViewer<>(vv, new Dimension(260, 195));
         setVisualisationViewer2(vv2);
+        template=new Template(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, true, true, true);
     }
 }

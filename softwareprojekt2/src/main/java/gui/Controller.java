@@ -1169,8 +1169,8 @@ public class Controller implements ObserverSyndrom {
             canvas.setContent(syndrom.getVv());
             satellite.setContent(syndrom.getVv2());
         }
-        treeViewUpdate();
         templateToFields();
+        treeViewUpdate();
     }
 
     /**
@@ -1212,8 +1212,8 @@ public class Controller implements ObserverSyndrom {
                 satellite.setContent(syndrom.getVv2());
             }
         }
-        treeViewUpdate();
         templateToFields();
+        treeViewUpdate();
     }
 
     /**
@@ -1243,8 +1243,8 @@ public class Controller implements ObserverSyndrom {
                 satellite.setContent(syndrom.getVv2());
             }
         }
-        treeViewUpdate();
         templateToFields();
+        treeViewUpdate();
     }
 
     /**
@@ -2513,8 +2513,8 @@ public class Controller implements ObserverSyndrom {
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
-        treeViewUpdate();
         templateToFields();
+        treeViewUpdate();
     }
 
     /**
