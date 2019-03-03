@@ -1549,27 +1549,237 @@ In der Benutzung unserer Anwendung sind dabei die folgenden Datei-Formate von Re
 		\end{itemize}
 
 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Drucken} \label{print}
+\condition 
+Das Programm ist geöffnet.
+\actions
+Alternative 1:
+\begin{enumerate}
+\item Einen Links-Klick onem links in der Menüleiste uf \textit{Datei} aufführen.
+\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Drucken} mit einem Links-Klick auswählen.
+\item Es erscheint ein Fenster, das darauf hinweißt, dass nur der aktuell angezeigte Teil des Syndroms gedruckt wird. In diesem Fenster auf den \textit{Weiter}-Button einen Links-Klick machen, um zum finalen Druckfenster zu gelangen. Auf den \textit{Abbrechen}-Button einen Links-Klick ausführen, wen die Aktion abgebrochen werden soll, da kein Bedarf besteht, einen Druck des aktuell angezeigten Syndroms (oder des Ausschnitt des Syndroms) zu erstellen.
+\item Wenn auf \textit{Weiter} geklickt wurde, erscheint das Fenster, in dem die Druckeinstellungen (wie zum Beispiel der gewünschte Drucker, die Anzahl an Kopien, ...) angepasst werden können. In diesem Fenster kann der Druckauftrag mit einem Links-Klick auf den \textit{OK}-Button abgeschickt oder die Aktion mit einem Links-Klick auf den \textit{Abbrechen}-Button aufgehoben werden.
+\end{enumerate} 
+Alternative 2:
+\begin{enumerate}
+\item Die \textit{Shift}-Taste drücken und gedrückt halten.
+\item Zusätzlich zur \textit{Shift}-Taste die \textit{P}-Taste betätigen.
+\item Die \textit{Shift}-Taste loslassen.
+\item Es erscheint ein Fenster, das darauf hinweißt, dass nur der aktuell angezeigte Teil des Syndroms gedruckt wird. In diesem Fenster auf den \textit{Weiter}-Button einen Links-Klick machen, um zum finalen Druckfenster zu gelangen. Auf den \textit{Abbrechen}-Button einen Links-Klick ausführen, wen die Aktion abgebrochen werden soll, da kein Bedarf besteht, einen Druck des aktuell angezeigten Syndroms (oder des Ausschnitt des Syndroms) zu erstellen.
+\item Wenn auf \textit{Weiter} geklickt wurde, erscheint das Fenster, in dem die Druckeinstellungen (wie zum Beispiel der gewünschte Drucker, die Anzahl an Kopien, ...) angepasst werden können. In diesem Fenster kann der Druckauftrag mit einem Links-Klick auf den \textit{OK}-Button abgeschickt oder die Aktion mit einem Links-Klick auf den \textit{Abbrechen}-Button aufgehoben werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Es wird nur der Bereich des Syndroms gedruckt, der gerade auch zu sehen ist (siehe Übersichtsfenster unten links in der Anwendung).
+\end{itemize}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Analysefunktionen} \label{analyse}
+Die Analysefunktionen, die in diesem Kapitel beschrieben werden. beziehen sich ausschließlich auf den Graphen. Es geht in diesem Kapiel insofern nicht etwa um das Nutzerprotokoll und statistische Auswertungen zu Aktionen, die zum Beispiel sehr häufig aufgerufen werden. Vielmehr soll mit den Analysen die Struktur eines Graphen ausgewertet / untersucht werden. Die nachfolgenden Unterkapitel beschrieben somit die Aktionen, die für die Nutzergruppe der Auswerter relevant sind. Dementsprechend wird bei den in diesem Kapitel aufgeführten Aktionen davon ausgegangen, dass der aktuelle Modus der Analyse-Modus ist. Auf diese Annahme wird implizit erwartet, wird allerdings nicht mehr in den Vorbedingungen der Aktion aufgeführt. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Graphmaße} 
+\condition 
+Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+\actions
+\begin{enumerate}
+\item Graphmaße (Umfang, Vernetzungsindex und Strukturindex) werden in der Leiste oben links angezeigt und können dort abgelesen werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Diese Maße beziehen sich auf das gesamte Syndrom. Es ist dabei unabhängig, welche Graphelemente aktuell ausgewählt sind.
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Vorgänger/ Nachfolger von Symptom(en) hervorheben}
+\condition 
+Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+\actions
+\begin{enumerate}
+\item Das Symptom, zu dem man die Vorgänger und/oder Nachfolger angezeigt bekommen möchte, mit einem Links-Klick auswählen.
+\item Wenn die Vorgänger und/oder Nachfolger zu mehreren Symptomen angezeigt werden sollen, dann als nächstes die \textit{Shift}-Taste drücken und die gewünschten Symptome mit einem Links-Klick auswählen, während die \textit{Shift}-Taste gedrückt gehalten wird.
+\item In der Menüleiste nun in dem Feld im Bereich Symptome die Anzahl eingeben, bis zum wie vielten Vorgänger / Nachfolger im Graphen gesucht werden soll. Die Eingabe mit der \textit{Enter}-Taste bestätigen.
+\item Nun einen Links-Klick in die Box \textit{Vorgänger des Symptoms anzeigen}und/oder in die Box \textit{Nachfolger des Symptoms anzeigen} ausführen, sodass ein Haken in dieser Box erscheint.
+\item Durch einen erneuten Links-Klick in eine Box mit einem Haken kann diese aus dem ausgewählten wieder in einen unausgewählten Zustand versetzt werden. Durch Eingabe einer anderen Zahl in dem Feld neben den Boxen und anschließender Bestätigung der Eingabe mit der \textit{Enter}-Taste kann die Anzahl an Vorgängern / Nachfolgern angepasst werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Sollen nur die Vorgänger und/oder Nachfolger zu einem Symptom angezeigt werden, so kann dieses Symptom alternativ zur Auswahl im Hauptfenster auch in der Übersichtsleiste ausgewählt werden.
+\item Die Vorgänger und Nachfolger sowie das ausgewählte Symptom / die ausgewählten Symptome werden gelb dargestellt, während die übrigen Symptome grau visualisiert werden.
+\end{itemize}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Kürzester Pfad zw. Symptomen}
+\condition 
+Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist enthalten.
+\actions
+\begin{enumerate}
+\item Das Symptom, das als Startknoten gelten soll, mit einem Links-Klick auswählen.
+\item Die \textit{Shift}-Taste der drücken und gedrückt halten.
+\textit Das Symptom, das als Zielknoten gelten soll, mit einem Links-Klick auswählen.
+\item Die \textit{Shift}-Taste loslassen.
+\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
+?item In dem sich öffnenden Drop-Down-Menü die Option \textit{Kürzester Weg} durch einem Links-Klick auswählen.
+\item In der oberen Leiste im Bereich Symptome einen Links-Klick in die Box links neben dem Button \textit{Die Wege zwischen zwei Symptomen anzeigen} ausführen, sodass ein Haken in diesem Feld erscheint.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig.
+\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf dem kürzesten Weg zwischen dem Start- und dem Ziel-Symptom liegen werden geld angezeigt ebenso die Relationen, die den kürzesten Weg bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
+\end{itemize}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Alle Pfade zw. Symptomen}
+\condition 
+Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist enthalten.
+\actions
+\begin{enumerate}
+\item Das Symptom, das als Startknoten gelten soll, mit einem Links-Klick auswählen.
+\item Die \textit{Shift}-Taste der drücken und gedrückt halten.
+\textit Das Symptom, das als Zielknoten gelten soll, mit einem Links-Klick auswählen.
+\item Die \textit{Shift}-Taste loslassen.
+\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
+?item In dem sich öffnenden Drop-Down-Menü die Option \textit{Alle Wege} durch einem Links-Klick auswählen.
+\item In der oberen Leiste im Bereich Symptome einen Links-Klick in die Box links neben dem Button \textit{Die Wege zwischen zwei Symptomen anzeigen} ausführen, sodass ein Haken in diesem Feld erscheint.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig.
+\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf dem kürzesten Weg zwischen dem Start- und dem Ziel-Symptom liegen werden geld angezeigt ebenso die Relationen, die den kürzesten Weg bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
+\end{itemize}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Pfeilketten}
+\condition 
+Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+\actions
+\begin{enumerate}
+\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Pfeilketten} mit einem Links-Klick auswählen. 
+\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Der Symptome und Relationen, die Teil eines Zyklus sind, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Konvergente Verzweigungen}
+\condition 
+Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+\actions
+\begin{enumerate}
+\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Konvergente Verzweigungen} mit einem Links-Klick auswählen. 
+\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Der Symptome und Relationen, die konvergente Verzweigungen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Divergente Verzweigungen}
+\condition 
+Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+\actions
+\begin{enumerate}
+\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Divergente Verzweigungen} mit einem Links-Klick auswählen. 
+\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Der Symptome und Relationen, die divergente Verzweigungen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Alle Verzweigungen}
+\condition 
+Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+\actions
+\begin{enumerate}
+\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Verzweigungen} mit einem Links-Klick auswählen. 
+\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Der Symptome und Relationen, die konvergente oder divergente Verzweigungen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Zyklen}
+\condition 
+Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+\actions
+\begin{enumerate}
+\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Zyklen} mit einem Links-Klick auswählen. 
+\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Der Symptome und Relationen, die Zyklen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
+\end{itemize}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Alle Relationen eines Typs hervorheben} 
+Ich weiß nicht wie das geht :/ Oder ist damit gemeint die anderen beiden Relationstypen auszublenden?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Verlauf der Nutzerinteraktionen} \label{logs}
+In diesem Abschnitt geht es um das Protokoll der Nutzerinteraktionen. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Es kann allerdings auch nach verschiedenen Aktionen gefiltert werden. Dies erleichtert in erster Linie eine quantitative Auswertung wie oft die entsprechende Aktion ausgeführt wurde, da man die Aktion nicht aus der Liste aller Aktionen heraussuchen muss.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Anzeigen}
+\condition 
+Das Programm ist geöffnet.
+\actions
+\begin{enumerate}
+\item Einen Linksklick auf \textit{Verlauf} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+\item Einen Links-Klick auf das Syndronisationssymbol machen.
+\item Die Nutzerinteraktionen können in dieser Leiste gelesen werden. 
+\item Durch einen erneuten Links-Klick auf \textit{Verlauf} klappt sich die Leiste wieder ein.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Die Liste von Nutzeraktionen wird in der Lesite angezeigt. Dabei steht die zuerst durchgeführte Aktion ganz oben und die zuletzt durchgeführte Aktion ganz unten in der Liste der Aktionen. 
+\item Die Stellen in der Liste, an denen sich Pfeile befinden können mit einem Links-Klick eingeklappt werden, um die Übersichtlichkeit zu erhöhen, oder ausgeklappt werden, wenn zusätzliche Informationen angezeigt werden sollen.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Filtern}
+\condition 
+Das Programm ist geöffnet.
+\actions
+\begin{enumerate}
+\item Einen Linksklick auf \textit{Verlauf} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+\item Einen Links-Klick auf das Syndronisationssymbol machen.
+\item Einen Links-Klick auf das Feld neben dem Syndronisationssymbol ausführen.
+\item In dem sich öffnenden Drop-Down-Menü die Option wählen, nach der die Liste aller Nutzerinteraktionen gefiltert werden soll.
+\item Die gefilterten Nutzerinteraktionen können nun gelesen werden. 
+\item Durch einen erneuten Links-Klick auf \textit{Verlauf} klappt sich die Leiste wieder ein.
+\end{enumerate} 
+\hint 
+\begin{itemize}
+\item Die (gefilterte) Liste von Nutzeraktionen wird in der Lesite angezeigt. Dabei steht die zuerst durchgeführte Aktion ganz oben und die zuletzt durchgeführte Aktion ganz unten in der Liste der Aktionen.
+\item Die Stellen in der Liste, an denen sich Pfeile befinden können mit einem Links-Klick eingeklappt werden, um die Übersichtlichkeit zu erhöhen, oder ausgeklappt werden, wenn zusätzliche Informationen angezeigt werden sollen.
+\end{itemize}
+
 		
 		
-		
-		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Verlaufsprotokoll}
-	\subsection{Drucken} \label{print}
-	\subsection{Analysefunktionen} \label{analyse}
-		\subsubsection{Graphmaße} 
-		\subsubsection{Vorgänger/ Nachfolger von Symptom(en) hervorheben}
-		\subsubsection{Kürzester Pfad zw. Symptomen}
-		\subsubsection{Alle Pfade zw. Symptomen}
-		\subsubsection{Pfeilketten}
-		\subsubsection{Konvergente Verzweigungen}
-		\subsubsection{Divergente Verzweigungen}
-		\subsubsection{Zyklen}
-		\subsubsection{Alle Relationen eines Typs hervorheben}		
-	\subsection{Verlauf} \label{logs}
-		\subsubsection{Anzeigen}
-		\subsubsection{Filtern}
+	
 	\subsection{Vorlage} \label{template}
 		\subsubsection{Element spezifische Vorlagereglen}
 		\subsubsection{Graph spezifische Vorlagereglen}
