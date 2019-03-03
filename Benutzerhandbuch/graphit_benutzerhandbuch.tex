@@ -492,7 +492,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 
 		\newpage
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsection{Navigation durch die Übersichtsleiste}		
+		\subsubsection{Navigation durch die Übersichtsleiste}		
 	\condition
 	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
 	\action
@@ -508,7 +508,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		
 				\newpage
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				\subsection{Auswahl eines Graphelements über die Übersichtsleiste}		
+				\subsubsection{Auswahl eines Graphelements über die Übersichtsleiste}		
 	\condition
 	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
 	\action
@@ -523,16 +523,29 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 				\newpage
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Filtern (über die Übersichtsleiste)}
-				\subsection{Auswahl eines Graphelements über die Übersichtsleiste}		
 	\condition
 	Es muss ein Syndrom mit mindestens einer Sphären im Programm geöffnet sein, damit das Übersichtsfenster nicht leer ist. 
 	\action
+	Filtern der Relationstypen:
 	\begin{enumerate}
-		\item In der Übersichtsleiste auf die eben beschriebene Weise bis zu der gewünschten Tiefe (nur Sphären, Symptome zu einer Sphäre, Relationen zu einem Symptom) navigieren. Dort das gewünschte Element wahlweise mit einem einfachen Links-Klick oder einem Doppelklick auswählen.
+			\item In der Übersichtsleiste einen Links-Klick in die Check-Box neben dem \textit{Nach der Pfeilspitze der Relation filtern}-Button ausführen, sodass dort ein Haken erscheint.
+		\item In der Übersichtsleiste einen Links-Klick auf den Button \textit{Nach der Pfeilspitze der Relation filtern} das Drop-Down-Menü dieses Buttons öffnen.
+		\item In diesem Drop-Down-Menü, den Relationstyp, der gefiltert werden soll, mit einem Links-Klick auswählen. Hinweis: Der ausgewählte Relationstyp wird weiterhin im Graphen angezeigt. Die Relationen der anderen beiden Relationstypen werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Relationen in der Übersichtsleiste.
+		\item Um wieder die Relationen aller Relationstypen einzublenden, erneut einen Links-Klick in die Check-Box neben dem \textit{Nach der Pfeilspitze der Relation filtern}-Button ausführen, sodass der Haken in dieser Box verschwindet.
+		\end{enumerate}
+		Filtern der Relationstypen:
+		\begin{enumerate}
+			\item In der Übersichtsleiste einen Links-Klick in die Check-Box neben dem \textit{Nach regulären Ausdrücken filtern}-Feld ausführen, sodass dort ein Haken erscheint.
+		\item In der Übersichtsleiste einen Links-Klick in das Feld \textit{Nach regulären Ausdrücken filtern} klicken.
+		\item Über die Computertastatur einen Suchbegriff eingeben, nach dem der Ttel von Symptomen gefiltert werden soll. Hinweis: Die Symptome, deren Titel den Suchbegriff enthalten,
+	werden weiterhin im Graphen angezeigt. Die übrigen Symptome werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Symptome in der Übersichtsleiste.
+		\item Um wieder alle Symptome einzublenden, erneut einen Links-Klick in die Check-Box neben dem \textit{Nach regüulären Ausdrücken filtern}-Feld ausführen, sodass der Haken in dieser Box verschwindet.
 		\end{enumerate}
 	\hint
 	\begin{itemize}
-		\item Das jeweils aktuell in der Übersichtsleiste ausgewählte Element wird auch in der (visuellen) Darstellung des Syndroms im Hauptfenster ausgewählt.
+		\item In beiden Filtervorgängen könne die ersten beiden Schritte auch in umgekehrter Reihenfolge durchgeführt werden.
+		\item Die Filter können beliebig kombiniert werden.
+		\item Das Ergebnis der Filterung schlägt sich sowohl in der Liste der Graphelemente in der Übersichtsleiste nieder als auch in der visuellen Darstellung des Syndroms im Hauptfenster.
 	\end{itemize}		
 	
 	
@@ -557,7 +570,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 					
 				\newpage
 					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Contextmenü öffnen}
+		\subsubsection{Tontextmenü öffnen}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre und beliebig vielen weiteren Graphelementen ist im Programm geöffnet.
 		\actions
@@ -567,6 +580,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können gef
 		\hint
 		\begin{itemize}
 				\item Es kann nur das Kontextmenü eines Graphelements zur Zeit geöffnet werden.
+				\item Die Kontextmenüs von Sphären, Symptomen und Relationen unterscheiden sich.
+				\item Das Kontextmenü lässt sich an zwei verschieden Stellen öffen: Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. Im ersten Fall lässt es sich durch einen Rechts-Klick auf das dargestellte Graphelement und im Kontextmenü durch einen Rechts-Klick auf den Namen des entsprechenden Graphelements in der Übersichtsleiste.
 	 	\end{itemize}	
 	 	
 		\subsection{Sphären}
