@@ -639,6 +639,11 @@ public class Controller implements ObserverSyndrom {
     private static final String APPLICATION_LOGO = "/GraphItLogo.png";
 
     /**
+     * Our application title.
+     */
+    private static final String APPLICATION_TITLE = "GraphIt";
+
+    /**
      * The list of all fonts.
      */
     private ObservableList<String> fonts =
@@ -1189,7 +1194,7 @@ public class Controller implements ObserverSyndrom {
                 ButtonType yes = new ButtonType(loadLanguage.loadLanguagesKey("YES"), ButtonBar.ButtonData.OK_DONE);
                 ButtonType no = new ButtonType(loadLanguage.loadLanguagesKey("NO"), ButtonBar.ButtonData.CANCEL_CLOSE);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey("INFO_TEMPLATE_GXL"), yes, no);
-                alert.setTitle("GraphIt");
+                alert.setTitle(APPLICATION_TITLE);
                 alert.setHeaderText(null);
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                 stage.centerOnScreen();
@@ -1232,7 +1237,7 @@ public class Controller implements ObserverSyndrom {
             if (!importTemplateGxlAction.isTemplateFound()) {
                 ButtonType ok = new ButtonType(loadLanguage.loadLanguagesKey("OKAY"), ButtonBar.ButtonData.OK_DONE);
                 Alert alert = new Alert(Alert.AlertType.ERROR, loadLanguage.loadLanguagesKey("ERROR_GXL_NOT_TEMPLATE"), ok);
-                alert.setTitle("GraphIt");
+                alert.setTitle(APPLICATION_TITLE);
                 alert.setHeaderText(null);
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                 stage.centerOnScreen();
@@ -2337,7 +2342,7 @@ public class Controller implements ObserverSyndrom {
         ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey("EXIT_WINDOW_CANCEL"), ButtonBar.ButtonData.CANCEL_CLOSE);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey("EXIT_WINDOW_QUESTION"), ok, close);
-        alert.setTitle("GraphIt");
+        alert.setTitle(APPLICATION_TITLE);
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
@@ -2435,7 +2440,7 @@ public class Controller implements ObserverSyndrom {
         ButtonType close = new ButtonType(loadLanguage.loadLanguagesKey(cancel), ButtonBar.ButtonData.CANCEL_CLOSE);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info), ok, close);
-        alert.setTitle("GraphIt");
+        alert.setTitle(APPLICATION_TITLE);
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
