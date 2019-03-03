@@ -58,14 +58,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -91,8 +91,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -166,9 +166,9 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Menu languagesGuiGraph;
     @FXML
-    private MenuItem languageGuiGraphGerman;
+    private CheckMenuItem languageGuiGraphGerman;
     @FXML
-    private MenuItem languageGuiGraphEnglish;
+    private CheckMenuItem languageGuiGraphEnglish;
     @FXML
     private Menu advancedLanguageOptions;
     @FXML
@@ -882,6 +882,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Convert AWT colour to JavaFX colour.
+     *
      * @param fx JavaFX colour.
      * @return AWT colour.
      */
@@ -894,6 +895,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Convert AWT colour to JavaFX colour.
+     *
      * @param awt AWT colour.
      * @return JavaFX colour.
      */
@@ -1035,6 +1037,7 @@ public class Controller implements ObserverSyndrom {
             exportGxlAction.action();
         }
     }
+
     /**
      * Export the graph as GXL file and as template.
      */
@@ -1053,7 +1056,7 @@ public class Controller implements ObserverSyndrom {
      *
      * @return The file with the desired saving path.
      */
-    private File openGXLExportWindow(){
+    private File openGXLExportWindow() {
         FileChooser fileChooser = new FileChooser();
         if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
@@ -1245,7 +1248,7 @@ public class Controller implements ObserverSyndrom {
      *
      * @return The desired file that should be imported.
      */
-    private File openGXLImportWindow(){
+    private File openGXLImportWindow() {
         FileChooser fileChooser = new FileChooser();
         if (lastUsedFilePath != null && lastUsedFilePath.toPath().toFile().exists()) {
             fileChooser.setInitialDirectory(lastUsedFilePath);
@@ -1366,21 +1369,21 @@ public class Controller implements ObserverSyndrom {
             edgeArrowExtenuating.setDisable(true);
         }
 
-            SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-            if (graph != null) {
-                for (Sphere s : graph.getSpheres()) {
-                    if (s.isLockedPosition()) {
-                        sphereAutoLayout.setDisable(true);
-                        break;
-                    }
-                }
-            }
-            for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
-                if (v.isLockedPosition()) {
-                    verticesAutoLayout.setDisable(true);
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        if (graph != null) {
+            for (Sphere s : graph.getSpheres()) {
+                if (s.isLockedPosition()) {
+                    sphereAutoLayout.setDisable(true);
                     break;
                 }
             }
+        }
+        for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
+            if (v.isLockedPosition()) {
+                verticesAutoLayout.setDisable(true);
+                break;
+            }
+        }
 
 
         ResetVvAction resetAction = new ResetVvAction();
@@ -1697,10 +1700,10 @@ public class Controller implements ObserverSyndrom {
      * Creates an info box, sets the text and assigns it to a label.
      *
      * @param tooltip The tooltip that the info text will be assigned to.
-     * @param text The shown text in the info text.
-     * @param label The label in the gui.
-     * @param x The x coordinate where the info text will be shown.
-     * @param y The y coordinate where the info text will be shown.
+     * @param text    The shown text in the info text.
+     * @param label   The label in the gui.
+     * @param x       The x coordinate where the info text will be shown.
+     * @param y       The y coordinate where the info text will be shown.
      */
     private void infoText(Tooltip tooltip, String text, Label label, int x, int y) {
         tooltip.setPrefWidth(200);
@@ -1732,7 +1735,7 @@ public class Controller implements ObserverSyndrom {
      *
      * @param event The key event that gets called after every key press.
      */
-    private void match(KeyEvent event){
+    private void match(KeyEvent event) {
         KeyCombination plus = new KeyCodeCombination(KeyCode.PLUS);
         KeyCombination minus = new KeyCodeCombination(KeyCode.MINUS);
         KeyCombination strgZ = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
@@ -1783,7 +1786,7 @@ public class Controller implements ObserverSyndrom {
             handSelector();
             handSelector.requestFocus();
             handSelector.setSelected(true);
-        } else if (strgF.match(event)){
+        } else if (strgF.match(event)) {
             regularExpressionBox.setSelected(true);
             regularExpressionField.requestFocus();
         }
@@ -1817,6 +1820,8 @@ public class Controller implements ObserverSyndrom {
      * Changes the gui and graph language to german.
      */
     public void loadLanguageGuiGraphGerman() {
+        languageGuiGraphEnglish.setSelected(false);
+        languageGuiGraphGerman.setSelected(true);
         languageGerman.setSelected(true);
         languageGraphGerman.setSelected(true);
     }
@@ -1825,6 +1830,8 @@ public class Controller implements ObserverSyndrom {
      * Changes the gui and graph language to english.
      */
     public void loadLanguageGuiGraphEnglish() {
+        languageGuiGraphGerman.setSelected(false);
+        languageGuiGraphEnglish.setSelected(true);
         languageEnglish.setSelected(true);
         languageGraphEnglish.setSelected(true);
     }
@@ -1914,7 +1921,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Listens to the changes of the zoom slider and scales the visible graph area accordingly.
      */
-    private ChangeListener<Number> changeZoom =  (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+    private ChangeListener<Number> changeZoom = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
         if (zoomSlider.isValueChanging()) {
             int value = newValue.intValue();
             int oldV = oldValue.intValue();
@@ -1931,7 +1938,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Listens to the width change of the swing node and resizes the visualisation viewer accordingly.
      */
-    private ChangeListener<Number> widthListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue)-> {
+    private ChangeListener<Number> widthListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
         if (canvas.getContent() != null) {
             SwingUtilities.invokeLater(() -> {
                 SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
@@ -1956,6 +1963,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Changes the font size of the sphere accordingly to the given argument.
+     *
      * @param size The desired size.
      */
     void editFontSizeSphere(int size) {
@@ -2031,6 +2039,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Initializes the font comboboxes accordingly to the specific combobox for sphere or symptom.
+     *
      * @param comboBox The specific combobox.
      */
     private void loadFontComboBox(ComboBox<String> comboBox) {
@@ -2067,6 +2076,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Initializes the size comboboxes accordingly to the specific combobox for sphere or symptom.
+     *
      * @param comboBox The specific combobox.
      */
     private void loadSizeComboBox(ComboBox<String> comboBox) {
@@ -2081,11 +2091,12 @@ public class Controller implements ObserverSyndrom {
         loadSizes(comboBox);
         comboBox.getEditor().textProperty().addListener(new OnlyNumberComboBoxListener(comboBox));
         comboBox.focusedProperty().addListener(new ComboBoxFocusListener(comboBox));
-        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, new ConfirmKeyComboBoxListener(this,comboBox));
+        comboBox.addEventHandler(KeyEvent.KEY_PRESSED, new ConfirmKeyComboBoxListener(this, comboBox));
     }
 
     /**
      * Initializes the menu for the font comboboxes for sphere and symptom.
+     *
      * @param comboBox The specific combobox.
      */
     @SuppressWarnings("unchecked")
@@ -2112,6 +2123,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Initializes the menu for the size comboboxes for sphere and symptom.
+     *
      * @param comboBox The specific combobox.
      */
     @SuppressWarnings("unchecked")
@@ -2140,17 +2152,18 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Initializes the menu for the font and font size combobox.
+     *
      * @param comboBox The combobox that the menu should be initialized to.
      */
     @SuppressWarnings("unchecked")
-    private void loadMenuItems(ComboBox comboBox){
+    private void loadMenuItems(ComboBox comboBox) {
         ObservableList<MenuItem> menuItems = FXCollections.observableArrayList();
-        if(comboBox.getId().equals((SIZE_SPHERE_COMBO_BOX)) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)){
+        if (comboBox.getId().equals((SIZE_SPHERE_COMBO_BOX)) || comboBox.getId().equals(SIZE_SYMPTOM_COMBO_BOX)) {
             for (String size : sizes) {
                 MenuItem sizeMenuItem = new MenuItem(size);
                 menuItems.add(sizeMenuItem);
             }
-        }else if(comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)){
+        } else if (comboBox.getId().equals(FONT_SPHERE_COMBO_BOX) || comboBox.getId().equals(FONT_SYMPTOM_COMBO_BOX)) {
             for (String font : fonts) {
                 MenuItem fontMenuItem = new MenuItem(font);
                 menuItems.add(fontMenuItem);
@@ -2161,10 +2174,11 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Creates the menuitems for the font and font size combobox.
+     *
      * @param comboBox The combobox that the menuitems belong to.
      * @return A listcell of menuitems for the comboboxes.
      */
-    private ListCell<MenuItem> fontSizeMenuItem(ComboBox comboBox){
+    private ListCell<MenuItem> fontSizeMenuItem(ComboBox comboBox) {
         ListCell<MenuItem> cell = new ListCell<MenuItem>() {
             @Override
             protected void updateItem(MenuItem item, boolean empty) {
@@ -2174,7 +2188,7 @@ public class Controller implements ObserverSyndrom {
         };
 
         cell.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue){
+            if (newValue) {
                 comboBox.getEditor().setText(cell.getItem().getText());
             }
         });
@@ -2185,15 +2199,16 @@ public class Controller implements ObserverSyndrom {
     /**
      * Reloads the comboboxes of the font and font size options
      */
-    void reloadComboBox(){
+    void reloadComboBox() {
         fontSphereComboBox.getEditor().setText(values.getFontSphere());
         fontSymptomComboBox.getEditor().setText(values.getFontVertex());
-        sizeSphereComboBox.getEditor().setText(""+values.getFontSizeSphere());
-        sizeSymptomComboBox.getEditor().setText(""+values.getFontSizeVertex());
+        sizeSphereComboBox.getEditor().setText("" + values.getFontSizeSphere());
+        sizeSymptomComboBox.getEditor().setText("" + values.getFontSizeVertex());
     }
 
     /**
      * Shows or Hides the analyis gui accordingly to the given argument.
+     *
      * @param active Determines if it will be shown or hidden.
      */
     private void analysisMode(Boolean active) {
@@ -2227,7 +2242,8 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Shows or Hides the create or edit gui accordingly to the given argument.
-     * @param active Determines if it will be shown or hidden.
+     *
+     * @param active   Determines if it will be shown or hidden.
      * @param editMode Determines if it will be the create or edit mode.
      */
     private void createOrEditMode(Boolean active, Boolean editMode) {
@@ -2285,7 +2301,8 @@ public class Controller implements ObserverSyndrom {
             return;
         }
         Stage userGuideStage = new Stage();
-        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
+        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
+
         userGuideStage.setScene(new Scene(bp));
         userGuideStage.setTitle("GraphIt Tutorial");
         UserGuidePaneController ugpc = userGuideLoader.getController();
@@ -2318,7 +2335,7 @@ public class Controller implements ObserverSyndrom {
         alert.setHeaderText(null);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
@@ -2377,6 +2394,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Opens the info dialog accordingly to the specified menuitem, which is given as argument.
+     *
      * @param menuItem The given menuitem.
      */
     private void openDialogInfo(MenuItem menuItem) {
@@ -2416,7 +2434,8 @@ public class Controller implements ObserverSyndrom {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
         stage.setResizable(false);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
+
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
         Platform.runLater(() -> {
@@ -2567,6 +2586,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Loads the spheres in the specific sphere table.
+     *
      * @param spheres The list of all spheres.
      */
     private void loadSpheresTable(List<Sphere> spheres) {
@@ -2605,8 +2625,9 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Initializes the radio buttons for the sphere template rules.
+     *
      * @param pTableColumn The specific table column where the radio button should be created.
-     * @param pLocked The string which identify each table column.
+     * @param pLocked      The string which identify each table column.
      */
     private void setSphereRadioButtonTableColumn(TableColumn<Sphere, Boolean> pTableColumn, String pLocked) {
         pTableColumn.setCellValueFactory(param -> {
@@ -2660,6 +2681,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Loads the symptoms in the specific symptom table.
+     *
      * @param symptoms The list of all symptoms.
      */
     private void loadVerticesTable(Collection<Vertex> symptoms) {
@@ -2677,8 +2699,9 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Initializes the radio buttons for the symptom template rules.
+     *
      * @param pTableColumn The specific table column where the radio button should be created.
-     * @param pLocked The string which identify each table column.
+     * @param pLocked      The string which identify each table column.
      */
     private void setSymptomRadioButtonTableColumn(TableColumn<Vertex, Boolean> pTableColumn, String pLocked) {
         pTableColumn.setCellValueFactory(param -> {
@@ -2726,6 +2749,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Loads the edges in the specific edge table.
+     *
      * @param edges The list of all edges.
      */
     private void loadEdgesTable(Collection<Edge> edges) {
@@ -2742,8 +2766,9 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Initializes the radio buttons for the edge template rules.
+     *
      * @param pTableColumn The specific table column where the radio button should be created.
-     * @param pLocked The string which identify each table column.
+     * @param pLocked      The string which identify each table column.
      */
     private void setEdgeRadioButtonTableColumn(TableColumn<Edge, Boolean> pTableColumn, String pLocked) {
         pTableColumn.setCellValueFactory(param -> {
@@ -2997,6 +3022,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Filter the logs accordingly to the given argument.
+     *
      * @param entryName The desired log.
      */
     void filterLogs(LogEntryName entryName) {
@@ -3034,10 +3060,10 @@ public class Controller implements ObserverSyndrom {
      * Formats and loads the logs to the log overview.
      *
      * @param filterLog The list of logs.
-     * @param rootItem The treeitem that the logs should be loaded to.
+     * @param rootItem  The treeitem that the logs should be loaded to.
      */
     @SuppressWarnings("unchecked")
-    private void loadFilterLogs(List<Log> filterLog, TreeItem<Object> rootItem){
+    private void loadFilterLogs(List<Log> filterLog, TreeItem<Object> rootItem) {
         for (Log log : filterLog) {
             String time = logToStringConverter.convert(log);
             String index = time.substring(0, time.indexOf('\n'));
@@ -3072,6 +3098,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Extracts the beginning of the parameters from the rest of the parameters in a log.
+     *
      * @param parameters The parameters that need to be separated.
      * @return The beginning of the parameters from the logs.
      */
@@ -3082,6 +3109,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Sorts the parameters from a log from a singe line into a list to show them in the log overview.
+     *
      * @param parameters The parameters that need to be sorted.
      * @return The list of parameters.
      */

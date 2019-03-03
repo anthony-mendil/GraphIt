@@ -55,7 +55,7 @@ public class ActionHistory {
     /**
      * Returning the unique instance of the action history.
      *
-     * @return
+     * @return the instance of the action history
      */
     public static ActionHistory getInstance() {
         if (history == null) {

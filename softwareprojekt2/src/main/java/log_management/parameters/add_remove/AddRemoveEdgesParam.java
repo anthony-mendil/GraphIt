@@ -62,8 +62,7 @@ public class AddRemoveEdgesParam implements Param {
             StringBuilder list = new StringBuilder("Relations: ");
             for (int i = 0; i < edges.size(); i++) {
                 list.append(SyndromObjectPrinter.edgePrintEnglish(verticesList.get(i))).append(". ");
-                list.append("Type of relation: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(edges.get(i).getArrowType(), Language.ENGLISH));
+                list.append("Type of relation: ").append(EnumNameCreator.edgeArrowTypeTranslator(edges.get(i).getArrowType(), Language.ENGLISH));
                 list.append("; ");
             }
             return list.toString();
@@ -71,8 +70,7 @@ public class AddRemoveEdgesParam implements Param {
             StringBuilder list = new StringBuilder("Relationen: ");
             for (int i = 0; i < edges.size(); i++) {
                 list.append(SyndromObjectPrinter.edgePrintGerman(verticesList.get(i))).append(". ");
-                list.append("Relationsart: "
-                        + EnumNameCreator.edgeArrowTypeTranslator(edges.get(i).getArrowType(), Language.GERMAN));
+                list.append("Relationsart: ").append(EnumNameCreator.edgeArrowTypeTranslator(edges.get(i).getArrowType(), Language.GERMAN));
                 list.append("; ");
             }
             return list.toString();

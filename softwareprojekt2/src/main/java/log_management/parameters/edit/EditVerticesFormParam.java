@@ -23,7 +23,6 @@ public class EditVerticesFormParam implements Param {
     /**
      * The old vertices.
      */
-    @Getter
     private List<Vertex> oldVertices;
     /**
      * The old shape types of the vertices.
@@ -33,7 +32,6 @@ public class EditVerticesFormParam implements Param {
     /**
      * The new vertices.
      */
-    @Getter
     private List<Vertex> newVertices;
     /**
      * The new shape types of the vertices.

@@ -4,6 +4,8 @@ import actions.Action;
 import actions.GraphAction;
 import io.GXLio;
 import log_management.DatabaseManager;
+import lombok.Getter;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -30,7 +32,6 @@ public class ImportGxlAction extends GraphAction {
         gxlio = new GXLio();
     }
 
-
     /**
      * Executes the defined behavior of the action.
      */
@@ -39,7 +40,7 @@ public class ImportGxlAction extends GraphAction {
         gxlio.importGXL(file, false);
         templateFound=gxlio.isTemplateFoundFlag();
         if(templateFound){
-            System.out.println("tf: "+templateFound);
+            logger.debug("tf: "+templateFound);
             return;
         }
         DatabaseManager databaseManager = DatabaseManager.getInstance();

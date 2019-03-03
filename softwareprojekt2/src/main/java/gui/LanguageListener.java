@@ -72,10 +72,28 @@ public class LanguageListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (checkMenuItem.getId().equals("languageGerman") && newValue) {
             languageEnglish.setSelected(false);
+            if(controller.getLanguageGraphGerman().isSelected()){
+                controller.getLanguageGuiGraphGerman().setSelected(true);
+            }else{
+                uncheckLanguage();
+            }
             changeLanguage(Language.GERMAN);
         } else if (checkMenuItem.getId().equals("languageEnglish") && newValue) {
             languageGerman.setSelected(false);
+            if(controller.getLanguageGraphEnglish().isSelected()){
+                controller.getLanguageGuiGraphEnglish().setSelected(true);
+            }else{
+                uncheckLanguage();
+            }
             changeLanguage(Language.ENGLISH);
         }
+    }
+
+    /**
+     * Unchecks the general language menuitems.
+     */
+    private void uncheckLanguage(){
+        controller.getLanguageGuiGraphEnglish().setSelected(false);
+        controller.getLanguageGuiGraphGerman().setSelected(false);
     }
 }

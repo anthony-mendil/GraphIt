@@ -262,7 +262,7 @@ public class ColorNameCreator {
          * @param green The green value.
          * @param blue The blue value.
          */
-        public ColorNames(String englishName, String germanName, int red, int green, int blue) {
+        ColorNames(String englishName, String germanName, int red, int green, int blue) {
             this.red = red;
             this.green = green;
             this.blue = blue;
@@ -278,7 +278,7 @@ public class ColorNameCreator {
          * @param pixBlue The blue value.
          * @return The mean squared error.
          */
-        public int calculate(int pixRed, int pixGreen, int pixBlue) {
+        int calculate(int pixRed, int pixGreen, int pixBlue) {
             return (((pixRed - red) * (pixRed - red) + (pixGreen - green) * (pixGreen - green) + (pixBlue - blue)
                     * (pixBlue - blue)) / 3);
         }
@@ -288,7 +288,7 @@ public class ColorNameCreator {
          *
          * @return The english name.
          */
-        public String getEnglishName() {
+        String getEnglishName() {
             return englishName;
         }
 
@@ -297,7 +297,7 @@ public class ColorNameCreator {
          *
          * @return The german name of the color.
          */
-        public String getGermanName() {
+        String getGermanName() {
             return germanName;
         }
     }

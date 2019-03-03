@@ -83,7 +83,7 @@ public class GXLio {
                 return;
             }
             if(gxlTemplate!=null){
-                System.out.println("tff: "+templateFoundFlag);
+                logger.debug("tff: "+templateFoundFlag);
                 if(!withTemplate&&!templateFoundFlag){
                     logger.info("Template found but not used");
                     templateFoundFlag=true;
@@ -645,7 +645,7 @@ public class GXLio {
      * @param color the color that need to be describted
      * @return the description of the color as a String
      */
-    public String getPaintDescription(Color color) {
+    String getPaintDescription(Color color) {
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
     }
@@ -659,7 +659,7 @@ public class GXLio {
      * @param pWord a word containing an unknown amount of numbers.
      * @return the numbers as String contained in the String parameter as entries in the array.
      */
-    public String[] getNumberArrayFromString(String pWord) {
+    private String[] getNumberArrayFromString(String pWord) {
         String word = pWord;
         String[] alphabet = {"2D", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         for (String s : alphabet) {

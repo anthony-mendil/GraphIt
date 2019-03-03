@@ -46,10 +46,28 @@ public class LanguageGraphListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (checkMenuItem.getId().equals("languageGraphGerman") && newValue) {
             c.getLanguageGraphEnglish().setSelected(false);
+            if(c.getLanguageGerman().isSelected()){
+                c.getLanguageGuiGraphGerman().setSelected(true);
+            }else{
+                uncheckLanguage();
+            }
             changeLanguage(Language.GERMAN);
         } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue) {
             c.getLanguageGraphGerman().setSelected(false);
+            if(c.getLanguageEnglish().isSelected()){
+                c.getLanguageGuiGraphEnglish().setSelected(true);
+            }else{
+                uncheckLanguage();
+            }
             changeLanguage(Language.ENGLISH);
         }
+    }
+
+    /**
+     * Unchecks the general language menuitems.
+     */
+    private void uncheckLanguage(){
+        c.getLanguageGuiGraphEnglish().setSelected(false);
+        c.getLanguageGuiGraphGerman().setSelected(false);
     }
 }

@@ -93,9 +93,9 @@
                 <Menu fx:id="options" mnemonicParsing="false" text="%options">
                     <Menu fx:id="languagesGuiGraph" mnemonicParsing="false" text="%languageGuiGraph">
                         <items>
-                            <MenuItem fx:id="languageGuiGraphGerman" mnemonicParsing="false"
+                            <CheckMenuItem fx:id="languageGuiGraphGerman" mnemonicParsing="false"
                                       onAction="#loadLanguageGuiGraphGerman" text="%german"/>
-                            <MenuItem fx:id="languageGuiGraphEnglish" mnemonicParsing="false"
+                            <CheckMenuItem fx:id="languageGuiGraphEnglish" mnemonicParsing="false"
                                       onAction="#loadLanguageGuiGraphEnglish" text="%english"/>
                         </items>
                     </Menu>

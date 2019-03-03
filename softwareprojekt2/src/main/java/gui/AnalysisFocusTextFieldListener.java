@@ -49,20 +49,27 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (!newValue) {
             if (!textField.getText().isEmpty()) {
-                if (analysisSuccessor.isSelected() && analysisPredecessor.isSelected()) {
-                    analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
-                } else {
-                    if (analysisPredecessor.isSelected()) {
-                        analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR);
-                    }
-                    if (analysisSuccessor.isSelected()) {
-                        AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
-                        analysisGraphAction.action();
-                    }
-                }
+                determinesAction();
             } else {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
+            }
+        }
+    }
+
+    /**
+     * Calls the right action accordingly if the successor and predecessor is selected.
+     */
+    private void determinesAction() {
+        if (analysisSuccessor.isSelected() && analysisPredecessor.isSelected()) {
+            analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR_SUCCESSOR);
+        } else {
+            if (analysisPredecessor.isSelected()) {
+                analysisOption(AnalyseType.NEIGHBOUR_PREDECESSOR);
+            }
+            if (analysisSuccessor.isSelected()) {
+                AnalysisGraphNeighborsAction analysisGraphAction = new AnalysisGraphNeighborsAction(AnalyseType.NEIGHBOUR_SUCCESSOR, Integer.parseInt(textField.getText()));
+                analysisGraphAction.action();
             }
         }
     }

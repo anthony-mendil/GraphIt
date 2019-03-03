@@ -92,11 +92,11 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
         // edgeshape.intersects(pickArea)
         Rectangle2D pickArea =
                 new Rectangle2D.Float((float) x - pickSize / 2, (float) y - pickSize / 2, pickSize, pickSize);
-        E closest = null;
+        E closest;
         double minDistance = Double.MAX_VALUE;
         while (true) {
             try {
-                closest = (E) getFilteredEdge(layout, pickArea, x, y, closest, minDistance);
+                closest = (E) getFilteredEdge(layout, pickArea, x, y, minDistance);
                 break;
             } catch (ConcurrentModificationException cme) {
                 logger.debug(cme.getMessage());
@@ -111,11 +111,11 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
      * @param pickArea the pickarea
      * @param x The x coordinate of the point where the edge should be picked.
      * @param y The y coordinate of the point where the edge should be picked.
-     * @param closest the closest edge point of the point picked
      * @param minDistance the mindistance
      * @return edge e
      */
-    private Object getFilteredEdge(Layout<V,E> layout, Rectangle2D pickArea, double x, double y, E closest, double minDistance ){
+    private Object getFilteredEdge(Layout<V,E> layout, Rectangle2D pickArea, double x, double y, double minDistance ){
+        E closest = null;
         for (E e : getFilteredEdges(layout)) {
             javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> pair = getTransformedEdgeShape(e, vv.getRenderContext(), layout);
             if (pair == null) {
@@ -184,11 +184,11 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
         Graph<V, E> graph = layout.getGraph();
         Pair<V> endpoints = graph.getEndpoints(e);
         V v1 = endpoints.getFirst();
-        V v2 = endpoints.getSecond();
         Point2D p1 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v1));
-        Point2D p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v2));
+        V v2 = endpoints.getSecond();
         float x1 = (float) p1.getX();
         float y1 = (float) p1.getY();
+        Point2D p2 = rc.getMultiLayerTransformer().transform(Layer.LAYOUT, layout.transform(v2));
         float x2 = (float) p2.getX();
         float y2 = (float) p2.getY();
         Shape edgeShape = null;

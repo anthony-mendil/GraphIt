@@ -23,7 +23,7 @@ public class AppPreloader extends Preloader {
         pc = fxmlLoader.getController();
         Scene sz = new Scene(p);
         sz.getStylesheets().add("/gui_style.css");
-        stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.getInstance().getLOGO_MAIN())));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
         stage.setScene(sz);
         stage.setTitle("GraphIt");
         stage.show();

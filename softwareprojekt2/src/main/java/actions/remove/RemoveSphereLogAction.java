@@ -52,10 +52,7 @@ public class RemoveSphereLogAction extends LogAction {
                         return;
                     }
                     pickedVertexState.clear();
-                    for (Vertex v : sp.getVertices()) {
-                        vertices.add(v);
-                        pickedVertexState.pick(v, true);
-                    }
+                    setVerticesPicked(sp, vertices,  pickedVertexState);
                     RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
                     removeVerticesLogAction.action();
                     AddRemoveVerticesParam addRemoveVerticesParam = (AddRemoveVerticesParam) removeVerticesLogAction.getParameters();
@@ -82,6 +79,13 @@ public class RemoveSphereLogAction extends LogAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+    }
+
+    private void setVerticesPicked(Sphere sp, List<Vertex> vertices, PickedState<Vertex> pickedVertexState){
+        for (Vertex v : sp.getVertices()) {
+            vertices.add(v);
+            pickedVertexState.pick(v, true);
+        }
     }
 
     @Override

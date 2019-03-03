@@ -5,9 +5,7 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.algorithmen.predicates.EdgeArrowPredicate;
-import graph.algorithmen.predicates.EdgeIsVisiblePredicate;
 import graph.algorithmen.predicates.VertexAnnotationPredicate;
-import graph.algorithmen.predicates.VertexIsVisiblePredicate;
 import graph.graph.Edge;
 import graph.graph.EdgeArrowType;
 import graph.graph.Vertex;
@@ -60,22 +58,6 @@ public class FilterGraphAction extends GraphAction {
             predicateEdge = TruePredicate.getInstance();
         }
     }
-
-    /**
-     * Filters the vertices for the attribute isVisible=false.
-     *
-     * @param doFilter Indicator, if it should be filtered or not.
-     */
-    public FilterGraphAction(boolean doFilter) {
-        if (doFilter) {
-            predicateVertex = new VertexIsVisiblePredicate<>();
-            predicateEdge = new EdgeIsVisiblePredicate<>();
-        } else {
-            predicateVertex = TruePredicate.getInstance();
-            predicateEdge = TruePredicate.getInstance();
-        }
-    }
-
 
     @Override
     public void action() {
