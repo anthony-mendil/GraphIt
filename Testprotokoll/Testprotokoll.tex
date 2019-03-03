@@ -33,7 +33,7 @@ urlcolor=blue % Farbe von externen Links
 
 \title{Testprotokoll: GraphIt}
 \subtitle{Black-Box-Test}  % Oder White-Box-Test
-\author{Clement Phung, Bastian Rexhäuser, Nina Unterberg, \\ Philipp Jacky Mach, Jonah Jeager, Anthony Mendil}  % Nicht ganz korrekte Auflistung der Authoren, sieht aber besser aus als mit \and
+\author{Clement Phung, Bastian Rexhäuser, Nina Unterberg, \\ Jacky Philipp Mach, Jonah Jeager, Anthony Mendil}  % Nicht ganz korrekte Auflistung der Authoren, sieht aber besser aus als mit \and
 \date{21. Februar 2019}  % Datum der Testdurchführung, NICHT \today
 
 \MakePerPage{footnote}
@@ -62,7 +62,7 @@ urlcolor=blue % Farbe von externen Links
 \maketitle
 %
 
-Anmerkung: Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. Ebenso wird beispielsweise beim hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten und Linksklicks für mehrere Elemente. Bewegt werden Elemente durch gedrückt halten des Rechtsklicks. Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. \\
+Anmerkung: Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. Ebenso wird beispielsweise beim Hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten und Linksklicks für mehrere Elemente. Bewegt werden Elemente durchs gedrückt Halten des Rechtsklicks. Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. Falls die Tests beim erneuten Durchlauf negativ ausgefallen sind, werden nicht nochmal Bilder gezeigt. \\
 
 \newpage
 
@@ -72,7 +72,7 @@ Die Benutzeroberfläche im Ersteller-Modus:
 \includegraphics[height=10cm, angle = 90]{erstellerModus.PNG}
 \end{center}
 \newpage
-Der einzige Unterschied zum Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste anstelle der Vorlage-Regeln den Verlauf gibt:
+Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste anstelle der Vorlage-Regeln den Verlauf gibt:
 \begin{center}
 \includegraphics[height=5cm]{bearbeiterModus.PNG}
 \end{center}
@@ -89,123 +89,148 @@ Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste:
 
 \section{Ersteller-Modus}
 
-\subsectiont{Sphären hinzufügen an freien Stellen}{\dotfill\ok\leer\leer}
+\subsectiont{Sphären hinzufügen an freien Stellen}{\dotfill\ok\ok\leer}
 Der Ersteller erstellt zuerst zwei Sphären an verschiedenen Positionen. Eine eine links und dann eine rechts.  
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:04 \\
-Test negativ. 
+Test negativ. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:10 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_1.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Sphäre hinzufügen, sodass es zu einer Überschneidung mit einer anderen kommen würde}{\dotfill\ok\leer\leer}
-Der Ersteller versucht eine dritte Sphäre an Position hinzuzufügen, an der es zu einer Überschneidung mit einer der bereits erstellten Sphären kommen würde (nicht direkt auf der Sphäre). Hierbei ist zu erwarten, dass dies nicht erfolgreich ist und in der unteren Leiste eine entsprechende Meldung angezeigt wird. 
+\subsectiont{Sphäre hinzufügen, sodass es zu einer Überschneidung mit einer anderen kommen würde}{\dotfill\ok\ok\leer}
+Der Ersteller versucht eine dritte Sphäre an einer Position hinzuzufügen, an der es zu einer Überschneidung mit einer der bereits erstellten Sphären kommen würde (nicht direkt auf der Sphäre). Hierbei ist zu erwarten, dass dies nicht erfolgreich ist und in der unteren Leiste eine entsprechende Meldung angezeigt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:15 \\
-Test negativ.
+Test negativ. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:12 \\
+Test negativ.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. Die Abbildung ist identisch zur vorherigen.
 
-\subsectiont{Knoten hinzufügen an freien Stellen in Sphären}{\dotfill\ok\leer\leer}
+\subsectiont{Knoten hinzufügen an freien Stellen in Sphären}{\dotfill\ok\ok\leer}
 Es werden den zwei existierenden Sphären jeweils zwei Symptome an verschiedenen Positionen hinzugefügt. Erst in die linke Sphäre oben mittig und unten mittig und dann in die rechte Sphäre oben mittig und unten mittig.  
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:20 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:14 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_3.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Knoten hinzufügen an belegter Stelle}{\dotfill\ok\leer\leer}
-Der Ersteller versucht an einer Stelle innerhalb einer Sphäre ein Symptom hinzuzufügen, an der bereits an anderes Symptom ist. Hierbei ist analog zu Sphären zu erwarten, dass dies nicht erfolgreich ist und in der unteren Leiste eine entsprechende Meldung angezeigt wird.
+\subsectiont{Knoten hinzufügen an belegter Stelle}{\dotfill\ok\ok\leer}
+Der Ersteller versucht an einer Stelle innerhalb einer Sphäre ein Symptom hinzuzufügen, an der bereits ein anderes Symptom ist. Hierbei ist analog zu Sphären zu erwarten, dass dies nicht erfolgreich ist und in der unteren Leiste eine entsprechende Meldung angezeigt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:30 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:17 \\
+Test negativ.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. Die Abbildung ist identisch zur vorherigen.
 
-\subsectiont{Knoten hinzufügen außerhalb einer Sphäre}{\dotfill\ok\leer\leer}
+\subsectiont{Knoten hinzufügen außerhalb einer Sphäre}{\dotfill\ok\ok\leer}
 Der Ersteller versucht an einer Stelle außerhalb einer Sphäre ein Symptom hinzuzufügen. Zu erwarten ist, dass dies nicht erlaubt wird. Durch eine Meldung in der Fußleiste sollte dies angezeigt werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:39 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:17 \\
+Test negativ.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. Die Abbildung ist identisch zur vorherigen.
 
-\subsectiont{Verstärkende Relation zwischen zwei Symptome der selben Sphäre}{\dotfill\ok\leer\leer}
+\subsectiont{Verstärkende Relation zwischen zwei Symptome der selben Sphäre}{\dotfill\ok\ok\leer}
 Der Ersteller zieht eine verstärkende Relationen von \texttt{Symptom 2} nach \texttt{Symptom 3}. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:39 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:18 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_6.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Rückgängig machen (Undo)}{\dotfill\ok\leer\leer}
-Der Ersteller betätigt den Button zum rückgängig machen er letzten Aktion.
+\subsectiont{Rückgängig machen (Undo)}{\dotfill\ok\ok\leer}
+Der Ersteller betätigt den Button zum rückgängig machen der letzten Aktion.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:45 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:19 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_7neu.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Wiederherstellen (Redo)}{\dotfill\ok\leer\leer}
+\subsectiont{Wiederherstellen (Redo)}{\dotfill\ok\ok\leer}
 Der Ersteller betätigt den Button zum Wiederherstellen der zuletzt rückgängig gemachten Aktion. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:53 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:20 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_8neu.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Relation zwischen zwei Symptomen, zwischen denen bereits eine Relation existiert}{\dotfill\ok\leer\leer}
-Der Ersteller versucht jeweils eine verstärkende, eine unbekannte und eine abschwächende Relation 
+\subsectiont{Relation zwischen zwei Symptomen, zwischen denen bereits eine Relation existiert}{\dotfill\ok\ok\leer}
+Der Ersteller versucht jeweils eine verstärkende, eine unbekannte und eine abschwächende Relation.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 18:12 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:25 \\
+Test negativ.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. Die Abbildung ist identisch zur vorherigen.
 
-\subsectiont{Abschwächende Relation zwischen zwei Symptomen unterschiedlicher Sphären}{\dotfill\ok\leer\leer}
+\subsectiont{Abschwächende Relation zwischen zwei Symptomen unterschiedlicher Sphären}{\dotfill\ok\ok\leer}
 Der Ersteller zieht eine abschwächende Relationen von \texttt{Symptom 2} nach \texttt{Symptom 5}. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:39 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:27 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_10.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Unbekannte Relation zwischen zwei Symptomen\\ unterschiedlicher Sphären}{\dotfill\ok\leer\leer}
+\subsectiont{Unbekannte Relation zwischen zwei Symptomen\\ unterschiedlicher Sphären}{\dotfill\ok\ok\leer}
 Der Ersteller zieht eine unbekannte Relationen von \texttt{Symptom 4} nach \texttt{Symptom 2}. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 18:01 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:29 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_11.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Einstellen der Vorlage-Regeln}{\dotfill}
-Der Ersteller öffnet in der rechten Seitenleiste die Vorlage Regeln. Er stellt ein, dass es nur maximal drei Sphären, zehn Symptome und zehn Relationen geben darf, sowie dass unbekannte Relationen nicht erlaubt sind. \\
-Anschließend stellt er ein, dass der Titel sowie der Style von \texttt{Sphäre 0} nicht verändert werden darf und die Position von \texttt{Sphäre 1} nicht verändert werden darf. Ebenso dürfen \texttt{Sphäre 1} keine Symptome hinzugefügt werden und keine Symptome von ihr gelöscht werden.  \\
+\subsectiont{Einstellen der Vorlage-Regeln}{\dotfill\ok\ok\leer}
+Der Ersteller öffnet in der rechten Seitenleiste die Vorlage Regeln. Er stellt ein, dass es nur maximal drei Sphären, zehn Symptome und zehn Relationen geben darf, sowie dass unbekannte und abschwächende Relationen nicht erlaubt sind. \\
+Anschließend stellt er ein, dass der Titel sowie der Style von \texttt{Sphäre 0} nicht verändert werden darf und die Position von \texttt{Sphäre 1} nicht verändert werden darf. Ebenso dürfen \texttt{Sphäre 1} keine Symptome hinzugefügt werden und keine Symptome von ihr gelöscht werden. Trotzdem stellt der Ersteller
+ein, das maximal 4 Symptome in \texttt{Sphäre 0} und maximal 3 Symptome in \texttt{Sphäre 1} erlaubt sind. \\
 Bezüglich der Symptome wird eingestellt, dass der Titel von \texttt{Symptom 5}, die Position von \texttt{Symptom 3} und der Style von {Symptom 2} nicht verändert werden dürfen. \\
-Abschließend stellt er noch ein, dass die Position der Relation von \texttt{Symptom 2} und \texttt{Symptom 5}, der Style der Relation von \texttt{Symptom 4} nach \texttt{Symptom 2} und die Relationsart der Relation von \texttt{Symptom 2} nach \texttt{Symptom 3} nicht verändert werden dürfen. 
+Abschließend stellt er noch ein, dass die Position der Relation von \texttt{Symptom 2} nach \texttt{Symptom 5}, der Style der Relation von \texttt{Symptom 4} nach \texttt{Symptom 2} und die Relationsart der Relation von \texttt{Symptom 2} nach \texttt{Symptom 3} nicht verändert werden dürfen. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 18:01 \\
-Test negativ. 
+Test negativ. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:34 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{template4.PNG}
 \end{center}
@@ -230,32 +255,36 @@ Test negativ.
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. 
 
-\subsectiont{Verstoß gegen die eigenen Vorlage-Regeln}{\dotfill\ok\leer\leer}
+\subsectiont{Verstoß gegen die eigenen Vorlage-Regeln}{\dotfill\ok\ok\leer}
 Der Ersteller versucht \texttt{Sphäre 1} zu bewegen. Obwohl das Bewegen dieser Sphäre in den Regeln verboten wird, sollte diese Aktion erfolgreich sein, weil der Ersteller gegen seine eigenen Regeln verstoßen darf. Analog zu diesem Testfall sollte der Tester versuchen auch gegen die anderen in den Vorlage-Regeln festgelegten Einschränkungen zu verstoßen. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 18:52 \\
-Test negativ.
+Test negativ. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:43 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=5cm]{1_11.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Entfernen einer Relation im Ersteller-Modus bei der in den Vorlage-Regeln das Verändern des Styles verboten wurde}{\dotfill\XBox\leer\leer}
+\subsectiont{Entfernen einer Relation im Ersteller-Modus bei der in den Vorlage-Regeln das Verändern des Styles verboten wurde}{\dotfill\XBox\ok\leer}
 Der Ersteller versucht die Relation von \texttt{Symptom 4} nach \texttt{Symptom 2} zu entfernen. Obwohl dies aufgrund der Vorlage-Regeln verboten wird, ist zu erwarten, dass die Relation entfernt wird, weil die Regeln nicht im Ersteller-Modus gelten sollen.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 13:56 \\
 Test positiv, weil das Entfernen der Relation nicht erfolgreich war. Die Abbildung ist identisch zur vorherigen. \\ \\
-2.Test: Getestet von: .... Datum: ... \\
-...
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:43 \\
+Test negativ.\\
 \subsubsection{Fazit} 
 Kurze Erläuterung was nach den jeweiligen Tests geändert wurde. Beim ... Test arbeitet die Software wie erwartet. 
 
-\subsectiont{Speichern der Datei in den eigenen Dateien}{\dotfill\ok\leer\leer}
+\subsectiont{Speichern der Datei in den eigenen Dateien}{\dotfill\ok\ok\leer}
 Der Ersteller speichert über \texttt{Datei} und \texttt{Speichern unter} die soeben erstellte Vorlage inklusive der Regeln. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 19:00 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:45 \\
+Test negativ.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. In dem Verzeichnis das zum Speichern ausgewählt wurde ist die entsprechende Datei zu finden. 
 
@@ -293,76 +322,95 @@ Nach dem zweiten Test arbeitet die Software wie erwartet.
 Der Ersteller drückt auf \texttt{Datei} und \texttt{Datei öffnen} und wählt im entsprechendem Verzeichnis die im Ersteller-Modus gespeicherte Datei aus. Zu erwarten ist, dass der Graph identisch zum im Ersteller-Modus erstellten ist. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 10:32 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:49 \\
+Test negativ.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Keinen Verlauf im Ersteller-Modus erstellen}{\dotfill\ok\leer\leer}
+\subsectiont{Keinen Verlauf im Ersteller-Modus erstellen}{\dotfill\ok\ok\leer}
 Im Ersteller-Modus soll der Verlauf bei der Erstellung des Graphen nicht aufgezeichnet werden. Deshalb ist im Bearbeiter-Modus, sofern man einen soeben erstellten Graphen geladen hat, zu erwarten, dass in der Seitenleiste der Verlauf noch keine Einträge hat. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 10:32 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:52 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=8cm]{2_3.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Mehr Sphären hinzufügen als in den Vorlage-Regeln erlaubt}{\dotfill\ok\leer\leer}
+\subsectiont{Mehr Sphären hinzufügen als in den Vorlage-Regeln erlaubt}{\dotfill\ok\ok\leer}
 Der Bearbeiter setzt zuerst eine Sphäre links unter \texttt{Sphäre 0} und dann eine Sphäre rechts unter \texttt{Sphäre 1}. Hierbei wird erwartet, dass das hinzufügen der ersten Sphäre erfolgreich ist, das der zweiten jedoch nicht, weil sonst die Anzahl an maximalen Sphären in den Vorlage-Regeln überschritten wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 14:18 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:53 \\
+Test negativ.\\
 \begin{center}
 \includegraphics[height=10cm]{2_4.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Abschwächende Relation hinzufügen obwohl es in den Vorlage-Regeln verboten wird}{\dotfill\ok\leer\leer}
+\subsectiont{Abschwächende Relation hinzufügen obwohl es in den Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
 Der Bearbeiter wählt den Relationstyp abschwächend aus und versucht von \texttt{Symptom 3} nach \texttt{Symptom 4} eine Relation zu ziehen. Zu erwarten ist, dass dies aufgrund der Vorlage-Regeln nicht erlaubt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 15:06 \\
 Test negativ. Die Abbildung ist identisch zur vorherigen.
+\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:55 \\
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Einer Sphäre ein Symptom hinzufügen obwohl dies durch die Vorlage-Regeln verboten wird}{\dotfill\ok\leer\leer}
+\subsectiont{Einer Sphäre ein Symptom hinzufügen obwohl dies durch die Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
 Der Bearbeiter versucht \texttt{Sphäre 1} rechts mittig ein Symptom hinzuzufügen. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:08 \\
-Test negativ. Die Abbildung ist identisch zur vorherigen.
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:01 \\
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Titel einer Sphäre ändern bei der es in den Vorlage-Regeln verboten wird}{\dotfill\ok\leer\leer}
-Der Bearbeiter versucht den Titel von \texttt{Sphäre o} zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
+\subsectiont{Titel einer Sphäre ändern bei der es in den Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
+Der Bearbeiter versucht den Titel von \texttt{Sphäre 0} zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:13 \\
-Test negativ. Die Abbildung ist identisch zur vorherigen.
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:02 \\
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Style eines Symptoms ändern bei dem es in den Vorlage-Regeln verboten wird}{\dotfill\ok\leer\leer}
+\subsectiont{Style eines Symptoms ändern bei dem es in den Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
 Der Bearbeiter versucht die Füllfarbe von \texttt{Symptom 2} zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:38 \\
-Test negativ. Die Abbildung ist identisch zur vorherigen.
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:04 \\
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Relationsart einer Relation ändern bei der es in den Vorlage-Regeln verboten wird}{\dotfill\ok\leer\leer}
+\subsectiont{Relationsart einer Relation ändern bei der es in den Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
 Der Bearbeiter versucht die Relationsart der Relation von \texttt{Symptom 2} nach \texttt{Symptom 3} zu einer verstärkenden Relation zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:58 \\
-Test negativ. Die Abbildung ist identisch zur vorherigen.
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:05 \\
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Entfernen einer Sphäre mit Symptomen und Relationen}{\dotfill\ok\leer\leer}
+\subsectiont{Entfernen einer Sphäre mit Symptomen und Relationen}{\dotfill\ok\ok\leer}
 Der Bearbeiter fügt vorerst in \texttt{Sphäre 9} ein Symptom hinzu und zieht von ihm eine verstärkende Relation zu \texttt{Symptom 5}. Anschließend entfernt er \texttt{Sphäre 9}. Es ist zu erwarten, dass mit der Sphären auch alle enthaltenden Symptome und die Relationen der Symptome gelöscht werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 17:18 \\
+Test negativ. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:06 \\
 Test negativ. \\
 Nach hinzufügen der beschriebenen Elemente: 
 \begin{center}
@@ -375,111 +423,130 @@ Nach löschen der Sphäre:
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. 
 
-\subsectiont{Rückgängig machen des Entfernens einer Sphäre mit Symptomen und Relationen}{\dotfill\XBox\leer\leer}
+\subsectiont{Rückgängig machen des Entfernens einer Sphäre mit Symptomen und Relationen}{\dotfill\XBox\ok\leer}
 Der Bearbeiter betätigt den Button zum rückgängig machen der letzten Aktion. Hierbei wird erwartet, dass die vorherige Sphäre, inklusive der ursprünglichen Symptome und Relationen wieder hinzugefügt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 17:48 \\
-Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. 
+Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:08 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_11.PNG}
 \end{center}
-2.Test: Getestet von: ... . Datum: ... \\
-... 
 \subsubsection{Fazit}
 Kurze Erläuterung was nach den jeweiligen Tests geändert wurde. Beim ... Test arbeitet die Software wie erwartet: Screenshot. 
 
-\subsectiont{Vergrößern einer Sphäre}{\dotfill\ok\leer\leer}
+\subsectiont{Vergrößern einer Sphäre}{\dotfill\ok\ok\leer}
 Der Bearbeiter betätigt vorerst den Button zum Auswählen von Elementen. Anschießend macht er einen Linksklick auf \texttt{Sphäre 9} und betätigt den Button zum Vergrößern der Sphäre. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:28 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:10 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_12.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. 
 
-\subsectiont{Verkleinern einer Sphäre}{\dotfill\ok\leer\leer}
+\subsectiont{Verkleinern einer Sphäre}{\dotfill\ok\ok\leer}
 Vorerst entfernt der Bearbeiter \texttt{Symptom 10}. Dann macht der Bearbeiter einen Linksklick auf \texttt{Sphäre 9} und betätigt den Button zum Verkleinern der Sphäre. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:11 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_13.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Ändern der Farbe einer Sphäre}{\dotfill\ok\leer\leer}
+\subsectiont{Ändern der Farbe einer Sphäre}{\dotfill\ok\ok\leer}
 Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Farbe der Sphäre auf \texttt{Backstein} (dunkles rot). Es wird erwartet, dass entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:12 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_14.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Ändern der Schriftart einer Sphäre}{\dotfill\ok\leer\leer}
+\subsectiont{Ändern der Schriftart einer Sphäre}{\dotfill\ok\ok\leer}
 Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Schriftart der Sphäre auf \texttt{Kalam}. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:13 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_15.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Verändern der Schriftgröße einer Sphäre}{\dotfill\ok\leer\leer}
+\subsectiont{Verändern der Schriftgröße einer Sphäre}{\dotfill\ok\ok\leer}
 Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Schriftgröße der Sphäre auf 24. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:13 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_16.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Sphären automatisch anordnen}{\dotfill\ok\leer\leer}
-Der Bearbeiter betätigt den Button zum automatischen anordnen der Sphären. Es wird erwartet, dass die Sphären automatisch angeordnet werden und die Symptome und Relationen immer noch korrekt platziert sind.
+\subsectiont{Sphären automatisch anordnen}{\dotfill\ok\ok\leer}
+Der Bearbeiter betätigt den Button zum automatischen Anordnen der Sphären. Es wird erwartet, dass die Sphären automatisch angeordnet werden und die Symptome und Relationen immer noch korrekt platziert sind.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:13 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_17.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Rückgängig machen der automatischen Anordnung von Sphären}{\dotfill\ok\leer\leer}
+\subsectiont{Rückgängig machen der automatischen Anordnung von Sphären}{\dotfill\ok\ok\leer}
 Der Bearbeiter betätigt den Button zum rückgängig machen der letzten Aktion. Es wird erwartet, die Sphären mit ihren Knoten und den Relationen wieder an ihre vorherige Positionen bewegt werden.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
-Test negativ.
+Test negativ.\\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:15 \\
+Test negativ. \\
 \begin{center}
 \includegraphics[height=10cm]{2_18.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Bewegen einer Sphäre auf eine andere}{\dotfill\ok\leer\leer}
+\subsectiont{Bewegen einer Sphäre auf eine andere}{\dotfill\ok\ok\leer}
 Der Bearbeiter versucht \texttt{Sphäre 9} auf \texttt{Sphäre 0} zu bewegen. Hierbei wird erwartet, dass \texttt{Sphäre 9} auf ihre ursprüngliche Position zurück bewegt wird und \texttt{Sphäre 0} unverändert bleibt.   
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
-Test negativ. Die Abbildung ist identisch zur vorherigen. 
+Test negativ. Die Abbildung ist identisch zur vorherigen. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:16 \\
+Test negativ. Die Abbildung ist identisch zur vorherigen.\\
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
 \subsection*{Symptome}
 
-\subsectiont{Entfernen eines Symptoms, das Relationen hat}{\dotfill\ok\leer\leer}
+\subsectiont{Entfernen eines Symptoms, das Relationen hat}{\dotfill\ok\ok\leer}
 Der Bearbeiter fügt vorerst in \texttt{Sphäre 9} ein Symptom hinzu und zieht von ihm eine verstärkende Relation zu \texttt{Symptom 5} und eine von \texttt{Symptom 3} zum hinzugefügten Symptom. Anschließend entfernt er das soeben hinzugefügte Symptom nachdem er es mit einem Linksklick ausgewählt hat. Es ist zu erwarten, dass mit dem Symptom auch alle ausgehenden und eingehenden Relationen des gelöschten Symptoms entfernt werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 10:58 \\
 Test negativ. \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:18 \\
+Test negativ.\\ \\
+
 Nach hinzufügen der beschriebenen Elemente: 
 \begin{center}
 \includegraphics[height=10cm]{2_20korrektvorher.PNG}
