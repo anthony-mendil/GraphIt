@@ -73,7 +73,9 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
                     }
                     break;
                 case "addVertex":
-                    toggleButton.setSelected(true);
+                    if(!handSelector.isSelected() && !addSphere.isSelected()){
+                        toggleButton.setSelected(true);
+                    }
                     break;
                 default:
                     throw new IllegalArgumentException();

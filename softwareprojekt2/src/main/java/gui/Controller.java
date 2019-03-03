@@ -1777,12 +1777,7 @@ public class Controller implements ObserverSyndrom {
             removeSphere();
             syndrom.getVv().getPickedSphereState().clear();
         } else if (strgA.match(event)) {
-            for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
-                syndrom.getVv().getPickedVertexState().pick(v, true);
-            }
-            for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
-                syndrom.getVv().getPickedEdgeState().pick(e, true);
-            }
+            selectAllSymptomsEdges();
         } else if (two.match(event)) {
             switchModeCreator();
         } else if (three.match(event)) {
@@ -1800,6 +1795,18 @@ public class Controller implements ObserverSyndrom {
         } else if (strgF.match(event)) {
             regularExpressionBox.setSelected(true);
             regularExpressionField.requestFocus();
+        }
+    }
+
+    /**
+     * Selects all symptoms and edges in the graph.
+     */
+    private void selectAllSymptomsEdges(){
+        for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
+            syndrom.getVv().getPickedVertexState().pick(v, true);
+        }
+        for (Edge e : syndrom.getLayout().getGraph().getEdges()) {
+            syndrom.getVv().getPickedEdgeState().pick(e, true);
         }
     }
 
