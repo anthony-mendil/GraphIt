@@ -1640,8 +1640,6 @@ public class Controller implements ObserverSyndrom {
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
-        templateToFields();
-
         initTree();
 
         regularExpressionField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -1680,6 +1678,7 @@ public class Controller implements ObserverSyndrom {
             return new ReadOnlyStringWrapper(name);
         });
 
+        templateToFields();
         updateUndoRedoButton();
         analysisMode(false);
         createOrEditMode(true, true);
