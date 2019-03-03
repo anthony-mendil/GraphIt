@@ -1169,6 +1169,7 @@ public class Controller implements ObserverSyndrom {
             canvas.setContent(syndrom.getVv());
             satellite.setContent(syndrom.getVv2());
         }
+        treeViewUpdate();
         templateToFields();
     }
 
@@ -1193,18 +1194,17 @@ public class Controller implements ObserverSyndrom {
                 stage.setResizable(false);
                 stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
+                if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
                     ImportTemplateGxlAction importTemplateGxlAction= new ImportTemplateGxlAction(file);
                     importTemplateGxlAction.action();
                     zoomSlider.setValue(100);
                     canvas.setContent(syndrom.getVv());
                     satellite.setContent(syndrom.getVv2());
-                } else {
+                } else if(result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
                     importGxlAction.action();
                     zoomSlider.setValue(100);
                     canvas.setContent(syndrom.getVv());
                     satellite.setContent(syndrom.getVv2());
-                    treeViewUpdate();
                 }
             } else {
                 zoomSlider.setValue(100);
@@ -1212,6 +1212,7 @@ public class Controller implements ObserverSyndrom {
                 satellite.setContent(syndrom.getVv2());
             }
         }
+        treeViewUpdate();
         templateToFields();
     }
 
@@ -1242,6 +1243,7 @@ public class Controller implements ObserverSyndrom {
                 satellite.setContent(syndrom.getVv2());
             }
         }
+        treeViewUpdate();
         templateToFields();
     }
 
@@ -1268,17 +1270,17 @@ public class Controller implements ObserverSyndrom {
         if (currentTemplate.getMaxSpheres() != Integer.MAX_VALUE) {
             maxSphereField.setText("" + currentTemplate.getMaxSpheres());
         } else {
-            maxSphereField.setText("");
+            maxSphereField.clear();
         }
         if (currentTemplate.getMaxVertices() != Integer.MAX_VALUE) {
             maxSymptomField.setText("" + currentTemplate.getMaxVertices());
         } else {
-            maxSymptomField.setText("");
+            maxSymptomField.clear();
         }
         if (currentTemplate.getMaxEdges() != Integer.MAX_VALUE) {
             maxEdgesField.setText("" + currentTemplate.getMaxEdges());
         } else {
-            maxEdgesField.setText("");
+            maxEdgesField.clear();
         }
         reinforcedBox.setSelected(currentTemplate.isReinforcedEdgesAllowed());
         extenuatingBox.setSelected(currentTemplate.isExtenuatingEdgesAllowed());
@@ -2511,6 +2513,8 @@ public class Controller implements ObserverSyndrom {
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
+        treeViewUpdate();
+        templateToFields();
     }
 
     /**
