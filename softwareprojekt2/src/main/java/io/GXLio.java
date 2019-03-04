@@ -30,6 +30,8 @@ public class GXLio {
      */
     private Syndrom syndrom = Syndrom.getInstance();
 
+    private Template template =syndrom.getTemplate();
+
 
     /**
      * The highest id of all GXLAttributetElements in the gxl document that
@@ -115,7 +117,7 @@ public class GXLio {
                 }
             }
             syndrom.setGraphName(((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue());
-            updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices);
+            updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices, withTemplate);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());
         }
@@ -183,9 +185,15 @@ public class GXLio {
         pEdgeAndVertices.add(entry);
     }
 
-    private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices) {
+    private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices, boolean withTemplate) {
         // Getting the objects that are needed to get the spheres, vertices and edges out of the lists into our system.
         syndrom.generateNew();
+        if(withTemplate){
+            syndrom.setTemplate(template);
+        }
+        else {
+            syndrom.setTemplate(new Template(Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE, true , true , true));
+        }
         Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
         SyndromGraph<Vertex, Edge> newGraph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
         newGraph.getGraphObjectsFactory().setObjectCounter(++maxID);
@@ -236,7 +244,6 @@ public class GXLio {
      * @param gxlTemplate the GXLNode from the imported GXLGraph describing a template object
      */
     private void initializeTemplateValues(GXLGraph gxlTemplate) {
-        Template template = Syndrom.getInstance().getTemplate();
         int maxSpheres = ((GXLInt) gxlTemplate.getAttr("maxSpheres").getValue()).getIntValue();
         template.setMaxSpheres(maxSpheres);
         int maxVertices = ((GXLInt) gxlTemplate.getAttr("maxVertices").getValue()).getIntValue();
