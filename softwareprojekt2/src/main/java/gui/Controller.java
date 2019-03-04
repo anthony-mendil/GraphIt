@@ -1220,6 +1220,7 @@ public class Controller implements ObserverSyndrom {
             }
         }
         templateToFields();
+        rulesTemplate();
         treeViewUpdate();
     }
 
@@ -1245,6 +1246,7 @@ public class Controller implements ObserverSyndrom {
                 stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 alert.showAndWait();
             } else {
+                System.out.println(syndrom.getTemplate().toString());
                 zoomSlider.setValue(100);
                 canvas.setContent(syndrom.getVv());
                 satellite.setContent(syndrom.getVv2());

@@ -94,4 +94,18 @@ public class Template {
         }
         return stringBuilder.toString();
     }
+
+    public boolean isStandard(){
+        if(maxSpheres == Integer.MAX_VALUE
+                && maxVertices == Integer.MAX_VALUE
+                && maxEdges == Integer.MAX_VALUE
+                && reinforcedEdgesAllowed
+                && extenuatingEdgesAllowed
+                && neutralEdgesAllowed){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }
