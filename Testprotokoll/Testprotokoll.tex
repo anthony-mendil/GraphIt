@@ -430,10 +430,18 @@ Der Bearbeiter betätigt den Button zum rückgängig machen der letzten Aktion. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 17:48 \\
 Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. \\
+\begin{center}
+\includegraphics[height=5cm]{2_11.PNG}
+\end{center}
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:08 \\
 Test negativ. \\
+Nach Entfernen der Sphäre:
 \begin{center}
-\includegraphics[height=10cm]{2_11.PNG}
+\includegraphics[height=5cm]{2_11b.png}
+\end{center}
+Nach rückgängig machen des Entfernens der Sphäre mit Symptomen und Relationen:
+\begin{center}
+\includegraphics[height=5cm]{2_11c.png}
 \end{center}
 \subsubsection{Fazit}
 Kurze Erläuterung was nach den jeweiligen Tests geändert wurde. Beim ... Test arbeitet die Software wie erwartet: Screenshot. 
@@ -1354,7 +1362,17 @@ Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären,
 
 \section{Analyse-Modus}
 
-Erklärung der Begriffe? (Philipp kannst du das vielleicht ergänzen?)
+\texttt{Umfang}: Anzahl wertbarer Symptome + Anzahl wertbarer Relationen\\\\
+\texttt{Vernetzungsindex}: 2 x Anzahl wertbarer Relationen / Anzahl wertbarer Symptome\\\\
+\texttt{Strukturindex}: Summe aller Pfeilketten, Verzweigungen und Kreisläufe / Anzahl wertbarer Symptome\\\\
+\texttt{Vorgänger}: Benachbarte Knoten, die über einem Pfad mit dem ausgewählten Knoten verbunden sind, 
+wobei der Pfad ausschließlich aus eingehenden Kanten besteht.\\\\
+\texttt{Nachfolger}: Benachbarte Knoten, die über einem Pfad mit dem ausgewählten Knoten verbunden sind,
+wobei der Pfad ausschließlich aus ausgehenden Kanten besteht.\\\\
+\texttt{Pfeilkette}: Abfolge von mindestens drei Kanten in dieselbe Richtung, ohne dass eine Verzweigung bei den inneren Knoten der Kette integriert ist. Ein Knoten einer Kette ist ein innerer, wenn er nicht der Start- und nicht der Endknoten der Kette ist.\\\\
+\texttt{Konvergente Verzweigung}: Knoten, zu dem mindestens zwei Kanten hinführen.\\\\
+\texttt{Divergente Verzweigung}: Knoten, aus dem mindestens zwei Kanten wegführen.\\\\
+\texttt{Zyklus(Kreislauf)}: Geschlossene Kette von Kanten, die alle in die gleiche Richtung laufen, wobei jeder Knoten im Zyklus jeden anderen Knoten im Zyklus über die Kette erreichen kann. Der kleinste Kreislauf ist eine direkte Rückkopplung.\\\\
 
 \subsectiont{Korrektes Berechnen und Anzeigen des Graphmaß, des Vernetzungsindex und des Strukurindex}{\dotfill\ok\ok\leer}
 Der Bearbeiter muss nichts tun. Es wird erwartet, das links in der Kopfleiste die korrekten Werte angezeigt werden. 
