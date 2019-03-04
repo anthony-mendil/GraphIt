@@ -55,17 +55,15 @@ import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -91,8 +89,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -2323,33 +2326,27 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private void showUserGuide() {
-        FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/UserGuidePane.fxml"));
-        BorderPane bp;
+        File pdfDest= new File(System.getProperty("user.home")+File.separator+".graphit"+File.separator+"userGuide.pdf");
         try {
-            bp = userGuideLoader.load();
-        } catch (IOException e) {
-            logger.error(e.toString());
-            return;
-        }
-        Stage userGuideStage = new Stage();
-        userGuideStage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
+            if(pdfDest.createNewFile()) {
+                Path src = Paths.get(getClass().getResource("/userGuide.pdf").toURI());
+                Path trgt = Paths.get(pdfDest.toURI());
 
-        userGuideStage.setScene(new Scene(bp));
-        userGuideStage.setTitle("GraphIt Tutorial");
-        UserGuidePaneController ugpc = userGuideLoader.getController();
-        ugpc.initContent();
-
-        KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
-        userGuideStage.getScene().setOnKeyPressed((KeyEvent event) -> {
-            if (esc.match(event)) {
-                userGuideStage.hide();
+                Files.copy(src, trgt, StandardCopyOption.REPLACE_EXISTING);
+            }else{
+                logger.debug("pdf already exists");
             }
-        });
-        userGuideStage.setResizable(false);
-        userGuideStage.centerOnScreen();
-        userGuideStage.show();
+        } catch (IOException | URISyntaxException e) {
+            logger.error(e.toString());
+        }
 
-
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().open(pdfDest);
+            } catch (IOException ex) {
+                logger.error("No default PDF viewing application found");
+            }
+        }
     }
 
     /**
