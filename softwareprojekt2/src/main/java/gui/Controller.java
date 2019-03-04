@@ -1225,6 +1225,7 @@ public class Controller implements ObserverSyndrom {
         templateToFields();
         rulesTemplate();
         treeViewUpdate();
+        mainStage.setTitle("GraphIt - "+syndrom.getGraphName());
     }
 
     /**
@@ -1257,6 +1258,7 @@ public class Controller implements ObserverSyndrom {
         }
         templateToFields();
         treeViewUpdate();
+        mainStage.setTitle("GraphIt - "+syndrom.getGraphName());
     }
 
     /**
@@ -1637,11 +1639,9 @@ public class Controller implements ObserverSyndrom {
 
         DatabaseManager databaseManager = DatabaseManager.getInstance();
 
-
         GraphAction action = databaseManager.databaseEmpty() ? new CreateGraphAction("UntitledGraph", this) : new LoadGraphAction(this);
-
-
         action.action();
+
         canvas.setContent(syndrom.getVv());
         satellite.setContent(syndrom.getVv2());
         zoomSlider.setValue(100);
@@ -2539,6 +2539,7 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.setValue(100);
         templateToFields();
         treeViewUpdate();
+        mainStage.setTitle("GraphIt - "+syndrom.getGraphName());
     }
 
     /**
