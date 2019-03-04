@@ -2292,16 +2292,28 @@ public class Controller implements ObserverSyndrom {
         if (editMode) {
             if (active) {
                 overViewAccordion.getPanes().add(historyTitledPane);
+                resetToggleButtons();
             } else {
                 overViewAccordion.getPanes().remove(historyTitledPane);
             }
         } else {
             if (active) {
                 overViewAccordion.getPanes().add(templateTitledPane);
+                resetToggleButtons();
             } else {
                 overViewAccordion.getPanes().remove(templateTitledPane);
             }
         }
+    }
+
+    /**
+     * Resets all toggle buttons and turns on the hand select button.
+     */
+    private void resetToggleButtons(){
+        handSelector.setSelected(true);
+        anchorPointsButton.setSelected(false);
+        highlight.setSelected(false);
+        fadeout.setSelected(false);
     }
 
     /**
