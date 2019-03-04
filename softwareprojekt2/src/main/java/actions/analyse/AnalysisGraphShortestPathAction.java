@@ -4,7 +4,8 @@ import actions.GraphAction;
 import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.control.HelperFunctions;
-import gui.properties.Language;
+import gui.Values;
+import gui.properties.LoadLanguage;
 import jgrapht.JGraphTHandler;
 import lombok.Getter;
 import org.jgrapht.GraphPath;
@@ -39,7 +40,7 @@ public class AnalysisGraphShortestPathAction extends GraphAction {
         GraphPath<Vertex, Edge> shortestPath = jGraphTHandler.getShortestPath();
         if (shortestPath == null) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("Es sxistiert kein Weg von " + jGraphTHandler.getStartVertex().getAnnotation().get(Language.GERMAN.name()) + " nach " + jGraphTHandler.getEndVertex().getAnnotation().get(Language.GERMAN.name()), true, false);
+            helperFunctions.setActionText(LoadLanguage.getInstance().loadLanguagesKey("J_GRAPH_T_NO_WAY1") + jGraphTHandler.getStartVertex().getAnnotation().get(Values.getInstance().getGraphLanguage().name()) + " " + LoadLanguage.getInstance().loadLanguagesKey("J_GRAPH_T_NO_WAY2") + jGraphTHandler.getEndVertex().getAnnotation().get(Values.getInstance().getGraphLanguage().name()), true, false);
         } else {
             verticesAnalyse.addAll(shortestPath.getVertexList());
             edgesAnalyse.addAll(shortestPath.getEdgeList());
