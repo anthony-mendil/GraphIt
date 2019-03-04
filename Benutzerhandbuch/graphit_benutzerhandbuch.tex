@@ -254,8 +254,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Vorwort}
-Mit diesem Handbuch wird die Bedienung der Software \textbf{GraphIT} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
-Eine Nutzung des Programmes für Zwecke, die von dem angedachten Einsatzbereich abweicht ist möglich. Allerdings wird in diesem Dokument nicht weiter auf eine solche Nutzung eingegangen. Bei dieser Nutzung, die nicht dem angedachten Einsatz entspricht, ist ferner zu berücksichtigen, dass eventuell gewisse Funktionen wünschenswert wären, die aufgrund der Anforderungen jedoch bewusst nicht eingebaut wurden. Insbesondere sind hier die Regeln zu beachten, die für die Erstellung von Wirkungszusammenhängen gemäß des Syndromansatzes gelten. \\
+Mit diesem Handbuch wird die Bedienung der Software \textbf{GraphIt} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
+Eine Nutzung des Programms für Zwecke, die von dem angedachten Einsatzbereich abweicht ist möglich. Allerdings wird in diesem Dokument nicht weiter auf eine solche Nutzung eingegangen. Bei dieser Nutzung, die nicht dem angedachten Einsatz entspricht, ist ferner zu berücksichtigen, dass eventuell gewisse Funktionen wünschenswert wären, die aufgrund der Anforderungen jedoch bewusst nicht eingebaut wurden. Insbesondere sind hier die Regeln zu beachten, die für die Erstellung von Wirkungszusammenhängen gemäß des Syndromansatzes gelten. \\
 Bei der vorliegenden Software handelt es sich um eine Neu-Entwicklung. Somit existieren keinerlei Vorversionen, mit denen der Funktionsumfang oder die Bedienung der Software in diesem Dokument verglichen werden könnte. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -351,9 +351,9 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 39\hdo Ersteller Modus\\
 40\hdo Analyse Modus\\
 41\hdo Undo/ rückgängig machen\\
-42\hdo redo/ wiederholen\\
+42\hdo Redo/ wiederholen\\
 43\hdo gehighlighte Elemente ein-/ausblenden\\
-44\hdo Element highlighten\\
+44\hdo Element hervorheben\\
 45\hdo Element aus dem Highlight entfernen\\
 46\hdo Elemente ein-/ausblenden\\
 47\hdo Element zum Fadeout hinzufügen\\
@@ -385,7 +385,6 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 		\centering
 		\includegraphics[width=22cm]{overview.png}
 		\caption{Übersicht über den Ersteller Modus}
-		\label{fig:label}
 	\end{figure}
 \end{landscape}
 \begin{landscape}
@@ -393,7 +392,6 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 		\centering
 		\includegraphics[width=22cm]{overview.png}
 		\caption{Übersicht über den Analyse Modus}
-		\label{fig:label}
 	\end{figure}
 \end{landscape}
 
@@ -514,7 +512,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\end{enumerate}
 	\hint
 	\begin{itemize}
-		\item Verschiedene Arten (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. \\
+		\item Verschiedene Arten (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. 
+		\item Alle Aktionen bezüglich der Editierung des Graphen können auch auf mehrere Elemente gleichzeitig angewendet werden. \\
 	\end{itemize}
 
 	\subsubsection{Auswahl löschen}
@@ -601,7 +600,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer im \\
 			Bearbeiter-/ Erstellermodus befindet und er somit die Berechtigung hat den Graphen zu editieren.
 			\item Es wird vorausgesetzt, dass die Aktionen nicht durch die Vorlageregeln verhindert werden. D.h. das der Bearbeiter auf alle Elemente des Graphen freien Zugriff hat und alle Eigenschaften veränderbar sind.
-			\item \bbe{Alle Aktionen die im folgenden beschrieben sind und sich auf die Editierung von Graphelementen beziehen sind auch auf eine Auswahl von mehreren Graphelementen ausführbar!}
+			\item \bbe{Alle Aktionen die im folgenden beschrieben sind und sich auf die Editierung von Graphelementen beziehen oder auf die Analysefunktionen sind auch auf eine Auswahl von mehreren Graphelementen ausführbar!}
 		\end{itemize}
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -632,7 +631,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\begin{itemize}
 				\item Es kann nur das Kontextmenü eines Graphelements zur jedem Zeitpunkt geöffnet werden.
 				\item Die Kontextmenüs von Sphären, Symptomen und Relationen unterscheiden sich in ihrem Funktionsumfang.
-				\item \bbe{Das Kontextmenü lässt sich an zwei verschieden Stellen öffen:} Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. In beiden Fallen lässt es sich durch einen Rechts-Klick auf das entsprechende Element öffnen. \\
+				\item \bbe{Das Kontextmenü lässt sich an zwei verschieden Stellen öffnen:} Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. In beiden Fallen lässt es sich durch einen Rechts-Klick auf das entsprechende Element öffnen. \\
 	 	\end{itemize}	 	
 		
 		
@@ -731,7 +730,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Wenn die gewünschte Farbe nicht in dem sich öffnenden Fenster enthalten ist, lässt sich ein weiteres Farbwahl-Fenster durch einen Links-Klick auf \textit{Custom Color} öffnen. Die Bedienung des Color Pickers ist im Kapiel \nameref{colorpicker} beschrieben.\\
+			\item Wenn die gewünschte Farbe nicht in dem sich öffnenden Fenster enthalten ist, lässt sich ein weiteres Farbwahl-Fenster durch einen Links-Klick auf \textit{Custom Color} öffnen. Die Bedienung des Color Pickers ist im Kapitel \nameref{colorpicker} beschrieben.\\
 	\end{itemize}	
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -908,13 +907,13 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\aOne
 		\begin{enumerate}
 			\item Das Symptom, für das die Schriftart/-größe geändert werden soll, mit einem Links-Klick auswählen.
-			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die Schirftart/ -größe von Symptomen angezeigt wird. 
-			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die Schriftart/ -größe von Symptomen angezeigt wird. 
+			\item In dem Drop-Down-Menü die Schriftart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
 		\end{enumerate}
 		\aTwo
 			\begin{enumerate}
-			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die Schirftart/ -größe von Symptomen angezeigt wird. 
-			\item In dem Drop-Down-Menü die Schrifart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
+			\item In der Menüleiste einen Links-Klick auf das Feld klicken, in dem die Schriftart/ -größe von Symptomen angezeigt wird. 
+			\item In dem Drop-Down-Menü die Schriftart/-größe auswählen, die die Beschriftung des Symptoms haben soll.
 			\item Mit einem Rechts-Klick auf das Symptom klicken, dessen Schriftart/-größe geändert werden soll.
 			\item In dem sich öffnenden Kontextmenü die Option \textit{Schriftart}/\textit{Schriftgröße} auswählen.
 		\end{enumerate}
@@ -962,7 +961,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 			\item Ein Symptom kann keine Relation auf sich selber haben.
 			\item Die Ankerpunkte der Relationen (von dem ausgehenden/ eingehenden Symptom) werden automatisch gesetzt und können manuell durch den Benutzer im Nachhinein verändert werden. 
 			\item Die Pfeile von Relationen des gleichen Typs werden dabei in einem bestimmten Bereich zusammengefasst dargestellt. 
-			\item Pfeilspitzen verschiedenen Types sollen sich nicht überlappen.
+			\item Pfeilspitzen verschiedenen Typs sollen sich nicht überlappen.
 		\end{itemize}
 		
 		\begin{figure}[ht!]
@@ -1095,7 +1094,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Graphelemente hervorheben}
+		\subsubsection{Graphelemente zu der Hervorhebung hinzufügen}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. 
 		\actions
@@ -1106,208 +1105,212 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\aTwo
 		\begin{enumerate}
-			\item Im Kontextmenü des Graphelements, das hervorgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klck auswählen.
+			\item Im Kontextmenü des Graphelements, das hervorgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klick auswählen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-					\item Es können lediglich Symptome und Relationen und somit keine Sphären hervorgehoben werden
+					\item Es können lediglich Symptome und Relationen hervorgehoben werden.
 					\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell bereits hervorgehoben ist, passiert nichts.
-					\item Um die Hervorhebung zu aktivieren / sichtbar zu machen den Button \textit{Hervorgehobene Elemente aktivieren} in der Menüleiste anklicken. Durch einen erneuten Klick auf diesen Button wird die Hervorhebung wieder deaktiviert. Dabei kann dieser \textit{Hervorgehobene Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
-					\item Es können mehrere Symptome und Relationen ausgewählt werden, die anschließend durch Klicken des \textit{Elemente hervorheben}-Button hervorgehoben werden, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden.
+					\item Um die Hervorhebung zu aktivieren/ sichtbar zu machen den Button \textit{Hervorgehobene Elemente aktivieren} in der Menüleiste anklicken. Durch einen erneuten Klick auf diesen Button wird die Hervorhebung wieder deaktiviert. Dabei kann dieser \textit{Hervorgehobene Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
+					\item Ist die Hervorhebung durch den \textit{Hervorgehobene Elemente aktivieren}-Button momentan nicht aktiv hat diese Aktion keine visuellen Effekt. 
+					\item Im Kontextmenü wird die Option \textit{Hervorhebung} farblich hervorgehoben, falls das Element schon der \textit{Hervorhebung} hinzugefügt wurde. \\
 		\end{itemize}
-		
-			\newpage
 			
-			subsection{Hervorheben und Ausblenden (symptome und Relationen)}
-			
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Graphelemente zur Hervorhebung hinzufügen}
-				\condition 	
-		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente hervorgehoben und eines noch nicht hervorgehoben.
-		\actions
-		Das Graphelement, das neben den bereits hervorgehobenen Elementen ebenfalls hervorgehoben werden soll, wie im vorangehenden Kapitel beschrieben hervorheben.
-		\hint
-		\begin{itemize}
-					\item Die bereits hervorgehoben Elemente bleiben hervorgehoben.
-		\end{itemize}
-		
-			\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Graphelemente aus der Hervorhebung entfernen}
-			\condition 	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Graphelemente aus der Hervorhebung entfernen}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente hervorgehoben.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-			\item Das Symptom / die Relation, das / die aktuell hervorgehoben ist und deren Hervorhebung aufgehoben werden soll, mit einem Links-Klick auswählen. 
+			\item Das Symptom/ die Relation, welche(s) aktuell hervorgehoben ist und deren Hervorhebung aufgehoben werden soll, mit einem Links-Klick auswählen. 
 			\item In der Menüleiste den Button \textit{Hervorhebung von Elementen entfernen} klicken.
 		\end{enumerate}
-				Alternative 2:
+		\aTwo
 		\begin{enumerate}
-			\item Im Kontextmenü des Graphelements, das aktuell hervorgehoben ist und dessen Hervorhebung aufgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klck auswählen.
+			\item Im Kontextmenü des Graphelements, das aktuell hervorgehoben ist und dessen Hervorhebung aufgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klick auswählen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-				\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell nicht hervorgehoben ist, passiert nichts.
-					\item Es können mehrere Symptome und Relationen ausgewählt werden, die anschließend durch Klicken des \textit{Hervorhebung von Elementen entfernen}-Button hervorgehoben werden, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden, deren Hervorhebung aufgehoben werden soll.
-					\item Die bereits hervorgehoben Elemente, die nicht vor Klicken des \textit{Hervorhebung von Elementen entfernen}-Buttons ausgewählt wurden, bleiben hervorgehoben.
-					\item Im Kontextmenü von hervorgehobenen Elementen wird der Option \textit{Hervorhebung}  ausgegraut angezeit, was verdeutlicht, dass dieses Element aktuell hervorgehoben ist und dass ein erneutes Klicken auf diese Schaltfläche die Hervorhebung aufhebt.
+			\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell nicht hervorgehoben ist, passiert nichts.
+			\item Die bereits hervorgehoben Elemente, die nicht vor Klicken des \textit{Hervorhebung von Elementen entfernen}-Buttons ausgewählt wurden, bleiben hervorgehoben.
+			\item Im Kontextmenü von hervorgehobenen Elementen wird der Option \textit{Hervorhebung}  farblich hervorgehoben angezeigt, was verdeutlicht, dass dieses Element aktuell hervorgehoben ist und dass ein erneutes Klicken auf diese Schaltfläche die Hervorhebung aufhebt. \\
 		\end{itemize}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hervorhebung aktivieren/ deaktivieren}
+\red{TODO}
 
-	\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Graphelemente ausblenden/einblenden}
-				\condition 	
+\begin{figure}[ht!]
+	\centering
+	\subfigure[Hervorhebung]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+	}
+	\subfigure[Hervorhebung(2)]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+	}
+	
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsubsection{Graphelemente ausblenden/einblenden}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet.
-		\actions
+		\action
 			\begin{enumerate}
 				\item In der Menüleiste den Button \textit{Ausgeblendete Elemente aktivieren} mit einem Links-Klick aktivieren.
 			\end{enumerate}
 		\hint
 		\begin{itemize}
-					\item Die als ausgeblendet eingestellten Elemente werden (visuell) ausgeblendet. 
-					\item Ist ein Symptom als ausgeblendet eingestellt und wird der \textit{Ausgeblendete Elemente aktivieren}-Button aktiviert, so werden auch die Relationen, die zu diesem Symptom hinführen und von diesem ausgehen ausgeblendet. Sie werden zusammen mit dem Symptom beim erneuten Klicken dieses Buttons wieder eingeblendet.
-					\item Durch erneutes Klicken des \textit{Ausgeblendete Elemente aktivieren}-Buttons wird die (visuelle) Ausblendung der Elemente aufgehoben. Die Elemente sind aber noch insofern im System gespeichert (und werden nicht aus diesem gelöscht), als dass sie durch erneutes Klicken des \textit{Ausgeblendete Elemente aktivieren}-Buttons wieder (visuell) sichtbar werden.
+				\item Die als ausgeblendet eingestellten Elemente werden (visuell) ausgeblendet. 
+				\item Die ausgeblendeten Elemente sind weiterhin im Graphen enthalten und können jeder Zeit wieder eingeblendet werden. 
+				\item Ist ein Symptom als ausgeblendet eingestellt und wird der \textit{Ausgeblendete Elemente aktivieren}-Button aktiviert, so werden auch die Relationen, die zu diesem Symptom hinführen und von diesem ausgehen ausgeblendet. Sie werden zusammen mit dem Symptom beim erneuten Klicken dieses Buttons wieder eingeblendet.
+				\item Durch erneutes Klicken des \textit{Ausgeblendete Elemente aktivieren}-Buttons wird die (visuelle) Ausblendung der Elemente aufgehoben. \\
 		\end{itemize}
 		
-			\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Graphelemente Fadeout hinzufügen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Graphelemente zum Fadeout hinzufügen}
 	\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet. 
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-			\item Das Symptom / die Relation, das / die ausgeblendet werden soll, mit einem Links-Klick auswählen. 
+			\item Das Symptom / die Relation, welche(s) ausgeblendet werden soll, mit einem Links-Klick auswählen. 
 			\item In der Menüleiste den Button \textit{Elemente ausblenden} klicken.
 		\end{enumerate}
-				Alternative 2:
+		\aTwo
 		\begin{enumerate}
 			\item Im Kontextmenü des Graphelements, das ausgeblendet werden soll, die Option \textit{Sichtbarkeit} mit einem Links-Klick auswählen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-					\item Es können lediglich Symptome und Relationen und somit keine Sphären ausgeblendet werden. 
-					\item Wird ein Symptom ausgeblendet, so auch die Relationen, die zu diesem Symptom führen und von diesem ausgehen ausgeblendet.
+					\item Es können lediglich Symptome und Relationen ausgeblendet werden. 
+					\item Wird ein Symptom ausgeblendet, so auch die Relationen, die zu/von diesem Symptom führen/ ausgehen.
 					\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell bereits als ausgeblendet ist, passiert nichts.
-					\item Um die Ausblendung zu aktivieren / sichtbar zu machen den Button \textit{Ausgeblendete Elemente aktivieren} in der Menüleiste anklicken (siehe vorangegangenes Kapitel). Durch einen erneuten Klick auf diesen Button wird die Ausblendung wieder deaktiviert. Dabei kann dieser \textit{Ausgeblendete Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
-					\item Es können mehrere Symptome und Relationen ausgewählt werden, die anschließend durch Klicken des \textit{Elemente ausblenden}-Button ausgeblendet werden, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden.
+					\item Um die Ausblendung zu aktivieren/ sichtbar zu machen den Button \textit{Ausgeblendete Elemente aktivieren} in der Menüleiste anklicken. Durch einen erneuten Klick auf diesen Button wird die Ausblendung wieder deaktiviert. Dabei kann dieser \textit{Ausgeblendete Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
+					\item Fall ein Graphelement bereits dem Fadeout hinzugefügt wurde, wird die Option \textit{Sichtbarkeit} im Kontextmenü des Elementes farblich hervorgehoben. \\
 		\end{itemize}
 		
-			\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Graphelemente Fadeout entfernen}
-			\condition 	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Graphelemente aus dem Fadeout entfernen}
+		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente als ausgeblendet eingestellt.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-			\item Das Symptom / die Relation, das / die aktuell als ausgeblendet eingestellt ist und dessen / deren Ausblendung aufgehoben werden soll, mit einem Links-Klick auswählen. 
+			\item Das Symptom/ die Relation, welche(s) aktuell als ausgeblendet eingestellt ist und dessen/ deren Ausblendung aufgehoben werden soll, mit einem Links-Klick auswählen. 
 			\item In der Menüleiste den Button \textit{Ausblendung von Elementen entfernen} klicken.
 		\end{enumerate}
-				Alternative 2:
+		\aTwo
 		\begin{enumerate}
-			\item Im Kontextmenü des Graphelements, das aktuell als ausgeblendet eingestellt ist und dessen Ausblendung aufgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klck auswählen.
+			\item Im Kontextmenü des Graphelements, das aktuell als ausgeblendet eingestellt ist und dessen Ausblendung aufgehoben werden soll, die Option \textit{Sichtbarkeit} mit einem Links-Klick auswählen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
 				\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell nicht ausgeblendet ist, passiert nichts.
-					\item Es können mehrere Symptome und Relationen ausgewählt werden, deren Ausblendung anschließend durch Klicken des \textit{Ausblendung von Elementen entfernen}-Buttons aufgehoben wird, indem die \textit{Shift}-Taste gedrückt gehalten wird und die gewünschten Elemente jeweils mit einem Links-Klick ausgewählt werden, deren Ausblendung aufgehoben werden soll.
-					\item Die bereits als ausgeblendet eingestellten Elemente, die nicht vor Klicken des \textit{Ausblendung von Elementen entfernen}-Buttons ausgewählt wurden, bleiben als ausgeblendet eingestellt.
-					\item Im Kontextmenü von als ausgeblendet eingestellten Elementen wird die Option \textit{Sichtbarkeit} in blauer Schrift angezeigt, was verdeutlicht, dass dieses Element aktuell als ausgeblendet eingestellt ist und dass ein erneutes Klicken auf diese Schaltfläche die Ausblendung aufhebt.
+				\item Im Kontextmenü von als ausgeblendet eingestellten Elementen wird die Option \textit{Sichtbarkeit} farblich hervorgehoben, was verdeutlicht, dass dieses Element aktuell als ausgeblendet eingestellt ist und dass ein erneutes Klicken auf diese Schaltfläche die Ausblendung aufhebt.\\
 		\end{itemize}	
 		
-				\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Zoom} \label{zoom}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Zoom} \label{zoom}
 		\subsubsection{Zoom}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item In der Ecke links unten in der Anwendung auf die Prozentzahl-einen Links-Klick ausführen (beim Programmstart steht dort 100\%). 
-				\item In dem sich öffnenden Menü eine der angebotenen Prozentzahlen mit einem Links-Klick auswählen.
+			\item Das Zoom Fenster und der Zoom Slider befinden sich in der rechten unteren Ecke der Benutzeroberfläche.
+			\item Links neben dem Zoom Slider auf die Anzeige der Prozent-Zahl einen Links-Klick ausführen (Bei Programmstart ist der Zoom auf 100\% eingestellt). 
+			\item In dem sich öffnenden Menü eine der angebotenen Prozentzahlen mit einem Links-Klick auswählen.
 		\end{enumerate}
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-			\item In der Ecke links unten in der Anwendung auf den Button \textit{Zoom} mit einem Links-Klick auswählen.
-			\item Den Button gedrückt halten und zum Vergrößern der Darstellung des Syndroms nach rechts und zum Verkleinern in der Leiste nach links bewegen.
+			\item Den Schieber auf den Zoom Slider durch einen Links-Klick auswählen und die Maustaste gedrückt halten. 
+			\item Zum Vergrößern der Darstellung des Syndroms nach rechts und zum Verkleinern in der Leiste nach links schieben.
 			\item Den Button bei Erreichen der gewünschten Größe loslassen.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-				\item Die Anpassung der Größe des weißen Bereichs im Übersichtsbereich über der Zoom-Leiste ist gewollt und lässt sich nicht verändern.
+			\item Der Zoom- Bereich liegt zwischen 20 und 200 \%.
 	 	\end{itemize}		
-		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Zoom.Kontext}
+
+\newpage	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\subsubsection{Zoom Fenster}
 		\condition 	
 		Das Programm ist geöffnet.
-		\actions
+		\action
 		\begin{enumerate}
-				\item Den Cursor in das Übersichtsfenster In der Ecke links unten in der Anwendung bewegen und dort die linke Maustaste drücken.
+				\item Den Cursor in das Zoom Fenster in der Anwendung bewegen und dort die linke Maustaste drücken.
 				\item Die linke Maustaste gedrückt halten und den Cursor innerhalb des Übersichtsfensters verschieben.
 				\item Die linke Maustaste loslassen, sobald im Hauptfenster der gewünschte Bereich angezeigt wird.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-				\item Das weiße Feld innerhalb des Übersichtsfensters stellt den Ausschitt des aktuell im Hauptfenster angezeigten Syndroms dar.
-	 	\end{itemize}			
+				\item Das weiße Feld innerhalb des Zoom Fensters stellt den Ausschnitt des aktuell im Hauptfenster angezeigten Syndroms dar.
+				\item Falls Teile des erstellten Syndroms nicht im Hauptfenster sichtbar sind, kann es sein, dass sich diese nicht in dem aktuell angezeigten Bereich befinden. Durch heraus zoomen werden diese wahrscheinlich wieder angezeigt.  
+	 	\end{itemize}
+ 	
+ 		\begin{figure}[ht!]
+ 			\centering
+ 			\subfigure[Zoom Slider]{
+ 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+ 			}
+ 			\subfigure[Zoom Fenster]{
+ 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+ 			}
+ 			
+ 		\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
 		
-	\subsection{Allgemeine Einstellungen} \label{settings}
+\subsection{Allgemeine Einstellungen} \label{settings}
 	
-		\subsection{Sprache}
-		Das System unterstützt die Sprachen Deutsch und Englisch. Dies betrifft sowohl die Elemente (Button, Tooltips, ...) als auch die Beschriftung von den Elementen des Graphen (Titel von Sphären und Symptomen).
+\subsection{Sprache}
+\textbf{GraphIt} unterstützt die Sprachen Deutsch und Englisch. Dies betrifft sowohl die Elemente auf der Benutzeroberfläche (Buttons, Infotexte etc.) als auch die Beschriftung von den Elementen des Syndroms (Titel von Sphären und Symptomen).\\
 	
-						\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Sprache der Benutzeroberfläche und der Graphelemente}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Sprache der Benutzeroberfläche und der Graphelemente}
 		\condition 	
 		Das Programm ist geöffnet.
-		\actions
+		\action
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Optionen} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Sprache} bewegen.
-				\item Den Cursor auf Höhe dieser Schaltfläche in das Folgemenü bewegen, in dem \textit{Deutsch} / \textit{Englisch} steht.
-				\item Die gewünschte Sprache in diesem Menü mit einem Links-Klick auswählen.
+				\item In der obersten Menüleiste auf \textit{Optionen} klicken. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Sprache} bewegen.
+				\item Den Cursor auf Höhe dieser Schaltfläche in das Folgemenü bewegen, in dem \textit{Deutsch}/ \textit{Englisch} angezeigt wird.
+				\item Die gewünschte Sprache in diesem Menü mit einem Links-Klick auswählen.\\
 		\end{enumerate}
 
-						\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	 		
-	 				\subsubsection{Sprache der Benutzeroberfläche}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	 		
+\subsubsection{Sprache der Benutzeroberfläche}
 		\condition 	
 		Das Programm ist geöffnet.
-		\actions
+		\action
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Optionen} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Erweiterte Spracheinstellungen} bewegen.
-				\item Den Cursor auf Höhe dieser Schaltfläche in das Folgemenü bewegen, in die Optionen \textit{Sprache der Benutzeroberfläche} und \textit{Sprache des Graphen} steht.
-				\item Den Cursor auf Höhe der Schaltfläche \textit{Sprache der Benutzeroberfläche} in das Folgemenü bewegen, in dem \textit{Deutsch} / \textit{Englisch} steht.
-				\item Die gewünschte Sprache in diesem Menü mit einem Links-Klick auswählen.
+				\item In der obersten Menüleiste auf \textit{Optionen} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Erweiterte Spracheinstellungen} bewegen.
+				\item Den Cursor auf Höhe dieser Schaltfläche in das Folgemenü bewegen, in die Optionen \textit{Sprache der Benutzeroberfläche} und \textit{Sprache des Graphen} angezeigt wird.
+				\item Den Cursor auf Höhe der Schaltfläche \textit{Sprache der Benutzeroberfläche} in das Folgemenü bewegen, in dem \textit{Deutsch}/ \textit{Englisch} angezeigt wird.
+				\item Die gewünschte Sprache in diesem Menü mit einem Links-Klick auswählen. \\
 		\end{enumerate}
 	 		
-			\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Sprache der Beschriftung der Graphelement}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Sprache der Beschriftung der Graphelement}
 		\condition 	
 		Das Programm ist geöffnet.
-		\actions
+		\action
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Optionen} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Erweiterte Spracheinstellungen} bewegen.
-				\item Den Cursor auf Höhe dieser Schaltfläche in das Folgemenü bewegen, in die Optionen \textit{Sprache der Benutzeroberfläche} und \textit{Sprache des Graphen} steht.
-				\item Den Cursor auf Höhe der Schaltfläche \textit{Sprache des Graphen} in das Folgemenü bewegen, in dem \textit{Deutsch} / \textit{Englisch} steht.
+				\item In der obersten Menüleiste auf \textit{Optionen} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Erweiterte Spracheinstellungen} bewegen.
+				\item Den Cursor auf Höhe dieser Schaltfläche in das Folgemenü bewegen, in die Optionen \textit{Sprache der Benutzeroberfläche} und \textit{Sprache des Graphen} angezeigt wird.
+				\item Den Cursor auf Höhe der Schaltfläche \textit{Sprache des Graphen} in das Folgemenü bewegen, in dem \textit{Deutsch}/ \textit{Englisch} angezeigt wird.
 				\item Die gewünschte Sprache in diesem Menü mit einem Links-Klick auswählen.
 		\end{enumerate}
 	 	
-		
-				\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Dateiformate für den Export/Import und das Speichern/Öffnen} 
-Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwendung sichern zu können. Diese Daten können zu einem späteren Zeitpunkt wieder in das System geladen werden, in dem die entsprechenden Dateien wieder importiert / geöffnet werden.\\
-In der Benutzung unserer Anwendung sind dabei die folgenden Datei-Formate von Relevanz: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dateiformate für den Export/Import/ und das Speichern/Öffnen} 
+Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwendung sichern zu können. Diese Daten können zu einem späteren Zeitpunkt wieder in \textbf{GraphIt} geladen werden, in dem die entsprechenden Dateien wieder importiert/ geöffnet werden.\\
+In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz: 
 \begin{itemize}
 \item .oof-Format
 \item .gxl-Format
@@ -1316,519 +1319,510 @@ In der Benutzung unserer Anwendung sind dabei die folgenden Datei-Formate von Re
 \end{itemize}
 
 	\subsubsection{OOF}
-	Dieses Datei-Format dient der gemeinsamen Speicherung des Protokolls der Nutzerinteraktionen und einem Syndrom. Diese beiden Informationen werden in diesem Format nicht vermischt. Sie bilden vielmehr einzelne, voneinander getrennte Abschnitte in der entsprechenden Datei mit einer .oof-Kennung. Durch dieses Datei-Format können Graphen an einem Computer erstellt und diese an einem anderen Computer zusammen mit dem Protokoll der Nutzerinteraktionen zur Erstellung dieses Graphen ausgewertet werden.
+	Dieses Datei-Format dient der gemeinsamen Speicherung des Protokolls der Nutzerinteraktionen und eines Syndroms. Somit kann beispielsweise ein Bearbeiter sein erstelltes Syndrom zusammen mit den dabei aufgezeichneten Nutzerinteraktionen exportieren. Diese .oof- Datei kann nun von einem anderen Benutzer (beispielsweise einem Auswerter) importiert werden. .oof ist das Standardformat von \textbf{GraphIt}.
 	
 	\subsubsection{GXL}
-	Dieses Datei-Format (Graph eXchange Language) dient der Speicherung vom Graphen außerhalb unserer Anwendung. Die gespeicherte Datei kann entweder lediglich eine Beschreibung des Graphen als solchen in GXL-Notation beinhalten oder zusätzlich Informationen zu den Vorlage-Regeln speichern. Dies ermöglicht es, einen Graphen zu erstellen und diesen zu einem späteren Zeitpunkt auf dem selben oder auch einem anderen Computer wieder in unser System zu laden. Letzteres ist insbesondere dann von Nutzen, wenn ein Graph mit Regeln für die Bearbeitung erstellt wurde und im Anschluss von anderen Personen gemäß der Regeln der Vorlage bearbeitet werden soll.
+	Dieses Datei-Format (\texttt{G}raph e\texttt{X}change \texttt{L}anguage) dient der Speicherung vom Graphen außerhalb der Anwendung. Die gespeicherte Datei kann entweder lediglich eine Beschreibung des Graphen als solchen in GXL-Notation beinhalten oder zusätzlich Informationen zu den Vorlage-Regeln speichern. Dies ermöglicht es, einen Graphen zu erstellen und diesen zu einem späteren Zeitpunkt auf dem selben oder auch einem anderen Computer wieder in \textbf{GraphIt} zu laden. Letzteres ist insbesondere dann von Nutzen, wenn ein Graph mit Regeln für die Bearbeitung erstellt wurde und im Anschluss von anderen Personen gemäß der Vorlageregeln bearbeitet werden soll.
 	
-	\subsubsection{TXT}
-	Dieses Format dient dazu ein Protokoll der Nutzerinteraktionen zu exportieren. Dies ermöglicht es, den Erstellungsprozess eines Syndroms im Nachhinein analysieren zu können.
+	\subsubsection{Textdatei (TXT)}
+	Dieses Format dient dazu ein Protokoll der Nutzerinteraktionen zu exportieren. Dies ermöglicht es, den Erstellungsprozess eines Syndroms im Nachhinein analysieren zu können. Diese Datei ist nicht wieder von dem System importierbar. 
 	
 	\subsubsection{PDF}
-	Dieses Format dient dazu, die Darstellung eines Syndroms außerhalb der Anwendung sichern zu können. Mit diesem Format kann die ein Syndrom in seiner visualisierten Form auch außerhalb des System (zum Beispiel in einem Webbrowser) betrachtet werden. 
+	Dieses Format dient dazu, die Visualisierung eines Syndroms außerhalb der Anwendung sichern zu können. Mit diesem Format kann die ein Syndrom in seiner visualisierten Form auch außerhalb des System (zum Beispiel in einem Webbrowser) betrachtet werden. 
 	
-
-		\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Neue Datei / Öffnen / Importieren} \label{import}
-	Beim Öffnen und Importieren von Dateien geht es stets darum, Daten in das System zu holen. Diese Daten werden dann in der Anwendung verarbeitet.
+\newpage	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Neue Datei/ Öffnen/ Importieren} \label{import}
 	
-		\subsubsection{Neue Datei}
+\subsubsection{Neue Datei}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken.
 				\item Die Taste gedrückt halten und dabei zusätzlich die \textit{N}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Neue Datei} bewegen und mit einem Links-Klick bestätigen.
+				\item In der obersten Menüleiste auf die Option \textit{Datei} klicken 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Neue Datei} bewegen und mit einem Links-Klick bestätigen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine neue Datei erstellt werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine neue Datei erstellt und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten und kann exportiert / gespeichert werden.
+				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine neue Datei erstellt werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine neue Datei erstellt und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten.
+				\item Wird eine neue Datei erstellt, wird falls ein Syndrom derzeit im System geladen ist, dieses gelöscht und die Daten gehen verloren und können auch nicht wieder hergestellt werden. \\
 		\end{itemize}
 		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Datei öffnen}
+						
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Datei öffnen}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken.
 				\item Die Taste gedrückt halten und dabei zusätzlich die \textit{O}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Datei öffnen} bewegen und mit einem Links-Klick bestätigen.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Datei öffnen} bewegen und mit einem Links-Klick bestätigen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei geöffnet werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei geöffnet und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten und kann exportiert / gespeichert werden.
+				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei geöffnet werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei geöffnet und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten.
+				\item  Wird eine Datei geöffnet, wird falls ein Syndrom derzeit im System geladen ist, dieses gelöscht und die Daten gehen verloren und können auch nicht wieder hergestellt werden. 
+				\item \textit{Datei öffnen} entspricht dem Vorgang eine .oof- Datei zu importieren. \\
 		\end{itemize}
 
-				\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsubsection{Importieren als  Vorlage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Importieren als  Vorlage}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken.
 				\item Die Taste gedrückt halten und dabei zusätzlich die \textit{I}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Importieren als...} bewegen
-				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage} und \textit{GXL} anbietet.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Importieren als...} bewegen.
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage} und \textit{GXL} enthält.
 				\item In diesem Menü die Option \textit{Vorlage} mit einem Links-Klick auswählen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Bei dieser Variante des Imports wird ein Graph mit Bearbeitungsregeln importiert.
-				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei importiert werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei importiert und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten und kann exportiert / gespeichert werden. Nach Klicken auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem die gewünschte Datei ausgewählt werden kann. Diese kann mit einem Links-Klick auf \textit{Öffnen} importiert werden. Auch an dieser Stelle kann der Import noch mit einem Klick auf den \textit{Abbrechen}-Button verhindert werden.
+				\item Bei dieser Variante des Imports wird ein Graph mit den Vorlageregeln importiert.
+				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei importiert werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei importiert und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten.
+				\item  Wird eine Datei geöffnet, wird falls ein Syndrom derzeit im System geladen ist, dieses gelöscht und die Daten gehen verloren und können auch nicht wieder hergestellt werden. \\ 
 		\end{itemize}
 
-					\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsubsection{Importieren als GXL}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
 				\item Zusätzlich die \textit{Shift}-Taste drücken und ebenfalls gedrückt halten.
 				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{I}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Importieren als...} bewegen
-				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage} und \textit{GXL} anbietet.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Importieren als...} bewegen.
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage} und \textit{GXL} enthält.
 				\item In diesem Menü die Option \textit{GXL} mit einem Links-Klick auswählen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Bei dieser Variante des Imports wird ein Graph ohne Bearbeitungsregeln importiert selbst wenn in der importierten Datei Bearbeitungsregeln enthalten sind.
-				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei importiert werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei importiert und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten und kann exportiert / gespeichert werden. Nach Klicken auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem die gewünschte Datei ausgewählt werden kann. Diese kann mit einem Links-Klick auf \textit{Öffnen} importiert werden. Auch an dieser Stelle kann der Import noch mit einem Klick auf den \textit{Abbrechen}-Button verhindert werden.
+				\item Bei dieser Variante des Imports wird ein Graph ohne Bearbeitungsregeln importiert, selbst wenn in der importierten Datei Bearbeitungsregeln gesetzt sind.
+				\item Es erscheint ein Fenster, in dem die Aktion mit einem Links-Klick auf \textit{Weiter} bestätigt werden muss, wenn tatsächliche eine Datei importiert werden soll. Mit einem Klick auf \textit{Abbrechen} wird keine Datei importiert und das aktuell angezeigte Syndrom (sofern vorhanden) bleibt erhalten. \\
 		\end{itemize}
 		
-		\newpage
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Speichern / Exportieren} \label{export}
-	Beim Speichern und Exportieren von Dateien geht es stets darum, Daten aus dem System an dessen Umgebung zu übermitteln. Diese Daten werden dann außerhalb der Anwendung gespeichet und können zu einem späteren Zeitpunkt wieder in das System importiert werden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Speichern/ Exportieren} \label{export}
 
-	\newpage
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Speichern unter}
+\subsubsection{Speichern unter}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken.
 				\item Die Taste gedrückt halten und dabei zusätzlich die \textit{S}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Speichern unter} bewegen und mit einem Links-Klick bestätigen.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Speichern unter} bewegen und mit einem Links-Klick bestätigen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Es erscheint ein Fenster, in dem man durch Navigation durch das Dateisystem den Zielort auswählen kann, an dem die Datei gespeichert werden soll. Mit einem Links-Klick auf \textit{Speichern} kann die Aktion bestätigt werden. Mit einem Klick auf \textit{Abbrechen} wird die Speicherung der Daten als Datei außerhalb der Anwendung nicht durchgeführt.
-				\item Bei den gespeicherten Daten handelt es sich sowohl um das Protokoll der Nutzerinteraktionen als auch um den aktuellen Graphen. Diese Informationen werden gemeinsam im .oof-Format (einem system eigenen Datei-Format) gespeichert.
+				\item Bei den gespeicherten Daten handelt es sich sowohl um das Protokoll der Nutzerinteraktionen als auch um den aktuellen Graphen. Diese Informationen werden gemeinsam im .oof-Format (\textbf{GraphIt}s eigenes Datei-Format) gespeichert.\\
 		\end{itemize}
 		
-				\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Exportieren als Vorlage}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
 				\item Zusätzlich die \textit{E}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
-				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den die Option \textit{Exportieren als...} bewegen.
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} beinhaltet.
 				\item In diesem Menü die Option \textit{Vorlage} mit einem Links-Klick auswählen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Bei dieser Variante des Exports wird ein Graph mit Bearbeitungsregeln exportiert.
-				\item Es erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. In dem Feld neben dem Text \textit{Dateiname:} kann der Name angegeben werden unter dem die Vorlage gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+				\item Bei dieser Variante des Exports wird ein Graph mit den gesetzten Vorlageregeln exportiert. \\
 		\end{itemize}
 		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Exportieren als GXL}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Exportieren als GXL}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
 				\item Zusätzlich die \textit{Shift}-Taste drücken und ebenfalls gedrückt halten.
-				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{E}-Taste der Tastatur drücken
+				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{E}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
-				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Exportieren als...} bewegen.
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} enthält.
 				\item In diesem Menü die Option \textit{GXL} mit einem Links-Klick auswählen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Bei dieser Variante des Exports wird ein Graph ohne Bearbeitungsregeln exportiert (selbst wenn Regeln in der Anwendung eingegeben wurden).
-				\item Es erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. In dem Feld neben dem Text \textit{Dateiname:} kann der Name angegeben werden unter dem der Graph gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+				\item Bei dieser Variante des Exports wird ein Graph ohne gesetzte Vorlageregeln exportiert (selbst wenn Regeln in der Anwendung eingegeben wurden). \\
 		\end{itemize}
 		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Exportieren als PDF}
-				\condition 	
+		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
 				\item Zusätzlich die \textit{Shift}-Taste drücken und ebenfalls gedrückt halten.
-				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{P}-Taste der Tastatur drücken
+				\item Die beiden Tasten gedrückt halten und dabei zusätzlich die \textit{P}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
-				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Exportieren als...} bewegen.
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} enthält.
 				\item In diesem Menü die Option \textit{PDF} mit einem Links-Klick auswählen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
 				\item Bei dieser Variante des Exports wird die visuelle Darstellung eines Syndroms exportiert.
-				\item Es erscheint ein Fenster, das darauf hinweist, dass nur der sichtbare Bereih des Syndroms als PDF exportiert wird. Durch Klicken auf \textit{Abbrechen} kann der Export-Vorgang abgebrochen werden. Klickt man auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. 
-				\item In diesem Fenster den gewünschten Speicherort auswählen. In dem Feld neben dem Text \textit{Dateiname:} kann in diesem Fenster der Name angegeben werden unter dem eine PDF des Graphen gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+				\item Es erscheint ein Fenster, das darauf hinweist, dass nur der sichtbare Bereich des Syndroms als PDF exportiert wird. Durch Klicken auf \textit{Abbrechen} kann der Export-Vorgang abgebrochen werden. Klickt man auf \textit{Weiter} erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. \\
 		\end{itemize}
 		
-							\newpage
-					%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\subsubsection{Exportieren des Nutzerprotokolls}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Exportieren des Verlaufsprotokolls}
 		\condition 	
 		Das Programm ist geöffnet.
 		\actions
-		Alternative 1:
+		\aOne
 		\begin{enumerate}
-				\item Die \textit{Strg}- / \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
-				\item Zusätzlich die \textit{L}-Taste der Tastatur drücken
+				\item Die \textit{Ctrl}-Taste der Tastatur drücken und gedrückt halten.
+				\item Zusätzlich die \textit{L}-Taste der Tastatur drücken.
 		\end{enumerate}				
-		Alternative 2:
+		\aTwo
 		\begin{enumerate}
-				\item In der Menüleiste ganz oben in der Anwendung auf \textit{Datei} klicken 
-				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf den Punkt \textit{Exportieren als...} bewegen
-				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} anbietet.
+				\item In der obersten Menüleiste die Option \textit{Datei} auswählen. 
+				\item In dem sich öffnenden Drop-Down-Menü den Cursor auf die Option \textit{Exportieren als...} bewegen.
+				\item Auf der Höhe dieser Schaltfläche den Cursor in das sich öffnende Menü bewegen, das die Optionen \textit{Vorlage}, \textit{GXL}, \textit{PDF} und \textit{Verlaufsprotokoll} enthält.
 				\item In diesem Menü die Option \textit{Verlaufsprotokoll} mit einem Links-Klick auswählen.
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Bei dieser Variante des Exports wird ein Protokoll der Nutzerinteraktionen exportiert.
-				\item Es erscheint ein Fenster, in dem durch Navigation durch das Dateisystem der gewünschte Speicherort ausgewählt werden kann. In dem Feld neben dem Text \textit{Dateiname:} kann der Name angegeben werden unter dem der Graph gespeichert werden soll. Diese Speicherungsaktion kann mit einem Links-Klick auf \textit{Speichern} abgeschlossen werden. Mit einem Klick auf den \textit{Abbrechen}-Button wird die Speicherung verhindert.
+				\item Bei dieser Variante des Exports wird ein Protokoll der Nutzerinteraktionen in lesbarer Form exportiert. \\
 		\end{itemize}
 
-
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Drucken} \label{print}
-\condition 
-Das Programm ist geöffnet.
-\actions
-Alternative 1:
-\begin{enumerate}
-\item Einen Links-Klick onem links in der Menüleiste uf \textit{Datei} aufführen.
-\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Drucken} mit einem Links-Klick auswählen.
-\item Es erscheint ein Fenster, das darauf hinweißt, dass nur der aktuell angezeigte Teil des Syndroms gedruckt wird. In diesem Fenster auf den \textit{Weiter}-Button einen Links-Klick machen, um zum finalen Druckfenster zu gelangen. Auf den \textit{Abbrechen}-Button einen Links-Klick ausführen, wen die Aktion abgebrochen werden soll, da kein Bedarf besteht, einen Druck des aktuell angezeigten Syndroms (oder des Ausschnitt des Syndroms) zu erstellen.
-\item Wenn auf \textit{Weiter} geklickt wurde, erscheint das Fenster, in dem die Druckeinstellungen (wie zum Beispiel der gewünschte Drucker, die Anzahl an Kopien, ...) angepasst werden können. In diesem Fenster kann der Druckauftrag mit einem Links-Klick auf den \textit{OK}-Button abgeschickt oder die Aktion mit einem Links-Klick auf den \textit{Abbrechen}-Button aufgehoben werden.
-\end{enumerate} 
-Alternative 2:
-\begin{enumerate}
-\item Die \textit{Shift}-Taste drücken und gedrückt halten.
-\item Zusätzlich zur \textit{Shift}-Taste die \textit{P}-Taste betätigen.
-\item Die \textit{Shift}-Taste loslassen.
-\item Es erscheint ein Fenster, das darauf hinweißt, dass nur der aktuell angezeigte Teil des Syndroms gedruckt wird. In diesem Fenster auf den \textit{Weiter}-Button einen Links-Klick machen, um zum finalen Druckfenster zu gelangen. Auf den \textit{Abbrechen}-Button einen Links-Klick ausführen, wen die Aktion abgebrochen werden soll, da kein Bedarf besteht, einen Druck des aktuell angezeigten Syndroms (oder des Ausschnitt des Syndroms) zu erstellen.
-\item Wenn auf \textit{Weiter} geklickt wurde, erscheint das Fenster, in dem die Druckeinstellungen (wie zum Beispiel der gewünschte Drucker, die Anzahl an Kopien, ...) angepasst werden können. In diesem Fenster kann der Druckauftrag mit einem Links-Klick auf den \textit{OK}-Button abgeschickt oder die Aktion mit einem Links-Klick auf den \textit{Abbrechen}-Button aufgehoben werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Es wird nur der Bereich des Syndroms gedruckt, der gerade auch zu sehen ist (siehe Übersichtsfenster unten links in der Anwendung).
-\end{itemize}
-\newpage
+	\condition 
+	Das Programm ist geöffnet.
+	\actions
+	\aOne
+	\begin{enumerate}
+		\item Einen Links-Klick in der obersten Menüleiste auf die Option \textit{Datei} aufführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Drucken} mit einem Links-Klick auswählen.
+		\item Es erscheint ein Fenster, das darauf hinweist, dass nur der aktuell angezeigte/ sichtbare Teil des Syndroms gedruckt wird. In diesem Fenster auf den \textit{Weiter}-Button einen Links-Klick machen, um zum finalen Druckfenster zu gelangen. Auf den \textit{Abbrechen}-Button einen Links-Klick ausführen, wenn die Aktion abgebrochen werden soll.
+		\item Wenn auf \textit{Weiter} geklickt wurde, erscheint das Fenster, in dem die Druckeinstellungen angepasst werden können. In diesem Fenster kann der Druckauftrag mit einem Links-Klick auf den \textit{OK}-Button abgeschickt oder die Aktion mit einem Links-Klick auf den \textit{Abbrechen}-Button aufgehoben werden.
+	\end{enumerate} 
+	\aTwo
+	\begin{enumerate}
+		\item Die \textit{Ctrl}-Taste drücken und gedrückt halten.
+		\item Zusätzlich zur \textit{Ctrl}-Taste die \textit{P}-Taste betätigen.
+		\item Es erscheint ein Fenster, das darauf hinweist, dass nur der aktuell angezeigte Teil des Syndroms gedruckt wird. In diesem Fenster auf den \textit{Weiter}-Button einen Links-Klick machen, um zum finalen Druckfenster zu gelangen. Auf den \textit{Abbrechen}-Button einen Links-Klick ausführen, wen die Aktion abgebrochen werden soll.
+		\item Wenn auf \textit{Weiter} geklickt wurde, erscheint das Fenster, in dem die Druckeinstellungen angepasst werden können. In diesem Fenster kann der Druckauftrag mit einem Links-Klick auf den \textit{OK}-Button abgeschickt oder die Aktion mit einem Links-Klick auf den \textit{Abbrechen}-Button aufgehoben werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Es wird nur der Bereich des Syndroms gedruckt, der gerade auch im Hauptfenster sichtbar ist.
+		\item Die Druckeinstellungen erscheinen womöglich im Hintergrund, d.h. durch Bewegen der Maus auf das Icon von \textbf{GraphIt} in der Symbolleiste, kann durch Auswählen des dort erscheinenden Druckfensters dieses in den Vordergrund geholt werden. \\
+	\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analysefunktionen} \label{analyse}
-Die Analysefunktionen, die in diesem Kapitel beschrieben werden. beziehen sich ausschließlich auf den Graphen. Es geht in diesem Kapiel insofern nicht etwa um das Nutzerprotokoll und statistische Auswertungen zu Aktionen, die zum Beispiel sehr häufig aufgerufen werden. Vielmehr soll mit den Analysen die Struktur eines Graphen ausgewertet / untersucht werden. Die nachfolgenden Unterkapitel beschrieben somit die Aktionen, die für die Nutzergruppe der Auswerter relevant sind. Dementsprechend wird bei den in diesem Kapitel aufgeführten Aktionen davon ausgegangen, dass der aktuelle Modus der Analyse-Modus ist. Auf diese Annahme wird implizit erwartet, wird allerdings nicht mehr in den Vorbedingungen der Aktion aufgeführt. 
+Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich ausschließlich auf das Syndrom. Mit Hilfe dieser Funktion soll die Struktur eines Syndrom ausgewertet/ untersucht werden können. Die Analysefunktionen stehen nur im Analysemodus zur Verfügung. Im Folgenden wird davon ausgegangen, dass sich der Benutzer im Analysemodus befindet.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Graphmaße} 
-\condition 
-Das Programm ist geöffnet und ein Syndrom wird angezeigt.
-\actions
-\begin{enumerate}
-\item Graphmaße (Umfang, Vernetzungsindex und Strukturindex) werden in der Leiste oben links angezeigt und können dort abgelesen werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Diese Maße beziehen sich auf das gesamte Syndrom. Es ist dabei unabhängig, welche Graphelemente aktuell ausgewählt sind.
-\end{itemize}
+\begin{figure}[ht!]
+	\centering
+	\subfigure[Analyse Optionen]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+	}
+\end{figure}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Graphmaße} 
+	\condition 
+	Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+	\action
+	\begin{enumerate}
+		\item Graphmaße (Umfang, Vernetzungsindex und Strukturindex) werden in der Leiste oben links angezeigt und können dort abgelesen werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Diese Maße beziehen sich auf das gesamte Syndrom. Es ist dabei unabhängig, welche Graphelemente aktuell ausgewählt sind.
+		\item Die Graphmaße werden automatisch beim Öffnen des Analysemodus berechnet. \\
+	\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorgänger/ Nachfolger von Symptom(en) hervorheben}
-\condition 
-Das Programm ist geöffnet und ein Syndrom wird angezeigt.
-\actions
-\begin{enumerate}
-\item Das Symptom, zu dem man die Vorgänger und/oder Nachfolger angezeigt bekommen möchte, mit einem Links-Klick auswählen.
-\item Wenn die Vorgänger und/oder Nachfolger zu mehreren Symptomen angezeigt werden sollen, dann als nächstes die \textit{Shift}-Taste drücken und die gewünschten Symptome mit einem Links-Klick auswählen, während die \textit{Shift}-Taste gedrückt gehalten wird.
-\item In der Menüleiste nun in dem Feld im Bereich Symptome die Anzahl eingeben, bis zum wie vielten Vorgänger / Nachfolger im Graphen gesucht werden soll. Die Eingabe mit der \textit{Enter}-Taste bestätigen.
-\item Nun einen Links-Klick in die Box \textit{Vorgänger des Symptoms anzeigen}und/oder in die Box \textit{Nachfolger des Symptoms anzeigen} ausführen, sodass ein Haken in dieser Box erscheint.
-\item Durch einen erneuten Links-Klick in eine Box mit einem Haken kann diese aus dem ausgewählten wieder in einen unausgewählten Zustand versetzt werden. Durch Eingabe einer anderen Zahl in dem Feld neben den Boxen und anschließender Bestätigung der Eingabe mit der \textit{Enter}-Taste kann die Anzahl an Vorgängern / Nachfolgern angepasst werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Sollen nur die Vorgänger und/oder Nachfolger zu einem Symptom angezeigt werden, so kann dieses Symptom alternativ zur Auswahl im Hauptfenster auch in der Übersichtsleiste ausgewählt werden.
-\item Die Vorgänger und Nachfolger sowie das ausgewählte Symptom / die ausgewählten Symptome werden gelb dargestellt, während die übrigen Symptome grau visualisiert werden.
-\end{itemize}
+	\condition 
+		Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+	\action
+	\begin{enumerate}
+		\item Das Symptom, zu dem die Vorgänger und/oder Nachfolger angezeigt werden sollen, mit einem Links-Klick auswählen.
+		\item Die entsprechenden Checkboxen Vorgänger und/ oder Nachfolger aktivieren und die Anzahl wie viele Vorgänger / Nachfolger im Graphen angezeigt werden soll. Die Eingabe mit der \textit{Enter}-Taste bestätigen.
+		\item Durch einen erneuten Links-Klick in eine Checkbox kann diese wieder abgewählt werden. Durch Eingabe einer anderen Zahl in dem Feld neben den Boxen und anschließender Bestätigung der Eingabe mit der \textit{Enter}-Taste kann die Anzahl an Vorgängern / Nachfolgern angepasst werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Die Vorgänger und Nachfolger sowie das ausgewählte Symptom/ die ausgewählten Symptome werden farblich hervorgehoben dargestellt, während die übrigen Symptome grau visualisiert werden. \\
+	\end{itemize}
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Kürzester Pfad zw. Symptomen}
-\condition 
-Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist enthalten.
-\actions
-\begin{enumerate}
-\item Das Symptom, das als Startknoten gelten soll, mit einem Links-Klick auswählen.
-\item Die \textit{Shift}-Taste der drücken und gedrückt halten.
-\textit Das Symptom, das als Zielknoten gelten soll, mit einem Links-Klick auswählen.
-\item Die \textit{Shift}-Taste loslassen.
-\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
-?item In dem sich öffnenden Drop-Down-Menü die Option \textit{Kürzester Weg} durch einem Links-Klick auswählen.
-\item In der oberen Leiste im Bereich Symptome einen Links-Klick in die Box links neben dem Button \textit{Die Wege zwischen zwei Symptomen anzeigen} ausführen, sodass ein Haken in diesem Feld erscheint.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig.
-\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf dem kürzesten Weg zwischen dem Start- und dem Ziel-Symptom liegen werden geld angezeigt ebenso die Relationen, die den kürzesten Weg bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
-\end{itemize}
-\newpage
+	\condition 
+		Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist geöffnet.
+	\action
+	\begin{enumerate}
+		\item Das Symptom, welches als Startknoten gelten soll, mit einem Links-Klick auswählen.
+		\item Die \textit{Shift}-Taste der Tastatur drücken und gedrückt halten.
+		\textit Das Symptom, welches als Zielknoten gelten soll, mit einem Links-Klick auswählen.
+		\item Die \textit{Shift}-Taste loslassen.
+		\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Kürzester Weg} durch einem Links-Klick auswählen.
+		\item In der oberen Leiste im Bereich Symptome einen Links-Klick in die Checkbox links neben dem Button \textit{Die Wege zwischen zwei Symptomen anzeigen} ausführen, sodass ein Haken in diesem Feld gesetzt ist.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig, da die Relationen gerichtet verlaufen. 
+		\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf dem kürzesten Weg zwischen dem Start- und dem Ziel-Symptom liegen werden farblich hervorgehoben ebenso die Relationen, die den kürzesten Weg bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
+	\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Alle Pfade zw. Symptomen}
-\condition 
-Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist enthalten.
-\actions
-\begin{enumerate}
-\item Das Symptom, das als Startknoten gelten soll, mit einem Links-Klick auswählen.
-\item Die \textit{Shift}-Taste der drücken und gedrückt halten.
-\textit Das Symptom, das als Zielknoten gelten soll, mit einem Links-Klick auswählen.
-\item Die \textit{Shift}-Taste loslassen.
-\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
-?item In dem sich öffnenden Drop-Down-Menü die Option \textit{Alle Wege} durch einem Links-Klick auswählen.
-\item In der oberen Leiste im Bereich Symptome einen Links-Klick in die Box links neben dem Button \textit{Die Wege zwischen zwei Symptomen anzeigen} ausführen, sodass ein Haken in diesem Feld erscheint.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig.
-\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf dem kürzesten Weg zwischen dem Start- und dem Ziel-Symptom liegen werden geld angezeigt ebenso die Relationen, die den kürzesten Weg bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
-\end{itemize}
-\newpage
+	\condition 
+		Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist geöffnet.
+	\action
+	\begin{enumerate}
+		\item Das Symptom, welches als Startknoten gelten soll, mit einem Links-Klick auswählen.
+		\item Die \textit{Shift}-Taste der Tastatur drücken und gedrückt halten.
+		\textit Das Symptom, welches als Zielknoten gelten soll, mit einem Links-Klick auswählen.
+		\item Die \textit{Shift}-Taste loslassen.
+		\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Alle Wege} durch einem Links-Klick auswählen.
+		\item In der oberen Leiste im Bereich Symptome einen Links-Klick in die Checkbox links neben dem Button \textit{Die Wege zwischen zwei Symptomen anzeigen} ausführen, sodass ein Haken in diesem Feld gesetzt ist.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig, da die Relationen gerichtet verlaufen. 
+		\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf einem Weg zwischen dem Start- und dem Ziel-Symptom liegen werden farblich hervorgehoben, ebenso die Relationen, die diese Wege bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.\\
+	\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Pfeilketten}
-\condition 
-Das Programm ist geöffnet und ein Syndrom wird angezeigt.
-\actions
-\begin{enumerate}
-\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
-\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Pfeilketten} mit einem Links-Klick auswählen. 
-\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
-\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Der Symptome und Relationen, die Teil eines Zyklus sind, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
-\end{itemize}
+	\condition 
+		Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+	\action
+	\begin{enumerate}
+		\item In der oberen Leiste im Bereich Analyse-Optionen die Checkbox \textit{Analyse-Optionen aktivieren} durch einen Links-Klick aktivieren, sodass ein Haken gesetzt ist und auf die Liste daneben drücken.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Pfeilketten} mit einem Links-Klick auswählen. 
+		\item Durch einen erneuten Links-Klick in die Checkbox kann die Auswahl der Option deaktiviert werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Der Symptome und Relationen, die Teil eines Zyklus sind, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.\\
+	\end{itemize}
 
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Konvergente Verzweigungen}
-\condition 
-Das Programm ist geöffnet und ein Syndrom wird angezeigt.
-\actions
-\begin{enumerate}
-\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
-\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Konvergente Verzweigungen} mit einem Links-Klick auswählen. 
-\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
-\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Der Symptome und Relationen, die konvergente Verzweigungen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
-\end{itemize}
+	\condition 
+	Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+	\action
+	\begin{enumerate}
+		\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Konvergente Verzweigungen} mit einem Links-Klick auswählen. 
+		\item Sofern noch kein Haken in der Checkbox links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken gesetzt ist.
+		\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Der Symptome und Relationen, die konvergente Verzweigungen darstellen, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
+	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Divergente Verzweigungen}
-\condition 
-Das Programm ist geöffnet und ein Syndrom wird angezeigt.
-\actions
-\begin{enumerate}
-\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
-\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Divergente Verzweigungen} mit einem Links-Klick auswählen. 
-\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
-\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Der Symptome und Relationen, die divergente Verzweigungen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
-\end{itemize}
-
+	\condition 
+	Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+	\action
+	\begin{enumerate}
+		\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Divergente Verzweigungen} mit einem Links-Klick auswählen. 
+		\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+		\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Der Symptome und Relationen, die divergente Verzweigungen darstellen, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
+	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Alle Verzweigungen}
-\condition 
-Das Programm ist geöffnet und ein Syndrom wird angezeigt.
-\actions
-\begin{enumerate}
-\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
-\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Verzweigungen} mit einem Links-Klick auswählen. 
-\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
-\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Der Symptome und Relationen, die konvergente oder divergente Verzweigungen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
-\end{itemize}
+	\condition 
+	Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+	\action
+	\begin{enumerate}
+		\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Verzweigungen} mit einem Links-Klick auswählen. 
+		\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+		\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Der Symptome und Relationen, die konvergente oder divergente Verzweigungen darstellen, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
+	\end{itemize}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Zyklen}
-\condition 
-Das Programm ist geöffnet und ein Syndrom wird angezeigt.
-\actions
-\begin{enumerate}
-\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
-\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Zyklen} mit einem Links-Klick auswählen. 
-\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
-\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Der Symptome und Relationen, die Zyklen darstellen, werden gelb dargestellt. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.
-\end{itemize}
-\newpage
+	\condition 
+	Das Programm ist geöffnet und ein Syndrom wird angezeigt.
+	\action
+	\begin{enumerate}
+		\item In der oberen Leiste im Bereich Analyse-Optionen in as Feld \textit{Analyse-Optionen aktivieren} einen Links-Klick ausführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Zyklen} mit einem Links-Klick auswählen. 
+		\item Sofern noch kein Haken in der Box links neben diesem Feld ist, einen Links-Klick in diese Box ausführen, sodass ein Haken erscheint.
+		\item Durch einen erneuten Links-Klick in dieses Feld kann die Auswahl der Option deaktiviert werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Der Symptome und Relationen, die Zyklen darstellen, werden  farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
+	\end{itemize}
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Alle Relationen eines Typs hervorheben} 
-Ich weiß nicht wie das geht :/ Oder ist damit gemeint die anderen beiden Relationstypen auszublenden?
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Verlauf der Nutzerinteraktionen} \label{logs}
-In diesem Abschnitt geht es um das Protokoll der Nutzerinteraktionen. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Es kann allerdings auch nach verschiedenen Aktionen gefiltert werden. Dies erleichtert in erster Linie eine quantitative Auswertung wie oft die entsprechende Aktion ausgeführt wurde, da man die Aktion nicht aus der Liste aller Aktionen heraussuchen muss.
+Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Die Nutzerinteraktionen können allerdings auch nach verschiedenen Aktionen gefiltert werden. Diese Funktionalität stellt nur der Analysemodus zur Verfügung. Deswegen wird im Folgenden davon ausgegangen, dass der Benutzer diesen in der Anwendung geöffnet hat.  \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Anzeigen}
-\condition 
-Das Programm ist geöffnet.
-\actions
-\begin{enumerate}
-\item Einen Linksklick auf \textit{Verlauf} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
-\item Einen Links-Klick auf das Syndronisationssymbol machen.
-\item Die Nutzerinteraktionen können in dieser Leiste gelesen werden. 
-\item Durch einen erneuten Links-Klick auf \textit{Verlauf} klappt sich die Leiste wieder ein.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Die Liste von Nutzeraktionen wird in der Lesite angezeigt. Dabei steht die zuerst durchgeführte Aktion ganz oben und die zuletzt durchgeführte Aktion ganz unten in der Liste der Aktionen. 
-\item Die Stellen in der Liste, an denen sich Pfeile befinden können mit einem Links-Klick eingeklappt werden, um die Übersichtlichkeit zu erhöhen, oder ausgeklappt werden, wenn zusätzliche Informationen angezeigt werden sollen.
-\end{itemize}
+	\condition 
+		Das Programm ist geöffnet.
+	\action
+	\begin{enumerate}
+		\item Einen Links- Klick auf \textit{Verlauf} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+		\item Einen Links-Klick auf das Synchronisations- Symbol ausführen.
+		\item Die Nutzerinteraktionen können in dieser Leiste gelesen werden. 
+		\item Durch einen erneuten Links-Klick auf \textit{Verlauf} klappt sich die Leiste wieder ein.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Die Liste von Nutzeraktionen wird in der Leiste angezeigt. Dabei steht die zuerst durchgeführte Aktion ganz oben und die zuletzt durchgeführte Aktion ganz unten in der Liste.
+		\item Die Stellen in der Liste, an denen sich Pfeile befinden können mit einem Links-Klick ein-/ ausgeklappt werden, um die Übersichtlichkeit zu erhöhen oder erweiternde Informationen angezeigt zu bekommen. 
+	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Filtern}
-\condition 
-Das Programm ist geöffnet.
-\actions
-\begin{enumerate}
-\item Einen Linksklick auf \textit{Verlauf} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
-\item Einen Links-Klick auf das Syndronisationssymbol machen.
-\item Einen Links-Klick auf das Feld neben dem Syndronisationssymbol ausführen.
-\item In dem sich öffnenden Drop-Down-Menü die Option wählen, nach der die Liste aller Nutzerinteraktionen gefiltert werden soll.
-\item Die gefilterten Nutzerinteraktionen können nun gelesen werden. 
-\item Durch einen erneuten Links-Klick auf \textit{Verlauf} klappt sich die Leiste wieder ein.
-\end{enumerate} 
-\hint 
-\begin{itemize}
-\item Die (gefilterte) Liste von Nutzeraktionen wird in der Lesite angezeigt. Dabei steht die zuerst durchgeführte Aktion ganz oben und die zuletzt durchgeführte Aktion ganz unten in der Liste der Aktionen.
-\item Die Stellen in der Liste, an denen sich Pfeile befinden können mit einem Links-Klick eingeklappt werden, um die Übersichtlichkeit zu erhöhen, oder ausgeklappt werden, wenn zusätzliche Informationen angezeigt werden sollen.
-\end{itemize}
+	\condition 
+	Das Programm ist geöffnet.
+	\action
+	\begin{enumerate}
+		\item Einen Links- Klick auf \textit{Verlauf} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+		\item Einen Links- Klick auf das Synchronisations- Symbol ausführen.
+		\item Einen Links- Klick auf das Feld neben dem Synchronisations- Symbol ausführen.
+		\item In dem sich öffnenden Drop-Down-Menü die Option wählen, nach der die Liste aller Nutzerinteraktionen gefiltert werden soll.
+		\item Die gefilterten Nutzerinteraktionen können nun gelesen werden. 
+		\item Durch einen erneuten Links-Klick auf \textit{Verlauf} klappt sich die Leiste wieder ein.
+	\end{enumerate} 
+	\hint 
+	\begin{itemize}
+		\item Die (gefilterte) Liste von Nutzeraktionen wird in der Leiste angezeigt. Dabei steht die zuerst durchgeführte Aktion ganz oben und die zuletzt durchgeführte Aktion ganz unten in der Liste.
+		\item Die Stellen in der Liste, an denen sich Pfeile befinden können mit einem Links-Klick eingeklappt werden, um die Übersichtlichkeit zu erhöhen, oder ausgeklappt werden, wenn zusätzliche Informationen angezeigt werden sollen.
+	\end{itemize}
 
+	\begin{figure}[ht!]
+		\centering
+		\subfigure[Verlauf]{
+			\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+		}
+	\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 		
+\subsection{Vorlage} \label{template}
+\red{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsubsection{Element spezifische Vorlageregeln}
+\red{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsubsection{Graph spezifische Vorlageregeln}
+\red{TODO}
 		
-	
-	\subsection{Vorlage} \label{template}
-		\subsubsection{Element spezifische Vorlagereglen}
-		\subsubsection{Graph spezifische Vorlagereglen}
-		\subsubsection{Vorlage erstellen}
-		\subsubsection{Vorlage verwenden}
-			 Es ist nicht möglich, ein Symptom zu löschen, wenn der Titel und/oder die Position und/oder der Style dieses Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird das Symptom nicht gelöscht und es erscheint eine Fehlermeldung.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsubsection{Vorlage erstellen}
+\red{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsubsection{Vorlage verwenden}
+\red{TODO}
 			 
-			 Es ist nicht möglich, ein Symptom zu verschieben, wenn die Position des Symptoms in den Vorlage-Regeln gelockt wurde oder die aktuelle Anzahl an Symptomen in der Sphäre, in der das Symptom (neu) platziert werden soll, bereits der maximalen Anzahl an Symptomen entspricht, die im Erstellermodus in den Vorlage-Regeln für diese Sphäre eingestellt wurde. Wird dies versucht, wird das Symtom nicht verschoben und es erscheint eine Fehlermeldung.
-			 
-			  Es ist nicht möglich, ein Symptom zu vergrößern/ verkleinern, wenn die Größe des Symptoms in den Vorlage-Regeln im Erstellermodus gelockt wurde. Wird dies versucht, wird die Größe des Symptoms nicht geändert und es erscheint eine Fehlermeldung.
-			  
-			  Es ist nicht möglich die Farbe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Sphäre nicht gelöscht und es erscheint eine Fehlermeldung.
-			  
-			  Es ist nicht möglich die Schriftart/-größe eines Symptoms zu ändern, wenn der Style dieses Symptoms im Erstellermodus in den Vorlage-Regeln gelocked wurde. Wird dies versucht, wird die Schriftart/-größe nicht geändert und es erscheint eine Fehlermeldung.
-		\subsubsection{Vorlage exportieren}
-	\subsection{Dialogfenster} \label{dialog}
-		\subsubsection{Color Picker} \label{colorpicker}
-	\newpage
-	\section{Fehlermeldungen} \label{fehlermeldungen}
-	
-	%die verschiedenen Fehlermeldungen, die der Nutzer bekommen kann erklären als subsec
-	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Warnhinweise} \label{sec:warnhinweise}
-	
-	
-	
-	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{FAQ}
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsection{Dialogfenster} \label{dialog}
+\red{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsubsection{Color Picker} \label{colorpicker}
+\red{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsubsection{File Chooser} 
+\red{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\section{Fehlermeldungen} \label{fehlermeldungen}
+\red{TODO - ich glaub hier reicht nen Screenshot von ner Fehlermeldung und eine kurze Beschreibung, wann diese auftreten können}	
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anhang} \label{sec:anhang}	
-	\subsection{Glossar}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsection{Glossar}
+\red{TODO}
 	
-	\begin{description}
-		\item[Syndromansatz] Graph bla bla
-	\end{description}
-	
-	\subsection{Abbildungsverzeichnis}
-	\listoffigures
+\begin{description}
+	\item[Syndromansatz] Graph bla bla
+\end{description}
 	
 
 \newpage
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \end{document}
 
 
