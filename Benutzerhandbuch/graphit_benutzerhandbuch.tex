@@ -1772,24 +1772,95 @@ Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Di
 	\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 		
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Vorlage} \label{template}
-\red{TODO}
+Eine Vorlage kann als ein spezielles Syndrom angesehen werden. Neben dem eigentlichen Syndrom (also einer Menge an Sphären, Knoten und Kanten) enthält eine Vorlage zusätzliche Informationen. Diese Informationen legen fest, in wie weit ein das enthaltene Syndrom bearbeitet werden kann. Dies beinhaltet sowohl Regeln, wie viele Sphären, Symptome und Kanten hinzugefügt werden können, als auch Festlegungen zu jedem einzelnen aktuell im Syndrom enthaltenen Graphelement. Letztere Regelungen, die die einzelnen schon vorhandenen Graphelemente betreffen unterscheiden sich. Die Regeln für Sphären unterscheiden sich von den Regeln der Symptome und diese sind wiederum anders als die Regeln von Relationen. \\ Es können folgende Regeln eingestellt werden, die sich anschließend auf die Bearbeitung des Syndroms auswirken:
+\begin{itemize}
+\item Regeln für das gesamte Syndrom:
+\begin{enumerate}
+\item die maximale Anzahl an Sphären im Syndrom
+\item die maximale Anzahl an Symptomen im Syndrom 
+\item die maximale Anzahl an Relationen im Syndrom
+\item die im Syndrom erlaubten Relationstypen
+\end{enumerate}
+\item Regeln für einzelne Sphären (folgende Eigenschaften der gewählten Sphäre können gesperrt werden, sodass diese nicht mehr verändert werden können):
+\begin{enumerate}
+\item der Titel der Sphäre (beinhaltet den Titel sowie dessen Schriftart und -größe)
+\item die Position der Sphäre
+\item der Style der Sphäre (beinhaltet die Größe und Füllfarbe)
+\item die Möglichkeit, die in dieser Sphäre enthaltenen Symptome zu löschen und in diese Sphäre weitere Symptome hinzuzufügen
+\item Festlegung der maximal in dieser Sphäre enthaltenen Symptome
+\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Sphäre nicht gelöscht werden.
+\end{enumerate}
+\item Regeln für einzelne Symptome (folgende Eigenschaften des gewählten Symptoms können gesperrt werden, sodass diese nicht mehr verändert werden können):
+\begin{enumerate}
+\item der Titel des Symptoms (beinhaltet den Titel sowie dessen Schriftart und -größe)
+\item die Position des Symptoms
+\item der Style das Symptoms (beinhaltet die Größe, Füllfarbe und Randfarbe)
+\item Hinweis: Ist einer dieser Werte gesperrt, so kann das Symptom nicht gelöscht werden.
+\end{enumerate}
+\item Regeln für einzelne Relationen (folgende Eigenschaften der gewählten Relation können gesperrt werden, sodass diese nicht mehr verändert werden können):
+\begin{enumerate}
+\item die Position der Relation (betrifft in erster Linie das Setzen oder Verändern von Ankerpunkten)
+\item der Style der Relation (betrifft die Farbe sowie die Kantenart)
+\item der Relationstyp
+\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Relation nicht gelöscht werden.
+\end{enumerate}
+\end{itemize}
+Durch Festlegung der einzelnen Werte kann die Bearbeitung und Erweiterung des Graphen festgelegt werden.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-\subsubsection{Element spezifische Vorlageregeln}
-\red{TODO}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-\subsubsection{Graph spezifische Vorlageregeln}
-\red{TODO}
-		
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage erstellen}
-\red{TODO}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. Nur in diesem Modus ist es möglich Regeln für die spätere Bearbeitung des Syndroms festzulegen. Die einmal eingestellten Regeln können dabei jederzeit bedarfsgerecht angepasst werden. Hierzu können eingegebene Werte verändert und ausgewählte Optionen wieder deselektiert (und damit aus der Auswal entfernt) werden. In den folgenden beiden Unterkapitteln werden die Aktionen beschrieben, die für die Erstellung einer Vorlage relevant sind.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Graph spezifische Vorlageregeln}
+\condition 
+Das Programm ist geöffnet und der Ersteller-Modus ist aktiv.
+\actions
+\begin{enumerate}
+\item Einen Linksklick auf \textit{Vorlage-Regeln} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+\item Im oberen Bereich dieser Leiste kann in den Feldern neben den Beschriftungen \textit{Maximal Sphären}, \textit{Maximal Symptome} und \textit{Maximal Relationen} jeweils die maximale Anzahl eingegeben werden, die es von diesem Graphelement-Typ im Syndrom geben darf. Hierzu mit einem Links-Klick in das gewünschte Feld klicken und anschließend über die Tastatur die gewünschte Zahl (als Ziffer / Ziffernfolge und somit nicht als Wort ausgeschrieben) eingegeben werden. Mit der \textit{Enter}-Taste kann die Eingabe bestätigt werden.
+\item Unter diesen drei Eingabefelder findet sich ein Bereich in dem die Relationstypen, die bei der Bearbeitung des Syndroms erlaubt sind, eingestellt werden können. Standardmäßig sind alle Relationstypen erlaubt. Um einen Relationstyp für die Bearbeitung zu sperren einen Links-Klick in die Box neben der entsprechenden Relationsart ausführen, sodass der Haken in dieser Box verschwindet. Durch einen erneuten Links-Klick in die entsprechende Box erscheint wieder ein Haken und der entsprechende Relationstyp kann wieder verwendet werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Es können keine negativen Zahlen und auch kein Text in die Felder für die maximale Anzahl eines Graphelement-Typs eingegeben werden.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Element spezifische Vorlagereglen}
+\condition 
+Das Programm ist geöffnet und der Ersteller-Modus ist aktiv.
+\actions
+\begin{enumerate}
+\item Einen Linksklick auf \textit{Vorlage-Regeln} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+\item Im unteren Bereich dieser Leiste sind unter dem Text \textit{Zu sperrende Elemente auswählen:} die drei Buttons \textit{Sphäre}, \textit{Symptom} und \textit{Relation} uu finden. Durch einen Links-Klick auf einen dieser Buttons kann die dazugehörige Leiste ausgeklappt werden. In dieser Leiste stehen jeweils die Elemente dieses Graphelement-Typs untereinander. Um die Eigenschaften eines dieser Elemente zu sperren einen Links-Klick in das Feld der Eigenschaft, die für das Element gesperrt werden soll, dessen Titel am Anfang der Zeiel steht. Es erscheint ein Haken in der Box und die Eigenschaft dieses Elements wurde gesperrt. Durch einen erneuten Links-Klick in die Box kann die Sperrung der Eigenschaft aufgehoben werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Es kann für verschiedene Elemente eine unabhängige Kombination an gesperrten Elementen vorgenommen werden.
+\end{itemize} 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage verwenden}
-\red{TODO}
+Damit die in der zu verwendenden Vorlage hinterlegten Regeln sich auf die Bearbeitungsmöglichkeiten auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein.
+Dabei ist bei der Verwendung einer Vorlage zu beachten, dass Aktionen (wie beispielsweise das Ändern der Farbe eines Graphelements), die vom Programm grundsätzlich zur Verfügung gestellt werden, unter Umständen nicht mehr zu funktionieren scheinen. Dieser Eindruck kann dadurch entstehen, dass der Aufruf bestimmter Aktionen zu keiner Änderung des angezeigten Syndroms führt. Hinweise in der Benutzeroberfläche sollen diesen Fehleindruck eines unerwünschten Programmverhaltens verhindern. Die angezeigten Hinweise geben gegebenenfalls Aufschluss darüber, dass die Aktion deshalb nicht umgesetzt werden kann, weil die angeforderte Aktion durch die Regeln in der Vorlage untersagt wird. Insofern sollte bei der Benutzung der Anwendung nicht nur auf das Syndrom geachtet werden, wenn sich das Programm anders verhält als erwartet. Stattdessen sollte geguckt werden, ob Hinweis-Felder in der Anwendung erscheinen, die das vorgefundene Programmverhalten erklären können. 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Benutzermodus wechseln}
+\condition 
+Das Programm ist geöffnet.
+\actions
+\begin{enumerate}
+\item In der Menüleiste befinden sich oben links die drei Buttons \textit{Bearbeiter-Modus}, \textit{Ersteller-Modus} und \textit{Analyse-Modus}. Der gewünschte Modus kann durch einen Links-Klick auf den entsprechenden Button ausgewählt werden.
+\end{enumerate} 
+\hint
+\begin{itemize}
+\item Es kann immer nur ein Modus zur Zeit aktiv sein. Die Modi können also nicht zeitgleich kombiniert werden.
+\item Während der Benutzung der Anwendung kann beliebig zwischen den Funktionsmodi gewechselt werden. werden.
+\end{itemize}
+
+
 			 
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
