@@ -61,25 +61,32 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
                     throw new IllegalArgumentException();
             }
         } else {
-            switch (toggleButton.getId()) {
-                case "handSelector":
-                    if (!addSphere.isSelected() && !addVertex.isSelected()) {
-                        toggleButton.setSelected(true);
-                    }
-                    break;
-                case "addSphere":
-                    if (!handSelector.isSelected() && !addVertex.isSelected()) {
-                        toggleButton.setSelected(true);
-                    }
-                    break;
-                case "addVertex":
-                    if(!handSelector.isSelected() && !addSphere.isSelected()){
-                        toggleButton.setSelected(true);
-                    }
-                    break;
-                default:
-                    throw new IllegalArgumentException();
-            }
+            changeOnNotSelected();
+        }
+    }
+
+    /**
+     * javadocTODO
+     */
+    private void changeOnNotSelected(){
+        switch (toggleButton.getId()) {
+            case "handSelector":
+                if (!addSphere.isSelected() && !addVertex.isSelected()) {
+                    toggleButton.setSelected(true);
+                }
+                break;
+            case "addSphere":
+                if (!handSelector.isSelected() && !addVertex.isSelected()) {
+                    toggleButton.setSelected(true);
+                }
+                break;
+            case "addVertex":
+                if(!handSelector.isSelected() && !addSphere.isSelected()){
+                    toggleButton.setSelected(true);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 }

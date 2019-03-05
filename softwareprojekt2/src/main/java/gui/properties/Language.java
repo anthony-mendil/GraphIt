@@ -1,15 +1,15 @@
 package gui.properties;
 
 /**
- * TODO
+ * javadocTODO
  */
 public enum Language {
     /**
-     * TODO
+     * javadocTODO
      */
     GERMAN,
     /**
-     * TODO
+     * javadocTODO
      */
     ENGLISH
 }

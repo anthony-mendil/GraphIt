@@ -106,7 +106,6 @@ import java.util.concurrent.CountDownLatch;
 @Data
 public class Controller implements ObserverSyndrom {
 
-
     /* General Stuff */
     private Controller instance;
     private File lastUsedFilePath;
@@ -486,8 +485,6 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private TableColumn<Edge, String> edgeCol;
     @FXML
-    private TableColumn<Edge, Boolean> positionEdgeCol;
-    @FXML
     private TableColumn<Edge, Boolean> styleEdgeCol;
     @FXML
     private TableColumn<Edge, Boolean> edgetypeEdgeCol;
@@ -618,7 +615,6 @@ public class Controller implements ObserverSyndrom {
     private static final String VERTEX_STYLE = "SymptomStyle";
     private static final String VERTEX_VERTICES = "VertexVertices";
     private static final String EDGE_TITLE = "EdgeTitle";
-    private static final String EDGE_POSITION = "EdgePosition";
     private static final String EDGE_STYLE = "EdgeStyle";
     private static final String EDGE_VERTICES = "EdgeVertices";
     private static final String EDGE_EDGE_TYPE = "EDGE_EDGE_TYPE";
@@ -2796,7 +2792,6 @@ public class Controller implements ObserverSyndrom {
             return;
         }
 
-        setEdgeRadioButtonTableColumn(positionEdgeCol, EDGE_POSITION);
         setEdgeRadioButtonTableColumn(styleEdgeCol, EDGE_STYLE);
         setEdgeRadioButtonTableColumn(edgetypeEdgeCol, EDGE_EDGE_TYPE);
 
@@ -2814,9 +2809,6 @@ public class Controller implements ObserverSyndrom {
             Edge edge = param.getValue();
             SimpleBooleanProperty booleanProp;
             switch (pLocked) {
-                case EDGE_POSITION:
-                    booleanProp = new SimpleBooleanProperty(edge.isLockedPosition());
-                    break;
                 case EDGE_STYLE:
                     booleanProp = new SimpleBooleanProperty(edge.isLockedStyle());
                     break;
@@ -2830,9 +2822,6 @@ public class Controller implements ObserverSyndrom {
             //When "Boolean" column change
             booleanProp.addListener((observable, oldValue, newValue) -> {
                 switch (pLocked) {
-                    case EDGE_POSITION:
-                        edge.setLockedPosition(newValue);
-                        break;
                     case EDGE_STYLE:
                         edge.setLockedStyle(newValue);
                         break;
@@ -3039,18 +3028,11 @@ public class Controller implements ObserverSyndrom {
         });
     }
 
-    /**
-     * TODO
-     * @param mode
-     */
     @Override
     public void updateFunctionMode(FunctionMode mode) {
         // nothing to do
     }
 
-    /**
-     * TODO
-     */
     @Override
     public void updateEditMode() {
         // nothing to do

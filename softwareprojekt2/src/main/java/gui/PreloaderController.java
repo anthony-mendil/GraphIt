@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import lombok.Getter;
 
 /**
- * TODO
+ * javadocTODO
  */
 public class PreloaderController {
 
@@ -14,7 +14,7 @@ public class PreloaderController {
     private JFXProgressBar progressbar;
 
     /**
-     * TODO
+     * javadocTODO
      * @param progress
      */
     void setProgressbarProgress(double progress) {

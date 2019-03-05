@@ -57,7 +57,7 @@ public class Template {
     private boolean set;
 
     /**
-     * TODO
+     * javadocTODO
      * @param pMaxSpheres
      * @param pMaxVertices
      * @param pMaxEdges
@@ -75,7 +75,7 @@ public class Template {
     }
 
     /**
-     * TODO
+     * javadocTODO
      * @return
      */
     @Override

@@ -168,7 +168,6 @@ public class LoadLanguage {
         c.getStyleSymptomCol().setText(loadLanguagesKey(templateStyle));
         c.getTemplateEdge().setText(loadLanguagesKey(sectionEdge));
         c.getEdgeCol().setText(loadLanguagesKey(templateName));
-        c.getPositionEdgeCol().setText(loadLanguagesKey(templatePosition));
         c.getStyleEdgeCol().setText(loadLanguagesKey(templateStyle));
         c.getEdgetypeEdgeCol().setText(loadLanguagesKey("templateEdgeType"));
         c.getHistoryTitledPane().setText(loadLanguagesKey("log"));
