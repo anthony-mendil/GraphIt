@@ -243,6 +243,7 @@ public class HelperFunctions {
         c.setPrompt(old);
 
         Dialog<EnumMap<Language, String>> d = new Dialog<>();
+        d.initOwner(values.getMainStage());
         d.setDialogPane(dialogPane);
         d.setResultConverter(button -> {
             if (button == TitlesDialogPaneController.SAVE_TYPE) {

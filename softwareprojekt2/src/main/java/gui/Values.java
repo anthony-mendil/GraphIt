@@ -10,6 +10,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -24,6 +25,11 @@ import java.util.Map;
  */
 @Data
 public class Values {
+
+    /**
+     * the stage of the application
+     */
+    private Stage mainStage;
 
     /**
      * the relative path of the logo

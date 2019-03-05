@@ -1706,9 +1706,9 @@ public class Controller implements ObserverSyndrom {
      * Initializes the info boxes.
      */
     private void initInfoText() {
-        infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis, 15, 0);
-        infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom, 15, -20);
-        infoText(tooltipInfoTemplate, "INFO_TEMPLATE", infoTemplate, 14, -80);
+        infoText(tooltipInfoAnalysis, "INFO_ANALYSIS", infoAnalysis);
+        infoText(tooltipInfoZoom, "INFO_ZOOM", infoZoom);
+        infoText(tooltipInfoTemplate, "INFO_TEMPLATE", infoTemplate);
     }
 
     /**
