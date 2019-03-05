@@ -60,7 +60,7 @@ public class RemoveEdgesLogAction extends LogAction {
             List<Vertex> parameterSinkVertex = new LinkedList<>();
             List<Edge> lockedEdges = new LinkedList<>();
             for (Edge e : pickedState.getPicked()) {
-                if (!e.isLockedPosition() && !e.isLockedEdgeType() && !e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
+                if (!e.isLockedEdgeType() && !e.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
                     edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
                     parameterEdges.add(e);
                     parameterStartEdges.add(vertices.getFirst());
