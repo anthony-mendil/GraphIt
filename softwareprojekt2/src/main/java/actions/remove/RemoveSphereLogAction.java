@@ -11,6 +11,7 @@ import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveSphereParam;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,11 +52,14 @@ public class RemoveSphereLogAction extends LogAction {
                     if(!allowedSphereRemove(sp)){
                         return;
                     }
-                    pickedVertexState.clear();
-                    setVerticesPicked(sp, vertices,  pickedVertexState);
-                    RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
-                    removeVerticesLogAction.action();
-                    AddRemoveVerticesParam addRemoveVerticesParam = (AddRemoveVerticesParam) removeVerticesLogAction.getParameters();
+                    AddRemoveVerticesParam addRemoveVerticesParam = new AddRemoveVerticesParam(new HashMap<>(), new HashMap<>());
+                    if(sp.getVertices().size() > 0) {
+                        pickedVertexState.clear();
+                        setVerticesPicked(sp, vertices, pickedVertexState);
+                        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
+                        removeVerticesLogAction.action();
+                        addRemoveVerticesParam = (AddRemoveVerticesParam) removeVerticesLogAction.getParameters();
+                    }
                     sp.getVertices().removeAll(vertices);
                     pickedState.pick(sp, false);
                     graph.removeSphere(sp);
