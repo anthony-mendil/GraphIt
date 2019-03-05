@@ -1954,7 +1954,6 @@ public class Controller implements ObserverSyndrom {
 
             SwingUtilities.invokeLater(() -> {
                 if (value != 0 && oldV != value) {
-                    values.setScale(value);
                     syndrom.scale(value);
                 }
             });
