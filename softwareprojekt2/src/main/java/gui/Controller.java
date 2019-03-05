@@ -68,10 +68,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -1735,7 +1732,7 @@ public class Controller implements ObserverSyndrom {
                 "    -fx-text-fill: white;\n" +
                 "    -fx-font-size: 12px;");
 
-        label.setOnMouseMoved(event -> tooltip.show(label, label.localToScene(label.getBoundsInLocal()).getMaxX() + x, label.localToScene(label.getBoundsInLocal()).getMaxY() + y));
+        label.setOnMouseEntered(event -> tooltip.show(label, event.getScreenX()+10, event.getScreenY()));
         label.setOnMouseExited(event -> tooltip.hide());
     }
 
