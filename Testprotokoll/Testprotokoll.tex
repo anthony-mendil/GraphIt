@@ -278,7 +278,7 @@ Test positiv, weil das Entfernen der Relation nicht erfolgreich war. Die Abbildu
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:43 \\
 Test negativ.\\
 \subsubsection{Fazit} 
-Kurze Erläuterung was nach den jeweiligen Tests geändert wurde. Beim ... Test arbeitet die Software wie erwartet. 
+Die Abfrage des jetzigen Modus entsprach nicht dem geplanten. Nachdem der Boolesche Wert negiert worden ist, funktioniert dies nun wie erwartet.
 
 \subsectiont{Speichern der Datei in den eigenen Dateien}{\dotfill\ok\ok\leer}
 Der Ersteller speichert über \texttt{Datei} und \texttt{Speichern unter} die soeben erstellte Vorlage inklusive der Regeln. 
@@ -444,7 +444,7 @@ Nach rückgängig machen des Entfernens der Sphäre mit Symptomen und Relationen
 \includegraphics[height=5cm]{2_11c.png}
 \end{center}
 \subsubsection{Fazit}
-Kurze Erläuterung was nach den jeweiligen Tests geändert wurde. Beim ... Test arbeitet die Software wie erwartet: Screenshot. 
+Die an die Sphären gebundenen Elemente wurden in der Implementierung aus Versehen nicht beachtet. Nachdem diese hinzugefügt worden sind, arbeitet die Software wie erwartet.
 
 \subsectiont{Vergrößern einer Sphäre}{\dotfill\ok\ok\leer}
 Der Bearbeiter betätigt vorerst den Button zum Auswählen von Elementen. Anschießend macht er einen Linksklick auf \texttt{Sphäre 9} und betätigt den Button zum Vergrößern der Sphäre. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
@@ -579,11 +579,11 @@ Test negativ.
 \includegraphics[height=10cm]{2_21.PNG}
 \end{center}
 \subsubsection{Fazit}
-Kurze Erläuterung was nach den jeweiligen Tests geändert wurde. Beim ... Test arbeitet die Software wie erwartet: Screenshot. 
+Die Relationen, welche eine eingehende oder ausgehende Relation des zu löschenden Symptoms ist wurde in der Implementierung aus Versehen nicht beachtet. Nachdem die Semantik dazu implementiert wurde arbeitet die Software wie erwartet. 
 
 \subsectiont{Entfernen mehrere Symptome ohne Relationen}{\dotfill\XBox\ok\leer}
-Zunächst entfernt der Bearbeiter die alle Relationen von \texttt{Symptom 10}, verschiebt es ein wenig nach links und fügt \texttt{Sphäre 9} ein weiteres Symptom rechts von \texttt{Symptom 10} hinzu. 
-Durch gedrückt halten von Umschalten und Linksklicks auf die soeben erwähnten Symptome wählt der Bearbeiter mehrere Symptome aus. Das rechte Symptom ist nach dem hinzufügen bereits ausgewählt, weshalb auf die soeben beschriebene Weise nur noch das linke Symptom der Auswahl hinzugefügt werden muss. Anschließend betätigt er den Button zum löschen der Symptome. Hierbei wird erwartet, dass alle ausgewählten Symptome gelöscht werden. 
+Zunächst entfernt der Bearbeiter alle Relationen von \texttt{Symptom 10}, verschiebt es ein wenig nach links und fügt \texttt{Sphäre 9} ein weiteres Symptom rechts von \texttt{Symptom 10} hinzu. 
+Durch gedrückt halten von Umschalten und Linksklicks auf die soeben erwähnten Symptome wählt der Bearbeiter mehrere Symptome aus. Das rechte Symptom ist nach dem Hinzufügen bereits ausgewählt, weshalb auf die soeben beschriebene Weise nur noch das linke Symptom der Auswahl hinzugefügt werden muss. Anschließend betätigt er den Button zum löschen der Symptome. Hierbei wird erwartet, dass alle ausgewählten Symptome gelöscht werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 11:39 \\
 Test positiv, weil nur eins der ausgewählten Symptome entfernt wurde. \\
@@ -606,7 +606,7 @@ Nach betätigen des Buttons zum Entfernen der Symptome:
 \includegraphics[height=10cm]{2_22.PNG}
 \end{center}
 \subsubsection{Fazit}
-Kurze Erläuterung was nach den jeweiligen Tests geändert wurde. Beim ... Test arbeitet die Software wie erwartet: Screenshot. 
+Die Menge der ausgewählten Symptome wurde in der jeweiligen Action nicht richtig iteriert. Nachdem dieser Fehler behoben wurde, arbeitet die Software nun wie erwartet.
 
 \subsectiont{Vergrößern eines Symptoms}{\dotfill\ok\ok\leer}
 Der Bearbeiter fügt links mittig in \texttt{Sphäre 9} eine Symptom hinzu und betätigt den Button zum Vergrößern des Symptoms zehn mal. Hierbei wird erwartet, dass entsprechende Änderungen an dem Knoten vorgenommen werden.
@@ -962,10 +962,8 @@ Nach Änderung der Beschriftung:
 \includegraphics[height=10cm]{3_48.PNG}
 \end{center}
 Nach betätigen des Button zum rückgängig machen ist der Graph unverändert. \\
-1.Test: Getestet von: ... . Datum: ...  um ... \\
-Test ... 
 \subsubsection{Fazit}
-Kurze Beschreibung was nach dem Test geändert wurde und ab welchem Test es funktioniert hat. 
+Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Action korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass nun die Software wie erwartet arbeitet.
 
 \subsectiont{Änderung der Beschriftung einer Sphäre}{\dotfill\ok\ok\leer}
 Mithilfe eines Rechtsklicks auf \texttt{Sphäre 1} und drücken auf \texttt{Titel} öffnet der Bearbeiter ein Fenster zur Eingabe der Beschriftung der Sphäre in Deutsch und Englisch. Dann gibt er in dem Feld für die deutsche Beschriftung \texttt{Gesellschaft}  und in dem für die englische Beschriftung \texttt{Society} ein und drückt auf \texttt{speichern}. Hierbei wird erwartet, dass in der Sphäre nun \texttt{Gesellschaft} steht. 
