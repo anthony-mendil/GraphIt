@@ -2300,10 +2300,10 @@ public class Controller implements ObserverSyndrom {
             }
         } else {
             if (active) {
-                overViewAccordion.getPanes().add(templateTitledPane);
+                if(!overViewAccordion.getPanes().contains(templateTitledPane)){
+                    overViewAccordion.getPanes().add(templateTitledPane);
+                }
                 resetToggleButtons();
-
-                // bug here
             } else {
                 overViewAccordion.getPanes().remove(templateTitledPane);
             }
