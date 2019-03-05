@@ -259,12 +259,13 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
 
 
     /**
-     *
+     * return the affine transform for the edge according to its anchor
      * @param rc the render context
      * @param vertex the edge to get the anchor to
      * @param endX the current anchor coordinates (x)
      * @param endY the current anchor coordinates (y)
      * @param anchorPoint the new anchor point
+     * @param v the vertex
      * @return the new AffineTransform
      */
     private AffineTransform getAffineTransformAnchor(RenderContext<V, E> rc, Vertex vertex, float endX, float endY, Point2D anchorPoint, V v) {

@@ -42,11 +42,10 @@ public class MoveVerticesLogAction extends LogAction {
         parameters = pParam;
     }
 
-
     /**
      * Moves all vertices according to the difference.
-     *
-     * @param vertices The collection of vertices to move.
+     * @param vertices vertices The collection of vertices to move.
+     * @param points the sphere the vertices belonged to
      */
     public MoveVerticesLogAction(Set<Vertex> vertices, Map<Vertex, Pair<Point2D, Sphere>> points) {
         super(LogEntryName.MOVE_VERTICES);

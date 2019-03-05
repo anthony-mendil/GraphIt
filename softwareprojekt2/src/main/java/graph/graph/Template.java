@@ -57,13 +57,13 @@ public class Template {
     private boolean set;
 
     /**
-     * javadocTODO
-     * @param pMaxSpheres
-     * @param pMaxVertices
-     * @param pMaxEdges
-     * @param pReinforcedEdgesAllowed
-     * @param pExtenuatingEdgesAllowed
-     * @param pUnknownEdgesAllowed
+     * The Template constructor
+     * @param pMaxSpheres the count of the max allowed spheres
+     * @param pMaxVertices the count of the max allowed vertices
+     * @param pMaxEdges the count of the max allowed edges
+     * @param pReinforcedEdgesAllowed true if the template allows reinforced edges
+     * @param pExtenuatingEdgesAllowed true if the template allows extenuating edges
+     * @param pUnknownEdgesAllowed true if the template allows neutral edges
      */
     public Template(int pMaxSpheres, int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
         maxSpheres = pMaxSpheres;
@@ -75,8 +75,8 @@ public class Template {
     }
 
     /**
-     * javadocTODO
-     * @return
+     * returns the template string
+     * @return the template string
      */
     @Override
     public String toString() {

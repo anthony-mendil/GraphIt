@@ -82,7 +82,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * out------>in
+     * out ------o in
      */
     @SuppressWarnings("unchecked")
     @Override

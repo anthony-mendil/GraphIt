@@ -16,7 +16,7 @@ public class SatelliteGraphMouse extends ModalSatelliteGraphMouse implements
 
     /**
      * InputEvent.BUTTON1_MASK is deprecated, but if you replace it with BUTTON1_DOWN_MASK it will not work anymore.
-     * so work around: 1 << 4
+     * so work around: remove BUTTON1_DOWN_MASK and input the integer values it stands for
      */
     @Override
     public void loadPlugins() {

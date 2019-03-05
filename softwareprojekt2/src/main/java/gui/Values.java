@@ -192,7 +192,7 @@ public class Values {
     private Font mali;
 
     /**
-     * returns the default annotation map for the vertices
+     * @return the default annotation map for the vertices
      */
     public Map<String, String> getDefaultAnnotationVertex() {
         Map<String, String> annotation = new HashMap<>();
@@ -202,7 +202,7 @@ public class Values {
     }
 
     /**
-     * returns the default annotation map for the spheres
+     * @return the default annotation map for the spheres
      */
     public Map<String, String> getDefaultAnnotationSphere() {
         Map<String, String> annotation = new HashMap<>();
@@ -212,7 +212,7 @@ public class Values {
     }
 
     /**
-     * returns the instance of the Values
+     * @return the instance of the Value Class
      */
     public static Values getInstance() {
         if (instance == null) {

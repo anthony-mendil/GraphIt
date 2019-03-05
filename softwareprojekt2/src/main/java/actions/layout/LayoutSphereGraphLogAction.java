@@ -44,6 +44,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
 
     /**
      * Layouts the graph (including all vertices) according to the defined layout.
+     * @param pLayoutSpheresParam the param containing a layout to change the current layout to
      */
     private LayoutSphereGraphLogAction(LayoutSpheresParam pLayoutSpheresParam) {
         super(LogEntryName.EDIT_SPHERES_LAYOUT);

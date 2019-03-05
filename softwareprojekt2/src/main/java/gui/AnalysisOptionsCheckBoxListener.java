@@ -164,6 +164,8 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
 
     /**
      * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
+     *
+     * @return true if the just 2 syndrom are picked, false if more or less
      */
     private boolean calculateEndpoints() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
