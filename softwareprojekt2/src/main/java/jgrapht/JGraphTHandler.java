@@ -82,6 +82,8 @@ public class JGraphTHandler {
 
     /**
      * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
+     *
+     * @return true if the amount of picked vertices is 2
      */
     private boolean calculateEndpoints() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
@@ -99,6 +101,8 @@ public class JGraphTHandler {
 
     /**
      * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
+     *
+     * @return true if at least one vertex is picked
      */
     private boolean isAtLeastOnePicked() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
@@ -195,6 +199,9 @@ public class JGraphTHandler {
     /**
      * Returns all predecessors and their edges towards them in
      * the given iterations.
+     *
+     * @param steps the count of steps for finding its predecessors
+     * @return the list of predecessors
      */
     public Pair<List<Vertex>, List<Edge>> predecessorsIterations(int steps) {
         if (isAtLeastOnePicked()) {
@@ -221,8 +228,11 @@ public class JGraphTHandler {
     }
 
     /**
-     * Returns all predecessors and their edges towards them in
+     * Returns all successors and their edges towards them in
      * the given iterations.
+     *
+     * @param steps the count of steps for finding its successors
+     * @return the list of successors
      */
     @SuppressWarnings("unchecked")
     public Pair<List<Vertex>, List<Edge>> successorIterations(int steps) {
@@ -252,6 +262,8 @@ public class JGraphTHandler {
     /**
      * Detects relation chains. This algorithm is created by Clement Phung and Jonah Jaeger. No unnamed help
      * has been used.
+     *
+     * @return all vertex chains of a graph
      */
     @SuppressWarnings("unchecked")
     public Pair<List<List<Vertex>>, Set<Edge>> detectRelationChains() {
@@ -278,6 +290,9 @@ public class JGraphTHandler {
     /**
      * Inner algorithm for the relation chain algorithm. Potential relation chains will be build
      * and eventually added to the list of relation chains.
+     *
+     * @param innerVertices a list with inner vertices
+     * @param relationChains a list with chains
      */
     private void growPotentailChains(List<Vertex> innerVertices, List<List<Vertex>> relationChains) {
         while (!innerVertices.isEmpty()) {

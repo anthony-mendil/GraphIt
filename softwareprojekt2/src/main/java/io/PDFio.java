@@ -54,7 +54,10 @@ public class PDFio {
     }
 
     /**
+     * creates a visualizationImageServer for visualise the current graph and prints its graphic into a PDFGraphics2D
+     * and creates a pdf document out of it
      *
+     * @param pOutputStream  the  file OutputStream to export the file to
      */
     private void createPDF(OutputStream pOutputStream) {
         VisualizationImageServer<Vertex, Edge> vis = new VisualizationImageServer<>(vv.getGraphLayout(), vv.getGraphLayout().getSize());

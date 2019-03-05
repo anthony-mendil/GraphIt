@@ -15,7 +15,7 @@ public class PreloaderController {
 
     /**
      * javadocTODO
-     * @param progress
+     * @param progress the current progress of the loading process
      */
     void setProgressbarProgress(double progress) {
         progressbar.setProgress(progress);

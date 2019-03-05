@@ -10,22 +10,24 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * javadocTODO
+ * class for showing the print dialog
  */
 public class PDFPrinterGui {
 
     private static Logger logger = Logger.getLogger(PDFPrinterGui.class);
 
     /**
-     * javadocTODO
+     * constructor for the PDFPrinterGui with the inputStream to print
+     *
+     * @param pInputStream the inputStream to print
      */
     public PDFPrinterGui(InputStream pInputStream) {
         print(pInputStream);
     }
 
     /**
-     * javadocTODO
-     * @param pInputStream
+     * prints the passed InputStream
+     * @param pInputStream the inputStream to print
      */
     private void print(InputStream pInputStream) {
         try {

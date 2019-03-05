@@ -36,6 +36,8 @@ public class ColorNameCreator {
 
     /**
      * Initialize the color list.
+     *
+     * @return a list containing colorName entries
      */
     private ArrayList<ColorNames> createColorList() {
         ArrayList<ColorNames> colors = new ArrayList<>();

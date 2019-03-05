@@ -320,6 +320,7 @@ public class GXLio {
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Vertex]-class.
      *
      * @param elem is a GXLAttributetElement that describes a vertex having the same atributes as an vertex.
+     * @param withTemplate true if the import contains the template as well
      * @return a new vertex object with the values from the passed GXLAttributetElement object
      */
     private Vertex convertGXLElementToVertex(GXLAttributedElement elem, boolean withTemplate) {
@@ -381,6 +382,7 @@ public class GXLio {
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Edge]-class.
      *
      * @param elem is a GXLAttributetElement that describes an edge having the same atributes as an edge.
+     * @param withTemplate true if the import contains the template rules
      * @return a new edge object with the values from the passed GXLAttributetElement object
      */
     private Edge convertGXLElemToEdge(GXLAttributedElement elem, boolean withTemplate) {
@@ -441,6 +443,7 @@ public class GXLio {
      * The GXLAttributetElements have GXLAttr objects as childs. These childs describe the GXLAttributedElements.
      * This method gives back the contetn of the new created document as string.
      *
+     * @param withTemplate true if the import contains the template rules
      * @return the content of the created document
      */
     public String gxlFromInstance(boolean withTemplate) {
@@ -698,6 +701,7 @@ public class GXLio {
      * Save the GXL representation to a specific location.
      *
      * @param pFile The destination File
+     * @param pExportWithRules true if the export contains the template rules as well
      */
     public void exportGXL(File pFile, boolean pExportWithRules) {
         String gxl = gxlFromInstance(pExportWithRules);
@@ -712,6 +716,7 @@ public class GXLio {
      * Import a GXL file from a specific location to the syndrom
      *
      * @param pFile The File to import
+     * @param pImportWithRules true if the import contains the template rules
      */
 
     public void importGXL(File pFile, boolean pImportWithRules) {
