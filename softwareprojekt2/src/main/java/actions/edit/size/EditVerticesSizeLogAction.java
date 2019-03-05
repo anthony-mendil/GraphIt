@@ -25,6 +25,7 @@ public class EditVerticesSizeLogAction extends LogAction {
 
     /**
      * Changes the size of the vertices.
+     * @param TODO
      */
     public EditVerticesSizeLogAction(SizeChange sizeChange) {
         super(LogEntryName.EDIT_VERTICES_SIZE);

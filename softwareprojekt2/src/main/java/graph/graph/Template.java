@@ -57,7 +57,13 @@ public class Template {
     private boolean set;
 
     /**
-     * Creates a new Template object.
+     * TODO
+     * @param pMaxSpheres
+     * @param pMaxVertices
+     * @param pMaxEdges
+     * @param pReinforcedEdgesAllowed
+     * @param pExtenuatingEdgesAllowed
+     * @param pUnknownEdgesAllowed
      */
     public Template(int pMaxSpheres, int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
         maxSpheres = pMaxSpheres;
@@ -68,6 +74,10 @@ public class Template {
         neutralEdgesAllowed = pUnknownEdgesAllowed;
     }
 
+    /**
+     * TODO
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
