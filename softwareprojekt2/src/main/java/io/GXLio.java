@@ -30,7 +30,7 @@ public class GXLio {
      */
     private Syndrom syndrom = Syndrom.getInstance();
 
-    private Template template =syndrom.getTemplate();
+    private Template template;
 
 
     /**
@@ -189,6 +189,7 @@ public class GXLio {
     private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices, String graphName, boolean withTemplate) {
         // Getting the objects that are needed to get the spheres, vertices and edges out of the lists into our system.
         syndrom.generateNew();
+        System.out.println("template: " + template);
         if(withTemplate){
             syndrom.setTemplate(template);
         }
@@ -250,17 +251,12 @@ public class GXLio {
      */
     private void initializeTemplateValues(GXLGraph gxlTemplate) {
         int maxSpheres = ((GXLInt) gxlTemplate.getAttr("maxSpheres").getValue()).getIntValue();
-        template.setMaxSpheres(maxSpheres);
         int maxVertices = ((GXLInt) gxlTemplate.getAttr("maxVertices").getValue()).getIntValue();
-        template.setMaxVertices(maxVertices);
         int maxEdges = ((GXLInt) gxlTemplate.getAttr("maxEdges").getValue()).getIntValue();
-        template.setMaxEdges(maxEdges);
         boolean reinforcedEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("reinforcedEdgesAllowed").getValue()).getBooleanValue();
-        template.setReinforcedEdgesAllowed(reinforcedEdgesAllowed);
         boolean unknownEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("unknownEdgesAllowed").getValue()).getBooleanValue();
-        template.setNeutralEdgesAllowed(unknownEdgesAllowed);
         boolean extenuatingEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("extenuatingEdgesAllowed").getValue()).getBooleanValue();
-        template.setExtenuatingEdgesAllowed(extenuatingEdgesAllowed);
+        template=new Template(maxSpheres, maxVertices, maxEdges, reinforcedEdgesAllowed, extenuatingEdgesAllowed, unknownEdgesAllowed);
     }
 
 
