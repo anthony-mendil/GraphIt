@@ -1046,6 +1046,7 @@ public class Controller implements ObserverSyndrom {
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
         }
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**
@@ -1059,6 +1060,7 @@ public class Controller implements ObserverSyndrom {
             ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
             exportTemplateGxlAction.action();
         }
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**
@@ -1105,6 +1107,7 @@ public class Controller implements ObserverSyndrom {
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
         }
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**
@@ -1156,6 +1159,7 @@ public class Controller implements ObserverSyndrom {
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**
@@ -1181,6 +1185,7 @@ public class Controller implements ObserverSyndrom {
         }
         templateToFields();
         treeViewUpdate();
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**
@@ -1225,7 +1230,7 @@ public class Controller implements ObserverSyndrom {
         templateToFields();
         rulesTemplate();
         treeViewUpdate();
-        mainStage.setTitle("GraphIt - "+syndrom.getGraphName());
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**
@@ -1258,7 +1263,7 @@ public class Controller implements ObserverSyndrom {
         }
         templateToFields();
         treeViewUpdate();
-        mainStage.setTitle("GraphIt - "+syndrom.getGraphName());
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**
@@ -2326,7 +2331,7 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     private void showUserGuide() {
-        File pdfDest= new File(System.getProperty("user.home")+File.separator+".graphit"+File.separator+"userGuide.pdf");
+        File pdfDest= Paths.get(System.getProperty("user.home"), ".graphit", "userGuide.pdf").toFile();
         try {
             if(pdfDest.createNewFile()) {
                 Path src = Paths.get(getClass().getResource("/userGuide.pdf").toURI());
@@ -2539,7 +2544,7 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.setValue(100);
         templateToFields();
         treeViewUpdate();
-        mainStage.setTitle("GraphIt - "+syndrom.getGraphName());
+        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
     }
 
     /**

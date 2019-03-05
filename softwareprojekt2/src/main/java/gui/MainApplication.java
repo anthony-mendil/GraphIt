@@ -53,7 +53,7 @@ public class MainApplication extends Application {
      */
     public void start(Stage primaryStage) {
         if (Syndrom.getInstance().getGraphName()!=null) {
-            primaryStage.setTitle("GraphIt - " + Syndrom.getInstance().getGraphName());
+            primaryStage.setTitle(Syndrom.getInstance().getGraphName()+" - GraphIt");
         }else{
             primaryStage.setTitle("GraphIt - " + "UntitledGraph");
         }
