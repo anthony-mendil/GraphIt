@@ -4,6 +4,7 @@ import actions.Action;
 import actions.GraphAction;
 import io.GXLio;
 import log_management.DatabaseManager;
+import lombok.Getter;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -18,7 +19,9 @@ public class ImportGxlAction extends GraphAction {
      */
     private File file;
 
-    public boolean templateFound;
+    @Getter
+    private boolean templateFound;
+
     private GXLio gxlio;
 
 
