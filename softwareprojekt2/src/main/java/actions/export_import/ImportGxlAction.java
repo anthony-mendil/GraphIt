@@ -5,7 +5,6 @@ import actions.GraphAction;
 import io.GXLio;
 import log_management.DatabaseManager;
 import lombok.Getter;
-import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -24,8 +23,6 @@ public class ImportGxlAction extends GraphAction {
 
     private GXLio gxlio;
 
-
-    private static Logger logger = Logger.getLogger(ImportGxlAction.class);
 
     /**
      * Action handling for importing the graph as GXL file.

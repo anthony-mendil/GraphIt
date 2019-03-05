@@ -5,7 +5,6 @@ import graph.graph.Edge;
 import graph.graph.Vertex;
 import graph.visualization.control.HelperFunctions;
 import gui.Values;
-import gui.properties.Language;
 import gui.properties.LoadLanguage;
 import jgrapht.JGraphTHandler;
 import lombok.Getter;
