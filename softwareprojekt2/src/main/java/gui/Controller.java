@@ -1717,10 +1717,8 @@ public class Controller implements ObserverSyndrom {
      * @param tooltip The tooltip that the info text will be assigned to.
      * @param text    The shown text in the info text.
      * @param label   The label in the gui.
-     * @param x       The x coordinate where the info text will be shown.
-     * @param y       The y coordinate where the info text will be shown.
      */
-    private void infoText(Tooltip tooltip, String text, Label label, int x, int y) {
+    private void infoText(Tooltip tooltip, String text, Label label) {
         tooltip.setPrefWidth(200);
         tooltip.setText(loadLanguage.loadLanguagesKey(text));
         tooltip.setWrapText(true);
@@ -2304,6 +2302,8 @@ public class Controller implements ObserverSyndrom {
             if (active) {
                 overViewAccordion.getPanes().add(templateTitledPane);
                 resetToggleButtons();
+
+                // bug here
             } else {
                 overViewAccordion.getPanes().remove(templateTitledPane);
             }
