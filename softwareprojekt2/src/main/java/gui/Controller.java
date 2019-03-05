@@ -1320,6 +1320,7 @@ public class Controller implements ObserverSyndrom {
      * Switches to the creator mode.
      */
     public void switchModeCreator() {
+        values.setShowAnchor(false);
         analysisMode(false);
         createOrEditMode(false, true);
         createOrEditMode(true, false);
@@ -1345,6 +1346,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void switchModeAnalysis() {
         values.setGraphButtonType(GraphButtonType.NONE);
+        values.setShowAnchor(false);
         createOrEditMode(false, false);
         createOrEditMode(false, true);
         analysisMode(true);
@@ -1372,6 +1374,7 @@ public class Controller implements ObserverSyndrom {
      */
     public void switchModeEdit() {
         values.setGraphButtonType(GraphButtonType.NONE);
+        values.setShowAnchor(false);
         analysisMode(false);
         createOrEditMode(false, false);
         createOrEditMode(true, true);
