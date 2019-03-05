@@ -6,6 +6,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import gui.properties.Language;
+import lombok.Getter;
 import net.sourceforge.gxl.*;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -28,6 +29,8 @@ public class GXLio {
      * The syndrom representation.
      */
     private Syndrom syndrom = Syndrom.getInstance();
+
+    private Template template =syndrom.getTemplate();
 
 
     /**
@@ -52,6 +55,9 @@ public class GXLio {
 
     private static Logger logger = Logger.getLogger(GXLio.class);
 
+    @Getter
+    private boolean templateFoundFlag;
+
     /**
      * Constructor of class GXLio.
      * Creates a new GXLio object.
@@ -67,15 +73,30 @@ public class GXLio {
      * As location of the document the file-attribute is used.
      *
      * @param pGXL The GXL representation that gets written into syndrom.
+     * @param withTemplate true if the import includes the template, false if not
      */
     public void gxlToInstance(String pGXL, boolean withTemplate) {
         try {
             // At first a document needs to be imported into the system. Thereby it is important that the document selected by the user has a valid structure.
             GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes(StandardCharsets.UTF_8)));
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
+            GXLGraph gxlTemplate = (GXLGraph) doc.getElement("template");
             if (gxlGraph == null) {
                 logger.error("Error on empty Syndrom GXLGraph");
                 return;
+            }
+            if(gxlTemplate!=null){
+                if(!withTemplate&&!templateFoundFlag){
+                    logger.info("Template found but not used");
+                    templateFoundFlag=true;
+                    return;
+                }
+                templateFoundFlag=true;
+            }else{
+                if (withTemplate){
+                    logger.error("Error on empty Template GXLGraph");
+                    return;
+                }
             }
             // The list of all vertices descripted in the document. Elements are added to this list when ever a gxl element that describes a vertex was found reading the gxl document and the java object from this gxl description was created.
             List<Vertex> vertices = new ArrayList<>();
@@ -85,7 +106,9 @@ public class GXLio {
             List<Map<Edge, Pair<Vertex>>> edgeAndVertices = new ArrayList<>();
             // This counter is needed as the documents elements not always will have successive ids. This fact is a result from the users possibility to delete elements after creating them before he/she exports the graph. This leads to gaps in the row of ids.
             int foundElements = 0;
-            searchForTemplate(doc, withTemplate);
+            if(withTemplate){
+                initializeTemplateValues(gxlTemplate);
+            }
             int elementCount = gxlGraph.getGraphElementCount();
             for (int idCounter = 0; foundElements < elementCount; idCounter++) {
                 if (doc.containsID(idCounter + "")) {
@@ -94,18 +117,10 @@ public class GXLio {
                     maxID = Math.max(maxID, idCounter);
                 }
             }
-            syndrom.setGraphName(((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue());
-            updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices);
+            String graphName= ((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue();
+            updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices, graphName, withTemplate);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());
-        }
-    }
-
-
-    private void searchForTemplate(GXLDocument pDoc, boolean pWithTemplate) {
-        if (pWithTemplate) {
-            GXLGraph gxlTemplate = (GXLGraph) pDoc.getElement("template");
-            initializeTemplateValues(gxlTemplate);
         }
     }
 
@@ -171,14 +186,24 @@ public class GXLio {
         pEdgeAndVertices.add(entry);
     }
 
-    private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices) {
+    private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices, String graphName, boolean withTemplate) {
         // Getting the objects that are needed to get the spheres, vertices and edges out of the lists into our system.
         syndrom.generateNew();
+        if(withTemplate){
+            syndrom.setTemplate(template);
+        }
+        else {
+            syndrom.setTemplate(new Template(Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE, true , true , true));
+        }
         Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
         SyndromGraph<Vertex, Edge> newGraph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
         newGraph.getGraphObjectsFactory().setObjectCounter(++maxID);
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-
+        if (graphName != null) {
+            syndrom.setGraphName(graphName);
+        }else{
+            syndrom.setGraphName("GraphIt");
+        }
         updateSystemDataOfSpheresAndVertices(spheresWithVertices, newGraph, vv);
         updateSystemDataOfEdges(edgeAndVertices, newGraph);
 
@@ -224,7 +249,6 @@ public class GXLio {
      * @param gxlTemplate the GXLNode from the imported GXLGraph describing a template object
      */
     private void initializeTemplateValues(GXLGraph gxlTemplate) {
-        Template template = Syndrom.getInstance().getTemplate();
         int maxSpheres = ((GXLInt) gxlTemplate.getAttr("maxSpheres").getValue()).getIntValue();
         template.setMaxSpheres(maxSpheres);
         int maxVertices = ((GXLInt) gxlTemplate.getAttr("maxVertices").getValue()).getIntValue();
@@ -250,6 +274,7 @@ public class GXLio {
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Sphere]-class.
      *
      * @param elem is a GXLAttributetElement that describes a sphere having the same atributes as an sphere.
+     * @param withTemplate true it the import includes the template
      * @return a new sphere object with the values from the passed GXLAttributetElement object
      */
     private Sphere convertGXLElementToSphere(GXLAttributedElement elem, boolean withTemplate) {
@@ -295,6 +320,7 @@ public class GXLio {
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Vertex]-class.
      *
      * @param elem is a GXLAttributetElement that describes a vertex having the same atributes as an vertex.
+     * @param withTemplate true if the import contains the template as well
      * @return a new vertex object with the values from the passed GXLAttributetElement object
      */
     private Vertex convertGXLElementToVertex(GXLAttributedElement elem, boolean withTemplate) {
@@ -356,6 +382,7 @@ public class GXLio {
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Edge]-class.
      *
      * @param elem is a GXLAttributetElement that describes an edge having the same atributes as an edge.
+     * @param withTemplate true if the import contains the template rules
      * @return a new edge object with the values from the passed GXLAttributetElement object
      */
     private Edge convertGXLElemToEdge(GXLAttributedElement elem, boolean withTemplate) {
@@ -414,6 +441,7 @@ public class GXLio {
      * The GXLAttributetElements have GXLAttr objects as childs. These childs describe the GXLAttributedElements.
      * This method gives back the contetn of the new created document as string.
      *
+     * @param withTemplate true if the import contains the template rules
      * @return the content of the created document
      */
     public String gxlFromInstance(boolean withTemplate) {
@@ -613,13 +641,13 @@ public class GXLio {
      */
     private GXLGraph createTemplateNode() {
         GXLGraph templateNode = new GXLGraph("template");
-        Template template = Syndrom.getInstance().getTemplate();
-        templateNode.setAttr("maxSpheres", new GXLInt(template.getMaxSpheres()));
-        templateNode.setAttr("maxVertices", new GXLInt(template.getMaxVertices()));
-        templateNode.setAttr("maxEdges", new GXLInt(template.getMaxEdges()));
-        templateNode.setAttr("reinforcedEdgesAllowed", new GXLBool(template.isReinforcedEdgesAllowed()));
-        templateNode.setAttr("unknownEdgesAllowed", new GXLBool(template.isNeutralEdgesAllowed()));
-        templateNode.setAttr("extenuatingEdgesAllowed", new GXLBool(template.isExtenuatingEdgesAllowed()));
+        Template templ = Syndrom.getInstance().getTemplate();
+        templateNode.setAttr("maxSpheres", new GXLInt(templ.getMaxSpheres()));
+        templateNode.setAttr("maxVertices", new GXLInt(templ.getMaxVertices()));
+        templateNode.setAttr("maxEdges", new GXLInt(templ.getMaxEdges()));
+        templateNode.setAttr("reinforcedEdgesAllowed", new GXLBool(templ.isReinforcedEdgesAllowed()));
+        templateNode.setAttr("unknownEdgesAllowed", new GXLBool(templ.isNeutralEdgesAllowed()));
+        templateNode.setAttr("extenuatingEdgesAllowed", new GXLBool(templ.isExtenuatingEdgesAllowed()));
         return templateNode;
     }
 
@@ -629,7 +657,7 @@ public class GXLio {
      * @param color the color that need to be describted
      * @return the description of the color as a String
      */
-    public String getPaintDescription(Color color) {
+    String getPaintDescription(Color color) {
         return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
                 + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
     }
@@ -643,7 +671,7 @@ public class GXLio {
      * @param pWord a word containing an unknown amount of numbers.
      * @return the numbers as String contained in the String parameter as entries in the array.
      */
-    public String[] getNumberArrayFromString(String pWord) {
+    private String[] getNumberArrayFromString(String pWord) {
         String word = pWord;
         String[] alphabet = {"2D", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         for (String s : alphabet) {
@@ -670,6 +698,7 @@ public class GXLio {
      * Save the GXL representation to a specific location.
      *
      * @param pFile The destination File
+     * @param pExportWithRules true if the export contains the template rules as well
      */
     public void exportGXL(File pFile, boolean pExportWithRules) {
         String gxl = gxlFromInstance(pExportWithRules);
@@ -684,6 +713,7 @@ public class GXLio {
      * Import a GXL file from a specific location to the syndrom
      *
      * @param pFile The File to import
+     * @param pImportWithRules true if the import contains the template rules
      */
 
     public void importGXL(File pFile, boolean pImportWithRules) {

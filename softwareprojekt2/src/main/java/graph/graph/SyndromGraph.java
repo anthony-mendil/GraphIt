@@ -76,6 +76,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * Adds a vertex to the syndrom graphs and assigns it to a sphere if it wasn't existing in the past.
      *
      * @param pSphere The sphere to assign to.
+     * @param pos the position of the new sphere
      * @return True if the vertex was added to the graph, false if not.
      */
     @SuppressWarnings("unchecked")
@@ -88,6 +89,8 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
 
     /**
      * Adds a vertex to the SyndromGraph and assigns it to the sphere if it was existing in the past.
+     *
+     * @param vertex the new vertex
      */
     @SuppressWarnings("unchecked")
     public void addVertexExisting(Vertex vertex) {

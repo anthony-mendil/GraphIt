@@ -35,6 +35,10 @@ public class SphereContextMenu {
     private HelperFunctions helperFunctions = new HelperFunctions();
     private Syndrom syndrom = Syndrom.getInstance();
 
+    /**
+     * the sphere context menu
+     * @param sphere the sphere to create the context menu to
+     */
     public SphereContextMenu(Sphere sphere) {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
@@ -43,7 +47,9 @@ public class SphereContextMenu {
         setup();
     }
 
-
+    /**
+     * creates the sphere context menu
+     */
     private void setup() {
         // REMOVE
         MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));
@@ -109,10 +115,13 @@ public class SphereContextMenu {
 
         contextMenu.setAutoHide(true);
         contextMenu.setHideOnEscape(true);
-
         contextMenu.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> contextMenu.hide());
     }
 
+    /**
+     * checks the annotation and creates a new edit sphere annotation action
+     * @param map the map, containing the annotations
+     */
     private void checkAnnotation(Map<Language, String> map) {
         if (map != null) {
             String textGerman = map.get(Language.GERMAN);
@@ -123,6 +132,4 @@ public class SphereContextMenu {
             }
         }
     }
-
-
 }

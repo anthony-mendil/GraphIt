@@ -4,6 +4,7 @@ import actions.Action;
 import actions.GraphAction;
 import io.GXLio;
 import log_management.DatabaseManager;
+import lombok.Getter;
 
 import java.io.File;
 
@@ -17,6 +18,12 @@ public class ImportTemplateGxlAction extends GraphAction {
      */
     private File file;
 
+    @Getter
+    private boolean templateFound;
+
+    private GXLio gxlio;
+
+
     /**
      * Action handling for importing the graph as GXL file.
      *
@@ -24,18 +31,7 @@ public class ImportTemplateGxlAction extends GraphAction {
      */
     public ImportTemplateGxlAction(File pFile) {
         file = pFile;
-    }
-
-    /**
-     * Executes the defined behavior of the action.
-     */
-    @Override
-    public void action() {
-        GXLio gxlio = new GXLio();
-        gxlio.importGXL(file, true);
-        DatabaseManager databaseManager = DatabaseManager.getInstance();
-        Action.attach(databaseManager);
-        notifyObserverNewGraph();
+        gxlio = new GXLio();
     }
 
     /**
@@ -44,6 +40,22 @@ public class ImportTemplateGxlAction extends GraphAction {
     @Override
     public void undo() {
         //there is no undo/redo operation for io
+    }
+
+    /**
+     * Executes the defined behavior of the action.
+     */
+    @Override
+    public void action() {
+        gxlio.importGXL(file, true);
+        templateFound=gxlio.isTemplateFoundFlag();
+        if(!templateFound){
+            return;
+        }
+        DatabaseManager databaseManager = DatabaseManager.getInstance();
+        Action.attach(databaseManager);
+        notifyObserverNewGraph();
+
     }
 
     /**

@@ -168,7 +168,6 @@ public class LoadLanguage {
         c.getStyleSymptomCol().setText(loadLanguagesKey(templateStyle));
         c.getTemplateEdge().setText(loadLanguagesKey(sectionEdge));
         c.getEdgeCol().setText(loadLanguagesKey(templateName));
-        c.getPositionEdgeCol().setText(loadLanguagesKey(templatePosition));
         c.getStyleEdgeCol().setText(loadLanguagesKey(templateStyle));
         c.getEdgetypeEdgeCol().setText(loadLanguagesKey("templateEdgeType"));
         c.getHistoryTitledPane().setText(loadLanguagesKey("log"));
@@ -209,6 +208,7 @@ public class LoadLanguage {
         c.getLogAddVertex().setText(loadLanguagesKey("ADD_VERTICES"));
         c.getTooltipInfoAnalysis().setText(loadLanguagesKey("INFO_ANALYSIS"));
         c.getTooltipInfoZoom().setText(loadLanguagesKey("INFO_ZOOM"));
+        c.getTooltipInfoTemplate().setText(loadLanguagesKey("INFO_TEMPLATE"));
         c.getLanguageGraphGerman().setText(loadLanguagesKey(german));
         c.getLanguageGraphEnglish().setText(loadLanguagesKey(english));
         c.getLanguagesGraph().setText(loadLanguagesKey("languageGraph"));
@@ -216,6 +216,8 @@ public class LoadLanguage {
         c.getLanguageGuiGraphGerman().setText(loadLanguagesKey(german));
         c.getLanguageGuiGraphEnglish().setText(loadLanguagesKey(english));
         c.getAdvancedLanguageOptions().setText(loadLanguagesKey("advancedLanguageOptions"));
+        c.getSyncButton().getTooltip().setText(loadLanguagesKey("reloadButton"));
+        c.getFilterLogType().getTooltip().setText(loadLanguagesKey("LOG_TYPE"));
     }
 
     public String loadLanguagesKey(String key) {

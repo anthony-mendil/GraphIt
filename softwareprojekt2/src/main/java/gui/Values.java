@@ -6,6 +6,7 @@ import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
 import gui.properties.Language;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -25,6 +26,11 @@ import java.util.Map;
 public class Values {
 
     /**
+     * the relative path of the logo
+     */
+    public static final String LOGO_MAIN="/GraphItLogo.png";
+
+    /**
      * The default width sphere.
      */
     @Setter(AccessLevel.NONE)
@@ -40,37 +46,14 @@ public class Values {
      */
     @Setter(AccessLevel.NONE)
     public static final int DEFAULT_SIZE_VERTEX = 50;
-    /**
-     * The first highlight color for highlighting selection/ picking.
-     */
-    @Setter(AccessLevel.NONE)
-    private static final Paint defaultHighlightProPaintVertex = null;
-    /**
-     * The second highlight color for highlighting selection/ picking.
-     */
-    @Setter(AccessLevel.NONE)
-    private static final Paint defaultHighlightContraPaintVertex = null;
-    /**
-     * The highlight stroke.
-     */
-    @Setter(AccessLevel.NONE)
-    private static final StrokeType defaultHighlightStrokeVertex = null;
-    /**
-     * The default layout size.
-     */
-    private Dimension defaultLayoutSize = new Dimension(985, 540);
 
     @Setter(AccessLevel.NONE)
     private Dimension defaultLayoutVVSize = new Dimension(2000, 1500);
-    /**
-     * The default satellite layout size.
-     */
-    @Setter(AccessLevel.NONE)
-    private static final Dimension defaultSatelliteLayoutSize = null;
+
     /**
      * The fill paint color.
      */
-    private Color fillPaintSphere = new Color(174, 208, 197);
+    private Color fillPaintSphere = new Color(187, 222, 250);
     /**
      * The font of a sphere.
      */
@@ -86,7 +69,7 @@ public class Values {
     /**
      * The fill paint color of a vertex.
      */
-    private Color fillPaintVertex = new Color(123, 255, 51);
+    private Color fillPaintVertex = new Color(255, 224, 130);
 
     /**
      * true if the anchor points are highlighted in the gui
@@ -118,10 +101,6 @@ public class Values {
      */
     private Color edgePaint = Color.BLACK;
     /**
-     * The edge weight.
-     */
-    private int edgeWeight = 1;
-    /**
      * The edge stroke.
      */
     private StrokeType strokeEdge = StrokeType.BASIC;
@@ -140,11 +119,6 @@ public class Values {
     private FunctionMode mode;
 
     /**
-     * The current language of the objects.
-     */
-    private Language objectLanguage;
-
-    /**
      * The current language of the gui.
      */
     private Language guiLanguage = Language.GERMAN;
@@ -154,49 +128,72 @@ public class Values {
      */
     private Language graphLanguage = Language.GERMAN;
 
+    /**
+     * the values instance
+     */
     private static Values instance;
 
+    /**
+     * the current action text from the gui
+     */
     private Text currentActionText = new Text("");
 
+    /**
+     * the canvas of the gui, containing the visualisationViewer
+     */
     private Node canvas;
 
+    /**
+     * the hBox of the gui, containing the action alert
+     */
     private HBox hBox;
 
+    /**
+     * the toggleButton of the gui, used for the animation fade out
+     */
+    private ToggleButton animationFadeout;
+
+    /**
+     * the mouse position text, coordinate x
+     */
     private Text positionMouseX = new Text("");
+
+    /**
+     * the mouse position text, coordinate y
+     */
     private Text positionMouseY = new Text("");
 
-    @Setter(AccessLevel.NONE)
-    private final javafx.scene.text.Font actionTextInfo = javafx.scene.text.Font.font("System Regular", FontWeight
-            .NORMAL, 12);
+    /**
+     * the font used font the action alert messages
+     */
     @Setter(AccessLevel.NONE)
     private final javafx.scene.text.Font actionTextAlert = javafx.scene.text.Font.font("System Regular", FontWeight
             .EXTRA_BOLD, 14);
 
-    @Setter(AccessLevel.NONE)
-    private final javafx.scene.paint.Color actionTextColorAlert = javafx.scene.paint.Color.rgb(160, 12, 12, 1);
-
-    @Setter(AccessLevel.NONE)
-    public static final javafx.scene.paint.Color actionTextColorInfo = javafx.scene.paint.Color.BLACK;
-
-    private int scale;
-
-    @Setter(AccessLevel.NONE)
-    public static final int MIN_SCALE = 10;
-
-    @Setter(AccessLevel.NONE)
-    public static final int MAX_SCALE = 200;
-
+    /**
+     * the roboto font
+     */
     private Font roboto;
+    /**
+     * the robotoSlab font
+     */
     private Font robotoSlab;
+    /**
+     * the averiaSansLibr font
+     */
     private Font averiaSansLibr;
+    /**
+     *  the kalam font
+     */
     private Font kalam;
+    /**
+     * the mali font
+     */
     private Font mali;
 
-
-    private Values() {
-
-    }
-
+    /**
+     * @return the default annotation map for the vertices
+     */
     public Map<String, String> getDefaultAnnotationVertex() {
         Map<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(), "Symptom");
@@ -204,6 +201,9 @@ public class Values {
         return annotation;
     }
 
+    /**
+     * @return the default annotation map for the spheres
+     */
     public Map<String, String> getDefaultAnnotationSphere() {
         Map<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(), "Sphäre");
@@ -211,6 +211,9 @@ public class Values {
         return annotation;
     }
 
+    /**
+     * @return the instance of the Value Class
+     */
     public static Values getInstance() {
         if (instance == null) {
             instance = new Values();

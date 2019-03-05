@@ -38,7 +38,7 @@ public class JGraphTHandler {
     /**
      * The graph in JGraphT-form.
      */
-    private DefaultDirectedGraph algorithmGraph;
+    private DefaultDirectedGraph<Vertex, Edge> algorithmGraph;
     /**
      * The list of selected vertices.
      */
@@ -82,6 +82,8 @@ public class JGraphTHandler {
 
     /**
      * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
+     *
+     * @return true if the amount of picked vertices is 2
      */
     private boolean calculateEndpoints() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
@@ -99,6 +101,8 @@ public class JGraphTHandler {
 
     /**
      * Sets the vertex for the neighbor algorithms. It checks if at least one vertex is picked.
+     *
+     * @return true if at least one vertex is picked
      */
     private boolean isAtLeastOnePicked() {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
@@ -168,7 +172,7 @@ public class JGraphTHandler {
     @SuppressWarnings("unchecked")
     public Set<Vertex> detectConvergentBranches() {
         Set<Vertex> convergentBranches = new HashSet<>();
-        for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
+        for (Vertex vertex : algorithmGraph.vertexSet()) {
             if (algorithmGraph.inDegreeOf(vertex) > 1) {
                 convergentBranches.add(vertex);
             }
@@ -184,7 +188,7 @@ public class JGraphTHandler {
     @SuppressWarnings("unchecked")
     public Set<Vertex> detectDivergentBranches() {
         Set<Vertex> divergentBranches = new HashSet<>();
-        for (Vertex vertex : (Set<Vertex>) algorithmGraph.vertexSet()) {
+        for (Vertex vertex : algorithmGraph.vertexSet()) {
             if (algorithmGraph.outDegreeOf(vertex) > 1) {
                 divergentBranches.add(vertex);
             }
@@ -195,6 +199,9 @@ public class JGraphTHandler {
     /**
      * Returns all predecessors and their edges towards them in
      * the given iterations.
+     *
+     * @param steps the count of steps for finding its predecessors
+     * @return the list of predecessors
      */
     public Pair<List<Vertex>, List<Edge>> predecessorsIterations(int steps) {
         if (isAtLeastOnePicked()) {
@@ -209,7 +216,7 @@ public class JGraphTHandler {
                         List<Vertex> predecessors = Graphs.predecessorListOf(algorithmGraph, pivotVertex);
                         for (Vertex neighborVertex : predecessors) {
                             vertices.add(neighborVertex);
-                            edges.add((Edge) algorithmGraph.getEdge(neighborVertex, pivotVertex));
+                            edges.add(algorithmGraph.getEdge(neighborVertex, pivotVertex));
                         }
                         tempVertex = predecessors;
                     }
@@ -221,8 +228,11 @@ public class JGraphTHandler {
     }
 
     /**
-     * Returns all predecessors and their edges towards them in
+     * Returns all successors and their edges towards them in
      * the given iterations.
+     *
+     * @param steps the count of steps for finding its successors
+     * @return the list of successors
      */
     @SuppressWarnings("unchecked")
     public Pair<List<Vertex>, List<Edge>> successorIterations(int steps) {
@@ -238,7 +248,7 @@ public class JGraphTHandler {
                         List<Vertex> successors = Graphs.successorListOf(algorithmGraph, pivotVertex);
                         for (Vertex neighborVertex : successors) {
                             vertices.add(neighborVertex);
-                            edges.add((Edge) algorithmGraph.getEdge(pivotVertex, neighborVertex));
+                            edges.add(algorithmGraph.getEdge(pivotVertex, neighborVertex));
                         }
                         tempVertex = successors;
                     }
@@ -252,12 +262,14 @@ public class JGraphTHandler {
     /**
      * Detects relation chains. This algorithm is created by Clement Phung and Jonah Jaeger. No unnamed help
      * has been used.
+     *
+     * @return all vertex chains of a graph
      */
     @SuppressWarnings("unchecked")
     public Pair<List<List<Vertex>>, Set<Edge>> detectRelationChains() {
         List<List<Vertex>> relationChains = new LinkedList<>();
         List<Vertex> innerVertices = new ArrayList<>();
-        for (Vertex vert : (Set<Vertex>) algorithmGraph.vertexSet()) {
+        for (Vertex vert : algorithmGraph.vertexSet()) {
             if (algorithmGraph.inDegreeOf(vert) == 1 && algorithmGraph.outDegreeOf(vert) == 1) {
                 innerVertices.add(vert);
             }
@@ -266,10 +278,10 @@ public class JGraphTHandler {
         Set<Edge> edgesRelationChain = new HashSet<>();
         for (List<Vertex> list : relationChains) {
             for (int i = 0; i < list.size() - 1; i++) {
-                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
+                edgesRelationChain.add( algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
             }
             if (algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1) {
-                edgesRelationChain.add((Edge) algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
+                edgesRelationChain.add( algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
             }
         }
         return new Pair<>(relationChains, edgesRelationChain);
@@ -278,8 +290,11 @@ public class JGraphTHandler {
     /**
      * Inner algorithm for the relation chain algorithm. Potential relation chains will be build
      * and eventually added to the list of relation chains.
+     *
+     * @param innerVertices a list with inner vertices
+     * @param relationChains a list with chains
      */
-    public void growPotentailChains(List<Vertex> innerVertices, List<List<Vertex>> relationChains) {
+    private void growPotentailChains(List<Vertex> innerVertices, List<List<Vertex>> relationChains) {
         while (!innerVertices.isEmpty()) {
             LinkedList<Vertex> potentialChain = new LinkedList<>();
             Vertex pivotVertex = innerVertices.get(0);
@@ -287,25 +302,29 @@ public class JGraphTHandler {
             Vertex successor = pivotVertex;
             potentialChain.add(pivotVertex);
             while (Graphs.predecessorListOf(algorithmGraph, predecessor).size() == 1 && Graphs.successorListOf(algorithmGraph, predecessor).size() == 1) {
-                if (!potentialChain.contains((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
-                    potentialChain.addFirst((Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
-                    predecessor = (Vertex) Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
+                if (!potentialChain.contains(Graphs.predecessorListOf(algorithmGraph, predecessor).get(0))) {
+                    potentialChain.addFirst(Graphs.predecessorListOf(algorithmGraph, predecessor).get(0));
+                    predecessor = Graphs.predecessorListOf(algorithmGraph, predecessor).get(0);
                 } else {
                     break;
                 }
             }
             while (Graphs.successorListOf(algorithmGraph, successor).size() == 1 && Graphs.predecessorListOf(algorithmGraph, successor).size() == 1) {
-                if (!potentialChain.contains((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0))) {
-                    potentialChain.addLast((Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0));
-                    successor = (Vertex) Graphs.successorListOf(algorithmGraph, successor).get(0);
+                if (!potentialChain.contains(Graphs.successorListOf(algorithmGraph, successor).get(0))) {
+                    potentialChain.addLast(Graphs.successorListOf(algorithmGraph, successor).get(0));
+                    successor = Graphs.successorListOf(algorithmGraph, successor).get(0);
                 } else {
                     break;
                 }
             }
             innerVertices.removeAll(potentialChain);
-            if (potentialChain.size() > 3) {
-                relationChains.add(potentialChain);
-            }
+            sizeChains(potentialChain,  relationChains);
+        }
+    }
+
+    private void sizeChains(LinkedList<Vertex> potentialChain, List<List<Vertex>> relationChains){
+        if (potentialChain.size() > 3) {
+            relationChains.add(potentialChain);
         }
     }
 

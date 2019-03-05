@@ -24,7 +24,6 @@ public class MoveVerticesParam implements Param {
     /**
      * The old vertices.
      */
-    @Getter
     private List<Vertex> oldVertices;
     /**
      * The old positions of the vertices.
@@ -34,7 +33,6 @@ public class MoveVerticesParam implements Param {
     /**
      * The new vertices.
      */
-    @Getter
     private List<Vertex> newVertices;
     /**
      * The new positions of the vertices.

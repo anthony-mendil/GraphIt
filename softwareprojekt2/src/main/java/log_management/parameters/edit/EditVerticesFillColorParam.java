@@ -23,7 +23,6 @@ public class EditVerticesFillColorParam implements Param {
     /**
      * The old vertices.
      */
-    @Getter
     private List<Vertex> oldVertices;
     /**
      * The old fill colors of the vertices.
@@ -33,7 +32,6 @@ public class EditVerticesFillColorParam implements Param {
     /**
      * The new vertices.
      */
-    @Getter
     private List<Vertex> newVertices;
     /**
      * The new fill colors of the vertices.

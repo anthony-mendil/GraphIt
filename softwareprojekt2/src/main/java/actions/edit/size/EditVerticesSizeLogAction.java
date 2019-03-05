@@ -25,6 +25,7 @@ public class EditVerticesSizeLogAction extends LogAction {
 
     /**
      * Changes the size of the vertices.
+     * @param sizeChange: the type of size change for the vertex
      */
     public EditVerticesSizeLogAction(SizeChange sizeChange) {
         super(LogEntryName.EDIT_VERTICES_SIZE);
@@ -50,28 +51,9 @@ public class EditVerticesSizeLogAction extends LogAction {
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
             Map<Vertex, Integer> oldVertices = new HashMap<>();
             Map<Vertex, Integer> newVertices = new HashMap<>();
-            for (Vertex vertex : pickedState.getPicked()) {
-                if (!vertex.isLockedStyle()) {
-                    if (sizeChange == SizeChange.ENLARGE) {
-                        oldVertices.put(vertex, vertex.getSize());
-                        vertex.setSize(vertex.getSize() + 5);
-                        newVertices.put(vertex, vertex.getSize());
-                    } else {
-                        if (vertex.getSize() > 45) {
-                            oldVertices.put(vertex, vertex.getSize());
-                            vertex.setSize(vertex.getSize() - 5);
-                            newVertices.put(vertex, vertex.getSize());
-                        }
-                    }
-                }else {
-                    helper.setActionText("EDIT_VERTICES_SITE_ALERT", true, true);
-                    actionHistory.removeLastEntry();
-                    return;
-                }
-            }
+            editSize(pickedState, oldVertices, newVertices);
             createParameter(oldVertices, newVertices);
         } else {
-
             Map<Vertex, Integer> oldVertices = ((EditVerticesSizeParam) parameters).getOldVertices();
             Map<Vertex, Integer> newVertices = ((EditVerticesSizeParam) parameters).getNewVertices();
             for (Map.Entry<Vertex, Integer> entry : oldVertices.entrySet()) {
@@ -84,8 +66,28 @@ public class EditVerticesSizeLogAction extends LogAction {
         DatabaseManager databaseManager = DatabaseManager.getInstance();
         databaseManager.addEntryDatabase(createLog());
         notifyObserverGraph();
+    }
 
-
+    private void editSize(PickedState<Vertex> pickedState, Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices){
+        for (Vertex vertex : pickedState.getPicked()) {
+            if (!vertex.isLockedStyle()) {
+                if (sizeChange == SizeChange.ENLARGE) {
+                    oldVertices.put(vertex, vertex.getSize());
+                    vertex.setSize(vertex.getSize() + 5);
+                    newVertices.put(vertex, vertex.getSize());
+                } else {
+                    if (vertex.getSize() > 45) {
+                        oldVertices.put(vertex, vertex.getSize());
+                        vertex.setSize(vertex.getSize() - 5);
+                        newVertices.put(vertex, vertex.getSize());
+                    }
+                }
+            }else {
+                helper.setActionText("EDIT_VERTICES_SITE_ALERT", true, true);
+                actionHistory.removeLastEntry();
+                return;
+            }
+        }
     }
 
     @Override

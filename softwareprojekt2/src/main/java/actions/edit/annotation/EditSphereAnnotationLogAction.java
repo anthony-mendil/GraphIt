@@ -53,8 +53,8 @@ public class EditSphereAnnotationLogAction extends LogAction {
                 if (!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
                     createParameter(sp, sp.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH), sp.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
                     Map<String, String> annotation = sp.getAnnotation();
-                    annotation.put(Language.GERMAN.name(), text.get(Language.GERMAN));
                     annotation.put(Language.ENGLISH.name(), text.get(Language.ENGLISH));
+                    annotation.put(Language.GERMAN.name(), text.get(Language.GERMAN));
                     sp.setAnnotation(annotation);
                 } else {
                     helper.setActionText("EDIT_SPERE_ANNOTATION_ALERT", true, true);

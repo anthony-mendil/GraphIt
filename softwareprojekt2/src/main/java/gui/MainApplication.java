@@ -1,5 +1,6 @@
 package gui;
 
+import graph.graph.Syndrom;
 import javafx.application.Application;
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,6 @@ import org.apache.log4j.BasicConfigurator;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -50,12 +50,15 @@ public class MainApplication extends Application {
      * and the window size.
      *
      * @param primaryStage The window of the application.
-     * @throws Exception If the loading of the fxml fileMenu fails.
      */
-    public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Syndromansatz");
+    public void start(Stage primaryStage) {
+        if (Syndrom.getInstance().getGraphName()!=null) {
+            primaryStage.setTitle(Syndrom.getInstance().getGraphName()+" - GraphIt");
+        }else{
+            primaryStage.setTitle("GraphIt - " + "UntitledGraph");
+        }
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/GraphItLogo.png")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
         primaryStage.setMaximized(true);
         controller.setStage(primaryStage);
         controller.initButtonShortcuts();
