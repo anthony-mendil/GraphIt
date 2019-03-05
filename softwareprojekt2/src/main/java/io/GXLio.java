@@ -199,10 +199,8 @@ public class GXLio {
         newGraph.getGraphObjectsFactory().setObjectCounter(++maxID);
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         if (graphName != null) {
-            System.out.println("GraphName found: "+graphName);
             syndrom.setGraphName(graphName);
         }else{
-            System.out.println("no Graphname found");
             syndrom.setGraphName("GraphIt");
         }
         updateSystemDataOfSpheresAndVertices(spheresWithVertices, newGraph, vv);
@@ -641,13 +639,13 @@ public class GXLio {
      */
     private GXLGraph createTemplateNode() {
         GXLGraph templateNode = new GXLGraph("template");
-        Template template = Syndrom.getInstance().getTemplate();
-        templateNode.setAttr("maxSpheres", new GXLInt(template.getMaxSpheres()));
-        templateNode.setAttr("maxVertices", new GXLInt(template.getMaxVertices()));
-        templateNode.setAttr("maxEdges", new GXLInt(template.getMaxEdges()));
-        templateNode.setAttr("reinforcedEdgesAllowed", new GXLBool(template.isReinforcedEdgesAllowed()));
-        templateNode.setAttr("unknownEdgesAllowed", new GXLBool(template.isNeutralEdgesAllowed()));
-        templateNode.setAttr("extenuatingEdgesAllowed", new GXLBool(template.isExtenuatingEdgesAllowed()));
+        Template templ = Syndrom.getInstance().getTemplate();
+        templateNode.setAttr("maxSpheres", new GXLInt(templ.getMaxSpheres()));
+        templateNode.setAttr("maxVertices", new GXLInt(templ.getMaxVertices()));
+        templateNode.setAttr("maxEdges", new GXLInt(templ.getMaxEdges()));
+        templateNode.setAttr("reinforcedEdgesAllowed", new GXLBool(templ.isReinforcedEdgesAllowed()));
+        templateNode.setAttr("unknownEdgesAllowed", new GXLBool(templ.isNeutralEdgesAllowed()));
+        templateNode.setAttr("extenuatingEdgesAllowed", new GXLBool(templ.isExtenuatingEdgesAllowed()));
         return templateNode;
     }
 
