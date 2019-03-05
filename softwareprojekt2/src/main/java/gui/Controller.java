@@ -2346,6 +2346,31 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
+     * javadocTODO
+     */
+    @FXML
+    private void showAboutUs(){
+        File pdfDest= Paths.get(System.getProperty("user.home"), ".graphit", "TeamBlank.pdf").toFile();
+        try {
+            if(pdfDest.createNewFile()) {
+                FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/TeamBlank.pdf"), pdfDest);
+            }else{
+                logger.debug("pdf already exists");
+            }
+        } catch (final IOException e) {
+            logger.error("Unable to copy TeamBlank.pdf");
+        }
+
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().open(pdfDest);
+            } catch (IOException ex) {
+                logger.error("No default PDF viewing application found");
+            }
+        }
+    }
+
+    /**
      * Opens up the exit window and closes the application if the user wants to.
      */
     @FXML

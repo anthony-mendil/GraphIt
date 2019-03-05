@@ -141,7 +141,11 @@
                             <KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="about" mnemonicParsing="false" text="%aboutUs" />
+                    <MenuItem fx:id="about" mnemonicParsing="false" onAction="#showAboutUs" text="%aboutUs" >
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="F2" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                        </accelerator>
+                    </MenuItem>
                 </Menu>
             </MenuBar>
             <JFXToolbar minHeight="-Infinity" prefHeight="30.0" scaleShape="false">
