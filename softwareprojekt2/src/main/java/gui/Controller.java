@@ -82,6 +82,7 @@ import log_management.LogToStringConverter;
 import log_management.dao.LogDao;
 import log_management.tables.Log;
 import lombok.Data;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
@@ -89,11 +90,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -2333,15 +2330,12 @@ public class Controller implements ObserverSyndrom {
         File pdfDest= Paths.get(System.getProperty("user.home"), ".graphit", "userGuide.pdf").toFile();
         try {
             if(pdfDest.createNewFile()) {
-                Path src = Paths.get(getClass().getResource("/userGuide.pdf").toURI());
-                Path trgt = Paths.get(pdfDest.toURI());
-
-                Files.copy(src, trgt, StandardCopyOption.REPLACE_EXISTING);
+                FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/userGuide.pdf"), pdfDest);
             }else{
                 logger.debug("pdf already exists");
             }
-        } catch (IOException | URISyntaxException e) {
-            logger.error(e.toString());
+        } catch (final IOException e) {
+            logger.error("Unable to copy userGuide.pdf");
         }
 
         if (Desktop.isDesktopSupported()) {
