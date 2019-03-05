@@ -63,7 +63,7 @@ public class MainApplication extends Application {
         controller.setStage(primaryStage);
         controller.initButtonShortcuts();
         controller.getRoot().requestFocus();
-
+        Values.getInstance().setMainStage(primaryStage);
         primaryStage.show();
     }
 }
