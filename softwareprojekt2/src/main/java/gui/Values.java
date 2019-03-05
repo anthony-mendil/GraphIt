@@ -53,7 +53,7 @@ public class Values {
     /**
      * The fill paint color.
      */
-    private Color fillPaintSphere = new Color(163, 230, 208);
+    private Color fillPaintSphere = new Color(187, 222, 250);
     /**
      * The font of a sphere.
      */
@@ -69,7 +69,7 @@ public class Values {
     /**
      * The fill paint color of a vertex.
      */
-    private Color fillPaintVertex = new Color(241, 244, 255);
+    private Color fillPaintVertex = new Color(255, 224, 130);
 
     /**
      * true if the anchor points are highlighted in the gui
