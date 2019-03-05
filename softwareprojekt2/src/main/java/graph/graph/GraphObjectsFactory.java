@@ -27,7 +27,7 @@ public class GraphObjectsFactory {
     /**
      * Creates a new GraphObjectsFactory object.
      */
-    GraphObjectsFactory() {
+    public GraphObjectsFactory() {
         values = Values.getInstance();
         objectCounter = 0;
     }
@@ -46,7 +46,7 @@ public class GraphObjectsFactory {
      *
      * @return A new edge object.
      */
-    Edge createEdge() {
+    public Edge createEdge() {
         int id = objectCounter++;
         Color color = values.getEdgePaint();
         StrokeType stroke = values.getStrokeEdge();
@@ -59,7 +59,7 @@ public class GraphObjectsFactory {
      * @param position the position of the new vertex i
      * @return A new vertex object.
      */
-    Vertex createVertex(Point2D position) {
+    public Vertex createVertex(Point2D position) {
         int id = objectCounter++;
         Color fillPaint = values.getFillPaintVertex();
         Color drawPaint = values.getDrawPaintVertex();
@@ -85,7 +85,7 @@ public class GraphObjectsFactory {
      * @param position The position of the new sphere.
      * @return A new sphere object.
      */
-    Sphere createSphere(Point2D position) {
+    public Sphere createSphere(Point2D position) {
         int id = objectCounter++;
         Color fillPaint = values.getFillPaintSphere();
         double width = Values.DEFAULT_WIDTH_SPHERE;
