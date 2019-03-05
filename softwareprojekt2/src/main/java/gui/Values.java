@@ -6,6 +6,7 @@ import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
 import gui.properties.Language;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -164,6 +165,8 @@ public class Values {
     private Node canvas;
 
     private HBox hBox;
+
+    private ToggleButton animationFadeout;
 
     private Text positionMouseX = new Text("");
     private Text positionMouseY = new Text("");

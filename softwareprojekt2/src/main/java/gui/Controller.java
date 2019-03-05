@@ -1595,6 +1595,7 @@ public class Controller implements ObserverSyndrom {
 
         values.setCanvas(canvas);
         values.setHBox(textBox);
+        values.setAnimationFadeout(fadeout);
         values.setCurrentActionText(currentActionText);
         values.setPositionMouseX(positionMouseX);
         values.setPositionMouseY(positionMouseY);
