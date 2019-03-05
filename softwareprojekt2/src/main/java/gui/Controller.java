@@ -2328,7 +2328,7 @@ public class Controller implements ObserverSyndrom {
         File pdfDest= Paths.get(System.getProperty("user.home"), ".graphit", "userGuide.pdf").toFile();
         try {
             if(pdfDest.createNewFile()) {
-                FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/userGuide.pdf"), pdfDest);
+                FileUtils.copyToFile(getClass().getResourceAsStream("/userGuide.pdf"), pdfDest);
             }else{
                 logger.debug("pdf already exists");
             }
