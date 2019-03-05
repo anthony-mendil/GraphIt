@@ -398,8 +398,6 @@ public class GXLio {
             newEdge.setLockedStyle(isLockedStyle);
             boolean isLockedEdgeType = ((GXLBool) elem.getAttr("isLockedEdgeType").getValue()).getBooleanValue();
             newEdge.setLockedEdgeType(isLockedEdgeType);
-            boolean lockedPosition = ((GXLBool) elem.getAttr("lockedPosition").getValue()).getBooleanValue();
-            newEdge.setLockedPosition(lockedPosition);
         }
         return newEdge;
 
@@ -602,7 +600,6 @@ public class GXLio {
     private void addRulesToEdge(Edge edge, GXLEdge gxlEdge) {
         gxlEdge.setAttr(IS_LOCKED_STYLE, new GXLBool(edge.isLockedStyle()));
         gxlEdge.setAttr("isLockedEdgeType", new GXLBool(edge.isLockedEdgeType()));
-        gxlEdge.setAttr("lockedPosition", new GXLBool(edge.isLockedPosition()));
     }
 
     /**

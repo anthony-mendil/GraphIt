@@ -73,12 +73,7 @@ public class Edge {
     @Getter
     @Setter
     private boolean isLockedEdgeType = false;
-    /**
-     * Indicator whether the edge can be deleted.
-     */
-    @Getter
-    @Setter
-    private boolean lockedPosition = false;
+
     /**
      * defines whether the edge has priority by rendering or not
      */

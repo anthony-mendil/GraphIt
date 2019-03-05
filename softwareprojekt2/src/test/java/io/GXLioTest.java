@@ -199,7 +199,6 @@ public class GXLioTest {
         e3.setStroke(StrokeType.DOTTED_WEIGHT);
         e3.setLockedStyle(true);
         Edge e4 = factory.createEdge();
-        e4.setLockedPosition(true);
         e4.setStroke(StrokeType.DOTTED);
         values.setEdgeArrowType(EdgeArrowType.REINFORCED);
         Edge e5 = factory.createEdge();
@@ -214,7 +213,6 @@ public class GXLioTest {
         Edge e8 = factory.createEdge();
         e8.setStroke(StrokeType.DASHED_WEIGHT);
         e8.setLockedEdgeType(true);
-        e8.setLockedPosition(true);
 
         s1.getVertices().add(v1);
         s2.getVertices().add(v2);
@@ -1069,28 +1067,6 @@ public class GXLioTest {
         Assert.assertTrue(edges.get(5).isLockedStyle());
         Assert.assertTrue(edges.get(6).isLockedStyle());
         Assert.assertFalse(edges.get(7).isLockedStyle());
-    }
-
-    /**
-     * This method tests if the edges of the graph that is created by importing the specified gxl file have the right value for the isLockedPosition-attribute.
-     *
-     * @throws IOException  if the File can*t be created or the file that is specified for the import can't be found.
-     * @throws SAXException if their occurs any problem parsing the document
-     */
-    @Test
-    public void testEdgesLockedPositionOfGraph() throws IOException, SAXException {
-        prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
-        SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-        ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
-        edges.sort(Comparator.comparingInt(Edge::getId));
-        Assert.assertFalse(edges.get(0).isLockedPosition());
-        Assert.assertFalse(edges.get(1).isLockedPosition());
-        Assert.assertFalse(edges.get(2).isLockedPosition());
-        Assert.assertTrue(edges.get(3).isLockedPosition());
-        Assert.assertFalse(edges.get(4).isLockedPosition());
-        Assert.assertFalse(edges.get(5).isLockedPosition());
-        Assert.assertFalse(edges.get(6).isLockedPosition());
-        Assert.assertTrue(edges.get(7).isLockedPosition());
     }
 
     /**
