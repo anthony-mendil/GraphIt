@@ -153,6 +153,7 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     /**
      * It checks if at least one vertex is picked.
      * If not, it will show an alert that at least one vertex has to be picked.
+     * @return true if at least one syndrom is picked
      */
     private boolean isAtLeastOnePicked() {
         language = c.getLoadLanguage();

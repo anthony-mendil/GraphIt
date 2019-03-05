@@ -312,6 +312,7 @@ public class HelperFunctions {
     /**
      * Checks whether the vertices in the sphere are locked.
      *
+     * @param sp the sphere to check its vertices if one of the is locked
      * @return true: locked vertices, false: no locked vertices
      */
     public boolean verticesLocked(Sphere sp) {

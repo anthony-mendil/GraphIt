@@ -85,13 +85,14 @@ public class Edge {
     private boolean hasPriority = false;
 
     /**
-     * Creates an edge between two vertices.
      *
-     * @param id        The unique ID of the edge.
-     * @param color     The color of the edge.
-     * @param stroke    The stroke of the edge.
+     * @param id The unique ID of the edge.
+     * @param color The color of the edge.
+     * @param stroke The stroke of the edge.
      * @param arrowType The arrowType of the edge.
      * @param isVisible Indicator whether the edge is currently visible.
+     * @param anchorIn true if the edge is having an anchor point in it second vertex (incoming vertex)
+     * @param anchorOut true if the edge is having an anchor point in it first vertex  (outgoing vertex)
      */
     public Edge(int id, Color color, StrokeType stroke, EdgeArrowType arrowType, boolean isVisible, boolean anchorIn, boolean anchorOut) {
         this.id = id;

@@ -85,6 +85,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
 
     /**
      * create an instance with passed values
+     *
+     * @param addToSelectionModifiers the modifiers used for picking more than one vertices and add it to the selection
+     * @param selectionModifiers the modifiers used for picking the vertices
      */
     private VertexPickingPlugin(int selectionModifiers, int addToSelectionModifiers) {
         super(selectionModifiers);

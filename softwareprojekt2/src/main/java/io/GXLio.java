@@ -73,6 +73,7 @@ public class GXLio {
      * As location of the document the file-attribute is used.
      *
      * @param pGXL The GXL representation that gets written into syndrom.
+     * @param withTemplate true if the import includes the template, false if not
      */
     public void gxlToInstance(String pGXL, boolean withTemplate) {
         try {
@@ -273,6 +274,7 @@ public class GXLio {
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Sphere]-class.
      *
      * @param elem is a GXLAttributetElement that describes a sphere having the same atributes as an sphere.
+     * @param withTemplate true it the import includes the template
      * @return a new sphere object with the values from the passed GXLAttributetElement object
      */
     private Sphere convertGXLElementToSphere(GXLAttributedElement elem, boolean withTemplate) {
