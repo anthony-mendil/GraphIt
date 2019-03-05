@@ -1194,6 +1194,7 @@ public class Controller implements ObserverSyndrom {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey("INFO_TEMPLATE_GXL"), yes, no);
                 alert.setTitle(APPLICATION_TITLE);
                 alert.setHeaderText(null);
+                alert.initOwner(mainStage);
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                 stage.centerOnScreen();
                 stage.setResizable(false);
@@ -1239,6 +1240,7 @@ public class Controller implements ObserverSyndrom {
                 Alert alert = new Alert(Alert.AlertType.ERROR, loadLanguage.loadLanguagesKey("ERROR_GXL_NOT_TEMPLATE"), ok);
                 alert.setTitle(APPLICATION_TITLE);
                 alert.setHeaderText(null);
+                alert.initOwner(mainStage);
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                 stage.centerOnScreen();
                 stage.setResizable(false);
@@ -2355,8 +2357,8 @@ public class Controller implements ObserverSyndrom {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey("EXIT_WINDOW_QUESTION"), ok, close);
         alert.setTitle(APPLICATION_TITLE);
         alert.setHeaderText(null);
+        alert.initOwner(mainStage);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.centerOnScreen();
         stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
@@ -2453,6 +2455,7 @@ public class Controller implements ObserverSyndrom {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, loadLanguage.loadLanguagesKey(info), ok, close);
         alert.setTitle(APPLICATION_TITLE);
         alert.setHeaderText(null);
+        alert.initOwner(mainStage);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.centerOnScreen();
         stage.setResizable(false);
