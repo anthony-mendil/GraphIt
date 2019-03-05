@@ -199,10 +199,8 @@ public class GXLio {
         newGraph.getGraphObjectsFactory().setObjectCounter(++maxID);
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         if (graphName != null) {
-            System.out.println("GraphName found: "+graphName);
             syndrom.setGraphName(graphName);
         }else{
-            System.out.println("no Graphname found");
             syndrom.setGraphName("GraphIt");
         }
         updateSystemDataOfSpheresAndVertices(spheresWithVertices, newGraph, vv);
