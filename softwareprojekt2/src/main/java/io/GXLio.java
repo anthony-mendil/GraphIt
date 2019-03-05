@@ -80,7 +80,6 @@ public class GXLio {
             GXLDocument doc = new GXLDocument(new ByteArrayInputStream(pGXL.getBytes(StandardCharsets.UTF_8)));
             GXLGraph gxlGraph = (GXLGraph) doc.getElement("syndrom");
             GXLGraph gxlTemplate = (GXLGraph) doc.getElement("template");
-            String graphName= ((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue();
             if (gxlGraph == null) {
                 logger.error("Error on empty Syndrom GXLGraph");
                 return;
@@ -117,6 +116,7 @@ public class GXLio {
                     maxID = Math.max(maxID, idCounter);
                 }
             }
+            String graphName= ((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue();
             updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices, graphName, withTemplate);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());
@@ -199,8 +199,10 @@ public class GXLio {
         newGraph.getGraphObjectsFactory().setObjectCounter(++maxID);
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         if (graphName != null) {
+            System.out.println("GraphName found: "+graphName);
             syndrom.setGraphName(graphName);
         }else{
+            System.out.println("no Graphname found");
             syndrom.setGraphName("GraphIt");
         }
         updateSystemDataOfSpheresAndVertices(spheresWithVertices, newGraph, vv);
