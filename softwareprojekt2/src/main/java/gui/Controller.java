@@ -3036,7 +3036,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * TODO
+     * javadocTODO
      * @param mode
      */
     @Override
@@ -3045,7 +3045,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * TODO
+     * javadocTODO
      */
     @Override
     public void updateEditMode() {

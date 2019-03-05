@@ -10,21 +10,21 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * TODO
+ * javadocTODO
  */
 public class PDFPrinterGui {
 
     private static Logger logger = Logger.getLogger(PDFPrinterGui.class);
 
     /**
-     * TODO
+     * javadocTODO
      */
     public PDFPrinterGui(InputStream pInputStream) {
         print(pInputStream);
     }
 
     /**
-     * TODO
+     * javadocTODO
      * @param pInputStream
      */
     private void print(InputStream pInputStream) {
