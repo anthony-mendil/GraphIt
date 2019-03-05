@@ -2,17 +2,29 @@
 % https://gist.github.com/Ben-Kaniobi
 
 
-\documentclass{scrartcl}
+\documentclass[enabledeprecatedfontcommands]{scrartcl}
 
 %\usepackage[ansinew]{inputenc}  % Schriftcodierung für Windows
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}        % Schriftkodierung
+\usepackage{fancyhdr}
+
 \usepackage[ngerman]{babel}     % Neue de. Rechtschr. (Worttrennung, äöüß etc.) als Parameter für babel
 \usepackage{lmodern}            % Darstellung
 \usepackage{wasysym}            % Spezielle Symbole
 \usepackage{todonotes}          % ToDo-Notizen
 \usepackage{perpage}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{setspace} 
+\usepackage[ngerman]{varioref}
+\usepackage[ngerman]{babel}
+\usepackage{ngerman}
+% Bibliographie
+\usepackage{bibgerm}
+\usepackage{svg}
 %\usepackage{calc}               % Erweiterte Berechnungen/Text messen
 %\usepackage{amsmath}  % Math
 %\usepackage[final]{pdfpages}   % PDF einbinden
@@ -31,16 +43,19 @@ filecolor=magenta, % Farbe von Links zu Dateien
 urlcolor=blue % Farbe von externen Links
 ]{hyperref}
 
-\title{Testprotokoll: GraphIt}
-\subtitle{Black-Box-Test}  % Oder White-Box-Test
-\author{Clement Phung, Bastian Rexhäuser, Nina Unterberg, \\ Jacky Philipp Mach, Jonah Jeager, Anthony Mendil}  % Nicht ganz korrekte Auflistung der Authoren, sieht aber besser aus als mit \and
-\date{21. Februar 2019}  % Datum der Testdurchführung, NICHT \today
+ \pagestyle{fancy}
+\setlength{\headheight}{70.55003pt}
+\fancyhead{}
+\fancyhead[LO,RE]{Software--Projekt 2\\ WiSe 2018/2019
+	\\Testprotokoll}
+\fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
 
 \MakePerPage{footnote}
 % Subsection mit Normalem Text neben Titel
 \newcommand{\subsectiont}[2]{\subsection[#1]{#1{\normalsize\normalfont #2}}}
 % Autoref-Name von \subsection auf "Test"
 \addto\extrasngerman{\def\subsectionautorefname{Test}}
+
 
 %\newcommand{\hardwareinfo}{STM32 F4 Discovery Board mit RoboBoard}
 %\newcommand{\hex}[1]{#1\textsubscript{hex}}%h}}%(16)}}
@@ -59,31 +74,95 @@ urlcolor=blue % Farbe von externen Links
 %\newcommand{\cheat}{\vspace{-0.3mm}} % Damit Fazit noch auf gleicher Seite
 
 \begin{document}
-\maketitle
-%
+\thispagestyle{fancy}
+\fancyhead[LO,RE]{ }
+\fancyhead[LE,RO]{Universität Bremen\\FB 3 -- Informatik\\
+	Prof. Dr. Rainer Koschke \\TutorIn: Marcel Steinbeck}
+\fancyfoot[C]{}
+% Start Titelseite
+\vspace{3cm}
 
-Anmerkung: Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. Ebenso wird beispielsweise beim Hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten und Linksklicks für mehrere Elemente. Bewegt werden Elemente durchs gedrückt Halten des Rechtsklicks. Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. Bei Testfällen, bei denen alle Tests negativ ausgefallen sind, sind Abbildungen (sofern vorhanden) nach den Tests zu finden und beziehen sich auf alle Testdurchläufe des entsprechenden Testfalls. Andernfalls werden bei jedem Testdurchlauf Abbildungen gezeigt (sofern vorhanden).  \\
+\begin{minipage}[H]{\textwidth}
+	\begin{center}
+		\bf
+		\Large
+		Software--Projekt 2 WiSe 2018/2019\\
+		\smallskip
+		\small
+		VAK 03-BA-901.02\\
+		\vspace{3cm}
+	\end{center}
+\end{minipage}
+\begin{minipage}[H]{\textwidth}
+	\begin{center}
+		\vspace{1cm}
+		\bf
+		\Large Testprotokoll: GraphIt\\
+		Black-Box-Test\\
+		\vspace{1cm}
+		\includegraphics[width=2.5in]{logo_graphit.png}
+		
+		
+	\end{center}
+	
+\end{minipage}
+\vfill
+\begin{minipage}[H]{\textwidth}
+	\begin{center}
+		\sf
+		\begin{tabular}{lr}
+			Anthony Mendil & antmen@tzi.de \\
+			Bastian Rexhäuser & brexhaeu@tzi.de\\
+			Clement Phung & clement1@tzi.de \\
+			Jacky Philipp Mach & machja@tzi.de \\
+			Jonah Jaeger & jjaeger@tzi.de \\
+			Nina Unterberg & nin\_unt@tzi.de \\
+		\end{tabular}
+		\\ ~
+		\vspace{2cm}
+		\\
+		\it Abgabe: 10. März 2019 --- Version 1.0\\ ~
+	\end{center}
+\end{minipage}
+
+
+% Ende Titelseite	
+	
+\newpage
+\hspace{-0.4cm}\textb{Anmerkung}: Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. Ebenso wird beispielsweise beim Hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten und Linksklicks für mehrere Elemente. Bewegt werden Elemente durchs gedrückt Halten des Rechtsklicks. Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. Bei Testfällen, bei denen alle Tests negativ ausgefallen sind, sind Abbildungen (sofern vorhanden) nach den Tests zu finden und beziehen sich auf alle Testdurchläufe des entsprechenden Testfalls. Andernfalls werden bei jedem Testdurchlauf Abbildungen gezeigt (sofern vorhanden).  \\
 
 \newpage
 
-\section*{Bilder der Benutzeroberfläche}
+\thispagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO,RE]{Software--Projekt \\  2018/2019
+	\\Testprotokoll}
+
+\fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\~}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\tableofcontents
+
+\newpage
+
+
+\fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
+\section{Bilder der Benutzeroberfläche}
+
+
 Die Benutzeroberfläche im Ersteller-Modus:
 \begin{center}
-\includegraphics[height=10cm, angle = 90]{erstellerModus.PNG}
+	\includegraphics[height=10cm, angle = 90]{erstellerModus.PNG}
 \end{center}
 \newpage
 Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste anstelle der Vorlage-Regeln den Verlauf gibt:
 \begin{center}
-\includegraphics[height=5cm]{bearbeiterModus.PNG}
+	\includegraphics[height=5cm]{bearbeiterModus.PNG}
 \end{center}
 Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste:
 \begin{center}
-\includegraphics[height=3cm]{analyseModus.PNG}
+	\includegraphics[height=3cm]{analyseModus.PNG}
 \end{center}
-
-\newpage
-\tableofcontents
-\newpage
 
 \hfill Test Nr.: \setlength{\fboxsep}{1pt}\fbox{1}\fbox{2}\fbox{3} %etc.
 
