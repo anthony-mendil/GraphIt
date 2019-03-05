@@ -3035,11 +3035,18 @@ public class Controller implements ObserverSyndrom {
         });
     }
 
+    /**
+     * TODO
+     * @param mode
+     */
     @Override
     public void updateFunctionMode(FunctionMode mode) {
         // nothing to do
     }
 
+    /**
+     * TODO
+     */
     @Override
     public void updateEditMode() {
         // nothing to do
