@@ -7,6 +7,8 @@
 \newcommand{\grad}{\ensuremath{^{\circ}} }
 \renewcommand{\strut}{\vrule width 0pt height5mm depth2mm}
 
+\setlength{\parindent}{0pt}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[final]{pdfpages}
@@ -528,7 +530,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\begin{figure}[ht!]
 			\centering
 			\subfigure[Übersichtsleiste]{
-				\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+				\includegraphics[width=0.4\columnwidth, keepaspectratio]{ubersicht.png} 
 			}
 			
 		\end{figure}
@@ -1139,15 +1141,14 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hervorhebung aktivieren/ deaktivieren}
-\red{TODO}
 
 \begin{figure}[ht!]
 	\centering
 	\subfigure[Hervorhebung]{
-		\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{highlight2.png} 
 	}
 	\subfigure[Hervorhebung(2)]{
-		\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{highlight.png} 
 	}
 	
 \end{figure}
@@ -1254,10 +1255,10 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
  		\begin{figure}[ht!]
  			\centering
  			\subfigure[Zoom Slider]{
- 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+ 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{zoom_slider.png} 
  			}
  			\subfigure[Zoom Fenster]{
- 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+ 				\includegraphics[width=0.4\columnwidth, keepaspectratio]{zoom_window.png} 
  			}
  			
  		\end{figure}
@@ -1570,12 +1571,20 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 \begin{figure}[ht!]
 	\centering
 	\subfigure[Analyse Optionen]{
-		\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+		\includegraphics[width=1\columnwidth, keepaspectratio]{analyse.png} 
 	}
 \end{figure}
 
-\newpage
+\begin{figure}[ht!]
+	\centering
+	\subfigure[Analyse Optionen]{
+		\includegraphics[width=0.6\columnwidth, keepaspectratio]{analyse2.png} 
+	}
+\end{figure}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsubsection{Graphmaße} 
 	\condition 
 	Das Programm ist geöffnet und ein Syndrom wird angezeigt.
@@ -1589,6 +1598,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Die Graphmaße werden automatisch beim Öffnen des Analysemodus berechnet. \\
 	\end{itemize}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorgänger/ Nachfolger von Symptom(en) hervorheben}
 	\condition 
@@ -1604,7 +1614,6 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Die Vorgänger und Nachfolger sowie das ausgewählte Symptom/ die ausgewählten Symptome werden farblich hervorgehoben dargestellt, während die übrigen Symptome grau visualisiert werden. \\
 	\end{itemize}
 
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Kürzester Pfad zw. Symptomen}
 	\condition 
@@ -1691,7 +1700,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 	\begin{itemize}
 		\item Der Symptome und Relationen, die divergente Verzweigungen darstellen, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
 	\end{itemize}
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Alle Verzweigungen}
 	\condition 
@@ -1708,7 +1717,6 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Der Symptome und Relationen, die konvergente oder divergente Verzweigungen darstellen, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
 	\end{itemize}
 
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Zyklen}
 	\condition 
@@ -1725,6 +1733,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Der Symptome und Relationen, die Zyklen darstellen, werden  farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
 	\end{itemize}
 	
+\newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Verlauf der Nutzerinteraktionen} \label{logs}
 Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Die Nutzerinteraktionen können allerdings auch nach verschiedenen Aktionen gefiltert werden. Diese Funktionalität stellt nur der Analysemodus zur Verfügung. Deswegen wird im Folgenden davon ausgegangen, dass der Benutzer diesen in der Anwendung geöffnet hat.  \\
@@ -1767,126 +1776,252 @@ Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Di
 	\begin{figure}[ht!]
 		\centering
 		\subfigure[Verlauf]{
-			\includegraphics[width=0.4\columnwidth, keepaspectratio]{placeholder.png} 
+			\includegraphics[width=0.8\columnwidth, keepaspectratio]{logs.png} 
 		}
+	
+	\end{figure}
+
+	\begin{figure}[ht!]
+		\centering
+		\subfigure[Verlauf]{
+			\includegraphics[width=0.8\columnwidth, keepaspectratio]{logs.png} 
+		}
+	
 	\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 		
-\newpage
+
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Vorlage} \label{template}
-Eine Vorlage kann als ein spezielles Syndrom angesehen werden. Neben dem eigentlichen Syndrom (also einer Menge an Sphären, Knoten und Kanten) enthält eine Vorlage zusätzliche Informationen. Diese Informationen legen fest, in wie weit ein das enthaltene Syndrom bearbeitet werden kann. Dies beinhaltet sowohl Regeln, wie viele Sphären, Symptome und Kanten hinzugefügt werden können, als auch Festlegungen zu jedem einzelnen aktuell im Syndrom enthaltenen Graphelement. Letztere Regelungen, die die einzelnen schon vorhandenen Graphelemente betreffen unterscheiden sich. Die Regeln für Sphären unterscheiden sich von den Regeln der Symptome und diese sind wiederum anders als die Regeln von Relationen. \\ Es können folgende Regeln eingestellt werden, die sich anschließend auf die Bearbeitung des Syndroms auswirken:
-\begin{itemize}
-\item Regeln für das gesamte Syndrom:
+Eine Vorlage kann als ein spezielles Syndrom angesehen werden. Neben dem eigentlichen Syndrom (also einer Menge an Sphären, Knoten und Kanten) enthält eine Vorlage zusätzliche Informationen. Diese Informationen legen fest, in wie weit ein das enthaltene Syndrom bearbeitet werden kann. Dies beinhaltet sowohl Regeln, wie viele Sphären, Symptome und Kanten hinzugefügt werden können, als auch Festlegungen zu jedem einzelnen aktuell im Syndrom enthaltenen Graphelement. Letztere Regelungen, die die einzelnen schon vorhandenen Graphelemente betreffen unterscheiden sich. Die Regeln für Sphären unterscheiden sich von den Regeln der Symptome und diese sind wiederum anders als die Regeln von Relationen. \\ \\
+Es können folgende Regeln eingestellt werden, die sich anschließend auf die Bearbeitung des Syndroms auswirken: \\ \\
+\textbf{\bbe{Regeln für das gesamte Syndrom:}}
 \begin{enumerate}
-\item die maximale Anzahl an Sphären im Syndrom
-\item die maximale Anzahl an Symptomen im Syndrom 
-\item die maximale Anzahl an Relationen im Syndrom
-\item die im Syndrom erlaubten Relationstypen
+	\item die maximale Anzahl an Sphären im Syndrom
+	\item die maximale Anzahl an Symptomen im Syndrom 
+	\item die maximale Anzahl an Relationen im Syndrom
+	\item die im Syndrom erlaubten Relationstypen
 \end{enumerate}
-\item Regeln für einzelne Sphären (folgende Eigenschaften der gewählten Sphäre können gesperrt werden, sodass diese nicht mehr verändert werden können):
+
+\textbf{\bbe{Regeln für einzelne Sphären}}\\
+(folgende Eigenschaften der gewählten Sphäre können gesperrt werden, sodass diese nicht mehr verändert werden können): 
 \begin{enumerate}
-\item der Titel der Sphäre (beinhaltet den Titel sowie dessen Schriftart und -größe)
-\item die Position der Sphäre
-\item der Style der Sphäre (beinhaltet die Größe und Füllfarbe)
-\item die Möglichkeit, die in dieser Sphäre enthaltenen Symptome zu löschen und in diese Sphäre weitere Symptome hinzuzufügen
-\item Festlegung der maximal in dieser Sphäre enthaltenen Symptome
-\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Sphäre nicht gelöscht werden.
+	\item der Titel der Sphäre (beinhaltet den Titel sowie dessen Schriftart und -größe)
+	\item die Position der Sphäre
+	\item der Style der Sphäre (beinhaltet die Größe und Füllfarbe)
+	\item die Möglichkeit, die in dieser Sphäre enthaltenen Symptome zu löschen und in diese Sphäre weitere Symptome hinzuzufügen
+	\item Festlegung der maximal in dieser Sphäre enthaltenen Symptome
+	\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Sphäre nicht gelöscht werden.
 \end{enumerate}
-\item Regeln für einzelne Symptome (folgende Eigenschaften des gewählten Symptoms können gesperrt werden, sodass diese nicht mehr verändert werden können):
+\textbf{\bbe{Regeln für einzelne Symptome}}\\
+(folgende Eigenschaften des gewählten Symptoms können gesperrt werden, sodass diese nicht mehr verändert werden können):
 \begin{enumerate}
-\item der Titel des Symptoms (beinhaltet den Titel sowie dessen Schriftart und -größe)
-\item die Position des Symptoms
-\item der Style das Symptoms (beinhaltet die Größe, Füllfarbe und Randfarbe)
-\item Hinweis: Ist einer dieser Werte gesperrt, so kann das Symptom nicht gelöscht werden.
+	\item der Titel des Symptoms (beinhaltet den Titel sowie dessen Schriftart und -größe)
+	\item die Position des Symptoms
+	\item der Style das Symptoms (beinhaltet die Größe, Füllfarbe und Randfarbe)
+	\item Hinweis: Ist einer dieser Werte gesperrt, so kann das Symptom nicht gelöscht werden.
 \end{enumerate}
-\item Regeln für einzelne Relationen (folgende Eigenschaften der gewählten Relation können gesperrt werden, sodass diese nicht mehr verändert werden können):
+\textbf{\bbe{Regeln für einzelne Relationen}}\\
+(folgende Eigenschaften der gewählten Relation können gesperrt werden, sodass diese nicht mehr verändert werden können):
 \begin{enumerate}
-\item die Position der Relation (betrifft in erster Linie das Setzen oder Verändern von Ankerpunkten)
-\item der Style der Relation (betrifft die Farbe sowie die Kantenart)
-\item der Relationstyp
-\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Relation nicht gelöscht werden.
+	\item die Position der Relation (betrifft in erster Linie das Setzen oder Verändern von Ankerpunkten)
+	\item der Style der Relation (betrifft die Farbe sowie die Kantenart)
+	\item der Relationstyp
+	\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Relation nicht gelöscht werden.
 \end{enumerate}
-\end{itemize}
+
 Durch Festlegung der einzelnen Werte kann die Bearbeitung und Erweiterung des Graphen festgelegt werden.
+
+	\begin{figure}[ht!]
+		\centering
+		\subfigure[Vorlage]{
+			\includegraphics[width=0.4\columnwidth, keepaspectratio]{template.png} 
+		}
+		
+	\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage erstellen}
-Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. Nur in diesem Modus ist es möglich Regeln für die spätere Bearbeitung des Syndroms festzulegen. Die einmal eingestellten Regeln können dabei jederzeit bedarfsgerecht angepasst werden. Hierzu können eingegebene Werte verändert und ausgewählte Optionen wieder deselektiert (und damit aus der Auswal entfernt) werden. In den folgenden beiden Unterkapitteln werden die Aktionen beschrieben, die für die Erstellung einer Vorlage relevant sind.
+Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. Nur in diesem Modus ist es möglich Regeln für die spätere Bearbeitung des Syndroms festzulegen. Die einmal eingestellten Regeln können dabei jederzeit bedarfsgerecht angepasst werden. Hierzu können eingegebene Werte verändert und ausgewählte Optionen wieder deselektiert (und damit aus der Auswahl entfernt) werden. In den folgenden beiden Unterkapiteln werden die Aktionen beschrieben, die für die Erstellung einer Vorlage relevant sind. \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Graph spezifische Vorlageregeln}
-\condition 
-Das Programm ist geöffnet und der Ersteller-Modus ist aktiv.
-\actions
-\begin{enumerate}
-\item Einen Linksklick auf \textit{Vorlage-Regeln} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
-\item Im oberen Bereich dieser Leiste kann in den Feldern neben den Beschriftungen \textit{Maximal Sphären}, \textit{Maximal Symptome} und \textit{Maximal Relationen} jeweils die maximale Anzahl eingegeben werden, die es von diesem Graphelement-Typ im Syndrom geben darf. Hierzu mit einem Links-Klick in das gewünschte Feld klicken und anschließend über die Tastatur die gewünschte Zahl (als Ziffer / Ziffernfolge und somit nicht als Wort ausgeschrieben) eingegeben werden. Mit der \textit{Enter}-Taste kann die Eingabe bestätigt werden.
-\item Unter diesen drei Eingabefelder findet sich ein Bereich in dem die Relationstypen, die bei der Bearbeitung des Syndroms erlaubt sind, eingestellt werden können. Standardmäßig sind alle Relationstypen erlaubt. Um einen Relationstyp für die Bearbeitung zu sperren einen Links-Klick in die Box neben der entsprechenden Relationsart ausführen, sodass der Haken in dieser Box verschwindet. Durch einen erneuten Links-Klick in die entsprechende Box erscheint wieder ein Haken und der entsprechende Relationstyp kann wieder verwendet werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Es können keine negativen Zahlen und auch kein Text in die Felder für die maximale Anzahl eines Graphelement-Typs eingegeben werden.
-\end{itemize}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Element spezifische Vorlagereglen}
-\condition 
-Das Programm ist geöffnet und der Ersteller-Modus ist aktiv.
-\actions
-\begin{enumerate}
-\item Einen Linksklick auf \textit{Vorlage-Regeln} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
-\item Im unteren Bereich dieser Leiste sind unter dem Text \textit{Zu sperrende Elemente auswählen:} die drei Buttons \textit{Sphäre}, \textit{Symptom} und \textit{Relation} uu finden. Durch einen Links-Klick auf einen dieser Buttons kann die dazugehörige Leiste ausgeklappt werden. In dieser Leiste stehen jeweils die Elemente dieses Graphelement-Typs untereinander. Um die Eigenschaften eines dieser Elemente zu sperren einen Links-Klick in das Feld der Eigenschaft, die für das Element gesperrt werden soll, dessen Titel am Anfang der Zeiel steht. Es erscheint ein Haken in der Box und die Eigenschaft dieses Elements wurde gesperrt. Durch einen erneuten Links-Klick in die Box kann die Sperrung der Eigenschaft aufgehoben werden.
-\end{enumerate} 
-\hint
-\begin{itemize}
-\item Es kann für verschiedene Elemente eine unabhängige Kombination an gesperrten Elementen vorgenommen werden.
-\end{itemize} 
 \newpage
+\subsubsection{Graph spezifische Vorlageregeln}
+	\condition 
+		Das Programm ist geöffnet und der Ersteller-Modus ist aktiv.
+	\action
+	\begin{enumerate}
+		\item Einen Linksklick auf \textit{Vorlage-Regeln} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+		\item Im oberen Bereich dieser Leiste kann in den Feldern neben den Beschriftungen \textit{Maximal Sphären}, \textit{Maximal Symptome} und \textit{Maximal Relationen} jeweils die maximale Anzahl eingegeben werden, die es von diesem Graphelement-Typ im Syndrom geben darf. Hierzu mit einem Links-Klick in das gewünschte Feld klicken und anschließend über die Tastatur die gewünschte Zahl (als Ziffer/ Ziffernfolge) eingegeben werden. Mit der \textit{Enter}-Taste wird die Eingabe bestätigt werden.
+		\item Unter diesen drei Eingabefelder findet sich ein Bereich in dem die Relationstypen, die bei der Bearbeitung des Syndroms erlaubt sind, eingestellt werden können. Standardmäßig sind alle Relationstypen erlaubt. Um einen Relationstyp für die Bearbeitung zu sperren einen Links-Klick in die Box neben dem entsprechenden Relationstyp ausführen, sodass der Haken in dieser Box verschwindet. Durch einen erneuten Links-Klick in die entsprechende Checkbox wird wieder ein Haken gesetzt und der entsprechende Relationstyp kann wieder in der Bearbeitung verwendet werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Es können keine negativen Zahlen und auch kein Text in die Felder für die maximale Anzahl eines Graphelement-Typs eingegeben werden. \\
+	\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Element spezifische Vorlageregeln}
+	\condition 
+	Das Programm ist geöffnet und der Ersteller-Modus ist aktiv.
+	\action
+	\begin{enumerate}
+		\item Einen Linksklick auf \textit{Vorlage-Regeln} (unter der Übersichtsleiste) ausführen, sodass sich die dazugehörige Leiste ausklappt.
+		\item Im unteren Bereich dieser Leiste sind unter dem Text \textit{Zu sperrende Elemente auswählen:} die drei Spalten \textit{Sphäre}, \textit{Symptom} und \textit{Relation} zu finden. Durch einen Links-Klick auf eine dieser Spalten kann die dazugehörige Leiste ausgeklappt werden. In dieser Leiste stehen jeweils die Elemente des Syndrom dieses Graphelement-Typs untereinander aufgelistet. Um die Eigenschaften eines dieser Elemente zu sperren einen Links-Klick in das Feld der Eigenschaft, die für das Element gesperrt werden soll, dessen Titel am Anfang der Zeile steht. Es erscheint ein Haken in der Box und die Eigenschaft dieses Elements wurde gesperrt. Durch einen erneuten Links-Klick in die Box kann die Sperrung der Eigenschaft aufgehoben werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Es kann für verschiedene Elemente eine unabhängige Kombination an gesperrten Elementen vorgenommen werden. \\
+	\end{itemize} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage verwenden}
-Damit die in der zu verwendenden Vorlage hinterlegten Regeln sich auf die Bearbeitungsmöglichkeiten auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein.
-Dabei ist bei der Verwendung einer Vorlage zu beachten, dass Aktionen (wie beispielsweise das Ändern der Farbe eines Graphelements), die vom Programm grundsätzlich zur Verfügung gestellt werden, unter Umständen nicht mehr zu funktionieren scheinen. Dieser Eindruck kann dadurch entstehen, dass der Aufruf bestimmter Aktionen zu keiner Änderung des angezeigten Syndroms führt. Hinweise in der Benutzeroberfläche sollen diesen Fehleindruck eines unerwünschten Programmverhaltens verhindern. Die angezeigten Hinweise geben gegebenenfalls Aufschluss darüber, dass die Aktion deshalb nicht umgesetzt werden kann, weil die angeforderte Aktion durch die Regeln in der Vorlage untersagt wird. Insofern sollte bei der Benutzung der Anwendung nicht nur auf das Syndrom geachtet werden, wenn sich das Programm anders verhält als erwartet. Stattdessen sollte geguckt werden, ob Hinweis-Felder in der Anwendung erscheinen, die das vorgefundene Programmverhalten erklären können. 
-\newpage
+Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndroms auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein.\\
+Dabei ist bei der Verwendung einer Vorlage zu beachten, dass Aktionen (wie beispielsweise das Ändern der Farbe eines Graphelements), die vom Programm grundsätzlich zur Verfügung gestellt werden, unter Umständen nicht mehr zu funktionieren scheinen. Dieser Eindruck kann dadurch entstehen, dass der Aufruf bestimmter Aktionen zu keiner Änderung des angezeigten Syndroms führt. Hinweise in der Benutzeroberfläche sollen diesen Fehleindruck eines unerwünschten Programmverhaltens verhindern. \\
+Die angezeigten Hinweise geben Aufschluss darüber, dass die Aktion deshalb nicht umgesetzt werden kann, weil die angeforderte Aktion durch die Regeln in der Vorlage untersagt wird. \\
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Benutzermodus wechseln}
-\condition 
-Das Programm ist geöffnet.
-\actions
+	\condition 
+		Das Programm ist geöffnet.
+	\action
+	\begin{enumerate}
+		\item In der Menüleiste befinden sich oben links die drei Buttons \textit{Bearbeiter-Modus}, \textit{Ersteller-Modus} und \textit{Analyse-Modus}. Der gewünschte Modus kann durch einen Links-Klick auf den entsprechenden Button ausgewählt werden.
+	\end{enumerate} 
+	\hint
+	\begin{itemize}
+		\item Es kann immer nur ein Modus zur Zeit aktiv sein. Die Modi können also nicht zeitgleich kombiniert werden.
+		\item Während der Benutzung der Anwendung kann beliebig zwischen den Funktionsmodi gewechselt werden. \\
+\end{itemize}			 
+		
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\subsection{Dialogfenster} \label{dialog}
+\subsubsection{Informationsdialog}
+Während der Nutzung des Programms kann es dazu kommen, dass sich ein Fenster öffnet, dass erst bestätigt werden muss, bevor weitere Aktionen ausgeführt werden können. \\
+Diese Dialogfenster geben wichtige Hinweise für das Ergebnis der aktuellen (also zuletzt aufgerufenen Aktion). \bbe{Sie sollten also unbedingt gelesen werden.} \\
+Die Info Dialoge bieten 2 Möglichkeiten das Dialogfenster zu schließen. Einen \textit{Weiter}- und einen \textit{Abbrechen}- Button. Wie die Bezeichnungen der Buttons suggerieren, wird bei Klick auf \textit{Weiter} die gewählte Aktion fortgeführt, während der Klick auf \textit{Abbrechen} die Aktion abbricht. \\
+Ein Info Dialog wird beispielsweise geöffnet, wenn ein neues Syndrom erstellt oder importiert werden soll. \\
+
+\textbf{Beispiel:}
+	\begin{enumerate}
+		\item In der obersten Menüleiste \texttt{Datei/ Neue Datei} auswählen. Somit soll ein neues Syndrom erstellt werden.
+		\item Der Informationsdialog öffnet sich.
+		\item Durch einen Links-Klick auf \textit{Weiter} wird ein neues Syndrom erstellt. Das Syndrom welches zuvor in \textbf{GraphIt} geladen war, wird überschrieben. 
+		\item Durch einen Links-Klick auf \textit{Abbrechen} wird kein neuer Graph erstellt, sodass der aktuell in der GUI angezeigte Graph weiter bearbeitet werden kann. 
+	\end{enumerate}
+Ähnlich verhält es sich bei den anderen Dialogfenstern der Anwendung.\\
+	\begin{figure}[ht!]
+	\centering
+	\subfigure[Informationsdialog]{
+		\includegraphics[width=0.8\columnwidth, keepaspectratio]{info_dialog.png} 
+	}
+\end{figure}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+\subsubsection{File Chooser} 
+Bei einem File Chooser (Dateiauswahl) handelt es sich um das Fenster, dass die Auswahl eines Dateipfades ermöglicht. Dieses Fenster öffnet sich also stets, wenn es darum geht eine Datei zu speichern/ exportieren/ öffnen oder zu importieren. 
+
+\textbf{Exportieren/ Speichern}
+\action
 \begin{enumerate}
-\item In der Menüleiste befinden sich oben links die drei Buttons \textit{Bearbeiter-Modus}, \textit{Ersteller-Modus} und \textit{Analyse-Modus}. Der gewünschte Modus kann durch einen Links-Klick auf den entsprechenden Button ausgewählt werden.
+	\item In das Textfeld \textit{Dateiname} den gewünschten Namen der Datei eintragen. 
+	\item Über das Hauptfenster an den gewünschten Speicherort navigieren. 
+	\item Zum erfolgreichen Abschließen der Aktion auf den \textit{Speichern}- Button klicken. Zum Abbrechen auf den \textit{Abbrechen}- Button auswählen.
+\end{enumerate}
+
+\textbf{Öffnen/ Importieren}
+\action
+\begin{enumerate}
+	\item Über das Textfeld \textit{Dateiname} können Dateien in dem derzeitigen Ordner gesucht werden.
+	\item Über das Hauptfenster an den gewünschten Speicherort navigieren und die zu öffnende/ importierende Datei auswählen.
+	\item Zum erfolgreichen Abschließen der Aktion auf den \textit{Öffnen}- Button klicken. Zum Abbrechen auf den \textit{Abbrechen}- Button auswählen.
+\end{enumerate}
+
+ \begin{figure}[ht!]
+ 	\centering
+ 	\subfigure[Exportieren/ Speichern]{
+ 		\includegraphics[width=0.5\columnwidth, keepaspectratio]{save.png} 
+ 	}
+ 	\subfigure[Öffnen/ Importieren]{
+ 		\includegraphics[width=0.5\columnwidth, keepaspectratio]{open.png} 
+ 	}	
+ \end{figure}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Druckdialog}
+Beim Druckdialog handelt es sich um ein Dialog-Fenster, das der Anpassung der Druck-Einstellungen ermöglicht. So können Einstellungen nach benutzerspezifischen Präferenzen vorgenommen werden. Mögliche Einstellungen sind zum Beispiel die Anzahl an zu erstellenden Exemplaren und das für den Druckauftrag zu verwendende Drucker-Gerät.
+Auch dieses Dialogfenster bietet zwei mögliche Ergebnisse, mit denen das Fenster geschlossen werden kann.
+\begin{itemize}
+	\item Durch einen Links-Klick auf \textit{OK} wird der Druckauftrag an den Drucker geleitet. Das in der Benutzeroberfläche angezeigte Syndrom (beziehungsweise der dort zu sehende Ausschnitt des Syndroms) wird am eingestellten Drucker in der angeforderten Anzahl gedruckt. 
+	\item Ein Links-Klick auf \textit{Abbrechen} sorgt dafür, dass kein Druck angefertigt wird.
+\end{itemize}
+
+\hint
+\begin{itemize}
+	\item Es wird nur der Bereich des Syndroms gedruckt, der gerade auch im Hauptfenster sichtbar ist.
+	\item Die Druckeinstellungen erscheinen womöglich im Hintergrund, d.h. durch Bewegen der Maus auf das Icon von \textbf{GraphIt} in der Symbolleiste, kann durch Auswählen des dort erscheinenden Druckfensters dieses in den Vordergrund geholt werden. 
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Color Picker} \label{colorpicker}
+Ein Color Picker (\textit{Farbwähler}) dient der Auswahl einer Farbe. 
+\action
+\begin{enumerate}
+	\item Einen der entsprechende Farb- Buttons (\textit{Hintergrundfarbe der Sphäre verändern}, \textit{Hintergrundfarbe des Symptoms verändern}, \textit{Randfarbe des Symptoms verändern}, \textit{Farbe de Relation verändern}) durch einen Links- oder Rechts-Klick auswählen. 
+	\item Aus dem sich öffnenden  Drop-Down-Menü eine Farbe per Links- Klick auswählen. 
+\end{enumerate}
+\hint
+\begin{itemize}
+	\item Die Aktion kann durch einen Klick außerhalb des Color Pickers oder durch einen Rechts- Klick innerhalb des Color Pickers abgebrochen werden. 
+\end{itemize}
+
+\textbf{Custom Color}\\
+Falls die gewünschte Farbe nicht in dem Drop-Down-Farbmenü des Color Pickers enthalten ist, kann eine benutzerdefinierte Farbe/ Custom Color ausgewählt werden. 
+\action
+\begin{enumerate}
+	\item Dazu wie in der vorgehenden Anleitung den Color Picker öffnen. Am unten Rand des Color Pickers auf den Schriftzug \textit{Custom Color} klicken. 
+	\item Auf dem sich öffnenden Dialog kann nun eine Farbe ausgewählt werden. 
+	\item In den beiden äußeren Farbringen kann der Farbton mit einem Klick ausgewählt werden.
+	\item Im inneren Kreis kann durch einen Klick an die gewünschte Stelle die Helligkeit de Farbe angepasst werden.
+	\item Um die Farbe zu bestätigen die \textit{Enter}-Taste der Tastatur drücken. Um den Color Picker zu schließen, muss ein Links-Klick auf das kleine Kreuz am oberen Rand des Color Picker-Fensters ausgeführt werden.
 \end{enumerate} 
 \hint
 \begin{itemize}
-\item Es kann immer nur ein Modus zur Zeit aktiv sein. Die Modi können also nicht zeitgleich kombiniert werden.
-\item Während der Benutzung der Anwendung kann beliebig zwischen den Funktionsmodi gewechselt werden. werden.
-\end{itemize}
+	\item Es kann anstelle der Farbeinstellung über die Farbpalette auch der \textit{RGB}-, \item{HSB}- oder \textit{HEX}-Wert eingegeben werden. Hierzu auf den Button mit der entsprechenden Beschriftung einen Links-Klick ausführen und den Wert in das dafür vorgesehene Feld eintragen.
+\end{itemize} 
 
+\begin{figure}[ht!]
+	\centering
+	\subfigure[Color Picker]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{color.png} 
+	}
+	\subfigure[Custom Color]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{color2.png} 
+	}	
+\end{figure}
 
-			 
-		
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-\subsection{Dialogfenster} \label{dialog}
-Während der Nutzung des Programms kann es dazu kommen, dass sich ein Fenster öffnet, dass erst weggeklickt werden muss, bevor weitere Aktionen ausgeführt werden können. Diese Dialogfenster geben wichtige Hinweise für das Ergebnis der aktuellen (also zuletzt aufgerufenen Aktion). Sie sollten also unbedingt gelesen werden. Die Bestätigung des vorausgewählten Button (entwerder durch eienen Links-Klick auf den entsprecheneden Button oder durch das Drücken der \textit{Enter}-Taste können zu einem Ergebnis führen, dass nicht dem erwarteten Programmverhalten entspricht. Um das gewünschte Programmverhalten erzielen beziehungsweise das sich an die Bestätigung der gewünschten Aktion im Dialogfenster (durch einen Links-Klick auf den \textit{Weiter}-Button) anschließende Programmverhalten erklären zu können, gibt es in den Dialogfenstern immer (mindestens) zwei Möglichkeiten. Die Entscheidung für eine Möglichkeit schließt dabei die andere aus. Es können also nicht zeitgleich beide Möglichkeiten umgesetzt werden. Die angesprochenen Dialogfenster treten zum Beispiel auf, wenn eine neue Datei erstellt werden soll. In diesem Fall wird der in dem Dialogfenster darauf hingewiesen, dass der aktuell in der Anwendung angezeigte Graph durch Erstellung eines neuen Graphen überschrieben wird und somit nicht mehr auf diesen zurückgegriffen werden kann. Das Dialogfenster kann nun mit zwei möglichen Ausgängen geschlossen werden.
-\begin{enumerate}
-\item Durch einen Links-Klick auf \textit{Weiter} wird der aktuelle Graph mit einem neuen (vorerst leeeren) Graphen überschrieben,
-\item Durch einen Links-Klick auf \textit{Abbrechen} wird kein neuer Graph erstellt, sodass der aktuell in der GUI angezeigte Graph weiter bearbeitet und exportiert werden kann.
-\end{enumerate}
-Ähnlich verhält es sich bei den anderen Dialogfenstern der Anwendung.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-\subsubsection{Color Picker} \label{colorpicker}
-\red{TODO}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-\subsubsection{File Chooser} 
-Beim File Chooser handelt es sich um das Fenster, dass die Auswahl eines Speicherorts ermöglicht. Dieses Fenster öffnet sich also stets, wenn es darum geht eine Datei zu speichern oder zu exportieren. In diesem Fall kann mit Hilfe des File Choosers die Stele im Dateisystem ausgewählt werden, an der die entsprechende Datei abgelegt werden soll. Bei diesen Aktionen kann zudem der Name angegeben werden, unter dem die entsprechende Datei abgespeichert werden soll. Neben den genannten Aktionen öffnet sich das Fenster mnit dem File Chooser auch, wenn eine existierende Datei geöffnet werden soll. In diesem Fall kann mit Hilfe des Fensters zu der Stelle im Dateisystem navigiert werden, an dem die zu importierende Datei gespeichert ist, und dort der entsprechende File ausgewählt werden. 
-Die Navigation kann dabei je nach Präferenzen über ds Hauptfenster oder anhand der Seitenleiste erfolgen. Um die in einemOrdner enthaltenen Dateien im Hauptfenster angezeigt zu bekommen, kann der Ordner entweder mit einem Doppel-Klick im Hauptfenster oder einem einfachen Links-Klick in der Seitenleiste des Fensters ausgewählt werden. Um die Dateien eines Ordners in der Seitenleiste angezeigt zu bekommen, muss ein Doppelklick auf diesen Ordner in der Seitenleiste ausgeführt werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Fehlermeldungen} \label{fehlermeldungen}
-\red{TODO - ich glaub hier reicht nen Screenshot von ner Fehlermeldung und eine kurze Beschreibung, wann diese auftreten können}	
-Das denke ich auch. Ich bekomme die Fehlermeldungen nicht angezeigt. Übernimm das bitte für mich :)
 
-\newpage
+Um die Anwendung von \textbf{GraphIt} so einfach wie möglich zu gestaltet, wird der Benutzer auch auf nicht mögliche/ fehlerhafte Aktionen über eine Fehlermeldung hingewiesen. \\
+Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen Sphäre hinzugefügt werden soll. Dies ist aufgrund der Erstellungsregeln eines Syndroms nicht erlaubt. Auch wenn beispielsweise versucht wird ein Symptom hinzuzufügen, obwohl die in den Vorlageregeln maximale Anzahl von Symptomen bereits erreicht ist, erscheint eine Fehlermeldung.
+
+\begin{figure}[ht!]
+	\centering
+	\subfigure[Fehlermeldung]{
+		\includegraphics[width=0.9\columnwidth, keepaspectratio]{alert.png} 
+	}
+	\subfigure[Fehlermeldung(2)]{
+		\includegraphics[width=0.9\columnwidth, keepaspectratio]{alert2.png} 
+	}	
+\end{figure}
+
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anhang} \label{sec:anhang}	
 
@@ -1895,37 +2030,39 @@ Das denke ich auch. Ich bekomme die Fehlermeldungen nicht angezeigt. Übernimm d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \subsection{Glossar}
 \begin{description}
-\item{Java 8} ist die Version der Programmiersprache Java, in der die Implementierung des vom Kunden geforderten Systems erfolgen wird. Java selbst ist eine objektorientierte Programmiersprache. \\ \\
-\item{GUI} Graphical User Interface (=Benutzeroberfläche) - hierbei handelt es sich um die Darstellung der für den Nutzer sichtbaren Teile unserer Software. Es dreht sich also bei der GUI um die visuellen Bestandteile des Programms, die es einem Verwender ermöglicht, die Programmfunktionen (intuitiv) nutzen zu können. Vereinfacht ausgedrückt kann in diesem Fall der Nutzer über die GUI einen Graphen erstellen und editieren sowie eine Auswertung des Graph-Erstellungsprozesses und des dabei entstandenen Diagramms durchführen. \\ \\
-\item{GXL} (Graph eXchange Language) ist ein Dateiformat, das dem Graphenaustausch zwischen Programmen dient. \\ \\
-\item{PDF} (Portable Document Format) ist ein plattformunabhängiges Dateiformat, das die Erstellung eines Dokuments ermöglicht, das vom ursprünglichen Anwendungsprogramm losgelöst geöffnet und gelesen werden kann. Das Format gibt dabei den Inhalt des Ursprungsprogramms originalgetreu wieder (sowohl Inhalt als auch Darstellung). \\ \\
-\item{.oof} ist ein von uns entwickeltes Dateiformat, das Nutzerinteraktionen und Graphinformationen zusammenführt. \\ \\
-\item{Graph} ist ein Wirkungsdiagramm und somit eine visuelle Darstellung für den Syndromansatz.  \\ \\
-\item{\hypertarget{Syndromansatz}{Syndromansatz}} ist ein vom \glqq Wissenschaftlichen Beirat der Bundesregierung Globale Umweltveränderung \grqq{} (WBGU) entwickeltes Modell zur Identifikation von Fehlentwicklungen besonders in den Bereichen Biologie, Gesellschaft und Wirtschaft, um Gegenmaßnahmen planen und durchführen zu können. Es geht hierbei grob gesagt um ein Modell zur Erkennung von \glqq Krankheitsbildern\grqq. \\ \\
-\item{Syndrom} (=Krankheitsbild) ist ein aus Symptomen (Knoten) und deren Wechselwirkungen (dargestellt über Relationen/Kanten) bestehender Graph in seiner Gesamtheit. \\ \\
-\item{\hypertarget{Sphaere}{Sphäre}} ist ein zusammenhängender, nicht-überlappender im Diagramm dargestellter (Themen-)Bereich, zu dem Symptome zugeordnet wird. Sie werden durch Linien voneinander abgetrennt, haben eine wählbare Hintergrundfarbe und können mittels eines Textes beschrieben werden. \\ \\
-\item{\hypertarget{Symptom}{Symptom}} ist ein Knoten im Graphen.  \\ \\
-\item{Relationen} sind gerichtete Kanten von einem Knoten zu einem anderen Knoten im Graphen und dienen der Repräsentation von Wirkungszusammenhängen zwischen Symptomen, wobei zwischen drei Relationstypen unterschieden werden: verstärkend, abschwächend und unbekannt. Die Pfeilspitzen der Relationen sind vom Typ der Relation abhängig und werden ebenso vom Kunden vorgegeben wie mögliche Dicken und Linienarten der Kanten. Die Farben der Kanten können vom Nutzer gewählt werden. Überlappungen von Kantenenden verschiedener Relationstypen, die am selben Knoten eingehen, sind nicht erlaubt. \\ \\
-\item{Ankerpunkte}  sind Stellen an einem Knoten, mit denen der Nutzer den Beginn oder das Ziel einer Kante mit gleichen Relationstypen definieren kann. \\ \\
-\item{Pfeilkette} Hiervon ist die Rede, wenn mindestens drei Kanten in dieselbe Richtung zeigen, ohne dass es zu einer Verzweigung bei den inneren Knoten der Kette kommt. Von einem inneren Knoten einer Kette ist ist die Rede, wenn er nicht der Start- und nicht der Endknoten der Kette ist. \\ \\
-\item{Verzweigung} Ein Knoten, zu dem zwei oder mehr Kanten hin- bzw. von ihm wegführen, wobei auch beides möglich ist. \\ \\
-\item{\hypertarget{Kreislauf}{Kreislauf (Zyklus)}} Eine Kette von Kanten, die geschlossen ist und deren Kanten alle in die gleiche Richtung zeigen. Dabei ist jeder Knoten im Zyklus von jeden anderen Knoten in dem entsprechenden Zyklus aus durch die Kette erreichbar. Eine direkte Rückkopplung ist der kleinste Kreislauf. \\ \\
-- \textbf{(Nutzer-)Rolle} Wann immer im Dokument von Rollen oder Nutzerrollen die Rede sein wird, ist damit nicht ein Rechtemanagement, sondern vielmehr die Bereitstellung verschiedener Modi gemeint. Jeder Nutzer kann dabei jede Rolle einnehmen und somit das System in jedem Modus verwenden. \\ \\
-- \textbf{\hypertarget{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq -Modus}} entspricht der Rolle eines Erstellers. Dieser Modus stellt Funktionen bereit, um ein Diagramm als Vorlage zu erstellen und um bestimmte Bearbeitungsregeln für diese Vorlage festzulegen. Zur Erstellung der Vorlage kann in diesem Modus die Anzahl, Farbgebung und Beschriftung/Benennung der Sphären und Knoten eingestellt und zudem festgelegt werden, welche Kanten verwendet werden können. Optional kann darüber hinaus auch die Größe und Position aller Graph-Elemente sowie der bei der Beschriftung verwendete Zeichensatz ausgewählt werden. Der Verwender dieses Modus kann zudem für jedes Element in der Vorlage einzeln festlegen, ob es einem Verwender im \glqq Diagramm bearbeiten\grqq-Modus gestattet ist, dieses Element zu bearbeiten. Dieser Modus wird üblicherweise von Lehrern zur Erstellung einer Vorlage für ein Diagramm verwendet. \\ \\
-- \textbf{\hypertarget{``Diagramm bearbeiten''-Modus}{\glqq Diagramm bearbeiten\grqq-Modus}} erfüllt die Ansprüche einer Betrachter-Rolle an das System. In diesem Modus kann ein Benutzer ein Diagramm auf Basis einer Vorlage erstellen und dazu die Vorlage im Rahmen der Regeln aus der gegebenen Vorlage verändern. Ist dieser Modus aktiv, so wird ein Protokoll angelegt, welche Interaktionen des Nutzers in diesem Modus aufzeichnet. Zu den aufgezeichneten Daten gehört ein Zeitstempel sowie die Aktion (z.B. Erstellung, Bearbeitung oder Verschiebung von Sphären, Knoten und Kanten). Dieser Modus ist besonders für Kinder ab 10 Jahren geeignet, die durch ihn komplexe Zusammenhänge verstehen sollen. Um das Verständnis leichter zu machen, sollen auch in diesem Modus bereits \hyperlink{Bedeutung eines Knoten}{gewisse Analyse-Funktionen hinsichtlich der Bedeutung einzelner Knoten} verfügbar sein. Die Analyse-Funktion bezüglich des Protokolls der Nutzerinteraktionen ist nicht verfügbar. Ferner ist alles, was in diesem Modus möglich ist, auch im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq -Modus} möglich.\\ \\
-- \textbf{\hypertarget{``Analyse''-Modus}{\glqq Analyse\grqq -Modus}} Dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der \hyperlink{Bedeutung eines Knoten}{Bedeutung einzelner Knoten}). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Möglichkeiten, mit denen man \hyperlink{Metriken}{Metriken/Graphmaße} berechnen kann und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Knoten erstellt wurden) gewährt. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden. \\ \\
-\item{\hypertarget{Bedeutung eines Knoten}{Bedeutung eines Knoten}} Die Relevanz eines Knoten ist von der Vernetztheit des Knotens abhängig. Dabei sind mögliche Maßstäbe für Wichtigkeit und Grad der Vernetztheit folgende: Sei K ein Knoten... \\
-\begin{itemize}
-\item Anzahl der benachbarten Knoten von K (nur Vorgänger, nur Nachfolger, alle Nachbarn)
-\item Anzahl der ein- und/oder ausgehenden Kanten (mit und ohne Abhängigkeit des Relationstyps) von K
-\item Pfeilketten, konvergente und divergente Verzweigungen, Zyklen beliebiger Länge im Graphen
-\end{itemize}
-\item{\hypertarget{Metriken}{Metriken/Graphmaße}} vorgegebene Messgrößen des Syndromansatzes. Man unterscheidet zwischen
-\begin{itemize}
-\item \hypertarget{Umfang}{Umfang}: Anzahl wertbarer Symptome + Anzahl wertbarer Relationen (nach Sommer, 2005, S. 151)
-\item \hypertarget{Vernetzungsindex}{Vernetzungsindex}: 2 * Anzahl wertbarer Realtionen / Anzahl wertbarer Symptome (nach Ossimitz, 2000, S. 210)
-\item Summer aller Pfeilketten, Verzweigungen und Kreisläufe / Anzahl wertbarer Symptome (nach Kunz \& Bollmann-Zuberbühler, 2008, S. 106)
-\end{itemize}
+	\item[Java 8] ist die Version der Programmiersprache Java mit der \textit{GraphIt} programmiert wurde. Java selbst ist eine objektorientierte Programmiersprache. 
+	\item[GUI] Graphical User Interface (=Benutzeroberfläche) - hierbei handelt es sich um die Darstellung der für den Nutzer sichtbaren Teile unserer Software. Es dreht sich also bei der GUI um die visuellen Bestandteile des Programms, die es einem Verwender ermöglicht, die Programmfunktionen (intuitiv) nutzen zu können. Vereinfacht ausgedrückt kann in diesem Fall der Nutzer über die GUI einen Graphen erstellen und editieren sowie eine Auswertung des Graph durchführen. 
+	\item[GXL] (Graph eXchange Language) ist ein Dateiformat, das dem Austausch von Graphen zwischen Programmen dient. 
+	\item[PDF] (Portable Document Format) ist ein plattformunabhängiges Dateiformat, das die Erstellung eines Dokuments ermöglicht, das vom ursprünglichen Anwendungsprogramm losgelöst geöffnet und gelesen werden kann. Das Format gibt dabei den Inhalt des Ursprungsprogramms originalgetreu wieder (sowohl Inhalt als auch Darstellung). 
+	\item[.oof] ist ein von uns entwickeltes Dateiformat, das Nutzerinteraktionen und Informationen des Graphen zusammenführt. 
+	\item[Graph] ist ein Wirkungsdiagramm und somit eine visuelle Darstellung für den Syndromansatz.  
+	\item[\hypertarget{Syndromansatz}{Syndromansatz}] ist ein vom \glqq Wissenschaftlichen Beirat der Bundesregierung Globale Umweltveränderung \grqq{} (WBGU) entwickeltes Modell zur Identifikation von Fehlentwicklungen besonders in den Bereichen Biologie, Gesellschaft und Wirtschaft, um Gegenmaßnahmen planen und durchführen zu können. Es geht hierbei grob gesagt um ein Modell zur Erkennung von \glqq Krankheitsbildern\grqq.
+	\item[Syndrom] (=Krankheitsbild) ist ein aus Symptomen (Knoten) und deren Wechselwirkungen (dargestellt über Relationen/Kanten) bestehender Graph in seiner Gesamtheit. 
+	\item[\hypertarget{Sphaere}{Sphäre}] ist ein zusammenhängender, nicht-überlappender im Diagramm dargestellter (Themen-)Bereich, zu dem Symptome zugeordnet wird. Sie werden durch Linien voneinander abgetrennt, haben eine wählbare Hintergrundfarbe und können mittels eines Textes beschrieben werden. 
+	\item[\hypertarget{Symptom}{Symptom}] ist ein Knoten im Graphen (Syndrom). 
+	\item[Relationen] sind gerichtete Kanten von einem Knoten zu einem anderen Knoten im Graphen und dienen der Repräsentation von Wirkungszusammenhängen zwischen Symptomen, wobei zwischen drei Relationstypen unterschieden werden: verstärkend, abschwächend und unbekannt. Die Pfeilspitzen der Relationen sind vom Typ der Relation abhängig und werden ebenso vom Kunden vorgegeben wie mögliche Dicken und Linienarten der Kanten. Die Farben der Kanten können vom Nutzer gewählt werden. Überlappungen von Kantenenden verschiedener Relationstypen, die am selben Knoten eingehen, sind nicht erlaubt.
+	\item[Ankerpunkte] sind Stellen an einem Knoten, mit denen der Nutzer den Beginn oder das Ziel einer Kante definieren kann. 
+	\item[Pfeilkette] Hiervon ist die Rede, wenn mindestens drei Kanten in dieselbe Richtung zeigen, ohne dass es zu einer Verzweigung bei den inneren Knoten der Kette kommt. Von einem inneren Knoten einer Kette ist ist die Rede, wenn er nicht der Start- und nicht der Endknoten der Kette ist. 
+	\item[Verzweigung] Ein Knoten, zu dem zwei oder mehr Kanten hin- bzw. von ihm wegführen, wobei auch beides möglich ist. 
+	\item[\hypertarget{Kreislauf}{Kreislauf (Zyklus)}] Eine Kette von Kanten, die geschlossen ist und deren Kanten alle in die gleiche Richtung zeigen. Dabei ist jeder Knoten im Zyklus von jeden anderen Knoten in dem entsprechenden Zyklus aus durch die Kette erreichbar. Eine direkte Rückkopplung ist der kleinste Kreislauf.
+	\item[(Nutzer-)Rolle] Wann immer im Dokument von Rollen oder Nutzerrollen die Rede sein wird, ist damit nicht ein Rechtemanagement, sondern vielmehr die Bereitstellung verschiedener Modi gemeint. Jeder Nutzer kann dabei jede Rolle einnehmen und somit das System in jedem Modus verwenden.
+	\item[Ersteller- Modus] entspricht der Rolle eines Erstellers. Dieser Modus stellt Funktionen bereit, um ein Diagramm als Vorlage zu erstellen und um bestimmte Bearbeitungsregeln für diese Vorlage festzulegen. Zur Erstellung der Vorlage kann in diesem Modus die Anzahl, Farbgebung und Beschriftung/Benennung der Sphären und Knoten eingestellt und zudem festgelegt werden, welche Kanten verwendet werden können. Optional kann darüber hinaus auch die Größe und Position aller Graph-Elemente sowie der bei der Beschriftung verwendete Zeichensatz ausgewählt werden. Der Verwender dieses Modus kann zudem für jedes Element in der Vorlage einzeln festlegen, ob es einem Verwender im \glqq Diagramm bearbeiten\grqq-Modus gestattet ist, dieses Element zu bearbeiten. Dieser Modus wird üblicherweise von Lehrern zur Erstellung einer Vorlage für ein Diagramm verwendet.
+	\item[Bearbeiter- Modus] erfüllt die Ansprüche einer Betrachter-Rolle an das System. In diesem Modus kann ein Benutzer ein Diagramm auf Basis einer Vorlage erstellen und dazu die Vorlage im Rahmen der Regeln aus der gegebenen Vorlage verändern. Ist dieser Modus aktiv, so wird ein Protokoll angelegt, welche Interaktionen des Nutzers in diesem Modus aufzeichnet. Zu den aufgezeichneten Daten gehört ein Zeitstempel sowie die Aktion (z.B. Erstellung, Bearbeitung oder Verschiebung von Sphären, Knoten und Kanten). Dieser Modus ist besonders für Kinder ab 10 Jahren geeignet, die durch ihn komplexe Zusammenhänge verstehen sollen. Um das Verständnis leichter zu machen, sollen auch in diesem Modus bereits \hyperlink{Bedeutung eines Knoten}{gewisse Analyse-Funktionen hinsichtlich der Bedeutung einzelner Knoten} verfügbar sein. Die Analyse-Funktion bezüglich des Protokolls der Nutzerinteraktionen ist nicht verfügbar. Ferner ist alles, was in diesem Modus möglich ist, auch im \hyperlink{``Vorlage bearbeiten''-Modus}{\glqq Vorlage bearbeiten\grqq -Modus} möglich.
+	\item[Analyse- Modus] Dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der \hyperlink{Bedeutung eines Knoten}{Bedeutung einzelner Knoten}). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Möglichkeiten, mit denen man \hyperlink{Metriken}{Metriken/Graphmaße} berechnen kann und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Knoten erstellt wurden) gewährt. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden.
+	\item[\hypertarget{Bedeutung eines Knoten}{Bedeutung eines Knoten}] Die Relevanz eines Knoten ist von der Vernetztheit des Knotens abhängig. Dabei sind mögliche Maßstäbe für Wichtigkeit und Grad der Vernetztheit folgende: Sei K ein Knoten... 
+		\begin{itemize}
+			\setlength{\itemsep}{0.5pt}
+			\item Anzahl der benachbarten Knoten von K (nur Vorgänger, nur Nachfolger, alle Nachbarn)
+			\item Anzahl der ein- und/oder ausgehenden Kanten (mit und ohne Abhängigkeit des Relationstyps) von K
+			\item Pfeilketten, konvergente und divergente Verzweigungen, Zyklen beliebiger Länge im Graphen
+		\end{itemize}
+	\item[\hypertarget{Metriken}{Metriken/Graphmaße}] vorgegebene Messgrößen des Syndromansatzes. Man unterscheidet zwischen
+		\begin{itemize}
+			\setlength{\itemsep}{0.5pt}
+			\item \hypertarget{Umfang}{Umfang}: Anzahl wertbarer Symptome + Anzahl wertbarer Relationen (nach Sommer, 2005, S. 151)
+			\item \hypertarget{Vernetzungsindex}{Vernetzungsindex}: 2 * Anzahl wertbarer Relationen / Anzahl wertbarer Symptome (nach Ossimitz, 2000, S. 210)
+			\item Summer aller Pfeilketten, Verzweigungen und Kreisläufe / Anzahl wertbarer Symptome (nach Kunz \& Bollmann-Zuberbühler, 2008, S. 106)
+		\end{itemize}
 \end{description}
 	
 
