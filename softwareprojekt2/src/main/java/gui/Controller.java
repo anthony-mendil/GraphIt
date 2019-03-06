@@ -1090,7 +1090,6 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", PDF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1116,7 +1115,6 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text file (*.txt)", TXT);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ExportReadableProtocolAction exportReadableProtocolAction = new ExportReadableProtocolAction(file);
@@ -1142,7 +1140,6 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showSaveDialog(mainStage);
-        mainStage.centerOnScreen();
         if (file != null) {
             syndrom.setGraphName(FilenameUtils.removeExtension(file.getName()));
             lastUsedFilePath = file.getParentFile();
@@ -1164,7 +1161,6 @@ public class Controller implements ObserverSyndrom {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("OOF files (*.oof)", OOF);
         fileChooser.getExtensionFilters().add(extensionFilter);
         File file = fileChooser.showOpenDialog(mainStage);
-        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ImportOofAction importOofAction = new ImportOofAction(file);
@@ -1196,7 +1192,6 @@ public class Controller implements ObserverSyndrom {
                 alert.setHeaderText(null);
                 alert.initOwner(mainStage);
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-                stage.centerOnScreen();
                 stage.setResizable(false);
                 stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 Optional<ButtonType> result = alert.showAndWait();
@@ -1230,7 +1225,6 @@ public class Controller implements ObserverSyndrom {
      */
     private void importTemplateGXL() {
         File file = openGXLImportWindow();
-        mainStage.centerOnScreen();
         if (file != null) {
             lastUsedFilePath = file.getParentFile();
             ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
@@ -1242,7 +1236,6 @@ public class Controller implements ObserverSyndrom {
                 alert.setHeaderText(null);
                 alert.initOwner(mainStage);
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-                stage.centerOnScreen();
                 stage.setResizable(false);
                 stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 alert.showAndWait();
@@ -2482,7 +2475,6 @@ public class Controller implements ObserverSyndrom {
         alert.setHeaderText(null);
         alert.initOwner(mainStage);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.centerOnScreen();
         stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream(Values.LOGO_MAIN)));
 
