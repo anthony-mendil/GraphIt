@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gxl SYSTEM "http://www.gupro.de/GXL/gxl-1.0.dtd">
+<gxl>
+	<graph id="syndrom">
+		<attr name="name of the graph">
+			<string>simpleGraph</string>
+		</attr>
+		<node id="0">
+			<attr name="TYPE">
+				<string>Sphaere</string>
+			</attr>
+			<attr name="fillPaint">
+				<string>java.awt.Color[r=187,g=222,b=250,a=255]</string>
+			</attr>
+			<attr name="coordinates">
+				<string>Point2D.Float[101.0, 84.0]</string>
+			</attr>
+			<attr name="width">
+				<string>200.0</string>
+			</attr>
+			<attr name="height">
+				<string>200.0</string>
+			</attr>
+			<attr name="annotation">
+				<string>Sphere 0¦Sphäre 0¦</string>
+			</attr>
+			<attr name="font">
+				<string>Roboto</string>
+			</attr>
+			<attr name="fontSize">
+				<int>12</int>
+			</attr>
+			<attr name="isLockedPosition">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedAnnotation">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedStyle">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedVertices">
+				<bool>false</bool>
+			</attr>
+			<attr name="lockedMaxAmountVertices">
+				<string/>
+			</attr>
+			<attr name="IDs of nodes containt in this shpere: ">
+				<string>2</string>
+			</attr>
+		</node>
+		<node id="1">
+			<attr name="TYPE">
+				<string>Sphaere</string>
+			</attr>
+			<attr name="fillPaint">
+				<string>java.awt.Color[r=187,g=222,b=250,a=255]</string>
+			</attr>
+			<attr name="coordinates">
+				<string>Point2D.Float[492.0, 104.0]</string>
+			</attr>
+			<attr name="width">
+				<string>200.0</string>
+			</attr>
+			<attr name="height">
+				<string>200.0</string>
+			</attr>
+			<attr name="annotation">
+				<string>Sphere 1¦Sphäre 1¦</string>
+			</attr>
+			<attr name="font">
+				<string>Roboto</string>
+			</attr>
+			<attr name="fontSize">
+				<int>12</int>
+			</attr>
+			<attr name="isLockedPosition">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedAnnotation">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedStyle">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedVertices">
+				<bool>false</bool>
+			</attr>
+			<attr name="lockedMaxAmountVertices">
+				<string/>
+			</attr>
+			<attr name="IDs of nodes containt in this shpere: ">
+				<string>3</string>
+			</attr>
+		</node>
+		<node id="2">
+			<attr name="TYPE">
+				<string>Node</string>
+			</attr>
+			<attr name="fillPaint">
+				<string>java.awt.Color[r=255,g=224,b=130,a=255]</string>
+			</attr>
+			<attr name="coordinate">
+				<string>Point2D.Float[201.0, 153.0]</string>
+			</attr>
+			<attr name="shape">
+				<string>CIRCLE</string>
+			</attr>
+			<attr name="annotation">
+				<string>Symptom 2¦Symptom 2¦</string>
+			</attr>
+			<attr name="drawPaint">
+				<string>java.awt.Color[r=64,g=64,b=64,a=255]</string>
+			</attr>
+			<attr name="vertexArrowReinforced">
+				<string>{}</string>
+			</attr>
+			<attr name="vertexArrowNeutral">
+				<string>{}</string>
+			</attr>
+			<attr name="vertexArrowExtenuating">
+				<string>{}</string>
+			</attr>
+			<attr name="size">
+				<int>50</int>
+			</attr>
+			<attr name="isVisible">
+				<bool>true</bool>
+			</attr>
+			<attr name="font">
+				<string>Roboto</string>
+			</attr>
+			<attr name="fontSize">
+				<int>12</int>
+			</attr>
+			<attr name="isHighlighted">
+				<bool>false</bool>
+			</attr>
+			<attr name="ID of the sphere containing this node:">
+				<string>0</string>
+			</attr>
+			<attr name="isLockedPosition">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedAnnotation">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedStyle">
+				<bool>false</bool>
+			</attr>
+		</node>
+		<node id="3">
+			<attr name="TYPE">
+				<string>Node</string>
+			</attr>
+			<attr name="fillPaint">
+				<string>java.awt.Color[r=255,g=224,b=130,a=255]</string>
+			</attr>
+			<attr name="coordinate">
+				<string>Point2D.Float[588.0, 168.0]</string>
+			</attr>
+			<attr name="shape">
+				<string>CIRCLE</string>
+			</attr>
+			<attr name="annotation">
+				<string>Symptom 3¦Symptom 3¦</string>
+			</attr>
+			<attr name="drawPaint">
+				<string>java.awt.Color[r=64,g=64,b=64,a=255]</string>
+			</attr>
+			<attr name="vertexArrowReinforced">
+				<string>{}</string>
+			</attr>
+			<attr name="vertexArrowNeutral">
+				<string>{}</string>
+			</attr>
+			<attr name="vertexArrowExtenuating">
+				<string>{}</string>
+			</attr>
+			<attr name="size">
+				<int>50</int>
+			</attr>
+			<attr name="isVisible">
+				<bool>true</bool>
+			</attr>
+			<attr name="font">
+				<string>Roboto</string>
+			</attr>
+			<attr name="fontSize">
+				<int>12</int>
+			</attr>
+			<attr name="isHighlighted">
+				<bool>false</bool>
+			</attr>
+			<attr name="ID of the sphere containing this node:">
+				<string>1</string>
+			</attr>
+			<attr name="isLockedPosition">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedAnnotation">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedStyle">
+				<bool>false</bool>
+			</attr>
+		</node>
+		<edge from="2" id="4" to="3">
+			<attr name="TYPE">
+				<string>Edge</string>
+			</attr>
+			<attr name="paint">
+				<string>java.awt.Color[r=0,g=0,b=0,a=255]</string>
+			</attr>
+			<attr name="stroke">
+				<string>BASIC</string>
+			</attr>
+			<attr name="arrowType">
+				<string>REINFORCED</string>
+			</attr>
+			<attr name="hasAnchorIn">
+				<bool>false</bool>
+			</attr>
+			<attr name="anchorAngle of source">
+				<string>no anchorpoint at the source set</string>
+			</attr>
+			<attr name="hasAnchorOut">
+				<bool>false</bool>
+			</attr>
+			<attr name="anchorAngle of target">
+				<string>Point2D.Double[541.1603179682247, 170.65925561160327]</string>
+			</attr>
+			<attr name="isVisible">
+				<bool>true</bool>
+			</attr>
+			<attr name="isHighlighted">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedStyle">
+				<bool>false</bool>
+			</attr>
+			<attr name="isLockedEdgeType">
+				<bool>false</bool>
+			</attr>
+		</edge>
+	</graph>
+	<graph id="template">
+		<attr name="maxSpheres">
+			<int>2147483647</int>
+		</attr>
+		<attr name="maxVertices">
+			<int>2147483647</int>
+		</attr>
+		<attr name="maxEdges">
+			<int>2147483647</int>
+		</attr>
+		<attr name="reinforcedEdgesAllowed">
+			<bool>true</bool>
+		</attr>
+		<attr name="unknownEdgesAllowed">
+			<bool>true</bool>
+		</attr>
+		<attr name="extenuatingEdgesAllowed">
+			<bool>true</bool>
+		</attr>
+	</graph>
+</gxl>
