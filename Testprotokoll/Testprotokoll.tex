@@ -129,7 +129,7 @@ urlcolor=blue % Farbe von externen Links
 % Ende Titelseite	
 	
 \newpage
-Anmerkung: Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. Ebenso wird beispielsweise beim Hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten und Linksklicks für mehrere Elemente. Bewegt werden Elemente durchs gedrückt Halten des Rechtsklicks. Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. Bei Testfällen, bei denen alle Tests negativ ausgefallen sind, sind Abbildungen (sofern vorhanden) nach den Tests zu finden und beziehen sich auf alle Testdurchläufe des entsprechenden Testfalls. Andernfalls werden bei jedem Testdurchlauf Abbildungen gezeigt (sofern vorhanden).  \\
+Anmerkung: Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. Ebenso wird beispielsweise beim Hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten und Linksklicks für mehrere Elemente. Bewegt werden Elemente durchs gedrückt Halten des Rechtsklicks. Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. Bei Testfällen, bei denen alle Tests negativ ausgefallen sind, sind Abbildungen (sofern vorhanden) nach den Tests zu finden und beziehen sich auf alle Testdurchläufe des entsprechenden Testfalls. Andernfalls werden bei jedem Testdurchlauf Abbildungen gezeigt (sofern vorhanden). Auch hat sich im Verlauf bei der Erstellung des Testprotokolls die Standardfarben für Sphären und Symptomen geändert, was bei einigen Abbildungen zu erkennen ist.  \\
 
 \newpage
 
@@ -152,7 +152,7 @@ Anmerkung: Weil für manche Tests bestimmte Funktionalitäten funktionieren müs
 
 Die Benutzeroberfläche im Ersteller-Modus:
 \begin{center}
-	\includegraphics[height=10cm, angle = 90]{erstellerModus.PNG}
+	\includegraphics[height=10cm, angle = 90]{erstellerModus.png}
 \end{center}
 \newpage
 Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste anstelle der Vorlage-Regeln den Verlauf gibt:
@@ -161,7 +161,7 @@ Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, das
 \end{center}
 Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste:
 \begin{center}
-	\includegraphics[height=3cm]{analyseModus.PNG}
+	\includegraphics[height=3cm]{analyseModus.png}
 \end{center}
 
 \hfill Test Nr.: \setlength{\fboxsep}{1pt}\fbox{1}\fbox{2}\fbox{3}
@@ -311,7 +311,7 @@ Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:34 \\
 Test negativ.
 \begin{center}
-\includegraphics[height=5cm]{template4.PNG}
+\includegraphics[height=5cm]{template4.png}
 \end{center}
 \begin{center}
 \includegraphics[height=3cm]{template1.PNG}
@@ -320,7 +320,7 @@ Test negativ.
 \includegraphics[height=5cm]{template2.PNG}
 \end{center}
 \begin{center}
-\includegraphics[height=5cm]{template3.PNG}
+\includegraphics[height=5cm]{template3.png}
 \end{center}
 Da der Erzeuger gegen seine eigene Regeln verstoßen kann, müssen entsprechende Funktionalitäten im Bearbeiter-Modus getestet werden.
 \subsubsection{Fazit}
@@ -355,7 +355,15 @@ Der Ersteller versucht die Relation von \texttt{Symptom 4} nach \texttt{Symptom 
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 13:56 \\
 Test positiv, weil das Entfernen der Relation nicht erfolgreich war. Die Abbildung ist identisch zur vorherigen. \\ 
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:43 \\
-Test negativ. 
+Test negativ. \\
+Vor dem Entfernen der Relation:
+\begin{center}
+\includegraphics[height=5cm]{1_15vorher.png}
+\end{center}
+Nach dem Entfernen der Relation:
+\begin{center}
+\includegraphics[height=5cm]{1_15nachher.png}
+\end{center}
 
 \subsubsection{Fazit} 
 Die Abfrage des jetzigen Modus entsprach nicht dem geplanten. Nachdem der Boolesche Wert negiert worden ist, funktioniert dies nun wie erwartet.
@@ -981,8 +989,15 @@ Test positiv, weil noch ein Ankerpunkt angezeigt wird. Genauer gesagt wird bei d
 \includegraphics[height=10cm]{3_43.PNG}
 \end{center}
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 05.03.2019 um 14:11 \\
-Test negativ. 
-
+Test negativ. \\\\
+Vor dem Wechsel in den Analyse-Modus:
+\begin{center}
+\includegraphics[height=10cm]{3_45vorher.png}
+\end{center}
+Nach dem Wechsel in den Analyse-Modus:
+\begin{center}
+\includegraphics[height=10cm]{3_45nachher.png}
+\end{center}
 \subsubsection{Fazit}
 Nach dem ersten Test wurde ein Wahrheitswert in \texttt{Values} hinzugefügt, der dazu führt, dass auch der betroffene Ankerpunkt nicht mehr angezeigt wird, wenn man den Modus wechselt. Beim zweiten Test arbeitet die Software wie wie erwartet.
 
@@ -1058,15 +1073,17 @@ Nach Änderung der Beschriftung:
 \begin{center}
 \includegraphics[height=10cm]{3_48.PNG}
 \end{center}
-Nach betätigen des Button zum rückgängig machen ist der Graph unverändert. \\
+Nach betätigen des Buttons zum Rückgängig machen ist der Graph unverändert. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:06 \\
-Test negativ.\\
+Test negativ.\\\\
 Nach Änderung der Beschriftung: 
 \begin{center}
-\includegraphics[height=10cm]{3_48.PNG}
+\includegraphics[height=8cm]{3_50vorher.PNG}
 \end{center}
-Nach betätigen des Button zum rückgängig machen der letzten Aktion: 
-
+Nach betätigen des Buttons zum rückgängig machen der letzten Aktion: 
+\begin{center}
+\includegraphics[height=8cm]{3_50nachher.PNG}
+\end{center}
 \subsubsection{Fazit}
 Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Action korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass nun die Software wie erwartet arbeitet.
 
