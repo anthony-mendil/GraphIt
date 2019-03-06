@@ -29,7 +29,7 @@ public class OOFio {
      * @param pJSON The protocol as JSON string of the user that gets written in the OOF file.
      * @return The OOF file as string.
      */
-    private String createOOF(String pGXL, String pJSON) {
+    String createOOF(String pGXL, String pJSON) {
         return pGXL + "\0" + pJSON;
     }
 
@@ -39,7 +39,7 @@ public class OOFio {
      * @param pOOF The OOF containing a GXL string.
      * @return The GXL string.
      */
-    public String gxlFromOOF(String pOOF) {
+    String gxlFromOOF(String pOOF) {
         String[] splits = pOOF.split("\0");
         return splits[0];
     }
@@ -50,7 +50,7 @@ public class OOFio {
      * @param pOOF The OOF containing a JSON string.
      * @return The JSON string.
      */
-    public String jsonFromOOF(String pOOF) {
+    String jsonFromOOF(String pOOF) {
         String[] splits = pOOF.split("\0");
         return splits[1];
     }

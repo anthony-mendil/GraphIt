@@ -59,6 +59,15 @@ public class OOFioTest {
      * javadocTODO
      */
     @Test
+    public void testCreateOOF() throws IOException {
+        String anyOOF=IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), StandardCharsets.UTF_8);
+        Assert.assertEquals(anyOOF, oofio.createOOF(oofio.gxlFromOOF(anyOOF),oofio.jsonFromOOF(anyOOF)));
+    }
+
+    /**
+     * javadocTODO
+     */
+    @Test
     public void testEmptyDatabase() {
         Assert.assertTrue(databaseManager.databaseEmpty());
     }
@@ -70,8 +79,8 @@ public class OOFioTest {
     public void testImportOOFGXL() {
         oofio.importOOF(simpleGraph);
         Assert.assertEquals(
-                databaseManager.getGraphDao().gxlFromDatabase().trim().replaceAll("\\n|\\s",""),
-                simpleGraphGXL.trim().replaceAll("\\n|\\s",""));
+                simpleGraphGXL.trim().replaceAll("\\n|\\s",""),
+                databaseManager.getGraphDao().gxlFromDatabase().trim().replaceAll("\\n|\\s",""));
     }
 
     /**
@@ -81,16 +90,31 @@ public class OOFioTest {
     public void testImportOOFJSON() {
         oofio.importOOF(simpleGraph);
         Assert.assertEquals(
-                databaseManager.getLogDao().getAllString(),
-                simpleGraphJSON);
+                simpleGraphJSON,
+                databaseManager.getLogDao().getAllString());
     }*/
 
+    /**
+     * javadocTODO
+     */
     @Test
     public void testExportOOFGXL(){
         oofio.importOOF(simpleGraph);
         oofio.exportAsOOF(exportedSimpleGraph);
         Assert.assertEquals(
-                oofio.gxlFromOOF(FileHandler.fileToString(exportedSimpleGraph)).trim().replaceAll("\\n|\\s",""),
-                simpleGraphGXL.trim().replaceAll("\\n|\\s",""));
+                simpleGraphGXL.trim().replaceAll("\\n|\\s",""),
+                oofio.gxlFromOOF(FileHandler.fileToString(exportedSimpleGraph)).trim().replaceAll("\\n|\\s",""));
     }
+
+    /**
+     * javadocTODO
+     *//*
+    @Test
+    public void testExportOOFJSON(){
+        oofio.importOOF(simpleGraph);
+        oofio.exportAsOOF(exportedSimpleGraph);
+        Assert.assertEquals(
+                simpleGraphJSON.trim().replaceAll("\\n|\\s",""),
+                oofio.jsonFromOOF(FileHandler.fileToString(exportedSimpleGraph)).trim().replaceAll("\\n|\\s",""));
+    }*/
 }
