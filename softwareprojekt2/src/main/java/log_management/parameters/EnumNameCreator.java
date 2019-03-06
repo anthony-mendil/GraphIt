@@ -32,7 +32,7 @@ public class EnumNameCreator {
                 case EXTENUATING:
                     return "Extenuating";
                 default:
-                    return "Unknown";
+                    return "Neutral";
             }
         } else {
             switch (edgeArrowType) {
@@ -41,7 +41,7 @@ public class EnumNameCreator {
                 case EXTENUATING:
                     return "Abschwächend";
                 default:
-                    return "Unbekannt";
+                    return "Neutral";
             }
         }
     }
