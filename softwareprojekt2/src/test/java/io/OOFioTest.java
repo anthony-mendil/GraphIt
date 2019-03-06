@@ -18,6 +18,7 @@ public class OOFioTest {
     private static OOFio oofio;
     private static File simpleGraph;
     private static File exportedSimpleGraph;
+    private static String anyOOF;
     private static String simpleGraphGXL="";
     private static String simpleGraphJSON ="";
     private static DatabaseManager databaseManager;
@@ -32,11 +33,12 @@ public class OOFioTest {
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
         databaseManager = DatabaseManager.getInstance();
         oofio = new OOFio();
-        simpleGraph = Paths.get(System.getProperty("user.home"), ".graphitTest", "simpleGraph.oof").toFile();
+        simpleGraph = Paths.get(".graphitTest", "simpleGraph.oof").toFile();
         FileUtils.copyInputStreamToFile(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), simpleGraph);
-        exportedSimpleGraph=Paths.get(System.getProperty("user.home"), ".graphitTest", "ExportSimpleGraph.oof").toFile();
+        exportedSimpleGraph=Paths.get(".graphitTest", "ExportSimpleGraph.oof").toFile();
         simpleGraphGXL = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphGXL.gxl"), StandardCharsets.UTF_8);
         simpleGraphJSON = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphJSON.json"), StandardCharsets.UTF_8);
+        anyOOF=IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), StandardCharsets.UTF_8);
     }
 
     /**
@@ -45,7 +47,7 @@ public class OOFioTest {
     @AfterClass
     public static void endAll() throws IOException {
         PersonalEntityManagerFactory.getInstance().close();
-        FileUtils.deleteDirectory(simpleGraph.getParentFile());
+        FileUtils.deleteDirectory(new File(".graphitTest"));
     }
 
     /**
@@ -61,7 +63,6 @@ public class OOFioTest {
      */
     @Test
     public void testCreateOOF() throws IOException {
-        String anyOOF=IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), StandardCharsets.UTF_8);
         Assert.assertEquals(anyOOF, oofio.createOOF(oofio.gxlFromOOF(anyOOF),oofio.jsonFromOOF(anyOOF)));
     }
 
