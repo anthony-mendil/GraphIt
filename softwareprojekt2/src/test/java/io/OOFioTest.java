@@ -4,6 +4,7 @@ import log_management.DatabaseManager;
 import log_management.dao.PersonalEntityManagerFactory;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.BasicConfigurator;
 import org.junit.*;
 
 import javax.persistence.EntityManagerFactory;
@@ -29,6 +30,7 @@ public class OOFioTest {
      */
     @BeforeClass
     public static void prepareOnce() throws IOException {
+        BasicConfigurator.configure();
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TestPersistenceUnit");
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
         databaseManager = DatabaseManager.getInstance();
@@ -57,6 +59,15 @@ public class OOFioTest {
     public void end(){
         databaseManager.getGraphDao().delete(-1);
     }
+
+    private void resetDB() throws IOException {
+        databaseManager.getGraphDao().delete(-1);
+        PersonalEntityManagerFactory.getInstance().close();
+        FileUtils.deleteDirectory(new File(".graphitTest"));
+        prepareOnce();
+    }
+
+
 
     /**
      * javadocTODO
@@ -87,14 +98,14 @@ public class OOFioTest {
 
     /**
      * javadocTODO
-     *//*
+     */
     @Test
     public void testImportOOFJSON() {
         oofio.importOOF(simpleGraph);
         Assert.assertEquals(
-                simpleGraphJSON,
-                databaseManager.getLogDao().getAllString());
-    }*/
+                simpleGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d",""),
+                databaseManager.getLogDao().getAllString().replaceAll("\\d",""));
+    }
 
     /**
      * javadocTODO
@@ -110,13 +121,14 @@ public class OOFioTest {
 
     /**
      * javadocTODO
-     *//*
+     */
     @Test
-    public void testExportOOFJSON(){
+    public void testExportOOFJSON() throws IOException {
+        resetDB();
         oofio.importOOF(simpleGraph);
         oofio.exportAsOOF(exportedSimpleGraph);
         Assert.assertEquals(
-                simpleGraphJSON.trim().replaceAll("\\n|\\s",""),
-                oofio.jsonFromOOF(FileHandler.fileToString(exportedSimpleGraph)).trim().replaceAll("\\n|\\s",""));
-    }*/
+                simpleGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d","").replaceAll("\\d",""),
+                oofio.jsonFromOOF(FileHandler.fileToString(exportedSimpleGraph)).replaceAll("\\d",""));
+    }
 }
