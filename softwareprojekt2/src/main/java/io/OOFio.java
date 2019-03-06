@@ -73,13 +73,9 @@ public class OOFio {
      */
     public void importOOF(File pFile) {
         String oof=FileHandler.fileToString(pFile);
-
         GXLio gxlio = new GXLio();
-
         gxlio.gxlToInstance(gxlFromOOF(oof), true);
-
         DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));
-
         DatabaseManager.getInstance().saveOofLogs(jsonFromOOF(oof));
     }
 

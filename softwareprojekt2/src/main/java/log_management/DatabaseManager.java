@@ -1,7 +1,6 @@
 package log_management;
 
 import actions.ObserverSyndrom;
-import com.google.inject.Singleton;
 import graph.graph.FunctionMode;
 import gui.Values;
 import io.GXLio;
@@ -15,7 +14,6 @@ import lombok.Data;
  * The database manager, for managing the database access.
  */
 @Data
-@Singleton
 public class DatabaseManager implements ObserverSyndrom {
     /**
      * The log_management.dao GraphDao object for graphs, for accessing the database.
