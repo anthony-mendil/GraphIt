@@ -7,6 +7,7 @@ import net.sourceforge.gxl.*;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.freehep.graphicsbase.util.Assert;
+import org.junit.AfterClass;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
@@ -105,6 +106,14 @@ public class GXLioTest {
         syndrom.generateNew();
         doc = new GXLDocument(new File(nameTestGraph));
         return gxlio;
+    }
+
+    /**
+     * javadocTODO
+     */
+    @AfterClass
+    public static void endAll() throws IOException {
+        new File("testGraph.gxl").deleteOnExit();
     }
 
     /**
