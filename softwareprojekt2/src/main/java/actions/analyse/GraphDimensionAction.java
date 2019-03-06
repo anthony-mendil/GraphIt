@@ -19,17 +19,17 @@ public class GraphDimensionAction extends GraphAction {
      * The scope.
      */
     @Getter
-    private String scope;
+    private int scope;
     /**
      * The networkIndex.
      */
     @Getter
-    private String networkIndex;
+    private Double networkIndex;
     /**
      * The structureIndex.
      */
     @Getter
-    private String structureIndex;
+    private Double structureIndex;
 
 
     /**
@@ -48,18 +48,17 @@ public class GraphDimensionAction extends GraphAction {
         /*
          * Calculating the indices. Dividing by zero is not so useful.
          */
-        DecimalFormat format = new DecimalFormat("####.##");
 
-        scope = format.format(graph.getEdges().size() + (long) graph.getVertices().size());
+        scope = graph.getEdges().size() +  graph.getVertices().size();
         if (!graph.getVertices().isEmpty()) {
-            networkIndex = format.format((double) 2 * graph.getEdges().size() / graph.getVertices().size());
-            structureIndex = format.format((double) (jGraphTHandler.detectRelationChains().getKey().size() +
+            networkIndex = (double) 2 * graph.getEdges().size() / graph.getVertices().size();
+            structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
                     jGraphTHandler.detectConvergentBranches().size() +
                     jGraphTHandler.detectDivergentBranches().size() +
-                    jGraphTHandler.detectCycles().size()) / graph.getVertices().size());
+                    jGraphTHandler.detectCycles().size()) / graph.getVertices().size();
         } else {
-            networkIndex = "NaN";
-            structureIndex = "NaN";
+            networkIndex = (double)-1;
+            structureIndex = (double)-1;
         }
     }
 

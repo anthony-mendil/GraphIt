@@ -344,7 +344,7 @@ public class AnalysisTest {
         setupSyndrom(true);
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
-        Assert.assertEquals("21", graphDimensionAction.getScope());
+        Assert.assertEquals(21, graphDimensionAction.getScope());
     }
 
     /**
@@ -356,7 +356,7 @@ public class AnalysisTest {
         setupSyndrom(false);
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
-        Assert.assertEquals("0", graphDimensionAction.getScope());
+        Assert.assertEquals(0, graphDimensionAction.getScope());
     }
 
     /**
@@ -370,7 +370,7 @@ public class AnalysisTest {
         setupSyndrom(true);
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
-        Assert.assertEquals("2,2", graphDimensionAction.getNetworkIndex());
+        Assert.assertEquals(2.2, graphDimensionAction.getNetworkIndex(), 0);
     }
 
     /**
@@ -383,7 +383,7 @@ public class AnalysisTest {
         setupSyndrom(false);
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
-        Assert.assertEquals("NaN", graphDimensionAction.getNetworkIndex());
+        Assert.assertEquals(-1, graphDimensionAction.getNetworkIndex(), 0);
     }
 
     /**
@@ -397,7 +397,7 @@ public class AnalysisTest {
         setupSyndrom(true);
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
-        Assert.assertEquals("0,6", graphDimensionAction.getStructureIndex());
+        Assert.assertEquals(0.6, graphDimensionAction.getStructureIndex(), 0);
     }
 
     /**
@@ -410,7 +410,7 @@ public class AnalysisTest {
         setupSyndrom(false);
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
-        Assert.assertEquals("NaN", graphDimensionAction.getStructureIndex());
+        Assert.assertEquals(-1, graphDimensionAction.getStructureIndex(), 0);
     }
 
     /**

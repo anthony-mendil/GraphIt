@@ -88,6 +88,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -1342,9 +1343,15 @@ public class Controller implements ObserverSyndrom {
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
 
-        analysisScopeNumber.setText(graphDimensionAction.getScope());
-        analysisNetworkingIndexNumber.setText(graphDimensionAction.getNetworkIndex());
-        analysisStructureIndexNumber.setText(graphDimensionAction.getStructureIndex());
+        DecimalFormat format = new DecimalFormat("####.##");
+        analysisScopeNumber.setText(format.format(graphDimensionAction.getScope()));
+        if(graphDimensionAction.getNetworkIndex() == -1){
+            analysisNetworkingIndexNumber.setText("NaN");
+            analysisStructureIndexNumber.setText("NaN");
+        }else {
+            analysisNetworkingIndexNumber.setText(format.format(graphDimensionAction.getNetworkIndex()));
+            analysisStructureIndexNumber.setText(format.format(graphDimensionAction.getStructureIndex()));
+        }
         satellite.setContent(syndrom.getVv2());
 
         ResetVvAction resetAction = new ResetVvAction();
