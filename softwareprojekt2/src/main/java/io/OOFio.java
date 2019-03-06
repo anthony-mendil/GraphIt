@@ -1,6 +1,5 @@
 package io;
 
-import com.google.inject.Inject;
 import log_management.DatabaseManager;
 import log_management.dao.LogDao;
 
@@ -14,7 +13,6 @@ public class OOFio {
     /**
      * The log dao object, for accessing the log data.
      */
-    @Inject
     private LogDao logDao = new LogDao();
 
     /**
