@@ -382,7 +382,6 @@ public class GXLioTest {
      */
     @Test
     public void testNumberAttributesInTemplateWithTemplateOfGXLGraph() throws IOException, SAXException {
-        System.out.println(syndrom.getTemplate());
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
 
         Assert.assertEquals(25, syndrom.getTemplate().getMaxSpheres());
@@ -415,7 +414,6 @@ public class GXLioTest {
     @Test
     public void testBooleanAttributesInTemplateWithTemplateOfGXLGraph() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
-        System.out.println(syndrom.getTemplate().toString());
         Assert.assertEquals(true, syndrom.getTemplate().isReinforcedEdgesAllowed());
         Assert.assertEquals(false, syndrom.getTemplate().isExtenuatingEdgesAllowed());
         Assert.assertEquals(true, syndrom.getTemplate().isNeutralEdgesAllowed());

@@ -189,7 +189,6 @@ public class GXLio {
     private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices, String graphName, boolean withTemplate) {
         // Getting the objects that are needed to get the spheres, vertices and edges out of the lists into our system.
         syndrom.generateNew();
-        System.out.println("template: " + template);
         if(withTemplate){
             syndrom.setTemplate(template);
         }
