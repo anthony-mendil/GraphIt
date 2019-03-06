@@ -600,6 +600,10 @@ public class Controller implements ObserverSyndrom {
     private Text positionMouseY;
     @FXML
     private Button syncButton;
+    @FXML
+    private GridPane templateGridPane;
+    @FXML
+    private VBox templateVbox;
 
     private static final String SPHERE_TITLE = "SphereTitle";
     private static final String SPHERE_POSITION = "SpherePosition";
@@ -1318,6 +1322,10 @@ public class Controller implements ObserverSyndrom {
         edgeArrowExtenuating.setDisable(false);
         verticesAutoLayout.setDisable(false);
         sphereAutoLayout.setDisable(false);
+        if(!overViewAccordion.getPanes().contains(templateTitledPane)){
+            overViewAccordion.getPanes().add(templateTitledPane);
+        }
+        disableTemplateRules(false);
         updateUndoRedoButton();
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1339,7 +1347,9 @@ public class Controller implements ObserverSyndrom {
         createButton.setDisable(false);
         editButton.setDisable(false);
         analysisButton.setDisable(true);
-
+        if(overViewAccordion.getPanes().contains(templateTitledPane)){
+            overViewAccordion.getPanes().remove(templateTitledPane);
+        }
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
 
@@ -1374,6 +1384,10 @@ public class Controller implements ObserverSyndrom {
         analysisButton.setDisable(false);
         editButton.setDisable(true);
         satellite.setContent(syndrom.getVv2());
+        if(!overViewAccordion.getPanes().contains(templateTitledPane)){
+            overViewAccordion.getPanes().add(templateTitledPane);
+        }
+        disableTemplateRules(true);
         updateUndoRedoButton();
 
         if (!syndrom.getTemplate().isReinforcedEdgesAllowed()) {
@@ -1682,7 +1696,6 @@ public class Controller implements ObserverSyndrom {
             String name = data.getValue().toString();
             return new ReadOnlyStringWrapper(name);
         });
-
         templateToFields();
         updateUndoRedoButton();
         analysisMode(false);
@@ -2298,16 +2311,20 @@ public class Controller implements ObserverSyndrom {
             } else {
                 overViewAccordion.getPanes().remove(historyTitledPane);
             }
-        } else {
-            if (active) {
-                if(!overViewAccordion.getPanes().contains(templateTitledPane)){
-                    overViewAccordion.getPanes().add(templateTitledPane);
-                }
-                resetToggleButtons();
-            } else {
-                overViewAccordion.getPanes().remove(templateTitledPane);
-            }
         }
+    }
+
+    /**
+     * Disable the gui elements for editing the template rules.
+     *
+     * @param disable Disable/Enable the template rules
+     */
+    private void disableTemplateRules(Boolean disable){
+        templateGridPane.setDisable(disable);
+        templateVbox.setDisable(disable);
+        sphereTableView.setDisable(disable);
+        symptomTableView.setDisable(disable);
+        edgeTableView.setDisable(disable);
     }
 
     /**
