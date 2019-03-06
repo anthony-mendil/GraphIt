@@ -327,16 +327,10 @@ public class GXLio {
                 Integer.parseInt(paintArray[2]),
                 Integer.parseInt(paintArray[3]));
         String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinate").getValue()).getValue());
-        java.awt.Point coordinates;
-        if (coordinatesArray[0].contains(".")) {
-            coordinates = new java.awt.Point(
-                    (int) java.lang.Double.parseDouble(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
-                    (int) java.lang.Double.parseDouble(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length() - 3)));
-        } else {
-            coordinates = new java.awt.Point(
-                    java.lang.Integer.parseInt(coordinatesArray[0]),
-                    java.lang.Integer.parseInt(coordinatesArray[1]));
-        }
+        java.awt.geom.Point2D.Float coordinates;
+        coordinates = new java.awt.geom.Point2D.Float(
+                    java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
+                    java.lang.Float.parseFloat(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length() - 3)));
         VertexShapeType shape = VertexShapeType.valueOf(((GXLString) elem.getAttr("shape").getValue()).getValue());
         Map<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(), ((GXLString) elem.getAttr(ANNOTATION).getValue()).getValue().split(U00A6)[1]);

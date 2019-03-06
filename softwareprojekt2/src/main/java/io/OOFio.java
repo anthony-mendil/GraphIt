@@ -39,7 +39,7 @@ public class OOFio {
      * @param pOOF The OOF containing a GXL string.
      * @return The GXL string.
      */
-    private String gxlFromOOF(String pOOF) {
+    public String gxlFromOOF(String pOOF) {
         String[] splits = pOOF.split("\0");
         return splits[0];
     }
@@ -50,7 +50,7 @@ public class OOFio {
      * @param pOOF The OOF containing a JSON string.
      * @return The JSON string.
      */
-    private String jsonFromOOF(String pOOF) {
+    public String jsonFromOOF(String pOOF) {
         String[] splits = pOOF.split("\0");
         return splits[1];
     }

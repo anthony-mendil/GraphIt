@@ -17,6 +17,7 @@ public class OOFioTest {
 
     private static OOFio oofio;
     private static File simpleGraph;
+    private static File exportedSimpleGraph;
     private static String simpleGraphGXL="";
     private static String simpleGraphJSON ="";
     private static DatabaseManager databaseManager;
@@ -33,6 +34,7 @@ public class OOFioTest {
         oofio = new OOFio();
         simpleGraph = Paths.get(System.getProperty("user.home"), ".graphitTest", "simpleGraph.oof").toFile();
         FileUtils.copyInputStreamToFile(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), simpleGraph);
+        exportedSimpleGraph=Paths.get(System.getProperty("user.home"), ".graphitTest", "ExportSimpleGraph.oof").toFile();
         simpleGraphGXL = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphGXL.gxl"), StandardCharsets.UTF_8);
         simpleGraphJSON = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphJSON.json"), StandardCharsets.UTF_8);
     }
@@ -83,4 +85,12 @@ public class OOFioTest {
                 simpleGraphJSON);
     }*/
 
+    @Test
+    public void testExportOOFGXL(){
+        oofio.importOOF(simpleGraph);
+        oofio.exportAsOOF(exportedSimpleGraph);
+        Assert.assertEquals(
+                oofio.gxlFromOOF(FileHandler.fileToString(exportedSimpleGraph)).trim().replaceAll("\\n|\\s",""),
+                simpleGraphGXL.trim().replaceAll("\\n|\\s",""));
+    }
 }
