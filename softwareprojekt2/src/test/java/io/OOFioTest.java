@@ -43,8 +43,9 @@ public class OOFioTest {
      * javadocTODO
      */
     @AfterClass
-    public static void endAll(){
+    public static void endAll() throws IOException {
         PersonalEntityManagerFactory.getInstance().close();
+        FileUtils.deleteDirectory(simpleGraph.getParentFile());
     }
 
     /**
