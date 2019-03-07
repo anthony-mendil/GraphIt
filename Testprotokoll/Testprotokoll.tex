@@ -155,17 +155,17 @@ Die Benutzeroberfläche im Ersteller-Modus:
 	\includegraphics[height=10cm, angle = 90]{erstellerModus.png}
 \end{center}
 \newpage
-Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste anstelle der Vorlage-Regeln den Verlauf gibt:
+Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste zusätzlich zu den Vorlage-Regeln den Verlauf gibt,
+wobei aber die Vorlage-Regeln nicht editierbar sind sondern nur zum Lesen der Regeln dient:
 \begin{center}
-	\includegraphics[height=5cm]{bearbeiterModus.PNG}
+	\includegraphics[height=10cm]{bearbeiterModus.PNG}
 \end{center}
 Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste:
 \begin{center}
 	\includegraphics[height=3cm]{analyseModus.png}
 \end{center}
-
 \hfill Test Nr.: \setlength{\fboxsep}{1pt}\fbox{1}\fbox{2}\fbox{3}
-
+\newpage
 \section{Ersteller-Modus}
 
 \subsectiont{Sphären hinzufügen an freien Stellen}{\dotfill\ok\ok\leer}
@@ -377,6 +377,8 @@ Test negativ.\\
 Test negativ.
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. In dem Verzeichnis das zum Speichern ausgewählt wurde ist die entsprechende Datei zu finden. 
+
+\newpage
 
 \section{Bearbeiter-Modus}
 Im Ersteller-Modus getestete Funktionalitäten, die auch im Bearbeiter-Modus zur Verfügung stehen, werden im Bearbeiter-Modus nicht nochmal explizit getestet. 
@@ -1479,7 +1481,7 @@ Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären,
 \begin{center}
 \includegraphics[height=10cm, angle=90]{analysezuErstellenderGraph.PNG}
 \end{center}
-
+\newpage
 \section{Analyse-Modus}
 
 \texttt{Umfang}: Anzahl wertbarer Symptome + Anzahl wertbarer Relationen\\\\
@@ -1649,7 +1651,6 @@ Test negativ.
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
-
 \section{Import, Export, Ändern der Sprache und Hilfe}
 Die Funktionalitäten \texttt{Datei speichern}, \texttt{Datei öffnen} und das Ändern der Sprache des Graphen wurden im Laufe des Protokolls bereits getestet. Sie werden an dieser Stelle also nicht erneut getestet. Für die folgenden Tests erstellen wir vorerst einen neuen Graphen: 
 \begin{center}
@@ -1765,5 +1766,16 @@ Nach dem Klicken auf Über uns im Menü Hilfe.
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
+\newpage
+\section{JUnit Tests}
 
+\subsection{Analysis Test}
+Im folgenden sieht man automatisierte Tests für die Analyse Funktionen.\\
+%\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{PIQuizDuell/PIQuizDuell/PIQuizDuell.java}
+\subsection{GXLio Test}
+Im folgenden sieht man automatisierte Tests für den GXL Import und Export.\\
+%\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{PIQuizDuell/PIQuizDuell/PIQuizDuell.java}
+\subsection{OOFio Test}
+Im folgenden sieht man automatisierte Tests für den OOF Import und Export.\\
+%\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{PIQuizDuell/PIQuizDuell/PIQuizDuell.java}
 \end{document}

@@ -257,7 +257,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Vorwort}
-Mit diesem Handbuch wird die Bedienung der Software \textbf{GraphIt} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
+Mit diesem Handbuch wird die Bedienung der Software \textbf{GraphIt} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq{} im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
 Eine Nutzung des Programms für Zwecke, die von dem angedachten Einsatzbereich abweicht ist möglich. Allerdings wird in diesem Dokument nicht weiter auf eine solche Nutzung eingegangen. Bei dieser Nutzung, die nicht dem angedachten Einsatz entspricht, ist ferner zu berücksichtigen, dass eventuell gewisse Funktionen wünschenswert wären, die aufgrund der Anforderungen jedoch bewusst nicht eingebaut wurden. Insbesondere sind hier die Regeln zu beachten, die für die Erstellung von Wirkungszusammenhängen gemäß des Syndromansatzes gelten. \\
 Bei der vorliegenden Software handelt es sich um eine Neu-Entwicklung. Somit existieren keinerlei Vorversionen, mit denen der Funktionsumfang oder die Bedienung der Software in diesem Dokument verglichen werden könnte. 
 
@@ -287,16 +287,43 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 \newpage
 \section{Installation und Starten des Programms} \label{sec:installation}
 
+
 \subsection{Installationsvoraussetzungen}
+\subsubsection{Technische Voraussetzungen}
+Systemvoraussetzungen:
+\begin{itemize}
+	\item Minimal:
+	\begin{itemize}
+		\item Prozessor: \\
+		\item Arbeitsspeicher: \\
+		\item Speicherplatz: \\
+	\end{itemize}
+\end{itemize}
+\subsubsection{Betriebssystem}
+Um die Funktionalität der Anwendung zu gewährleisten, muss eins der folgenden Betriebssysteme (64-Bit) installiert sein:
+\begin{itemize}
+	\item Microsoft Windows
+	\begin{itemize}
+		\item Getestet auf Microsoft Windows 10 Professional
+	\end{itemize}
+	\item MacOS 
+	\begin{itemize}
+		\item Getestet auf OS X 10.11.6
+	\end{itemize}
+	\item Linux-Distribution
+	\begin{itemize}
+		 \item Getestet auf Linux Ubuntu Mate 16.04.6
+	\end{itemize}
+\end{itemize}
 \subsubsection{Java 8}
-\red{TODO}
+Zur Benutzung von \textbf{GraphIt} muss eine gültige Version von Java 8 mit JavaFX installiert sein. 
 
 \subsection{Installationsanweisungen}
-\begin{itemize}
-	\item \red{TODO}
-\end{itemize}
+Die Anwendung benötigt keinen vom Nutzer geführten Installationsvorgang, bevor sie benutzt werden kann.
+
 \subsection{Starten des Programms}
-\red{TODO}
+Zum Starten des Programms muss die Ausführbare Datei \texttt{GraphIt.jar} ausgeführt werden. Dadurch wird die Anwendung initialisiert und ggf. eine Datenbank im \texttt{home}-Verzeichnis des Nutzers angelegt. Zweiteres geschieht nur beim erstmaligen Start der Anwendung. \\
+Nach dem Startvorgang ist das Programm direkt einsatzbereit.
 
 \newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
@@ -306,30 +333,30 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 \begin{tabular} {|p{8cm}|p{8cm}|}
 	\hline
 	\rowcolor{glaucous}\multicolumn{2}{|l|} {\parbox{16cm}{\textbf{\textcolor{ghostwhite}{Maus-/ Tastenbelegungen}}} } \\ \hline\hline 	
-	Drucken	& Ctrl + P \\ \hline
-	Neue Datei	& Ctrl + N \\ \hline
-	Datei öffnen & Ctrl + O \\ \hline
-	Speichern unter	&	Ctrl + S \\ \hline
-	Importieren als Vorlage & Ctrl + I \\ \hline
-	Importieren als GXL & Ctrl + Shift + I \\ \hline
-	Exportieren als Vorlage & Ctrl + E \\ \hline
-	Exportieren als GXL & Ctrl + Shift + E \\ \hline
-	Exportieren als PDF & Ctrl + Shift + P \\ \hline
-	Exportieren als Verlaufsprotokoll & Ctrl + L \\ \hline 
-	GraphIt schließen & Ctrl + Q \\ \hline 
-	Dokumentation & F1 \\ \hline 
-	Über uns & F2 \\ \hline 
+	Bearbeiter- Modus & 1 \\ \hline
+	Ersteller- Modus & 2 \\ \hline
+	Analyse- Modus & 3 \\ \hline
 	Graphelemente vergrößern & + \\ \hline
 	Graphelemente verkleinern & - \\ \hline 
-	Rückgängig 	& Ctrl + Z \\ \hline 
-	Wiederherstellen & Ctrl + Y \\ \hline 
-	Graphelemente löschen & Ctrl + D / Entf \\ \hline 
-	Alle Elemente auswählen & Ctrl + A \\ \hline 
-	Filtern/ Suchen	& Ctrl + F \\ \hline 
-	Ersteller- Modus & 2 \\ \hline
-	Bearbeiter- Modus & 1 \\ \hline
-	Analyse- Modus & 3 \\ \hline
-	Auswahl leeren & Esc	\\ \hline
+	Dokumentation öffnen & F1 \\ \hline 
+	\glqq Über uns \grqq{} öffnen & F2 \\ \hline 
+	Neue Datei	& Strg + N \\ \hline
+	Datei öffnen & Strg + O \\ \hline
+	Speichern unter	&	Strg + S \\ \hline
+	Importieren als GXL & Strg + Shift + I \\ \hline
+	Importieren als Vorlage & Strg + I \\ \hline
+	Exportieren als Verlaufsprotokoll & Strg + L \\ \hline 
+	Exportieren als GXL & Strg + Shift + E \\ \hline
+	Exportieren als Vorlage & Strg + E \\ \hline
+	Exportieren als PDF & Strg + Shift + P \\ \hline
+	Als PDF Drucken	& Strg + P \\ \hline
+	GraphIt schließen & Strg + Q \\ \hline 
+	Rückgängig 	& Strg + Z \\ \hline 
+	Wiederherstellen & Strg + Y \\ \hline 
+	Alle Symptome und Relationen auswählen & Strg + A \\ \hline 
+	Auswahl leeren / Auswahlmodus & Esc	\\ \hline
+	Ausgewählte Graphelemente löschen & Strg + D / Entf \\ \hline 
+	Filtern / Suchen	& Strg + F \\ \hline 
 \end{tabular}
 
  
@@ -399,7 +426,7 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 61\hdo Sprache Benutzeroberfläche\\
 62\hdo Sprache des Graphen\\
 63\hdo Dokumentation\\
-64\hdo über uns \\
+64\hdo Über uns \\
 65\hdo Graphmaße\\
 66\hdo Vorgänger/ Nachfolger\\
 67\hdo Anzahl\\
