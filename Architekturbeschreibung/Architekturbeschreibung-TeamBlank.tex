@@ -1013,11 +1013,18 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \subsection{Probleme und Strategien}
 \label{sec:strategien}
 
+<<<<<<< HEAD
+\begin{tabular} {|p{8cm} p{8cm}|}
+	\hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{01: Datensicherung/Persistenz des Graphen}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Daten des Graphen müssen gespeichert werden. Das bezieht sich auf alle veränderlichen/unveränderlichen Eigenschaften der Knoten, Kanten und Sphären.}}\rule{0pt}{4ex}\\ [2ex] \hline
+=======
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%1
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{01: Datensicherung/Persistenz des Graphen}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Daten des Graphen müssen gespeichert werden. Das bezieht sich auf alle veränderlichen/unveränderlichen Eigenschaften der Knoten, Kanten und Sphären.}}\rule{0pt}{4ex}\\ [1ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus} & \hyperlink {g}{Hohe Usability}\\
@@ -1038,7 +1045,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{yy}{S1 - GXL}}}: \\
+<<<<<<< HEAD
+			Speichern des Graphen als GXL- Repräsentation, gespeichert als text/plain in einer Embedded Database (was dem Datentypen varchar entsprechend zu realisieren wäre). \\
+=======
 			Speichern des Graphen als GXL-Repräsentation (als text/plain) in einer Embedded Database (was dem Datentypen \texttt{varchar} entsprechend zu realisieren wäre). \\
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 			\textbf{S2 - BLOB NEO4J}: \\
 			Speichern einer Neo4J-Database, die den Graphen beinhaltet. Der Graph selbst wird als BLOB (Binary Large Object) in einer Embedded Database gespeichert. \\
 			\textbf{S3 - Datenmodell}: \\
@@ -1061,7 +1072,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{02: Persistierungsintervall des Graphen}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss innerhalb eines festgelegten Zeitintervalls persistiert/ abgespeichert werden.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss innerhalb eines festgelegten Zeitintervalls persistiert/ abgespeichert werden.}}\rule{0pt}{1ex}\\  \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}&
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus}\\
@@ -1122,6 +1137,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S6 - CSV}: \\
 			Schreiben und Speichern der Nutzerinteraktionen in eine CSV Datei. \\
 			\textbf{\cb{\hypertarget{aaa}{S7 - Datenmodell}}}: \\
+<<<<<<< HEAD
+			Speichern der Nutzerinteraktionen in der Embedded Database mit eigenem Datenmodell auf der Grundlage des Entwurfsmusters Command.}}\\ [6ex]
+	\hline
+=======
 			Speichern der Nutzerinteraktionen in der Embedded Database mit eigenem Datenmodell auf der Grundlage des Entwurfsmusters Command.}}\\ 
 	\hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
@@ -1129,6 +1148,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\textbf{\hyperlink {command}{S9 - Command}} \\
 	\textbf{\hyperlink {ppp}{S45 - H2 Database}}&
 	\\\hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 \end{tabular}\\ \\ \\
 \begin{onehalfspace}
 	Es wird \cb{S7 - Datenmodell} umgesetzt. Die Nutzerinteraktionen in der Datenbank zu speichern, ermöglicht es, diese bei Bedarf durch Datenbankabfragen zu filtern. \cb{Das Datenmodell} ist dabei an das Entwurfsmuster Command angelehnt. Command ist eine grundlegende Strategie für die Softwarearchitektur unseres Systems, durch die die vom Benutzer aufgerufenen Kommandos an das System modelliert werden. Die Commands werden nach Ausführung durch den Benutzer in geeigneter Darstellung in die Datenbank geschrieben. \\
@@ -1139,7 +1159,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{04: Auswahl der grundlegenden Softwarearchitektur}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen eine Architektur für unsere Software wählen, die durch das Zusammenspiel der grundlegenden Komponenten im System die Erfüllung aller Mindestanforderungen gewährleistet.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen eine Architektur für unsere Software wählen, die durch das Zusammenspiel der grundlegenden Komponenten im System die Erfüllung aller Mindestanforderungen gewährleistet.}}\rule{0pt}{4ex}\\ [1ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus} &
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1181,7 +1205,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{05: Unerfahrene Entwickler}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Entwickler sind unerfahren in den verwendeten Technologien.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Entwickler sind unerfahren in den verwendeten Technologien.}}\rule{0pt}{1ex}\\ \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {g}{Hohe Usability}\\
@@ -1192,6 +1220,15 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
+<<<<<<< HEAD
+			\textbf{\cb{\hypertarget{ccc}{S11 - (System) Biblotheken}}}: \\
+			\textbf{\cb{S12 - Dokumentierte Bibliotheken}}: \\
+			\textbf{\cb{S13 - MVC}}: \\
+			Verwendung Model- View- Controller Designpattern
+			\textbf{\cb{S14 - Zeitmanagment}}: \\
+			\textbf{\cb{15 - Modularisierung}}: \\
+			Umsetzung eines effizienen Zeitmanagments, damit genug Zeit für die Entwicker zur Verfügung steht, sich in die benötigten Technologien einzuarbeiten.
+=======
 			\textbf{\cb{\hypertarget{ccc}{S11 - (System-) Biblotheken}}}: \\
 			Das Nutzen von Bibliotheken unterstützt den Entwickler, da bereits bestehende Funktionen genutzt werden können.\\
 			\textbf{\cb{\hypertarget{aaaf}{S12 - Dokumentierte Bibliotheken}}}: \\
@@ -1202,6 +1239,7 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			Umsetzung eines effizienten Zeitmanagements, damit genug Zeit für die Entwickler zur Verfügung steht, sich in die benötigten Technologien einzuarbeiten.\\
 			\textbf{\cb{\hypertarget{aabb}{S15 - Modularisierung}}}: \\%hypertarget already exists
 			Die Gliederung des Systems in einzelne Module.
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	} }\\ [9ex] \hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
 	\textbf{\hyperlink {qqq}{S47 - Verwendung von (System-) Bibliotheken}} &
@@ -1224,7 +1262,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{06: Ausfallende Entwickler}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Teammitglieder können im Laufe der Entwicklung ausfallen.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Teammitglieder können im Laufe der Entwicklung ausfallen.}}\rule{0pt}{1ex}\\ \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {g}{Hohe Usability}\\
@@ -1351,11 +1393,18 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{\cb{\hypertarget{fff}{S22 - JUNG}}}: \\
 			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
 			\textbf{S23 - NEO4J}: \\
+<<<<<<< HEAD
+			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
+			\textbf{\cb{S24 - eigene Implementierung}}: \\
+			Die benötigten Algorithmen werden durch das Team implementiert.
+			\textbf{\cb{S25 - JGraphT}}
+=======
 			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithmen bereits zur Verfügung. \\
 			\textbf{\cb{\hypertarget{eigeneImplementierung}{S24 - eigene Implementierung}}}: \\
 			Die benötigten Algorithmen werden durch das Team implementiert.\\
 			\textbf{\cb{\hypertarget{xxx}{S25 - JGraphT}}}:\\
 			JGraphT stellt Algorithmen zur Berechnung von Grapheigenschaften bereit.
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	} }\\ [11ex] \hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
 	\textbf{\hyperlink{eee}{S19 - JUNG}}&
@@ -1373,7 +1422,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{09: PDF Druck}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen originalgetreu als PDF gedruckt werden können.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen originalgetreu als PDF gedruckt werden können.}}\rule{0pt}{1ex}\\  \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {f}{Betriebssystemunterstützung / Zielplattformen des Systems}\\
@@ -1384,10 +1437,19 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
+<<<<<<< HEAD
+			\textbf{S25: Framework}: \\
+			Eine open- source Bibliothek für den Druck einbinden.\\
+			\textbf{\cb{\hypertarget{ggg}{S26: Java API}}}: \\
+			Benutzung der Java API for Print Jobs. \\
+			\textbf{S27 - Extern }: \\
+			PDF des Graphen in einem System- externen PDFReader öffnen und ausdrucken.
+=======
 			\textbf{\cb{\hypertarget{ggg}{S26 - Java API}}}: \\
 			Benutzung der Java API für Print Jobs. \\
 			\textbf{S27 - Framework }: \\
 			Eine open- source Bibliothek für den Druck einbinden.
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	} }\\ [7ex] \hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
 	\textbf{\hyperlink{hhh}{S29 - java.awt.Graphics2D}} &
@@ -1404,7 +1466,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{10: PDF Erstellung}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen als PDF dargestellt werden können.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die visuellen Eigenschaften des Graphen sollen als PDF dargestellt werden können.}}\rule{0pt}{1ex}\\ \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &  
 	\hyperlink {g}{Hohe Usability}\\
@@ -1451,7 +1517,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{11: Bibliothek für den PDF Export von java.awt.Graphics2D}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{java.awt.Graphics2D als PDF verlustfrei exportieren.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{java.awt.Graphics2D als PDF verlustfrei exportieren.}}\rule{0pt}{1ex}\\  \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {g}{Hohe Usability}\\
@@ -1480,7 +1550,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{12: Protokoll der Nutzerinteraktionen exportieren/ importieren}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll eine Möglichkeit bieten, das Protokoll der Nutzerinteraktionen von unserem System und der von uns verwendeten Datenbank losgelöst einsehen zu können (Export). Dieses Protokoll muss sowohl von Menschen lesbar als auch von einem Computer interpretiert werden können (Import).}}\rule{0pt}{6ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Das System soll eine Möglichkeit bieten, das Protokoll der Nutzerinteraktionen von unserem System und der von uns verwendeten Datenbank losgelöst einsehen zu können (Export). Dieses Protokoll muss sowohl von Menschen lesbar als auch von einem Computer interpretiert werden können (Import).}}\rule{0pt}{7ex}\\ [4ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1493,7 +1567,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 			\textbf{S32 - CSV} \\
 			Die Nutzerinteraktionen könnten aus der Datenbank abgefragt und die aus der Datenbank erhaltenen Objekte könnten dann in je eine Zeile der Character-seperated-Value (CSV) -Datei geschrieben werden. Die Informationen / Werte der einzelnen Objekte würden dann entsprechend durch ein festzulegendes Zeichen voneinander getrennt werden. \\
 			\textbf{\cb{\hypertarget{jjj}{S33 - JavaScript Object Notation (.json)}}} \\
+<<<<<<< HEAD
+			JSON ist eine Notation, die sowohl von Menschen gelesen als auch von Maschinen interpretiert werden kann. Dabei kann die Information (die in JavaScript Object Notation enthalten ist) von der Programmiersprche unseres Systems (Java) unabhängig gewonnen werden. Es ist also möglich eine JSON-Datei später beispielsweise über ein Python-Script einzulesen.
+=======
 			JSON ist eine Notation, die sowohl von Menschen gelesen als auch von Maschinen interpretiert werden kann. Dabei kann die Information (die in JavaScript Object Notation enthalten ist) von der Programmiersprache unseres Systems (Java) unabhängig gewonnen werden. Es ist also möglich eine JSON-Datei später beispielsweise über ein Python-Script einzulesen.
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	} }\\ \hline
 	\multicolumn{2}{|l|}{Verwandte Strategien} \\
 	\textbf{\hyperlink{www}{S63 - Jackson}}&
@@ -1508,7 +1586,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{13: Benutzeroberfläche}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche bietet die Schnittstelle zwischen dem Benutzer und dem Graphen. Durch die GUI kann der Benutzer mit dem Graphen interagieren, diesen editieren und auswerten.}}\rule{0pt}{5ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche bietet die Schnittstelle zwischen dem Benutzer und dem Graphen. Durch die GUI kann der Benutzer mit dem Graphen interagieren, diesen editieren und auswerten.}}\rule{0pt}{4ex}\\ [1ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} &
 	\hyperlink {c}{Verwendung von Maven als Build-System} \\
@@ -1556,8 +1638,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
+<<<<<<< HEAD
+			\textbf{\cb{\hypertarget{kkk}{S34 - GUI Framework JavaFx}}} \\
+			Es besteht die Möglichkeit für die Benutzeroberfläche JavaFx zu verwenden. 
+=======
 			\textbf{\cb{\hypertarget{kkk}{S34 - GUI Framework JavaFX}}} \\
 			Es besteht die Möglichkeit für die Benutzeroberfläche JavaFX zu verwenden.  \\
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 			\textbf{S35 - GUI- Toolkit Swing} \\
 			Die Benutzeroberfläche kann mit dem GUI-Toolkit von Swing erstellt werden.
 	} }\\ \hline
@@ -1581,8 +1668,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
+<<<<<<< HEAD
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFx Application}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFx Komponenten modelliert wird, muss Swing in die JavaFx Anwendung eingebunden werden.}}\rule{0pt}{5ex}\\ [1ex] \hline
+=======
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{14: Einbettung JUNG als Swing GUI- Framework in eine JavaFX Application}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph wird im System mit JUNG visualisiert. Dadurch, dass JUNG Swing Komponenten zur Visualisierung benutzt, die GUI aber mit JavaFX Komponenten modelliert wird, muss Swing in die JavaFX Anwendung eingebunden werden.}}\rule{0pt}{6ex}\\ [3ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {g}{Hohe Usability}\\
@@ -1594,7 +1686,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{lll}{S36 - SwingNode}}}: \\
+<<<<<<< HEAD
+			Der Graph-Editor sowie die Oberfläche der Graphauswertung werden mit JavaFx modelliert. Die Visualisierung des Graphen wird mit JUNG umgesetzt, welches sich um eine Swing- Framework handelt. JavaFx stellt Swing-Nodes zur Verfügung in die Swing Komponenten eingebettet werden können. 
+=======
 			Der Graph-Editor sowie die Oberfläche der Graphauswertung werden mit JavaFX modelliert. Die Visualisierung des Graphen wird mit JUNG umgesetzt, welches sich um eine Swing- Framework handelt. JavaFX stellt Swing-Nodes zur Verfügung in die Swing Komponenten eingebettet werden können. 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 			\\
 			\textbf{S37 - Überschreibung von Klassen aus JUNG}: \\
 			JUNG baut auf Swing - Komponenten auf. Eine Möglichkeit ist es Klassen des Visualisierungs- Moduls von JUNG zu überschreiben, sodass die Swing- Komponenten durch JavaFX- Komponenten ersetzt werden. \\
@@ -1613,8 +1709,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
+<<<<<<< HEAD
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFx}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFx erstellt.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{15: Benutzeroberflächenerstellung mit JavaFX}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Benutzeroberfläche wird mit JavaFX erstellt.}}\rule{0pt}{1ex}\\ \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {f}{Betriebssystemunterstützung / Zielplattformen des Systems}\\
@@ -1626,8 +1727,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
+<<<<<<< HEAD
+			\textbf{\cb{\hypertarget{mmm}{38 - Scene- Builder}}}: \\
+			Mit Hilfe des Sence- Builders \url{https://gluonhq.com/products/scene-builder/} kann der Entwickler JavaFx Benutzeroberflächen zusammengeklicken und diese als FXML exportieren.  \\
+=======
 			\textbf{\cb{\hypertarget{mmm}{S38 - Scene- Builder}}}: \\
 			Mit Hilfe des Scene-Builders kann der Entwickler JavaFX Benutzeroberflächen zusammensetzen und diese als FXML exportieren.  \\
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 			\textbf{S39 - eigens implementieren}: \\
 			Auf dem JavaFX- Framework aufbauend, wird die GUI von den Entwicklern implementiert.  \\
 	} }\\ [6ex] \hline
@@ -1643,7 +1749,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
+<<<<<<< HEAD
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{16: Begrenzter Funktionsumfang durch Bearbeitszeit}}} \\  \hline\hline 
+=======
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{16: Begrenzter Funktionsumfang durch Bearbeitungszeit}}} \\  \hline\hline 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\parbox{16cm}{Durch den begrenzten Zeitraum unseres Projektes, können auch nur begrenzt Funktionen in unsere System eingebaut werden.}}\rule{0pt}{4ex}\\ [1ex] \hline
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {n}{Sphären} &
@@ -1680,8 +1790,13 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
 			\textbf{\cb{\hypertarget{nnn}{S40 - erweiterte Anforderungen}}}: \\
+<<<<<<< HEAD
+			Mindestanforderungen des Projektes und zusätzliche Anforderungen (Chinese Menu) werden so umgesetzt, dass diese den Ansprüchen der Gruppe und des Tutors genügen. \\
+			\textbf{S41 - Mindestanforderungen }: \\
+=======
 			Mindestanforderungen des Projektes und zusätzliche Anforderungen (Chinese Menue) werden so umgesetzt, dass diese den Ansprüchen der Gruppe und des Tutors genügen. \\
 			\textbf{S41 - Mindestanforderungen}: \\
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 			Nur die Mindestanforderungen werden umgesetzt. \\
 	} }\\ [6ex] \hline
 \end{tabular}\\ \\ \\
@@ -1728,7 +1843,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{18: Verwendung einer Embedded Database}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Wir benötigen eingebettete Datenbanken für das Protokoll und für den Graphen.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wir benötigen eingebettete Datenbanken für das Protokoll und für den Graphen.}}\rule{0pt}{1ex}\\  \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & \hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus}&
@@ -1764,7 +1883,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{19: Einhaltung der Abgabetermine}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Abgabetermine sind nicht verhandelbar. Da die Ressourcen begrenzt sind benötigen wir Strategien um Deadlines einzuhalten.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Abgabetermine sind nicht verhandelbar. Da die Ressourcen begrenzt sind benötigen wir Strategien um Deadlines einzuhalten.}}\rule{0pt}{4ex}\\ [1ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {h}{Hohe Qualität}\\
@@ -1774,7 +1897,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	\\ \hline
 	\multicolumn{2}{|l|}{Lösungen} \\
 	\multicolumn{2}{|l|}{\parbox{16cm}{
+<<<<<<< HEAD
+			\textbf{\cb{\hypertarget{qqq}{S47 - Verwendung von (System)- Bibliotheken}}}: \\
+=======
 			\textbf{\cb{\hypertarget{qqq}{S47 - Verwendung von (System -) Bibliotheken}}}: \\
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 			Durch das Verwenden von Bibliotheken sparen wir Aufwand und damit Zeit, indem wir bereits bestehende Funktionen benutzen. \\
 			\textbf{\cb{\hypertarget{aaab}{S48 - Wiederverwendung von System-eigenen Komponenten}}}: \\
 			Das Wiederverwenden von System-eigenen Komponenten ist sinnvoll, um Ressourcen zu sparen. \\
@@ -1797,7 +1924,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{20: Kommunikation Zielplattform (Java) mit embedded DB}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Es ist erforderlich die Objekte des Nutzerprotokolls, die während der Nutzung unseres System erstellt werden, in einer Datenbank zu speichern. Dazu muss aus dem Objekt im Java-Kontext ein Datenbankeintrag erstellt werden. Hierfür ist Obejct-relational-Mapping (ORM) erforderlich.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es ist erforderlich die Objekte des Nutzerprotokolls, die während der Nutzung unseres System erstellt werden, in einer Datenbank zu speichern. Dazu muss aus dem Objekt im Java-Kontext ein Datenbankeintrag erstellt werden. Hierfür ist Obejct-relational-Mapping (ORM) erforderlich.}}\rule{0pt}{6ex}\\ [3ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
 	\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
@@ -1834,7 +1965,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{21: Übersichtlichkeit in der Sphäre und im Graphen}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Die Knoten/ Kanten werden in der Sphäre und in dem Graphen übersichtlich angeordnet, sodass sich möglichst wenig Kanten verschiedenen Typs überschneiden und die Knoten übersichtlich angeordnet sind.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Die Knoten/ Kanten werden in der Sphäre und in dem Graphen übersichtlich angeordnet, sodass sich möglichst wenig Kanten verschiedenen Typs überschneiden und die Knoten übersichtlich angeordnet sind.}}\rule{0pt}{6ex}\\ [3ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {h}{Hohe Qualität}\\
@@ -1877,7 +2012,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{22: GXL Erstellung}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll eine Graph-Repräsentation in der Graph eXchange Language erstellt werden.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es soll eine Graph-Repräsentation in der Graph eXchange Language erstellt werden.}}\rule{0pt}{1ex}\\ \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & 
 	\hyperlink {e}{Benutzung einer leichtgewichtigen relationalen Datenbank (über die Nutzerinteraktion-Persistierung hinaus}\\ 
@@ -1917,7 +2056,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{23: Umsetzung der Funktionsmodi}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Dem Benutzer ist es freigestellt mehrere Modi in unserem System zu benutzen (Ersteller, Bearbeiter, Auswerter).}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Dem Benutzer ist es freigestellt mehrere Modi in unserem System zu benutzen (Ersteller, Bearbeiter, Auswerter).}}\rule{0pt}{4ex}\\ [1ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink {g}{Hohe Usability}&
 	\hyperlink {hh}{Sprache.Beschriftung} \\
@@ -1952,7 +2095,11 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 \begin{tabular} {|p{8cm} p{8cm}|}
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{24: Vorlage}}} \\  \hline\hline 
+<<<<<<< HEAD
+	\multicolumn{2}{|l|}{\parbox{16cm}{Es muss eine Vorlage eines Graphen erstellt werden können, welche schon Graphelement beinhaltet, sowie die Möglichkeit bietet, Regeln für die Grapherstellung festzulegen.}}\rule{0pt}{1ex}\\ [1ex] \hline
+=======
 	\multicolumn{2}{|l|}{\parbox{16cm}{Es muss eine Vorlage eines Graphen erstellt werden können, welche schon Graphelement beinhaltet, sowie die Möglichkeit bietet, Regeln für die Grapherstellung festzulegen.}}\rule{0pt}{4ex}\\ [1ex] \hline
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
 	\hyperlink{b}{Java 8 oder höher als Implementierungssprache}  & 
 	\hyperlink {n}{Sphären} \\
@@ -1986,6 +2133,10 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 	Wir entscheiden und für \cb{S61}, da wir sowieso dauerhaft mit der GXL-Repräsentation interagieren. S2 bringt uns keinen Vorteil und es entsteht nur eine Datei mehr, mit der interagiert werden muss. 
 \end{onehalfspace}
 
+<<<<<<< HEAD
+
+
+=======
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%25
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
@@ -2018,10 +2169,39 @@ Zur Beurteilung der Flexibilität und der Veränderlichkeit der einzelnen Einflu
 Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit größter Geschwindigkeit ins JSON-Format überführt werden können.
 \end{onehalfspace}
 \newpage
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newpage
 \begin{tabular} {|p{8cm} p{8cm}|}
+<<<<<<< HEAD
+\hline
+\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{25: Persistierung der Parameter in die DB als JSON-String}}} \\ \hline\hline 
+\multicolumn{2}{|l|}{\parbox{16cm}{Wir müssen alle für das Protokoll der Nutzerinteraktionen als Log nötigen Informationen von den Parameter-Objekten auslesen können. Welche Parameter für das Protokoll der Nutzerinteraktionen relevant sind hängt von dem Command ab, das die Nutzeraktionen darstellt. Herauszufinden, welches Parameter-Objekt im Zuge einer Nutzerinteraktion einzulesen ist, wird also nicht über JSON realisiert. JSON realisiert lediglich den Im- und den Export der (bekannten) Parameter-Objekte.}}\rule{0pt}{1ex}\\ [1ex] \hline
+\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
+\hyperlink{b}{Java 8 oder höher als Implementierungssprache} & 
+\hyperlink {d}{Benutzung einer leichtgewichtigen relationalen Datenbank zum Protokollieren der Nutzerinteraktionen}\\ 
+\hyperlink {h}{Hohe Qualität}&
+\hyperlink {i}{Command} \\
+\hyperlink {bb}{Protokoll von Nutzerinteraktionen} &
+\hyperlink {mm}{Protokoll JSON} \\
+\hyperlink {ww}{Softwarelizenzbudget} 
+\\ \hline
+\multicolumn{2}{|l|}{Lösungen} \\
+\multicolumn{2}{|l|}{\parbox{16cm}{
+\textbf{\cb{\hypertarget{www}{S63 - Jackson}}}: \\
+Mit Jackson können Objekte gelesen und deren Informationen ins json.Format überführt werden. Dies erlaubt die Überführung von Objekten in einen strukturierten String, der zu einem späteren Zeitpunkt leicht gelesen werdn kann.\\
+\textbf{S64 - GSON}: \\
+Mit GSON können Informationen aus Objekten gelesen werden und ins json.Format geparst werden.\\
+\textbf{S65 - JSONP}: \\
+Mit JSONP können Objekte geparst und deren Informationen ins json-Format geschrieben werden.
+} }\\ [6ex] \hline
+\end{tabular}\\ \\ \\
+\begin{onehalfspace}
+Wir entscheiden und für \cb{S63}, da diese API Objekte am schnellsten parsen kann und dementsprechend Informationen mit gröter Geschwindigkeit ins json-Format überführt werrden können.
+\end{onehalfspace}
+\newpage
+=======
 	\hline
 	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Dependency Injection}}} \\  \hline\hline 
 	\multicolumn{2}{|l|}{\parbox{16cm}{Wir arbeiten mit mehren Leuten parallel an einer Software, für die wir einen modularen Aufbau anstreben. Dabei wäre es vorteilhaft, wenn jeder Entwickler, die Systembestandteile/Module anderer Gruppenmitglieder nutzen könnte bevor deren Implementierung abgeschlossen ist. Um uns nicht um die Übergabe beziehungsweise Weitergabe von Objekten kümmern zu müssen, können wir Dependency Injection nutzen. Damit kann man Attribute beliebiger Klassen deklarieren und auf deren Werte und Methoden zugreifen – ohne die Herkunft derselben vorab festzulegen.}}\rule{0pt}{10ex}\\ [7ex] \hline
@@ -2128,9 +2308,81 @@ Auch legt die \texttt{Handler}-Komponente fest, wie die Strategie \hyperlink{ooo
 Für die Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} besitzt das System die Komponente\\ \texttt{FreeHEB Vectorgraphics} um java.awt.Graphics2D als zahlreiche Formate (z.B. SVG, PDF) zu exportieren, wie erwähnt in \hyperlink{iii}{S30 - Freeheb Vectorgraphics}. Dafür benötigen wir von der \texttt{JUNG}-Komponente nur die Darstellung des Graphen, welches über eine data-Schnittstelle übermittelt wird. Die Grafik wird der \texttt{Handler}-Komponente übergeben und diese setzt das Drucken(\hyperlink{ggg}{S26 - Java API}) und Exportieren der PDF um. \\ 
 
 Um den Graphen auszuwerten, benutzt das System Algorithmen, die bereits von \texttt{JUNG} angeboten werden.(\hyperlink{fff}{S22 - JUNG}). Da diese Komponente jedoch nicht den benötigten Funktionsumfang deckt, haben wir in unsere Applikation auch die \texttt{JGraphT}-Komponente eingebaut, gemäß der beschriebenen Strategie  \hyperlink{xxx}{S25 - JGraphT}. Dafür wird die Struktur des Graphen in der \texttt{JGraphT Handler}-Komponente nach Strategie \hyperlink{umwandlungskomponente}{S68 – eigene Umwandlungskomponente} übersetzt, sodass JGraphT die Informationen zum Berechnen der Graph-Eigenschaften nutzen kann. \\ 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
 Die \texttt{Logger}-Komponente ist in unsere Applikation eingebaut, um uns bei der Entwicklung und dem Debuggen zu unterstützen, indem sie die Applikation während der Laufzeit durch Logging aufzeichnet und uns zum Beispiel hilft Fehlerzustände oder das Verhalten der Applikation besser zu verstehen und nachzuvollziehen.\\ \\
 \newpage
+<<<<<<< HEAD
+\hspace{-0.65cm}
+\begin{tabular} {|p{8cm} p{8cm}|}
+	\hline
+	\rowcolor{prob}\multicolumn{2}{|l|}{\parbox{16cm}{\textbf{26: Auswertung von Grapheigenschaften}}} \\  \hline\hline 
+	\multicolumn{2}{|l|}{\parbox{16cm}{Der Graph muss bezüglich seiner Eigenschaften (Graphmaße, Umfang, Knotenbeziehungen) ausgewertet werden.}}\rule{0pt}{4ex}\\ [1ex] \hline
+	\multicolumn{2}{|l|}{\textbf{Einflussfaktoren}}\\
+	Implementierungssprache &  Speicherung und Laden des Graphen \\
+	Betriebssystemunterstützung / Zielplattformen des Systems &  3 - Auswertung/ Analyse\\
+	GXL-Export und -Import & Abgabedatum\\
+	Entwickler-Fähigkeiten & Softwarelizenzbudget\\
+	Teamgröße & Hohe Usability\\
+	Hohe Qualität & Graph Visualisierung/ Interaktion/ Editierung\\
+	Unerfahrene Entwickler & typisierte Knoten\\
+	gerichtete Kanten (3 Relationstypen) & Anzahl, Größe, Position Farbgebung, Beschirftung/ Benennung der Sphären/ Knoten/ Kanten ist flexibel\\
+	Zuordnung von Sphären und Knoten & JUNG   \\ \hline
+	\multicolumn{2}{|l|}{Lösungen} \\
+	\multicolumn{2}{|l|}{\parbox{16cm}{
+			\textbf{\cb{S66 - JUNG}}: \\
+			JUNG stellt bereits Klassen zur Verfügung, die ausgewählte Algorithmen auf Graphen implementieren. \\
+			\textbf{S67 - NEO4J}: \\
+			Die Erstellung einer temporären NEO4J Datenbank, welche den Graphen importiert. NEO4J stellt ausgewählte Algorithemn bereits zur Verfügung. \\
+			\textbf{\cb{S68 - eigene Implementierung}}: \\
+			Die benötigten Algorithmen werden durch das Team implementiert.\\
+			\textbf{\cb{S69 - JGraphT}}:\\
+			Bereitstellung der Algorithmen durch JGraphT
+	} }\\ [11ex] \hline
+\end{tabular}\\ \\ \\
+\begin{onehalfspace}
+	Die Funktionalität des Systems basiert bereits teilweise auf \cb{JUNG} basiert, weswegen des sehr praktisch wäre die von \cb{JUNG} zur Verfügung gestellten Algorithmen für die Graphauswertung zu benutzen. Diese Algorithmen decken aber nicht den Funktionsumfang den wir benötigen.\\
+	Zur Graphrepräsentation verwenden wir im System GXL- Datein, die in der Embedded Database gespeichert sind und klasseninterne Strukturen. Eine \cb{NEO4J Datenbank} zeitweise zu erstellen, welche ebenfalls die Daten des Graphs beinhaltet, erhöht die Fehleranfälligkeit unseres Systems, da alle Graphrepräsenationen zu jedem Zeitpunkt konsistent sein müssen. Deswegen entscheiden wir uns gegen \cb{S67}. \\
+	\cb{JGraphT} implementiert die meisten Algorithmen, die wir für die Graphauswertung benötigen. Für die Visualisierung des Graphen haben wir uns zwar gegen JGraphT entschieden, dennoch bietet dieses Framework eine großes Potenzial in Bezug auf Graphalgorithmen. Deswegen werden wir JGraphT zur Unterstützung bei der Graphauswertung hinzuziehen. \\
+	Algorithmen, die weder JGraphT, noch JUNG zur Verfügung stehen, werden die Entwickler implementieren.
+\end{onehalfspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+
+\section{Konzeptionelle Sicht}
+\label{sec:konzeptionell}
+\emph{Autoren: Jacky Philipp Mach}\\ \\
+
+In der folgenden Abbildung sind alle unsere Komponenten für unsere Applikation zusehen und wie sie unter sich zusammenhängen bzw. kommunizieren.
+Die Grundstruktur unserer Architektur ist angelehnt an das Model-View-Controller Designpattern kombiniert mit dem Command Designpattern wie erwähnt in der Problemkarte “\hyperlink{bbb}{Auswahl der grundlegenden Softwarearchitektur}”.
+Dabei ist die GUI-Komponente unsere View, die Command-Komponente unser Controller und die Datamodel-Komponente unser Model. \\ \\
+
+Unsere GUI-Komponente kümmert sich hauptsächlich um das Visuelle unserer Applikation und wurde wie besprochen in “\hyperlink{kkk}{Benutzeroberfläche}” umgesetzt mit JavaFx. Die GUI-Komponente arbeitet daher mit der Komponente JUNG wie in “\hyperlink{eee}{Visualisierung, Editierung und Interaktion mit dem Graphen}” erwähnt wurde. Dabei holt sich die Komponente die Visualization-Komponente von der Komponente JUNG über die data-Schnittstelle um den Graphen anzuzeigen. Das Anzeigen des Graphen in der GUI wird, wie in “\hyperlink{lll}{Einbettung JUNG als Swing GUI-Framework in eine JavaFx Application}” besprochen, über SwingNodes umgesetzt. Bei der Visualization-Komponente handelt es sich um den internen Renderer in JUNG, der sich um die Maus- und Tastatur-Interaktion kümmert, aber auch um das Aussehen des Graphen. Zum Beispiel die Formen und Farben der Symptome. Über die control-Schnittstelle kommuniziert die GUI-Komponente mit der Command-Komponente für die Interaktion mit dem Graphen. Auch kommuniziert die GUI-Komponente mit der Datamodel-Komponente, um die Nutzerinteraktion in der GUI anzeigen zu können. Die Komponente JUNG wurde nochmal in die Visualization-, Algorithm- und Graph-Komponente getrennt, da JUNG mehrere Komponenten besitzt und wir aber nur diese Komponenten hauptsächlich brauchen. Die Algorithm-Komponente ist fürs Layout und Filtern des Graphen zuständig und benötigt deshalb nur Informationen von der Graph-Komponente.
+
+In der Command-Komponente befindet sich die meiste Logik unserer Applikation. Für die Interaktion mit dem Graphen wird über eine control-Schnittstelle die Logik des Graphen angesprochen um die Editierung und Interaktion an den Graphen möglich zu machen. Die Logik des Graphen befindet sich dabei in der Graph-Komponente in JUNG. Zusätzlich besitzt Command auch die Undo/Redo-Funktionalität.
+
+In der Datamodel-Komponente befindet sich unser eigenes Datenmodell, bestehend aus Logs (Protokolle der Nutzerinteraktion), das wir nutzen um Nutzerinteraktion zu speichern, umgesetzt nach der gewählten Strategie in “\hyperlink{aaa}{Datensicherung / Persistenz der Nutzerinteraktion}”. Auch befindet sich dort die Logik zum Speichern der Graphen (\hyperlink{yy}{Datensicherung/Persistenz des Graphen}). Die benötigten Informationen fürs Speichern der Nutzerinteraktion und der Graphen bekommt die Datamodel-Komponente über eine data-Schnittstelle von der Command-Komponente.
+Auch dient die Datamodel-Komponente als Schnittstelle zwischen der Datenbank und den anderen Komponenten, die die Informationen in der Datenbank benötigen wie zum Beispiel die GUI-Komponente fürs Anzeigen des Protokolls der Nutzerinteraktion.
+Da es erforderlich ist die Objekte des Nutzerprotokolls und die Graphen in einer Datenbank zu speichern, werden die Objekte über einer data-Schnittstelle an die Persistence-Komponente weitergegeben um die Informationen weiterzuverarbeiten und anschließend in der Datenbank zu speichern. \\ \\
+
+Die Persistence-Komponente wurde gemäß “\hyperlink{rrr}{Kommunikation Zielplattform (Java) mit embedded DB}” mit Hibernate realisiert.
+Hibernate gibt die verarbeiteten Informationen über einer data-Schnittstelle weiter an die Database, die anschließend die Informationen speichert. Die Database-Komponente wird realisiert mit einer H2 Database wie in der Problemkarte “\hyperlink{ppp}{Verwendung einer Embedded Database}” beschrieben.\\ \\
+
+Die Handler-Komponente kümmert sich um das Importieren sowie Exportieren aller Dateiformate mit Hilfe der GXL- und Jackson-Komponente. Die GXL-Komponente stammt von der Bibliothek “SourceForge” und hilft beim Lesen und Erstellen der GXL-Dateien (\hyperlink{ttt}{GXL Erstellung}). Gemäß der Strategie in ”\hyperlink{jjj}{Protokoll der Nutzerinteraktion exportieren/importieren}” wird dies umgesetzt in der Komponente Handler mit Hilfe der Jackson-Komponente. Die Jackson-Komponente dient als Schnittstelle für JSON und hilft uns die Parameter zu importieren und exportieren(\hyperlink{www}{Persistierung der Parameter in die DB als JSON-String}).
+Auch kümmert sich die Handler-Komponente um folgendes Problem “\hyperlink{ooo}{Protokolldaten und Graphdaten zusammen sichern}” und nutzt zur Hilfe die Jackson- und GXL-Komponente.
+Für das Problem “\hyperlink{hhh}{PDF Erstellung}” bilden wir alle Grafikkontexte auf der java.awt.Graphics2D ab und nutzen die Komponente FreeHEB Vectorgraphics um java.awt.Graphics2D als zahlreiche Formate (z.B. SVG, PDF) zu exportieren, wie erwähnt in “\hyperlink{iii}{Bibliothek für den PDF Export von java.awt.Graphics2D}”. Dafür benötigen wir von der JUNG-Komponente nur die Visualization-Komponente, die über einer data-Schnittstelle übermittelt wird. Die Grafik wird der Handler-Komponente übergeben und die kümmert sich dann um das Drucken(\hyperlink{ggg}{PDF Druck}) und Exportieren der PDF. \\ \\
+
+Um den Graphen auswerten zu können, benutzen wir die Graph-Komponente in JUNG. Da die Komponente jedoch nicht den benötigten Funktionsumfang deckt, haben wir in unsere Applikation auch die JGraphT-Komponente eingebaut gemäß der beschriebenen Strategie in “\hyperlink{fff}{Auswertung von Grapheigenschaften}”. Dafür wird die Logik des Graphen übersetzt in der JGraphT Handler-Komponente gemäß der Strategie “\hyperlink{yyy}{Schnittstelle zwischen JUNG-Graph und JGraphT}”, so dass JGraphT die Informationen nutzen kann.
+Die Logger-Komponente ist in unserer Applikation eingebaut um uns bei der Entwicklung zu helfen, indem sie die Applikation während der Laufzeit aufzeichnet und uns zum Beispiel hilft Fehlerzustände oder das Verhalten der Applikation besser zu verstehen.\\ \\
+\newpage
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\textwidth]{KonzeptionelleSicht.png}
+	\caption{Konzeptionelle Sicht}
+\end{figure}
+=======
 \includepdf[pages=-, landscape, scale=0.77,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{Konteptionelle Sicht},\pagestyle{fancy}}]{KonzeptionelleSicht.pdf}
 
 
@@ -2156,19 +2408,69 @@ Um die Persistenz von Daten zu gewährleisten, verwenden wir die eingebettete Da
 
 Um den Graphen zu speichern bietet sich die GXL-Repräsentation aus den in der Entscheidung für \hyperlink{yy}{S1 - GXL} genannten Gründen an. Ein als Text-Repräsentation vorliegender Graph wird dabei mit einer Identifikationsnummer versehen und in einer Tabelle unserer Datenbank persistiert. Die Realisierung der genannten Konstruktion lässt sich in der zugehörigen Mapping-Klasse \texttt{Graph} wiederfinden.  An dieser Stelle ist anzumerken, dass wir uns dafür entschieden haben, in der Datenbank immer höchstens einen Graphen zu speichern. Die Tabelle mit den Graphen hat dementsprechend maximal einen Eintrag. Immer wenn versucht wird, einen neuen Graphen zu erstellen oder einen alten zu importieren, wird der Nutzer gefragt, ob er seinen aktuellen Graphen (inklusive festgehaltenem Nutzerverhalten) vorher exportieren möchte, da die Datenbank beim Import (und dem Neuerstellen eines Graphen) geleert wird.\\
 Die Übersetzung unseres Graphen in das GXL-Format erfolgt unter Nutzung des bei Sourceforge gehosteten GXL-Frameworks (\hyperlink{ttt}{Strategie S56 - GXL-Framework}). Falls der Benutzer eine Vorlage erstellt, werden auch die darin für die Diagramm-Erstellung im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} gesetzten Einschränkungen in selbiger GXL festgehalten (\hyperlink{vvv}{Strategie S61 - Regeln in der GXL-Datei}).\\ 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
 Die Nutzerinteraktionen mit dem Graphen werden, wie auch der Graph selbst, in der embedded H2 Database gespeichert. Für die Nutzerinteraktionen existiert eine eigene Tabelle in der Datenbank sowie eine zugehörige Mapping-Klasse \texttt{Log}, welche für jeden Eintrag die relevanten Informationen enthält (\hyperlink{aaa}{Strategie S7 - Datenmodell}). Zu diesen Informationen gehört auch ein Text im JSON-Format, der aus dem jeweiligen Parameterobjekt erzeugt wird (\hyperlink{jjj}{Strategie 33 - JavaScript Object Notation (.json)}). Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch nichts vom Log weiß und von diesem auch keine Informationen lesen kann (Many to One Beziehung). \\
 Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse \texttt{Param}. Jede dieser Parameter-Klassen gehört speziell zu einer Aktion, für die sie die nötigen Informationen enthält. Hinzufügende und entfernende Aktionen gleicher Art sowie aktivierende und deaktivierende gleicher Art benutzen die gleichen Parameter-Klassen. Beispielsweise haben demnach die Aktionen des Hinzufügens und Entfernens mehrerer Kanten beide ein \texttt{AddRemoveVerticesParam}. Je nach Aktion werden diese Informationen bei der Ausführung unterschiedlich verwendet. Es ist ebenso anzumerken, dass die einzelnen Parameter-Klassen im Diagramm individuell Assoziationen zu den Klassen \texttt{Vertex}, \texttt{Edge} und \texttt{Sphere} hätten, je nachdem welche Attribute sie besitzen. Um Übersichtlichkeit zu bewahren haben wir im Diagramm nicht alle Parameter-Klassen mit ihren zugehörigen Attributen dargestellt, sondern exemplarisch vier solcher Klassen ausgewählt. Alle Parameter-Klassen lassen sich im Package \texttt{log\_management.parameters} finden. \\
 
 In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (OOF für \glqq out of frameworks\grqq; \hyperlink{ooo}{Strategie S43 - eigener Datentyp}). \\
 
+<<<<<<< HEAD
+\newpage
+\section{Datensicht}
+\label{sec:datensicht}
+
+\emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
+=======
 \textit{Anmerkungen zu dem Diagramm}: \\
 Alle dargestellten Attribute sind \texttt{private}, es existieren aber Getter und Setter für die Attribute. Deswegen sind die Attribute im Diagramm alle als \texttt{public} markiert. \\
 Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. Die Assoziation zwischen \texttt{Vertex} und \texttt{ScopePoint} betreffend, wurde beschlossen, dass \texttt{Vertex} statt einem Attribut, in welchem die verschiedenen \texttt{ScopePoints} für die jeweils gleichen Arten der Relationstypen zusammengefasst werden, drei Attribute gegeben werden, die jeweils ausschließlich gleichartige \texttt{ScopePoints} eines Pfeiltyps beinhalten. Diese Unterteilung sorgt für eine klare logische Trennung und ermöglicht es ohne Filterung direkt auf die \texttt{ScopePoints} zuzugreifen, die einem Pfeiltyp entsprechen. Es muss also nicht erst die Liste aller \texttt{ScopePoints} nach der Art der Relation gefiltert werden.\\
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\pagestyle{fancy},\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{data model}}]{Datenmodell_SWP2019.pdf}
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
+
+Alle Attribute sind private, es existieren aber Getter und Setter (außer bei sämtlichen Id's, dort nur Getter), weshalb sie als public markiert werden. Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. (Wir haben uns bezüglich der Klasse \texttt{Vertex} ... keine Ahnung...Hilfe)
+
+<<<<<<< HEAD
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{Datenmodell_SWP2019.jpg}
+\caption{Datensicht}
+\end{figure}
+
+\newpage
+Im folgenden beschreiben wir unsere Datensicht. Bei Erläuterungen zu dieser beziehen wir uns auf folgende Strategien: \hyperlink{yy}{Strategie S1: GXL}, \hyperlink{aaa}{Strategie S7: Datenmodell}, \hyperlink{eee}{Strategie S19: JUNG}, \hyperlink{jjj}{Strategie 33: JavaScript Object Notation (.json)} und \hyperlink{ooo}{Strategie S43: Eigener Datentyp} sowie auf die \hyperlink{ppp}{Strategie S45: H2 Database}. Außerdem werden wir Bezug zu den Strategien \hyperlink{rrr}{Strategie S.50: Hibernate}, \hyperlink{ttt}{Strategie S56: GXL-Framework (bei Source Forge gehostet)} und \hyperlink{vvv}{Strategie S61: Regeln in der GXL-Datei} nehmen.\\
+
+Es sei an der dieser Stelle explizit angemerkt, dass wir für die Repräsentation des Graphen kein komplett eigenes Datenmodell erstellen. Stattdessen verwenden wir das vom Framework \texttt{JUNG} vorgegebene Datenmodell mit unseren eigenes Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} (für Kanten) (\hyperlink{eee}{Strategie S19: JUNG}). Da in unserem Fall Sphären benötigt werden, erstellen wir eine Klasse \texttt{Sphere} (für Sphären) und erweitern mit ihr das vorgegebene Datenmodell (genauer gesagt erweitert unsere Klasse SydromGraph die Klasse DirectedSparseGraph von \texttt{JUNG}). 
+Für die Speicherung des Graphen sowie von allen nötigen Informationen gibt es die Klasse \texttt{Syndrom}. Sie fasst den Graphen, die optionalen Vorgaben/Bearbeitungsregeln (Template) sowie die zum Rendern und zur Visualisierung benötigten Komponenten von \texttt{JUNG} zusammen. \\
+
+Das soeben erwähnte Template ermöglicht es ein Maximum an Sphären, Knoten (im Graphen insgesamt), Knoten in einer Sphäre und Kanten festzulegen. Des weiteren können Objekte des Graphen bestimmt werden, von denen bestimmte Eigenschaften nicht verändert werden dürfen, sowie die Arten der erlaubten Kanten eingeschränkt werden.\\
+
+Die Klasse \texttt{Values} enthält einige Werte, die beim erzeugen eines neuen Graph-Objekts benötigt werden. Es gibt im gesamten Programm nur eine Klasse \texttt{Values} und Nutzeraktionen in der GUI beeinflussen ihre Werte. Setzt der Nutzer beispielsweise die Standardfarbe für neu Symptome um, so wird der entsprechende Wert in der Klasse \texttt{Values} angepasst, sodass neu erzeugte Symptome diese Farbe haben.\\
+
+Um die Persistenz von Daten zu gewährleisten, verwenden wir die embedded Datenbank H2 Database in unserem Programm (\hyperlink{ppp}{Strategie S45: H2}). Bei der Kommunikation mit der Datenbank nutzen wir das Framework Hibernate, welches es unter Verwendung von JPA ermöglicht, Objekte (als Instanzen von Klassen) unseres Systems in eine relationale Datenbank zu persistieren (\hyperlink{rrr}{Strategie S.50: Hibernate}). Hierbei findet ORM (Object-Relational Mapping) Anwendung. \\ 
+
+Um den Graphen zu speichern bietet sich die GXL-Repräsentation (aus den in der Entscheidung für Strategie 1 genannten Gründen) an. Ein als Text-Repräsentation vorliegender Graph wird dabei mit einer Identifikationsnummer versehen und in einer Tabelle unserer Datenbank persistiert. Die Realisierung der genannten Konstruktion lässt sich in der zugehörigen Mapping-Klasse \texttt{Graph} wiederfinden.  Die Übersetzung unseres Graphen in das GXL-Format erfolgt unter Nutzung des bei Sourceforge gehosteten GXL-Frameworks (\hyperlink{ttt}{Strategie S56: GXL-Framework (das bei Source Forge gehostet wird)}). Falls der Benutzer eine Vorlage erstellt, werden auch die darin für die Diagramm-Erstellung im \hyperlink{``Diagramm bearbeiten''-Modus}{``Diagramm bearbeiten''-Modus} gesetzten Einschränkungen in selbiger GXL festgehalten (\hyperlink{vvv}{Strategie S61: Regeln in der GXL-Datei}).\\ 
+
+Die Nutzerinteraktionen mit dem Graphen werden wie auch der Graph selbst in der embedded H2 Datenbank gespeichert. Für die Nutzerinteraktionen existiert eine eigene Tabelle in der Datenbank sowie eine zugehörige Mapping-Klasse \texttt{Log}, welche für jeden Eintrag die relevanten Informationen enthält (\hyperlink{aaa}{Strategie S7: Datenmodell}). Zu diesen Informationen gehört auch ein Text im JSON-Format, der aus dem jeweiligen Parameterobjekt erzeugt wird (\hyperlink{jjj}{Strategie 33: JavaScript Object Notation (.json)}). Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch nichts vom Log weiß und von diesem auch keine Informationen lesen kann. Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse \texttt{Param} und implementieren alle eine Methode, die den zugehörigen String im JSON-Format erzeugt. Jede dieser Parameter-Klassen gehört speziell zu einer Aktion, für die sie die nötigen Informationen enthält. Es ist hierbei anzumerken, dass die einzelnen Parameter-Klassen im Diagramm individuell Assoziationen  (manche auch keine) zu den Klassen \texttt{Vertex}, \texttt{Edge} und \texttt{Sphere} hätten, je nachdem welche Attribute sie besitzen. Um Übersichtlichkeit zu bewahren haben wir im Diagramm nicht alle Parameter-Klassen mit ihren zugehörigen Attributen dargestellt, sondern exemplarisch vier solcher Klassen ausgewählt. Alle Parameter-Klassen lassen sich im Package \texttt{log\_management.parameters finden}. \\
+
+In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (oof für \glqq out of frameworks\grqq). (\hyperlink{Strategie S43: eigener Datentyp}{Strategie S43: eigener Datentyp})
 
 
+\newpage
+\section{Modulsicht}
+\emph{Autoren: Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}\\\\
+
+In folgenden ist der statische Aufbau unseres Systems in Form der Modulsicht zu finden. In dieser werden besonders wichtige oder für eine Gruppe von Modulen stellvertretend stehende Module unseres Systems genannt. Dabei wird auf die Funktion und Notwendigkeit dieser Module eingegangen sowie teilweise deren grundlegender Aufbau thematisiert. Außerdem wird in diesem Kapitel beschrieben wie die Module zusammenwirken, um die geforderten Anforderungen zu erfüllen. Bei Ausführungen zur Bedeutung, zum Aufbau und zum Zusammenwirken von Modulen wird bezug zu den Strategien genommen, für die wir uns im Rahmen der Problemkarten im Kapitel „Globalen Analyse“ entschieden haben. \\ \\
+
+Da der Graph gemäß Strategie \hyperlink{yy}{S1 – GXL} "`plain"' als Text gespeichert werden soll, in der eine GXL (Graph eXchange Language) –Repräsentation des Graphen steht, muss es ein Modul geben, das alle Informationen des in der GUI angezeigten Graphen abfragen und diese in das GXL-Format transferieren kann und analog aus einer GXL-Datei die \texttt{Syndrom} -Instanz schreiben kann. Um diese Funktion zu realisieren haben wir im \texttt{io-package} die Klasse \texttt{GXLio} implementiert. \\
+In dieser sind Methoden zum Ex- und Import einer GXL-Datei des Graphen zu finden (\texttt{importGXL(), exportGXL()}). Um dies zu realisieren sind außerdem eine Methode zum Schreiben der GXL-Daten in die \texttt{Syndrom} -Instanz (\texttt{gxlToInstance()}) sowie eine zur Erstellung einer GXL-Repräsentation aus der Instanz (\texttt{gxlFromInstance()}) implementiert. Zweitere Methode ist außerdem für die GXL-Speicherung in der Datenbank nützlich, da wir hier auch eine GXL-Variante des Graphen verwenden, wie in \hyperlink{yy}{S1 - GXL} festgelegt wurde.\\
+Über die injectete Instanz der \texttt{Syndrom-Klasse}, die im \texttt{graph-package} des darüber liegenden Ordners zu finden ist, erhält die \texttt{GXLio-Klasse} alle Informationen zu dem in der GUI angezeigten Graphen. 
+Diese Informationen werden dann lediglich ins GXL-Format überführt. Hierfür wird im Zuge der Implementierung das GXL-Framework von SourceForge verwendet werden (siehe Strategie \hyperlink{xaa}{S56 Sourceforge Framework}. Entsprechend der Erzeugung einer GXL-Repräsentation aus einem \texttt{Syndrom-Objekt} für das Speichern und Exportieren eines Graphen wird beim Import aus der GXL-Repräsentation das \texttt{Syndrom-Objekt} angepasst. Durch das \texttt{Template-Attribut} in der \texttt{Syndrom-Klasse} haben Methoden zum Erstellen einer GXL-Repräsentation eines Graphen aus einem \texttt{Syndrom-Objekt} auch Zugriff auf die Bearbeitungsregeln. Denn diese können in einem Objekt der \texttt{Template-Klasse} hinterlegt werden. Durch diesen Ansatz können die Bearbeitungsregeln in einer GXL-Repräsentation gespeichert werden – so wie wir es in Strategie \hyperlink{vvv}{S61 - Regeln in der GXL-Datei} vorgesehen haben. \\ \\
+
+Ebenfalls im \texttt{io-package} ist die OOF-Klasse zu finden. Mit dieser wollen wir die gemeinsame Speicherung der Nutzerinteraktionen mit einem (als GXL-Repräsentation vorliegendem) Graphen realisieren (so wie wir es in Startegie \hyperlink{ooo}{S43 - Eigener Datentyp} beschrieben haben). \\
+Um diesen gemeinsamen Datentyp zu erzeugen, gibt es die Methode \texttt{createOOF(...)}, die eine GXL-Repräsentation eines Graphen und Nutzerinteraktionen als JSON erhält, wobei diese beiden Parameter je als String übergeben werden. Diese Methode wird gebraucht um den aktuellen Stand der Graphbearbeitung zusammenzuführen und zu exportieren. (\texttt{exportOOF(...)}) speichert dies als Datei eines eigenen Datentyps im \texttt{.oof} -Format, wobei sie den Pfad und den Namen der Datei übergeben bekommt. Diese Datei muss jedoch auch wieder geöffnet werden können. Dies geschieht durch die Methode \texttt{importOOF(...)}. Diese bekommt den Pfad der zu importierenden Datei als String und schreibt die Daten in die Datenbank (Protokoll) und in die Instanz (Symptom). Dabei benutzt sie die Methoden \texttt{gxlFromOOF(..)} und \texttt{jsonFromOOF(...)}, welche jeweils die OOF-Datei als String bekommen und die jeweiligen Daten-part zurückgeben. \\ \\
+=======
 \newpage
 \section{Modulsicht}
 \emph{Autoren: Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}\\\\
@@ -2268,9 +2570,15 @@ Die GUI (deren Aufbau und Abhängigkeiten durch das folgende UML-Diagramm visual
 
 \newpage
 \includepdf[pages=-, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{gui class diagram},\pagestyle{fancy}}]{gui.pdf}
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
+Mit den Methoden der \texttt{PDFio-Klasse}, die ebenfalls im \texttt{io-package} zu finden ist, sind unter Einsatz der Frameworks beziehungsweise APIs der PDF-Druck (gemäß Strategie \hyperlink{ggg}{S26: Java API}, realisiert in \texttt{printPDF()} und der PDF-Export (gemä0 Strategeie \hyperlink{iii}{S30 - Freeheb Vectorgraphics}, realisiert in \texttt{exportPDF()} implementiert. Für diese Methoden ist die Methode zur PDF-Erstellung (gemäß Strategie \hyperlink{hhh}{S29 - java.awt.Graphics2D} nützlich. Diese ist als \texttt{createPDF()} implementiert und gibt die PDF als Datenstrom wieder. \\ \\ \\
 
+Im Package \texttt{gui} sind die Klassen \texttt{Main} und \texttt{Controller} enthalten. Erstgenannte Klasse enthält eine \texttt{main-Methode} und eine Methode, die als Parameter ein Stage-Objekt enthält und so das Starten unserer Anwendung unterstützen können wird. Die Verwendung des Stage-Objektes von JavaFX im Rahmen dieser Klasse im \texttt{gui-package} ist angelehnt an Strategie \hyperlink{kkk}{S34 - GUI Framework JavaFx}. Die \texttt{Controller-Klasse} enthält Methoden, die später die Methoden der Klassen im \texttt{actions-packages} aufrufen werden. (So wird beispielsweise \texttt{addSphere()} im fertigen System die \texttt{AddSphereLogAction} aufrufen. Diese Weiterleitung beziehungsweise dieses Kommunikationsprinzip, bei dem der Nutzer durch Interaktion mit der GUI (View) die \texttt{Controller-Klasse} veranlasst, Methoden der Actions (Model) aufzurufen, die dann wiederum zur Erzeugung von Einträgen in der Datenbank (Persistence) führen, ist unsere Umsetzung des Entwurfsmusters Model-View-Controller. Für dieses Entwurfsmuster haben wir uns in Form der Strategie \hyperlink{bbb}{S8 - MVC} entschieden. In der beschriebenen Kommunikationskette deutet sich durch das Vorhandensein von Actions, die in unserer Software als Klassen in den Packages im \texttt{actions-package} zu finden sind, bereits an, dass wir neben Model-View-Controller auch noch parallel das Command-Design-Pattern umgesetzt haben (siehe Strategie \hyperlink{xcc}{S9 - Command}). Bei jeder Action, die ausgeführt wird, wird außerdem ein Parameterobjekt erzeugt, welche diese Parameterdaten der Action beinhalten. So ist es möglich, zu jedem Zeitpunkt die genauen Daten aller Aktionen auszulesen, da diese ja in die Datenbank persistiert sind. Wird eine Action ausgeführt, so wird diese, wenn die Action die \texttt{undo} und \texttt{redo} Funktionen unterstützen soll (dazu gehören größtenteils die Actions, welche den Syndromansatz verändern), in einen Verlauf gespeichert. In der Klasse \texttt{ActionHistory} wird dies realisiert. Für jede Action von den Command und Model-View-Conroller einmal abgesehen haben wir gemäß Strategie \hyperlink{xdd}{S10 - Modularisierung} unser System weitreichend modularisiert. Dies zeigt sich zum Beispiel an der sinnvollen Untergliederung des Packages \texttt{actions} und des im \texttt{log\_management-package} befindlichen Packages \texttt{parameters} in weitere Packages.\\ \\
 
+<<<<<<< HEAD
+Das Zusammenspiel von Im- und Export beziehungsweise von der Erstellung von GXL-, PDF- oder OOF-bezogenen-Aspekten und dem Entwurfsmuster Command besteht darin, dass es Klassen im \texttt{export\_graph-package}, das wiederum im \texttt{actions-package} liegt, gibt, die aus der \texttt{Controller-Klasse} im Package \texttt{gui} (gemäß MVC) aufgerufen werden. Die Methoden in den Klassen des \texttt{export\_graph-packages} wiederum werden später die Methoden der Klassen im package texttt{io} aufrufen. \\
+=======
 \subsection{\texttt{actions}}
 Das Package \texttt{actions} repräsentiert die Controller-Komponente des Model-View-Controller-Patterns, welches wir gemäß \hyperlink{bbb}{S8} beziehungsweise \hyperlink{modelviewcontroller}{S13} umsetzen. \\ 
 Diese Controller-Komponente ist nach dem \texttt{Command}-Pattern nach \hyperlink{zz}{S4} beziehungsweise \hyperlink{command}{S9} aufgebaut. \\
@@ -2332,9 +2640,36 @@ Wie eben angedeutet wird im folgenden Abschnitt auf das Package \texttt{graph.gr
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{parameters class diagram},\pagestyle{fancy}}]{param.pdf}
 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
+Wie man aufgrund der Existenz der Klasse \texttt{SwitchModiEditorAction} im \texttt{other-package} im \texttt{actions-package} bereits erahnen kann, wird das Umschalten zwischen den Fuktionsmodi über eine Action realisiert. Der aktuelle Funktionsmodus wird dabei in der Klasse \texttt{Syndrom} im Package \texttt{graph} innerhalb des übergeordneten Packages \texttt{graph} gespeichert. Hierfür existiert in der \texttt{Syndrom-Klasse} ein Attribut vom Typ \texttt{FuncionMode}. Die Funktionsmodi, die in unserer Anwendung existieren, sind in der Klasse \texttt{FunctionMode} im selben Package zu finden. Die beschriebene Umsetzung folgt der Strategie \hyperlink{uuu}{S59 - Modi als eigener Teil unserer Applikation}. \\ \\
 
+Die Umsetzung der Strategie \hyperlink{aaa}{S7 - Datenmodell} ist in der Klasse \texttt{Log} im Package \texttt{tables} innerhalb des \texttt{log\_management-Packages} zu sehen. \\ \\
 
+Die Strategie \hyperlink{eee}{S19 - JUNG} findet sich an mehreren Stellen wieder. Insbesondere ist hier das Package \texttt{graph} und darin die beiden Packages \texttt{graph} und \texttt{visualization} zu nennen. In erstgenanntem der beiden untergeordneten Packages haben wir eigene vom JUNG-Framework unabhängige Klassen erstellt. In diesen Klassen sind auch die Attribute keine Bestandteile des-Framework. (Beispiele hierfür sind die Klassen \texttt{Edge}, \texttt{Sphere} und \texttt{Vertex}. Dies ist bei anderen Klassen im gleichen Package (\texttt{graph} anders. Die Klassen haben wir zwar erstellt, jedoch sind diese nicht komplett vom JUNG-Framework unabhängig. So zum Beispiel die Klassen \texttt{Syndrom} neben anderen ein Attribut vom Typ \texttt{VisualizaionViewer<Vertex, Edge>} und ein Atttribut vom Typ \texttt{Layout<Vertex, Edge>}. Diese Die Typen Layout und VisualizationViewer verwenden wir von JUNG. Dabei ist anzumerken, dass initial die Generischen Typen V und E den Attributen zugeweisen werden. Um die Anforderungen erfülen zu können weisen wir den Attributen unsere eigenen Klassen \texttt{Vertex} und \texttt{Edge} zu. \\ \\
+
+Um das auf Swing basierende JUNG in die GUI einbinden zu können werden wir die von JavaFX bereitgestellten Swing-Nodes nutzen. Über diese kann die Swing-Komponente in die mit JavaFX erstellte GUI eingebunden werden. Dieses Vorgehen folgt Strategie \hyperlink{lll}{S36 - SwingNode}. Die GUI wird dabei mit dem Scene-Builder erstellt und die dabei erzeugten FXML-Dateien werden in unser System integriert werden (\hyperlink{mmm}{38 - Scene- Builder}). \\ \\
+
+Wie im \texttt{persistence.xml}-File im Package \texttt{META-INF} innerhalb das übergeordneten Packages \texttt{resources} zu sehen ist verwenden wir eine embedded H2 Datenbank und Hibermate für die Kommunikation zwischen unserer Anwendung und der genannten Datenbank. Damit folgen wir den Strategien \hypertarget{ppp}{S45 - H2 Database} und \hypertarget{rrr}{S50 - Hibernate}. \\
+
+Im Zuge der Implementierung unserer Software werden wir die Übersichtlichkeit durch Kombination der Strategien \hyperlink{sss}{S53 - Layouts in Layouts}, \hyperlink{xee}{S54 - JUNG Layouts} und \hyperlink{xff}{S55 - Eigenes Layout} die Übersichtlichkeit im Graphen erhöhen.
+
+Zusammenhang zwischen Modulsicht und konzeptioneller Sicht: Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages\texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde die beschrieben, dass wir von der JUNG-Komponente die Bereiche \texttt{graph} und \texttt{visualization}  nutzen. Darüber hinaus existiert die Komponente JGraphT, die wir für die Auswertung des Graphen nutzen wollen und die im Package \texttt{algorithmen} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions-package}. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{Action History} Im package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt. Auf die Modulsicht angewandt lässt es sich in folgender Kommunikationskette wiederfinden. Der Nutzer interagiert mit Elementen der View (umgesetzt im Package \texttt{gui}). Dadurch werden Controller (in unserem Fall Commands – umgesetzt in Form der Klassen des Packages \texttt{actions} aufgerufen. Diese rufen die Funktionalität folgender Packages auf, die ihrerseits die eigentliche Logik umsetzen und zum Teil auch unsere Models repräsentieren: \texttt{graph}, \texttt{jgrapht} und \texttt{io}. Die Commands / Actions kommunizieren außerdem mit der Persistence, die wir im Package \texttt{log\char`_management} umgesetzt haben. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGrapT-Komponente findet sich im Package \texttt{jgrapht}  wieder. \\ \\
+
+\includepdf[pages=-, landscape]{package.pdf}
+\includepdf[pages=-, landscape]{graph_graph.pdf}
+\includepdf[pages=-, landscape]{transformer.pdf}
+\includepdf[pages=-]{predicates.pdf}
+\includepdf[pages=-, landscape]{io.pdf}
+\includepdf[pages=-, landscape]{jgrapht.pdf}
+\includepdf[pages=-]{actions.pdf}
+\includepdf[pages=-]{actionsOverview.pdf}
+\includepdf[pages=-]{gui.pdf}
+\includepdf[pages=-, landscape]{parameters.pdf}
+\includepdf[pages=-, landscape]{log_management.pdf}
+
+<<<<<<< HEAD
+=======
 \newpage
 
 \subsection{\texttt{graph.graph}}
@@ -2412,6 +2747,7 @@ Nachdem wir nun auf alle Module unserer Anwendung eingegangen sind (zu dem eben 
 \subsection{Zusammenhang zwischen Modulsicht und konzeptioneller Sicht} Wie im Abschnitt zur GUI-Komponente  in der konzeptionellen Sicht und eben unter Bezugnahme auf verwendete Strategien erwähnt, wird die GUI mit JavaFX umgesetzt. Der Bezug zur JUNG-Komponente besteht in der Einbettung derselben über Swing-Nodes. Die Aufteilung des übergeordneten Packages \texttt{graph} in die untergeordneten Packages \texttt{graph}, \texttt{visualization} und \texttt{algorithmen} ist an die konzeptionelle Sicht angelehnt. Dort wurde beschrieben, dass JUNG für verschiedene Aspekte wie die Visualisierung und das Rendern Klassen bereithält. Darüber hinaus existiert die Komponente JGraphT, die wir (neben JUNG) für die Auswertung des Graphen nutzen wollen und die im Package \texttt{jgrapht} umgesetzt werden wird. Die Command-Komponente entspricht dem \texttt{actions}-Package. Bei der Umsetzung der Undo-/Redo-Funktionalität, deren Existenz in der konzeptionellen Sicht bereits angedeutet wurde, wird die Klasse \texttt{ActionHistory} im Package \texttt{actions} eine wichtige Funktion übernehmen. Die Kommunikation von Commands und der GXL-Komponente (die Logik letzterer wird in der GXLio-Klasse umgesetzt werden) wurde in der konzeptionellen Sicht beschrieben. Das Model-View-Controller Design-Pattern wurde bereits in der konzeptionellen Sicht erwähnt und dessen Umsetzung in unserer Anwendung wurde an mehreren Stellen in der Modulsicht genauer erklärt. Unsere Datenklassen haben wir im Package \texttt{log\_management} umgesetzt. Die Komponenten PDF und FreeHeb VectorGraphics finden sich im \texttt{io}-Package in der Klasse \texttt{PDFio} wieder. Die JGraphT-Komponente findet sich im Package \texttt{jgrapht} wieder.
 
 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
 \newpage
 \section{Ausführungssicht}
@@ -2440,6 +2776,50 @@ Die Realisierung unserer Anwendung erfolgt durch mehrere Threads. Sowohl die GUI
 \section[Zusammenhänge zwischen Anwendungsfällen und Architektur]{Zusammenhänge zwischen Anwendungsfällen und Architektur\sectionmark{Zusammenhänge AF u. Architektur}}
 \sectionmark{Zusammenhänge AF u. Architektur}
 \label{sec:anwendungsfaelle}
+<<<<<<< HEAD
+\emph{Autoren: Jacky Philipp Mach, Jonah Jaeger}\\ \\
+
+\subsection{Anwendungsfall: Ein Lehrer erstellt einen Syndromansatz}
+
+\begin{tabular} {|p{16cm}|}
+	\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A1: Ersteller erstellt Syndromansatz}} \\\hline
+	\hline
+	\textbf{Akteure}: Ersteller
+	\\\hline
+	\textbf{Vorbedingungen}: Das Programm ist geschlossen, es wurden noch kein Graph erstellt und keine Einstellungen gesetzt. \\
+	\textit{Ziel}: Eine Vorlage für einen Syndromansatz erstellen.
+	\\\hline
+		\textbf{Regulärer Ablauf}: \begin{itemize}
+		\itemsep-0.7em
+		\item der Ersteller öffnet die Application und drück auf den Menüpunkt \textit{Datei}  $\rightarrow$ \textit{Neuen Graph erstellen}
+		\item das System öffnet ein Pop-Up-Eingabefeld 
+		\item der Ersteller gibt den Namen des Graphen an und klickt ok
+		\item der Ersteller klickt auf den \textit{Sphäre hinzufügen}- Button
+		\item der Ersteller klickt in die Arbeitsfläche 
+		\item der Ersteller klickt auf den Text der Sphäre
+		\item das System öffnet ein Pop-Up-Eingabefeld 
+		\item der Ersteller gibt den Namen der Sphäre ein
+		\item der Ersteller markiert die Sphäre
+		\item der Ersteller klickt den \textit{Farbe ändern}- Button 
+		\item das System öffnet einen Color-Picker 
+		\item der Ersteller wählt eine Farbe
+		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
+		\item das System öffnet ein Menü
+		\item der Ersteller klickt \textit{Sphäre Bezeichnung blockieren}
+		\item der Ersteller klickt mit einem Rechtsklick auf die Sphäre 
+		\item das System öffnet ein Menü
+		\item der Ersteller klickt \textit{Sphäre Farbe blockieren}
+	\end{itemize}
+	\\\hline
+	\textbf{Varianten}: Der Ersteller könnte weitere Element zur der Vorlage hinzufügen und eine maximale Anzahl für die Elemente setzen. 
+	\\\hline
+	\textbf{Nachbedingung}: Der Ersteller hat eine Vorlage erstellt. Diese kann der Ersteller nun exportieren und als Vorlage nutzen.
+	\\\hline
+	\textbf{Fehler-/Ausnahmefälle}:  Der Ersteller vergisst am Ende Rahmenbedingungen zu setzen $\rightarrow$ Für den Fall, dass der Ersteller dies gespeichert hat, kann der Ersteller das Projekt neu importieren und dann die Regeln festlegen.
+	\\\hline
+\end{tabular}
+=======
 \emph{Autoren: Clement Phung, Anthony Mendil, Jacky Philipp Mach, Jonah Jaeger, Nina Unterberg}\\ \\
 
 \subsection{Anwendungsfall: Ein Lehrer erstellt ein Syndrom}
@@ -2519,10 +2899,22 @@ Hierzu werden dem \texttt{LogDao} das \texttt{Log}-Objekt und seine Parameter ü
 
 
 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
 
 \newpage
 
+<<<<<<< HEAD
+\subsection{Anwendungsfall: Ein/e Schüler/in arbeitet mit der Vorlage seines/r Lehrer/in}
+
+\begin{tabular} {|p{16cm}|}
+	\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A2: Bearbeiter modifiziert Vorlage}} \\\hline
+	\hline
+	\textbf{Akteure}:  Bearbeiter
+	\\\hline
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet, die Vorlage in Form einer GXL-Datei ist schon importiert. \\ 
+=======
 \subsection{Anwendungsfall: Ein/e Schüler/in arbeitet mit einer Vorlage}
 
 \begin{tabular} {|p{16cm}|}
@@ -2532,10 +2924,39 @@ Hierzu werden dem \texttt{LogDao} das \texttt{Log}-Objekt und seine Parameter ü
 	\textbf{Akteure}:  Bearbeiter
 	\\\hline
 	\textbf{Vorbedingungen}: Das Programm ist geöffnet, die Vorlage in Form einer GXL-Datei ist schon importiert. Diese enthält eine Sphäre.\\ 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\textit{Ziel}: Vorlage modifizieren und als neuen Datentyp speichern.
 	\\\hline
 	\textbf{Regulärer Ablauf}:
 \begin{itemize}
+<<<<<<< HEAD
+	\itemsep-0.7em
+	\item der Bearbeiter klickt mit einem Rechtsklick auf eine Sphäre
+	\item das System öffnet ein Menü
+	\item der Bearbeiter klickt auf \textit{Knoten hinzufügen}
+	\item der Bearbeiter klickt auf die Arbeitsfläche 
+	\item das System öffnet ein Pop-Up-Eingabefeld
+	\item der Bearbeiter gibt einen Namen \textit{A} ein
+	\item der Bearbeiter klickt auf den \textit{Knoten hinzufügen}-Button
+	\item der Bearbeiter klickt auf die Arbeitsfläche
+	\item das System öffnet ein Pop-Up-Eingabefeld
+	\item der Bearbeiter gibt einen Namen \textit{B} ein
+	\item der Bearbeiter markiert diesen Knoten
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Form ändern} $\rightarrow$ \textit{Quadrat}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Schriftart ändern} $\rightarrow$ \textit{Calibri}
+	\item der Bearbeiter klickt auf den Knoten \textit{A}, zieht die Maus über den Knoten \textit{B} und lässt dann die Maus los
+	\item der Bearbeiter markiert die Kante
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante ändern} $\rightarrow$ \textit{Gestrichelt}
+	\item der Bearbeiter klickt auf den knoten \textit{B}, zieht die Maus über eine andere Sphäre und lässt dann die Maus los
+	\item der Bearbeiter drückt auf den \textit{Redo}-Button
+	\item der Bearbeiter wählt \textit{Exportieren als} $\rightarrow$ \textit{OOF}
+	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{exportieren}
+\end{itemize}
+	\\\hline
+	\textbf{Varianten}: Der Bearbeiter könnte neben den Einschränkungen viele Elemente hinzufügen und dies am Ende auch noch als Vorlage speichern.  
+	\\\hline
+	\textbf{Nachbedingung}: Die Vorlage wurde modifiziert und als \textit{oof} Datei gespeichert. Der Bearbeiter könnte nun in den Auswertermodus wechseln und dort den Graphen auswerten.
+=======
 	\itemsep-0.5em
 	\item der Bearbeiter klickt auf den Menüpunkt \textit{Knoten hinzufügen}
 	\item der Bearbeiter klickt auf die Sphäre
@@ -2546,11 +2967,126 @@ Hierzu werden dem \texttt{LogDao} das \texttt{Log}-Objekt und seine Parameter ü
 	\textbf{Varianten}: Der Bearbeiter kann mit vielen Werkzeugen den Graph nach seinen/ihren Wünschen bearbeiten.  
 	\\\hline
 	\textbf{Nachbedingung}: Die Vorlage wurde modifiziert und als \textit{.oof}-Datei gespeichert. Der Bearbeiter könnte nun in den Analyse-Modus wechseln und dort den Graphen auswerten.
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 	\\\hline
 	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter vergisst die Datei zu exportieren oder gar zu speichern $\rightarrow$ Beim erneuten Start kann er die Vorlage neu importieren und neu beginnen.
 	\\\hline
 \end{tabular}\\ \\ \\
 
+<<<<<<< HEAD
+
+Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüfer eine neue Lehrveranstaltung erstellt. Hierbei ist zu beachten, dass der Nutzer (Prüfer) sich bereits angemeldet hat und die generelle Rolle \texttt{Examiner} (Prüfer) vom Administrator gesetzt wurde.\\ \\
+\begin{figure}[ht]
+	\centering
+	% \includegraphics[width=1\textwidth]{seqdia.jpg}
+	\caption{Sequenzdiagramm II}
+\end{figure}
+\newpage
+
+\subsection{Anwendungsfall: Ein Lehrer wertet einen Syndromansatz seiner Schüler aus}
+
+\begin{tabular} {|p{16cm}|}
+	\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A3: Auswerter wertet Graph und Bearbeiter aus}} \\\hline
+	\hline
+	\textbf{Akteure}:  Auswerter
+	\\\hline
+	\textbf{Vorbedingungen}: Das Programm ist geschlossen, ein bearbeiteter Syndromansatz in Form einer OOF-Datei ist vom Computer aus zugreifbar. \\ 
+	\textit{Ziel}: Syndromansatz und Bearbeiter auswerten.
+	\\\hline
+	\textbf{Regulärer Ablauf}:
+\begin{itemize}
+	\itemsep-0.7em
+	\item der Auswerter öffnet die Applikation und drückt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{OOF importieren}
+	\item das System öffnet ein Pop-Up Fenster
+	\item der Auswerter gibt den Speicherpfad der OOF-Vorlage an und klickt auf \textit{Ok}
+	\item das System öffnet den Syndromansatz
+	\item der Auswerter drückt auf den Menüpunkt \textit{Option} $\rightarrow$ \textit{Sprache ändern}$\rightarrow$ \textit{Englisch}
+	\item der Auswerter klickt mit einem Rechtsklick auf eine Sphäre 
+	\item das System öffnet ein Menü
+	\item der Auswerter klickt auf \textit{Ausblenden}
+	\item der Auswerter klickt auf unter Zoom auf den \textit{Plus}-Button
+	\item der Auswerter markiert mehrere Knoten in einer Sphäre
+	\item der Auswerter klickt mit einem Rechtsklick auf die Knoten 
+	\item das System öffnet ein Menü
+	\item der Auswerter klickt auf \textit{Ausblenden}
+	\item der Auswerter klickt auf den Menüpunkt \textit{Relationtyp} $\rightarrow$ \textit{nur verstärkend}
+	\item der Auswerter klickt unter Zoom auf den \textit{Minus}-Button
+	\item der Auswerter klickt auf \textit{undo}
+	\item der Auswerter klickt auf \textit{redo} 
+	\item der Auswerter klickt mit einem Rechtsklick auf einen Knoten
+	\item das System öffnet ein Menü
+	\item der Auswerter klickt auf \textit{hervorheben}
+	\item der Auswerter drückt auf \textit{Indizes berechnen}
+	\item der Auswerter klickt \textit{Bearbeiter auswerten}
+\end{itemize}
+	\\\hline
+	\textbf{Varianten}: Der Auswerter könnte nach vielen Kriterien filtern und diese auch miteinander kombinieren. Ebenfalls kann man bevor man in den Auswertermodus gelangt den Syndromansatz modifizieren.
+	\\\hline
+	\textbf{Nachbedingung}: Der Auswerter hat den Graphen nun ausgewertet. Danach könnte der Auswerter in den Bearbeiter-Modus wechseln und den Syndromansatz weiter bearbeiten.
+	\\\hline
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Auswerter könnte unglücklicherweise wichtige Knoten ausgeblendet haben. Man kann unter dem Button \textit{alle wieder anzeigen} das Ausblenden umkehren oder einfach den \textit{undo}-Button verwenden.
+	\\\hline
+\end{tabular}\\ \\ \\
+
+Das folgende Sequenzdiagramm beschreibt den Anwendungsfall, in welchem ein Administrator einem Benutzer die Rolle Prüfer zuteilt, bzw. ihn als Prüfer deklariert. Hierbei ist zu beachten, dass sich der Administrator bereits angemeldet hat und er die Rolle Administrator inne hat. 
+\\ \\ 
+\begin{figure}[ht]
+	\centering
+	%  \includegraphics[width=1\textwidth]{seqdia.jpg}
+	\caption{Sequenzdiagram III}
+\end{figure}
+\newpage
+
+\subsection{Anwendungsfall: Schüler korrigiert Graph mit falschen Relationen/Symptomen.}
+
+\begin{tabular} {|p{16cm}|}
+	\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A4: Bearbeiter korrigiert Syndromansatz}} \\\hline
+	\hline
+	\textbf{Akteure}:  Bearbeiter
+	\\\hline
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet. Die GXL-Datei ist erfolgreich importiert.\\ 
+	\textit{Ziel}: Syndromansatz durch Modifikation korrigieren.
+	\\\hline
+	\textbf{Regulärer Ablauf}:
+\begin{itemize}
+	\itemsep-0.7em
+	\item der Bearbeiter markiert zwei Symptome in der selben Sphäre
+	\item der Bearbeiter klickt auf die Knoten, zieht die Maus über eine andere Sphäre und lässt dann die Maus los
+	\item der Bearbeiter markiert die ausgehenden Kanten der eben genannten Knoten
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Löschen}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Relationstyp ändern} $\rightarrow$ \textit{Abschwächend} 
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kante hinzufügen}
+	\item der Bearbeiter klickt auf einen Knoten, zieht die Maus über eine anderen Knoten und lässt dann die Maus los
+	\item der Bearbeiter markiert drei Relationen 
+	\item das Bearbeiter klickt mit einem Rechtsklick auf die Kanten
+	\item das System öffnet ein Menü
+	\item der Bearbeiter klickt auf \textit{Relationstyp ändern} $\rightarrow$ \textit{ungewiss}
+	\item der Bearbeiter markiert mehrere Knoten
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Knotenform ändern} $\rightarrow$ \textit{Ellipse}
+	\item der Bearbeiter markiert eine Kante
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Kantendicke ändern} $\rightarrow$ \textit{Mittel}
+	\item der Bearbeiter klickt auf den Color-Picker $\rightarrow$ \textit{Rot}
+	\item der Bearbeiter markiert eine andere Kante
+	\item der Bearbeiter klickt auf die \textit{Entf}-Taste der Tastatur
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Speichern}
+\end{itemize}
+	\\\hline
+	\textbf{Varianten}: Der Bearbeiter hat eine große Auswahl an Werkzeugen z.B. \textit{Sphärenfarbe ändern} oder \textit, um den Graph zu modifizieren. 
+	\\\hline
+	\textbf{Nachbedingung}: Der Graph wurde durch den Bearbeiter modifiziert. Danach könnte der Bearbeiter dies nun als Vorlage speichern oder den neuen Graphen nach Kriterien auswerten.
+	\\\hline
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Auswerter könnte mehrere Knoten auf nicht erlaubte Positionen verschieben. Das System gibt dann eine Warnmeldung aus und untersagt die Aktion.
+	\\\hline
+\end{tabular}\\ \\ \\
+
+\begin{figure}[ht]
+	\centering
+	%  \includegraphics[width=1\textwidth]{seqdia.jpg}
+	\caption{Sequenzdiagram III}
+\end{figure}
+=======
 Auch hier sind wie im Anwendungsfall oben alle Singleton-Objekte schon initialisiert. Zu Beginn des Anwendungsfalls klickt der Bearbeiter auf den Button \texttt{Knoten hinzufügen}. Die Benutzeroberfläche reagiert darauf mit dem Schreiben des \texttt{GraphButtonTyp} in \texttt{Values}, um dem \\\texttt{PickingGraphMouseEditSyndromPlugin} zu signalisieren, was bei einem Klick auf den \\\texttt{VisualisationViewer} passiert.\\
 Die Aktion \texttt{AddVerticesLogAction} wird erstellt und, wie bei allen anderen Actions auch, von der \texttt{ActionHistory} ausgeführt. Durch die \texttt{GraphObjectFactory} wird der Knoten erstellt und dem Graphen hinzugefügt. Während der Action wird das Parameterobjekt \texttt{AddVerticesParam} erstellt und an die Action abgegeben.\\  
 Da sich der Graph verändert hat, müssen wie im oberen Fall auch der \texttt{DatabaseManager} und die Benutzeroberfläche benachrichtigt werden. Nach jeder Action, also auch nach dieser, wird der Graph neu als GXL-String in die Datenbank persistiert. Auch muss für die Protokollierung des Nutzerverhaltens eine neue \texttt{Log} erstellt und in die Datenbank persistiert werden. Dem \texttt{LogDao} werden wieder die Log und die Parameter übergeben. Die Parameter werden zu einem JSON-String konvertiert und mit dem Log mithilfe von Hibernate in die Datenbank gespeichert.\\
@@ -2632,11 +3168,79 @@ Eine neue Action \texttt{exportPdfAction} wird erstellt und wieder durch die \te
 
 \includepdf[pages=-, landscape, scale=0.84,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{5. Sequenzdiagramm},\pagestyle{fancy}}]{fifth.pdf}
 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
+
+\newpage
+
+\subsection{Anwendungsfall: Ein Lehrer importiert einen Graphen und exportiert diesen}
+
+\begin{tabular} {|p{16cm}|}
+	\hline
+	\rowcolor{anw}\parbox{16cm}{\textbf{A5: Bearbeiter importiert einen Graphen und exportiert diesen}} \\\hline
+	\hline
+	\textbf{Akteure}: Bearbeiter
+	\\\hline
+	\textbf{Vorbedingungen}: Das Programm ist geöffnet.\\ 
+	\textit{Ziel}: Graphen importieren und exportieren.
+	\\\hline
+	\textbf{Regulärer Ablauf}:
+\begin{itemize}
+	\itemsep-0.7em
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{GXL-importieren}
+	\item das System öffnet ein Pop-Up-Eingabefeld
+	\item der Bearbeiter gibt den Speicherpfad des Graphen an und klickt \textit{Ok} 
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{exportieren als} $\rightarrow$ \textit{PDF}
+	\item das System öffnet ein Pop-Up-Fenster
+	\item der Bearbeiter gibt einen Speicherpfad an und drückt auf Button \textit{Exportieren}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Datei} $\rightarrow$ \textit{Speichern unter}
+	\item das System öffnet ein Pop-Up-Fenster
+	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{Speichern}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Exportieren als} $\rightarrow$ \textit{Vorlage}
+	\item das System öffnet ein Pop-Up-Fenster
+	\item der Bearbeiter gibt einen Speicherpfad an und drück den Button \textit{Exportieren}
+	\item der Bearbeiter klickt auf den Menüpunkt \textit{Hilfe}
+	\item das System öffnet ein Pop-Up-Fenster
+\end{itemize}
+	\\\hline
+	\textbf{Varianten}: Zwischendurch kann der Bearbeiter den Graphen modifizieren und anschließend exportieren, sodass der Bearbeiter viele Exporte verschiedener Versionen hat.
+	\\\hline
+	\textbf{Nachbedingung}: Der Graph ist nun importiert. Der Graph ist im GXL-Format und auch als PDF gespeichert. Dieser könnte der Ersteller in ausgedruckter Variante vervielfältigen.
+	\\\hline
+	\textbf{Fehler-/Ausnahmefälle mit deren Nachbedingung}: Der Bearbeiter könnte nun im Bearbeitermodus den Graphen modifizieren.
+	\\\hline
+\end{tabular}\\ \\ \\
+
+Das folgende Sequenzdiagramm stellt den Anwendungsfall dar, in welchem ein Prüfer eine neue Lehrveranstaltung erstellt. Hierbei ist zu beachten, dass der Nutzer (Prüfer) sich bereits angemeldet hat und die generelle Rolle \texttt{Examiner} (Prüfer) vom Administrator gesetzt wurde.\\ \\
+\begin{figure}[ht]
+	\centering
+	% \includegraphics[width=1\textwidth]{seqdia.jpg}
+	\caption{Sequenzdiagramm II}
+\end{figure}
 
 \newpage
 \section{Evolution}
 \label{sec:evolution}
 \emph{Autoren: Bastian Rexhäuser, Anthony Mendil}\\\\
+<<<<<<< HEAD
+In diesem Kapitel wollen wir beschreiben wie sich ändernde Anforderungen auf unsere Architektur auswirken würden. Dabei gehen wir zunächst auf die Einflussfaktoren ein, deren Veränderlichkeit wir im Rahmen der globalen Analyse als eher hoch oder gar sehr hoch eingeschätzt haben. Allerdings haben wir keinen Einflussfaktor als sehr veränderlich eingestuft, sodass wir lediglich jene mit einer eher hohen Veränderlichkeit thematisieren werden. Bei den entsprechenden Einflussfaktoren werden wir beschreiben, welchen Einfluss eine potentielle Änderung des Einflussfaktors (beziehungsweise der Anforderung, die durch diesen Einflussfaktor repräsentiert werden) auf unsere Architektur hätte. Im Anschluss daran werden wir auf die Anforderungen aus dem Chinese Menue eingehen, deren Umsetzung in unserer Architektur aktuell nicht vorgesehen ist. Hier werden wir erklären wie sich die nachträgliche Umsetzung dieser Anforderungen unsere Architektur beeinflussen würde. \\ 
+ 
+Für die Filterung von Knoten und Kanten (\hyperlink{ss}{Filter von Knoten und Kanten}) könnten weitere Filteroptionen benötigt werden. Eine Erweiterung wäre zum Beispiel, dass der Benutzer als zusätzliche Filteroption die Knoten, Kanten und Sphären ausblenden kann, die in einem bestimmten Zeitraum hinzugefügt wurden. Hierfür könnte man in der GUI  ein Textfeld hinzufügen. Wird eine Zeitspanne (z.B 11:23-13:04) eingegeben, werden nur Elemente angezeigt, die in diesem Zeitraum hinzugefügt wurden. Es ist jedoch auch möglich mit relativen Zeiten zu arbeiten. Wird -00:10 eingegeben, werden nur Elemente angezeigt, die höchstens 10 Minuten vor dem letzten hinzugefügten Element hinzugefügt wurden und wird +00:10 eingegeben, werden die angezeigt, die höchstens 10 Minuten nach dem ersten hinzugefügten Element hinzugefügt wurden. Dies könnten wir Realisieren, indem wir uns aus den Log-Einträgen die Einträge heraussuchen, die hinzufügende Aktionen beschreiben und deren Erstellungszeitpunkt sich im angegebenen Zeitraum befindet. Dann müssen die Identifikationsnummern der Graph-Elemente extrahiert und ausgeblendet werden. An dieser Stelle ist zu erwähnen, dass es auf diese Weise nicht möglich ist, Elemente die bereits in der Vorlage hinzugefügt wurden, zu filtern, da im Ersteller-Modus keine Log-Einträge erstellt werden. Hierfür müsste im Package \texttt{actions.analyse} die Klasse \texttt{FilterGraphAction} angepasst werden und im Package \texttt{graph.algorithmen.predicate} eine Klasse \texttt{ElementsCreatedInTimePredicate} hinzugefügt werden. \\
+
+Wie in der globalen Analyse zu sehen weist der Einflussfaktor \hyperlink{z}{Funktionsmodi (Ersteller, Bearbeiter, Auswerter)} eine eher hohe Veränderlichkeit auf. Eine mögliche Änderung dieses Faktors wäre beispielsweise das Hinzukommen einer Rolle, mit der es möglich wäre, eine Vorlage auszuwerten oder einen erstellten Graphen zu kommentieren.
+Die Auswertung einer Vorlage könnte in einer statistischen Auswertung des Anteils der Knoten, Sphären und Kanten in einer Vorlage bestehen, die später im \hyperlink{„Diagramm bearbeiten“-Modus}{„Diagramm bearbeiten“-Modus} vollständig beziehungsweise nur eingeschränkt (nur Farbe, nur Beschriftung) bearbeitet werden können. Im folgender ist in diesem Fall vom Vorlage-Analyse-Modus die Rede.
+Das Kommentieren eines erstellten Graphen ist wie folgt zu verstehen. Ein Graph kann geöffnet werden, wobei keine Eigenschaften mehr verändert werden können. Man kann allerdings die einzelnen Sphären, Knoten und Kanten anklicken (auch mehrere gleichzeitig, wenn sich das Kommentar auf mehrere Graph-Elemente bezieht) und einen Hinweis zu diesen schreiben. Dieser Hinweise könnten dann nach Speichern / Exportieren des Graphen auch auf einem anderen Rechner gelesen werden. Voraussetzung ist die Aktivierung desselben Modus (wobei die Hinweise weiterhin verändert und auch wieder gelöscht werden könnten. Dieser Modus wird im Folgenden als Diagramm-Kommentieren-Modus bezeichnet.
+Eine solche Änderung (das Hinzukommen von neuen Funktionsmodi mit neuen Funktionen) würde sich auf die im Package \texttt{graph.graph} befindliche Klasse \texttt{FunctionMode} sowie auf die Klasse \texttt{SwitchModiEditorAction} im Package \texttt{actions.io}. Über letztgenannte würde dann auch eine Änderung der Benutzeroberfläche ausgelöst werden. Die entsprechende Benutzeroberfläche würde Änderungen am \texttt{gui}-Package erforderlich machen, um eine den Anforderungen des neuen Funktionsmodus entsprechende Benutzeroberfläche bereitstellen zu können.
+Für die Funktionalitäten des Vorlage-Analyse-Modus müsste außerdem eine Klasse (oder mehrere Klassen) im Package \texttt{actions.analyse} hinzugefügt werden, die eine entsprechende Filterung der Knoten, Kanten und Sphären vornehmen und durch Rechenoperationen den jeweiligen Anteil (entsprechend der Bearbeitungsmöglichkeiten) bestimmen würde.
+Um die Funktionen des Diagramm-Kommentieren-Modus bereitzustellen, müsste unser System neben den oben erwähnten auch noch an folgenden Stellen angepasst werden: Die Klassen \texttt{Edge}, \texttt{Vertex} und \texttt{Sphere} im \texttt{graph.graph}-Package um ein Attribut zum, Soeichern des Kommentares erweitert werden. Dazu müsste man im \texttt{actions}-Package ein Package \texttt{comment} hinzufügen, in dem Klassen zum Hinzufügen, Editieren und Löschen von Kommentaren zu Sphären, Knoten und Kanten enthalten wären. \\
+ 
+Den Einflussfaktor \hyperlink{vv}{Entwickler-Fähigkeiten} haben wir ebenfalls als eher veränderlich eingestuft, da wir durch eigenständiges Lernen und insbesondere durch Tipps unseres Tutors unsere Fähigkeiten ausbauen können. Ein Ausbau unserer Fähigkeiten hat allerdings nicht zwangsläufig Änderungen der Architektur zufolge. Allerdings können wir in Folge erhöhter Entwicklungsfähigkeiten Änderungen durch sich verändernde oder hinzukommende Anforderungen leichter umgesetzt werden. \\ 
+ 
+Es ließen sich zusätzlich Wegpunkte \texttt{O«Wegpunkte»} mit dem Framework JGraph realisieren. Dazu müssten wir den Java-spezifischen Teil (JrapX) dieses Frameworks in unser System integrieren. Da man Wegpunkte innerhalb dieses Frameworks auf Edge-Objekten hinzufügt, müssten wir in unserem System statt unserer \texttt{Edge}-Klasse diejenige von JGraphX verwenden. Da diese ihrerseits allerdings nicht alle von uns benötigten Informationen (in Form von Attributen) enthält, müssten wir weiterhin eine eigene \texttt{Edge}-Klasse in unserem System vorhalten. Diese müsste allerdings anders als bis jetzt die Edge-Klasse von JGraphX erweitern. Diese alternative beziehungsweise neue \texttt{Edge}-Klasse würde dann überall dort verwendet, wo aktuell unsere jetzige \texttt{Edge}-Klasse angewandt wird. Zu diesen Änderungen müsste auch im \texttt{actions}-Package je eine Aktion zum Hinzufügen beziehungsweise Entfernen von Wegpunkten hinzugefügt werden. \\
+
+Des weiteren wäre die Realisierung von Kantenbündelung (\texttt{O«Kantenbündelung»}) möglich, indem wir im Package \texttt{actions.visualization.renderers} die Klasse \texttt{EdgeRenderer} mithilfe eines selbst geschriebenen Algorithmus so anpassen, dass die Kanten entsprechend gerendert werden. Abgesehen davon hätte dies keine weiteren Auswirkungen auf die Architektur.  
+
+Um eine mobile Version (\texttt{O«Mobil»}) des Programms zu unterstützen müsste eine neue Applikation erstellt werden, wobei einige umfangreiche Anpassungen vorgenommen werden müssten. Dies betrifft in erster Linie die Benutzeroberfläche (Package: gui), da diese von Grund auf neu zu gestalten ist, um auf mobilen Geräten nutzerfreundlich bedienbar zu sein. Hierbei unterstützen Android sowie IOS die Umsetzung der Benutzeroberfläche mittels JavaFX. Die Nutzung von der H2 Datenbank ist lediglich unter Android möglich. Für IOS bietet sich unter anderem ein sqlite-Datenbank an. Übrige Komponenten könnten größtenteils übernommen werden. 
+=======
 In diesem Kapitel wollen wir beschreiben wie sich ändernde Anforderungen auf unsere Architektur auswirken würden. Dabei gehen wir zunächst auf die Einflussfaktoren ein, deren Veränderlichkeit im Rahmen der globalen Analyse als eher hoch oder gar sehr hoch eingeschätzt wurde. Hierbei betrachten wir lediglich diejenigen, die Einfluss auf die Architektur haben. Allerdings haben wir keinen Einflussfaktor als sehr veränderlich eingestuft, sodass wir lediglich jene mit einer eher hohen Veränderlichkeit thematisieren werden. Bei den entsprechenden Einflussfaktoren werden wir beschreiben, welchen Einfluss eine potentielle Änderung des Einflussfaktors (beziehungsweise der Anforderung, die durch diesen Einflussfaktor repräsentiert wird) auf unsere Architektur hätte. Im Anschluss daran werden wir auf die Anforderungen aus dem Chinese Menue eingehen, deren Umsetzung in unserer Architektur aktuell nicht vorgesehen ist. Hier werden wir erklären wie die nachträgliche Umsetzung dieser Anforderungen unsere Architektur beeinflussen würde. \\ 
  
 \subsection{Änderungen aktuell umgesetzter Anforderungen}
@@ -2660,6 +3264,7 @@ Des Weiteren wäre die Realisierung von Kantenbündelung (\texttt{O«Kantenbünd
 
 \subsubsection{Mobil}
 Um eine mobile Version (\texttt{O«Mobil»}) des Programms zu unterstützen müsste eine neue Applikation erstellt werden, wobei einige umfangreiche Anpassungen vorgenommen werden müssten. Dies beträfe in erster Linie die Benutzeroberfläche (Package: \texttt{gui}), da diese von Grund auf neu zu gestalten wäre, um auf mobilen Geräten nutzerfreundlich bedienbar zu sein. Hierbei unterstützen Android sowie IOS die Umsetzung der Benutzeroberfläche mittels JavaFX. Die Nutzung von der H2 Datenbank ist lediglich unter Android möglich. Für IOS bietet sich unter anderem eine sqlite-Datenbank an. Übrige Komponenten könnten größtenteils übernommen werden. 
+>>>>>>> 2ef7fd7e3bc6781b58fc9a7b79833a2eff95c0b1
 
 \end{document}
 
