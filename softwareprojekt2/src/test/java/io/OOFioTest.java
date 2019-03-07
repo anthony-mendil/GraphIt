@@ -128,7 +128,7 @@ public class OOFioTest {
         oofio.importOOF(simpleGraph);
         oofio.exportAsOOF(exportedSimpleGraph);
         Assert.assertEquals(
-                simpleGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d","").replaceAll("\\d",""),
+                simpleGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d",""),
                 oofio.jsonFromOOF(FileHandler.fileToString(exportedSimpleGraph)).replaceAll("\\d",""));
     }
 }
