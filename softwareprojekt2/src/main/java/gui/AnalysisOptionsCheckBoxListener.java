@@ -2,12 +2,6 @@ package gui;
 
 import actions.analyse.*;
 import actions.deactivate.ResetVvAction;
-import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Syndrom;
-import graph.graph.Vertex;
-import graph.visualization.SyndromVisualisationViewer;
-import graph.visualization.control.HelperFunctions;
 import gui.properties.LoadLanguage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,7 +11,7 @@ import javafx.scene.control.MenuButton;
 /**
  * Listens to the changes, which checkbox is selected and handles that only the successor and predecessor option
  * can be selected at the same time. Also calls the actions accordingly to the selected checkboxes and their associated
- * menubuttons.
+ * menu buttons.
  */
 public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> {
     /**
@@ -25,7 +19,7 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
      */
     private final CheckBox checkBox;
     /**
-     * The associated menubutton to the checkbox.
+     * The associated menu button to the checkbox.
      */
     private final MenuButton menuButton;
     /**
@@ -48,6 +42,10 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
      * The language object for changing the descriptions of the gui elements accordingly to the current language.
      */
     private final LoadLanguage currentLanguage;
+    /**
+     * The controller that contains most of the gui elements and functions.
+     */
+    private final Controller c;
 
     private static final String SHORTEST_PATH = "analysisShortestPath";
     private static final String ALL_PATHS = "analysisAllPaths";
@@ -58,7 +56,6 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
     private static final String CYCLES = "filterCycles";
 
     AnalysisOptionsCheckBoxListener(Controller pC, CheckBox pCheckBox, MenuButton pMenuButton) {
-        final Controller c;
         c = pC;
         menuButton = pMenuButton;
         checkBox = pCheckBox;
@@ -121,7 +118,7 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
      * @param oldValue The old value of the checkbox.
      */
     private void shortestPath(Boolean oldValue) {
-        if (calculateEndpoints()) {
+        if (c.calculateEndpoints()) {
             disableOtherCheckBoxes();
             AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
             analysisGraphAction.action();
@@ -138,7 +135,7 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
      * @param oldValue The old value of the checkbox.
      */
     private void allPaths(Boolean oldValue) {
-        if (calculateEndpoints()) {
+        if (c.calculateEndpoints()) {
             disableOtherCheckBoxes();
             AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
             analysisGraphAction.action();
@@ -162,19 +159,4 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
         }
     }
 
-    /**
-     * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
-     *
-     * @return true if the just 2 syndrom are picked, false if more or less
-     */
-    private boolean calculateEndpoints() {
-        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
-        PickedState<Vertex> pickedState = vv.getPickedVertexState();
-        if (pickedState.getPicked().size() != 2) {
-            HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText("ANALYSIS_OPTION_ALERT", true, true);
-            return false;
-        }
-        return true;
-    }
 }

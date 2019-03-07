@@ -66,7 +66,7 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
     }
 
     /**
-     * javadocTODO
+     * Implements the behaviour that at least one toggle button must be active.
      */
     private void changeOnNotSelected(){
         switch (toggleButton.getId()) {

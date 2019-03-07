@@ -59,7 +59,7 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
      * Initializes the behavior of the checkboxes for key events.
      */
     private void checkBoxBehavior() {
-        if (!amountSymptomTextField.getText().isEmpty()) {
+        if (!amountSymptomTextField.getText().isEmpty() && c.isAtLeastOnePicked()) {
             if (analysisPredecessor.isSelected() && analysisSuccessor.isSelected()) {
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
@@ -83,8 +83,10 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
                 }
             }
         } else {
+            c.disableAllCheckBoxes();
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
         }
     }
+
 }
