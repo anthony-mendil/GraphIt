@@ -26,9 +26,12 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
      * The checkbox for the analysis predecessor option.
      */
     private final CheckBox analysisPredecessor;
+    /**
+     * The controller that contains most of the gui elements and functions.
+     */
+    private final Controller c;
 
     AnalysisFocusTextFieldListener(TextField pTextField, Controller pC) {
-        final Controller c;
         textField = pTextField;
         c = pC;
         analysisSuccessor = c.getAnalysisSuccessor();
@@ -39,7 +42,7 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
      * Gets called when the textfield gets or loses the focus.
      * When the textfield loses the focus and a number was typed in, the actions will be called accordingly to the
      * associated checkboxes.
-     * If the textfield is empty the highlighting will be resetted.
+     * If the textfield is empty the highlighting will be reset.
      *
      * @param observable Is the textfield is focused or not.
      * @param oldValue   Was it focused before or not.
@@ -48,9 +51,10 @@ public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (!newValue) {
-            if (!textField.getText().isEmpty()) {
+            if ((!textField.getText().isEmpty()) && c.isAtLeastOnePicked()) {
                 determinesAction();
             } else {
+                c.disableAllCheckBoxes();
                 ResetVvAction resetAction = new ResetVvAction();
                 resetAction.action();
             }

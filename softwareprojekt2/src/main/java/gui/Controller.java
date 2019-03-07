@@ -37,6 +37,7 @@ import actions.template.RulesTemplateAction;
 import com.jfoenix.controls.JFXTextField;
 import edu.uci.ics.jung.graph.util.Context;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.picking.PickedState;
 import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import graph.visualization.control.HelperFunctions;
@@ -1347,9 +1348,7 @@ public class Controller implements ObserverSyndrom {
         createButton.setDisable(false);
         editButton.setDisable(false);
         analysisButton.setDisable(true);
-        if(overViewAccordion.getPanes().contains(templateTitledPane)){
-            overViewAccordion.getPanes().remove(templateTitledPane);
-        }
+        overViewAccordion.getPanes().remove(templateTitledPane);
         GraphDimensionAction graphDimensionAction = new GraphDimensionAction();
         graphDimensionAction.action();
 
@@ -2955,11 +2954,15 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     public void shortestPath() {
-        if (analysisPathCheckBox.isSelected()) {
+        if (analysisPathCheckBox.isSelected() && calculateEndpoints()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
             AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
             analysisGraphAction.action();
+        }else{
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            disableAllCheckBoxes();
         }
     }
 
@@ -2968,11 +2971,15 @@ public class Controller implements ObserverSyndrom {
      */
     @FXML
     public void allPaths() {
-        if (analysisPathCheckBox.isSelected()) {
+        if (analysisPathCheckBox.isSelected() && calculateEndpoints()) {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
             AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
             analysisGraphAction.action();
+        }else{
+            ResetVvAction resetAction = new ResetVvAction();
+            resetAction.action();
+            disableAllCheckBoxes();
         }
     }
 
@@ -3189,5 +3196,51 @@ public class Controller implements ObserverSyndrom {
             }
         }
         return list;
+    }
+
+    /**
+     * It checks if at least one vertex is picked.
+     * If not, it will show an alert that at least one vertex has to be picked.
+     * @return true if at least one syndrom is picked
+     */
+    boolean isAtLeastOnePicked() {
+        SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+        if (pickedState.getPicked().isEmpty()) {
+            HelperFunctions helperFunctions = new HelperFunctions();
+            helperFunctions.setActionText(loadLanguage.loadLanguagesKey("ANALYSIS_ALERT"), true, false);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Disables all other checkboxes, because only successor and predecessor can be selected at the same time in the
+     * analysis-mode.
+     */
+    void disableAllCheckBoxes() {
+        analysisOptions.setSelected(false);
+        analysisPathCheckBox.setSelected(false);
+        analysisSuccessor.setSelected(false);
+        analysisPredecessor.setSelected(false);
+        if (analysisPredecessor.isSelected() || analysisSuccessor.isSelected()) {
+            amountSymptomTextField.setDisable(false);
+        }
+    }
+
+    /**
+     * Calculates the Endpoints in the graph. It checks, whether two vertices are selected.
+     *
+     * @return true if the just 2 syndrom are picked, false if more or less
+     */
+    boolean calculateEndpoints() {
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        PickedState<Vertex> pickedState = vv.getPickedVertexState();
+        if (pickedState.getPicked().size() != 2) {
+            HelperFunctions helperFunctions = new HelperFunctions();
+            helperFunctions.setActionText("ANALYSIS_OPTION_ALERT", true, true);
+            return false;
+        }
+        return true;
     }
 }
