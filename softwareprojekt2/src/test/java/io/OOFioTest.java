@@ -35,12 +35,12 @@ public class OOFioTest {
         PersonalEntityManagerFactory.setEntityManagerFactory(entityManagerFactory);
         databaseManager = DatabaseManager.getInstance();
         oofio = new OOFio();
+        anyOOF=IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), StandardCharsets.UTF_8);
         simpleGraph = Paths.get(".graphitTest", "simpleGraph.oof").toFile();
         FileUtils.copyInputStreamToFile(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), simpleGraph);
         exportedSimpleGraph=Paths.get(".graphitTest", "ExportSimpleGraph.oof").toFile();
         simpleGraphGXL = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphGXL.gxl"), StandardCharsets.UTF_8);
         simpleGraphJSON = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphJSON.json"), StandardCharsets.UTF_8);
-        anyOOF=IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), StandardCharsets.UTF_8);
     }
 
     /**
@@ -124,11 +124,10 @@ public class OOFioTest {
      */
     @Test
     public void testExportOOFJSON() throws IOException {
-        resetDB();
         oofio.importOOF(simpleGraph);
         oofio.exportAsOOF(exportedSimpleGraph);
         Assert.assertEquals(
-                simpleGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d",""),
+                simpleGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d","").replaceAll("\\d",""),
                 oofio.jsonFromOOF(FileHandler.fileToString(exportedSimpleGraph)).replaceAll("\\d",""));
     }
 }
