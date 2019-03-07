@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.security.Key;
 import java.util.Map;
 
 @EqualsAndHashCode(callSuper = true)
@@ -83,6 +84,18 @@ public class TitlesDialogPaneController extends DialogPane {
                 ((Button) event.getTarget()).fire();
             }
         };
+
+        german.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                save.requestFocus();
+            }
+        });
+
+        english.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                save.requestFocus();
+            }
+        });
 
         titleDialog.getButtonTypes().add(ButtonType.CLOSE);
         Node closeButton = titleDialog.lookupButton(ButtonType.CLOSE);
