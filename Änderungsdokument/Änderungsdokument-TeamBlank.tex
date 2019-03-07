@@ -1,0 +1,269 @@
+\documentclass[enabledeprecatedfontcommands,fontsize=11pt,paper=a4,twoside]{scrartcl}
+
+
+\newcommand{\grad}{\ensuremath{^{\circ}} }
+\renewcommand{\strut}{\vrule width 0pt height5mm depth2mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[final]{pdfpages}
+% obere Seitenränder gestalten können
+\usepackage{fancyhdr}
+\usepackage{moreverb}
+% Graphiken als jpg, png etc. einbinden können
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+% Floats Objekte mit [H] festsetzen
+\usepackage{float}
+% setzt URL's schön mit \url{http://bla.laber.com/~mypage}
+\usepackage{url}
+% Externe PDF's einbinden können
+\usepackage{pdflscape}
+% Verweise innerhalb des Dokuments schick mit " ... auf Seite ... "
+% automatisch versehen. Dazu \vref{labelname} benutzen
+\usepackage[ngerman]{varioref}
+\usepackage[ngerman]{babel}
+\usepackage{ngerman}
+% Bibliographie
+\usepackage{bibgerm}
+\usepackage{svg}
+% Tabellen
+\usepackage{tabularx}
+\usepackage{supertabular}
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue,
+            citecolor=blue, urlcolor=blue, hyperfigures=true,
+            pdftex=true]{hyperref}
+\usepackage{bookmark}
+
+
+
+\newcounter{one}
+\newcounter{two}[one]
+\newcounter{three}[two]
+
+\newcommand{\tone}{0\theone}
+\newcommand{\ttwo}{0\thetwo}
+\newcommand{\tthree}{0\thetree}
+\newcommand{\one}{\stepcounter{one}0\theone}
+\newcommand{\two}{\stepcounter{two}0\thetwo}
+\newcommand{\three}{\stepcounter{three}0\thethree}
+\newcommand\s{\rule{0pt}{4ex}}        
+\newcommand{\cb}[1]{{\textcolor{blue}{#1}}}
+
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{pdfpages} 
+\usepackage{colortbl}
+%\usepackage{graphicx}   
+%\usepackage[utf8x]{inputenc}
+\usepackage{fmtcount}
+\usepackage[ngerman]{babel}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+
+\usepackage{rotating}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+%
+
+%
+
+%
+
+%
+
+\definecolor{dartmouthgreen}{rgb}{0.05, 0.5, 0.06}
+\definecolor{color}{rgb}{0.67, 0.88, 0.69}
+\definecolor{todo}{rgb}{1.0, 0.41, 0.71}
+\definecolor{sort}{rgb}{0.45, 0.76, 0.98}
+\definecolor{prob}{rgb}{0.74, 0.83, 0.9}
+\definecolor{anw}{rgb}{0.94, 0.86, 0.51}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{setspace} 
+\hypersetup{
+	colorlinks = true,
+	linkbordercolor = {white},
+	linkcolor=dartmouthgreen,          % color of internal links (change box color with linkbordercolor)
+	citecolor=red,        % color of links to bibliography
+	filecolor=magenta,      % color of file links
+	urlcolor=cyan 
+}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=20mm,
+	right=20mm,
+	top=2cm,
+	bottom=4cm,
+	footskip=4cm
+}
+
+
+\addtolength{\headwidth}{20mm}
+\addtolength{\headheight}{2\baselineskip}
+\addtolength{\headheight}{0.61pt}
+
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{\vbox to 0pt{\rule{\headwidth}{0.2pt}}}
+\setlength{\headsep}{30pt}
+
+
+\hyphenation{Arbeits-paket}
+
+% Damit Latex nicht zu lange Zeilen produziert:
+%\sloppy
+%Uneinheitlicher unterer Seitenrand:
+%\raggedbottom
+
+% Kein Erstzeileneinzug beim Absatzanfang
+% Sieht aber nur gut aus, wenn man zwischen Absätzen viel Platz einbaut
+\setlength{\parindent}{0ex}
+
+% Abstand zwischen zwei Absätzen
+%\setlength{\parskip}{1ex}
+
+% Seitenränder für Korrekturen verändern
+%\addtolength{\evensidemargin}{-1cm}
+%\addtolength{\oddsidemargin}{1cm}
+
+%\bibliographystyle{gerapali}
+
+% Lustige Header auf den Seiten
+  \pagestyle{fancy}
+  \setlength{\headheight}{70.55003pt}
+  \fancyhead{}
+  \fancyhead[LO,RE]{Software--Projekt 2\\ WiSe 2018/2019
+  \\Architekturbeschreibung}
+  \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
+
+%
+% Und jetzt geht das Dokument los....
+%
+
+\begin{document}
+
+% Lustige Header nur auf dieser Seite
+  \thispagestyle{fancy}
+  \fancyhead[LO,RE]{ }
+  \fancyhead[LE,RO]{Universität Bremen\\FB 3 -- Informatik\\
+  Prof. Dr. Rainer Koschke \\Tutor/In: Marcel Steinbeck}
+  \fancyfoot[C]{}
+
+% Start Titelseite
+  \vspace{3cm}
+
+  \begin{minipage}[H]{\textwidth}
+  \begin{center}
+  \bf
+  \Large
+  Software--Projekt 2 WiSe 2018/2019\\
+  \smallskip
+  \small
+  VAK 03-BA-901.02\\
+  \vspace{3cm}
+  \end{center}
+  \end{minipage}
+  \begin{minipage}[H]{\textwidth}
+  \begin{center}
+  \vspace{1cm}
+  \bf
+  \Large Änderungsdokument \\ 
+  \vspace{1cm}
+  \Huge\textbf{GraphIt}\normalsize
+  \vfill
+  \end{center}
+  \end{minipage}
+  \vfill
+  \begin{minipage}[H]{\textwidth}
+  \begin{center}
+  \sf
+  \begin{tabular}{lr}
+  Anthony Mendil & antmen@tzi.de \\
+  Bastian Rexhäuser & brexhaeu@tzi.de\\
+  Clement Phung & clement1@tzi.de \\
+  Jacky Philipp Mach & machja@tzi.de \\
+  Jonah Jaeger & jjaeger@tzi.de \\
+  Nina Unterberg & nin\_unt@tzi.de \\
+  \end{tabular}
+  \\ ~
+  \vspace{2cm}
+  \\
+  \it Abgabe: 10. März 2019\\ ~
+  \end{center}
+  \end{minipage}
+
+% Ende Titelseite
+% Start Leerseite
+\thispagestyle{empty}
+\cleardoublepage
+% Ende Leerseite
+\newpage
+
+  \thispagestyle{fancy}
+  \fancyhead{}
+  \fancyhead[LO,RE]{Software--Projekt \\  2018/2019
+  \\Architekturbeschreibung}
+  \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\~}
+  \fancyfoot{}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \tableofcontents
+
+\newpage
+
+  \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
+
+
+\newpage
+\section{Datensicht}
+\label{sec:datensicht}
+
+\emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
+
+Im Folgenden beschreiben wir die Datensicht unserer fertig implementierten Anwendung \textit{GraphIt}. Bei der Beschreibung dieser Sicht nehmen wir Bezug zu den folgenden Strategien aus der Architekturbeschreibung: S1 - GXL, S7 - Datenmodell, S19 - JUNG, S33 - JavaScript Object Notation (.json) und S43 - Eigener Datentyp sowie auf die S45 - H2 Database. Außerdem werden wir auf die Strategien S50 - Hibernate, S56 - GXL-Framework (bei Source Forge gehostet) und S61 - Regeln in der GXL-Datei eingehen. IM gegensatz zur Architekturbechreibung, in der lediglich das geplante Vorgehen beschrieben und auf der Grundlage der eben genannten Strategien begründet wurde, werden wir in diesem Dokument einen Abglich zwischen dem geplanten und dem tatsächlich realisierten Datenmodell machen. \\
+
+Wie in der Architekturbeschreibung erklärt wurde, haben wir nicht geplant, alleine für den Graphen ein komplett eigenes Datenmodell zu erstellen. Stattdessen haben wir geplant das vom Framework JUNG vorgegebene Datenmodell zu verwenden und mit unseren eigenen Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} zu erweitern (für Kanten) (S19 - JUNG). Dieses Vorgehen war zentraler Bestandteil im Rahmen der Implementierung und wurde wie geplant realisiert.\\ 
+Die \texttt{Vertex}-Klasse hat (wie geplant) neben den naheliegenden Attributen auch noch weitere Attribute. Je ein Attribut speichert für jeden Ralationstyp seinen Eintrittspunkt am Rand des Symptoms in Form eines \texttt{ScopePoint} in einer \texttt{Map}. Ein Element der Aufzählung \texttt{ScopePoint} sollte dabei das Quartal eines Knoten darstellen, in welches eine Pfeilspitze auf ein Knoten andockt. Pfeilspitzen von Kanten, welche in das selbe Quartal führen und den gleichen Pfeilspitzen-Typ haben, sollten in der Visualisierung zusammengefasst dargestellt werden. Das beschriebene Herangehen ha sich nur insofern verändert, als dass nicht nur Quartale erfasst werden, sondern der Rand eines Knoten nun in acht gleich große Teile aufgeteilt wird. Dies ermöglicht es die Kantenbündelung feiner zu justieren. Es ist daneben zu weiteren Änderungen in der \textit{Vertex}-Klasse gekommen. Sie enthält jetzt weitere (vorher nicht vorgesehene) Attriute. Diese dienen entweder der Speicherung weiterer visueller Eigenschaften (Textgröße, Schriftart) oder sind ür die Sperrung einiger Werte dieses Symptoms nötig, um dessen Bearbeitungsmöglichkeiten an die über eine Vorlage spezifizierten Regeln einzuschränken.\\
+
+Wie geplant wurde die Klasse \texttt{Sphere} (zur Realisierung von Sphären) implementiert und mit ihr das vorgegebene Datenmodell erweitert (genauer gesagt erweitert unsere Klasse SydromGraph die Klasse DirectedSparseGraph von JUNG). AUch die Änderungen in dieser Klasse lassen sich auf hinzugekommene Attribute zurückführen. Diese werden aus den selben Gründen benötigt, wie es bei der \textit{Vertex}-Klasse der Fall ist.
+Für die Speicherung des Graphen sowie von allen nötigen Informationen existiert die Klasse \texttt{Syndrom}. Sie fasst den Graphen, die Vorgaben/Bearbeitungsregeln (\texttt{Template}), sowie die zum Rendern und zur Visualisierung benötigten Komponenten von JUNG zusammen. Bei Aspekten diesbezüglich sind wir konzeptionell wie geplant vorgegengen. Lediglich bei den Attributen ist es zu leichten Veränderungen gekommen.\\ 
+
+Die soeben erwähnte \texttt{Template}-Klasse ermöglicht es ein Maximum an Sphären, Knoten (im Graphen insgesamt), Knoten in einer Sphäre und Kanten festzulegen. Des weiteren können Objekte des Graphen bestimmt werden, von denen bestimmte Eigenschaften nicht verändert werden dürfen, sowie die Arten der erlaubten Kanten eingeschränkt werden. Die Funktionalität der Vorlage wurde so umgesetzt, wiewir es angedacht haben. Allerdings haben sich die Attribute verändert, da wir nicht die gesamten Werte, die die Bearbeitungslogik betreffen in der \textit{template}-Klasse speichern. Stattdessen werden diese Aspekte an die einzelnen Klassen, die Graphelemente beschreiben (\textit{Sphere}, \textit{Vertex} und \textit{Edge}) ausgelagert. \\
+
+Die Klasse \texttt{Values} enthält einige Werte, die beim Erzeugen eines neuen Graph-Objekts (\textit{Sphere}, \textit{Vertex} und \textit{Edge}) benötigt werden. \texttt{Values} ist eine Singleton-Klasse, damit alle Klassen des Systems, die die Werte aus \texttt{Values} benötigen, auf die gleichen Wertebelegungen zugreifen können. Die Nutzerinteraktion in der GUI beeinflussen die Werte, die in \texttt{Values} gesetzt sind. Stellt der Nutzer beispielsweise die Standardfarbe für neue Symptome um, so wird der entsprechende Wert in der Klasse \texttt{Values} angepasst, sodass neu erzeugte Symptome diese Farbe haben. Die Klasse \textit{Values} hat sich gegenüber ihrer geplanten Ausgestaltung insofern geändert, als dass sie weitere Attribute bekommen hat. Diese sind für die visuellen Eigenschaften erforderlich, die wir in der Architekturbeschreibung nicht vorgesehen hatten.\\
+
+Um die Persistenz von Daten zu gewährleisten, verwenden wir die eingebettete Datenbank H2 Database in unserem System (S45 - H2). Bei der Kommunikation mit der Datenbank wird das Framework Hibernate genutzt, welches es unter Verwendung von JPA ermöglicht, Objekte (als Instanzen von Klassen) unseres Systems in eine relationale Datenbank zu persistieren (S50 - Hibernate). Hierbei findet ORM (Object-Relational Mapping) Anwendung. Bei der Persistieerung von Systemdaten haben wir uns an das vorehen gehalten, das wir im Rahmen der Architekturbeschreibung vorgesehen haben.\\ 
+
+Um den Graphen zu speichern bietet sich die GXL-Repräsentation aus den in der Entscheidung für S1 - GXL genannten Gründen an. Ein als Text-Repräsentation vorliegender Graph wird dabei mit einer Identifikationsnummer versehen und in einer Tabelle unserer Datenbank persistiert. Die Realisierung der genannten Konstruktion lässt sich in der zugehörigen Mapping-Klasse \texttt{Graph} wiederfinden.  An dieser Stelle ist anzumerken, dass wir uns dafür entschieden haben, in der Datenbank immer höchstens einen Graphen zu speichern. Die Tabelle mit den Graphen hat dementsprechend maximal einen Eintrag. Immer wenn versucht wird, einen neuen Graphen zu erstellen oder einen alten zu importieren, wird der Nutzer gefragt, ob er seinen aktuellen Graphen (inklusive festgehaltenem Nutzerverhalten) vorher exportieren möchte, da die Datenbank beim Import (und dem Neuerstellen eines Graphen) geleert wird. Dieses Konzept wurde wie anedacht umgesetzt. Es ist allerdings ebenso möglich lediglich den Graphen ohne Informationen zum Nutzerverhalten zu exportieren.\\
+Die Übersetzung unseres Graphen in das GXL-Format erfolgt wie vorher angedacht unter Nutzung des bei Sourceforge gehosteten GXL-Frameworks (S56 - GXL-Framework). Falls der Benutzer eine Vorlage erstellt, werden auch die darin für die Syndrom-Erstellung gesetzten Einschränkungen in selbiger GXL festgehalten (S61 - Regeln in der GXL-Datei). Auch bei diesem Vorgehen halten wir uns an den in de Architekturbeschreibung definierten Plan.\\ 
+
+Die Nutzerinteraktionen mit dem Graphen werden, wie auch der Graph selbst, in der embedded H2 Database gespeichert. Für die Nutzerinteraktionen existiert eine eigene Tabelle in der Datenbank sowie eine zugehörige Mapping-Klasse \texttt{Log}, welche für jeden Eintrag die relevanten Informationen enthält (Strategie S7 - Datenmodell). Zu diesen Informationen gehört auch ein Text im JSON-Format, der aus dem jeweiligen Parameterobjekt erzeugt wird (S33 - JavaScript Object Notation (.json)). Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch nichts vom Log weiß und von diesem auch keine Informationen lesen kann (Many to One Beziehung). Auch dieser Ansatz entspricht dem Geplanten. \\
+Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse \texttt{Param} - so wie wir es in der Architekturbeschreibung angestrebt haben. Jede dieser Parameter-Klassen gehört speziell zu einer Aktion, für die sie die nötigen Informationen enthält. Hinzufügende und entfernende Aktionen gleicher Art sowie aktivierende und deaktivierende gleicher Art benutzen die gleichen Parameter-Klassen. Beispielsweise haben demnach die Aktionen des Hinzufügens und Entfernens mehrerer Kanten beide ein \texttt{AddRemoveVerticesParam}. Je nach Aktion werden diese Informationen bei der Ausführung unterschiedlich verwendet. Es ist ebenso anzumerken, dass die einzelnen Parameter-Klassen im Diagramm individuell Assoziationen zu den Klassen \texttt{Vertex}, \texttt{Edge} und \texttt{Sphere} hätten, je nachdem welche Attribute sie besitzen. Um Übersichtlichkeit zu bewahren haben wir im Diagramm nicht alle Parameter-Klassen mit ihren zugehörigen Attributen dargestellt, sondern exemplarisch drei solcher Klassen ausgewählt. Alle Parameter-Klassen lassen sich im Package \texttt{log\_management.parameters} finden. Auch die Verarbeitung dieser Parameterklassen im jetzigen Programm leicht der angedachten Verarbeitungsweise. \\
+
+In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (OOF für \glqq out of frameworks\grqq; S43 - eigener Datentyp). Dieses Datei-Format findet für genau diesen Zweck bereits in der Architekturbeschreibung Erwähnung.\\
+
+<<<<<<< HEAD
+\newpage
+\section{Datensicht}
+\label{sec:datensicht}
+
+
+\textit{Anmerkungen zu dem Diagramm}: \\
+Alle dargestellten Attribute sind \texttt{private}. Auch wenn für die Attribute Getter und Setter (außer bei sämtlichen Id's, dort nur Getter) existieren, werden sie aufgrund ihrer Deklarartion als \textit{private} im Diagramm alle als private Attribute markiert. \\
+Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. Die Assoziation zwischen \texttt{Vertex} und \texttt{ScopePoint} betreffend, wurde beschlossen, dass \texttt{Vertex} statt einem Attribut, in welchem die verschiedenen \texttt{ScopePoints} für die jeweils gleichen Arten der Relationstypen zusammengefasst werden, drei Attribute gegeben werden, die jeweils ausschließlich gleichartige \texttt{ScopePoints} eines Relationstyps beinhalten. Diese Unterteilung sorgt für eine klare logische Trennung und ermöglicht es ohne Filterung direkt auf die \texttt{ScopePoints} zuzugreifen, die einem Pfeiltyp entsprechen. Es muss also nicht erst die Liste aller \texttt{ScopePoints} nach der Art der Relation gefiltert werden.\\
+
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% mode: reftex
+%%% mode: flyspell
+%%% ispell-local-dictionary: "de_DE"
+%%% TeX-master: t
+%%% End:
