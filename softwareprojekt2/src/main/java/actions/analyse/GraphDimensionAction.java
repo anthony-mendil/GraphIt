@@ -8,8 +8,6 @@ import graph.visualization.SyndromVisualisationViewer;
 import jgrapht.JGraphTHandler;
 import lombok.Getter;
 
-import java.text.DecimalFormat;
-
 /**
  * Displays some useful data in matter of the dimension of the graph (scope, networking index, structural index). The
  * information is displayed in the gui. Pls look in the website for the formula of the indices.
