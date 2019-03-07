@@ -1,0 +1,91 @@
+.buttonbar {
+    -fx-background-color: #6699cc;
+}
+
+.menubutton {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+/* Styling the slider thumb */
+.jfx-slider > .thumb {
+    -fx-background-color: black;
+}
+
+/* Styling the filled track */
+.jfx-slider > .colored-track {
+    -fx-background-color: black;
+}
+
+.jfx-text-field {
+    -jfx-focus-color: #6699cc;
+}
+
+.jfx-check-box {
+    -jfx-checked-color: #6699cc;
+    -jfx-unchecked-color: black;
+}
+
+.actionmenubar {
+    -fx-background-color: #6699cc;
+}
+
+.combobox {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.colorpicker {
+    -fx-color-label-visible: false;
+    -fx-effect: none;
+}
+
+.zoomSlider {
+    -fx-pref-height: 10px;
+    -fx-pref-width: 20px;
+}
+
+.zoomSlider .thumb {
+    -fx-pref-height: 30;
+    -fx-prefer-width: 30;
+}
+
+.toggle-button {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #b3e5fc;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 5, 0.05, 0, 1)
+}
+
+.analysisMenuItem .label {
+    -fx-font-size: 9;
+}
+
+.analysisMenuItem {
+    -fx-font-size: 9;
+}
+
+.jfx-tool-bar {
+    -fx-effect: none;
+}
+
+.toolbar-button {
+    -jfx-button-type: RAISED;
+}
+
+.jfx-progress-bar > .bar {
+    -fx-background-color: rgb(28, 172, 172);
+}

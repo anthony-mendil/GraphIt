@@ -11,86 +11,112 @@ package graph.graph;/*
  */
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
+import graph.visualization.SyndromVisualisationViewer;
+import graph.visualization.picking.SyndromPickSupport;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.*;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
- * TODO
+ * The syndrom graph. Its extending the directed sparse graph with spheres and anchor points.
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
-    private transient Map<Sphere, ArrayList<V>> sphaeren;
+    /**
+     * List of spheres.
+     */
+    private transient List<Sphere> spheres = new ArrayList<>();
 
     /**
-     * TODO
+     * The object factory for syndrom.
      */
-    SyndromGraph() {
-        super();
+    private final transient GraphObjectsFactory graphObjectsFactory;
+
+    /**
+     * Creates a new syndrom graph.
+     */
+    public SyndromGraph() {
+        graphObjectsFactory = new GraphObjectsFactory();
     }
 
     /**
-     * TODO
+     * Assigns a vertex to a sphere.
      *
-     * @return TODO
+     * @param pSphere The sphere to assign to.
+     * @param pVertex The vertex.
      */
-    public Set<Sphere> getSphaeren() { throw new UnsupportedOperationException(); }
+    private void addVertexToSphere(Sphere pSphere, Vertex pVertex) {
+        pSphere.getVertices().add(pVertex);
+    }
 
-    /**
-     * TODO
-     *
-     * @param pSphere TODO
-     * @return TODO
-     */
-    public List getSphaereWithVertices(Sphere pSphere) {
-        throw new UnsupportedOperationException();
+    @SuppressWarnings("unchecked")
+    public void addEdge(V v1, V v2) {
+        Edge edge = graphObjectsFactory.createEdge();
+        addEdge((E) edge, v1, v2);
     }
 
     /**
-     * TODO
+     * Adds an edge to the graph, if it already existed once in the past.
      *
-     * @param pSphere TODO
-     * @param pVertex TODO
+     * @param edge The existing edge.
+     * @param v1   The source vertex.
+     * @param v2   The sink vertex.
      */
-    public void addVertexToSphaere(Sphere pSphere, V pVertex) {
-        throw new UnsupportedOperationException();
+    @SuppressWarnings("unchecked")
+    public void addEdgeExisting(Edge edge, V v1, V v2) {
+        addEdge((E) edge, v1, v2);
     }
 
     /**
-     * TODO
+     * Adds a vertex to the syndrom graphs and assigns it to a sphere if it wasn't existing in the past.
      *
-     * @param pSphere TODO
-     * @param pVertex TODO
+     * @param pSphere The sphere to assign to.
+     * @param pos the position of the new sphere
+     * @return True if the vertex was added to the graph, false if not.
      */
-    public void removeVertexFromSphaere(Sphere pSphere, V pVertex) {
-        throw new UnsupportedOperationException();
+    @SuppressWarnings("unchecked")
+    public Vertex addVertex(Point2D pos, Sphere pSphere) {
+        Vertex vertex = graphObjectsFactory.createVertex(pos);
+        addVertex((V) vertex);
+        addVertexToSphere(pSphere, vertex);
+        return vertex;
     }
 
     /**
-     * TODO
+     * Adds a vertex to the SyndromGraph and assigns it to the sphere if it was existing in the past.
      *
-     * @param pVertex TODO
-     * @param pSphere TODO
-     * @return TODO
+     * @param vertex the new vertex
      */
-    public boolean addVertex(V pVertex, Sphere pSphere) {
-        throw new UnsupportedOperationException();
+    @SuppressWarnings("unchecked")
+    public void addVertexExisting(Vertex vertex) {
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromPickSupport<Vertex, Edge> pickSupport = (SyndromPickSupport<Vertex, Edge>) vv.getPickSupport();
+        Sphere sp = pickSupport.getSphere(vertex.getCoordinates().getX(), vertex.getCoordinates().getY());
+        addVertex((V) vertex);
+        addVertexToSphere(sp, vertex);
     }
 
     /**
-     * TODO
+     * Adds a new sphere to the graph.
      *
+     * @param pos The point where the sphere gets placed
      */
-    public void addSphaere() {
-        throw new UnsupportedOperationException();
+    public void addSphere(Point2D pos) {
+        Sphere sphere = graphObjectsFactory.createSphere(pos);
+        spheres.add(sphere);
     }
 
     /**
-     * TODO
+     * Removes a sphere from the graph.
      *
+     * @param pSphere The sphere to remove.
      */
-    public void removeSphaere() {
-        throw new UnsupportedOperationException();
+    public void removeSphere(Sphere pSphere) {
+        spheres.remove(pSphere);
     }
-
-    // TODO: anchor points
 }
