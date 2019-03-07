@@ -15,7 +15,7 @@
 \usepackage{todonotes}          % ToDo-Notizen
 \usepackage{perpage}
 \usepackage{graphicx}
-
+\usepackage{listings}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
 \usepackage{setspace} 
@@ -42,6 +42,37 @@ citecolor=black, % Farbe von Links zu Bibliography
 filecolor=magenta, % Farbe von Links zu Dateien
 urlcolor=blue % Farbe von externen Links
 ]{hyperref}
+
+%Layout for lstlistings
+\lstloadlanguages{Java} % Java-Sprache laden, notwendig wegen option 'savemem'
+\lstset{
+  language=Java,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {°}{{$^\circ$}}1, 
+  basicstyle=\fontfamily{pcr}\selectfont\scriptsize,
+  showspaces=false,
+  showtabs=false,
+  showstringspaces=false,
+  keywordstyle=\bfseries,
+  tabsize=4,
+  frameround=ffff,
+  extendedchars=true,
+  commentstyle=\itshape,
+  postbreak=\space,
+  breakindent=5pt,
+  breaklines=true
+}
+
 
  \pagestyle{fancy}
 \setlength{\headheight}{70.55003pt}
@@ -160,7 +191,7 @@ wobei aber die Vorlage-Regeln nicht editierbar sind sondern nur zum Lesen der Re
 \begin{center}
 	\includegraphics[height=10cm]{bearbeiterModus.PNG}
 \end{center}
-Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste:
+Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste und dass es keine Vorlage-Regeln gibt:
 \begin{center}
 	\includegraphics[height=3cm]{analyseModus.png}
 \end{center}
@@ -169,7 +200,7 @@ Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste:
 \section{Ersteller-Modus}
 
 \subsectiont{Sphären hinzufügen an freien Stellen}{\dotfill\ok\ok\leer}
-Der Ersteller erstellt zuerst zwei Sphären an verschiedenen Positionen. Eine eine links und dann eine rechts.  
+Der Ersteller erstellt zuerst zwei Sphären an verschiedenen Positionen. Eine links und dann eine rechts.  
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:04 \\
 Test negativ. \\
@@ -182,7 +213,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Sphäre hinzufügen, sodass es zu einer Überschneidung mit einer anderen kommen würde}{\dotfill\ok\ok\leer}
-Der Ersteller versucht eine dritte Sphäre an einer Position hinzuzufügen, an der es zu einer Überschneidung mit einer der bereits erstellten Sphären kommen würde (nicht direkt auf der Sphäre). Hierbei ist zu erwarten, dass dies nicht erfolgreich ist und in der unteren Leiste eine entsprechende Meldung angezeigt wird. 
+Der Ersteller versucht eine dritte Sphäre an einer Position hinzuzufügen, an der es zu einer Überschneidung mit einer der bereits erstellten Sphären kommen würde (nicht direkt auf der Sphäre). Hierbei ist zu erwarten, dass dies nicht erfolgreich ist und in der Fußleiste eine entsprechende Meldung angezeigt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:15 \\
 Test negativ. \\
@@ -238,7 +269,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Rückgängig machen (Undo)}{\dotfill\ok\ok\leer}
-Der Ersteller betätigt den Button zum rückgängig machen der letzten Aktion.
+Der Ersteller betätigt den Button zum Rückgängigmachen der letzten Aktion.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:45 \\
 Test negativ.\\
@@ -384,10 +415,10 @@ Die Software arbeitet wie erwartet. In dem Verzeichnis das zum Speichern ausgew�
 Im Ersteller-Modus getestete Funktionalitäten, die auch im Bearbeiter-Modus zur Verfügung stehen, werden im Bearbeiter-Modus nicht nochmal explizit getestet. 
 
 \subsectiont{Rückgängig machen einer Aktion die im Ersteller Modus durchgeführt wurde und in den Vorlage-Regeln verboten wurde}{\dotfill\XBox\ok\leer}
-Hierfür wird vorerst im Ersteller-Modus eine Sphäre erstellt und in den Vorlage Regeln festgelegt das sie nicht bewegt werden kann (analog zu Testfall 1.10). Anschließend wird die Sphäre im Ersteller-Modus bewegt und direkt in den Bearbeiter-Modus gewechselt, wo der Button zum rückgängig machen der letzten Aktion betätigt wird. Hierbei ist zu erwarten, dass das Bewegen der Sphäre nicht rückgängig gemacht wird, weil das Bewegen dieser Sphäre in den Vorlage-Regeln verboten wurde. 
+Hierfür wird vorerst im Ersteller-Modus eine Sphäre erstellt und in den Vorlage Regeln festgelegt das sie nicht bewegt werden kann (analog zu Testfall 1.10). Anschließend wird die Sphäre im Ersteller-Modus bewegt und direkt in den Bearbeiter-Modus gewechselt, wo der Button zum Rückgängigmachen der letzten Aktion betätigt wird. Hierbei ist zu erwarten, dass das Bewegen der Sphäre nicht rückgängig gemacht wird, weil das Bewegen dieser Sphäre in den Vorlage-Regeln verboten wurde. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 11:39 \\
-Test positiv, weil die Sphäre beim Betätigen des Buttons zum rückgängig machen bewegt wurde. \\
+Test positiv, weil die Sphäre beim Betätigen des Buttons zum Rückgängigmachen bewegt wurde. \\
 Vorher: 
 \begin{center}
 \includegraphics[height=5cm]{2_1vorher.PNG}
@@ -396,7 +427,7 @@ Nachher:
 \begin{center}
 \includegraphics[height=5cm]{2_1nachher.PNG}
 \end{center}
-2.Test: Getestet von: Jonah Jaeger. Datum: 22.02.2019 um 11:57 \\
+2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:47 \\
 Test negativ. \\
 Vorher: 
 \begin{center}
@@ -434,7 +465,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Mehr Sphären hinzufügen als in den Vorlage-Regeln erlaubt}{\dotfill\ok\ok\leer}
-Der Bearbeiter setzt zuerst eine Sphäre links unter \texttt{Sphäre 0} und dann eine Sphäre rechts unter \texttt{Sphäre 1}. Hierbei wird erwartet, dass das hinzufügen der ersten Sphäre erfolgreich ist, das der zweiten jedoch nicht, weil sonst die Anzahl an maximalen Sphären in den Vorlage-Regeln überschritten wird. 
+Der Bearbeiter setzt zuerst eine Sphäre links unter \texttt{Sphäre 0} und dann eine Sphäre rechts unter \texttt{Sphäre 1}. Hierbei wird erwartet, dass das Hinzufügen der ersten Sphäre erfolgreich ist, das der zweiten jedoch nicht, weil sonst die Anzahl an maximalen Sphären in den Vorlage-Regeln überschritten wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 14:18 \\
 Test negativ.\\
@@ -457,7 +488,7 @@ Test negativ. Die Abbildung ist identisch zur vorherigen.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Einer Sphäre ein Symptom hinzufügen obwohl dies durch die Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
-Der Bearbeiter versucht \texttt{Sphäre 1} rechts mittig ein Symptom hinzuzufügen. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
+Der Bearbeiter versucht \texttt{Sphäre 1} rechts mittig ein Symptom hinzuzufügen. Hierbei wird erwartet, dass dies aufgrund der Vorlage-Regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:08 \\
 Test negativ. Die Abbildung ist identisch zur vorherigen.\\
@@ -467,7 +498,7 @@ Test negativ. Die Abbildung ist identisch zur vorherigen.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Titel einer Sphäre ändern bei der es in den Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
-Der Bearbeiter versucht den Titel von \texttt{Sphäre 0} zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
+Der Bearbeiter versucht den Titel von \texttt{Sphäre 0} zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-Regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:13 \\
 Test negativ. Die Abbildung ist identisch zur vorherigen.\\
@@ -477,7 +508,7 @@ Test negativ. Die Abbildung ist identisch zur vorherigen.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Style eines Symptoms ändern bei dem es in den Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
-Der Bearbeiter versucht die Füllfarbe von \texttt{Symptom 2} zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
+Der Bearbeiter versucht die Füllfarbe von \texttt{Symptom 2} zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-Regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:38 \\
 Test negativ. Die Abbildung ist identisch zur vorherigen.\\
@@ -487,7 +518,7 @@ Test negativ. Die Abbildung ist identisch zur vorherigen.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Relationsart einer Relation ändern bei der es in den Vorlage-Regeln verboten wird}{\dotfill\ok\ok\leer}
-Der Bearbeiter versucht die Relationsart der Relation von \texttt{Symptom 2} nach \texttt{Symptom 3} zu einer verstärkenden Relation zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-regeln nicht erlaubt wird.
+Der Bearbeiter versucht die Relationsart der Relation von \texttt{Symptom 2} nach \texttt{Symptom 3} zu einer verstärkenden Relation zu ändern. Hierbei wird erwartet, dass dies aufgrund der Vorlage-Regeln nicht erlaubt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 16:58 \\
 Test negativ. Die Abbildung ist identisch zur vorherigen.\\
@@ -503,11 +534,11 @@ Der Bearbeiter fügt vorerst in \texttt{Sphäre 9} ein Symptom hinzu und zieht v
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:06 \\
 Test negativ. \\
-Nach hinzufügen der beschriebenen Elemente: 
+Nach Hinzufügen der beschriebenen Elemente: 
 \begin{center}
 \includegraphics[height=10cm]{2_10vorher.PNG}
 \end{center}
-Nach löschen der Sphäre: 
+Nach Löschen der Sphäre: 
 \begin{center}
 \includegraphics[height=5cm]{2_10nachher.PNG}
 \end{center}
@@ -515,7 +546,7 @@ Nach löschen der Sphäre:
 Die Software arbeitet wie erwartet. 
 
 \subsectiont{Rückgängig machen des Entfernens einer Sphäre mit Symptomen und Relationen}{\dotfill\XBox\ok\leer}
-Der Bearbeiter betätigt den Button zum rückgängig machen der letzten Aktion. Hierbei wird erwartet, dass die vorherige Sphäre, inklusive der ursprünglichen Symptome und Relationen wieder hinzugefügt wird. 
+Der Bearbeiter betätigt den Button zum Rückgängigmachen der letzten Aktion. Hierbei wird erwartet, dass die vorherige Sphäre, inklusive der ursprünglichen Symptome und Relationen wieder hinzugefügt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 17:48 \\
 Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. \\
@@ -528,7 +559,7 @@ Nach Entfernen der Sphäre:
 \begin{center}
 \includegraphics[height=5cm]{2_11b.png}
 \end{center}
-Nach rückgängig machen des Entfernens der Sphäre mit Symptomen und Relationen:
+Nach Rückgängigmachen des Entfernens der Sphäre mit Symptomen und Relationen:
 \begin{center}
 \includegraphics[height=5cm]{2_11c.png}
 \end{center}
@@ -562,7 +593,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Ändern der Farbe einer Sphäre}{\dotfill\ok\ok\leer}
-Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Farbe der Sphäre auf \texttt{Backstein} (dunkles rot). Es wird erwartet, dass entsprechende Änderung auch statt findet. 
+Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Farbe der Sphäre auf \texttt{Backstein} (dunkles rot). Es wird erwartet, dass die entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
 Test negativ.\\
@@ -575,7 +606,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Ändern der Schriftart einer Sphäre}{\dotfill\ok\ok\leer}
-Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Schriftart der Sphäre auf \texttt{Kalam}. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
+Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Schriftart der Sphäre auf \texttt{Kalam}. Es wird erwartet, dass die entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
 Test negativ.\\
@@ -588,7 +619,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Verändern der Schriftgröße einer Sphäre}{\dotfill\ok\ok\leer}
-Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Schriftgröße der Sphäre auf 24. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
+Der Bearbeiter macht einen Linksklick auf \texttt{Sphäre 9} und ändert die Schriftgröße der Sphäre auf 24. Es wird erwartet, dass die entsprechende Änderung auch statt findet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
 Test negativ.\\
@@ -611,7 +642,7 @@ Test negativ. Die Abbildung ist identisch zur vorherigen.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Sphären automatisch anordnen}{\dotfill\ok\ok\leer}
-Vorerst wird in den Ersteller-Modus gewechselt werden um die Bewegung von \texttt{Sphäre 1} zu erlauben. Anschließend betätigt der Bearbeiter den Button zum automatischen Anordnen der Sphären. Es wird erwartet, dass die Sphären automatisch angeordnet werden und die Symptome und Relationen immer noch korrekt platziert sind.
+Vorerst wird in den Ersteller-Modus gewechselt um die Bewegung von \texttt{Sphäre 1} zu erlauben. Anschließend betätigt der Bearbeiter den Button zum automatischen Anordnen der Sphären. Es wird erwartet, dass die Sphären automatisch angeordnet werden und die Symptome und Relationen immer noch korrekt platziert sind.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
 Test negativ.\\
@@ -624,7 +655,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Rückgängig machen der automatischen Anordnung von Sphären}{\dotfill\ok\ok\leer}
-Der Bearbeiter betätigt den Button zum rückgängig machen der letzten Aktion. Es wird erwartet, die Sphären mit ihren Knoten und den Relationen wieder an ihre vorherige Positionen bewegt werden.
+Der Bearbeiter betätigt den Button zum Rückgängigmachen der letzten Aktion. Es wird erwartet, dass die Sphären mit ihren Knoten und den Relationen wieder an ihre vorherige Positionen bewegt werden.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 18:37 \\
 Test negativ.\\
@@ -654,7 +685,7 @@ Der Bearbeiter fügt vorerst in \texttt{Sphäre 9} ein Symptom hinzu und zieht v
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 10:58 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:18 \\
-Test negativ.\\ 
+Test negativ.\\ \\
 Nach hinzufügen der beschriebenen Elemente: 
 \begin{center}
 \includegraphics[height=10cm]{2_20korrektvorher.PNG}
@@ -667,7 +698,7 @@ Nach löschen der Sphäre:
 Die Software arbeitet wie erwartet. 
 
 \subsectiont{Rückgängig machen des Entfernens eines \\Symptoms mit Relationen}{\dotfill\XBox\ok\leer}
-Der Bearbeiter betätigt den Button zum rückgängig machen der letzten Aktion. Hierbei wird erwartet, dass das vorherige Symptom, inklusive der ursprünglichen Relationen wieder hinzugefügt wird. 
+Der Bearbeiter betätigt den Button zum Rückgängigmachen der letzten Aktion. Hierbei wird erwartet, dass das vorherige Symptom, inklusive der ursprünglichen Relationen wieder hinzugefügt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 11:33 \\
 Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. Der Graph verändert sich nicht. \\
@@ -681,25 +712,25 @@ Die Relationen, welche eine eingehende oder ausgehende Relation des zu löschend
 
 \subsectiont{Entfernen mehrere Symptome ohne Relationen}{\dotfill\XBox\ok\leer}
 Zunächst entfernt der Bearbeiter alle Relationen von \texttt{Symptom 10}, verschiebt es ein wenig nach links und fügt \texttt{Sphäre 9} ein weiteres Symptom rechts von \texttt{Symptom 10} hinzu. 
-Durch gedrückt halten von Umschalten und Linksklicks auf die soeben erwähnten Symptome wählt der Bearbeiter mehrere Symptome aus. Das rechte Symptom ist nach dem Hinzufügen bereits ausgewählt, weshalb auf die soeben beschriebene Weise nur noch das linke Symptom der Auswahl hinzugefügt werden muss. Anschließend betätigt er den Button zum löschen der Symptome. Hierbei wird erwartet, dass alle ausgewählten Symptome gelöscht werden. 
+Durch gedrückt halten von Umschalten und Linksklicks auf die soeben erwähnten Symptome wählt der Bearbeiter mehrere Symptome aus. Das rechte Symptom ist nach dem Hinzufügen bereits ausgewählt, weshalb auf die soeben beschriebene Weise nur noch das linke Symptom der Auswahl hinzugefügt werden muss. Anschließend betätigt er den Button zum Löschen der Symptome. Hierbei wird erwartet, dass alle ausgewählten Symptome gelöscht werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 11:39 \\
 Test positiv, weil nur eins der ausgewählten Symptome entfernt wurde. \\
-Nach hinzufügen der beiden Symptome: 
+Nach Hinzufügen der beiden Symptome: 
 \begin{center}
 \includegraphics[height=10cm]{2_22vorher.PNG}
 \end{center}
-Nach betätigen des Buttons zum Entfernen der Symptome: 
+Nach Betätigen des Buttons zum Entfernen der Symptome: 
 \begin{center}
 \includegraphics[height=10cm]{2_22nachher.PNG}
 \end{center}
 2.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 20:26 \\
 Test negativ. \\
-Nach hinzufügen der beiden Symptome: 
+Nach Hinzufügen der beiden Symptome: 
 \begin{center}
 \includegraphics[height=10cm]{2_22vorher.PNG}
 \end{center}
-Nach betätigen des Buttons zum Entfernen der Symptome: 
+Nach Betätigen des Buttons zum Entfernen der Symptome: 
 \begin{center}
 \includegraphics[height=10cm]{2_22.PNG}
 \end{center}
@@ -745,8 +776,8 @@ Test negativ.
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Ändern der Umrandungsfarbe eines Symptoms}{\dotfill\ok\ok\leer}
-Der Bearbeiter wählt \texttt{Symptom 10} aus und ändert die Umrandungsfarbe des Symptoms zu Goldrute. Hierbei wird erwartet, dass entsprechende Änderungen an dem Knoten vorgenommen werden.
+\subsectiont{Ändern der Randfarbe eines Symptoms}{\dotfill\ok\ok\leer}
+Der Bearbeiter wählt \texttt{Symptom 10} aus und ändert die Randfarbe des Symptoms zu Goldrute. Hierbei wird erwartet, dass entsprechende Änderungen an dem Knoten vorgenommen werden.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 12:39 \\
 Test negativ.\\
@@ -771,8 +802,8 @@ Test negativ.
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Automatisches anordnen der Symptome obwohl ein Symptom nicht bewegt werden darf}{\dotfill\ok\ok\leer}
-Der Bearbeiter versucht den Button zum automatischen anordnen der Symptome zu betätigen. Hierbei wird erwartet, dass dies nicht erlaubt wird, da das Bewegen von \texttt{Symptom 3} in den Vorlage-Regeln verboten wird. 
+\subsectiont{Automatisches Anordnen der Symptome obwohl ein Symptom nicht bewegt werden darf}{\dotfill\ok\ok\leer}
+Der Bearbeiter versucht den Button zum automatischen Anordnen der Symptome zu betätigen. Hierbei wird erwartet, dass dies nicht erlaubt wird, da das Bewegen von \texttt{Symptom 3} in den Vorlage-Regeln verboten wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 14:18 \\
 Test negativ. Die Abbildung ist identisch zur vorherigen. \\
@@ -781,8 +812,8 @@ Test negativ. Die Abbildung ist identisch zur vorherigen.
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 
-\subsectiont{Automatisches anordnen der Knoten}{\dotfill\ok\ok\leer}
-Vorerst wird in den Ersteller-Modus gewechselt um das Bewegen von \texttt{Symptom 3} zu erlauben. Anschließend wird wieder in den Bearbeiter-Modus gewechselt. Der Bearbeiter betätigt den Button zum automatischen anordnen der Symptome. Hierbei wird erwartet, dass die Symptome in den Sphären automatisch angeordnet werden. 
+\subsectiont{Automatisches Anordnen der Symptome}{\dotfill\ok\ok\leer}
+Vorerst wird in den Ersteller-Modus gewechselt um das Bewegen von \texttt{Symptom 3} zu erlauben. Anschließend wird wieder in den Bearbeiter-Modus gewechselt. Der Bearbeiter betätigt den Button zum automatischen Anordnen der Symptome. Hierbei wird erwartet, dass die Symptome in den Sphären automatisch angeordnet werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 14:18 \\
 Test negativ.\\
@@ -795,7 +826,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Ändern der Schriftart mehrerer Symptome, wobei dies durch die Vorlage-Regeln nicht bei allen erlaubt wird}{\dotfill\ok\ok\leer}
-Der Bearbeiter wählt \texttt{Symptom 2}, \texttt{Symptom 4} und \texttt{Symptom 5} aus und ändert die Schriftart der Symptome zu \texttt{Kalam}. Hierbei wird erwartet, dass die Schriftart von  \texttt{Symptom 2} und \texttt{Symptom 4} entsprechend verändert wird, während die Schriftart von \texttt{Symptom 5} gleich bleibt, da deren Änderung in den Vorlage-Regeln verboten wurde (Schriftart wird mit unter \texttt{Titel} aufgefasst).  
+Der Bearbeiter wählt \texttt{Symptom 2}, \texttt{Symptom 4} und \texttt{Symptom 5} aus und ändert die Schriftart der Symptome zu \texttt{Kalam}. Hierbei wird erwartet, dass die Schriftart von  \texttt{Symptom 2} und \texttt{Symptom 4} entsprechend verändert wird, während die Schriftart von \texttt{Symptom 5} gleich bleibt, da deren Änderung in den Vorlage-Regeln verboten wurde (Schriftart wird mit unter \texttt{Style} aufgefasst).  
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 14:46 \\
 Test negativ.\\
@@ -821,7 +852,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Bewegen eines Symptoms in eine andere Sphäre}{\dotfill\ok\ok\leer}
-Der Bearbeiter bewegt \texttt{Symptom 5} in \texttt{Sphäre 9}. Hierbei wird erwartet, dass das Symptom nach \texttt{Sphäre 9} verschoben wird und eingehende Relation des Symptoms mitwandert. 
+Der Bearbeiter bewegt \texttt{Symptom 5} in \texttt{Sphäre 9}. Hierbei wird erwartet, dass das Symptom nach \texttt{Sphäre 9} verschoben wird und die eingehende Relation des Symptoms mitwandert. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 14:33 \\
 Test negativ.\\
@@ -847,17 +878,17 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Verändern der Farbe einer Relation}{\dotfill\ok\ok\leer}
-Vorerst fügt der Bearbeiter \texttt{Sphäre 1} ein Symptom hinzu (Schriftart: Roboto) und zieht eine verstärkende Relation von \texttt{Symptom 4} zum eben erstellten. Anschließend wählt er die Relation aus und ändern ihre Farbe zu \texttt{Königsblau}. Hierbei wird wird erwartet, dass entsprechende Änderung stattfindet. 
+Vorerst fügt der Bearbeiter \texttt{Sphäre 1} ein Symptom hinzu (Schriftart: Roboto) und zieht eine verstärkende Relation von \texttt{Symptom 4} zum eben erstellten. Anschließend wählt er die Relation aus und ändern ihre Farbe zu \texttt{Königsblau}. Hierbei wird erwartet, dass entsprechende Änderung stattfindet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 15:28 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 12:24 \\
 Test negativ.\\
-Nach hinzufügen des Symptoms und der Relation: 
+Nach Hinzufügen des Symptoms und der Relation: 
 \begin{center}
 \includegraphics[height=10cm]{3_33vorher.PNG}
 \end{center}
-Nach ändern der Farbe der Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} :
+Nach Ändern der Farbe der Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} :
 \begin{center}
 \includegraphics[height=10cm]{3_33.PNG}
 \end{center}
@@ -865,7 +896,7 @@ Nach ändern der Farbe der Relation von \texttt{Symptom 4} nach \texttt{Symptom 
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Verändern der Linienart einer Relation}{\dotfill\ok\ok\leer}
-Der Bearbeiter wählt die Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} aus und ändern ihre Linienart zu gepunktet. Hierbei wird wird erwartet, dass entsprechende Änderung stattfindet. 
+Der Bearbeiter wählt die Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} aus und ändern ihre Linienart zu gepunktet. Hierbei wird erwartet, dass entsprechende Änderung stattfindet. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 16:01 \\
 Test negativ.\\
@@ -878,7 +909,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Zusammenfassung gleicher Pfeilspitzen}{\dotfill\ok\ok\leer}
-Der Bearbeiter fügt vorerst \texttt{Sphäre 0} oben rechts ein Symptom hinzu und zieht von ihm aus eine verstärkende Relation zu \texttt{Symptom 15}. Hierbei wird erwartet, dass die Pfeilspitzen der Relation mit der der Relation von \texttt{Symptom 18} nach \texttt{Symptom 15} zusammengefasst wird, da es sich um die gleiche Pfeilspitze handelt.
+Der Bearbeiter fügt vorerst zu \texttt{Sphäre 0} oben rechts ein Symptom hinzu und zieht von ihm aus eine verstärkende Relation zu \texttt{Symptom 15}. Hierbei wird erwartet, dass die Pfeilspitzen der Relation mit der Relation von \texttt{Symptom 18} nach \texttt{Symptom 15} zusammengefasst wird, da es sich um die gleiche Pfeilspitze handelt.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 16:28 \\
 Test negativ. \\
@@ -892,7 +923,7 @@ Nach hinzufügen des Symptoms und der Relation:
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Verändern der Relationsart einer Relation}{\dotfill\ok\ok\leer}
-Damit folgende Aktion möglich ist muss vorerst in den Ersteller-Modus gewechselt werden um abschwächende Relationen zu erlauben. Anschließend wählt der Bearbeiter die Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} aus und ändern die Relationsart zu abschwächend. Hierbei wird wird einerseits erwartet, dass der Relationstyp der Relation geändert wird und andererseits, dass die Pfeilspitzen der Relation nicht mehr mit der der Relation von \texttt{Symptom 18} nach \texttt{Symptom 15} zusammengefasst wird, da es sich nach der Änderung nicht mehr um die gleiche Pfeilspitze handelt.
+Damit folgende Aktion möglich ist, muss vorerst in den Ersteller-Modus gewechselt werden um abschwächende Relationen zu erlauben. Anschließend wählt der Bearbeiter die Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} aus und ändert die Relationsart zu abschwächend. Hierbei wird einerseits erwartet, dass der Relationstyp der Relation geändert wird und andererseits, dass die Pfeilspitzen der Relation nicht mehr mit der Relation von \texttt{Symptom 18} nach \texttt{Symptom 15} zusammengefasst wird, da es sich nach der Änderung nicht mehr um die gleiche Pfeilspitze handelt.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 17:04 \\
 Test negativ. \\
@@ -905,7 +936,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Hinzufügen von Ankerpunkten}{\dotfill\ok\ok\leer}
-Vorerst betätigt der Bearbeiter den Button zum Setzen von Ankerpunkten. Anschließend bewegt er von der Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} die Stelle, an dem die Kante zu \texttt{Symptom 4} verläuft, indem er den Rechtsklick (gedrückt halten und bewegen) nahe des genannten Symptoms macht. Selbiges macht er nahe \texttt{Symptom 15} um dort selbiges zu bewirken. Bei Aktionen wird erwartet, dass jeweils ein Ankerpunkt erstellt wird.
+Vorerst betätigt der Bearbeiter den Button zum Einblenden/Ausblenden von Ankerpunkten. Anschließend bewegt er von der Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} die Stelle, an dem die Kante zu \texttt{Symptom 4} verläuft, indem er den Rechtsklick (gedrückt halten und bewegen) nahe des genannten Symptoms macht. Selbiges macht er nahe \texttt{Symptom 15} um dort selbiges zu bewirken. Bei den Aktionen wird erwartet, dass jeweils ein Ankerpunkt erstellt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 18:46 \\
 Test negativ.\\
@@ -918,7 +949,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Ankerpunkte ausblenden}{\dotfill\ok\ok\leer}
-Der Bearbeiter betätigt erneut den Button zum Setzen von Ankerpunkten. Hierbei wird erwartet, dass die vorerst angezeigten Ankerpunkte ausgeblendet werden. 
+Der Bearbeiter betätigt erneut den Button zum Einblenden/Ausblenden von Ankerpunkten. Hierbei wird erwartet, dass die vorerst angezeigten Ankerpunkte ausgeblendet werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 18:53 \\
 Test negativ.\\
@@ -931,7 +962,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Ankerpunkte einblenden}{\dotfill\ok\ok\leer}
-Der Bearbeiter betätigt erneut den Button zum Setzen von Ankerpunkten. Hierbei wird erwartet, dass die vorerst ausgeblendeten Ankerpunkte eingeblendet werden. 
+Der Bearbeiter betätigt erneut den Button zum Einblenden/Ausblenden von Ankerpunkten. Hierbei wird erwartet, dass die vorerst ausgeblendeten Ankerpunkte eingeblendet werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 19:24 \\
 Test negativ.\\
@@ -957,7 +988,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Rückgängig machen des Entfernens mehrerer Relationen mit Ankerpunkten}{\dotfill\ok\ok\leer}
-Der Bearbeiter betätigt den Button zum rückgängig machen der letzten Aktion. Hierbei wird erwartet, dass die vorher entfernten Relationen inklusive ihrer Ankerpunkte wieder hinzugefügt werden.
+Der Bearbeiter betätigt den Button zum Rückgängigmachen der letzten Aktion. Hierbei wird erwartet, dass die vorher entfernten Relationen inklusive ihrer Ankerpunkte wieder hinzugefügt werden.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 24.02.2019 um 19:35 \\
 Test negativ.\\
@@ -1001,15 +1032,15 @@ Nach dem Wechsel in den Analyse-Modus:
 \includegraphics[height=10cm]{3_45nachher.png}
 \end{center}
 \subsubsection{Fazit}
-Nach dem ersten Test wurde ein Wahrheitswert in \texttt{Values} hinzugefügt, der dazu führt, dass auch der betroffene Ankerpunkt nicht mehr angezeigt wird, wenn man den Modus wechselt. Beim zweiten Test arbeitet die Software wie wie erwartet.
+Nach dem ersten Test wurde ein Wahrheitswert in \texttt{Values} hinzugefügt, der dazu führt, dass auch der betroffene Ankerpunkt nicht mehr angezeigt wird, wenn man den Modus wechselt. Beim zweiten Test arbeitet die Software wie erwartet.
 
 \subsectiont{Änderung der Beschriftung eines Symptoms}{\dotfill\ok\ok\leer}
-Vorerst wird wieder in den Bearbeiter-Modus gewechselt. Mithilfe eines Rechtsklicks auf \texttt{Symptom 15} und drücken auf \texttt{Titel} öffnet der Bearbeiter ein Fenster zur Eingabe der Beschriftung des Symptoms in Deutsch und Englisch. Dann gibt er in dem Feld für die deutsche Beschriftung \texttt{Individualisierung}  und in dem für die englische Beschriftung \texttt{Individualization} ein und drückt auf \texttt{speichern}. Hierbei wird erwartet, dass in dem Symptom nun \texttt{Individualisierung} steht. 
+Vorerst wird wieder in den Bearbeiter-Modus gewechselt. Mithilfe eines Rechtsklicks auf \texttt{Symptom 15} und drücken auf \texttt{Titel} öffnet der Bearbeiter ein Fenster zur Eingabe der Beschriftung des Symptoms in Deutsch und Englisch. Dann gibt er in dem Feld für die deutsche Beschriftung \texttt{Individualisierung}  und in dem für die englische Beschriftung \texttt{Individualization} ein und drückt auf \texttt{Speichern}. Hierbei wird erwartet, dass in dem Symptom nun \texttt{Individualisierung} steht. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 14:59 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:01 \\
-Test negativ.\\
+Test negativ.\\\\
 Nach dem Klick auf Titel: 
 \begin{center}
 \includegraphics[height=10cm]{3_44oeffnen.PNG}
@@ -1018,7 +1049,7 @@ Nach der Eingabe der Beschriftungen:
 \begin{center}
 \includegraphics[height=10cm]{3_44eingabe.PNG}
 \end{center}
-Nach den Drücken auf speichern:
+Nach den Drücken auf \texttt{Speichern}:
 \begin{center}
 \includegraphics[height=10cm]{3_44speichern.PNG}
 \end{center}
@@ -1026,7 +1057,7 @@ Nach den Drücken auf speichern:
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Ändern der Sprache des Graphen}{\dotfill\ok\ok\leer}
-Der Bearbeiter geht auf \texttt{Optionen}, unter \texttt{erweiterte Spracheinstellungen} \texttt{Sprache des Graphen} und dann auf \texttt{Englisch}. Hierbei wird erwartet, dass die Sprache aller Graph-Elemente auf Englisch gestellt wird.
+Der Bearbeiter geht auf \texttt{Optionen}, unter \texttt{erweiterte Spracheinstellungen}, \texttt{Sprache des Graphen} und dann auf \texttt{Englisch}. Hierbei wird erwartet, dass die Sprache aller Graph-Elemente auf Englisch gestellt werden.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 15:08 \\
 Test negativ. \\
@@ -1054,7 +1085,7 @@ Vorerst wird die Sprache des Graphen wieder auf Deutsch gestellt. Anschließend 
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 15:20 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:05 \\
-Test negativ.\\
+Test negativ.\\\\
 Nach den Klick auf Titel: 
 \begin{center}
 \includegraphics[height=10cm]{3_46vorher.PNG}
@@ -1067,7 +1098,7 @@ Nach Eingabe der deutschen Beschriftung:
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Rückgängig machen der Änderung der \\Beschriftung von Symptomen}{\dotfill\XBox\ok\leer}
-Vorerst wird die Beschriftung von \texttt{Individualisierung} mit Rechtsklick und Titel zu \texttt{Keine Individualisierung} geändert. Anschließend betätigt der Bearbeiter den Button zum rückgängig machen der letzten Aktion. Hierbei wird erwartet, dass die Beschriftung des Symptoms wieder zu \texttt{Individualisierung} geändert wird. Nach dem Test wird die Beschriftung für die folgenden Tests wieder zu \texttt{Keine Individualisierung} geändert.
+Vorerst wird die Beschriftung von \texttt{Individualisierung} mit Rechtsklick und Titel zu \texttt{Keine Individualisierung} geändert. Anschließend betätigt der Bearbeiter den Button zum Rückgängigmachen der letzten Aktion. Hierbei wird erwartet, dass die Beschriftung des Symptoms wieder zu \texttt{Individualisierung} geändert wird. Nach dem Test wird die Beschriftung für die folgenden Tests wieder zu \texttt{Keine Individualisierung} geändert.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 15:44 \\
 Test positiv, weil die Aktion nicht rückgängig gemacht wurde. \\
@@ -1075,27 +1106,27 @@ Nach Änderung der Beschriftung:
 \begin{center}
 \includegraphics[height=10cm]{3_48.PNG}
 \end{center}
-Nach betätigen des Buttons zum Rückgängig machen ist der Graph unverändert. \\
+Nach Betätigen des Buttons zum Rückgängigmachen ist der Graph unverändert. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:06 \\
 Test negativ.\\\\
 Nach Änderung der Beschriftung: 
 \begin{center}
 \includegraphics[height=8cm]{3_50vorher.PNG}
 \end{center}
-Nach betätigen des Buttons zum rückgängig machen der letzten Aktion: 
+Nach Betätigen des Buttons zum Rückgängigmachen der letzten Aktion: 
 \begin{center}
 \includegraphics[height=8cm]{3_50nachher.PNG}
 \end{center}
 \subsubsection{Fazit}
-Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Action korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass nun die Software wie erwartet arbeitet.
+Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Aktion korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass nun die Software wie erwartet arbeitet.
 
 \subsectiont{Änderung der Beschriftung einer Sphäre}{\dotfill\ok\ok\leer}
-Mithilfe eines Rechtsklicks auf \texttt{Sphäre 1} und drücken auf \texttt{Titel} öffnet der Bearbeiter ein Fenster zur Eingabe der Beschriftung der Sphäre in Deutsch und Englisch. Dann gibt er in dem Feld für die deutsche Beschriftung \texttt{Gesellschaft}  und in dem für die englische Beschriftung \texttt{Society} ein und drückt auf \texttt{speichern}. Hierbei wird erwartet, dass in der Sphäre nun \texttt{Gesellschaft} steht. 
+Mithilfe eines Rechtsklicks auf \texttt{Sphäre 1} und drücken auf \texttt{Titel} öffnet der Bearbeiter ein Fenster zur Eingabe der Beschriftung der Sphäre in Deutsch und Englisch. Dann gibt er in dem Feld für die deutsche Beschriftung \texttt{Gesellschaft}  und in dem für die englische Beschriftung \texttt{Society} ein und drückt auf \texttt{Speichern}. Hierbei wird erwartet, dass in der Sphäre nun \texttt{Gesellschaft} steht. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 16:16 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:09 \\
-Test negativ.\\
+Test negativ.\\\\
 Nach dem Klick auf Titel: 
 \begin{center}
 \includegraphics[height=10cm]{3_49oeffnen.PNG}
@@ -1104,7 +1135,7 @@ Nach der Eingabe der Beschriftungen:
 \begin{center}
 \includegraphics[height=10cm]{3_49eingabe.PNG}
 \end{center}
-Nach den Drücken auf speichern:
+Nach den Drücken auf \texttt{Speichern}:
 \begin{center}
 \includegraphics[height=10cm]{3_49speichern.PNG}
 \end{center}
@@ -1117,7 +1148,7 @@ Der Bearbeiter macht einen Rechtsklick auf die Sphäre \texttt{Gesellschaft} und
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 16:25 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:10 \\
-Test negativ.\\
+Test negativ.\\\\
 Nach Eingabe der neuen Beschriftung: 
 \begin{center}
 \includegraphics[height=10cm]{3_50.PNG}
@@ -1131,7 +1162,7 @@ Der Bearbeiter wählt die Sphäre \texttt{Gesellschaft} aus und betätigt den Bu
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 16:31 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:10 \\
-Test negativ.\\
+Test negativ.\\\\
 Die Graphen nach dreimaligem und viermaligem Drücken des Buttons sind identisch. \\
 Nachdem der Button zum Verkleinern vier mal betätigt wurde: 
 \begin{center}
@@ -1185,7 +1216,7 @@ Der Bearbeiter wählt mit Umschalten gleichzeitig \texttt{Symptom 4} und die Rel
 1.Test: Getestet von: Anthony Mendil. Datum: 25.02.2019 um 17:28 \\
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:18 \\
-Test negativ.\\
+Test negativ.\\\\
 Nach dem Ausblenden der Elemente:
 \begin{center}
 \includegraphics[height=10cm]{3_55.PNG}
@@ -1222,7 +1253,7 @@ Test negativ.
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. \\
-
+\newpage
 Für die Tests für den Verlauf und die Übersicht erstellen wir vorerst unter \texttt{Datei} und \texttt{Neue Datei} eine neue Datei. Anschließend führen wir folgende Aktionen aus: (Positionen und Verschiebungen, sowie Farben können bei jedem Test variieren)\\
 \begin{itemize}  
 \item Sphäre hinzufügen
@@ -1239,7 +1270,7 @@ Für die Tests für den Verlauf und die Übersicht erstellen wir vorerst unter \
 \item Ändern der deutschen Beschriftung der Sphäre zu \texttt{Gesellschaft} und der englischen zu \texttt{Society}
 \item Ändern der Farbe der Sphäre zu \texttt{Kornblumenblau}
 \item die Sphäre einmal vergrößern 
-\item Ändern der Umrandungsfarbe von \texttt{Symptom 2} zu \texttt{Goldrute} 
+\item Ändern der Randfarbe von \texttt{Symptom 2} zu \texttt{Goldrute} 
 \item Ändern der Füllfarbe von \texttt{Symptom 2} zu \texttt{Schiefergrau} 
 \item Ändern der Form von \texttt{Symptom 2} zu rechteckig
 \item \texttt{Symptom 2} einmal vergrößern
@@ -1310,7 +1341,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Graph ändern und Verlauf neu laden}{\dotfill\ok\ok\leer}
-Der Bearbeiter erstellt eine Sphäre und fügt ihr ein Symptom hinzu. Anschließend betätigt er den Button zum neu laden des Verlaufs. Hierbei wird erwartet, dass nun drei Einträge bezüglich des Hinzufügens von Symptomen im Verlauf stehen.
+Der Bearbeiter erstellt eine Sphäre und fügt ihr ein Symptom hinzu. Anschließend betätigt er den Button zum Neuladen des Verlaufs. Hierbei wird erwartet, dass nun drei Einträge bezüglich des Hinzufügens von Symptomen im Verlauf stehen.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 27.02.2019 um 23:36 \\
 Test negativ. \\
@@ -1322,7 +1353,7 @@ Test negativ.
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.\\
 
-Nun betätigen wir den Button zum rückgängig machen der letzten Aktion drei mal. Dadurch sollte das vorherige Löschend der Elemente wieder rückgängig gemacht werden. Auf diesem Graph soll im folgenden die Übersicht getestet werden.
+Nun betätigen wir den Button zum Rückgängigmachen der letzten Aktion drei mal. Dadurch sollte das vorherige Löschen der Elemente wieder rückgängig gemacht werden. Auf diesem Graph soll im folgenden die Übersicht getestet werden.
 \begin{center}
 \includegraphics[height=5cm]{graphFuerUebersicht.PNG}
 \end{center}
@@ -1385,7 +1416,7 @@ Der Bearbeiter klickt auf das Feld für die Auswahl des Zooms und drückt auf \t
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 11:10 \\
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:46 \\
-Test negativ.\\
+Test negativ.\\\\
 Vor dem Klicken:
 \begin{center}
 \includegraphics[height=17cm]{zoom75vorher.PNG}
@@ -1422,7 +1453,7 @@ Test negativ.
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
-
+\newpage
 \subsectiont{Ändern der Relationsart einer Relation über die Übersicht}{\dotfill\ok\ok\leer}
 Vorerst wird oben in der Kopfleiste unter \texttt{Relation} verstärkende Relationen eingestellt. Anschließend macht der Bearbeiter einen Rechtsklick in der Übersicht auf die Relation von \texttt{Symptom 1} nach \texttt{Dinkelberry} und drückt auf Pfeilspitze. Hierbei wird erwartet, dass sich die Relationsart der Relation entsprechend ändert.
 \subsubsection{Notizen}
@@ -1440,14 +1471,14 @@ Nach dem Klicken auf \texttt{Pfeilspitze}:
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
-
+\newpage
 \subsectiont{Änderung der Füllfarbe eines Symptoms über die Übersicht}{\dotfill\ok\ok\leer}
 Vorerst wird oben in de Kopfleiste unter \texttt{Symptom} die Füllfarbe zu einen orange-rot gewechselt. Anschließend macht der Bearbeiter einen Rechtsklick in der Übersicht auf das Symptom \texttt{Symptom 1} und drückt auf \texttt{Füllfarbe}. Hierbei wird erwartet, dass sich die Füllfarbe des Symptoms entsprechend ändert.  
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 12:05 \\
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:56 \\
-Test negativ.\\
+Test negativ.\\\\
 Vor dem Klicken auf \texttt{Füllfarbe}:
 \begin{center}
 \includegraphics[height=16cm]{farbeSymptomUebersichtVorher.PNG}
@@ -1465,7 +1496,7 @@ Der Bearbeiter macht einen Rechtsklick in der Übersicht auf \texttt{Gesellschaf
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 12:18 \\
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:57 \\
-Test negativ.\\
+Test negativ.\\\\
 Vor dem Klicken auf \texttt{Entfernen}:
 \begin{center}
 \includegraphics[height=16cm]{sphareMitRechtsklickLoeschenVorher.PNG}
@@ -1496,7 +1527,7 @@ wobei der Pfad ausschließlich aus ausgehenden Kanten besteht.\\\\
 \texttt{Divergente Verzweigung}: Knoten, aus dem mindestens zwei Kanten wegführen.\\\\
 \texttt{Zyklus(Kreislauf)}: Geschlossene Kette von Kanten, die alle in die gleiche Richtung laufen, wobei jeder Knoten im Zyklus jeden anderen Knoten im Zyklus über die Kette erreichen kann. Der kleinste Kreislauf ist eine direkte Rückkopplung.\\\\
 
-\subsectiont{Korrektes Berechnen und Anzeigen des Graphmaß, des Vernetzungsindex und des Strukurindex}{\dotfill\ok\ok\leer}
+\subsectiont{Korrektes Berechnen und Anzeigen des Umfangs, des Vernetzungsindex und des Strukurindex}{\dotfill\ok\ok\leer}
 Der Bearbeiter muss nichts tun. Es wird erwartet, das links in der Kopfleiste die korrekten Werte angezeigt werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 12:53 \\
@@ -1660,7 +1691,7 @@ Anschließend sollen noch Vorlage-Regeln für den Graphen eingestellt werden. Di
 \newpage
 
 \subsectiont{Vorlage exportieren}{\dotfill\ok\ok\leer}
-Der Tester geht auf Datei, Exportieren als und Vorlage exportieren und wählt dort ein Verzeichnis aus. Hierbei wird erwartet, dass die Vorlage in dem entsprechenden Verzeichnis gespeichert wird.
+Der Tester geht auf \texttt{Datei}, \texttt{Exportieren als} und \texttt{Vorlage exportieren} und wählt dort ein Verzeichnis aus. Hierbei wird erwartet, dass die Vorlage in dem entsprechenden Verzeichnis gespeichert wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 19:43 \\
 Test negativ.\\
@@ -1670,7 +1701,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Vorlage importieren}{\dotfill\ok\ok\leer}
-Der Tester drückt auf neue Datei und bestätigt die Abfrage. Anschließend geht er auf Datei und Vorlage importieren und wählt dort im entsprechenden Verzeichnis die vor kurzen gespeicherte Vorlage aus. Hierbei wird erwartet, dass der Graph inklusive der Vorlage-Regeln vollständig und korrekt geladen wird. 
+Der Tester drückt auf \texttt{neue Datei} und bestätigt die Abfrage. Anschließend geht er auf \texttt{Datei} und \texttt{Vorlage importieren} und wählt dort im entsprechenden Verzeichnis die vor kurzen gespeicherte Vorlage aus. Hierbei wird erwartet, dass der Graph inklusive der Vorlage-Regeln vollständig und korrekt geladen wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 19:56 \\
 Test negativ.\\
@@ -1680,7 +1711,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{GXL exportieren}{\dotfill\ok\ok\leer}
-Der Tester geht auf Datei, Exportieren als und GXL und wählt dort ein Verzeichnis aus. Hierbei wird erwartet, dass die GXL in dem entsprechenden Verzeichnis gespeichert wird.
+Der Tester geht auf \texttt{Datei}, \texttt{Exportieren als} und \texttt{GXL} und wählt dort ein Verzeichnis aus. Hierbei wird erwartet, dass die GXL in dem entsprechenden Verzeichnis gespeichert wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 20:32 \\
 Test negativ.\\
@@ -1690,7 +1721,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{GXL importieren}{\dotfill\ok\ok\leer}
-Der Tester geht auf Datei und Vorlage importieren. Hierbei wird erwartet, dass der Graph vollständig und korrekt geladen wird. Ebenso müssten die Vorlage-Regeln auf Standartwerte zurückgesetzt wurden sein. 
+Der Tester geht auf \texttt{Datei} und \texttt{Vorlage importieren}. Hierbei wird erwartet, dass der Graph vollständig und korrekt geladen wird. Ebenso müssten die Vorlage-Regeln auf Standartwerte zurückgesetzt wurden sein. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 20:41 \\
 Test negativ.\\
@@ -1700,7 +1731,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Exportieren als PDF}{\dotfill\ok\ok\leer}
-Der Tester geht auf Datei, Exportieren als und PDF und wählt dort ein Verzeichnis aus. Hierbei wird erwartet, dass eine PDF des Graphen in dem entsprechenden Verzeichnis gespeichert wird. 
+Der Tester geht auf \texttt{Datei}, \texttt{Exportieren als} und \texttt{PDF} und wählt dort ein Verzeichnis aus. Hierbei wird erwartet, dass eine PDF des Graphen in dem entsprechenden Verzeichnis gespeichert wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 20:56 \\
 Test negativ.\\
@@ -1710,7 +1741,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Drucken}{\dotfill\ok\ok\leer}
-Der Tester geht auf Datei und Drucken und wählt dort einen Drucker aus. Hierbei wird erwartet, dass der Graph von dem entsprechenden Drucker gedruckt wird. 
+Der Tester geht auf \texttt{Datei} und \texttt{Drucken} und wählt dort einen Drucker aus. Hierbei wird erwartet, dass der Graph von dem entsprechenden Drucker gedruckt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 21:02 \\
 Test negativ.\\
@@ -1720,7 +1751,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Sprache der Benutzeroberfläche ändern}{\dotfill\ok\ok\leer}
-Der Teste geht auf Optionen,erweiterte Spracheinstellungen, Sprache des Benutzeroberfläche und wählt Englisch aus. Hierbei wird erwartet, dass die Sprache der Benutzeroberfläche auf Englisch gestellt wird, die des Graphen jedoch Deutsch bleibt.
+Der Tester geht auf \texttt{Optionen},\texttt{erweiterte Spracheinstellungen}, \texttt{Sprache der Benutzeroberfläche} und wählt \texttt{Englisch} aus. Hierbei wird erwartet, dass die Sprache der Benutzeroberfläche auf Englisch gestellt wird, die des Graphen jedoch Deutsch bleibt.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 21:27 \\
 Test negativ.\\
@@ -1730,7 +1761,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Sprache des Graphen und der Benutzeroberfläche ändern}{\dotfill\ok\ok\leer}
-Der Teste geht auf Optionen, Sprache und wählt Englisch aus. Hierbei wird erwartet, dass anschließend die Sprache der Benutzeroberfläche und der des Graphen auf Englisch gestellt sind.
+Der Tester geht auf \texttt{Optionen}, \texttt{Sprache} und wählt \texttt{Englisch} aus. Hierbei wird erwartet, dass anschließend die Sprache der Benutzeroberfläche und der des Graphen auf Englisch gestellt sind.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 21:45 \\
 Test negativ.\\
@@ -1740,7 +1771,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Anzeigen des Benutzerhandbuchs}{\dotfill\ok\ok\leer}
-Der Tester geht auf Hilfe und Dokumentation. Hierbei wird erwartet, dass das Benutzerhandbuch angezeigt wird. 
+Der Tester geht auf \texttt{Hilfe} und \texttt{Dokumentation}. Hierbei wird erwartet, dass das Benutzerhandbuch angezeigt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum:  05.03.2019 um 18:16\\
 Test negativ.\\
@@ -1754,7 +1785,7 @@ Nach dem Klicken auf Dokumentation im Menü Hilfe.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Über uns}{\dotfill\ok\ok\leer}
-Der Tester geht auf Hilfe und Über uns. Hierbei wird erwartet, dass eine Beschreibung über unser Team angezeigt wird.
+Der Tester geht auf \texttt{Hilfe} und \texttt{Über uns}. Hierbei wird erwartet, dass eine Beschreibung über unser Team angezeigt wird.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum:  05.03.2019 um 18:18\\
 Test negativ.\\
@@ -1771,11 +1802,11 @@ Die Software arbeitet wie erwartet.
 
 \subsection{Analysis Test}
 Im folgenden sieht man automatisierte Tests für die Analyse Funktionen.\\
-%\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{PIQuizDuell/PIQuizDuell/PIQuizDuell.java}
+\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{../softwareprojekt2/src/test/java/analysis/AnalysisTest.java}
 \subsection{GXLio Test}
 Im folgenden sieht man automatisierte Tests für den GXL Import und Export.\\
-%\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{PIQuizDuell/PIQuizDuell/PIQuizDuell.java}
+\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{../softwareprojekt2/src/test/java/io/GXLioTest.java}
 \subsection{OOFio Test}
 Im folgenden sieht man automatisierte Tests für den OOF Import und Export.\\
-%\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{PIQuizDuell/PIQuizDuell/PIQuizDuell.java}
+\lstinputlisting [firstnumber=1, firstline=1, lastline=650000]{../softwareprojekt2/src/test/java/io/OOFioTest.java}
 \end{document}
