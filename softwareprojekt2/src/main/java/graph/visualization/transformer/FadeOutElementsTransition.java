@@ -1,6 +1,5 @@
 package graph.visualization.transformer;
 
-import graph.graph.FadeType;
 import graph.graph.Syndrom;
 import gui.Values;
 import javafx.animation.Interpolator;

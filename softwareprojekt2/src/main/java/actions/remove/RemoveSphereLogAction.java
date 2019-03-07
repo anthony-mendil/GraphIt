@@ -53,7 +53,7 @@ public class RemoveSphereLogAction extends LogAction {
                         return;
                     }
                     AddRemoveVerticesParam addRemoveVerticesParam = new AddRemoveVerticesParam(new HashMap<>(), new HashMap<>());
-                    if(sp.getVertices().size() > 0) {
+                    if(!sp.getVertices().isEmpty()) {
                         pickedVertexState.clear();
                         setVerticesPicked(sp, vertices, pickedVertexState);
                         RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
