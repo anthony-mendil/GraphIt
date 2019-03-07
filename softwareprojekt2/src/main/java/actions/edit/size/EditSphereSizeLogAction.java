@@ -57,7 +57,9 @@ public class EditSphereSizeLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if (parameters == null) {
             for (Sphere sp : pickedState.getPicked()) {
-                handleSphere(sp, graph);
+                if(!handleSphere(sp, graph)){
+                    return;
+                }
             }
         } else {
             Pair<Double, Double> newSize = ((EditSphereSizeParam) parameters).getNewSize();
@@ -87,25 +89,32 @@ public class EditSphereSizeLogAction extends LogAction {
      * @param sp the sphere to change the size
      * @param graph the current syndromGraph
      */
-    private void handleSphere(Sphere sp, SyndromGraph<Vertex, Edge> graph){
+    private boolean handleSphere(Sphere sp, SyndromGraph<Vertex, Edge> graph){
         if (!sp.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
             if (sizeChange == SizeChange.ENLARGE) {
-                doEnlarge(sp, graph);
+                if(!doEnlarge(sp, graph)){
+                    return false;
+                }
             } else {
-                doShrink(sp);
+                if(!doShrink(sp)){
+                    return false;
+                }
+
             }
         } else {
             helper.setActionText(loadLanguage.loadLanguagesKey("EDIT_SPHERE_SIZE_ALERT"), true, false);
             actionHistory.removeLastEntry();
+            return false;
         }
+        return true;
     }
 
-    private void doShrink(Sphere sp){
+    private boolean doShrink(Sphere sp){
         Shape sphereShape = sphereShapeTransformer.transform(sp);
         for (Vertex v : sp.getVertices()) {
             if (!sphereShape.contains(new Point2D.Double(v.getCoordinates().getX() + 10, v.getCoordinates().getY() + 10))) {
                 actionHistory.removeLastEntry();
-                return;
+                return false;
             }
         }
         if (sp.getHeight() > 20 && sp.getWidth() > 20) {
@@ -117,10 +126,12 @@ public class EditSphereSizeLogAction extends LogAction {
 
         } else {
             actionHistory.removeLastEntry();
+            return false;
         }
+        return true;
     }
 
-    private void doEnlarge(Sphere sp, SyndromGraph<Vertex, Edge> graph){
+    private boolean doEnlarge(Sphere sp, SyndromGraph<Vertex, Edge> graph){
         double newHeight = sp.getHeight() + 10;
         double newWidth = sp.getWidth() + 10;
         double x = sp.getCoordinates().getX();
@@ -132,7 +143,7 @@ public class EditSphereSizeLogAction extends LogAction {
             Shape sphereShape = sphereShapeTransformer.transform(s);
             if (!s.equals(sp) && sphereShape.intersects(newShape)) {
                 actionHistory.removeLastEntry();
-                return;
+                return false;
             }
         }
 
@@ -141,6 +152,7 @@ public class EditSphereSizeLogAction extends LogAction {
         sp.setWidth(newWidth);
         Pair<Double, Double> newSize = new Pair<>(sp.getWidth(), sp.getHeight());
         createParameter(sp, oldSize, newSize);
+        return true;
     }
 
     /**

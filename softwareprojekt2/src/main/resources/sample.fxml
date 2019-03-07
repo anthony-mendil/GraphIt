@@ -42,7 +42,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" stylesheets="gui_style.css"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<BorderPane fx:id="root" prefHeight="960.0" prefWidth="1280" stylesheets="gui_style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="gui.Controller">
     <top>
         <VBox fx:id="topVb" prefHeight="120.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <MenuBar focusTraversable="false">
@@ -141,7 +141,7 @@
                             <KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                     </MenuItem>
-                    <MenuItem fx:id="about" mnemonicParsing="false" onAction="#showAboutUs" text="%aboutUs" >
+                    <MenuItem fx:id="about" mnemonicParsing="false" onAction="#showAboutUs" text="%aboutUs">
                         <accelerator>
                             <KeyCodeCombination alt="UP" code="F2" control="UP" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
@@ -1238,7 +1238,7 @@
                                     <content>
                                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
                                             <children>
-                                                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="125.0" prefWidth="260.0">
+                                                <GridPane fx:id="templateGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="125.0" prefWidth="260.0">
                                                     <columnConstraints>
                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="200.0" />
                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
@@ -1298,7 +1298,7 @@
                                                         <Insets bottom="10.0" top="10.0" />
                                                     </VBox.margin>
                                                 </Separator>
-                                                <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="260.0">
+                                                <VBox fx:id="templateVbox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="260.0">
                                                     <children>
                                                         <JFXCheckBox fx:id="reinforcedBox" mnemonicParsing="false" selected="true" text="%templateReinforced">
                                                             <VBox.margin>
@@ -1345,7 +1345,7 @@
                                                             <content>
                                                                 <TableView fx:id="symptomTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="260.0">
                                                                     <columns>
-                                                                        <TableColumn fx:id="symptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="%templateName" />
+                                                                        <TableColumn fx:id="symptomCol" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="%templateName" />
                                                                         <TableColumn fx:id="titleSymptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="%templateTitle" />
                                                                         <TableColumn fx:id="positionSymptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="%templatePosition" />
                                                                         <TableColumn fx:id="styleSymptomCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="%templateStyle" />
@@ -1357,9 +1357,9 @@
                                                             <content>
                                                                 <TableView fx:id="edgeTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="260.0">
                                                                     <columns>
-                                                                        <TableColumn fx:id="edgeCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="%templateName" />
+                                                                        <TableColumn fx:id="edgeCol" maxWidth="1.7976931348623157E308" prefWidth="220.0" text="%templateName" />
                                                                         <TableColumn fx:id="styleEdgeCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="%templateStyle" />
-                                                                        <TableColumn fx:id="edgetypeEdgeCol" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="%templateEdgeType" />
+                                                                        <TableColumn fx:id="edgetypeEdgeCol" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="%templateEdgeType" />
                                                                     </columns>
                                                                 </TableView>
                                                             </content>
