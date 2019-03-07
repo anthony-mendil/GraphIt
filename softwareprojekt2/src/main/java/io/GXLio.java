@@ -505,7 +505,7 @@ public class GXLio {
         if (withTemplate) {
             addRulesToSphere(s, sphere);
         }
-        sphere.setAttr("IDs of nodes containt in this shpere: ", new GXLString(nodeIDs.toString()));
+        sphere.setAttr("IDs of nodes containt in this sphere: ", new GXLString(nodeIDs.toString()));
         return sphere;
     }
 
