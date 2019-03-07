@@ -373,7 +373,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test(expected = GXLValidationException.class)
-    public void testExceptionAddElementToGXLGraphThatAlreadyContainsThisID() throws IOException, SAXException {
+    public void testDublicateIDInGXLGraph() throws IOException, SAXException {
         prepareSyndrom(true);
         GXLElement dublicateIDElement = new GXLNode("1");
         doc.getElement("syndrom").add(dublicateIDElement);
@@ -390,7 +390,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testNumberAttributesInTemplateWithTemplateOfGXLGraph() throws IOException, SAXException {
+    public void testNumberAttributesOfTemplate() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
 
         Assert.assertEquals(25, syndrom.getTemplate().getMaxSpheres());
@@ -406,7 +406,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testAttributeNumberOfGXLTemplate() throws IOException, SAXException {
+    public void testNumberOfAttributesOfGXLTemplate() throws IOException, SAXException {
         prepareSyndrom(true);
         GXLDocument document = new GXLDocument(new File(nameTestGraph));
         GXLGraph templateGraph = (GXLGraph) document.getElement("template");
@@ -421,7 +421,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testBooleanAttributesInTemplateWithTemplateOfGXLGraph() throws IOException, SAXException {
+    public void testBooleanAttributesOfTemplate() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         Assert.assertEquals(true, syndrom.getTemplate().isReinforcedEdgesAllowed());
         Assert.assertEquals(false, syndrom.getTemplate().isExtenuatingEdgesAllowed());
@@ -447,7 +447,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test(expected = NullPointerException.class)
-    public void testExceptionSearchForGXLTemplateAfterExportWithoutTemplateInTemplateWithTemplate() throws IOException, SAXException {
+    public void testUsingElementThatIsNotExported() throws IOException, SAXException {
         prepareSyndrom(false);
         GXLDocument gxlDocument = new GXLDocument(new File(nameTestGraph));
         GXLGraph templateGraph = (GXLGraph) gxlDocument.getElement("template");
@@ -463,7 +463,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesInSpheresOfGraph() throws IOException, SAXException {
+    public void testVerticesInSpheres() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -495,7 +495,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testEdgesConnectingRightVerticesOfGraph() throws IOException, SAXException {
+    public void testEdgesConnectingRightVertices() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
@@ -529,7 +529,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresCoordinatesOfGraph() throws IOException, SAXException {
+    public void testSpheresCoordinates() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -547,7 +547,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesCoordinatesOfGraph() throws IOException, SAXException {
+    public void testVerticesCoordinates() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -572,7 +572,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresAnnotaionOfGraph() throws IOException, SAXException {
+    public void testSpheresAnnotaion() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -595,7 +595,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesAnnotaionOfGraph() throws IOException, SAXException {
+    public void testVerticesAnnotaion() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -640,7 +640,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresWidthOfGraph() throws IOException, SAXException {
+    public void testSpheresWidth() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -658,7 +658,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresHeightOfGraph() throws IOException, SAXException {
+    public void testSpheresHeight() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -676,7 +676,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesSizeOfGraph() throws IOException, SAXException {
+    public void testVerticesSize() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -701,7 +701,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresFillColorOfGraph() throws IOException, SAXException {
+    public void testSpheresFillColor() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -719,7 +719,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesFillColorOfGraph() throws IOException, SAXException {
+    public void testVerticesFillColor() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -743,7 +743,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesDrawColorOfGraph() throws IOException, SAXException {
+    public void testVerticesDrawColor() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -766,7 +766,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testEdgesColorOfGraph() throws IOException, SAXException {
+    public void testEdgesColor() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
@@ -790,7 +790,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesShapeOfGraph() throws IOException, SAXException {
+    public void testVerticesShape() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -816,7 +816,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresFontOfGraph() throws IOException, SAXException {
+    public void testSpheresFont() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -834,7 +834,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresFontSizeOfGraph() throws IOException, SAXException {
+    public void testSpheresFontSize() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -852,7 +852,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesFontOfGraph() throws IOException, SAXException {
+    public void testVerticesFont() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -875,7 +875,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesFontSizeOfGraph() throws IOException, SAXException {
+    public void testVerticesFontSize() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -900,7 +900,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresLockedAnnotationOfGraph() throws IOException, SAXException {
+    public void testSpheresLockedAnnotation() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -918,7 +918,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresLockedVerticesOfGraph() throws IOException, SAXException {
+    public void testSpheresLockedVertices() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -937,7 +937,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresLockedPositionOfGraph() throws IOException, SAXException {
+    public void testSpheresLockedPosition() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -955,7 +955,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresLockedStyleOfGraph() throws IOException, SAXException {
+    public void testSpheresLockedStyle() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -973,7 +973,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testSpheresLockedMaxAmountVerticesOfGraph() throws IOException, SAXException {
+    public void testSpheresLockedMaxAmountVertices() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
@@ -994,7 +994,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesLockedStyleOfGraph() throws IOException, SAXException {
+    public void testVerticesLockedStyle() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -1017,7 +1017,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesLockedAnnotationOfGraph() throws IOException, SAXException {
+    public void testVerticesLockedAnnotation() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -1040,7 +1040,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testVerticesLockedPositionOfGraph() throws IOException, SAXException {
+    public void testVerticesLockedPosition() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
@@ -1065,7 +1065,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testEdgesLockedStyleOfGraph() throws IOException, SAXException {
+    public void testEdgesLockedStyle() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
@@ -1087,7 +1087,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testEdgesLockedEdgeTypeOfGraph() throws IOException, SAXException {
+    public void testEdgesLockedEdgeType() throws IOException, SAXException {
         prepareSyndrom(true).importGXL(new File(nameTestGraph), true);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
@@ -1112,7 +1112,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testEdgesArrowTypeOfGraph() throws IOException, SAXException {
+    public void testEdgesArrowType() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
@@ -1134,7 +1134,7 @@ public class GXLioTest {
      * @throws SAXException if their occurs any problem parsing the document
      */
     @Test
-    public void testEdgesStrokeTypeOfGraph() throws IOException, SAXException {
+    public void testEdgesStrokeType() throws IOException, SAXException {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
@@ -1153,114 +1153,5 @@ public class GXLioTest {
         java.awt.Color color = new Color(11, 22, 33, 100);
         Assert.assertEquals("java.awt.Color[r=11,g=22,b=33,a=100]", gxlio.getPaintDescription(color));
     }
-/*
-    @Before
-    public void prepare() {
-        doc = new GXLDocument();
-        GXLGraph gxlGraph = new GXLGraph(syndromName);
-        GXLNode sphere0 = new GXLNode("0");
-        java.awt.Color fillPaint = new java.awt.Color(255, 0, 0, 255);
-        String paintDescription = getPaintDescription(fillPaint);
-        sphere0.setAttr("color", new GXLString(paintDescription));
-        GXLNode sphere1 = new GXLNode("1");
-        sphere1.setAttr("width", new GXLString("25.0"));
-        sphere1.setAttr("height", new GXLString("30.0"));
-        GXLNode sphere2 = new GXLNode("2");
 
-        Point2D coordinates = new java.awt.geom.Point2D.Double(250.0, 500.0);
-        GXLNode vertex0 = new GXLNode("3");
-        vertex0.setAttr("coordinates", new GXLString(coordinates.toString()));
-        GXLNode vertex1 = new GXLNode("4");
-        vertex1.setAttr("size", new GXLInt(15));
-        GXLNode vertex2 = new GXLNode("5");
-        GXLNode vertex3 = new GXLNode("6");
-        GXLNode vertex4 = new GXLNode("7");
-        GXLNode vertex5 = new GXLNode("8");
-        GXLEdge edge0 = new GXLEdge("2", "3");
-        GXLEdge edge1 = new GXLEdge("3", "5");
-        GXLEdge edge2 = new GXLEdge("6", "8");
-        GXLEdge edge3 = new GXLEdge("8", "6");
-        GXLEdge edge4 = new GXLEdge("2", "7");
-        GXLEdge edge5 = new GXLEdge("5", "4");
-        gxlGraph.add(sphere0);
-        gxlGraph.add(sphere1);
-        gxlGraph.add(sphere2);
-        gxlGraph.add(vertex0);
-        gxlGraph.add(vertex1);
-        gxlGraph.add(vertex2);
-        gxlGraph.add(vertex3);
-        gxlGraph.add(vertex4);
-        gxlGraph.add(vertex5);
-        gxlGraph.add(edge0);
-        gxlGraph.add(edge1);
-        gxlGraph.add(edge2);
-        gxlGraph.add(edge3);
-        gxlGraph.add(edge4);
-        gxlGraph.add(edge5);
-        doc.getDocumentElement().add(gxlGraph);
-        try {
-            doc.write(new File("GXLTest"));
-        } catch (IOException e) {
-            logger.error(e.toString());
-        }
-    }
-
-    @Test
-    public void testElementNumber() {
-        logger.info("Ich bin das GXLDokument: " + doc);
-        int numberOfGraphs = doc.getDocumentElement().getGraphCount();
-        Assert.assertEquals(1, numberOfGraphs);
-        int numberOfElementsInTheGraph = doc.getElement(syndromName).getChildCount();
-        Assert.assertEquals(15, numberOfElementsInTheGraph);
-    }
-
-    @Test
-    public void testColor() {
-        int numberOfGraphs = doc.getDocumentElement().getGraphCount();
-        Assert.assertEquals(1, numberOfGraphs);
-        GXLNode sphere0 = (GXLNode) doc.getElement("0");
-        java.awt.Color expectedColor = new Color(255, 0, 0, 255);
-        String sphereColorDescription = ((GXLString) sphere0.getAttr("color").getValue()).getValue();
-        String[] colorArray = gxlio.getNumberArrayFromString(sphereColorDescription);
-        java.awt.Color sphereColor = new Color(Integer.parseInt(colorArray[0]), Integer.parseInt(colorArray[1]),
-                Integer.parseInt(colorArray[2]), Integer.parseInt(colorArray[3]));
-        logger.info("Beschreibung der erwarteten Farbe: " + getPaintDescription(expectedColor));
-        logger.info("Beschreibung der Farbe der Sphäre: " + getPaintDescription(sphereColor));
-        Assert.assertEquals(expectedColor, sphereColor);
-    }
-
-
-    @Test
-    public void testCoordinates() {
-        GXLNode vertex0 = (GXLNode) doc.getElement("3");
-        String coordinatesDescription = ((GXLString) vertex0.getAttr("coordinates").getValue()).getValue();
-        String[] coordinatesArray = gxlio.getNumberArrayFromString(coordinatesDescription);
-        Assert.assertEquals(250.0, Double.parseDouble(coordinatesArray[0]), 0.0);
-        Assert.assertEquals(500.0, Double.parseDouble(coordinatesArray[1]), 0.0);
-    }
-
-    @Test
-    public void testSize() {
-        GXLNode sphere1 = (GXLNode) doc.getElement("1");
-        GXLNode vertex1 = (GXLNode) doc.getElement("4");
-        double sphereWidth = Double.parseDouble((((GXLString) sphere1.getAttr("width").getValue()).getValue()));
-        double sphereheight = Double.parseDouble((((GXLString) sphere1.getAttr("height").getValue()).getValue()));
-        Assert.assertEquals(25.0, sphereWidth, 0.0);
-        Assert.assertEquals(30.0, sphereheight, 0.0);
-        int vertexSize = (((GXLInt) vertex1.getAttr("size").getValue()).getIntValue());
-        Assert.assertEquals(15, vertexSize);
-    }
-
-
-    /**
-     * Forms a description of a color.
-     *
-     * @param color the color that need to be describted
-     * @return the description of the color as a String
-     *
-    private String getPaintDescription(Color color) {
-        return ("java.awt.Color[r=" + color.getRed() + ",g=" + color.getGreen()
-                + ",b=" + color.getBlue() + ",a=" + color.getAlpha() + "]");
-    }
-    */
 }
