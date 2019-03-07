@@ -45,7 +45,7 @@
 			<attr name="lockedMaxAmountVertices">
 				<string/>
 			</attr>
-			<attr name="IDs of nodes containt in this shpere: ">
+			<attr name="IDs of nodes containt in this sphere: ">
 				<string>2</string>
 			</attr>
 		</node>
@@ -89,7 +89,7 @@
 			<attr name="lockedMaxAmountVertices">
 				<string/>
 			</attr>
-			<attr name="IDs of nodes containt in this shpere: ">
+			<attr name="IDs of nodes containt in this sphere: ">
 				<string>3</string>
 			</attr>
 		</node>
