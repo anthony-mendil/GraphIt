@@ -316,6 +316,7 @@ Die Anwendung benötigt keinen vom Nutzer geführten Installationsvorgang, bevor
 \subsection{Starten des Programms}
 Zum Starten des Programms muss die ausführbare Datei \texttt{GraphIt.jar} ausgeführt werden. Normalweise wird die Ausführung durch einen Doppelklick auf die .jar gestartet. Falls dies nicht erfolgreich ist, bitte die Anwendung über die Konsole starten. Dadurch wird die Anwendung initialisiert und ggf. eine Datenbank im \texttt{home}-Verzeichnis des Nutzers angelegt. Zweiteres geschieht nur beim erstmaligen Start der Anwendung. \\
 Nach dem Startvorgang ist das Programm direkt einsatzbereit. \\
+Es ist immer nur eine Instanz des Programms auf einem Rechner lauffähig. Das Programm kann nicht mehrfach parallel auf einem Rechner laufen.
 
 \textbf{Anwendung über die Konsole starten}
 \begin{itemize}
@@ -516,7 +517,7 @@ Im \texttt{Ersteller Modus} kann der Benutzer einen Syndromansatz erstellen und 
 	\item \nameref{mode}	
 \end{itemize}
 \subsection{Bearbeiter Modus} \label{sec:editor}
-Im \texttt{Bearbeiter Modus} kann der Benutzer einen Syndromansatz erstellen und bearbeiten. Die Bearbeitung des Graphen folgt den hinterlegten Vorlageregeln. Alle Aktionen auf dem Graph werden geloggt, d.h. ein Verlaufsprotokoll wird erstellt, welches ebenfalls einsehbar und exportierbar/ importierbar ist. 
+Im \texttt{Bearbeiter Modus} kann der Benutzer einen Syndromansatz erstellen und bearbeiten. Die Bearbeitung des Graphen folgt den hinterlegten Vorlageregeln, welche über die Seitenleiste einsehbar, aber nicht bearbeitbar sind. Alle Aktionen auf dem Graph werden geloggt, d.h. ein Verlaufsprotokoll wird erstellt, welches ebenfalls einsehbar und exportierbar/ importierbar ist. 
 \subsubsection{Relevante Kapitel}
 \begin{itemize}
 	\item \nameref{pick}
@@ -744,6 +745,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\begin{itemize}
 				\item Es kann nur das Kontextmenü eines Graphelements zu jedem Zeitpunkt geöffnet werden.
 				\item Die Kontextmenüs von Sphären, Symptomen und Relationen unterscheiden sich in ihrem Funktionsumfang.
+				\item Der Funktionsumfang des Kontextmenüs kann durch die Vorlageregeln eingeschränkt sein.
 				\item \bbe{Das Kontextmenü lässt sich an zwei verschieden Stellen öffnen:} Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. In beiden Fallen lässt es sich durch einen Rechts-Klick auf das entsprechende Element öffnen. \\
 	 	\end{itemize}	 	
 		
@@ -1152,7 +1154,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{figure}
 		\hint
 		\begin{itemize}
-			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt. \\
+			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt. 
+			\item Sobald ein mündender Ankerpunkt manuell gesetzt wurde, wird die Position der Mündung der Kante nicht mehr automatisch berechnet, die Pfeilspitze der Kante nicht mehr mit anderen zusammengefasst und auch eine Überlappung von verschiedenen Kantenenden kann möglich sein. Wird der Ankerpunkt entfernt, treten wieder die gerade genannten Regeln in Kraft. \\
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1700,7 +1703,10 @@ In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analysefunktionen} \label{analyse}
-Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich ausschließlich auf das Syndrom. Mit Hilfe dieser Funktion soll die Struktur eines Syndrom ausgewertet/ untersucht werden können. Die Analysefunktionen stehen nur im Analysemodus zur Verfügung. Im Folgenden wird davon ausgegangen, dass sich der Benutzer im Analysemodus befindet.
+Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich ausschließlich auf das Syndrom. Mit Hilfe dieser Funktion soll die Struktur eines Syndrom ausgewertet/ untersucht werden können. Die Analysefunktionen stehen nur im Analysemodus zur Verfügung. Im Folgenden wird davon ausgegangen, dass sich der Benutzer im Analysemodus befindet.\\
+\\
+\textbf{Hinweise:} \\
+	\bbe{Aktionen die im folgenden beschrieben sind und sich die Analyse beziehen sind auch auf eine Auswahl von mehreren Graphelementen ausführbar!}
 
 \begin{figure}[ht!]
 	\centering
@@ -1873,7 +1879,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Verlauf der Nutzerinteraktionen} \label{logs}
-Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Die Nutzerinteraktionen können allerdings auch nach verschiedenen Aktionen gefiltert werden. Diese Funktionalität stellt der Analysemodus und Bearbeiter-Modus zur Verfügung. Deswegen wird im Folgenden davon ausgegangen, dass der Benutzer diesen in der Anwendung geöffnet hat.  \\
+Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Nutzerinteraktionen werden nur aufgezeichnet, wenn der Graph im Bearbeiter-Modus editiert wird. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Die Nutzerinteraktionen können allerdings auch nach verschiedenen Aktionen gefiltert werden. Diese Funktionalität stellt der Analysemodus und Bearbeiter-Modus zur Verfügung. Deswegen wird im Folgenden davon ausgegangen, dass der Benutzer diesen in der Anwendung geöffnet hat.  \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Anzeigen}
 	\condition 
@@ -2015,7 +2021,7 @@ Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage verwenden}
-Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndroms auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein.\\
+Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndroms auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein. Der Bearbeiter erhält Einblick in die Vorlageregeln über die Seitenleiste. Kann die hinterlegten Regeln, aber nur lesen und nicht bearbeiten. \\
 Dabei ist bei der Verwendung einer Vorlage zu beachten, dass Aktionen (wie beispielsweise das Ändern der Farbe eines Graphelements), die vom Programm grundsätzlich zur Verfügung gestellt werden, unter Umständen nicht mehr zu funktionieren scheinen. Dieser Eindruck kann dadurch entstehen, dass der Aufruf bestimmter Aktionen zu keiner Änderung des angezeigten Syndroms führt. Hinweise in der Benutzeroberfläche sollen diesen Fehleindruck eines unerwünschten Programmverhaltens verhindern. \\
 Die angezeigten Hinweise geben Aufschluss darüber, dass die Aktion deshalb nicht umgesetzt werden kann, weil die angeforderte Aktion durch die Regeln in der Vorlage untersagt wird. \\
 
