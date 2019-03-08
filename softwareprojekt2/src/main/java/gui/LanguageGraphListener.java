@@ -20,19 +20,20 @@ public class LanguageGraphListener implements ChangeListener<Boolean> {
      */
     private Controller c;
 
+    LanguageGraphListener(Controller pC, CheckMenuItem checkMenuItem) {
+        c = pC;
+        this.checkMenuItem = checkMenuItem;
+    }
+
     /**
      * Calls the change graph language action with the given argument.
+     *
      * @param language The desired language.
      */
     private void changeLanguage(Language language) {
         c.getValues().setGraphLanguage(language);
         ChangeGraphLanguageAction changeGraphLanguageAction = new ChangeGraphLanguageAction();
         changeGraphLanguageAction.action();
-    }
-
-    LanguageGraphListener(Controller pC, CheckMenuItem checkMenuItem) {
-        c = pC;
-        this.checkMenuItem = checkMenuItem;
     }
 
     /**
@@ -46,17 +47,17 @@ public class LanguageGraphListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (checkMenuItem.getId().equals("languageGraphGerman") && newValue) {
             c.getLanguageGraphEnglish().setSelected(false);
-            if(c.getLanguageGerman().isSelected()){
+            if (c.getLanguageGerman().isSelected()) {
                 c.getLanguageGuiGraphGerman().setSelected(true);
-            }else{
+            } else {
                 uncheckLanguage();
             }
             changeLanguage(Language.GERMAN);
         } else if (checkMenuItem.getId().equals("languageGraphEnglish") && newValue) {
             c.getLanguageGraphGerman().setSelected(false);
-            if(c.getLanguageEnglish().isSelected()){
+            if (c.getLanguageEnglish().isSelected()) {
                 c.getLanguageGuiGraphEnglish().setSelected(true);
-            }else{
+            } else {
                 uncheckLanguage();
             }
             changeLanguage(Language.ENGLISH);
@@ -66,7 +67,7 @@ public class LanguageGraphListener implements ChangeListener<Boolean> {
     /**
      * Unchecks the general language menuitems.
      */
-    private void uncheckLanguage(){
+    private void uncheckLanguage() {
         c.getLanguageGuiGraphEnglish().setSelected(false);
         c.getLanguageGuiGraphGerman().setSelected(false);
     }

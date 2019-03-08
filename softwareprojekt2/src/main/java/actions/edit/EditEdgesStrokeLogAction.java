@@ -56,7 +56,7 @@ public class EditEdgesStrokeLogAction extends LogAction {
                     lockedEdges.add(e);
                 }
             }
-            if(checkTemplateRules(lockedEdges, pickedState)){
+            if (checkTemplateRules(lockedEdges, pickedState)) {
                 return;
             }
             createParameter(oldEdges, newEdges);
@@ -108,11 +108,12 @@ public class EditEdgesStrokeLogAction extends LogAction {
 
     /**
      * Checks whether the template rules allow this action.
+     *
      * @param lockedEdges The list of locked edges.
      * @param pickedState The set of the picked elements
-     * @return  The indicator, if the action is allowed.
+     * @return The indicator, if the action is allowed.
      */
-    private boolean checkTemplateRules(List<Edge> lockedEdges, PickedState<Edge> pickedState){
+    private boolean checkTemplateRules(List<Edge> lockedEdges, PickedState<Edge> pickedState) {
         if (!lockedEdges.isEmpty()) {
             helper.setActionText("EDIT_EDGES_STROKE_ALERT", true, true);
         }
