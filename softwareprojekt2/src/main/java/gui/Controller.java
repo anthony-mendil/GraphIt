@@ -2309,7 +2309,8 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Shows the user guide.
+     * Opens the given PDF in the default application for PDF.
+     * @param pdfName The name of the PDF with file ending.
      */
     @FXML
     private void showPDF(String pdfName) {
@@ -2339,7 +2340,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Shows the user guide.
+     * Opens the user guide.
      */
     @FXML
     private void showUserGuide() {
@@ -2347,7 +2348,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * javadocTODO
+     * Opens the PDF with Informations about us.
      */
     @FXML
     private void showAboutUs() {
