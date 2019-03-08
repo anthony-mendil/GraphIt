@@ -14,22 +14,60 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 
+/**
+ * The test class for oof testing.
+ */
 public class OOFioTest {
 
+    /**
+     * The OOFio that handles the import and export of the oof.
+     */
     private static OOFio oofio;
+
+    /**
+     * The DatabaseManager that handles the database, which is used
+     * to test the import and export of the oof.
+     */
     private static DatabaseManager databaseManager;
+
+    /**
+     * An oof String that is used to test the oof structure.
+     */
     private static String anyOOF;
+
+    /**
+     * An oof file that gets tested.
+     */
     private static File simpleGraph;
+
+    /**
+     * A file that the oof gets exported to.
+     */
     private static File exportedSimpleGraph;
+
+    /**
+     * A json String from an oof that is compared to the imported and exported oof.
+     */
     private static String simpleGraphJSON ="";
 
+    /**
+     * An oof file that gets tested.
+     */
     private static File bigGraph;
+
+    /**
+     * A file that the oof gets exported to.
+     */
     private static File exportedBigGraph;
+
+    /**
+     * A json String from an oof that is compared to the imported and exported oof.
+     */
     private static String bigGraphJSON ="";
 
     /**
-     * javadocTODO
-     * @throws IOException javadocTODO
+     * Prepares the oof tests. It starts the database, and loads all documents used by the import and export test cases.
+     * @throws IOException When not all test documents could be loaded.
      */
     @BeforeClass
     public static void prepareOnce() throws IOException {
@@ -52,7 +90,7 @@ public class OOFioTest {
     }
 
     /**
-     * javadocTODO
+     * Closes the Database and deletes the test folder.
      */
     @AfterClass
     public static void endAll() throws IOException {
@@ -61,7 +99,7 @@ public class OOFioTest {
     }
 
     /**
-     * javadocTODO
+     * Clears the database.
      */
     @After
     public void end(){
@@ -70,7 +108,7 @@ public class OOFioTest {
 
 
     /**
-     * javadocTODO
+     * Tests the creation and the disassembling of oof Strings.
      */
     @Test
     public void testCreateOOF() {
@@ -78,7 +116,7 @@ public class OOFioTest {
     }
 
     /**
-     * javadocTODO
+     * Tests if the Database is empty on startup.
      */
     @Test
     public void testEmptyDatabase() {
@@ -86,7 +124,7 @@ public class OOFioTest {
     }
 
     /**
-     * javadocTODO
+     * Tests if the json of the oof gets imported correctly.
      */
     @Test
     public void testImportOOFJSONSimple() {
@@ -97,7 +135,7 @@ public class OOFioTest {
     }
 
     /**
-     * javadocTODO
+     *      * Tests if the json of the oof gets exported correctly.
      */
     @Test
     public void testExportOOFJSONSimple() {
@@ -109,7 +147,7 @@ public class OOFioTest {
     }
 
     /**
-     * javadocTODO
+     * Tests if the json of the oof gets imported correctly.
      */
     @Test
     public void testImportOOFJSONBig() {
@@ -120,7 +158,7 @@ public class OOFioTest {
     }
 
     /**
-     * javadocTODO
+     * Tests if the json of the oof gets exported correctly.
      */
     @Test
     public void testExportOOFJSONBig() {

@@ -85,11 +85,11 @@ public class EditSphereSizeLogAction extends LogAction {
     }
 
     /**
-     * change sphere size according to template rules
+     * Changes sphere size according to template rules.
      *
-     * @param sp    the sphere to change the size
-     * @param graph the current syndromGraph
-     * @return javadocTODO
+     * @param sp    The Sphere to change the size.
+     * @param graph The current SyndromGraph.
+     * @return true if the Sphere was handled successfully.
      */
     private boolean handleSphere(Sphere sp, SyndromGraph<Vertex, Edge> graph) {
         if (!sp.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
