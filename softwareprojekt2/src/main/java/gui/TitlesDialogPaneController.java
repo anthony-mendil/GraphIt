@@ -87,13 +87,13 @@ public class TitlesDialogPaneController extends DialogPane {
 
         german.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                save.requestFocus();
+                save.fire();
             }
         });
 
         english.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                save.requestFocus();
+                save.fire();
             }
         });
 
