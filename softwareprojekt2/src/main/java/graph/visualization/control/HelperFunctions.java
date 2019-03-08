@@ -191,12 +191,15 @@ public class HelperFunctions {
         if (object instanceof Sphere) {
             Sphere sp = (Sphere) object;
             contextMenu = new SphereContextMenu(sp).getContextMenu();
+            System.out.println("HelperSphereTEST");
         } else if (object instanceof Vertex) {
             Vertex vertex = (Vertex) object;
             contextMenu = new VertexContextMenu(vertex).getContextMenu();
+            System.out.println("HelperVertexTEST");
         } else if (object instanceof Edge) {
             Edge edge = (Edge) object;
             contextMenu = new EdgeContextMenu(edge).getContextMenu();
+            System.out.println("HelperEdgeTEST");
         }
         return contextMenu;
     }
