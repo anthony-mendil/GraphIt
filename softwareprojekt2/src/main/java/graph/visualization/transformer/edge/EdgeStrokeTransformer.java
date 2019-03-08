@@ -24,6 +24,7 @@ public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
     /**
      * Transforms the stroke of the edge, if its picked, the stroke is bigger
      * the current visualisation viewer.
+     *
      * @param vv the visualisation viewer
      */
     public EdgeStrokeTransformer(VisualizationViewer<Vertex, Edge> vv) {

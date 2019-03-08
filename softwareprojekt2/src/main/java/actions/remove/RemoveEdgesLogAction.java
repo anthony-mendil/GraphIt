@@ -41,9 +41,10 @@ public class RemoveEdgesLogAction extends LogAction {
 
     /**
      * Creates a new parameter object of this action.
-     * @param pEdges    The list of edges.
-     * @param pStart    The list of start-vertices.
-     * @param pSink     The list of sink-vertices.
+     *
+     * @param pEdges The list of edges.
+     * @param pStart The list of start-vertices.
+     * @param pSink  The list of sink-vertices.
      */
     public void createParameter(List<Edge> pEdges, List<Vertex> pStart, List<Vertex> pSink) {
         parameters = new AddRemoveEdgesParam(pEdges, pStart, pSink);
@@ -70,7 +71,7 @@ public class RemoveEdgesLogAction extends LogAction {
                     lockedEdges.add(e);
                 }
             }
-            if(checkTemplateRules(lockedEdges, pickedState)){
+            if (checkTemplateRules(lockedEdges, pickedState)) {
                 return;
             }
             pickedState.clear();
@@ -98,11 +99,12 @@ public class RemoveEdgesLogAction extends LogAction {
 
     /**
      * Checks whether the template rules allow this action.
+     *
      * @param lockedEdges The list of locked vertices.
      * @param pickedState The set of the picked elements
-     * @return  The indicator, if the action is allowed.
+     * @return The indicator, if the action is allowed.
      */
-    private boolean checkTemplateRules(List<Edge> lockedEdges, PickedState<Edge> pickedState){
+    private boolean checkTemplateRules(List<Edge> lockedEdges, PickedState<Edge> pickedState) {
         if (!lockedEdges.isEmpty()) {
             helper.setActionText("REMOVE_EDGES_ALERT", true, true);
         }
@@ -110,6 +112,6 @@ public class RemoveEdgesLogAction extends LogAction {
             actionHistory.removeLastEntry();
             return true;
         }
-    return false;
+        return false;
     }
 }

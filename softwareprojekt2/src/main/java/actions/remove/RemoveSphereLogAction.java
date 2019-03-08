@@ -49,11 +49,11 @@ public class RemoveSphereLogAction extends LogAction {
             PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
             for (Sphere sp : pickedState.getPicked()) {
                 if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
-                    if(!allowedSphereRemove(sp)){
+                    if (!allowedSphereRemove(sp)) {
                         return;
                     }
                     AddRemoveVerticesParam addRemoveVerticesParam = new AddRemoveVerticesParam(new HashMap<>(), new HashMap<>());
-                    if(!sp.getVertices().isEmpty()) {
+                    if (!sp.getVertices().isEmpty()) {
                         pickedVertexState.clear();
                         setVerticesPicked(sp, vertices, pickedVertexState);
                         RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
@@ -85,7 +85,7 @@ public class RemoveSphereLogAction extends LogAction {
         notifyObserverGraph();
     }
 
-    private void setVerticesPicked(Sphere sp, List<Vertex> vertices, PickedState<Vertex> pickedVertexState){
+    private void setVerticesPicked(Sphere sp, List<Vertex> vertices, PickedState<Vertex> pickedVertexState) {
         for (Vertex v : sp.getVertices()) {
             vertices.add(v);
             pickedVertexState.pick(v, true);
@@ -100,14 +100,15 @@ public class RemoveSphereLogAction extends LogAction {
 
     /**
      * Creates a parameter object for this action.
-     * @param sphere                    The sphere.
-     * @param addRemoveVerticesParam    The vertices and their edges, that got removed too.
+     *
+     * @param sphere                 The sphere.
+     * @param addRemoveVerticesParam The vertices and their edges, that got removed too.
      */
     public void createParameter(Sphere sphere, AddRemoveVerticesParam addRemoveVerticesParam) {
         parameters = new AddRemoveSphereParam(sphere, addRemoveVerticesParam);
     }
 
-    private boolean allowedSphereRemove(Sphere sp){
+    private boolean allowedSphereRemove(Sphere sp) {
         if (helper.verticesLocked(sp)) {
             HelperFunctions helper = new HelperFunctions();
             helper.setActionText("REMOVE_SPHERE_ALERT", true, true);

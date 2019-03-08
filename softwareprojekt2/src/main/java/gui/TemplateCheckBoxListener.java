@@ -29,6 +29,13 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
      */
     private Controller c;
 
+    TemplateCheckBoxListener(CheckBox pCheckBox, Controller c) {
+        checkBox = pCheckBox;
+        this.c = c;
+        treeViewArrowType = c.getTreeViewArrowType();
+        regularExpressionBox = c.getRegularExpressionBox();
+    }
+
     /**
      * Select/Deselect the regular expression checkbox and if the checkbox is selected, it will call the
      * filter graph action with the text as argument from the associated textfield.
@@ -58,13 +65,6 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
 
         FilterGraphAction filterGraphAction = new FilterGraphAction(c.getFilterEdgeArrowType(), newValue);
         filterGraphAction.action();
-    }
-
-    TemplateCheckBoxListener(CheckBox pCheckBox, Controller c) {
-        checkBox = pCheckBox;
-        this.c = c;
-        treeViewArrowType = c.getTreeViewArrowType();
-        regularExpressionBox = c.getRegularExpressionBox();
     }
 
     /**

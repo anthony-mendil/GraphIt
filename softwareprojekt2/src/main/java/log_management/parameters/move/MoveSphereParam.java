@@ -16,6 +16,10 @@ import java.awt.geom.Point2D;
 @Data
 public class MoveSphereParam implements Param {
     /**
+     * The string put before the y-value when pretty printing this object.
+     */
+    public static final String Y_IS = " y = ";
+    /**
      * The sphere.
      */
     @Getter
@@ -30,11 +34,6 @@ public class MoveSphereParam implements Param {
      */
     @Getter
     private Point2D newPos;
-
-    /**
-     * The string put before the y-value when pretty printing this object.
-     */
-    public static final String Y_IS = " y = ";
 
     /**
      * Creates a vertices object of its own class.

@@ -111,7 +111,7 @@ public class AddVerticesLogAction extends LogAction {
     /**
      * Adds all the removed edges back to the graph.
      */
-    private void addEdgesToGraph(){
+    private void addEdgesToGraph() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();

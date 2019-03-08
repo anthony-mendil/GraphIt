@@ -66,7 +66,7 @@ public class EditVerticesDrawColorParam implements Param {
     public String prettyPrint() {
         Language language = Values.getInstance().getGuiLanguage();
         StringBuilder information = new StringBuilder();
-        if (language == Language.GERMAN){
+        if (language == Language.GERMAN) {
             information.append("Veränderte Symptome: ");
             for (int i = 0; i < oldVertices.size(); i++) {
                 information.append(SyndromObjectPrinter.vertexPrintGerman(oldVertices.get(i))).append(". ").append("Alte Umrandungsfarbe: ").append(ColorNameCreator.getInstance().getColorName(oldColors.get(i),

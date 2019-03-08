@@ -19,10 +19,9 @@ public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
     private final FadeType fadeType;
 
     /**
-     *
-     * @param animation the animation, defining the transparency of the color
+     * @param animation   the animation, defining the transparency of the color
      * @param transformer the transformer returning the right edge color
-     * @param fadeType the fade type
+     * @param fadeType    the fade type
      */
     public VertexFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<V, Paint> transformer, FadeType fadeType) {
         this.animation = animation;

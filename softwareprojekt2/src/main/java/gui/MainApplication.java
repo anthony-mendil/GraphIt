@@ -52,9 +52,9 @@ public class MainApplication extends Application {
      * @param primaryStage The window of the application.
      */
     public void start(Stage primaryStage) {
-        if (Syndrom.getInstance().getGraphName()!=null) {
-            primaryStage.setTitle(Syndrom.getInstance().getGraphName()+" - GraphIt");
-        }else{
+        if (Syndrom.getInstance().getGraphName() != null) {
+            primaryStage.setTitle(Syndrom.getInstance().getGraphName() + " - GraphIt");
+        } else {
             primaryStage.setTitle("GraphIt - " + "UntitledGraph");
         }
         primaryStage.setScene(scene);

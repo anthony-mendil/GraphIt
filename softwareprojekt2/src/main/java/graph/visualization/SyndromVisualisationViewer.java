@@ -16,7 +16,7 @@ import java.awt.*;
 
 /**
  * SyndromVisualisationViewer containing in addition to VisualizationViewer a pickedSphereState
- *
+ * <p>
  * SONARQUBE: The class inherits from structures of the JUNG framework, so unfortunately we can not do anything about
  * the sonarqube issue : This class has 7 parents which is greater than 5 authorized.
  *
@@ -38,7 +38,8 @@ public class SyndromVisualisationViewer<V, E> extends VisualizationViewer<V, E> 
 
     /**
      * the syndrom visualisation viewer
-     * @param model the visualisation model
+     *
+     * @param model         the visualisation model
      * @param preferredSize the size
      */
     public SyndromVisualisationViewer(VisualizationModel<V, E> model, Dimension preferredSize) {

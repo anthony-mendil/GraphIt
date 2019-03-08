@@ -11,7 +11,7 @@ import java.awt.geom.AffineTransform;
 /**
  * Defines a functor that transform a vertex into its shape. The input vertex is left unchanged.
  * Its extracting the shape of a vertex.
- *
+ * <p>
  * its necessary to have a different shape transformer for the satellite (zoom) view, because the shape as to get scaled
  * as well... if not doing this, the shape is displayed in a wrong way
  *

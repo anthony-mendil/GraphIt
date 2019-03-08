@@ -278,10 +278,10 @@ public class JGraphTHandler {
         Set<Edge> edgesRelationChain = new HashSet<>();
         for (List<Vertex> list : relationChains) {
             for (int i = 0; i < list.size() - 1; i++) {
-                edgesRelationChain.add( algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
+                edgesRelationChain.add(algorithmGraph.getEdge(list.get(i), list.get(i + 1)));
             }
             if (algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)) != null && algorithmGraph.inDegreeOf(list.get(0)) == 1 && algorithmGraph.outDegreeOf(list.get(0)) == 1) {
-                edgesRelationChain.add( algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
+                edgesRelationChain.add(algorithmGraph.getEdge(list.get(list.size() - 1), list.get(0)));
             }
         }
         return new Pair<>(relationChains, edgesRelationChain);
@@ -291,7 +291,7 @@ public class JGraphTHandler {
      * Inner algorithm for the relation chain algorithm. Potential relation chains will be build
      * and eventually added to the list of relation chains.
      *
-     * @param innerVertices a list with inner vertices
+     * @param innerVertices  a list with inner vertices
      * @param relationChains a list with chains
      */
     private void growPotentailChains(List<Vertex> innerVertices, List<List<Vertex>> relationChains) {
@@ -318,11 +318,11 @@ public class JGraphTHandler {
                 }
             }
             innerVertices.removeAll(potentialChain);
-            sizeChains(potentialChain,  relationChains);
+            sizeChains(potentialChain, relationChains);
         }
     }
 
-    private void sizeChains(LinkedList<Vertex> potentialChain, List<List<Vertex>> relationChains){
+    private void sizeChains(LinkedList<Vertex> potentialChain, List<List<Vertex>> relationChains) {
         if (potentialChain.size() > 3) {
             relationChains.add(potentialChain);
         }

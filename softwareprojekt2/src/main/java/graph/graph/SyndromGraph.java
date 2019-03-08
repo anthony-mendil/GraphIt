@@ -28,14 +28,13 @@ import java.util.List;
 @Data
 public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
     /**
-     * List of spheres.
-     */
-    private transient List<Sphere> spheres = new ArrayList<>();
-
-    /**
      * The object factory for syndrom.
      */
     private final transient GraphObjectsFactory graphObjectsFactory;
+    /**
+     * List of spheres.
+     */
+    private transient List<Sphere> spheres = new ArrayList<>();
 
     /**
      * Creates a new syndrom graph.
@@ -76,7 +75,7 @@ public class SyndromGraph<V, E> extends DirectedSparseGraph<V, E> {
      * Adds a vertex to the syndrom graphs and assigns it to a sphere if it wasn't existing in the past.
      *
      * @param pSphere The sphere to assign to.
-     * @param pos the position of the new sphere
+     * @param pos     the position of the new sphere
      * @return True if the vertex was added to the graph, false if not.
      */
     @SuppressWarnings("unchecked")

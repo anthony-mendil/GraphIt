@@ -12,12 +12,18 @@ public class ActionHistory {
      * Upper bound of actions.
      */
     private static final int MAX_ACTIONS = 100;
-
+    /**
+     * The logger of the action history.
+     */
+    private static Logger logger = Logger.getLogger(ActionHistory.class);
+    /**
+     * The action history itself.
+     */
+    private static ActionHistory history;
     /**
      * Saved actions.
      */
     private Action[] actions = new Action[MAX_ACTIONS];
-
     /**
      * The current action in actions.
      */
@@ -25,14 +31,16 @@ public class ActionHistory {
     private int current = -1;
 
     /**
-     * The logger of the action history.
+     * Returning the unique instance of the action history.
+     *
+     * @return the instance of the action history
      */
-    private static Logger logger = Logger.getLogger(ActionHistory.class);
-
-    /**
-     * The action history itself.
-     */
-    private static ActionHistory history;
+    public static ActionHistory getInstance() {
+        if (history == null) {
+            history = new ActionHistory();
+        }
+        return history;
+    }
 
     /**
      * Adds an action to the history and executes it.
@@ -50,18 +58,6 @@ public class ActionHistory {
         for (int i = current + 1; i < MAX_ACTIONS; i++) {
             actions[i] = null;
         }
-    }
-
-    /**
-     * Returning the unique instance of the action history.
-     *
-     * @return the instance of the action history
-     */
-    public static ActionHistory getInstance() {
-        if (history == null) {
-            history = new ActionHistory();
-        }
-        return history;
     }
 
     /**
@@ -117,6 +113,6 @@ public class ActionHistory {
         if (current < MAX_ACTIONS - 1) {
             return actions[current + 1] == null;
         }
-            return current == MAX_ACTIONS - 1;
-        }
+        return current == MAX_ACTIONS - 1;
+    }
 }

@@ -89,9 +89,10 @@ class SphereRenderer {
 
     /**
      * returns the anchor point of the spheres label
+     *
      * @param sphereShape the sphere shape
-     * @param p the location pf the sphere shape
-     * @param width the width of the sphere shape
+     * @param p           the location pf the sphere shape
+     * @param width       the width of the sphere shape
      * @return the labels anchor point
      */
     private Point2D getAnchorPoint(Shape sphereShape, Point2D p, int width) {

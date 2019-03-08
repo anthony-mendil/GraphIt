@@ -25,6 +25,7 @@ public class EditVerticesSizeLogAction extends LogAction {
 
     /**
      * Changes the size of the vertices.
+     *
      * @param sizeChange: the type of size change for the vertex
      */
     public EditVerticesSizeLogAction(SizeChange sizeChange) {
@@ -68,7 +69,7 @@ public class EditVerticesSizeLogAction extends LogAction {
         notifyObserverGraph();
     }
 
-    private void editSize(PickedState<Vertex> pickedState, Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices){
+    private void editSize(PickedState<Vertex> pickedState, Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices) {
         for (Vertex vertex : pickedState.getPicked()) {
             if (!vertex.isLockedStyle()) {
                 if (sizeChange == SizeChange.ENLARGE) {
@@ -82,7 +83,7 @@ public class EditVerticesSizeLogAction extends LogAction {
                         newVertices.put(vertex, vertex.getSize());
                     }
                 }
-            }else {
+            } else {
                 helper.setActionText("EDIT_VERTICES_SITE_ALERT", true, true);
                 actionHistory.removeLastEntry();
                 return;

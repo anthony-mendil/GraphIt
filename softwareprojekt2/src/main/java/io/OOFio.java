@@ -72,7 +72,7 @@ public class OOFio {
      * @param pFile The file to import
      */
     public void importOOF(File pFile) {
-        String oof=FileHandler.fileToString(pFile);
+        String oof = FileHandler.fileToString(pFile);
         GXLio gxlio = new GXLio();
         gxlio.gxlToInstance(gxlFromOOF(oof), true);
         DatabaseManager.getInstance().saveOofGraph(gxlFromOOF(oof));

@@ -15,6 +15,7 @@ public class LoadGraphAction extends GraphAction {
 
     /**
      * Loads an existing graph from a file to syndrom.
+     *
      * @param controller The unique controller of the syndrom.
      */
     public LoadGraphAction(Controller controller) {

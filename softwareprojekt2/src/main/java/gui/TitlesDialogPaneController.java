@@ -21,13 +21,20 @@ import javafx.scene.text.Text;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.security.Key;
 import java.util.Map;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class TitlesDialogPaneController extends DialogPane {
 
+    /**
+     * the button type of the save button
+     */
+    public static final ButtonType SAVE_TYPE = new ButtonType("Speichern");
+    /**
+     * the button type of the cancel button
+     */
+    public static final ButtonType CANCEL_TYPE = new ButtonType("Abbrechen");
     @FXML
     private DialogPane titleDialog;
     @FXML
@@ -46,15 +53,6 @@ public class TitlesDialogPaneController extends DialogPane {
     private HBox textBox;
     @FXML
     private Text currentActionText;
-
-    /**
-     * the button type of the save button
-     */
-    public static final ButtonType SAVE_TYPE = new ButtonType("Speichern");
-    /**
-     * the button type of the cancel button
-     */
-    public static final ButtonType CANCEL_TYPE = new ButtonType("Abbrechen");
     /**
      * a values instance
      */
@@ -106,6 +104,7 @@ public class TitlesDialogPaneController extends DialogPane {
 
     /**
      * sets the prompt texts to the titles
+     *
      * @param old the old titles
      */
     public void setPrompt(Map<String, String> old) {
@@ -118,6 +117,7 @@ public class TitlesDialogPaneController extends DialogPane {
 
     /**
      * detects if the save button should be disabled
+     *
      * @return true if yes, false if no
      */
     private boolean setDisable() {
@@ -126,6 +126,7 @@ public class TitlesDialogPaneController extends DialogPane {
 
     /**
      * checks if the new title already exists
+     *
      * @param com the string to check
      * @return true if there are double titles
      */
