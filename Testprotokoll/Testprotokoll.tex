@@ -100,6 +100,7 @@ urlcolor=blue % Farbe von externen Links
 % Punktstyles global ändern
 \renewcommand{\labelitemii}{$\circ$}
 \renewcommand{\labelitemiii}{$\cdot$}
+\setlength{\parindent}{0pt}
 
 % Command um Space vor (Sub)Sections zu verkleinern, damit Fazit noch auf 1. Seite
 %\newcommand{\cheat}{\vspace{-0.3mm}} % Damit Fazit noch auf gleicher Seite
@@ -131,11 +132,8 @@ urlcolor=blue % Farbe von externen Links
 		\Large Testprotokoll: GraphIt\\
 		Black-Box-Test\\
 		\vspace{1cm}
-		\includegraphics[width=2.5in]{logo_graphit.png}
-		
-		
-	\end{center}
-	
+		\includegraphics[width=2.5in]{logo_graphit.png}		
+	\end{center}	
 \end{minipage}
 \vfill
 \begin{minipage}[H]{\textwidth}
@@ -160,7 +158,13 @@ urlcolor=blue % Farbe von externen Links
 % Ende Titelseite	
 	
 \newpage
-Anmerkung: Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. Ebenso wird beispielsweise beim Hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten und Linksklicks für mehrere Elemente. Bewegt werden Elemente durchs gedrückt Halten des Rechtsklicks. Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. Bei Testfällen, bei denen alle Tests negativ ausgefallen sind, sind Abbildungen (sofern vorhanden) nach den Tests zu finden und beziehen sich auf alle Testdurchläufe des entsprechenden Testfalls. Andernfalls werden bei jedem Testdurchlauf Abbildungen gezeigt (sofern vorhanden). Auch hat sich im Verlauf bei der Erstellung des Testprotokolls die Standardfarben für Sphären und Symptomen geändert, was bei einigen Abbildungen zu erkennen ist.  \\
+\textbf{\textcolor{red}{Anmerkungen!}}\\
+Weil für manche Tests bestimmte Funktionalitäten funktionieren müssen, bauen die Tests aufeinander auf. Beispielsweise wird beim Testfall \texttt{Knoten hinzufügen} davon ausgegangen, dass nach dem vorherigen Testfall \texttt{Sphären hinzufügen} entsprechende Sphären existieren und somit nicht noch vorher erstellt werden müssen. \\
+Ebenso wird beispielsweise beim Hinzufügen einer Sphäre nicht explizit erwähnt, dass in der Gui der Button zum Hinzufügen von Sphären betätigt wird. Sofern es nicht anders beschrieben ist, soll im folgenden also davon ausgegangen werden, dass bei den jeweiligen Aktionen des Testers die entsprechenden Buttons in der Kopfleiste der Gui betätigt werden. \\
+Des weiteren wird im folgenden nicht jedes mal erwähnt, dass das Auswählen von einzelnen Elementen mithilfe eines Linksklick geschieht, beziehungsweise Umschalten (Shift) und Linksklicks für mehrere Elemente. \\
+Bewegt werden Elemente durchs gedrückt Halten des Rechtsklicks. \\
+Vor dem eigentlichen Testen der Anwendung sind im folgenden Bilder der Benutzeroberfläche zu sehen. Bei Testfällen, bei denen alle Tests negativ ausgefallen sind, sind Abbildungen (sofern vorhanden) nach den Tests zu finden und beziehen sich auf alle Testdurchläufe des entsprechenden Testfalls. Andernfalls werden bei jedem Testdurchlauf Abbildungen gezeigt (sofern vorhanden). \\
+Auch hat sich im Verlauf bei der Erstellung des Testprotokolls die Standardfarben für Sphären und Symptomen geändert, was bei einigen Abbildungen zu erkennen ist.  \\
 
 \newpage
 
@@ -187,7 +191,7 @@ Die Benutzeroberfläche im Ersteller-Modus:
 \end{center}
 \newpage
 Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste zusätzlich zu den Vorlage-Regeln den Verlauf gibt,
-wobei aber die Vorlage-Regeln nicht editierbar sind sondern nur zum Lesen der Regeln dient:
+wobei aber die Vorlage-Regeln nicht editierbar sind, sondern nur zum Lesen der Regeln dient:
 \begin{center}
 	\includegraphics[height=10cm]{bearbeiterModus.PNG}
 \end{center}
@@ -213,7 +217,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Sphäre hinzufügen, sodass es zu einer Überschneidung mit einer anderen kommen würde}{\dotfill\ok\ok\leer}
-Der Ersteller versucht eine dritte Sphäre an einer Position hinzuzufügen, an der es zu einer Überschneidung mit einer der bereits erstellten Sphären kommen würde (nicht direkt auf der Sphäre). Hierbei ist zu erwarten, dass dies nicht erfolgreich ist und in der Fußleiste eine entsprechende Meldung angezeigt wird. 
+Der Ersteller versucht eine dritte Sphäre an einer Position hinzuzufügen, an der es zu einer Überschneidung mit einer der bereits erstellten Sphären kommen würde (nicht direkt auf der Sphäre). Hierbei ist zu erwarten, dass dies nicht erfolgreich ist und in der Fußleiste eine entsprechende Fehlermeldung angezeigt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:15 \\
 Test negativ. \\
@@ -246,7 +250,7 @@ Test negativ.
 Die Software arbeitet wie erwartet. Die Abbildung ist identisch zur vorherigen.
 
 \subsectiont{Knoten hinzufügen außerhalb einer Sphäre}{\dotfill\ok\ok\leer}
-Der Ersteller versucht an einer Stelle außerhalb einer Sphäre ein Symptom hinzuzufügen. Zu erwarten ist, dass dies nicht erlaubt wird. Durch eine Meldung in der Fußleiste sollte dies angezeigt werden. 
+Der Ersteller versucht an einer Stelle außerhalb einer Sphäre ein Symptom hinzuzufügen. Zu erwarten ist, dass dies nicht erlaubt wird. Durch eine Fehlermeldung in der Fußleiste sollte dies angezeigt werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 21.02.2019 um 17:39 \\
 Test negativ.\\
@@ -386,7 +390,8 @@ Der Ersteller versucht die Relation von \texttt{Symptom 4} nach \texttt{Symptom 
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 13:56 \\
 Test positiv, weil das Entfernen der Relation nicht erfolgreich war. Die Abbildung ist identisch zur vorherigen. \\ 
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 19:43 \\
-Test negativ. \\
+Test negativ. 
+\newpage
 Vor dem Entfernen der Relation:
 \begin{center}
 \includegraphics[height=5cm]{1_15vorher.png}
@@ -415,7 +420,7 @@ Die Software arbeitet wie erwartet. In dem Verzeichnis das zum Speichern ausgew�
 Im Ersteller-Modus getestete Funktionalitäten, die auch im Bearbeiter-Modus zur Verfügung stehen, werden im Bearbeiter-Modus nicht nochmal explizit getestet. 
 
 \subsectiont{Rückgängig machen einer Aktion die im Ersteller Modus durchgeführt wurde und in den Vorlage-Regeln verboten wurde}{\dotfill\XBox\ok\leer}
-Hierfür wird vorerst im Ersteller-Modus eine Sphäre erstellt und in den Vorlage Regeln festgelegt das sie nicht bewegt werden kann (analog zu Testfall 1.10). Anschließend wird die Sphäre im Ersteller-Modus bewegt und direkt in den Bearbeiter-Modus gewechselt, wo der Button zum Rückgängigmachen der letzten Aktion betätigt wird. Hierbei ist zu erwarten, dass das Bewegen der Sphäre nicht rückgängig gemacht wird, weil das Bewegen dieser Sphäre in den Vorlage-Regeln verboten wurde. 
+Hierfür wird vorerst im Ersteller-Modus eine Sphäre erstellt und in den Vorlage Regeln festgelegt, dass diese nicht bewegt werden kann (analog zu Testfall 1.10). Anschließend wird die Sphäre im Ersteller-Modus bewegt und direkt in den Bearbeiter-Modus gewechselt, wo der Button zum Rückgängigmachen der letzten Aktion betätigt wird. Hierbei ist zu erwarten, dass das Bewegen der Sphäre nicht rückgängig gemacht wird, weil das Bewegen dieser Sphäre in den Vorlage-Regeln verboten wurde. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 11:39 \\
 Test positiv, weil die Sphäre beim Betätigen des Buttons zum Rückgängigmachen bewegt wurde. \\
@@ -534,6 +539,7 @@ Der Bearbeiter fügt vorerst in \texttt{Sphäre 9} ein Symptom hinzu und zieht v
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:06 \\
 Test negativ. \\
+\newpage
 Nach Hinzufügen der beschriebenen Elemente: 
 \begin{center}
 \includegraphics[height=10cm]{2_10vorher.PNG}
@@ -546,7 +552,7 @@ Nach Löschen der Sphäre:
 Die Software arbeitet wie erwartet. 
 
 \subsectiont{Rückgängig machen des Entfernens einer Sphäre mit Symptomen und Relationen}{\dotfill\XBox\ok\leer}
-Der Bearbeiter betätigt den Button zum Rückgängigmachen der letzten Aktion. Hierbei wird erwartet, dass die vorherige Sphäre, inklusive der ursprünglichen Symptome und Relationen wieder hinzugefügt wird. 
+Der Bearbeiter betätigt den Button zum Rückgängig machen der letzten Aktion. Hierbei wird erwartet, dass die vorherige Sphäre, inklusive der ursprünglichen Symptome und Relationen wieder hinzugefügt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 17:48 \\
 Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. \\
@@ -686,11 +692,12 @@ Der Bearbeiter fügt vorerst in \texttt{Sphäre 9} ein Symptom hinzu und zieht v
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:18 \\
 Test negativ.\\ \\
-Nach hinzufügen der beschriebenen Elemente: 
+Nach dem Hinzufügen der beschriebenen Elemente: 
 \begin{center}
 \includegraphics[height=10cm]{2_20korrektvorher.PNG}
 \end{center}
-Nach löschen der Sphäre: 
+\newpage
+Nach dem Löschen der Sphäre: 
 \begin{center}
 \includegraphics[height=10cm]{2_20korrektnachher.PNG}
 \end{center}
@@ -813,7 +820,7 @@ Test negativ. Die Abbildung ist identisch zur vorherigen.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Automatisches Anordnen der Symptome}{\dotfill\ok\ok\leer}
-Vorerst wird in den Ersteller-Modus gewechselt um das Bewegen von \texttt{Symptom 3} zu erlauben. Anschließend wird wieder in den Bearbeiter-Modus gewechselt. Der Bearbeiter betätigt den Button zum automatischen Anordnen der Symptome. Hierbei wird erwartet, dass die Symptome in den Sphären automatisch angeordnet werden. 
+Vorerst wird in den Ersteller-Modus gewechselt, um das Bewegen von \texttt{Symptom 3} zu erlauben. Anschließend wird wieder in den Bearbeiter-Modus gewechselt. Der Bearbeiter betätigt den Button zum automatischen Anordnen der Symptome. Hierbei wird erwartet, dass die Symptome in den Sphären automatisch angeordnet werden. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 23.02.2019 um 14:18 \\
 Test negativ.\\
@@ -884,13 +891,14 @@ Vorerst fügt der Bearbeiter \texttt{Sphäre 1} ein Symptom hinzu (Schriftart: R
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 12:24 \\
 Test negativ.\\
+\newpage
 Nach Hinzufügen des Symptoms und der Relation: 
 \begin{center}
-\includegraphics[height=10cm]{3_33vorher.PNG}
+\includegraphics[height=9.5cm]{3_33vorher.PNG}
 \end{center}
 Nach Ändern der Farbe der Relation von \texttt{Symptom 4} nach \texttt{Symptom 15} :
 \begin{center}
-\includegraphics[height=10cm]{3_33.PNG}
+\includegraphics[height=9.5cm]{3_33.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
@@ -915,7 +923,7 @@ Der Bearbeiter fügt vorerst zu \texttt{Sphäre 0} oben rechts ein Symptom hinzu
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 12:28 \\
 Test negativ.\\
-Nach hinzufügen des Symptoms und der Relation: 
+Nach Hinzufügen des Symptoms und der Relation: 
 \begin{center}
 \includegraphics[height=10cm]{3_35.PNG}
 \end{center}
@@ -1023,13 +1031,14 @@ Test positiv, weil noch ein Ankerpunkt angezeigt wird. Genauer gesagt wird bei d
 \end{center}
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 05.03.2019 um 14:11 \\
 Test negativ. \\\\
+\newpage
 Vor dem Wechsel in den Analyse-Modus:
 \begin{center}
-\includegraphics[height=10cm]{3_45vorher.png}
+\includegraphics[height=9.5cm]{3_45vorher.png}
 \end{center}
 Nach dem Wechsel in den Analyse-Modus:
 \begin{center}
-\includegraphics[height=10cm]{3_45nachher.png}
+\includegraphics[height=9.5cm]{3_45nachher.png}
 \end{center}
 \subsubsection{Fazit}
 Nach dem ersten Test wurde ein Wahrheitswert in \texttt{Values} hinzugefügt, der dazu führt, dass auch der betroffene Ankerpunkt nicht mehr angezeigt wird, wenn man den Modus wechselt. Beim zweiten Test arbeitet die Software wie erwartet.
@@ -1043,15 +1052,15 @@ Test negativ. \\
 Test negativ.\\\\
 Nach dem Klick auf Titel: 
 \begin{center}
-\includegraphics[height=10cm]{3_44oeffnen.PNG}
+\includegraphics[height=9.5cm]{3_44oeffnen.PNG}
 \end{center}
 Nach der Eingabe der Beschriftungen:
 \begin{center}
-\includegraphics[height=10cm]{3_44eingabe.PNG}
+\includegraphics[height=9.5cm]{3_44eingabe.PNG}
 \end{center}
 Nach den Drücken auf \texttt{Speichern}:
 \begin{center}
-\includegraphics[height=10cm]{3_44speichern.PNG}
+\includegraphics[height=9.5cm]{3_44speichern.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
@@ -1086,13 +1095,14 @@ Vorerst wird die Sprache des Graphen wieder auf Deutsch gestellt. Anschließend 
 Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:05 \\
 Test negativ.\\\\
+\newpage
 Nach den Klick auf Titel: 
 \begin{center}
-\includegraphics[height=10cm]{3_46vorher.PNG}
+\includegraphics[height=9.5cm]{3_46vorher.PNG}
 \end{center}
 Nach Eingabe der deutschen Beschriftung:
 \begin{center}
-\includegraphics[height=10cm]{3_46nachher.PNG}
+\includegraphics[height=9.5cm]{3_46nachher.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
@@ -1109,6 +1119,7 @@ Nach Änderung der Beschriftung:
 Nach Betätigen des Buttons zum Rückgängigmachen ist der Graph unverändert. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 13:06 \\
 Test negativ.\\\\
+\newpage
 Nach Änderung der Beschriftung: 
 \begin{center}
 \includegraphics[height=8cm]{3_50vorher.PNG}
@@ -1131,13 +1142,14 @@ Nach dem Klick auf Titel:
 \begin{center}
 \includegraphics[height=10cm]{3_49oeffnen.PNG}
 \end{center}
+\newpage
 Nach der Eingabe der Beschriftungen:
 \begin{center}
-\includegraphics[height=10cm]{3_49eingabe.PNG}
+\includegraphics[height=9.5cm]{3_49eingabe.PNG}
 \end{center}
 Nach den Drücken auf \texttt{Speichern}:
 \begin{center}
-\includegraphics[height=10cm]{3_49speichern.PNG}
+\includegraphics[height=9.5cm]{3_49speichern.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
@@ -1170,7 +1182,7 @@ Nachdem der Button zum Verkleinern vier mal betätigt wurde:
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
-
+\newpage
 \subsectiont{Eine Sphäre mehr vergrößern als es die \\anderen Sphären erlauben}{\dotfill\ok\ok\leer}
 Vorerst muss in den Ersteller-Modus gewechselt werden um die Änderung des Styles von \texttt{Sphäre 0} zu erlauben. Anschließend wird wieder in den Bearbeiter-Modus zurück gewechselt. Der Bearbeiter wählt \texttt{Sphäre 0} aus und betätigt den Button zum Vergrößern der Sphäre sechs mal. Hierbei wird erwartet, dass dies 5 mal durchgeführt wird, die Sphäre beim sechsten mal jedoch nicht mehr vergrößert wird, da sie bereits an \texttt{Sphäre 9} angrenzt.
 \subsubsection{Notizen}
@@ -1219,11 +1231,11 @@ Test negativ. \\
 Test negativ.\\\\
 Nach dem Ausblenden der Elemente:
 \begin{center}
-\includegraphics[height=10cm]{3_55.PNG}
+\includegraphics[height=9.0cm]{3_55.PNG}
 \end{center}
 Nach Einblenden der Elemente:
 \begin{center}
-\includegraphics[height=10cm]{3_55eingeblendet.PNG}
+\includegraphics[height=9.0cm]{3_55eingeblendet.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
@@ -1417,10 +1429,12 @@ Der Bearbeiter klickt auf das Feld für die Auswahl des Zooms und drückt auf \t
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:46 \\
 Test negativ.\\\\
+\newpage
 Vor dem Klicken:
 \begin{center}
 \includegraphics[height=17cm]{zoom75vorher.PNG}
 \end{center}
+\newpage
 Nach dem Klicken: 
 \begin{center}
 \includegraphics[height=17cm]{zoom75nachher.PNG}
@@ -1436,7 +1450,7 @@ Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:48 \\
 Test negativ.
 \begin{center}
-\includegraphics[height=17cm]{zoomBar.PNG}
+\includegraphics[height=15cm]{zoomBar.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
@@ -1449,11 +1463,11 @@ Test negativ. \\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:52 \\
 Test negativ.
 \begin{center}
-\includegraphics[height=17cm]{zoomKontext.PNG}
+\includegraphics[height=14cm]{zoomKontext.PNG}
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
-\newpage
+
 \subsectiont{Ändern der Relationsart einer Relation über die Übersicht}{\dotfill\ok\ok\leer}
 Vorerst wird oben in der Kopfleiste unter \texttt{Relation} verstärkende Relationen eingestellt. Anschließend macht der Bearbeiter einen Rechtsklick in der Übersicht auf die Relation von \texttt{Symptom 1} nach \texttt{Dinkelberry} und drückt auf Pfeilspitze. Hierbei wird erwartet, dass sich die Relationsart der Relation entsprechend ändert.
 \subsubsection{Notizen}
@@ -1461,10 +1475,12 @@ Vorerst wird oben in der Kopfleiste unter \texttt{Relation} verstärkende Relati
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:54 \\
 Test negativ.\\
+\newpage
 Vor dem Klicken auf \texttt{Pfeilspitze}:
 \begin{center}
 \includegraphics[height=17cm]{relationArtVorher.PNG}
 \end{center}
+\newpage
 Nach dem Klicken auf \texttt{Pfeilspitze}: 
 \begin{center}
 \includegraphics[height=17cm]{relationArtNachher.PNG}
@@ -1479,10 +1495,12 @@ Vorerst wird oben in de Kopfleiste unter \texttt{Symptom} die Füllfarbe zu eine
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 04.03.2019 um 14:56 \\
 Test negativ.\\\\
+\newpage
 Vor dem Klicken auf \texttt{Füllfarbe}:
 \begin{center}
 \includegraphics[height=16cm]{farbeSymptomUebersichtVorher.PNG}
 \end{center}
+\newpage
 Nach dem Klicken auf \texttt{Füllfarbe}: 
 \begin{center}
 \includegraphics[height=16cm]{farbeSymptomUebersichtNachher.PNG}
@@ -1499,8 +1517,9 @@ Test negativ.\\
 Test negativ.\\\\
 Vor dem Klicken auf \texttt{Entfernen}:
 \begin{center}
-\includegraphics[height=16cm]{sphareMitRechtsklickLoeschenVorher.PNG}
+\includegraphics[height=13cm]{sphareMitRechtsklickLoeschenVorher.PNG}
 \end{center}
+\newpage
 Nach dem Klicken auf \texttt{Entfernen}: 
 \begin{center}
 \includegraphics[height=16cm]{sphareMitRechsklickLoeschen.PNG}
@@ -1751,7 +1770,8 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Sprache der Benutzeroberfläche ändern}{\dotfill\ok\ok\leer}
-Der Tester geht auf \texttt{Optionen},\texttt{erweiterte Spracheinstellungen}, \texttt{Sprache der Benutzeroberfläche} und wählt \texttt{Englisch} aus. Hierbei wird erwartet, dass die Sprache der Benutzeroberfläche auf Englisch gestellt wird, die des Graphen jedoch Deutsch bleibt.
+Der Tester geht auf \texttt{Optionen},\texttt{erweiterte Spracheinstellungen}, \\
+\texttt{Sprache der Benutzeroberfläche} und wählt \texttt{Englisch} aus. Hierbei wird erwartet, dass die Sprache der Benutzeroberfläche auf Englisch gestellt wird, die des Graphen jedoch Deutsch bleibt.
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 28.02.2019 um 21:27 \\
 Test negativ.\\
