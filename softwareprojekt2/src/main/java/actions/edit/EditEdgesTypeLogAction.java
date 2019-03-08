@@ -44,7 +44,7 @@ public class EditEdgesTypeLogAction extends LogAction {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         if (parameters == null) {
             if (values.getMode() != FunctionMode.TEMPLATE && !isAllowedEdit(type)) {
-                    return;
+                return;
             }
             List<Edge> lockedEdges = new LinkedList<>();
             PickedState<Edge> pickedState = vv.getPickedEdgeState();
@@ -73,7 +73,8 @@ public class EditEdgesTypeLogAction extends LogAction {
         notifyObserverGraph();
     }
 
-    private void setType(PickedState<Edge> pickedState, Map<Edge, EdgeArrowType> oldEdges,  Map<Edge, EdgeArrowType> newEdges, List<Edge> lockedEdges){
+    private void setType(PickedState<Edge> pickedState, Map<Edge, EdgeArrowType> oldEdges, Map<Edge,
+            EdgeArrowType> newEdges, List<Edge> lockedEdges) {
         for (Edge e : pickedState.getPicked()) {
             if (!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
                 oldEdges.put(e, e.getArrowType());
@@ -120,10 +121,11 @@ public class EditEdgesTypeLogAction extends LogAction {
 
     /**
      * Checks whether the edit of the edge arrow-type is allowed or not.
+     *
      * @param type The new type of the relations.
-     * @return  The indicator, if it is allowed.
+     * @return The indicator, if it is allowed.
      */
-    private boolean isAllowedEdit(EdgeArrowType type){
+    private boolean isAllowedEdit(EdgeArrowType type) {
         switch (type) {
             case REINFORCED:
                 if (!template.isReinforcedEdgesAllowed()) {

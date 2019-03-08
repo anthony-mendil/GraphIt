@@ -19,13 +19,14 @@ public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
     private final TreeView<Object> treeView;
     private final HelperFunctions helper;
 
-    TreeViewMouseHandler(Controller pC, HelperFunctions pHelper){
+    TreeViewMouseHandler(Controller pC, HelperFunctions pHelper) {
         treeView = pC.getTreeView();
         helper = pHelper;
     }
 
     /**
      * Creates the context menu or the selects a gui element in the graph.
+     *
      * @param e The mouse event.
      */
     @Override

@@ -34,25 +34,9 @@ import java.util.Set;
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     /**
-     * the coordinates of the picked sphere
-     */
-    private Point2D spherePickedCoordinate = null;
-    /**
-     * the point where the user pressed the mouse
-     */
-    private Point2D downFirst = null;
-    /**
-     * the old position of the vertices, which been moved
-     */
-    private Map<Integer, Point2D> points = null;
-    /**
      * the values
      */
     private final Values values;
-    /**
-     * the ContextMenu of the spheres
-     */
-    private ContextMenu contextMenu;
     /**
      * HelperFunctions
      */
@@ -65,6 +49,26 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
      * a SphereShapeTransformer
      */
     private final SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
+    /**
+     * the coordinates of the picked sphere
+     */
+    private Point2D spherePickedCoordinate = null;
+    /**
+     * the point where the user pressed the mouse
+     */
+    private Point2D downFirst = null;
+    /**
+     * the old position of the vertices, which been moved
+     */
+    private Map<Integer, Point2D> points = null;
+    /**
+     * the ContextMenu of the spheres
+     */
+    private ContextMenu contextMenu;
+    /**
+     * The ActionHistory
+     */
+    private ActionHistory history = ActionHistory.getInstance();
 
     /**
      * create an instance with passed values
@@ -75,11 +79,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         values = Values.getInstance();
         helper = new HelperFunctions();
     }
-
-    /**
-     * The ActionHistory
-     */
-    private ActionHistory history = ActionHistory.getInstance();
 
     @Override
     @SuppressWarnings("unchecked")

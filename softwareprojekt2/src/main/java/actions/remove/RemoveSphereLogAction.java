@@ -48,22 +48,12 @@ public class RemoveSphereLogAction extends LogAction {
             PickedState<Sphere> pickedState = vv.getPickedSphereState();
             PickedState<Vertex> pickedVertexState = vv.getPickedVertexState();
             for (Sphere sp : pickedState.getPicked()) {
-                if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices() || values.getMode() == FunctionMode.TEMPLATE) {
-                    if(!allowedSphereRemove(sp)){
+                if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices()
+                        || values.getMode() == FunctionMode.TEMPLATE) {
+                    System.out.println(graph.getVertices().size());
+                    if(!removingSphere(sp,vertices,pickedState,pickedVertexState,graph)){
                         return;
                     }
-                    AddRemoveVerticesParam addRemoveVerticesParam = new AddRemoveVerticesParam(new HashMap<>(), new HashMap<>());
-                    if(!sp.getVertices().isEmpty()) {
-                        pickedVertexState.clear();
-                        setVerticesPicked(sp, vertices, pickedVertexState);
-                        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
-                        removeVerticesLogAction.action();
-                        addRemoveVerticesParam = (AddRemoveVerticesParam) removeVerticesLogAction.getParameters();
-                    }
-                    sp.getVertices().removeAll(vertices);
-                    pickedState.pick(sp, false);
-                    graph.removeSphere(sp);
-                    createParameter(sp, addRemoveVerticesParam);
                 } else {
                     HelperFunctions helper = new HelperFunctions();
                     helper.setActionText("REMOVE_SPHERE_TEMPLATE_ALERT", true, true);
@@ -74,7 +64,8 @@ public class RemoveSphereLogAction extends LogAction {
             }
         } else {
             Sphere sp = ((AddRemoveSphereParam) parameters).getSphere();
-            RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction(((AddRemoveSphereParam) parameters).getAddRemoveVerticesParam());
+            RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction(((AddRemoveSphereParam) parameters).
+                    getAddRemoveVerticesParam());
             removeVerticesLogAction.action();
             graph.removeSphere(sp);
         }
@@ -85,6 +76,32 @@ public class RemoveSphereLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+    private boolean removingSphere(Sphere sp, List<Vertex> vertices, PickedState<Sphere> pickedState,
+                                   PickedState<Vertex> pickedVertexState, SyndromGraph<Vertex, Edge> graph) {
+        if(!allowedSphereRemove(sp)){
+            return false;
+        }
+        AddRemoveVerticesParam addRemoveVerticesParam = new AddRemoveVerticesParam(new HashMap<>(), new HashMap<>());
+        if(sp.getVertices().size() > 0) {
+            pickedVertexState.clear();
+            setVerticesPicked(sp, vertices, pickedVertexState);
+            RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction();
+            removeVerticesLogAction.action();
+            addRemoveVerticesParam = (AddRemoveVerticesParam) removeVerticesLogAction.getParameters();
+        }
+        sp.getVertices().removeAll(vertices);
+        pickedState.pick(sp, false);
+        graph.removeSphere(sp);
+        createParameter(sp, addRemoveVerticesParam);
+        return true;
+    }
+
+    /**
+     * Sets the vertices in a picked state.
+     * @param sp                The sphere.
+     * @param vertices          The vertices.
+     * @param pickedVertexState The current picked state of the vertices.
+     */
     private void setVerticesPicked(Sphere sp, List<Vertex> vertices, PickedState<Vertex> pickedVertexState){
         for (Vertex v : sp.getVertices()) {
             vertices.add(v);
@@ -107,8 +124,14 @@ public class RemoveSphereLogAction extends LogAction {
         parameters = new AddRemoveSphereParam(sphere, addRemoveVerticesParam);
     }
 
+    /**
+     * Checks whether the sphere can be removed without offending the template rules regarding
+     * the elements.
+     * @param sp                        The sphere.
+     * @return true: The sphere can be removed. | false: The sphere can't be removed.
+     */
     private boolean allowedSphereRemove(Sphere sp){
-        if (helper.verticesLocked(sp)) {
+        if ((helper.verticesLocked(sp) || helper.edgesLocked(sp)) && values.getMode() != FunctionMode.TEMPLATE) {
             HelperFunctions helper = new HelperFunctions();
             helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
             actionHistory.removeLastEntry();
@@ -116,4 +139,5 @@ public class RemoveSphereLogAction extends LogAction {
         }
         return true;
     }
+
 }

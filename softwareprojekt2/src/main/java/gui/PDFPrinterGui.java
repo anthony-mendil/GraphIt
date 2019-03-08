@@ -27,6 +27,7 @@ public class PDFPrinterGui {
 
     /**
      * prints the passed InputStream
+     *
      * @param pInputStream the inputStream to print
      */
     private void print(InputStream pInputStream) {

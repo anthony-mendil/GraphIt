@@ -10,7 +10,6 @@ import graph.visualization.picking.SyndromPickSupport;
 import javafx.util.Pair;
 import log_management.DatabaseManager;
 import log_management.parameters.add_remove.AddRemoveVerticesParam;
-
 import java.awt.geom.Point2D;
 import java.util.*;
 
@@ -49,7 +48,7 @@ public class RemoveVerticesLogAction extends LogAction {
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
             Map<Vertex, Sphere> params = new HashMap<>();
             Map<Edge, Pair<Vertex, Vertex>> edg = new HashMap<>();
-            removeVertices(params, lockedVertices, edg,  pickedState,  vv,  pickSupport);
+            removeVertices(params, lockedVertices, edg, pickedState, vv, pickSupport);
             if (checkTemplateRules(lockedVertices, pickedState)) {
                 return;
             }
@@ -73,10 +72,13 @@ public class RemoveVerticesLogAction extends LogAction {
         notifyObserverGraph();
     }
 
-    private void removeVertices(Map<Vertex, Sphere> params, List<Vertex> lockedVertices, Map<Edge, Pair<Vertex, Vertex>> edg, PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, SyndromPickSupport<Vertex, Edge> pickSupport){
+    private void removeVertices(Map<Vertex, Sphere> params, List<Vertex> lockedVertices, Map<Edge,
+            Pair<Vertex, Vertex>> edg, PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv,
+                                SyndromPickSupport<Vertex, Edge> pickSupport) {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         for (Vertex vertex : pickedState.getPicked()) {
-            if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() || values.getMode() == FunctionMode.TEMPLATE) {
+            if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() ||
+                    values.getMode() == FunctionMode.TEMPLATE) {
                 Point2D posVertex = vertex.getCoordinates();
                 posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
                 Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
@@ -85,10 +87,18 @@ public class RemoveVerticesLogAction extends LogAction {
                 } else {
                     Collection<Edge> inList = graph.getInEdges(vertex);
                     Collection<Edge> outList = graph.getOutEdges(vertex);
-                    para( inList, outList,  graph,  edg);
-                    graph.removeVertex(vertex);
-                    sp.getVertices().remove(vertex);
-                    params.put(vertex, sp);
+                    ArrayList<Edge> bothList = new ArrayList<>();
+                    bothList.addAll(outList);
+                    bothList.addAll(inList);
+                    if (allowedRemoveVertex(bothList)) {
+                        para(inList, outList, graph, edg);
+                        graph.removeVertex(vertex);
+                        sp.getVertices().remove(vertex);
+                        params.put(vertex, sp);
+
+                    } else {
+                        helper.setActionText("REMOVE_EDGES_ALERT", true, true);
+                    }
                 }
             } else {
                 lockedVertices.add(vertex);
@@ -96,7 +106,16 @@ public class RemoveVerticesLogAction extends LogAction {
         }
     }
 
-    private void para( Collection<Edge> inList, Collection<Edge> outList, SyndromGraph<Vertex,Edge> graph, Map<Edge, Pair<Vertex, Vertex>> edg){
+    /**
+     * Fills the edges into the parameter.
+     *
+     * @param inList  The list of edges going into the vertex.
+     * @param outList The list of edges going out to the vertex.
+     * @param graph   The graph of the syndrom.
+     * @param edg     The map of edges to save the edges.
+     */
+    private void para(Collection<Edge> inList, Collection<Edge> outList, SyndromGraph<Vertex, Edge> graph,
+                      Map<Edge, Pair<Vertex, Vertex>> edg) {
         for (Edge e : inList) {
             edu.uci.ics.jung.graph.util.Pair<Vertex> vertices = graph.getEndpoints(e);
             Pair<Vertex, Vertex> vertexPair = new Pair<>(vertices.getFirst(), vertices.getSecond());
@@ -127,11 +146,12 @@ public class RemoveVerticesLogAction extends LogAction {
 
     /**
      * Checks whether the template rules allow this action.
+     *
      * @param lockedEdges The list of locked vertices.
      * @param pickedState The set of the picked elements
-     * @return  The indicator, if the action is allowed.
+     * @return The indicator, if the action is allowed.
      */
-    private boolean checkTemplateRules(List<Vertex> lockedEdges, PickedState<Vertex> pickedState){
+    private boolean checkTemplateRules(List<Vertex> lockedEdges, PickedState<Vertex> pickedState) {
         if (!lockedEdges.isEmpty()) {
             helper.setActionText("REMOVE_EDGES_ALERT", true, true);
         }
@@ -140,5 +160,19 @@ public class RemoveVerticesLogAction extends LogAction {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Checks whether vertex can be removed regarding the edges.
+     * @param edges The list of edges.
+     * @return  true: The vertex can be removed | false: the vertex can't be removed.
+     */
+    public boolean allowedRemoveVertex(ArrayList<Edge> edges) {
+        for (Edge e : edges) {
+            if ((e.isLockedEdgeType() || e.isLockedStyle())&& values.getMode() != FunctionMode.TEMPLATE) {
+                return false;
+            }
+        }
+        return true;
     }
 }

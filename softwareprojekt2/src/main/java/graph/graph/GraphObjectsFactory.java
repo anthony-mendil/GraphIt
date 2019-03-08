@@ -56,6 +56,7 @@ public class GraphObjectsFactory {
 
     /**
      * Creates a new vertex with the values set in values.
+     *
      * @param position the position of the new vertex i
      * @return A new vertex object.
      */

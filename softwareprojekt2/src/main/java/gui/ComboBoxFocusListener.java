@@ -10,11 +10,6 @@ import javafx.scene.control.ComboBox;
  */
 public class ComboBoxFocusListener implements ChangeListener<Boolean> {
     /**
-     * The combobox that the listener is assigned to.
-     */
-    private final ComboBox<String> comboBox;
-
-    /**
      * The string to compare the id of the combobox with the id of the combobox, which is for the font sizes of spheres.
      */
     private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
@@ -30,6 +25,10 @@ public class ComboBoxFocusListener implements ChangeListener<Boolean> {
      * The string to compare the id of the combobox with the id of the combobox, which is for the fonts of symptoms.
      */
     private static final String FONT_SPHERE_COMBO_BOX = "fontSphereComboBox";
+    /**
+     * The combobox that the listener is assigned to.
+     */
+    private final ComboBox<String> comboBox;
     /**
      * The values object that contains all default attributes and current attributes of spheres, symptoms and edges.
      */

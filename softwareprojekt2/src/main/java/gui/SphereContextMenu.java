@@ -37,6 +37,7 @@ public class SphereContextMenu {
 
     /**
      * the sphere context menu
+     *
      * @param sphere the sphere to create the context menu to
      */
     public SphereContextMenu(Sphere sphere) {
@@ -120,6 +121,7 @@ public class SphereContextMenu {
 
     /**
      * checks the annotation and creates a new edit sphere annotation action
+     *
      * @param map the map, containing the annotations
      */
     private void checkAnnotation(Map<Language, String> map) {

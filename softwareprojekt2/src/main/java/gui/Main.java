@@ -1,6 +1,6 @@
 package gui;
 
-import com.sun.javafx.application.LauncherImpl; //NOSONAR
+import com.sun.javafx.application.LauncherImpl;
 import log_management.dao.PersonalEntityManagerFactory;
 
 /**

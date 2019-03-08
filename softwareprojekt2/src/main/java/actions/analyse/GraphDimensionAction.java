@@ -47,7 +47,7 @@ public class GraphDimensionAction extends GraphAction {
          * Calculating the indices. Dividing by zero is not so useful.
          */
 
-        scope = graph.getEdges().size() +  graph.getVertices().size();
+        scope = graph.getEdges().size() + graph.getVertices().size();
         if (!graph.getVertices().isEmpty()) {
             networkIndex = (double) 2 * graph.getEdges().size() / graph.getVertices().size();
             structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
@@ -55,8 +55,8 @@ public class GraphDimensionAction extends GraphAction {
                     jGraphTHandler.detectDivergentBranches().size() +
                     jGraphTHandler.detectCycles().size()) / graph.getVertices().size();
         } else {
-            networkIndex = (double)-1;
-            structureIndex = (double)-1;
+            networkIndex = (double) -1;
+            structureIndex = (double) -1;
         }
     }
 

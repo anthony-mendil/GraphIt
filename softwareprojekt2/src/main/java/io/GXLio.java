@@ -23,20 +23,6 @@ import java.util.List;
  * and visualize this graph.
  */
 public class GXLio {
-    /**
-     * The syndrom representation.
-     */
-    private Syndrom syndrom = Syndrom.getInstance();
-
-    private Template template;
-
-
-    /**
-     * The highest id of all GXLAttributetElements in the gxl document that
-     * is imported in the {@link #gxlToInstance(String, boolean)}-method.
-     */
-    private int maxID = -1;
-
     private static final String FILL_PAINT = "fillPaint";
     private static final String ANNOTATION = "annotation";
     private static final String U00A6 = "\u00A6";
@@ -49,10 +35,17 @@ public class GXLio {
     private static final String ANCHORANGLE_OF_SOURCE = "anchorAngle of source";
     private static final String ANCHORANGLE_OF_TARGET = "anchorAngle of target";
     private static final String NAME_OF_GRAPH = "name of the graph";
-
-
     private static Logger logger = Logger.getLogger(GXLio.class);
-
+    /**
+     * The syndrom representation.
+     */
+    private Syndrom syndrom = Syndrom.getInstance();
+    private Template template;
+    /**
+     * The highest id of all GXLAttributetElements in the gxl document that
+     * is imported in the {@link #gxlToInstance(String, boolean)}-method.
+     */
+    private int maxID = -1;
     @Getter
     private boolean templateFoundFlag;
 

@@ -12,18 +12,17 @@ import java.util.ResourceBundle;
  */
 @Data
 public class LoadLanguage {
+    /**
+     * Calling this method with the desired language will translate all gui descriptions
+     * to that language.
+     */
+    private static LoadLanguage instance = null;
     private ResourceBundle resource = ResourceBundle.getBundle("UIResources", new Locale("de"));
     private Locale de = new Locale("de");
     private Locale en = new Locale("en");
     private Language currentResource = Language.GERMAN;
     private String german = "german";
     private String english = "english";
-
-    /**
-     * Calling this method with the desired language will translate all gui descriptions
-     * to that language.
-     */
-    private static LoadLanguage instance = null;
 
     public static LoadLanguage getInstance() {
         if (instance == null) {

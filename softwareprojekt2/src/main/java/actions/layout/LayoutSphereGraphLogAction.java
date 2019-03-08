@@ -20,15 +20,22 @@ import java.util.*;
  */
 public class LayoutSphereGraphLogAction extends LogAction {
     /**
-     * Indicator whether the action is an undo action.;
-     */
-    private boolean indicator;
-
-    /**
      * constants for the separation space between spheres
      */
     private static final int SEP_X = 15;
     private static final int SEP_Y = 15;
+    /**
+     * Defines a comparator for the spheres.
+     */
+    private static final Comparator<Sphere> sphereCompare = Comparator.comparingDouble(sphere -> sphere.getCoordinates().getX());
+    /**
+     * Indicator whether the action is an undo action.;
+     */
+    private boolean indicator;
+    /**
+     * the SyndromVisualisation viewer
+     */
+    private SyndromVisualisationViewer<Vertex, Edge> vv;
 
     /**
      * Layouts the graph (including all vertices) according to the defined layout.
@@ -38,12 +45,8 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * the SyndromVisualisation viewer
-     */
-    private SyndromVisualisationViewer<Vertex, Edge> vv;
-
-    /**
      * Layouts the graph (including all vertices) according to the defined layout.
+     *
      * @param pLayoutSpheresParam the param containing a layout to change the current layout to
      */
     private LayoutSphereGraphLogAction(LayoutSpheresParam pLayoutSpheresParam) {
@@ -128,7 +131,8 @@ public class LayoutSphereGraphLogAction extends LogAction {
      * @param oldSphereMap the old spheres map (parameters)
      * @return the max height and min height
      */
-    private edu.uci.ics.jung.graph.util.Pair<Double> getHeights(List<Sphere> sphereList, Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap) {
+    private edu.uci.ics.jung.graph.util.Pair<Double> getHeights(List<Sphere> sphereList,
+                                                                Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap) {
         double height = sphereList.get(0).getHeight();
         double minHeight = sphereList.get(0).getHeight();
 
@@ -152,7 +156,8 @@ public class LayoutSphereGraphLogAction extends LogAction {
      * @param oldSphereMap the old spheres map (parameters)
      * @return the min/ max Y position
      */
-    private edu.uci.ics.jung.graph.util.Pair<Double> getYs(List<Sphere> sphereList, Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap) {
+    private edu.uci.ics.jung.graph.util.Pair<Double> getYs(List<Sphere> sphereList,
+                                                           Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap) {
         double smallestY = sphereList.get(0).getCoordinates().getY();
         double largestY = sphereList.get(0).getCoordinates().getY();
         for (Sphere sp : sphereList) {
@@ -255,12 +260,6 @@ public class LayoutSphereGraphLogAction extends LogAction {
             }
         }
     }
-
-    /**
-     * Defines a comparator for the spheres.
-     */
-    private static final Comparator<Sphere> sphereCompare = Comparator.comparingDouble(sphere -> sphere.getCoordinates().getX());
-
 
     @Override
     public void undo() {

@@ -57,7 +57,7 @@ public class EditSphereSizeLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         if (parameters == null) {
             for (Sphere sp : pickedState.getPicked()) {
-                if(!handleSphere(sp, graph)){
+                if (!handleSphere(sp, graph)) {
                     return;
                 }
             }
@@ -86,18 +86,19 @@ public class EditSphereSizeLogAction extends LogAction {
 
     /**
      * change sphere size according to template rules
-     * @param sp the sphere to change the size
+     *
+     * @param sp    the sphere to change the size
      * @param graph the current syndromGraph
      * @return javadocTODO
      */
-    private boolean handleSphere(Sphere sp, SyndromGraph<Vertex, Edge> graph){
+    private boolean handleSphere(Sphere sp, SyndromGraph<Vertex, Edge> graph) {
         if (!sp.isLockedStyle() || values.getMode() == FunctionMode.TEMPLATE) {
             if (sizeChange == SizeChange.ENLARGE) {
-                if(!doEnlarge(sp, graph)){
+                if (!doEnlarge(sp, graph)) {
                     return false;
                 }
             } else {
-                if(!doShrink(sp)){
+                if (!doShrink(sp)) {
                     return false;
                 }
 
@@ -110,7 +111,7 @@ public class EditSphereSizeLogAction extends LogAction {
         return true;
     }
 
-    private boolean doShrink(Sphere sp){
+    private boolean doShrink(Sphere sp) {
         Shape sphereShape = sphereShapeTransformer.transform(sp);
         for (Vertex v : sp.getVertices()) {
             if (!sphereShape.contains(new Point2D.Double(v.getCoordinates().getX() + 10, v.getCoordinates().getY() + 10))) {
@@ -132,7 +133,7 @@ public class EditSphereSizeLogAction extends LogAction {
         return true;
     }
 
-    private boolean doEnlarge(Sphere sp, SyndromGraph<Vertex, Edge> graph){
+    private boolean doEnlarge(Sphere sp, SyndromGraph<Vertex, Edge> graph) {
         double newHeight = sp.getHeight() + 10;
         double newWidth = sp.getWidth() + 10;
         double x = sp.getCoordinates().getX();

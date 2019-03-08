@@ -69,7 +69,10 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -102,6 +105,51 @@ import java.util.concurrent.CountDownLatch;
 @Data
 public class Controller implements ObserverSyndrom {
 
+    /**
+     * The comparator for sorting all menuitems in the filter menu in the overview.
+     */
+    public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+    private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
+    private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
+    private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
+    private static final String FONT_SPHERE_COMBO_BOX = "fontSphereComboBox";
+    private static final String SPHERE_TITLE = "SphereTitle";
+    private static final String SPHERE_POSITION = "SpherePosition";
+    private static final String SPHERE_STYLE = "SphereStyle";
+    private static final String SPHERE_VERTICES = "SphereVertices";
+    private static final String VERTEX_TITLE = "SymptomTitle";
+    private static final String VERTEX_POSITION = "SymptomPosition";
+    private static final String VERTEX_STYLE = "SymptomStyle";
+    private static final String VERTEX_VERTICES = "VertexVertices";
+    private static final String EDGE_TITLE = "EdgeTitle";
+    private static final String EDGE_STYLE = "EdgeStyle";
+    private static final String EDGE_VERTICES = "EdgeVertices";
+    private static final String EDGE_EDGE_TYPE = "EDGE_EDGE_TYPE";
+    private static final String GXL = "*.gxl";
+    private static final String PDF = "*.pdf";
+    private static final String OOF = "*.oof";
+    private static final String TXT = "*.txt";
+    private static final String GXL_FILE = "GXL files (*.gxl)";
+    private static final String TIMES_NEW_ROMAN = "Times New Roman";
+    private static final String COMIC_SANS_MS = "Comic Sans Ms";
+    private static final String IMPORT_GXL = "importGXL";
+    private static final String IMPORT_TEMPLATE_GXL = "importTemplateGXL";
+    private static final String OPEN_FILE = "openFile";
+    private static final String PRINT_FILE = "print";
+    private static final String NEW_FILE = "newFile";
+    private static final String EXPORT_PDF = "exportPDF";
+    /**
+     * Our application logo.
+     */
+    private static final String APPLICATION_LOGO = "/GraphItLogo.png";
+    /**
+     * Our application title.
+     */
+    private static final String APPLICATION_TITLE = "GraphIt";
+    /**
+     * The logger which logs every exception.
+     */
+    private static Logger logger = Logger.getLogger(Controller.class);
     /* General Stuff */
     private Controller instance;
     private File lastUsedFilePath;
@@ -118,7 +166,6 @@ public class Controller implements ObserverSyndrom {
     private Slider zoomSlider;
     @FXML
     private Menu fileMenu;
-
     /* Menu Bar */
     @FXML
     private MenuItem newFile;
@@ -138,7 +185,6 @@ public class Controller implements ObserverSyndrom {
     private MenuItem exportTemplateGXL;
     @FXML
     private MenuItem closeApplication;
-
     @FXML
     private MenuItem exportPDF;
     @FXML
@@ -185,7 +231,7 @@ public class Controller implements ObserverSyndrom {
     private Button analysisButton;
     @FXML
     private Button editButton;
-
+    /* Internal */
     /* Template Options */
     @FXML
     private JFXTextField maxSphereField;
@@ -211,7 +257,6 @@ public class Controller implements ObserverSyndrom {
     private CheckBox regularExpressionBox;
     @FXML
     private TextField regularExpressionField;
-
     /* Sphere */
     @FXML
     private ColorPicker sphereBackgroundColour;
@@ -255,33 +300,26 @@ public class Controller implements ObserverSyndrom {
     private MenuItem edgeArrowNeutral;
     @FXML
     private Text currentActionText;
-    /* Internal */
-
     /**
      * The logdao object that provides the treeview with the protocol.
      */
     private LogDao logDao = new LogDao();
-
     /**
      * The logtostringconverter object that converts the log to strings to display the protocol.
      */
     private LogToStringConverter logToStringConverter = new LogToStringConverter();
-
     /**
      * The values object that gets all the arguments from the gui for the actions.
      */
     private Values values = Values.getInstance();
-
     /**
      * The syndrom object that is needed to change the form of spheres, symptoms and edges.
      */
     private Syndrom syndrom;
-
     /**
      * The action history.
      */
     private ActionHistory history;
-
     //Analysis GUI
     @FXML
     private VBox vBoxGraphStats;
@@ -293,7 +331,6 @@ public class Controller implements ObserverSyndrom {
     private VBox vBoxAnalysisSymptom;
     @FXML
     private VBox vBoxAnalysisOption;
-
     //Edit GUI
     @FXML
     private Separator separator0;
@@ -328,12 +365,6 @@ public class Controller implements ObserverSyndrom {
     private ComboBox<String> sizeSphereComboBox;
     @FXML
     private ComboBox<String> sizeSymptomComboBox;
-
-    private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
-    private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
-    private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
-    private static final String FONT_SPHERE_COMBO_BOX = "fontSphereComboBox";
-
     @FXML
     private Menu prozent;
     @FXML
@@ -605,43 +636,6 @@ public class Controller implements ObserverSyndrom {
     private GridPane templateGridPane;
     @FXML
     private VBox templateVbox;
-
-    private static final String SPHERE_TITLE = "SphereTitle";
-    private static final String SPHERE_POSITION = "SpherePosition";
-    private static final String SPHERE_STYLE = "SphereStyle";
-    private static final String SPHERE_VERTICES = "SphereVertices";
-    private static final String VERTEX_TITLE = "SymptomTitle";
-    private static final String VERTEX_POSITION = "SymptomPosition";
-    private static final String VERTEX_STYLE = "SymptomStyle";
-    private static final String VERTEX_VERTICES = "VertexVertices";
-    private static final String EDGE_TITLE = "EdgeTitle";
-    private static final String EDGE_STYLE = "EdgeStyle";
-    private static final String EDGE_VERTICES = "EdgeVertices";
-    private static final String EDGE_EDGE_TYPE = "EDGE_EDGE_TYPE";
-    private static final String GXL = "*.gxl";
-    private static final String PDF = "*.pdf";
-    private static final String OOF = "*.oof";
-    private static final String TXT = "*.txt";
-    private static final String GXL_FILE = "GXL files (*.gxl)";
-    private static final String TIMES_NEW_ROMAN = "Times New Roman";
-    private static final String COMIC_SANS_MS = "Comic Sans Ms";
-    private static final String IMPORT_GXL = "importGXL";
-    private static final String IMPORT_TEMPLATE_GXL = "importTemplateGXL";
-    private static final String OPEN_FILE = "openFile";
-    private static final String PRINT_FILE = "print";
-    private static final String NEW_FILE = "newFile";
-    private static final String EXPORT_PDF = "exportPDF";
-
-    /**
-     * Our application logo.
-     */
-    private static final String APPLICATION_LOGO = "/GraphItLogo.png";
-
-    /**
-     * Our application title.
-     */
-    private static final String APPLICATION_TITLE = "GraphIt";
-
     /**
      * The list of all fonts.
      */
@@ -653,7 +647,6 @@ public class Controller implements ObserverSyndrom {
                     "Roboto",
                     "RobotoSlab"
             );
-
     /**
      * The list of all font sizes.
      */
@@ -674,27 +667,59 @@ public class Controller implements ObserverSyndrom {
                     "72",
                     "96"
             );
-
-    /**
-     * The logger which logs every exception.
-     */
-    private static Logger logger = Logger.getLogger(Controller.class);
-
     /**
      * The current edge arrow type to filter by.
      */
     private EdgeArrowType filterEdgeArrowType = EdgeArrowType.REINFORCED;
-
     /**
      * The current log entry to filter by.
      */
     private LogEntryName analysisLogEntryName = null;
-
     /**
      * The loadlanguage object to change the gui and graph language.
      */
     private LoadLanguage loadLanguage;
+    /**
+     * Listens to the changes of the zoom slider and scales the visible graph area accordingly.
+     */
+    private ChangeListener<Number> changeZoom = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+        if (zoomSlider.isValueChanging()) {
+            int value = newValue.intValue();
+            int oldV = oldValue.intValue();
 
+            SwingUtilities.invokeLater(() -> {
+                if (value != 0 && oldV != value) {
+                    syndrom.scale(value);
+                }
+            });
+        }
+    };
+    /**
+     * Listens to the width change of the swing node and resizes the visualisation viewer accordingly.
+     */
+    private ChangeListener<Number> widthListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+        if (canvas.getContent() != null) {
+            SwingUtilities.invokeLater(() -> {
+                SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
+                vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
+            });
+        }
+    };
+
+    /* ----------------ADD---------------------- */
+    /**
+     * Listens to the height change of the swing node and resizes the visualisation viewer accordingly.
+     */
+    private ChangeListener<Number> heightListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+        if (canvas.getContent() != null) {
+            SwingUtilities.invokeLater(() -> {
+                VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
+                Dimension old = vv.getPreferredSize();
+                old.setSize(old.getWidth(), newValue.intValue());
+                vv.setPreferredSize(old);
+            });
+        }
+    };
 
     /**
      * Sets the filter edge arrow type to the reinforced arrow type.
@@ -710,14 +735,14 @@ public class Controller implements ObserverSyndrom {
         filterEdgeArrowType = EdgeArrowType.EXTENUATING;
     }
 
+    /* ----------------EDIT---------------------- */
+
     /**
      * Sets the filter edge arrow type to the reinforced arrow type.
      */
     public void filterEdgeTypeNeutral() {
         filterEdgeArrowType = EdgeArrowType.NEUTRAL;
     }
-
-    /* ----------------ADD---------------------- */
 
     /**
      * Sets the graph button type to the add sphere button type.
@@ -733,15 +758,12 @@ public class Controller implements ObserverSyndrom {
         values.setGraphButtonType(GraphButtonType.ADD_VERTEX);
     }
 
-
     /**
      * Sets the graph button type to the none button type.
      */
     public void handSelector() {
         values.setGraphButtonType(GraphButtonType.NONE);
     }
-
-    /* ----------------EDIT---------------------- */
 
     /**
      * Changes the edge stroke accordingly to the given argument.
@@ -803,6 +825,8 @@ public class Controller implements ObserverSyndrom {
         editEdgesStroke(StrokeType.DASHED_WEIGHT);
     }
 
+    /* ......color..... */
+
     /**
      * Changes the edge arrow type accordingly to the given argument.
      *
@@ -838,8 +862,6 @@ public class Controller implements ObserverSyndrom {
         values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         editEdgesType(EdgeArrowType.NEUTRAL);
     }
-
-    /* ......color..... */
 
     /**
      * Sets the edge colour.
@@ -885,6 +907,8 @@ public class Controller implements ObserverSyndrom {
             history.execute(colorLogAction);
         }
     }
+
+    /* ......font..... */
 
     /**
      * Convert AWT colour to JavaFX colour.
@@ -938,8 +962,6 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
-    /* ......font..... */
-
     /**
      * Changes the font of the spheres accordingly to the given argument.
      *
@@ -988,6 +1010,7 @@ public class Controller implements ObserverSyndrom {
         }
     }
 
+    /* ----------------EXPORT---------------------- */
 
     /**
      * Changes the font size of symptoms accordingly to the given argument.
@@ -1029,8 +1052,6 @@ public class Controller implements ObserverSyndrom {
         editVerticesForm(VertexShapeType.RECTANGLE);
     }
 
-    /* ----------------EXPORT---------------------- */
-
     /**
      * Export the graph as GXL file.
      */
@@ -1042,7 +1063,7 @@ public class Controller implements ObserverSyndrom {
             ExportGxlAction exportGxlAction = new ExportGxlAction(file);
             exportGxlAction.action();
         }
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
     /**
@@ -1056,7 +1077,7 @@ public class Controller implements ObserverSyndrom {
             ExportTemplateGxlAction exportTemplateGxlAction = new ExportTemplateGxlAction(file);
             exportTemplateGxlAction.action();
         }
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
     /**
@@ -1102,7 +1123,7 @@ public class Controller implements ObserverSyndrom {
             ExportPdfAction exportPdfAction = new ExportPdfAction(file);
             exportPdfAction.action();
         }
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
     /**
@@ -1152,7 +1173,7 @@ public class Controller implements ObserverSyndrom {
             ExportOofAction exportOofAction = new ExportOofAction(file);
             exportOofAction.action();
         }
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
     /**
@@ -1177,7 +1198,7 @@ public class Controller implements ObserverSyndrom {
         }
         templateToFields();
         treeViewUpdate();
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
     /**
@@ -1201,13 +1222,13 @@ public class Controller implements ObserverSyndrom {
                 stage.setResizable(false);
                 stage.getIcons().add(new Image(getClass().getResourceAsStream(APPLICATION_LOGO)));
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE){
-                    ImportTemplateGxlAction importTemplateGxlAction= new ImportTemplateGxlAction(file);
+                if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    ImportTemplateGxlAction importTemplateGxlAction = new ImportTemplateGxlAction(file);
                     importTemplateGxlAction.action();
                     zoomSlider.setValue(100);
                     canvas.setContent(syndrom.getVv());
                     satellite.setContent(syndrom.getVv2());
-                } else if(result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
+                } else if (result.isPresent() && result.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
                     importGxlAction.action();
                     zoomSlider.setValue(100);
                     canvas.setContent(syndrom.getVv());
@@ -1222,8 +1243,10 @@ public class Controller implements ObserverSyndrom {
         templateToFields();
         rulesTemplate();
         treeViewUpdate();
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
+
+    /* ----------------OTHER---------------------- */
 
     /**
      * Opens the selected GXL-fileMenu after choosing it in the fileMenu chooser, creates an ImportTemplateGxlAction-object
@@ -1253,7 +1276,7 @@ public class Controller implements ObserverSyndrom {
         }
         templateToFields();
         treeViewUpdate();
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
     /**
@@ -1305,8 +1328,6 @@ public class Controller implements ObserverSyndrom {
 
     }
 
-    /* ----------------OTHER---------------------- */
-
     /**
      * Switches to the creator mode.
      */
@@ -1323,7 +1344,7 @@ public class Controller implements ObserverSyndrom {
         edgeArrowExtenuating.setDisable(false);
         verticesAutoLayout.setDisable(false);
         sphereAutoLayout.setDisable(false);
-        if(!overViewAccordion.getPanes().contains(templateTitledPane)){
+        if (!overViewAccordion.getPanes().contains(templateTitledPane)) {
             overViewAccordion.getPanes().add(templateTitledPane);
         }
         disableTemplateRules(false);
@@ -1335,6 +1356,8 @@ public class Controller implements ObserverSyndrom {
         satellite.setContent(syndrom.getVv2());
         root.requestFocus();
     }
+
+    /* ----------------REMOVE---------------------- */
 
     /**
      * Switches to the analysis mode.
@@ -1354,10 +1377,10 @@ public class Controller implements ObserverSyndrom {
 
         DecimalFormat format = new DecimalFormat("####.##");
         analysisScopeNumber.setText(format.format(graphDimensionAction.getScope()));
-        if(graphDimensionAction.getNetworkIndex() == -1){
+        if (graphDimensionAction.getNetworkIndex() == -1) {
             analysisNetworkingIndexNumber.setText("NaN");
             analysisStructureIndexNumber.setText("NaN");
-        }else {
+        } else {
             analysisNetworkingIndexNumber.setText(format.format(graphDimensionAction.getNetworkIndex()));
             analysisStructureIndexNumber.setText(format.format(graphDimensionAction.getStructureIndex()));
         }
@@ -1383,7 +1406,7 @@ public class Controller implements ObserverSyndrom {
         analysisButton.setDisable(false);
         editButton.setDisable(true);
         satellite.setContent(syndrom.getVv2());
-        if(!overViewAccordion.getPanes().contains(templateTitledPane)){
+        if (!overViewAccordion.getPanes().contains(templateTitledPane)) {
             overViewAccordion.getPanes().add(templateTitledPane);
         }
         disableTemplateRules(true);
@@ -1423,7 +1446,6 @@ public class Controller implements ObserverSyndrom {
         root.requestFocus();
     }
 
-
     /**
      * Calls the undo-method from the action history.
      */
@@ -1431,14 +1453,14 @@ public class Controller implements ObserverSyndrom {
         history.undo();
     }
 
+    /* ----------------TEMPLATE---------------------- */
+
     /**
      * Calls the redo-method from the action history.
      */
     public void executeRedo() {
         history.redo();
     }
-
-    /* ----------------REMOVE---------------------- */
 
     /**
      * Removes the selected edges.
@@ -1469,8 +1491,6 @@ public class Controller implements ObserverSyndrom {
             history.execute(removeVerticesLogAction);
         }
     }
-
-    /* ----------------TEMPLATE---------------------- */
 
     /**
      * Saves the selected template rules.
@@ -1549,6 +1569,8 @@ public class Controller implements ObserverSyndrom {
         addHighlightElementAction.action();
     }
 
+    /* ----------------INTERNAL---------------------- */
+
     /**
      * Removes the highlight effect from the selected graph elements.
      */
@@ -1585,8 +1607,6 @@ public class Controller implements ObserverSyndrom {
         RemoveFadeoutElementAction removeFadeoutElementAction = new RemoveFadeoutElementAction();
         removeFadeoutElementAction.action();
     }
-
-    /* ----------------INTERNAL---------------------- */
 
     /**
      * Initializes the whole gui with the desired functions.
@@ -1713,7 +1733,6 @@ public class Controller implements ObserverSyndrom {
         handSelector();
     }
 
-
     /**
      * Initializes the info boxes.
      */
@@ -1744,7 +1763,7 @@ public class Controller implements ObserverSyndrom {
                 "    -fx-text-fill: white;\n" +
                 "    -fx-font-size: 12px;");
 
-        label.setOnMouseEntered(event -> tooltip.show(label, event.getScreenX()+10, event.getScreenY()));
+        label.setOnMouseEntered(event -> tooltip.show(label, event.getScreenX() + 10, event.getScreenY()));
         label.setOnMouseExited(event -> tooltip.hide());
     }
 
@@ -1815,7 +1834,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Selects all symptoms and edges in the graph.
      */
-    private void selectAllSymptomsEdges(){
+    private void selectAllSymptomsEdges() {
         for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
             syndrom.getVv().getPickedVertexState().pick(v, true);
         }
@@ -1867,11 +1886,6 @@ public class Controller implements ObserverSyndrom {
         languageEnglish.setSelected(true);
         languageGraphEnglish.setSelected(true);
     }
-
-    /**
-     * The comparator for sorting all menuitems in the filter menu in the overview.
-     */
-    public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
 
     /**
      * Sorts the filter log menu.
@@ -1949,48 +1963,6 @@ public class Controller implements ObserverSyndrom {
             logger.error(e.toString());
         }
     }
-
-    /**
-     * Listens to the changes of the zoom slider and scales the visible graph area accordingly.
-     */
-    private ChangeListener<Number> changeZoom = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-        if (zoomSlider.isValueChanging()) {
-            int value = newValue.intValue();
-            int oldV = oldValue.intValue();
-
-            SwingUtilities.invokeLater(() -> {
-                if (value != 0 && oldV != value) {
-                    syndrom.scale(value);
-                }
-            });
-        }
-    };
-
-    /**
-     * Listens to the width change of the swing node and resizes the visualisation viewer accordingly.
-     */
-    private ChangeListener<Number> widthListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-        if (canvas.getContent() != null) {
-            SwingUtilities.invokeLater(() -> {
-                SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
-                vv.setPreferredSize(new Dimension(root.getCenter().layoutXProperty().getValue().intValue(), root.getCenter().layoutYProperty().getValue().intValue()));
-            });
-        }
-    };
-
-    /**
-     * Listens to the height change of the swing node and resizes the visualisation viewer accordingly.
-     */
-    private ChangeListener<Number> heightListener = (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-        if (canvas.getContent() != null) {
-            SwingUtilities.invokeLater(() -> {
-                VisualizationViewer<Vertex, Edge> vv = syndrom.getVv();
-                Dimension old = vv.getPreferredSize();
-                old.setSize(old.getWidth(), newValue.intValue());
-                vv.setPreferredSize(old);
-            });
-        }
-    };
 
     /**
      * Changes the font size of the sphere accordingly to the given argument.
@@ -2318,7 +2290,7 @@ public class Controller implements ObserverSyndrom {
      *
      * @param disable Disable/Enable the template rules
      */
-    private void disableTemplateRules(Boolean disable){
+    private void disableTemplateRules(Boolean disable) {
         templateGridPane.setDisable(disable);
         templateVbox.setDisable(disable);
         sphereTableView.setDisable(disable);
@@ -2329,7 +2301,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Resets all toggle buttons and turns on the hand select button.
      */
-    private void resetToggleButtons(){
+    private void resetToggleButtons() {
         handSelector.setSelected(true);
         anchorPointsButton.setSelected(false);
         highlight.setSelected(false);
@@ -2337,53 +2309,50 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Shows the user guide.
+     * Opens the given PDF in the default application for PDF.
+     * @param pdfName The name of the PDF with file ending.
      */
     @FXML
-    private void showUserGuide() {
-        File pdfDest= Paths.get(System.getProperty("user.home"), ".graphit", "userGuide.pdf").toFile();
+    private void showPDF(String pdfName) {
+        File pdfDest = Paths.get(System.getProperty("user.home"), ".graphit", pdfName).toFile();
         try {
-            if(pdfDest.createNewFile()) {
-                FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/userGuide.pdf"), pdfDest);
-            }else{
-                logger.debug("pdf already exists");
+            boolean createdNew = pdfDest.createNewFile();
+            FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/" + pdfName), pdfDest);
+            if (createdNew) {
+                logger.debug("PDF created");
+            } else {
+                logger.debug("PDF already exists");
             }
         } catch (final IOException e) {
-            logger.error("Unable to copy userGuide.pdf");
+            logger.error("Unable to copy pdf");
         }
 
-        if (Desktop.isDesktopSupported()) {
-            try {
-                Desktop.getDesktop().open(pdfDest);
-            } catch (IOException ex) {
-                logger.error("No default PDF viewing application found");
+        SwingUtilities.invokeLater(() -> {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(pdfDest);
+                } catch (IOException ex) {
+                    logger.error("No default PDF viewing application found");
+                }
             }
-        }
+        });
+        pdfDest.deleteOnExit();
     }
 
     /**
-     * javadocTODO
+     * Opens the user guide.
      */
     @FXML
-    private void showAboutUs(){
-        File pdfDest= Paths.get(System.getProperty("user.home"), ".graphit", "TeamBlank.pdf").toFile();
-        try {
-            if(pdfDest.createNewFile()) {
-                FileUtils.copyInputStreamToFile(getClass().getResourceAsStream("/TeamBlank.pdf"), pdfDest);
-            }else{
-                logger.debug("pdf already exists");
-            }
-        } catch (final IOException e) {
-            logger.error("Unable to copy TeamBlank.pdf");
-        }
+    private void showUserGuide() {
+        showPDF("userGuide.pdf");
+    }
 
-        if (Desktop.isDesktopSupported()) {
-            try {
-                Desktop.getDesktop().open(pdfDest);
-            } catch (IOException ex) {
-                logger.error("No default PDF viewing application found");
-            }
-        }
+    /**
+     * Opens the PDF with Informations about us.
+     */
+    @FXML
+    private void showAboutUs() {
+        showPDF("TeamBlank.pdf");
     }
 
     /**
@@ -2576,7 +2545,7 @@ public class Controller implements ObserverSyndrom {
         zoomSlider.setValue(100);
         templateToFields();
         treeViewUpdate();
-        mainStage.setTitle(syndrom.getGraphName()+" - "+APPLICATION_TITLE);
+        mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
     /**
@@ -2959,7 +2928,7 @@ public class Controller implements ObserverSyndrom {
             resetAction.action();
             AnalysisGraphShortestPathAction analysisGraphAction = new AnalysisGraphShortestPathAction();
             analysisGraphAction.action();
-        }else{
+        } else {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
             disableAllCheckBoxes();
@@ -2976,7 +2945,7 @@ public class Controller implements ObserverSyndrom {
             resetAction.action();
             AnalysisGraphAllPathsAction analysisGraphAction = new AnalysisGraphAllPathsAction();
             analysisGraphAction.action();
-        }else{
+        } else {
             ResetVvAction resetAction = new ResetVvAction();
             resetAction.action();
             disableAllCheckBoxes();
@@ -3201,6 +3170,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * It checks if at least one vertex is picked.
      * If not, it will show an alert that at least one vertex has to be picked.
+     *
      * @return true if at least one syndrom is picked
      */
     boolean isAtLeastOnePicked() {

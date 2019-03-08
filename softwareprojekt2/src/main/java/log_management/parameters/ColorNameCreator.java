@@ -18,7 +18,8 @@ public class ColorNameCreator {
     /**
      * Creates an instance of this class.
      */
-    private ColorNameCreator() {}
+    private ColorNameCreator() {
+    }
 
     /**
      * Gets the instance of this class.
@@ -221,7 +222,8 @@ public class ColorNameCreator {
 
     /**
      * Determines the name of a color depending on the language.
-     * @param color The color.
+     *
+     * @param color    The color.
      * @param language The language.
      * @return The color name.
      */
@@ -259,10 +261,10 @@ public class ColorNameCreator {
          * Creates an instance of this class.
          *
          * @param englishName The english name.
-         * @param germanName The german name.
-         * @param red The red value.
-         * @param green The green value.
-         * @param blue The blue value.
+         * @param germanName  The german name.
+         * @param red         The red value.
+         * @param green       The green value.
+         * @param blue        The blue value.
          */
         ColorNames(String englishName, String germanName, int red, int green, int blue) {
             this.red = red;
@@ -275,9 +277,9 @@ public class ColorNameCreator {
         /**
          * Calculates the mean squared error.
          *
-         * @param pixRed The red value.
+         * @param pixRed   The red value.
          * @param pixGreen The green value.
-         * @param pixBlue The blue value.
+         * @param pixBlue  The blue value.
          * @return The mean squared error.
          */
         int calculate(int pixRed, int pixGreen, int pixBlue) {

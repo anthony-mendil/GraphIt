@@ -64,7 +64,7 @@ public class EditVerticesDrawColorLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            if(!lockedVertices.isEmpty() && lockedVertices.size() == pickedStateVertex.getPicked().size()){
+            if (!lockedVertices.isEmpty() && lockedVertices.size() == pickedStateVertex.getPicked().size()) {
                 actionHistory.removeLastEntry();
                 return;
             }

@@ -63,6 +63,7 @@ public class VertexContextMenu {
 
     /**
      * creates a vertex context menu
+     *
      * @param vertex the vertex
      */
     public VertexContextMenu(Vertex vertex) {
@@ -187,6 +188,7 @@ public class VertexContextMenu {
 
     /**
      * checks the annotation and creates a edit vertex annotation action
+     *
      * @param map the map containing the annotations
      */
     private void checkAnnotation(Map<Language, String> map) {

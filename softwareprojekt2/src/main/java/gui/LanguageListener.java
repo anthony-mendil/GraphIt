@@ -36,6 +36,15 @@ public class LanguageListener implements ChangeListener<Boolean> {
      */
     private final CheckMenuItem languageGerman;
 
+    LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
+        this.checkMenuItem = checkMenuItem;
+        this.controller = controller;
+        loadLanguage = controller.getLoadLanguage();
+        values = controller.getValues();
+        languageEnglish = controller.getLanguageEnglish();
+        languageGerman = controller.getLanguageGerman();
+    }
+
     /**
      * Calls the change gui language action with the given argument.
      *
@@ -51,15 +60,6 @@ public class LanguageListener implements ChangeListener<Boolean> {
         controller.reloadComboBox();
     }
 
-    LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
-        this.checkMenuItem = checkMenuItem;
-        this.controller = controller;
-        loadLanguage = controller.getLoadLanguage();
-        values = controller.getValues();
-        languageEnglish = controller.getLanguageEnglish();
-        languageGerman = controller.getLanguageGerman();
-    }
-
     /**
      * Gets called when a menuitem in the language menu was selected.
      * When called, it evaluates which menuitem was selected and changes the language accordingly to it.
@@ -72,17 +72,17 @@ public class LanguageListener implements ChangeListener<Boolean> {
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (checkMenuItem.getId().equals("languageGerman") && newValue) {
             languageEnglish.setSelected(false);
-            if(controller.getLanguageGraphGerman().isSelected()){
+            if (controller.getLanguageGraphGerman().isSelected()) {
                 controller.getLanguageGuiGraphGerman().setSelected(true);
-            }else{
+            } else {
                 uncheckLanguage();
             }
             changeLanguage(Language.GERMAN);
         } else if (checkMenuItem.getId().equals("languageEnglish") && newValue) {
             languageGerman.setSelected(false);
-            if(controller.getLanguageGraphEnglish().isSelected()){
+            if (controller.getLanguageGraphEnglish().isSelected()) {
                 controller.getLanguageGuiGraphEnglish().setSelected(true);
-            }else{
+            } else {
                 uncheckLanguage();
             }
             changeLanguage(Language.ENGLISH);
@@ -92,7 +92,7 @@ public class LanguageListener implements ChangeListener<Boolean> {
     /**
      * Unchecks the general language menuitems.
      */
-    private void uncheckLanguage(){
+    private void uncheckLanguage() {
         controller.getLanguageGuiGraphEnglish().setSelected(false);
         controller.getLanguageGuiGraphGerman().setSelected(false);
     }

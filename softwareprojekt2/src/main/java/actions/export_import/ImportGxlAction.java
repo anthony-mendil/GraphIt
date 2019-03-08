@@ -40,8 +40,8 @@ public class ImportGxlAction extends GraphAction {
     @Override
     public void action() {
         gxlio.importGXL(file, false);
-        templateFound=gxlio.isTemplateFoundFlag();
-        if(templateFound){
+        templateFound = gxlio.isTemplateFoundFlag();
+        if (templateFound) {
             return;
         }
         DatabaseManager databaseManager = DatabaseManager.getInstance();

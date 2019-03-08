@@ -24,7 +24,7 @@ public class VertexStrokeTransformer<V> implements Transformer<V, Stroke> {
     @Override
     public Stroke transform(V v) {
         PickedState<Vertex> vertexPickedState = syndromVisualisationViewer.getPickedVertexState();
-        Vertex vertex = (Vertex) v ;
+        Vertex vertex = (Vertex) v;
         if (vertexPickedState.isPicked(vertex)) {
             return new BasicStroke(4);
         } else {

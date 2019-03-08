@@ -21,7 +21,7 @@ public class EnumNameCreator {
      * Determines the pretty string for the arrow type depending on the language.
      *
      * @param edgeArrowType The arrow type.
-     * @param language The language.
+     * @param language      The language.
      * @return The pretty string for the arrow type.
      */
     public static String edgeArrowTypeTranslator(EdgeArrowType edgeArrowType, Language language) {
@@ -50,7 +50,7 @@ public class EnumNameCreator {
      * Determines the pretty string for the shape type depending on the language.
      *
      * @param vertexShapeType The shape type.
-     * @param language The language.
+     * @param language        The language.
      * @return The pretty string for the shape type.
      */
     public static String vertexShapeTypeTranslator(VertexShapeType vertexShapeType, Language language) {
@@ -73,7 +73,7 @@ public class EnumNameCreator {
      * Determines the pretty string for the stroke type depending on the language.
      *
      * @param strokeType The stroke type.
-     * @param language The language.
+     * @param language   The language.
      * @return The pretty string for the stroke type.
      */
     public static String strokeTypeTranslator(StrokeType strokeType, Language language) {

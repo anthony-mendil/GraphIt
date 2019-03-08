@@ -41,6 +41,15 @@ import java.awt.geom.AffineTransform;
 @Data
 public class Syndrom {
     /**
+     * the syndrom instance
+     */
+    private static Syndrom instance;
+    /**
+     * The values set by the gui.
+     */
+    @Setter(AccessLevel.NONE)
+    private final Values values;
+    /**
      * The visualization viewer of syndrom. It contains the layout and graph.
      */
     private SyndromVisualisationViewer<Vertex, Edge> vv;
@@ -48,43 +57,26 @@ public class Syndrom {
      * Template rules for the graph/layout.
      */
     private Template template;
-
     /**
      * true if a template is set
      */
     private boolean templateIsSet = false;
-
     /**
      * Satellite view for zoom context.
      */
     private SatelliteVisualizationViewer<Vertex, Edge> vv2;
-
     /**
      * For adding/removing graph mouse plugins.
      */
     private PluggableGraphMouse graphMouse;
-
     /**
      * The name of the graph.
      */
     private String graphName;
-
     /**
      * the layout of the syndrom
      */
     private AggregateLayout<Vertex, Edge> layout;
-
-    /**
-     * The values set by the gui.
-     */
-    @Setter(AccessLevel.NONE)
-    private final Values values;
-
-    /**
-     * the syndrom instance
-     */
-    private static Syndrom instance;
-
     /**
      * the scaling control (zoom)
      */
@@ -129,14 +121,6 @@ public class Syndrom {
         graphMouse.add(generalPickingPlugin);
     }
 
-    public void setGraphMouseModeEdit() {
-        graphMouse.remove(translatingPlugin);
-    }
-
-    public void setGraphMouseModeAnalyse() {
-        graphMouse.add(translatingPlugin);
-    }
-
     /**
      * get instance for the singleton class
      *
@@ -147,6 +131,14 @@ public class Syndrom {
             instance = new Syndrom();
         }
         return instance;
+    }
+
+    public void setGraphMouseModeEdit() {
+        graphMouse.remove(translatingPlugin);
+    }
+
+    public void setGraphMouseModeAnalyse() {
+        graphMouse.add(translatingPlugin);
     }
 
     /**
@@ -235,6 +227,6 @@ public class Syndrom {
         setVisualisationViewer(vv);
         vv2 = new SatelliteVisualizationViewer<>(vv, new Dimension(260, 195));
         setVisualisationViewer2(vv2);
-        template=new Template(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, true, true, true);
+        template = new Template(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, true, true, true);
     }
 }
