@@ -167,7 +167,7 @@ public class RemoveVerticesLogAction extends LogAction {
      */
     public boolean allowedRemoveVertex(ArrayList<Edge> edges) {
         for (Edge e : edges) {
-            if (e.isLockedEdgeType() || e.isLockedStyle()) {
+            if ((e.isLockedEdgeType() || e.isLockedStyle())&& values.getMode() != FunctionMode.TEMPLATE) {
                 return false;
             }
         }
