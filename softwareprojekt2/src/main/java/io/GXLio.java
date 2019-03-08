@@ -14,10 +14,8 @@ import org.xml.sax.SAXException;
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class provides methods to exports a GXL-Representation from a graph
@@ -72,7 +70,7 @@ public class GXLio {
      * and currently is shown to the user in the system into a document.
      * As location of the document the file-attribute is used.
      *
-     * @param pGXL The GXL representation that gets written into syndrom.
+     * @param pGXL         The GXL representation that gets written into syndrom.
      * @param withTemplate true if the import includes the template, false if not
      */
     public void gxlToInstance(String pGXL, boolean withTemplate) {
@@ -85,15 +83,15 @@ public class GXLio {
                 logger.error("Error on empty Syndrom GXLGraph");
                 return;
             }
-            if(gxlTemplate!=null){
-                if(!withTemplate&&!templateFoundFlag){
+            if (gxlTemplate != null) {
+                if (!withTemplate && !templateFoundFlag) {
                     logger.info("Template found but not used");
-                    templateFoundFlag=true;
+                    templateFoundFlag = true;
                     return;
                 }
-                templateFoundFlag=true;
-            }else{
-                if (withTemplate){
+                templateFoundFlag = true;
+            } else {
+                if (withTemplate) {
                     logger.error("Error on empty Template GXLGraph");
                     return;
                 }
@@ -106,10 +104,23 @@ public class GXLio {
             List<Map<Edge, Pair<Vertex>>> edgeAndVertices = new ArrayList<>();
             // This counter is needed as the documents elements not always will have successive ids. This fact is a result from the users possibility to delete elements after creating them before he/she exports the graph. This leads to gaps in the row of ids.
             int foundElements = 0;
-            if(withTemplate){
+            if (withTemplate) {
                 initializeTemplateValues(gxlTemplate);
             }
             int elementCount = gxlGraph.getGraphElementCount();
+
+            for (int idCounter = 0; foundElements < elementCount; idCounter++){
+                if (doc.containsID(idCounter + "")){
+                    foundElements++;
+                    GXLAttributedElement el = doc.getElement(idCounter + "");
+                    if (((GXLString) el.getAttr("TYPE").getValue()).getValue().equals("Sphaere")) {
+                        makeSphere(spheresWithVertices, el, withTemplate);
+                    }
+                }
+            }
+
+            foundElements = 0;
+
             for (int idCounter = 0; foundElements < elementCount; idCounter++) {
                 if (doc.containsID(idCounter + "")) {
                     foundElements++;
@@ -117,7 +128,7 @@ public class GXLio {
                     maxID = Math.max(maxID, idCounter);
                 }
             }
-            String graphName= ((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue();
+            String graphName = ((GXLString) gxlGraph.getAttr(NAME_OF_GRAPH).getValue()).getValue();
             updateSystemDataAndVisualisation(spheresWithVertices, edgeAndVertices, graphName, withTemplate);
         } catch (IOException | SAXException e) {
             logger.error(e.toString());
@@ -127,7 +138,6 @@ public class GXLio {
     private void makeGraphElemt(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         switch (((GXLString) pElem.getAttr("TYPE").getValue()).getValue()) {
             case "Sphaere":
-                makeSphere(pSpheresWithVertices, pElem, pWithTemplate);
                 break;
             case "Node":
                 makeVertex(pVertices, pSpheresWithVertices, pElem, pWithTemplate);
@@ -189,11 +199,10 @@ public class GXLio {
     private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices, String graphName, boolean withTemplate) {
         // Getting the objects that are needed to get the spheres, vertices and edges out of the lists into our system.
         syndrom.generateNew();
-        if(withTemplate){
+        if (withTemplate) {
             syndrom.setTemplate(template);
-        }
-        else {
-            syndrom.setTemplate(new Template(Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE, true , true , true));
+        } else {
+            syndrom.setTemplate(new Template(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, true, true, true));
         }
         Layout<Vertex, Edge> layout = syndrom.getVv().getGraphLayout();
         SyndromGraph<Vertex, Edge> newGraph = (SyndromGraph<Vertex, Edge>) layout.getGraph();
@@ -201,7 +210,7 @@ public class GXLio {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         if (graphName != null) {
             syndrom.setGraphName(graphName);
-        }else{
+        } else {
             syndrom.setGraphName("GraphIt");
         }
         updateSystemDataOfSpheresAndVertices(spheresWithVertices, newGraph, vv);
@@ -255,7 +264,7 @@ public class GXLio {
         boolean reinforcedEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("reinforcedEdgesAllowed").getValue()).getBooleanValue();
         boolean unknownEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("unknownEdgesAllowed").getValue()).getBooleanValue();
         boolean extenuatingEdgesAllowed = ((GXLBool) gxlTemplate.getAttr("extenuatingEdgesAllowed").getValue()).getBooleanValue();
-        template=new Template(maxSpheres, maxVertices, maxEdges, reinforcedEdgesAllowed, extenuatingEdgesAllowed, unknownEdgesAllowed);
+        template = new Template(maxSpheres, maxVertices, maxEdges, reinforcedEdgesAllowed, extenuatingEdgesAllowed, unknownEdgesAllowed);
     }
 
 
@@ -268,7 +277,7 @@ public class GXLio {
      * This method creates a new sphere object with the values from the passed GXLAttributedElement and returns this sphere.
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Sphere]-class.
      *
-     * @param elem is a GXLAttributetElement that describes a sphere having the same atributes as an sphere.
+     * @param elem         is a GXLAttributetElement that describes a sphere having the same atributes as an sphere.
      * @param withTemplate true it the import includes the template
      * @return a new sphere object with the values from the passed GXLAttributetElement object
      */
@@ -314,7 +323,7 @@ public class GXLio {
      * This method creates a new vertex object with the values from the passed GXLAttributedElement and returns this vertex.
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Vertex]-class.
      *
-     * @param elem is a GXLAttributetElement that describes a vertex having the same atributes as an vertex.
+     * @param elem         is a GXLAttributetElement that describes a vertex having the same atributes as an vertex.
      * @param withTemplate true if the import contains the template as well
      * @return a new vertex object with the values from the passed GXLAttributetElement object
      */
@@ -329,8 +338,8 @@ public class GXLio {
         String[] coordinatesArray = getNumberArrayFromString(((GXLString) elem.getAttr("coordinate").getValue()).getValue());
         java.awt.geom.Point2D.Float coordinates;
         coordinates = new java.awt.geom.Point2D.Float(
-                    java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
-                    java.lang.Float.parseFloat(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length() - 3)));
+                java.lang.Float.parseFloat(coordinatesArray[0].substring(0, coordinatesArray[0].length() - 2)),
+                java.lang.Float.parseFloat(coordinatesArray[1].trim().substring(0, coordinatesArray[1].length() - 3)));
         VertexShapeType shape = VertexShapeType.valueOf(((GXLString) elem.getAttr("shape").getValue()).getValue());
         Map<String, String> annotation = new HashMap<>();
         annotation.put(Language.GERMAN.name(), ((GXLString) elem.getAttr(ANNOTATION).getValue()).getValue().split(U00A6)[1]);
@@ -370,7 +379,7 @@ public class GXLio {
      * This method creates a new edge object with the values from the passed GXLAttributedElement and returns this edge.
      * Therefore it declares and initialises local variables and passes them to the constructor of the [@graph.Edge]-class.
      *
-     * @param elem is a GXLAttributetElement that describes an edge having the same atributes as an edge.
+     * @param elem         is a GXLAttributetElement that describes an edge having the same atributes as an edge.
      * @param withTemplate true if the import contains the template rules
      * @return a new edge object with the values from the passed GXLAttributetElement object
      */
@@ -420,6 +429,14 @@ public class GXLio {
 
     }
 
+
+    private static final Comparator<Sphere> sphereCompare = Comparator.comparingInt(Sphere::getId);
+    private static final Comparator<Edge> edgeCompare = Comparator.comparingInt(Edge::getId);
+
+    private static final Comparator<Vertex> vertexCompare = Comparator.comparingInt(Vertex::getId);
+
+
+
     /**
      * Extracts the graph from our syndrom and creates a gxl document for this graph.
      * The document is saved at the location specified by the file. This file is set when the
@@ -437,6 +454,7 @@ public class GXLio {
         VisualizationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
         SyndromGraph<Vertex, Edge> theGraph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> currentSpheres = theGraph.getSpheres();
+        currentSpheres.sort(sphereCompare);
 
         ByteArrayOutputStream gxlStream = new ByteArrayOutputStream();
 
@@ -448,28 +466,42 @@ public class GXLio {
             gxlSyndrom.setAttr(NAME_OF_GRAPH, new GXLString(syndrom.getGraphName()));
         }
         for (Sphere s : currentSpheres) {
+
             gxlSyndrom.add(createSphereNode(s, withTemplate));
+            doc.getDocumentElement().remove(gxlSyndrom);
+            doc.getDocumentElement().add(gxlSyndrom);
         }
         for (Sphere s : currentSpheres) {
-            for (Vertex v : s.getVertices()) {
+            List<Vertex> vertices = s.getVertices();
+            vertices.sort(vertexCompare);
+            for (Vertex v : vertices) {
                 GXLNode singleNodeInSphere = createVertexNode(s, v, withTemplate);
                 gxlSyndrom.add(singleNodeInSphere);
+                doc.getDocumentElement().remove(gxlSyndrom);
+                doc.getDocumentElement().add(gxlSyndrom);
             }
         }
-        for (Edge e : theGraph.getEdges()) {
+        Collection<Edge> edges = theGraph.getEdges();
+        ArrayList<Edge> edgesList = new ArrayList<>(edges);
+        edgesList.sort(edgeCompare);
+        for (Edge e : edgesList) {
             gxlSyndrom.add(createEdge(theGraph, e, withTemplate));
+            doc.getDocumentElement().remove(gxlSyndrom);
+            doc.getDocumentElement().add(gxlSyndrom);
         }
+        doc.getDocumentElement().remove(gxlSyndrom);
         doc.getDocumentElement().add(gxlSyndrom);
         if (withTemplate) {
             GXLGraph templateNode = createTemplateNode();
             doc.getDocumentElement().add(templateNode);
         }
 
+
         String content = "";
         try {
+            doc.getDanglingTentacleCount();
             doc.write(gxlStream);
             content = (gxlStream).toString("UTF-8");
-
         } catch (Exception e) {
             logger.error(e.toString());
         }
@@ -686,7 +718,7 @@ public class GXLio {
     /**
      * Save the GXL representation to a specific location.
      *
-     * @param pFile The destination File
+     * @param pFile            The destination File
      * @param pExportWithRules true if the export contains the template rules as well
      */
     public void exportGXL(File pFile, boolean pExportWithRules) {
@@ -701,7 +733,7 @@ public class GXLio {
     /**
      * Import a GXL file from a specific location to the syndrom
      *
-     * @param pFile The File to import
+     * @param pFile            The File to import
      * @param pImportWithRules true if the import contains the template rules
      */
 
