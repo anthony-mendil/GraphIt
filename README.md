@@ -1,5 +1,29 @@
-# Software-Projekt 2
-[![Quality Gate Status](http://193.31.24.60:9000/api/project_badges/measure?project=software-projekt-2%3Asoftware-projekt-2&metric=alert_status)](http://193.31.24.60:9000/dashboard?id=software-projekt-2%3Asoftware-projekt-2)[![Bugs](http://193.31.24.60:9000/api/project_badges/measure?project=software-projekt-2%3Asoftware-projekt-2&metric=bugs)](http://193.31.24.60:9000/dashboard?id=software-projekt-2%3Asoftware-projekt-2)
-[![Code Smells](http://193.31.24.60:9000/api/project_badges/measure?project=software-projekt-2%3Asoftware-projekt-2&metric=code_smells)](http://193.31.24.60:9000/dashboard?id=software-projekt-2%3Asoftware-projekt-2)
-[![Duplicated Lines (%)](http://193.31.24.60:9000/api/project_badges/measure?project=software-projekt-2%3Asoftware-projekt-2&metric=duplicated_lines_density)](http://193.31.24.60:9000/dashboard?id=software-projekt-2%3Asoftware-projekt-2)
-[![Lines of Code](http://193.31.24.60:9000/api/project_badges/measure?project=software-projekt-2%3Asoftware-projekt-2&metric=ncloc)](http://193.31.24.60:9000/dashboard?id=software-projekt-2%3Asoftware-projekt-2)
+Acknowledgments
+
+Icons:
+"line-1" Icon made by https://smashicons.com/ from www.flaticon.com 
+"share" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"sketch" Icon made by https://www.freepik.com/ from www.flaticon.com
+"marker" Icon made by https://www.freepik.com/ from www.flaticon.com
+"marker-1" Icon made by https://www.freepik.com/ from www.flaticon.com
+"minus-1" Icon made by https://smashicons.com/ from www.flaticon.com
+"more" Icon made by https://smashicons.com/ from www.flaticon.com
+"more-1" Icon made by https://smashicons.com/ from www.flaticon.com
+"plus-black-symbol" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"hide-2" Icon made by https://creativemarket.com/Becris from www.flaticon.com
+"line" Icon made by https://smashicons.com/ from www.flaticon.com
+"right-chevron" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"minus" Icon made by https://smashicons.com/ from www.flaticon.com
+"reply" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"secret" Icon made by https://creativemarket.com/Becris from www.flaticon.com
+"rubbish-bin" Icon made by https://www.freepik.com/ from www.flaticon.com
+"question" Icon made by https://fontawesome.com/?from=io from www.flaticon.com 
+"circle" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"arrow" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"line" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"square" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"pencil-1" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"vision" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"anchor" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
+"dotted" Icon made by https://smashicons.com/ from www.flaticon.com
+"info-circle-solid" Icon made by https://fontawesome.com/?from=io from www.flaticon.com
