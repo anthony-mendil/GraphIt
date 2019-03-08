@@ -65,6 +65,7 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
 
     /**
      * returns the shape depending on the arrow type
+     *
      * @param type the type of the edge
      * @return the depending shape
      */

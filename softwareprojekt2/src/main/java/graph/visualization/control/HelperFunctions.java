@@ -34,13 +34,13 @@ import java.util.concurrent.CountDownLatch;
  */
 public class HelperFunctions {
     /**
-     * the values instance
-     */
-    private final Values values;
-    /**
      * the logger for the class
      */
     private static Logger logger = Logger.getLogger(HelperFunctions.class);
+    /**
+     * the values instance
+     */
+    private final Values values;
     /**
      * the LoadLanguage class, to get the strings in the right language
      */

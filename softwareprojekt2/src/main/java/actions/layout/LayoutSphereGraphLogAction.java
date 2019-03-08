@@ -20,15 +20,22 @@ import java.util.*;
  */
 public class LayoutSphereGraphLogAction extends LogAction {
     /**
-     * Indicator whether the action is an undo action.;
-     */
-    private boolean indicator;
-
-    /**
      * constants for the separation space between spheres
      */
     private static final int SEP_X = 15;
     private static final int SEP_Y = 15;
+    /**
+     * Defines a comparator for the spheres.
+     */
+    private static final Comparator<Sphere> sphereCompare = Comparator.comparingDouble(sphere -> sphere.getCoordinates().getX());
+    /**
+     * Indicator whether the action is an undo action.;
+     */
+    private boolean indicator;
+    /**
+     * the SyndromVisualisation viewer
+     */
+    private SyndromVisualisationViewer<Vertex, Edge> vv;
 
     /**
      * Layouts the graph (including all vertices) according to the defined layout.
@@ -38,12 +45,8 @@ public class LayoutSphereGraphLogAction extends LogAction {
     }
 
     /**
-     * the SyndromVisualisation viewer
-     */
-    private SyndromVisualisationViewer<Vertex, Edge> vv;
-
-    /**
      * Layouts the graph (including all vertices) according to the defined layout.
+     *
      * @param pLayoutSpheresParam the param containing a layout to change the current layout to
      */
     private LayoutSphereGraphLogAction(LayoutSpheresParam pLayoutSpheresParam) {
@@ -255,12 +258,6 @@ public class LayoutSphereGraphLogAction extends LogAction {
             }
         }
     }
-
-    /**
-     * Defines a comparator for the spheres.
-     */
-    private static final Comparator<Sphere> sphereCompare = Comparator.comparingDouble(sphere -> sphere.getCoordinates().getX());
-
 
     @Override
     public void undo() {

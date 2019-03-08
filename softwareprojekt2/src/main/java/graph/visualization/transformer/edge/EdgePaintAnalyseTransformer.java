@@ -21,6 +21,7 @@ public class EdgePaintAnalyseTransformer<E> implements Transformer<E, Paint> {
 
     /**
      * the list of edges, need to get highlighted
+     *
      * @param pEdges list of edges
      */
     public EdgePaintAnalyseTransformer(List<Edge> pEdges) {

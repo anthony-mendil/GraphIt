@@ -64,7 +64,7 @@ public class EditVerticesFormLogAction extends LogAction {
                     lockedVertices.add(vertex);
                 }
             }
-            if(!lockedVertices.isEmpty() && lockedVertices.size() == pickedState.getPicked().size()){
+            if (!lockedVertices.isEmpty() && lockedVertices.size() == pickedState.getPicked().size()) {
                 actionHistory.removeLastEntry();
                 return;
             }

@@ -20,27 +20,24 @@ import java.time.LocalDateTime;
 public abstract class LogAction extends GraphAction {
 
 
+    private static Logger logger = Logger.getLogger(LogAction.class);
     /**
      * The name of the action.
      */
     @Getter
     @Setter
     protected LogEntryName logEntryName;
-
     /**
      * The parameters, which were used in the action.
      */
     @Getter
     @Setter
     protected Param parameters;
-
     /**
      * The time, the action gets called.
      */
     @Getter
     protected LocalDateTime time;
-
-    private static Logger logger = Logger.getLogger(LogAction.class);
 
     /**
      * Creates an action in the program, which will also be persisted into in the database.
@@ -54,7 +51,8 @@ public abstract class LogAction extends GraphAction {
 
     /**
      * Creats a log for the executed action. This action can be displayed in the edit mode.
-     * @return  The string of the log.
+     *
+     * @return The string of the log.
      */
     public Log createLog() {
         Log log = new Log();

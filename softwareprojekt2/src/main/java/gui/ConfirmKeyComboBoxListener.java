@@ -9,12 +9,12 @@ import javafx.scene.input.KeyEvent;
  * Confirms and validates the input of the combobox for the sphere/symptom size option when the enter key was pressed.
  */
 public class ConfirmKeyComboBoxListener implements EventHandler<KeyEvent> {
-    private final Controller c;
-    private final ComboBox comboBox;
     private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
     private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
+    private final Controller c;
+    private final ComboBox comboBox;
 
-    ConfirmKeyComboBoxListener(Controller pC, ComboBox pComboBox){
+    ConfirmKeyComboBoxListener(Controller pC, ComboBox pComboBox) {
         c = pC;
         comboBox = pComboBox;
     }

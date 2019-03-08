@@ -14,6 +14,17 @@ public abstract class Action {
     private static LinkedList<ObserverSyndrom> observers = new LinkedList<>();
 
     /**
+     * Attaches the observer so that the observer can observe it.
+     *
+     * @param o The observer to attach.
+     */
+    public static void attach(ObserverSyndrom o) {
+        if (!observers.contains(o)) {
+            observers.add(o);
+        }
+    }
+
+    /**
      * Executes the defined behavior of the action.
      */
     public abstract void action();
@@ -27,17 +38,6 @@ public abstract class Action {
      * Executes the defined behavior of the action again.
      */
     public abstract void redo();
-
-    /**
-     * Attaches the observer so that the observer can observe it.
-     *
-     * @param o The observer to attach.
-     */
-    public static void attach(ObserverSyndrom o) {
-        if (!observers.contains(o)) {
-            observers.add(o);
-        }
-    }
 
     /**
      * Notify the observer if the graph changes.

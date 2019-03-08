@@ -16,6 +16,10 @@ import lombok.Data;
 @Data
 public class DatabaseManager implements ObserverSyndrom {
     /**
+     * The instance of this class.
+     */
+    private static DatabaseManager databaseManager;
+    /**
      * The log_management.dao GraphDao object for graphs, for accessing the database.
      */
     private GraphDao graphDao;
@@ -31,10 +35,6 @@ public class DatabaseManager implements ObserverSyndrom {
      * The current mode.
      */
     private FunctionMode mode;
-    /**
-     * The instance of this class.
-     */
-    private static DatabaseManager databaseManager;
 
     /**
      * Creates a database manager organizing the database.

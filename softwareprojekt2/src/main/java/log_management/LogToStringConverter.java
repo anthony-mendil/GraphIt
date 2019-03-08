@@ -181,7 +181,7 @@ public class LogToStringConverter {
      * Translates the json string into an specific param object and performs
      * a pretty print on it.
      *
-     * @param parameters The parameters.
+     * @param parameters   The parameters.
      * @param logEntryName The entry name of the log entry.
      * @return The pretty parameter string.
      */

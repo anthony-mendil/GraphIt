@@ -99,7 +99,8 @@ public class MoveSphereLogAction extends LogAction {
 
     /**
      * Creats a parameter-object for this action.
-     * @param sphere the sphere
+     *
+     * @param sphere      the sphere
      * @param oldPosition the old position of the sphere
      * @param newPosition the new position of the sphere
      */

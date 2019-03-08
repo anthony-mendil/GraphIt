@@ -68,7 +68,7 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
     /**
      * Implements the behaviour that at least one toggle button must be active.
      */
-    private void changeOnNotSelected(){
+    private void changeOnNotSelected() {
         switch (toggleButton.getId()) {
             case "handSelector":
                 if (!addSphere.isSelected() && !addVertex.isSelected()) {
@@ -81,7 +81,7 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
                 }
                 break;
             case "addVertex":
-                if(!handSelector.isSelected() && !addSphere.isSelected()){
+                if (!handSelector.isSelected() && !addSphere.isSelected()) {
                     toggleButton.setSelected(true);
                 }
                 break;

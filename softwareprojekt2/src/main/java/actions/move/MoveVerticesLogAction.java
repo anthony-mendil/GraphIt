@@ -44,8 +44,9 @@ public class MoveVerticesLogAction extends LogAction {
 
     /**
      * Moves all vertices according to the difference.
+     *
      * @param vertices vertices The collection of vertices to move.
-     * @param points the sphere the vertices belonged to
+     * @param points   the sphere the vertices belonged to
      */
     public MoveVerticesLogAction(Set<Vertex> vertices, Map<Vertex, Pair<Point2D, Sphere>> points) {
         super(LogEntryName.MOVE_VERTICES);
@@ -96,8 +97,9 @@ public class MoveVerticesLogAction extends LogAction {
 
     /**
      * Creates a parameter-object for this action.
-     * @param oldVertices   The map of the vertices and their old position.
-     * @param newVertices   The map of the vertice and their new position.
+     *
+     * @param oldVertices The map of the vertices and their old position.
+     * @param newVertices The map of the vertice and their new position.
      */
     public void createParameter(Map<Vertex, Point2D> oldVertices, Map<Vertex, Point2D> newVertices) {
         parameters = new MoveVerticesParam(oldVertices, newVertices);

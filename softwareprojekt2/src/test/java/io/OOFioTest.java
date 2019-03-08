@@ -21,12 +21,10 @@ public class OOFioTest {
     private static String anyOOF;
     private static File simpleGraph;
     private static File exportedSimpleGraph;
-    private static String simpleGraphGXL="";
     private static String simpleGraphJSON ="";
 
     private static File bigGraph;
     private static File exportedBigGraph;
-    private static String bigGraphGXL="";
     private static String bigGraphJSON ="";
 
     /**
@@ -45,13 +43,11 @@ public class OOFioTest {
         simpleGraph = Paths.get(".graphitTest", "simpleGraph.oof").toFile();
         FileUtils.copyInputStreamToFile(OOFioTest.class.getResourceAsStream("/simpleGraph.oof"), simpleGraph);
         exportedSimpleGraph=Paths.get(".graphitTest", "ExportSimpleGraph.oof").toFile();
-        simpleGraphGXL = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphGXL.gxl"), StandardCharsets.UTF_8);
         simpleGraphJSON = IOUtils.toString(OOFioTest.class.getResourceAsStream("/simpleGraphJSON.json"), StandardCharsets.UTF_8);
 
         bigGraph = Paths.get(".graphitTest", "bigGraph.oof").toFile();
         FileUtils.copyInputStreamToFile(OOFioTest.class.getResourceAsStream("/bigGraph.oof"), bigGraph);
         exportedBigGraph=Paths.get(".graphitTest", "ExportBigGraph.oof").toFile();
-        bigGraphGXL = IOUtils.toString(OOFioTest.class.getResourceAsStream("/bigGraphGXL.gxl"), StandardCharsets.UTF_8);
         bigGraphJSON = IOUtils.toString(OOFioTest.class.getResourceAsStream("/bigGraphJSON.json"), StandardCharsets.UTF_8);
     }
 
@@ -77,7 +73,7 @@ public class OOFioTest {
      * javadocTODO
      */
     @Test
-    public void testCreateOOF() throws IOException {
+    public void testCreateOOF() {
         Assert.assertEquals(anyOOF, oofio.createOOF(oofio.gxlFromOOF(anyOOF),oofio.jsonFromOOF(anyOOF)));
     }
 
@@ -87,17 +83,6 @@ public class OOFioTest {
     @Test
     public void testEmptyDatabase() {
         Assert.assertTrue(databaseManager.databaseEmpty());
-    }
-
-    /**
-     * javadocTODO
-     */
-    @Test
-    public void testImportOOFGXLSimple() {
-        oofio.importOOF(simpleGraph);
-        Assert.assertEquals(
-                simpleGraphGXL.trim().replaceAll("\\n|\\s",""),
-                databaseManager.getGraphDao().gxlFromDatabase().trim().replaceAll("\\n|\\s",""));
     }
 
     /**
@@ -115,18 +100,6 @@ public class OOFioTest {
      * javadocTODO
      */
     @Test
-    public void testExportOOFGXLSimple(){
-        oofio.importOOF(simpleGraph);
-        oofio.exportAsOOF(exportedSimpleGraph);
-        Assert.assertEquals(
-                simpleGraphGXL.trim().replaceAll("\\n|\\s",""),
-                oofio.gxlFromOOF(FileHandler.fileToString(exportedSimpleGraph)).trim().replaceAll("\\n|\\s",""));
-    }
-
-    /**
-     * javadocTODO
-     */
-    @Test
     public void testExportOOFJSONSimple() {
         oofio.importOOF(simpleGraph);
         oofio.exportAsOOF(exportedSimpleGraph);
@@ -137,41 +110,18 @@ public class OOFioTest {
 
     /**
      * javadocTODO
-     *//*
-    @Test
-    public void testImportOOFGXLBig() {
-        oofio.importOOF(bigGraph);
-        Assert.assertEquals(
-                bigGraphGXL.trim().replaceAll("\\n|\\s",""),
-                databaseManager.getGraphDao().gxlFromDatabase().trim().replaceAll("\\n|\\s",""));
-    }*/
-
-    /**
-     * javadocTODO
-     *//*
+     */
     @Test
     public void testImportOOFJSONBig() {
         oofio.importOOF(bigGraph);
         Assert.assertEquals(
                 bigGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d",""),
                 databaseManager.getLogDao().getAllString().replaceAll("\\d",""));
-    }*/
+    }
 
     /**
      * javadocTODO
-     *//*
-    @Test
-    public void testExportOOFGXLBig(){
-        oofio.importOOF(bigGraph);
-        oofio.exportAsOOF(exportedBigGraph);
-        Assert.assertEquals(
-                bigGraphGXL.trim().replaceAll("\\n|\\s",""),
-                oofio.gxlFromOOF(FileHandler.fileToString(exportedBigGraph)).trim().replaceAll("\\n|\\s",""));
-    }*/
-
-    /**
-     * javadocTODO
-     *//*
+     */
     @Test
     public void testExportOOFJSONBig() {
         oofio.importOOF(bigGraph);
@@ -179,5 +129,5 @@ public class OOFioTest {
         Assert.assertEquals(
                 bigGraphJSON.trim().replaceAll("\\\\n|\\\\r|\\d","").replaceAll("\\d",""),
                 oofio.jsonFromOOF(FileHandler.fileToString(exportedBigGraph)).replaceAll("\\d",""));
-    }*/
+    }
 }

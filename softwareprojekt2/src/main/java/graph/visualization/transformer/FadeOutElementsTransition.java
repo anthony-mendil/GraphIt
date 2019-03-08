@@ -24,6 +24,7 @@ public class FadeOutElementsTransition extends Transition {
      */
     @Getter
     private double value;
+
     public FadeOutElementsTransition() {
         setCycleDuration(Duration.millis(2000));
         setInterpolator(Interpolator.LINEAR);
@@ -32,10 +33,10 @@ public class FadeOutElementsTransition extends Transition {
     @Override
     protected void interpolate(double value) {
         this.value = value;
-        if (!setDisabled){
+        if (!setDisabled) {
             values.getAnimationFadeout().setDisable(true);
             setDisabled = true;
-        } else if (value == 1.0){
+        } else if (value == 1.0) {
             values.getAnimationFadeout().setDisable(false);
         }
         Syndrom.getInstance().getVv().repaint();

@@ -11,6 +11,7 @@ public class RenderHelperFunction {
 
     /**
      * returns white/ black depending of the colors brightness
+     *
      * @param drawColor the color
      * @return black or white
      */
@@ -20,11 +21,10 @@ public class RenderHelperFunction {
     }
 
     /**
-     *
-     * @param sphereWidth the shape width
+     * @param sphereWidth  the shape width
      * @param sphereHeight the shape height
-     * @param annotation the sphere annotation
-     * @param fontMetrics the font metrics
+     * @param annotation   the sphere annotation
+     * @param fontMetrics  the font metrics
      * @return the new formatted string, so it fits into the shape
      */
     String shrinkAnnotation(double sphereWidth, double sphereHeight, String annotation, FontMetrics
@@ -51,8 +51,9 @@ public class RenderHelperFunction {
 
     /**
      * breaks the annotation so it fits into the shape
+     *
      * @param sphereWidth the shape width
-     * @param annotation the title
+     * @param annotation  the title
      * @param fontMetrics the font metrics
      * @return the new formatted label fitting into the shape
      */
@@ -83,15 +84,16 @@ public class RenderHelperFunction {
 
     /**
      * splits and rebuild the string label, if he string length is higher than the shape length
+     *
      * @param fontMetrics the font metrics
-     * @param line the line to break
+     * @param line        the line to break
      * @param sphereWidth the shape width
-     * @param i the counter
+     * @param i           the counter
      * @param lengthLabel StringBuilder
-     * @param label StringBuilder
+     * @param label       StringBuilder
      * @return the new line
      */
-    private Pair<StringBuilder> stringToBigForShapeWidth(FontMetrics fontMetrics, String line, double sphereWidth, int i, StringBuilder lengthLabel, StringBuilder label){
+    private Pair<StringBuilder> stringToBigForShapeWidth(FontMetrics fontMetrics, String line, double sphereWidth, int i, StringBuilder lengthLabel, StringBuilder label) {
         if (fontMetrics.stringWidth(line) + 10 >= sphereWidth) {
             char[] chars = line.toCharArray();
             if (i != 0) {

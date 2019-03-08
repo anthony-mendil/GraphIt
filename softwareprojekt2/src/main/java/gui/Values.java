@@ -27,15 +27,9 @@ import java.util.Map;
 public class Values {
 
     /**
-     * the stage of the application
-     */
-    private Stage mainStage;
-
-    /**
      * the relative path of the logo
      */
-    public static final String LOGO_MAIN="/GraphItLogo.png";
-
+    public static final String LOGO_MAIN = "/GraphItLogo.png";
     /**
      * The default width sphere.
      */
@@ -46,16 +40,29 @@ public class Values {
      */
     @Setter(AccessLevel.NONE)
     public static final double DEFAULT_HEIGHT_SPHERE = 200;
-
     /**
      * The default size of a vertex.
      */
     @Setter(AccessLevel.NONE)
     public static final int DEFAULT_SIZE_VERTEX = 50;
-
+    /**
+     * the values instance
+     */
+    private static Values instance;
+    @Setter(AccessLevel.NONE)
+    private final Color anchorHighlight = new Color(204, 0, 0);
+    /**
+     * the font used font the action alert messages
+     */
+    @Setter(AccessLevel.NONE)
+    private final javafx.scene.text.Font actionTextAlert = javafx.scene.text.Font.font("System Regular", FontWeight
+            .EXTRA_BOLD, 14);
+    /**
+     * the stage of the application
+     */
+    private Stage mainStage;
     @Setter(AccessLevel.NONE)
     private Dimension defaultLayoutVVSize = new Dimension(2000, 1500);
-
     /**
      * The fill paint color.
      */
@@ -76,16 +83,11 @@ public class Values {
      * The fill paint color of a vertex.
      */
     private Color fillPaintVertex = new Color(255, 224, 130);
-
     /**
      * true if the anchor points are highlighted in the gui
      * false if the anchor points are not highlighted in the gui
      */
     private boolean showAnchor = false;
-
-    @Setter(AccessLevel.NONE)
-    private final Color anchorHighlight = new Color(204, 0, 0);
-
     /**
      * The draw paint color of a vertex.
      */
@@ -118,64 +120,42 @@ public class Values {
      * The actual graph button type, pressed in the gui.
      */
     private GraphButtonType graphButtonType;
-
     /**
      * The current application mode.
      */
     private FunctionMode mode;
-
     /**
      * The current language of the gui.
      */
     private Language guiLanguage = Language.GERMAN;
-
     /**
      * the current language of the graph.
      */
     private Language graphLanguage = Language.GERMAN;
-
-    /**
-     * the values instance
-     */
-    private static Values instance;
-
     /**
      * the current action text from the gui
      */
     private Text currentActionText = new Text("");
-
     /**
      * the canvas of the gui, containing the visualisationViewer
      */
     private Node canvas;
-
     /**
      * the hBox of the gui, containing the action alert
      */
     private HBox hBox;
-
     /**
      * the toggleButton of the gui, used for the animation fade out
      */
     private ToggleButton animationFadeout;
-
     /**
      * the mouse position text, coordinate x
      */
     private Text positionMouseX = new Text("");
-
     /**
      * the mouse position text, coordinate y
      */
     private Text positionMouseY = new Text("");
-
-    /**
-     * the font used font the action alert messages
-     */
-    @Setter(AccessLevel.NONE)
-    private final javafx.scene.text.Font actionTextAlert = javafx.scene.text.Font.font("System Regular", FontWeight
-            .EXTRA_BOLD, 14);
-
     /**
      * the roboto font
      */
@@ -189,13 +169,23 @@ public class Values {
      */
     private Font averiaSansLibr;
     /**
-     *  the kalam font
+     * the kalam font
      */
     private Font kalam;
     /**
      * the mali font
      */
     private Font mali;
+
+    /**
+     * @return the instance of the Value Class
+     */
+    public static Values getInstance() {
+        if (instance == null) {
+            instance = new Values();
+        }
+        return instance;
+    }
 
     /**
      * @return the default annotation map for the vertices
@@ -215,16 +205,6 @@ public class Values {
         annotation.put(Language.GERMAN.name(), "Sphäre");
         annotation.put(Language.ENGLISH.name(), "Sphere");
         return annotation;
-    }
-
-    /**
-     * @return the instance of the Value Class
-     */
-    public static Values getInstance() {
-        if (instance == null) {
-            instance = new Values();
-        }
-        return instance;
     }
 }
 
