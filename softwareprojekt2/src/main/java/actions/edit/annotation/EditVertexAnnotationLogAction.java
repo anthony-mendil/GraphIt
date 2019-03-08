@@ -53,7 +53,8 @@ public class EditVertexAnnotationLogAction extends LogAction {
             List<Vertex> lockedVertices = new ArrayList<>();
             for (Vertex v : pickedState.getPicked()) {
                 if (!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    createParameter(v, v.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH), v.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
+                    createParameter(v, v.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH),
+                            v.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
                     Map<String, String> annotation = v.getAnnotation();
                     annotation.put(Language.GERMAN.name(), text.get(Language.GERMAN));
                     annotation.put(Language.ENGLISH.name(), text.get(Language.ENGLISH));
@@ -88,8 +89,10 @@ public class EditVertexAnnotationLogAction extends LogAction {
         String newAnnotationEn = ((EditVertexAnnotationParam) parameters).getNewAnnotationEnglish();
         String oldAnnotationDe = ((EditVertexAnnotationParam) parameters).getOldAnnotationGerman();
         String newAnnotationDe = ((EditVertexAnnotationParam) parameters).getNewAnnotationGerman();
-        EditVertexAnnotationParam editVertexAnnotationParam = new EditVertexAnnotationParam(vertex, newAnnotationEn, oldAnnotationEn, newAnnotationDe, oldAnnotationDe);
-        EditVertexAnnotationLogAction editVertexAnnotationLogAction = new EditVertexAnnotationLogAction(editVertexAnnotationParam);
+        EditVertexAnnotationParam editVertexAnnotationParam =
+                new EditVertexAnnotationParam(vertex, newAnnotationEn, oldAnnotationEn, newAnnotationDe, oldAnnotationDe);
+        EditVertexAnnotationLogAction editVertexAnnotationLogAction =
+                new EditVertexAnnotationLogAction(editVertexAnnotationParam);
         editVertexAnnotationLogAction.action();
     }
 
@@ -102,7 +105,8 @@ public class EditVertexAnnotationLogAction extends LogAction {
      * @param oldAnnotationGerman  The old annotation in german.
      * @param newAnnotationGerman  The new annotation in german.
      */
-    public void createParameter(Vertex vertex, String oldAnnotationEnglish, String newAnnotationEnglish, String oldAnnotationGerman, String newAnnotationGerman) {
+    public void createParameter(Vertex vertex, String oldAnnotationEnglish, String newAnnotationEnglish,
+                                String oldAnnotationGerman, String newAnnotationGerman) {
         parameters = new EditVertexAnnotationParam(vertex, oldAnnotationEnglish, newAnnotationEnglish, oldAnnotationGerman, newAnnotationGerman);
     }
 }

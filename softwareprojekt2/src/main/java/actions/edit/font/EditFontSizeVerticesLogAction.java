@@ -89,7 +89,8 @@ public class EditFontSizeVerticesLogAction extends LogAction {
         Map<Vertex, Integer> oldVertices = ((EditFontSizeVerticesParam) parameters).getOldVertices();
         Map<Vertex, Integer> newVertices = ((EditFontSizeVerticesParam) parameters).getNewVertices();
         EditFontSizeVerticesParam editFontSizeVerticesParam = new EditFontSizeVerticesParam(newVertices, oldVertices);
-        EditFontSizeVerticesLogAction editFontSizeVerticesLogAction = new EditFontSizeVerticesLogAction(editFontSizeVerticesParam);
+        EditFontSizeVerticesLogAction editFontSizeVerticesLogAction =
+                new EditFontSizeVerticesLogAction(editFontSizeVerticesParam);
         editFontSizeVerticesLogAction.action();
     }
 

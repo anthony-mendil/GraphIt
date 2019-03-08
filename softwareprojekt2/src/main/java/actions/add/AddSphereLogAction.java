@@ -57,7 +57,8 @@ public class AddSphereLogAction extends LogAction {
             createParameter(sp);
         } else {
             graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
-            AddRemoveVerticesParam addRemoveVerticesParam = ((AddRemoveSphereParam) parameters).getAddRemoveVerticesParam();
+            AddRemoveVerticesParam addRemoveVerticesParam =
+                    ((AddRemoveSphereParam) parameters).getAddRemoveVerticesParam();
             AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(addRemoveVerticesParam);
             addVerticesLogAction.action();
         }

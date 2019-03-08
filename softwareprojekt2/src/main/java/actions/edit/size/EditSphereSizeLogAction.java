@@ -112,7 +112,8 @@ public class EditSphereSizeLogAction extends LogAction {
     private boolean doShrink(Sphere sp){
         Shape sphereShape = sphereShapeTransformer.transform(sp);
         for (Vertex v : sp.getVertices()) {
-            if (!sphereShape.contains(new Point2D.Double(v.getCoordinates().getX() + 10, v.getCoordinates().getY() + 10))) {
+            if (!sphereShape.contains(new Point2D.Double(v.getCoordinates().getX() + 10,
+                    v.getCoordinates().getY() + 10))) {
                 actionHistory.removeLastEntry();
                 return false;
             }

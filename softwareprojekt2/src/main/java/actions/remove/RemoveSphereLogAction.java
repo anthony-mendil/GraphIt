@@ -85,6 +85,12 @@ public class RemoveSphereLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+    /**
+     * Sets the vertices in a picked state.
+     * @param sp                The sphere.
+     * @param vertices          The vertices.
+     * @param pickedVertexState The current picked state of the vertices.
+     */
     private void setVerticesPicked(Sphere sp, List<Vertex> vertices, PickedState<Vertex> pickedVertexState){
         for (Vertex v : sp.getVertices()) {
             vertices.add(v);
@@ -107,8 +113,14 @@ public class RemoveSphereLogAction extends LogAction {
         parameters = new AddRemoveSphereParam(sphere, addRemoveVerticesParam);
     }
 
+    /**
+     * Checks whether the sphere can be removed without offending the template rules regarding
+     * the elements.
+     * @param sp                        The sphere.
+     * @return true: The sphere can be removed. | false: The sphere can't be removed.
+     */
     private boolean allowedSphereRemove(Sphere sp){
-        if (helper.verticesLocked(sp)) {
+        if (helper.verticesLocked(sp) || helper.edgesLocked(sp)) {
             HelperFunctions helper = new HelperFunctions();
             helper.setActionText("REMOVE_SPHERE_ALERT", true, true);
             actionHistory.removeLastEntry();
@@ -116,4 +128,5 @@ public class RemoveSphereLogAction extends LogAction {
         }
         return true;
     }
+
 }

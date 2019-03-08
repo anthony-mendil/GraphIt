@@ -51,7 +51,8 @@ public class EditSphereAnnotationLogAction extends LogAction {
         if (parameters == null) {
             for (Sphere sp : pickedState.getPicked()) {
                 if (!sp.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    createParameter(sp, sp.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH), sp.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
+                    createParameter(sp, sp.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH),
+                            sp.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
                     Map<String, String> annotation = sp.getAnnotation();
                     annotation.put(Language.ENGLISH.name(), text.get(Language.ENGLISH));
                     annotation.put(Language.GERMAN.name(), text.get(Language.GERMAN));
@@ -86,8 +87,10 @@ public class EditSphereAnnotationLogAction extends LogAction {
         String newAnnotationEn = ((EditSphereAnnotationParam) parameters).getNewAnnotationEnglish();
         Sphere sphere = ((EditSphereAnnotationParam) parameters).getSphere();
 
-        EditSphereAnnotationParam editSphereAnnotationParam = new EditSphereAnnotationParam(sphere, newAnnotationEn, oldAnnotationEn, newAnnotationDe, oldAnnotationDe);
-        EditSphereAnnotationLogAction editSphereAnnotationLogAction = new EditSphereAnnotationLogAction(editSphereAnnotationParam);
+        EditSphereAnnotationParam editSphereAnnotationParam =
+                new EditSphereAnnotationParam(sphere, newAnnotationEn, oldAnnotationEn, newAnnotationDe, oldAnnotationDe);
+        EditSphereAnnotationLogAction editSphereAnnotationLogAction =
+                new EditSphereAnnotationLogAction(editSphereAnnotationParam);
         editSphereAnnotationLogAction.action();
     }
 
@@ -100,7 +103,8 @@ public class EditSphereAnnotationLogAction extends LogAction {
      * @param oldAnnotationDe The old annotation in german.
      * @param newAnnotationDe The new annotation in german.
      */
-    public void createParameter(Sphere sphere, String oldAnnotationEn, String newAnnotationEn, String oldAnnotationDe, String newAnnotationDe) {
+    public void createParameter(Sphere sphere, String oldAnnotationEn, String newAnnotationEn,
+                                String oldAnnotationDe, String newAnnotationDe) {
         parameters = new EditSphereAnnotationParam(sphere, oldAnnotationEn, newAnnotationEn, oldAnnotationDe, newAnnotationDe);
     }
 }

@@ -40,7 +40,11 @@ public class AnalysisGraphShortestPathAction extends GraphAction {
         GraphPath<Vertex, Edge> shortestPath = jGraphTHandler.getShortestPath();
         if (shortestPath == null) {
             HelperFunctions helperFunctions = new HelperFunctions();
-            helperFunctions.setActionText(LoadLanguage.getInstance().loadLanguagesKey("J_GRAPH_T_NO_WAY1") + jGraphTHandler.getStartVertex().getAnnotation().get(Values.getInstance().getGraphLanguage().name()) + " " + LoadLanguage.getInstance().loadLanguagesKey("J_GRAPH_T_NO_WAY2") + jGraphTHandler.getEndVertex().getAnnotation().get(Values.getInstance().getGraphLanguage().name()), true, false);
+            helperFunctions.setActionText(LoadLanguage.getInstance().loadLanguagesKey("J_GRAPH_T_NO_WAY1")
+                    + jGraphTHandler.getStartVertex().getAnnotation().get(Values.getInstance().getGraphLanguage().name())
+                    + " " + LoadLanguage.getInstance().loadLanguagesKey("J_GRAPH_T_NO_WAY2")
+                    + jGraphTHandler.getEndVertex().getAnnotation().get(Values.getInstance()
+                    .getGraphLanguage().name()), true, false);
         } else {
             verticesAnalyse.addAll(shortestPath.getVertexList());
             edgesAnalyse.addAll(shortestPath.getEdgeList());

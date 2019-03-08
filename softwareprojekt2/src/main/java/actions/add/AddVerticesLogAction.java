@@ -85,14 +85,16 @@ public class AddVerticesLogAction extends LogAction {
             notifyObserverGraph();
         } else {
             Object[] obj = {template.getMaxVertices()};
-            helper.setActionText(loadLanguage.loadLanguagesKey("ADD_VERTICES_COUNT_ALERT", obj), true, false);
+            helper.setActionText(loadLanguage.
+                    loadLanguagesKey("ADD_VERTICES_COUNT_ALERT", obj), true, false);
             actionHistory.removeLastEntry();
         }
     }
 
     @Override
     public void undo() {
-        RemoveVerticesLogAction removeVerticesLogAction = new RemoveVerticesLogAction((AddRemoveVerticesParam) parameters);
+        RemoveVerticesLogAction removeVerticesLogAction =
+                new RemoveVerticesLogAction((AddRemoveVerticesParam) parameters);
         removeVerticesLogAction.action();
     }
 

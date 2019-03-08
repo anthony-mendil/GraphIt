@@ -69,7 +69,8 @@ public class AddEdgesLogAction extends LogAction {
             notifyObserverGraph();
         } else {
             Object[] obj = {template.getMaxEdges()};
-            helper.setActionText(loadLanguage.loadLanguagesKey("ADD_EDGES_ALERT", obj), true, false);
+            helper.setActionText(loadLanguage.loadLanguagesKey("ADD_EDGES_ALERT", obj),
+                    true, false);
             actionHistory.removeLastEntry();
         }
 

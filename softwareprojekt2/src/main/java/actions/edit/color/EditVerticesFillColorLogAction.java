@@ -90,7 +90,8 @@ public class EditVerticesFillColorLogAction extends LogAction {
         Map<Vertex, Color> oldVertices = ((EditVerticesFillColorParam) parameters).getOldVertices();
         Map<Vertex, Color> newVertices = ((EditVerticesFillColorParam) parameters).getNewVertices();
         EditVerticesFillColorParam editVerticesFillColorParam = new EditVerticesFillColorParam(newVertices, oldVertices);
-        EditVerticesFillColorLogAction editVerticesFillColorLogAction = new EditVerticesFillColorLogAction(editVerticesFillColorParam);
+        EditVerticesFillColorLogAction editVerticesFillColorLogAction =
+                new EditVerticesFillColorLogAction(editVerticesFillColorParam);
         editVerticesFillColorLogAction.action();
     }
 
