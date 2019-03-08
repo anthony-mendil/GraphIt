@@ -1,10 +1,7 @@
 package graph.visualization.control;
 
 import edu.uci.ics.jung.visualization.picking.PickedState;
-import graph.graph.Edge;
-import graph.graph.Sphere;
-import graph.graph.Syndrom;
-import graph.graph.Vertex;
+import graph.graph.*;
 import graph.visualization.SyndromVisualisationViewer;
 import gui.*;
 import gui.properties.Language;
@@ -321,6 +318,28 @@ public class HelperFunctions {
         for (Vertex vertex : vertices) {
             if (vertex.isLockedPosition() || vertex.isLockedAnnotation() || vertex.isLockedStyle()) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks whether the edges in the sphere are locked.
+     *
+     * @param sp the sphere to check its edges if one of the is locked
+     * @return true: locked edges, false: no locked edges
+     */
+    public boolean edgesLocked(Sphere sp) {
+        SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
+        for (Vertex vertex : sp.getVertices()) {
+            Collection<Edge> edges = new ArrayList<>();
+            edges.addAll(graph.getInEdges(vertex));
+            edges.addAll(graph.getOutEdges(vertex));
+            for(Edge e : edges){
+                if(e.isLockedEdgeType() || e.isLockedStyle()){
+                    return true;
+                }
             }
         }
         return false;

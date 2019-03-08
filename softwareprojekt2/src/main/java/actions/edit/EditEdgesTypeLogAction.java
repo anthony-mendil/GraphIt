@@ -73,7 +73,8 @@ public class EditEdgesTypeLogAction extends LogAction {
         notifyObserverGraph();
     }
 
-    private void setType(PickedState<Edge> pickedState, Map<Edge, EdgeArrowType> oldEdges, Map<Edge, EdgeArrowType> newEdges, List<Edge> lockedEdges) {
+    private void setType(PickedState<Edge> pickedState, Map<Edge, EdgeArrowType> oldEdges, Map<Edge,
+            EdgeArrowType> newEdges, List<Edge> lockedEdges) {
         for (Edge e : pickedState.getPicked()) {
             if (!e.isLockedEdgeType() || values.getMode() == FunctionMode.TEMPLATE) {
                 oldEdges.put(e, e.getArrowType());

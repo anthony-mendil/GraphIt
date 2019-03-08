@@ -48,11 +48,16 @@ public class ActivateFadeoutAction extends GraphAction {
         Predicate<Context<Graph<Vertex, Edge>, Vertex>> predicateVertex = new VertexIsVisiblePredicate<>();
 
 
-        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutPaintTransformer = new EdgeFadeoutPaintTransformer<>(transition, oldEdgeTransformer, fadeType);
-        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutArrowTransformer = new EdgeFadeoutPaintTransformer<>(transition, oldEdgeArrowTransformer, fadeType);
-        VertexFadeoutPaintTransformer<Vertex> vertexFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFill, fadeType);
-        VertexFadeoutPaintTransformer<Vertex> vertexVertexDrawFadeoutPaintTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerDraw, fadeType);
-        VertexFadeoutPaintTransformer<Vertex> vertexFontColorFadeOutTransformer = new VertexFadeoutPaintTransformer<>(transition, oldTransformerFont, fadeType);
+        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutPaintTransformer =
+                new EdgeFadeoutPaintTransformer<>(transition, oldEdgeTransformer, fadeType);
+        EdgeFadeoutPaintTransformer<Edge> edgeFadeoutArrowTransformer =
+                new EdgeFadeoutPaintTransformer<>(transition, oldEdgeArrowTransformer, fadeType);
+        VertexFadeoutPaintTransformer<Vertex> vertexFadeoutPaintTransformer =
+                new VertexFadeoutPaintTransformer<>(transition, oldTransformerFill, fadeType);
+        VertexFadeoutPaintTransformer<Vertex> vertexVertexDrawFadeoutPaintTransformer =
+                new VertexFadeoutPaintTransformer<>(transition, oldTransformerDraw, fadeType);
+        VertexFadeoutPaintTransformer<Vertex> vertexFontColorFadeOutTransformer =
+                new VertexFadeoutPaintTransformer<>(transition, oldTransformerFont, fadeType);
 
         vv.setVertexFontColorTransformer(vertexFontColorFadeOutTransformer);
         rc.setVertexFillPaintTransformer(vertexFadeoutPaintTransformer);
