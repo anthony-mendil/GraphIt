@@ -9,20 +9,24 @@ import java.util.List;
 
 
 /**
- * The OOF importer/exporter.
+ * The action log protocol export handler.
  */
 public class Protocolio {
-    private LogToStringConverter logToStringConverter = new LogToStringConverter();
 
     /**
-     * Creates a new OOFio object.
+     * The LogToStringConverter to convert the logs into a String.
+     */
+    private LogToStringConverter logToStringConverter;
+
+    /**
+     * Creates a new Protocolio object and initializes the LogToStringConverter.
      */
     public Protocolio() {
-        // Can handle protocol-export now
+        logToStringConverter = new LogToStringConverter();
     }
 
     /**
-     * Export the current protocol as readable textfile.
+     * Export the current protocol as readable text file.
      *
      * @param pFile The destination file
      */

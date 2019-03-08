@@ -102,8 +102,8 @@ public class GXLio {
             }
             int elementCount = gxlGraph.getGraphElementCount();
 
-            for (int idCounter = 0; foundElements < elementCount; idCounter++){
-                if (doc.containsID(idCounter + "")){
+            for (int idCounter = 0; foundElements < elementCount; idCounter++) {
+                if (doc.containsID(idCounter + "")) {
                     foundElements++;
                     GXLAttributedElement el = doc.getElement(idCounter + "");
                     if (((GXLString) el.getAttr("TYPE").getValue()).getValue().equals("Sphaere")) {
@@ -429,7 +429,6 @@ public class GXLio {
     private static final Comparator<Vertex> vertexCompare = Comparator.comparingInt(Vertex::getId);
 
 
-
     /**
      * Extracts the graph from our syndrom and creates a gxl document for this graph.
      * The document is saved at the location specified by the file. This file is set when the
@@ -729,7 +728,6 @@ public class GXLio {
      * @param pFile            The File to import
      * @param pImportWithRules true if the import contains the template rules
      */
-
     public void importGXL(File pFile, boolean pImportWithRules) {
         String gxl = FileHandler.fileToString(pFile);
         gxlToInstance(gxl, pImportWithRules);

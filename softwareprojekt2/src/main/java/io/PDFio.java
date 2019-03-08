@@ -33,18 +33,22 @@ import static org.freehep.graphicsio.pdf.PDFGraphics2D.ORIENTATION;
 import static org.freehep.graphicsio.pdf.PDFGraphics2D.PAGE_SIZE;
 
 /**
- * The PDF exporter (export/print)
+ * The PDF exporter used to export and print the graph.
  */
 public class PDFio {
 
+    /**
+     * The Logger used to debug and log system infos and errors.
+     */
     private static Logger logger = Logger.getLogger(PDFio.class);
+
     /**
      * The VisualizationViewer object of the current graph.
      */
     private VisualizationViewer<Vertex, Edge> vv;
 
     /**
-     * Constructs a new PDFio object.
+     * Constructs a new PDFio object and initializes the VisualisationViewer.
      *
      * @param pVv The VisualizationViewer object of the current graph.
      */
@@ -53,7 +57,7 @@ public class PDFio {
     }
 
     /**
-     * creates a visualizationImageServer for visualise the current graph and prints its graphic into a PDFGraphics2D
+     * Creates a VisualizationImageServer for visualise the current graph and prints its graphic into a PDFGraphics2D
      * and creates a pdf document out of it
      *
      * @param pOutputStream the  file OutputStream to export the file to
@@ -110,6 +114,10 @@ public class PDFio {
         vectorGraphics.endExport();
     }
 
+    /**
+     * Exports the current graph visualization as pdf.
+     * @param pFile The destination file of the pdf.
+     */
     public void exportPDF(File pFile) {
         try {
             createPDF(new FileOutputStream(pFile));
@@ -119,7 +127,7 @@ public class PDFio {
     }
 
     /**
-     * Starts the dialog to export the current graph visualization as PDF.
+     * Prints the current graph visualization as PDF.
      */
     public void printPDF() {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
