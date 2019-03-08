@@ -314,9 +314,15 @@ Zur Benutzung von \textbf{GraphIt} muss eine gültige Version von Java 8 mit Jav
 Die Anwendung benötigt keinen vom Nutzer geführten Installationsvorgang, bevor sie benutzt werden kann.
 
 \subsection{Starten des Programms}
-Zum Starten des Programms muss die Ausführbare Datei \texttt{GraphIt.jar} ausgeführt werden. Dadurch wird die Anwendung initialisiert und ggf. eine Datenbank im \texttt{home}-Verzeichnis des Nutzers angelegt. Zweiteres geschieht nur beim erstmaligen Start der Anwendung. \\
-Nach dem Startvorgang ist das Programm direkt einsatzbereit.
+Zum Starten des Programms muss die Ausführbare Datei \texttt{GraphIt.jar} ausgeführt werden. Normalweise wird die Ausführung durch einen Doppelklick auf die .jar gestartet. Falls dies nicht erfolgreich ist, bitte die Anwendung über die Konsole starten. Dadurch wird die Anwendung initialisiert und ggf. eine Datenbank im \texttt{home}-Verzeichnis des Nutzers angelegt. Zweiteres geschieht nur beim erstmaligen Start der Anwendung. \\
+Nach dem Startvorgang ist das Programm direkt einsatzbereit. \\
 
+\textbf{Anwendung über die Konsole starten}
+\begin{itemize}
+	\item Die Bash/ Windows-Eingabeaufforderung (cmd.exe) öffnen.
+	\item In das Verzeichnis navigieren, wo die \texttt{GraphIt.jar} gespeichert wurde. 
+	\item \texttt{java -jar GraphIt.jar} ausführen
+\end{itemize}
 \newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Benutzeroberfläche}
@@ -496,15 +502,18 @@ Im \texttt{Ersteller Modus} kann der Benutzer einen Syndromansatz erstellen und 
 	\item \nameref{sphere}	
 	\item \nameref{symptom}	
 	\item \nameref{relations}	
+	\item \nameref{highlight}
 	\item \nameref{template}
 	\item \nameref{overwiew}
 	\item \nameref{zoom}
+	\item \nameref{format}
 	\item \nameref{export}
 	\item \nameref{import}
 	\item \nameref{print}
 	\item \nameref{dialog}
 	\item \nameref{fehlermeldungen}
-	\item \nameref{settings}	
+	\item \nameref{settings}
+	\item \nameref{mode}	
 \end{itemize}
 \subsection{Bearbeiter Modus} \label{sec:editor}
 Im \texttt{Bearbeiter Modus} kann der Benutzer einen Syndromansatz erstellen und bearbeiten. Die Bearbeitung des Graphen folgt den hinterlegten Vorlageregeln. Alle Aktionen auf dem Graph werden geloggt, d.h. ein Verlaufsprotokoll erstellt, welches ebenfalls einsehbar und exportierbar/ importierbar ist. 
@@ -514,16 +523,20 @@ Im \texttt{Bearbeiter Modus} kann der Benutzer einen Syndromansatz erstellen und
 	\item \nameref{edit}
 	\item \nameref{sphere}	
 	\item \nameref{symptom}	
-	\item \nameref{relations}	
+	\item \nameref{relations}
+	\item \nameref{highlight}
+	\item \nameref{template}	
 	\item \nameref{logs}
 	\item \nameref{overwiew}
 	\item \nameref{zoom}
+	\item \nameref{format}
 	\item \nameref{export}
 	\item \nameref{import}
 	\item \nameref{print}
 	\item \nameref{dialog}
 	\item \nameref{fehlermeldungen}
 	\item \nameref{settings}	
+	\item \nameref{mode}
 \end{itemize}
 \subsection{Analyse Modus}
 Im \texttt{Analyse Modus} kann ein Syndromansatz analysiert und ausgewertet werden. In diesem Modus ist keine Bearbeitung des Graphen möglich. \\
@@ -534,7 +547,9 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\item \nameref{pick}	
 	\item \nameref{logs}
 	\item \nameref{overwiew}
+	\item \nameref{highlight}
 	\item \nameref{zoom}
+	\item \nameref{format}
 	\item \nameref{export}
 	\item \nameref{import}
 	\item \nameref{print}
@@ -542,6 +557,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\item \nameref{fehlermeldungen}
 	\item \nameref{settings}	
 	\item \nameref{analyse}
+	\item \nameref{mode}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -760,7 +776,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 			\item Die \textit{Entfernen}-Taste auf der Tastatur drücken.
 		\end{enumerate}
 	\newpage
-		\hspace{-0.4cm}\aTwo
+		\aTwo
 			\begin{enumerate}
 			\item Die Sphäre, die gelöscht werden soll mit einem Links-Klick auswählen.
 			\item In der Menüleiste einen Links-Klick auf den Button \textit{Sphäre löschen} ausführen.
@@ -843,7 +859,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\hint
 		\begin{itemize}
 			\item Der Titel einer Sphäre darf kein Semikolon enthalten und nicht leer sein.
-			\item Doppelte Bezeichnungen sind in einem Syndrom nicht erlaubt. Bei Eingabe eines doppelt vorkommenden Titels erscheint in dem Dialogfenster eine Fehlermeldung und der \textit{Speichern} -Button ist nicht mehr auswählbar bis der Titel entsprechend geändert wurde. \\
+			\item Doppelte Bezeichnungen sind in einem Syndrom nicht erlaubt. Bei Eingabe eines doppelt vorkommenden Titels erscheint in dem Dialogfenster eine Fehlermeldung und der \textit{Speichern} -Button ist nicht mehr auswählbar bis der Titel entsprechend geändert wurde. 
+			\item Falls der Titel zu lang ist für die Größe der Sphäre, wird dieser verkürzt mit \texttt{...} am Ende dargestellt.\\
 		\end{itemize}	
 			
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5			
@@ -995,7 +1012,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\hint
 		\begin{itemize}
 			\item Der Titel eines Symptoms darf kein Semikolon enthalten und nicht leer sein. 
-			\item Doppelte Bezeichnungen sind in einem Syndrom nicht erlaubt. Bei Eingabe eines doppelt vorkommenden Titels erscheint in einem Dialogfenster eine Fehlermeldung und der \textit{Speichern} -Button ist nicht mehr auswählbar bis die Eingabe entsprechend geändert wurde. \\
+			\item Doppelte Bezeichnungen sind in einem Syndrom nicht erlaubt. Bei Eingabe eines doppelt vorkommenden Titels erscheint in einem Dialogfenster eine Fehlermeldung und der \textit{Speichern} -Button ist nicht mehr auswählbar bis die Eingabe entsprechend geändert wurde. \item Falls der Titel zu lang ist für die größe des Symptoms wird dieser mit verkürzt dargestellt und mit \texttt{...} ergänzt.\\
 		\end{itemize}
 			
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -1170,6 +1187,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 			\item In dem sich öffnenden Fenster die gewünschte Farbe mit einem auswählen. \\
 		\end{enumerate}	
 		
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Type einer Relation verändern}
 		\condition
@@ -1196,6 +1214,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{Hervorhebung und Ausblenden} \label{highlight}
 		\subsubsection{Graphelemente zu der Hervorhebung hinzufügen}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. 
@@ -1239,8 +1258,20 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 			\item Im Kontextmenü von hervorgehobenen Elementen wird der Option \textit{Hervorhebung}  farblich hervorgehoben angezeigt, was verdeutlicht, dass dieses Element aktuell hervorgehoben ist und dass ein erneutes Klicken auf diese Schaltfläche die Hervorhebung aufhebt. \\
 		\end{itemize}
 	
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Hervorhebung aktivieren/ deaktivieren}
+\subsubsection{Hervorhebung aktivieren/ deaktivieren}
+	\condition 	
+Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet.
+\action
+\begin{enumerate}
+	\item In der Menüleiste den Button \textit{Hervorgehobene Elemente aktivieren/ deaktivieren} mit einem Links-Klick aktivieren.
+\end{enumerate}
+\hint
+\begin{itemize}
+	\item Die als hervorgehoben eingestellten Elemente werden (visuell) farblich hervorgehoben. 
+	\item Durch erneutes Klicken des \textit{Hervorgehobene Elemente aktivieren/ deaktivieren}-Buttons wird die Hervorhebung der Elemente aufgehoben. \\
+\end{itemize}
 
 \begin{figure}[ht!]
 	\centering
@@ -1253,6 +1284,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\caption{Hervorhebung}
 	
 \end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \subsubsection{Graphelemente ausblenden/einblenden}
@@ -1293,6 +1325,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 					\item Fall ein Graphelement bereits dem Fadeout hinzugefügt wurde, wird die Option \textit{Sichtbarkeit} im Kontextmenü des Elementes farblich hervorgehoben. \\
 		\end{itemize}
 		
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Graphelemente aus dem Fadeout entfernen}
 		\condition 	
@@ -1313,6 +1346,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 				\item Im Kontextmenü von als ausgeblendet eingestellten Elementen wird die Option \textit{Sichtbarkeit} farblich hervorgehoben, was verdeutlicht, dass dieses Element aktuell als ausgeblendet eingestellt ist und dass ein erneutes Klicken auf diese Schaltfläche die Ausblendung aufhebt.\\
 		\end{itemize}	
 		
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Zoom} \label{zoom}
 		\subsubsection{Zoom}
@@ -1364,10 +1398,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
  			\caption{Zoom}
  		\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
-		
-\subsection{Allgemeine Einstellungen} \label{settings}
 	
-\subsection{Sprache}
+\subsection{Sprache}\label{settings}
 \textbf{GraphIt} unterstützt die Sprachen Deutsch und Englisch. Dies betrifft sowohl die Elemente auf der Benutzeroberfläche (Buttons, Infotexte etc.) als auch die Beschriftung von den Elementen des Syndroms (Titel von Sphären und Symptomen).\\
 	
 \newpage
@@ -1410,7 +1442,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 	 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Dateiformate für den Export/Import/ und das Speichern/Öffnen} 
+\subsection{Dateiformate für den Export/Import/ und das Speichern/Öffnen} \label{format} 
 Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwendung sichern zu können. Diese Daten können zu einem späteren Zeitpunkt wieder in \textbf{GraphIt} geladen werden, in dem die entsprechenden Dateien wieder importiert/ geöffnet werden.\\
 In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz: 
 \begin{itemize}
@@ -1702,7 +1734,6 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Die Graphmaße werden automatisch beim Öffnen des Analysemodus berechnet. \\
 	\end{itemize}
 
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorgänger/ Nachfolger von Symptom(en) hervorheben}
 	\condition 
@@ -1718,6 +1749,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Die Vorgänger und Nachfolger sowie das ausgewählte Symptom/ die ausgewählten Symptome werden farblich hervorgehoben dargestellt, während die übrigen Symptome grau visualisiert werden. \\
 	\end{itemize}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Kürzester Pfad zw. Symptomen}
 	\condition 
@@ -1804,7 +1836,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 	\begin{itemize}
 		\item Der Symptome und Relationen, die divergente Verzweigungen darstellen, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
 	\end{itemize}
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Alle Verzweigungen}
 	\condition 
@@ -1821,6 +1853,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Der Symptome und Relationen, die konvergente oder divergente Verzweigungen darstellen, werden farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
 	\end{itemize}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Zyklen}
 	\condition 
@@ -1837,7 +1870,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		\item Der Symptome und Relationen, die Zyklen darstellen, werden  farblich hervorgehoben. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
 	\end{itemize}
 	
-\newpage	
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Verlauf der Nutzerinteraktionen} \label{logs}
 Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Die Nutzerinteraktionen können allerdings auch nach verschiedenen Aktionen gefiltert werden. Diese Funktionalität stellt nur der Analysemodus zur Verfügung. Deswegen wird im Folgenden davon ausgegangen, dass der Benutzer diesen in der Anwendung geöffnet hat.  \\
@@ -1897,7 +1930,7 @@ Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Di
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 		
 
-\clearpage
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Vorlage} \label{template}
 Eine Vorlage kann als ein spezielles Syndrom angesehen werden. Neben dem eigentlichen Syndrom (also einer Menge an Sphären, Knoten und Kanten) enthält eine Vorlage zusätzliche Informationen. Diese Informationen legen fest, in wie weit ein das enthaltene Syndrom bearbeitet werden kann. Dies beinhaltet sowohl Regeln, wie viele Sphären, Symptome und Kanten hinzugefügt werden können, als auch Festlegungen zu jedem einzelnen aktuell im Syndrom enthaltenen Graphelement. Letztere Regelungen, die die einzelnen schon vorhandenen Graphelemente betreffen unterscheiden sich. Die Regeln für Sphären unterscheiden sich von den Regeln der Symptome und diese sind wiederum anders als die Regeln von Relationen. \\ \\
@@ -1987,8 +2020,9 @@ Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndro
 Dabei ist bei der Verwendung einer Vorlage zu beachten, dass Aktionen (wie beispielsweise das Ändern der Farbe eines Graphelements), die vom Programm grundsätzlich zur Verfügung gestellt werden, unter Umständen nicht mehr zu funktionieren scheinen. Dieser Eindruck kann dadurch entstehen, dass der Aufruf bestimmter Aktionen zu keiner Änderung des angezeigten Syndroms führt. Hinweise in der Benutzeroberfläche sollen diesen Fehleindruck eines unerwünschten Programmverhaltens verhindern. \\
 Die angezeigten Hinweise geben Aufschluss darüber, dass die Aktion deshalb nicht umgesetzt werden kann, weil die angeforderte Aktion durch die Regeln in der Vorlage untersagt wird. \\
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Benutzermodus wechseln}
+\subsection{Benutzermodus wechseln} \label{mode}
 	\condition 
 		Das Programm ist geöffnet.
 	\action
@@ -2001,7 +2035,6 @@ Die angezeigten Hinweise geben Aufschluss darüber, dass die Aktion deshalb nich
 		\item Während der Benutzung der Anwendung kann beliebig zwischen den Funktionsmodi gewechselt werden. \\
 \end{itemize}			 
 		
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \subsection{Dialogfenster} \label{dialog}
 \subsubsection{Informationsdialog}
@@ -2061,7 +2094,7 @@ Bei einem File Chooser (Dateiauswahl) handelt es sich um das Fenster, dass die A
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Druckdialog}
+\subsubsection{Druckdialog}
 Beim Druckdialog handelt es sich um ein Dialog-Fenster, das der Anpassung der Druck-Einstellungen ermöglicht. So können Einstellungen nach benutzerspezifischen Präferenzen vorgenommen werden. Mögliche Einstellungen sind zum Beispiel die Anzahl an zu erstellenden Exemplaren und das für den Druckauftrag zu verwendende Drucker-Gerät.
 Auch dieses Dialogfenster bietet zwei mögliche Ergebnisse, mit denen das Fenster geschlossen werden kann.
 \begin{itemize}
