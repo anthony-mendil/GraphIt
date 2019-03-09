@@ -1199,7 +1199,7 @@
                                                     </tooltip>
                                                 </JFXCheckBox>
 
-                                                <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#treeViewUpdate" onScroll="#treeViewUpdate" prefHeight="400.0" prefWidth="260.0">
+                                                <TreeView fx:id="treeView" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="260.0">
                                                     <VBox.margin>
                                                         <Insets left="2.0" right="2.0" top="5.0" />
                                                     </VBox.margin>
@@ -1234,7 +1234,7 @@
                                         </VBox>
                                     </content>
                                 </TitledPane>
-                                <TitledPane fx:id="templateTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#loadTables" text="%toolbarTemplate">
+                                <TitledPane fx:id="templateTitledPane" animated="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%toolbarTemplate">
                                     <content>
                                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
                                             <children>
