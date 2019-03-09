@@ -12,6 +12,8 @@ import java.lang.reflect.Type;
  * Json deserializer for points2D.
  */
 public class Point2DSerializer implements JsonSerializer<Point2D> {
+
+    @Override
     public JsonElement serialize(Point2D position, Type type,
                                  JsonSerializationContext jsc) {
         JsonObject jo = new JsonObject();

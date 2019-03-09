@@ -29,6 +29,11 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
      */
     private Controller c;
 
+    /**
+     * TODO
+     * @param pCheckBox
+     * @param c
+     */
     TemplateCheckBoxListener(CheckBox pCheckBox, Controller c) {
         checkBox = pCheckBox;
         this.c = c;

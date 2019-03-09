@@ -43,6 +43,11 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
      */
     private final Controller c;
 
+    /**
+     * TODO
+     * @param pCheckBox
+     * @param pC
+     */
     AnalysisCheckBoxListener(CheckBox pCheckBox, Controller pC) {
         checkBox = pCheckBox;
         c = pC;

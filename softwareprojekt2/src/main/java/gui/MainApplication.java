@@ -21,7 +21,14 @@ import java.util.ResourceBundle;
  */
 public class MainApplication extends Application {
 
+    /**
+     * TODO
+     */
     private Scene scene;
+
+    /**
+     * TODO
+     */
     private Controller controller;
 
     @Override

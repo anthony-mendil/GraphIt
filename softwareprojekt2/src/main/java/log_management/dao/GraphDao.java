@@ -1,6 +1,5 @@
 package log_management.dao;
 
-
 import log_management.DatabaseManager;
 import log_management.tables.Graph;
 import log_management.tables.Log;
@@ -25,6 +24,9 @@ public class GraphDao implements Dao<Graph> {
         return get();
     }
 
+    /**
+     * TODO
+     */
     public Optional<Graph> get() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();
         entityManager.getTransaction().begin();

@@ -19,13 +19,26 @@ import java.util.Map;
  */
 @Data
 public class EditFontVerticesParam implements Param {
+
+    /**
+     * TODO
+     */
     private List<Vertex> oldVertices;
 
+    /**
+     * TODO
+     */
     @Getter
     private List<String> oldFonts;
 
+    /**
+     * TODO
+     */
     private List<Vertex> newVertices;
 
+    /**
+     * TODO
+     */
     @Getter
     private List<String> newFonts;
 
@@ -73,6 +86,9 @@ public class EditFontVerticesParam implements Param {
         return information.toString();
     }
 
+    /**
+     * TODO
+     */
     public Map<Vertex, String> getOldVertices() {
         Map<Vertex, String> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {
@@ -81,6 +97,9 @@ public class EditFontVerticesParam implements Param {
         return map;
     }
 
+    /**
+     * TODO
+     */
     public Map<Vertex, String> getNewVertices() {
         Map<Vertex, String> map = new HashMap<>();
         for (int i = 0; i < newVertices.size(); i++) {

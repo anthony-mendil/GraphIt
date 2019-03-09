@@ -9,6 +9,9 @@ import lombok.Getter;
  */
 public class PreloaderController {
 
+    /**
+     * The Progressbar that show the progress in the initializing process of the application.
+     */
     @Getter
     @FXML
     private JFXProgressBar progressbar;

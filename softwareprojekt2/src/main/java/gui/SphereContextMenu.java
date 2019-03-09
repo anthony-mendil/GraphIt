@@ -24,6 +24,9 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * TODO
+ */
 @Data
 public class SphereContextMenu {
     @Setter(AccessLevel.NONE)
@@ -36,9 +39,9 @@ public class SphereContextMenu {
     private Syndrom syndrom = Syndrom.getInstance();
 
     /**
-     * the sphere context menu
+     * The sphere context menu.
      *
-     * @param sphere the sphere to create the context menu to
+     * @param sphere The sphere to create the context menu to.
      */
     public SphereContextMenu(Sphere sphere) {
         contextMenu = new ContextMenu();
@@ -49,7 +52,7 @@ public class SphereContextMenu {
     }
 
     /**
-     * creates the sphere context menu
+     * Creates the sphere context menu.
      */
     private void setup() {
         // REMOVE
@@ -120,7 +123,7 @@ public class SphereContextMenu {
     }
 
     /**
-     * checks the annotation and creates a new edit sphere annotation action
+     * Checks the annotation and creates a new edit sphere annotation action.
      *
      * @param map the map, containing the annotations
      */

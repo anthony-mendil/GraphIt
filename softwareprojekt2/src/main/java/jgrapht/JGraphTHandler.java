@@ -25,25 +25,32 @@ import java.util.*;
  * JGraphT algorithms and analyses by the given criteria.
  */
 public class JGraphTHandler {
+
     /**
      * The start-vertex of the path.
      */
     @Getter
     private Vertex startVertex;
+
     /**
      * The end-vertex of the path.
      */
     @Getter
     private Vertex endVertex;
+
     /**
      * The graph in JGraphT-form.
      */
     private DefaultDirectedGraph<Vertex, Edge> algorithmGraph;
+
     /**
      * The list of selected vertices.
      */
     private Set<Vertex> pickedVertices;
 
+    /**
+     * TODO
+     */
     private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 
     /**
@@ -322,6 +329,9 @@ public class JGraphTHandler {
         }
     }
 
+    /**
+     * TODO
+     */
     private void sizeChains(LinkedList<Vertex> potentialChain, List<List<Vertex>> relationChains) {
         if (potentialChain.size() > 3) {
             relationChains.add(potentialChain);

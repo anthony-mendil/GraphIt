@@ -17,13 +17,35 @@ public class LoadLanguage {
      * to that language.
      */
     private static LoadLanguage instance = null;
+    /**
+     * TODO
+     */
     private ResourceBundle resource = ResourceBundle.getBundle("UIResources", new Locale("de"));
+    /**
+     * TODO
+     */
     private Locale de = new Locale("de");
+    /**
+     * TODO
+     */
     private Locale en = new Locale("en");
+    /**
+     * TODO
+     */
     private Language currentResource = Language.GERMAN;
+    /**
+     * TODO
+     */
     private String german = "german";
+    /**
+     * TODO
+     */
     private String english = "english";
 
+    /**
+     * TODO
+     * @return
+     */
     public static LoadLanguage getInstance() {
         if (instance == null) {
             instance = new LoadLanguage();
@@ -31,6 +53,10 @@ public class LoadLanguage {
         return instance;
     }
 
+    /**
+     * TODO
+     * @param language
+     */
     public void changeLanguage(Language language) {
         Locale lang;
         if (language == Language.GERMAN) {
@@ -42,6 +68,10 @@ public class LoadLanguage {
         resource = ResourceBundle.getBundle("UIResources", lang);
     }
 
+    /**
+     * TODO
+     * @param c
+     */
     public void changeStringsLanguage(Controller c) {
         String templateName = "templateName";
         String templateStyle = "templateStyle";
@@ -219,10 +249,21 @@ public class LoadLanguage {
         c.getFilterLogType().getTooltip().setText(loadLanguagesKey("LOG_TYPE"));
     }
 
+    /**
+     * TODO
+     * @param key
+     * @return
+     */
     public String loadLanguagesKey(String key) {
         return resource.getString(key);
     }
 
+    /**
+     * TODO
+     * @param key
+     * @param arr
+     * @return
+     */
     public String loadLanguagesKey(String key, Object[] arr) {
         MessageFormat form = new MessageFormat(loadLanguagesKey(key));
         return form.format(arr);

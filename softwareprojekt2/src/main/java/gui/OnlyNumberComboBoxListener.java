@@ -14,6 +14,10 @@ public class OnlyNumberComboBoxListener implements ChangeListener<String> {
      */
     private final ComboBox<String> comboBox;
 
+    /**
+     * TODO
+     * @param pComboBox
+     */
     OnlyNumberComboBoxListener(ComboBox<String> pComboBox) {
         this.comboBox = pComboBox;
     }
