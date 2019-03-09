@@ -330,7 +330,9 @@ public class JGraphTHandler {
     }
 
     /**
-     * TODO
+     * Checks whether the potential chain is a real relation-chain.
+     * @param potentialChain The list of vertices of the potential chain.
+     * @param relationChains The list of current relation-chains.
      */
     private void sizeChains(LinkedList<Vertex> potentialChain, List<List<Vertex>> relationChains) {
         if (potentialChain.size() > 3) {

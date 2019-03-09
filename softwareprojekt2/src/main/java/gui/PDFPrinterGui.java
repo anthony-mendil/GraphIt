@@ -15,7 +15,7 @@ import java.io.InputStream;
 public class PDFPrinterGui {
 
     /**
-     * TODO
+     * The logger used in the system.
      */
     private static Logger logger = Logger.getLogger(PDFPrinterGui.class);
 

@@ -18,8 +18,8 @@ public class MenuItemHandler implements EventHandler<ActionEvent> {
     private final MenuButton menuButton;
 
     /**
-     * TODO
-     * @param pMenuButton
+     * Constructor for the handler.
+     * @param pMenuButton The menu-button.
      */
     MenuItemHandler(MenuButton pMenuButton) {
         menuButton = pMenuButton;

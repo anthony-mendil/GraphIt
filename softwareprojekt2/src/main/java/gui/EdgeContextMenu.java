@@ -21,40 +21,40 @@ import lombok.Data;
 import lombok.Setter;
 
 /**
- * TODO
+ * Contextmenu, in case the user right-clicks on a vertex.
  */
 @Data
 public class EdgeContextMenu {
 
     /**
-     * TODO
+     * The contextmenu.
      */
     @Setter(AccessLevel.NONE)
     private final ContextMenu contextMenu;
 
     /**
-     * TODO
+     * The current action-history.
      */
     private final ActionHistory history;
 
     /**
-     * TODO
+     * The values of our graph.
      */
     private final Values values;
 
     /**
-     * TODO
+     * The edge.
      */
     private final Edge edge;
 
     /**
-     * TODO
+     * The language-handler.
      */
     private LoadLanguage language = LoadLanguage.getInstance();
 
     /**
-     * TODO
-     * @param edge
+     * Constructor for the context menu.
+     * @param edge The edge.
      */
     public EdgeContextMenu(Edge edge) {
         contextMenu = new ContextMenu();
@@ -65,7 +65,7 @@ public class EdgeContextMenu {
     }
 
     /**
-     * TODO
+     * sets the contextmenu.
      */
     private void setup() {
         // REMOVE

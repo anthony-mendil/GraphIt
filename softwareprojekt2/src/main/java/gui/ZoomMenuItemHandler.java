@@ -17,8 +17,8 @@ public class ZoomMenuItemHandler implements EventHandler<ActionEvent> {
     private Controller c;
 
     /**
-     * TODO
-     * @param c
+     * Constructor for the zoom-menu-item-handler.
+     * @param c     The unique controller.
      */
     ZoomMenuItemHandler(Controller c) {
         this.c = c;

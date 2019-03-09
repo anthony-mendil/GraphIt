@@ -134,14 +134,14 @@ public class Syndrom {
     }
 
     /**
-     * TODO
+     * Sets mouse into the mode edit.
      */
     public void setGraphMouseModeEdit() {
         graphMouse.remove(translatingPlugin);
     }
 
     /**
-     * TODO
+     * Sets mouse into the mode analyse.
      */
     public void setGraphMouseModeAnalyse() {
         graphMouse.add(translatingPlugin);

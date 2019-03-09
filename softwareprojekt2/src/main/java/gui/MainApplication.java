@@ -22,12 +22,12 @@ import java.util.ResourceBundle;
 public class MainApplication extends Application {
 
     /**
-     * TODO
+     * The scene.
      */
     private Scene scene;
 
     /**
-     * TODO
+     * The unique controller.
      */
     private Controller controller;
 

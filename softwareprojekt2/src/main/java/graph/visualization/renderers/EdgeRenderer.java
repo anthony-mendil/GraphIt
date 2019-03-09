@@ -551,7 +551,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
-     * TODO
+     * Calculates the point of the snap-point of several edges.
      * @param rc     The render context.
      * @param map    The current scope point map.
      * @param at     The arrows AffineTransform.
@@ -626,7 +626,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
-     * TODO
+     * Returns the map of the other type.
      * @param edgeArrowType The edge arrow type.
      * @param second        The vertex shape.
      * @return A pair which is containing pairs with the other edge types ScopePoints maps.
