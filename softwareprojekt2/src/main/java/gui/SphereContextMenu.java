@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * TODO
+ * Creates the context-menu, if the user right-clicks a sphere.
  */
 @Data
 public class SphereContextMenu {

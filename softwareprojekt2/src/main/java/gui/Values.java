@@ -50,7 +50,7 @@ public class Values {
      */
     private static Values instance;
     /**
-     * TODO
+     * Standard-value of the anchor-highlight-color.
      */
     @Setter(AccessLevel.NONE)
     private final Color anchorHighlight = new Color(204, 0, 0);
@@ -65,7 +65,7 @@ public class Values {
      */
     private Stage mainStage;
     /**
-     * TODO
+     * Standard-size of the visualization-viewer.
      */
     @Setter(AccessLevel.NONE)
     private Dimension defaultLayoutVVSize = new Dimension(2000, 1500);

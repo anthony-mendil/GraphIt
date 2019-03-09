@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class SphereFontTransformer<S> implements Transformer<S, Font> {
     /**
-     * TODO
+     * The helper-functions to work with.
      */
     private HelperFunctions helperFunctions = new HelperFunctions();
 

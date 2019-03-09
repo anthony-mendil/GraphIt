@@ -20,25 +20,25 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 
 /**
- * TODO
+ * Handles the mouse-interaction on the edges.
  */
 public class EdgePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
 
     /**
-     * TODO
+     * The edge, that will be moved by the user.
      */
     private Edge edgeMove = null;
     /**
-     * TODO
+     * Indicator, if the edge is an incoming edge.
      */
     private boolean isIncoming = false;
     /**
-     * TODO
+     * The contextmenu of the edge.
      */
     private ContextMenu contextMenu;
     /**
-     * TODO
+     * The helper-functions.
      */
     private HelperFunctions helper = new HelperFunctions();
 

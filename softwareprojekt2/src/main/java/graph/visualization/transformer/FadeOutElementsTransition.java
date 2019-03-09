@@ -26,7 +26,7 @@ public class FadeOutElementsTransition extends Transition {
     private double value;
 
     /**
-     * TODO
+     * Sets the animation foe the fadeout of the elements.
      */
     public FadeOutElementsTransition() {
         setCycleDuration(Duration.millis(2000));

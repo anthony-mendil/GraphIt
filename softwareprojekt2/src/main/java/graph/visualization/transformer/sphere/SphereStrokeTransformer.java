@@ -17,7 +17,7 @@ import java.awt.*;
  */
 public class SphereStrokeTransformer<S> implements Transformer<S, Stroke> {
     /**
-     * TODO
+     * THe visualization viewer to work on.
      */
     private SyndromVisualisationViewer<Vertex, Edge> syndromVisualisationViewer;
 

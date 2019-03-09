@@ -21,7 +21,8 @@ public class RenderHelperFunction {
     }
 
     /**
-     * TODO
+     * Formats the string into a smaller one, if the size of the vertex shrinks, so the text won't
+     * fit anymore.
      * @param sphereWidth  The shape width.
      * @param sphereHeight The shape height.
      * @param annotation   The sphere annotation.

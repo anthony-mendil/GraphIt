@@ -36,12 +36,12 @@ public class TitlesDialogPaneController extends DialogPane {
      */
     public static final ButtonType CANCEL_TYPE = new ButtonType("Abbrechen");
     /**
-     * TODO
+     * The title-dialog.
      */
     @FXML
     private DialogPane titleDialog;
     /**
-     * TODO
+     * The textfiled for german
      */
     @FXML
     private TextField german;

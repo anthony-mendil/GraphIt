@@ -44,7 +44,7 @@ public class HelperFunctions {
     private LoadLanguage lang = LoadLanguage.getInstance();
 
     /**
-     * TODO
+     * Constructor for the helper-functions.
      */
     public HelperFunctions() {
         values = Values.getInstance();

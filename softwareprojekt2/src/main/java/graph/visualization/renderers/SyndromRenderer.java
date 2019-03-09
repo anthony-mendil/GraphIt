@@ -28,7 +28,7 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
      */
     private SphereRenderer sphaerenRenderer = new SphereRenderer();
     /**
-     * TODO
+     * Transformer for  the sphere-shape.
      */
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
 

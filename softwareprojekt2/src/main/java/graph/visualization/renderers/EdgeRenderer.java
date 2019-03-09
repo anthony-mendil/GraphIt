@@ -140,7 +140,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
 
 
     /**
-     * TODO
+     * Renders the edge by the hit.
      * @param points          The points (out, in) of the edges endpoints.
      * @param rc              The render context.
      * @param edgeShape       The edges shape.
@@ -202,7 +202,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
-     * TODO
+     * Draws the edge if the sink-vertex has no anchor-point.
      * @param pairV,    Contains second vertex, Vertex shape.
      * @param rc        The render context.
      * @param at        AffineTransform.
@@ -288,7 +288,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
-     * TODO
+     * Calculates the position of the anchor-point of the start-vertex.
      * @param point    The point.
      * @param outgoing The outgoing anchor point.
      * @param rc       The render context.
@@ -309,7 +309,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
-     * TODO
+     * Claculates the new edge-shape.
      * @param one The point where the edge is outgoing from the vertex.
      * @param two The point where the edge is incoming into the vertex.
      * @param old The old edge shape.
@@ -327,7 +327,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
-     * TODO
+     * Calculates the next free point to dock on a vertex.
      * @param help        The ellipse to traverse to.
      * @param center      The center of the vertex shape.
      * @param avoid       The point where not to set the arrow.
@@ -449,7 +449,7 @@ public class EdgeRenderer<V, E> extends BasicEdgeRenderer<V, E> {
     }
 
     /**
-     * TODO
+     * Returns the new position in the other type.
      * @param pair        The point and AffineTransform of the new position of the arrow, if null there was a intersection of arrows.
      * @param help        The ellipse to traverse to.
      * @param points      Containing the center of the vertex shape, the point to not set the arrow, where the other arrow is.

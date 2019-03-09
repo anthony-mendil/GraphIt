@@ -25,7 +25,7 @@ import java.awt.geom.Point2D;
 import java.time.format.DateTimeFormatter;
 
 /**
- * TODO
+ * Converts the log to a string to print it in a more beautiful format.
  */
 public class LogToStringConverter {
     /**

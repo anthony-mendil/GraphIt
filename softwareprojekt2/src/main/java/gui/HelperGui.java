@@ -5,20 +5,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * TODO
+ * Sets the icons on the gui.
  */
 class HelperGui {
     /**
-     * TODO
+     * Constructor, which shouldn't be called.
      */
     private HelperGui() {
         throw new IllegalStateException("utility class");
     }
 
     /**
-     * TODO
-     * @param imageString
-     * @param menuItem
+     * Sets the icons and the image.
+     * @param imageString The name of the image.
+     * @param menuItem    The menuItem.
      */
     static void setImage(String imageString, MenuItem menuItem) {
         Image image = new Image(imageString);

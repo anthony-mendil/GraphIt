@@ -48,7 +48,7 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
     }
 
     /**
-     * TODO
+     * Creates an edge arrow transformer. The radius, width, length and notch depth is preset.
      */
     public EdgeArrowTransformer() {
         this(5, 10, 10, 0);

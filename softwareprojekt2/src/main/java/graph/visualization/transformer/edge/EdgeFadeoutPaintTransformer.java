@@ -28,7 +28,7 @@ public class EdgeFadeoutPaintTransformer<E> implements Transformer<E, Paint> {
     private final FadeType fadeType;
 
     /**
-     * TODO
+     * Constructor for the fadeout-transformer for edges.
      * @param animation   The animation, defining the transparency of the color.
      * @param transformer The transformer returning the right edge color.
      * @param fadeType    The fade type.

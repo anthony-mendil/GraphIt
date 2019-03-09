@@ -116,7 +116,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
+     * Simulates the behaviour of an left-click on a vertex,
      * @param sp          The sphere, containing the vertex where the click was registered.
      * @param pickSupport The PickSupport of syndrom.
      * @param e           The MouseEvent e.
@@ -146,7 +146,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
+     * Simulates the right-click on vertices.
      * @param vertex The vertex where the click was registered.
      * @param vv     The VisualisationViewer.
      * @param e      The MouseEvent.
@@ -201,7 +201,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
+     * Adds an edge to the sink-vertex, if it is allowed.
      * @param vert The second vertex for the new edge.
      */
     private void edgeAdd(Vertex vert) {
@@ -293,7 +293,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
+     * Checks whether the vertex should be added to the graph or not.
      * @param pickedState The current PickedState of the vertices.
      * @param pickSupport The PickSupport of syndrom.
      * @param vv          The VisualisationViewer.
@@ -315,7 +315,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
+     * Sets the coordinates of the vertices.
      * @param pickedState The current PickedState of the vertices.
      * @param vv          The VisualisationViewer.
      * @param layout      The current Layout of the graph.
@@ -337,7 +337,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
+     * Moves the selected vertices.
      * @param pickedState The current PickedState of the vertices.
      * @param vv          The VisualisationViewer.
      * @param layout      The current Layout of the graph.
@@ -404,7 +404,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
+     * Checks whether the vertices in the graph intersects with each other.
      * @param v The vertex to check.
      * @return If the vertex intersects with another one.
      */
