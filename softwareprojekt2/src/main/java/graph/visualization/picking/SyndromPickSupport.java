@@ -26,8 +26,19 @@ import java.util.List;
  */
 public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
 
+    /**
+     * TODO
+     */
     private static Logger logger = Logger.getLogger(SyndromPickSupport.class);
+
+    /**
+     * TODO
+     */
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
+
+    /**
+     * TODO
+     */
     private BasicEdgeArrowRenderingSupport<V, E> edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport<>();
 
     /**
@@ -77,8 +88,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
      * Dieser Code ist aus dem Framework JUNG aus der Klasse ShapePickSupport kopiert und hier eingefügt.
      * Die Methode benutzt eine weitere Methode getTransformedEdgeShape(). Diese ist in der genannten Klasse private,
      * weswegen wir sie nicht überschreiben konnten. Außerdem wurde der return Wert von getTransformedEdgeShape()
-     * geändert.
-     * Außerdem abe ich die Basismethode in kleinere aufgeteil, um die Komplexität zureduzieren.
+     * geändert und die Basismethode in kleinere aufgeteil, um die Komplexität zureduzieren.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -106,12 +116,13 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
     }
 
     /**
-     * @param layout      current layout of the graph
-     * @param pickArea    the pickarea
+     * TODO
+     * @param layout      Current layout of the graph.
+     * @param pickArea    The pickarea.
      * @param x           The x coordinate of the point where the edge should be picked.
      * @param y           The y coordinate of the point where the edge should be picked.
-     * @param minDistance the mindistance
-     * @return edge e
+     * @param minDistance The min-distance.
+     * @return The edge e.
      */
     private Object getFilteredEdge(Layout<V, E> layout, Rectangle2D pickArea, double x, double y, double minDistance) {
         E closest = null;
@@ -136,13 +147,14 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
     }
 
     /**
-     * @param edgeShape   the edge shape
-     * @param closest     the closest edge
-     * @param minDistance the mindistance
+     * TODO
+     * @param edgeShape   The edge shape.
+     * @param closest     The closest edge.
+     * @param minDistance The mindistance.
      * @param x           The x coordinate of the point where the edge should be picked.
      * @param y           The y coordinate of the point where the edge should be picked.
-     * @param e           the current looking at edge
-     * @return the maybe edge with the new mindistance
+     * @param e           The current looking at edge.
+     * @return The maybe edge with the new mindistance.
      */
     private javafx.util.Pair<E, Double> intersectsPickArea(Shape edgeShape, E closest, double minDistance, double x, double y, E e) {
         float cx = 0;
@@ -171,12 +183,12 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
     }
 
     /**
-     * return the current edge shape
+     * Return the current edge shape.
      *
-     * @param e      the current edge
-     * @param rc     the RenderContext
-     * @param layout the layout
-     * @return the shape of the edge
+     * @param e      The current edge.
+     * @param rc     The RenderContext.
+     * @param layout The layout.
+     * @return The shape of the edge.
      */
     private javafx.util.Pair<javafx.util.Pair<Shape, Point2D>, Shape> getTransformedEdgeShape(E e, RenderContext<V, E> rc, Layout<V, E> layout) {
         // code from framework
@@ -242,12 +254,12 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
     }
 
     /**
-     * returns the coordinates of the second anchor if the edge is having one
+     * Returns the coordinates of the second anchor if the edge is having one
      *
-     * @param edge the edge
-     * @param x2   the current x coordinate of the second anchor
-     * @param y2   the current y coordinate of the second anchor
-     * @return the second anchor coordinates
+     * @param edge The edge.
+     * @param x2   The current x coordinate of the second anchor.
+     * @param y2   The current y coordinate of the second anchor.
+     * @return The second anchor coordinates.
      */
     private Point2D getSecondAnchorIn(Edge edge, float x2, float y2) {
         if (!edge.isHasAnchorIn() && edge.getAnchorPoints().getValue() != null) {
@@ -259,15 +271,15 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
 
 
     /**
-     * return the affine transform for the edge according to its anchor
+     * Returns the affine transform for the edge according to its anchor.
      *
-     * @param rc          the render context
-     * @param vertex      the edge to get the anchor to
-     * @param endX        the current anchor coordinates (x)
-     * @param endY        the current anchor coordinates (y)
-     * @param anchorPoint the new anchor point
-     * @param v           the vertex
-     * @return the new AffineTransform
+     * @param rc          The render context.
+     * @param vertex      The edge to get the anchor to.
+     * @param endX        The current anchor coordinates (x).
+     * @param endY        The current anchor coordinates (y).
+     * @param anchorPoint The new anchor point.
+     * @param v           The vertex.
+     * @return The new AffineTransform.
      */
     private AffineTransform getAffineTransformAnchor(RenderContext<V, E> rc, Vertex vertex, float endX, float endY, Point2D anchorPoint, V v) {
         AffineTransform transform;
@@ -285,13 +297,13 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
     }
 
     /**
-     * this method returns the edge shape with no anchor set
+     * This method returns the edge shape with no anchor set
      *
-     * @param edgeShape the current edge shape
-     * @param form      the AffineTransform
-     * @param pointOne  the first coordinate of the edge
-     * @param pointTwo  the second coordinate of the edge
-     * @return the normal edge shape
+     * @param edgeShape The current edge shape.
+     * @param form      The AffineTransform.
+     * @param pointOne  The first coordinate of the edge.
+     * @param pointTwo  The second coordinate of the edge.
+     * @return The normal edge shape.
      */
     private Shape getNormalEdgeShape(Shape edgeShape, AffineTransform form, Point2D pointOne, Point2D pointTwo) {
         float dx = (float) (pointTwo.getX() - pointOne.getX());

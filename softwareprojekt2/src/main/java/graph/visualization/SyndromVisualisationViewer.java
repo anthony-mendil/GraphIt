@@ -27,17 +27,17 @@ import java.awt.*;
 @Data
 public class SyndromVisualisationViewer<V, E> extends VisualizationViewer<V, E> {
     /**
-     * the pickedSphereState, containing all picked Spheres
+     * The pickedSphereState, containing all picked Spheres.
      */
     @Setter(AccessLevel.NONE)
     private transient PickedState<Sphere> pickedSphereState;
     /**
-     * the vertex font transformer
+     * The vertex font transformer.
      */
     private transient Transformer<V, Paint> vertexFontColorTransformer;
 
     /**
-     * the syndrom visualisation viewer
+     * The syndrom visualisation viewer.
      *
      * @param model         the visualisation model
      * @param preferredSize the size

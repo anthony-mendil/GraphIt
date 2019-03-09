@@ -15,14 +15,14 @@ import java.io.File;
 public class ExportOofAction extends GraphAction {
 
     /**
-     * The File the oof get's written into
+     * The File the oof get's written into.
      */
     private File file;
 
     /**
      * Constructs action handling for exporting the graph as OOF file.
      *
-     * @param pFile The destination of the oof-file
+     * @param pFile The destination of the oof-file.
      */
     public ExportOofAction(File pFile) {
         file = pFile;
@@ -42,7 +42,7 @@ public class ExportOofAction extends GraphAction {
     }
 
     /**
-     * Disables the undo-funktion for the oof export
+     * Disables the undo-function for the oof export.
      */
     @Override
     public void undo() {
@@ -50,7 +50,7 @@ public class ExportOofAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the oof export
+     * Disables the redo-function for the oof export.
      */
     @Override
     public void redo() {

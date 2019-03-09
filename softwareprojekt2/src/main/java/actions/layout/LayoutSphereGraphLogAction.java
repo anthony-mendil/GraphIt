@@ -20,20 +20,23 @@ import java.util.*;
  */
 public class LayoutSphereGraphLogAction extends LogAction {
     /**
-     * constants for the separation space between spheres
+     * Constants for the separation space between spheres in x-direction.
      */
     private static final int SEP_X = 15;
+    /**
+     * Constants for the separation space between spheres in y-direction.
+     */
     private static final int SEP_Y = 15;
     /**
      * Defines a comparator for the spheres.
      */
     private static final Comparator<Sphere> sphereCompare = Comparator.comparingDouble(sphere -> sphere.getCoordinates().getX());
     /**
-     * Indicator whether the action is an undo action.;
+     * Indicator whether the action is an undo action.
      */
     private boolean indicator;
     /**
-     * the SyndromVisualisation viewer
+     * the SyndromVisualisation viewer.
      */
     private SyndromVisualisationViewer<Vertex, Edge> vv;
 
@@ -57,8 +60,8 @@ public class LayoutSphereGraphLogAction extends LogAction {
     /**
      * Creates the parameter-object for this action.
      *
-     * @param oldSpheres  a list containing the old spheres (position) and its width/height
-     * @param oldVertices a list containing the old vertices (position) and its position
+     * @param oldSpheres  a list containing the old spheres (position) and its width/height.
+     * @param oldVertices a list containing the old vertices (position) and its position.
      */
     public void createParameter(Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSpheres, Map<Vertex, Point2D> oldVertices) {
         parameters = new LayoutSpheresParam(oldSpheres, oldVertices);
@@ -67,8 +70,8 @@ public class LayoutSphereGraphLogAction extends LogAction {
     /**
      * Finding the smallest x/ y.
      *
-     * @param sphereList a list of the spheres
-     * @return the point with the smallest y/ x
+     * @param sphereList A list of the spheres.
+     * @return The point with the smallest y/ x.
      */
     private Point2D getSmallestXY(List<Sphere> sphereList) {
         double x = 20;
@@ -127,9 +130,9 @@ public class LayoutSphereGraphLogAction extends LogAction {
     /**
      * Finds the max/min height of a sphere.
      *
-     * @param sphereList   a list containing all spheres
-     * @param oldSphereMap the old spheres map (parameters)
-     * @return the max height and min height
+     * @param sphereList   A list containing all spheres.
+     * @param oldSphereMap The old spheres map (parameters).
+     * @return The max height and min height.
      */
     private edu.uci.ics.jung.graph.util.Pair<Double> getHeights(List<Sphere> sphereList,
                                                                 Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap) {
@@ -152,9 +155,9 @@ public class LayoutSphereGraphLogAction extends LogAction {
     /**
      * Finds the max/min y position of a sphere.
      *
-     * @param sphereList   a list containing all spheres
-     * @param oldSphereMap the old spheres map (parameters)
-     * @return the min/ max Y position
+     * @param sphereList   A list containing all spheres.
+     * @param oldSphereMap The old spheres map (parameters).
+     * @return The min/ max Y position.
      */
     private edu.uci.ics.jung.graph.util.Pair<Double> getYs(List<Sphere> sphereList,
                                                            Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap) {
@@ -178,11 +181,11 @@ public class LayoutSphereGraphLogAction extends LogAction {
     /**
      * Layouts the spheres.
      *
-     * @param sphereRows          the spheres sorted in rows according to its poition
-     * @param x                   the current x value
-     * @param size                the height/ width value
-     * @param yCoordinate         the y coordinate
-     * @param verticesCoordinates a list with vertices nd its positions (parameters)
+     * @param sphereRows          The spheres sorted in rows according to its position.
+     * @param x                   The current x value.
+     * @param size                The height/ width value.
+     * @param yCoordinate         The y coordinate.
+     * @param verticesCoordinates A list with vertices nd its positions (parameters).
      */
     private void layoutSpheres(ArrayList<ArrayList<Sphere>> sphereRows, double x, double size, double yCoordinate, Map<Vertex, Point2D> verticesCoordinates) {
         for (ArrayList<Sphere> sphereRow : sphereRows) {
@@ -213,11 +216,11 @@ public class LayoutSphereGraphLogAction extends LogAction {
     /**
      * Sorts the spheres in rows according to ist current coordinates.
      *
-     * @param sphereRows the list, which will be containing the spheres sorted in rows
-     * @param sphereList a list, containing all spheres
-     * @param maxI       the max iteration value
-     * @param height     the height/ width of the spheres
-     * @param y          the y coordinate
+     * @param sphereRows The list, which will be containing the spheres sorted in rows.
+     * @param sphereList A list, containing all spheres.
+     * @param maxI       The max iteration value.
+     * @param height     The height/ width of the spheres.
+     * @param y          The y coordinate.
      */
     private void setSphereRows(ArrayList<ArrayList<Sphere>> sphereRows, List<Sphere> sphereList, int maxI, double height, double y) {
         for (int i = 0; i < maxI; i++) {
@@ -237,8 +240,8 @@ public class LayoutSphereGraphLogAction extends LogAction {
     /**
      * Sets the position of the vertices to the layout.
      *
-     * @param layout the current layout
-     * @param graph  the current graph
+     * @param layout The current layout.
+     * @param graph  The current graph.
      */
     private void setLayoutWithParameters(AggregateLayout<Vertex, Edge> layout, SyndromGraph<Vertex, Edge> graph) {
         Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSpheres = ((LayoutSpheresParam) parameters).getOldPosition();

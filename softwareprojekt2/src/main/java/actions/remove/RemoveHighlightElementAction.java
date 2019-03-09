@@ -30,6 +30,6 @@ public class RemoveHighlightElementAction extends GraphAction {
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException();
+        //no Undo for this action.
     }
 }

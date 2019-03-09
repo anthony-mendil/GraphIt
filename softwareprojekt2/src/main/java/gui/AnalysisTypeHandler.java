@@ -10,7 +10,7 @@ import javafx.event.EventHandler;
  */
 public class AnalysisTypeHandler implements EventHandler<ActionEvent> {
     /**
-     * The logtype to filter for.
+     * The log-type to filter for.
      */
     private final LogEntryName type;
     /**
@@ -19,9 +19,9 @@ public class AnalysisTypeHandler implements EventHandler<ActionEvent> {
     private final Controller c;
 
     /**
-     * TODO
-     * @param pC
-     * @param type
+     * Constructor for the analysTypeHandler.
+     * @param pC The unique controller to work with.
+     * @param type The name of Logtype.
      */
     AnalysisTypeHandler(Controller pC, LogEntryName type) {
         c = pC;

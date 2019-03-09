@@ -72,6 +72,15 @@ public class RemoveVerticesLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+    /**
+     * Remove the vertices, if it is allowed.
+     * @param params        The map later used to create the parameter.
+     * @param lockedVertices The set of locked vertices.
+     * @param edg           The map of vertices involved in that.
+     * @param pickedState   The pickedState of vertices.
+     * @param vv            The visualization viewer to wirk on.
+     * @param pickSupport   The pickSupport to pick the vertices and edges.
+     */
     private void removeVertices(Map<Vertex, Sphere> params, List<Vertex> lockedVertices, Map<Edge,
             Pair<Vertex, Vertex>> edg, PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv,
                                 SyndromPickSupport<Vertex, Edge> pickSupport) {

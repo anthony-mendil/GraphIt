@@ -18,6 +18,9 @@ import java.awt.geom.AffineTransform;
  * @param <V> The vertex type.
  */
 public class VertexShapeVV2Transformer<V> extends AbstractVertexShapeTransformer<V> implements Transformer<V, Shape> {
+    /**
+     * TODO
+     */
     private VertexShapeTransformer<V> vertexShapeTransformer = new VertexShapeTransformer<>();
 
     @Override

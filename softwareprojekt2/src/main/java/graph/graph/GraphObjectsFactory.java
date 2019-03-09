@@ -33,7 +33,7 @@ public class GraphObjectsFactory {
     }
 
     /**
-     * sets the object counter to specific value
+     * Sets the object counter to specific value.
      *
      * @param id the id
      */

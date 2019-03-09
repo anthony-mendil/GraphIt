@@ -27,7 +27,9 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
      * The sphere renderer responsible for the rendering of the spheres.
      */
     private SphereRenderer sphaerenRenderer = new SphereRenderer();
-
+    /**
+     * TODO
+     */
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
 
     /**
@@ -81,13 +83,13 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * renders all edge, which are not incoming/ outgoing the the overlapping sphere
+     * Renders all edge, which are not incoming/ outgoing the the overlapping sphere.
      *
-     * @param pickedState   the current PickedState of the spheres
-     * @param layout        the layout
-     * @param g             the current graph
-     * @param renderContext the RenderContext
-     * @return the overlapping sphere
+     * @param pickedState   The current PickedState of the spheres.
+     * @param layout        The layout.
+     * @param g             The current graph.
+     * @param renderContext The RenderContext.
+     * @return The overlapping sphere.
      */
     @SuppressWarnings("unchecked")
     private Sphere ifOverlapping(PickedState<Sphere> pickedState, Layout<V, E> layout, SyndromGraph<V, E> g, RenderContext<V, E> renderContext) {
@@ -119,12 +121,12 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * renders all objects and the overlapping sphere
+     * Renders all objects and the overlapping sphere.
      *
-     * @param sp            the overlapping sphere
-     * @param g             the current graph
-     * @param renderContext the render context
-     * @param layout        the layout
+     * @param sp            The overlapping sphere.
+     * @param g             The current graph.
+     * @param renderContext The render context.
+     * @param layout        The layout.
      */
     @SuppressWarnings("unchecked")
     private void renderObjectsSphere(Sphere sp, SyndromGraph<V, E> g, RenderContext<V, E> renderContext, Layout<V, E> layout) {
@@ -148,11 +150,11 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * renders the passed vertices
+     * Renders the passed vertices.
      *
-     * @param vertices      the vertices
-     * @param renderContext the render context
-     * @param layout        the current graph layout
+     * @param vertices      The vertices.
+     * @param renderContext The render context.
+     * @param layout        The current graph layout.
      */
     private void renderVertices(Collection<V> vertices, RenderContext<V, E> renderContext, Layout<V, E> layout) {
         try {
@@ -172,11 +174,11 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * renders the passed edge
+     * Rnders the passed edge.
      *
-     * @param e             the edge
-     * @param renderContext the render context
-     * @param layout        the current graph layout
+     * @param e             The edge.
+     * @param renderContext The render context.
+     * @param layout        The current graph layout.
      */
     private void renderEdge(E e, RenderContext<V, E> renderContext, Layout<V, E> layout) {
         try {
@@ -194,10 +196,10 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * renders all spheres passed
+     * Renders all spheres passed.
      *
-     * @param spheres       the spheres
-     * @param renderContext the render context
+     * @param spheres       The spheres.
+     * @param renderContext The render context.
      */
     private void renderSpheres(ArrayList<Sphere> spheres, RenderContext<V, E> renderContext) {
         try {
@@ -210,11 +212,11 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * detects if the picked sphere is overlapping another pne
+     * Detects if the picked sphere is overlapping another pne.
      *
-     * @param pickedState the current picked state
-     * @param g           the current graph
-     * @return true if the picked sphere is overlapping another one
+     * @param pickedState The current picked state.
+     * @param g           The current graph.
+     * @return True if the picked sphere is overlapping another one.
      */
     private boolean isOverlapped(PickedState<Sphere> pickedState, SyndromGraph<V, E> g) {
         boolean overlapped = false;
@@ -233,9 +235,9 @@ public class SyndromRenderer<V, E> extends BasicRenderer<V, E> {
     }
 
     /**
-     * clears some vertex attributes before rendering
+     * Clears some vertex attributes before rendering.
      *
-     * @param g the graph
+     * @param g The graph.
      */
     private void clearVertexForRender(SyndromGraph<V, E> g) {
         for (V v : g.getVertices()) {

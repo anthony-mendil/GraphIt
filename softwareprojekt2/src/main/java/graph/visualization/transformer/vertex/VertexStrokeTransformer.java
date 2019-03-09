@@ -15,8 +15,15 @@ import java.awt.*;
  * @param <V> The vertex type.
  */
 public class VertexStrokeTransformer<V> implements Transformer<V, Stroke> {
+    /**
+     * TODO
+     */
     private SyndromVisualisationViewer<Vertex, Edge> syndromVisualisationViewer;
 
+    /**
+     * TODO
+     * @param syndromVisualisationViewer
+     */
     public VertexStrokeTransformer(SyndromVisualisationViewer<Vertex, Edge> syndromVisualisationViewer) {
         this.syndromVisualisationViewer = syndromVisualisationViewer;
     }

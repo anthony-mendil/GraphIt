@@ -29,48 +29,48 @@ import java.util.*;
 import java.util.List;
 
 /**
- * the vertex picking plugin, implements mouse interactions on the vertices
+ * The vertex picking plugin, implements mouse interactions on the vertices.
  */
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     /**
-     * an instance of the helper functions
+     * An instance of the helper functions.
      */
     private final HelperFunctions helper;
     /**
-     * the source vertex for adding edge
+     * The source vertex for adding edge.
      */
     private Vertex source;
     /**
-     * the values instance
+     * The values instance.
      */
     private Values values;
     /**
-     * a map, with vertices and its old position/ sphere
+     * A map, with vertices and its old position/ sphere.
      */
     private Map<Vertex, Pair<Point2D, Sphere>> points = null;
     /**
-     * a context menu (vertex context menu)
+     * A context menu (vertex context menu).
      */
     private ContextMenu contextMenu;
 
     /**
-     * defines the add to selection modifier (SHIFT)
+     * Defines the add to selection modifier (SHIFT).
      */
     private int addToSelectionModifiers;
 
     /**
-     * an instance of the action history
+     * An instance of the action history.
      */
     private ActionHistory history;
 
     /**
-     * the class where to get the current strings (according to the selected language)
+     * The class where to get the current strings (according to the selected language).
      */
     private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 
     /**
-     * create an instance with passed values
+     * Create an instance with passed values.
      */
     public VertexPickingPlugin() {
         this(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK, InputEvent.SHIFT_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
@@ -80,10 +80,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * create an instance with passed values
+     * Create an instance with passed values.
      *
-     * @param addToSelectionModifiers the modifiers used for picking more than one vertices and add it to the selection
-     * @param selectionModifiers      the modifiers used for picking the vertices
+     * @param addToSelectionModifiers The modifiers used for picking more than one vertices and add it to the selection.
+     * @param selectionModifiers      The modifiers used for picking the vertices.
      */
     private VertexPickingPlugin(int selectionModifiers, int addToSelectionModifiers) {
         super(selectionModifiers);
@@ -116,10 +116,11 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * @param sp          the sphere, containing the vertex where the click was registered
-     * @param pickSupport the PickSupport of syndrom
-     * @param e           the MouseEvent e
-     * @param vv          the VisualisationViewer
+     * TODO
+     * @param sp          The sphere, containing the vertex where the click was registered.
+     * @param pickSupport The PickSupport of syndrom.
+     * @param e           The MouseEvent e.
+     * @param vv          The VisualisationViewer.
      */
     private void leftMouseClicked(Sphere sp, SyndromPickSupport<Vertex, Edge> pickSupport, MouseEvent e, SyndromVisualisationViewer<Vertex, Edge> vv) {
         Syndrom syndrom = Syndrom.getInstance();
@@ -145,9 +146,10 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * @param vertex the vertex where the click was registered
-     * @param vv     the VisualisationViewer
-     * @param e      the MouseEvent
+     * TODO
+     * @param vertex The vertex where the click was registered.
+     * @param vv     The VisualisationViewer.
+     * @param e      The MouseEvent.
      */
     private void rightMouseClicked(Vertex vertex, SyndromVisualisationViewer<Vertex, Edge> vv, MouseEvent e) {
         if (vertex != null && Values.getInstance().getMode() != FunctionMode.ANALYSE) {
@@ -199,7 +201,8 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * @param vert the second vertex for the new edge
+     * TODO
+     * @param vert The second vertex for the new edge.
      */
     private void edgeAdd(Vertex vert) {
         if (values.getMode() != FunctionMode.TEMPLATE) {
@@ -290,10 +293,11 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * @param pickedState the current PickedState of the vertices
-     * @param pickSupport the PickSupport of syndrom
-     * @param vv          the VisualisationViewer
-     * @return if the vertex should be added or not
+     * TODO
+     * @param pickedState The current PickedState of the vertices.
+     * @param pickSupport The PickSupport of syndrom.
+     * @param vv          The VisualisationViewer.
+     * @return If the vertex should be added or not.
      */
     private boolean calculateAddNot(PickedState<Vertex> pickedState, SyndromPickSupport<Vertex, Edge> pickSupport, VisualizationViewer<Vertex, Edge> vv) {
         boolean addNot = false;
@@ -311,10 +315,11 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * @param pickedState the current PickedState of the vertices
-     * @param vv          the VisualisationViewer
-     * @param layout      the current Layout of the graph
-     * @param pickSupport the PickSupport of syndrom
+     * TODO
+     * @param pickedState The current PickedState of the vertices.
+     * @param vv          The VisualisationViewer.
+     * @param layout      The current Layout of the graph.
+     * @param pickSupport The PickSupport of syndrom.
      */
     private void setVerticesCoordinate(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, Layout<Vertex, Edge> layout, SyndromPickSupport<Vertex, Edge> pickSupport) {
         boolean addNot = calculateAddNot(pickedState, pickSupport, vv);
@@ -332,10 +337,11 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * @param pickedState the current PickedState of the vertices
-     * @param vv          the VisualisationViewer
-     * @param layout      the current Layout of the graph
-     * @param pickSupport the PickSupport of syndrom
+     * TODO
+     * @param pickedState The current PickedState of the vertices.
+     * @param vv          The VisualisationViewer.
+     * @param layout      The current Layout of the graph.
+     * @param pickSupport The PickSupport of syndrom.
      */
     private void moveVertices(PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv, SyndromPickSupport<Vertex, Edge> pickSupport, Layout<Vertex, Edge> layout) {
         boolean jumpBack = false;
@@ -398,8 +404,9 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * @param v the vertex to check
-     * @return if the vertex intersects with another one
+     * TODO
+     * @param v The vertex to check.
+     * @return If the vertex intersects with another one.
      */
     private boolean intersects(Vertex v) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();

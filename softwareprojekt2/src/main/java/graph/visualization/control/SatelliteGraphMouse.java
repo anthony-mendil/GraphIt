@@ -4,11 +4,14 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.control.ModalSatelliteGraphMouse;
 import edu.uci.ics.jung.visualization.control.SatelliteTranslatingGraphMousePlugin;
 
+/**
+ * TODO
+ */
 public class SatelliteGraphMouse extends ModalSatelliteGraphMouse implements
         ModalGraphMouse {
 
     /**
-     * the satellite graph mouse (zoom)
+     * The satellite graph mouse (zoom).
      */
     public SatelliteGraphMouse() {
         super();
@@ -16,7 +19,7 @@ public class SatelliteGraphMouse extends ModalSatelliteGraphMouse implements
 
     /**
      * InputEvent.BUTTON1_MASK is deprecated, but if you replace it with BUTTON1_DOWN_MASK it will not work anymore.
-     * so work around: remove BUTTON1_DOWN_MASK and input the integer values it stands for
+     * so work around: remove BUTTON1_DOWN_MASK and input the integer values it stands for.
      */
     @Override
     public void loadPlugins() {

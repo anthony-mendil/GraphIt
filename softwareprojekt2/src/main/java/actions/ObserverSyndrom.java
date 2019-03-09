@@ -14,7 +14,7 @@ public interface ObserverSyndrom {
     /**
      * Calls if the function mode changed.
      *
-     * @param mode the function mode td change to
+     * @param mode The function mode td change to.
      */
     void updateFunctionMode(FunctionMode mode);
 

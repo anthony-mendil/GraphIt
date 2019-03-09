@@ -29,49 +29,49 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * the sphere picking plugin, implements mouse interactions on the spheres
+ * The sphere picking plugin, implements mouse interactions on the spheres.
  */
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
     /**
-     * the values
+     * The values.
      */
     private final Values values;
     /**
-     * HelperFunctions
+     * HelperFunctions.
      */
     private final HelperFunctions helper;
     /**
-     * the class where to get the current strings (according to the selected language)
+     * The class where to get the current strings (according to the selected language).
      */
     private final LoadLanguage loadLanguage = LoadLanguage.getInstance();
     /**
-     * a SphereShapeTransformer
+     * A SphereShapeTransformer.
      */
     private final SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
     /**
-     * the coordinates of the picked sphere
+     * The coordinates of the picked sphere.
      */
     private Point2D spherePickedCoordinate = null;
     /**
-     * the point where the user pressed the mouse
+     * The point where the user pressed the mouse.
      */
     private Point2D downFirst = null;
     /**
-     * the old position of the vertices, which been moved
+     * The old position of the vertices, which been moved.
      */
     private Map<Integer, Point2D> points = null;
     /**
-     * the ContextMenu of the spheres
+     * The ContextMenu of the spheres.
      */
     private ContextMenu contextMenu;
     /**
-     * The ActionHistory
+     * The ActionHistory.
      */
     private ActionHistory history = ActionHistory.getInstance();
 
     /**
-     * create an instance with passed values
+     * Creates an instance with passed values.
      */
     public SpherePickingPlugin() {
         super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
@@ -115,11 +115,11 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * containing the logic if a sphere can be added at a certain point
+     * Contains the logic if a sphere can be added at a certain point.
      *
-     * @param list   a list containing all the spheres
-     * @param newRec the shape of the potential new sphere
-     * @param p      the point where to add the sphere
+     * @param list   A list containing all the spheres.
+     * @param newRec The shape of the potential new sphere.
+     * @param p      The point where to add the sphere.
      */
     private void addSphere(List<Sphere> list, Rectangle2D newRec, Point2D p) {
         boolean addSphere = calculateOverlapSpheres(list, newRec);
@@ -139,11 +139,11 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * calculate if the potential new sphere overlaps with another one
+     * Calculate if the potential new sphere overlaps with another one.
      *
-     * @param list   the list containing all spheres
-     * @param newRec the shape of the potential new sphere
-     * @return if the potential new sphere overlaps another one
+     * @param list   The list containing all spheres.
+     * @param newRec The shape of the potential new sphere.
+     * @return If the potential new sphere overlaps another one.
      */
     private boolean calculateOverlapSpheres(List<Sphere> list, Rectangle2D newRec) {
         boolean addSphere = true;
@@ -198,9 +198,9 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * sets the 'old' vertices position to a list, for getting them back, if the new add- point is not valid
+     * Sets the 'old' vertices position to a list, for getting them back, if the new add- point is not valid.
      *
-     * @param sp the sphere, containing the vertices
+     * @param sp The sphere containing the vertices.
      */
     private void setVerticesPositionToPoints(Sphere sp) {
         points = new LinkedHashMap<>();
@@ -226,6 +226,12 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         }
     }
 
+    /**
+     * TODO
+     * @param allSpheres
+     * @param spheres
+     * @param vv
+     */
     private void setCoordinateSpheres(List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer<Vertex, Edge> vv) {
         for (Sphere s : spheres) {
             Shape sShape = sphereShapeTransformer.transform(s);
@@ -247,12 +253,12 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * calculates if the sphere which been moved, overlaps with another one
+     * Calculates if the sphere which been moved, overlaps with another one.
      *
-     * @param allSpheres list containing all the spheres
-     * @param s          the sphere
-     * @param sShape     the shape of the sphere
-     * @return if the sphere can be moved
+     * @param allSpheres List containing all the spheres.
+     * @param s          The sphere.
+     * @param sShape     The shape of the sphere.
+     * @return If the sphere can be moved.
      */
     private boolean calculateMove(List<Sphere> allSpheres, Sphere s, Shape sShape) {
         boolean move = true;
