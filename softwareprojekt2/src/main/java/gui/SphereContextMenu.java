@@ -62,7 +62,6 @@ public class SphereContextMenu {
         remove.setOnAction(event -> {
             RemoveSphereLogAction removeSphereLogAction = new RemoveSphereLogAction();
             history.execute(removeSphereLogAction);
-            System.out.println("TEST REMOVE");
         });
 
         // ANNOTATION
@@ -87,7 +86,6 @@ public class SphereContextMenu {
 
             EditSphereColorLogAction editSphereColorLogAction = new EditSphereColorLogAction(values.getFillPaintSphere());
             history.execute(editSphereColorLogAction);
-            System.out.println("TEST ANNOTATION");
         });
 
         // Schriftart
@@ -96,7 +94,7 @@ public class SphereContextMenu {
         text.setOnAction(event -> {
             EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(values.getFontSphere());
             history.execute(editFontSphereLogAction);
-            System.out.println("TEST FONT");
+
         });
 
         // Schriftgröße
@@ -106,8 +104,7 @@ public class SphereContextMenu {
         size.setOnAction(event -> {
             EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(values.getFontSizeSphere());
             history.execute(editFontSizeSphereLogAction);
-            System.out.println("TEST FONTSIZE");
-            contextMenu.hide();
+
         });
 
         boolean lockedAnnotation = sphere.isLockedAnnotation();
