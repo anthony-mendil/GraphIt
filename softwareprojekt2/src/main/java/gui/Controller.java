@@ -1943,7 +1943,7 @@ public class Controller implements ObserverSyndrom {
         });
 
 
-        treeView.setOnMouseClicked(new TreeViewMouseHandler(this, helper));
+        treeView.setOnMousePressed(new TreeViewMouseHandler(this, helper));
     }
 
     /**

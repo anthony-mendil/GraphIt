@@ -36,50 +36,51 @@ public class TitlesDialogPaneController extends DialogPane {
      */
     public static final ButtonType CANCEL_TYPE = new ButtonType("Abbrechen");
     /**
-     * The title-dialog.
+     * The DialogPane containing gui nodes.
      */
     @FXML
     private DialogPane titleDialog;
     /**
-     * The textfiled for german
+     * The TextField for the german input.
      */
     @FXML
     private TextField german;
     /**
-     * TODO
+     * The TextField for the english input.
      */
     @FXML
     private TextField english;
     /**
-     * TODO
+     * The Button cancelling the dialog.
      */
     @FXML
     private Button cancel;
     /**
-     * TODO
+     * The Button saving the input.
      */
     @FXML
     private Button save;
     /**
-     * TODO
+     * The german description.
      */
     @FXML
     private Text germanText;
     /**
-     * TODO
+     * The english description.
      */
     @FXML
     private Text englishText;
     /**
-     * TODO
+     * The HBox for error messages.
      */
     @FXML
     private HBox textBox;
     /**
-     * TODO
+     * The Text of error messages.
      */
     @FXML
     private Text currentActionText;
+
     /**
      * The values instance.
      */
