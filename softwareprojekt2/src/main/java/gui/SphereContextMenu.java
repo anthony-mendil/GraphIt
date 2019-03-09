@@ -94,6 +94,7 @@ public class SphereContextMenu {
         text.setOnAction(event -> {
             EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(values.getFontSphere());
             history.execute(editFontSphereLogAction);
+
         });
 
         // Schriftgröße
@@ -103,6 +104,7 @@ public class SphereContextMenu {
         size.setOnAction(event -> {
             EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(values.getFontSizeSphere());
             history.execute(editFontSizeSphereLogAction);
+
         });
 
         boolean lockedAnnotation = sphere.isLockedAnnotation();

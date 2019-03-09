@@ -104,7 +104,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         } else {
             if (vertex == null && sp != null && values.getMode() != FunctionMode.ANALYSE) {
                 contextMenu = new SphereContextMenu(sp).getContextMenu();
-                System.out.println("SphereTEST");
                 helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
                 PickedState<Sphere> spheres = vv.getPickedSphereState();
                 spheres.clear();
