@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class VertexFontTransformer<V> implements Transformer<V, Font> {
     /**
-     * TODO
+     * A HelperFunctions object needed to transform into a Font.
      */
     private HelperFunctions helperFunctions = new HelperFunctions();
 

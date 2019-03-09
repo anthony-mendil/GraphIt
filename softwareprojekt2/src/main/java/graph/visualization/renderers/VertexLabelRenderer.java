@@ -23,11 +23,11 @@ import java.awt.geom.Point2D;
  */
 public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
     /**
-     * TODO
+     * The RenderHelperFunction needed to render vertex labels.
      */
     private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
     /**
-     * TODO
+     * Creates a new VertexLabelRenderer.
      */
     public VertexLabelRenderer() {
         super(Position.CNTR);
