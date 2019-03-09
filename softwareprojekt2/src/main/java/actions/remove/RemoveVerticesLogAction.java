@@ -86,8 +86,7 @@ public class RemoveVerticesLogAction extends LogAction {
                                 SyndromPickSupport<Vertex, Edge> pickSupport) {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         for (Vertex vertex : pickedState.getPicked()) {
-            if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() ||
-                    values.getMode() == FunctionMode.TEMPLATE) {
+            if (vertexIsLocked(vertex)) {
                 Point2D posVertex = vertex.getCoordinates();
                 posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
                 Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
@@ -176,12 +175,20 @@ public class RemoveVerticesLogAction extends LogAction {
      * @param edges The list of edges.
      * @return  true: The vertex can be removed | false: the vertex can't be removed.
      */
-    public boolean allowedRemoveVertex(ArrayList<Edge> edges) {
+    private boolean allowedRemoveVertex(List<Edge> edges) {
         for (Edge e : edges) {
             if ((e.isLockedEdgeType() || e.isLockedStyle())&& values.getMode() != FunctionMode.TEMPLATE) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean vertexIsLocked(Vertex vertex){
+        if((!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) ||
+                values.getMode() == FunctionMode.TEMPLATE){
+            return true;
+        }
+        return false;
     }
 }
