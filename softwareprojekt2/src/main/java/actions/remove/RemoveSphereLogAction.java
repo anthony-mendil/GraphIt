@@ -50,7 +50,6 @@ public class RemoveSphereLogAction extends LogAction {
             for (Sphere sp : pickedState.getPicked()) {
                 if (!sp.isLockedStyle() && !sp.isLockedAnnotation() && !sp.isLockedPosition() && !sp.isLockedVertices()
                         || values.getMode() == FunctionMode.TEMPLATE) {
-                    System.out.println(graph.getVertices().size());
                     if(!removingSphere(sp,vertices,pickedState,pickedVertexState,graph)){
                         return;
                     }
