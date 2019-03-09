@@ -27,17 +27,17 @@ import java.util.List;
 public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
 
     /**
-     * TODO
+     * The logger used in the system.
      */
     private static Logger logger = Logger.getLogger(SyndromPickSupport.class);
 
     /**
-     * TODO
+     * The shape-transformer of the sphere.
      */
     private SphereShapeTransformer<Sphere> sphereShapeTransformer = new SphereShapeTransformer<>();
 
     /**
-     * TODO
+     * The basic-edge-transformer for the edges.
      */
     private BasicEdgeArrowRenderingSupport<V, E> edgeArrowRenderingSupport = new BasicEdgeArrowRenderingSupport<>();
 
@@ -116,7 +116,7 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
     }
 
     /**
-     * TODO
+     * Returns the edge, that got filtered.
      * @param layout      Current layout of the graph.
      * @param pickArea    The pickarea.
      * @param x           The x coordinate of the point where the edge should be picked.
@@ -147,14 +147,14 @@ public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
     }
 
     /**
-     * TODO
+     * The edge that may return if the two intersects to one.
      * @param edgeShape   The edge shape.
      * @param closest     The closest edge.
-     * @param minDistance The mindistance.
+     * @param minDistance The minDistance.
      * @param x           The x coordinate of the point where the edge should be picked.
      * @param y           The y coordinate of the point where the edge should be picked.
      * @param e           The current looking at edge.
-     * @return The maybe edge with the new mindistance.
+     * @return The maybe edge with the new minDistance.
      */
     private javafx.util.Pair<E, Double> intersectsPickArea(Shape edgeShape, E closest, double minDistance, double x, double y, E e) {
         float cx = 0;

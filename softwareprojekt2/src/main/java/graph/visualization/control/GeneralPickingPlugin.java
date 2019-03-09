@@ -15,18 +15,18 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 
 /**
- * TODO
+ * Defines a general picking plugin for all the other plugins.
  */
 public class GeneralPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
 
     /**
-     * TODO
+     * The helper-functions to work with.
      */
     private HelperFunctions helper = new HelperFunctions();
 
     /**
-     * TODO
+     * Constructor for the general-picking-plugin.
      */
     public GeneralPickingPlugin() {
         super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
