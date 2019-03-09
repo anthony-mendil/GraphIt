@@ -44,9 +44,9 @@ public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     private final Controller c;
 
     /**
-     * TODO
-     * @param pCheckBox
-     * @param pC
+     * Creates a new AnalysisCheckBoxListener and sets the attributes needed in this class.
+     * @param pCheckBox The Checkbox determining analysis.
+     * @param pC The Controller handling the resulting action.
      */
     AnalysisCheckBoxListener(CheckBox pCheckBox, Controller pC) {
         checkBox = pCheckBox;

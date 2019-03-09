@@ -99,7 +99,7 @@ public class TitlesDialogPaneController extends DialogPane {
     private Map<String, String> oldTitle;
 
     /**
-     * TODO
+     * Initializes the TitlesDialog gui and sets multiple buttons and handlers.
      */
     public void initialize() {
         cancel = (Button) titleDialog.lookupButton(CANCEL_TYPE);
