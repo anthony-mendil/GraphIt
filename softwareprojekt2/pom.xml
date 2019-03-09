@@ -13,10 +13,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <build>
-
         <finalName>GraphIt</finalName>
         <plugins>
-            <plugin>
+            <plugin> <!--> shade jar builder <-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.1</version>
@@ -37,19 +36,10 @@
                                 </transformer>
                             </transformers>
                         </configuration>
-                    </execution>
+                    </execution> <!--> mvn package <-->
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
+            <plugin> <!--> javaDoc <-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
@@ -60,14 +50,14 @@
                         <goals>
                             <goal>javadoc</goal>
                         </goals>
-                    </execution>
+                    </execution> <!--> mvn package <-->
                 </executions>
                 <configuration>
                     <show>private</show>
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>
-            <plugin>
+            <plugin> <!--> jacoco <-->
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.3</version>
@@ -83,8 +73,24 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                    </execution>
+                    </execution> <!--> mvn test <-->
+                    <execution>
+                        <id>packageReport</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution> <!--> mvn package <-->
                 </executions>
+            </plugin>
+            <plugin> <!--> mvn compiler <-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
