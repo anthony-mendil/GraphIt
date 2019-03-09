@@ -20,9 +20,9 @@ public class FilterTypeHandler implements EventHandler<ActionEvent> {
     private final Controller c;
 
     /**
-     * TODO
-     * @param pC
-     * @param type
+     * Constructor for the filter-type-handler.
+     * @param pC    The unique controller.
+     * @param type  The edge-arrow-type.
      */
     FilterTypeHandler(Controller pC, EdgeArrowType type) {
         c = pC;

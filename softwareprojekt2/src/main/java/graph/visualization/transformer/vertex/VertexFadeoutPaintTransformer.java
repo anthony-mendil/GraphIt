@@ -15,20 +15,21 @@ import java.awt.*;
  */
 public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
     /**
-     * TODO
+     * The FadeOutElementsTransition providing animation details.
      */
     private final FadeOutElementsTransition animation;
     /**
-     * TODO
+     * The Transformer needed to determine the paint of the vertex.
      */
     private final Transformer<V, Paint> transformer;
     /**
-     * TODO
+     * The FadeType determining which kind of fading gets used.
      */
     private final FadeType fadeType;
 
     /**
-     * TODO
+     * Creates a new VertexFadeoutPaintTransformer that sets this FadeOutElementsTransition, Transformer and FadeType.
+     *
      * @param animation   The animation, defining the transparency of the color.
      * @param transformer The transformer returning the right edge color.
      * @param fadeType    The fade type.
