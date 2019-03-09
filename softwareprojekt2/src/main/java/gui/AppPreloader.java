@@ -8,10 +8,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
+/**
+ * TODO
+ */
 public class AppPreloader extends Preloader {
 
+    /**
+     * TODO
+     */
     private Stage stage;
+
+    /**
+     * TODO
+     */
     private PreloaderController pc;
 
     @Override

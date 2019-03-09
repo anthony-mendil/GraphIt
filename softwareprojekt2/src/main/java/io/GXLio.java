@@ -23,31 +23,108 @@ import java.util.List;
  * and visualize this graph.
  */
 public class GXLio {
+
+    /**
+     * TODO
+     */
     private static final String FILL_PAINT = "fillPaint";
+
+    /**
+     * TODO
+     */
     private static final String ANNOTATION = "annotation";
+
+    /**
+     * TODO
+     */
     private static final String U00A6 = "\u00A6";
+
+    /**
+     * TODO
+     */
     private static final String FONT_SIZE = "fontSize";
+
+    /**
+     * TODO
+     */
     private static final String IS_LOCKED_POSITION = "isLockedPosition";
+
+    /**
+     * TODO
+     */
     private static final String IS_LOCKED_ANNOTATION = "isLockedAnnotation";
+
+    /**
+     * TODO
+     */
     private static final String IS_LOCKED_STYLE = "isLockedStyle";
+
+    /**
+     * TODO
+     */
     private static final String IS_VISIBLE = "isVisible";
+
+    /**
+     * TODO
+     */
     private static final String IS_HIGHLIGHTED = "isHighlighted";
+
+    /**
+     * TODO
+     */
     private static final String ANCHORANGLE_OF_SOURCE = "anchorAngle of source";
+
+    /**
+     * TODO
+     */
     private static final String ANCHORANGLE_OF_TARGET = "anchorAngle of target";
+
+    /**
+     * TODO
+     */
     private static final String NAME_OF_GRAPH = "name of the graph";
+
+    /**
+     * TODO
+     */
     private static Logger logger = Logger.getLogger(GXLio.class);
+
     /**
      * The syndrom representation.
      */
     private Syndrom syndrom = Syndrom.getInstance();
+
+    /**
+     * TODO
+     */
     private Template template;
     /**
      * The highest id of all GXLAttributetElements in the gxl document that
      * is imported in the {@link #gxlToInstance(String, boolean)}-method.
      */
     private int maxID = -1;
+
+    /**
+     * TODO
+     */
     @Getter
     private boolean templateFoundFlag;
+
+    /**
+     * TODO
+     */
+    private static final Comparator<Sphere> sphereCompare = Comparator.comparingInt(Sphere::getId);
+
+    /**
+     * TODO
+     */
+    private static final Comparator<Edge> edgeCompare = Comparator.comparingInt(Edge::getId);
+
+    /**
+     * TODO
+     */
+    private static final Comparator<Vertex> vertexCompare = Comparator.comparingInt(Vertex::getId);
+
 
     /**
      * Constructor of class GXLio.
@@ -128,6 +205,14 @@ public class GXLio {
         }
     }
 
+    /**
+     * TODO
+     * @param pVertices
+     * @param pSpheresWithVertices
+     * @param pEdgeAndVertices
+     * @param pElem
+     * @param pWithTemplate
+     */
     private void makeGraphElemt(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         switch (((GXLString) pElem.getAttr("TYPE").getValue()).getValue()) {
             case "Sphaere":
@@ -144,6 +229,12 @@ public class GXLio {
         }
     }
 
+    /**
+     * TODO
+     * @param pSpheresWithVertices
+     * @param pElem
+     * @param pWithTemplate
+     */
     private void makeSphere(List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         Sphere newSphere = convertGXLElementToSphere(pElem, pWithTemplate);
         Map<Sphere, List<Vertex>> map = new HashMap<>();
@@ -151,6 +242,13 @@ public class GXLio {
         pSpheresWithVertices.add(map);
     }
 
+    /**
+     * TODO
+     * @param pVertices
+     * @param pSpheresWithVertices
+     * @param pElem
+     * @param pWithTemplate
+     */
     private void makeVertex(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         Vertex newVertex = convertGXLElementToVertex(pElem, pWithTemplate);
         int sphereID = Integer.parseInt(((GXLString) pElem.getAttr("ID of the sphere containing this node:").getValue()).getValue());
@@ -164,6 +262,13 @@ public class GXLio {
         pVertices.add(newVertex);
     }
 
+    /**
+     * TODO
+     * @param pVertices
+     * @param pEdgeAndVertices
+     * @param pElem
+     * @param pWithTemplate
+     */
     private void makeEdge(List<Vertex> pVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         Edge newEdge = convertGXLElemToEdge(pElem, pWithTemplate);
         // The edge generated from the description in the gxl document is add to the list of all edges together with its source and target vertex.
@@ -189,6 +294,13 @@ public class GXLio {
         pEdgeAndVertices.add(entry);
     }
 
+    /**
+     * TODO
+     * @param spheresWithVertices
+     * @param edgeAndVertices
+     * @param graphName
+     * @param withTemplate
+     */
     private void updateSystemDataAndVisualisation(List<Map<Sphere, List<Vertex>>> spheresWithVertices, List<Map<Edge, Pair<Vertex>>> edgeAndVertices, String graphName, boolean withTemplate) {
         // Getting the objects that are needed to get the spheres, vertices and edges out of the lists into our system.
         syndrom.generateNew();
@@ -212,6 +324,12 @@ public class GXLio {
         updateVisualisationAndLayout(newGraph, vv);
     }
 
+    /**
+     * TODO
+     * @param spheresWithVertices
+     * @param newGraph
+     * @param vv
+     */
     private void updateSystemDataOfSpheresAndVertices(List<Map<Sphere, List<Vertex>>> spheresWithVertices, SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv) {
         for (Map<Sphere, List<Vertex>> m : spheresWithVertices) {
             for (Map.Entry<Sphere, List<Vertex>> e : m.entrySet()) {
@@ -229,6 +347,11 @@ public class GXLio {
         }
     }
 
+    /**
+     * TODO
+     * @param edgeAndVertices
+     * @param newGraph
+     */
     private void updateSystemDataOfEdges(List<Map<Edge, Pair<Vertex>>> edgeAndVertices, SyndromGraph<Vertex, Edge> newGraph) {
         for (Map<Edge, Pair<Vertex>> m : edgeAndVertices) {
             for (Map.Entry<Edge, Pair<Vertex>> e : m.entrySet()) {
@@ -239,6 +362,11 @@ public class GXLio {
         }
     }
 
+    /**
+     * TODO
+     * @param newGraph
+     * @param vv
+     */
     private void updateVisualisationAndLayout(SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv) {
         vv.getGraphLayout().setGraph(newGraph);
         vv.repaint();
@@ -423,11 +551,6 @@ public class GXLio {
     }
 
 
-    private static final Comparator<Sphere> sphereCompare = Comparator.comparingInt(Sphere::getId);
-    private static final Comparator<Edge> edgeCompare = Comparator.comparingInt(Edge::getId);
-
-    private static final Comparator<Vertex> vertexCompare = Comparator.comparingInt(Vertex::getId);
-
 
     /**
      * Extracts the graph from our syndrom and creates a gxl document for this graph.
@@ -500,6 +623,12 @@ public class GXLio {
         return content;
     }
 
+    /**
+     * TODO
+     * @param s
+     * @param withTemplate
+     * @return
+     */
     private GXLNode createSphereNode(Sphere s, boolean withTemplate) {
         GXLNode sphere = new GXLNode(s.getId() + "");
         sphere.setAttr("TYPE", new GXLString("Sphaere"));
@@ -550,6 +679,13 @@ public class GXLio {
         gxlSphere.setAttr("lockedMaxAmountVertices", new GXLString(sphere.getLockedMaxAmountVertices()));
     }
 
+    /**
+     * TODO
+     * @param s
+     * @param v
+     * @param withTemplate
+     * @return
+     */
     private GXLNode createVertexNode(Sphere s, Vertex v, boolean withTemplate) {
         GXLNode singleNodeInSphere = new GXLNode(v.getId() + "");
         singleNodeInSphere.setAttr("TYPE", new GXLString("Node"));
@@ -597,6 +733,13 @@ public class GXLio {
         gxlNode.setAttr(IS_LOCKED_STYLE, new GXLBool(vertex.isLockedStyle()));
     }
 
+    /**
+     * TODO
+     * @param theGraph
+     * @param e
+     * @param withTemplate
+     * @return
+     */
     private GXLEdge createEdge(SyndromGraph<Vertex, Edge> theGraph, Edge e, boolean withTemplate) {
         Pair<Vertex> verticesOfEdge = theGraph.getEndpoints(e);
         GXLEdge edge = new GXLEdge(verticesOfEdge.getFirst().getId() + "", verticesOfEdge.getSecond().getId() + "");

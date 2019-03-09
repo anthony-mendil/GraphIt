@@ -18,6 +18,11 @@ public class AnalysisTypeHandler implements EventHandler<ActionEvent> {
      */
     private final Controller c;
 
+    /**
+     * TODO
+     * @param pC
+     * @param type
+     */
     AnalysisTypeHandler(Controller pC, LogEntryName type) {
         c = pC;
         this.type = type;

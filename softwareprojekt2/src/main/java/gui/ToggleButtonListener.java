@@ -27,6 +27,11 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
      */
     private ToggleButton addVertex;
 
+    /**
+     * TODO
+     * @param pC
+     * @param pToggleButton
+     */
     ToggleButtonListener(Controller pC, ToggleButton pToggleButton) {
         toggleButton = pToggleButton;
         handSelector = pC.getHandSelector();

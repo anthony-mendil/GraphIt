@@ -31,7 +31,11 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
      */
     private final CheckBox analysisPredecessor;
 
-
+    /**
+     * TODO
+     * @param pC
+     * @param pTextField
+     */
     ConfirmKeyListener(Controller pC, TextField pTextField) {
         c = pC;
         amountSymptomTextField = pTextField;

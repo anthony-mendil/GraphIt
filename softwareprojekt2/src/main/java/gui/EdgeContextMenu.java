@@ -20,15 +20,42 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
+/**
+ * TODO
+ */
 @Data
 public class EdgeContextMenu {
+
+    /**
+     * TODO
+     */
     @Setter(AccessLevel.NONE)
     private final ContextMenu contextMenu;
+
+    /**
+     * TODO
+     */
     private final ActionHistory history;
+
+    /**
+     * TODO
+     */
     private final Values values;
+
+    /**
+     * TODO
+     */
     private final Edge edge;
+
+    /**
+     * TODO
+     */
     private LoadLanguage language = LoadLanguage.getInstance();
 
+    /**
+     * TODO
+     * @param edge
+     */
     public EdgeContextMenu(Edge edge) {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
@@ -37,6 +64,9 @@ public class EdgeContextMenu {
         setup();
     }
 
+    /**
+     * TODO
+     */
     private void setup() {
         // REMOVE
         MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));

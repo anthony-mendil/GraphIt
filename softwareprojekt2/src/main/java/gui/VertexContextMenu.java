@@ -29,40 +29,43 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * TODO
+ */
 @Data
 public class VertexContextMenu {
     /**
-     * the context menu
+     * The context menu.
      */
     @Setter(AccessLevel.NONE)
     private final ContextMenu contextMenu;
     /**
-     * a instance of action history
+     * An instance of action history.
      */
     private final ActionHistory history;
     /**
-     * a instance of values
+     * An instance of values.
      */
     private final Values values;
     /**
-     * the vertex the context menu belongs to
+     * The vertex the context menu belongs to.
      */
     private final Vertex vertex;
     /**
-     * a instance of helper function
+     * An instance of helper function.
      */
     private HelperFunctions helperFunctions = new HelperFunctions();
     /**
-     * a instance of load language
+     * An instance of load language.
      */
     private LoadLanguage language = LoadLanguage.getInstance();
     /**
-     * a syndrom instance
+     * A syndrom instance.
      */
     private Syndrom syndrom = Syndrom.getInstance();
 
     /**
-     * creates a vertex context menu
+     * Creates a vertex context menu.
      *
      * @param vertex the vertex
      */
@@ -75,7 +78,7 @@ public class VertexContextMenu {
     }
 
     /**
-     * creates the context menu
+     * Creates the context menu.
      */
     private void setup() {
         // REMOVE
@@ -187,7 +190,7 @@ public class VertexContextMenu {
     }
 
     /**
-     * checks the annotation and creates a edit vertex annotation action
+     * Checks the annotation and creates a edit vertex annotation action.
      *
      * @param map the map containing the annotations
      */

@@ -12,6 +12,9 @@ public class PersonalEntityManagerFactory {
      */
     private static EntityManagerFactory entityManagerFactory;
 
+    /**
+     * TODO
+     */
     private PersonalEntityManagerFactory() {
         throw new IllegalStateException("utility class");
     }
