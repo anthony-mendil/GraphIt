@@ -190,6 +190,7 @@ public class HelperFunctions {
      * @return The context menu.
      */
     public ContextMenu openContextMenu(Object object) {
+        System.out.println("openContextMenu");
         ContextMenu contextMenu = null;
         if (object instanceof Sphere) {
             Sphere sp = (Sphere) object;

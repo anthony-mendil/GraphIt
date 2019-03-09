@@ -44,9 +44,9 @@ public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
      */
     @Override
     public void handle(MouseEvent e) {
-        System.out.println("TEST");
         if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
             if (e.getButton() == MouseButton.SECONDARY) {
+                System.out.println("TEST");
                 Node node = e.getPickResult().getIntersectedNode();
                 if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
                     TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
