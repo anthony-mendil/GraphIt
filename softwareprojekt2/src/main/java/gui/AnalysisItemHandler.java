@@ -10,13 +10,13 @@ import javafx.scene.control.MenuItem;
  */
 public class AnalysisItemHandler implements EventHandler<ActionEvent> {
     /**
-     * The menubutton that the handler is assigned to.
+     * The MenuButton that the handler is assigned to.
      */
     private final MenuButton menuButton;
 
     /**
-     * TODO
-     * @param pMenuButton
+     * Creates a new AnalysisItemHandler and sets this MenuButton.
+     * @param pMenuButton The Button that gets assigned with a handler.
      */
     AnalysisItemHandler(MenuButton pMenuButton) {
         menuButton = pMenuButton;
