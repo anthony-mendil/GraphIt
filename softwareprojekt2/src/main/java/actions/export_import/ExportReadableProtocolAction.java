@@ -14,14 +14,14 @@ import java.io.File;
 public class ExportReadableProtocolAction extends GraphAction {
 
     /**
-     * The File the protocol get's written into
+     * The File the protocol get's written into.
      */
     private File file;
 
     /**
      * Constructs action handling for exporting the protocol as readable file.
      *
-     * @param pFile The destination of the protocol-file
+     * @param pFile The destination of the protocol-file.
      */
     public ExportReadableProtocolAction(File pFile) {
         file = pFile;
@@ -41,7 +41,7 @@ public class ExportReadableProtocolAction extends GraphAction {
     }
 
     /**
-     * Disables the undo-funktion for the protocol export
+     * Disables the undo-function for the protocol export.
      */
     @Override
     public void undo() {
@@ -49,7 +49,7 @@ public class ExportReadableProtocolAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the protocol export
+     * Disables the redo-function for the protocol export.
      */
     @Override
     public void redo() {

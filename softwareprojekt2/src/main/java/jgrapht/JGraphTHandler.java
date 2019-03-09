@@ -49,7 +49,7 @@ public class JGraphTHandler {
     private Set<Vertex> pickedVertices;
 
     /**
-     * TODO
+     * The instance to change the language for the alert text.
      */
     private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 

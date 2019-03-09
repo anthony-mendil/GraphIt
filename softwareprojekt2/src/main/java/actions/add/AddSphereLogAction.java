@@ -22,6 +22,10 @@ import java.util.HashMap;
  */
 public class AddSphereLogAction extends LogAction {
 
+    /**
+     * The point on the visualization viewer, which is clicked by the user.
+     */
+
     private Point2D point2D;
 
     /**

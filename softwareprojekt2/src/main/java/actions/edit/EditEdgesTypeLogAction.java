@@ -73,6 +73,13 @@ public class EditEdgesTypeLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+    /**
+     * Sets the type of the edge.
+     * @param pickedState   The picked edges.
+     * @param oldEdges      The old edges and their relation-type.
+     * @param newEdges      The new edges and their relation-type.
+     * @param lockedEdges   The collection of edges, that are locked.
+     */
     private void setType(PickedState<Edge> pickedState, Map<Edge, EdgeArrowType> oldEdges, Map<Edge,
             EdgeArrowType> newEdges, List<Edge> lockedEdges) {
         for (Edge e : pickedState.getPicked()) {

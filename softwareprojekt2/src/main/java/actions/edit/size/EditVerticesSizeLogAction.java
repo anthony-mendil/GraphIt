@@ -69,6 +69,12 @@ public class EditVerticesSizeLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+    /**
+     * Changes the size of the vertex.
+     * @param pickedState The vertices picked.
+     * @param oldVertices The old state of the vertices.
+     * @param newVertices The new vertices with their new size.
+     */
     private void editSize(PickedState<Vertex> pickedState, Map<Vertex, Integer> oldVertices, Map<Vertex, Integer> newVertices) {
         for (Vertex vertex : pickedState.getPicked()) {
             if (!vertex.isLockedStyle()) {

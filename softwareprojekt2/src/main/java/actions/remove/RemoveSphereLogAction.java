@@ -76,6 +76,15 @@ public class RemoveSphereLogAction extends LogAction {
         notifyObserverGraph();
     }
 
+    /**
+     * Removes the sphere, if it is allowed.
+     * @param sp                The sphere.
+     * @param vertices          The vertices in the sphere.
+     * @param pickedState       The pickedState of the sphere.
+     * @param pickedVertexState The pickedState od the vertices.
+     * @param graph             The graph to work on.
+     * @return                  Indicator whether the action was successful.
+     */
     private boolean removingSphere(Sphere sp, List<Vertex> vertices, PickedState<Sphere> pickedState,
                                    PickedState<Vertex> pickedVertexState, SyndromGraph<Vertex, Edge> graph) {
         if(!allowedSphereRemove(sp)){
