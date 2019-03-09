@@ -1537,14 +1537,14 @@ Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären,
 \texttt{Umfang}: Anzahl wertbarer Symptome + Anzahl wertbarer Relationen\\\\
 \texttt{Vernetzungsindex}: 2 x Anzahl wertbarer Relationen / Anzahl wertbarer Symptome\\\\
 \texttt{Strukturindex}: Summe aller Pfeilketten, Verzweigungen und Kreisläufe / Anzahl wertbarer Symptome\\\\
-\texttt{Vorgänger}: Benachbarte Knoten, die über einem Pfad mit dem ausgewählten Knoten verbunden sind, 
-wobei der Pfad ausschließlich aus eingehenden Kanten besteht.\\\\
-\texttt{Nachfolger}: Benachbarte Knoten, die über einem Pfad mit dem ausgewählten Knoten verbunden sind,
-wobei der Pfad ausschließlich aus ausgehenden Kanten besteht.\\\\
-\texttt{Pfeilkette}: Abfolge von mindestens drei Kanten in dieselbe Richtung, ohne dass eine Verzweigung bei den inneren Knoten der Kette integriert ist. Ein Knoten einer Kette ist ein innerer, wenn er nicht der Start- und nicht der Endknoten der Kette ist.\\\\
-\texttt{Konvergente Verzweigung}: Knoten, zu dem mindestens zwei Kanten hinführen.\\\\
-\texttt{Divergente Verzweigung}: Knoten, aus dem mindestens zwei Kanten wegführen.\\\\
-\texttt{Zyklus(Kreislauf)}: Geschlossene Kette von Kanten, die alle in die gleiche Richtung laufen, wobei jeder Knoten im Zyklus jeden anderen Knoten im Zyklus über die Kette erreichen kann. Der kleinste Kreislauf ist eine direkte Rückkopplung.\\\\
+\texttt{Vorgänger}: Benachbarte Symptome, die über einem Pfad mit dem ausgewählten Symptom verbunden sind, 
+wobei der Pfad ausschließlich aus eingehenden Relationen besteht.\\\\
+\texttt{Nachfolger}: Benachbarte Symptome, die über einem Pfad mit dem ausgewählten Symptom verbunden sind,
+wobei der Pfad ausschließlich aus ausgehenden Relationen besteht.\\\\
+\texttt{Pfeilkette}: Abfolge von mindestens drei Relationen in dieselbe Richtung, ohne dass eine Verzweigung bei den inneren Symptomen der Kette integriert ist. Ein Symptom einer Kette ist ein inneres, wenn es nicht das Start- oder Endsymptom der Kette ist.\\\\
+\texttt{Konvergente Verzweigung}: Symptome, zu dem mindestens zwei Relationen hinführen.\\\\
+\texttt{Divergente Verzweigung}: Symptome, aus dem mindestens zwei Relationen wegführen.\\\\
+\texttt{Zyklus(Kreislauf)}: Geschlossene Kette von Relationen, die alle in die gleiche Richtung laufen, wobei jedes Symptom im Zyklus jedes anderes Symptom im Zyklus über die Kette erreichen kann. Der kleinste Kreislauf ist eine direkte Rückkopplung.\\\\
 
 \subsectiont{Korrektes Berechnen und Anzeigen des Umfangs, des Vernetzungsindex und des Strukurindex}{\dotfill\ok\ok\leer}
 Der Bearbeiter muss nichts tun. Es wird erwartet, das links in der Kopfleiste die korrekten Werte angezeigt werden. 
@@ -1793,7 +1793,7 @@ Die Software arbeitet wie erwartet.
 \subsectiont{Anzeigen des Benutzerhandbuchs}{\dotfill\ok\ok\leer}
 Der Tester geht auf \texttt{Hilfe} und \texttt{Dokumentation}. Hierbei wird erwartet, dass das Benutzerhandbuch angezeigt wird. 
 \subsubsection{Notizen}
-1.Test: Getestet von: Anthony Mendil. Datum:  05.03.2019 um 18:16\\
+1.Test: Getestet von: Anthony Mendil. Datum: 05.03.2019 um 18:16\\
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 06.03.2019 um 15:13\\
 Test negativ.\\\\
@@ -1817,6 +1817,35 @@ Nach dem Klicken auf Über uns im Menü Hilfe.
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
+
+\newpage
+\section{Leistungstest}
+Um die Leistung der Software zu testen wird vorerst im Bearbeiter-Modus ein Graph mit 100 Sphären und vielen Symptomen und Relationen erstellt:
+\begin{center}
+\includegraphics[height=14cm]{belastungstest.png}
+\end{center}
+Zusätzlich werden im Ersteller-Modus wahllos Vorlage-Regeln festgelegt. Es werden im folgenden auch nicht alle Funktionalitäten getestet, sondern nur jene bei denen Verzögerungen aufgrund der Komplexität des Graphen am wahrscheinlichsten sind. 
+\newpage
+\subsubsection{Notizen}
+Getestet von: Anthony Mendil. Datum: 09.03.2019 um 15:22\\ \\
+Dieser Graph wird nun inklusive des Verlaufs und der Vorlage-Regeln in den eigenen Dateien gespeichert (\texttt{Datei}, \texttt{Speichern unter}) und nach dem Erstellen einer neuen Datei wieder geöffnet (\texttt{Datei}, \texttt{Datei öffnen}). Das Speichern sowie das Öffnen des Graphen dauern jeweils wenige Sekunden, werden jedoch korrekt ausgeführt. Verlauf und Vorlage-Regeln werden richtig angezeigt. \\ \\
+Nun wird in den Analyse-Modus gewechselt. Dies unterliegt ebenfalls einer kurzen Verzögerung. Grund dafür ist insbesondere, dass bei Betritt für den Strukturindex unter anderem die Anzahl der Zyklen des Graphen berechnet wird. Dies ist die einzige Analyse-Funktion, bei der eine Verzögerung deutlich bemerkbar ist. \\ \\
+Anschließend wird in den Ersteller-Modus gewechselt und es werden die Symptome automatisch angeordnet. Hierbei ist keine deutliche Verzögerung erkennbar. Das selbe gilt für die automatische Anordnung der Sphären, welches durch verschieben und anschließenden Anordnen der Sphären deutlich wird. \\ \\
+Zu guter Letzt wird in den Bearbeiter-Modus gewechselt, einer Sphäre ein Symptom hinzugefügt und der Verlauf angezeigt. Beim Anzeigen des Verlauf ist bei genauer Betrachtung ebenfalls eine minimale Verzögerung erkennbar. 
+\subsubsection{Fazit}
+Es wurden keine Änderungen an der Software vorgenommen. Bezüglich der Laufzeit treten selbst kurze Verzögerungen erst bei unrealistisch komplexen und nicht mehr verständlichen Graphen auf.  
+
+\newpage
+\section{Usability-Test}
+Wir haben Hilmar Peschmann, einen Gruppen unabhängigen, am 07.03.2019 das Programm bezüglich der Benutzbarkeit testen lassen. 
+\subsection{Notizen}
+Er hat angemerkt, dass man bei dem Zoom-Panel in der Übersicht manchmal nicht mehr den weißen Bereich sieht, wenn es weiter verschoben wurde als die Anzeige groß ist. Man wüsste dann nicht mehr wo man sich befände und wie man wieder zu seinem Graphen zurück käme. Des weiteren empfand er die Funktionalitäten, die mit dem Recht- und Linksklick verbunden sind, als gewöhnungsbedürftig. Abgesehen davon hatte er bezüglich der Benutzbarkeit nichts auszusetzen. 
+\subsection{Fazit}
+Die Software wurde bezüglich der Anmerkungen zur Benutzbarkeit nicht verändert. Grund dafür ist einerseits die Schwierigkeit das Zoom-Panel entsprechend anzupassen und andererseits, dass wir das einheitliche Bewegen von Elementen durch den Rechtsklick und das Auswählen und  Hinzufügen durch den Linksklick beibehalten wollten.  
+
+\section{Akzeptanztest}
+Der Akzeptanz wurde am 05.03.2019 um 12 Uhr von Marcel Steinbeck durchgeführt. Der Test war negativ. Alle Mindestanforderungen wurden erfüllt. 
+
 \newpage
 \section{Automatisierte Tests}
 \subsection{Ergebnisse unserer JUnit-Tests}
