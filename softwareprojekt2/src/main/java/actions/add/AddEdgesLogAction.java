@@ -18,6 +18,9 @@ import java.util.List;
  * Adds a single/multiple edge/s to the graph.
  */
 public class AddEdgesLogAction extends LogAction {
+    /**
+     * The pair of vertex representing the edge.
+     */
 
     private Pair<Vertex, Vertex> edge;
 

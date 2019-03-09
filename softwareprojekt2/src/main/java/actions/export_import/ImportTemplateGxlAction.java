@@ -14,13 +14,19 @@ import java.io.File;
 public class ImportTemplateGxlAction extends GraphAction {
 
     /**
-     * The File the gxl get's taken from
+     * The File the gxl get's taken from.
      */
     private File file;
 
+    /**
+     * The indicator whether there is a current template.
+     */
     @Getter
     private boolean templateFound;
 
+    /**
+     * The GXL-io-instance doing the io for the GXL.
+     */
     private GXLio gxlio;
 
 

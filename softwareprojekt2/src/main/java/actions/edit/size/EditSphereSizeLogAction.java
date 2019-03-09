@@ -111,6 +111,11 @@ public class EditSphereSizeLogAction extends LogAction {
         return true;
     }
 
+    /**
+     * Shrinks the sphere.
+     * @param sp The sphere.
+     * @return True: The action was successful | False: The action was unsuccessful.
+     */
     private boolean doShrink(Sphere sp) {
         Shape sphereShape = sphereShapeTransformer.transform(sp);
         for (Vertex v : sp.getVertices()) {
@@ -132,7 +137,12 @@ public class EditSphereSizeLogAction extends LogAction {
         }
         return true;
     }
-
+    /**
+     * Enlarges the sphere.
+     * @param sp The sphere.
+     * @param graph The graph to work on.
+     * @return True: The action was successful | False: The action was unsuccessful.
+     */
     private boolean doEnlarge(Sphere sp, SyndromGraph<Vertex, Edge> graph) {
         double newHeight = sp.getHeight() + 10;
         double newWidth = sp.getWidth() + 10;

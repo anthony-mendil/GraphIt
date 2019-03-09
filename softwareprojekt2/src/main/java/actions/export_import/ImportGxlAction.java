@@ -14,13 +14,19 @@ import java.io.File;
 public class ImportGxlAction extends GraphAction {
 
     /**
-     * The File the gxl get's taken from
+     * The File the gxl get's taken from.
      */
     private File file;
 
+    /**
+     * Indicator whether there is a current template.
+     */
     @Getter
     private boolean templateFound;
 
+    /**
+     * The GXL-io-instance doing the io for the GXL.
+     */
     private GXLio gxlio;
 
 
@@ -50,7 +56,7 @@ public class ImportGxlAction extends GraphAction {
     }
 
     /**
-     * Disables the undo-funktion for the gxl export
+     * Disables the undo-function for the gxl export.
      */
     @Override
     public void undo() {
@@ -58,7 +64,7 @@ public class ImportGxlAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the gxl export
+     * Disables the redo-function for the gxl export.
      */
     @Override
     public void redo() {
