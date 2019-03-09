@@ -228,10 +228,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * TODO
-     * @param allSpheres
-     * @param spheres
-     * @param vv
+     * Sets the coordinates of an sphere.
+     * @param allSpheres The list of all spheres.
+     * @param spheres    The sphere to move.
+     * @param vv         The visualization viewer to work on.
      */
     private void setCoordinateSpheres(List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer<Vertex, Edge> vv) {
         for (Sphere s : spheres) {

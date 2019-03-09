@@ -18,19 +18,19 @@ import javafx.scene.text.Text;
 public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
 
     /**
-     * TODO
+     * The treeView of the right side of the GUI.
      */
     private final TreeView<Object> treeView;
 
     /**
-     * TODO
+     * Helper-functions for the treeView.
      */
     private final HelperFunctions helper;
 
     /**
-     * TODO
-     * @param pC
-     * @param pHelper
+     * Constructor for the treeView-Handler.
+     * @param pC        The unique controller.
+     * @param pHelper   Helper-functions for the treeView.
      */
     TreeViewMouseHandler(Controller pC, HelperFunctions pHelper) {
         treeView = pC.getTreeView();

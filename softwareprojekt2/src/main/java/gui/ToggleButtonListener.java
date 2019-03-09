@@ -28,9 +28,9 @@ public class ToggleButtonListener implements ChangeListener<Boolean> {
     private ToggleButton addVertex;
 
     /**
-     * TODO
-     * @param pC
-     * @param pToggleButton
+     * Constructor for the toggle button in the controller.
+     * @param pC            The unique controller.
+     * @param pToggleButton The toggle-button.
      */
     ToggleButtonListener(Controller pC, ToggleButton pToggleButton) {
         toggleButton = pToggleButton;

@@ -13,7 +13,7 @@ public class PersonalEntityManagerFactory {
     private static EntityManagerFactory entityManagerFactory;
 
     /**
-     * TODO
+     * This constructor should not be called.
      */
     private PersonalEntityManagerFactory() {
         throw new IllegalStateException("utility class");

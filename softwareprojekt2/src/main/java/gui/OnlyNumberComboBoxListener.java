@@ -15,8 +15,8 @@ public class OnlyNumberComboBoxListener implements ChangeListener<String> {
     private final ComboBox<String> comboBox;
 
     /**
-     * TODO
-     * @param pComboBox
+     * Constructor for the comboBox only allowing numbers.
+     * @param pComboBox The comboBox.
      */
     OnlyNumberComboBoxListener(ComboBox<String> pComboBox) {
         this.comboBox = pComboBox;

@@ -25,7 +25,8 @@ public class GraphDao implements Dao<Graph> {
     }
 
     /**
-     * TODO
+     * Returns the graphs from the database.
+     * @return The graphs.
      */
     public Optional<Graph> get() {
         EntityManager entityManager = PersonalEntityManagerFactory.getInstance().createEntityManager();

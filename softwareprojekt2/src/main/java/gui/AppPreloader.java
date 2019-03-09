@@ -9,17 +9,17 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * TODO
+ * Preloader window during the start of the program.
  */
 public class AppPreloader extends Preloader {
 
     /**
-     * TODO
+     * The preloader stage.
      */
     private Stage stage;
 
     /**
-     * TODO
+     * The controller controlling the progress bar.
      */
     private PreloaderController pc;
 

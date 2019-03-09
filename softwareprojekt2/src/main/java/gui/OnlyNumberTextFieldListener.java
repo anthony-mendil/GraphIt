@@ -16,8 +16,8 @@ public class OnlyNumberTextFieldListener implements ChangeListener<String> {
     private TextField textField;
 
     /**
-     * TODO
-     * @param pTextField
+     * Text-field only allowing numbers.
+     * @param pTextField The textfield.
      */
     OnlyNumberTextFieldListener(TextField pTextField) {
         textField = pTextField;

@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * TODO
+ * Context menu, in case the user right-clicks on vertices.
  */
 @Data
 public class VertexContextMenu {
