@@ -22,19 +22,19 @@ public enum ScopePoint {
      */
     POS_4,
     /**
-     * the fifth scope
+     * the fifth scope.
      */
     POS_5,
     /**
-     * the sixth scope
+     * the sixth scope.
      */
     POS_6,
     /**
-     * the seventh scope
+     * the seventh scope.
      */
     POS_7,
     /**
-     * the eighth scope
+     * the eighth scope.
      */
     POS_8
 }

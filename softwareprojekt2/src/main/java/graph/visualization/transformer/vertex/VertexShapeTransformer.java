@@ -19,7 +19,13 @@ import java.awt.geom.RoundRectangle2D;
  * @param <V> The vertex type.
  */
 public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V> implements Transformer<V, Shape> {
+    /**
+     * TODO
+     */
     private VertexLabelTransformer<V> vertexLabelTransformer = new VertexLabelTransformer<>();
+    /**
+     * TODO
+     */
     private VertexFontTransformer<V> vertexFontTransformer = new VertexFontTransformer<>();
 
     /**

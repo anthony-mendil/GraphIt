@@ -41,7 +41,7 @@ import java.awt.geom.AffineTransform;
 @Data
 public class Syndrom {
     /**
-     * the syndrom instance
+     * The syndrom instance.
      */
     private static Syndrom instance;
     /**
@@ -58,7 +58,7 @@ public class Syndrom {
      */
     private Template template;
     /**
-     * true if a template is set
+     * True if a template is set, false otherwise.
      */
     private boolean templateIsSet = false;
     /**
@@ -74,36 +74,36 @@ public class Syndrom {
      */
     private String graphName;
     /**
-     * the layout of the syndrom
+     * The layout of the syndrom.
      */
     private AggregateLayout<Vertex, Edge> layout;
     /**
-     * the scaling control (zoom)
+     * The scaling control (zoom).
      */
     private AbsoluteCrossoverScalingControl scalingControl;
 
     /**
-     * the sphere picking plugin, implements mouse interactions on the spheres
+     * The sphere picking plugin, implements mouse interactions on the spheres.
      */
     private SpherePickingPlugin spherePickingPlugin = new SpherePickingPlugin();
 
     /**
-     * the vertex picking plugin, implements mouse interactions on the vertices
+     * The vertex picking plugin, implements mouse interactions on the vertices.
      */
     private VertexPickingPlugin vertexPickingPlugin = new VertexPickingPlugin();
 
     /**
-     * the edge picking plugin, implements mouse interactions on the edges
+     * The edge picking plugin, implements mouse interactions on the edges.
      */
     private EdgePickingPlugin edgePickingPlugin = new EdgePickingPlugin();
 
     /**
-     * the general picking plugin, implements general mouse interactions
+     * The general picking plugin, implements general mouse interactions.
      */
     private GeneralPickingPlugin generalPickingPlugin = new GeneralPickingPlugin();
 
     /**
-     * the translating plugin
+     * The translating plugin.
      */
     private TranslatingGraphMousePlugin translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_DOWN_MASK);
 
@@ -122,9 +122,9 @@ public class Syndrom {
     }
 
     /**
-     * get instance for the singleton class
+     * Gets instance of this singleton class.
      *
-     * @return the syndrom instance
+     * @return The syndrom instance.
      */
     public static Syndrom getInstance() {
         if (instance == null) {
@@ -133,18 +133,24 @@ public class Syndrom {
         return instance;
     }
 
+    /**
+     * TODO
+     */
     public void setGraphMouseModeEdit() {
         graphMouse.remove(translatingPlugin);
     }
 
+    /**
+     * TODO
+     */
     public void setGraphMouseModeAnalyse() {
         graphMouse.add(translatingPlugin);
     }
 
     /**
-     * sets the visualisation viewer with all its settings
+     * Sets the visualisation viewer with all its settings.
      *
-     * @param vv the visualisation viewer
+     * @param vv The visualisation viewer.
      */
     @SuppressWarnings("unchecked")
     private void setVisualisationViewer(SyndromVisualisationViewer<Vertex, Edge> vv) {
@@ -160,9 +166,9 @@ public class Syndrom {
     }
 
     /**
-     * sets the visualisation viewer 2 (satellite view) with all its settings
+     * Sets the visualisation viewer 2 (satellite view) with all its settings.
      *
-     * @param vv2 the satellite visualisation viewer
+     * @param vv2 The satellite visualisation viewer.
      */
     private void setVisualisationViewer2(SatelliteVisualizationViewer<Vertex, Edge> vv2) {
         AbsoluteCrossoverScalingControl control = new AbsoluteCrossoverScalingControl();
@@ -176,9 +182,9 @@ public class Syndrom {
     }
 
     /**
-     * sets all the necessary transformer to a visualisation viewer
+     * Sets all the necessary transformer to a visualisation viewer.
      *
-     * @param vv the visualisation viewer
+     * @param vv The visualisation viewer.
      */
     private void setRenderer(VisualizationViewer<Vertex, Edge> vv) {
         vv.getRenderContext().setVertexFillPaintTransformer(new VertexFillPaintTransformer<>());
@@ -200,9 +206,9 @@ public class Syndrom {
     }
 
     /**
-     * scales the visualisation viewer (zoom) to a specific value
+     * Scales the visualisation viewer (zoom) to a specific value.
      *
-     * @param value the value to scale to
+     * @param value The value to scale to.
      */
     public void scale(int value) {
         scalingControl.scale(vv, (float) value / 100, vv.getCenter());
@@ -214,7 +220,7 @@ public class Syndrom {
     }
 
     /**
-     * generates a new setting for the syndrom instance (graph, layout etc.)
+     * Generates a new setting for the syndrom instance (graph, layout etc.).
      */
     public void generateNew() {
         SyndromGraph<Vertex, Edge> graph = new SyndromGraph<>();

@@ -18,24 +18,29 @@ import java.awt.geom.Point2D;
 /**
  * Renderer for the vertex label
  *
- * @param <V> the vertex type
- * @param <E> the edge type
+ * @param <V> The vertex type
+ * @param <E> The edge type
  */
 public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
+    /**
+     * TODO
+     */
     private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
-
+    /**
+     * TODO
+     */
     public VertexLabelRenderer() {
         super(Position.CNTR);
     }
 
     /**
-     * the renderer for the vertex label. If the vertex is less than 160, then the title is adjusted to a length of 160
+     * The renderer for the vertex label. If the vertex is less than 160, then the title is adjusted to a length of 160
      * characters, otherwise to the width of the vertex.
      *
-     * @param rc     the render context
-     * @param layout the layout
-     * @param v      the vertex
-     * @param label  the label string
+     * @param rc     The render context.
+     * @param layout The layout.
+     * @param v      The vertex.
+     * @param label  The label string.
      */
     @Override
     public void labelVertex(RenderContext<V, E> rc, Layout<V, E> layout, V v, String label) {
@@ -78,12 +83,12 @@ public class VertexLabelRenderer<V, E> extends BasicVertexLabelRenderer<V, E> {
     }
 
     /**
-     * returns the anchor point of the label
+     * Returns the anchor point of the label.
      *
-     * @param p      the center point of the vertex shape
-     * @param width  the width of the vertex
-     * @param height the height of the vertex
-     * @return the anchor point of the label
+     * @param p      The center point of the vertex shape.
+     * @param width  The width of the vertex.
+     * @param height The height of the vertex.
+     * @return The anchor point of the label.
      */
     private Point2D getAnchorPoint(Point2D p, int width, double height) {
         double labelX = p.getX() - ((double) width / 2);

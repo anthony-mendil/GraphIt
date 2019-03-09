@@ -14,8 +14,15 @@ import java.util.List;
  * @param <V> The vertex type
  */
 public class VertexPaintAnalyseTransformer<V> implements Transformer<V, Paint> {
+    /**
+     * TODO
+     */
     private ArrayList<Vertex> vertices;
 
+    /**
+     * TODO
+     * @param pVertices
+     */
     public VertexPaintAnalyseTransformer(List<Vertex> pVertices) {
         vertices = new ArrayList<>(pVertices);
     }
