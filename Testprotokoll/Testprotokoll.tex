@@ -199,8 +199,8 @@ Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste und dass
 \begin{center}
 	\includegraphics[height=3cm]{analyseModus.png}
 \end{center}
-\hfill Test Nr.: \setlength{\fboxsep}{1pt}\fbox{1}\fbox{2}\fbox{3}
 \newpage
+\hfill Test Nr.: \setlength{\fboxsep}{1pt}\fbox{1}\fbox{2}\fbox{3}
 \section{Ersteller-Modus}
 
 \subsectiont{Sphären hinzufügen an freien Stellen}{\dotfill\ok\ok\leer}
@@ -557,7 +557,7 @@ Der Bearbeiter betätigt den Button zum Rückgängig machen der letzten Aktion. 
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 17:48 \\
 Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. \\
 \begin{center}
-\includegraphics[height=5cm]{2_11.PNG}
+\includegraphics[height=8cm]{2_11.PNG}
 \end{center}
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:08 \\
 Test negativ. \\
@@ -567,10 +567,10 @@ Nach Entfernen der Sphäre:
 \end{center}
 Nach Rückgängigmachen des Entfernens der Sphäre mit Symptomen und Relationen:
 \begin{center}
-\includegraphics[height=5cm]{2_11c.png}
+\includegraphics[height=8cm]{2_11c.png}
 \end{center}
 \subsubsection{Fazit}
-Die an die Sphären gebundenen Elemente wurden in der Implementierung aus Versehen nicht beachtet. Nachdem diese hinzugefügt worden sind, arbeitet die Software wie erwartet.
+Die an die Sphären gebundenen Elemente wurden in der Implementierung nicht beachtet. Nachdem diese hinzugefügt worden sind, arbeitet die Software wie erwartet.
 
 \subsectiont{Vergrößern einer Sphäre}{\dotfill\ok\ok\leer}
 Der Bearbeiter betätigt vorerst den Button zum Auswählen von Elementen. Anschießend macht er einen Linksklick auf \texttt{Sphäre 9} und betätigt den Button zum Vergrößern der Sphäre. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
@@ -715,7 +715,7 @@ Test negativ.
 \includegraphics[height=10cm]{2_21.PNG}
 \end{center}
 \subsubsection{Fazit}
-Die Relationen, welche eine eingehende oder ausgehende Relation des zu löschenden Symptoms ist wurde in der Implementierung aus Versehen nicht beachtet. Nachdem die Semantik dazu implementiert wurde arbeitet die Software wie erwartet. 
+Die Relationen, welche eine eingehende oder ausgehende Relation des zu löschenden Symptoms ist wurde in der Implementierung nicht beachtet. Nachdem die Semantik dazu implementiert wurde arbeitet die Software wie erwartet. 
 
 \subsectiont{Entfernen mehrere Symptome ohne Relationen}{\dotfill\XBox\ok\leer}
 Zunächst entfernt der Bearbeiter alle Relationen von \texttt{Symptom 10}, verschiebt es ein wenig nach links und fügt \texttt{Sphäre 9} ein weiteres Symptom rechts von \texttt{Symptom 10} hinzu. 
@@ -1129,7 +1129,7 @@ Nach Betätigen des Buttons zum Rückgängigmachen der letzten Aktion:
 \includegraphics[height=8cm]{3_50nachher.PNG}
 \end{center}
 \subsubsection{Fazit}
-Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Aktion korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass nun die Software wie erwartet arbeitet.
+Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Aktion korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass die Software beim zweiten test wie erwartet arbeitet.
 
 \subsectiont{Änderung der Beschriftung einer Sphäre}{\dotfill\ok\ok\leer}
 Mithilfe eines Rechtsklicks auf \texttt{Sphäre 1} und drücken auf \texttt{Titel} öffnet der Bearbeiter ein Fenster zur Eingabe der Beschriftung der Sphäre in Deutsch und Englisch. Dann gibt er in dem Feld für die deutsche Beschriftung \texttt{Gesellschaft}  und in dem für die englische Beschriftung \texttt{Society} ein und drückt auf \texttt{Speichern}. Hierbei wird erwartet, dass in der Sphäre nun \texttt{Gesellschaft} steht. 
@@ -1527,15 +1527,11 @@ Nach dem Klicken auf \texttt{Entfernen}:
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. \\
 
-Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären, Symptome und Relationen die zu erstellen sind, sind aus folgender Abbildung zu entnehmen: 
-\begin{center}
-\includegraphics[height=10cm, angle=90]{analysezuErstellenderGraph.PNG}
-\end{center}
 \newpage
 \section{Analyse-Modus}
-
+Im folgenden werden kurz im Analyse-Modus verwendete Begriffe erklärt: \\ \\
 \texttt{Umfang}: Anzahl wertbarer Symptome + Anzahl wertbarer Relationen\\\\
-\texttt{Vernetzungsindex}: 2 x Anzahl wertbarer Relationen / Anzahl wertbarer Symptome\\\\
+\texttt{Vernetzungsindex}: 2 x Anzahl wertbarer Relationen / Anzahl wertbarer Symptome.\\\\
 \texttt{Strukturindex}: Summe aller Pfeilketten, Verzweigungen und Kreisläufe / Anzahl wertbarer Symptome\\\\
 \texttt{Vorgänger}: Benachbarte Symptome, die über einem Pfad mit dem ausgewählten Symptom verbunden sind, 
 wobei der Pfad ausschließlich aus eingehenden Relationen besteht.\\\\
@@ -1545,6 +1541,10 @@ wobei der Pfad ausschließlich aus ausgehenden Relationen besteht.\\\\
 \texttt{Konvergente Verzweigung}: Symptome, zu dem mindestens zwei Relationen hinführen.\\\\
 \texttt{Divergente Verzweigung}: Symptome, aus dem mindestens zwei Relationen wegführen.\\\\
 \texttt{Zyklus(Kreislauf)}: Geschlossene Kette von Relationen, die alle in die gleiche Richtung laufen, wobei jedes Symptom im Zyklus jedes anderes Symptom im Zyklus über die Kette erreichen kann. Der kleinste Kreislauf ist eine direkte Rückkopplung.\\\\
+Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären, Symptome und Relationen die zu erstellen sind, sind aus der Abbildung auf der nächsten Seite zu entnehmen. 
+\begin{center}
+	\includegraphics[height=10cm, angle=90]{analysezuErstellenderGraph.PNG}
+\end{center}
 
 \subsectiont{Korrektes Berechnen und Anzeigen des Umfangs, des Vernetzungsindex und des Strukurindex}{\dotfill\ok\ok\leer}
 Der Bearbeiter muss nichts tun. Es wird erwartet, das links in der Kopfleiste die korrekten Werte angezeigt werden. 
@@ -1791,7 +1791,7 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Anzeigen des Benutzerhandbuchs}{\dotfill\ok\ok\leer}
-Der Tester geht auf \texttt{Hilfe} und \texttt{Dokumentation}. Hierbei wird erwartet, dass das Benutzerhandbuch angezeigt wird. 
+Der Tester geht auf \texttt{Hilfe} und \texttt{Dokumentation}. Hierbei wird erwartet, dass das Benutzerhandbuch als PDF angezeigt wird. 
 \subsubsection{Notizen}
 1.Test: Getestet von: Anthony Mendil. Datum: 05.03.2019 um 18:16\\
 Test negativ.\\
@@ -1849,19 +1849,21 @@ Der Akzeptanz wurde am 05.03.2019 um 12 Uhr von Marcel Steinbeck durchgeführt. 
 \newpage
 \section{Automatisierte Tests}
 \subsection{Ergebnisse unserer JUnit-Tests}
+Wie in den folgenden Abbildungen zu erkennen ist waren alle automatisierten Tests negativ. 
 \subsubsection{AnalysisTest}
 \begin{center}
 \includegraphics[height=14cm]{result-analysistest.png}
 \end{center}
 \subsubsection{GXLioTest}
 \begin{center}
-\includegraphics[height=12cm]{result-gxliotest.png}
+\includegraphics[height=13cm]{result-gxliotest.png}
 \end{center}
 \subsubsection{OOFioTest}
 \begin{center}
 \includegraphics[height=4cm]{result-oofiotest.png}
 \end{center}
 \subsection{Unsere Testabdeckung}
+Mithilfe des Plugins von \texttt{JaCoCo} haben wir die Testabdeckung der automatisierten Tests berechnen lassen. Das Ergebnis ist in den folgenden Abbildungen zu sehen. 
 \subsubsection{Gesamtes Projekt}
 \begin{center}
 \includegraphics[height=12cm]{software-projekt-2-testcoverage.png}
