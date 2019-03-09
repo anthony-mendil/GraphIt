@@ -18,7 +18,13 @@ import java.awt.*;
  */
 public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
 
+    /**
+     * TODO
+     */
     private float[] dotting = {1.0f, 4.0f};
+    /**
+     * TODO
+     */
     private VisualizationViewer<Vertex, Edge> vv;
 
     /**

@@ -12,9 +12,9 @@ public class ErrorMessagesTransition extends Transition {
     private final Pane hBox;
 
     /**
-     * the transition action for fading out the alert messages/ box
+     * The transition action for fading out the alert messages/ box.
      *
-     * @param hBox the box to fade out
+     * @param hBox The box to fade out.
      */
     public ErrorMessagesTransition(Pane hBox) {
         setCycleDuration(Duration.millis(5000));

@@ -14,14 +14,24 @@ import java.awt.*;
  * @param <V> The vertex type.
  */
 public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {
+    /**
+     * TODO
+     */
     private final FadeOutElementsTransition animation;
+    /**
+     * TODO
+     */
     private final Transformer<V, Paint> transformer;
+    /**
+     * TODO
+     */
     private final FadeType fadeType;
 
     /**
-     * @param animation   the animation, defining the transparency of the color
-     * @param transformer the transformer returning the right edge color
-     * @param fadeType    the fade type
+     * TODO
+     * @param animation   The animation, defining the transparency of the color.
+     * @param transformer The transformer returning the right edge color.
+     * @param fadeType    The fade type.
      */
     public VertexFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<V, Paint> transformer, FadeType fadeType) {
         this.animation = animation;

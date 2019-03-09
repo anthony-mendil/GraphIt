@@ -14,11 +14,20 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 
+/**
+ * TODO
+ */
 public class GeneralPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
 
+    /**
+     * TODO
+     */
     private HelperFunctions helper = new HelperFunctions();
 
+    /**
+     * TODO
+     */
     public GeneralPickingPlugin() {
         super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
     }
@@ -44,9 +53,9 @@ public class GeneralPickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * translates the mouse position the layout coordinates and writs it into the Values class
+     * Translates the mouse position the layout coordinates and writs it into the Values class.
      *
-     * @param e the mouse event
+     * @param e The mouse event.
      */
     @SuppressWarnings("unchecked")
     private void setMousePositionText(MouseEvent e) {

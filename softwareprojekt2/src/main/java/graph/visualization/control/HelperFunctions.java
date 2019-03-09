@@ -27,30 +27,33 @@ import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * a class with helper functions
+ * A class with helper functions.
  */
 public class HelperFunctions {
     /**
-     * the logger for the class
+     * The logger for the class.
      */
     private static Logger logger = Logger.getLogger(HelperFunctions.class);
     /**
-     * the values instance
+     * The values instance.
      */
     private final Values values;
     /**
-     * the LoadLanguage class, to get the strings in the right language
+     * The LoadLanguage class, to get the strings in the right language.
      */
     private LoadLanguage lang = LoadLanguage.getInstance();
 
+    /**
+     * TODO
+     */
     public HelperFunctions() {
         values = Values.getInstance();
     }
 
     /**
-     * hides the passed ContextMenu
+     * Hides the passed ContextMenu.
      *
-     * @param contextMenu the ContextMenu to hide
+     * @param contextMenu The ContextMenu to hide.
      */
     void hideMenu(ContextMenu contextMenu) {
         Service<Void> service = new Service<Void>() {
@@ -77,10 +80,10 @@ public class HelperFunctions {
     }
 
     /**
-     * shows the ContextMenu on a passed point
+     * Shows the ContextMenu on a passed point.
      *
-     * @param point       the point
-     * @param contextMenu the context menu to show
+     * @param point       The point.
+     * @param contextMenu The context menu to show.
      */
     void showSideMenu(Point2D point, ContextMenu contextMenu) {
         Service<Void> service = new Service<Void>() {
@@ -110,12 +113,12 @@ public class HelperFunctions {
     }
 
     /**
-     * shows a alert with a passed text
+     * Shows an alert with a passed text.
      *
-     * @param string          the alert text
-     * @param isAlert         defined whether the text is an alert or info
-     * @param withPlaceHolder defined whether the passed text is a normal string or if its a placeholder an has to be
-     *                        loaded from a properties file
+     * @param string          The alert text.
+     * @param isAlert         Defines whether the text is an alert or info.
+     * @param withPlaceHolder Defines whether the passed text is a normal string or if its a placeholder an
+     *                       has to be loaded from a properties file.
      */
     public void setActionText(String string, boolean isAlert, boolean withPlaceHolder) {
         Service<Void> service = new Service<Void>() {
@@ -153,9 +156,9 @@ public class HelperFunctions {
     }
 
     /**
-     * picks a passed object if its an instance of edge/ sphere/ vertex
+     * Picks a passed object if its an instance of edge/ sphere/ vertex.
      *
-     * @param object the object to pick
+     * @param object The object to pick.
      */
     public void pickElement(Object object) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
@@ -181,10 +184,10 @@ public class HelperFunctions {
     }
 
     /**
-     * creates the context menu to a passed object if its an instance of vertex/ sphere/ edge
+     * Creates the context menu to a passed object if its an instance of vertex/ sphere/ edge.
      *
-     * @param object the object to show the context menu too
-     * @return the context menu
+     * @param object The object to show the context menu too.
+     * @return The context menu.
      */
     public ContextMenu openContextMenu(Object object) {
         ContextMenu contextMenu = null;
@@ -202,10 +205,10 @@ public class HelperFunctions {
     }
 
     /**
-     * creates the title dialog
+     * Creates the title dialog.
      *
-     * @param old the old annotation of the object (sphere/ vertex)
-     * @return the title dialog
+     * @param old The old annotation of the object (sphere/ vertex).
+     * @return The title dialog.
      */
     public Dialog<EnumMap<Language, String>> getDialog(Map<String, String> old) {
         String a;
@@ -267,10 +270,10 @@ public class HelperFunctions {
     }
 
     /**
-     * returns the font to a passed string
+     * Returns the font to a passed string.
      *
-     * @param f the string to get the font to
-     * @return the font
+     * @param f The string to get the font to.
+     * @return The font.
      */
     public Font returnFont(String f) {
         java.awt.Font newFont;
@@ -295,10 +298,10 @@ public class HelperFunctions {
     }
 
     /**
-     * sets the passed position to values
+     * Sets the passed position to values.
      *
-     * @param posX the x position
-     * @param posY the y position
+     * @param posX The x position.
+     * @param posY The y position.
      */
     void setMouseLocation(String posX, String posY) {
         Platform.runLater(() -> {
@@ -310,8 +313,8 @@ public class HelperFunctions {
     /**
      * Checks whether the vertices in the sphere are locked.
      *
-     * @param sp the sphere to check its vertices if one of the is locked
-     * @return true: locked vertices, false: no locked vertices
+     * @param sp The sphere to check its vertices if one of the is locked.
+     * @return True if vertices are locked, false otherwise.
      */
     public boolean verticesLocked(Sphere sp) {
         LinkedList<Vertex> vertices = sp.getVertices();
@@ -326,8 +329,8 @@ public class HelperFunctions {
     /**
      * Checks whether the edges in the sphere are locked.
      *
-     * @param sp the sphere to check its edges if one of the is locked
-     * @return true: locked edges, false: no locked edges
+     * @param sp The sphere to check its edges if one of the is locked.
+     * @return True if edges are locked, false otherwise.
      */
     public boolean edgesLocked(Sphere sp) {
         SyndromVisualisationViewer<Vertex, Edge> vv = Syndrom.getInstance().getVv();
