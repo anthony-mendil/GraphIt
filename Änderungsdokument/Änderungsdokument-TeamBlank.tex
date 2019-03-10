@@ -174,7 +174,9 @@
   \bf
   \Large Änderungsdokument \\ 
   \vspace{1cm}
-  \Huge\textbf{GraphIt}\normalsize
+  \Huge\textbf{GraphIt}\normalsize \\
+  \vspace{1cm}
+  \includegraphics[width=2.5in]{logo_graphit.png}	
   \vfill
   \end{center}
   \end{minipage}
@@ -256,6 +258,10 @@ In der Architekturbeschreibung war auch die Nutzung des Dependency-Injection Fra
 \textit{Anmerkungen zu dem Diagramm}: \\
 Alle dargestellten Attribute sind \texttt{private}. Auch wenn für die Attribute Getter und Setter (außer bei sämtlichen Id's, dort nur Getter) existieren, werden sie aufgrund ihrer Deklaration als \textit{private} im Diagramm markiert. \\
 Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. Die Assoziation zwischen \texttt{Vertex} und \texttt{ScopePoint} betreffend, wurde beschlossen, dass \texttt{Vertex} statt einem Attribut, in welchem die verschiedenen \texttt{ScopePoints} für die jeweils gleichen Arten der Relationstypen zusammengefasst werden, drei Attribute gegeben werden, die jeweils ausschließlich gleichartige \texttt{ScopePoints} eines Relationstyps beinhalten. Diese Unterteilung sorgt für eine klare logische Trennung und ermöglicht es ohne Filterung direkt auf die \texttt{ScopePoints} zuzugreifen, die einem Pfeiltyp entsprechen. Es muss also nicht erst die Liste aller \texttt{ScopePoints} nach der Art der Relation gefiltert werden.\\
+
+
+\includepdf[pages=-, landscape, scale=0.77,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{Konteptionelle Sicht},\pagestyle{fancy}}]{DatenmodellSVG.pdf}
+
 
 
 \end{document}
