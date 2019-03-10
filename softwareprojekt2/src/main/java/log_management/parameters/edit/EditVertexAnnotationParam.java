@@ -10,6 +10,8 @@ import lombok.Getter;
 
 /**
  * Parameter object of the action EditVertexAnnotationLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditVertexAnnotationParam implements Param {

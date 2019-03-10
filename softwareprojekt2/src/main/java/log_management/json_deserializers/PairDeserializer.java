@@ -12,6 +12,8 @@ import java.lang.reflect.Type;
 
 /**
  * Json deserializer class for pair.
+ *
+ * @author Anthony Mendil
  */
 public class PairDeserializer implements JsonDeserializer<Pair> {
     @Override

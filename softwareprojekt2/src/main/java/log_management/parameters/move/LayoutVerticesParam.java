@@ -16,6 +16,8 @@ import java.util.Map;
 
 /**
  * Parameter object for LayoutSphereGraphLogAction, changes the position of the vertices.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class LayoutVerticesParam implements Param {

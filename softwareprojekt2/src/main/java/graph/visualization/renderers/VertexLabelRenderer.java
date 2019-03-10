@@ -18,6 +18,8 @@ import java.awt.geom.Point2D;
 /**
  * Renderer for the vertex label
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type
  * @param <E> The edge type
  */

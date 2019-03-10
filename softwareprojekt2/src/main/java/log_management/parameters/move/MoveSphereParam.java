@@ -12,6 +12,8 @@ import java.awt.geom.Point2D;
 
 /**
  * Parameter object of the action MoveSphereLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class MoveSphereParam implements Param {

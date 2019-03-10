@@ -12,6 +12,8 @@ import java.lang.reflect.Type;
 
 /**
  * Json serializer class for pair.
+ *
+ * @author Anthony Mendil
  */
 public class PairSerializer implements JsonSerializer<Pair> {
     @Override

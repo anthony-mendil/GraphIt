@@ -6,6 +6,8 @@ import edu.uci.ics.jung.visualization.control.SatelliteTranslatingGraphMousePlug
 
 /**
  * The specific mouse
+ *
+ * @author Nina Unterberg
  */
 public class SatelliteGraphMouse extends ModalSatelliteGraphMouse implements
         ModalGraphMouse {

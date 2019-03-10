@@ -12,6 +12,8 @@ import java.awt.*;
  * Defines a functor that transform a vertex into its stroke. The input vertex is left unchanged.
  * Its extracting the stroke of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  */
 public class VertexStrokeTransformer<V> implements Transformer<V, Stroke> {

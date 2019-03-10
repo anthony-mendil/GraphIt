@@ -6,6 +6,8 @@ import java.awt.*;
 
 /**
  * Helper functions for rendering.
+ *
+ * @author Nina Unterberg
  */
 public class RenderHelperFunction {
 

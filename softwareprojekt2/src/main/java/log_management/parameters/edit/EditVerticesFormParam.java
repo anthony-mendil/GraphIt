@@ -17,6 +17,8 @@ import java.util.Map;
 
 /**
  * Parameter object of the action EditVerticesFormLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditVerticesFormParam implements Param {

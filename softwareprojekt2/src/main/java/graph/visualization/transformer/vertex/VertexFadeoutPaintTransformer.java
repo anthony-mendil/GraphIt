@@ -11,6 +11,8 @@ import java.awt.*;
  * Defines a functor that transform a vertex into its fade out color. The input vertex is left unchanged.
  * Its extracting the fade out color of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  */
 public class VertexFadeoutPaintTransformer<V> implements Transformer<V, Paint> {

@@ -13,6 +13,8 @@ import java.awt.*;
 
 /**
  * Parameter object of the action EditSphereColorLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditSphereColorParam implements Param {

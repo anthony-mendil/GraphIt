@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Used to get a color name.
+ *
+ * @author Anthony Mendil
  */
 public class ColorNameCreator {
 

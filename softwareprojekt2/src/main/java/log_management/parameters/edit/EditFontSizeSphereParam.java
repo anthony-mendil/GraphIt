@@ -11,6 +11,8 @@ import lombok.Getter;
 
 /**
  * Parameter object of the action EditFontSizeSphereLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditFontSizeSphereParam implements Param {

@@ -1,14 +1,4 @@
-package graph.graph;/*
- * Created on Mar 26, 2007
- *
- * Copyright (c) 2007, the JUNG Project and the Regents of the University
- * of California
- * All rights reserved.
- *
- * This software is open-source under the BSD license; see either
- * "license.txt" or
- * http://jung.sourceforge.net/license.txt for a description.
- */
+package graph.graph;
 
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import graph.visualization.SyndromVisualisationViewer;
@@ -23,6 +13,8 @@ import java.util.List;
 
 /**
  * The syndrom graph. Its extending the directed sparse graph with spheres and anchor points.
+ *
+ * @author Nina Unterberg
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

@@ -16,6 +16,8 @@ import java.util.Map;
 /**
  * A sphere of the syndrom graph. A sphere is a contiguous area in a syndrome graph. Spheres are clearly separated from
  * each other. They can contain vertices. A vertex is always assigned to exactly one sphere. The id is unique and final.
+ *
+ * @author Nina Unterberg
  */
 @Data
 public class Sphere {

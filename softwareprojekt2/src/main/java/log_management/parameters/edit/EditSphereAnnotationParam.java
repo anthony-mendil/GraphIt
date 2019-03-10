@@ -10,6 +10,8 @@ import lombok.Getter;
 
 /**
  * Parameter object of the action EditSphereAnnotationLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditSphereAnnotationParam implements Param {

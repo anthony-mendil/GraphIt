@@ -20,6 +20,8 @@ import java.awt.*;
  * SONARQUBE: The class inherits from structures of the JUNG framework, so unfortunately we can not do anything about
  * the sonarqube issue : This class has 7 parents which is greater than 5 authorized.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> the vertex type
  * @param <E> the edge type
  */

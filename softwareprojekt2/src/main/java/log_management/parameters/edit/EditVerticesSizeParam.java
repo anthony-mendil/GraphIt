@@ -15,6 +15,8 @@ import java.util.Map;
 
 /**
  * Parameter object of the action EditVerticesSizeLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditVerticesSizeParam implements Param {
