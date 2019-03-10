@@ -5,6 +5,8 @@ import javax.persistence.*;
 /**
  * Represents the graph objects that are persisted into
  * the graphs table of the database.
+ *
+ * @author Anthony Mendil
  */
 @Entity
 @Table(name = "GRAPHS", schema = "PUBLIC", catalog = "GRAPHITDATABASE")

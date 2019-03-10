@@ -6,6 +6,8 @@ import java.util.Optional;
 /**
  * Interface for basic log_management.dao layer - isolate the application/business layer from the persistence layer.
  *
+ * @author Anthony Mendil
+ *
  * @param <T> The log_management.dao type.
  */
 public interface Dao<T> {

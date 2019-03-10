@@ -23,6 +23,8 @@ import java.util.*;
 /**
  * Represents a handler converting the JUNG-graph to a graph working with the
  * JGraphT algorithms and analyses by the given criteria.
+ *
+ * @author Clement Phung
  */
 public class JGraphTHandler {
 

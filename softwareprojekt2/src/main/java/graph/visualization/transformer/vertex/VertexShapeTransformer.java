@@ -16,6 +16,8 @@ import java.awt.geom.RoundRectangle2D;
  * Defines a functor that transform a vertex into its shape. The input vertex is left unchanged.
  * Its extracting the shape of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  */
 public class VertexShapeTransformer<V> extends AbstractVertexShapeTransformer<V> implements Transformer<V, Shape> {

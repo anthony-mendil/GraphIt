@@ -21,6 +21,8 @@ import java.awt.geom.Point2D;
 
 /**
  * Handles the mouse-interaction on the edges.
+ *
+ * @author Nina Unterberg
  */
 public class EdgePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {

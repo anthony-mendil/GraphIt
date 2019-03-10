@@ -16,6 +16,8 @@ import java.util.Map;
 
 /**
  * Parameterobject for the action LayoutSphereLogAction.
+ *
+ * @author Anthony Mendil
  */
 public class LayoutSpheresParam implements Param {
     /**

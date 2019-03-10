@@ -6,6 +6,8 @@ import gui.properties.Language;
 
 /**
  * Used to print information about elements of the graph.
+ *
+ * @author Anthony Mendil
  */
 public class SyndromObjectPrinter {
 

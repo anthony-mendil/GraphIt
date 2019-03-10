@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 /**
  * Represents the Log objects that are persisted into
  * the logs table of the database.
+ *
+ * @author Anthony Mendil
  */
 @Entity
 public class Log {

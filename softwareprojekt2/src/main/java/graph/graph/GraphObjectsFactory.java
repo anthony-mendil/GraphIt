@@ -12,6 +12,8 @@ import java.util.Map;
 
 /**
  * Factory to create spheres, edges and vertices.
+ *
+ * @author Nina Unterberg
  */
 public class GraphObjectsFactory {
     /**

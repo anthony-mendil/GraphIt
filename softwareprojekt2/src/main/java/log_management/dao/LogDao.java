@@ -23,6 +23,8 @@ import java.util.Optional;
 
 /**
  * The log log_management.dao class. Manages the data access to the logs.
+ *
+ * @author Anthony Mendil
  */
 public class LogDao implements Dao<Log> {
 

@@ -13,6 +13,8 @@ import java.awt.*;
  * Defines a functor that transform an edge into its edge arrow type. The input edge is left unchanged.
  * Its extracting the edge arrow type.
  *
+ * @author Nina Unterberg
+ *
  * @param <E> The edge type.
  */
 public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, E>, E>, Shape> {

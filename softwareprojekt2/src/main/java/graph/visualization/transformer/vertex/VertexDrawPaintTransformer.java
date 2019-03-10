@@ -9,6 +9,8 @@ import java.awt.*;
  * Defines a functor that transform a vertex into its draw color. The input vertex is left unchanged.
  * Its extracting the draw color of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  */
 public class VertexDrawPaintTransformer<V> implements Transformer<V, Paint> {

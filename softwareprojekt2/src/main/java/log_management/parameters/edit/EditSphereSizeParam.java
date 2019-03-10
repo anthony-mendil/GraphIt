@@ -11,6 +11,8 @@ import lombok.Getter;
 
 /**
  * Parameter object of the action EditSphereSizeLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditSphereSizeParam implements Param {

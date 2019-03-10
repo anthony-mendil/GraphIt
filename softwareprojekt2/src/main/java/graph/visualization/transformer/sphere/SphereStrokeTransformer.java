@@ -13,6 +13,8 @@ import java.awt.*;
  * Defines a functor that transform a sphere into its stroke type. The input sphere is left unchanged.
  * Its extracting the stroke type of a sphere.
  *
+ * @author Nina Unterberg
+ *
  * @param <S> The sphere
  */
 public class SphereStrokeTransformer<S> implements Transformer<S, Stroke> {

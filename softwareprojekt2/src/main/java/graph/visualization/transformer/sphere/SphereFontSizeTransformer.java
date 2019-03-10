@@ -7,6 +7,8 @@ import org.apache.commons.collections15.Transformer;
  * Defines a functor that transform a sphere into its font size. The input sphere is left unchanged.
  * Its extracting the font size of a sphere.
  *
+ * @author Nina Unterberg
+ *
  * @param <S> The type of the sphere
  */
 public class SphereFontSizeTransformer<S> implements Transformer<S, Integer> {

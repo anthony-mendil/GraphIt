@@ -32,6 +32,8 @@ import java.util.Map;
  * in a specific area at the vertex, the arrowheads are grouped together. If the edge has an anchor point at the vertex,
  * the edge is drawn there.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  * @param <E> The edge type.
  */

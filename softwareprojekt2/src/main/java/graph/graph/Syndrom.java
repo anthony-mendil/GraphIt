@@ -37,6 +37,8 @@ import java.awt.geom.AffineTransform;
  * Syndrom combines all graph elements. A 'graph' needs a specific internal graph state, a layout and a visualization
  * viewer. Visual properties of the spheres, vertices and edges are set via transformers. These are assigned to the
  * RenderContext of the visualization viewer here.
+ *
+ * @author Nina Unterberg
  */
 @Data
 public class Syndrom {

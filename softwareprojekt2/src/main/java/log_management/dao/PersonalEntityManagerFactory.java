@@ -4,6 +4,8 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  * The entity manager factory used by everyone to create an entity manager.
+ *
+ * @author Anthony Mendil
  */
 public class PersonalEntityManagerFactory {
 

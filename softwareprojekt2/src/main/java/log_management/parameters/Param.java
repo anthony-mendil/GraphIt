@@ -2,6 +2,8 @@ package log_management.parameters;
 
 /**
  * The abstract param class.
+ *
+ * @author Anthony Mendil
  */
 public interface Param {
 

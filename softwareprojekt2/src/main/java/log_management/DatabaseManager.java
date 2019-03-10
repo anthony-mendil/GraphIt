@@ -12,6 +12,8 @@ import lombok.Data;
 
 /**
  * The database manager, for managing the database access.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class DatabaseManager implements ObserverSyndrom {

@@ -19,6 +19,8 @@ import java.util.Map;
 
 /**
  * Parameter object of the action EditEdgesTypeLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditEdgesTypeParam implements Param {

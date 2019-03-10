@@ -2,6 +2,8 @@ package graph.graph;
 
 /**
  * The different function modes of the application.
+ *
+ * @author Nina Unterberg
  */
 public enum FunctionMode {
     /**

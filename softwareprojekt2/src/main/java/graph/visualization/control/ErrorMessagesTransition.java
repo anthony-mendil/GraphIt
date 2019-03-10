@@ -7,6 +7,8 @@ import javafx.util.Duration;
 
 /**
  * Transition for fading out the alert bix
+ *
+ * @author Nina Unterberg
  */
 public class ErrorMessagesTransition extends Transition {
     private final Pane hBox;

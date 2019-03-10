@@ -30,6 +30,8 @@ import java.util.Set;
 
 /**
  * The sphere picking plugin, implements mouse interactions on the spheres.
+ *
+ * @author Nina Unterberg
  */
 public class SpherePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {

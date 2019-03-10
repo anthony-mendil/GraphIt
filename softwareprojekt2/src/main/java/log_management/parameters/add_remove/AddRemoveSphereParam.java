@@ -11,6 +11,8 @@ import lombok.Getter;
 
 /**
  * Parameter object for the action AddSphereLogAction/RemoveSphereLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class AddRemoveSphereParam implements Param {

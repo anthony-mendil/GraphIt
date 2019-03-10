@@ -18,6 +18,8 @@ import static log_management.parameters.move.MoveSphereParam.Y_IS;
 
 /**
  * Parameter object for the action MoveVerticesLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class MoveVerticesParam implements Param {

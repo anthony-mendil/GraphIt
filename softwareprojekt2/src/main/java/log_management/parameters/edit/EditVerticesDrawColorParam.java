@@ -17,6 +17,8 @@ import java.util.Map;
 
 /**
  * Parameter object of the action EditVerticesDrawColorLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditVerticesDrawColorParam implements Param {
