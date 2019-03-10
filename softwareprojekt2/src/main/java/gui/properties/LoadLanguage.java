@@ -17,13 +17,35 @@ public class LoadLanguage {
      * to that language.
      */
     private static LoadLanguage instance = null;
+    /**
+     * The resourceBundle to read data from.
+     */
     private ResourceBundle resource = ResourceBundle.getBundle("UIResources", new Locale("de"));
+    /**
+     * The resources for the german language.
+     */
     private Locale de = new Locale("de");
+    /**
+     * The resources for the english language.
+     */
     private Locale en = new Locale("en");
+    /**
+     * The current language.
+     */
     private Language currentResource = Language.GERMAN;
+    /**
+     * Reference of an specific string.
+     */
     private String german = "german";
+    /**
+     * Reference of an specific string.
+     */
     private String english = "english";
 
+    /**
+     * Returns the singleton of the language-loader.
+     * @return The loader.
+     */
     public static LoadLanguage getInstance() {
         if (instance == null) {
             instance = new LoadLanguage();
@@ -31,6 +53,10 @@ public class LoadLanguage {
         return instance;
     }
 
+    /**
+     * Changes the language.
+     * @param language The new language.
+     */
     public void changeLanguage(Language language) {
         Locale lang;
         if (language == Language.GERMAN) {
@@ -42,6 +68,10 @@ public class LoadLanguage {
         resource = ResourceBundle.getBundle("UIResources", lang);
     }
 
+    /**
+     * Changes the language of the menu buttons.
+     * @param c The unique controller.
+     */
     public void changeStringsLanguage(Controller c) {
         String templateName = "templateName";
         String templateStyle = "templateStyle";
@@ -219,10 +249,21 @@ public class LoadLanguage {
         c.getFilterLogType().getTooltip().setText(loadLanguagesKey("LOG_TYPE"));
     }
 
+    /**
+     * Loads the string out of the resource-bundle.
+     * @param key The key.
+     * @return The demanded string.
+     */
     public String loadLanguagesKey(String key) {
         return resource.getString(key);
     }
 
+    /**
+     * Loads the string out of the resource-bundle.
+     * @param key The key.
+     * @param arr the objects filled into that string.
+     * @return The demanded string.
+     */
     public String loadLanguagesKey(String key, Object[] arr) {
         MessageFormat form = new MessageFormat(loadLanguagesKey(key));
         return form.format(arr);

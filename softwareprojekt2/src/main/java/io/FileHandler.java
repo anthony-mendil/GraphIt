@@ -1,10 +1,12 @@
 package io;
 
 import org.apache.log4j.Logger;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Handles file reading and writing
+ */
 class FileHandler {
 
     /**
@@ -13,7 +15,7 @@ class FileHandler {
     private static Logger logger = Logger.getLogger(FileHandler.class);
 
     /**
-     * The Filehandler constructor which should not be used.
+     * The FileHandler constructor which should not be used.
      */
     private FileHandler() {
         throw new IllegalStateException("utility class");

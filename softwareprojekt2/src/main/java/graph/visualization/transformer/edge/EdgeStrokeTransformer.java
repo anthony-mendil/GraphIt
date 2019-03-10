@@ -18,7 +18,13 @@ import java.awt.*;
  */
 public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {
 
+    /**
+     * Sets the dotting size of the dotted stroke.
+     */
     private float[] dotting = {1.0f, 4.0f};
+    /**
+     * The unique visualization viewer.
+     */
     private VisualizationViewer<Vertex, Edge> vv;
 
     /**

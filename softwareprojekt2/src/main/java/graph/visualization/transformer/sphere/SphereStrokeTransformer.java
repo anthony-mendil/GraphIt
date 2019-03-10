@@ -13,14 +13,17 @@ import java.awt.*;
  * Defines a functor that transform a sphere into its stroke type. The input sphere is left unchanged.
  * Its extracting the stroke type of a sphere.
  *
- * @param <S> the sphere
+ * @param <S> The sphere
  */
 public class SphereStrokeTransformer<S> implements Transformer<S, Stroke> {
+    /**
+     * THe visualization viewer to work on.
+     */
     private SyndromVisualisationViewer<Vertex, Edge> syndromVisualisationViewer;
 
     /**
      * Transforms the stroke of the sphere, if its picked, the stroke is bigger
-     * the current visualisation viewer.
+     * The current visualisation viewer.
      *
      * @param syndromVisualisationViewer the visualisation viewer
      */

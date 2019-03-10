@@ -24,6 +24,9 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Creates the context-menu, if the user right-clicks a sphere.
+ */
 @Data
 public class SphereContextMenu {
     @Setter(AccessLevel.NONE)
@@ -36,9 +39,9 @@ public class SphereContextMenu {
     private Syndrom syndrom = Syndrom.getInstance();
 
     /**
-     * the sphere context menu
+     * The sphere context menu.
      *
-     * @param sphere the sphere to create the context menu to
+     * @param sphere The sphere to create the context menu to.
      */
     public SphereContextMenu(Sphere sphere) {
         contextMenu = new ContextMenu();
@@ -49,7 +52,7 @@ public class SphereContextMenu {
     }
 
     /**
-     * creates the sphere context menu
+     * Creates the sphere context menu.
      */
     private void setup() {
         // REMOVE
@@ -91,6 +94,7 @@ public class SphereContextMenu {
         text.setOnAction(event -> {
             EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(values.getFontSphere());
             history.execute(editFontSphereLogAction);
+
         });
 
         // Schriftgröße
@@ -100,6 +104,7 @@ public class SphereContextMenu {
         size.setOnAction(event -> {
             EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(values.getFontSizeSphere());
             history.execute(editFontSizeSphereLogAction);
+
         });
 
         boolean lockedAnnotation = sphere.isLockedAnnotation();
@@ -120,7 +125,7 @@ public class SphereContextMenu {
     }
 
     /**
-     * checks the annotation and creates a new edit sphere annotation action
+     * Checks the annotation and creates a new edit sphere annotation action.
      *
      * @param map the map, containing the annotations
      */

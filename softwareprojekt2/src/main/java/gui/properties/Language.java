@@ -1,15 +1,15 @@
 package gui.properties;
 
 /**
- * javadocTODO
+ * The enum containing the selectable Languages.
  */
 public enum Language {
     /**
-     * javadocTODO
+     * Language is German.
      */
     GERMAN,
     /**
-     * javadocTODO
+     * Language is English.
      */
     ENGLISH
 }

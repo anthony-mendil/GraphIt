@@ -13,6 +13,9 @@ import java.awt.*;
  * @param <V> The vertex type.
  */
 public class VertexFontTransformer<V> implements Transformer<V, Font> {
+    /**
+     * A HelperFunctions object needed to transform into a Font.
+     */
     private HelperFunctions helperFunctions = new HelperFunctions();
 
     @Override

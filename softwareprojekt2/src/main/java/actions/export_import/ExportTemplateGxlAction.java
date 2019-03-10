@@ -14,14 +14,14 @@ import java.io.File;
 public class ExportTemplateGxlAction extends GraphAction {
 
     /**
-     * The File the gxl get's written into
+     * The File the gxl get's written into.
      */
     private File file;
 
     /**
      * Constructs action handling for exporting the graph as GXL file.
      *
-     * @param pFile The destination of the gxl-file
+     * @param pFile The destination of the gxl-file.
      */
     public ExportTemplateGxlAction(File pFile) {
         file = pFile;
@@ -41,7 +41,7 @@ public class ExportTemplateGxlAction extends GraphAction {
     }
 
     /**
-     * Disables the undo-funktion for the gxl export
+     * Disables the undo-function for the gxl export.
      */
     @Override
     public void undo() {
@@ -49,7 +49,7 @@ public class ExportTemplateGxlAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the templategxl export
+     * Disables the redo-function for the gxl export.
      */
     @Override
     public void redo() {

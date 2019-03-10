@@ -34,6 +34,10 @@ public class ComboBoxFocusListener implements ChangeListener<Boolean> {
      */
     private final Values values;
 
+    /**
+     * Creates a new ComboBoxFocusListener and sets this ComboBox and value instance.
+     * @param pComboBox The ComboBox which is listened to.
+     */
     ComboBoxFocusListener(ComboBox<String> pComboBox) {
         this.comboBox = pComboBox;
         values = Values.getInstance();

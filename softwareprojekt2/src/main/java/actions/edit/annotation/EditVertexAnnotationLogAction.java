@@ -53,7 +53,8 @@ public class EditVertexAnnotationLogAction extends LogAction {
             List<Vertex> lockedVertices = new ArrayList<>();
             for (Vertex v : pickedState.getPicked()) {
                 if (!v.isLockedAnnotation() || values.getMode() == FunctionMode.TEMPLATE) {
-                    createParameter(v, v.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH), v.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
+                    createParameter(v, v.getAnnotation().get(Language.ENGLISH.name()), text.get(Language.ENGLISH),
+                            v.getAnnotation().get(Language.GERMAN.name()), text.get(Language.GERMAN));
                     Map<String, String> annotation = v.getAnnotation();
                     annotation.put(Language.GERMAN.name(), text.get(Language.GERMAN));
                     annotation.put(Language.ENGLISH.name(), text.get(Language.ENGLISH));

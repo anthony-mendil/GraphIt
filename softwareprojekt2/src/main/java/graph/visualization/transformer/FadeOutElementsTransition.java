@@ -8,23 +8,26 @@ import javafx.util.Duration;
 import lombok.Getter;
 
 /**
- * the fadeout transition for the fade out action
+ * The fadeout transition for the fade out action.
  */
 public class FadeOutElementsTransition extends Transition {
     /**
-     * a values instance
+     * The values instance.
      */
     private Values values = Values.getInstance();
     /**
-     * disables the button if false
+     * Disables the button if false.
      */
     private boolean setDisabled = false;
     /**
-     * the value to get the transparency
+     * The value to get the transparency.
      */
     @Getter
     private double value;
 
+    /**
+     * Sets the animation foe the fadeout of the elements.
+     */
     public FadeOutElementsTransition() {
         setCycleDuration(Duration.millis(2000));
         setInterpolator(Interpolator.LINEAR);

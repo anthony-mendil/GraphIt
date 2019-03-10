@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Parameterobject for the action LayoutSphereLogAction.
+ */
 public class LayoutSpheresParam implements Param {
     /**
      * The spheres.

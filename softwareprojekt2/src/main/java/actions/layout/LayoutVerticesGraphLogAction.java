@@ -37,6 +37,10 @@ public class LayoutVerticesGraphLogAction extends LogAction {
         super(LogEntryName.EDIT_VERTICES_LAYOUT);
     }
 
+    /**
+     * Constructor in case the user undoes the action.
+     * @param pLayoutVerticesParam The used parameters.
+     */
     private LayoutVerticesGraphLogAction(LayoutVerticesParam pLayoutVerticesParam) {
         super(LogEntryName.EDIT_VERTICES_LAYOUT);
         parameters = pLayoutVerticesParam;
@@ -116,7 +120,7 @@ public class LayoutVerticesGraphLogAction extends LogAction {
      * @param s        The sphere.
      * @param vertices The vertices of the sphere.
      * @param graph    The current graph.
-     * @return A new SubGraph. (for the sphere)
+     * @return         A new SubGraph. (for the sphere).
      */
     private SyndromGraph<Vertex, Edge> layoutSphere(Sphere s, List<Vertex> vertices, SyndromGraph<Vertex, Edge> graph) {
         SyndromGraph<Vertex, Edge> subGraph = new SyndromGraph<>();

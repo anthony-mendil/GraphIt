@@ -9,11 +9,16 @@ import javafx.scene.control.TextField;
  * In this case everything except numbers.
  */
 public class OnlyNumberTextFieldListener implements ChangeListener<String> {
+
     /**
      * The textfield that the listener is assigned to.
      */
     private TextField textField;
 
+    /**
+     * Text-field only allowing numbers.
+     * @param pTextField The textfield.
+     */
     OnlyNumberTextFieldListener(TextField pTextField) {
         textField = pTextField;
     }

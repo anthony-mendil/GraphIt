@@ -8,10 +8,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
+/**
+ * Preloader window during the start of the program.
+ */
 public class AppPreloader extends Preloader {
 
+    /**
+     * The preloader stage.
+     */
     private Stage stage;
+
+    /**
+     * The controller controlling the progress bar.
+     */
     private PreloaderController pc;
 
     @Override

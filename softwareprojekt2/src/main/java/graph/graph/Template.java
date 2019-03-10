@@ -59,12 +59,12 @@ public class Template {
     /**
      * The Template constructor
      *
-     * @param pMaxSpheres              the count of the max allowed spheres
-     * @param pMaxVertices             the count of the max allowed vertices
-     * @param pMaxEdges                the count of the max allowed edges
-     * @param pReinforcedEdgesAllowed  true if the template allows reinforced edges
-     * @param pExtenuatingEdgesAllowed true if the template allows extenuating edges
-     * @param pUnknownEdgesAllowed     true if the template allows neutral edges
+     * @param pMaxSpheres              The count of the max allowed spheres.
+     * @param pMaxVertices             The count of the max allowed vertices.
+     * @param pMaxEdges                The count of the max allowed edges.
+     * @param pReinforcedEdgesAllowed  True if the template allows reinforced edges, false otherwise.
+     * @param pExtenuatingEdgesAllowed True if the template allows extenuating edges, false otherwise.
+     * @param pUnknownEdgesAllowed     True if the template allows neutral edges, false otherwise.
      */
     public Template(int pMaxSpheres, int pMaxVertices, int pMaxEdges, boolean pReinforcedEdgesAllowed, boolean pExtenuatingEdgesAllowed, boolean pUnknownEdgesAllowed) {
         maxSpheres = pMaxSpheres;
@@ -76,9 +76,9 @@ public class Template {
     }
 
     /**
-     * returns the template string
+     * Returns the template string.
      *
-     * @return the template string
+     * @return The template string.
      */
     @Override
     public String toString() {

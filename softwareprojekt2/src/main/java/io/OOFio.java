@@ -13,13 +13,13 @@ public class OOFio {
     /**
      * The log dao object, for accessing the log data.
      */
-    private LogDao logDao = new LogDao();
+    private LogDao logDao;
 
     /**
      * Creates a new OOFio object.
      */
     public OOFio() {
-        // Can handle oof-import/-export now
+        logDao = new LogDao();
     }
 
     /**
@@ -58,7 +58,7 @@ public class OOFio {
     /**
      * Export the current graph and protocol as OOF file.
      *
-     * @param pFile The destination file
+     * @param pFile The destination file.
      */
     public void exportAsOOF(File pFile) {
         GXLio gxlio = new GXLio();
@@ -69,7 +69,7 @@ public class OOFio {
     /**
      * Import the graph and protocol from an OOF file.
      *
-     * @param pFile The file to import
+     * @param pFile The file to import.
      */
     public void importOOF(File pFile) {
         String oof = FileHandler.fileToString(pFile);

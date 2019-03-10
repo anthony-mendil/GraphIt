@@ -19,16 +19,31 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 
+/**
+ * Handles the mouse-interaction on the edges.
+ */
 public class EdgePickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {
 
+    /**
+     * The edge, that will be moved by the user.
+     */
     private Edge edgeMove = null;
+    /**
+     * Indicator, if the edge is an incoming edge.
+     */
     private boolean isIncoming = false;
+    /**
+     * The contextmenu of the edge.
+     */
     private ContextMenu contextMenu;
+    /**
+     * The helper-functions.
+     */
     private HelperFunctions helper = new HelperFunctions();
 
     /**
-     * create an instance with passed values
+     * Create an instance with passed values.
      */
     public EdgePickingPlugin() {
         super(InputEvent.BUTTON3_DOWN_MASK | InputEvent.BUTTON1_DOWN_MASK);
@@ -66,7 +81,7 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
     }
 
     /**
-     * calculates the distance between two points
+     * Calculates the distance between two points.
      *
      * @param pointClick  the first point
      * @param pointVertex the second point
@@ -81,9 +96,6 @@ public class EdgePickingPlugin extends AbstractGraphMousePlugin
         edgeMove = null;
     }
 
-    /**
-     * out ------o in
-     */
     @SuppressWarnings("unchecked")
     @Override
     public void mouseDragged(MouseEvent e) {

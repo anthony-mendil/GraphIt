@@ -14,6 +14,9 @@ import java.awt.*;
  * @param <V> The vertex type.
  */
 public class VertexFontColorTransformer<V> implements Transformer<V, Paint> {
+    /**
+     * The RenderHelperFunction object needed to determine the vertex font color.
+     */
     private RenderHelperFunction renderHelperFunction = new RenderHelperFunction();
 
     @Override

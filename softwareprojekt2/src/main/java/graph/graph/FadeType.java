@@ -1,12 +1,15 @@
 package graph.graph;
 
+/**
+ * Defines if a animation is activated (fade in) or deactivated (fade out).
+ */
 public enum FadeType {
     /**
-     * Defines if a animation is activated (fade in)
+     * Defines that a animation is activated (fade in)
      */
     ACTIVATE,
     /**
-     * Defines if a animation is deactivated (fade out)
+     * Defines that a animation is deactivated (fade out)
      */
     DEACTIVATE
 }

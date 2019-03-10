@@ -15,8 +15,15 @@ import java.awt.*;
  * @param <V> The vertex type.
  */
 public class VertexStrokeTransformer<V> implements Transformer<V, Stroke> {
+    /**
+     * The SyndromVisualisationViewer needed to get the picked vertices.
+     */
     private SyndromVisualisationViewer<Vertex, Edge> syndromVisualisationViewer;
 
+    /**
+     * Creates a new VertexStrokeTransformer and sets this SyndromVisualisationViewer.
+     * @param syndromVisualisationViewer The SyndromVisualisationViewer that gets set as this SyndromVisualisationViewer.
+     */
     public VertexStrokeTransformer(SyndromVisualisationViewer<Vertex, Edge> syndromVisualisationViewer) {
         this.syndromVisualisationViewer = syndromVisualisationViewer;
     }

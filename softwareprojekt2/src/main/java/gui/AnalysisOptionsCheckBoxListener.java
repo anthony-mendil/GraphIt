@@ -14,13 +14,35 @@ import javafx.scene.control.MenuButton;
  * menu buttons.
  */
 public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> {
+    /**
+     * A constant to reference a specific string.
+     */
     private static final String SHORTEST_PATH = "analysisShortestPath";
+    /**
+     * A constant to reference a specific string.
+     */
     private static final String ALL_PATHS = "analysisAllPaths";
+    /**
+     * A constant to reference a specific string.
+     */
     private static final String CHAIN_OF_EDGES = "filterChainOfEdges";
+    /**
+     * A constant to reference a specific string.
+     */
     private static final String CONVERGENT_BRANCHES = "filterConvergentBranches";
+    /**
+     * A constant to reference a specific string.
+     */
     private static final String DIVERGENT_BRANCHES = "filterDivergentBranches";
+    /**
+     * A constant to reference a specific string.
+     */
     private static final String BRANCHES = "filterBranches";
+    /**
+     * A constant to reference a specific string.
+     */
     private static final String CYCLES = "filterCycles";
+
     /**
      * The checkbox that the listener is assigned to.
      */
@@ -54,6 +76,12 @@ public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> 
      */
     private final Controller c;
 
+    /**
+     * Creates a checkbox-Listener for the analysis methods.
+     * @param pC            The unique controller.
+     * @param pCheckBox     The specific checkbox.
+     * @param pMenuButton   The menu button.
+     */
     AnalysisOptionsCheckBoxListener(Controller pC, CheckBox pCheckBox, MenuButton pMenuButton) {
         c = pC;
         menuButton = pMenuButton;

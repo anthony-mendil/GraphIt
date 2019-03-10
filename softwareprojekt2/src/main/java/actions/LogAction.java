@@ -19,7 +19,9 @@ import java.time.LocalDateTime;
  */
 public abstract class LogAction extends GraphAction {
 
-
+    /**
+     * The logger of the system.
+     */
     private static Logger logger = Logger.getLogger(LogAction.class);
     /**
      * The name of the action.

@@ -1,6 +1,6 @@
 package gui;
 
-import com.sun.javafx.application.LauncherImpl;
+import com.sun.javafx.application.LauncherImpl; //NOSONAR
 import log_management.dao.PersonalEntityManagerFactory;
 
 /**
@@ -10,7 +10,8 @@ public class Main {
 
 
     /**
-     * Starts the application.
+     * Starts the application. At first, it starts the preloader. Afterwards the main application
+     * gets started and the preloader closes. The Database gets closed when the application stops.
      *
      * @param args The java command line arguments that is needed to start the application.
      */

@@ -16,9 +16,22 @@ import javafx.scene.text.Text;
  * Initializes the context menu and selection of the overview.
  */
 public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
+
+    /**
+     * The treeView of the right side of the GUI.
+     */
     private final TreeView<Object> treeView;
+
+    /**
+     * Helper-functions for the treeView.
+     */
     private final HelperFunctions helper;
 
+    /**
+     * Constructor for the treeView-Handler.
+     * @param pC        The unique controller.
+     * @param pHelper   Helper-functions for the treeView.
+     */
     TreeViewMouseHandler(Controller pC, HelperFunctions pHelper) {
         treeView = pC.getTreeView();
         helper = pHelper;
@@ -46,8 +59,6 @@ public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
                 } else {
                     treeView.setContextMenu(null);
                 }
-            } else if (treeView.getContextMenu() != null) {
-                treeView.getContextMenu().hide();
             }
         }
     }

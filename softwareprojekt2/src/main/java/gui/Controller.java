@@ -109,6 +109,8 @@ public class Controller implements ObserverSyndrom {
      * The comparator for sorting all menuitems in the filter menu in the overview.
      */
     public static final Comparator<MenuItem> menuItemCompare = Comparator.comparing(MenuItem::getText);
+
+    /* Constants that are used in Controller */
     private static final String SIZE_SPHERE_COMBO_BOX = "sizeSphereComboBox";
     private static final String SIZE_SYMPTOM_COMBO_BOX = "sizeSymptomComboBox";
     private static final String FONT_SYMPTOM_COMBO_BOX = "fontSymptomComboBox";
@@ -138,6 +140,7 @@ public class Controller implements ObserverSyndrom {
     private static final String PRINT_FILE = "print";
     private static final String NEW_FILE = "newFile";
     private static final String EXPORT_PDF = "exportPDF";
+
     /**
      * Our application logo.
      */
@@ -150,7 +153,7 @@ public class Controller implements ObserverSyndrom {
      * The logger which logs every exception.
      */
     private static Logger logger = Logger.getLogger(Controller.class);
-    /* General Stuff */
+    /* General GUI elements */
     private Controller instance;
     private File lastUsedFilePath;
     @FXML
@@ -1940,7 +1943,7 @@ public class Controller implements ObserverSyndrom {
         });
 
 
-        treeView.setOnMouseClicked(new TreeViewMouseHandler(this, helper));
+        treeView.setOnMousePressed(new TreeViewMouseHandler(this, helper));
     }
 
     /**

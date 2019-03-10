@@ -25,25 +25,32 @@ import java.util.*;
  * JGraphT algorithms and analyses by the given criteria.
  */
 public class JGraphTHandler {
+
     /**
      * The start-vertex of the path.
      */
     @Getter
     private Vertex startVertex;
+
     /**
      * The end-vertex of the path.
      */
     @Getter
     private Vertex endVertex;
+
     /**
      * The graph in JGraphT-form.
      */
     private DefaultDirectedGraph<Vertex, Edge> algorithmGraph;
+
     /**
      * The list of selected vertices.
      */
     private Set<Vertex> pickedVertices;
 
+    /**
+     * The instance to change the language for the alert text.
+     */
     private LoadLanguage loadLanguage = LoadLanguage.getInstance();
 
     /**
@@ -322,6 +329,11 @@ public class JGraphTHandler {
         }
     }
 
+    /**
+     * Checks whether the potential chain is a real relation-chain.
+     * @param potentialChain The list of vertices of the potential chain.
+     * @param relationChains The list of current relation-chains.
+     */
     private void sizeChains(LinkedList<Vertex> potentialChain, List<List<Vertex>> relationChains) {
         if (potentialChain.size() > 3) {
             relationChains.add(potentialChain);

@@ -27,7 +27,7 @@ import java.util.Map;
 public class Values {
 
     /**
-     * the relative path of the logo
+     * The relative path of the logo.
      */
     public static final String LOGO_MAIN = "/GraphItLogo.png";
     /**
@@ -46,21 +46,27 @@ public class Values {
     @Setter(AccessLevel.NONE)
     public static final int DEFAULT_SIZE_VERTEX = 50;
     /**
-     * the values instance
+     * The values instance.
      */
     private static Values instance;
+    /**
+     * Standard-value of the anchor-highlight-color.
+     */
     @Setter(AccessLevel.NONE)
     private final Color anchorHighlight = new Color(204, 0, 0);
     /**
-     * the font used font the action alert messages
+     * The font used font the action alert messages.
      */
     @Setter(AccessLevel.NONE)
     private final javafx.scene.text.Font actionTextAlert = javafx.scene.text.Font.font("System Regular", FontWeight
             .EXTRA_BOLD, 14);
     /**
-     * the stage of the application
+     * The stage of the application.
      */
     private Stage mainStage;
+    /**
+     * Standard-size of the visualization-viewer.
+     */
     @Setter(AccessLevel.NONE)
     private Dimension defaultLayoutVVSize = new Dimension(2000, 1500);
     /**
@@ -76,7 +82,7 @@ public class Values {
      */
     private int fontSizeSphere = 12;
     /**
-     * The fonz size of a vertex annotation.
+     * The font size of a vertex annotation.
      */
     private int fontSizeVertex = 12;
     /**
@@ -84,8 +90,8 @@ public class Values {
      */
     private Color fillPaintVertex = new Color(255, 224, 130);
     /**
-     * true if the anchor points are highlighted in the gui
-     * false if the anchor points are not highlighted in the gui
+     * True if the anchor points are highlighted in the gui,
+     * False if the anchor points are not highlighted in the gui.
      */
     private boolean showAnchor = false;
     /**
@@ -129,56 +135,56 @@ public class Values {
      */
     private Language guiLanguage = Language.GERMAN;
     /**
-     * the current language of the graph.
+     * The current language of the graph.
      */
     private Language graphLanguage = Language.GERMAN;
     /**
-     * the current action text from the gui
+     * The current action text from the gui.
      */
     private Text currentActionText = new Text("");
     /**
-     * the canvas of the gui, containing the visualisationViewer
+     * The canvas of the gui, containing the visualisationViewer.
      */
     private Node canvas;
     /**
-     * the hBox of the gui, containing the action alert
+     * The hBox of the gui, containing the action alert.
      */
     private HBox hBox;
     /**
-     * the toggleButton of the gui, used for the animation fade out
+     * The toggleButton of the gui, used for the animation fade out.
      */
     private ToggleButton animationFadeout;
     /**
-     * the mouse position text, coordinate x
+     * The mouse position text, coordinate x.
      */
     private Text positionMouseX = new Text("");
     /**
-     * the mouse position text, coordinate y
+     * The mouse position text, coordinate y.
      */
     private Text positionMouseY = new Text("");
     /**
-     * the roboto font
+     * The roboto font.
      */
     private Font roboto;
     /**
-     * the robotoSlab font
+     * The robotoSlab font.
      */
     private Font robotoSlab;
     /**
-     * the averiaSansLibr font
+     * The averiaSansLibr font.
      */
     private Font averiaSansLibr;
     /**
-     * the kalam font
+     * The kalam font.
      */
     private Font kalam;
     /**
-     * the mali font
+     * The mali font.
      */
     private Font mali;
 
     /**
-     * @return the instance of the Value Class
+     * @return The instance of the Value Class.
      */
     public static Values getInstance() {
         if (instance == null) {
@@ -188,7 +194,7 @@ public class Values {
     }
 
     /**
-     * @return the default annotation map for the vertices
+     * @return The default annotation map for the vertices.
      */
     public Map<String, String> getDefaultAnnotationVertex() {
         Map<String, String> annotation = new HashMap<>();
@@ -198,7 +204,7 @@ public class Values {
     }
 
     /**
-     * @return the default annotation map for the spheres
+     * @return The default annotation map for the spheres.
      */
     public Map<String, String> getDefaultAnnotationSphere() {
         Map<String, String> annotation = new HashMap<>();

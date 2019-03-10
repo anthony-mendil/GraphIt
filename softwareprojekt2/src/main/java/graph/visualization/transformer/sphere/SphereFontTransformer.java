@@ -13,6 +13,9 @@ import java.awt.*;
  * @param <S> The sphere type.
  */
 public class SphereFontTransformer<S> implements Transformer<S, Font> {
+    /**
+     * The helper-functions to work with.
+     */
     private HelperFunctions helperFunctions = new HelperFunctions();
 
     @Override

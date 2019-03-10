@@ -5,15 +5,15 @@ import edu.uci.ics.jung.graph.util.Pair;
 import java.awt.*;
 
 /**
- * helper functions for rendering
+ * Helper functions for rendering.
  */
 public class RenderHelperFunction {
 
     /**
-     * returns white/ black depending of the colors brightness
+     * Returns white/ black depending of the colors brightness.
      *
-     * @param drawColor the color
-     * @return black or white
+     * @param drawColor The color.
+     * @return Black or white.
      */
     public Color getLuminanceColor(Paint drawColor) {
         double luminance = (0.2126 * ((Color) drawColor).getRed() + 0.7152 * ((Color) drawColor).getGreen() + 0.0722 * ((Color) drawColor).getGreen());
@@ -21,11 +21,13 @@ public class RenderHelperFunction {
     }
 
     /**
-     * @param sphereWidth  the shape width
-     * @param sphereHeight the shape height
-     * @param annotation   the sphere annotation
-     * @param fontMetrics  the font metrics
-     * @return the new formatted string, so it fits into the shape
+     * Formats the string into a smaller one, if the size of the vertex shrinks, so the text won't
+     * fit anymore.
+     * @param sphereWidth  The shape width.
+     * @param sphereHeight The shape height.
+     * @param annotation   The sphere annotation.
+     * @param fontMetrics  The font metrics.
+     * @return The new formatted string, so it fits into the shape.
      */
     String shrinkAnnotation(double sphereWidth, double sphereHeight, String annotation, FontMetrics
             fontMetrics) {
@@ -50,12 +52,12 @@ public class RenderHelperFunction {
     }
 
     /**
-     * breaks the annotation so it fits into the shape
+     * Breaks the annotation so it fits into the shape.
      *
-     * @param sphereWidth the shape width
-     * @param annotation  the title
-     * @param fontMetrics the font metrics
-     * @return the new formatted label fitting into the shape
+     * @param sphereWidth The shape width.
+     * @param annotation  The title.
+     * @param fontMetrics The font metrics.
+     * @return The new formatted label fitting into the shape.
      */
     public String breakAnnotation(double sphereWidth, String annotation, FontMetrics fontMetrics) {
         StringBuilder label = new StringBuilder();
@@ -83,15 +85,15 @@ public class RenderHelperFunction {
     }
 
     /**
-     * splits and rebuild the string label, if he string length is higher than the shape length
+     * Splits and rebuild the string label, if he string length is higher than the shape length.
      *
-     * @param fontMetrics the font metrics
-     * @param line        the line to break
-     * @param sphereWidth the shape width
-     * @param i           the counter
-     * @param lengthLabel StringBuilder
-     * @param label       StringBuilder
-     * @return the new line
+     * @param fontMetrics The font metrics.
+     * @param line        The line to break.
+     * @param sphereWidth The shape width.
+     * @param i           The counter.
+     * @param lengthLabel The length label StringBuilder.
+     * @param label       The label StringBuilder.
+     * @return The new line.
      */
     private Pair<StringBuilder> stringToBigForShapeWidth(FontMetrics fontMetrics, String line, double sphereWidth, int i, StringBuilder lengthLabel, StringBuilder label) {
         if (fontMetrics.stringWidth(line) + 10 >= sphereWidth) {

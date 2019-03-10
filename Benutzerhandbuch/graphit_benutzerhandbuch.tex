@@ -257,6 +257,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Vorwort}
+\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}\\ \\
 Mit diesem Handbuch wird die Bedienung der Software \textbf{GraphIt} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq{} im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
 Eine Nutzung des Programms für Zwecke, die von dem angedachten Einsatzbereich abweicht ist möglich. Allerdings wird in diesem Dokument nicht weiter auf eine solche Nutzung eingegangen. Bei dieser Nutzung, die nicht dem angedachten Einsatz entspricht, ist ferner zu berücksichtigen, dass eventuell gewisse Funktionen wünschenswert wären, die aufgrund der Anforderungen jedoch bewusst nicht eingebaut wurden. Insbesondere sind hier die Regeln zu beachten, die für die Erstellung von Wirkungszusammenhängen gemäß des Syndromansatzes gelten. \\
 Bei der vorliegenden Software handelt es sich um eine Neu-Entwicklung. Somit existieren keinerlei Vorversionen, mit denen der Funktionsumfang oder die Bedienung der Software in diesem Dokument verglichen werden könnte. 
@@ -264,6 +265,7 @@ Bei der vorliegenden Software handelt es sich um eine Neu-Entwicklung. Somit exi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Einführung}
+\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
 \subsection{Adressierte Leser}
 Dieses Handbuch richtet sich an alle Nutzer, die \textbf{GraphIt} für ihren bestimmungsgemäßen Einsatz verwenden möchten. Dieser umfasst die Erstellung, Bearbeitung und Auswertung von Wirkungszusammenhängen gemäß des Syndromansatzes. Die Software ist sowohl für Anfänger geeignet, die noch nie oder nur sehr selten mit einem vergleichbaren Programm gearbeitet haben, als auch für Fortgeschrittene und Experten, die über mehr Erfahrung in der Bedienung ähnlicher Software verfügen. \\
 Von dem Adressatenkreis des vorliegenden Dokuments wird die Kenntnis der Terminologie des Syndromansatzes erwartet.  
@@ -286,7 +288,7 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Installation und Starten des Programms} \label{sec:installation}
-
+\emph{Autoren: Jonah Jaeger}
 
 \subsection{Installationsvoraussetzungen}
 \subsubsection{Technische Voraussetzungen}
@@ -316,6 +318,7 @@ Die Anwendung benötigt keinen vom Nutzer geführten Installationsvorgang, bevor
 \subsection{Starten des Programms}
 Zum Starten des Programms muss die ausführbare Datei \texttt{GraphIt.jar} ausgeführt werden. Normalweise wird die Ausführung durch einen Doppelklick auf die .jar gestartet. Falls dies nicht erfolgreich ist, bitte die Anwendung über die Konsole starten. Dadurch wird die Anwendung initialisiert und ggf. eine Datenbank im \texttt{home}-Verzeichnis des Nutzers angelegt. Zweiteres geschieht nur beim erstmaligen Start der Anwendung. \\
 Nach dem Startvorgang ist das Programm direkt einsatzbereit. \\
+Es ist immer nur eine Instanz des Programms auf einem Rechner lauffähig. Das Programm kann nicht mehrfach parallel auf einem Rechner laufen.
 
 \textbf{Anwendung über die Konsole starten}
 \begin{itemize}
@@ -326,6 +329,7 @@ Nach dem Startvorgang ist das Programm direkt einsatzbereit. \\
 \newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Benutzeroberfläche}
+\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
 \subsection{Tasten-/ Mausbelegungen}
 
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -491,6 +495,7 @@ Nach dem Startvorgang ist das Programm direkt einsatzbereit. \\
 \clearpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Übersicht} \label{sec:uebersicht}
+\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
 \subsection{Ersteller Modus}
 Im \texttt{Ersteller Modus} kann der Benutzer einen Syndromansatz erstellen und editieren. Im Unterschied zu dem \nameref{sec:editor} kann der Benutzer Vorlageregel für den aktuellen Syndromansatz hinterlegen. Diese werden erst auf dem Graphen im \nameref{sec:editor} angewandt. 
 
@@ -516,7 +521,7 @@ Im \texttt{Ersteller Modus} kann der Benutzer einen Syndromansatz erstellen und 
 	\item \nameref{mode}	
 \end{itemize}
 \subsection{Bearbeiter Modus} \label{sec:editor}
-Im \texttt{Bearbeiter Modus} kann der Benutzer einen Syndromansatz erstellen und bearbeiten. Die Bearbeitung des Graphen folgt den hinterlegten Vorlageregeln. Alle Aktionen auf dem Graph werden geloggt, d.h. ein Verlaufsprotokoll wird erstellt, welches ebenfalls einsehbar und exportierbar/ importierbar ist. 
+Im \texttt{Bearbeiter Modus} kann der Benutzer einen Syndromansatz erstellen und bearbeiten. Die Bearbeitung des Graphen folgt den hinterlegten Vorlageregeln, welche über die Seitenleiste einsehbar, aber nicht bearbeitbar sind. Alle Aktionen auf dem Graph werden geloggt, d.h. ein Verlaufsprotokoll wird erstellt, welches ebenfalls einsehbar und exportierbar/ importierbar ist. 
 \subsubsection{Relevante Kapitel}
 \begin{itemize}
 	\item \nameref{pick}
@@ -564,6 +569,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 
 \newpage
 \section{Instruktionen zur Nutzung des Programms} \label{sec:nutzung}
+\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
 
 		\subsection{Auswahl von Graphelementen} \label{pick}
 	\subsubsection{Eines Elements}
@@ -724,7 +730,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\action
 		\begin{enumerate}
 			\item Den Undo-Button durch einen Links-Klick auswählen. 
-			\item Der Redo-Button sollte nun ebenfalls klickbar sein. Um die vorherige Aktion wieder auszuführen den Redo-Button klicken. 
+			\item Der Redo-Button sollte nun ebenfalls anklickbar sein. Um die vorherige Aktion wieder auszuführen den Redo-Button klicken. 
 		\end{enumerate}	
 		\hint
 		\begin{itemize}
@@ -744,6 +750,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\begin{itemize}
 				\item Es kann nur das Kontextmenü eines Graphelements zu jedem Zeitpunkt geöffnet werden.
 				\item Die Kontextmenüs von Sphären, Symptomen und Relationen unterscheiden sich in ihrem Funktionsumfang.
+				\item Der Funktionsumfang des Kontextmenüs kann durch die Vorlageregeln eingeschränkt sein.
 				\item \bbe{Das Kontextmenü lässt sich an zwei verschieden Stellen öffnen:} Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. In beiden Fallen lässt es sich durch einen Rechts-Klick auf das entsprechende Element öffnen. \\
 	 	\end{itemize}	 	
 		
@@ -882,7 +889,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 			
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-		\subsubsection{Sphären layouten}
+		\subsubsection{Sphären automatisch anordnen}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre ist im Programm geöffnet. 
 		\action  
@@ -892,7 +899,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\hint
 		\begin{itemize}
 			\item Wenn die Position von einer Sphäre aufgrund der Vorlageregeln gesperrt ist, dann steht dem Bearbeiter diese Funktion nicht mehr zur Verfügung. 
-			\item Beim layouten, passt sich die Größe jeder einzelnen Sphäre an die Größe der größten Sphäre an.\\
+			\item Beim automatischen Anordnen, passt sich die Größe jeder einzelnen Sphäre an die Größe der größten Sphäre an.\\
 		\end{itemize}		
 			
 				
@@ -1046,7 +1053,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-		\subsubsection{Symptome layouten}
+		\subsubsection{Symptome automatisch anordnen}
 		\condition 	
 		Ein Syndrom mit mindestens zwei Symptome und durch eine Relation verbunden sind, ist im Programm geöffnet. 
 		\action 
@@ -1152,7 +1159,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{figure}
 		\hint
 		\begin{itemize}
-			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt. \\
+			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt. 
+			\item Sobald ein mündender Ankerpunkt manuell gesetzt wurde, wird die Position der Mündung der Kante nicht mehr automatisch berechnet, die Pfeilspitze der Kante nicht mehr mit anderen zusammengefasst und auch eine Überlappung von verschiedenen Kantenenden kann möglich sein. Wird der Ankerpunkt entfernt, treten wieder die gerade genannten Regeln in Kraft. \\
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1700,7 +1708,10 @@ In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analysefunktionen} \label{analyse}
-Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich ausschließlich auf das Syndrom. Mit Hilfe dieser Funktion soll die Struktur eines Syndrom ausgewertet/ untersucht werden können. Die Analysefunktionen stehen nur im Analysemodus zur Verfügung. Im Folgenden wird davon ausgegangen, dass sich der Benutzer im Analysemodus befindet.
+Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich ausschließlich auf das Syndrom. Mit Hilfe dieser Funktion soll die Struktur eines Syndrom ausgewertet/ untersucht werden können. Die Analysefunktionen stehen nur im Analysemodus zur Verfügung. Im Folgenden wird davon ausgegangen, dass sich der Benutzer im Analysemodus befindet.\\
+\\
+\textbf{Hinweise:} \\
+	\bbe{Aktionen die im folgenden beschrieben sind und sich die Analyse beziehen sind auch auf eine Auswahl von mehreren Graphelementen ausführbar!}
 
 \begin{figure}[ht!]
 	\centering
@@ -1873,7 +1884,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Verlauf der Nutzerinteraktionen} \label{logs}
-Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Die Nutzerinteraktionen können allerdings auch nach verschiedenen Aktionen gefiltert werden. Diese Funktionalität stellt der Analysemodus und Bearbeiter-Modus zur Verfügung. Deswegen wird im Folgenden davon ausgegangen, dass der Benutzer diesen in der Anwendung geöffnet hat.  \\
+Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Nutzerinteraktionen werden nur aufgezeichnet, wenn der Graph im Bearbeiter-Modus editiert wird. Dieses kann als ganzes angezeigt werden, sodass die Graph-Erstellung und Bearbeitung in ihrer chronologischen Reihenfolge nachvollzogen werden kann. Die Nutzerinteraktionen können allerdings auch nach verschiedenen Aktionen gefiltert werden. Diese Funktionalität stellt der Analysemodus und Bearbeiter-Modus zur Verfügung. Deswegen wird im Folgenden davon ausgegangen, dass der Benutzer diesen in der Anwendung geöffnet hat.  \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Anzeigen}
 	\condition 
@@ -2015,7 +2026,7 @@ Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage verwenden}
-Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndroms auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein.\\
+Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndroms auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein. Der Bearbeiter erhält Einblick in die Vorlageregeln über die Seitenleiste. Kann die hinterlegten Regeln, aber nur lesen und nicht bearbeiten. \\
 Dabei ist bei der Verwendung einer Vorlage zu beachten, dass Aktionen (wie beispielsweise das Ändern der Farbe eines Graphelements), die vom Programm grundsätzlich zur Verfügung gestellt werden, unter Umständen nicht mehr zu funktionieren scheinen. Dieser Eindruck kann dadurch entstehen, dass der Aufruf bestimmter Aktionen zu keiner Änderung des angezeigten Syndroms führt. Hinweise in der Benutzeroberfläche sollen diesen Fehleindruck eines unerwünschten Programmverhaltens verhindern. \\
 Die angezeigten Hinweise geben Aufschluss darüber, dass die Aktion deshalb nicht umgesetzt werden kann, weil die angeforderte Aktion durch die Regeln in der Vorlage untersagt wird. \\
 
@@ -2149,6 +2160,7 @@ Falls die gewünschte Farbe nicht in dem Drop-Down-Farbmenü des Color Pickers e
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Fehlermeldungen} \label{fehlermeldungen}
+\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}\\
 
 Um die Anwendung von \textbf{GraphIt} so einfach wie möglich zu gestaltet, wird der Benutzer auch auf nicht mögliche/ fehlerhafte Aktionen über eine Fehlermeldung hingewiesen. \\
 Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen Sphäre hinzugefügt werden soll. Dies ist aufgrund der Erstellungsregeln eines Syndroms nicht erlaubt. Auch wenn beispielsweise versucht wird ein Symptom hinzuzufügen, obwohl die in den Vorlageregeln maximale Anzahl von Symptomen bereits erreicht ist, erscheint eine Fehlermeldung.
@@ -2167,7 +2179,7 @@ Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anhang} \label{sec:anhang}	
-
+\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
@@ -2178,20 +2190,20 @@ Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen
 	\item[GXL] (Graph eXchange Language) ist ein Dateiformat, das dem Austausch von Graphen zwischen Programmen dient. Hierbei ist zu beachten, dass aufgrund der speziellen Eigenschaften, die jedes Graphelement besitzt, die GXL-Datei, die beim GXL-Export eines in der vorliegenden Anwendung \textit{GraphIt} erstellten Graphen erstellt wird, beim Import in einem anderen GXL-Programm zu einer Darstellung führt, die nicht der Darstellung des exportierten Syndrom entspricht. Die Darstellung eines Graphen nach einem Export und anschließendem Import sind lediglich identisch, wenn für den Export und den Import die vorliegende Anwendung genutzt wird. Dies ist (neben den Eigenschaften der einzelnen Elemente) insbesondere darauf zurückzuführen, dass es in der GXL-Notation nicht vorgesehen ist Knoten in andere Knoten zu verschachteln. Dies wird jedoch konzeptionell vom Syndromansatz gefordert, da Symptome (bei dem es sich um eine Art von Knoten handelt) Sphären (bei denen es sich ebenfalls um eine Art Knoten handelt) zugeordnet werden und Symptome visuell in der Sphäre, der sie zugewiesen wurden, dargestellt werden sollen.
 	\item[PDF] (Portable Document Format) ist ein plattformunabhängiges Dateiformat, das die Erstellung eines Dokuments ermöglicht, das vom ursprünglichen Anwendungsprogramm losgelöst geöffnet und gelesen werden kann. Das Format gibt dabei den Inhalt des Ursprungsprogramms originalgetreu wieder (sowohl Inhalt als auch Darstellung).  Im Falle der Anwendung \textit{GraphIt} ist es also zu empfehlen, einen Graphen im PDF-Format zu exportieren, wenn man die Darstellung des Syndroms auf einem Computer öffnen möchte, auf dem die \textit{GraphIt}-Software nicht installiert ist.
 	\item[.oof] ist ein für die Anwendung \textit{GraphIt} entwickeltes Dateiformat, das Informationen über das Nutzerverhalten und Daten zum Graphen zusammenführt. Es handelt sich dabei konkret um eine von Menschen lesbare und von der Anwendung interpretierbare Form des Nutzerprotokolls und die Graph-Informationen in GXL-Notation.
-	\item[Graph] ist ein Wirkungsdiagramm und somit eine visuelle Darstellung für den Syndromansatz.  In diesem Dokument sind die Begriffe \glqq Graph\grqq und \glqq Syndrom\grqq als äquivalent zu verstehen.
+	\item[Graph] ist ein Wirkungsdiagramm und somit eine visuelle Darstellung für den Syndromansatz.  In diesem Dokument sind die Begriffe \glqq Graph\grqq{} und \glqq Syndrom\grqq{} als äquivalent zu verstehen.
 	\item[Syndromansatz] ist ein vom \glqq Wissenschaftlichen Beirat der Bundesregierung Globale Umweltveränderung \grqq{} (WBGU) entwickeltes Modell zur Identifikation von Fehlentwicklungen besonders in den Bereichen Biologie, Gesellschaft und Wirtschaft, um Gegenmaßnahmen planen und durchführen zu können. Es geht hierbei grob gesagt um ein Modell zur Erkennung von \glqq Krankheitsbildern\grqq. 
 	\item[Syndrom] (=Krankheitsbild) ist ein aus Symptomen (Knoten) und deren Wechselwirkungen (dargestellt über Relationen/Kanten) bestehender Graph in seiner Gesamtheit. 
-	\item[Sphäre] ist ein zusammenhängender, sich nicht mit anderen Sphären überlappender im Diagramm dargestellter (Themen-)Bereich, zu dem Symptome zugeordnet werden. Sphären werden durch Linien voneinander abgetrennt, haben eine wählbare Hintergrundfarbe, eine einstellbare Größe und können mittels eines Textes beschrieben werden. Des Weiteren können Schriftart und -größe des Titels angepasst werden. Der Titel einer Sphäre im Syndrom muss eindeutig sein. Es ist also nicht möglich einer Sphäre einen Titel zu geben, der bereits eine andere Sphäre oder ein Symtom kennzeichnet.
-	\item[Symptom] ist ein Knoten im Graphen (Syndrom). Ein Symptom besitzt einen eindeutigen Titel (das heißt, der Titel eines Symptoms darf nicht identisch zu dem Titel eines andren Symptoms oder dem Titel einer Sphäre sein). Schriftart- und -größe des Titels können angepasst werden. Zudem hat ein Syndrom eine Rand- und eine Füllfarbe, eine einstellbare Größe und eine auswählbare Form.
-	\item[Relationen] sind gerichtete Kanten von einem Knoten zu einem anderen Knoten im Graphen und dienen der Repräsentation von Wirkungszusammenhängen zwischen Symptomen, wobei zwischen drei Relationstypen unterschieden wird: verstärkend, abschwächend und unbekannt. Die Pfeilspitzen der Relationen sind vom Typ der Relation abhängig. Eine Verstärkende Raltion besitzt eine spitze Pfeilspitze, abschwächende Relationen werden mit einer runden Pfeilspitze dargestellt und unbekannte Relationen haben ein Fragezeichen an der Pfeilspitze. Die Kantendicke und Linienarten der Kanten könne in der Anwendung \textit{GraphIt} eingestellt werden. Die Farben der Kanten können vom Nutzer gewählt werden. Überlappungen von Kantenenden verschiedener Relationstypen, die am selben Knoten eingehen, sind nicht erlaubt.
-	\item[Ankerpunkte] sind Stellen an einem Knoten, mit denen der Nutzer / die Nutzerin den Beginn oder das Ziel einer Kante (an dem Rand des eweiligen Symptoms) definieren kann. 
-	\item[Pfeilkette] Hiervon ist die Rede, wenn mindestens drei Kanten in dieselbe Richtung zeigen, ohne dass es zu einer Verzweigung bei den inneren Knoten der Kette kommt. Von einem inneren Knoten einer Kette ist ist die Rede, wenn er nicht der Start- und nicht der Endknoten der Kette ist. 
+	\item[Sphäre] ist ein zusammenhängender, sich nicht mit anderen Sphären überlappender im Diagramm dargestellter (Themen-)Bereich, zu dem Symptome zugeordnet werden. Sphären werden durch Linien voneinander abgetrennt, haben eine wählbare Hintergrundfarbe, eine einstellbare Größe und können mittels eines Textes beschrieben werden. Des Weiteren können Schriftart und -größe des Titels angepasst werden. Der Titel einer Sphäre im Syndrom muss eindeutig sein. Es ist also nicht möglich einer Sphäre einen Titel zu geben, der bereits eine andere Sphäre oder ein Symptom kennzeichnet.
+	\item[Symptom] ist ein Knoten im Graphen (Syndrom). Ein Symptom besitzt einen eindeutigen Titel (das heißt, der Titel eines Symptoms darf nicht identisch zu dem Titel eines anderen Symptoms oder dem Titel einer Sphäre sein). Schriftart und -größe des Titels können angepasst werden. Zudem hat ein Syndrom eine Rand- und eine Füllfarbe, eine einstellbare Größe und eine auswählbare Form.
+	\item[Relationen] sind gerichtete Kanten von einem Knoten zu einem anderen Knoten im Graphen und dienen der Repräsentation von Wirkungszusammenhängen zwischen Symptomen, wobei zwischen drei Relationstypen unterschieden wird: verstärkend, abschwächend und unbekannt. Die Pfeilspitzen der Relationen sind vom Typ der Relation abhängig. Eine Verstärkende Relation besitzt eine spitze Pfeilspitze, abschwächende Relationen werden mit einer runden Pfeilspitze dargestellt und unbekannte Relationen haben ein Fragezeichen an der Pfeilspitze. Die Kantendicke und Linienarten der Kanten könne in der Anwendung \textit{GraphIt} eingestellt werden. Die Farben der Kanten können vom Nutzer gewählt werden. Überlappungen von Kantenenden verschiedener Relationstypen, die am selben Knoten eingehen, sind nicht erlaubt.
+	\item[Ankerpunkte] sind Stellen an einem Knoten, mit denen der Nutzer / die Nutzerin den Beginn oder das Ziel einer Kante (an dem Rand des jeweiligen Symptoms) definieren kann. 
+	\item[Pfeilkette] Hiervon ist die Rede, wenn mindestens drei Kanten in dieselbe Richtung zeigen, ohne dass es zu einer Verzweigung bei den inneren Knoten der Kette kommt. Von einem inneren Knoten einer Kette ist die Rede, wenn er nicht der Start- und nicht der Endknoten der Kette ist. 
 	\item[Verzweigung] Ein Knoten, zu dem zwei oder mehr Kanten hin- beziehungsweise von ihm wegführen, wobei auch beides möglich ist. 
 	\item[Kreislauf (Zyklus)] Eine Kette von Kanten, die geschlossen ist und deren Kanten alle in die gleiche Richtung zeigen. Dabei ist jeder Knoten im Zyklus von jeden anderen Knoten in dem entsprechenden Zyklus aus durch die Kette erreichbar. Eine direkte Rückkopplung ist der kleinste Kreislauf.
 	\item[(Nutzer-)Rolle] Wann immer im Dokument von Rollen oder Nutzerrollen die Rede sein wird, ist damit nicht ein Rechtemanagement, sondern vielmehr die Bereitstellung verschiedener Modi gemeint. Jeder Nutzer kann dabei jede Rolle einnehmen und somit das System in jedem Modus verwenden. Jeder Modus stellt dabei einen unterschiedlichen Umfang an Funktionen bereit.
-	\item[Ersteller-Modus] entspricht der Rolle eines Erstellers. Dieser Modus stellt Funktionen bereit, um ein Diagramm als Vorlage zu erstellen und um bestimmte Vorlageregeln für diese Vorlage festzulegen. Zur Erstellung der Vorlage kann in diesem Modus die Anzahl der Sphären, Knoten und Relationen, die das Syndrom bei Weiterbearbeitung (im Bearbeiter-Modus) maximal enthalten darf, festgelegt werden. Außerdem können einige Eigenschaften einzelner Grapelemente gesperrt werden, sodass diese im Bearbeiter-Modus nicht mehr verändert werden können. Dieser Modus wird üblicherweise von Lehrern zur Erstellung einer Vorlage für ein Diagramm verwendet.
-	\item[Bearbeiter- Modus] erfüllt die Ansprüche einer Betrachter-Rolle an das System. In diesem Modus kann ein Benutzer / eine Benutzerin ein Diagramm auf Basis einer Vorlage erstellen und dazu die Vorlage im Rahmen der Regeln aus der gegebenen Vorlage verändern. Ist dieser Modus aktiv, so wird ein Protokoll angelegt, welches Interaktionen des Nutzers / der Nutzerin mit dem Graphen in diesem Modus aufzeichnet. Zu den aufgezeichneten Daten gehört ein Zeitstempel, der angibt, wann die entsprechende Aktion aufgerufen wurde, sowie die Aktion (z.B. Hinzufügen einer Sphäre, Veränderung der Farbe der Relation oder Verschiebung des Symptoms). Dieser Modus ist besonders für Kinder ab 10 Jahren geeignet, die durch ihn komplexe Zusammenhänge verstehen sollen. Ferner ist alles, was in diesem Modus möglich ist, auch im Ersteller-Modus möglich.
-	\item[Analyse- Modus] Dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der Struktur des Syndroms (Vorhandensein von Zyklen und Verzweigungen etc.)). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Metriken/Graphmaßen für das aktuell im Hauptfenster der Anwendung \textit{GraphIt} angezeigte Syndrom und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Knoten erstellt wurden) gewährt. Dieses Protokoll kann zur leichteren Auswertung nach Aktionen gefiltert werden. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden.
+	\item[Ersteller-Modus] entspricht der Rolle eines Erstellers. Dieser Modus stellt Funktionen bereit, um ein Diagramm als Vorlage zu erstellen und um bestimmte Vorlageregeln für diese Vorlage festzulegen. Zur Erstellung der Vorlage kann in diesem Modus die Anzahl der Sphären, Knoten und Relationen, die das Syndrom bei Weiterbearbeitung (im Bearbeiter-Modus) maximal enthalten darf, festgelegt werden. Außerdem können einige Eigenschaften einzelner Graphelemente gesperrt werden, sodass diese im Bearbeiter-Modus nicht mehr verändert werden können. Dieser Modus wird üblicherweise von Lehrern zur Erstellung einer Vorlage für ein Diagramm verwendet.
+	\item[Bearbeiter-Modus] erfüllt die Ansprüche einer Betrachter-Rolle an das System. In diesem Modus kann ein Benutzer / eine Benutzerin ein Diagramm auf Basis einer Vorlage erstellen und dazu die Vorlage im Rahmen der Regeln aus der gegebenen Vorlage verändern. Ist dieser Modus aktiv, so wird ein Protokoll angelegt, welches Interaktionen des Nutzers / der Nutzerin mit dem Graphen in diesem Modus aufzeichnet. Zu den aufgezeichneten Daten gehört ein Zeitstempel, der angibt, wann die entsprechende Aktion aufgerufen wurde, sowie die Aktion (z.B. Hinzufügen einer Sphäre, Veränderung der Farbe der Relation oder Verschiebung des Symptoms). Dieser Modus ist besonders für Kinder ab 10 Jahren geeignet, die durch ihn komplexe Zusammenhänge verstehen sollen. Ferner ist alles, was in diesem Modus möglich ist, auch im Ersteller-Modus möglich.
+	\item[Analyse-Modus] Dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der Struktur des Syndroms (Vorhandensein von Zyklen und Verzweigungen etc.)). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Metriken/Graphmaßen für das aktuell im Hauptfenster der Anwendung \textit{GraphIt} angezeigte Syndrom und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Knoten erstellt wurden) gewährt. Dieses Protokoll kann zur leichteren Auswertung nach Aktionen gefiltert werden. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden.
 	\item[Bedeutung eines Knoten] Die Relevanz eines Knoten ist von der Vernetztheit des Knotens abhängig. Dabei sind mögliche Maßstäbe für Wichtigkeit und Grad der Vernetztheit folgende: Sei K ein Knoten, der im Analyse-Modus mit einem Links-Klick als einziger Knoten ausgewählt wurde... 	
 		\begin{itemize}
 			\setlength{\itemsep}{0.5pt}

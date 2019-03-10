@@ -20,15 +20,42 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
+/**
+ * Contextmenu, in case the user right-clicks on a vertex.
+ */
 @Data
 public class EdgeContextMenu {
+
+    /**
+     * The contextmenu.
+     */
     @Setter(AccessLevel.NONE)
     private final ContextMenu contextMenu;
+
+    /**
+     * The current action-history.
+     */
     private final ActionHistory history;
+
+    /**
+     * The values of our graph.
+     */
     private final Values values;
+
+    /**
+     * The edge.
+     */
     private final Edge edge;
+
+    /**
+     * The language-handler.
+     */
     private LoadLanguage language = LoadLanguage.getInstance();
 
+    /**
+     * Constructor for the context menu.
+     * @param edge The edge.
+     */
     public EdgeContextMenu(Edge edge) {
         contextMenu = new ContextMenu();
         history = ActionHistory.getInstance();
@@ -37,6 +64,9 @@ public class EdgeContextMenu {
         setup();
     }
 
+    /**
+     * sets the contextmenu.
+     */
     private void setup() {
         // REMOVE
         MenuItem remove = new MenuItem(language.loadLanguagesKey("CONTEXT_DIALOG_REMOVE"));

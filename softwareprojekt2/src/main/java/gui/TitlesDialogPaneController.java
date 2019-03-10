@@ -28,48 +28,79 @@ import java.util.Map;
 public class TitlesDialogPaneController extends DialogPane {
 
     /**
-     * the button type of the save button
+     * The button type of the save button.
      */
     public static final ButtonType SAVE_TYPE = new ButtonType("Speichern");
     /**
-     * the button type of the cancel button
+     * The button type of the cancel button.
      */
     public static final ButtonType CANCEL_TYPE = new ButtonType("Abbrechen");
+    /**
+     * The DialogPane containing gui nodes.
+     */
     @FXML
     private DialogPane titleDialog;
+    /**
+     * The TextField for the german input.
+     */
     @FXML
     private TextField german;
+    /**
+     * The TextField for the english input.
+     */
     @FXML
     private TextField english;
+    /**
+     * The Button cancelling the dialog.
+     */
     @FXML
     private Button cancel;
+    /**
+     * The Button saving the input.
+     */
     @FXML
     private Button save;
+    /**
+     * The german description.
+     */
     @FXML
     private Text germanText;
+    /**
+     * The english description.
+     */
     @FXML
     private Text englishText;
+    /**
+     * The HBox for error messages.
+     */
     @FXML
     private HBox textBox;
+    /**
+     * The Text of error messages.
+     */
     @FXML
     private Text currentActionText;
+
     /**
-     * a values instance
+     * The values instance.
      */
     private Values values = Values.getInstance();
     /**
-     * a load language instance
+     * The load language instance.
      */
     private LoadLanguage language = LoadLanguage.getInstance();
     /**
-     * a syndrom instance
+     * The syndrom instance.
      */
     private Syndrom syndrom = Syndrom.getInstance();
     /**
-     * the old title of the object
+     * The old title of the object.
      */
     private Map<String, String> oldTitle;
 
+    /**
+     * Initializes the TitlesDialog gui and sets multiple buttons and handlers.
+     */
     public void initialize() {
         cancel = (Button) titleDialog.lookupButton(CANCEL_TYPE);
         cancel.setText(language.loadLanguagesKey("CANCEL_DIALOG"));
@@ -103,7 +134,7 @@ public class TitlesDialogPaneController extends DialogPane {
     }
 
     /**
-     * sets the prompt texts to the titles
+     * Sets the prompt texts to the titles.
      *
      * @param old the old titles
      */
@@ -116,7 +147,7 @@ public class TitlesDialogPaneController extends DialogPane {
     }
 
     /**
-     * detects if the save button should be disabled
+     * Detects if the save button should be disabled.
      *
      * @return true if yes, false if no
      */
@@ -125,7 +156,7 @@ public class TitlesDialogPaneController extends DialogPane {
     }
 
     /**
-     * checks if the new title already exists
+     * Checks if the new title already exists.
      *
      * @param com the string to check
      * @return true if there are double titles
@@ -153,7 +184,7 @@ public class TitlesDialogPaneController extends DialogPane {
     }
 
     /**
-     * creates the alert, when to titles are the same
+     * Creates the alert, when to titles are the same.
      */
     private void alertSameText() {
         currentActionText.setText(language.loadLanguagesKey("alertSameTitle"));
@@ -167,7 +198,7 @@ public class TitlesDialogPaneController extends DialogPane {
     }
 
     /**
-     * closes the title dialog pane
+     * Closes the title dialog pane.
      */
     @FXML
     private void close() {

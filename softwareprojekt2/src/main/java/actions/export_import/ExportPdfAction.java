@@ -15,14 +15,14 @@ import java.io.File;
 public class ExportPdfAction extends GraphAction {
 
     /**
-     * The File the pdf get's written into
+     * The File the pdf get's written into.
      */
     private File file;
 
     /**
      * Action handling for exporting the graph as PDF file.
      *
-     * @param pFile The destination File
+     * @param pFile The destination File.
      */
     public ExportPdfAction(File pFile) {
         file = pFile;
@@ -42,7 +42,7 @@ public class ExportPdfAction extends GraphAction {
     }
 
     /**
-     * Disables the undo-funktion for the pfd export
+     * Disables the undo-function for the pfd export.
      */
     @Override
     public void undo() {
@@ -50,7 +50,7 @@ public class ExportPdfAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the pfd export
+     * Disables the redo-function for the pfd export.
      */
     @Override
     public void redo() {

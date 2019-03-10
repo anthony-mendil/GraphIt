@@ -24,6 +24,9 @@ import log_management.tables.Log;
 import java.awt.geom.Point2D;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Converts the log to a string to print it in a more beautiful format.
+ */
 public class LogToStringConverter {
     /**
      * The incrementer for the log entries.

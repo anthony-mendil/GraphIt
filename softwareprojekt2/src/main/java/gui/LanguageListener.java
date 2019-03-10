@@ -36,6 +36,13 @@ public class LanguageListener implements ChangeListener<Boolean> {
      */
     private final CheckMenuItem languageGerman;
 
+    /**
+     * Creates a new LanguageListener that sets this this CheckMenuItem, controller, loadLanguage object, values instance,
+     * and language booleans.
+     *
+     * @param checkMenuItem The Language CheckMenuItem.
+     * @param controller The Controller that handles the resulting action.
+     */
     LanguageListener(CheckMenuItem checkMenuItem, Controller controller) {
         this.checkMenuItem = checkMenuItem;
         this.controller = controller;

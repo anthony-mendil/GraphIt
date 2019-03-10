@@ -18,7 +18,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-
+/**
+ * The test class for gxl testing
+ */
 public class GXLioTest {
 
     /**
@@ -109,11 +111,11 @@ public class GXLioTest {
     }
 
     /**
-     * javadocTODO
+     * Deletes the test document after all tests.
      */
     @AfterClass
-    public static void endAll() throws IOException {
-        new File("testGraph.gxl").deleteOnExit();
+    public static void endAll() {
+        new File("testGraph.gxl").delete();
     }
 
     /**

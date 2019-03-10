@@ -11,7 +11,7 @@ import java.io.File;
 public class ImportOofAction extends GraphAction {
 
     /**
-     * The File the oof get's taken from
+     * The File the oof get's taken from.
      */
     private File file;
 
@@ -35,7 +35,7 @@ public class ImportOofAction extends GraphAction {
     }
 
     /**
-     * Disables the undo-funktion for the oof export
+     * Disables the undo-function for the oof export.
      */
     @Override
     public void undo() {
@@ -43,7 +43,7 @@ public class ImportOofAction extends GraphAction {
     }
 
     /**
-     * Disables the redo-funktion for the oof export
+     * Disables the redo-function for the oof export.
      */
     @Override
     public void redo() {

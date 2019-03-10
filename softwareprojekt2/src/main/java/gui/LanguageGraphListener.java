@@ -20,6 +20,11 @@ public class LanguageGraphListener implements ChangeListener<Boolean> {
      */
     private Controller c;
 
+    /**
+     * Constructor for the language-graph-listener.
+     * @param pC               The unique controller.
+     * @param checkMenuItem    The specific menu-item.
+     */
     LanguageGraphListener(Controller pC, CheckMenuItem checkMenuItem) {
         c = pC;
         this.checkMenuItem = checkMenuItem;

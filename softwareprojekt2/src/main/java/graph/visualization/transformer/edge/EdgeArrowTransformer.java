@@ -47,6 +47,9 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
         this.neutralArrow = factory.getNeutralEdgeArrow();
     }
 
+    /**
+     * Creates an edge arrow transformer. The radius, width, length and notch depth is preset.
+     */
     public EdgeArrowTransformer() {
         this(5, 10, 10, 0);
     }
@@ -64,10 +67,10 @@ public class EdgeArrowTransformer<V, E> implements Transformer<Context<Graph<V, 
     }
 
     /**
-     * returns the shape depending on the arrow type
+     * Returns the shape depending on the arrow type.
      *
-     * @param type the type of the edge
-     * @return the depending shape
+     * @param type The type of the edge
+     * @return The depending shape
      */
     public Shape getTransform(EdgeArrowType type) {
         if (type == EdgeArrowType.EXTENUATING) {

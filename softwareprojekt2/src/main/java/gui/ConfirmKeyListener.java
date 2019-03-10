@@ -31,7 +31,11 @@ public class ConfirmKeyListener implements EventHandler<KeyEvent> {
      */
     private final CheckBox analysisPredecessor;
 
-
+    /**
+     * Creates a new ConfirmKeyListener and sets this Controller, amountSymptomTextField and analysisSuccessor/Predecessor.
+     * @param pC The Controller that is needed to handle the actions.
+     * @param pTextField The TextField that gets set to this amountSymptomTextField.
+     */
     ConfirmKeyListener(Controller pC, TextField pTextField) {
         c = pC;
         amountSymptomTextField = pTextField;

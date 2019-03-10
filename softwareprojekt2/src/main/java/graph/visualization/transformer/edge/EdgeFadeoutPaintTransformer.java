@@ -15,22 +15,23 @@ import java.awt.*;
  */
 public class EdgeFadeoutPaintTransformer<E> implements Transformer<E, Paint> {
     /**
-     * the animation for fade in/ out
+     * The animation for fade in/out.
      */
     private final FadeOutElementsTransition animation;
     /**
-     * the transformer returning the right edge color
+     * The transformer returning the right edge color.
      */
     private final Transformer<E, Paint> transformer;
     /**
-     * the current fade type
+     * The current fade type.
      */
     private final FadeType fadeType;
 
     /**
-     * @param animation   the animation, defining the transparency of the color
-     * @param transformer the transformer returning the right edge color
-     * @param fadeType    the fade type
+     * Constructor for the fadeout-transformer for edges.
+     * @param animation   The animation, defining the transparency of the color.
+     * @param transformer The transformer returning the right edge color.
+     * @param fadeType    The fade type.
      */
     public EdgeFadeoutPaintTransformer(FadeOutElementsTransition animation, Transformer<E, Paint> transformer, FadeType fadeType) {
         this.animation = animation;
