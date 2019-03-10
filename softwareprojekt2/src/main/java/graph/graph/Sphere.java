@@ -22,7 +22,6 @@ public class Sphere {
     /**
      * The id of the sphere.
      */
-    @NonNull
     private final int id;
 
     /**
