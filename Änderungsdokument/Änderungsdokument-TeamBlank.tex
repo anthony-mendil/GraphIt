@@ -225,11 +225,16 @@ Da sich konzeptionell nichts an der Struktur unser Anwendung geändert hat und a
 \newpage
 
 \section{Problemkarten}
+\emph{Autoren: Bastian Rexhäuser, Jonah Jaeger, Clement Phung, Nina Unterberg}\\ \\
+
 \subsection{Problemkarte 02 Persistierungsintervall des Graphen}
 Die Fragen, in welchen festgelegten Zeitintervall das Syndrom persistiert und abgespeichert werden sollte, wurde in der Architekturbeschreibung mit der Strategie \textbf{S4 - Command} beantwortet. Der Unterschied zu der Architekturbeschreibung und der eigentlichen Umsetzung liegt nun darin, dass der Graphen nicht nach jedem, sondern nur nach ausgewählten Commands persistieren. Zusätzlich haben wir auch den \textbf{Benutzer (S5 – Benutzer)} mit in den Speicherprozess mit eingebunden. Dieser kann den Graphen auch manuell speichern und öffnen. \\
 
 \subsection{Problemkarte 8: Auswertung von Grapheigenschaften}
 Für die Auswertung des Graphen bezüglich seiner Eigenschaften wurde in der Architekturbeschreibung angedacht, sowohl \textbf{S22 - JUNG}, \textbf{S24 - eigene Implementierung} und \textbf{S25 - JGraphT} anzuwenden. In der Implementierung haben wir darauf verzichtet \textbf{S22 - JUNG} umzusetzen, da wir durch \textbf{S25} und \textbf{S24} den Funktionsumfang bereits abgedeckt hatten. \\
+
+\subsection{Problemkarte 12: Protokoll der Nutzerinteraktionen exportieren/ importieren}
+Um die Anforderungen zu erfüllen, die besagen, dass wir das Protokoll sowohl lesbarer, als auch in maschinell nutzbarer Form exportierbar sein müssen, hatten wir in der Architekturbeschreibung den Export per \texttt{.json}-Datei festgelegt. Wir haben uns nun überlegt, eine für den Nutzer besser lesbare Version exportierbar zu machen. Um eine maschinelle verwendbare Version zu erhalten, muss der Graph als \texttt{.oof} gespeichert werden.\\
 
 \subsection{Problemkarte 13: Benutzeroberfläche}
 In der Architekturbeschreibung haben wir festgelegt, dass wir die Benutzeroberfläche mit \textbf{S34 - Framework JavaFX} realisieren. Zusätzlichen haben wir nun in der Implementierung das Framework JFoenix mit eingebunden. JFoenix ist ein Framework, welches auf JavaFX aufbaut. \\
@@ -248,6 +253,7 @@ Auf Dependency Injection wurde gänzlich in der Implementierung verzichtet und s
 \label{sec:datensicht}
 
 \emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
+
 Im Folgenden beschreiben wir die Datensicht unserer fertig implementierten Anwendung \textit{GraphIt}. Bei der Beschreibung dieser Sicht nehmen wir Bezug zu den folgenden Strategien aus der Architekturbeschreibung: S1 - GXL, S4 - Command, S5 - Benutzer, S7 - Datenmodell, S19 - JUNG, S33 - JavaScript Object Notation (.json), S39 - Eigene Implementierung, S43 - Eigener Datentyp, S45 - H2 Database, S63 - Jackson und S64 - Google Guice. Außerdem werden wir auf die Strategien S50 - Hibernate, S56 - GXL-Framework (bei Source Forge gehostet) und S61 - Regeln in der GXL-Datei eingehen. Im Gegensatz zur Architekturbeschreibung, in der lediglich das geplante Vorgehen beschrieben und auf der Grundlage der eben genannten Strategien begründet wurde, werden wir in diesem Dokument einen Abglich zwischen dem geplanten und dem tatsächlich realisierten Datenmodell machen. \\
 
 Wie in der Architekturbeschreibung erklärt wurde, haben wir nicht geplant, alleine für den Graphen ein komplett eigenes Datenmodell zu erstellen. Stattdessen haben wir geplant das vom Framework JUNG vorgegebene Datenmodell zu verwenden und mit unseren eigenen Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} zu erweitern (für Kanten) (S19 - JUNG). Dieses Vorgehen war zentraler Bestandteil im Rahmen der Implementierung und wurde wie geplant realisiert.\\ 
