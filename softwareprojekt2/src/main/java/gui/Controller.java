@@ -2353,7 +2353,7 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     * Opens the PDF with Informations about us.
+     * Opens the PDF with information about us.
      */
     @FXML
     private void showAboutUs() {

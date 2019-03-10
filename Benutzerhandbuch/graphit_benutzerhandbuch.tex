@@ -257,20 +257,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Vorwort}
-\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}\\ \\
-Mit diesem Handbuch wird die Bedienung der Software \textbf{GraphIt} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq{} im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
+\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}\\ \\
+Mit diesem Handbuch wird die Bedienung der Software \texttt{GraphIt} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq{} im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
 Eine Nutzung des Programms für Zwecke, die von dem angedachten Einsatzbereich abweicht ist möglich. Allerdings wird in diesem Dokument nicht weiter auf eine solche Nutzung eingegangen. Bei dieser Nutzung, die nicht dem angedachten Einsatz entspricht, ist ferner zu berücksichtigen, dass eventuell gewisse Funktionen wünschenswert wären, die aufgrund der Anforderungen jedoch bewusst nicht eingebaut wurden. Insbesondere sind hier die Regeln zu beachten, die für die Erstellung von Wirkungszusammenhängen gemäß des Syndromansatzes gelten. \\
 Bei der vorliegenden Software handelt es sich um eine Neu-Entwicklung. Somit existieren keinerlei Vorversionen, mit denen der Funktionsumfang oder die Bedienung der Software in diesem Dokument verglichen werden könnte. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Einführung}
-\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
+\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
 \subsection{Adressierte Leser}
-Dieses Handbuch richtet sich an alle Nutzer, die \textbf{GraphIt} für ihren bestimmungsgemäßen Einsatz verwenden möchten. Dieser umfasst die Erstellung, Bearbeitung und Auswertung von Wirkungszusammenhängen gemäß des Syndromansatzes. Die Software ist sowohl für Anfänger geeignet, die noch nie oder nur sehr selten mit einem vergleichbaren Programm gearbeitet haben, als auch für Fortgeschrittene und Experten, die über mehr Erfahrung in der Bedienung ähnlicher Software verfügen. \\
+Dieses Handbuch richtet sich an alle Nutzer, die \texttt{GraphIt} für ihren bestimmungsgemäßen Einsatz verwenden möchten. Dieser umfasst die Erstellung, Bearbeitung und Auswertung von Wirkungszusammenhängen gemäß des Syndromansatzes. Die Software ist sowohl für Anfänger geeignet, die noch nie oder nur sehr selten mit einem vergleichbaren Programm gearbeitet haben, als auch für Fortgeschrittene und Experten, die über mehr Erfahrung in der Bedienung ähnlicher Software verfügen. \\
 Von dem Adressatenkreis des vorliegenden Dokuments wird die Kenntnis der Terminologie des Syndromansatzes erwartet.  
 \subsection{Verwandte Dokumente}
-Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ein Testprotokoll, welches die Entwickler erstellt haben, um die Korrektheit der Software zu garantieren. Außerdem eine Architekturbeschreibung die detaillierteren Einblick in die Architektur der Software gewährt. 
+Neben dem Benutzerhandbuch der Software \texttt{GraphIt}, existiert ebenfalls ein Testprotokoll, welches die Entwickler erstellt haben, um die Korrektheit der Software zu garantieren. Außerdem eine Architekturbeschreibung die detaillierteren Einblick in die Architektur der Software gewährt. 
 \subsection{Konventionen}
 \begin{itemize}
 	\item Wenn im Verlaufe des Dokumentes von einem Graphen die Rede ist, wird sich auf ein Wirkungsdiagramm  gemäß des Syndromansatzes bezogen.
@@ -280,7 +280,7 @@ Neben dem Benutzerhandbuch der Software \textbf{GraphIt}, existiert ebenfalls ei
 
 \begin{itemize}
 	\item Alle eingebundenen Screenshots in das Dokument wurden auf einem Computer mit Windows 10 Betriebssystem aufgenommen. Wenn ihre Darstellung der Software leicht von den gerade erwähnten Screenshots abweicht, bitten wir dies zu entschuldigen.
-	\item Um die Software \textbf{GraphIt} am Besten verstehen und anwenden zu können, empfehlen wir das Dokument von Anfang bis Ende durchzuarbeiten, da sich manche Einträge auf vorherige beziehen. 
+	\item Um die Software \texttt{GraphIt} am Besten verstehen und anwenden zu können, empfehlen wir das Dokument von Anfang bis Ende durchzuarbeiten, da sich manche Einträge auf vorherige beziehen. 
 \end{itemize}
 
 
@@ -310,26 +310,26 @@ Damit die Funktionalität der Anwendung gewährleistet ist, muss eins der folgen
 	\end{itemize}
 \end{itemize}
 \subsubsection{Java 8}
-Zur Benutzung von \textbf{GraphIt} muss eine gültige Version von Java 8 mit JavaFX installiert sein. Weitere Informationen unter \url{https://www.java.com/de/download/manual.jsp}. 
+Zur Benutzung von \texttt{GraphIt} muss eine gültige Version von Java 8 mit JavaFX installiert sein. Weitere Informationen unter \url{https://www.java.com/de/download/manual.jsp}. 
 
 \subsection{Installationsanweisungen}
 Die Anwendung benötigt keinen vom Nutzer geführten Installationsvorgang, bevor sie benutzt werden kann.
 
 \subsection{Starten des Programms}
-Zum Starten des Programms muss die ausführbare Datei \texttt{GraphIt.jar} ausgeführt werden. Normalweise wird die Ausführung durch einen Doppelklick auf die .jar gestartet. Falls dies nicht erfolgreich ist, bitte die Anwendung über die Konsole starten. Dadurch wird die Anwendung initialisiert und ggf. eine Datenbank im \texttt{home}-Verzeichnis des Nutzers angelegt. Zweiteres geschieht nur beim erstmaligen Start der Anwendung. \\
+Zum Starten des Programms muss die ausführbare Datei \texttt{GraphIt.jar} ausgeführt werden. Falls Java als Standard-Anwendung für .jar-Dateien eingestellt ist, wird die Ausführung durch einen Doppelklick auf die .jar gestartet (falls dies nicht erfolgreich ist, bitte die Anwendung über die Konsole starten). Dadurch wird die Anwendung initialisiert und ggf. eine Datenbank im \texttt{home}-Verzeichnis des Nutzers angelegt. Zweiteres geschieht nur beim erstmaligen Start der Anwendung. \\
 Nach dem Startvorgang ist das Programm direkt einsatzbereit. \\
 Es ist immer nur eine Instanz des Programms auf einem Rechner lauffähig. Das Programm kann nicht mehrfach parallel auf einem Rechner laufen.
 
-\textbf{Anwendung über die Konsole starten}
+\subsubsection{Anwendung über die Konsole starten}
 \begin{itemize}
-	\item Die Bash/ Windows-Eingabeaufforderung (cmd.exe) öffnen.
-	\item In das Verzeichnis navigieren, wo die \texttt{GraphIt.jar} gespeichert wurde. 
-	\item \texttt{java -jar GraphIt.jar} ausführen
+	\item Windows-Eingabeaufforderung / Bash / Terminal öffnen.
+	\item In das Verzeichnis navigieren, in dem die \texttt{GraphIt.jar} gespeichert wurde. 
+	\item Den Befehl \texttt{java -jar GraphIt.jar} ausführen.
 \end{itemize}
 \newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Benutzeroberfläche}
-\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
+\emph{Autoren: Nina Unterberg, Bastian Rexhäuser, Jonah Jaeger}
 \subsection{Tasten-/ Mausbelegungen}
 
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -495,7 +495,7 @@ Es ist immer nur eine Instanz des Programms auf einem Rechner lauffähig. Das Pr
 \clearpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Übersicht} \label{sec:uebersicht}
-\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
+\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
 \subsection{Ersteller Modus}
 Im \texttt{Ersteller Modus} kann der Benutzer einen Syndromansatz erstellen und editieren. Im Unterschied zu dem \nameref{sec:editor} kann der Benutzer Vorlageregel für den aktuellen Syndromansatz hinterlegen. Diese werden erst auf dem Graphen im \nameref{sec:editor} angewandt. 
 
@@ -569,7 +569,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 
 \newpage
 \section{Instruktionen zur Nutzung des Programms} \label{sec:nutzung}
-\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
+\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
 
 		\subsection{Auswahl von Graphelementen} \label{pick}
 	\subsubsection{Eines Elements}
@@ -1408,7 +1408,7 @@ Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
 	
 \subsection{Sprache}\label{settings}
-\textbf{GraphIt} unterstützt die Sprachen Deutsch und Englisch. Dies betrifft sowohl die Elemente auf der Benutzeroberfläche (Buttons, Infotexte etc.) als auch die Beschriftung von den Elementen des Syndroms (Titel von Sphären und Symptomen).\\
+\texttt{GraphIt} unterstützt die Sprachen Deutsch und Englisch. Dies betrifft sowohl die Elemente auf der Benutzeroberfläche (Buttons, Infotexte etc.) als auch die Beschriftung von den Elementen des Syndroms (Titel von Sphären und Symptomen).\\
 	
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1451,8 +1451,8 @@ Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebi
 	 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dateiformate für den Export/Import/ und das Speichern/Öffnen} \label{format} 
-Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwendung sichern zu können. Diese Daten können zu einem späteren Zeitpunkt wieder in \textbf{GraphIt} geladen werden, in dem die entsprechenden Dateien wieder importiert/ geöffnet werden.\\
-In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz: 
+Das Exportieren und Speichern ist dazu gedacht, Daten auch außerhalb der Anwendung sichern zu können. Diese Daten können zu einem späteren Zeitpunkt wieder in \texttt{GraphIt} geladen werden, in dem die entsprechenden Dateien wieder importiert/ geöffnet werden.\\
+In \texttt{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz: 
 \begin{itemize}
 \item .oof-Format
 \item .gxl-Format
@@ -1461,10 +1461,10 @@ In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz:
 \end{itemize}
 
 	\subsubsection{OOF}
-	Dieses Datei-Format dient der gemeinsamen Speicherung des Protokolls der Nutzerinteraktionen und eines Syndroms. Somit kann beispielsweise ein Bearbeiter sein erstelltes Syndrom zusammen mit den dabei aufgezeichneten Nutzerinteraktionen exportieren. Diese .oof-Datei kann nun von einem anderen Benutzer (beispielsweise einem Auswerter) importiert werden. .oof ist das Standardformat von \textbf{GraphIt}.
+	Dieses Datei-Format dient der gemeinsamen Speicherung des Protokolls der Nutzerinteraktionen und eines Syndroms. Somit kann beispielsweise ein Bearbeiter sein erstelltes Syndrom zusammen mit den dabei aufgezeichneten Nutzerinteraktionen exportieren. Diese .oof-Datei kann nun von einem anderen Benutzer (beispielsweise einem Auswerter) importiert werden. .oof ist das Standardformat von \texttt{GraphIt}.
 	
 	\subsubsection{GXL}
-	Dieses Datei-Format (\texttt{G}raph e\texttt{X}change \texttt{L}anguage) dient der Speicherung vom Graphen außerhalb der Anwendung. Die gespeicherte Datei kann entweder lediglich eine Beschreibung des Graphen als solchen in GXL-Notation beinhalten oder zusätzlich Informationen zu den Vorlage-Regeln speichern. Dies ermöglicht es, einen Graphen zu erstellen und diesen zu einem späteren Zeitpunkt auf dem selben oder auch einem anderen Computer wieder in \textbf{GraphIt} zu laden. Letzteres ist insbesondere dann von Nutzen, wenn ein Graph mit Regeln für die Bearbeitung erstellt wurde und im Anschluss von anderen Personen gemäß der Vorlageregeln bearbeitet werden soll.
+	Dieses Datei-Format (\texttt{G}raph e\texttt{X}change \texttt{L}anguage) dient der Speicherung vom Graphen außerhalb der Anwendung. Die gespeicherte Datei kann entweder lediglich eine Beschreibung des Graphen als solchen in GXL-Notation beinhalten oder zusätzlich Informationen zu den Vorlage-Regeln speichern. Dies ermöglicht es, einen Graphen zu erstellen und diesen zu einem späteren Zeitpunkt auf dem selben oder auch einem anderen Computer wieder in \texttt{GraphIt} zu laden. Letzteres ist insbesondere dann von Nutzen, wenn ein Graph mit Regeln für die Bearbeitung erstellt wurde und im Anschluss von anderen Personen gemäß der Vorlageregeln bearbeitet werden soll.
 	
 	\subsubsection{Textdatei (TXT)}
 	Dieses Format dient dazu ein Protokoll der Nutzerinteraktionen zu exportieren. Dies ermöglicht es, den Erstellungsprozess eines Syndroms im Nachhinein analysieren zu können. Diese Datei ist nicht wieder von dem System importierbar. 
@@ -1586,7 +1586,7 @@ In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz:
 		\end{enumerate}		
 		\hint
 		\begin{itemize}
-				\item Bei den gespeicherten Daten handelt es sich sowohl um das Protokoll der Nutzerinteraktionen als auch um den aktuellen Graphen. Diese Informationen werden gemeinsam im .oof-Format (\textbf{GraphIt}s eigenes Datei-Format) gespeichert.\\
+				\item Bei den gespeicherten Daten handelt es sich sowohl um das Protokoll der Nutzerinteraktionen als auch um den aktuellen Graphen. Diese Informationen werden gemeinsam im .oof-Format (\texttt{GraphIt}s eigenes Datei-Format) gespeichert.\\
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1702,7 +1702,7 @@ In \textbf{GraphIt} sind dabei die folgenden Datei-Formate von Relevanz:
 	\hint
 	\begin{itemize}
 		\item Es wird nur der Bereich des Syndroms gedruckt, der gerade auch im Hauptfenster sichtbar ist.
-		\item Die Druckeinstellungen erscheinen womöglich im Hintergrund, d.h. durch Bewegen der Maus auf das Icon von \textbf{GraphIt} in der Symbolleiste, kann durch Auswählen des dort erscheinenden Druckfensters dieses in den Vordergrund geholt werden. 
+		\item Die Druckeinstellungen erscheinen womöglich im Hintergrund, d.h. durch Bewegen der Maus auf das Icon von \texttt{GraphIt} in der Symbolleiste, kann durch Auswählen des dort erscheinenden Druckfensters dieses in den Vordergrund geholt werden. 
 		\item Damit das Drucken funktioniert, muss auf dem Rechner ein Druckdienst installiert sein. Besonders wenn auf dem Betriebssystem Linux gearbeitet wird, bitte darauf achten. \\
 	\end{itemize}
 
@@ -2057,7 +2057,7 @@ Ein Info Dialog wird beispielsweise geöffnet, wenn ein neues Syndrom erstellt o
 	\begin{enumerate}
 		\item In der obersten Menüleiste \texttt{Datei/ Neue Datei} auswählen. Somit soll ein neues Syndrom erstellt werden.
 		\item Der Informationsdialog öffnet sich.
-		\item Durch einen Links-Klick auf \textit{Weiter} wird ein neues Syndrom erstellt. Das Syndrom welches zuvor in \textbf{GraphIt} geladen war, wird überschrieben. 
+		\item Durch einen Links-Klick auf \textit{Weiter} wird ein neues Syndrom erstellt. Das Syndrom welches zuvor in \texttt{GraphIt} geladen war, wird überschrieben. 
 		\item Durch einen Links-Klick auf \textit{Abbrechen} wird kein neuer Graph erstellt, sodass der aktuell in der GUI angezeigte Graph weiter bearbeitet werden kann. 
 	\end{enumerate}
 Ähnlich verhält es sich bei den anderen Dialogfenstern der Anwendung.\\
@@ -2115,7 +2115,7 @@ Auch dieses Dialogfenster bietet zwei mögliche Ergebnisse, mit denen das Fenste
 \hint
 \begin{itemize}
 	\item Es wird nur der Bereich des Syndroms gedruckt, der gerade auch im Hauptfenster sichtbar ist.
-	\item Die Druckeinstellungen erscheinen womöglich im Hintergrund, d.h. durch Bewegen der Maus auf das Icon von \textbf{GraphIt} in der Symbolleiste, kann durch Auswählen des dort erscheinenden Druckfensters dieses in den Vordergrund geholt werden. 
+	\item Die Druckeinstellungen erscheinen womöglich im Hintergrund, d.h. durch Bewegen der Maus auf das Icon von \texttt{GraphIt} in der Symbolleiste, kann durch Auswählen des dort erscheinenden Druckfensters dieses in den Vordergrund geholt werden. 
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2160,9 +2160,9 @@ Falls die gewünschte Farbe nicht in dem Drop-Down-Farbmenü des Color Pickers e
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Fehlermeldungen} \label{fehlermeldungen}
-\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}\\
+\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}\\
 
-Um die Anwendung von \textbf{GraphIt} so einfach wie möglich zu gestaltet, wird der Benutzer auch auf nicht mögliche/ fehlerhafte Aktionen über eine Fehlermeldung hingewiesen. \\
+Um die Anwendung von \texttt{GraphIt} so einfach wie möglich zu gestaltet, wird der Benutzer auch auf nicht mögliche/ fehlerhafte Aktionen über eine Fehlermeldung hingewiesen. \\
 Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen Sphäre hinzugefügt werden soll. Dies ist aufgrund der Erstellungsregeln eines Syndroms nicht erlaubt. Auch wenn beispielsweise versucht wird ein Symptom hinzuzufügen, obwohl die in den Vorlageregeln maximale Anzahl von Symptomen bereits erreicht ist, erscheint eine Fehlermeldung.
 
 \begin{figure}[ht!]
@@ -2179,7 +2179,7 @@ Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anhang} \label{sec:anhang}	
-\emph{Autoren: Nina Unterberg, Sebastian Rexhäuser}
+\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
