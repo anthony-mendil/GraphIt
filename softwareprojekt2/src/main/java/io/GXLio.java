@@ -27,6 +27,11 @@ public class GXLio {
     /**
      * A constant used to reference the string specific string.
      */
+    private static final String SPHAERE = "Sphaere";
+
+    /**
+     * A constant used to reference the string specific string.
+     */
     private static final String FILL_PAINT = "fillPaint";
 
     /**
@@ -153,19 +158,10 @@ public class GXLio {
                 logger.error("Error on empty Syndrom GXLGraph");
                 return;
             }
-            if (gxlTemplate != null) {
-                if (!withTemplate && !templateFoundFlag) {
-                    logger.info("Template found but not used");
-                    templateFoundFlag = true;
-                    return;
-                }
-                templateFoundFlag = true;
-            } else {
-                if (withTemplate) {
-                    logger.error("Error on empty Template GXLGraph");
-                    return;
-                }
+            if (templateReturnCheck(gxlTemplate, withTemplate)) {
+                return;
             }
+
             // The list of all vertices descripted in the document. Elements are added to this list when ever a gxl element that describes a vertex was found reading the gxl document and the java object from this gxl description was created.
             List<Vertex> vertices = new ArrayList<>();
             // This list saves for each sphere the vertices that belong to the sphere (as a list of vertices).
@@ -183,7 +179,7 @@ public class GXLio {
                 if (doc.containsID(idCounter + "")) {
                     foundElements++;
                     GXLAttributedElement el = doc.getElement(idCounter + "");
-                    if (((GXLString) el.getAttr("TYPE").getValue()).getValue().equals("Sphaere")) {
+                    if (((GXLString) el.getAttr("TYPE").getValue()).getValue().equals(SPHAERE)) {
                         makeSphere(spheresWithVertices, el, withTemplate);
                     }
                 }
@@ -206,16 +202,40 @@ public class GXLio {
     }
 
     /**
+     * Checks if the method gets continued or returned and sets a flag when needed.
+     * @param gxlTemplate The Template Graph.
+     * @param withTemplate Determines if the GXL must be exported with template.
+     * @return True if the action must be aborted, false otherwise.
+     */
+    private boolean templateReturnCheck(GXLGraph gxlTemplate, boolean withTemplate) {
+        if (gxlTemplate != null) {
+            if (!withTemplate && !templateFoundFlag) {
+                logger.info("Template found but not used");
+                templateFoundFlag = true;
+                return true;
+            }
+            templateFoundFlag = true;
+        } else {
+            if (withTemplate) {
+                logger.error("Error on empty Template GXLGraph");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Creates the elements for the syndrom graph by reading the elements of the gxl-string.
-     * @param pVertices             The list of vertices.
-     * @param pSpheresWithVertices  The mapping between the spheres and the vertices in that sphere.
-     * @param pEdgeAndVertices      The edges and their start- and sink vertices.
-     * @param pElem                 The attributed element from the gxl.
-     * @param pWithTemplate         The indicator if there is a template.
+     *
+     * @param pVertices            The list of vertices.
+     * @param pSpheresWithVertices The mapping between the spheres and the vertices in that sphere.
+     * @param pEdgeAndVertices     The edges and their start- and sink vertices.
+     * @param pElem                The attributed element from the gxl.
+     * @param pWithTemplate        The indicator if there is a template.
      */
     private void makeGraphElemt(List<Vertex> pVertices, List<Map<Sphere, List<Vertex>>> pSpheresWithVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         switch (((GXLString) pElem.getAttr("TYPE").getValue()).getValue()) {
-            case "Sphaere":
+            case SPHAERE:
                 break;
             case "Node":
                 makeVertex(pVertices, pSpheresWithVertices, pElem, pWithTemplate);
@@ -231,6 +251,7 @@ public class GXLio {
 
     /**
      * Creates a sphere out of the gxl-representation.
+     *
      * @param pSpheresWithVertices The mapping between the vertices and the sphere.
      * @param pElem                The attributed element.
      * @param pWithTemplate        The indicator if a template exists.
@@ -244,6 +265,7 @@ public class GXLio {
 
     /**
      * Creates a vertex out of the gxl-representation.
+     *
      * @param pVertices            The list of vertices placed into the graph.
      * @param pSpheresWithVertices The mapping between the vertices and the sphere.
      * @param pElem                The attributed element.
@@ -264,10 +286,11 @@ public class GXLio {
 
     /**
      * Creates an edge out of the gxl-representation.
-     * @param pVertices         The list of vertices.
-     * @param pEdgeAndVertices  The mapping between the edges and the vertices.
-     * @param pElem             The attributed element.
-     * @param pWithTemplate     The indicator if a template exists.
+     *
+     * @param pVertices        The list of vertices.
+     * @param pEdgeAndVertices The mapping between the edges and the vertices.
+     * @param pElem            The attributed element.
+     * @param pWithTemplate    The indicator if a template exists.
      */
     private void makeEdge(List<Vertex> pVertices, List<Map<Edge, Pair<Vertex>>> pEdgeAndVertices, GXLAttributedElement pElem, boolean pWithTemplate) {
         Edge newEdge = convertGXLElemToEdge(pElem, pWithTemplate);
@@ -296,6 +319,7 @@ public class GXLio {
 
     /**
      * Refreshes the whole system data and visualization.
+     *
      * @param spheresWithVertices The mapping between the vertices and the sphere.
      * @param edgeAndVertices     The mapping between the edges and the vertices.
      * @param graphName           The graph-name.
@@ -326,9 +350,10 @@ public class GXLio {
 
     /**
      * Refreshes the system data and visualization of the spheres and vertices.
-     * @param spheresWithVertices   The mapping between the vertices and the sphere.
-     * @param newGraph              The new graph.
-     * @param vv                    The visualization viewer to work on.
+     *
+     * @param spheresWithVertices The mapping between the vertices and the sphere.
+     * @param newGraph            The new graph.
+     * @param vv                  The visualization viewer to work on.
      */
     private void updateSystemDataOfSpheresAndVertices(List<Map<Sphere, List<Vertex>>> spheresWithVertices, SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv) {
         for (Map<Sphere, List<Vertex>> m : spheresWithVertices) {
@@ -349,6 +374,7 @@ public class GXLio {
 
     /**
      * Refreshes the  system data and visualization of the edges.
+     *
      * @param edgeAndVertices The mapping between the edges and vertices.
      * @param newGraph        The new graph.
      */
@@ -364,8 +390,9 @@ public class GXLio {
 
     /**
      * Refreshes the visualization viewer an the layout.
-     * @param newGraph         The new graph.
-     * @param vv               The visualization viewer to work on.
+     *
+     * @param newGraph The new graph.
+     * @param vv       The visualization viewer to work on.
      */
     private void updateVisualisationAndLayout(SyndromGraph<Vertex, Edge> newGraph, SyndromVisualisationViewer<Vertex, Edge> vv) {
         vv.getGraphLayout().setGraph(newGraph);
@@ -551,7 +578,6 @@ public class GXLio {
     }
 
 
-
     /**
      * Extracts the graph from our syndrom and creates a gxl document for this graph.
      * The document is saved at the location specified by the file. This file is set when the
@@ -625,13 +651,14 @@ public class GXLio {
 
     /**
      * Creates a gxl-representation of a sphere.
-     * @param s             The sphere.
-     * @param withTemplate  Indicator if a template exists.
-     * @return              The representation.
+     *
+     * @param s            The sphere.
+     * @param withTemplate Indicator if a template exists.
+     * @return The representation.
      */
     private GXLNode createSphereNode(Sphere s, boolean withTemplate) {
         GXLNode sphere = new GXLNode(s.getId() + "");
-        sphere.setAttr("TYPE", new GXLString("Sphaere"));
+        sphere.setAttr("TYPE", new GXLString(SPHAERE));
         Color color = s.getColor();
         sphere.setAttr(FILL_PAINT, new GXLString(getPaintDescription(color)));
         sphere.setAttr("coordinates", new GXLString("" + s.getCoordinates().toString()));
@@ -681,10 +708,11 @@ public class GXLio {
 
     /**
      * Creates a gxl-representation of a vertex.
-     * @param s             The sphere.
-     * @param v             The vertex.
-     * @param withTemplate  Indicator if a template exists.
-     * @return              The representation.
+     *
+     * @param s            The sphere.
+     * @param v            The vertex.
+     * @param withTemplate Indicator if a template exists.
+     * @return The representation.
      */
     private GXLNode createVertexNode(Sphere s, Vertex v, boolean withTemplate) {
         GXLNode singleNodeInSphere = new GXLNode(v.getId() + "");
@@ -735,10 +763,11 @@ public class GXLio {
 
     /**
      * Creates a gxl-representation of an edge.
-     * @param theGraph      The graph.
-     * @param e             The edge.
-     * @param withTemplate  Indicator if a template exists.
-     * @return              The representation.
+     *
+     * @param theGraph     The graph.
+     * @param e            The edge.
+     * @param withTemplate Indicator if a template exists.
+     * @return The representation.
      */
     private GXLEdge createEdge(SyndromGraph<Vertex, Edge> theGraph, Edge e, boolean withTemplate) {
         Pair<Vertex> verticesOfEdge = theGraph.getEndpoints(e);
