@@ -226,16 +226,21 @@ Da sich konzeptionell nichts an der Struktur unser Anwendung geändert hat und a
 
 \section{Problemkarten}
 \subsection{Problemkarte 02 Persistierungsintervall des Graphen}
-4 -  Command: Speichern des Graphen nach jedem Command; wir peichern nach nach bestimmten Commands \\
-5 – Benutzer wurde entgegen des Plans auch umgesetzt, sondern man das Speichern des Graphen als File außerhalb der Anwendung als eine Form der Persistierung betrachtet. Jedoch wird wie angedacht keine unmittelbar durch den Benutzer aufgerufene Persistierung in der systemeigenen Datenbank umgesetzt.\\
-\subsection{Problemkarte 15: Benutzeroberflächenerstellung mit JavaF}
-38 – Scene-Builder wurde wie geplant genutzt\\
-39 – eigene Implementierung ist hinzugekommen, da nicht alle Elemente der GUI mit dem Scene-Builder-Tool umgesetzt werden konnten. Beispilesweise sind hier Elemente von Jpheonix zu nennen. Diese mussten diekt in die FML-Datei (also im Code) eingebaut werden.\\
-\subsection{Problemkarte 21:} ?\\
+Die Fragen, in welchen festgelegten Zeitintervall das Syndrom persistiert und abgespeichert werden sollte, wurde in der Architekturbeschreibung mit der Strategie \textbf{S4 - Command} beantwortet. Der Unterschied zu der Architekturbeschreibung und der eigentlichen Umsetzung liegt nun darin, dass der Graphen nicht nach jedem, sondern nur nach ausgewählten Commands persistieren. Zusätzlich haben wir auch den \textbf{Benutzer (S5 – Benutzer)} mit in den Speicherprozess mit eingebunden. Dieser kann den Graphen auch manuell speichern und öffnen. \\
+
+\subsection{Problemkarte 8: Auswertung von Grapheigenschaften}
+Für die Auswertung des Graphen bezüglich seiner Eigenschaften wurde in der Architekturbeschreibung angedacht, sowohl \textbf{S22 - JUNG}, \textbf{S24 - eigene Implementierung} und \textbf{S25 - JGraphT} anzuwenden. In der Implementierung haben wir darauf verzichtet \textbf{S22 - JUNG} umzusetzen, da wir durch \textbf{S25} und \textbf{S24} den Funktionsumfang bereits abgedeckt hatten. \\
+
+\subsection{Problemkarte 13: Benutzeroberfläche}
+In der Architekturbeschreibung haben wir festgelegt, dass wir die Benutzeroberfläche mit \textbf{S34 - Framework JavaFX} realisieren. Zusätzlichen haben wir nun in der Implementierung das Framework JFoenix mit eingebunden. JFoenix ist ein Framework, welches auf JavaFX aufbaut. \\
+
+
 \subsection{Problemkarte 25: Persistierung der Parameter in die DB als JSON-String}
-63 – Jackson war geplant umzusetzten\\
-64 – GSON wurde umgesetzt\\
-Problemkarte 26: Dependency Injection Auf diesen Ansatz wurde gänzlich verzichet und somit auch die angedachte Strategie S66 – Google Guice nicht umgestzt.\\
+In der Architekturbeschreibung haben wir uns entschieden, die Parameter mit \textbf{S63 - Jackson} in JSON-Strings umzuwandeln. Im Laufe der Implementierung sind wir auf \textbf{S54 - GSON} umgestiegen. Hauptsächlicher Grund dafür waren, dass GSON besser in der Handhabung ist. \\
+
+
+\subsection{Problemkarte 26: Dependency Injection}
+Auf Dependency Injection wurde gänzlich in der Implementierung verzichtet und somit wurde auch die angedachte Strategie \textbf{S66 – Google Guice} nicht umgesetzt. Vor allem haben wir drauf verzichtet, da uns die Vorteil gegenüber dem Aufwand nicht ausreichend war. \\
 
 
 \newpage
