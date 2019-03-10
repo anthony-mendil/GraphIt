@@ -200,4 +200,12 @@ public class RemoveVerticesLogAction extends LogAction {
         }
         return true;
     }
+
+    private boolean vertexIsLocked(Vertex vertex){
+        if((!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) ||
+                values.getMode() == FunctionMode.TEMPLATE){
+            return true;
+        }
+        return false;
+    }
 }

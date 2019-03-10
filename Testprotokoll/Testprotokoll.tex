@@ -183,11 +183,11 @@ Auch hat sich im Verlauf bei der Erstellung des Testprotokolls die Standardfarbe
 
 \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark}
 \section{Bilder der Benutzeroberfläche}
-
+\emph{Autoren: Philipp Jacky Mach, Anthony Mendil}\\ 
 
 Die Benutzeroberfläche im Ersteller-Modus:
 \begin{center}
-	\includegraphics[height=10cm, angle = 90]{erstellerModus.png}
+	\includegraphics[height=9cm, angle = 90]{erstellerModus.png}
 \end{center}
 \newpage
 Der einzige Unterschied zur Benutzeroberfläche im Bearbeiter-Modus ist der, dass es in der Seitenleiste zusätzlich zu den Vorlage-Regeln den Verlauf gibt,
@@ -199,10 +199,10 @@ Was den Analyse-Modus von den anderen unterscheidet, ist die Kopfleiste und dass
 \begin{center}
 	\includegraphics[height=3cm]{analyseModus.png}
 \end{center}
-\hfill Test Nr.: \setlength{\fboxsep}{1pt}\fbox{1}\fbox{2}\fbox{3}
 \newpage
+\hfill Test Nr.: \setlength{\fboxsep}{1pt}\fbox{1}\fbox{2}\fbox{3}
 \section{Ersteller-Modus}
-
+\emph{Autoren: Philipp Jacky Mach, Anthony Mendil, Clement Phung}\\ 
 \subsectiont{Sphären hinzufügen an freien Stellen}{\dotfill\ok\ok\leer}
 Der Ersteller erstellt zuerst zwei Sphären an verschiedenen Positionen. Eine links und dann eine rechts.  
 \subsubsection{Notizen}
@@ -417,6 +417,7 @@ Die Software arbeitet wie erwartet. In dem Verzeichnis das zum Speichern ausgew�
 \newpage
 
 \section{Bearbeiter-Modus}
+\emph{Autoren: Philipp Jacky Mach, Anthony Mendil, Clement Phung}\\ \\
 Im Ersteller-Modus getestete Funktionalitäten, die auch im Bearbeiter-Modus zur Verfügung stehen, werden im Bearbeiter-Modus nicht nochmal explizit getestet. 
 
 \subsectiont{Rückgängig machen einer Aktion die im Ersteller Modus durchgeführt wurde und in den Vorlage-Regeln verboten wurde}{\dotfill\XBox\ok\leer}
@@ -557,7 +558,7 @@ Der Bearbeiter betätigt den Button zum Rückgängig machen der letzten Aktion. 
 1.Test: Getestet von: Anthony Mendil. Datum: 22.02.2019 um 17:48 \\
 Test positiv, weil die ursprünglichen Symptome und Relationen nicht wieder hinzugefügt wurden. \\
 \begin{center}
-\includegraphics[height=5cm]{2_11.PNG}
+\includegraphics[height=8cm]{2_11.PNG}
 \end{center}
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 03.03.2019 um 20:08 \\
 Test negativ. \\
@@ -567,10 +568,10 @@ Nach Entfernen der Sphäre:
 \end{center}
 Nach Rückgängigmachen des Entfernens der Sphäre mit Symptomen und Relationen:
 \begin{center}
-\includegraphics[height=5cm]{2_11c.png}
+\includegraphics[height=8cm]{2_11c.png}
 \end{center}
 \subsubsection{Fazit}
-Die an die Sphären gebundenen Elemente wurden in der Implementierung aus Versehen nicht beachtet. Nachdem diese hinzugefügt worden sind, arbeitet die Software wie erwartet.
+Die an die Sphären gebundenen Elemente wurden in der Implementierung nicht beachtet. Nachdem diese hinzugefügt worden sind, arbeitet die Software wie erwartet.
 
 \subsectiont{Vergrößern einer Sphäre}{\dotfill\ok\ok\leer}
 Der Bearbeiter betätigt vorerst den Button zum Auswählen von Elementen. Anschießend macht er einen Linksklick auf \texttt{Sphäre 9} und betätigt den Button zum Vergrößern der Sphäre. Es wird erwartet, dass entsprechende Änderung auch statt findet. 
@@ -715,7 +716,7 @@ Test negativ.
 \includegraphics[height=10cm]{2_21.PNG}
 \end{center}
 \subsubsection{Fazit}
-Die Relationen, welche eine eingehende oder ausgehende Relation des zu löschenden Symptoms ist wurde in der Implementierung aus Versehen nicht beachtet. Nachdem die Semantik dazu implementiert wurde arbeitet die Software wie erwartet. 
+Die Relationen, welche eine eingehende oder ausgehende Relation des zu löschenden Symptoms ist wurde in der Implementierung nicht beachtet. Nachdem die Semantik dazu implementiert wurde arbeitet die Software wie erwartet. 
 
 \subsectiont{Entfernen mehrere Symptome ohne Relationen}{\dotfill\XBox\ok\leer}
 Zunächst entfernt der Bearbeiter alle Relationen von \texttt{Symptom 10}, verschiebt es ein wenig nach links und fügt \texttt{Sphäre 9} ein weiteres Symptom rechts von \texttt{Symptom 10} hinzu. 
@@ -1129,7 +1130,7 @@ Nach Betätigen des Buttons zum Rückgängigmachen der letzten Aktion:
 \includegraphics[height=8cm]{3_50nachher.PNG}
 \end{center}
 \subsubsection{Fazit}
-Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Aktion korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass nun die Software wie erwartet arbeitet.
+Durch die Implementierung der Mehrsprachenunterstützung war die ursprüngliche Implementierung nicht mehr in der Lage die jeweilige Aktion korrekt auszuführen. Diese wurde im Nachhinein angepasst, sodass die Software beim zweiten test wie erwartet arbeitet.
 
 \subsectiont{Änderung der Beschriftung einer Sphäre}{\dotfill\ok\ok\leer}
 Mithilfe eines Rechtsklicks auf \texttt{Sphäre 1} und drücken auf \texttt{Titel} öffnet der Bearbeiter ein Fenster zur Eingabe der Beschriftung der Sphäre in Deutsch und Englisch. Dann gibt er in dem Feld für die deutsche Beschriftung \texttt{Gesellschaft}  und in dem für die englische Beschriftung \texttt{Society} ein und drückt auf \texttt{Speichern}. Hierbei wird erwartet, dass in der Sphäre nun \texttt{Gesellschaft} steht. 
@@ -1527,24 +1528,25 @@ Nach dem Klicken auf \texttt{Entfernen}:
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet. \\
 
-Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären, Symptome und Relationen die zu erstellen sind, sind aus folgender Abbildung zu entnehmen: 
-\begin{center}
-\includegraphics[height=10cm, angle=90]{analysezuErstellenderGraph.PNG}
-\end{center}
 \newpage
 \section{Analyse-Modus}
-
+\emph{Autoren: Philipp Jacky Mach, Anthony Mendil}\\ \\
+Im folgenden werden kurz im Analyse-Modus verwendete Begriffe erklärt: \\ \\
 \texttt{Umfang}: Anzahl wertbarer Symptome + Anzahl wertbarer Relationen\\\\
-\texttt{Vernetzungsindex}: 2 x Anzahl wertbarer Relationen / Anzahl wertbarer Symptome\\\\
+\texttt{Vernetzungsindex}: 2 x Anzahl wertbarer Relationen / Anzahl wertbarer Symptome.\\\\
 \texttt{Strukturindex}: Summe aller Pfeilketten, Verzweigungen und Kreisläufe / Anzahl wertbarer Symptome\\\\
-\texttt{Vorgänger}: Benachbarte Knoten, die über einem Pfad mit dem ausgewählten Knoten verbunden sind, 
-wobei der Pfad ausschließlich aus eingehenden Kanten besteht.\\\\
-\texttt{Nachfolger}: Benachbarte Knoten, die über einem Pfad mit dem ausgewählten Knoten verbunden sind,
-wobei der Pfad ausschließlich aus ausgehenden Kanten besteht.\\\\
-\texttt{Pfeilkette}: Abfolge von mindestens drei Kanten in dieselbe Richtung, ohne dass eine Verzweigung bei den inneren Knoten der Kette integriert ist. Ein Knoten einer Kette ist ein innerer, wenn er nicht der Start- und nicht der Endknoten der Kette ist.\\\\
-\texttt{Konvergente Verzweigung}: Knoten, zu dem mindestens zwei Kanten hinführen.\\\\
-\texttt{Divergente Verzweigung}: Knoten, aus dem mindestens zwei Kanten wegführen.\\\\
-\texttt{Zyklus(Kreislauf)}: Geschlossene Kette von Kanten, die alle in die gleiche Richtung laufen, wobei jeder Knoten im Zyklus jeden anderen Knoten im Zyklus über die Kette erreichen kann. Der kleinste Kreislauf ist eine direkte Rückkopplung.\\\\
+\texttt{Vorgänger}: Benachbarte Symptome, die über einem Pfad mit dem ausgewählten Symptom verbunden sind, 
+wobei der Pfad ausschließlich aus eingehenden Relationen besteht.\\\\
+\texttt{Nachfolger}: Benachbarte Symptome, die über einem Pfad mit dem ausgewählten Symptom verbunden sind,
+wobei der Pfad ausschließlich aus ausgehenden Relationen besteht.\\\\
+\texttt{Pfeilkette}: Abfolge von mindestens drei Relationen in dieselbe Richtung, ohne dass eine Verzweigung bei den inneren Symptomen der Kette integriert ist. Ein Symptom einer Kette ist ein inneres, wenn es nicht das Start- oder Endsymptom der Kette ist.\\\\
+\texttt{Konvergente Verzweigung}: Symptome, zu dem mindestens zwei Relationen hinführen.\\\\
+\texttt{Divergente Verzweigung}: Symptome, aus dem mindestens zwei Relationen wegführen.\\\\
+\texttt{Zyklus(Kreislauf)}: Geschlossene Kette von Relationen, die alle in die gleiche Richtung laufen, wobei jedes Symptom im Zyklus jedes anderes Symptom im Zyklus über die Kette erreichen kann. Der kleinste Kreislauf ist eine direkte Rückkopplung.\\\\
+Zum Testen des Analyse-Modus wird erneut ein neuer Graph erstellt. Die Sphären, Symptome und Relationen die zu erstellen sind, sind aus der Abbildung auf der nächsten Seite zu entnehmen. 
+\begin{center}
+	\includegraphics[height=10cm, angle=90]{analysezuErstellenderGraph.PNG}
+\end{center}
 
 \subsectiont{Korrektes Berechnen und Anzeigen des Umfangs, des Vernetzungsindex und des Strukurindex}{\dotfill\ok\ok\leer}
 Der Bearbeiter muss nichts tun. Es wird erwartet, das links in der Kopfleiste die korrekten Werte angezeigt werden. 
@@ -1702,6 +1704,7 @@ Test negativ.
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
 \section{Import, Export, Ändern der Sprache und Hilfe}
+\emph{Autoren: Philipp Jacky Mach, Anthony Mendil}\\ \\
 Die Funktionalitäten \texttt{Datei speichern}, \texttt{Datei öffnen} und das Ändern der Sprache des Graphen wurden im Laufe des Protokolls bereits getestet. Sie werden an dieser Stelle also nicht erneut getestet. Für die folgenden Tests erstellen wir vorerst einen neuen Graphen: 
 \begin{center}
 \includegraphics[height=12cm]{graphfuerExportkram.PNG}
@@ -1791,9 +1794,9 @@ Test negativ.
 Die Software arbeitet wie erwartet.
 
 \subsectiont{Anzeigen des Benutzerhandbuchs}{\dotfill\ok\ok\leer}
-Der Tester geht auf \texttt{Hilfe} und \texttt{Dokumentation}. Hierbei wird erwartet, dass das Benutzerhandbuch angezeigt wird. 
+Der Tester geht auf \texttt{Hilfe} und \texttt{Dokumentation}. Hierbei wird erwartet, dass das Benutzerhandbuch als PDF angezeigt wird. 
 \subsubsection{Notizen}
-1.Test: Getestet von: Anthony Mendil. Datum:  05.03.2019 um 18:16\\
+1.Test: Getestet von: Anthony Mendil. Datum: 05.03.2019 um 18:16\\
 Test negativ.\\
 2.Test: Getestet von: Jacky Philipp Mach. Datum: 06.03.2019 um 15:13\\
 Test negativ.\\\\
@@ -1817,9 +1820,71 @@ Nach dem Klicken auf Über uns im Menü Hilfe.
 \end{center}
 \subsubsection{Fazit}
 Die Software arbeitet wie erwartet.
+
+\newpage
+\section{Leistungstest}
+\emph{Autoren: Anthony Mendil}\\ \\
+Um die Leistung der Software zu testen wird vorerst im Bearbeiter-Modus ein Graph mit 100 Sphären und vielen Symptomen und Relationen erstellt:
+\begin{center}
+\includegraphics[height=14cm]{belastungstest.png}
+\end{center}
+Zusätzlich werden im Ersteller-Modus wahllos Vorlage-Regeln festgelegt. Es werden im folgenden auch nicht alle Funktionalitäten getestet, sondern nur jene bei denen Verzögerungen aufgrund der Komplexität des Graphen am wahrscheinlichsten sind. 
+\newpage
+\subsubsection{Notizen}
+Getestet von: Anthony Mendil. Datum: 09.03.2019 um 15:22\\ \\
+Dieser Graph wird nun inklusive des Verlaufs und der Vorlage-Regeln in den eigenen Dateien gespeichert (\texttt{Datei}, \texttt{Speichern unter}) und nach dem Erstellen einer neuen Datei wieder geöffnet (\texttt{Datei}, \texttt{Datei öffnen}). Das Speichern sowie das Öffnen des Graphen dauern jeweils wenige Sekunden, werden jedoch korrekt ausgeführt. Verlauf und Vorlage-Regeln werden richtig angezeigt. \\ \\
+Nun wird in den Analyse-Modus gewechselt. Dies unterliegt ebenfalls einer kurzen Verzögerung. Grund dafür ist insbesondere, dass bei Betritt für den Strukturindex unter anderem die Anzahl der Zyklen des Graphen berechnet wird. Dies ist die einzige Analyse-Funktion, bei der eine Verzögerung deutlich bemerkbar ist. \\ \\
+Anschließend wird in den Ersteller-Modus gewechselt und es werden die Symptome automatisch angeordnet. Hierbei ist keine deutliche Verzögerung erkennbar. Das selbe gilt für die automatische Anordnung der Sphären, welches durch verschieben und anschließenden Anordnen der Sphären deutlich wird. \\ \\
+Zu guter Letzt wird in den Bearbeiter-Modus gewechselt, einer Sphäre ein Symptom hinzugefügt und der Verlauf angezeigt. Beim Anzeigen des Verlauf ist bei genauer Betrachtung ebenfalls eine minimale Verzögerung erkennbar. 
+\subsubsection{Fazit}
+Es wurden keine Änderungen an der Software vorgenommen. Bezüglich der Laufzeit treten selbst kurze Verzögerungen erst bei unrealistisch komplexen und nicht mehr verständlichen Graphen auf.  
+
+\newpage
+\section{Usability-Test}
+\emph{Autoren: Anthony Mendil}\\ \\
+Wir haben Hilmar Peschmann, einen Gruppen unabhängigen, am 07.03.2019 das Programm bezüglich der Benutzbarkeit testen lassen. 
+\subsection{Notizen}
+Er hat angemerkt, dass man bei dem Zoom-Panel in der Übersicht manchmal nicht mehr den weißen Bereich sieht, wenn es weiter verschoben wurde als die Anzeige groß ist. Man wüsste dann nicht mehr wo man sich befände und wie man wieder zu seinem Graphen zurück käme. Des weiteren empfand er die Funktionalitäten, die mit dem Recht- und Linksklick verbunden sind, als gewöhnungsbedürftig. Abgesehen davon hatte er bezüglich der Benutzbarkeit nichts auszusetzen. 
+\subsection{Fazit}
+Die Software wurde bezüglich der Anmerkungen zur Benutzbarkeit nicht verändert. Grund dafür ist einerseits die Schwierigkeit das Zoom-Panel entsprechend anzupassen und andererseits, dass wir das einheitliche Bewegen von Elementen durch den Rechtsklick und das Auswählen und  Hinzufügen durch den Linksklick beibehalten wollten.  
+
+\section{Akzeptanztest}
+\emph{Autoren: Anthony Mendil}\\ \\
+Der Akzeptanz wurde am 05.03.2019 um 12 Uhr von Marcel Steinbeck durchgeführt. Der Test war negativ. Alle Mindestanforderungen wurden erfüllt. 
+
 \newpage
 \section{Automatisierte Tests}
-Im folgenden sieht man eine Abbildung über unsere automatisierten JUnit-Tests.
-Die Abbildung zeigt die Abdeckung und das Ergebnis bei der Ausführung.
-
+\emph{Autoren: Philipp Jacky Mach, Anthony Mendil}
+\subsection{Ergebnisse unserer JUnit-Tests}
+Wie in den folgenden Abbildungen zu erkennen ist waren alle automatisierten Tests negativ. 
+\subsubsection{AnalysisTest}
+\begin{center}
+\includegraphics[height=14cm]{result-analysistest.png}
+\end{center}
+\subsubsection{GXLioTest}
+\begin{center}
+\includegraphics[height=13cm]{result-gxliotest.png}
+\end{center}
+\subsubsection{OOFioTest}
+\begin{center}
+\includegraphics[height=4cm]{result-oofiotest.png}
+\end{center}
+\subsection{Unsere Testabdeckung}
+Mithilfe des Plugins von \texttt{JaCoCo} haben wir die Testabdeckung der automatisierten Tests berechnen lassen. Das Ergebnis ist in den folgenden Abbildungen zu sehen. 
+\subsubsection{Gesamtes Projekt}
+\begin{center}
+\includegraphics[height=12cm]{software-projekt-2-testcoverage.png}
+\end{center}
+\subsubsection{Actions.Analyse}
+\begin{center}
+\includegraphics[height=4cm]{actions-analyse-testcoverage.png}
+\end{center}
+\subsubsection{JGraphT}
+\begin{center}
+\includegraphics[height=7cm]{jgraphthandler-testcoverage.png}
+\end{center}
+\subsubsection{Io}
+\begin{center}
+\includegraphics[height=3cm]{io-testcoverage.png}
+\end{center}
 \end{document}
