@@ -29,8 +29,9 @@ public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
 
     /**
      * Constructor for the treeView-Handler.
-     * @param pC        The unique controller.
-     * @param pHelper   Helper-functions for the treeView.
+     *
+     * @param pC      The unique controller.
+     * @param pHelper Helper-functions for the treeView.
      */
     TreeViewMouseHandler(Controller pC, HelperFunctions pHelper) {
         treeView = pC.getTreeView();
@@ -44,22 +45,21 @@ public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
      */
     @Override
     public void handle(MouseEvent e) {
-        if (Values.getInstance().getMode() != FunctionMode.ANALYSE) {
-            if (e.getButton() == MouseButton.SECONDARY) {
-                Node node = e.getPickResult().getIntersectedNode();
-                if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                    TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
-                    Object val = selected.getValue();
+        if (Values.getInstance().getMode() != FunctionMode.ANALYSE && e.getButton() == MouseButton.SECONDARY) {
+            Node node = e.getPickResult().getIntersectedNode();
+            if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+                TreeItem<Object> selected = treeView.getSelectionModel().getSelectedItem();
+                Object val = selected.getValue();
 
-                    ContextMenu contextMenu = helper.openContextMenu(val);
-                    if (contextMenu != null) {
-                        treeView.setContextMenu(contextMenu);
-                        contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
-                    }
-                } else {
-                    treeView.setContextMenu(null);
+                ContextMenu contextMenu = helper.openContextMenu(val);
+                if (contextMenu != null) {
+                    treeView.setContextMenu(contextMenu);
+                    contextMenu.show(treeView, e.getScreenX(), e.getScreenY());
                 }
+            } else {
+                treeView.setContextMenu(null);
             }
+
         }
     }
 }

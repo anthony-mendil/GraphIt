@@ -81,37 +81,53 @@ public class RemoveVerticesLogAction extends LogAction {
      * @param vv            The visualization viewer to wirk on.
      * @param pickSupport   The pickSupport to pick the vertices and edges.
      */
-    private void removeVertices(Map<Vertex, Sphere> params, List<Vertex> lockedVertices, Map<Edge,
-            Pair<Vertex, Vertex>> edg, PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv,
+    private void removeVertices(Map<Vertex, Sphere> params, List<Vertex> lockedVertices, Map<Edge, Pair<Vertex, Vertex>> edg,
+                                PickedState<Vertex> pickedState, SyndromVisualisationViewer<Vertex, Edge> vv,
                                 SyndromPickSupport<Vertex, Edge> pickSupport) {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         for (Vertex vertex : pickedState.getPicked()) {
-            if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() ||
-                    values.getMode() == FunctionMode.TEMPLATE) {
-                Point2D posVertex = vertex.getCoordinates();
-                posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
-                Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
-                if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
-                    lockedVertices.add(vertex);
-                } else {
-                    Collection<Edge> inList = graph.getInEdges(vertex);
-                    Collection<Edge> outList = graph.getOutEdges(vertex);
-                    ArrayList<Edge> bothList = new ArrayList<>();
-                    bothList.addAll(outList);
-                    bothList.addAll(inList);
-                    if (allowedRemoveVertex(bothList)) {
-                        para(inList, outList, graph, edg);
-                        graph.removeVertex(vertex);
-                        sp.getVertices().remove(vertex);
-                        params.put(vertex, sp);
+            handleVertex(vertex, vv, pickSupport, lockedVertices, graph, edg, params);
+        }
+    }
 
-                    } else {
-                        helper.setActionText("REMOVE_EDGES_ALERT", true, true);
-                    }
-                }
-            } else {
+    /**
+     * Remove handler for a picked vertex.
+     * @param vertex The selected vertex.
+     * @param vv The SyndromVisualisationViewer which contains the vertex.
+     * @param pickSupport The PickSupport needed to get the necessary information about the graph.
+     * @param lockedVertices A list with all locked vertices.
+     * @param graph The SyndromGraph containing the vertex.
+     * @param edg The Edge pair.
+     * @param params The param Map.
+     */
+    private void handleVertex(Vertex vertex, SyndromVisualisationViewer<Vertex, Edge> vv, SyndromPickSupport<Vertex, Edge> pickSupport,
+                              List<Vertex> lockedVertices, SyndromGraph<Vertex, Edge> graph, Map<Edge, Pair<Vertex, Vertex>> edg,
+                              Map<Vertex, Sphere> params){
+        if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() ||
+                values.getMode() == FunctionMode.TEMPLATE) {
+            Point2D posVertex = vertex.getCoordinates();
+            posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
+            Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
+            if (sp.isLockedVertices() && values.getMode() != FunctionMode.TEMPLATE) {
                 lockedVertices.add(vertex);
+            } else {
+                Collection<Edge> inList = graph.getInEdges(vertex);
+                Collection<Edge> outList = graph.getOutEdges(vertex);
+                ArrayList<Edge> bothList = new ArrayList<>();
+                bothList.addAll(outList);
+                bothList.addAll(inList);
+                if (allowedRemoveVertex(bothList)) {
+                    para(inList, outList, graph, edg);
+                    graph.removeVertex(vertex);
+                    sp.getVertices().remove(vertex);
+                    params.put(vertex, sp);
+
+                } else {
+                    helper.setActionText("REMOVE_EDGES_ALERT", true, true);
+                }
             }
+        } else {
+            lockedVertices.add(vertex);
         }
     }
 
@@ -176,7 +192,7 @@ public class RemoveVerticesLogAction extends LogAction {
      * @param edges The list of edges.
      * @return  true: The vertex can be removed | false: the vertex can't be removed.
      */
-    public boolean allowedRemoveVertex(ArrayList<Edge> edges) {
+    private boolean allowedRemoveVertex(List<Edge> edges) {
         for (Edge e : edges) {
             if ((e.isLockedEdgeType() || e.isLockedStyle())&& values.getMode() != FunctionMode.TEMPLATE) {
                 return false;
