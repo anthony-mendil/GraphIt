@@ -48,8 +48,8 @@ public class Edge {
     @NonNull
     private boolean hasAnchorOut;
     /**
-     * first: outgoing anchor point
-     * second: incoming anchor point
+     * First: outgoing anchor point.
+     * Second: incoming anchor point.
      */
     private Pair<Point2D, Point2D> anchorPoints = new Pair<>(null, null);
     /**

@@ -117,7 +117,7 @@ public class AddVerticesLogAction extends LogAction {
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Vertex> startVertices = ((AddRemoveVerticesParam) parameters).getStartVertexList();
         List<Edge> edgeList = ((AddRemoveVerticesParam) parameters).getEdgeList();
-        List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getSinkVertexList();
+        List<Vertex> sinkVertices = ((AddRemoveVerticesParam) parameters).getEndVertexList();
         for (int i = 0; i < edgeList.size(); i++) {
             graph.addEdgeExisting(edgeList.get(i), startVertices.get(i), sinkVertices.get(i));
         }

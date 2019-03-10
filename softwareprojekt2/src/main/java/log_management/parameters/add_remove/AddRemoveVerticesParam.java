@@ -46,7 +46,7 @@ public class AddRemoveVerticesParam implements Param {
      * The end vertices of the edges.
      */
     @Getter
-    private List<Vertex> sinkVertexList;
+    private List<Vertex> endVertexList;
 
     /**
      * The edges.
@@ -68,12 +68,12 @@ public class AddRemoveVerticesParam implements Param {
             sphereList.add(s);
         });
         startVertexList = new ArrayList<>();
-        sinkVertexList = new ArrayList<>();
+        endVertexList = new ArrayList<>();
         edgeList = new ArrayList<>();
         for (Map.Entry<Edge, Pair<Vertex, Vertex>> entry : edges.entrySet()) {
             edgeList.add(entry.getKey());
             startVertexList.add(entry.getValue().getKey());
-            sinkVertexList.add(entry.getValue().getValue());
+            endVertexList.add(entry.getValue().getValue());
         }
     }
 
