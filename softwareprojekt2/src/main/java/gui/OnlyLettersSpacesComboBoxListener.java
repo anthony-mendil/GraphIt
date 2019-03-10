@@ -15,8 +15,8 @@ public class OnlyLettersSpacesComboBoxListener implements ChangeListener<String>
     private final ComboBox<String> comboBox;
 
     /**
-     * Creates a combobox allowing only letters and spaces.
-     * @param pComboBox
+     * Creates a combo box allowing only letters and spaces.
+     * @param pComboBox The combo box.
      */
     OnlyLettersSpacesComboBoxListener(ComboBox<String> pComboBox) {
         this.comboBox = pComboBox;
