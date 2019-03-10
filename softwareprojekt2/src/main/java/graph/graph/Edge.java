@@ -15,12 +15,10 @@ import java.awt.geom.Point2D;
  * final.
  */
 @Data
-
 public class Edge {
     /**
      * The id of the edge.
      */
-    @NonNull
     private final int id;
     /**
      * The fill color of the edge/arrow.
