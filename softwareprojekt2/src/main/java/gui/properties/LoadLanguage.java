@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 
 /**
  * This class changes every description of the gui elements to the desired language.
+ *
+ * @author Jacky Philipp Mach
  */
 @Data
 public class LoadLanguage {

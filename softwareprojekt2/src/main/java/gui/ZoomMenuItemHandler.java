@@ -8,6 +8,8 @@ import javax.swing.*;
 
 /**
  * Sets the slider value accordingly to the selected menuitem value and resizes the zoom window.
+ *
+ * @author Jacky Philipp Mach
  */
 public class ZoomMenuItemHandler implements EventHandler<ActionEvent> {
 

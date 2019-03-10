@@ -31,6 +31,8 @@ import java.util.Optional;
 
 /**
  * Context menu, in case the user right-clicks on vertices.
+ *
+ * @author Jacky Philipp Mach
  */
 @Data
 public class VertexContextMenu {

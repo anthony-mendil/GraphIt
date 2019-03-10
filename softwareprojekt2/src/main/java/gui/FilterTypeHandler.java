@@ -8,6 +8,8 @@ import javafx.event.EventHandler;
 /**
  * Handles the event when a menuitem was selected from the filter arrowtype options in the overview and filters
  * accordingly of the selected arrowtype, if the associated checkbox is selected.
+ *
+ * @author Jacky Philipp Mach
  */
 public class FilterTypeHandler implements EventHandler<ActionEvent> {
     /**

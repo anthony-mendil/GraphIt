@@ -2,6 +2,8 @@ package gui;
 
 /**
  * The visualization viewer needs to know, which button is pressed in the JavaFX GUI.
+ *
+ * @author Jacky Philipp Mach
  */
 public enum GraphButtonType {
     /**

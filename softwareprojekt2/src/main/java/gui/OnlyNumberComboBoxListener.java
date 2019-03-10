@@ -7,6 +7,8 @@ import javafx.scene.control.ComboBox;
 /**
  * Blocks the input of the textfield of the combobox.
  * In this case everything except numbers and every number with more than 2 digits.
+ *
+ * @author Jacky Philipp Mach
  */
 public class OnlyNumberComboBoxListener implements ChangeListener<String> {
     /**

@@ -12,6 +12,8 @@ import javafx.scene.input.KeyEvent;
 /**
  * When the enter-key was pressed it confirms the input of the textfield.
  * The input will be evaluated and calls the action or drops the input and resets the textfield.
+ *
+ * @author Jacky Philipp Mach
  */
 public class ConfirmKeyListener implements EventHandler<KeyEvent> {
     /**

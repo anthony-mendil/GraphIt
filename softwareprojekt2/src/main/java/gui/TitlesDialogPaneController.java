@@ -23,6 +23,11 @@ import lombok.EqualsAndHashCode;
 
 import java.util.Map;
 
+/**
+ * The titlesdialogpane controller to control the title dialog for changing titles for spheres and vertices.
+ *
+ * @author Jacky Philipp Mach
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class TitlesDialogPaneController extends DialogPane {

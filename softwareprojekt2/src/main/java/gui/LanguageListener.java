@@ -9,6 +9,8 @@ import javafx.scene.control.CheckMenuItem;
 /**
  * Listens to the selected menuitem in the language menu and changes the gui language accordingly to the selected
  * menuitem.
+ *
+ * @author Jacky Philipp Mach
  */
 public class LanguageListener implements ChangeListener<Boolean> {
     /**

@@ -10,6 +10,8 @@ import javafx.stage.StageStyle;
 
 /**
  * Preloader window during the start of the program.
+ *
+ * @author Jacky Philipp Mach
  */
 public class AppPreloader extends Preloader {
 

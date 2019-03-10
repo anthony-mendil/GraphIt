@@ -9,6 +9,8 @@ import javafx.scene.control.CheckMenuItem;
 /**
  * Listens to the selected menuitem in the language menu and changes the graph language accordingly to the selected
  * menuitem.
+ *
+ * @author Jacky Philipp Mach
  */
 public class LanguageGraphListener implements ChangeListener<Boolean> {
     /**

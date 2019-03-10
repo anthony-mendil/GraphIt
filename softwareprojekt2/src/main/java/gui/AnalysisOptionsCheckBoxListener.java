@@ -12,6 +12,8 @@ import javafx.scene.control.MenuButton;
  * Listens to the changes, which checkbox is selected and handles that only the successor and predecessor option
  * can be selected at the same time. Also calls the actions accordingly to the selected checkboxes and their associated
  * menu buttons.
+ *
+ * @author Jacky Philipp Mach
  */
 public class AnalysisOptionsCheckBoxListener implements ChangeListener<Boolean> {
     /**

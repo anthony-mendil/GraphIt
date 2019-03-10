@@ -7,6 +7,8 @@ import javafx.scene.control.MenuItem;
 
 /**
  * Listens to the selected menuitem in the menubutton and changes the text of the menubutton accordingly.
+ *
+ * @author Jacky Philipp Mach
  */
 public class AnalysisItemHandler implements EventHandler<ActionEvent> {
     /**

@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
  * Listens to changes of the analysis checkboxes.
  * If a checkbox is selected, the selected action of the associated menu button will be called.
  * The AnalysisCheckBoxListener functions only for the successor and predecessor analysis checkbox.
+ *
+ * @author Jacky Philipp Mach
  */
 public class AnalysisCheckBoxListener implements ChangeListener<Boolean> {
     /**

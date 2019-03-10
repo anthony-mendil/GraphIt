@@ -11,6 +11,8 @@ import java.io.InputStream;
 
 /**
  * Class for showing the print dialog.
+ *
+ * @author Jacky Philipp Mach
  */
 public class PDFPrinterGui {
 
