@@ -230,14 +230,14 @@ Da sich konzeptionell nichts an der Struktur unser Anwendung geändert hat und a
 \subsection{Problemkarte 02 Persistierungsintervall des Graphen}
 Die Fragen, in welchen festgelegten Zeitintervall das Syndrom persistiert und abgespeichert werden sollte, wurde in der Architekturbeschreibung mit der Strategie \textbf{S4 - Command} beantwortet. Der Unterschied zu der Architekturbeschreibung und der eigentlichen Umsetzung liegt nun darin, dass der Graphen nicht nach jedem, sondern nur nach ausgewählten Commands persistieren. Zusätzlich haben wir auch den \textbf{Benutzer (S5 – Benutzer)} mit in den Speicherprozess mit eingebunden. Dieser kann den Graphen auch manuell speichern und öffnen. \\
 
-\subsection{Problemkarte 8: Auswertung von Grapheigenschaften}
+\subsection{Problemkarte 08: Auswertung von Grapheigenschaften}
 Für die Auswertung des Graphen bezüglich seiner Eigenschaften wurde in der Architekturbeschreibung angedacht, sowohl \textbf{S22 - JUNG}, \textbf{S24 - eigene Implementierung} und \textbf{S25 - JGraphT} anzuwenden. In der Implementierung haben wir darauf verzichtet \textbf{S22 - JUNG} umzusetzen, da wir durch \textbf{S25} und \textbf{S24} den Funktionsumfang bereits abgedeckt hatten. \\
 
 \subsection{Problemkarte 12: Protokoll der Nutzerinteraktionen exportieren/ importieren}
 Um die Anforderungen zu erfüllen, die besagen, dass wir das Protokoll sowohl lesbarer, als auch in maschinell nutzbarer Form exportierbar sein müssen, hatten wir in der Architekturbeschreibung den Export per \texttt{.json}-Datei festgelegt. Wir haben uns nun überlegt, eine für den Nutzer besser lesbare Version exportierbar zu machen. Um eine maschinelle verwendbare Version zu erhalten, muss der Graph als \texttt{.oof} gespeichert werden.\\
 
 \subsection{Problemkarte 13: Benutzeroberfläche}
-In der Architekturbeschreibung haben wir festgelegt, dass wir die Benutzeroberfläche mit \textbf{S34 - Framework JavaFX} realisieren. Zusätzlichen haben wir nun in der Implementierung das Framework JFoenix mit eingebunden. JFoenix ist ein Framework, welches auf JavaFX aufbaut. \\
+In der Architekturbeschreibung haben wir festgelegt, dass wir die Benutzeroberfläche mit \textbf{S34 - Framework JavaFX} realisieren. Zusätzlichen haben wir nun in der Implementierung das Framework JFoenix mit eingebunden. JFoenix ist ein Framework, welches auf JavaFX aufbaut. Dies wurde angewendet, um eine hohe Usability unseres Programms anzustreben.\\
 
 
 \subsection{Problemkarte 25: Persistierung der Parameter in die DB als JSON-String}
@@ -276,10 +276,6 @@ Es sei explizit erwähnt, dass zu einem Log ein Graph gehört, der Graph dennoch
 Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse \texttt{Param} - so wie wir es in der Architekturbeschreibung angestrebt haben. Jede dieser Parameter-Klassen gehört speziell zu einer Aktion, für die sie die nötigen Informationen enthält. Hinzufügende und entfernende Aktionen gleicher Art sowie aktivierende und deaktivierende gleicher Art benutzen die gleichen Parameter-Klassen, da die Struktur der Parameterklassen sich stark ähneln würden. Beispielsweise haben demnach die Aktionen des Hinzufügens und Entfernens mehrerer Kanten beide ein \texttt{AddRemoveVerticesParam}. Je nach Aktion werden diese Informationen bei der Ausführung unterschiedlich verwendet. Es ist ebenso anzumerken, dass die einzelnen Parameter-Klassen im Diagramm individuell Assoziationen zu den Klassen \texttt{Vertex}, \texttt{Edge} und \texttt{Sphere} hätten, je nachdem welche Attribute sie besitzen. Um Übersichtlichkeit zu bewahren haben wir im Diagramm nicht alle Parameter-Klassen mit ihren zugehörigen Attributen dargestellt, sondern exemplarisch drei solcher Klassen ausgewählt. Alle Parameter-Klassen lassen sich im Package \texttt{log\_management.parameters} finden. Auch die Verarbeitung dieser Parameterklassen im jetzigen Programm leicht der angedachten Verarbeitungsweise. \\
 
 In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (OOF für \glqq out of frameworks\grqq; S43 - eigener Datentyp). Dieses Datei-Format findet für genau diesen Zweck bereits in der Architekturbeschreibung Erwähnung.  \\
-
-Neben der Erstellung der GUI wie in Problemkarte 15: Benutzeroberflächenerstellung mit JavaFx beschrieben, kam es in unserer nun implementierten Software zusätzlich zum Einsatz der Erweiterung JFoenix. Dies wurde angewendet, um eine hohe Usability unseres Programms anzustreben. Die meisten aber nicht alle Elemente der GUI sind mit der Nutzung des Scene-Builders erstellt worden. Elemente, welche nicht mit dem Tool erzeugt werden konnten, wurden selbst entwickelt. Das entspricht aber der Umsetzung der nicht geplanten Strategie S39 - Eigenes Implementieren in der Architekturbeschreibung.\\
-
-In der Architekturbeschreibung war auch die Nutzung des Dependency-Injection Frameworks Guice geplant(S66 -Google Guice). Auf diesen Ansatz wurde in der Implementierung aber gänzlich verzichtet, sodass die Strategie nie umgesetzt wurde.\\
 
 %<<<<<<< HEAD
 %\newpage

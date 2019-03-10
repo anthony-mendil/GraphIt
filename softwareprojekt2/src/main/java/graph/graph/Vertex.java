@@ -24,7 +24,6 @@ public class Vertex {
     /**
      * The unique id of a vertex.
      */
-    @NonNull
     private final int id;
 
     /**
