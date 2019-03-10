@@ -59,17 +59,23 @@ public class AddSphereLogAction extends LogAction {
             graph.addSphere(point2D);
             Sphere sp = pickSupport.getSphere(point2D.getX(), point2D.getY());
             createParameter(sp);
+
+            DatabaseManager databaseManager = DatabaseManager.getInstance();
+            databaseManager.addEntryDatabase(createLog());
         } else {
             graph.getSpheres().add(((AddRemoveSphereParam) parameters).getSphere());
+
+            DatabaseManager databaseManager = DatabaseManager.getInstance();
+            databaseManager.addEntryDatabase(createLog());
+
             AddRemoveVerticesParam addRemoveVerticesParam = ((AddRemoveSphereParam) parameters).getAddRemoveVerticesParam();
             AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(addRemoveVerticesParam);
-            addVerticesLogAction.action();
+            if (addRemoveVerticesParam.getVertexList().size() != 0) {
+                addVerticesLogAction.action();
+            }
         }
         vv.repaint();
         syndrom.getVv2().repaint();
-
-        DatabaseManager databaseManager = DatabaseManager.getInstance();
-        databaseManager.addEntryDatabase(createLog());
 
         notifyObserverGraph();
     }

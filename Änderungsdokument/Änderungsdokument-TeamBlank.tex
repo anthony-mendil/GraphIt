@@ -213,8 +213,6 @@
   \renewcommand{\headrulewidth}{0.4pt}
   \tableofcontents
 
-\newpage
-
   \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
 
 
@@ -223,7 +221,6 @@
 \label{sec:datensicht}
 
 \emph{Autoren: Anthony Mendil, Clement Phung, Bastian Rexhäuser}\\ \\
-
 Im Folgenden beschreiben wir die Datensicht unserer fertig implementierten Anwendung \textit{GraphIt}. Bei der Beschreibung dieser Sicht nehmen wir Bezug zu den folgenden Strategien aus der Architekturbeschreibung: S1 - GXL, S4 - Command, S5 - Benutzer, S7 - Datenmodell, S19 - JUNG, S33 - JavaScript Object Notation (.json), S39 - Eigene Implementierung, S43 - Eigener Datentyp, S45 - H2 Database, S63 - Jackson und S64 - Google Guice. Außerdem werden wir auf die Strategien S50 - Hibernate, S56 - GXL-Framework (bei Source Forge gehostet) und S61 - Regeln in der GXL-Datei eingehen. Im Gegensatz zur Architekturbeschreibung, in der lediglich das geplante Vorgehen beschrieben und auf der Grundlage der eben genannten Strategien begründet wurde, werden wir in diesem Dokument einen Abglich zwischen dem geplanten und dem tatsächlich realisierten Datenmodell machen. \\
 
 Wie in der Architekturbeschreibung erklärt wurde, haben wir nicht geplant, alleine für den Graphen ein komplett eigenes Datenmodell zu erstellen. Stattdessen haben wir geplant das vom Framework JUNG vorgegebene Datenmodell zu verwenden und mit unseren eigenen Datenklassen \texttt{Vertex} (für Knoten) und \texttt{Edge} zu erweitern (für Kanten) (S19 - JUNG). Dieses Vorgehen war zentraler Bestandteil im Rahmen der Implementierung und wurde wie geplant realisiert.\\ 
@@ -249,12 +246,11 @@ In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zuge
 
 Neben der Erstellung der GUI wie in Problemkarte 15: Benutzeroberflächenerstellung mit JavaFx beschrieben, kam es in unserer nun implementierten Software zusätzlich zum Einsatz der Erweiterung JFoenix. Dies wurde angewendet, um eine hohe Usability unseres Programms anzustreben. Die meisten aber nicht alle Elemente der GUI sind mit der Nutzung des Scene-Builders erstellt worden. Elemente, welche nicht mit dem Tool erzeugt werden konnten, wurden selbst entwickelt. Das entspricht aber der Umsetzung der nicht geplanten Strategie S39 - Eigenes Implementieren in der Architekturbeschreibung.\\
 
-In der Architekturbeschreibung war auch die Nutzung des Dependency-Injection Frameworks Guice geplant(S66 -Google Guice). Auf diesen Ansatz wurde in der Implementierung aber gänzlich verzichtet, sodass die Strategie nie umgesetzt wurde.
+In der Architekturbeschreibung war auch die Nutzung des Dependency-Injection Frameworks Guice geplant(S66 -Google Guice). Auf diesen Ansatz wurde in der Implementierung aber gänzlich verzichtet, sodass die Strategie nie umgesetzt wurde.\\
 
-<<<<<<< HEAD
-\newpage
-\section{Datensicht}
-\label{sec:datensicht}
+%<<<<<<< HEAD
+%\newpage
+%\label{sec:datensicht}
 
 
 \textit{Anmerkungen zu dem Diagramm}: \\
