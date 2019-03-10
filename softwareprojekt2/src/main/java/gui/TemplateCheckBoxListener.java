@@ -10,6 +10,8 @@ import javafx.scene.control.CheckBox;
  * Listens to the selected checkbox and calls the action associated with it.
  * The Listener gets used by checkboxes for setting the allowed arrow types in the template options and for
  * filtering the graph by regular expressions and arrow types.
+ *
+ * @author Jacky Philipp Mach
  */
 public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     /**

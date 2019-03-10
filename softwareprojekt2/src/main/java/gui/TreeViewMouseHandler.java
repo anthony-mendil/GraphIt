@@ -14,6 +14,8 @@ import javafx.scene.text.Text;
 
 /**
  * Initializes the context menu and selection of the overview.
+ *
+ * @author Jacky Philipp Mach
  */
 public class TreeViewMouseHandler implements EventHandler<MouseEvent> {
 

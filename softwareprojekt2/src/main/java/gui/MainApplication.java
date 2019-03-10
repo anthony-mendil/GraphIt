@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 
 /**
  * Starts the whole application.
+ *
+ * @author Jacky Philipp Mach
  */
 public class MainApplication extends Application {
 

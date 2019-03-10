@@ -22,6 +22,8 @@ import java.util.Map;
 /**
  * Defines values for the syndrom. These are default values. The values represent the currently selected values from the
  * GUI. Its a singleton instance.
+ *
+ * @author Jacky Philipp Mach
  */
 @Data
 public class Values {

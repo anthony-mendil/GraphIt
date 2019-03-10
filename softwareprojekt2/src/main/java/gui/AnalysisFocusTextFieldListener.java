@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
  * Listens to the focus change of the analysis predecessor/successor textfield.
  * If the textfield loses the focus but a number was typed in, the number will be set and the actions will be called
  * accordingly to the selected checkboxes.
+ *
+ * @author Jacky Philipp Mach
  */
 public class AnalysisFocusTextFieldListener implements ChangeListener<Boolean> {
     /**

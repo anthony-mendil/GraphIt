@@ -5,6 +5,8 @@ import log_management.dao.PersonalEntityManagerFactory;
 
 /**
  * Starts the whole application.
+ *
+ * @author Jacky Philipp Mach
  */
 public class Main {
 

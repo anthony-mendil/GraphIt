@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 
 /**
  * Sets the icons on the gui.
+ *
+ * @author Jacky Philipp Mach
  */
 class HelperGui {
     /**

@@ -7,6 +7,8 @@ import javafx.scene.control.ComboBox;
 /**
  * Listens to the focus change of the font and size comboboxes for the spheres and symptoms and evaluates accordingly to
  * each combobox if the input is valid after losing the focus.
+ *
+ * @author Jacky Philipp Mach
  */
 public class ComboBoxFocusListener implements ChangeListener<Boolean> {
     /**

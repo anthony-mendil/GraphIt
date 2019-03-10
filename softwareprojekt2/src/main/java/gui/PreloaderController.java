@@ -6,6 +6,8 @@ import lombok.Getter;
 
 /**
  * The preloader controller to control the progressbar.
+ *
+ * @author Jacky Philipp Mach
  */
 public class PreloaderController {
 

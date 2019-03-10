@@ -22,6 +22,8 @@ import lombok.Setter;
 
 /**
  * Contextmenu, in case the user right-clicks on a vertex.
+ *
+ * @author Jacky Philipp Mach
  */
 @Data
 public class EdgeContextMenu {

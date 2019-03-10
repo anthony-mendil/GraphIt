@@ -8,6 +8,8 @@ import javafx.scene.control.ToggleButton;
 /**
  * Listens to the selected toggle buttons and handles that only one toggle button can be selected.
  * Also at least one toggle button must be active.
+ *
+ * @author Jacky Philipp Mach
  */
 public class ToggleButtonListener implements ChangeListener<Boolean> {
     /**

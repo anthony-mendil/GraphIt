@@ -101,6 +101,8 @@ import java.util.concurrent.CountDownLatch;
  * Contains most of the gui elements, calls most of the actions and acts as interface between
  * the gui and the internal components of the application.
  * All gui elements doesn't have javadoc because their names implies their functions.
+ *
+ * @author Jacky Philipp Mach
  */
 @Data
 public class Controller implements ObserverSyndrom {
@@ -1451,7 +1453,7 @@ public class Controller implements ObserverSyndrom {
      * If yes, then it disabled the auto layout button for spheres.
      */
     private void updateSphereAutoLayout() {
-        Boolean sphereLocked = false;
+        boolean sphereLocked = false;
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if (graph != null) {
             for (Sphere s : graph.getSpheres()) {
@@ -1472,7 +1474,7 @@ public class Controller implements ObserverSyndrom {
      * If yes, then it disabled the auto layout button for vertices.
      */
     private void updateVertexAutoLayout() {
-        Boolean vertexLocked = false;
+        boolean vertexLocked = false;
         if (!syndrom.getLayout().getGraph().getVertices().isEmpty()) {
             for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
                 if (v.isLockedPosition()) {
@@ -2548,7 +2550,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Updates the Overview.
      */
-    public void treeViewUpdate() {
+    void treeViewUpdate() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) vv.getGraphLayout().getGraph();
         List<Sphere> spheres = graph.getSpheres();
@@ -2635,7 +2637,7 @@ public class Controller implements ObserverSyndrom {
     /**
      * Loads all the template tables to set template rules for every single graph element.
      */
-    public void loadTables() {
+    void loadTables() {
         SyndromVisualisationViewer<Vertex, Edge> vv = syndrom.getVv();
 
         if (vv == null) {

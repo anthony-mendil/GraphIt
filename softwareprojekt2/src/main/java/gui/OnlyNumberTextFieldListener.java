@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 /**
  * Blocks the input of the textfield.
  * In this case everything except numbers.
+ *
+ * @author Jacky Philipp Mach
  */
 public class OnlyNumberTextFieldListener implements ChangeListener<String> {
 

@@ -7,6 +7,8 @@ import javafx.scene.control.ComboBox;
 /**
  * Blocks the input of the textfield of the combobox.
  * In this case everything except letters.
+ *
+ * @author Jacky Philipp Mach
  */
 public class OnlyLettersSpacesComboBoxListener implements ChangeListener<String> {
     /**

@@ -7,6 +7,8 @@ import javafx.event.EventHandler;
 /**
  * Handles the event when a menuitem is selected from the log filter options and filters the logs accordingly
  * to the selection.
+ *
+ * @author Jacky Philipp Mach
  */
 public class AnalysisTypeHandler implements EventHandler<ActionEvent> {
     /**

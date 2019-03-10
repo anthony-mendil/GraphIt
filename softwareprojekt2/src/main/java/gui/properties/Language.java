@@ -2,6 +2,8 @@ package gui.properties;
 
 /**
  * The enum containing the selectable Languages.
+ *
+ * @author Jacky Philipp Mach
  */
 public enum Language {
     /**

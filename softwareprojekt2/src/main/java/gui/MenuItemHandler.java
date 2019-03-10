@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 /**
  * The event handler that replace the images visible in the associated menubutton to the image of the latest selected
  * menuitem.
+ *
+ * @author Jacky Philipp Mach
  */
 public class MenuItemHandler implements EventHandler<ActionEvent> {
 

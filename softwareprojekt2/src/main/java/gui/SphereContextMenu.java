@@ -26,6 +26,8 @@ import java.util.Optional;
 
 /**
  * Creates the context-menu, if the user right-clicks a sphere.
+ *
+ * @author Jacky Philipp Mach
  */
 @Data
 public class SphereContextMenu {
