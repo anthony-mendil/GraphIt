@@ -1416,6 +1416,7 @@ public class Controller implements ObserverSyndrom {
         }
         disableTemplateRules(true);
         updateUndoRedoButton();
+        updateAutoLayoutButton();
 
         if (!syndrom.getTemplate().isReinforcedEdgesAllowed()) {
             edgeArrowReinforced.setDisable(true);
@@ -1427,28 +1428,63 @@ public class Controller implements ObserverSyndrom {
             edgeArrowExtenuating.setDisable(true);
         }
 
-        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
-        if (graph != null) {
-            for (Sphere s : graph.getSpheres()) {
-                if (s.isLockedPosition()) {
-                    sphereAutoLayout.setDisable(true);
-                    break;
-                }
-            }
-        }
-        for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
-            if (v.isLockedPosition()) {
-                verticesAutoLayout.setDisable(true);
-                break;
-            }
-        }
-
-
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
         SwitchModeAction switchModeAction = new SwitchModeAction(FunctionMode.EDIT);
         switchModeAction.action();
         root.requestFocus();
+    }
+
+    /**
+     *  Checks if the template rule "position" is locked.
+     *  If yes, then it disables the auto layout button accordingly for the gui element(sphere, symptom).
+     */
+    private void updateAutoLayoutButton(){
+        updateSphereAutoLayout();
+        updateVertexAutoLayout();
+    }
+
+    /**
+     * Checks if the template rule "position" is locked for spheres.
+     * If yes, then it disabled the auto layout button for spheres.
+     */
+    private void updateSphereAutoLayout(){
+        Boolean sphereLocked = false;
+        SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
+        if (graph != null) {
+            for (Sphere s : graph.getSpheres()) {
+                if (s.isLockedPosition()) {
+                    sphereLocked = true;
+                    sphereAutoLayout.setDisable(true);
+                    break;
+                }
+            }
+            if(!sphereLocked){
+                sphereAutoLayout.setDisable(false);
+            }
+        }
+    }
+
+    /**
+     *  Checks if the template rule "position" is locked for vertices.
+     *  If yes, then it disabled the auto layout button for vertices.
+     */
+    private void updateVertexAutoLayout(){
+        Boolean vertexLocked = false;
+        if(!syndrom.getLayout().getGraph().getVertices().isEmpty()){
+            for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
+                if (v.isLockedPosition()) {
+                    vertexLocked = true;
+                    verticesAutoLayout.setDisable(true);
+                    break;
+                }
+            }
+            if(!vertexLocked){
+                verticesAutoLayout.setDisable(false);
+            }
+        }else{
+            verticesAutoLayout.setDisable(false);
+        }
     }
 
     /**
@@ -3038,8 +3074,8 @@ public class Controller implements ObserverSyndrom {
         Platform.runLater(() -> {
             treeViewUpdate();
             updateUndoRedoButton();
+            updateAutoLayoutButton();
             loadTables();
-
         });
     }
 
@@ -3061,6 +3097,7 @@ public class Controller implements ObserverSyndrom {
         treeViewUpdate();
         loadTables();
         updateUndoRedoButton();
+        updateAutoLayoutButton();
     }
 
     /**
