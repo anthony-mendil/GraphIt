@@ -70,7 +70,7 @@ public class AddSphereLogAction extends LogAction {
 
             AddRemoveVerticesParam addRemoveVerticesParam = ((AddRemoveSphereParam) parameters).getAddRemoveVerticesParam();
             AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(addRemoveVerticesParam);
-            if (addRemoveVerticesParam.getVertexList().size() != 0) {
+            if (!addRemoveVerticesParam.getVertexList().isEmpty()) {
                 addVerticesLogAction.action();
             }
         }

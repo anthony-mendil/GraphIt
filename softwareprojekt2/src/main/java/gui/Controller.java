@@ -1201,6 +1201,7 @@ public class Controller implements ObserverSyndrom {
         }
         templateToFields();
         treeViewUpdate();
+        handSelector.requestFocus();
         mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
@@ -1244,8 +1245,8 @@ public class Controller implements ObserverSyndrom {
             }
         }
         templateToFields();
-        rulesTemplate();
         treeViewUpdate();
+        handSelector.requestFocus();
         mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
@@ -1279,6 +1280,7 @@ public class Controller implements ObserverSyndrom {
         }
         templateToFields();
         treeViewUpdate();
+        handSelector.requestFocus();
         mainStage.setTitle(syndrom.getGraphName() + " - " + APPLICATION_TITLE);
     }
 
