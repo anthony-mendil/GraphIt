@@ -103,8 +103,7 @@ public class RemoveVerticesLogAction extends LogAction {
     private void handleVertex(Vertex vertex, SyndromVisualisationViewer<Vertex, Edge> vv, SyndromPickSupport<Vertex, Edge> pickSupport,
                               List<Vertex> lockedVertices, SyndromGraph<Vertex, Edge> graph, Map<Edge, Pair<Vertex, Vertex>> edg,
                               Map<Vertex, Sphere> params){
-        if (!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition() ||
-                values.getMode() == FunctionMode.TEMPLATE) {
+        if (vertexIsNotLocked(vertex)) {
             Point2D posVertex = vertex.getCoordinates();
             posVertex = vv.getRenderContext().getMultiLayerTransformer().transform(posVertex);
             Sphere sp = pickSupport.getSphere(posVertex.getX(), posVertex.getY());
@@ -201,11 +200,13 @@ public class RemoveVerticesLogAction extends LogAction {
         return true;
     }
 
-    private boolean vertexIsLocked(Vertex vertex){
-        if((!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) ||
-                values.getMode() == FunctionMode.TEMPLATE){
-            return true;
-        }
-        return false;
+    /**
+     * Checks if a vertex has a locked property.
+     * @param vertex The vertex that gets checked.
+     * @return True if its not locked, false otherwise.
+     */
+    private boolean vertexIsNotLocked(Vertex vertex){
+        return(!vertex.isLockedStyle() && !vertex.isLockedAnnotation() && !vertex.isLockedPosition()) ||
+                values.getMode() == FunctionMode.TEMPLATE;
     }
 }
