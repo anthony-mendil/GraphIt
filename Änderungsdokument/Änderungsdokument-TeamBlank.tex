@@ -278,18 +278,22 @@ Die bereits erwähnten Parameterklassen sind Unterklassen der Klasse \texttt{Par
 
 In unserem Programm ist ebenfalls das Exportieren einzelner Graphen mit den zugehörigen Log-Einträgen möglich. Dies geschieht anhand eines selbst entwickelten Dateiformates (OOF für \glqq out of frameworks\grqq; S43 - eigener Datentyp). Dieses Datei-Format findet für genau diesen Zweck bereits in der Architekturbeschreibung Erwähnung.  \\
 
-Im Gegenzug zu dem Datenmodell in der Architekturbeschreibung, wurde die Klasse Syndrom komplett entfernt. Zum einen haben wir festgestellt, dass die zahlreichen Attribute teilweise nicht notwendig waren, da diese über den \texttt{VisualisationViewer} gesetzt werden und somit in Syndrom nur eine doppelte Instanziierung. Zum anderen hat Syndrom zusätzliche Funktionalität erhalten und ist somit keine reine Datenklasse mehr und musste streng genommen aus dem Datenmodell entfernt werden.\\
+Im Gegenzug zu dem Datenmodell in der Architekturbeschreibung, wurde hieraus die Klasse \texttt{Syndrom} komplett entfernt. Zum einen haben wir festgestellt, dass die zahlreichen Attribute teilweise nicht notwendig waren, da diese über den \texttt{VisualisationViewer} gesetzt werden und somit in Syndrom nur eine doppelte Instanziierung darstellen würden. Zum anderen hat \texttt{Syndrom} zusätzliche Funktionalität erhalten und ist somit keine reine Datenklasse mehr und musste streng genommen aus dem Datenmodell entfernt werden.\\
 
 \textit{Anmerkungen zu dem Diagramm}: \\
 Alle dargestellten Attribute sind \texttt{private}. Auch wenn für die Attribute Getter und Setter (außer bei sämtlichen Id's, dort nur Getter) existieren, werden sie aufgrund ihrer Deklaration als \textit{private} im Diagramm markiert. \\
 Des weiteren lassen sich die Rollennamen direkt aus den Klassennamen herleiten, weshalb wir sie im Diagramm nicht explizit nennen. Die Assoziation zwischen \texttt{Vertex} und \texttt{ScopePoint} betreffend, wurde beschlossen, dass \texttt{Vertex} statt einem Attribut, in welchem die verschiedenen \texttt{ScopePoints} für die jeweils gleichen Arten der Relationstypen zusammengefasst werden, drei Attribute gegeben werden, die jeweils ausschließlich gleichartige \texttt{ScopePoints} eines Relationstyps beinhalten. Diese Unterteilung sorgt für eine klare logische Trennung und ermöglicht es ohne Filterung direkt auf die \texttt{ScopePoints} zuzugreifen, die einem Pfeiltyp entsprechen. Es muss also nicht erst die Liste aller \texttt{ScopePoints} nach der Art der Relation gefiltert werden.\\
-
+\newline 
 \begin{landscape}
 	\begin{figure}
 		\centering
 		\includegraphics[height=18cm]{Datenmodell_SWP2019.PNG}
 	\end{figure}
 \end{landscape}
+
+%\includepdf[pages=-, landscape, scale=0.77,pagecommand={\null\enlargethispage{2\baselineskip}\vfill\captionof{figure}{Konteptionelle Sicht},\pagestyle{fancy}}]{DatenmodellSVG.pdf}
+%
+
 
 \end{document}
 
