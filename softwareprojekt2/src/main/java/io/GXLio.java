@@ -210,14 +210,12 @@ public class GXLio {
     private boolean templateReturnCheck(GXLGraph gxlTemplate, boolean withTemplate) {
         if (gxlTemplate != null) {
             if (!withTemplate && !templateFoundFlag) {
-                logger.info("Template found but not used");
                 templateFoundFlag = true;
                 return true;
             }
             templateFoundFlag = true;
         } else {
             if (withTemplate) {
-                logger.error("Error on empty Template GXLGraph");
                 return true;
             }
         }
