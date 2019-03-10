@@ -57,14 +57,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -93,8 +93,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -1427,32 +1427,21 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
-     *  Checks if the template rules "reinforced, extenuating and neutral relations allowed" is locked.
-     *  If yes, then it enables/disables the menu items for the reinforced, extenuating and neutral relations.
+     * Checks if the template rules "reinforced, extenuating and neutral relations allowed" is locked.
+     * If yes, then it enables/disables the menu items for the reinforced, extenuating and neutral relations.
      */
-    private void updateArrowMenuButton(){
-        if (!syndrom.getTemplate().isReinforcedEdgesAllowed()) {
-            edgeArrowReinforced.setDisable(true);
-        }else{
-            edgeArrowReinforced.setDisable(false);
-        }
-        if (!syndrom.getTemplate().isNeutralEdgesAllowed()) {
-            edgeArrowNeutral.setDisable(true);
-        }else{
-            edgeArrowNeutral.setDisable(false);
-        }
-        if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
-            edgeArrowExtenuating.setDisable(true);
-        }else{
-            edgeArrowExtenuating.setDisable(false);
-        }
+    private void updateArrowMenuButton() {
+        edgeArrowReinforced.setDisable(!syndrom.getTemplate().isReinforcedEdgesAllowed());
+        edgeArrowNeutral.setDisable(!syndrom.getTemplate().isNeutralEdgesAllowed());
+        edgeArrowExtenuating.setDisable(!syndrom.getTemplate().isExtenuatingEdgesAllowed());
+
     }
 
     /**
-     *  Checks if the template rule "position" is locked.
-     *  If yes, then it enables/disables the auto layout button accordingly for the gui element(sphere, symptom).
+     * Checks if the template rule "position" is locked.
+     * If yes, then it enables/disables the auto layout button accordingly for the gui element(sphere, symptom).
      */
-    private void updateAutoLayoutButton(){
+    private void updateAutoLayoutButton() {
         updateSphereAutoLayout();
         updateVertexAutoLayout();
     }
@@ -1461,7 +1450,7 @@ public class Controller implements ObserverSyndrom {
      * Checks if the template rule "position" is locked for spheres.
      * If yes, then it disabled the auto layout button for spheres.
      */
-    private void updateSphereAutoLayout(){
+    private void updateSphereAutoLayout() {
         Boolean sphereLocked = false;
         SyndromGraph<Vertex, Edge> graph = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         if (graph != null) {
@@ -1472,19 +1461,19 @@ public class Controller implements ObserverSyndrom {
                     break;
                 }
             }
-            if(!sphereLocked){
+            if (!sphereLocked) {
                 sphereAutoLayout.setDisable(false);
             }
         }
     }
 
     /**
-     *  Checks if the template rule "position" is locked for vertices.
-     *  If yes, then it disabled the auto layout button for vertices.
+     * Checks if the template rule "position" is locked for vertices.
+     * If yes, then it disabled the auto layout button for vertices.
      */
-    private void updateVertexAutoLayout(){
+    private void updateVertexAutoLayout() {
         Boolean vertexLocked = false;
-        if(!syndrom.getLayout().getGraph().getVertices().isEmpty()){
+        if (!syndrom.getLayout().getGraph().getVertices().isEmpty()) {
             for (Vertex v : syndrom.getLayout().getGraph().getVertices()) {
                 if (v.isLockedPosition()) {
                     vertexLocked = true;
@@ -1492,10 +1481,10 @@ public class Controller implements ObserverSyndrom {
                     break;
                 }
             }
-            if(!vertexLocked){
+            if (!vertexLocked) {
                 verticesAutoLayout.setDisable(false);
             }
-        }else{
+        } else {
             verticesAutoLayout.setDisable(false);
         }
     }
@@ -2364,6 +2353,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Opens the given PDF in the default application for PDF.
+     *
      * @param pdfName The name of the PDF with file ending.
      */
     @FXML
