@@ -1417,16 +1417,7 @@ public class Controller implements ObserverSyndrom {
         disableTemplateRules(true);
         updateUndoRedoButton();
         updateAutoLayoutButton();
-
-        if (!syndrom.getTemplate().isReinforcedEdgesAllowed()) {
-            edgeArrowReinforced.setDisable(true);
-        }
-        if (!syndrom.getTemplate().isNeutralEdgesAllowed()) {
-            edgeArrowNeutral.setDisable(true);
-        }
-        if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
-            edgeArrowExtenuating.setDisable(true);
-        }
+        updateArrowMenuButton();
 
         ResetVvAction resetAction = new ResetVvAction();
         resetAction.action();
@@ -1436,8 +1427,30 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
+     *  Checks if the template rules "reinforced, extenuating and neutral relations allowed" is locked.
+     *  If yes, then it enables/disables the menu items for the reinforced, extenuating and neutral relations.
+     */
+    private void updateArrowMenuButton(){
+        if (!syndrom.getTemplate().isReinforcedEdgesAllowed()) {
+            edgeArrowReinforced.setDisable(true);
+        }else{
+            edgeArrowReinforced.setDisable(false);
+        }
+        if (!syndrom.getTemplate().isNeutralEdgesAllowed()) {
+            edgeArrowNeutral.setDisable(true);
+        }else{
+            edgeArrowNeutral.setDisable(false);
+        }
+        if (!syndrom.getTemplate().isExtenuatingEdgesAllowed()) {
+            edgeArrowExtenuating.setDisable(true);
+        }else{
+            edgeArrowExtenuating.setDisable(false);
+        }
+    }
+
+    /**
      *  Checks if the template rule "position" is locked.
-     *  If yes, then it disables the auto layout button accordingly for the gui element(sphere, symptom).
+     *  If yes, then it enables/disables the auto layout button accordingly for the gui element(sphere, symptom).
      */
     private void updateAutoLayoutButton(){
         updateSphereAutoLayout();
@@ -3075,6 +3088,7 @@ public class Controller implements ObserverSyndrom {
             treeViewUpdate();
             updateUndoRedoButton();
             updateAutoLayoutButton();
+            updateArrowMenuButton();
             loadTables();
         });
     }
@@ -3098,6 +3112,7 @@ public class Controller implements ObserverSyndrom {
         loadTables();
         updateUndoRedoButton();
         updateAutoLayoutButton();
+        updateArrowMenuButton();
     }
 
     /**
