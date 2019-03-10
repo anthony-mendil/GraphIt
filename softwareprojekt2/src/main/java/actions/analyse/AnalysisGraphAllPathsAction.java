@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action finds all disjunctive paths between two selected vertices.
+ * @author Clement Phung
  */
 public class AnalysisGraphAllPathsAction extends GraphAction {
     /**

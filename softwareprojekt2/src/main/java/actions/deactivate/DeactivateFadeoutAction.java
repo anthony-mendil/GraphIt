@@ -19,6 +19,7 @@ import java.awt.*;
 
 /**
  * Makes the vertices and attached edges, which used to be invisible, visible again.
+ * @author Clement Phung, Nina Unterberg
  */
 public class DeactivateFadeoutAction extends LogAction {
     /**

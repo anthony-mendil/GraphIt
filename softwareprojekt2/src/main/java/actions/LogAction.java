@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 
 /**
  * Represents an action, which will be logged into the database.
+ * @author Clement Phung, Nina Unterberg
  */
 public abstract class LogAction extends GraphAction {
 

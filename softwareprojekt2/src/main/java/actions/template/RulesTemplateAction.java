@@ -6,6 +6,7 @@ import graph.graph.Template;
 
 /**
  * Creates a template of a graph.
+ * @author Jonah Jaeger
  */
 public class RulesTemplateAction extends GraphAction {
     /**

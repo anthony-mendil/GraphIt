@@ -16,6 +16,7 @@ import java.util.Set;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action calculates all convergent branches in the graph. An convergent branch, is a vertex,
  * which have an degree of at least two of outgoing relations.
+ * @author Clement Phung
  */
 public class AnalysisGraphConvergentBranchesAction extends GraphAction {
     /**

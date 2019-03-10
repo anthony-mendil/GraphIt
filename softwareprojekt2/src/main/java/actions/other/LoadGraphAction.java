@@ -9,6 +9,7 @@ import log_management.DatabaseManager;
 
 /**
  * Loads the existing graph to syndrom.
+ * @author Clement Phung, Nina Unterberg
  */
 public class LoadGraphAction extends GraphAction {
     private Controller controller;

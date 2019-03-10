@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 /**
  * Adds a/multiple sphere/s to the graph.
+ * @author Clement Phung, Nina Unterberg
  */
 public class AddSphereLogAction extends LogAction {
 

@@ -13,6 +13,7 @@ import log_management.parameters.edit.EditFontSizeSphereParam;
 
 /**
  * Changes the font-size of the annotation of the sphere.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditFontSizeSphereLogAction extends LogAction {
     /**

@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * Changes the color of the edge of a single/several vertices.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditVerticesDrawColorLogAction extends LogAction {
     /**

@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 /**
  * Superclass of all actions.
+ * @author Clement Phung, Nina Unterberg
  */
 public abstract class Action {
     /**

@@ -8,6 +8,7 @@ import java.io.File;
 
 /**
  * The OOF importer/exporter.
+ * @author Jonah Jaeger
  */
 public class OOFio {
     /**

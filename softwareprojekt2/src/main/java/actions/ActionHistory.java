@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 /**
  * A bounded history of actions.
+ * @author Clement Phung, Nina Unterberg
  */
 public class ActionHistory {
     /**

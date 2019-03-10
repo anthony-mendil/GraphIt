@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * Changes the form of the selected vertices.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditVerticesFormLogAction extends LogAction {
     /**

@@ -21,6 +21,7 @@ import java.awt.*;
 
 /**
  * The chosen vertices and all edges attached to them fadeout and will no longer be visible.
+ * @author Clement Phung, Nina Unterberg
  */
 
 public class ActivateFadeoutAction extends GraphAction {

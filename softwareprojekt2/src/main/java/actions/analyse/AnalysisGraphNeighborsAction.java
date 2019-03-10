@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action finds all predecessors and successors of the selected symptom in the given steps.
+ * @author Clement Phung
  */
 public class AnalysisGraphNeighborsAction extends GraphAction {
     /**

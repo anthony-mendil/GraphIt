@@ -9,6 +9,7 @@ import graph.visualization.transformer.vertex.VertexPaintHighlightTransformer;
 
 /**
  * Highlights the chosen vertices and the attached edges.
+ * @author Clement Phung, Nina Unterberg
  */
 public class ActivateHighlightAction extends GraphAction {
 

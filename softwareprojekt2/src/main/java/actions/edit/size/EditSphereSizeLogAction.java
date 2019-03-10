@@ -16,6 +16,7 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * Changes the sphere size.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditSphereSizeLogAction extends LogAction {
     /**

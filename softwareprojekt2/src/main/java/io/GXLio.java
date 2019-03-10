@@ -21,6 +21,7 @@ import java.util.List;
  * This class provides methods to exports a GXL-Representation from a graph
  * and to import a gxl document into the system and make an graph out of the document
  * and visualize this graph.
+ * @author Bastian Rexhäuser
  */
 public class GXLio {
 

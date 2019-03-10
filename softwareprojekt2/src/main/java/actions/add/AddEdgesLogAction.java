@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Adds a single/multiple edge/s to the graph.
+ * @author Clement Phung, Nina Unterberg
  */
 public class AddEdgesLogAction extends LogAction {
     /**

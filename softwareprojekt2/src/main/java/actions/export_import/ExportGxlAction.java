@@ -10,6 +10,7 @@ import java.io.File;
 
 /**
  * Exports a GXL file with the current syndrom graph.
+ * @author Jonah Jaeger
  */
 public class ExportGxlAction extends GraphAction {
 

@@ -4,6 +4,7 @@ import actions.GraphAction;
 
 /**
  * Changes the language to either german or english.
+ * @author Clement Phung, Nina Unterberg
  */
 public class ChangeGraphLanguageAction extends GraphAction {
 

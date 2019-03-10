@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Handles file reading and writing
+ * @author Jonah Jaeger
  */
 class FileHandler {
 

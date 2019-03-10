@@ -10,6 +10,7 @@ import java.io.File;
 
 /**
  * Imports a GXL file that includes a graph in gxl notation.
+ * @author Jonah Jaeger
  */
 public class ImportGxlAction extends GraphAction {
 

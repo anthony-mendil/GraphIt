@@ -10,6 +10,7 @@ import java.io.File;
 
 /**
  * Exports an readable file with the current protocol.
+ * @author Jonah Jaeger
  */
 public class ExportReadableProtocolAction extends GraphAction {
 

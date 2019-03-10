@@ -12,6 +12,7 @@ import graph.visualization.transformer.vertex.VertexFillPaintTransformer;
 /**
  * Cancels the highlight-option of the selected vertices. And refreshes
  * all vertices and relations.
+ * @author Clement Phung, Nina Unterberg
  */
 public class ResetVvAction extends GraphAction {
 

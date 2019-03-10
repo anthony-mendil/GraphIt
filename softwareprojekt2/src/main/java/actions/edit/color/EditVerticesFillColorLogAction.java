@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * Changes the fill-color of a single/several vertices.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditVerticesFillColorLogAction extends LogAction {
     /**

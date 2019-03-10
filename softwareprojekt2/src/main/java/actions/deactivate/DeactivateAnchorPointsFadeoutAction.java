@@ -9,6 +9,7 @@ import gui.Values;
 
 /**
  * Makes the selected anchor-points visible again.
+ * @author Clement Phung, Nina Unterberg
  */
 public class DeactivateAnchorPointsFadeoutAction extends GraphAction {
 

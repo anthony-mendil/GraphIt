@@ -17,6 +17,7 @@ import java.util.Map;
 
 /**
  * Changes the annotation of a selected sphere.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditSphereAnnotationLogAction extends LogAction {
     /**

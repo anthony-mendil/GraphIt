@@ -15,7 +15,8 @@ import java.awt.*;
 
 
 /**
- * Changes the color of the selected sphereit.
+ * Changes the color of the selected sphere.
+ * @author Clement Phung, Nina Unterberg
  */
 
 public class EditSphereColorLogAction extends LogAction {

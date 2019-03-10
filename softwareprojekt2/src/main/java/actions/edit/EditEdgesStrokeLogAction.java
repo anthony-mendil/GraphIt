@@ -12,6 +12,7 @@ import java.util.*;
 
 /**
  * Changes the stroke of the selected edges.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditEdgesStrokeLogAction extends LogAction {
     /**

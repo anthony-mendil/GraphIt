@@ -11,6 +11,7 @@ import lombok.Getter;
 /**
  * Displays some useful data in matter of the dimension of the graph (scope, networking index, structural index). The
  * information is displayed in the gui. Pls look in the website for the formula of the indices.
+ * @author Clement Phung
  */
 public class GraphDimensionAction extends GraphAction {
     /**

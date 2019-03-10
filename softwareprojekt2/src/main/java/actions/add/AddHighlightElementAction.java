@@ -10,6 +10,7 @@ import graph.visualization.SyndromVisualisationViewer;
  * Highlights an element of the graph. This action will not be logged so
  * therefore there would not be an implementation of the undo and the createParameters()
  * method.
+ * @author Clement Phung, Nina Unterberg
  */
 public class AddHighlightElementAction extends GraphAction {
 

@@ -2,6 +2,7 @@ package actions;
 
 /**
  * Enumerates all actions that have to be logged into the database.
+ * @author Clement Phung, Nina Unterberg
  */
 public enum LogEntryName {
     /**

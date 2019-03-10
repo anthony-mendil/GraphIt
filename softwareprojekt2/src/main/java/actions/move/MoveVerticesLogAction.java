@@ -21,6 +21,7 @@ import java.util.Set;
 /**
  * Moves vertices from one to another position. A vertex can not be positioned where another vertex is already located
  * and it must be positioned within a sphere.
+ * @author Clement Phung, Nina Unterberg
  */
 public class MoveVerticesLogAction extends LogAction {
 

@@ -15,6 +15,7 @@ import java.util.Set;
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action will finds and highlight all branches in the graph.
+ * @author Clement Phung
  */
 public class AnalysisGraphBranchesAction extends GraphAction {
     /**

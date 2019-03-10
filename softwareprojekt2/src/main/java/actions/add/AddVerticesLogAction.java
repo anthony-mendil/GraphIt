@@ -16,6 +16,7 @@ import java.util.Map;
 /**
  * Adds a collection of vertices to the graph. AddVerticesLogAction reverts the RemoveVerticesLogAction. The different
  * constructors depict different application scenarios.
+ * @author Clement Phung, Nina Unterberg
  */
 public class AddVerticesLogAction extends LogAction {
 

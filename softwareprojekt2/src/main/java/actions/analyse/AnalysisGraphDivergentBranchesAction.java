@@ -16,6 +16,7 @@ import java.util.Set;
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action finds all divergent branches in the graph. A divergent branch is a vertex,
  * which has in degree of at least two of incoming relations.
+ * @author Clement Phung
  */
 public class AnalysisGraphDivergentBranchesAction extends GraphAction {
     /**

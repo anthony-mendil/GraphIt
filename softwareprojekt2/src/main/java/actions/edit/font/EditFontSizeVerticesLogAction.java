@@ -17,6 +17,7 @@ import java.util.Map;
 
 /**
  * Changes the font-size of vertex annotations.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditFontSizeVerticesLogAction extends LogAction {
     /**

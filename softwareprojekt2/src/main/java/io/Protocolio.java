@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * The action log protocol export handler.
+ * @author Jonah Jaeger
  */
 public class Protocolio {
 

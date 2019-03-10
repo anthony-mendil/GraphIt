@@ -11,6 +11,7 @@ import java.io.File;
 
 /**
  * Exports an OOF file with the current syndrom graph.
+ * @author Jonah Jaeger
  */
 public class ExportOofAction extends GraphAction {
 

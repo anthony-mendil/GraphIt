@@ -16,6 +16,7 @@ import java.util.Map;
 
 /**
  * Changes the size of a vertex or vertices.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditVerticesSizeLogAction extends LogAction {
     /**

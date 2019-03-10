@@ -8,6 +8,7 @@ import graph.visualization.SyndromVisualisationViewer;
 
 /**
  * Removes the fadeout of the picked elements.
+ * @author Clement Phung, Nina Unterberg
  */
 public class RemoveFadeoutElementAction extends GraphAction {
 

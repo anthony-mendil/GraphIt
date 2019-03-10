@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Changes the color of the selected edges.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditEdgesColorLogAction extends LogAction {
     /**

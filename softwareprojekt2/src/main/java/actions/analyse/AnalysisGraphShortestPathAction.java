@@ -15,6 +15,7 @@ import java.util.ArrayList;
 /**
  * Analyses the graph in matter of heavily connected vertices or highly important vertices.
  * This action finds the shortest path between two selected vertices.
+ * @author Clement Phung
  */
 public class AnalysisGraphShortestPathAction extends GraphAction {
     /**

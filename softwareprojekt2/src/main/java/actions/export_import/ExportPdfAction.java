@@ -11,6 +11,7 @@ import java.io.File;
 
 /**
  * Exports an PDF file with the current graph visualization.
+ * @author Jonah Jaeger
  */
 public class ExportPdfAction extends GraphAction {
 

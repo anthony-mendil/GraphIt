@@ -9,6 +9,7 @@ import gui.Values;
 
 /**
  * All existing anchor-points fadeout and are no longer visible for the user.
+ * @author Clement Phung, Nina Unterberg
  */
 public class ActivateAnchorPointsFadeoutAction extends GraphAction {
 

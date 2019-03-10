@@ -23,6 +23,7 @@ import java.util.Map;
 
 /**
  * Layouts the graph according to a previously defined layout.
+ * @author Clement Phung, Nina Unterberg
  */
 public class LayoutVerticesGraphLogAction extends LogAction {
     /**

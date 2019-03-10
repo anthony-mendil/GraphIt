@@ -34,6 +34,7 @@ import static org.freehep.graphicsio.pdf.PDFGraphics2D.PAGE_SIZE;
 
 /**
  * The PDF exporter used to export and print the graph.
+ * @author Jonah Jaeger, Nina Unterberg
  */
 public class PDFio {
 

@@ -17,6 +17,7 @@ import java.util.Map;
 
 /**
  * Changes the font of the annotations of vertices.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditFontVerticesLogAction extends LogAction {
     /**

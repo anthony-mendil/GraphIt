@@ -9,6 +9,7 @@ import gui.properties.LoadLanguage;
 /**
  * Superclass of all actions that need access to the internal state of the graph, the visualization viewer and the
  * layout.
+ * @author Clement Phung, Nina Unterberg
  */
 public abstract class GraphAction extends Action {
 

@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Removes a sphere from the syndrom graph.
+ * @author Clement Phung, Nina Unterberg
  */
 public class RemoveSphereLogAction extends LogAction {
 

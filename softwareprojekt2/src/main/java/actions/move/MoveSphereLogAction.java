@@ -16,6 +16,7 @@ import java.awt.geom.Point2D;
 /**
  * Moves a sphere from one to another position. A sphere can not be positioned where another sphere is already located.
  * If that's the case the sphere stays at its old position. All vertices assigned to this sphere move with the sphere.
+ * @author Clement Phung, Nina Unterberg
  */
 public class MoveSphereLogAction extends LogAction {
     /**

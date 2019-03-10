@@ -4,6 +4,7 @@ import graph.graph.FunctionMode;
 
 /**
  * Observer interface, for observing components.
+ * @author Clement Phung, Nina Unterberg
  */
 public interface ObserverSyndrom {
     /**

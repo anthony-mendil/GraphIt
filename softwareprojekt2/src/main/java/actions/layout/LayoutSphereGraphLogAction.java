@@ -17,6 +17,7 @@ import java.util.*;
 
 /**
  * Layouts the graph according to a previously defined layout.
+ * @author Clement Phung, Nina Unterberg
  */
 public class LayoutSphereGraphLogAction extends LogAction {
     /**

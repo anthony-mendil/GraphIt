@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Highlights the result of the calculation.
+ * @author Clement Phung
  */
 public class ShowAnalysisResultAction extends LogAction {
     /**

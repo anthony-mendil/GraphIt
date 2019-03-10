@@ -9,6 +9,7 @@ import io.PDFio;
 
 /**
  * Prints the current graph visualization as a PDF file.
+ * @author Jonah Jaeger
  */
 public class PrintPDFAction extends GraphAction {
 

@@ -6,6 +6,7 @@ import graph.graph.FunctionMode;
 
 /**
  * Changes the mode either to "Ersteller"/"Bearbeiter"/ "Auswerter".
+ * @author Clement Phung, Nina Unterberg
  */
 public class SwitchModeAction extends GraphAction {
     /**

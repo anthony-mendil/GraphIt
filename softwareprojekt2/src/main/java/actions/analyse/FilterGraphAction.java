@@ -13,8 +13,9 @@ import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.functors.TruePredicate;
 
 /**
- * Filters the graph (edges, vertices, spheres) for a regular expression or edge type or the isVisible attribute of
- * vertices.
+ * Filters the graph (edges, vertices, spheres) for a regular expression or edge type or
+ * the isVisible attribute of vertices.
+ * @author Clement Phung
  */
 public class FilterGraphAction extends GraphAction {
     /**

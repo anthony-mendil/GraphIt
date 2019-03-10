@@ -7,6 +7,7 @@ import java.io.File;
 
 /**
  * Imports an OOF file.
+ * @author Jonah Jaeger
  */
 public class ImportOofAction extends GraphAction {
 

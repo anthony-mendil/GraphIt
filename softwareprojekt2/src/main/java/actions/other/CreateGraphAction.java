@@ -8,6 +8,7 @@ import log_management.DatabaseManager;
 
 /**
  * Creates a new graph.
+ * @author Clement Phung, Nina Unterberg
  */
 public class CreateGraphAction extends GraphAction {
     private String graphName;

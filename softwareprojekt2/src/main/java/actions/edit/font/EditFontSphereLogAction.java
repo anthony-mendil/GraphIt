@@ -13,6 +13,7 @@ import log_management.parameters.edit.EditFontSphereParam;
 
 /**
  * Changes the font of the annotation of the selected sphere.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditFontSphereLogAction extends LogAction {
     /**

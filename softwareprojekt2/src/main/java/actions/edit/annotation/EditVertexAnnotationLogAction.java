@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * Changes the annotation of a selected Vertex.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditVertexAnnotationLogAction extends LogAction {
     /**

@@ -15,6 +15,7 @@ import java.util.*;
 
 /**
  * Removes vertices from the syndrom graph.
+ * @author Clement Phung, Nina Unterberg
  */
 public class RemoveVerticesLogAction extends LogAction {
 

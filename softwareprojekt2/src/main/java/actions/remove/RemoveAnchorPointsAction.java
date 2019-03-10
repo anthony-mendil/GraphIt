@@ -10,6 +10,7 @@ import javafx.util.Pair;
 /**
  * Removes all anchor-points of every (picked) edge.
  * Gets the picked edges through pick support.
+ * @author Clement Phung, Nina Unterberg
  */
 public class RemoveAnchorPointsAction extends GraphAction {
 

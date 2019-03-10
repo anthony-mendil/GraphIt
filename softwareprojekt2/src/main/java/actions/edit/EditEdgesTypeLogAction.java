@@ -12,6 +12,7 @@ import java.util.*;
 
 /**
  * Changes the EdgeType from a collection of edges.
+ * @author Clement Phung, Nina Unterberg
  */
 public class EditEdgesTypeLogAction extends LogAction {
     /**
