@@ -2,6 +2,8 @@ package graph.graph;
 
 /**
  * An edge have three relation types: extenuating, neutral, reinforcing.
+ *
+ * @author Nina Unterberg
  */
 public enum EdgeArrowType {
     /**

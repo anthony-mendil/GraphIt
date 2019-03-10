@@ -7,6 +7,8 @@ import gui.properties.Language;
 
 /**
  * Creates names of the enums for pretty printing.
+ *
+ * @author Anthony Mendil
  */
 public class EnumNameCreator {
 

@@ -8,6 +8,7 @@ import org.apache.commons.collections15.Predicate;
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the vertex for visibility.
  *
+ * @author Nina Unterberg
  * @param <V> The vertex type.
  * @param <E> The edge type.
  */

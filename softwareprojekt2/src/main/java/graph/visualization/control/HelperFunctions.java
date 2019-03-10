@@ -28,6 +28,8 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * A class with helper functions.
+ *
+ * @author Nina Unterberg
  */
 public class HelperFunctions {
     /**

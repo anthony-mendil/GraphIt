@@ -6,6 +6,8 @@ import java.awt.geom.GeneralPath;
 
 /**
  * Creates different shapes for arrows.
+ *
+ * @author Nina Unterberg
  */
 public class SyndromArrowFactory extends edu.uci.ics.jung.visualization.util.ArrowFactory {
 

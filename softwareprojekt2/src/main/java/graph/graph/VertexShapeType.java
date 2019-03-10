@@ -2,6 +2,8 @@ package graph.graph;
 
 /**
  * The shape type of a vertex.
+ *
+ * @author Nina Unterberg
  */
 public enum VertexShapeType {
     /**

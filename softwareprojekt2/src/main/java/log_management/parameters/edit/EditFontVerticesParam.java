@@ -16,6 +16,8 @@ import java.util.Map;
 
 /**
  * Parameter object of the action EditFontVerticesLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditFontVerticesParam implements Param {

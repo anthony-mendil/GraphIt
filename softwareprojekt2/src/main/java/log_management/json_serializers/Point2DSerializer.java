@@ -10,6 +10,8 @@ import java.lang.reflect.Type;
 
 /**
  * Json deserializer for points2D.
+ *
+ * @author Anthony Mendil
  */
 public class Point2DSerializer implements JsonSerializer<Point2D> {
 

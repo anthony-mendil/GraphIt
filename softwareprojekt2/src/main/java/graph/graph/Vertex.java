@@ -18,6 +18,8 @@ import java.util.Map;
 /**
  * A vertex of the syndrom graph. A vertex is always assigned to a sphere. Vertices have a unique location and are
  * connected through edges. All attributes of a vertex can be changed, just the id is unique and final.
+ *
+ * @author Nina Unterberg
  */
 @Data
 public class Vertex {

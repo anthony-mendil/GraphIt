@@ -11,6 +11,8 @@ import java.util.List;
  * Defines a functor that transform a vertex into highlight color. The input vertex is left unchanged.
  * Its extracting the highlight color of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  */
 public class VertexPaintAnalyseTransformer<V> implements Transformer<V, Paint> {

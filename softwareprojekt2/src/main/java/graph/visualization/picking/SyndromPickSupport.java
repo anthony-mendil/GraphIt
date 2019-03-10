@@ -23,6 +23,8 @@ import java.util.List;
 
 /**
  * SyndromPickSupport extends the ShapePickSupport with the option to pick spheres and arrows from edges.
+ *
+ * @author Nina Unterberg
  */
 public class SyndromPickSupport<V, E> extends ShapePickSupport<V, E> {
 

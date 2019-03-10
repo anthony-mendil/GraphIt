@@ -11,6 +11,8 @@ import java.awt.*;
  * Defines a functor that transform a vertex into its fill color. The input vertex is left unchanged.
  * Its extracting the fill color of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  */
 public class VertexFontColorTransformer<V> implements Transformer<V, Paint> {

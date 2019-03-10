@@ -9,6 +9,8 @@ import lombok.Getter;
 
 /**
  * The fadeout transition for the fade out action.
+ *
+ * @author Nina Unterberg
  */
 public class FadeOutElementsTransition extends Transition {
     /**

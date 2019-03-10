@@ -10,6 +10,8 @@ import java.awt.*;
  * Defines a functor that transform an edge into its highlight color. The input edge is left unchanged.
  * Its extracting the highlight color of an edge.
  *
+ * @author Nina Unterberg
+ *
  * @param <E> the type of the edge
  */
 public class EdgeHighlightTransformer<E> implements Transformer<E, Paint> {

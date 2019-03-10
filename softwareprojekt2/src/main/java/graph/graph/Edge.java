@@ -13,6 +13,8 @@ import java.awt.geom.Point2D;
  * An edge of the syndrom-graph. There are 3 type of edges, defined by the three types of relations: extenuating,
  * neutral, reinforcing. These are typified by the arrowhead. All attributes of the edge can be changed, only the id is
  * final.
+ *
+ * @author Nina Unterberg
  */
 @Data
 public class Edge {

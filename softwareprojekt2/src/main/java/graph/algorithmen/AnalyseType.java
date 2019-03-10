@@ -2,6 +2,8 @@ package graph.algorithmen;
 
 /**
  * Lists all criteria in the analyse-mode treating several vertices.
+ *
+ * @author Nina Unterberg
  */
 public enum AnalyseType {
     /**

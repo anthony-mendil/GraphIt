@@ -20,6 +20,8 @@ import java.util.Map;
 
 /**
  * Parameter object of the action EditEdgesColorLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class EditEdgesColorParam implements Param {

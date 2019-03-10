@@ -14,6 +14,8 @@ import java.awt.*;
  * Defines a functor that transform an edge into its stroke type. The input edge is left unchanged.
  * Its extracting the stroke type of an edge.
  *
+ * @author Nina Unterberg
+ *
  * @param <E> The edge type.
  */
 public class EdgeStrokeTransformer<E> implements Transformer<E, Stroke> {

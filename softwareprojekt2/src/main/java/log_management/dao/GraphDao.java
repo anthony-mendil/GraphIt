@@ -11,6 +11,8 @@ import java.util.Optional;
 
 /**
  * The graph log_management.dao class. Manages the data access to the graphs.
+ *
+ * @author Anthony Mendil
  */
 public class GraphDao implements Dao<Graph> {
 

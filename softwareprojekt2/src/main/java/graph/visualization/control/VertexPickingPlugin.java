@@ -30,6 +30,8 @@ import java.util.List;
 
 /**
  * The vertex picking plugin, implements mouse interactions on the vertices.
+ *
+ * @author Nina Unterberg
  */
 public class VertexPickingPlugin extends AbstractGraphMousePlugin
         implements MouseListener, MouseMotionListener {

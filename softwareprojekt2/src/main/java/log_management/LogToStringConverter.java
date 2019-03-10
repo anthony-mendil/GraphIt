@@ -26,6 +26,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Converts the log to a string to print it in a more beautiful format.
+ *
+ * @author Anthony Mendil
  */
 public class LogToStringConverter {
     /**

@@ -18,6 +18,8 @@ import java.util.Map;
 
 /**
  * Parameter object of the action of AddVerticesLogAction/RemoveVerticesLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class AddRemoveVerticesParam implements Param {

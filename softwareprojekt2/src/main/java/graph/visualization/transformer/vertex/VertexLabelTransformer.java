@@ -8,6 +8,8 @@ import org.apache.commons.collections15.Transformer;
  * Defines a functor that transform a vertex into its annotation. The input vertex is left unchanged.
  * Its extracting the annotation of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type.
  */
 public class VertexLabelTransformer<V> implements Transformer<V, String> {

@@ -10,6 +10,8 @@ import java.awt.*;
  * Defines a functor that transform a vertex into highlight color. The input vertex is left unchanged.
  * Its extracting the highlight color of a vertex.
  *
+ * @author Nina Unterberg
+ *
  * @param <V> The vertex type
  */
 public class VertexPaintHighlightTransformer<V> implements Transformer<V, Paint> {

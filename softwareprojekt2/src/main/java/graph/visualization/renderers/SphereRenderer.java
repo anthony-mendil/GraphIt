@@ -13,6 +13,8 @@ import java.awt.geom.Point2D;
 
 /**
  * The SphereRenderer renders all spheres from the syndrom graph.
+ *
+ * @author Nina Unterberg
  */
 class SphereRenderer {
     /**

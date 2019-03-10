@@ -4,6 +4,8 @@ import lombok.Data;
 
 /**
  * Represents a template, which can be created by the creator.
+ *
+ * @author Nina Unterberg
  */
 @Data
 public class Template {

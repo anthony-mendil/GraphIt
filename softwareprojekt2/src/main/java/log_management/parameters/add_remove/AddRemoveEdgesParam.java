@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * Parameter object for the action AddEdgesLogAction/RemoveEdgesLogAction.
+ *
+ * @author Anthony Mendil
  */
 @Data
 public class AddRemoveEdgesParam implements Param {
