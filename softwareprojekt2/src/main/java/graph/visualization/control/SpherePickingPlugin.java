@@ -71,6 +71,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
      * The ActionHistory.
      */
     private ActionHistory history = ActionHistory.getInstance();
+    /**
+     *  Defines the add to the selection modifier (SHIFT)
+     */
+    private int addToSelectionModifiers;
 
     /**
      * Creates an instance with passed values.
@@ -80,6 +84,7 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
         this.cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
         values = Values.getInstance();
         helper = new HelperFunctions();
+        addToSelectionModifiers = InputEvent.SHIFT_DOWN_MASK;
     }
 
     @Override
@@ -102,18 +107,23 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                 } else {
                     helper.setActionText("SPHERE_PICKING_ADD_ALERT", true, true);
                 }
-            }
         } else {
-            if (vertex == null && sp != null && values.getMode() != FunctionMode.ANALYSE) {
-                contextMenu = new SphereContextMenu(sp).getContextMenu();
-                helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
-                PickedState<Sphere> spheres = vv.getPickedSphereState();
-                spheres.clear();
-                spheres.pick(sp, true);
+
+                if(e.getModifiersEx() == addToSelectionModifiers && vertex == null){
+                    PickedState<Sphere> spheres =  vv.getPickedSphereState();
+                    spheres.pick(sp, true);
+                }
+                else if (vertex == null && sp != null && values.getMode() != FunctionMode.ANALYSE) {
+                    contextMenu = new SphereContextMenu(sp).getContextMenu();
+                    helper.showSideMenu(e.getLocationOnScreen(), contextMenu);
+                    PickedState<Sphere> spheres = vv.getPickedSphereState();
+                    spheres.clear();
+                    spheres.pick(sp, true);
+                }
             }
+            vv.repaint();
+            Syndrom.getInstance().getVv2().repaint();
         }
-        vv.repaint();
-        Syndrom.getInstance().getVv2().repaint();
     }
 
     /**
@@ -183,16 +193,16 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
 
         if (sp != null && vert == null && edge == null) {
             if (SwingUtilities.isRightMouseButton(e)) {
-                if (sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT) {
-                    helper.setActionText("SPHERE_PICKING_ALERT", true, true);
-                } else if (values.getMode() != FunctionMode.ANALYSE) {
-                    spherePickedCoordinate = sp.getCoordinates();
-                    setVerticesPositionToPoints(sp);
+                if(pickedSphereState.getPicked().size() < 2) {
+                    if (sp.isLockedPosition() && values.getMode() == FunctionMode.EDIT) {
+                        helper.setActionText("SPHERE_PICKING_ALERT", true, true);
+                    } else if (values.getMode() != FunctionMode.ANALYSE) {
+                        spherePickedCoordinate = sp.getCoordinates();
+                        setVerticesPositionToPoints(sp);
+                    }
+                }else{
+                    helper.setActionText("SPHERE_MOVING_ALERT", true, true);
                 }
-            }
-            if (!pickedSphereState.isPicked(sp)) {
-                pickedSphereState.clear();
-                pickedSphereState.pick(sp, true);
             }
         }
         vv.repaint();
@@ -235,22 +245,32 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
      * @param vv         The visualization viewer to work on.
      */
     private void setCoordinateSpheres(List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer<Vertex, Edge> vv) {
-        for (Sphere s : spheres) {
-            Shape sShape = sphereShapeTransformer.transform(s);
-            boolean move = calculateMove(allSpheres, s, sShape);
-            if (!move) {
-                s.setCoordinates(spherePickedCoordinate);
-                for (Vertex v : s.getVertices()) {
-                    Point2D vp = points.get(v.getId());
-                    v.setCoordinates(vp);
-                    vv.getGraphLayout().setLocation(v, vp);
-                }
-            } else {
-                if (spherePickedCoordinate != s.getCoordinates()) {
-                    MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s, spherePickedCoordinate, s.getCoordinates());
-                    history.execute(moveSphereLogAction);
+        if(spheres.size() < 2) {
+            //for (Sphere s : spheres) {
+            //    System.out.println(s.getAnnotation().get("GERMAN"));
+            //}
+            for (Sphere s : spheres) {
+                Shape sShape = sphereShapeTransformer.transform(s);
+                boolean move = calculateMove(allSpheres, s, sShape);
+                if (!move) {
+                    System.out.println("out");
+                    s.setCoordinates(spherePickedCoordinate);
+                    for (Vertex v : s.getVertices()) {
+                        Point2D vp = points.get(v.getId());
+                        v.setCoordinates(vp);
+                        vv.getGraphLayout().setLocation(v, vp);
+                    }
+                } else {
+                    System.out.println("here11");
+                    if (spherePickedCoordinate != s.getCoordinates()) {
+                        MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s, spherePickedCoordinate, s.getCoordinates());
+                        history.execute(moveSphereLogAction);
+                    }
                 }
             }
+        }
+        else{
+            helper.setActionText("SPHERE_MOVING_ALERT", true, true);
         }
     }
 

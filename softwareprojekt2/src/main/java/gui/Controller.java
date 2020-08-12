@@ -908,8 +908,13 @@ public class Controller implements ObserverSyndrom {
         Color color = convertToAWT(sphereBackgroundColour.getValue());
         Values.getInstance().setFillPaintSphere(color);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
-            EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
-            history.execute(colorLogAction);
+            if(syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
+                EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
+                history.execute(colorLogAction);
+            }else{
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("SPHERE_MULTIPLE_ALERT", true, true);
+            }
         }
     }
 
@@ -975,8 +980,13 @@ public class Controller implements ObserverSyndrom {
     private void editFontSphere(String font) {
         values.setFontSphere(font);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
-            EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
-            history.execute(editFontSphereLogAction);
+            if(syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
+                EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
+                history.execute(editFontSphereLogAction);
+            }else{
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("SPHERE_MULTIPLE_ALERT", true, true);
+            }
         }
     }
 
@@ -2017,8 +2027,13 @@ public class Controller implements ObserverSyndrom {
     void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
-            EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
-            history.execute(editFontSizeSphereLogAction);
+            if(syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
+                EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
+                history.execute(editFontSizeSphereLogAction);
+            }else{
+                HelperFunctions helper = new HelperFunctions();
+                helper.setActionText("SPHERE_MULTIPLE_ALERT", true, true);
+            }
         }
     }
 
