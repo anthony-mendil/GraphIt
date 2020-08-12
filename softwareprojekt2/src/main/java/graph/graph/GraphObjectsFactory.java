@@ -31,7 +31,7 @@ public class GraphObjectsFactory {
      */
     public GraphObjectsFactory() {
         values = Values.getInstance();
-        objectCounter = 0;
+        objectCounter = 1;
     }
 
     /**

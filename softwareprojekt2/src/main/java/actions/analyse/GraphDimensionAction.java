@@ -11,6 +11,7 @@ import lombok.Getter;
 /**
  * Displays some useful data in matter of the dimension of the graph (scope, networking index, structural index). The
  * information is displayed in the gui. Pls look in the website for the formula of the indices.
+ * Other data for instance the number of spheres and symptoms are also displayed.
  * @author Clement Phung
  */
 public class GraphDimensionAction extends GraphAction {
@@ -29,6 +30,18 @@ public class GraphDimensionAction extends GraphAction {
      */
     @Getter
     private Double structureIndex;
+
+    /**
+     * The number of existing symptoms.
+     */
+    @Getter
+    private int numberSymptoms;
+
+    /**
+     * The number of existing edges.
+     */
+    @Getter
+    private int numberEdges;
 
 
     /**
@@ -49,12 +62,15 @@ public class GraphDimensionAction extends GraphAction {
          */
 
         scope = graph.getEdges().size() + graph.getVertices().size();
+        numberSymptoms = graph.getEdges().size();
+        numberEdges = graph.getVertices().size();
         if (!graph.getVertices().isEmpty()) {
             networkIndex = (double) 2 * graph.getEdges().size() / graph.getVertices().size();
             structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
                     jGraphTHandler.detectConvergentBranches().size() +
                     jGraphTHandler.detectDivergentBranches().size() +
                     jGraphTHandler.detectCycles().size()) / graph.getVertices().size();
+
         } else {
             networkIndex = (double) -1;
             structureIndex = (double) -1;
