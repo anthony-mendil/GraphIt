@@ -83,9 +83,27 @@ public class LayoutSphereGraphLogAction extends LogAction {
                 x = point2D.getX();
                 y = point2D.getY();
             }
-
         }
         return new Point2D.Double(x, y);
+    }
+
+    private void arrangeSpheres(List<Sphere> sphereList) {
+        Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap = new HashMap<>();
+        Point2D xY = getSmallestXY(sphereList);
+        double x = xY.getX();
+        double y = xY.getY();
+        double height = getHeights(sphereList, oldSphereMap).getFirst();
+
+        ArrayList<ArrayList<Sphere>> sphereRows = new ArrayList<>();
+        setSphereRows(sphereRows, sphereList);
+
+        for (ArrayList<Sphere> sphereRow : sphereRows) {
+            sphereRow.sort(sphereCompare);
+        }
+        Map<Vertex, Point2D> verticesCoordinates = new HashMap<>();
+        layoutSpheres(sphereRows, x, height, y, verticesCoordinates);
+        indicator = true;
+        createParameter(oldSphereMap, verticesCoordinates);
     }
 
     @Override
@@ -96,27 +114,7 @@ public class LayoutSphereGraphLogAction extends LogAction {
         List<Sphere> sphereList = graph.getSpheres();
         if (parameters == null || indicator) {
             if (!sphereList.isEmpty()) {
-                Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap = new HashMap<>();
-                Point2D xY = getSmallestXY(sphereList);
-                double x = xY.getX();
-                double y = xY.getY();
-                double height = getHeights(sphereList, oldSphereMap).getFirst();
-                double minHeight = getHeights(sphereList, oldSphereMap).getSecond();
-                double smallestY = getYs(sphereList, oldSphereMap).getFirst();
-                double largestY = getYs(sphereList, oldSphereMap).getSecond();
-
-                int maxI = (int) ((largestY - smallestY) / minHeight) + 5;
-
-                ArrayList<ArrayList<Sphere>> sphereRows = new ArrayList<>(maxI);
-                setSphereRows(sphereRows, sphereList, maxI, height, y);
-
-                for (ArrayList<Sphere> sphereRow : sphereRows) {
-                    sphereRow.sort(sphereCompare);
-                }
-                Map<Vertex, Point2D> verticesCoordinates = new HashMap<>();
-                layoutSpheres(sphereRows, x, height, y, verticesCoordinates);
-                indicator = true;
-                createParameter(oldSphereMap, verticesCoordinates);
+                arrangeSpheres(sphereList);
             }
         } else {
             setLayoutWithParameters(layout, graph);
@@ -151,32 +149,6 @@ public class LayoutSphereGraphLogAction extends LogAction {
             }
         }
         return new edu.uci.ics.jung.graph.util.Pair<>(height, minHeight);
-    }
-
-    /**
-     * Finds the max/min y position of a sphere.
-     *
-     * @param sphereList   A list containing all spheres.
-     * @param oldSphereMap The old spheres map (parameters).
-     * @return The min/ max Y position.
-     */
-    private edu.uci.ics.jung.graph.util.Pair<Double> getYs(List<Sphere> sphereList,
-                                                           Map<Sphere, Pair<Pair<Double, Double>, Point2D>> oldSphereMap) {
-        double smallestY = sphereList.get(0).getCoordinates().getY();
-        double largestY = sphereList.get(0).getCoordinates().getY();
-        for (Sphere sp : sphereList) {
-            oldSphereMap.put(sp, new Pair<>(new Pair<>(sp.getWidth(), sp.getHeight()), sp.getCoordinates()));
-
-            double sphereY = sp.getCoordinates().getY();
-            if (smallestY > sphereY) {
-                smallestY = sphereY;
-            }
-
-            if (sphereY > largestY) {
-                largestY = sphereY;
-            }
-        }
-        return new edu.uci.ics.jung.graph.util.Pair<>(smallestY, largestY);
     }
 
     /**
@@ -219,21 +191,24 @@ public class LayoutSphereGraphLogAction extends LogAction {
      *
      * @param sphereRows The list, which will be containing the spheres sorted in rows.
      * @param sphereList A list, containing all spheres.
-     * @param maxI       The max iteration value.
-     * @param height     The height/ width of the spheres.
-     * @param y          The y coordinate.
      */
-    private void setSphereRows(ArrayList<ArrayList<Sphere>> sphereRows, List<Sphere> sphereList, int maxI, double height, double y) {
-        for (int i = 0; i < maxI; i++) {
+    private void setSphereRows(ArrayList<ArrayList<Sphere>> sphereRows, List<Sphere> sphereList) {
+        int numberOfRows = (int) Math.round(Math.sqrt(sphereList.size()));
+        int numberOfSpheresPerRow = (int) Math.ceil((float) sphereList.size() / (float) numberOfRows);
+
+        for (int i = 0; i < numberOfRows; i++) {
             sphereRows.add(new ArrayList<>());
         }
 
-        for (Sphere sp : sphereList) {
-            for (int i = 0; i < maxI; i++) {
-                if (sp.getCoordinates().getY() >= y + (height * i) - height / 2 && sp.getCoordinates().getY() < y +
-                        (height * (i + 1)) - height / 2) {
-                    sphereRows.get(i).add(sp);
-                }
+        int row = 0;
+        int addedSpheres = 0;
+        for (Sphere sp: sphereList) {
+            sphereRows.get(row).add(sp);
+            addedSpheres++;
+            if (addedSpheres == numberOfSpheresPerRow) {
+                row++;
+                addedSpheres = 0;
+
             }
         }
     }
