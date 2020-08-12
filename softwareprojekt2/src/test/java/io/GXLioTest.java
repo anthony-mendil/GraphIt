@@ -469,11 +469,11 @@ public class GXLioTest {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
-        Assert.assertEquals(new ArrayList<>(Collections.singletonList(5)), getNodeIDs(spheres.get(0).getVertices()));
-        Assert.assertEquals(new ArrayList<>(Arrays.asList(6, 7, 8)), getNodeIDs(spheres.get(1).getVertices()));
-        Assert.assertEquals(new ArrayList<>(Collections.singletonList(9)), getNodeIDs(spheres.get(2).getVertices()));
-        Assert.assertEquals(new ArrayList<>(Arrays.asList(10, 11)), getNodeIDs(spheres.get(3).getVertices()));
-        Assert.assertEquals(new ArrayList<>(Arrays.asList(12, 13)), getNodeIDs(spheres.get(4).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Collections.singletonList(6)), getNodeIDs(spheres.get(0).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Arrays.asList(7, 8, 9)), getNodeIDs(spheres.get(1).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Collections.singletonList(10)), getNodeIDs(spheres.get(2).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Arrays.asList(11, 12)), getNodeIDs(spheres.get(3).getVertices()));
+        Assert.assertEquals(new ArrayList<>(Arrays.asList(13, 14)), getNodeIDs(spheres.get(4).getVertices()));
     }
 
     /**
@@ -502,24 +502,24 @@ public class GXLioTest {
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Edge> edges = new ArrayList<>(g.getEdges());
         edges.sort(Comparator.comparingInt(Edge::getId));
-        Assert.assertEquals(5, g.getEndpoints(edges.get(0)).getFirst().getId());
-        Assert.assertEquals(6, g.getEndpoints(edges.get(0)).getSecond().getId());
-        Assert.assertEquals(9, g.getEndpoints(edges.get(1)).getFirst().getId());
-        Assert.assertEquals(8, g.getEndpoints(edges.get(1)).getSecond().getId());
-        Assert.assertEquals(11, g.getEndpoints(edges.get(2)).getFirst().getId());
-        Assert.assertEquals(10, g.getEndpoints(edges.get(2)).getSecond().getId());
-        Assert.assertEquals(12, g.getEndpoints(edges.get(3)).getFirst().getId());
-        Assert.assertEquals(13, g.getEndpoints(edges.get(3)).getSecond().getId());
-        Assert.assertEquals(10, g.getEndpoints(edges.get(4)).getFirst().getId());
-        Assert.assertEquals(7, g.getEndpoints(edges.get(4)).getSecond().getId());
-        Assert.assertEquals(11, g.getEndpoints(edges.get(5)).getFirst().getId());
-        Assert.assertEquals(7, g.getEndpoints(edges.get(5)).getSecond().getId());
-        Assert.assertEquals(5, g.getEndpoints(edges.get(0)).getFirst().getId());
-        Assert.assertEquals(12, g.getEndpoints(edges.get(6)).getFirst().getId());
-        Assert.assertEquals(5, g.getEndpoints(edges.get(0)).getFirst().getId());
-        Assert.assertEquals(7, g.getEndpoints(edges.get(6)).getSecond().getId());
-        Assert.assertEquals(13, g.getEndpoints(edges.get(7)).getFirst().getId());
-        Assert.assertEquals(7, g.getEndpoints(edges.get(7)).getSecond().getId());
+        Assert.assertEquals(6, g.getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(7, g.getEndpoints(edges.get(0)).getSecond().getId());
+        Assert.assertEquals(10, g.getEndpoints(edges.get(1)).getFirst().getId());
+        Assert.assertEquals(9, g.getEndpoints(edges.get(1)).getSecond().getId());
+        Assert.assertEquals(12, g.getEndpoints(edges.get(2)).getFirst().getId());
+        Assert.assertEquals(11, g.getEndpoints(edges.get(2)).getSecond().getId());
+        Assert.assertEquals(13, g.getEndpoints(edges.get(3)).getFirst().getId());
+        Assert.assertEquals(14, g.getEndpoints(edges.get(3)).getSecond().getId());
+        Assert.assertEquals(11, g.getEndpoints(edges.get(4)).getFirst().getId());
+        Assert.assertEquals(8, g.getEndpoints(edges.get(4)).getSecond().getId());
+        Assert.assertEquals(12, g.getEndpoints(edges.get(5)).getFirst().getId());
+        Assert.assertEquals(8, g.getEndpoints(edges.get(5)).getSecond().getId());
+        Assert.assertEquals(6, g.getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(13, g.getEndpoints(edges.get(6)).getFirst().getId());
+        Assert.assertEquals(6, g.getEndpoints(edges.get(0)).getFirst().getId());
+        Assert.assertEquals(8, g.getEndpoints(edges.get(6)).getSecond().getId());
+        Assert.assertEquals(14, g.getEndpoints(edges.get(7)).getFirst().getId());
+        Assert.assertEquals(8, g.getEndpoints(edges.get(7)).getSecond().getId());
     }
 
     // <-----------    coordinates    --------->
@@ -578,16 +578,16 @@ public class GXLioTest {
         prepareSyndrom(false).importGXL(new File(nameTestGraph), false);
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Sphere> spheres = (ArrayList<Sphere>) g.getSpheres();
-        Assert.assertEquals("Sphere 0", convertMapToList(spheres.get(0).getAnnotation()).get(1));
-        Assert.assertEquals("Sphäre 0", convertMapToList(spheres.get(0).getAnnotation()).get(3));
-        Assert.assertEquals("Sphere 1", convertMapToList(spheres.get(1).getAnnotation()).get(1));
+        Assert.assertEquals("Sphere 1", convertMapToList(spheres.get(0).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 1", convertMapToList(spheres.get(0).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 2", convertMapToList(spheres.get(1).getAnnotation()).get(1));
         Assert.assertEquals("Sphäre Nummer 1", convertMapToList(spheres.get(1).getAnnotation()).get(3));
         Assert.assertEquals("Sphere number 2", convertMapToList(spheres.get(2).getAnnotation()).get(1));
-        Assert.assertEquals("Sphäre 2", convertMapToList(spheres.get(2).getAnnotation()).get(3));
+        Assert.assertEquals("Sphäre 3", convertMapToList(spheres.get(2).getAnnotation()).get(3));
         Assert.assertEquals("Sphere number 3", convertMapToList(spheres.get(3).getAnnotation()).get(1));
         Assert.assertEquals("Sphäre Nummer 3", convertMapToList(spheres.get(3).getAnnotation()).get(3));
-        Assert.assertEquals("Sphere 4", convertMapToList(spheres.get(4).getAnnotation()).get(1));
-        Assert.assertEquals("Sphäre 4", convertMapToList(spheres.get(4).getAnnotation()).get(3));
+        Assert.assertEquals("Sphere 5", convertMapToList(spheres.get(4).getAnnotation()).get(1));
+        Assert.assertEquals("Sphäre 5", convertMapToList(spheres.get(4).getAnnotation()).get(3));
     }
 
     /**
@@ -602,23 +602,23 @@ public class GXLioTest {
         SyndromGraph<Vertex, Edge> g = (SyndromGraph<Vertex, Edge>) syndrom.getVv().getGraphLayout().getGraph();
         ArrayList<Vertex> vertices = new ArrayList<>(g.getVertices());
         vertices.sort(Comparator.comparingInt(Vertex::getId));
-        Assert.assertEquals("Symptom 5", convertMapToList(vertices.get(0).getAnnotation()).get(1));
-        Assert.assertEquals("Symptom 5", convertMapToList(vertices.get(0).getAnnotation()).get(3));
-        Assert.assertEquals("Symptom 6", convertMapToList(vertices.get(1).getAnnotation()).get(1));
-        Assert.assertEquals("Symptom 6", convertMapToList(vertices.get(1).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 6", convertMapToList(vertices.get(0).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 6", convertMapToList(vertices.get(0).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 7", convertMapToList(vertices.get(1).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 7", convertMapToList(vertices.get(1).getAnnotation()).get(3));
         Assert.assertEquals("Symptom number 7", convertMapToList(vertices.get(2).getAnnotation()).get(1));
         Assert.assertEquals("Symptom Nummer 7", convertMapToList(vertices.get(2).getAnnotation()).get(3));
         Assert.assertEquals("Symptom Nummer 7", convertMapToList(vertices.get(2).getAnnotation()).get(3));
-        Assert.assertEquals("Symptom 8", convertMapToList(vertices.get(3).getAnnotation()).get(1));
-        Assert.assertEquals("Symptom 8", convertMapToList(vertices.get(3).getAnnotation()).get(3));
-        Assert.assertEquals("Symptom 9", convertMapToList(vertices.get(4).getAnnotation()).get(1));
-        Assert.assertEquals("Symptom 9", convertMapToList(vertices.get(4).getAnnotation()).get(3));
-        Assert.assertEquals("Symptom 10", convertMapToList(vertices.get(5).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 9", convertMapToList(vertices.get(3).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 9", convertMapToList(vertices.get(3).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 10", convertMapToList(vertices.get(4).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 10", convertMapToList(vertices.get(4).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 11", convertMapToList(vertices.get(5).getAnnotation()).get(1));
         Assert.assertEquals("Symptom Nummer 10", convertMapToList(vertices.get(5).getAnnotation()).get(3));
         Assert.assertEquals("Symptom number 11", convertMapToList(vertices.get(6).getAnnotation()).get(1));
-        Assert.assertEquals("Symptom 11", convertMapToList(vertices.get(6).getAnnotation()).get(3));
-        Assert.assertEquals("Symptom 12", convertMapToList(vertices.get(7).getAnnotation()).get(1));
-        Assert.assertEquals("Symptom 12", convertMapToList(vertices.get(7).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 12", convertMapToList(vertices.get(6).getAnnotation()).get(3));
+        Assert.assertEquals("Symptom 13", convertMapToList(vertices.get(7).getAnnotation()).get(1));
+        Assert.assertEquals("Symptom 13", convertMapToList(vertices.get(7).getAnnotation()).get(3));
     }
 
     /**

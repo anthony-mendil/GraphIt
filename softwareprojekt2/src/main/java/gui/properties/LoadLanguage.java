@@ -151,6 +151,8 @@ public class LoadLanguage {
         c.getAnalysisScope().setText(loadLanguagesKey("analysisScope"));
         c.getAnalysisNetworkingIndex().setText(loadLanguagesKey("analysisNetworkingIndex"));
         c.getAnalysisStructureIndex().setText(loadLanguagesKey("analysisStructureIndex"));
+        c.getAnalysisAmountSymptom().setText(loadLanguagesKey("analysisAmountSymptom"));
+        c.getAnalysisAmountEdge().setText(loadLanguagesKey("analysisAmountEdge"));
         c.getAnalysisSymptom().setText(loadLanguagesKey(sectionSymptom));
         c.getAnalysisPredecessor().getTooltip().setText(loadLanguagesKey("analysisPredecessorTooltip"));
         c.getAnalysisSuccessor().getTooltip().setText(loadLanguagesKey("analysisSuccessorTooltip"));

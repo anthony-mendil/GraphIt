@@ -439,6 +439,14 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private Text analysisStructureIndexNumber;
     @FXML
+    private Text analysisAmountSymptom;
+    @FXML
+    private Text analysisAmountSymptomNumber;
+    @FXML
+    private Text analysisAmountEdge;
+    @FXML
+    private Text analysisAmountEdgeNumber;
+    @FXML
     private Text analysisSymptom;
     @FXML
     private CheckBox analysisPredecessor;
@@ -641,6 +649,7 @@ public class Controller implements ObserverSyndrom {
     private GridPane templateGridPane;
     @FXML
     private VBox templateVbox;
+
     /**
      * The list of all fonts.
      */
@@ -1400,6 +1409,16 @@ public class Controller implements ObserverSyndrom {
         } else {
             analysisNetworkingIndexNumber.setText(format.format(graphDimensionAction.getNetworkIndex()));
             analysisStructureIndexNumber.setText(format.format(graphDimensionAction.getStructureIndex()));
+        }
+        if(graphDimensionAction.getNumberSymptoms() == -1){
+            analysisAmountSymptomNumber.setText("NaN");
+        }else{
+            analysisAmountSymptomNumber.setText(format.format(graphDimensionAction.getNumberSymptoms()));
+        }
+        if(graphDimensionAction.getNumberEdges() == -1){
+            analysisAmountEdgeNumber.setText("NaN");
+        }else{
+            analysisAmountEdgeNumber.setText(format.format(graphDimensionAction.getNumberEdges()));
         }
         satellite.setContent(syndrom.getVv2());
 

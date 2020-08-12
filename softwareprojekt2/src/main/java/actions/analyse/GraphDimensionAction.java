@@ -62,8 +62,8 @@ public class GraphDimensionAction extends GraphAction {
          */
 
         scope = graph.getEdges().size() + graph.getVertices().size();
-        numberSymptoms = graph.getEdges().size();
-        numberEdges = graph.getVertices().size();
+        numberSymptoms = graph.getVertices().size();
+        numberEdges = graph.getEdges().size();
         if (!graph.getVertices().isEmpty()) {
             networkIndex = (double) 2 * graph.getEdges().size() / graph.getVertices().size();
             structureIndex = (double) (jGraphTHandler.detectRelationChains().getKey().size() +
