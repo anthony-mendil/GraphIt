@@ -302,16 +302,6 @@ public class Controller implements ObserverSyndrom {
     private ToggleButton edgeArrowExtenuatingToggle;
     @FXML
     private ToggleButton edgeArrowNeutralToggle;
-    //TODO Remove these elements
-    @FXML
-    private MenuButton edgeArrowMenuButton;
-    @FXML
-    private MenuItem edgeArrowReinforced;
-    @FXML
-    private MenuItem edgeArrowExtenuating;
-    @FXML
-    private MenuItem edgeArrowNeutral;
-    //------------------------
     @FXML
     private Text currentActionText;
     /**
@@ -395,14 +385,6 @@ public class Controller implements ObserverSyndrom {
     private MenuItem highlightElementMenuItem;
     @FXML
     private MenuItem highlightDeleteMenuItem;
-    //TODO Remove these elements
-    @FXML
-    private ToggleButton highlight;
-    @FXML
-    private Button highlightElements;
-    @FXML
-    private Button dehighlightElements;
-    //----------------------------
     @FXML
     private MenuButton fadeoutMenu;
     @FXML
@@ -414,10 +396,6 @@ public class Controller implements ObserverSyndrom {
     //TODO Remove these elements
     @FXML
     private ToggleButton fadeout;
-    @FXML
-    private Button fadeoutElements;
-    @FXML
-    private Button deleteFadeoutElements;
     //--------------
     @FXML
     private Text selection;
@@ -1402,10 +1380,6 @@ public class Controller implements ObserverSyndrom {
         editButton.setDisable(false);
         analysisButton.setDisable(false);
         createButton.setDisable(true);
-        edgeArrowReinforced.setDisable(false);
-        edgeArrowNeutral.setDisable(false);
-        edgeArrowExtenuating.setDisable(false);
-
         edgeArrowReinforcedToggle.setDisable(false);
         edgeArrowExtenuatingToggle.setDisable(false);
         edgeArrowNeutralToggle.setDisable(false);
@@ -1504,10 +1478,6 @@ public class Controller implements ObserverSyndrom {
      * If yes, then it enables/disables the menu items for the reinforced, extenuating and neutral relations.
      */
     private void updateArrowMenuButton() {
-        edgeArrowReinforced.setDisable(!syndrom.getTemplate().isReinforcedEdgesAllowed());
-        edgeArrowNeutral.setDisable(!syndrom.getTemplate().isNeutralEdgesAllowed());
-        edgeArrowExtenuating.setDisable(!syndrom.getTemplate().isExtenuatingEdgesAllowed());
-
         edgeArrowReinforcedToggle.setDisable(!syndrom.getTemplate().isReinforcedEdgesAllowed());
         edgeArrowExtenuatingToggle.setDisable(!syndrom.getTemplate().isExtenuatingEdgesAllowed());
         edgeArrowNeutralToggle.setDisable(!syndrom.getTemplate().isNeutralEdgesAllowed());
@@ -2128,9 +2098,6 @@ public class Controller implements ObserverSyndrom {
         edgeStrokeDashedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
         edgeStrokeDotted.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
         edgeStrokeDottedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
-        edgeArrowReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
-        edgeArrowExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
-        edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
 
         filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
@@ -2443,7 +2410,6 @@ public class Controller implements ObserverSyndrom {
     private void resetToggleButtons() {
         handSelector.setSelected(true);
         anchorPointsButton.setSelected(false);
-        highlight.setSelected(false);
         fadeout.setSelected(false);
     }
 

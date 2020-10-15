@@ -109,11 +109,6 @@ public class LoadLanguage {
         c.getHighlightCheckMenuItem().setText(loadLanguagesKey("toolbarHighlightCheckMenuItem"));
         c.getHighlightElementMenuItem().setText(loadLanguagesKey("toolbarHighlightElement"));
         c.getHighlightDeleteMenuItem().setText(loadLanguagesKey("toolbarNotHighlightElement"));
-        //TODO Remove these
-        c.getHighlight().getTooltip().setText(loadLanguagesKey("toolbarHighlightTooltip"));
-        c.getHighlightElements().getTooltip().setText(loadLanguagesKey("toolbarHighlightElement"));
-        c.getDehighlightElements().getTooltip().setText(loadLanguagesKey("toolbarNotHighlightElement"));
-        //-----------------
         c.getFadeoutMenu().setText(loadLanguagesKey("toolbarFadeoutMenu"));
         c.getFadeoutMenu().getTooltip().setText(loadLanguagesKey("toolbarFadeoutTooltip"));
         c.getFadeoutCheckMenuItem().setText(loadLanguagesKey("toolbarFadeoutCheckMenuItem"));
@@ -121,8 +116,6 @@ public class LoadLanguage {
         c.getFadeoutDeleteMenuItem().setText(loadLanguagesKey("toolbarFadeoutDeleteElement"));
         //TODO Remove these
         c.getFadeout().getTooltip().setText(loadLanguagesKey("toolbarFadeoutTooltip"));
-        c.getFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutElement"));
-        c.getDeleteFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutDeleteElement"));
         //----------------
         c.getSelection().setText(loadLanguagesKey("selectorHand"));
         c.getHandSelector().getTooltip().setText(loadLanguagesKey("selectorHandTooltip"));
@@ -163,8 +156,6 @@ public class LoadLanguage {
         c.getEdgeArrowReinforcedToggle().getTooltip().setText(loadLanguagesKey("edgeArrowReinforcedTooltip"));
         c.getEdgeArrowExtenuatingToggle().getTooltip().setText(loadLanguagesKey("edgeArrowExtenuatingTooltip"));
         c.getEdgeArrowNeutralToggle().getTooltip().setText(loadLanguagesKey("edgeArrowUnknownTooltip"));
-        //TODO Remove this element
-        c.getEdgeArrowMenuButton().getTooltip().setText(loadLanguagesKey("edgeArrowTypeTooltip"));
         c.getAnalysisGraphInfo().setText(loadLanguagesKey("analysisGraphInfo"));
         c.getAnalysisScope().setText(loadLanguagesKey("analysisScope"));
         c.getAnalysisNetworkingIndex().setText(loadLanguagesKey("analysisNetworkingIndex"));

@@ -228,45 +228,6 @@
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </padding>
                     </Separator>
-                    <ToggleButton fx:id="highlight" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
-                        <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlight.png" />
-                            </ImageView>
-                        </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarHighlightTooltip" />
-                        </tooltip>
-                    </ToggleButton>
-                    <JFXButton fx:id="highlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
-                        <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlightAdd.png" />
-                            </ImageView>
-                        </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarHighlightElement" />
-                        </tooltip>
-                    </JFXButton>
-                    <JFXButton fx:id="dehighlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
-                        <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlightDelete.png" />
-                            </ImageView>
-                        </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarNotHighlightElement" />
-                        </tooltip>
-                    </JFXButton>
                     <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
                         <HBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -280,34 +241,6 @@
                             <Tooltip text="%toolbarFadeoutTooltip" />
                         </tooltip>
                     </ToggleButton>
-                    <JFXButton fx:id="fadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
-                        <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/fadeoutAdd.png" />
-                            </ImageView>
-                        </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarFadeoutElement" />
-                        </tooltip>
-                    </JFXButton>
-                    <JFXButton fx:id="deleteFadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
-                        <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@icons2/fadeoutDelete.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarFadeoutDeleteElement" />
-                        </tooltip>
-                    </JFXButton>
                <MenuButton fx:id="highlightMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%toolbarHighlightMenu">
                   <items>
                      <CheckMenuItem fx:id="highlightCheckMenuItem" mnemonicParsing="false" onAction="#highlight" text="%toolbarHighlightCheckMenuItem">
@@ -919,50 +852,6 @@
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
-                                </MenuButton>
-                                <MenuButton fx:id="edgeArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="menubutton" stylesheets="@gui_style.css">
-                                    <graphic>
-                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@icons2/005-right-chevron.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                    <items>
-                                        <MenuItem fx:id="edgeArrowReinforced" mnemonicParsing="false" onAction="#edgeReinforced">
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/005-right-chevron.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                        <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false" onAction="#edgeExtenuating">
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/015-circle.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                        <MenuItem fx:id="edgeArrowNeutral" mnemonicParsing="false" onAction="#edgeNeutral">
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/014-question.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                    </items>
-                                    <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </HBox.margin>
-                                    <tooltip>
-                                        <Tooltip text="%edgeArrowTypeTooltip" />
-                                    </tooltip>
                                 </MenuButton>
 
                             </children>
