@@ -238,7 +238,7 @@
                             </ImageView>
                         </graphic>
                         <tooltip>
-                            <Tooltip text="%toolbarHighlight" />
+                            <Tooltip text="%toolbarHighlightTooltip" />
                         </tooltip>
                     </ToggleButton>
                     <JFXButton fx:id="highlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
@@ -264,7 +264,7 @@
                             </ImageView>
                         </graphic>
                         <tooltip>
-                            <Tooltip text="%toolbarNotHighlightElements" />
+                            <Tooltip text="%toolbarNotHighlightElement" />
                         </tooltip>
                     </JFXButton>
                     <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
@@ -277,7 +277,7 @@
                             </ImageView>
                         </graphic>
                         <tooltip>
-                            <Tooltip text="%toolbarFadeout" />
+                            <Tooltip text="%toolbarFadeoutTooltip" />
                         </tooltip>
                     </ToggleButton>
                     <JFXButton fx:id="fadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
@@ -308,9 +308,9 @@
                             <Tooltip text="%toolbarFadeoutDeleteElement" />
                         </tooltip>
                     </JFXButton>
-               <MenuButton fx:id="highlightMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="Hervorheben">
+               <MenuButton fx:id="highlightMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%toolbarHighlightMenu">
                   <items>
-                     <CheckMenuItem fx:id="highlightCheckMenuItem" mnemonicParsing="false" onAction="#highlight" text="Aktivieren/Deaktivieren">
+                     <CheckMenuItem fx:id="highlightCheckMenuItem" mnemonicParsing="false" onAction="#highlight" text="%toolbarHighlightCheckMenuItem">
                         <graphic>
                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -319,7 +319,7 @@
                            </ImageView>
                         </graphic>
                      </CheckMenuItem>
-                     <MenuItem fx:id="highlightElementMenuItem" mnemonicParsing="false" onAction="#highlightElements" text="Element hervorheben">
+                     <MenuItem fx:id="highlightElementMenuItem" mnemonicParsing="false" onAction="#highlightElements" text="%toolbarHighlightElement">
                         <graphic>
                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -327,7 +327,7 @@
                               </image>
                            </ImageView>
                         </graphic></MenuItem>
-                     <MenuItem fx:id="highlightDeleteMenuItem" mnemonicParsing="false" onAction="#deHighlightElements" text="Hervorhebung löschen">
+                     <MenuItem fx:id="highlightDeleteMenuItem" mnemonicParsing="false" onAction="#deHighlightElements" text="%toolbarNotHighlightElement">
                         <graphic>
                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -338,15 +338,15 @@
                      </MenuItem>
                   </items>
                   <tooltip>
-                     <Tooltip text="%toolbarHighlight" />
+                     <Tooltip text="%toolbarHighlightTooltip" />
                   </tooltip>
                   <HBox.margin>
                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                   </HBox.margin>
                </MenuButton>
-               <MenuButton fx:id="fadeoutMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="Ausblenden">
+               <MenuButton fx:id="fadeoutMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%toolbarFadeoutMenu">
                   <items>
-                     <CheckMenuItem fx:id="fadeoutCheckMenuItem" mnemonicParsing="false" onAction="#fadeout" text="Aktivieren/Deaktivieren">
+                     <CheckMenuItem fx:id="fadeoutCheckMenuItem" mnemonicParsing="false" onAction="#fadeout" text="%toolbarFadeoutCheckMenuItem">
                         <graphic>
                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -355,7 +355,7 @@
                            </ImageView>
                         </graphic>
                      </CheckMenuItem>
-                     <MenuItem fx:id="fadeoutElementMenuItem" mnemonicParsing="false" onAction="#fadeoutElements" text="Element ausblenden">
+                     <MenuItem fx:id="fadeoutElementMenuItem" mnemonicParsing="false" onAction="#fadeoutElements" text="%toolbarFadeoutElement">
                         <graphic>
                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -364,7 +364,7 @@
                            </ImageView>
                         </graphic>
                      </MenuItem>
-                     <MenuItem fx:id="fadeoutDeleteMenuItem" mnemonicParsing="false" onAction="#deFadeoutElements" text="Ausblendung löschen">
+                     <MenuItem fx:id="fadeoutDeleteMenuItem" mnemonicParsing="false" onAction="#deFadeoutElements" text="%toolbarFadeoutDeleteElement">
                         <graphic>
                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -375,7 +375,7 @@
                      </MenuItem>
                   </items>
                   <tooltip>
-                     <Tooltip text="%toolbarFadeout" />
+                     <Tooltip text="%toolbarFadeoutTooltip" />
                   </tooltip>
                   <HBox.margin>
                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -759,7 +759,7 @@
                               </ImageView>
                            </graphic>
                            <tooltip>
-                              <Tooltip text="Wechsel zu verstärkernde Relationen" />
+                              <Tooltip text="%edgeArrowReinforcedTooltip" />
                            </tooltip>
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -774,7 +774,7 @@
                               </ImageView>
                            </graphic>
                            <tooltip>
-                              <Tooltip text="Wechsel zu abschwächende Relationen" />
+                              <Tooltip text="%edgeArrowExtenuatingTooltip" />
                            </tooltip>
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -789,7 +789,7 @@
                               </ImageView>
                            </graphic>
                            <tooltip>
-                              <Tooltip text="Wechsel zu unbekannte Relationen" />
+                              <Tooltip text="%edgeArrowUnknownTooltip" />
                            </tooltip>
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -1255,7 +1255,7 @@
                                             <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="282.0">
                                        <children>
-                                          <ToggleButton fx:id="anchorPointsButton11" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowReinforcedToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1264,13 +1264,13 @@
                                                 </ImageView>
                                              </graphic>
                                              <tooltip>
-                                                <Tooltip text="%edgeAnchorPoint" />
+                                                <Tooltip text="%treeViewReinforcedTypeTooltip" />
                                              </tooltip>
                                              <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                              </HBox.margin>
                                           </ToggleButton>
-                                          <ToggleButton fx:id="anchorPointsButton21" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowExtenuatingToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1279,13 +1279,13 @@
                                                 </ImageView>
                                              </graphic>
                                              <tooltip>
-                                                <Tooltip text="%edgeAnchorPoint" />
+                                                <Tooltip text="%treeViewExtenuatingTypeTooltip" />
                                              </tooltip>
                                              <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                              </HBox.margin>
                                           </ToggleButton>
-                                          <ToggleButton fx:id="anchorPointsButton31" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowNeutralToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1294,7 +1294,7 @@
                                                 </ImageView>
                                              </graphic>
                                              <tooltip>
-                                                <Tooltip text="%edgeAnchorPoint" />
+                                                <Tooltip text="%treeViewUnknownTypeTooltip" />
                                              </tooltip>
                                              <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />

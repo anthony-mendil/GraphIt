@@ -256,6 +256,7 @@ public class Controller implements ObserverSyndrom {
     private MenuItem branches;
     @FXML
     private MenuItem cycles;
+    //TODO Remove this element
     @FXML
     private CheckBox treeViewArrowType;
     @FXML
@@ -301,6 +302,7 @@ public class Controller implements ObserverSyndrom {
     private ToggleButton edgeArrowExtenuatingToggle;
     @FXML
     private ToggleButton edgeArrowNeutralToggle;
+    //TODO Remove these elements
     @FXML
     private MenuButton edgeArrowMenuButton;
     @FXML
@@ -309,6 +311,7 @@ public class Controller implements ObserverSyndrom {
     private MenuItem edgeArrowExtenuating;
     @FXML
     private MenuItem edgeArrowNeutral;
+    //------------------------
     @FXML
     private Text currentActionText;
     /**
@@ -385,21 +388,37 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ToggleButton anchorPointsButton;
     @FXML
-    private ToggleButton highlight;
+    private MenuButton highlightMenu;
     @FXML
     private CheckMenuItem highlightCheckMenuItem;
+    @FXML
+    private MenuItem highlightElementMenuItem;
+    @FXML
+    private MenuItem highlightDeleteMenuItem;
+    //TODO Remove these elements
+    @FXML
+    private ToggleButton highlight;
     @FXML
     private Button highlightElements;
     @FXML
     private Button dehighlightElements;
+    //----------------------------
     @FXML
-    private ToggleButton fadeout;
+    private MenuButton fadeoutMenu;
+    @FXML
+    private MenuItem fadeoutElementMenuItem;
+    @FXML
+    private MenuItem fadeoutDeleteMenuItem;
     @FXML
     private CheckMenuItem fadeoutCheckMenuItem;
+    //TODO Remove these elements
+    @FXML
+    private ToggleButton fadeout;
     @FXML
     private Button fadeoutElements;
     @FXML
     private Button deleteFadeoutElements;
+    //--------------
     @FXML
     private Text selection;
     @FXML
@@ -557,6 +576,13 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private StackPane overviewStackPane;
     @FXML
+    private ToggleButton filterArrowReinforcedToggle;
+    @FXML
+    private ToggleButton filterArrowExtenuatingToggle;
+    @FXML
+    private ToggleButton filterArrowNeutralToggle;
+    //TODO Remove these elements
+    @FXML
     private MenuButton filterEdgeType;
     @FXML
     private MenuItem filterEdgeTypeReinforced;
@@ -564,6 +590,7 @@ public class Controller implements ObserverSyndrom {
     private MenuItem filterEdgeTypeExtenuating;
     @FXML
     private MenuItem filterEdgeTypeNeutral;
+    //--------------------------
     @FXML
     private ResourceBundle resources;
     @FXML
