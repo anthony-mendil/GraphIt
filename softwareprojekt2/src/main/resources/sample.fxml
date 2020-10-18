@@ -228,19 +228,6 @@
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </padding>
                     </Separator>
-                    <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
-                        <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/fadeout.png" />
-                            </ImageView>
-                        </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarFadeoutTooltip" />
-                        </tooltip>
-                    </ToggleButton>
                <MenuButton fx:id="highlightMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%toolbarHighlightMenu">
                   <items>
                      <CheckMenuItem fx:id="highlightCheckMenuItem" mnemonicParsing="false" onAction="#highlight" text="%toolbarHighlightCheckMenuItem">

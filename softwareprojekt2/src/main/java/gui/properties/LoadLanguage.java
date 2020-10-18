@@ -114,8 +114,6 @@ public class LoadLanguage {
         c.getFadeoutCheckMenuItem().setText(loadLanguagesKey("toolbarFadeoutCheckMenuItem"));
         c.getFadeoutElementMenuItem().setText(loadLanguagesKey("toolbarFadeoutElement"));
         c.getFadeoutDeleteMenuItem().setText(loadLanguagesKey("toolbarFadeoutDeleteElement"));
-        //TODO Remove these
-        c.getFadeout().getTooltip().setText(loadLanguagesKey("toolbarFadeoutTooltip"));
         //----------------
         c.getSelection().setText(loadLanguagesKey("selectorHand"));
         c.getHandSelector().getTooltip().setText(loadLanguagesKey("selectorHandTooltip"));

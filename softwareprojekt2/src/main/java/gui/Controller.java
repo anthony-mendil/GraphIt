@@ -393,9 +393,6 @@ public class Controller implements ObserverSyndrom {
     private MenuItem fadeoutDeleteMenuItem;
     @FXML
     private CheckMenuItem fadeoutCheckMenuItem;
-    //TODO Remove these elements
-    @FXML
-    private ToggleButton fadeout;
     //--------------
     @FXML
     private Text selection;
@@ -1710,7 +1707,7 @@ public class Controller implements ObserverSyndrom {
 
         values.setCanvas(canvas);
         values.setHBox(textBox);
-        values.setAnimationFadeout(fadeout);
+        values.setAnimationFadeout(fadeoutCheckMenuItem);
         values.setCurrentActionText(currentActionText);
         values.setPositionMouseX(positionMouseX);
         values.setPositionMouseY(positionMouseY);
@@ -2410,7 +2407,6 @@ public class Controller implements ObserverSyndrom {
     private void resetToggleButtons() {
         handSelector.setSelected(true);
         anchorPointsButton.setSelected(false);
-        fadeout.setSelected(false);
     }
 
     /**
