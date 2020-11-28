@@ -246,14 +246,10 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
      */
     private void setCoordinateSpheres(List<Sphere> allSpheres, Set<Sphere> spheres, SyndromVisualisationViewer<Vertex, Edge> vv) {
         if(spheres.size() < 2) {
-            //for (Sphere s : spheres) {
-            //    System.out.println(s.getAnnotation().get("GERMAN"));
-            //}
             for (Sphere s : spheres) {
                 Shape sShape = sphereShapeTransformer.transform(s);
                 boolean move = calculateMove(allSpheres, s, sShape);
                 if (!move) {
-                    System.out.println("out");
                     s.setCoordinates(spherePickedCoordinate);
                     for (Vertex v : s.getVertices()) {
                         Point2D vp = points.get(v.getId());
@@ -261,7 +257,6 @@ public class SpherePickingPlugin extends AbstractGraphMousePlugin
                         vv.getGraphLayout().setLocation(v, vp);
                     }
                 } else {
-                    System.out.println("here11");
                     if (spherePickedCoordinate != s.getCoordinates()) {
                         MoveSphereLogAction moveSphereLogAction = new MoveSphereLogAction(s, spherePickedCoordinate, s.getCoordinates());
                         history.execute(moveSphereLogAction);
