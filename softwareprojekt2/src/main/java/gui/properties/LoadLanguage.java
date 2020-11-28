@@ -104,12 +104,17 @@ public class LoadLanguage {
         c.getEditButton().getTooltip().setText(loadLanguagesKey("toolbarInterpreterMode"));
         c.getUndoButton().getTooltip().setText(loadLanguagesKey("toolbarUndo"));
         c.getRedoButton().getTooltip().setText(loadLanguagesKey("toolbarRedo"));
-        c.getHighlight().getTooltip().setText(loadLanguagesKey("toolbarHighlight"));
-        c.getHighlightElements().getTooltip().setText(loadLanguagesKey("toolbarHighlightElement"));
-        c.getDehighlightElements().getTooltip().setText(loadLanguagesKey("toolbarNotHighlightElements"));
-        c.getFadeout().getTooltip().setText(loadLanguagesKey("toolbarFadeout"));
-        c.getFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutElement"));
-        c.getDeleteFadeoutElements().getTooltip().setText(loadLanguagesKey("toolbarFadeoutDeleteElement"));
+        c.getHighlightMenu().setText(loadLanguagesKey("toolbarHighlightMenu"));
+        c.getHighlightMenu().getTooltip().setText(loadLanguagesKey("toolbarHighlightTooltip"));
+        c.getHighlightCheckMenuItem().setText(loadLanguagesKey("toolbarHighlightCheckMenuItem"));
+        c.getHighlightElementMenuItem().setText(loadLanguagesKey("toolbarHighlightElement"));
+        c.getHighlightDeleteMenuItem().setText(loadLanguagesKey("toolbarNotHighlightElement"));
+        c.getFadeoutMenu().setText(loadLanguagesKey("toolbarFadeoutMenu"));
+        c.getFadeoutMenu().getTooltip().setText(loadLanguagesKey("toolbarFadeoutTooltip"));
+        c.getFadeoutCheckMenuItem().setText(loadLanguagesKey("toolbarFadeoutCheckMenuItem"));
+        c.getFadeoutElementMenuItem().setText(loadLanguagesKey("toolbarFadeoutElement"));
+        c.getFadeoutDeleteMenuItem().setText(loadLanguagesKey("toolbarFadeoutDeleteElement"));
+        //----------------
         c.getSelection().setText(loadLanguagesKey("selectorHand"));
         c.getHandSelector().getTooltip().setText(loadLanguagesKey("selectorHandTooltip"));
         c.getSelectionSphere().setText(loadLanguagesKey("sectionSphere"));
@@ -146,7 +151,9 @@ public class LoadLanguage {
         c.getRemoveAnchor().getTooltip().setText(loadLanguagesKey("edgeAnchorPointDelete"));
         c.getEdgeColour().getTooltip().setText(loadLanguagesKey("edgeColour"));
         c.getEdgeStrokeMenuButton().getTooltip().setText(loadLanguagesKey("edgeStrokeType"));
-        c.getEdgeArrowMenuButton().getTooltip().setText(loadLanguagesKey("edgeArrowTypeTooltip"));
+        c.getEdgeArrowReinforcedToggle().getTooltip().setText(loadLanguagesKey("edgeArrowReinforcedTooltip"));
+        c.getEdgeArrowExtenuatingToggle().getTooltip().setText(loadLanguagesKey("edgeArrowExtenuatingTooltip"));
+        c.getEdgeArrowNeutralToggle().getTooltip().setText(loadLanguagesKey("edgeArrowUnknownTooltip"));
         c.getAnalysisGraphInfo().setText(loadLanguagesKey("analysisGraphInfo"));
         c.getAnalysisScope().setText(loadLanguagesKey("analysisScope"));
         c.getAnalysisNetworkingIndex().setText(loadLanguagesKey("analysisNetworkingIndex"));
@@ -172,7 +179,12 @@ public class LoadLanguage {
         c.getBranches().setText(loadLanguagesKey("filterBranches"));
         c.getCycles().setText(loadLanguagesKey("filterCycles"));
         c.getOverViewTitledPane().setText(loadLanguagesKey("treeView"));
+        //TODO Remove
         c.getFilterEdgeType().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
+
+        c.getFilterArrowReinforcedToggle().getTooltip().setText(loadLanguagesKey("treeViewReinforcedTypeTooltip"));
+        c.getFilterArrowExtenuatingToggle().getTooltip().setText(loadLanguagesKey("treeViewExtenuatingTypeTooltip"));
+        c.getFilterArrowNeutralToggle().getTooltip().setText(loadLanguagesKey("treeViewUnknownTypeTooltip"));
         c.getRegularExpressionBox().getTooltip().setText(loadLanguagesKey("regularExpressionTooltip"));
         c.getRegularExpressionField().getTooltip().setText(loadLanguagesKey("regularExpressionTooltip"));
         c.getTemplateTitledPane().setText(loadLanguagesKey("toolbarTemplate"));

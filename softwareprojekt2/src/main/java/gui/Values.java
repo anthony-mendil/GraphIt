@@ -6,6 +6,7 @@ import graph.graph.StrokeType;
 import graph.graph.VertexShapeType;
 import gui.properties.Language;
 import javafx.scene.Node;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.FontWeight;
@@ -155,7 +156,7 @@ public class Values {
     /**
      * The toggleButton of the gui, used for the animation fade out.
      */
-    private ToggleButton animationFadeout;
+    private CheckMenuItem animationFadeout;
     /**
      * The mouse position text, coordinate x.
      */

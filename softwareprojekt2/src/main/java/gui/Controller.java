@@ -256,6 +256,7 @@ public class Controller implements ObserverSyndrom {
     private MenuItem branches;
     @FXML
     private MenuItem cycles;
+    //TODO Remove this element
     @FXML
     private CheckBox treeViewArrowType;
     @FXML
@@ -296,13 +297,11 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private MenuItem edgeStrokeBasicWeight;
     @FXML
-    private MenuButton edgeArrowMenuButton;
+    private ToggleButton edgeArrowReinforcedToggle;
     @FXML
-    private MenuItem edgeArrowReinforced;
+    private ToggleButton edgeArrowExtenuatingToggle;
     @FXML
-    private MenuItem edgeArrowExtenuating;
-    @FXML
-    private MenuItem edgeArrowNeutral;
+    private ToggleButton edgeArrowNeutralToggle;
     @FXML
     private Text currentActionText;
     /**
@@ -379,17 +378,22 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private ToggleButton anchorPointsButton;
     @FXML
-    private ToggleButton highlight;
+    private MenuButton highlightMenu;
     @FXML
-    private Button highlightElements;
+    private CheckMenuItem highlightCheckMenuItem;
     @FXML
-    private Button dehighlightElements;
+    private MenuItem highlightElementMenuItem;
     @FXML
-    private Button fadeoutElements;
+    private MenuItem highlightDeleteMenuItem;
     @FXML
-    private Button deleteFadeoutElements;
+    private MenuButton fadeoutMenu;
     @FXML
-    private ToggleButton fadeout;
+    private MenuItem fadeoutElementMenuItem;
+    @FXML
+    private MenuItem fadeoutDeleteMenuItem;
+    @FXML
+    private CheckMenuItem fadeoutCheckMenuItem;
+    //--------------
     @FXML
     private Text selection;
     @FXML
@@ -547,6 +551,13 @@ public class Controller implements ObserverSyndrom {
     @FXML
     private StackPane overviewStackPane;
     @FXML
+    private ToggleButton filterArrowReinforcedToggle;
+    @FXML
+    private ToggleButton filterArrowExtenuatingToggle;
+    @FXML
+    private ToggleButton filterArrowNeutralToggle;
+    //TODO Remove these elements
+    @FXML
     private MenuButton filterEdgeType;
     @FXML
     private MenuItem filterEdgeTypeReinforced;
@@ -554,6 +565,7 @@ public class Controller implements ObserverSyndrom {
     private MenuItem filterEdgeTypeExtenuating;
     @FXML
     private MenuItem filterEdgeTypeNeutral;
+    //--------------------------
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -917,10 +929,10 @@ public class Controller implements ObserverSyndrom {
         Color color = convertToAWT(sphereBackgroundColour.getValue());
         Values.getInstance().setFillPaintSphere(color);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
-            if(syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
+            if (syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
                 EditSphereColorLogAction colorLogAction = new EditSphereColorLogAction(color);
                 history.execute(colorLogAction);
-            }else{
+            } else {
                 HelperFunctions helper = new HelperFunctions();
                 helper.setActionText("SPHERE_MULTIPLE_ALERT", true, true);
             }
@@ -989,10 +1001,10 @@ public class Controller implements ObserverSyndrom {
     private void editFontSphere(String font) {
         values.setFontSphere(font);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
-            if(syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
+            if (syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
                 EditFontSphereLogAction editFontSphereLogAction = new EditFontSphereLogAction(font);
                 history.execute(editFontSphereLogAction);
-            }else{
+            } else {
                 HelperFunctions helper = new HelperFunctions();
                 helper.setActionText("SPHERE_MULTIPLE_ALERT", true, true);
             }
@@ -1365,9 +1377,10 @@ public class Controller implements ObserverSyndrom {
         editButton.setDisable(false);
         analysisButton.setDisable(false);
         createButton.setDisable(true);
-        edgeArrowReinforced.setDisable(false);
-        edgeArrowNeutral.setDisable(false);
-        edgeArrowExtenuating.setDisable(false);
+        edgeArrowReinforcedToggle.setDisable(false);
+        edgeArrowExtenuatingToggle.setDisable(false);
+        edgeArrowNeutralToggle.setDisable(false);
+
         verticesAutoLayout.setDisable(false);
         sphereAutoLayout.setDisable(false);
         if (!overViewAccordion.getPanes().contains(templateTitledPane)) {
@@ -1410,14 +1423,14 @@ public class Controller implements ObserverSyndrom {
             analysisNetworkingIndexNumber.setText(format.format(graphDimensionAction.getNetworkIndex()));
             analysisStructureIndexNumber.setText(format.format(graphDimensionAction.getStructureIndex()));
         }
-        if(graphDimensionAction.getNumberSymptoms() == -1){
+        if (graphDimensionAction.getNumberSymptoms() == -1) {
             analysisAmountSymptomNumber.setText("NaN");
-        }else{
+        } else {
             analysisAmountSymptomNumber.setText(format.format(graphDimensionAction.getNumberSymptoms()));
         }
-        if(graphDimensionAction.getNumberEdges() == -1){
+        if (graphDimensionAction.getNumberEdges() == -1) {
             analysisAmountEdgeNumber.setText("NaN");
-        }else{
+        } else {
             analysisAmountEdgeNumber.setText(format.format(graphDimensionAction.getNumberEdges()));
         }
         satellite.setContent(syndrom.getVv2());
@@ -1462,9 +1475,9 @@ public class Controller implements ObserverSyndrom {
      * If yes, then it enables/disables the menu items for the reinforced, extenuating and neutral relations.
      */
     private void updateArrowMenuButton() {
-        edgeArrowReinforced.setDisable(!syndrom.getTemplate().isReinforcedEdgesAllowed());
-        edgeArrowNeutral.setDisable(!syndrom.getTemplate().isNeutralEdgesAllowed());
-        edgeArrowExtenuating.setDisable(!syndrom.getTemplate().isExtenuatingEdgesAllowed());
+        edgeArrowReinforcedToggle.setDisable(!syndrom.getTemplate().isReinforcedEdgesAllowed());
+        edgeArrowExtenuatingToggle.setDisable(!syndrom.getTemplate().isExtenuatingEdgesAllowed());
+        edgeArrowNeutralToggle.setDisable(!syndrom.getTemplate().isNeutralEdgesAllowed());
 
     }
 
@@ -1626,7 +1639,7 @@ public class Controller implements ObserverSyndrom {
      * Activates the highlight effect and shows the highlighted elements.
      */
     public void highlight() {
-        if (highlight.isSelected()) {
+        if (highlightCheckMenuItem.isSelected()) {
             ActivateHighlightAction activateHighlightAction = new ActivateHighlightAction();
             activateHighlightAction.action();
         } else {
@@ -1657,7 +1670,7 @@ public class Controller implements ObserverSyndrom {
      * Activates the fade out effect and hide the selected graph elements.
      */
     public void fadeout() {
-        if (!fadeout.isSelected()) {
+        if (!fadeoutCheckMenuItem.isSelected()) {
             DeactivateFadeoutAction deactivateFadeoutAction = new DeactivateFadeoutAction();
             deactivateFadeoutAction.action();
         } else {
@@ -1694,7 +1707,7 @@ public class Controller implements ObserverSyndrom {
 
         values.setCanvas(canvas);
         values.setHBox(textBox);
-        values.setAnimationFadeout(fadeout);
+        values.setAnimationFadeout(fadeoutCheckMenuItem);
         values.setCurrentActionText(currentActionText);
         values.setPositionMouseX(positionMouseX);
         values.setPositionMouseY(positionMouseY);
@@ -1763,7 +1776,8 @@ public class Controller implements ObserverSyndrom {
         initProtocolTree();
         initGraphLanguage();
         initInfoText();
-        iniSelectionButtons();
+        initSelectionButtons();
+        initArrowToggleButtons();
 
         symptomCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Vertex, Map<String, String>>, ObservableValue<String>>) data -> {
             String name = "";
@@ -1800,11 +1814,24 @@ public class Controller implements ObserverSyndrom {
     /**
      * Initializes the toggle buttons (Handselector, AddSphere, AddSymptom).
      */
-    private void iniSelectionButtons() {
+    private void initSelectionButtons() {
         handSelector.selectedProperty().addListener(new ToggleButtonListener(this, handSelector));
         addSphere.selectedProperty().addListener(new ToggleButtonListener(this, addSphere));
         addVertex.selectedProperty().addListener(new ToggleButtonListener(this, addVertex));
         handSelector();
+    }
+
+    /**
+     * Initializes the toggle buttons (ReinforcedArrow, ExtenuatingArrow, NeutralArrow).
+     */
+    private void initArrowToggleButtons() {
+        edgeArrowReinforcedToggle.selectedProperty()
+                .addListener(new ArrowTypeToggleButtonListener(this, edgeArrowReinforcedToggle));
+        edgeArrowExtenuatingToggle.selectedProperty()
+                .addListener(new ArrowTypeToggleButtonListener(this, edgeArrowExtenuatingToggle));
+        edgeArrowNeutralToggle.selectedProperty()
+                .addListener(new ArrowTypeToggleButtonListener(this, edgeArrowNeutralToggle));
+
     }
 
     /**
@@ -2046,10 +2073,10 @@ public class Controller implements ObserverSyndrom {
     void editFontSizeSphere(int size) {
         values.setFontSizeSphere(size);
         if (!syndrom.getVv().getPickedSphereState().getPicked().isEmpty()) {
-            if(syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
+            if (syndrom.getVv().getPickedSphereState().getPicked().size() < 2) {
                 EditFontSizeSphereLogAction editFontSizeSphereLogAction = new EditFontSizeSphereLogAction(size);
                 history.execute(editFontSizeSphereLogAction);
-            }else{
+            } else {
                 HelperFunctions helper = new HelperFunctions();
                 helper.setActionText("SPHERE_MULTIPLE_ALERT", true, true);
             }
@@ -2068,9 +2095,6 @@ public class Controller implements ObserverSyndrom {
         edgeStrokeDashedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
         edgeStrokeDotted.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
         edgeStrokeDottedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
-        edgeArrowReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
-        edgeArrowExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
-        edgeArrowNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeArrowMenuButton));
 
         filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
         filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
@@ -2383,8 +2407,6 @@ public class Controller implements ObserverSyndrom {
     private void resetToggleButtons() {
         handSelector.setSelected(true);
         anchorPointsButton.setSelected(false);
-        highlight.setSelected(false);
-        fadeout.setSelected(false);
     }
 
     /**

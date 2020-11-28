@@ -228,90 +228,83 @@
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </padding>
                     </Separator>
-                    <ToggleButton fx:id="highlight" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlight" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
+               <MenuButton fx:id="highlightMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%toolbarHighlightMenu">
+                  <items>
+                     <CheckMenuItem fx:id="highlightCheckMenuItem" mnemonicParsing="false" onAction="#highlight" text="%toolbarHighlightCheckMenuItem">
                         <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlight.png" />
-                            </ImageView>
+                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@icons2/highlight.png" />
+                              </image>
+                           </ImageView>
                         </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarHighlight" />
-                        </tooltip>
-                    </ToggleButton>
-                    <JFXButton fx:id="highlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#highlightElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
+                     </CheckMenuItem>
+                     <MenuItem fx:id="highlightElementMenuItem" mnemonicParsing="false" onAction="#highlightElements" text="%toolbarHighlightElement">
                         <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlightAdd.png" />
-                            </ImageView>
-                        </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarHighlightElement" />
-                        </tooltip>
-                    </JFXButton>
-                    <JFXButton fx:id="dehighlightElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deHighlightElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
+                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@icons2/highlightAdd.png" />
+                              </image>
+                           </ImageView>
+                        </graphic></MenuItem>
+                     <MenuItem fx:id="highlightDeleteMenuItem" mnemonicParsing="false" onAction="#deHighlightElements" text="%toolbarNotHighlightElement">
                         <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/highlightDelete.png" />
-                            </ImageView>
+                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@icons2/highlightDelete.png" />
+                              </image>
+                           </ImageView>
                         </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarNotHighlightElements" />
-                        </tooltip>
-                    </JFXButton>
-                    <ToggleButton fx:id="fadeout" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeout" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
+                     </MenuItem>
+                  </items>
+                  <tooltip>
+                     <Tooltip text="%toolbarHighlightTooltip" />
+                  </tooltip>
+                  <HBox.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </HBox.margin>
+               </MenuButton>
+               <MenuButton fx:id="fadeoutMenu" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="menubutton" stylesheets="@gui_style.css" text="%toolbarFadeoutMenu">
+                  <items>
+                     <CheckMenuItem fx:id="fadeoutCheckMenuItem" mnemonicParsing="false" onAction="#fadeout" text="%toolbarFadeoutCheckMenuItem">
                         <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/fadeout.png" />
-                            </ImageView>
+                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@icons2/fadeout.png" />
+                              </image>
+                           </ImageView>
                         </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarFadeout" />
-                        </tooltip>
-                    </ToggleButton>
-                    <JFXButton fx:id="fadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fadeoutElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
+                     </CheckMenuItem>
+                     <MenuItem fx:id="fadeoutElementMenuItem" mnemonicParsing="false" onAction="#fadeoutElements" text="%toolbarFadeoutElement">
                         <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@icons2/fadeoutAdd.png" />
-                            </ImageView>
+                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@icons2/fadeoutAdd.png" />
+                              </image>
+                           </ImageView>
                         </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarFadeoutElement" />
-                        </tooltip>
-                    </JFXButton>
-                    <JFXButton fx:id="deleteFadeoutElements" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deFadeoutElements" prefHeight="23.0" prefWidth="26.0" stylesheets="@gui_style.css">
-                        <HBox.margin>
-                            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                        </HBox.margin>
+                     </MenuItem>
+                     <MenuItem fx:id="fadeoutDeleteMenuItem" mnemonicParsing="false" onAction="#deFadeoutElements" text="%toolbarFadeoutDeleteElement">
                         <graphic>
-                            <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@icons2/fadeoutDelete.png" />
-                                </image>
-                            </ImageView>
+                           <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@icons2/fadeoutDelete.png" />
+                              </image>
+                           </ImageView>
                         </graphic>
-                        <tooltip>
-                            <Tooltip text="%toolbarFadeoutDeleteElement" />
-                        </tooltip>
-                    </JFXButton>
+                     </MenuItem>
+                  </items>
+                  <tooltip>
+                     <Tooltip text="%toolbarFadeoutTooltip" />
+                  </tooltip>
+                  <HBox.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </HBox.margin>
+               </MenuButton>
                 </HBox>
             </JFXToolbar>
             <HBox prefHeight="58.0" prefWidth="621.0">
-                <VBox fx:id="vBoxSelect" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0">
+                <VBox fx:id="vBoxSelect" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="50.0">
                     <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
@@ -320,7 +313,7 @@
                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
                     </Text>
-                    <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0">
+                    <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="44.0" prefWidth="50.0">
                         <children>
                             <ToggleButton fx:id="handSelector" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handSelector" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" selected="true" styleClass="button1" stylesheets="@gui_style.css">
                                 <HBox.margin>
@@ -351,7 +344,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </HBox.margin>
                 </Separator>
-                <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="455.0">
+                <VBox fx:id="vBoxEditSphere" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="455.0">
                     <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
@@ -360,16 +353,16 @@
                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
                     </Text>
-                    <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="453.0">
+                    <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="44.0" prefWidth="453.0">
                         <VBox.margin>
                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                         </VBox.margin>
-                        <ToggleButton fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                        <ToggleButton fx:id="addSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSphere" pickOnBounds="false" prefHeight="40.0" prefWidth="40.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                             </HBox.margin>
                             <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <viewport>
                                         <Rectangle2D />
                                     </viewport>
@@ -384,6 +377,9 @@
                             <HBox.margin>
                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                             </HBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
                         </Separator>
                         <JFXButton fx:id="deleteSphere" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeSphere" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
                             <HBox.margin>
@@ -482,21 +478,21 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </HBox.margin>
                 </Separator>
-                <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="560.0">
+                <VBox fx:id="vBoxEditSymptom" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="560.0">
                     <children>
                         <Text fx:id="selectionSymptom" strokeType="OUTSIDE" strokeWidth="0.0" text="%sectionSymptom">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="550.0">
+                        <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="44.0" prefWidth="550.0">
                             <children>
-                                <ToggleButton fx:id="addVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" styleClass="button1" stylesheets="@gui_style.css">
+                                <ToggleButton fx:id="addVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addVertex" pickOnBounds="false" prefHeight="40.0" prefWidth="40.0" styleClass="button1" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
                                     <graphic>
-                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="33.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@icons2/004-plus-black-symbol.png" />
                                             </image>
@@ -513,6 +509,9 @@
                                     <HBox.margin>
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </HBox.margin>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
                                 </Separator>
                                 <JFXButton fx:id="deleteVertex" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeVertices" prefHeight="30.0" prefWidth="30.0">
                                     <HBox.margin>
@@ -662,35 +661,61 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                     </HBox.margin>
                 </Separator>
-                <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="290.0">
+                <VBox fx:id="vBoxEditEdge" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="385.0">
                     <children>
                         <Text fx:id="selectionEdge" strokeType="OUTSIDE" strokeWidth="0.0" text="%sectionEdge">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
                         </Text>
-                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0">
+                        <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="44.0" prefWidth="381.0">
                             <children>
-                                <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
-                                    <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </HBox.margin>
-                                    <graphic>
-                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@icons2/anchor.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                    <tooltip>
-                                        <Tooltip text="%edgeAnchorPoint" />
-                                    </tooltip>
-                                </ToggleButton>
-                                <Separator orientation="VERTICAL" prefHeight="4.0">
-                                    <HBox.margin>
-                                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                    </HBox.margin>
-                                </Separator>
+                        <ToggleButton fx:id="edgeArrowReinforcedToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeReinforced" prefHeight="40.0" prefWidth="40.0" selected="true" styleClass="toggle-button" stylesheets="@gui_style.css">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/005-right-chevron.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="%edgeArrowReinforcedTooltip" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </ToggleButton>
+                        <ToggleButton fx:id="edgeArrowExtenuatingToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeExtenuating" prefHeight="40.0" prefWidth="40.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/015-circle.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="%edgeArrowExtenuatingTooltip" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </ToggleButton>
+                        <ToggleButton fx:id="edgeArrowNeutralToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#edgeNeutral" prefHeight="40.0" prefWidth="40.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons2/014-question.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="%edgeArrowUnknownTooltip" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </ToggleButton>
+                        <Separator orientation="VERTICAL" prefHeight="4.0" />
                                 <JFXButton fx:id="removeEdges" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeEdges" prefHeight="30.0" prefWidth="30.0">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -706,6 +731,21 @@
                                         <Tooltip text="%deleteEdge" />
                                     </tooltip>
                                 </JFXButton>
+                                <ToggleButton fx:id="anchorPointsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#anchorPointsEdge" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons2/anchor.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <tooltip>
+                                        <Tooltip text="%edgeAnchorPoint" />
+                                    </tooltip>
+                                </ToggleButton>
                                 <JFXButton fx:id="removeAnchor" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeAnchor" prefHeight="30.0" prefWidth="30.0">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -721,11 +761,6 @@
                                         <Tooltip text="%edgeAnchorPointDelete" />
                                     </tooltip>
                                 </JFXButton>
-                                <Separator orientation="VERTICAL" prefHeight="4.0">
-                                    <HBox.margin>
-                                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                    </HBox.margin>
-                                </Separator>
                                 <JFXColorPicker fx:id="edgeColour" minHeight="-Infinity" minWidth="-Infinity" onAction="#editEdgesColor" prefHeight="30.0" prefWidth="30.0" styleClass="colorpicker" stylesheets="@gui_style.css">
                                     <HBox.margin>
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -805,50 +840,6 @@
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </HBox.margin>
                                 </MenuButton>
-                                <MenuButton fx:id="edgeArrowMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="menubutton" stylesheets="@gui_style.css">
-                                    <graphic>
-                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@icons2/005-right-chevron.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                    <items>
-                                        <MenuItem fx:id="edgeArrowReinforced" mnemonicParsing="false" onAction="#edgeReinforced">
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/005-right-chevron.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                        <MenuItem fx:id="edgeArrowExtenuating" mnemonicParsing="false" onAction="#edgeExtenuating">
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/015-circle.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                        <MenuItem fx:id="edgeArrowNeutral" mnemonicParsing="false" onAction="#edgeNeutral">
-                                            <graphic>
-                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@icons2/014-question.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                    </items>
-                                    <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                    </HBox.margin>
-                                    <tooltip>
-                                        <Tooltip text="%edgeArrowTypeTooltip" />
-                                    </tooltip>
-                                </MenuButton>
 
                             </children>
                             <VBox.margin>
@@ -872,8 +863,8 @@
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.39990997314453" minWidth="10.0" prefWidth="142.39990997314453" />
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="88.0" minWidth="10.0" prefWidth="35.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="148.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="48.0" minWidth="22.0" prefWidth="22.0" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -887,8 +878,14 @@
                                 <Text fx:id="analysisNetworkingIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Text fx:id="analysisStructureIndex" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisStructureIndex" wrappingWidth="104.54531860351562" GridPane.rowIndex="2" />
                                 <Text fx:id="analysisStructureIndexNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text fx:id="analysisAmountSymptom" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisAmountSymptom" GridPane.columnIndex="2" />
-                        <Text fx:id="analysisAmountEdge" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisAmountEdge" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Text fx:id="analysisAmountSymptom" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisAmountSymptom" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin></Text>
+                        <Text fx:id="analysisAmountEdge" strokeType="OUTSIDE" strokeWidth="0.0" text="%analysisAmountEdge" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin></Text>
                         <Text fx:id="analysisAmountSymptomNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="3" />
                         <Text fx:id="analysisAmountEdgeNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="999" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                             </children>
@@ -1132,6 +1129,58 @@
                                     <content>
                                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="260.0">
                                             <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="282.0">
+                                       <children>
+                                          <ToggleButton fx:id="filterArrowReinforcedToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@icons2/005-right-chevron.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="%treeViewReinforcedTypeTooltip" />
+                                             </tooltip>
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="filterArrowExtenuatingToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@icons2/015-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="%treeViewExtenuatingTypeTooltip" />
+                                             </tooltip>
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="filterArrowNeutralToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@icons2/014-question.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="%treeViewUnknownTypeTooltip" />
+                                             </tooltip>
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </ToggleButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
                                                 <JFXCheckBox fx:id="treeViewArrowType" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="">
                                                     <VBox.margin>
                                                         <Insets bottom="7.0" left="3.0" top="2.0" />
