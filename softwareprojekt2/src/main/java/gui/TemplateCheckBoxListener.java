@@ -1,10 +1,15 @@
 package gui;
 
 import actions.analyse.FilterGraphAction;
+import graph.graph.EdgeArrowType;
 import graph.graph.Syndrom;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
+import net.bytebuddy.dynamic.scaffold.MethodGraph;
+import sun.awt.image.ImageWatched;
+
+import java.util.LinkedList;
 
 /**
  * Listens to the selected checkbox and calls the action associated with it.
@@ -70,7 +75,9 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
             regularExpressionBox.setSelected(false);
         }
 
-        FilterGraphAction filterGraphAction = new FilterGraphAction(c.getFilterEdgeArrowType(), newValue);
+        LinkedList<EdgeArrowType> selectedEdges = new LinkedList<>();
+        selectedEdges.add(c.getFilterEdgeArrowType());
+        FilterGraphAction filterGraphAction = new FilterGraphAction(selectedEdges, newValue);
         filterGraphAction.action();
     }
 

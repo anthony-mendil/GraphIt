@@ -5,6 +5,9 @@ import graph.graph.EdgeArrowType;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Handles the event when a menuitem was selected from the filter arrowtype options in the overview and filters
  * accordingly of the selected arrowtype, if the associated checkbox is selected.
@@ -15,7 +18,7 @@ public class FilterTypeHandler implements EventHandler<ActionEvent> {
     /**
      * The selected arrowtype.
      */
-    private final EdgeArrowType type;
+    private final LinkedList<EdgeArrowType> type;
     /**
      * The controller that contains most of the gui elements and functions.
      */
@@ -28,7 +31,9 @@ public class FilterTypeHandler implements EventHandler<ActionEvent> {
      */
     FilterTypeHandler(Controller pC, EdgeArrowType type) {
         c = pC;
-        this.type = type;
+        LinkedList<EdgeArrowType> edgeTypes = new LinkedList<>();
+        edgeTypes.add(type);
+        this.type = edgeTypes;
     }
 
     /**

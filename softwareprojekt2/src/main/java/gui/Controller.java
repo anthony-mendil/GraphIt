@@ -878,13 +878,13 @@ public class Controller implements ObserverSyndrom {
      */
     private LinkedList<EdgeArrowType> selectedEdgesTypes() {
         LinkedList<EdgeArrowType> edgeTypes = new LinkedList<>();
-        if(filterArrowReinforcedToggle.isSelected()) {
+        if (filterArrowReinforcedToggle.isSelected()) {
             edgeTypes.add(EdgeArrowType.REINFORCED);
         }
-        if(filterArrowExtenuatingToggle.isSelected()) {
+        if (filterArrowExtenuatingToggle.isSelected()) {
             edgeTypes.add(EdgeArrowType.EXTENUATING);
         }
-        if(filterArrowNeutralToggle.isSelected()) {
+        if (filterArrowNeutralToggle.isSelected()) {
             edgeTypes.add(EdgeArrowType.NEUTRAL);
         }
 
@@ -895,13 +895,9 @@ public class Controller implements ObserverSyndrom {
      * Changes the edge arrow type to reinforced arrow.
      */
     public void filterEdgeTypeReinforcedVisible() {
-        if(filterArrowReinforcedToggle.isSelected()) {
-            LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
-            for (EdgeArrowType edge : selectedEdges) {
-                FilterGraphAction graphAction = new FilterGraphAction(edge, true);
-                graphAction.action();
-            }
-        }
+        LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
+        FilterGraphAction graphAction = new FilterGraphAction(selectedEdges, true);
+        graphAction.action();
     }
 
     /**
@@ -916,13 +912,9 @@ public class Controller implements ObserverSyndrom {
      * Changes the edge arrow type to extenuating arrow.
      */
     public void filterEdgeTypeExtenuatingVisible() {
-        if (filterArrowExtenuatingToggle.isSelected()){
-            LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
-            for (EdgeArrowType edge : selectedEdges) {
-                FilterGraphAction graphAction = new FilterGraphAction(edge, true);
-                graphAction.action();
-            }
-        }
+        LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
+        FilterGraphAction graphAction = new FilterGraphAction(selectedEdges, true);
+        graphAction.action();
     }
 
     /**
@@ -937,13 +929,9 @@ public class Controller implements ObserverSyndrom {
      * Changes the edge arrow type to neutral arrow.
      */
     public void filterEdgeTypeNeutralVisible() {
-        if (filterArrowNeutralToggle.isSelected()) {
-            LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
-            for (EdgeArrowType edge : selectedEdges) {
-                FilterGraphAction graphAction = new FilterGraphAction(edge, true);
-                graphAction.action();
-            }
-        }
+        LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
+        FilterGraphAction graphAction = new FilterGraphAction(selectedEdges, true);
+        graphAction.action();
     }
 
     /**

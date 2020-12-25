@@ -8,6 +8,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,20 +24,20 @@ public class EdgeArrowPredicate<V, E> implements Predicate<Context<Graph<V, E>, 
      */
     @Setter
     @NonNull
-    private EdgeArrowType edgeArrowType;
+    private LinkedList<EdgeArrowType> edgeArrowType;
 
     /**
      * Creates a new EdgeArrowPredicate object.
      *
      * @param edgeArrowType The edge arrow type to filter for.
      */
-    public EdgeArrowPredicate(EdgeArrowType edgeArrowType) {
+    public EdgeArrowPredicate(LinkedList<EdgeArrowType> edgeArrowType) {
         this.edgeArrowType = edgeArrowType;
     }
 
     @Override
     public boolean evaluate(Context<Graph<V, E>, E> graphEContext) {
         Edge e = (Edge) graphEContext.element;
-        return e.getArrowType() == edgeArrowType;
+        return edgeArrowType.contains(e.getArrowType());
     }
 }

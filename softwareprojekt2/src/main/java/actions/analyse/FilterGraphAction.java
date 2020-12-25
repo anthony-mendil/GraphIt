@@ -12,6 +12,8 @@ import graph.graph.Vertex;
 import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.functors.TruePredicate;
 
+import java.util.LinkedList;
+
 /**
  * Filters the graph (edges, vertices, spheres) for a regular expression or edge type or
  * the isVisible attribute of vertices.
@@ -34,7 +36,7 @@ public class FilterGraphAction extends GraphAction {
      * @param edgeType The edge type to filter for.
      * @param doFilter Indicator, if it should be filtered or not.
      */
-    public FilterGraphAction(EdgeArrowType edgeType, boolean doFilter) {
+    public FilterGraphAction(LinkedList<EdgeArrowType> edgeType, boolean doFilter) {
         if (doFilter) {
             predicateEdge = new EdgeArrowPredicate<>(edgeType);
             predicateVertex = TruePredicate.getInstance();
