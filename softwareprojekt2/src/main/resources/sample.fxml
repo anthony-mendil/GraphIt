@@ -1131,7 +1131,7 @@
                                             <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="282.0">
                                        <children>
-                                          <ToggleButton fx:id="filterArrowReinforcedToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowReinforcedToggle" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterEdgeTypeReinforcedVisible" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1146,7 +1146,7 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </HBox.margin>
                                           </ToggleButton>
-                                          <ToggleButton fx:id="filterArrowExtenuatingToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowExtenuatingToggle" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterEdgeTypeExtenuatingVisible" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1161,7 +1161,7 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </HBox.margin>
                                           </ToggleButton>
-                                          <ToggleButton fx:id="filterArrowNeutralToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowNeutralToggle" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterEdgeTypeNeutralVisible" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

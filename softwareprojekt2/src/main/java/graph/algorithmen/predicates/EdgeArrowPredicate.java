@@ -8,6 +8,8 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.collections15.Predicate;
 
+import java.util.List;
+
 /**
  * Defines a functor that performs a predicates test on vertices for filtering the edge arrow types of the edges.
  *

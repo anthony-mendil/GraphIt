@@ -874,6 +874,37 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
+     * Returns the selected EdgyTypes.
+     */
+    private LinkedList<EdgeArrowType> selectedEdgesTypes() {
+        LinkedList<EdgeArrowType> edgeTypes = new LinkedList<>();
+        if(filterArrowReinforcedToggle.isSelected()) {
+            edgeTypes.add(EdgeArrowType.REINFORCED);
+        }
+        if(filterArrowExtenuatingToggle.isSelected()) {
+            edgeTypes.add(EdgeArrowType.EXTENUATING);
+        }
+        if(filterArrowNeutralToggle.isSelected()) {
+            edgeTypes.add(EdgeArrowType.NEUTRAL);
+        }
+
+        return edgeTypes;
+    }
+
+    /**
+     * Changes the edge arrow type to reinforced arrow.
+     */
+    public void filterEdgeTypeReinforcedVisible() {
+        if(filterArrowReinforcedToggle.isSelected()) {
+            LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
+            for (EdgeArrowType edge : selectedEdges) {
+                FilterGraphAction graphAction = new FilterGraphAction(edge, true);
+                graphAction.action();
+            }
+        }
+    }
+
+    /**
      * Changes the edge arrow type to extenuating arrow.
      */
     public void edgeExtenuating() {
@@ -882,11 +913,37 @@ public class Controller implements ObserverSyndrom {
     }
 
     /**
+     * Changes the edge arrow type to extenuating arrow.
+     */
+    public void filterEdgeTypeExtenuatingVisible() {
+        if (filterArrowExtenuatingToggle.isSelected()){
+            LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
+            for (EdgeArrowType edge : selectedEdges) {
+                FilterGraphAction graphAction = new FilterGraphAction(edge, true);
+                graphAction.action();
+            }
+        }
+    }
+
+    /**
      * Changes the edge arrow type to neutral arrow.
      */
     public void edgeNeutral() {
         values.setEdgeArrowType(EdgeArrowType.NEUTRAL);
         editEdgesType(EdgeArrowType.NEUTRAL);
+    }
+
+    /**
+     * Changes the edge arrow type to neutral arrow.
+     */
+    public void filterEdgeTypeNeutralVisible() {
+        if (filterArrowNeutralToggle.isSelected()) {
+            LinkedList<EdgeArrowType> selectedEdges = selectedEdgesTypes();
+            for (EdgeArrowType edge : selectedEdges) {
+                FilterGraphAction graphAction = new FilterGraphAction(edge, true);
+                graphAction.action();
+            }
+        }
     }
 
     /**
