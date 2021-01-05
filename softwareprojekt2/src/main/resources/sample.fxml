@@ -1131,7 +1131,7 @@
                                             <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="282.0">
                                        <children>
-                                          <ToggleButton fx:id="filterArrowReinforcedToggle" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterEdgeTypeReinforcedVisible" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowReinforcedToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filterEdgeTypeReinforcedVisible" prefHeight="30.0" prefWidth="30.0" selected="true" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1146,7 +1146,7 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </HBox.margin>
                                           </ToggleButton>
-                                          <ToggleButton fx:id="filterArrowExtenuatingToggle" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterEdgeTypeExtenuatingVisible" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowExtenuatingToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filterEdgeTypeExtenuatingVisible" prefHeight="30.0" prefWidth="30.0" selected="true" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1161,7 +1161,7 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </HBox.margin>
                                           </ToggleButton>
-                                          <ToggleButton fx:id="filterArrowNeutralToggle" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterEdgeTypeNeutralVisible" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="toggle-button" stylesheets="@gui_style.css">
+                                          <ToggleButton fx:id="filterArrowNeutralToggle" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filterEdgeTypeNeutralVisible" prefHeight="30.0" prefWidth="30.0" selected="true" styleClass="toggle-button" stylesheets="@gui_style.css">
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -1178,63 +1178,9 @@
                                           </ToggleButton>
                                        </children>
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </HBox>
-                                                <JFXCheckBox fx:id="treeViewArrowType" mnemonicParsing="false" prefHeight="17.0" prefWidth="115.0" text="">
-                                                    <VBox.margin>
-                                                        <Insets bottom="7.0" left="3.0" top="2.0" />
-                                                    </VBox.margin>
-                                                    <graphic>
-                                                        <MenuButton fx:id="filterEdgeType" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="menubutton" stylesheets="@gui_style.css">
-                                                            <graphic>
-                                                                <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@icons2/005-right-chevron.png" />
-                                                                    </image>
-                                                                </ImageView>
-                                                            </graphic>
-                                                            <items>
-                                                                <MenuItem fx:id="filterEdgeTypeReinforced" mnemonicParsing="false" onAction="#filterEdgeTypeReinforced">
-                                                                    <graphic>
-                                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                                            <image>
-                                                                                <Image url="@icons2/005-right-chevron.png" />
-                                                                            </image>
-                                                                        </ImageView>
-                                                                    </graphic>
-                                                                </MenuItem>
-                                                                <MenuItem fx:id="filterEdgeTypeExtenuating" mnemonicParsing="false" onAction="#filterEdgeTypeExtenuating">
-                                                                    <graphic>
-                                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                                            <image>
-                                                                                <Image url="@icons2/015-circle.png" />
-                                                                            </image>
-                                                                        </ImageView>
-                                                                    </graphic>
-                                                                </MenuItem>
-                                                                <MenuItem fx:id="filterEdgeTypeNeutral" mnemonicParsing="false" onAction="#filterEdgeTypeNeutral">
-                                                                    <graphic>
-                                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                                            <image>
-                                                                                <Image url="@icons2/014-question.png" />
-                                                                            </image>
-                                                                        </ImageView>
-                                                                    </graphic>
-                                                                </MenuItem>
-                                                            </items>
-                                                            <HBox.margin>
-                                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                                            </HBox.margin>
-                                                            <tooltip>
-                                                                <Tooltip text="%treeViewEdgeTypeTooltip" />
-                                                            </tooltip>
-                                                        </MenuButton>
-                                                    </graphic>
-                                                    <tooltip>
-                                                        <Tooltip text="%treeViewEdgeTypeTooltip" />
-                                                    </tooltip>
-                                                </JFXCheckBox>
                                                 <JFXCheckBox fx:id="regularExpressionBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="260.0" text=" ">
                                                     <graphic>
                                                         <JFXTextField fx:id="regularExpressionField" prefHeight="25.0" prefWidth="235.0">

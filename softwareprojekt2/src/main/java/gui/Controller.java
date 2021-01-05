@@ -256,9 +256,6 @@ public class Controller implements ObserverSyndrom {
     private MenuItem branches;
     @FXML
     private MenuItem cycles;
-    //TODO Remove this element
-    @FXML
-    private CheckBox treeViewArrowType;
     @FXML
     private CheckBox regularExpressionBox;
     @FXML
@@ -556,15 +553,6 @@ public class Controller implements ObserverSyndrom {
     private ToggleButton filterArrowExtenuatingToggle;
     @FXML
     private ToggleButton filterArrowNeutralToggle;
-    //TODO Remove these elements
-    @FXML
-    private MenuButton filterEdgeType;
-    @FXML
-    private MenuItem filterEdgeTypeReinforced;
-    @FXML
-    private MenuItem filterEdgeTypeExtenuating;
-    @FXML
-    private MenuItem filterEdgeTypeNeutral;
     //--------------------------
     @FXML
     private ResourceBundle resources;
@@ -2141,13 +2129,6 @@ public class Controller implements ObserverSyndrom {
         edgeStrokeDotted.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
         edgeStrokeDottedWeight.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(edgeStrokeMenuButton));
 
-        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
-        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
-        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new MenuItemHandler(filterEdgeType));
-        filterEdgeTypeReinforced.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this, EdgeArrowType.REINFORCED));
-        filterEdgeTypeExtenuating.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this, EdgeArrowType.EXTENUATING));
-        filterEdgeTypeNeutral.addEventHandler(ActionEvent.ACTION, new FilterTypeHandler(this, EdgeArrowType.NEUTRAL));
-
         for (MenuItem item : filterLogType.getItems()) {
             item.addEventHandler(ActionEvent.ACTION, new AnalysisItemHandler(filterLogType));
         }
@@ -3032,7 +3013,6 @@ public class Controller implements ObserverSyndrom {
         reinforcedBox.selectedProperty().addListener(new TemplateCheckBoxListener(reinforcedBox, this));
         extenuatingBox.selectedProperty().addListener(new TemplateCheckBoxListener(extenuatingBox, this));
         neutralBox.selectedProperty().addListener(new TemplateCheckBoxListener(neutralBox, this));
-        treeViewArrowType.selectedProperty().addListener(new TemplateCheckBoxListener(treeViewArrowType, this));
         regularExpressionBox.selectedProperty().addListener(new TemplateCheckBoxListener(regularExpressionBox, this));
     }
 

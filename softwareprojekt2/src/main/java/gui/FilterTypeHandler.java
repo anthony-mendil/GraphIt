@@ -43,7 +43,7 @@ public class FilterTypeHandler implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent evt) {
-        FilterGraphAction filterGraphAction = new FilterGraphAction(type, c.getTreeViewArrowType().isSelected());
-        filterGraphAction.action();
+        //FilterGraphAction filterGraphAction = new FilterGraphAction(type, c.getTreeViewArrowType().isSelected());
+        //filterGraphAction.action();
     }
 }

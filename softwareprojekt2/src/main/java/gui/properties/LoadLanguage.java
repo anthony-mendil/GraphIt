@@ -179,9 +179,6 @@ public class LoadLanguage {
         c.getBranches().setText(loadLanguagesKey("filterBranches"));
         c.getCycles().setText(loadLanguagesKey("filterCycles"));
         c.getOverViewTitledPane().setText(loadLanguagesKey("treeView"));
-        //TODO Remove
-        c.getFilterEdgeType().getTooltip().setText(loadLanguagesKey("treeViewEdgeTypeTooltip"));
-
         c.getFilterArrowReinforcedToggle().getTooltip().setText(loadLanguagesKey("treeViewReinforcedTypeTooltip"));
         c.getFilterArrowExtenuatingToggle().getTooltip().setText(loadLanguagesKey("treeViewExtenuatingTypeTooltip"));
         c.getFilterArrowNeutralToggle().getTooltip().setText(loadLanguagesKey("treeViewUnknownTypeTooltip"));

@@ -44,7 +44,7 @@ public class TemplateCheckBoxListener implements ChangeListener<Boolean> {
     TemplateCheckBoxListener(CheckBox pCheckBox, Controller c) {
         checkBox = pCheckBox;
         this.c = c;
-        treeViewArrowType = c.getTreeViewArrowType();
+        //treeViewArrowType = c.getTreeViewArrowType();
         regularExpressionBox = c.getRegularExpressionBox();
     }
 
