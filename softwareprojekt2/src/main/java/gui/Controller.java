@@ -863,6 +863,7 @@ public class Controller implements ObserverSyndrom {
 
     /**
      * Returns the selected EdgyTypes.
+     * @return The selected EdgeTypes as LinkedList
      */
     private LinkedList<EdgeArrowType> selectedEdgesTypes() {
         LinkedList<EdgeArrowType> edgeTypes = new LinkedList<>();

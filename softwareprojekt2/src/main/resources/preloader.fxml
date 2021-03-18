@@ -36,7 +36,7 @@
                         <Image url="@/GraphItLogoWithTitle.png"/>
                     </image>
                 </ImageView>
-                <Label text="by TeamBlank" textFill="#00000080" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
+                <!--<Label text="by TeamBlank" textFill="#00000080" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
                        GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                     <font>
                         <Font name="Rockwell Nova Bold Italic" size="10.0"/>
@@ -44,7 +44,7 @@
                     <padding>
                         <Insets bottom="-5.0" right="-47.0"/>
                     </padding>
-                </Label>
+                </Label>-->
             </children>
             <BorderPane.margin>
                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
