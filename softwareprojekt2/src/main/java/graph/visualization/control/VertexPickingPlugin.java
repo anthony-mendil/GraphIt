@@ -139,6 +139,7 @@ public class VertexPickingPlugin extends AbstractGraphMousePlugin
             AddVerticesLogAction addVerticesLogAction = new AddVerticesLogAction(e.getPoint(), sp);
             history.execute(addVerticesLogAction);
             Vertex newVertex = pickSupport.getVertex(vv.getGraphLayout(), e.getX(), e.getY());
+            rightMouseClicked(newVertex, vv, e);
             PickedState<Vertex> pickedState = vv.getPickedVertexState();
             pickedState.clear();
             pickedState.pick(newVertex, true);
