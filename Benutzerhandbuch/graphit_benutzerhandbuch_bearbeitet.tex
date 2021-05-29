@@ -171,7 +171,7 @@
   \pagestyle{fancy}
   \setlength{\headheight}{70.55003pt}
   \fancyhead{}
-  \fancyhead[LO,RE]{Software--Projekt 2\\ WiSe 2018/2019
+  \fancyhead[LO,RE]{\\ WiSe 2018/2019
   \\Architekturbeschreibung}
   \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
 
@@ -184,9 +184,8 @@
 % Lustige Header nur auf dieser Seite
   \thispagestyle{fancy}
   \fancyhead[LO,RE]{ }
-  \fancyhead[LE,RO]{Universität Bremen\\FB 3 -- Informatik\\
-  Prof. Dr. Rainer Koschke \\TutorIn: Marcel Steinbeck}
-  \fancyfoot[C]{}
+  \fancyhead[LE,RO]
+  \fancyfoot{}
 
 % Start Titelseite
   \vspace{3cm}
@@ -195,30 +194,37 @@
   \begin{center}
   \bf
   \Large
-  Software--Projekt 2 WiSe 2018/2019\\
   \smallskip
   \small
-  VAK 03-BA-901.02\\
-  \vspace{3cm}
+  \vspace{0cm}
   \end{center}
   \end{minipage}
   \begin{minipage}[H]{\textwidth}
   \begin{center}
-  \vspace{1cm}
+  \vspace{0cm}
   \bf
   \Large Benutzerhandbuch - GraphIt \\
   TeamBlank \\
-  \vspace{2cm}
+  \vspace{5cm}
   \includegraphics[width=3.0in]{logo_graphit.png}
+
+\ Bremen, Juni 2021\\
 
   
   \end{center}
- 
+
+
   \end{minipage}
   \vfill
   \begin{minipage}[H]{\textwidth}
-  \begin{center}
+Das Projekt GraphIt ist ein Kooperationsprojekt der Arbeitsgruppen Softwaretechnik (Prof. Dr. Rainer Koschke) im FB 3 und der Biologiedidaktik (Prof. Dr. Doris Elster) am Institut für Didaktik der Naturwissenschaften im FB2. Es wurde im Rahmen des von Nicklas Müller geleiteten Promotionsprojektes „Förderung der Systemkompetenz von Lehramtsstudierenden der Biologie im Kontext einer Bildung für nachhaltige Entwicklung“ durchgeführt. Die Programmierung der Software erfolgte von Studierenden der Informatik im Rahmen der Lehrveranstaltungen Software-Projekt I und II.
+\\
+
+Verantwortliche für die Programmierung und Softwareentwicklung im FB3:\\ 
+ \begin{center}
   \sf
+
+
   \begin{tabular}{lr}
   Anthony Mendil & antmen@tzi.de \\
   Bastian Rexhäuser & brexhaeu@tzi.de\\
@@ -226,13 +232,47 @@
   Jacky Philipp Mach & machja@tzi.de \\
   Jonah Jaeger & jjaeger@tzi.de \\
   Nina Unterberg & nin\_unt@tzi.de \\
+\\
+Supervision:\\
+Prof. Rainer Koschke\\
+Marcel Steinbeck\\
   \end{tabular}
-  \\ ~
+\\ ~
+\vspace{1cm}
+  \\
+ \end{center}
+
+Verantwortliche für die fachlichen Inhalte der Biologie im FB2:\\
+\begin{center}
+\begin{tabular}{lr}
+\\
+  \sf 
+Nicklas Müller & nicklas.mueller@uni-bremen.de \\
+\\
+Supervision:\\
+ Doris Elster & doris.elster@uni-bremen.de\\
+\end{tabular}
+\\ ~
   \vspace{2cm}
   \\
-  \it Abgabe: 10. März 2019 --- Version 1.0\\ ~
+
+
+
+\emph{}
+
+
+\ Finanziell gefördert durch die zentrale Forschungsförderung der Universität Bremen.\\
+\vspace{2cm}
+
+
+\emph{}
+
+
+  \it Version 1.0\\ ~
   \end{center}
   \end{minipage}
+
+
 
 % Ende Titelseite
 
@@ -242,8 +282,7 @@
 
   \thispagestyle{fancy}
   \fancyhead{}
-  \fancyhead[LO,RE]{Software--Projekt \\  2018/2019
-  \\Benutzerhandbuch}
+  \fancyhead[LO,RE]{}
   
   \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\~}
   \fancyfoot{}
@@ -258,38 +297,35 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Vorwort}
-\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}\\ \\
-Mit diesem Handbuch wird die Bedienung der Software \texttt{GraphIt} beschrieben. Diese Anwendung wurde im Rahmen des Moduls \glqq{Softwareprojekt 2}\grqq{} im Wintersemester 2018/19 entwickelt und ist zur Erstellung, Editierung und Visualisierung von Wirkungsdiagrammen für den Syndromansatz entworfen worden. \\
-Eine Nutzung des Programms für Zwecke, die von dem angedachten Einsatzbereich abweicht ist möglich. Allerdings wird in diesem Dokument nicht weiter auf eine solche Nutzung eingegangen. Bei dieser Nutzung, die nicht dem angedachten Einsatz entspricht, ist ferner zu berücksichtigen, dass eventuell gewisse Funktionen wünschenswert wären, die aufgrund der Anforderungen jedoch bewusst nicht eingebaut wurden. Insbesondere sind hier die Regeln zu beachten, die für die Erstellung von Wirkungszusammenhängen gemäß des Syndromansatzes gelten. \\
-Bei der vorliegenden Software handelt es sich um eine Neu-Entwicklung. Somit existieren keinerlei Vorversionen, mit denen der Funktionsumfang oder die Bedienung der Software in diesem Dokument verglichen werden könnte. 
+\emph{}\\ \\
+Mit diesem Handbuch wird die Bedienung der Software \texttt{GraphIt} beschrieben. GraphIt ist ein Programm, welches an der Universität Bremen in einer Kooperation zwischen den Fachbereichen 2 und 3 im Rahmen des Moduls \glqq{Softwareprojekt I und II}\grqq{} im Wintersemester 2018/19 von Anthony Mendil, Bastian Rexhäuser, Clement Phung, Jacky Philipp Mach, Jonah Jaeger und Nina Unterberg speziell für die Erstellung von Syndromansätzen entwickelt wurde.
+\\
+\\
+Fallbringer für die Erstellung der Software ist Nicklas Müller vom Institut für Didaktik der Naturwissenschaften, Arbeitsgruppe Biologiedidaktik, im FB2. Im Rahmen der Lehrveranstaltung INQUIRE for Teacher Students im Modul 5 Forschungsmethoden und Forschungsprojekte in der Biologiedidaktik (Leitung Prof. Dr. Doris Elster) sollen Studierende des Lehramts Biologie die Förderung und Diagnose der Systemkompetenz unter Anwendung des Syndromansatzes erlernen. Im Rahmen seines Dissertationsprojektes untersucht Nicklas Müller den computergestützten Erstellungsprozess der graphischen Systemrepräsentationen mittels Videographien und Interviews. Erste Ergebnisse seiner Forschung belegen, dass die Erstellung von Syndromnetzen mit bereits bestehenden Programmen Defizite aufweist. So sorgten beispielsweise die vielen Einstellungsmöglichkeiten in dem verwendeten Programm dafür, dass die Studierenden die wesentlichen und wichtigen Funktionen zur Erstellung von Syndromansätzen lange suchen mussten. Gleichzeitig forderten die Studierenden mehr gestalterische Freiheiten bei der Erstellung z.B. durch die Möglichkeit der flexiblen Anordnung der Sphären. Zusätzlich wünschten sich die Studierenden zum einen Analysefunktionen, mit den beispielsweise Kreisläufe, die kürzeste Verbindung zwischen Symptomen oder besonders stark vernetzte Symptome identifiziert werden können. Zum anderen forderten sie mehr Übersichtlichkeit in der Darstellung, indem beispielsweise der Verlauf der Relationen optimiert wird und es die Möglichkeit gibt, ausgewählte Inhalte auszublenden bzw. zu highlighten. 
+\\
+\\
+Um diese komplexen Anforderungen zu lösen, wurde Kontakt zu Prof. Dr. Rainer Koschke aufgenommen. Als Leiter der Arbeitsgruppe Softwaretechnik an der Universität Bremen ist er unter anderem für das Software-Projekt I und II zuständig. Zu Beginn dieses Moduls präsentierte Nicklas Müller seine Forschungsergebnisse und die daraus resultierenden Funktionen und Bedingungen, die ein Programm erfüllen können sollte, um bestmöglich für die Erstellung von Syndromansätzen geeignet zu sein. Diese Vorgaben setzten die Studierenden des Teams Blank um und entwickelten GraphIt. 
+\\
+\\
+Durch eine zentrale Forschungsförderung der Universität Bremen konnte auch nach Beendigung des Software-Pojektes I und II eine Optimierung des Programms ermöglicht werden, indem weitere Erkenntnisse aus der Datenauswertung der Erstellungsvideos und Interviews umgesetzt wurden. 
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Einführung}
-\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
 \subsection{Adressierte Leser}
-Dieses Handbuch richtet sich an alle Nutzer, die \texttt{GraphIt} für ihren bestimmungsgemäßen Einsatz verwenden möchten. Dieser umfasst die Erstellung, Bearbeitung und Auswertung von Wirkungszusammenhängen gemäß des Syndromansatzes. Die Software ist sowohl für Anfänger geeignet, die noch nie oder nur sehr selten mit einem vergleichbaren Programm gearbeitet haben, als auch für Fortgeschrittene und Experten, die über mehr Erfahrung in der Bedienung ähnlicher Software verfügen. \\
-Von dem Adressatenkreis des vorliegenden Dokuments wird die Kenntnis der Terminologie des Syndromansatzes erwartet.  
-\subsection{Verwandte Dokumente}
-Neben dem Benutzerhandbuch der Software \texttt{GraphIt}, existiert ebenfalls ein Testprotokoll, welches die Entwickler erstellt haben, um die Korrektheit der Software zu garantieren. Außerdem eine Architekturbeschreibung die detaillierteren Einblick in die Architektur der Software gewährt. 
-\subsection{Konventionen}
-\begin{itemize}
-	\item Wenn im Verlaufe des Dokumentes von einem Graphen die Rede ist, wird sich auf ein Wirkungsdiagramm  gemäß des Syndromansatzes bezogen.
-\end{itemize}
+Dieses Handbuch richtet sich an alle Nutzer, die \texttt{GraphIt} für ihren bestimmungsgemäßen Einsatz verwenden möchten. Dieser umfasst die Erstellung, Bearbeitung und Auswertung von Syndromansätzen. Die Software ist sowohl für Anfänger geeignet, die noch nie oder nur sehr selten mit einem vergleichbaren Programm gearbeitet haben, als auch für Fortgeschrittene und Experten, die über mehr Erfahrung in der Bedienung ähnlicher Software verfügen. \\
+Alle eingebundenen Screenshots in das Dokument wurden auf einem Computer mit Windows 10 Betriebssystem aufgenommen. Falls Sie ein anderes Betriebssystem verwenden, können die Darstellungen leicht abweichen. 
 
-\subsection{Informationen über die Verwendung des Dokuments}
+\emph{}
 
-\begin{itemize}
-	\item Alle eingebundenen Screenshots in das Dokument wurden auf einem Computer mit Windows 10 Betriebssystem aufgenommen. Wenn ihre Darstellung der Software leicht von den gerade erwähnten Screenshots abweicht, bitten wir dies zu entschuldigen.
-	\item Um die Software \texttt{GraphIt} am Besten verstehen und anwenden zu können, empfehlen wir das Dokument von Anfang bis Ende durchzuarbeiten, da sich manche Einträge auf vorherige beziehen. 
-\end{itemize}
-
-
+Bei der vorliegenden Software handelt es sich um eine Neuentwicklung. Somit existieren keinerlei Vorversionen. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
+\emph{}
 \section{Installation und Starten des Programms} \label{sec:installation}
-\emph{Autoren: Jonah Jaeger}
+
 
 \subsection{Installationsvoraussetzungen}
 \subsubsection{Technische Voraussetzungen}
@@ -330,7 +366,7 @@ Es ist immer nur eine Instanz des Programms auf einem Rechner lauffähig. Das Pr
 \newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Benutzeroberfläche}
-\emph{Autoren: Nina Unterberg, Bastian Rexhäuser, Jonah Jaeger}
+\emph{}
 \subsection{Tasten-/ Mausbelegungen}
 
 \begin{tabular} {|p{8cm}|p{8cm}|}
@@ -494,9 +530,9 @@ Es ist immer nur eine Instanz des Programms auf einem Rechner lauffähig. Das Pr
 \clearpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \section{Übersicht} \label{sec:uebersicht}
-\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
+\emph{}
 \subsection{Ersteller Modus}
-Im \texttt{Ersteller Modus} kann der Benutzer einen Syndromansatz erstellen und editieren. Im Unterschied zu dem \nameref{sec:editor} kann der Benutzer Vorlageregel für den aktuellen Syndromansatz hinterlegen. Diese werden erst auf dem Graphen im \nameref{sec:editor} angewandt. 
+Im \texttt{Ersteller Modus} kann der Benutzer oder die Benutzerin einen Syndromansatz erstellen und editieren. Im Unterschied zu dem \nameref{sec:editor} kann der Benutzer Vorlageregel für den aktuellen Syndromansatz hinterlegen. Diese werden erst auf den Graphen im \nameref{sec:editor} angewandt. 
 
 
 \subsubsection{Relevante Kapitel}
@@ -520,7 +556,7 @@ Im \texttt{Ersteller Modus} kann der Benutzer einen Syndromansatz erstellen und 
 	\item \nameref{mode}	
 \end{itemize}
 \subsection{Bearbeiter Modus} \label{sec:editor}
-Im \texttt{Bearbeiter Modus} kann der Benutzer einen Syndromansatz erstellen und bearbeiten. Die Bearbeitung des Graphen folgt den hinterlegten Vorlageregeln, welche über die Seitenleiste einsehbar, aber nicht bearbeitbar sind. Alle Aktionen auf dem Graph werden geloggt, d.h. ein Verlaufsprotokoll wird erstellt, welches ebenfalls einsehbar und exportierbar/ importierbar ist. 
+Im \texttt{Bearbeiter Modus} kann der Benutzer oder die Benutzerin einen Syndromansatz erstellen und bearbeiten. Die Bearbeitung des Graphen folgt den hinterlegten Vorlageregeln, welche über die Seitenleiste einsehbar, aber nicht bearbeitbar sind. Alle Aktionen auf dem Graph werden geloggt, d.h. ein Verlaufsprotokoll wird erstellt, welches ebenfalls einsehbar und exportierbar/ importierbar ist. 
 \subsubsection{Relevante Kapitel}
 \begin{itemize}
 	\item \nameref{pick}
@@ -568,7 +604,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 
 \newpage
 \section{Instruktionen zur Nutzung des Programms} \label{sec:nutzung}
-\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
+\emph{}
 
 		\subsection{Auswahl von Graphelementen} \label{pick}
 	\subsubsection{Eines Elements}
@@ -587,7 +623,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\hint
 	\begin{itemize}
 		\item Eine Relation kann manchmal etwas schwierig auszuwählen sein, da die Kanten vergleichsweise relativ dünn sind. 
-		\item Die Nutzung der eben angesprochenen Übersichtsleiste wird in einem folgenden Unterkapitel (\ref{overwiew}) noch genauer beschrieben.
+		\item Die Nutzung der eben angesprochenen Übersichtsleiste wird in einem folgenden Unterkapitel (\ref{overwiew}) genauer beschrieben.
 		\item Ausgewählte Elemente werden in der Visualisierung durch einen dickere Umrandung hervorgehoben.
 	\end{itemize}
 	
@@ -609,7 +645,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\newpage
 	\subsubsection{Mehrerer Elemente}
 	\condition
-	Es muss ein Syndrom mit mindestens zwei Elemente (Sphären/ Symptome/ Relationen), welches ausgewählt werden soll, existieren. 
+	Es muss ein Syndrom mit mindestens zwei Elementen (Sphären/ Symptome/ Relationen), welche ausgewählt werden sollenl, existieren. 
 	\action
 	\begin{enumerate}
 		\item In der Menüleiste den Button \textit{Auswahl} durch einen Links-Klick aktivieren. 
@@ -620,7 +656,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\end{enumerate}
 	\hint
 	\begin{itemize}
-		\item Verschiedene Arten (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. 
+		\item Verschiedene Elementtypen (Sphären/ Symptome/ Relationen) von Graphelementen können in einer Aktion der Auswahl hinzugefügt werden. 
 		\item Alle Aktionen bezüglich der Editierung des Graphen können auch auf mehrere Elemente gleichzeitig angewendet werden. \\
 	\end{itemize}
 
@@ -689,10 +725,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\actions
 	\bbe{Filtern der Relationstypen:}
 	\begin{enumerate}
-		\item In der Übersichtsleiste einen Links-Klick in die Check-Box neben dem \textit{Nach der Pfeilspitze der Relation filtern}-Button ausführen, sodass dort ein Häkchen gesetzt ist.
-		\item In der Übersichtsleiste einen Links-Klick auf den Button \textit{Nach der Pfeilspitze der Relation filtern} das Drop-Down-Menü dieses Buttons öffnen.
-		\item In dem Drop-Down-Menü, den Relationstyp, der gefiltert werden soll, mit einem Links-Klick auswählen.
-		\item Um wieder die Relationen aller Relationstypen einzublenden, erneut einen Links-Klick in die Check-Box neben dem \textit{Nach der Pfeilspitze der Relation filtern}-Button ausführen, sodass der Haken in dieser Box verschwindet.
+		\item In der Übersichtsleiste mit einen Links-Klick auswählen, welche Relationstypen angezeigt werden sollen. Ist ein Relationstyp blau hinterlegt, wird dieser nicht ausgeblendet (s. Abb. 9).
+
 	\end{enumerate}
 	\bbe{Filtern der Symptome durch einen regulären Ausdruck:}
 		\begin{enumerate}
@@ -705,19 +739,17 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 	\begin{itemize}
 		\item Der ausgewählte Relationstyp wird weiterhin im Graphen angezeigt. Die Relationen der anderen beiden Relationstypen werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Relationen in der Übersichtsleiste.
 		\item Die Symptome, deren Titel den Suchbegriff enthalten, werden weiterhin im Graphen angezeigt. Die übrigen Symptome werden ausgeblendet. Diese Ausblendung gilt sowohl für die visuelle Darstellung des Syndroms im Hauptfenster als auch für die Liste der Symptome in der Übersichtsleiste.
-		\item In das Feld \textit{Nach regulären Ausdrücken filtern} können auch alle Form von regulären Ausdrücken eingegeben werden, z.B. \textbackslash d um nach Zahlen zu filtern)
-		\item In beiden Filtervorgängen könne die ersten beiden Schritte auch in umgekehrter Reihenfolge durchgeführt werden.
 		\item Das Ergebnis der Filterung schlägt sich sowohl in der Liste der Graphelemente in der Übersichtsleiste nieder als auch in der visuellen Darstellung des Syndroms.\\
 	\end{itemize}		
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Editierung des Graphen - Allgemein}\label{edit}
 
-		\red{\textbf{Hinweise}}
+		\hint
 		\begin{itemize}
-			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer im \\
+			\item In den folgenden Anleitungen wird immer davon ausgegangen, dass sich der Benutzer oder die Benutzerin sich im \\
 			Bearbeiter-/ Erstellermodus befindet und er somit die Berechtigung hat den Graphen zu editieren.
-			\item Es wird vorausgesetzt, dass die Aktionen nicht durch die Vorlageregeln verhindert werden. D.h. das der Bearbeiter auf alle Elemente des Graphen freien Zugriff hat und alle Eigenschaften veränderbar sind.
+			\item Es wird vorausgesetzt, dass die Aktionen nicht durch die Vorlageregeln verhindert werden. 
 			\item \bbe{Alle Aktionen die im folgenden beschrieben sind und sich auf die Editierung von Graphelementen beziehen oder auf die Analysefunktionen sind auch auf eine Auswahl von mehreren Graphelementen ausführbar!}
 		\end{itemize}
 	
@@ -747,7 +779,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-				\item Es kann nur das Kontextmenü eines Graphelements zu jedem Zeitpunkt geöffnet werden.
+				\item Es kann nur das Kontextmenü eines Graphelements zur Zeit geöffnet werden.
 				\item Die Kontextmenüs von Sphären, Symptomen und Relationen unterscheiden sich in ihrem Funktionsumfang.
 				\item Der Funktionsumfang des Kontextmenüs kann durch die Vorlageregeln eingeschränkt sein.
 				\item \bbe{Das Kontextmenü lässt sich an zwei verschieden Stellen öffnen:} Zum einen im Hauptfenster, in dem der Graph visuell dargestellt wird, und zum anderen in der Übersichtsleiste. In beiden Fallen lässt es sich durch einen Rechts-Klick auf das entsprechende Element öffnen. \\
@@ -766,8 +798,8 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich eine Sphäre auf einer anderen Sphäre hinzuzufügen. Wird dies versucht, wird keine neue Sphäre hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Die Darstellung (Farbe, Kantenart, Typ) der Sphäre wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. \\
+			\item Es ist nicht möglich eine Sphäre innerhalb einer anderen Sphäre hinzuzufügen. 
+			\item Die Darstellung (Farbe, Linienart, Typ) der Sphäre wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. \\
 	\end{itemize}
 	
 	
@@ -910,14 +942,14 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\action
 		\begin{enumerate}
 			\item In der Menüleiste den Button \textit{Symptom hinzufügen} durch einen Links-Klick aktivieren.
-			\item Den Cursor auf die gewünschte Position innerhalb einer Sphäre bewegen, an der sich kein(e) andere(s) Symptom / Relation befindet, und auf die linke Maustaste klicken.
+			\item Den Cursor auf die gewünschte Position innerhalb einer Sphäre bewegen, an der sich kein anderes Symptom oder eine andere Relation befindet und auf die linke Maustaste klicken.
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Es ist nicht möglich, ein Symptom auf einen anderem Symptom hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Es ist nicht möglich ein Symptom auf einer Relation hinzuzufügen. Wird dies versucht, wird kein neues Symptom hinzugefügt und es erscheint eine Fehlermeldung.
-			\item Die Darstellung (Farbe, Kantenart, Typ) des Symptoms wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. \\
+			\item Es ist nicht möglich, ein Symptom auf eine anderes Symptom hinzuzufügen. 
+			\item Es ist nicht möglich, ein Symptom außerhalb einer Sphäre hinzuzufügen. 
+			\item Es ist nicht möglich ein Symptom auf einer Relation hinzuzufügen.
+			\item Die Darstellung (Farbe, Linienart, Typ) des Symptoms wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. \\
 		\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -941,7 +973,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 			\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Beim Löschen eines Symptoms werden auch alle von dem Symptom ausgehenden Kanten gelöscht. \\
+			\item Beim Löschen eines Symptoms werden auch alle von dem Symptom ausgehenden Relationen gelöscht. \\
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -978,7 +1010,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\hint
 		\begin{itemize}
 			\item Es ist nicht möglich, ein Symptom zu verkleinern, wenn es bereits seine minimale Größe hat oder die Beschriftung die aktuelle Größe mindestens erfordert. 
-			\item Manchmal kann es sein, dass es beim Vergrößern so scheint, dass das Symptom nicht weiter wächst. Der Schein trügt hier. Wahrscheinlich ist die Form durch den Titel des Symptoms vergrößert worden, damit der Titel innerhalb des Symptoms dargestellt werden kann. Also einfach ein paar mal mehr drücken und dann wird sich der Knoten irgendwann wie gewünscht vergrößern. \\
+			 \\
 		\end{itemize}
 			
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -989,7 +1021,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\aOne
 		\begin{enumerate}
 			\item In der Menüleiste mit der linken Maustaste auf den Button \textit{Hintergrundfarbe des Symptoms verändern}/ \textit{Randfarbe des Symptoms verändern} klicken und eine Farbe auswählen.
-			\item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, dessen Kontextmenü öffnen.
+			\item Mit einem Rechts-Klick auf das Symptom, dessen Farbe geändert werden soll, das Kontextmenü öffnen.
 			\item In dem Kontextmenü den Punkt \textit{Füllfarbe}/ \textit{Randfarbe} auswählen.
 		\end{enumerate}		
 		\aTwo
@@ -1012,7 +1044,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\begin{enumerate}
 			\item Das Symptom, dessen Titel geändert werden soll mit einem Rechts-Klick anklicken, sodass sich dessen Kontextmenü öffnet.
 			\item Im Kontextmenü ganz oben \textit{Titel} mit einem Links-Klick auswählen. 
-			\item In dem sich öffnenden Fenster für die gewünschten Sprache(n) den neuen Titel in die dafür vorgesehenen Felder eingeben.
+			\item In dem sich öffnenden Fenster für die gewünschten Sprachen den neuen Titel in die dafür vorgesehenen Felder eingeben.
 			\item Die Änderung des Titels mit einem Links-Klick auf die \textit{Speichern}-Schaltfläche abschließen.
 		\end{enumerate}
 		\hint
@@ -1072,18 +1104,18 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		Um eine Relation hinzufügen zu können, müssen mindestens 2 Symptome im Syndrom existieren. 
 		\action
 		\begin{enumerate}
+			\item In der Menüleiste entweder eine verstärkende, abschwächende oder ungewisse Relation auswählen (s. Abb. 10).
 			\item Auf ein Symptom klicken und die linke Maustaste gedrückt halten.
 			\item Die Maus zu einem zweiten Symptom bewegen. 
 			\item Die linke Maustaste auf einem anderem Symptom loslassen. 
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Die Darstellung (Farbe, Kantenart, Typ) der Relation wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. 
+			\item Die Darstellung (Farbe, Linienart, Typ) der Relation wird aus den ausgewählten Werten auf der Benutzeroberfläche ermittelt. 
 			\item Es können nur Relationen zwischen zwei Symptomen hinzugefügt werden. 
-			\item Ein Symptom kann keine Relation auf sich selber haben.
 			\item Die Ankerpunkte der Relationen (von dem ausgehenden/ eingehenden Symptom) werden automatisch gesetzt und können manuell durch den Benutzer im Nachhinein verändert werden. 
-			\item Die Pfeile von Relationen des gleichen Typs werden dabei in einem bestimmten Bereich zusammengefasst dargestellt. 
-			\item Pfeilspitzen verschiedenen Typs sollen sich nicht überlappen.
+			\item Die Endpunkte von Relationen des gleichen Typs werden dabei in einem bestimmten Bereich zusammengefasst dargestellt. 
+		
 		\end{itemize}
 		
 		\begin{figure}[ht!]
@@ -1117,7 +1149,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Ankerpunkte ein-/ ausblenden}
-		Ankerpunkte bezeichnen die Postion, wo die Relation in einem Symptom mündet/ von ihm ausgeht. Bei der Erstellung einer Relation werden diese automatisch gesetzt und sind veränderbar. Das bedeutet, dass wenn ein Symptom bewegt wird, sich die Postion der Mündung/Ausgang der Relation in/aus das Symptom entsprechend anpasst und bewegt. Um das zu verhindern, können die Ankerpunkte manuell gesetzt werden. Diese sind dann fest, d.h. auch beim Bewegen eines Symptoms bleibt die Position der Mündung/ des Ausgangs bestehen.
+		Ankerpunkte bezeichnen die Punkte, an denen die Relation an einem Symptom mündet bzw. von ihm ausgeht. Bei der Erstellung einer Relation werden diese automatisch gesetzt und sind veränderbar. Wird ein Symptom bewegt, ändert sich die Postion des Ankerpunktes einer Relation. Um das zu verhindern, können die Ankerpunkte manuell gesetzt werden. Diese sind dann fest und ändern sich auch nicht beim Bewegen eines Symptoms.
 		\condition
 		Es muss mindestens eine Relation im Syndromansatz existieren und mindestens ein Ankerpunkt gesetzt sein. 
 		\action
@@ -1144,9 +1176,9 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		Es muss mindestens eine Relation im Syndromansatz existieren.
 		\action
 		\begin{enumerate}
-			\item Die Kante durch einen Rechts-Klick auswählen und gedrückt halten.
-			\item Befindet sich die Position der Maus beim Klick näher am Symptom, in welches die Relation mündet, wird der Ankerpunkt der Mündung der Relation gesetzt. Befindet sich die Position der Maus beim Klick näher am Symptom, von dem die Kante ausgeht, wird der Ankerpunkt für den Ausgang der Kante gesetzt. 
-			\item Die Kante in die gewünschte Richtung bewegen. Die Mündung/ der Ausgang der Kante wandert entsprechend mit. 
+			\item Die Relation durch einen Rechts-Klick auswählen und gedrückt halten.
+			\item Es wird das Symptom ausgewählt, welches sich beim Klicken näher an der Mausposition befindet. 
+			\item Die Relation in die gewünschte Richtung bewegen. Die Ankerpunkt der Relation wandert entsprechend mit. 
 			\item Wenn die gewünschte Position erreicht ist, die gedrückte Maustaste loslassen. 
 		\end{enumerate}
 		\begin{figure}[ht!]
@@ -1159,7 +1191,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\hint
 		\begin{itemize}
 			\item Beim Beispiel in der Abbildung wird aufgrund der Mausposition der Ankerpunkt bei der Mündung der Relation gesetzt. 
-			\item Sobald ein mündender Ankerpunkt manuell gesetzt wurde, wird die Position der Mündung der Kante nicht mehr automatisch berechnet, die Pfeilspitze der Kante nicht mehr mit anderen zusammengefasst und auch eine Überlappung von verschiedenen Kantenenden kann möglich sein. Wird der Ankerpunkt entfernt, treten wieder die gerade genannten Regeln in Kraft. \\
+			\item Sobald ein mündender Ankerpunkt manuell gesetzt wurde, wird die Position der Mündung der Relation nicht mehr automatisch berechnet, die Pfeilspitze der Relation nicht mehr mit anderen zusammengefasst und auch eine Überlappung von verschiedenen Relationsendpunkten kann möglich sein. Wird der Ankerpunkt entfernt, treten wieder die gerade genannten Regeln in Kraft. \\
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1173,7 +1205,7 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\end{enumerate}
 		\hint
 		\begin{itemize}
-			\item Beim Entfernen der Ankerpunkte werden immer (wenn gesetzt) beide Ankerpunkte entfernt.\\
+			\item Beim Entfernen der Ankerpunkte werden immer beide Ankerpunkte entfernt.\\
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1228,65 +1260,29 @@ Die Auswertung der Nutzerinteraktionen ist ebenfalls möglich. Diese können vom
 		\actions
 		\aOne
 		\begin{enumerate}
-			\item Das Symptom/ die Relation, welche(s) hervorgehoben werden soll, mit einem Links-Klick auswählen. 
-			\item In der Menüleiste den Button \textit{Elemente hervorheben} klicken.
+			\item Das Symptom/ die Relation, welche(s) hervorgehoben werden soll, mit einem Rechts-Klick auswählen. 
+			\item In der Menüleiste den Button \textit{Elemente hervorheben} klicken (s. Abb. 13 a). Ein erneutes Klicken auf den Button \textit{Elemente hervorheben} hebt die Auswahl wieder auf.
+			\item Um die ausgewählten Elemente im Syndromnetz visuell hervorzuheben, muss in der Dropdown Liste unter \textit{Hervorheben} (Nr. 32) in der obersten Menüleiste die Option \textit {Aktivieren/Deaktivieren} mit einem Links-Klick auswählt werden. Ein erneutes Klicken auf diesen Button hebt die visuelle Hervorhebung wieder auf (s. Abb. 13 c).
 		\end{enumerate}
-		\aTwo
-		\begin{enumerate}
-			\item Im Kontextmenü des Graphelements, das hervorgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klick auswählen.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-					\item Es können lediglich Symptome und Relationen hervorgehoben werden.
-					\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell bereits hervorgehoben ist, passiert nichts.
-					\item Um die Hervorhebung zu aktivieren/ sichtbar zu machen den Button \textit{Hervorgehobene Elemente aktivieren} in der Menüleiste anklicken. Durch einen erneuten Klick auf diesen Button wird die Hervorhebung wieder deaktiviert. Dabei kann dieser \textit{Hervorgehobene Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
-					\item Ist die Hervorhebung durch den \textit{Hervorgehobene Elemente aktivieren}-Button momentan nicht aktiv hat diese Aktion keine visuellen Effekt. 
-					\item Im Kontextmenü wird die Option \textit{Hervorhebung} farblich hervorgehoben, falls das Element schon der \textit{Hervorhebung} hinzugefügt wurde. \\
-		\end{itemize}
-			
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Graphelemente aus der Hervorhebung entfernen}
-		\condition 	
-		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und eine oder mehr Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente hervorgehoben.
-		\actions
-		\aOne
-		\begin{enumerate}
-			\item Das Symptom/ die Relation, welche(s) aktuell hervorgehoben ist und deren Hervorhebung aufgehoben werden soll, mit einem Links-Klick auswählen. 
-			\item In der Menüleiste den Button \textit{Hervorhebung von Elementen entfernen} klicken.
-		\end{enumerate}
-		\aTwo
-		\begin{enumerate}
-			\item Im Kontextmenü des Graphelements, das aktuell hervorgehoben ist und dessen Hervorhebung aufgehoben werden soll, die Option \textit{Hervorhebung} mit einem Links-Klick auswählen.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-			\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell nicht hervorgehoben ist, passiert nichts.
-			\item Die bereits hervorgehoben Elemente, die nicht vor Klicken des \textit{Hervorhebung von Elementen entfernen}-Buttons ausgewählt wurden, bleiben hervorgehoben.
-			\item Im Kontextmenü von hervorgehobenen Elementen wird der Option \textit{Hervorhebung}  farblich hervorgehoben angezeigt, was verdeutlicht, dass dieses Element aktuell hervorgehoben ist und dass ein erneutes Klicken auf diese Schaltfläche die Hervorhebung aufhebt. \\
-		\end{itemize}
-	
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Hervorhebung aktivieren/ deaktivieren}
-	\condition 	
-Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet.
-\action
-\begin{enumerate}
-	\item In der Menüleiste den Button \textit{Hervorgehobene Elemente aktivieren/ deaktivieren} mit einem Links-Klick aktivieren.
-\end{enumerate}
-\hint
-\begin{itemize}
-	\item Die als hervorgehoben eingestellten Elemente werden (visuell) farblich hervorgehoben. 
-	\item Durch erneutes Klicken des \textit{Hervorgehobene Elemente aktivieren/ deaktivieren}-Buttons wird die Hervorhebung der Elemente aufgehoben. \\
-\end{itemize}
+  
+		\aTwo
+		\begin{enumerate}
+			\item Symptome bzw. Relationen auswählen. In der Dropdown Liste unter \textit{Hervorheben} (Nr. 32) in der obersten Menüleiste die Option \textit {Elemente hervorheben} mit einem Links-Klick auswählen (s. Abb. 13 b). Ein Klicken auf den Button \textit {Hervorhebung entfernen} hebt die Auswahl wieder auf.
+			\item Um die ausgewählten Elemente im Syndromnetz visuell hervorzuheben,  muss in derselben Dropdown Liste die Option \textit {Aktivieren/Deaktivieren} mit einem Links-Klick auswählt werden. Ein erneutes Klicken auf diesen Button hebt die visuelle Hervorhebung wieder auf (s. Abb. 13 c).
+		\end{enumerate}
+	
 
 \begin{figure}[ht!]
 	\centering
-	\subfigure[Hervorhebung]{
+	\subfigure[Alternative 1]{
 		\includegraphics[width=0.4\columnwidth, keepaspectratio]{highlight2.png} 
 	}
-	\subfigure[Hervorhebung(2)]{
+	\subfigure[Alternative 2]{
 		\includegraphics[width=0.4\columnwidth, keepaspectratio]{highlight.png} 
+	}
+	\subfigure[Aktivieren/Deaktivieren]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{aktivieren.png} 
 	}
 	\caption{Hervorhebung}
 	
@@ -1297,61 +1293,34 @@ Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebi
 \subsubsection{Graphelemente ausblenden/einblenden}
 		\condition 	
 		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet.
-		\action
-			\begin{enumerate}
-				\item In der Menüleiste den Button \textit{Ausgeblendete Elemente aktivieren} mit einem Links-Klick aktivieren.
+		\actions
+		\aOne
+		\begin{enumerate}
+				\item Das Symptom/ die Relation, welche(s) ausgeblendet werden soll, mit einem Rechts-Klick auswählen. 
+				\item In der Menüleiste den Button \textit{Sichtbarkeit} klicken (s. Abb. 13 a). Ein erneutes Klicken auf den Button \textit{Sichtbarkeit} hebt die Auswahl wieder auf.
+				\item Um die ausgewählten Elemente im Syndromnetz auszublenden,  muss in der Dropdown Liste unter \textit{Ausblenden} (Nr. 33) in der obersten Menüleiste die Option \textit {Aktivieren/Deaktivieren} mit einem Links-Klick auswählt werden. Ein erneutes Klicken auf diesen Button hebt das Ausblenden wieder auf.
 			\end{enumerate}
-		\hint
-		\begin{itemize}
-				\item Die als ausgeblendet eingestellten Elemente werden (visuell) ausgeblendet. 
-				\item Die ausgeblendeten Elemente sind weiterhin im Graphen enthalten und können jeder Zeit wieder eingeblendet werden. 
-				\item Ist ein Symptom als ausgeblendet eingestellt und wird der \textit{Ausgeblendete Elemente aktivieren}-Button aktiviert, so werden auch die Relationen, die zu diesem Symptom hinführen und von diesem ausgehen ausgeblendet. Sie werden zusammen mit dem Symptom beim erneuten Klicken dieses Buttons wieder eingeblendet.
-				\item Durch erneutes Klicken des \textit{Ausgeblendete Elemente aktivieren}-Buttons wird die (visuelle) Ausblendung der Elemente aufgehoben. \\
-		\end{itemize}
-		
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Graphelemente zum Fadeout hinzufügen}
-	\condition 	
-		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet. 
-		\actions
-		\aOne
-		\begin{enumerate}
-			\item Das Symptom / die Relation, welche(s) ausgeblendet werden soll, mit einem Links-Klick auswählen. 
-			\item In der Menüleiste den Button \textit{Elemente ausblenden} klicken.
-		\end{enumerate}
 		\aTwo
 		\begin{enumerate}
-			\item Im Kontextmenü des Graphelements, das ausgeblendet werden soll, die Option \textit{Sichtbarkeit} mit einem Links-Klick auswählen.
+			\item Symptome bzw. Relationen auswählen. In der Dropdown Liste unter \textit{Ausblenden} (Nr. 33) in der obersten Menüleiste die Option \textit {Elemente ausblenden} mit einem Links-Klick auswählen (s. Abb. 13 b). Ein Klicken auf den Button \textit {Ausblendung entfernen} hebt die Auswahl wieder auf.
+			\item Um die ausgewählten Elemente im Syndromnetz auszublenden, muss in derselben Dropdown Liste die Option \textit {Aktivieren/Deaktivieren} mit einem Links-Klick auswählt werden. Ein erneutes Klicken auf diesen Button hebt die Ausblendung wieder auf.
 		\end{enumerate}
-		\hint
-		\begin{itemize}
-					\item Es können lediglich Symptome und Relationen ausgeblendet werden. 
-					\item Wird ein Symptom ausgeblendet, so auch die Relationen, die zu/von diesem Symptom führen/ ausgehen.
-					\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell bereits als ausgeblendet ist, passiert nichts.
-					\item Um die Ausblendung zu aktivieren/ sichtbar zu machen den Button \textit{Ausgeblendete Elemente aktivieren} in der Menüleiste anklicken. Durch einen erneuten Klick auf diesen Button wird die Ausblendung wieder deaktiviert. Dabei kann dieser \textit{Ausgeblendete Elemente aktivieren}-Button zu einem beliebigen Zeitpunkt im oben beschriebenen Ablauf geklickt werden.
-					\item Falls ein Graphelement bereits dem Ausblenden hinzugefügt wurde, wird die Option \textit{Sichtbarkeit} im Kontextmenü des Elementes farblich hervorgehoben. \\
-		\end{itemize}
 		
-\newpage
+		
+\begin{figure}[ht!]
+	\centering
+	\subfigure[Alternative 1]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{einblenden.png} 
+	}
+	\subfigure[Alternative 2]{
+		\includegraphics[width=0.4\columnwidth, keepaspectratio]{einblenden2.png} 
+	}
+	\caption{Ein-/ Ausblenden}
+	
+\end{figure}
+\newpage 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Graphelemente aus dem Fadeout entfernen}
-		\condition 	
-		Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebig viele Relationen enthält, ist im Programm geöffnet. Es ist mindestens eines dieser Elemente als ausgeblendet eingestellt.
-		\actions
-		\aOne
-		\begin{enumerate}
-			\item Das Symptom/ die Relation, welche(s) aktuell als ausgeblendet eingestellt ist und dessen/ deren Ausblendung aufgehoben werden soll, mit einem Links-Klick auswählen. 
-			\item In der Menüleiste den Button \textit{Ausblendung von Elementen entfernen} klicken.
-		\end{enumerate}
-		\aTwo
-		\begin{enumerate}
-			\item Im Kontextmenü des Graphelements, das aktuell als ausgeblendet eingestellt ist und dessen Ausblendung aufgehoben werden soll, die Option \textit{Sichtbarkeit} mit einem Links-Klick auswählen.
-		\end{enumerate}
-		\hint
-		\begin{itemize}
-				\item Wird die Aktion auf einem Graphelement ausgeführt, das aktuell nicht ausgeblendet ist, passiert nichts.
-				\item Im Kontextmenü von als ausgeblendet eingestellten Elementen wird die Option \textit{Sichtbarkeit} farblich hervorgehoben, was verdeutlicht, dass dieses Element aktuell als ausgeblendet eingestellt ist und dass ein erneutes Klicken auf diese Schaltfläche die Ausblendung aufhebt.\\
-		\end{itemize}	
+	
 		
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1377,7 +1346,7 @@ Ein Syndrom mit mindestens einer Sphäre, die ein oder mehr Symptome und beliebi
 			\item Der Zoom-Bereich liegt zwischen 20 und 200 \%.
 	 	\end{itemize}		
 
-\newpage	
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\subsubsection{Zoom Fenster}
 		\condition 	
@@ -1736,10 +1705,13 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 	Das Programm ist geöffnet und ein Syndrom wird angezeigt.
 	\action
 	\begin{enumerate}
-		\item Graphmaße (Umfang, Vernetzungsindex und Strukturindex) werden in der Leiste oben links angezeigt und können dort abgelesen werden.
+		\item Graphmaße (Umfang, Anzahl Symptome, Anzahl Relationen, Vernetzungsindex und Strukturindex) werden in der Leiste oben links angezeigt und können dort abgelesen werden.
 	\end{enumerate} 
 	\hint
 	\begin{itemize}
+		\item Der Umfang entspricht der Summe aller Symptome und Relationen (Sommer, 2005).
+		\item Der Vernetzungsindex entspricht der zweifachen Summe aller wertbaren Relationen dividiert durch die Anzahl der Symptome (Ossimitz, 2000).
+		\item Der Strukturindex entspricht der Summe aller Pfeilketten, Verzweigungen und Kreisläufe, dividiert durch die Summe der Symptome (Bollmann-Zuberbühler, 2008).
 		\item Diese Maße beziehen sich auf das gesamte Syndrom. Es ist dabei unabhängig, welche Graphelemente aktuell ausgewählt sind.
 		\item Die Graphmaße werden automatisch beim Öffnen des Analysemodus berechnet. \\
 	\end{itemize}
@@ -1766,9 +1738,9 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 		Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist geöffnet.
 	\action
 	\begin{enumerate}
-		\item Das Symptom, welches als Startknoten gelten soll, mit einem Links-Klick auswählen.
+		\item Das Symptom, welches als Start gelten soll, mit einem Links-Klick auswählen.
 		\item Die \textit{Shift}-Taste der Tastatur drücken und gedrückt halten.
-		\textit Das Symptom, welches als Zielknoten gelten soll, mit einem Links-Klick auswählen.
+		\textit Das Symptom, welches als Ziel gelten soll, mit einem Links-Klick auswählen.
 		\item Die \textit{Shift}-Taste loslassen.
 		\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
 		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Kürzester Weg} durch einem Links-Klick auswählen.
@@ -1777,18 +1749,18 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 	\hint
 	\begin{itemize}
 		\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig, da die Relationen gerichtet verlaufen. 
-		\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf dem kürzesten Weg zwischen dem Start- und dem Ziel-Symptom liegen werden farblich hervorgehoben ebenso die Relationen, die den kürzesten Weg bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
+		\item Das Startsymptom, das Zielsymptom sowie alle Symptome, die auf dem kürzesten Weg zwischen dem Start- und dem Ziel-Symptom liegen werden farblich hervorgehoben ebenso die Relationen, die den kürzesten Weg bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert. \\
 	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Alle Pfade zw. Symptomen}
+\subsubsection{Alle Pfade zwischen Symptomen}
 	\condition 
 		Das Programm ist geöffnet und ein Syndrom mit mindestens zwei Symptomen, die durch eine Relation verbunden sind, ist geöffnet.
 	\action
 	\begin{enumerate}
-		\item Das Symptom, welches als Startknoten gelten soll, mit einem Links-Klick auswählen.
+		\item Das Symptom, welches als Start gelten soll, mit einem Links-Klick auswählen.
 		\item Die \textit{Shift}-Taste der Tastatur drücken und gedrückt halten.
-		\textit Das Symptom, welches als Zielknoten gelten soll, mit einem Links-Klick auswählen.
+		\textit Das Symptom, welches als Ziel gelten soll, mit einem Links-Klick auswählen.
 		\item Die \textit{Shift}-Taste loslassen.
 		\item In der oberen Leiste im Bereich Symptome auf den Button \textit{Die Wege zwischen zwei Symptomen anzeigen} einen Links-Klick ausführen.
 		\item In dem sich öffnenden Drop-Down-Menü die Option \textit{Alle Wege} durch einem Links-Klick auswählen.
@@ -1797,7 +1769,7 @@ Die Analysefunktionen, die in diesem Kapitel beschrieben werden, beziehen sich a
 	\hint
 	\begin{itemize}
 		\item Die Reihenfolge, in der die Symptome ausgewählt werden, ist wichtig, da die Relationen gerichtet verlaufen. 
-		\item Der Startknoten, der Zielknoten sowie alle Symptome, die auf einem Weg zwischen dem Start- und dem Ziel-Symptom liegen werden farblich hervorgehoben, ebenso die Relationen, die diese Wege bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.\\
+		\item Das Startsymptom, das Zielsymptom sowie alle Symptome, die auf einem Weg zwischen dem Start- und dem Ziel-Symptom liegen werden farblich hervorgehoben, ebenso die Relationen, die diese Wege bilden. Die übrigen Symptome und Relationen werden dagegen grau visualisiert.\\
 	\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1943,39 +1915,39 @@ Dieser Abschnitt beschäftigt sich mit dem Protokoll der Nutzerinteraktionen. Nu
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Vorlage} \label{template}
-Eine Vorlage kann als ein spezielles Syndrom angesehen werden. Neben dem eigentlichen Syndrom (also einer Menge an Sphären, Knoten und Kanten) enthält eine Vorlage zusätzliche Informationen. Diese Informationen legen fest, in wie weit ein das enthaltene Syndrom bearbeitet werden kann. Dies beinhaltet sowohl Regeln, wie viele Sphären, Symptome und Kanten hinzugefügt werden können, als auch Festlegungen zu jedem einzelnen aktuell im Syndrom enthaltenen Graphelement. Letztere Regelungen, die einzelnen schon vorhandenen Graphelemente betreffen, unterscheiden sich. Die Regeln für Sphären unterscheiden sich von den Regeln der Symptome und diese sind wiederum anders als die Regeln von Relationen. \\ \\
+Eine Vorlage kann als ein spezielles Syndrom angesehen werden. Neben dem eigentlichen Syndrom (also einer Menge an Sphären, Symptomen und Relationen) enthält eine Vorlage zusätzliche Informationen. Diese Informationen legen fest, in wie weit ein das enthaltene Syndrom bearbeitet werden kann. Dies beinhaltet sowohl Regeln, wie viele Sphären, Symptome und Relationen hinzugefügt werden können, als auch Festlegungen zu jedem einzelnen aktuell im Syndrom enthaltenen Graphelement. Letztere Regelungen, die einzelne schon vorhandenen Graphelemente betreffen, unterscheiden sich. Die Regeln für Sphären unterscheiden sich von den Regeln der Symptome und diese sind wiederum anders als die Regeln von Relationen. \\ \\
 Es können folgende Regeln eingestellt werden, die sich anschließend auf die Bearbeitung des Syndroms auswirken: \\ \\
 \textbf{\bbe{Regeln für das gesamte Syndrom:}}
 \begin{enumerate}
-	\item die maximale Anzahl an Sphären im Syndrom
-	\item die maximale Anzahl an Symptomen im Syndrom 
-	\item die maximale Anzahl an Relationen im Syndrom
-	\item die im Syndrom erlaubten Relationstypen
+	\item Die maximale Anzahl an Sphären im Syndrom
+	\item Die maximale Anzahl an Symptomen im Syndrom 
+	\item Die maximale Anzahl an Relationen im Syndrom
+	\item Die im Syndrom erlaubten Relationstypen
 \end{enumerate}
 
 \textbf{\bbe{Regeln für einzelne Sphären}}\\
 (folgende Eigenschaften der gewählten Sphäre können gesperrt werden, sodass diese nicht mehr verändert werden können): 
 \begin{enumerate}
-	\item der Titel der Sphäre (beinhaltet den Titel sowie dessen Schriftart und -größe)
-	\item die Position der Sphäre
-	\item der Style der Sphäre (beinhaltet die Größe und Füllfarbe)
-	\item die Möglichkeit, die in dieser Sphäre enthaltenen Symptome zu löschen und in diese Sphäre weitere Symptome hinzuzufügen
+	\item Der Titel der Sphäre (beinhaltet den Titel sowie dessen Schriftart und -größe)
+	\item Die Position der Sphäre
+	\item Der Style der Sphäre (beinhaltet die Größe und Füllfarbe)
+	\item Die Möglichkeit, die in dieser Sphäre enthaltenen Symptome zu löschen und in diese Sphäre weitere Symptome hinzuzufügen
 	\item Festlegung der maximal in dieser Sphäre enthaltenen Symptome
 	\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Sphäre nicht gelöscht werden.
 \end{enumerate}
 \textbf{\bbe{Regeln für einzelne Symptome}}\\
 (folgende Eigenschaften des gewählten Symptoms können gesperrt werden, sodass diese nicht mehr verändert werden können):
 \begin{enumerate}
-	\item der Titel des Symptoms (beinhaltet den Titel sowie dessen Schriftart und -größe)
-	\item die Position des Symptoms
-	\item der Style das Symptoms (beinhaltet die Größe, Füllfarbe und Randfarbe)
+	\item Der Titel des Symptoms (beinhaltet den Titel sowie dessen Schriftart und -größe)
+	\item Die Position des Symptoms
+	\item Der Style das Symptoms (beinhaltet die Größe, Füllfarbe und Randfarbe)
 	\item Hinweis: Ist einer dieser Werte gesperrt, so kann das Symptom nicht gelöscht werden.
 \end{enumerate}
 \textbf{\bbe{Regeln für einzelne Relationen}}\\
 (folgende Eigenschaften der gewählten Relation können gesperrt werden, sodass diese nicht mehr verändert werden können):
 \begin{enumerate}
-	\item der Style der Relation (betrifft die Farbe sowie die Kantenart)
-	\item der Relationstyp
+	\item Der Style der Relation (betrifft die Farbe sowie die Linienart)
+	\item Der Relationstyp
 	\item Hinweis: Ist einer dieser Werte gesperrt, so kann die Relation nicht gelöscht werden.
 \end{enumerate}
 
@@ -1993,7 +1965,7 @@ Durch Festlegung der einzelnen Werte kann die Bearbeitung und Erweiterung des Gr
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage erstellen}
-Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. Nur in diesem Modus ist es möglich Regeln für die spätere Bearbeitung des Syndroms festzulegen. Die einmal eingestellten Regeln können dabei jederzeit bedarfsgerecht angepasst werden. Hierzu können eingegebene Werte verändert und ausgewählte Optionen wieder deselektiert (und damit aus der Auswahl entfernt) werden. In den folgenden beiden Unterkapiteln werden die Aktionen beschrieben, die für die Erstellung einer Vorlage relevant sind. \\
+Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. Nur in diesem Modus ist es möglich Regeln für die spätere Bearbeitung des Syndroms festzulegen. Die einmal eingestellten Regeln können dabei jederzeit bedarfsgerecht angepasst werden. Hierzu können eingegebene Werte verändert und ausgewählte Optionen wieder deselektiert und damit aus der Auswahl entfernt werden. In den folgenden beiden Unterkapiteln werden die Aktionen beschrieben, die für die Erstellung einer Vorlage relevant sind. \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \subsubsection{Graph spezifische Vorlageregeln}
@@ -2005,10 +1977,7 @@ Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. 
 		\item Im oberen Bereich dieser Leiste kann in den Feldern neben den Beschriftungen \textit{Maximal Sphären}, \textit{Maximal Symptome} und \textit{Maximal Relationen} jeweils die maximale Anzahl eingegeben werden, die es von diesem Graphelement-Typ im Syndrom geben darf. Hierzu mit einem Links-Klick in das gewünschte Feld klicken und anschließend über die Tastatur die gewünschte Zahl (als Ziffer/ Ziffernfolge) eingegeben werden. Mit der \textit{Enter}-Taste wird die Eingabe bestätigt.
 		\item Unter diesen drei Eingabefelder findet sich ein Bereich in dem die Relationstypen, die bei der Bearbeitung des Syndroms erlaubt sind, eingestellt werden können. Standardmäßig sind alle Relationstypen erlaubt. Um einen Relationstyp für die Bearbeitung zu sperren einen Links-Klick in die Box neben dem entsprechenden Relationstyp ausführen, sodass der Haken in dieser Box verschwindet. Durch einen erneuten Links-Klick in die entsprechende Checkbox wird wieder ein Haken gesetzt und der entsprechende Relationstyp kann wieder in der Bearbeitung verwendet werden.
 	\end{enumerate} 
-	\hint
-	\begin{itemize}
-		\item Es können keine negativen Zahlen und auch kein Text in die Felder für die maximale Anzahl eines Graphelement-Typs eingegeben werden. \\
-	\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Element spezifische Vorlageregeln}
 	\condition 
@@ -2025,9 +1994,8 @@ Zur Erstellung einer Vorlage muss der Ersteller-Modus der Anwendung aktiv sein. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Vorlage verwenden}
-Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndroms auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein. Der Bearbeiter erhält Einblick in die Vorlageregeln über die Seitenleiste. Kann die hinterlegten Regeln, aber nur lesen und nicht bearbeiten. \\
-Dabei ist bei der Verwendung einer Vorlage zu beachten, dass Aktionen (wie beispielsweise das Ändern der Farbe eines Graphelements), die vom Programm grundsätzlich zur Verfügung gestellt werden, unter Umständen nicht mehr zu funktionieren scheinen. Dieser Eindruck kann dadurch entstehen, dass der Aufruf bestimmter Aktionen zu keiner Änderung des angezeigten Syndroms führt. Hinweise in der Benutzeroberfläche sollen diesen Fehleindruck eines unerwünschten Programmverhaltens verhindern. \\
-Die angezeigten Hinweise geben Aufschluss darüber, dass die Aktion deshalb nicht umgesetzt werden kann, weil die angeforderte Aktion durch die Regeln in der Vorlage untersagt wird. \\
+Damit die in der Vorlage hinterlegten Regeln sich auf die Bearbeitung des Syndroms auswirken, muss der Bearbeiter-Modus der Anwendung aktiv sein. Der Bearbeiter erhält Einblick in die Vorlageregeln über die Seitenleiste. Kann die hinterlegten Regeln aber nur lesen und nicht bearbeiten. \\
+ \\
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2159,7 +2127,7 @@ Falls die gewünschte Farbe nicht in dem Drop-Down-Farbmenü des Color Pickers e
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \section{Fehlermeldungen} \label{fehlermeldungen}
-\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}\\
+\emph{}\\
 
 Um die Anwendung von \texttt{GraphIt} so einfach wie möglich zu gestaltet, wird der Benutzer auch auf nicht mögliche/ fehlerhafte Aktionen über eine Fehlermeldung hingewiesen. \\
 Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen Sphäre hinzugefügt werden soll. Dies ist aufgrund der Erstellungsregeln eines Syndroms nicht erlaubt. Auch wenn beispielsweise versucht wird ein Symptom hinzuzufügen, obwohl die in den Vorlageregeln maximale Anzahl von Symptomen bereits erreicht ist, erscheint eine Fehlermeldung.
@@ -2178,7 +2146,7 @@ Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anhang} \label{sec:anhang}	
-\emph{Autoren: Nina Unterberg, Bastian Rexhäuser}
+\emph{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
@@ -2186,27 +2154,27 @@ Eine Fehlermeldung erscheint beispielsweise, wenn eine Sphäre auf einer anderen
 \begin{description}
 	\item[Java 8] ist die Version der Programmiersprache Java mit der \textit{GraphIt} programmiert wurde. Java selbst ist eine objektorientierte Programmiersprache. 
 	\item[GUI] Graphical User Interface (=Benutzeroberfläche) - hierbei handelt es sich um die Darstellung der für den Nutzer / die Nutzerin sichtbaren Teile unserer Software. Es dreht sich also bei der GUI um die visuellen Bestandteile des Programms, die es einem Verwender / einer Verwenderin ermöglichen, die Programmfunktionen (intuitiv) nutzen zu können. Vereinfacht ausgedrückt kann in diesem Fall der Nutzer über die GUI einen Graphen erstellen und editieren sowie eine Auswertung des Graph durchführen. 
-	\item[GXL] (Graph eXchange Language) ist ein Dateiformat, das dem Austausch von Graphen zwischen Programmen dient. Hierbei ist zu beachten, dass aufgrund der speziellen Eigenschaften, die jedes Graphelement besitzt, die GXL-Datei, die beim GXL-Export eines in der vorliegenden Anwendung \textit{GraphIt} erstellten Graphen erstellt wird, beim Import in einem anderen GXL-Programm zu einer Darstellung führt, die nicht der Darstellung des exportierten Syndrom entspricht. Die Darstellung eines Graphen nach einem Export und anschließendem Import sind lediglich identisch, wenn für den Export und den Import die vorliegende Anwendung genutzt wird. Dies ist (neben den Eigenschaften der einzelnen Elemente) insbesondere darauf zurückzuführen, dass es in der GXL-Notation nicht vorgesehen ist Knoten in andere Knoten zu verschachteln. Dies wird jedoch konzeptionell vom Syndromansatz gefordert, da Symptome (bei dem es sich um eine Art von Knoten handelt) Sphären (bei denen es sich ebenfalls um eine Art Knoten handelt) zugeordnet werden und Symptome visuell in der Sphäre, der sie zugewiesen wurden, dargestellt werden sollen.
+	\item[GXL] (Graph eXchange Language) ist ein Dateiformat, das dem Austausch von Graphen zwischen Programmen dient. Hierbei ist zu beachten, dass aufgrund der speziellen Eigenschaften, die jedes Graphelement besitzt, die GXL-Datei, die beim GXL-Export eines in der vorliegenden Anwendung \textit{GraphIt} erstellten Graphen erstellt wird, beim Import in einem anderen GXL-Programm zu einer Darstellung führt, die nicht der Darstellung des exportierten Syndrom entspricht. Die Darstellung eines Graphen nach einem Export und anschließendem Import sind lediglich identisch, wenn für den Export und den Import die vorliegende Anwendung genutzt wird. Dies ist (neben den Eigenschaften der einzelnen Elemente) insbesondere darauf zurückzuführen, dass es in der GXL-Notation nicht vorgesehen ist, Knoten in andere Knoten zu verschachteln. Dies wird jedoch konzeptionell vom Syndromansatz gefordert, da Symptome (bei dem es sich um eine Art von Knoten handelt) Sphären (bei denen es sich ebenfalls um eine Art Knoten handelt) zugeordnet werden und Symptome visuell in der Sphäre, der sie zugewiesen wurden, dargestellt werden sollen.
 	\item[PDF] (Portable Document Format) ist ein plattformunabhängiges Dateiformat, das die Erstellung eines Dokuments ermöglicht, das vom ursprünglichen Anwendungsprogramm losgelöst geöffnet und gelesen werden kann. Das Format gibt dabei den Inhalt des Ursprungsprogramms originalgetreu wieder (sowohl Inhalt als auch Darstellung).  Im Falle der Anwendung \textit{GraphIt} ist es also zu empfehlen, einen Graphen im PDF-Format zu exportieren, wenn man die Darstellung des Syndroms auf einem Computer öffnen möchte, auf dem die \textit{GraphIt}-Software nicht installiert ist.
 	\item[.oof] ist ein für die Anwendung \textit{GraphIt} entwickeltes Dateiformat, das Informationen über das Nutzerverhalten und Daten zum Graphen zusammenführt. Es handelt sich dabei konkret um eine von Menschen lesbare und von der Anwendung interpretierbare Form des Nutzerprotokolls und die Graph-Informationen in GXL-Notation.
 	\item[Graph] ist ein Wirkungsdiagramm und somit eine visuelle Darstellung für den Syndromansatz.  In diesem Dokument sind die Begriffe \glqq Graph\grqq{} und \glqq Syndrom\grqq{} als äquivalent zu verstehen.
-	\item[Syndromansatz] ist ein vom \glqq Wissenschaftlichen Beirat der Bundesregierung Globale Umweltveränderung \grqq{} (WBGU) entwickeltes Modell zur Identifikation von Fehlentwicklungen besonders in den Bereichen Biologie, Gesellschaft und Wirtschaft, um Gegenmaßnahmen planen und durchführen zu können. Es geht hierbei grob gesagt um ein Modell zur Erkennung von \glqq Krankheitsbildern\grqq. 
-	\item[Syndrom] (=Krankheitsbild) ist ein aus Symptomen (Knoten) und deren Wechselwirkungen (dargestellt über Relationen/Kanten) bestehender Graph in seiner Gesamtheit. 
-	\item[Sphäre] ist ein zusammenhängender, sich nicht mit anderen Sphären überlappender im Diagramm dargestellter (Themen-)Bereich, zu dem Symptome zugeordnet werden. Sphären werden durch Linien voneinander abgetrennt, haben eine wählbare Hintergrundfarbe, eine einstellbare Größe und können mittels eines Textes beschrieben werden. Des Weiteren können Schriftart und -größe des Titels angepasst werden. Der Titel einer Sphäre im Syndrom muss eindeutig sein. Es ist also nicht möglich einer Sphäre einen Titel zu geben, der bereits eine andere Sphäre oder ein Symptom kennzeichnet.
-	\item[Symptom] ist ein Knoten im Graphen (Syndrom). Ein Symptom besitzt einen eindeutigen Titel (das heißt, der Titel eines Symptoms darf nicht identisch zu dem Titel eines anderen Symptoms oder dem Titel einer Sphäre sein). Schriftart und -größe des Titels können angepasst werden. Zudem hat ein Syndrom eine Rand- und eine Füllfarbe, eine einstellbare Größe und eine auswählbare Form.
-	\item[Relationen] sind gerichtete Kanten von einem Knoten zu einem anderen Knoten im Graphen und dienen der Repräsentation von Wirkungszusammenhängen zwischen Symptomen, wobei zwischen drei Relationstypen unterschieden wird: verstärkend, abschwächend und unbekannt. Die Pfeilspitzen der Relationen sind vom Typ der Relation abhängig. Eine Verstärkende Relation besitzt eine spitze Pfeilspitze, abschwächende Relationen werden mit einer runden Pfeilspitze dargestellt und unbekannte Relationen haben ein Fragezeichen an der Pfeilspitze. Die Kantendicke und Linienarten der Kanten könne in der Anwendung \textit{GraphIt} eingestellt werden. Die Farben der Kanten können vom Nutzer gewählt werden. Überlappungen von Kantenenden verschiedener Relationstypen, die am selben Knoten eingehen, sind nicht erlaubt.
-	\item[Ankerpunkte] sind Stellen an einem Knoten, mit denen der Nutzer / die Nutzerin den Beginn oder das Ziel einer Kante (an dem Rand des jeweiligen Symptoms) definieren kann. 
-	\item[Pfeilkette] Hiervon ist die Rede, wenn mindestens drei Kanten in dieselbe Richtung zeigen, ohne dass es zu einer Verzweigung bei den inneren Knoten der Kette kommt. Von einem inneren Knoten einer Kette ist die Rede, wenn er nicht der Start- und nicht der Endknoten der Kette ist. 
-	\item[Verzweigung] Ein Knoten, zu dem zwei oder mehr Kanten hin- beziehungsweise von ihm wegführen, wobei auch beides möglich ist. 
-	\item[Kreislauf (Zyklus)] Eine Kette von Kanten, die geschlossen ist und deren Kanten alle in die gleiche Richtung zeigen. Dabei ist jeder Knoten im Zyklus von jeden anderen Knoten in dem entsprechenden Zyklus aus durch die Kette erreichbar. Eine direkte Rückkopplung ist der kleinste Kreislauf.
+	\item[Syndromansatz] ist eine vom \glqq Wissenschaftlichen Beirat der Bundesregierung Globale Umweltveränderung \grqq{} (WBGU) entwickelte Methode, mit der die komplexen Vernetzungen des globalen Wandels auf verschiedenen räumlichen und zeitlichen Skalen entschlüsselt werden soll. Nicht-nachhaltige Entwicklungsmuster sollen aufgezeigt werden, um so zur Operationalisierung des Nachhaltigkeitskonzeptes beitragen zu können. Außerdem sollen funktionale Muster innerhalb des globalen Wandels identifiziert werden. Auf Grundlage dieser Erkenntnisse kann ein Orientierungsrahmen für die Politik geschaffen und ein lösungsorientiertes und präventives Arbeiten mit den Problematiken und Herausforderungen des Globalen Wandels ermöglicht werden. Ein zentraler Punkt bei der Arbeit mit dem Syndromansatz ist die grafische Repräsentation der Vorgänge des globalen Wandels. Die nicht-nachhaltigen Entwicklungsmuster werden dabei als Symptome bezeichnet und in einem Wirkungsdiagramm dargestellt. Dieses Wirkungsdiagramm ist dabei in  unterschiedliche Bereiche (Sphären) geteilt. 
+	\item[Syndrom] (=Krankheitsbild). In der Syndromansatztheorie wird davon ausgegangen, dass der globale Wandel auf einer überschaubaren Anzahl von Kausalmustern in der Mensch-Umwelt-Beziehung beruht. Diese Muster ähneln Krankheitsbildern und werden als Syndrome des Globalen Wandels bezeichnet. Diese Krankheitsbilder treten dann auf, wenn bestimmte, nicht-nachhaltige Mensch-Natur-Interaktionen vorherrschen. Diese Interaktionen werden als Symptome bezeichnet. Ähnlich wie in der medizinischen Diagnostik können Symptome bei verschiedenen Krankheitsbildern wirken.  In einem Syndrom werden die Wechselwirkungen zwischen Symptomen über Relatioen Relationen dargestellt. 
+	\item[Sphäre] ist ein zusammenhängender, sich nicht mit anderen Sphären überlappender im Diagramm dargestellter (Themen-)Bereich, zu dem Symptome zugeordnet werden. Sphären werden durch Linien voneinander abgetrennt und haben in diesem Programm eine wählbare Hintergrundfarbe, eine einstellbare Größe und können mittels eines Textes beschrieben werden. Des Weiteren können Schriftart und -größe des Titels angepasst werden. Der Titel einer Sphäre im Syndrom muss eindeutig sein. Es ist also nicht möglich einer Sphäre einen Titel zu geben, der bereits eine andere Sphäre oder ein Symptom kennzeichnet.
+	\item[Symptom] Als Symptome werden in der Syndromansatztheore nicht-nachhaltige Mensch-Natur-Interaktion bezeichnet, welche im Syndrom als  Elemente im Graphen dargestellt werden. Ein Symptom besitzt einen eindeutigen Titel (das heißt, der Titel eines Symptoms darf nicht identisch zu dem Titel eines anderen Symptoms oder dem Titel einer Sphäre sein). Schriftart und -größe des Titels können in diesem Programm angepasst werden. Zudem hat ein Syndrom eine Rand- und eine Füllfarbe, eine einstellbare Größe und eine auswählbare Form.
+	\item[Relationen] sind Vernetzungen von einem Symptom zu einem anderen Symptom im Graphen und dienen der Repräsentation von Wirkungszusammenhängen zwischen Symptomen, wobei zwischen drei Relationstypen unterschieden wird: verstärkend, abschwächend und unbestimmt. Die Pfeilspitzen der Relationen sind vom Typ der Relation abhängig. Eine Verstärkende Relation besitzt eine spitze Pfeilspitze, abschwächende Relationen werden mit einer runden Pfeilspitze dargestellt und unbekannte Relationen haben ein Fragezeichen an der Pfeilspitze. Die Breite und Linienarten der Relationen könne in der Anwendung \textit{GraphIt} eingestellt werden. Die Farben der Relationen können vom Nutzer gewählt werden. Überlappungen von verschiedenen Relationstypen, die am selben Symptom eingehen, sind nicht erlaubt.
+	\item[Ankerpunkte] sind Stellen an einem Symptom, mit denen der Nutzer / die Nutzerin den Beginn oder das Ziel einer Relation (an dem Rand des jeweiligen Symptoms) definieren kann. 
+	\item[Pfeilkette] Hiervon ist die Rede, wenn mindestens drei Relationen in dieselbe Richtung zeigen, ohne dass es zu einer Verzweigung bei den inneren Symptomen der Kette kommt. Von einem inneren Symptom einer Kette ist die Rede, wenn er nicht der Start- und nicht der Endpunkt der Kette ist. 
+	\item[Verzweigung] Ein Symptom, zu dem zwei oder mehr Relationen hin- beziehungsweise von ihm wegführen, wobei auch beides möglich ist. 
+	\item[Kreislauf (Zyklus)] Eine Kette von Relationen, die geschlossen ist und deren Relationen alle in die gleiche Richtung zeigen. Dabei ist jedes Symptom im Zyklus von jedem anderen Symptom in dem entsprechenden Zyklus aus durch die Kette erreichbar. Eine direkte Rückkopplung ist der kleinste Kreislauf.
 	\item[(Nutzer-)Rolle] Wann immer im Dokument von Rollen oder Nutzerrollen die Rede sein wird, ist damit nicht ein Rechtemanagement, sondern vielmehr die Bereitstellung verschiedener Modi gemeint. Jeder Nutzer kann dabei jede Rolle einnehmen und somit das System in jedem Modus verwenden. Jeder Modus stellt dabei einen unterschiedlichen Umfang an Funktionen bereit.
-	\item[Ersteller-Modus] entspricht der Rolle eines Erstellers. Dieser Modus stellt Funktionen bereit, um ein Diagramm als Vorlage zu erstellen und um bestimmte Vorlageregeln für diese Vorlage festzulegen. Zur Erstellung der Vorlage kann in diesem Modus die Anzahl der Sphären, Knoten und Relationen, die das Syndrom bei Weiterbearbeitung (im Bearbeiter-Modus) maximal enthalten darf, festgelegt werden. Außerdem können einige Eigenschaften einzelner Graphelemente gesperrt werden, sodass diese im Bearbeiter-Modus nicht mehr verändert werden können. Dieser Modus wird üblicherweise von Lehrern zur Erstellung einer Vorlage für ein Diagramm verwendet.
+	\item[Ersteller-Modus] entspricht der Rolle eines Erstellers. Dieser Modus stellt Funktionen bereit, um ein Diagramm als Vorlage zu erstellen und um bestimmte Vorlageregeln für diese Vorlage festzulegen. Zur Erstellung der Vorlage kann in diesem Modus die Anzahl der Sphären, Symptome und Relationen, die das Syndrom bei Weiterbearbeitung (im Bearbeiter-Modus) maximal enthalten darf, festgelegt werden. Außerdem können einige Eigenschaften einzelner Graphelemente gesperrt werden, sodass diese im Bearbeiter-Modus nicht mehr verändert werden können. Dieser Modus wird üblicherweise von Lehrern zur Erstellung einer Vorlage für ein Diagramm verwendet.
 	\item[Bearbeiter-Modus] erfüllt die Ansprüche einer Betrachter-Rolle an das System. In diesem Modus kann ein Benutzer / eine Benutzerin ein Diagramm auf Basis einer Vorlage erstellen und dazu die Vorlage im Rahmen der Regeln aus der gegebenen Vorlage verändern. Ist dieser Modus aktiv, so wird ein Protokoll angelegt, welches Interaktionen des Nutzers / der Nutzerin mit dem Graphen in diesem Modus aufzeichnet. Zu den aufgezeichneten Daten gehört ein Zeitstempel, der angibt, wann die entsprechende Aktion aufgerufen wurde, sowie die Aktion (z.B. Hinzufügen einer Sphäre, Veränderung der Farbe der Relation oder Verschiebung des Symptoms). Dieser Modus ist besonders für Kinder ab 10 Jahren geeignet, die durch ihn komplexe Zusammenhänge verstehen sollen. Ferner ist alles, was in diesem Modus möglich ist, auch im Ersteller-Modus möglich.
-	\item[Analyse-Modus] Dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der Struktur des Syndroms (Vorhandensein von Zyklen und Verzweigungen etc.)). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Metriken/Graphmaßen für das aktuell im Hauptfenster der Anwendung \textit{GraphIt} angezeigte Syndrom und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Knoten erstellt wurden) gewährt. Dieses Protokoll kann zur leichteren Auswertung nach Aktionen gefiltert werden. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden.
-	\item[Bedeutung eines Knoten] Die Relevanz eines Knoten ist von der Vernetztheit des Knotens abhängig. Dabei sind mögliche Maßstäbe für Wichtigkeit und Grad der Vernetztheit folgende: Sei K ein Knoten, der im Analyse-Modus mit einem Links-Klick als einziger Knoten ausgewählt wurde... 	
+	\item[Analyse-Modus] Dieser Modus ist mit einer Auswerter-Rolle vergleichbar. Er stellt Funktionen bereit, um einen erstellten Graphen analysieren zu können (z.B. hinsichtlich der Struktur des Syndroms (Vorhandensein von Zyklen und Verzweigungen etc.)). Diese Analyse beinhaltet darüber hinaus zum einen die Bereitstellung von Metriken/Graphmaßen für das aktuell im Hauptfenster der Anwendung \textit{GraphIt} angezeigte Syndrom und zum anderen ein Protokoll, das Aufschluss über die Nutzerinteraktionen (wie zum Beispiel die Reihenfolge, in der Symptome erstellt wurden) gewährt. Dieses Protokoll kann zur leichteren Auswertung nach Aktionen gefiltert werden. Dieser Modus wird voraussichtlich von Wissenschaftlern in der Didaktik und eventuell auch von Lehrern verwendet werden.
+	\item[Bedeutung eines Symptoms] Die Relevanz eines Symptoms ist von der Vernetztheit des Symptoms abhängig. Dabei sind mögliche Maßstäbe für Wichtigkeit und Grad der Vernetztheit folgende: Sei K ein Symptom, das im Analyse-Modus mit einem Links-Klick als einziges Symptom ausgewählt wurde... 	
 		\begin{itemize}
 			\setlength{\itemsep}{0.5pt}
-			\item Anzahl der benachbarten Knoten von K (nur Vorgänger, nur Nachfolger, alle Nachbarn). Diese werden bei entsprechender Auswahl der Analyse-Optionen in der GUI farblich hervorgehoben.
+			\item Anzahl der benachbarten Symptome von K (nur Vorgänger, nur Nachfolger, alle Nachbarn). Diese werden bei entsprechender Auswahl der Analyse-Optionen in der GUI farblich hervorgehoben.
 			\item Pfeilketten, konvergente und divergente Verzweigungen, Zyklen beliebiger Länge im Graphen. Diese werden bei entsprechender Auswahl der Analyse-Optionen in der GUI farblich hervorgehoben.
 		\end{itemize}
 	\item[Metriken/Graphmaße] vorgegebene Messgrößen des Syndromansatzes. Man unterscheidet zwischen
@@ -2227,7 +2195,7 @@ Im folgenden ist die im Dokument erwähnte Fachliteratur gelistet: \\ \\
 	Danny Holten (2006). Hierarchical Edge Bundles: Visualization of Adjacency Relations in Hierarchical Data. In: IEEE Transactions on Visualization and Computer Graphics, 12(5), September 2006, 741-748. ISSN 1077-2626. & \hyperlink{cc}{Überlappung von Knotenenden des selben Relationstyps} \\ \\ 
 	Sommer, C. (2005). Untersuchung der Systemkompetenz von Grundschülern im Bereich Biologie.& \hyperlink{Umfang}{Umfang} \\ \\
 	Ossimitz, G. (2000). Entwicklung systemischen Denkens. Theoretische Konzepte und empirische Untersuchungen. München: Profil. & \hyperlink{Vernetzungsindex}{Vernetzungsindex} \\ \\
-	Kunz, P. \& Bollmann-Zuberbühler, B. (2008): Ist systemisches Denken lehr- und lernbar? In U. Frischknecht-Tobler, U. Nagel \& H. Seybold (Hrsg.), Systemdenken. Wie Kinder und Jugendliche komplexe Systeme verstehen lernen. (S. 33-52). Zürich: Pestalozzianum. & \hyperlink{Strukturindex}{Strukturindex} \\ \\
+	Bollmann-Zuberbühler, B. (2008): Lernwirksamkeitsstudie zum systemischen Denken an der Sekundarstufe I. In U. Frischknecht-Tobler, U. Nagel \& H. Seybold (Hrsg.), Systemdenken. Wie Kinder und Jugendliche komplexe Systeme verstehen lernen. (S. 99-118). Zürich: Pestalozzianum. & \hyperlink{Strukturindex}{Strukturindex} \\ \\
 \end{tabular}
 
 
