@@ -117,8 +117,8 @@
 \usepackage{geometry}
 \geometry{
 	a4paper,
-	left=20mm,
-	right=20mm,
+	left=25mm,
+	right=25mm,
 	top=2cm,
 	bottom=4cm,
 	footskip=4cm
@@ -170,11 +170,7 @@
 % Lustige Header auf den Seiten
   \pagestyle{fancy}
   \setlength{\headheight}{70.55003pt}
-  \fancyhead{}
-  \fancyhead[LO,RE]{\\ WiSe 2018/2019
-  \\Architekturbeschreibung}
-  \fancyhead[LE,RO]{Seite \thepage\\\slshape \leftmark\\\slshape \rightmark}
-
+  
 %
 % Und jetzt geht das Dokument los....
 %
@@ -189,27 +185,18 @@
 
 % Start Titelseite
   \vspace{3cm}
-
   \begin{minipage}[H]{\textwidth}
-  \begin{center}
-  \bf
-  \Large
-  \smallskip
-  \small
-  \vspace{0cm}
-  \end{center}
-  \end{minipage}
-  \begin{minipage}[H]{\textwidth}
-  \begin{center}
+  	\begin{center}
   \vspace{0cm}
   \bf
-  \Large Benutzerhandbuch - GraphIt \\
-  TeamBlank \\
+  \huge Benutzerhandbuch \\ 
+  \large GraphIt \\
   \vspace{5cm}
   \includegraphics[width=3.0in]{logo_graphit.png}
 
-\ Bremen, Juni 2021\\
-
+\vspace{8cm}
+ Bremen, Juni 2021\\
+\it Version 1.0\\
   
   \end{center}
 
@@ -237,39 +224,25 @@ Supervision:\\
 Prof. Rainer Koschke\\
 Marcel Steinbeck\\
   \end{tabular}
-\\ ~
-\vspace{1cm}
-  \\
  \end{center}
+\vspace{0.75cm}
 
 Verantwortliche für die fachlichen Inhalte der Biologie im FB2:\\
 \begin{center}
+	\sf 
 \begin{tabular}{lr}
-\\
-  \sf 
 Nicklas Müller & nicklas.mueller@uni-bremen.de \\
-\\
 Supervision:\\
  Doris Elster & doris.elster@uni-bremen.de\\
 \end{tabular}
-\\ ~
-  \vspace{2cm}
-  \\
 
+\end{center}
 
+\vspace{0.75cm}
+Finanziell gefördert durch die zentrale Forschungsförderung der Universität Bremen.\\
 
-\emph{}
-
-
-\ Finanziell gefördert durch die zentrale Forschungsförderung der Universität Bremen.\\
-\vspace{2cm}
-
-
-\emph{}
-
-
-  \it Version 1.0\\ ~
-  \end{center}
+\vspace{5cm}
+Weitere Informationen unter \href{http://graphit-software.de/}{graphit-software.de}. Kontakt: \href{mailto:info@graphit-software.de}{info@graphit-software.de}
   \end{minipage}
 
 
